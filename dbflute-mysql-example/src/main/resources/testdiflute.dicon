@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE components PUBLIC "-//SEASAR2.1//DTD S2Container//EN"
+    "http://www.seasar.org/dtd/components21.dtd">
+<components namespace="testdiflute">
+    <component name="trickyAction" class="com.example.dbflute.mysql.friends.seasar.tricky.TrickyAction" instance="request"/>
+    <component name="trickyBuilder" class="com.example.dbflute.mysql.friends.seasar.tricky.TrickyFlute$Builder" instance="prototype"/>
+    <component name="trickyFlute" class="com.example.dbflute.mysql.friends.seasar.tricky.TrickyFlute" instance="request">
+        trickyBuilder.build()
+    </component>
+
+    <component name="fileToken" class="org.seasar.dbflute.helper.token.file.FileToken"/>
+</components>

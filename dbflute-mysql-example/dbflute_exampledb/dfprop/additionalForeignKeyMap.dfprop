@@ -1,0 +1,472 @@
+# /---------------------------------------------------------------------------
+# additionalForeignKeyMap: (NotRequired - Default 'map:{}')
+#
+# If foreign key does not exist in your database,
+# you can set up here as virtual foreign key for DBFlute.
+#
+# And it's one-to-one relation if you add one fixed condition to referrer table, 
+# you can set virtual foreign key with fixedCondition and fixedSuffix.
+# And you can use it to view objects too.
+#
+# If local column name is same as foreign column name,
+# you can omit the setting of localColumnName and foreignColumnName.
+# The names are treated as case insensitive.
+#
+# Example:
+# map:{
+#     ; FK_MEMBER_MEMBER_STATUS_CODE = map:{
+#         ; localTableName  = MEMBER             ; foreignTableName  = MEMBER_STATUS
+#         ; localColumnName = MEMBER_STATUS_CODE ; foreignColumnName = MEMBER_STATUS_CODE
+#     }
+#     ; FK_PURCHASE_MEMBER_ID = map:{
+#         ; localTableName  = PURCHASE  ; foreignTableName  = MEMBER
+#     }
+#     ; FK_MEMBER_MEMBER_ADDRESS_VALID = map:{
+#         ; localTableName  = MEMBER    ; foreignTableName  = MEMBER_ADDRESS
+#         ; localColumnName = MEMBER_ID ; foreignColumnName = MEMBER_ID
+#         ; fixedCondition = 
+#          $$foreignAlias$$.VALID_BEGIN_DATE <= /*targetDate(Date)*/null
+#      and $$foreignAlias$$.VALID_END_DATE >= /*targetDate(Date)*/null 
+#         ; fixedSuffix = AsValid
+#     }
+# }
+# 
+# *The line that starts with '#' means comment-out.
+#
+map:{
+    # ====================================================================================
+    #                                                                       Plain Relation
+    #                                                                       ==============
+    ; FK_SUMMARY_PRODUCT_PRODUCT_STATUS = map:{
+        ; localTableName  = SUMMARY_PRODUCT     ; foreignTableName  = PRODUCT_STATUS
+        ; localColumnName = PRODUCT_STATUS_CODE ; foreignColumnName  = PRODUCT_STATUS_CODE
+    }
+    ; FK_PURCHASE_SUMMARY_PRODUCT = map:{
+        ; localTableName  = PURCHASE   ; foreignTableName  = SUMMARY_PRODUCT
+        ; localColumnName = PRODUCT_ID ; foreignColumnName  = PRODUCT_ID
+    }
+    # for the test of relation to no-PK table
+    ; FK_PURCHASE_SUMMARY_WITHDRAWAL = map:{
+        ; localTableName  = PURCHASE ; foreignTableName  = SUMMARY_WITHDRAWAL
+        ; localColumnName = MEMBER_ID ; foreignColumnName = MEMBER_ID
+    }
+    ; FK_PURCHASE_NO_PK_RELATION = map:{
+        ; localTableName  = PURCHASE ; foreignTableName  = WHITE_NO_PK_RELATION
+        ; localColumnName = PRODUCT_ID ; foreignColumnName = PRODUCT_ID
+    }
+    # for next relation
+    ; FK_PURCHASE_PURCHASE_SELF = map:{
+        ; localTableName  = PURCHASE ; foreignTableName  = PURCHASE
+        ; localColumnName = PURCHASE_ID ; foreignColumnName = PURCHASE_ID
+    }
+
+    # ====================================================================================
+    #                                                                    Basic BizOneToOne
+    #                                                                    =================
+    # also for the test of implicit reverse FK
+    ; FK_MEMBER_MEMBER_ADDRESS_VALID = map:{
+        ; localTableName  = MEMBER    ; foreignTableName  = MEMBER_ADDRESS
+        ; localColumnName = MEMBER_ID ; foreignColumnName = MEMBER_ID
+        ; fixedCondition = 
+         $$foreignAlias$$.VALID_BEGIN_DATE <= /*targetDate(Date)*/null
+     and $$foreignAlias$$.VALID_END_DATE >= /*targetDate(Date)*/null
+        ; fixedSuffix = AsValid
+    }
+    # for the test of second same-structured biz-one-to-one
+    ; FK_MEMBER_MEMBER_ADDRESS_VALID_BEFORE = map:{
+        ; localTableName  = MEMBER    ; foreignTableName  = MEMBER_ADDRESS
+        ; localColumnName = MEMBER_ID ; foreignColumnName = MEMBER_ID
+        ; fixedCondition = 
+         $$foreignAlias$$.VALID_BEGIN_DATE <= /*targetDate(Date)*/null
+     and $$foreignAlias$$.VALID_END_DATE >= /*targetDate(Date)*/null
+        ; fixedSuffix = AsValidBefore
+    }
+    # for the test of CDef binding (this cannot be biz-one-to-one actually, only for test)
+    ; FK_MEMBER_MEMBER_LOGIN_STATUS = map:{
+        ; localTableName  = MEMBER    ; foreignTableName  = MEMBER_LOGIN
+        ; localColumnName = MEMBER_ID ; foreignColumnName = MEMBER_ID
+        ; fixedCondition = $$foreignAlias$$.LOGIN_MEMBER_STATUS_CODE = /*statusCode($$CDef$$.MemberStatus)*/null
+        ; fixedSuffix = AsLoginStatus
+    }
+    # for the test of IF comment
+    ; FK_MEMBER_MEMBER_ADDRESS_IF_COMMENT = map:{
+        ; localTableName  = MEMBER    ; foreignTableName  = MEMBER_ADDRESS
+        ; localColumnName = MEMBER_ID ; foreignColumnName = MEMBER_ID
+        ; fixedCondition = 
+         $$foreignAlias$$.VALID_BEGIN_DATE <= /*targetDate(Date)*/null
+     and $$foreignAlias$$.VALID_END_DATE >= /*targetDate(Date)*/null
+     /*IF $$parameterBase$$.region != null*/and $$foreignAlias$$.REGION_ID = /*region($$CDef$$.Region)*/null/*END*/
+        ; fixedSuffix = AsIfComment
+    }
+
+    # ====================================================================================
+    #                                                              OnlyOneDate BizOneToOne
+    #                                                              =======================
+    # for the test of valid duration by only one date column
+    ; FK_MEMBER_MEMBER_ADDRESS_ONLY_ONE_DATE  = map:{
+        ; localTableName  = MEMBER    ; foreignTableName  = MEMBER_ADDRESS
+        ; localColumnName = MEMBER_ID ; foreignColumnName = MEMBER_ID
+        ; fixedCondition  = 
+$$foreignAlias$$.VALID_BEGIN_DATE = ($$sqbegin$$
+select max(address.VALID_BEGIN_DATE)
+  from MEMBER_ADDRESS address
+ where address.MEMBER_ID = $$foreignAlias$$.MEMBER_ID
+   and address.VALID_BEGIN_DATE <= /*targetDate(Date)*/null
+)$$sqend$$
+        ; fixedSuffix = AsOnlyOneDate
+    }
+
+    # ====================================================================================
+    #                                                             SkipRelation BizOneToOne
+    #                                                             ========================
+    # for the test of skip relation biz-one-to-one
+    ; FK_PURCHASE_MEMBER_ADDRESS_VALID = map:{
+        ; localTableName  = PURCHASE    ; foreignTableName  = MEMBER_ADDRESS
+        ; localColumnName = MEMBER_ID ; foreignColumnName = MEMBER_ID
+        ; fixedCondition = 
+         $$foreignAlias$$.VALID_BEGIN_DATE <= /*targetDate(Date)*/null
+     and $$foreignAlias$$.VALID_END_DATE >= /*targetDate(Date)*/null
+        ; fixedSuffix = AsSkipRelation
+    }
+
+    # ====================================================================================
+    #                                                             OverRelation BizOneToOne
+    #                                                             ========================
+    #
+    # for test of over-relation of biz-one-to-one
+    #  -> $$over(TABLE_NAME.relationName)$$
+    #
+    # ------------------------------------------------------
+    #                                          Local Foreign
+    #                                          -------------
+    ; FK_MEMBER_MEMBER_LOGIN_LOCAL_FOREIGN_OVER_TEST = map:{
+        ; localTableName  = MEMBER    ; foreignTableName  = MEMBER_LOGIN
+        ; localColumnName = MEMBER_ID ; foreignColumnName = MEMBER_ID
+        ; fixedCondition = 
+$$foreignAlias$$.LOGIN_MEMBER_STATUS_CODE = $$over($localTable.memberStatus)$$.MEMBER_STATUS_NAME
+        ; fixedSuffix = AsLocalForeignOverTest
+    }
+    # ------------------------------------------------------
+    #                                   Foreign Foreign Each
+    #                                   --------------------
+    ; FK_MEMBER_MEMBER_LOGIN_FOREIGN_FOREIGN_EACH_OVER_TEST = map:{
+        ; localTableName  = MEMBER    ; foreignTableName  = MEMBER_LOGIN
+        ; localColumnName = MEMBER_ID ; foreignColumnName = MEMBER_ID
+        ; fixedCondition = 
+$$over($localTable.memberStatus)$$.DISPLAY_ORDER = $$over($foreignTable.memberStatus)$$.DISPLAY_ORDER
+        ; fixedSuffix = AsForeignForeignEachOverTest
+    }
+    # ------------------------------------------------------
+    #                              Foreign Foreign Optimized
+    #                              -------------------------
+    ; FK_MEMBER_MEMBER_LOGIN_FOREIGN_FOREIGN_OPTIMIZED_BASIC_OVER_TEST = map:{
+        ; localTableName  = MEMBER    ; foreignTableName  = MEMBER_LOGIN
+        ; localColumnName = MEMBER_ID ; foreignColumnName = MEMBER_ID
+        ; fixedCondition = 
+$$over($foreignTable.memberStatus)$$.DISPLAY_ORDER = 3
+        ; fixedSuffix = AsForeignForeignOptimizedBasicOverTest
+    }
+    ; FK_MEMBER_MEMBER_LOGIN_FOREIGN_FOREIGN_OPTIMIZED_MARK_OVER_TEST = map:{
+        ; localTableName  = MEMBER    ; foreignTableName  = MEMBER_LOGIN
+        ; localColumnName = MEMBER_ID ; foreignColumnName = MEMBER_ID
+        ; fixedCondition = 
+$$over($localTable.memberStatus)$$.DISPLAY_ORDER = $$over($foreignTable.memberStatus, DISPLAY_ORDER)$$.STATUS_ORDER
+and $$over($foreignTable.memberStatus)$$.DISPLAY_ORDER = 3
+$$inline$$
+and $$over($foreignTable.memberStatus, DESCRIPTION)$$.STATUS_DESC is not null
+and $$foreignAlias$$.MOBILE_LOGIN_FLG = /*$cls(Flg.True)*/
+and $$foreignAlias$$.MEMBER_ID >= $$over($foreignTable.memberStatus)$$.DISPLAY_ORDER
+        ; fixedSuffix = AsForeignForeignOptimizedMarkOverTest
+    }
+    ; FK_MEMBER_MEMBER_LOGIN_FOREIGN_FOREIGN_OPTIMIZED_PART_OVER_TEST = map:{
+        ; localTableName  = MEMBER    ; foreignTableName  = MEMBER_LOGIN
+        ; localColumnName = MEMBER_ID ; foreignColumnName = MEMBER_ID
+        # auto formatting does not work because of sub-query
+        ; fixedCondition = 
+         $$over($foreignTable.memberStatus)$$.DISPLAY_ORDER = 3
+     and $$over($localTable.memberStatus)$$.DISPLAY_ORDER = $$over($foreignTable.memberStatus, DISPLAY_ORDER)$$.STATUS_ORDER
+     and $$over($foreignTable.memberStatus, DESCRIPTION)$$.STATUS_DESC is not null
+     and $$localAlias$$.BIRTHDATE is not null
+     and $$foreignAlias$$.MOBILE_LOGIN_FLG = /*$cls(Flg.True)*/null
+     and $$localAlias$$.MEMBER_NAME like /*memberName(String)*/null
+     and $$foreignAlias$$.MOBILE_LOGIN_FLG = (
+             select 'Y'
+         )
+     and $$foreignAlias$$.LOGIN_DATETIME >= now()
+       or $$foreignAlias$$.LOGIN_DATETIME <= now()
+     and $$foreignAlias$$.MEMBER_ID >= $$over($foreignTable.memberStatus)$$.DISPLAY_ORDER
+        ; fixedSuffix = AsForeignForeignOptimizedPartOverTest
+    }
+    ; FK_MEMBER_MEMBER_LOGIN_FOREIGN_FOREIGN_OPTIMIZED_WHOLE_OVER_TEST = map:{
+        ; localTableName  = MEMBER    ; foreignTableName  = MEMBER_LOGIN
+        ; localColumnName = MEMBER_ID ; foreignColumnName = MEMBER_ID
+        ; fixedCondition = 
+$$over($foreignTable.memberStatus)$$.DISPLAY_ORDER = 3
+and $$over($foreignTable.memberStatus, DESCRIPTION)$$.STATUS_DESC is not null
+and $$foreignAlias$$.MOBILE_LOGIN_FLG = /*$cls(Flg.True)*/
+and $$foreignAlias$$.MEMBER_ID >= $$over($foreignTable.memberStatus)$$.DISPLAY_ORDER
+and $$foreignAlias$$.LOGIN_DATETIME < ($$sqbegin$$
+select max(login.LOGIN_DATETIME)
+  from MEMBER_LOGIN login
+ where login.MEMBER_ID = $$foreignAlias$$.MEMBER_ID
+)$$sqend$$
+and $$foreignAlias$$.LOGIN_DATETIME > ($$sqbegin$$
+select min(login.LOGIN_DATETIME)
+  from MEMBER_LOGIN login
+ where login.MEMBER_ID = $$foreignAlias$$.MEMBER_ID
+)$$sqend$$
+        ; fixedSuffix = AsForeignForeignOptimizedWholeOverTest
+    }
+    # ------------------------------------------------------
+    #                              Foreign Foreign Parameter
+    #                              -------------------------
+    ; FK_MEMBER_MEMBER_LOGIN_FOREIGN_FOREIGN_PARAMETER_OVER_TEST = map:{
+        ; localTableName  = MEMBER    ; foreignTableName  = MEMBER_LOGIN
+        ; localColumnName = MEMBER_ID ; foreignColumnName = MEMBER_ID
+        ; fixedCondition = 
+         $$over($localTable.memberStatus)$$.DISPLAY_ORDER = $$over($foreignTable.memberStatus, DISPLAY_ORDER)$$.STATUS_ORDER
+     and $$over($foreignTable.memberStatus, MEMBER_STATUS_CODE)$$.MEMBER_STATUS_CODE is not null
+     and $$over($foreignTable.memberStatus, MEMBER_STATUS_NAME)$$.MEMBER_STATUS_NAME is not null
+     and $$localAlias$$.BIRTHDATE > /*targetDate(Date)*/null
+        ; fixedSuffix = AsForeignForeignParameterOverTest
+    }
+    # ------------------------------------------------------
+    #                                Foreign Foreign Various
+    #                                -----------------------
+    ; FK_MEMBER_MEMBER_LOGIN_FOREIGN_FOREIGN_VARIOUS_OVER_TEST = map:{
+        ; localTableName  = MEMBER    ; foreignTableName  = MEMBER_LOGIN
+        ; localColumnName = MEMBER_ID ; foreignColumnName = MEMBER_ID
+        # empty in-line to suppress optimization
+        ; fixedCondition = 
+         $$over($foreignTable.member.memberStatus)$$.DISPLAY_ORDER is not null
+     and $$over($foreignTable.member.memberWithdrawalAsOne)$$.WITHDRAWAL_DATETIME is not null
+     and $$over($foreignTable.memberStatus, DISPLAY_ORDER)$$.STATUS_ORDER is not null
+     and $$over($foreignTable.member.memberWithdrawalAsOne.withdrawalReason, DISPLAY_ORDER)$$.REASON_ORDER is not null
+     and $$over($foreignTable.memberStatus)$$.MEMBER_STATUS_NAME is not null
+     and $$over(PURCHASE.product.productStatus)$$.PRODUCT_STATUS_NAME is not null
+     $$inline$$
+        ; fixedSuffix = AsForeignForeignVariousOverTest
+    }
+    # ------------------------------------------------------
+    #                                     Referrer (Foreign)
+    #                                     ------------------
+    ; FK_MEMBER_MEMBER_LOGIN_REFERRER_OVER_TEST = map:{
+        ; localTableName  = MEMBER    ; foreignTableName  = MEMBER_LOGIN
+        ; localColumnName = MEMBER_ID ; foreignColumnName = MEMBER_ID
+        ; fixedCondition = 
+$$foreignAlias$$.LOGIN_DATETIME > $$over(PURCHASE)$$.PURCHASE_DATETIME
+        ; fixedSuffix = AsReferrerOverTest
+    }
+    ; FK_MEMBER_MEMBER_LOGIN_REFERRER_FOREIGN_OVER_TEST = map:{
+        ; localTableName  = MEMBER    ; foreignTableName  = MEMBER_LOGIN
+        ; localColumnName = MEMBER_ID ; foreignColumnName = MEMBER_ID
+        ; fixedCondition = 
+$$foreignAlias$$.LOGIN_MEMBER_STATUS_CODE = $$over(PURCHASE.product.productStatus)$$.PRODUCT_STATUS_NAME
+        ; fixedSuffix = AsReferrerForeignOverTest
+    }
+
+    # ====================================================================================
+    #                                                                Formatted BizOneToOne
+    #                                                                =====================
+    # for the test of auto-formatted biz-one-to-one
+    ; FK_MEMBER_MEMBER_ADDRESS_FORMATTED_BASIC = map:{
+        ; localTableName  = MEMBER    ; foreignTableName  = MEMBER_ADDRESS
+        ; localColumnName = MEMBER_ID ; foreignColumnName = MEMBER_ID
+        ; fixedCondition = 
+               $$foreignAlias$$.VALID_BEGIN_DATE <= /*targetDate(Date)*/null
+and $$foreignAlias$$.VALID_END_DATE >= /*targetDate(Date)*/null
+    
+        ; fixedSuffix = AsFormattedBasic
+    }
+    ; FK_MEMBER_MEMBER_ADDRESS_FORMATTED_LONG = map:{
+        ; localTableName  = MEMBER    ; foreignTableName  = MEMBER_ADDRESS
+        ; localColumnName = MEMBER_ID ; foreignColumnName = MEMBER_ID
+        ; fixedCondition =$$foreignAlias$$.VALID_BEGIN_DATE <= /*targetDate(Date)*/null
+         and $$foreignAlias$$.VALID_END_DATE
+ >= /*targetDate(Date)*/null
+        ; fixedSuffix = AsFormattedLong
+    }
+    ; FK_MEMBER_MEMBER_LOGIN_FORMATTED_MANY = map:{
+        ; localTableName  = MEMBER    ; foreignTableName  = MEMBER_LOGIN
+        ; localColumnName = MEMBER_ID ; foreignColumnName = MEMBER_ID
+        ; fixedCondition = 
+         $$over($foreignTable.member.memberStatus)$$.DISPLAY_ORDER is not null
+and $$over($foreignTable.member.memberWithdrawalAsOne)$$.WITHDRAWAL_DATETIME is not null
+ and $$over($foreignTable.memberStatus, DISPLAY_ORDER)$$.STATUS_ORDER is not null
+  and $$over($foreignTable.member.memberWithdrawalAsOne.withdrawalReason, DISPLAY_ORDER)$$.REASON_ORDER is not null
+   and $$over($foreignTable.memberStatus)$$.MEMBER_STATUS_NAME is not null
+    and $$over($localTable.memberSecurityAsOne)$$.REMINDER_QUESTION is not null
+     and $$over($localTable.memberServiceAsOne)$$.SERVICE_POINT_COUNT is not null
+        ; fixedSuffix = AsFormattedMany
+    }
+
+    # ====================================================================================
+    #                                                                      Biz-Many-to-One
+    #                                                                      ===============
+    #
+    # for test of split multiple FK of biz-many-to-one
+    #
+    # unfortunately unsupported this pattern
+    # it has wrong mapping when selecting entities
+    #
+    ; FK_WHITE_SPLIT_MULTIPLE_FK = map:{
+        ; localTableName  = WHITE_SPLIT_MULTIPLE_FK_BASE ; foreignTableName  = WHITE_SPLIT_MULTIPLE_FK_REF
+        # both FIRST_ID and SECOND_CODE are keys for the relation
+        # but SECOND_CODE is not defined at local table
+        ; localColumnName = FIRST_ID ; foreignColumnName = FIRST_ID
+        ; fixedCondition = 
+$$over($localTable.whiteSplitMultipleFkNext)$$.SECOND_CODE = $$foreignAlias$$.SECOND_CODE
+        ; fixedSuffix = AsSplitMultipleFkTest
+    }
+
+    #
+    # for the test of variant relation of biz-many-to-one
+    #
+    ; FK_WHITE_VARIANT_RELATION_FOO = map:{
+        ; localTableName  = WHITE_VARIANT_RELATION_REFERRER ; foreignTableName = WHITE_VARIANT_RELATION_MASTER_FOO
+        ; localColumnName = VARIANT_MASTER_ID ; foreignColumnName = MASTER_FOO_ID
+        ; fixedCondition = $$localAlias$$.MASTER_TYPE_CODE = /*$cls(VariantRelationMasterType.FooCls)*/null
+        ; fixedSuffix = AsVariant
+        ; fixedReferrer = true
+    }
+    ; FK_WHITE_VARIANT_RELATION_BAR = map:{
+        ; localTableName  = WHITE_VARIANT_RELATION_REFERRER ; foreignTableName = WHITE_VARIANT_RELATION_MASTER_BAR
+        ; localColumnName = VARIANT_MASTER_ID ; foreignColumnName = MASTER_BAR_ID
+        ; fixedCondition = $$localAlias$$.MASTER_TYPE_CODE = /*$cls(VariantRelationMasterType.BarCls)*/null
+        ; fixedSuffix = AsVariant
+        ; fixedReferrer = true
+    }
+    # no-referrer pattern
+    ; FK_WHITE_VARIANT_RELATION_QUX = map:{
+        ; localTableName  = WHITE_VARIANT_RELATION_REFERRER ; foreignTableName = WHITE_VARIANT_RELATION_MASTER_QUX
+        ; localColumnName = VARIANT_MASTER_ID ; foreignColumnName = MASTER_QUX_ID
+        ; fixedCondition =
+         $$localAlias$$.MASTER_TYPE_CODE = /*$cls(VariantRelationMasterType.QuxCls)*/null
+     and $$foreignAlias$$.QUX_TYPE_CODE = /*$cls(VariantRelationQuxType.Que)*/null
+        ; fixedSuffix = AsVariantByQue
+    }
+    # no-referrer and in-line pattern
+    ; FK_WHITE_VARIANT_RELATION_CORGE = map:{
+        ; localTableName  = WHITE_VARIANT_RELATION_REFERRER ; foreignTableName = WHITE_VARIANT_RELATION_MASTER_CORGE
+        ; localColumnName = VARIANT_MASTER_ID ; foreignColumnName = MASTER_CORGE_ID
+        ; fixedCondition =
+         $$localAlias$$.MASTER_TYPE_CODE = /*$cls(VariantRelationMasterType.CorgeCls)*/null
+     and $$foreignAlias$$.CORGE_TYPE_CODE = /*quxType($$CDef$$.VariantRelationQuxType)*/null
+        ; fixedSuffix = AsVariantByQuxType
+        # fixedInline with localAlias is not available
+        #; fixedInline = true
+    }
+
+    #
+    # for the test of all-in-one table classification (biz-many-to-one)
+    # (expect no compile error)
+    #
+    ; FK_WHITE_ALL_IN_ONE_CLS_COMPOUND_PK_REF_FOO_TEST = map:{
+        ; localTableName  = WHITE_ALL_IN_ONE_CLS_COMPOUND_PK_REF ; foreignTableName  = WHITE_ALL_IN_ONE_CLS_ELEMENT
+        ; localColumnName = FOO_CODE ; foreignColumnName = CLS_ELEMENT_CODE
+        ; fixedCondition = $$foreignAlias$$.CLS_CATEGORY_CODE = 'FOO'
+        ; fixedSuffix = AsFoo
+    }
+    ; FK_WHITE_ALL_IN_ONE_CLS_COMPOUND_PK_REF_BAR_TEST = map:{
+        ; localTableName  = WHITE_ALL_IN_ONE_CLS_COMPOUND_PK_REF ; foreignTableName  = WHITE_ALL_IN_ONE_CLS_ELEMENT
+        ; localColumnName = BAR_CODE ; foreignColumnName = CLS_ELEMENT_CODE
+        ; fixedCondition = $$foreignAlias$$.CLS_CATEGORY_CODE = 'BAR'
+        ; fixedSuffix = AsBar
+    }
+    ; FK_WHITE_ALL_IN_ONE_CLS_NORMAL_COL_REF_FOO_TEST = map:{
+        ; localTableName  = WHITE_ALL_IN_ONE_CLS_NORMAL_COL_REF ; foreignTableName  = WHITE_ALL_IN_ONE_CLS_ELEMENT
+        ; localColumnName = FOO_CODE ; foreignColumnName = CLS_ELEMENT_CODE
+        ; fixedCondition = $$foreignAlias$$.CLS_CATEGORY_CODE = 'FOO'
+        ; fixedSuffix = AsFoo
+    }
+    ; FK_WHITE_ALL_IN_ONE_CLS_NORMAL_COL_REF_BAR_TEST = map:{
+        ; localTableName  = WHITE_ALL_IN_ONE_CLS_NORMAL_COL_REF ; foreignTableName  = WHITE_ALL_IN_ONE_CLS_ELEMENT
+        ; localColumnName = BAR_CODE ; foreignColumnName = CLS_ELEMENT_CODE
+        ; fixedCondition = $$foreignAlias$$.CLS_CATEGORY_CODE = 'BAR'
+        ; fixedSuffix = AsBar
+    }
+
+    # ====================================================================================
+    #                                                               Implicit Conversion FK
+    #                                                               ======================
+    #
+    # for the test of implicit conversion foreign key
+    # (expect no compile error)
+    #
+    ; FK_WHITE_IMPLICIT_CONV_INTEGER_NUMERIC = map:{
+        ; localTableName  = WHITE_IMPLICIT_CONV_INTEGER ; foreignTableName  = WHITE_IMPLICIT_CONV_NUMERIC
+        ; localColumnName = IMPLICIT_CONV_NUMERIC_ID ; foreignColumnName = IMPLICIT_CONV_NUMERIC_ID
+    }
+    ; FK_WHITE_IMPLICIT_CONV_INTEGER_STRING = map:{
+        ; localTableName  = WHITE_IMPLICIT_CONV_INTEGER ; foreignTableName  = WHITE_IMPLICIT_CONV_STRING
+        ; localColumnName = IMPLICIT_CONV_STRING_ID ; foreignColumnName = IMPLICIT_CONV_STRING_ID
+    }
+    ; FK_WHITE_IMPLICIT_CONV_NUMERIC_INTEGER = map:{
+        ; localTableName  = WHITE_IMPLICIT_CONV_NUMERIC ; foreignTableName  = WHITE_IMPLICIT_CONV_INTEGER
+        ; localColumnName = IMPLICIT_CONV_INTEGER_ID ; foreignColumnName = IMPLICIT_CONV_INTEGER_ID
+    }
+    ; FK_WHITE_IMPLICIT_CONV_NUMERIC_STRING = map:{
+        ; localTableName  = WHITE_IMPLICIT_CONV_NUMERIC ; foreignTableName  = WHITE_IMPLICIT_CONV_STRING
+        ; localColumnName = IMPLICIT_CONV_STRING_ID ; foreignColumnName = IMPLICIT_CONV_STRING_ID
+    }
+    ; FK_WHITE_IMPLICIT_CONV_STRING_INTEGER = map:{
+        ; localTableName  = WHITE_IMPLICIT_CONV_STRING ; foreignTableName  = WHITE_IMPLICIT_CONV_INTEGER
+        ; localColumnName = IMPLICIT_CONV_INTEGER_ID ; foreignColumnName = IMPLICIT_CONV_INTEGER_ID
+    }
+    ; FK_WHITE_IMPLICIT_CONV_STRING_NUMERIC = map:{
+        ; localTableName  = WHITE_IMPLICIT_CONV_STRING ; foreignTableName  = WHITE_IMPLICIT_CONV_NUMERIC
+        ; localColumnName = IMPLICIT_CONV_NUMERIC_ID ; foreignColumnName = IMPLICIT_CONV_NUMERIC_ID
+    }
+
+    # ====================================================================================
+    #                                                                  Implicit Reverse FK
+    #                                                                  ===================
+    #
+    # for the test of implicit reverse foreign key
+    #
+    ; FK_WHITE_IMPLICIT_REVERSE_FK_REF_WITH = map:{
+        ; localTableName  = WHITE_IMPLICIT_REVERSE_FK ; foreignTableName  = WHITE_IMPLICIT_REVERSE_FK_REF
+        ; localColumnName = WHITE_IMPLICIT_REVERSE_FK_ID ; foreignColumnName = WHITE_IMPLICIT_REVERSE_FK_ID
+        ; fixedCondition =
+         $$foreignAlias$$.VALID_BEGIN_DATE <= /*targetDate(Date)*/null
+     and $$foreignAlias$$.VALID_END_DATE >= /*targetDate(Date)*/null
+        ; fixedSuffix = WithImplicitReverseFK
+    }
+    ; FK_WHITE_IMPLICIT_REVERSE_FK_REF_SUPPRESS = map:{
+        ; localTableName  = WHITE_IMPLICIT_REVERSE_FK ; foreignTableName  = WHITE_IMPLICIT_REVERSE_FK_SUPPRESS
+        ; localColumnName = WHITE_IMPLICIT_REVERSE_FK_ID ; foreignColumnName = WHITE_IMPLICIT_REVERSE_FK_ID
+        ; fixedCondition =
+         $$foreignAlias$$.VALID_BEGIN_DATE <= /*targetDate(Date)*/null
+     and $$foreignAlias$$.VALID_END_DATE >= /*targetDate(Date)*/null
+        ; fixedSuffix = SuppressImplicitReverseFK
+        ; isSuppressImplicitReverseFK = true
+    }
+    # with reverse one-to-one relation
+    ; FK_WHITE_SELF_REFERENCE_REF_ONE_DIRECT_PARENT = map:{
+        ; localTableName  = WHITE_SELF_REFERENCE_REF_ONE ; foreignTableName  = WHITE_SELF_REFERENCE
+        ; localColumnName = SELF_REFERENCE_ID ; foreignColumnName = PARENT_ID
+        ; fixedCondition = 1=1
+        ; fixedSuffix = AsDirectParent
+    }
+
+    # ====================================================================================
+    #                                                                      DerivedRelation
+    #                                                                      ===============
+    #
+    # for the test of derived relation
+    #
+    ; FK_MEMBER_MEMBER_LOGIN_LATEST  = map:{
+        ; localTableName  = MEMBER    ; foreignTableName  = MEMBER_LOGIN
+        ; localColumnName = MEMBER_ID ; foreignColumnName = MEMBER_ID
+        ; fixedCondition  = 
+$$foreignAlias$$.LOGIN_DATETIME = ($$sqbegin$$
+select max(login.LOGIN_DATETIME)
+  from MEMBER_LOGIN login
+ where login.MEMBER_ID = $$foreignAlias$$.MEMBER_ID
+)$$sqend$$
+        ; fixedSuffix = AsLatest
+    }
+}
+# ----------------/
+
+

@@ -1,0 +1,26 @@
+package ${request.package};
+
+import java.io.Serializable;
+
+/**
+ * @author FreeGen
+ */
+public class ${request.className} implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+#foreach ($column in $table.columnList)
+
+    /** name=${column.name} camelize=${column.camelizedName}, capCamelName=${column.capCamelName} */
+    protected ${column.type} ${column.uncapCamelName};
+#end
+#foreach ($column in $table.columnList)
+
+    public ${column.type} get${column.capCamelName}() {
+        return ${column.uncapCamelName};
+    }
+
+    public void set${column.capCamelName}(${column.type} value) {
+        ${column.uncapCamelName} = value;
+    }
+#end
+}

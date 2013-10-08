@@ -1,0 +1,47 @@
+package ${request.package};
+
+import java.io.Serializable;
+import java.text.MessageFormat;
+import java.util.ResourceBundle;
+
+/**
+ * @author FreeGen
+ */
+public class ${request.className} implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    private static final ResourceBundle BUNDLE = ResourceBundle.getBundle("application");
+#foreach ($column in $table.columnList)
+
+    /** ${column.comment}, name=${column.capCamelName}, variable=${column.variableCount} */
+    public static final String ${column.defName} = "${column.propertyKey}";
+#if ($column.hasVariable)
+    /**
+#if ($column.hasPropertyValue)
+     * value=${manager.resolveTextForJavaDoc($column.propertyValue, "    ")}
+#else
+     * value=
+#end
+#foreach ($variableNumber in $column.variableNumberList)
+     * @param arg${variableNumber}
+#end
+     * @return The formatted message. (NotNull)
+     */
+    public static String get${column.capCamelName}(${column.variableArgDef}) { // ${column.propertyValue}
+        return MessageFormat.format(BUNDLE.getString(${column.defName}), ${column.variableArgSet});
+    }
+#else
+    /**
+#if ($column.hasPropertyValue)
+     * value=${manager.resolveTextForJavaDoc($column.propertyValue, "    ")}
+#else
+     * value=
+#end
+     * @return The formatted message. (NotNull)
+     */
+    public static String get${column.capCamelName}() { // ${column.propertyValue}
+        return MessageFormat.format(BUNDLE.getString(${column.defName}), (Object[])null);
+    }
+#end
+#end
+}

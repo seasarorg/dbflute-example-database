@@ -1,0 +1,7 @@
+map:{
+	; driver		= com.mysql.jdbc.Driver
+	; url			= jdbc:mysql://localhost:43306/exampledb_slave
+	; schema		= 
+	; user			= exampledb_slave
+	; password		= exampledb_slave
+}

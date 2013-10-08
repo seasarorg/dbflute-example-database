@@ -1,0 +1,73 @@
+map:{
+    ; MessageGen = map:{
+        ; resourceMap = map:{
+            ; resourceType = PROP
+            ; resourceFile = ../src/main/resources/application_ja.properties
+        }
+        ; outputMap = map:{
+            ; templateFile = MessageDef.vm
+            ; outputDirectory = ../src/main/java
+            ; package = com.example.dbflute.mysql.dbflute.freegen
+            ; className = MessageDef
+        }
+    }
+    ; CsvDtoGen = map:{
+        ; resourceMap = map:{
+            ; resourceType = XLS
+            ; resourceFile = ./freegen/CsvDtoSpec.xls
+        }
+        ; outputMap = map:{
+            ; templateFile = CsvDto.vm
+            ; outputDirectory = ../src/main/java
+            ; package = com.example.dbflute.mysql.dbflute.freegen
+            ; className = FooDto
+        }
+        ; tableMap = map:{
+            ; sheetName = freegen
+            ; rowBeginNumber = 3
+            ; columnMap = map:{
+                ; name = 3
+                ; type = 4
+            }
+            ; mappingMap = map:{
+                ; type = map:{ numeric = Integer ; varchar = String }
+            }
+        }
+    }
+    ; JsonBeanGen = map:{
+        ; resourceMap = map:{
+            ; resourceType = JSON_SCHEMA
+            ; resourceFile = ../src/main/resources/json/json_schema.json
+        }
+        ; outputMap = map:{
+            ; templateFile = unused
+            ; outputDirectory = ../src/main/java
+            ; package = com.example.dbflute.mysql.dbflute.freegen.json
+            ; className = unused
+        }
+        ; tableMap = map:{
+        	; tablePath = map
+            ; mappingMap = map:{
+                ; type = map:{ numeric = Integer ; varchar = String }
+            }
+        }
+    }
+    ; SolrBeanGen = map:{
+        ; resourceMap = map:{
+            ; resourceType = SOLR
+            ; resourceFile = ../src/main/resources/solr/solr_schema.xml
+        }
+        ; outputMap = map:{
+            ; templateFile = unused
+            ; outputDirectory = ../src/main/java
+            ; package = com.example.dbflute.mysql.dbflute.freegen.solr
+            ; className = unused
+        }
+        ; tableMap = map:{
+            ; baseBeanClassName = BsSolrFooBean
+            ; extendedBeanClassName = SolrFooBean
+            ; isContainsDynamicField = true
+            ; mappingMap = map:{ type = map:{ foo = String } }
+        }
+    }
+}

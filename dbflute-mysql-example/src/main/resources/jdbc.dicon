@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.4//EN"
+	"http://www.seasar.org/dtd/components24.dtd">
+<components namespace="jdbc">
+	<include path="jta.dicon"/>
+	<include path="jdbc-extension.dicon"/>
+
+	<include path="jdbc-master.dicon"/>
+	<include path="jdbc-slave.dicon"/>
+
+	<component name="dataSource"
+		class="org.dbflute.saflute.db.replication.MasterBasisSelectableDataSource"/>
+	<component name="slaveDBAccessor"
+		class="org.dbflute.saflute.db.replication.SlaveDBAccessorImpl"/>
+</components>

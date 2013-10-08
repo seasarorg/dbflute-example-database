@@ -1,0 +1,11 @@
+langs: [ "ja", "en" ],
+categories: {
+	memberStatus:[
+		{ cdef: "MemberStatus" }
+	]
+	, fooBarStatus: [
+		{ "key": "FOO", "lang": { "ja": "ふー", "en": "Foo" } }
+		, { "key": "BAR", "lang": { "ja": "ばー", "en": "Bar" } }
+		, { "key": "QUX", "lang": { "ja": "くっくす", "en": "Qux" } }
+	]
+}

@@ -1,0 +1,56 @@
+package ${request.package}.bean.bs;
+
+import java.io.Serializable;
+
+/**
+ * @author FreeGen
+ */
+public class ${tableMap.baseBeanClassName} implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+    // ===================================================================================
+    //                                                                           Attribute
+    //                                                                           =========
+#foreach ($column in $table.columnList)
+#if ($column.isDynamic)
+#if ($column.hasKeyword)
+    /** dynamic field: ${column.name} (${column.nativeType}) cap=${column.uncapCamelName}, ${column.capCamelName} */
+    protected ${column.type} dynamic${column.keyword}dynamic;
+#end
+#if ($column.hasPrefixOnly)
+    /** dynamic field: ${column.name} (${column.nativeType}) cap=${column.uncapCamelName}, ${column.capCamelName} */
+    protected ${column.type} ${column.prefix}dynamic;
+#end
+#if ($column.hasSuffixOnly)
+    /** dynamic field: ${column.name} (${column.nativeType}) cap=${column.uncapCamelName}, ${column.capCamelName} */
+    protected ${column.type} dynamic${column.suffix};
+#end
+#if ($column.hasBothPrefixSuffix)
+    /** dynamic field: ${column.name} (${column.nativeType}) cap=${column.uncapCamelName}, ${column.capCamelName} */
+    protected ${column.type} ${column.prefix}dynamic${column.suffix};
+#end
+#else
+    /** ${column.name} (${column.nativeType}) */
+    protected ${column.type} ${column.uncapCamelName};
+#end
+
+#end
+    // ===================================================================================
+    //                                                                            Accessor
+    //                                                                            ========
+#foreach ($column in $table.columnList)
+#if ($column.isDynamic)
+    // dynamic field: ${column.name} (${column.nativeType})
+#else
+    public ${column.type} get${column.capCamelName}() {
+        return ${column.uncapCamelName};
+    }
+
+    public void set${column.capCamelName}(${column.type} value) {
+        ${column.uncapCamelName} = value;
+    }
+
+#end
+#end
+}
