@@ -1,4 +1,393 @@
 map:{
+    ; 2013/10/08 21:36:41 = map:{
+        ; diffDate = 2013/10/08 21:36:41
+        ; tableCount = map:{
+            ; next = 10
+            ; previous = 45
+        }
+        ; tableDiff = map:{
+            ; NEXT_SYNONYM_PRODUCT = map:{
+                ; tableName = NEXT_SYNONYM_PRODUCT
+                ; diffType = ADD
+            }
+            ; NEXT_SYNONYM_SECRET = map:{
+                ; tableName = NEXT_SYNONYM_SECRET
+                ; diffType = ADD
+            }
+            ; NEXT_SYNONYM_SECRET_AUTH = map:{
+                ; tableName = NEXT_SYNONYM_SECRET_AUTH
+                ; diffType = ADD
+            }
+            ; NEXT_SCHEMA_SECRET = map:{
+                ; tableName = NEXT_SCHEMA_SECRET
+                ; diffType = ADD
+            }
+            ; NEXT_SCHEMA_SECRET_AUTH = map:{
+                ; tableName = NEXT_SCHEMA_SECRET_AUTH
+                ; diffType = ADD
+            }
+            ; WHITE_SAME_NAME_REF = map:{
+                ; tableName = WHITE_SAME_NAME_REF
+                ; diffType = ADD
+            }
+            ; WHITE_SAME_NAME = map:{
+                ; tableName = WHITE_SAME_NAME
+                ; diffType = CHANGE
+                ; unifiedSchemaDiff = map:{
+                    ; next = NEXTEXAMPLEDB
+                    ; previous = EXAMPLEDB
+                }
+            }
+            ; WHITE_SAME_NAME_REF_REF = map:{
+                ; tableName = WHITE_SAME_NAME_REF_REF
+                ; diffType = CHANGE
+                ; unifiedSchemaDiff = map:{
+                    ; next = NEXTEXAMPLEDB
+                    ; previous = EXAMPLEDB
+                }
+                ; columnDiff = map:{
+                    ; REF_REF_COUNT = map:{
+                        ; columnName = REF_REF_COUNT
+                        ; diffType = ADD
+                    }
+                    ; REF_ID = map:{
+                        ; columnName = REF_ID
+                        ; diffType = ADD
+                    }
+                    ; REF_REF_NAME = map:{
+                        ; columnName = REF_REF_NAME
+                        ; diffType = CHANGE
+                        ; columnSizeDiff = map:{
+                            ; next = 50
+                            ; previous = 100
+                        }
+                    }
+                    ; REF_REF_DATE = map:{
+                        ; columnName = REF_REF_DATE
+                        ; diffType = DELETE
+                    }
+                }
+                ; foreignKeyDiff = map:{
+                    ; FK_WHITE_SAME_NAME_REF_REF = map:{
+                        ; constraintName = FK_WHITE_SAME_NAME_REF_REF
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; MEMBER_VENDOR_SYNONYM = map:{
+                ; tableName = MEMBER_VENDOR_SYNONYM
+                ; diffType = DELETE
+            }
+            ; SYNONYM_EXCEPT = map:{
+                ; tableName = SYNONYM_EXCEPT
+                ; diffType = DELETE
+            }
+            ; SYNONYM_MEMBER = map:{
+                ; tableName = SYNONYM_MEMBER
+                ; diffType = DELETE
+            }
+            ; SYNONYM_MEMBER_LOGIN = map:{
+                ; tableName = SYNONYM_MEMBER_LOGIN
+                ; diffType = DELETE
+            }
+            ; SYNONYM_MEMBER_WITHDRAWAL = map:{
+                ; tableName = SYNONYM_MEMBER_WITHDRAWAL
+                ; diffType = DELETE
+            }
+            ; SYNONYM_NEXT_LINK_SECRET = map:{
+                ; tableName = SYNONYM_NEXT_LINK_SECRET
+                ; diffType = DELETE
+            }
+            ; SYNONYM_NEXT_LINK_SYNONYM = map:{
+                ; tableName = SYNONYM_NEXT_LINK_SYNONYM
+                ; diffType = DELETE
+            }
+            ; SYNONYM_NEXT_LINK_TABLE = map:{
+                ; tableName = SYNONYM_NEXT_LINK_TABLE
+                ; diffType = DELETE
+            }
+            ; SYNONYM_NEXT_SAME_NAME_FK = map:{
+                ; tableName = SYNONYM_NEXT_SAME_NAME_FK
+                ; diffType = DELETE
+            }
+            ; SYNONYM_NEXT_SECRET_AUTH = map:{
+                ; tableName = SYNONYM_NEXT_SECRET_AUTH
+                ; diffType = DELETE
+            }
+            ; SYNONYM_PRODUCT = map:{
+                ; tableName = SYNONYM_PRODUCT
+                ; diffType = DELETE
+            }
+            ; SYNONYM_PRODUCT_STATUS = map:{
+                ; tableName = SYNONYM_PRODUCT_STATUS
+                ; diffType = DELETE
+            }
+            ; SYNONYM_REF_EXCEPT = map:{
+                ; tableName = SYNONYM_REF_EXCEPT
+                ; diffType = DELETE
+            }
+            ; VENDOR_SYNONYM_MEMBER = map:{
+                ; tableName = VENDOR_SYNONYM_MEMBER
+                ; diffType = DELETE
+            }
+            ; MEMBER = map:{
+                ; tableName = MEMBER
+                ; diffType = DELETE
+            }
+            ; MEMBER_ADDRESS = map:{
+                ; tableName = MEMBER_ADDRESS
+                ; diffType = DELETE
+            }
+            ; MEMBER_LOGIN = map:{
+                ; tableName = MEMBER_LOGIN
+                ; diffType = DELETE
+            }
+            ; MEMBER_SECURITY = map:{
+                ; tableName = MEMBER_SECURITY
+                ; diffType = DELETE
+            }
+            ; MEMBER_SERVICE = map:{
+                ; tableName = MEMBER_SERVICE
+                ; diffType = DELETE
+            }
+            ; MEMBER_STATUS = map:{
+                ; tableName = MEMBER_STATUS
+                ; diffType = DELETE
+            }
+            ; MEMBER_WITHDRAWAL = map:{
+                ; tableName = MEMBER_WITHDRAWAL
+                ; diffType = DELETE
+            }
+            ; PRODUCT = map:{
+                ; tableName = PRODUCT
+                ; diffType = DELETE
+            }
+            ; PRODUCT_CATEGORY = map:{
+                ; tableName = PRODUCT_CATEGORY
+                ; diffType = DELETE
+            }
+            ; PRODUCT_STATUS = map:{
+                ; tableName = PRODUCT_STATUS
+                ; diffType = DELETE
+            }
+            ; PURCHASE = map:{
+                ; tableName = PURCHASE
+                ; diffType = DELETE
+            }
+            ; REGION = map:{
+                ; tableName = REGION
+                ; diffType = DELETE
+            }
+            ; SERVICE_RANK = map:{
+                ; tableName = SERVICE_RANK
+                ; diffType = DELETE
+            }
+            ; SUMMARY_MEMBER_PURCHASE = map:{
+                ; tableName = SUMMARY_MEMBER_PURCHASE
+                ; diffType = DELETE
+            }
+            ; VENDOR_$_DOLLAR = map:{
+                ; tableName = VENDOR_$_DOLLAR
+                ; diffType = DELETE
+            }
+            ; VENDOR_CHECK = map:{
+                ; tableName = VENDOR_CHECK
+                ; diffType = DELETE
+            }
+            ; VENDOR_LARGE_DATA = map:{
+                ; tableName = VENDOR_LARGE_DATA
+                ; diffType = DELETE
+            }
+            ; VENDOR_LARGE_DATA_REF = map:{
+                ; tableName = VENDOR_LARGE_DATA_REF
+                ; diffType = DELETE
+            }
+            ; VENDOR_LARGE_NAME_901234567890 = map:{
+                ; tableName = VENDOR_LARGE_NAME_901234567890
+                ; diffType = DELETE
+            }
+            ; VENDOR_LARGE_NAME_90123456_REF = map:{
+                ; tableName = VENDOR_LARGE_NAME_90123456_REF
+                ; diffType = DELETE
+            }
+            ; WHITE_DIFF_WORLD = map:{
+                ; tableName = WHITE_DIFF_WORLD
+                ; diffType = DELETE
+            }
+            ; WHITE_REF_NEXT_EXCEPT = map:{
+                ; tableName = WHITE_REF_NEXT_EXCEPT
+                ; diffType = DELETE
+            }
+            ; WHITE_REF_NEXT_TARGET = map:{
+                ; tableName = WHITE_REF_NEXT_TARGET
+                ; diffType = DELETE
+            }
+            ; WHITE_REF_TARGET = map:{
+                ; tableName = WHITE_REF_TARGET
+                ; diffType = DELETE
+            }
+            ; WHITE_TARGET = map:{
+                ; tableName = WHITE_TARGET
+                ; diffType = DELETE
+            }
+            ; WITHDRAWAL_REASON = map:{
+                ; tableName = WITHDRAWAL_REASON
+                ; diffType = DELETE
+            }
+            ; SUMMARY_PRODUCT = map:{
+                ; tableName = SUMMARY_PRODUCT
+                ; diffType = DELETE
+            }
+        }
+        ; sequenceDiff = map:{
+            ; EXAMPLEDB.SEQ_MEMBER = map:{
+                ; sequenceName = EXAMPLEDB.SEQ_MEMBER
+                ; diffType = DELETE
+            }
+            ; EXAMPLEDB.SEQ_MEMBER_ADDRESS = map:{
+                ; sequenceName = EXAMPLEDB.SEQ_MEMBER_ADDRESS
+                ; diffType = DELETE
+            }
+            ; EXAMPLEDB.SEQ_MEMBER_LOGIN = map:{
+                ; sequenceName = EXAMPLEDB.SEQ_MEMBER_LOGIN
+                ; diffType = DELETE
+            }
+            ; EXAMPLEDB.SEQ_PRODUCT = map:{
+                ; sequenceName = EXAMPLEDB.SEQ_PRODUCT
+                ; diffType = DELETE
+            }
+            ; EXAMPLEDB.SEQ_PURCHASE = map:{
+                ; sequenceName = EXAMPLEDB.SEQ_PURCHASE
+                ; diffType = DELETE
+            }
+            ; EXAMPLEDB.SYNONYM_NEXT_SEQUENCE = map:{
+                ; sequenceName = EXAMPLEDB.SYNONYM_NEXT_SEQUENCE
+                ; diffType = DELETE
+            }
+        }
+        ; procedureDiff = map:{
+            ; NEXTEXAMPLEDB.SP_NEXT_TABLE_PARAMETER = map:{
+                ; procedureName = NEXTEXAMPLEDB.SP_NEXT_TABLE_PARAMETER
+                ; diffType = ADD
+            }
+            ; EXAMPLEDB.FN_IN_OUT_PARAMETER = map:{
+                ; procedureName = EXAMPLEDB.FN_IN_OUT_PARAMETER
+                ; diffType = DELETE
+            }
+            ; EXAMPLEDB.FN_NO_PARAMETER = map:{
+                ; procedureName = EXAMPLEDB.FN_NO_PARAMETER
+                ; diffType = DELETE
+            }
+            ; EXAMPLEDB.SP_IN_OUT_PARAMETER = map:{
+                ; procedureName = EXAMPLEDB.SP_IN_OUT_PARAMETER
+                ; diffType = DELETE
+            }
+            ; EXAMPLEDB.SP_NO_PARAMETER = map:{
+                ; procedureName = EXAMPLEDB.SP_NO_PARAMETER
+                ; diffType = DELETE
+            }
+            ; EXAMPLEDB.SP_NULL_OUT_PARAMETER = map:{
+                ; procedureName = EXAMPLEDB.SP_NULL_OUT_PARAMETER
+                ; diffType = DELETE
+            }
+            ; EXAMPLEDB.SP_ORACLE_CHAR_INOUT_PARAMETER = map:{
+                ; procedureName = EXAMPLEDB.SP_ORACLE_CHAR_INOUT_PARAMETER
+                ; diffType = DELETE
+            }
+            ; EXAMPLEDB.OVERLOAD_PKG.SP_OVERLOAD_INTERRUPT = map:{
+                ; procedureName = EXAMPLEDB.OVERLOAD_PKG.SP_OVERLOAD_INTERRUPT
+                ; diffType = DELETE
+            }
+            ; EXAMPLEDB.OVERLOAD_PKG.SP_OVERLOAD_PARAMETER = map:{
+                ; procedureName = EXAMPLEDB.OVERLOAD_PKG.SP_OVERLOAD_PARAMETER
+                ; diffType = DELETE
+            }
+            ; EXAMPLEDB.SAME_PKG.SP_PKG_IN_OUT_PARAMETER = map:{
+                ; procedureName = EXAMPLEDB.SAME_PKG.SP_PKG_IN_OUT_PARAMETER
+                ; diffType = DELETE
+            }
+            ; EXAMPLEDB.MAIN_PKG.SP_PKG_IN_OUT_PARAMETER = map:{
+                ; procedureName = EXAMPLEDB.MAIN_PKG.SP_PKG_IN_OUT_PARAMETER
+                ; diffType = DELETE
+            }
+            ; EXAMPLEDB.MAIN_PKG.SP_PKG_NO_PARAMETER = map:{
+                ; procedureName = EXAMPLEDB.MAIN_PKG.SP_PKG_NO_PARAMETER
+                ; diffType = DELETE
+            }
+            ; EXAMPLEDB.SAME_PKG.SP_PKG_NO_PARAMETER = map:{
+                ; procedureName = EXAMPLEDB.SAME_PKG.SP_PKG_NO_PARAMETER
+                ; diffType = DELETE
+            }
+            ; EXAMPLEDB.SP_RESULT_SET_PARAMETER = map:{
+                ; procedureName = EXAMPLEDB.SP_RESULT_SET_PARAMETER
+                ; diffType = DELETE
+            }
+            ; EXAMPLEDB.SP_RESULT_SET_PARAMETER_MORE = map:{
+                ; procedureName = EXAMPLEDB.SP_RESULT_SET_PARAMETER_MORE
+                ; diffType = DELETE
+            }
+            ; EXAMPLEDB.SP_RESULT_SET_PARAMETER_WITH = map:{
+                ; procedureName = EXAMPLEDB.SP_RESULT_SET_PARAMETER_WITH
+                ; diffType = DELETE
+            }
+            ; EXAMPLEDB.SP_STRUCT_BASIC_PARAMETER = map:{
+                ; procedureName = EXAMPLEDB.SP_STRUCT_BASIC_PARAMETER
+                ; diffType = DELETE
+            }
+            ; EXAMPLEDB.SP_STRUCT_LIST_PARAMETER = map:{
+                ; procedureName = EXAMPLEDB.SP_STRUCT_LIST_PARAMETER
+                ; diffType = DELETE
+            }
+            ; EXAMPLEDB.SP_STRUCT_NESTED_PARAMETER = map:{
+                ; procedureName = EXAMPLEDB.SP_STRUCT_NESTED_PARAMETER
+                ; diffType = DELETE
+            }
+            ; EXAMPLEDB.SP_STRUCT_NEXT_PARAMETER = map:{
+                ; procedureName = EXAMPLEDB.SP_STRUCT_NEXT_PARAMETER
+                ; diffType = DELETE
+            }
+            ; EXAMPLEDB.SP_STRUCT_SYNONYM_PARAMETER = map:{
+                ; procedureName = EXAMPLEDB.SP_STRUCT_SYNONYM_PARAMETER
+                ; diffType = DELETE
+            }
+            ; EXAMPLEDB.SP_TABLE_MANUAL_PARAMETER = map:{
+                ; procedureName = EXAMPLEDB.SP_TABLE_MANUAL_PARAMETER
+                ; diffType = DELETE
+            }
+            ; EXAMPLEDB.SP_TABLE_NESTED_PARAMETER = map:{
+                ; procedureName = EXAMPLEDB.SP_TABLE_NESTED_PARAMETER
+                ; diffType = DELETE
+            }
+            ; EXAMPLEDB.SP_TABLE_NEXT_PARAMETER = map:{
+                ; procedureName = EXAMPLEDB.SP_TABLE_NEXT_PARAMETER
+                ; diffType = DELETE
+            }
+            ; EXAMPLEDB.SP_TABLE_PACKED_PARAMETER = map:{
+                ; procedureName = EXAMPLEDB.SP_TABLE_PACKED_PARAMETER
+                ; diffType = DELETE
+            }
+            ; EXAMPLEDB.SP_TABLE_SYNONYM_PARAMETER = map:{
+                ; procedureName = EXAMPLEDB.SP_TABLE_SYNONYM_PARAMETER
+                ; diffType = DELETE
+            }
+            ; EXAMPLEDB.SP_TABLE_VARIOUS_PARAMETER = map:{
+                ; procedureName = EXAMPLEDB.SP_TABLE_VARIOUS_PARAMETER
+                ; diffType = DELETE
+            }
+            ; EXAMPLEDB.SP_TRANSACTION_INHERIT = map:{
+                ; procedureName = EXAMPLEDB.SP_TRANSACTION_INHERIT
+                ; diffType = DELETE
+            }
+            ; EXAMPLEDB.SP_VARIOUS_TYPE_PARAMETER = map:{
+                ; procedureName = EXAMPLEDB.SP_VARIOUS_TYPE_PARAMETER
+                ; diffType = DELETE
+            }
+            ; EXAMPLEDB.SP_VARRAY_MANUAL_PARAMETER = map:{
+                ; procedureName = EXAMPLEDB.SP_VARRAY_MANUAL_PARAMETER
+                ; diffType = DELETE
+            }
+        }
+    }
     ; 2013/07/21 09:22:36 = map:{
         ; diffDate = 2013/07/21 09:22:36
         ; tableDiff = map:{

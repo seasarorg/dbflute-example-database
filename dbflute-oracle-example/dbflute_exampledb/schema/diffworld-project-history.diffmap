@@ -1,4 +1,65 @@
 map:{
+    ; 2013/10/08 17:57:52 = map:{
+        ; diffDate = 2013/10/08 17:57:52
+        ; tableDiff = map:{
+            ; MEMBER_VENDOR_SYNONYM = map:{
+                ; tableName = MEMBER_VENDOR_SYNONYM
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; MEMBER_ACCOUNT = map:{
+                        ; columnName = MEMBER_ACCOUNT
+                        ; diffType = CHANGE
+                        ; columnSizeDiff = map:{
+                            ; next = 80
+                            ; previous = 50
+                        }
+                    }
+                }
+            }
+            ; SYNONYM_MEMBER = map:{
+                ; tableName = SYNONYM_MEMBER
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; MEMBER_ACCOUNT = map:{
+                        ; columnName = MEMBER_ACCOUNT
+                        ; diffType = CHANGE
+                        ; columnSizeDiff = map:{
+                            ; next = 80
+                            ; previous = 50
+                        }
+                    }
+                }
+            }
+            ; VENDOR_SYNONYM_MEMBER = map:{
+                ; tableName = VENDOR_SYNONYM_MEMBER
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; MEMBER_ACCOUNT = map:{
+                        ; columnName = MEMBER_ACCOUNT
+                        ; diffType = CHANGE
+                        ; columnSizeDiff = map:{
+                            ; next = 80
+                            ; previous = 50
+                        }
+                    }
+                }
+            }
+            ; MEMBER = map:{
+                ; tableName = MEMBER
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; MEMBER_ACCOUNT = map:{
+                        ; columnName = MEMBER_ACCOUNT
+                        ; diffType = CHANGE
+                        ; columnSizeDiff = map:{
+                            ; next = 80
+                            ; previous = 50
+                        }
+                    }
+                }
+            }
+        }
+    }
     ; 2013/07/21 10:03:12 = map:{
         ; diffDate = 2013/07/21 10:03:12
         ; tableCount = map:{
