@@ -1,0 +1,4 @@
+map:{
+    ; projectSchemaXMLFilePath = ./schema/project-schema-nextexampledb.xml
+    ; projectSchemaHistoryFilePath = ./schema/project-schema-nextexampledb.diffmap
+}
