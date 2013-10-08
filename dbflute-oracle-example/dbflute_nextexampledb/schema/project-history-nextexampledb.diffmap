@@ -1,0 +1,98 @@
+map:{
+    ; 2013/02/11 22:46:01 = map:{
+        ; diffDate = 2013/02/11 22:46:01
+        ; tableDiff = map:{
+            ; WHITE_SAME_NAME = map:{
+                ; tableName = WHITE_SAME_NAME
+                ; diffType = ADD
+            }
+            ; WHITE_SAME_NAME_REF = map:{
+                ; tableName = WHITE_SAME_NAME_REF
+                ; diffType = ADD
+            }
+            ; WHITE_SAME_NAME_REF_REF = map:{
+                ; tableName = WHITE_SAME_NAME_REF_REF
+                ; diffType = ADD
+            }
+            ; NEXT_SCHEMA_SECRET = map:{
+                ; tableName = NEXT_SCHEMA_SECRET
+                ; diffType = CHANGE
+                ; foreignKeyDiff = map:{
+                    ; FK_NEXT_SCHEMA_SECRET = map:{
+                        ; constraintName = FK_NEXT_SCHEMA_SECRET
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; NEXT_SYNONYM_SECRET = map:{
+                ; tableName = NEXT_SYNONYM_SECRET
+                ; diffType = DELETE
+            }
+            ; NEXT_SYNONYM_SECRET_AUTH = map:{
+                ; tableName = NEXT_SYNONYM_SECRET_AUTH
+                ; diffType = DELETE
+            }
+            ; NEXT_SCHEMA_PRODUCT = map:{
+                ; tableName = NEXT_SCHEMA_PRODUCT
+                ; diffType = DELETE
+            }
+        }
+    }
+    ; 2010/06/12 04:11:08 = map:{
+        ; diffDate = 2010/06/12 04:11:08
+        ; tableCount = map:{
+            ; next = 6
+            ; previous = 6
+        }
+        ; tableDiff = map:{
+            ; NEXT_SYNONYM_SECRET = map:{
+                ; tableName = NEXT_SYNONYM_SECRET
+                ; diffType = ADD
+            }
+            ; NEXT_SYNONYM_SECRET_AUTH = map:{
+                ; tableName = NEXT_SYNONYM_SECRET_AUTH
+                ; diffType = ADD
+            }
+            ; NEXT_SCHEMA_PRODUCT = map:{
+                ; tableName = NEXT_SCHEMA_PRODUCT
+                ; diffType = ADD
+            }
+            ; NEXT_SCHEMA_PRODUCT_STATUS = map:{
+                ; tableName = NEXT_SCHEMA_PRODUCT_STATUS
+                ; diffType = ADD
+            }
+            ; NEXT_SCHEMA_SECRET = map:{
+                ; tableName = NEXT_SCHEMA_SECRET
+                ; diffType = ADD
+            }
+            ; NEXT_SCHEMA_SECRET_AUTH = map:{
+                ; tableName = NEXT_SCHEMA_SECRET_AUTH
+                ; diffType = ADD
+            }
+            ; VD_NEXT_SYNONYM_SECRET = map:{
+                ; tableName = VD_NEXT_SYNONYM_SECRET
+                ; diffType = DELETE
+            }
+            ; VD_NEXT_SYNONYM_SECRET_AUTH = map:{
+                ; tableName = VD_NEXT_SYNONYM_SECRET_AUTH
+                ; diffType = DELETE
+            }
+            ; VENDOR_NEXT_SCHEMA = map:{
+                ; tableName = VENDOR_NEXT_SCHEMA
+                ; diffType = DELETE
+            }
+            ; VENDOR_NEXT_SCHEMA_SECRET = map:{
+                ; tableName = VENDOR_NEXT_SCHEMA_SECRET
+                ; diffType = DELETE
+            }
+            ; VENDOR_NEXT_SCHEMA_SECRET_AUTH = map:{
+                ; tableName = VENDOR_NEXT_SCHEMA_SECRET_AUTH
+                ; diffType = DELETE
+            }
+            ; VENDOR_NEXT_SCHEMA_STATUS = map:{
+                ; tableName = VENDOR_NEXT_SCHEMA_STATUS
+                ; diffType = DELETE
+            }
+        }
+    }
+}

@@ -1,0 +1,33 @@
+-- #SimpleVendorCheck#
+
+select vendor.VENDOR_CHECK_ID
+     , vendor.TYPE_OF_CHAR
+     , vendor.TYPE_OF_NCHAR
+     , vendor.TYPE_OF_VARCHAR2
+     , vendor.TYPE_OF_VARCHAR2_MAX
+     , vendor.TYPE_OF_NVARCHAR2
+     , vendor.TYPE_OF_CLOB
+     , vendor.TYPE_OF_NCLOB
+     , vendor.TYPE_OF_LONG
+     , vendor.TYPE_OF_INTEGER
+     , vendor.TYPE_OF_NUMBER_INTEGER
+     , vendor.TYPE_OF_NUMBER_BIGINT
+     , vendor.TYPE_OF_NUMBER_DECIMAL
+     , vendor.TYPE_OF_NUMBER_INTEGER_MIN
+     , vendor.TYPE_OF_NUMBER_INTEGER_MAX
+     , vendor.TYPE_OF_NUMBER_BIGINT_MIN
+     , vendor.TYPE_OF_NUMBER_BIGINT_MAX
+     , vendor.TYPE_OF_NUMBER_SUPERINT_MIN
+     , vendor.TYPE_OF_NUMBER_SUPERINT_MAX
+     , vendor.TYPE_OF_NUMBER_MAXDECIMAL
+     , vendor.TYPE_OF_BINARY_FLOAT
+     , vendor.TYPE_OF_BINARY_DOUBLE
+     , vendor.TYPE_OF_DATE
+     , vendor.TYPE_OF_TIMESTAMP
+     , vendor.TYPE_OF_INTERVAL_YEAR_TO_MONTH
+     , vendor.TYPE_OF_INTERVAL_DAY_TO_SECOND
+     , vendor.TYPE_OF_BLOB
+     , vendor.TYPE_OF_RAW
+     , vendor.TYPE_OF_BFILE
+     , vendor.TYPE_OF_ROWID
+  from VENDOR_CHECK vendor

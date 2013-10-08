@@ -1,0 +1,97 @@
+
+-- =======================================================================================
+--                                                                            Vendor Check
+--                                                                            ============
+CREATE TABLE VENDOR_CHECK
+(
+	VENDOR_CHECK_ID NUMBER(16) NOT NULL PRIMARY KEY,
+	TYPE_OF_CHAR CHAR(3),
+	TYPE_OF_NCHAR NCHAR(3),
+	TYPE_OF_VARCHAR2 VARCHAR2(32),
+	TYPE_OF_VARCHAR2_MAX VARCHAR2(4000),
+	TYPE_OF_NVARCHAR2 NVARCHAR2(32),
+	TYPE_OF_CLOB CLOB,
+	TYPE_OF_NCLOB NCLOB,
+	TYPE_OF_LONG LONG,
+	TYPE_OF_XMLTYPE XMLTYPE,
+	TYPE_OF_NUMBER_INTEGER NUMBER(5, 0),
+	TYPE_OF_NUMBER_BIGINT NUMBER(12, 0),
+	TYPE_OF_NUMBER_DECIMAL NUMBER(5, 3),
+	TYPE_OF_NUMBER_INTEGER_MIN NUMBER(1, 0),
+	TYPE_OF_NUMBER_INTEGER_MAX NUMBER(9, 0),
+	TYPE_OF_NUMBER_BIGINT_MIN NUMBER(10, 0),
+	TYPE_OF_NUMBER_BIGINT_MAX NUMBER(18, 0),
+	TYPE_OF_NUMBER_SUPERINT_MIN NUMBER(19, 0),
+	TYPE_OF_NUMBER_SUPERINT_MAX NUMBER(38, 0),
+	TYPE_OF_NUMBER_MAXDECIMAL NUMBER(38, 127),
+	TYPE_OF_INTEGER INTEGER,
+	TYPE_OF_BINARY_FLOAT BINARY_FLOAT,
+	TYPE_OF_BINARY_DOUBLE BINARY_DOUBLE,
+	TYPE_OF_DATE DATE,
+	TYPE_OF_TIMESTAMP TIMESTAMP,
+	TYPE_OF_INTERVAL_YEAR_TO_MONTH INTERVAL YEAR TO MONTH,
+	TYPE_OF_INTERVAL_DAY_TO_SECOND INTERVAL DAY TO SECOND,
+	TYPE_OF_BLOB BLOB,
+	TYPE_OF_RAW RAW(512),
+	TYPE_OF_BFILE BFILE,
+	TYPE_OF_ROWID ROWID
+)  ;
+
+-- =======================================================================================
+--                                                                               Long Name
+--                                                                               =========
+CREATE TABLE VENDOR_LARGE_NAME_901234567890
+(
+	VENDOR_LARGE_NAME_901234567_ID NUMBER(16) NOT NULL PRIMARY KEY,
+	VENDOR_LARGE_NAME_9012345_NAME VARCHAR(32) NOT NULL
+)  ;
+
+CREATE TABLE VENDOR_LARGE_NAME_90123456_REF
+(
+	VENDOR_LARGE_NAME_90123_REF_ID NUMBER(16) NOT NULL PRIMARY KEY,
+	VENDOR_LARGE_NAME_901_REF_NAME VARCHAR(32) NOT NULL,
+	VENDOR_LARGE_NAME_901234567_ID NUMBER(16)
+)  ;
+
+ALTER TABLE VENDOR_LARGE_NAME_90123456_REF ADD CONSTRAINT FK_VENDOR_LARGE_NAME_$$$_REF 
+	FOREIGN KEY (VENDOR_LARGE_NAME_901234567_ID) REFERENCES VENDOR_LARGE_NAME_901234567890 (VENDOR_LARGE_NAME_901234567_ID) ;
+
+-- =======================================================================================
+--                                                                               Mark Name
+--                                                                               =========
+CREATE TABLE VENDOR_$_DOLLAR
+(
+	VENDOR_$_DOLLAR_ID NUMBER(16) NOT NULL PRIMARY KEY,
+	VENDOR_$_DOLLAR_NAME VARCHAR(32) NOT NULL
+)  ;
+
+-- =======================================================================================
+--                                                                              Large Data
+--                                                                              ==========
+-- for the test of large data
+-- creating index is executed at take-finally
+-- because of large data registered at load-data 
+CREATE TABLE VENDOR_LARGE_DATA
+(
+	LARGE_DATA_ID NUMBER(12, 0) NOT NULL PRIMARY KEY,
+	STRING_INDEX VARCHAR(200) NOT NULL,
+	STRING_NO_INDEX VARCHAR(200) NOT NULL,
+	STRING_UNIQUE_INDEX VARCHAR(200) NOT NULL,
+	INTFLG_INDEX NUMBER(8, 0) NOT NULL,
+	NUMERIC_INTEGER_INDEX NUMBER(8, 0) NOT NULL,
+	NUMERIC_INTEGER_NO_INDEX NUMBER(8, 0) NOT NULL,
+	UNIQUE (STRING_UNIQUE_INDEX)
+);
+
+CREATE TABLE VENDOR_LARGE_DATA_REF
+(
+	LARGE_DATA_REF_ID NUMBER(12, 0) NOT NULL PRIMARY KEY,
+	LARGE_DATA_ID NUMBER(12, 0) NOT NULL,
+	DATE_INDEX DATE NOT NULL,
+	DATE_NO_INDEX DATE NOT NULL,
+	TIMESTAMP_INDEX TIMESTAMP NOT NULL,
+	TIMESTAMP_NO_INDEX TIMESTAMP NOT NULL,
+	NULLABLE_DECIMAL_INDEX NUMBER(12, 3),
+	NULLABLE_DECIMAL_NO_INDEX NUMBER(12, 3),
+	SELF_PARENT_ID NUMBER(12, 0)
+);

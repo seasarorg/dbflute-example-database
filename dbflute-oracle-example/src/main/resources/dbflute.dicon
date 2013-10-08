@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE components PUBLIC "-//SEASAR2.1//DTD S2Container//EN"
+    "http://www.seasar.org/dtd/components21.dtd">
+
+<components namespace="dbflute">
+    <include path="j2ee.dicon"/>
+
+    <!-- The components of DBFlute Runtime. -->
+    <component name="introduction" class="com.example.dbflute.oracle.dbflute.allcommon.DBFluteInitializer"/>
+    <component name="invokerAssistant" class="com.example.dbflute.oracle.dbflute.allcommon.ImplementedInvokerAssistant"/>
+    <component name="commonColumnAutoSetupper" class="com.example.dbflute.oracle.dbflute.allcommon.ImplementedCommonColumnAutoSetupper"/>
+    <component name="behaviorSelector" class="com.example.dbflute.oracle.dbflute.allcommon.ImplementedBehaviorSelector"/>
+    <component name="behaviorCommandInvoker" class="org.seasar.dbflute.bhv.core.BehaviorCommandInvoker"/>
+
+    <!-- The components of Behavior. -->
+    <component name="memberVendorSynonymBhv" class="com.example.dbflute.oracle.dbflute.exbhv.MemberVendorSynonymBhv"/>
+    <component name="synonymExceptBhv" class="com.example.dbflute.oracle.dbflute.exbhv.SynonymExceptBhv"/>
+    <component name="synonymMemberBhv" class="com.example.dbflute.oracle.dbflute.exbhv.SynonymMemberBhv"/>
+    <component name="synonymMemberLoginBhv" class="com.example.dbflute.oracle.dbflute.exbhv.SynonymMemberLoginBhv"/>
+    <component name="synonymMemberWithdrawalBhv" class="com.example.dbflute.oracle.dbflute.exbhv.SynonymMemberWithdrawalBhv"/>
+    <component name="synonymNextLinkSecretBhv" class="com.example.dbflute.oracle.dbflute.exbhv.SynonymNextLinkSecretBhv"/>
+    <component name="synonymNextLinkSynonymBhv" class="com.example.dbflute.oracle.dbflute.exbhv.SynonymNextLinkSynonymBhv"/>
+    <component name="synonymNextLinkTableBhv" class="com.example.dbflute.oracle.dbflute.exbhv.SynonymNextLinkTableBhv"/>
+    <component name="synonymNextSameNameFkBhv" class="com.example.dbflute.oracle.dbflute.exbhv.SynonymNextSameNameFkBhv"/>
+    <component name="synonymNextSecretAuthBhv" class="com.example.dbflute.oracle.dbflute.exbhv.SynonymNextSecretAuthBhv"/>
+    <component name="synonymProductBhv" class="com.example.dbflute.oracle.dbflute.exbhv.SynonymProductBhv"/>
+    <component name="synonymProductStatusBhv" class="com.example.dbflute.oracle.dbflute.exbhv.SynonymProductStatusBhv"/>
+    <component name="synonymRefExceptBhv" class="com.example.dbflute.oracle.dbflute.exbhv.SynonymRefExceptBhv"/>
+    <component name="vendorSynonymMemberBhv" class="com.example.dbflute.oracle.dbflute.exbhv.VendorSynonymMemberBhv"/>
+    <component name="memberBhv" class="com.example.dbflute.oracle.dbflute.exbhv.MemberBhv"/>
+    <component name="memberAddressBhv" class="com.example.dbflute.oracle.dbflute.exbhv.MemberAddressBhv"/>
+    <component name="memberLoginBhv" class="com.example.dbflute.oracle.dbflute.exbhv.MemberLoginBhv"/>
+    <component name="memberSecurityBhv" class="com.example.dbflute.oracle.dbflute.exbhv.MemberSecurityBhv"/>
+    <component name="memberServiceBhv" class="com.example.dbflute.oracle.dbflute.exbhv.MemberServiceBhv"/>
+    <component name="memberStatusBhv" class="com.example.dbflute.oracle.dbflute.exbhv.MemberStatusBhv"/>
+    <component name="memberWithdrawalBhv" class="com.example.dbflute.oracle.dbflute.exbhv.MemberWithdrawalBhv"/>
+    <component name="productBhv" class="com.example.dbflute.oracle.dbflute.exbhv.ProductBhv"/>
+    <component name="productCategoryBhv" class="com.example.dbflute.oracle.dbflute.exbhv.ProductCategoryBhv"/>
+    <component name="productStatusBhv" class="com.example.dbflute.oracle.dbflute.exbhv.ProductStatusBhv"/>
+    <component name="purchaseBhv" class="com.example.dbflute.oracle.dbflute.exbhv.PurchaseBhv"/>
+    <component name="regionBhv" class="com.example.dbflute.oracle.dbflute.exbhv.RegionBhv"/>
+    <component name="serviceRankBhv" class="com.example.dbflute.oracle.dbflute.exbhv.ServiceRankBhv"/>
+    <component name="summaryMemberPurchaseBhv" class="com.example.dbflute.oracle.dbflute.exbhv.SummaryMemberPurchaseBhv"/>
+    <component name="vendorDollarBhv" class="com.example.dbflute.oracle.dbflute.exbhv.Vendor$DollarBhv"/>
+    <component name="vendorCheckBhv" class="com.example.dbflute.oracle.dbflute.exbhv.VendorCheckBhv"/>
+    <component name="vendorLargeDataBhv" class="com.example.dbflute.oracle.dbflute.exbhv.VendorLargeDataBhv"/>
+    <component name="vendorLargeDataRefBhv" class="com.example.dbflute.oracle.dbflute.exbhv.VendorLargeDataRefBhv"/>
+    <component name="vendorLargeName901234567890Bhv" class="com.example.dbflute.oracle.dbflute.exbhv.VendorLargeName901234567890Bhv"/>
+    <component name="vendorLargeName90123456RefBhv" class="com.example.dbflute.oracle.dbflute.exbhv.VendorLargeName90123456RefBhv"/>
+    <component name="whiteDiffWorldBhv" class="com.example.dbflute.oracle.dbflute.exbhv.WhiteDiffWorldBhv"/>
+    <component name="whiteRefNextExceptBhv" class="com.example.dbflute.oracle.dbflute.exbhv.WhiteRefNextExceptBhv"/>
+    <component name="whiteRefNextTargetBhv" class="com.example.dbflute.oracle.dbflute.exbhv.WhiteRefNextTargetBhv"/>
+    <component name="whiteRefTargetBhv" class="com.example.dbflute.oracle.dbflute.exbhv.WhiteRefTargetBhv"/>
+    <component name="whiteSameNameBhv" class="com.example.dbflute.oracle.dbflute.exbhv.WhiteSameNameBhv"/>
+    <component name="whiteSameNameRefRefBhv" class="com.example.dbflute.oracle.dbflute.exbhv.WhiteSameNameRefRefBhv"/>
+    <component name="whiteTargetBhv" class="com.example.dbflute.oracle.dbflute.exbhv.WhiteTargetBhv"/>
+    <component name="withdrawalReasonBhv" class="com.example.dbflute.oracle.dbflute.exbhv.WithdrawalReasonBhv"/>
+    <component name="summaryProductBhv" class="com.example.dbflute.oracle.dbflute.exbhv.SummaryProductBhv"/>
+    <component name="nextSchemaProductBhv" class="com.example.dbflute.oracle.dbflute.exbhv.NextSchemaProductBhv"/>
+    <component name="nextSchemaProductStatusBhv" class="com.example.dbflute.oracle.dbflute.exbhv.NextSchemaProductStatusBhv"/>
+</components>

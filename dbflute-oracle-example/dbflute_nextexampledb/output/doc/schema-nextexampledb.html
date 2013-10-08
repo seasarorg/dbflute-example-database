@@ -1,0 +1,840 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>nextexampledb schema</title>
+  <style type="text/css">
+	* {
+		margin: 0;
+		padding: 0;
+	}
+	body {
+		font-family: Verdana, "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Meiryo, "メイリオ", "MS P Gothic", "MS Pゴシック", sans-serif;
+		font-size: 90%;
+		margin: 10px 5px 5px 15px;
+		background-color: #ffffe0;
+	}
+
+	/* heading */
+	h1 {
+		font-size: 1.5em;
+		border-bottom: 2px solid #af0000;
+		border-top: 2px solid #af0000;
+	}
+	h2 {
+		margin: 30px 0 5px 0;
+		font-size: 1.8em;
+		border-bottom: 2px solid #af0000;
+		border-left: 10px solid #af0000;
+		text-indent: 10px;
+	}
+	h3 {
+		padding: 0 0 0 10px;
+		margin: 1em 10% 0 0;
+		border-top: double 3px #af0000;
+		border-bottom: solid 1px #333333;
+		font-size: 1.5em;
+		color: #333333;
+	}
+	h4 {
+ 		padding: 0 0 0 10px;
+		margin: 1em 10% 0 1em;
+		border-top: solid 1px #af0000;
+		border-bottom: solid 1px #af0000;
+		font-size: 1.4em;
+		color: #333333;
+	}
+
+	/* total info */
+	.updatedate {
+		text-align: right;
+	}
+	.mainschema {
+		text-align: right;
+	}
+	.sublink {
+		text-align: right;
+	}
+
+	/* table */
+	table {
+		border-collapse:collapse;
+	}
+	table, th {
+		border: 1px solid #555;
+	}
+	th {
+		background-color: #cc9;
+		font-size: 0.8em;
+	}
+	td {
+		border-bottom: 1px dotted #aaa;
+		border-left: 1px solid #555;
+		padding:2px;
+	}
+	.schemacell {
+		font-size: 0.8em;
+		white-space: nowrap;
+	}
+	.aliascell {
+		white-space: nowrap;
+	}
+	.flgcell {
+		text-align: center;
+	}
+	.flgplus {
+		font-size: 0.7em;
+	}
+	.numcell {
+		text-align: center;
+	}
+	.linkcell {
+		font-size: 0.8em;
+	}
+	.commentcell {
+		font-size: 0.7em;
+	}
+	.subcell {
+		font-size: 0.8em;
+	}
+	.comcolcell {
+		color: #666;
+	}
+	.optcell {
+		font-style: italic;
+	}
+	.additionalpk {
+		font-size: 0.7em;
+		font-style: italic;
+	}
+	.additionalfk {
+		font-size: 0.7em;
+		font-style: italic;
+	}
+
+	/* inner table */
+	table.child {
+		margin: 3px;
+	}
+	table.child th {
+		font-size: 0.7em;
+	}
+	table.child, table.child td, table.child th {
+		border-top: none;
+		border-left: none;
+		border-bottom: 1px solid #aaa;
+		border-right: 1px solid #aaa;
+	}
+
+	/* table supplementary info */
+	span.tableschema {
+		font-size: 0.6em;
+	}
+	span.bqpcount {
+		font-size: 0.5em;
+	}
+	dl.bqplist {
+		padding-left: 2em;
+	}
+	dl.bqplist dt {
+		display: list-item;
+		font-size: 1.2em;
+		margin-top: 0.3em;
+	}
+	dl.bqplist dd {
+		font-size: 0.9em;
+		padding-left: 1em;
+	}
+	dl.bqplist dd.subinfo {
+		padding-left: 2em;
+	}
+	dl.bqplist dd.subinfo span.file {
+		font-style: italic;
+	}
+	dl.bqplist dd.subinfo span.ctet {
+		color: green;
+	}
+	dl.bqplist dd.subinfo span.pmb {
+		color: green;
+	}
+	dl.procedurelist {
+		padding-left: 2em;
+	}
+	dl.procedurelist dt {
+		display: list-item;
+		font-size: 1.2em;
+		margin-top: 0.3em;
+	}
+	dl.procedurelist dt span.type {
+		font-size: 0.7em;
+		color: green;
+	}
+	dl.procedurelist dd {
+		font-size: 0.9em;
+		padding-left: 1em;
+	}
+	dl.procedurelist dd.column {
+		font-style: italic;
+		padding-left: 2em;
+	}
+	dl.procedurelist dd.column span.attrs {
+		font-size: 0.7em;
+		color: #125699;
+	}
+	dl.procedurelist dd.column span.type {
+		font-size: 0.9em;
+		color: green;
+	}
+	dl.procedurelist dd.column pre {
+		padding-left: 1em;
+	}
+  </style>
+</head>
+
+<body>
+<h1>Schema for nextexampledb (oracle)</h1>
+<p class="mainschema">generated from <strong>NEXTEXAMPLEDB</strong></p>
+<p class="updatedate">2010/11/22 02:21:15</p>
+<p class="sublink"><a href="#outsidesql">OutsideSql List</a></p>
+
+<h2>Table List</h2>
+<table summary="Tables in the Schema">
+	<thead>
+	<tr>
+		<th>Alias</th>
+		<th>Name</th>
+		<th>Type</th>
+		<th>ForeignTable</th>
+		<th>ReferrerTable</th>
+		<th>Comment</th>
+		<th>EntityName</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+		<td class="aliascell">隣のスキーマ</td>
+		<td><a href="#NEXT_SCHEMA_PRODUCT" title="type=TABLE, primaryKey={PRODUCT_ID}, nameLength=19, columnCount=11">NEXT_SCHEMA_PRODUCT</a></td>
+		<td class="subcell">TABLE</td>
+		<td class="subcell"><a href="#NEXT_SCHEMA_PRODUCT_STATUS" title="FK_NEXT_SCHEMA_PRODUCT">NEXT_SCHEMA_PRODUCT_STATUS</a></td>
+		<td class="subcell">&nbsp;</td>
+		<td class="commentcell"> 隣のベーシックなテーブル</td>
+		<td class="subcell">NextSchemaProduct</td>
+	</tr>
+	<tr>
+		<td class="aliascell">隣のスキステ</td>
+		<td><a href="#NEXT_SCHEMA_PRODUCT_STATUS" title="type=TABLE, primaryKey={PRODUCT_STATUS_CODE}, nameLength=26, columnCount=2">NEXT_SCHEMA_PRODUCT_STATUS</a></td>
+		<td class="subcell">TABLE</td>
+		<td class="subcell">&nbsp;</td>
+		<td class="subcell"><a href="#NEXT_SCHEMA_PRODUCT" title="FK_NEXT_SCHEMA_PRODUCT">NEXT_SCHEMA_PRODUCT</a></td>
+		<td class="commentcell"> これのみえてよい</td>
+		<td class="subcell">NextSchemaProductStatus</td>
+	</tr>
+	<tr>
+		<td class="aliascell">隣の秘密で権限なし</td>
+		<td><a href="#NEXT_SCHEMA_SECRET" title="type=TABLE, primaryKey={SECRET_CODE}, nameLength=18, columnCount=3">NEXT_SCHEMA_SECRET</a></td>
+		<td class="subcell">TABLE</td>
+		<td class="subcell"><a href="#NEXT_SCHEMA_SECRET_AUTH" title="FK_NEXT_SCHEMA_SECRET">NEXT_SCHEMA_SECRET_AUTH</a></td>
+		<td class="subcell">&nbsp;</td>
+		<td class="commentcell"> 隣から見えちゃだめ。だけどデータリンクならしょうがない</td>
+		<td class="subcell">NextSchemaSecret</td>
+	</tr>
+	<tr>
+		<td class="aliascell">隣の秘密で権限あり</td>
+		<td><a href="#NEXT_SCHEMA_SECRET_AUTH" title="type=TABLE, primaryKey={SECRET_AUTH_CODE}, nameLength=23, columnCount=2">NEXT_SCHEMA_SECRET_AUTH</a></td>
+		<td class="subcell">TABLE</td>
+		<td class="subcell">&nbsp;</td>
+		<td class="subcell"><a href="#NEXT_SCHEMA_SECRET" title="FK_NEXT_SCHEMA_SECRET">NEXT_SCHEMA_SECRET</a></td>
+		<td class="commentcell"> シノニムで見えてOK。まあ権限あるから結局直接見えるけど</td>
+		<td class="subcell">NextSchemaSecretAuth</td>
+	</tr>
+	<tr>
+		<td class="aliascell"></td>
+		<td><a href="#NEXT_SYNONYM_SECRET" title="type=SYNONYM, primaryKey={SECRET_CODE}, nameLength=19, columnCount=3">NEXT_SYNONYM_SECRET</a></td>
+		<td class="subcell">SYNONYM</td>
+		<td class="subcell"><a href="#NEXT_SYNONYM_SECRET_AUTH" title="FK_NEXT_SCHEMA_SECRET_SYNONYM1">NEXT_SYNONYM_SECRET_AUTH</a></td>
+		<td class="subcell">&nbsp;</td>
+		<td class="commentcell"> &nbsp;</td>
+		<td class="subcell">NextSynonymSecret</td>
+	</tr>
+	<tr>
+		<td class="aliascell"></td>
+		<td><a href="#NEXT_SYNONYM_SECRET_AUTH" title="type=SYNONYM, primaryKey={SECRET_AUTH_CODE}, nameLength=24, columnCount=2">NEXT_SYNONYM_SECRET_AUTH</a></td>
+		<td class="subcell">SYNONYM</td>
+		<td class="subcell">&nbsp;</td>
+		<td class="subcell"><a href="#NEXT_SYNONYM_SECRET" title="FK_NEXT_SCHEMA_SECRET_SYNONYM1">NEXT_SYNONYM_SECRET</a></td>
+		<td class="commentcell"> &nbsp;</td>
+		<td class="subcell">NextSynonymSecretAuth</td>
+	</tr>
+	</tbody>
+</table>
+
+<h2 id="NEXT_SCHEMA_PRODUCT" title="type=TABLE, primaryKey={PRODUCT_ID}, nameLength=19, columnCount=11">
+(隣のスキーマ)NEXT_SCHEMA_PRODUCT
+</h2>
+<table summary="Columns in NEXT_SCHEMA_PRODUCT">
+	<thead>
+	<tr>
+		<th>PK</th>
+		<th>ID</th>
+		<th>UQ</th>
+		<th>IX</th>
+		<th>Not<br />Null</th>
+		<th>Alias</th>
+		<th>Name</th>
+		<th>Type</th>
+		<th>Size</th>
+		<th>Def</th>
+		<th>ForeignTable</th>
+		<th>ReferrerTable</th>
+		<th>Classification</th>
+		<th>Comment</th>
+		<th>PropertyName</th>
+		<th>JavaType</th>
+	</tr>
+	</thead>
+	<tr>
+		<td class="flgcell" title="SYS_C0049122">o</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class="aliascell">隣の商品ID</td>
+		<td id="NEXT_SCHEMA_PRODUCTPRODUCT_ID">PRODUCT_ID</td>
+		<td>NUMBER</td>
+		<td class="numcell"> 16 </td>
+		<td class="subcell"> &nbsp;</td>
+		<td class="linkcell">&nbsp;&nbsp;</td>
+		<td class="linkcell">&nbsp;</td>
+		<td class="linkcell"> &nbsp;</td>
+		<td class="commentcell"> 隣のベーシックなPK</td>
+		<td class="subcell">productId</td>
+		<td class="subcell">Long</td>
+	</tr>
+	<tr>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class="aliascell">隣の商品名称</td>
+		<td id="NEXT_SCHEMA_PRODUCTPRODUCT_NAME">PRODUCT_NAME</td>
+		<td>VARCHAR2</td>
+		<td class="numcell"> 50 </td>
+		<td class="subcell"> &nbsp;</td>
+		<td class="linkcell">&nbsp;&nbsp;</td>
+		<td class="linkcell">&nbsp;</td>
+		<td class="linkcell"> &nbsp;</td>
+		<td class="commentcell"> 隣のベーシックなName</td>
+		<td class="subcell">productName</td>
+		<td class="subcell">String</td>
+	</tr>
+	<tr>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class="aliascell"></td>
+		<td id="NEXT_SCHEMA_PRODUCTPRODUCT_HANDLE_CODE">PRODUCT_HANDLE_CODE</td>
+		<td>VARCHAR2</td>
+		<td class="numcell"> 100 </td>
+		<td class="subcell"> &nbsp;</td>
+		<td class="linkcell">&nbsp;&nbsp;</td>
+		<td class="linkcell">&nbsp;</td>
+		<td class="linkcell"> &nbsp;</td>
+		<td class="commentcell"> &nbsp;</td>
+		<td class="subcell">productHandleCode</td>
+		<td class="subcell">String</td>
+	</tr>
+	<tr>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class="aliascell"></td>
+		<td id="NEXT_SCHEMA_PRODUCTPRODUCT_STATUS_CODE">PRODUCT_STATUS_CODE</td>
+		<td>CHAR</td>
+		<td class="numcell"> 3 </td>
+		<td class="subcell"> &nbsp;</td>
+		<td class="linkcell"><a href="#NEXT_SCHEMA_PRODUCT_STATUS" title="FK_NEXT_SCHEMA_PRODUCT">NEXT_SCHEMA_PRODUCT_STATUS</a>&nbsp;</td>
+		<td class="linkcell">&nbsp;</td>
+		<td class="linkcell"> &nbsp;</td>
+		<td class="commentcell"> &nbsp;</td>
+		<td class="subcell">productStatusCode</td>
+		<td class="subcell">String</td>
+	</tr>
+	<tr>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class="aliascell"></td>
+		<td id="NEXT_SCHEMA_PRODUCTREGISTER_DATETIME">REGISTER_DATETIME</td>
+		<td>DATE</td>
+		<td class="numcell"> 7 </td>
+		<td class="subcell"> &nbsp;</td>
+		<td class="linkcell">&nbsp;&nbsp;</td>
+		<td class="linkcell">&nbsp;</td>
+		<td class="linkcell"> &nbsp;</td>
+		<td class="commentcell"> &nbsp;</td>
+		<td class="subcell">registerDatetime</td>
+		<td class="subcell">Date</td>
+	</tr>
+	<tr>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class="aliascell"></td>
+		<td id="NEXT_SCHEMA_PRODUCTREGISTER_USER">REGISTER_USER</td>
+		<td>VARCHAR2</td>
+		<td class="numcell"> 200 </td>
+		<td class="subcell"> &nbsp;</td>
+		<td class="linkcell">&nbsp;&nbsp;</td>
+		<td class="linkcell">&nbsp;</td>
+		<td class="linkcell"> &nbsp;</td>
+		<td class="commentcell"> &nbsp;</td>
+		<td class="subcell">registerUser</td>
+		<td class="subcell">String</td>
+	</tr>
+	<tr>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class="aliascell"></td>
+		<td id="NEXT_SCHEMA_PRODUCTREGISTER_PROCESS">REGISTER_PROCESS</td>
+		<td>VARCHAR2</td>
+		<td class="numcell"> 200 </td>
+		<td class="subcell"> &nbsp;</td>
+		<td class="linkcell">&nbsp;&nbsp;</td>
+		<td class="linkcell">&nbsp;</td>
+		<td class="linkcell"> &nbsp;</td>
+		<td class="commentcell"> &nbsp;</td>
+		<td class="subcell">registerProcess</td>
+		<td class="subcell">String</td>
+	</tr>
+	<tr>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class="aliascell"></td>
+		<td id="NEXT_SCHEMA_PRODUCTUPDATE_DATETIME">UPDATE_DATETIME</td>
+		<td>DATE</td>
+		<td class="numcell"> 7 </td>
+		<td class="subcell"> &nbsp;</td>
+		<td class="linkcell">&nbsp;&nbsp;</td>
+		<td class="linkcell">&nbsp;</td>
+		<td class="linkcell"> &nbsp;</td>
+		<td class="commentcell"> &nbsp;</td>
+		<td class="subcell">updateDatetime</td>
+		<td class="subcell">Date</td>
+	</tr>
+	<tr>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class="aliascell"></td>
+		<td id="NEXT_SCHEMA_PRODUCTUPDATE_USER">UPDATE_USER</td>
+		<td>VARCHAR2</td>
+		<td class="numcell"> 200 </td>
+		<td class="subcell"> &nbsp;</td>
+		<td class="linkcell">&nbsp;&nbsp;</td>
+		<td class="linkcell">&nbsp;</td>
+		<td class="linkcell"> &nbsp;</td>
+		<td class="commentcell"> &nbsp;</td>
+		<td class="subcell">updateUser</td>
+		<td class="subcell">String</td>
+	</tr>
+	<tr>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class="aliascell"></td>
+		<td id="NEXT_SCHEMA_PRODUCTUPDATE_PROCESS">UPDATE_PROCESS</td>
+		<td>VARCHAR2</td>
+		<td class="numcell"> 200 </td>
+		<td class="subcell"> &nbsp;</td>
+		<td class="linkcell">&nbsp;&nbsp;</td>
+		<td class="linkcell">&nbsp;</td>
+		<td class="linkcell"> &nbsp;</td>
+		<td class="commentcell"> &nbsp;</td>
+		<td class="subcell">updateProcess</td>
+		<td class="subcell">String</td>
+	</tr>
+	<tr>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class="aliascell optcell"></td>
+		<td class="optcell" id="NEXT_SCHEMA_PRODUCTVERSION_NO">VERSION_NO</td>
+		<td>NUMBER</td>
+		<td class="numcell"> 38 </td>
+		<td class="subcell"> &nbsp;</td>
+		<td class="linkcell">&nbsp;&nbsp;</td>
+		<td class="linkcell">&nbsp;</td>
+		<td class="linkcell"> &nbsp;</td>
+		<td class="commentcell"> &nbsp;</td>
+		<td class="subcell">versionNo</td>
+		<td class="subcell">BigDecimal</td>
+	</tr>
+</table>
+<h2 id="NEXT_SCHEMA_PRODUCT_STATUS" title="type=TABLE, primaryKey={PRODUCT_STATUS_CODE}, nameLength=26, columnCount=2">
+(隣のスキステ)NEXT_SCHEMA_PRODUCT_STATUS
+</h2>
+<table summary="Columns in NEXT_SCHEMA_PRODUCT_STATUS">
+	<thead>
+	<tr>
+		<th>PK</th>
+		<th>ID</th>
+		<th>UQ</th>
+		<th>IX</th>
+		<th>Not<br />Null</th>
+		<th>Alias</th>
+		<th>Name</th>
+		<th>Type</th>
+		<th>Size</th>
+		<th>Def</th>
+		<th>ForeignTable</th>
+		<th>ReferrerTable</th>
+		<th>Classification</th>
+		<th>Comment</th>
+		<th>PropertyName</th>
+		<th>JavaType</th>
+	</tr>
+	</thead>
+	<tr>
+		<td class="flgcell" title="SYS_C0049125">o</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class="aliascell"></td>
+		<td id="NEXT_SCHEMA_PRODUCT_STATUSPRODUCT_STATUS_CODE">PRODUCT_STATUS_CODE</td>
+		<td>CHAR</td>
+		<td class="numcell"> 3 </td>
+		<td class="subcell"> &nbsp;</td>
+		<td class="linkcell">&nbsp;&nbsp;</td>
+		<td class="linkcell"><a href="#NEXT_SCHEMA_PRODUCT" title="FK_NEXT_SCHEMA_PRODUCT">NEXT_SCHEMA_PRODUCT</a>&nbsp;</td>
+		<td class="linkcell"> &nbsp;</td>
+		<td class="commentcell"> &nbsp;</td>
+		<td class="subcell">productStatusCode</td>
+		<td class="subcell">String</td>
+	</tr>
+	<tr>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell" title="UQ_NEXT_SCHEMA_PRODUCT_STATUS(PRODUCT_STATUS_NAME)">o</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class="aliascell"></td>
+		<td id="NEXT_SCHEMA_PRODUCT_STATUSPRODUCT_STATUS_NAME">PRODUCT_STATUS_NAME</td>
+		<td>VARCHAR2</td>
+		<td class="numcell"> 50 </td>
+		<td class="subcell"> &nbsp;</td>
+		<td class="linkcell">&nbsp;&nbsp;</td>
+		<td class="linkcell">&nbsp;</td>
+		<td class="linkcell"> &nbsp;</td>
+		<td class="commentcell"> &nbsp;</td>
+		<td class="subcell">productStatusName</td>
+		<td class="subcell">String</td>
+	</tr>
+</table>
+<h2 id="NEXT_SCHEMA_SECRET" title="type=TABLE, primaryKey={SECRET_CODE}, nameLength=18, columnCount=3">
+(隣の秘密で権限なし)NEXT_SCHEMA_SECRET
+</h2>
+<table summary="Columns in NEXT_SCHEMA_SECRET">
+	<thead>
+	<tr>
+		<th>PK</th>
+		<th>ID</th>
+		<th>UQ</th>
+		<th>IX</th>
+		<th>Not<br />Null</th>
+		<th>Alias</th>
+		<th>Name</th>
+		<th>Type</th>
+		<th>Size</th>
+		<th>Def</th>
+		<th>ForeignTable</th>
+		<th>ReferrerTable</th>
+		<th>Classification</th>
+		<th>Comment</th>
+		<th>PropertyName</th>
+		<th>JavaType</th>
+	</tr>
+	</thead>
+	<tr>
+		<td class="flgcell" title="SYS_C0049128">o</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class="aliascell"></td>
+		<td id="NEXT_SCHEMA_SECRETSECRET_CODE">SECRET_CODE</td>
+		<td>CHAR</td>
+		<td class="numcell"> 3 </td>
+		<td class="subcell"> &nbsp;</td>
+		<td class="linkcell">&nbsp;&nbsp;</td>
+		<td class="linkcell">&nbsp;</td>
+		<td class="linkcell"> &nbsp;</td>
+		<td class="commentcell"> &nbsp;</td>
+		<td class="subcell">secretCode</td>
+		<td class="subcell">String</td>
+	</tr>
+	<tr>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell" title="UQ_NEXT_SCHEMA_SECRET(SECRET_NAME)">o</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class="aliascell"></td>
+		<td id="NEXT_SCHEMA_SECRETSECRET_NAME">SECRET_NAME</td>
+		<td>VARCHAR2</td>
+		<td class="numcell"> 50 </td>
+		<td class="subcell"> &nbsp;</td>
+		<td class="linkcell">&nbsp;&nbsp;</td>
+		<td class="linkcell">&nbsp;</td>
+		<td class="linkcell"> &nbsp;</td>
+		<td class="commentcell"> &nbsp;</td>
+		<td class="subcell">secretName</td>
+		<td class="subcell">String</td>
+	</tr>
+	<tr>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="aliascell"></td>
+		<td id="NEXT_SCHEMA_SECRETSECRET_AUTH_CODE">SECRET_AUTH_CODE</td>
+		<td>CHAR</td>
+		<td class="numcell"> 3 </td>
+		<td class="subcell"> &nbsp;</td>
+		<td class="linkcell"><a href="#NEXT_SCHEMA_SECRET_AUTH" title="FK_NEXT_SCHEMA_SECRET">NEXT_SCHEMA_SECRET_AUTH</a>&nbsp;</td>
+		<td class="linkcell">&nbsp;</td>
+		<td class="linkcell"> &nbsp;</td>
+		<td class="commentcell"> &nbsp;</td>
+		<td class="subcell">secretAuthCode</td>
+		<td class="subcell">String</td>
+	</tr>
+</table>
+<h2 id="NEXT_SCHEMA_SECRET_AUTH" title="type=TABLE, primaryKey={SECRET_AUTH_CODE}, nameLength=23, columnCount=2">
+(隣の秘密で権限あり)NEXT_SCHEMA_SECRET_AUTH
+</h2>
+<table summary="Columns in NEXT_SCHEMA_SECRET_AUTH">
+	<thead>
+	<tr>
+		<th>PK</th>
+		<th>ID</th>
+		<th>UQ</th>
+		<th>IX</th>
+		<th>Not<br />Null</th>
+		<th>Alias</th>
+		<th>Name</th>
+		<th>Type</th>
+		<th>Size</th>
+		<th>Def</th>
+		<th>ForeignTable</th>
+		<th>ReferrerTable</th>
+		<th>Classification</th>
+		<th>Comment</th>
+		<th>PropertyName</th>
+		<th>JavaType</th>
+	</tr>
+	</thead>
+	<tr>
+		<td class="flgcell" title="SYS_C0049131">o</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class="aliascell">隣の秘密２コード</td>
+		<td id="NEXT_SCHEMA_SECRET_AUTHSECRET_AUTH_CODE">SECRET_AUTH_CODE</td>
+		<td>CHAR</td>
+		<td class="numcell"> 3 </td>
+		<td class="subcell"> &nbsp;</td>
+		<td class="linkcell">&nbsp;&nbsp;</td>
+		<td class="linkcell"><a href="#NEXT_SCHEMA_SECRET" title="FK_NEXT_SCHEMA_SECRET">NEXT_SCHEMA_SECRET</a>&nbsp;</td>
+		<td class="linkcell"> &nbsp;</td>
+		<td class="commentcell"> 隣の商品を秘密するかもしれない</td>
+		<td class="subcell">secretAuthCode</td>
+		<td class="subcell">String</td>
+	</tr>
+	<tr>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class="aliascell">隣の秘密２名称</td>
+		<td id="NEXT_SCHEMA_SECRET_AUTHSECRET_AUTH_NAME">SECRET_AUTH_NAME</td>
+		<td>VARCHAR2</td>
+		<td class="numcell"> 50 </td>
+		<td class="subcell"> &nbsp;</td>
+		<td class="linkcell">&nbsp;&nbsp;</td>
+		<td class="linkcell">&nbsp;</td>
+		<td class="linkcell"> &nbsp;</td>
+		<td class="commentcell"> &nbsp;</td>
+		<td class="subcell">secretAuthName</td>
+		<td class="subcell">String</td>
+	</tr>
+</table>
+<h2 id="NEXT_SYNONYM_SECRET" title="type=SYNONYM, primaryKey={SECRET_CODE}, nameLength=19, columnCount=3">
+NEXT_SYNONYM_SECRET
+</h2>
+<table summary="Columns in NEXT_SYNONYM_SECRET">
+	<thead>
+	<tr>
+		<th>PK</th>
+		<th>ID</th>
+		<th>UQ</th>
+		<th>IX</th>
+		<th>Not<br />Null</th>
+		<th>Alias</th>
+		<th>Name</th>
+		<th>Type</th>
+		<th>Size</th>
+		<th>Def</th>
+		<th>ForeignTable</th>
+		<th>ReferrerTable</th>
+		<th>Classification</th>
+		<th>Comment</th>
+		<th>PropertyName</th>
+		<th>JavaType</th>
+	</tr>
+	</thead>
+	<tr>
+		<td class="flgcell" title="SYS_C0049128">o</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class="aliascell"></td>
+		<td id="NEXT_SYNONYM_SECRETSECRET_CODE">SECRET_CODE</td>
+		<td>CHAR</td>
+		<td class="numcell"> 3 </td>
+		<td class="subcell"> &nbsp;</td>
+		<td class="linkcell">&nbsp;&nbsp;</td>
+		<td class="linkcell">&nbsp;</td>
+		<td class="linkcell"> &nbsp;</td>
+		<td class="commentcell"> &nbsp;</td>
+		<td class="subcell">secretCode</td>
+		<td class="subcell">String</td>
+	</tr>
+	<tr>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell" title="UQ_NEXT_SCHEMA_SECRET(SECRET_NAME)">o</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class="aliascell"></td>
+		<td id="NEXT_SYNONYM_SECRETSECRET_NAME">SECRET_NAME</td>
+		<td>VARCHAR2</td>
+		<td class="numcell"> 50 </td>
+		<td class="subcell"> &nbsp;</td>
+		<td class="linkcell">&nbsp;&nbsp;</td>
+		<td class="linkcell">&nbsp;</td>
+		<td class="linkcell"> &nbsp;</td>
+		<td class="commentcell"> &nbsp;</td>
+		<td class="subcell">secretName</td>
+		<td class="subcell">String</td>
+	</tr>
+	<tr>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="aliascell"></td>
+		<td id="NEXT_SYNONYM_SECRETSECRET_AUTH_CODE">SECRET_AUTH_CODE</td>
+		<td>CHAR</td>
+		<td class="numcell"> 3 </td>
+		<td class="subcell"> &nbsp;</td>
+		<td class="linkcell"><a href="#NEXT_SYNONYM_SECRET_AUTH" title="FK_NEXT_SCHEMA_SECRET_SYNONYM1">NEXT_SYNONYM_SECRET_AUTH</a>&nbsp;</td>
+		<td class="linkcell">&nbsp;</td>
+		<td class="linkcell"> &nbsp;</td>
+		<td class="commentcell"> &nbsp;</td>
+		<td class="subcell">secretAuthCode</td>
+		<td class="subcell">String</td>
+	</tr>
+</table>
+<h2 id="NEXT_SYNONYM_SECRET_AUTH" title="type=SYNONYM, primaryKey={SECRET_AUTH_CODE}, nameLength=24, columnCount=2">
+NEXT_SYNONYM_SECRET_AUTH
+</h2>
+<table summary="Columns in NEXT_SYNONYM_SECRET_AUTH">
+	<thead>
+	<tr>
+		<th>PK</th>
+		<th>ID</th>
+		<th>UQ</th>
+		<th>IX</th>
+		<th>Not<br />Null</th>
+		<th>Alias</th>
+		<th>Name</th>
+		<th>Type</th>
+		<th>Size</th>
+		<th>Def</th>
+		<th>ForeignTable</th>
+		<th>ReferrerTable</th>
+		<th>Classification</th>
+		<th>Comment</th>
+		<th>PropertyName</th>
+		<th>JavaType</th>
+	</tr>
+	</thead>
+	<tr>
+		<td class="flgcell" title="SYS_C0049131">o</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class="aliascell"></td>
+		<td id="NEXT_SYNONYM_SECRET_AUTHSECRET_AUTH_CODE">SECRET_AUTH_CODE</td>
+		<td>CHAR</td>
+		<td class="numcell"> 3 </td>
+		<td class="subcell"> &nbsp;</td>
+		<td class="linkcell">&nbsp;&nbsp;</td>
+		<td class="linkcell"><a href="#NEXT_SYNONYM_SECRET" title="FK_NEXT_SCHEMA_SECRET_SYNONYM1">NEXT_SYNONYM_SECRET</a>&nbsp;</td>
+		<td class="linkcell"> &nbsp;</td>
+		<td class="commentcell"> &nbsp;</td>
+		<td class="subcell">secretAuthCode</td>
+		<td class="subcell">String</td>
+	</tr>
+	<tr>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class="aliascell"></td>
+		<td id="NEXT_SYNONYM_SECRET_AUTHSECRET_AUTH_NAME">SECRET_AUTH_NAME</td>
+		<td>VARCHAR2</td>
+		<td class="numcell"> 50 </td>
+		<td class="subcell"> &nbsp;</td>
+		<td class="linkcell">&nbsp;&nbsp;</td>
+		<td class="linkcell">&nbsp;</td>
+		<td class="linkcell"> &nbsp;</td>
+		<td class="commentcell"> &nbsp;</td>
+		<td class="subcell">secretAuthName</td>
+		<td class="subcell">String</td>
+	</tr>
+</table>
+
+
+<h2 id="outsidesql">OutsideSql List</h2>
+</body>
+</html>

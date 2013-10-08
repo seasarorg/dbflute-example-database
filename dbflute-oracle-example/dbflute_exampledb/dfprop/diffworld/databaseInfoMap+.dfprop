@@ -1,0 +1,5 @@
+map:{
+    ; schema   = DIFFWORLDDB
+    ; user     = diffworlddb
+    ; password = diffworlddb
+}
