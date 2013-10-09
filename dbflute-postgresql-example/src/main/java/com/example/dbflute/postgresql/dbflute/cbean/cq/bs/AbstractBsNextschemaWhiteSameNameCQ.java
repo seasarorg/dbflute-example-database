@@ -1,0 +1,714 @@
+package com.example.dbflute.postgresql.dbflute.cbean.cq.bs;
+
+import java.util.*;
+
+import org.seasar.dbflute.cbean.*;
+import org.seasar.dbflute.cbean.chelper.*;
+import org.seasar.dbflute.cbean.ckey.*;
+import org.seasar.dbflute.cbean.coption.*;
+import org.seasar.dbflute.cbean.cvalue.ConditionValue;
+import org.seasar.dbflute.cbean.sqlclause.SqlClause;
+import org.seasar.dbflute.dbmeta.DBMetaProvider;
+import com.example.dbflute.postgresql.dbflute.allcommon.*;
+import com.example.dbflute.postgresql.dbflute.cbean.*;
+import com.example.dbflute.postgresql.dbflute.cbean.cq.*;
+
+/**
+ * The abstract condition-query of nextschema.white_same_name.
+ * @author DBFlute(AutoGenerator)
+ */
+public abstract class AbstractBsNextschemaWhiteSameNameCQ extends AbstractConditionQuery {
+
+    // ===================================================================================
+    //                                                                         Constructor
+    //                                                                         ===========
+    public AbstractBsNextschemaWhiteSameNameCQ(ConditionQuery childQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
+        super(childQuery, sqlClause, aliasName, nestLevel);
+    }
+
+    // ===================================================================================
+    //                                                                     DBMeta Provider
+    //                                                                     ===============
+    @Override
+    protected DBMetaProvider xgetDBMetaProvider() {
+        return DBMetaInstanceHandler.getProvider();
+    }
+
+    // ===================================================================================
+    //                                                                          Table Name
+    //                                                                          ==========
+    public String getTableDbName() {
+        return "nextschema.white_same_name";
+    }
+
+    // ===================================================================================
+    //                                                                               Query
+    //                                                                               =====
+    
+    /**
+     * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
+     * same_name_id: {PK, NotNull, int4(10)}
+     * @param sameNameId The value of sameNameId as equal. (NullAllowed: if null, no condition)
+     */
+    public void setSameNameId_Equal(Integer sameNameId) {
+        doSetSameNameId_Equal(sameNameId);
+    }
+
+    protected void doSetSameNameId_Equal(Integer sameNameId) {
+        regSameNameId(CK_EQ, sameNameId);
+    }
+
+    /**
+     * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br />
+     * same_name_id: {PK, NotNull, int4(10)}
+     * @param sameNameId The value of sameNameId as greaterThan. (NullAllowed: if null, no condition)
+     */
+    public void setSameNameId_GreaterThan(Integer sameNameId) {
+        regSameNameId(CK_GT, sameNameId);
+    }
+
+    /**
+     * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br />
+     * same_name_id: {PK, NotNull, int4(10)}
+     * @param sameNameId The value of sameNameId as lessThan. (NullAllowed: if null, no condition)
+     */
+    public void setSameNameId_LessThan(Integer sameNameId) {
+        regSameNameId(CK_LT, sameNameId);
+    }
+
+    /**
+     * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br />
+     * same_name_id: {PK, NotNull, int4(10)}
+     * @param sameNameId The value of sameNameId as greaterEqual. (NullAllowed: if null, no condition)
+     */
+    public void setSameNameId_GreaterEqual(Integer sameNameId) {
+        regSameNameId(CK_GE, sameNameId);
+    }
+
+    /**
+     * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br />
+     * same_name_id: {PK, NotNull, int4(10)}
+     * @param sameNameId The value of sameNameId as lessEqual. (NullAllowed: if null, no condition)
+     */
+    public void setSameNameId_LessEqual(Integer sameNameId) {
+        regSameNameId(CK_LE, sameNameId);
+    }
+
+    /**
+     * RangeOf with various options. (versatile) <br />
+     * {(default) minNumber &lt;= column &lt;= maxNumber} <br />
+     * And NullIgnored, OnlyOnceRegistered. <br />
+     * same_name_id: {PK, NotNull, int4(10)}
+     * @param minNumber The min number of sameNameId. (NullAllowed: if null, no from-condition)
+     * @param maxNumber The max number of sameNameId. (NullAllowed: if null, no to-condition)
+     * @param rangeOfOption The option of range-of. (NotNull)
+     */
+    public void setSameNameId_RangeOf(Integer minNumber, Integer maxNumber, RangeOfOption rangeOfOption) {
+        regROO(minNumber, maxNumber, getCValueSameNameId(), "same_name_id", rangeOfOption);
+    }
+
+    /**
+     * InScope {in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br />
+     * same_name_id: {PK, NotNull, int4(10)}
+     * @param sameNameIdList The collection of sameNameId as inScope. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setSameNameId_InScope(Collection<Integer> sameNameIdList) {
+        doSetSameNameId_InScope(sameNameIdList);
+    }
+
+    protected void doSetSameNameId_InScope(Collection<Integer> sameNameIdList) {
+        regINS(CK_INS, cTL(sameNameIdList), getCValueSameNameId(), "same_name_id");
+    }
+
+    /**
+     * NotInScope {not in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br />
+     * same_name_id: {PK, NotNull, int4(10)}
+     * @param sameNameIdList The collection of sameNameId as notInScope. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setSameNameId_NotInScope(Collection<Integer> sameNameIdList) {
+        doSetSameNameId_NotInScope(sameNameIdList);
+    }
+
+    protected void doSetSameNameId_NotInScope(Collection<Integer> sameNameIdList) {
+        regINS(CK_NINS, cTL(sameNameIdList), getCValueSameNameId(), "same_name_id");
+    }
+
+    /**
+     * Set up ExistsReferrer (co-related sub-query). <br />
+     * {exists (select same_name_id from nextschema.white_same_name_ref where ...)} <br />
+     * nextschema.white_same_name_ref by same_name_id, named 'whiteSameNameRefAsOne'.
+     * <pre>
+     * cb.query().<span style="color: #FD4747">existsWhiteSameNameRefList</span>(new SubQuery&lt;NextschemaWhiteSameNameRefCB&gt;() {
+     *     public void query(NextschemaWhiteSameNameCB subCB) {
+     *         subCB.query().setXxx...
+     *     }
+     * });
+     * </pre>
+     * @param subQuery The sub-query of WhiteSameNameRefList for 'exists'. (NotNull)
+     */
+    public void existsWhiteSameNameRefList(SubQuery<NextschemaWhiteSameNameRefCB> subQuery) {
+        assertObjectNotNull("subQuery<NextschemaWhiteSameNameRefCB>", subQuery);
+        NextschemaWhiteSameNameRefCB cb = new NextschemaWhiteSameNameRefCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
+        String subQueryPropertyName = keepSameNameId_ExistsReferrer_WhiteSameNameRefList(cb.query()); // for saving query-value.
+        registerExistsReferrer(cb.query(), "same_name_id", "same_name_id", subQueryPropertyName, "whiteSameNameRefList");
+    }
+    public abstract String keepSameNameId_ExistsReferrer_WhiteSameNameRefList(NextschemaWhiteSameNameRefCQ subQuery);
+
+    /**
+     * Set up NotExistsReferrer (co-related sub-query). <br />
+     * {not exists (select same_name_id from nextschema.white_same_name_ref where ...)} <br />
+     * nextschema.white_same_name_ref by same_name_id, named 'whiteSameNameRefAsOne'.
+     * <pre>
+     * cb.query().<span style="color: #FD4747">notExistsWhiteSameNameRefList</span>(new SubQuery&lt;NextschemaWhiteSameNameRefCB&gt;() {
+     *     public void query(NextschemaWhiteSameNameCB subCB) {
+     *         subCB.query().setXxx...
+     *     }
+     * });
+     * </pre>
+     * @param subQuery The sub-query of SameNameId_NotExistsReferrer_WhiteSameNameRefList for 'not exists'. (NotNull)
+     */
+    public void notExistsWhiteSameNameRefList(SubQuery<NextschemaWhiteSameNameRefCB> subQuery) {
+        assertObjectNotNull("subQuery<NextschemaWhiteSameNameRefCB>", subQuery);
+        NextschemaWhiteSameNameRefCB cb = new NextschemaWhiteSameNameRefCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
+        String subQueryPropertyName = keepSameNameId_NotExistsReferrer_WhiteSameNameRefList(cb.query()); // for saving query-value.
+        registerNotExistsReferrer(cb.query(), "same_name_id", "same_name_id", subQueryPropertyName, "whiteSameNameRefList");
+    }
+    public abstract String keepSameNameId_NotExistsReferrer_WhiteSameNameRefList(NextschemaWhiteSameNameRefCQ subQuery);
+
+    /**
+     * Set up InScopeRelation (sub-query). <br />
+     * {in (select same_name_id from nextschema.white_same_name_ref where ...)} <br />
+     * nextschema.white_same_name_ref by same_name_id, named 'whiteSameNameRefAsOne'.
+     * @param subQuery The sub-query of WhiteSameNameRefList for 'in-scope'. (NotNull)
+     */
+    public void inScopeWhiteSameNameRefList(SubQuery<NextschemaWhiteSameNameRefCB> subQuery) {
+        assertObjectNotNull("subQuery<NextschemaWhiteSameNameRefCB>", subQuery);
+        NextschemaWhiteSameNameRefCB cb = new NextschemaWhiteSameNameRefCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
+        String subQueryPropertyName = keepSameNameId_InScopeRelation_WhiteSameNameRefList(cb.query()); // for saving query-value.
+        registerInScopeRelation(cb.query(), "same_name_id", "same_name_id", subQueryPropertyName, "whiteSameNameRefList");
+    }
+    public abstract String keepSameNameId_InScopeRelation_WhiteSameNameRefList(NextschemaWhiteSameNameRefCQ subQuery);
+
+    /**
+     * Set up NotInScopeRelation (sub-query). <br />
+     * {not in (select same_name_id from nextschema.white_same_name_ref where ...)} <br />
+     * nextschema.white_same_name_ref by same_name_id, named 'whiteSameNameRefAsOne'.
+     * @param subQuery The sub-query of WhiteSameNameRefList for 'not in-scope'. (NotNull)
+     */
+    public void notInScopeWhiteSameNameRefList(SubQuery<NextschemaWhiteSameNameRefCB> subQuery) {
+        assertObjectNotNull("subQuery<NextschemaWhiteSameNameRefCB>", subQuery);
+        NextschemaWhiteSameNameRefCB cb = new NextschemaWhiteSameNameRefCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
+        String subQueryPropertyName = keepSameNameId_NotInScopeRelation_WhiteSameNameRefList(cb.query()); // for saving query-value.
+        registerNotInScopeRelation(cb.query(), "same_name_id", "same_name_id", subQueryPropertyName, "whiteSameNameRefList");
+    }
+    public abstract String keepSameNameId_NotInScopeRelation_WhiteSameNameRefList(NextschemaWhiteSameNameRefCQ subQuery);
+
+    public void xsderiveWhiteSameNameRefList(String function, SubQuery<NextschemaWhiteSameNameRefCB> subQuery, String aliasName, DerivedReferrerOption option) {
+        assertObjectNotNull("subQuery<NextschemaWhiteSameNameRefCB>", subQuery);
+        NextschemaWhiteSameNameRefCB cb = new NextschemaWhiteSameNameRefCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
+        String subQueryPropertyName = keepSameNameId_SpecifyDerivedReferrer_WhiteSameNameRefList(cb.query()); // for saving query-value.
+        registerSpecifyDerivedReferrer(function, cb.query(), "same_name_id", "same_name_id", subQueryPropertyName, "whiteSameNameRefList", aliasName, option);
+    }
+    public abstract String keepSameNameId_SpecifyDerivedReferrer_WhiteSameNameRefList(NextschemaWhiteSameNameRefCQ subQuery);
+
+    /**
+     * Prepare for (Query)DerivedReferrer. <br />
+     * {FOO &lt;= (select max(BAR) from nextschema.white_same_name_ref where ...)} <br />
+     * nextschema.white_same_name_ref by same_name_id, named 'whiteSameNameRefAsOne'.
+     * <pre>
+     * cb.query().<span style="color: #FD4747">derivedWhiteSameNameRefList()</span>.<span style="color: #FD4747">max</span>(new SubQuery&lt;NextschemaWhiteSameNameRefCB&gt;() {
+     *     public void query(NextschemaWhiteSameNameRefCB subCB) {
+     *         subCB.specify().<span style="color: #FD4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
+     *         subCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
+     *     }
+     * }).<span style="color: #FD4747">greaterEqual</span>(123); <span style="color: #3F7E5E">// condition to derived column</span>
+     * </pre>
+     * @return The object to set up a function for referrer table. (NotNull)
+     */
+    public HpQDRFunction<NextschemaWhiteSameNameRefCB> derivedWhiteSameNameRefList() {
+        return xcreateQDRFunctionWhiteSameNameRefList();
+    }
+    protected HpQDRFunction<NextschemaWhiteSameNameRefCB> xcreateQDRFunctionWhiteSameNameRefList() {
+        return new HpQDRFunction<NextschemaWhiteSameNameRefCB>(new HpQDRSetupper<NextschemaWhiteSameNameRefCB>() {
+            public void setup(String function, SubQuery<NextschemaWhiteSameNameRefCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
+                xqderiveWhiteSameNameRefList(function, subQuery, operand, value, option);
+            }
+        });
+    }
+    public void xqderiveWhiteSameNameRefList(String function, SubQuery<NextschemaWhiteSameNameRefCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
+        assertObjectNotNull("subQuery<NextschemaWhiteSameNameRefCB>", subQuery);
+        NextschemaWhiteSameNameRefCB cb = new NextschemaWhiteSameNameRefCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
+        String subQueryPropertyName = keepSameNameId_QueryDerivedReferrer_WhiteSameNameRefList(cb.query()); // for saving query-value.
+        String parameterPropertyName = keepSameNameId_QueryDerivedReferrer_WhiteSameNameRefListParameter(value);
+        registerQueryDerivedReferrer(function, cb.query(), "same_name_id", "same_name_id", subQueryPropertyName, "whiteSameNameRefList", operand, value, parameterPropertyName, option);
+    }
+    public abstract String keepSameNameId_QueryDerivedReferrer_WhiteSameNameRefList(NextschemaWhiteSameNameRefCQ subQuery);
+    public abstract String keepSameNameId_QueryDerivedReferrer_WhiteSameNameRefListParameter(Object parameterValue);
+
+    /**
+     * IsNull {is null}. And OnlyOnceRegistered. <br />
+     * same_name_id: {PK, NotNull, int4(10)}
+     */
+    public void setSameNameId_IsNull() { regSameNameId(CK_ISN, DOBJ); }
+
+    /**
+     * IsNotNull {is not null}. And OnlyOnceRegistered. <br />
+     * same_name_id: {PK, NotNull, int4(10)}
+     */
+    public void setSameNameId_IsNotNull() { regSameNameId(CK_ISNN, DOBJ); }
+
+    protected void regSameNameId(ConditionKey k, Object v) { regQ(k, v, getCValueSameNameId(), "same_name_id"); }
+    abstract protected ConditionValue getCValueSameNameId();
+
+    /**
+     * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
+     * same_name_name: {varchar(100)}
+     * @param sameNameName The value of sameNameName as equal. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setSameNameName_Equal(String sameNameName) {
+        doSetSameNameName_Equal(fRES(sameNameName));
+    }
+
+    protected void doSetSameNameName_Equal(String sameNameName) {
+        regSameNameName(CK_EQ, sameNameName);
+    }
+
+    /**
+     * NotEqual(&lt;&gt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
+     * same_name_name: {varchar(100)}
+     * @param sameNameName The value of sameNameName as notEqual. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setSameNameName_NotEqual(String sameNameName) {
+        doSetSameNameName_NotEqual(fRES(sameNameName));
+    }
+
+    protected void doSetSameNameName_NotEqual(String sameNameName) {
+        regSameNameName(CK_NES, sameNameName);
+    }
+
+    /**
+     * InScope {in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br />
+     * same_name_name: {varchar(100)}
+     * @param sameNameNameList The collection of sameNameName as inScope. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setSameNameName_InScope(Collection<String> sameNameNameList) {
+        doSetSameNameName_InScope(sameNameNameList);
+    }
+
+    public void doSetSameNameName_InScope(Collection<String> sameNameNameList) {
+        regINS(CK_INS, cTL(sameNameNameList), getCValueSameNameName(), "same_name_name");
+    }
+
+    /**
+     * NotInScope {not in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br />
+     * same_name_name: {varchar(100)}
+     * @param sameNameNameList The collection of sameNameName as notInScope. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setSameNameName_NotInScope(Collection<String> sameNameNameList) {
+        doSetSameNameName_NotInScope(sameNameNameList);
+    }
+
+    public void doSetSameNameName_NotInScope(Collection<String> sameNameNameList) {
+        regINS(CK_NINS, cTL(sameNameNameList), getCValueSameNameName(), "same_name_name");
+    }
+
+    /**
+     * PrefixSearch {like 'xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br />
+     * same_name_name: {varchar(100)}
+     * @param sameNameName The value of sameNameName as prefixSearch. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setSameNameName_PrefixSearch(String sameNameName) {
+        setSameNameName_LikeSearch(sameNameName, cLSOP());
+    }
+
+    /**
+     * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br />
+     * same_name_name: {varchar(100)} <br />
+     * <pre>e.g. setSameNameName_LikeSearch("xxx", new <span style="color: #FD4747">LikeSearchOption</span>().likeContain());</pre>
+     * @param sameNameName The value of sameNameName as likeSearch. (NullAllowed: if null (or empty), no condition)
+     * @param likeSearchOption The option of like-search. (NotNull)
+     */
+    public void setSameNameName_LikeSearch(String sameNameName, LikeSearchOption likeSearchOption) {
+        regLSQ(CK_LS, fRES(sameNameName), getCValueSameNameName(), "same_name_name", likeSearchOption);
+    }
+
+    /**
+     * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br />
+     * And NullOrEmptyIgnored, SeveralRegistered. <br />
+     * same_name_name: {varchar(100)}
+     * @param sameNameName The value of sameNameName as notLikeSearch. (NullAllowed: if null (or empty), no condition)
+     * @param likeSearchOption The option of not-like-search. (NotNull)
+     */
+    public void setSameNameName_NotLikeSearch(String sameNameName, LikeSearchOption likeSearchOption) {
+        regLSQ(CK_NLS, fRES(sameNameName), getCValueSameNameName(), "same_name_name", likeSearchOption);
+    }
+
+    /**
+     * IsNull {is null}. And OnlyOnceRegistered. <br />
+     * same_name_name: {varchar(100)}
+     */
+    public void setSameNameName_IsNull() { regSameNameName(CK_ISN, DOBJ); }
+
+    /**
+     * IsNullOrEmpty {is null or empty}. And OnlyOnceRegistered. <br />
+     * same_name_name: {varchar(100)}
+     */
+    public void setSameNameName_IsNullOrEmpty() { regSameNameName(CK_ISNOE, DOBJ); }
+
+    /**
+     * IsNotNull {is not null}. And OnlyOnceRegistered. <br />
+     * same_name_name: {varchar(100)}
+     */
+    public void setSameNameName_IsNotNull() { regSameNameName(CK_ISNN, DOBJ); }
+
+    protected void regSameNameName(ConditionKey k, Object v) { regQ(k, v, getCValueSameNameName(), "same_name_name"); }
+    abstract protected ConditionValue getCValueSameNameName();
+    
+    /**
+     * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
+     * same_name_long: {int8(19)}
+     * @param sameNameLong The value of sameNameLong as equal. (NullAllowed: if null, no condition)
+     */
+    public void setSameNameLong_Equal(Long sameNameLong) {
+        doSetSameNameLong_Equal(sameNameLong);
+    }
+
+    protected void doSetSameNameLong_Equal(Long sameNameLong) {
+        regSameNameLong(CK_EQ, sameNameLong);
+    }
+
+    /**
+     * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br />
+     * same_name_long: {int8(19)}
+     * @param sameNameLong The value of sameNameLong as greaterThan. (NullAllowed: if null, no condition)
+     */
+    public void setSameNameLong_GreaterThan(Long sameNameLong) {
+        regSameNameLong(CK_GT, sameNameLong);
+    }
+
+    /**
+     * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br />
+     * same_name_long: {int8(19)}
+     * @param sameNameLong The value of sameNameLong as lessThan. (NullAllowed: if null, no condition)
+     */
+    public void setSameNameLong_LessThan(Long sameNameLong) {
+        regSameNameLong(CK_LT, sameNameLong);
+    }
+
+    /**
+     * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br />
+     * same_name_long: {int8(19)}
+     * @param sameNameLong The value of sameNameLong as greaterEqual. (NullAllowed: if null, no condition)
+     */
+    public void setSameNameLong_GreaterEqual(Long sameNameLong) {
+        regSameNameLong(CK_GE, sameNameLong);
+    }
+
+    /**
+     * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br />
+     * same_name_long: {int8(19)}
+     * @param sameNameLong The value of sameNameLong as lessEqual. (NullAllowed: if null, no condition)
+     */
+    public void setSameNameLong_LessEqual(Long sameNameLong) {
+        regSameNameLong(CK_LE, sameNameLong);
+    }
+
+    /**
+     * RangeOf with various options. (versatile) <br />
+     * {(default) minNumber &lt;= column &lt;= maxNumber} <br />
+     * And NullIgnored, OnlyOnceRegistered. <br />
+     * same_name_long: {int8(19)}
+     * @param minNumber The min number of sameNameLong. (NullAllowed: if null, no from-condition)
+     * @param maxNumber The max number of sameNameLong. (NullAllowed: if null, no to-condition)
+     * @param rangeOfOption The option of range-of. (NotNull)
+     */
+    public void setSameNameLong_RangeOf(Long minNumber, Long maxNumber, RangeOfOption rangeOfOption) {
+        regROO(minNumber, maxNumber, getCValueSameNameLong(), "same_name_long", rangeOfOption);
+    }
+
+    /**
+     * InScope {in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br />
+     * same_name_long: {int8(19)}
+     * @param sameNameLongList The collection of sameNameLong as inScope. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setSameNameLong_InScope(Collection<Long> sameNameLongList) {
+        doSetSameNameLong_InScope(sameNameLongList);
+    }
+
+    protected void doSetSameNameLong_InScope(Collection<Long> sameNameLongList) {
+        regINS(CK_INS, cTL(sameNameLongList), getCValueSameNameLong(), "same_name_long");
+    }
+
+    /**
+     * NotInScope {not in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br />
+     * same_name_long: {int8(19)}
+     * @param sameNameLongList The collection of sameNameLong as notInScope. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setSameNameLong_NotInScope(Collection<Long> sameNameLongList) {
+        doSetSameNameLong_NotInScope(sameNameLongList);
+    }
+
+    protected void doSetSameNameLong_NotInScope(Collection<Long> sameNameLongList) {
+        regINS(CK_NINS, cTL(sameNameLongList), getCValueSameNameLong(), "same_name_long");
+    }
+
+    /**
+     * IsNull {is null}. And OnlyOnceRegistered. <br />
+     * same_name_long: {int8(19)}
+     */
+    public void setSameNameLong_IsNull() { regSameNameLong(CK_ISN, DOBJ); }
+
+    /**
+     * IsNotNull {is not null}. And OnlyOnceRegistered. <br />
+     * same_name_long: {int8(19)}
+     */
+    public void setSameNameLong_IsNotNull() { regSameNameLong(CK_ISNN, DOBJ); }
+
+    protected void regSameNameLong(ConditionKey k, Object v) { regQ(k, v, getCValueSameNameLong(), "same_name_long"); }
+    abstract protected ConditionValue getCValueSameNameLong();
+
+    // ===================================================================================
+    //                                                                     ScalarCondition
+    //                                                                     ===============
+    /**
+     * Prepare ScalarCondition as equal. <br />
+     * {where FOO = (select max(BAR) from ...)
+     * <pre>
+     * cb.query().<span style="color: #FD4747">scalar_Equal()</span>.max(new SubQuery&lt;NextschemaWhiteSameNameCB&gt;() {
+     *     public void query(NextschemaWhiteSameNameCB subCB) {
+     *         subCB.specify().setXxx... <span style="color: #3F7E5E">// derived column for function</span>
+     *         subCB.query().setYyy...
+     *     }
+     * });
+     * </pre>
+     * @return The object to set up a function. (NotNull)
+     */
+    public HpSSQFunction<NextschemaWhiteSameNameCB> scalar_Equal() {
+        return xcreateSSQFunction(CK_EQ.getOperand());
+    }
+
+    /**
+     * Prepare ScalarCondition as equal. <br />
+     * {where FOO &lt;&gt; (select max(BAR) from ...)
+     * <pre>
+     * cb.query().<span style="color: #FD4747">scalar_NotEqual()</span>.max(new SubQuery&lt;NextschemaWhiteSameNameCB&gt;() {
+     *     public void query(NextschemaWhiteSameNameCB subCB) {
+     *         subCB.specify().setXxx... <span style="color: #3F7E5E">// derived column for function</span>
+     *         subCB.query().setYyy...
+     *     }
+     * });
+     * </pre>
+     * @return The object to set up a function. (NotNull)
+     */
+    public HpSSQFunction<NextschemaWhiteSameNameCB> scalar_NotEqual() {
+        return xcreateSSQFunction(CK_NES.getOperand());
+    }
+
+    /**
+     * Prepare ScalarCondition as greaterThan. <br />
+     * {where FOO &gt; (select max(BAR) from ...)
+     * <pre>
+     * cb.query().<span style="color: #FD4747">scalar_GreaterThan()</span>.max(new SubQuery&lt;NextschemaWhiteSameNameCB&gt;() {
+     *     public void query(NextschemaWhiteSameNameCB subCB) {
+     *         subCB.specify().setFoo... <span style="color: #3F7E5E">// derived column for function</span>
+     *         subCB.query().setBar...
+     *     }
+     * });
+     * </pre>
+     * @return The object to set up a function. (NotNull)
+     */
+    public HpSSQFunction<NextschemaWhiteSameNameCB> scalar_GreaterThan() {
+        return xcreateSSQFunction(CK_GT.getOperand());
+    }
+
+    /**
+     * Prepare ScalarCondition as lessThan. <br />
+     * {where FOO &lt; (select max(BAR) from ...)
+     * <pre>
+     * cb.query().<span style="color: #FD4747">scalar_LessThan()</span>.max(new SubQuery&lt;NextschemaWhiteSameNameCB&gt;() {
+     *     public void query(NextschemaWhiteSameNameCB subCB) {
+     *         subCB.specify().setFoo... <span style="color: #3F7E5E">// derived column for function</span>
+     *         subCB.query().setBar...
+     *     }
+     * });
+     * </pre>
+     * @return The object to set up a function. (NotNull)
+     */
+    public HpSSQFunction<NextschemaWhiteSameNameCB> scalar_LessThan() {
+        return xcreateSSQFunction(CK_LT.getOperand());
+    }
+
+    /**
+     * Prepare ScalarCondition as greaterEqual. <br />
+     * {where FOO &gt;= (select max(BAR) from ...)
+     * <pre>
+     * cb.query().<span style="color: #FD4747">scalar_GreaterEqual()</span>.max(new SubQuery&lt;NextschemaWhiteSameNameCB&gt;() {
+     *     public void query(NextschemaWhiteSameNameCB subCB) {
+     *         subCB.specify().setFoo... <span style="color: #3F7E5E">// derived column for function</span>
+     *         subCB.query().setBar...
+     *     }
+     * });
+     * </pre>
+     * @return The object to set up a function. (NotNull)
+     */
+    public HpSSQFunction<NextschemaWhiteSameNameCB> scalar_GreaterEqual() {
+        return xcreateSSQFunction(CK_GE.getOperand());
+    }
+
+    /**
+     * Prepare ScalarCondition as lessEqual. <br />
+     * {where FOO &lt;= (select max(BAR) from ...)
+     * <pre>
+     * cb.query().<span style="color: #FD4747">scalar_LessEqual()</span>.max(new SubQuery&lt;NextschemaWhiteSameNameCB&gt;() {
+     *     public void query(NextschemaWhiteSameNameCB subCB) {
+     *         subCB.specify().setFoo... <span style="color: #3F7E5E">// derived column for function</span>
+     *         subCB.query().setBar...
+     *     }
+     * });
+     * </pre>
+     * @return The object to set up a function. (NotNull)
+     */
+    public HpSSQFunction<NextschemaWhiteSameNameCB> scalar_LessEqual() {
+        return xcreateSSQFunction(CK_LE.getOperand());
+    }
+
+    protected HpSSQFunction<NextschemaWhiteSameNameCB> xcreateSSQFunction(final String operand) {
+        return new HpSSQFunction<NextschemaWhiteSameNameCB>(new HpSSQSetupper<NextschemaWhiteSameNameCB>() {
+            public void setup(String function, SubQuery<NextschemaWhiteSameNameCB> subQuery, HpSSQOption<NextschemaWhiteSameNameCB> option) {
+                xscalarCondition(function, subQuery, operand, option);
+            }
+        });
+    }
+
+    protected void xscalarCondition(String function, SubQuery<NextschemaWhiteSameNameCB> subQuery, String operand, HpSSQOption<NextschemaWhiteSameNameCB> option) {
+        assertObjectNotNull("subQuery<NextschemaWhiteSameNameCB>", subQuery);
+        NextschemaWhiteSameNameCB cb = xcreateScalarConditionCB(); subQuery.query(cb);
+        String subQueryPropertyName = keepScalarCondition(cb.query()); // for saving query-value
+        option.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        registerScalarCondition(function, cb.query(), subQueryPropertyName, operand, option);
+    }
+    public abstract String keepScalarCondition(NextschemaWhiteSameNameCQ subQuery);
+
+    protected NextschemaWhiteSameNameCB xcreateScalarConditionCB() {
+        NextschemaWhiteSameNameCB cb = new NextschemaWhiteSameNameCB();
+        cb.xsetupForScalarCondition(this);
+        return cb;
+    }
+
+    protected NextschemaWhiteSameNameCB xcreateScalarConditionPartitionByCB() {
+        NextschemaWhiteSameNameCB cb = new NextschemaWhiteSameNameCB();
+        cb.xsetupForScalarConditionPartitionBy(this);
+        return cb;
+    }
+
+    // ===================================================================================
+    //                                                                       MyselfDerived
+    //                                                                       =============
+    public void xsmyselfDerive(String function, SubQuery<NextschemaWhiteSameNameCB> subQuery, String aliasName, DerivedReferrerOption option) {
+        assertObjectNotNull("subQuery<NextschemaWhiteSameNameCB>", subQuery);
+        NextschemaWhiteSameNameCB cb = new NextschemaWhiteSameNameCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
+        String subQueryPropertyName = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
+        registerSpecifyMyselfDerived(function, cb.query(), "same_name_id", "same_name_id", subQueryPropertyName, "myselfDerived", aliasName, option);
+    }
+    public abstract String keepSpecifyMyselfDerived(NextschemaWhiteSameNameCQ subQuery);
+
+    /**
+     * Prepare for (Query)MyselfDerived (SubQuery).
+     * @return The object to set up a function for myself table. (NotNull)
+     */
+    public HpQDRFunction<NextschemaWhiteSameNameCB> myselfDerived() {
+        return xcreateQDRFunctionMyselfDerived();
+    }
+    protected HpQDRFunction<NextschemaWhiteSameNameCB> xcreateQDRFunctionMyselfDerived() {
+        return new HpQDRFunction<NextschemaWhiteSameNameCB>(new HpQDRSetupper<NextschemaWhiteSameNameCB>() {
+            public void setup(String function, SubQuery<NextschemaWhiteSameNameCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
+                xqderiveMyselfDerived(function, subQuery, operand, value, option);
+            }
+        });
+    }
+    public void xqderiveMyselfDerived(String function, SubQuery<NextschemaWhiteSameNameCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
+        assertObjectNotNull("subQuery<NextschemaWhiteSameNameCB>", subQuery);
+        NextschemaWhiteSameNameCB cb = new NextschemaWhiteSameNameCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
+        String subQueryPropertyName = keepQueryMyselfDerived(cb.query()); // for saving query-value.
+        String parameterPropertyName = keepQueryMyselfDerivedParameter(value);
+        registerQueryMyselfDerived(function, cb.query(), "same_name_id", "same_name_id", subQueryPropertyName, "myselfDerived", operand, value, parameterPropertyName, option);
+    }
+    public abstract String keepQueryMyselfDerived(NextschemaWhiteSameNameCQ subQuery);
+    public abstract String keepQueryMyselfDerivedParameter(Object parameterValue);
+
+    // ===================================================================================
+    //                                                                        MyselfExists
+    //                                                                        ============
+    /**
+     * Prepare for MyselfExists (SubQuery).
+     * @param subQuery The implementation of sub query. (NotNull)
+     */
+    public void myselfExists(SubQuery<NextschemaWhiteSameNameCB> subQuery) {
+        assertObjectNotNull("subQuery<NextschemaWhiteSameNameCB>", subQuery);
+        NextschemaWhiteSameNameCB cb = new NextschemaWhiteSameNameCB(); cb.xsetupForMyselfExists(this); subQuery.query(cb);
+        String subQueryPropertyName = keepMyselfExists(cb.query()); // for saving query-value.
+        registerMyselfExists(cb.query(), subQueryPropertyName);
+    }
+    public abstract String keepMyselfExists(NextschemaWhiteSameNameCQ subQuery);
+
+    // ===================================================================================
+    //                                                                       MyselfInScope
+    //                                                                       =============
+    /**
+     * Prepare for MyselfInScope (SubQuery).
+     * @param subQuery The implementation of sub query. (NotNull)
+     */
+    public void myselfInScope(SubQuery<NextschemaWhiteSameNameCB> subQuery) {
+        assertObjectNotNull("subQuery<NextschemaWhiteSameNameCB>", subQuery);
+        NextschemaWhiteSameNameCB cb = new NextschemaWhiteSameNameCB(); cb.xsetupForMyselfInScope(this); subQuery.query(cb);
+        String subQueryPropertyName = keepMyselfInScope(cb.query()); // for saving query-value.
+        registerMyselfInScope(cb.query(), subQueryPropertyName);
+    }
+    public abstract String keepMyselfInScope(NextschemaWhiteSameNameCQ subQuery);
+
+    // ===================================================================================
+    //                                                                    Full Text Search
+    //                                                                    ================
+    /**
+     * Match for full-text search. <br />
+     * @param textColumn The text column. (NotNull, StringColumn, TargetTableColumn)
+     * @param conditionValue The condition value. (NullAllowed: if null or empty, no condition)
+     */
+    public void match(org.seasar.dbflute.dbmeta.info.ColumnInfo textColumn, String conditionValue) {
+        assertObjectNotNull("textColumn", textColumn);
+        match(newArrayList(textColumn), conditionValue);
+    }
+
+    /**
+     * Match for full-text search. <br />
+     * @param textColumnList The list of text column. (NotNull, NotEmpty, StringColumn, TargetTableColumn)
+     * @param conditionValue The condition value. (NullAllowed: if null or empty, no condition)
+     */
+    public void match(java.util.List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList, String conditionValue) {
+        xdoMatchByLikeSearch(textColumnList, conditionValue);
+    }
+
+    @Override
+    protected String xescapeFullTextSearchValue(String conditionValue) {
+        return conditionValue; // non escape
+    }
+
+    @Override
+    protected LikeSearchOption xcreateMatchLikeSearch() {
+        return new PostgreSQLMatchLikeSearch();
+    }
+
+    @Override
+    protected org.seasar.dbflute.dbway.ExtensionOperand xgetPostgreSQLMatchOperand() {
+        return DBFluteConfig.getInstance().getFullTextSearchOperand();
+    }
+
+    // ===================================================================================
+    //                                                                       Very Internal
+    //                                                                       =============
+    // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabCB() { return NextschemaWhiteSameNameCB.class.getName(); }
+    protected String xabCQ() { return NextschemaWhiteSameNameCQ.class.getName(); }
+    protected String xabLSO() { return LikeSearchOption.class.getName(); }
+    protected String xabSSQS() { return HpSSQSetupper.class.getName(); }
+}

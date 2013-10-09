@@ -1,0 +1,34 @@
+# /---------------------------------------------------------------------------
+# sequenceDefinitionMap: (Default 'map:{}')
+# 
+# The relation mappings between sequence and table.
+# If you don't specify the mappings, you cannot insert 
+# a record of the table by sequence.
+# The table names are treated as case insensitive.
+# 
+# Example:
+# map:{
+#     ; PURCHASE     = SEQ_PURCHASE
+#     ; MEMBER       = SEQ_MEMBER
+#     ; MEMBER_LOGIN = SEQ_MEMBER_LOGIN
+#     ; PRODUCT      = SEQ_PRODUCT
+# }
+#
+# *The line that starts with '#' means comment-out.
+#
+map:{
+    # sequence of serial type for primary key doesn't need definitions here
+    #; MEMBER         = SEQ_MEMBER
+    #; MEMBER_ADDRESS = SEQ_MEMBER_ADDRESS
+    #; PRODUCT        = SEQ_PRODUCT
+
+    # for the test of sequence cache on this DBMS
+    ; purchase     = SEQ_PURCHASE:dfcache(6) # increment way
+    ; member_login = member_login_member_login_id_seq:dfcache(10) # batch way as serial
+
+    # for the test of sub-column sequence related to a normal column
+    # (cache settings for sub-column sequence is unsupported here)
+    ; member_status.display_order = SEQ_SUB_DISPLAY_ORDER
+    ; purchase.purchase_count     = SEQ_SUB_PURCHASE_COUNT
+}
+# ----------------/

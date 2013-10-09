@@ -1,0 +1,14 @@
+map:{
+    ; STRING_CONVERTED = map:{
+        ; contain:\n = \\n
+    }
+    # test as default
+    #; TIMESTAMP_ZERO_DEFAULT_MILLIS = map:{
+    #}
+    ; TIMESTAMP_ZERO_PREFIX_MILLIS = map:{
+        ; $$timestamp$$ = $$ZeroPrefixMillis$$
+    }
+    ; TIMESTAMP_ZERO_SUFFIX_MILLIS = map:{
+        ; $$timestamp$$ = $$ZeroSuffixMillis$$
+    }
+}

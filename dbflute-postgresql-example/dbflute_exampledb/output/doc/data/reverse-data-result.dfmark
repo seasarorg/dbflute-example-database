@@ -1,0 +1,51 @@
+
+* * * * * * * * * * *
+*                   *
+* Load Data Reverse *
+*                   *
+* * * * * * * * * * *
+...Outputting load data: tables=29
+  isReplaceSchemaDirectUse = false
+  isOverrideExistingDataFile = true
+  isSynchronizeOriginDate = false
+
+[reverse-data-01-master.xls]: tables=7
+  member_status (3)
+  service_rank (5)
+  product_status (3)
+  product_category (5)
+  region (4)
+  withdrawal_reason (4)
+  VENDOR-NON COMPILABLE (0)
+
+[reverse-data-02-VENDOR.xls]: tables=7
+  vendor_$_dollar (0)
+  vendor_check (7)
+  vendor_date_pk (0)
+  vendor_large_data (0)
+  vendor_large_data_ref (0)
+  vendor_uuid_bar (0)
+  vendor_uuid_foo (0)
+
+[reverse-data-03-WHITE.xls]: tables=4
+  white_compound_pk (0)
+  white_compound_pk_ref (0)
+  white_not_pk (0)
+  white_xls_man (6)
+
+[reverse-data-04-MEMBER-plus.xls]: tables=9
+  member (20)
+  member_address (20)
+  member_login (56)
+  member_security (20)
+  member_service (20)
+  member_withdrawal (4)
+  product (20)
+  purchase (60)
+  vendor_date_fk (0)
+
+[reverse-data-99-added-table.xls]: tables=2
+  white_same_name (0)
+  white_same_name_ref (0)
+
+Output Date: 2013/09/30 14:27:52

@@ -1,0 +1,87 @@
+map:{
+    ; 2013/07/06 21:35:47 = map:{
+        ; diffDate = 2013/07/06 21:35:47
+        ; tableDiff = map:{
+            ; white_same_name = map:{
+                ; tableName = white_same_name
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; same_name_id = map:{
+                        ; columnName = same_name_id
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = int4
+                            ; previous = int8
+                        }
+                        ; columnSizeDiff = map:{
+                            ; next = 10
+                            ; previous = 19
+                        }
+                    }
+                }
+            }
+        }
+    }
+    ; 2013/07/04 02:05:30 = map:{
+        ; diffDate = 2013/07/04 02:05:30
+        ; tableDiff = map:{
+            ; white_same_name = map:{
+                ; tableName = white_same_name
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; same_name_id = map:{
+                        ; columnName = same_name_id
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = int8
+                            ; previous = int4
+                        }
+                        ; columnSizeDiff = map:{
+                            ; next = 19
+                            ; previous = 10
+                        }
+                    }
+                }
+            }
+            ; white_same_name_ref = map:{
+                ; tableName = white_same_name_ref
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; same_name_ref_id = map:{
+                        ; columnName = same_name_ref_id
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = int8
+                            ; previous = int4
+                        }
+                        ; columnSizeDiff = map:{
+                            ; next = 19
+                            ; previous = 10
+                        }
+                    }
+                }
+            }
+        }
+    }
+    ; 2013/07/04 01:19:26 = map:{
+        ; diffDate = 2013/07/04 01:19:26
+        ; tableDiff = map:{
+            ; white_same_name = map:{
+                ; tableName = white_same_name
+                ; diffType = ADD
+            }
+            ; white_same_name_ref = map:{
+                ; tableName = white_same_name_ref
+                ; diffType = ADD
+            }
+            ; white_next_same_name = map:{
+                ; tableName = white_next_same_name
+                ; diffType = DELETE
+            }
+            ; white_next_same_name_ref = map:{
+                ; tableName = white_next_same_name_ref
+                ; diffType = DELETE
+            }
+        }
+    }
+}
