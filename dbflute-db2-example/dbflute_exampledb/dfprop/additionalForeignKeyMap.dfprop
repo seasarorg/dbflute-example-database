@@ -1,0 +1,48 @@
+# /---------------------------------------------------------------------------
+# [Additional ForeignKey]
+#   additionalForeignKeyMap: (NotRequired - Default 'map:{}')
+#
+#   If foreign key does not exist in your database,
+#   you can set up here as virtual foreign key for DBFlute.
+# 
+#    ex) map:{
+#            ; FK_BOOK_AUTHOR = map:{
+#                ; localTableName  = BOOK      ; foreignTableName  = AUTHOR
+#                ; localColumnName = AUTHOR_ID ; foreignColumnName = AUTHOR_ID
+#            }
+#            ; FK_BOOK_PUBLISHER = map:{
+#                ; localTableName  = BOOK         ; foreignTableName  = PUBLISHER
+#                ; localColumnName = PUBLISHER_ID ; foreignColumnName = PUBLISHER_ID
+#            }
+#        }
+#
+map:{
+    ; FK_SUMMARY_PRODUCT_PRODUCT_STATUS = map:{
+        ; localTableName  = SUMMARY_PRODUCT     ; foreignTableName  = PRODUCT_STATUS
+        ; localColumnName = PRODUCT_STATUS_CODE ; foreignColumnName  = PRODUCT_STATUS_CODE
+    }
+    ; FK_MEMBER_MEMBER_ADDRESS_VALID = map:{
+        ; localTableName  = MEMBER    ; foreignTableName  = MEMBER_ADDRESS
+        ; localColumnName = MEMBER_ID ; foreignColumnName = MEMBER_ID
+        ; fixedCondition = 
+     $$foreignAlias$$.VALID_BEGIN_DATE <= /*targetDate(Date)*/null
+ and $$foreignAlias$$.VALID_END_DATE >= /*targetDate(Date)*/null
+        ; fixedSuffix = AsValid
+    }
+    ; FK_MEMBER_MEMBER_LOGIN_LATEST  = map:{
+        ; localTableName  = MEMBER    ; foreignTableName  = MEMBER_LOGIN
+        ; localColumnName = MEMBER_ID ; foreignColumnName = MEMBER_ID
+        ; fixedCondition  = 
+$$foreignAlias$$.LOGIN_DATETIME = ($$sqbegin$$
+select max(login.LOGIN_DATETIME)
+  from MEMBER_LOGIN login
+ where login.MEMBER_ID = $$foreignAlias$$.MEMBER_ID
+)$$sqend$$
+        ; fixedSuffix = AsLatest
+        ; fixedInline = true
+        ; comment = 「会員」から「最終ログイン」への業務的one-to-one
+    }
+}
+# ----------------/
+
+

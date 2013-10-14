@@ -1,0 +1,7 @@
+map:{
+    # ALL, NONE, PART
+    ; loggingInsertType = ALL
+
+    # true or false
+    ; isSuppressBatchUpdate = false
+}

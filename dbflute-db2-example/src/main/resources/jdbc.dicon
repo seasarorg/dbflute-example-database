@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.4//EN"
+	"http://www.seasar.org/dtd/components24.dtd">
+<components namespace="jdbc">
+	<include path="jta.dicon"/>
+	<include path="jdbc-extension.dicon"/>
+
+	<!-- for DB2 -->
+	<component name="xaDataSource"
+		class="org.seasar.extension.dbcp.impl.XADataSourceImpl">
+		<property name="driverClassName">
+			"com.ibm.db2.jcc.DB2Driver"
+		</property>
+		<property name="URL">
+			@com.example.dbflute.db2.JdbcDiconResolver@resolveUrl("jdbc:db2://localhost:50001/dfexdb")
+		</property>
+		<property name="user">@com.example.dbflute.db2.JdbcDiconResolver@resolveUser("db2inst1")</property>
+		<property name="password">@com.example.dbflute.db2.JdbcDiconResolver@resolvePassword()</property>
+		<initMethod name="addProperty">
+			<arg>"currentSchema"</arg>
+			<arg>"DFEXDB"</arg>
+		</initMethod>
+		<destroyMethod>
+			@org.seasar.framework.util.DriverManagerUtil@deregisterAllDrivers()
+		</destroyMethod>
+   	</component>
+
+	<component class="org.seasar.extension.dbcp.impl.ConnectionPoolImpl">
+		<property name="timeout">600</property>
+		<property name="maxPoolSize">10</property>
+		<destroyMethod name="close"/>
+	</component>
+
+	<component class="org.seasar.extension.dbcp.impl.DataSourceImpl"/>
+	
+</components>

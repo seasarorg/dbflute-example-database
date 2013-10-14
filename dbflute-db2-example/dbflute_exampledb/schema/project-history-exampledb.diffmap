@@ -1,0 +1,408 @@
+map:{
+    ; 2013/09/11 22:38:55 = map:{
+        ; diffDate = 2013/09/11 22:38:55
+        ; tableDiff = map:{
+            ; MEMBER = map:{
+                ; tableName = MEMBER
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; MEMBER_ACCOUNT = map:{
+                        ; columnName = MEMBER_ACCOUNT
+                        ; diffType = CHANGE
+                        ; columnSizeDiff = map:{
+                            ; next = 50
+                            ; previous = 20
+                        }
+                    }
+                    ; MEMBER_STATUS_CODE = map:{
+                        ; columnName = MEMBER_STATUS_CODE
+                        ; diffType = CHANGE
+                        ; notNullDiff = map:{
+                            ; next = true
+                            ; previous = false
+                        }
+                    }
+                }
+            }
+            ; MEMBER_ADDRESS = map:{
+                ; tableName = MEMBER_ADDRESS
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; MEMBER_ADDRESS_ID = map:{
+                        ; columnName = MEMBER_ADDRESS_ID
+                        ; diffType = CHANGE
+                        ; autoIncrementDiff = map:{
+                            ; next = true
+                            ; previous = false
+                        }
+                    }
+                }
+            }
+            ; MEMBER_SERVICE = map:{
+                ; tableName = MEMBER_SERVICE
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; SERVICE_POINT_COUNT = map:{
+                        ; columnName = SERVICE_POINT_COUNT
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = INTEGER
+                            ; previous = VARCHAR
+                        }
+                        ; columnSizeDiff = map:{
+                            ; next = 10
+                            ; previous = 20
+                        }
+                    }
+                }
+            }
+        }
+    }
+    ; 2013/09/11 21:15:20 = map:{
+        ; diffDate = 2013/09/11 21:15:20
+        ; tableCount = map:{
+            ; next = 24
+            ; previous = 23
+        }
+        ; tableDiff = map:{
+            ; MEMBER_FOLLOWING = map:{
+                ; tableName = MEMBER_FOLLOWING
+                ; diffType = ADD
+            }
+        }
+    }
+    ; 2013/05/21 22:57:19 = map:{
+        ; diffDate = 2013/05/21 22:57:19
+        ; tableDiff = map:{
+            ; MEMBER_SECURITY = map:{
+                ; tableName = MEMBER_SECURITY
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; REMINDER_USE_COUNT = map:{
+                        ; columnName = REMINDER_USE_COUNT
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; PRODUCT = map:{
+                ; tableName = PRODUCT
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; REGULAR_PRICE = map:{
+                        ; columnName = REGULAR_PRICE
+                        ; diffType = ADD
+                    }
+                }
+            }
+        }
+    }
+    ; 2012/08/29 01:05:49 = map:{
+        ; diffDate = 2012/08/29 01:05:49
+        ; tableCount = map:{
+            ; next = 23
+            ; previous = 19
+        }
+        ; tableDiff = map:{
+            ; MEMBER_SERVICE = map:{
+                ; tableName = MEMBER_SERVICE
+                ; diffType = ADD
+            }
+            ; PRODUCT_CATEGORY = map:{
+                ; tableName = PRODUCT_CATEGORY
+                ; diffType = ADD
+            }
+            ; REGION = map:{
+                ; tableName = REGION
+                ; diffType = ADD
+            }
+            ; SERVICE_RANK = map:{
+                ; tableName = SERVICE_RANK
+                ; diffType = ADD
+            }
+            ; MEMBER_STATUS = map:{
+                ; tableName = MEMBER_STATUS
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; UQ_MEMBER_STATUS_MEMBER_STATUS_NAME = map:{
+                        ; constraintName = UQ_MEMBER_STATUS_MEMBER_STATUS_NAME
+                        ; diffType = DELETE
+                    }
+                }
+            }
+        }
+    }
+    ; 2012/08/26 20:22:54 = map:{
+        ; diffDate = 2012/08/26 20:22:54
+        ; procedureDiff = map:{
+            ; DFEXDB.SP_IN_OUT_PARAMETER = map:{
+                ; procedureName = DFEXDB.SP_IN_OUT_PARAMETER
+                ; diffType = CHANGE
+                ; sourceLineDiff = map:{
+                    ; next = "10"
+                    ; previous = "1"
+                }
+                ; sourceSizeDiff = map:{
+                    ; next = "245"
+                    ; previous = "29"
+                }
+                ; sourceHashDiff = map:{
+                    ; next = "2bdc3fa2"
+                    ; previous = "e1362157"
+                }
+            }
+            ; DFEXDB.SP_IN_OUT_RETURN = map:{
+                ; procedureName = DFEXDB.SP_IN_OUT_RETURN
+                ; diffType = CHANGE
+                ; sourceLineDiff = map:{
+                    ; next = "11"
+                    ; previous = "1"
+                }
+                ; sourceSizeDiff = map:{
+                    ; next = "238"
+                    ; previous = "29"
+                }
+                ; sourceHashDiff = map:{
+                    ; next = "4d548600"
+                    ; previous = "c06ee255"
+                }
+            }
+            ; DFEXDB.SP_NO_PARAMETER = map:{
+                ; procedureName = DFEXDB.SP_NO_PARAMETER
+                ; diffType = CHANGE
+                ; sourceLineDiff = map:{
+                    ; next = "5"
+                    ; previous = "1"
+                }
+                ; sourceSizeDiff = map:{
+                    ; next = "56"
+                    ; previous = "29"
+                }
+                ; sourceHashDiff = map:{
+                    ; next = "7f87d5c6"
+                    ; previous = "8a2a11a7"
+                }
+            }
+        }
+    }
+    ; 2012/08/25 23:11:59 = map:{
+        ; diffDate = 2012/08/25 23:11:59
+        ; tableCount = map:{
+            ; next = 19
+            ; previous = 17
+        }
+        ; tableDiff = map:{
+            ; ALIAS_EXCEPT = map:{
+                ; tableName = ALIAS_EXCEPT
+                ; diffType = ADD
+            }
+            ; ALIAS_MEMBER = map:{
+                ; tableName = ALIAS_MEMBER
+                ; diffType = ADD
+            }
+            ; ALIAS_MEMBER_LOGIN = map:{
+                ; tableName = ALIAS_MEMBER_LOGIN
+                ; diffType = ADD
+            }
+            ; ALIAS_REF_EXCEPT = map:{
+                ; tableName = ALIAS_REF_EXCEPT
+                ; diffType = ADD
+            }
+            ; WHITE_EXCEPT = map:{
+                ; tableName = WHITE_EXCEPT
+                ; diffType = DELETE
+            }
+            ; WHITE_REF_EXCEPT = map:{
+                ; tableName = WHITE_REF_EXCEPT
+                ; diffType = DELETE
+            }
+        }
+    }
+    ; 2012/08/25 01:21:23 = map:{
+        ; diffDate = 2012/08/25 01:21:23
+        ; tableCount = map:{
+            ; next = 17
+            ; previous = 1
+        }
+        ; tableDiff = map:{
+            ; MEMBER = map:{
+                ; tableName = MEMBER
+                ; diffType = ADD
+            }
+            ; MEMBER_ADDRESS = map:{
+                ; tableName = MEMBER_ADDRESS
+                ; diffType = ADD
+            }
+            ; MEMBER_LOGIN = map:{
+                ; tableName = MEMBER_LOGIN
+                ; diffType = ADD
+            }
+            ; MEMBER_SECURITY = map:{
+                ; tableName = MEMBER_SECURITY
+                ; diffType = ADD
+            }
+            ; MEMBER_STATUS = map:{
+                ; tableName = MEMBER_STATUS
+                ; diffType = ADD
+            }
+            ; MEMBER_WITHDRAWAL = map:{
+                ; tableName = MEMBER_WITHDRAWAL
+                ; diffType = ADD
+            }
+            ; PRODUCT = map:{
+                ; tableName = PRODUCT
+                ; diffType = ADD
+            }
+            ; PRODUCT_STATUS = map:{
+                ; tableName = PRODUCT_STATUS
+                ; diffType = ADD
+            }
+            ; PURCHASE = map:{
+                ; tableName = PURCHASE
+                ; diffType = ADD
+            }
+            ; VENDOR_CHECK = map:{
+                ; tableName = VENDOR_CHECK
+                ; diffType = ADD
+            }
+            ; WHITE_EXCEPT = map:{
+                ; tableName = WHITE_EXCEPT
+                ; diffType = ADD
+            }
+            ; WHITE_REF_EXCEPT = map:{
+                ; tableName = WHITE_REF_EXCEPT
+                ; diffType = ADD
+            }
+            ; WHITE_REF_TARGET = map:{
+                ; tableName = WHITE_REF_TARGET
+                ; diffType = ADD
+            }
+            ; WHITE_TARGET = map:{
+                ; tableName = WHITE_TARGET
+                ; diffType = ADD
+            }
+            ; WITHDRAWAL_REASON = map:{
+                ; tableName = WITHDRAWAL_REASON
+                ; diffType = ADD
+            }
+            ; SUMMARY_PRODUCT = map:{
+                ; tableName = SUMMARY_PRODUCT
+                ; diffType = ADD
+            }
+        }
+        ; sequenceDiff = map:{
+            ; DFEXDB.SQL120825012112340 = map:{
+                ; sequenceName = DFEXDB.SQL120825012112340
+                ; diffType = ADD
+            }
+            ; DFEXDB.SQL120825012112490 = map:{
+                ; sequenceName = DFEXDB.SQL120825012112490
+                ; diffType = ADD
+            }
+            ; DFEXDB.SQL120825012112520 = map:{
+                ; sequenceName = DFEXDB.SQL120825012112520
+                ; diffType = ADD
+            }
+            ; DFEXDB.SQL120825012112540 = map:{
+                ; sequenceName = DFEXDB.SQL120825012112540
+                ; diffType = ADD
+            }
+            ; DFEXDB.SQL120825012112560 = map:{
+                ; sequenceName = DFEXDB.SQL120825012112560
+                ; diffType = ADD
+            }
+            ; DFEXDB.SEQ_NOT_RELATED_TO_TABLE = map:{
+                ; sequenceName = DFEXDB.SEQ_NOT_RELATED_TO_TABLE
+                ; diffType = ADD
+            }
+            ; DFEXDB.SEQ_MEMBER_LOGIN = map:{
+                ; sequenceName = DFEXDB.SEQ_MEMBER_LOGIN
+                ; diffType = ADD
+            }
+            ; DFEXDB.SEQ_PURCHASE = map:{
+                ; sequenceName = DFEXDB.SEQ_PURCHASE
+                ; diffType = ADD
+            }
+        }
+    }
+    ; 2012/08/25 00:26:07 = map:{
+        ; diffDate = 2012/08/25 00:26:07
+        ; tableCount = map:{
+            ; next = 1
+            ; previous = 19
+        }
+        ; tableDiff = map:{
+            ; ALIAS_EXCEPT = map:{
+                ; tableName = ALIAS_EXCEPT
+                ; diffType = DELETE
+            }
+            ; ALIAS_MEMBER = map:{
+                ; tableName = ALIAS_MEMBER
+                ; diffType = DELETE
+            }
+            ; ALIAS_MEMBER_LOGIN = map:{
+                ; tableName = ALIAS_MEMBER_LOGIN
+                ; diffType = DELETE
+            }
+            ; ALIAS_REF_EXCEPT = map:{
+                ; tableName = ALIAS_REF_EXCEPT
+                ; diffType = DELETE
+            }
+            ; MEMBER = map:{
+                ; tableName = MEMBER
+                ; diffType = DELETE
+            }
+            ; MEMBER_ADDRESS = map:{
+                ; tableName = MEMBER_ADDRESS
+                ; diffType = DELETE
+            }
+            ; MEMBER_LOGIN = map:{
+                ; tableName = MEMBER_LOGIN
+                ; diffType = DELETE
+            }
+            ; MEMBER_SECURITY = map:{
+                ; tableName = MEMBER_SECURITY
+                ; diffType = DELETE
+            }
+            ; MEMBER_STATUS = map:{
+                ; tableName = MEMBER_STATUS
+                ; diffType = DELETE
+            }
+            ; MEMBER_WITHDRAWAL = map:{
+                ; tableName = MEMBER_WITHDRAWAL
+                ; diffType = DELETE
+            }
+            ; PRODUCT = map:{
+                ; tableName = PRODUCT
+                ; diffType = DELETE
+            }
+            ; PRODUCT_STATUS = map:{
+                ; tableName = PRODUCT_STATUS
+                ; diffType = DELETE
+            }
+            ; PURCHASE = map:{
+                ; tableName = PURCHASE
+                ; diffType = DELETE
+            }
+            ; VENDOR_CHECK = map:{
+                ; tableName = VENDOR_CHECK
+                ; diffType = DELETE
+            }
+            ; WHITE_REF_TARGET = map:{
+                ; tableName = WHITE_REF_TARGET
+                ; diffType = DELETE
+            }
+            ; WHITE_TARGET = map:{
+                ; tableName = WHITE_TARGET
+                ; diffType = DELETE
+            }
+            ; WITHDRAWAL_REASON = map:{
+                ; tableName = WITHDRAWAL_REASON
+                ; diffType = DELETE
+            }
+            ; SUMMARY_PRODUCT = map:{
+                ; tableName = SUMMARY_PRODUCT
+                ; diffType = DELETE
+            }
+        }
+    }
+}
