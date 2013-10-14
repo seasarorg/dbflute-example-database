@@ -1,0 +1,44 @@
+# /---------------------------------------------------------------------------
+# [Additional ForeignKey]
+#   additionalForeignKeyMap: (NotRequired - Default 'map:{}')
+#
+#   If foreign key does not exist in your database,
+#   you can set up here as virtual foreign key for DBFlute.
+# 
+#    ex) map:{
+#            ; FK_BOOK_AUTHOR = map:{
+#                ; localTableName  = BOOK      ; foreignTableName  = AUTHOR
+#                ; localColumnName = AUTHOR_ID ; foreignColumnName = AUTHOR_ID
+#            }
+#            ; FK_BOOK_PUBLISHER = map:{
+#                ; localTableName  = BOOK         ; foreignTableName  = PUBLISHER
+#                ; localColumnName = PUBLISHER_ID ; foreignColumnName = PUBLISHER_ID
+#            }
+#        }
+#
+map:{
+    ; FK_MEMBER_MEMBER_ADDRESS_VALID = map:{
+        ; localTableName  = MEMBER    ; foreignTableName  = MEMBER_ADDRESS
+        ; localColumnName = MEMBER_ID ; foreignColumnName = MEMBER_ID
+        ; fixedCondition = 
+     $$foreignAlias$$.VALID_BEGIN_DATE <= /*targetDate(Timestamp)*/null
+ and $$foreignAlias$$.VALID_END_DATE >= /*targetDate(Timestamp)*/null
+        ; fixedSuffix = AsValid
+    }
+    ; FK_MEMBER_MEMBER_LOGIN_LATEST  = map:{
+        ; localTableName  = MEMBER    ; foreignTableName  = MEMBER_LOGIN
+        ; localColumnName = MEMBER_ID ; foreignColumnName = MEMBER_ID
+        ; fixedCondition  = 
+
+    # on句の固定条件として「結合先ログイン情報が該当会員の最新のログイン日時であること」を追加
+    # 以下の変数を使うことでテーブルのAlias名がSQL実行時に自動解決。
+    #   $$localAlias$$   = 基点テーブルのAlias名
+    #   $$foreignAlias$$ = 結合テーブルのAlias名
+    $$foreignAlias$$.LOGIN_DATETIME = (select max(LOGIN_DATETIME) from MEMBER_LOGIN where MEMBER_ID = $$localAlias$$.MEMBER_ID)
+
+        ; fixedSuffix = AsLatest
+    }
+}
+# ----------------/
+
+

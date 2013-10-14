@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.4//EN"
+	"http://www.seasar.org/dtd/components24.dtd">
+<components namespace="jdbc">
+	<include path="jta.dicon"/>
+	<include path="jdbc-extension.dicon"/>
+
+	<!-- for SQLServer -->
+	<component name="xaDataSource"
+		class="org.seasar.extension.dbcp.impl.XADataSourceImpl">
+		<property name="driverClassName">
+			"com.microsoft.sqlserver.jdbc.SQLServerDriver"
+		</property>
+		<property name="URL">
+			@com.example.dbflute.sqlserver.JdbcDiconResolver@resolveUrl("jdbc:sqlserver://localhost:1433;DatabaseName=exampledb;")
+		</property>
+		<property name="user">"exampledb"</property>
+		<property name="password">"exampledb"</property>
+		<destroyMethod>
+			@org.seasar.framework.util.DriverManagerUtil@deregisterAllDrivers()
+		</destroyMethod>
+   	</component>
+
+	<component class="org.seasar.extension.dbcp.impl.ConnectionPoolImpl">
+		<property name="timeout">600</property>
+		<property name="maxPoolSize">10</property>
+		<destroyMethod name="close"/>
+	</component>
+
+	<component class="org.seasar.extension.dbcp.impl.DataSourceImpl"/>
+	
+</components>

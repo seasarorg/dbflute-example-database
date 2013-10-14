@@ -1,0 +1,7 @@
+map:{
+    ; $$ALL$$ = map:{ contain:\\n = \n }
+    ; STRING_CONVERTED = map:{
+        ; foo = bar
+        ; F = no change (case sensitive)
+    }
+}

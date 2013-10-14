@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.seasar.dbflute</groupId>
+	<artifactId>dbflute-sqlserver-example</artifactId>
+	<version>1.0.0</version>
+	<packaging>jar</packaging>
+
+	<name>DBFlute SQLServer Example</name>
+	<description>The example project for SQLServer and DBFlute</description>
+
+	<properties>
+		<seasar.version>2.4.40</seasar.version>
+		<dbflute.version>1.0.5A</dbflute.version>
+		<mssql.jdbc.version>1.0.0</mssql.jdbc.version>
+		<utflute.version>0.3.4</utflute.version>
+	</properties>
+
+	<url>http://dbflute.sandbox.seasar.org/</url>
+	<inceptionYear>2006</inceptionYear>
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+	<organization>
+		<name>The Seasar Foundation</name>
+		<url>http://www.seasar.org/</url>
+	</organization>
+
+	<developers>
+		<developer>
+			<id>jflute</id>
+			<timezone>+9</timezone>
+		</developer>
+	</developers>
+	<contributors>
+		<contributor>
+			<name>taktos</name>
+			<timezone>+9</timezone>
+		</contributor>
+	</contributors>
+
+	<issueManagement>
+		<system>JIRA</system>
+		<url>https://www.seasar.org/issues/browse/DBFLUTE</url>
+	</issueManagement>
+	<mailingLists>
+		<mailingList>
+			<name>Seasar-user</name>
+			<subscribe>https://www.seasar.org/mailman/listinfo/seasar-user</subscribe>
+			<unsubscribe>https://www.seasar.org/mailman/listinfo/seasar-user</unsubscribe>
+			<post>seasar-user@ml.seasar.org</post>
+			<archive>https://www.seasar.org/mailman/listinfo/seasar-user</archive>
+		</mailingList>
+	</mailingLists>
+
+	<scm>
+		<connection>scm:svn:https://www.seasar.org/svn/sandbox/dbflute/trunk/dbflute-msaccess-example/</connection>
+		<developerConnection>scm:svn:https://www.seasar.org/svn/sandbox/dbflute/trunk/dbflute-msaccess-example/</developerConnection>
+		<url>http://svn.seasar.org/browse/?root=sandbox.dbflute</url>
+	</scm>
+	
+	<repositories>
+		<repository>
+			<id>maven.seasar.org</id>
+			<name>The Seasar Foundation Maven2 Repository</name>
+			<url>http://maven.seasar.org/maven2</url>
+		</repository>
+	    <repository>
+	      <snapshots>
+	        <enabled>true</enabled>
+	      </snapshots>
+	      <id>snapshot.maven.seasar.org</id>
+	      <name>The Seasar Foundation Maven2 Snapshot Repository</name>
+	      <url>http://maven.seasar.org/maven2-snapshot</url>
+	    </repository>
+	</repositories>
+	
+	<build>
+		<defaultGoal>validate</defaultGoal>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<configuration>
+						<source>1.6</source>
+						<target>1.6</target>
+						<encoding>UTF-8</encoding>
+					</configuration>
+				</plugin>
+				<plugin>
+					<artifactId>maven-deploy-plugin</artifactId>
+					<configuration>
+						<updateReleaseInfo>true</updateReleaseInfo>
+					</configuration>
+				</plugin>
+				<plugin>
+					<artifactId>maven-site-plugin</artifactId>
+					<configuration>
+						<locales>en,ja</locales>
+						<inputEncoding>UTF-8</inputEncoding>
+						<outputEncoding>UTF-8</outputEncoding>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		<plugins>
+			<plugin>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.1.2</version>
+				<executions>
+					<execution>
+						<id>source-jar</id>
+						<phase>package</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.8</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+					<docencoding>UTF-8</docencoding>
+					<charset>UTF-8</charset>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>site</phase>
+						<goals>
+							<goal>javadoc</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<version>2.8</version>
+				<configuration>
+					<workspace>${basedir}/..</workspace>
+					<downloadSources>true</downloadSources>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<distributionManagement>
+		<repository>
+			<uniqueVersion>false</uniqueVersion>
+			<id>maven.seasar.org</id>
+			<name>The Seasar Foundation Maven2 Repository</name>
+			<url>dav:https://www.seasar.org/maven/maven2</url>
+		</repository>
+		
+		<snapshotRepository>
+			<uniqueVersion>true</uniqueVersion>
+			<id>maven.seasar.org</id>
+			<name>The Seasar Foundation Maven2 Snapshot Repository</name>
+			<url>dav:https://www.seasar.org/maven/maven2-snapshot</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+	<dependencies>
+		<!-- =============== -->
+		<!-- |   compile   | -->
+		<!-- =============== -->
+		<dependency>
+			<groupId>org.seasar.container</groupId>
+			<artifactId>s2-tiger</artifactId>
+			<version>${seasar.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.easymock</groupId>
+					<artifactId>easymock</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.seasar.dbflute</groupId>
+			<artifactId>dbflute-runtime</artifactId>
+			<version>${dbflute.version}</version>
+		</dependency>
+
+		<!-- =============== -->
+		<!-- |   runtime   | -->
+		<!-- =============== -->
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.14</version>
+            <scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.geronimo.specs</groupId>
+			<artifactId>geronimo-j2ee_1.4_spec</artifactId>
+			<version>1.0</version>
+            <scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.geronimo.specs</groupId>
+			<artifactId>geronimo-ejb_3.0_spec</artifactId>
+			<version>1.0</version>
+            <scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.geronimo.specs</groupId>
+			<artifactId>geronimo-jpa_3.0_spec</artifactId>
+			<version>1.0</version>
+            <scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.geronimo.specs</groupId>
+			<artifactId>geronimo-jta_1.1_spec</artifactId>
+			<version>1.0</version>
+            <scope>runtime</scope>
+		</dependency>
+
+        <!-- for System -->
+		<dependency>
+			<groupId>sqljdbc</groupId>
+			<artifactId>sqljdbc</artifactId>
+			<version>${mssql.jdbc.version}</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/sqljdbc4.jar</systemPath>
+		</dependency>
+
+		<!-- ============ -->
+		<!-- |   test   | -->
+		<!-- ============ -->
+		<dependency>
+			<groupId>org.seasar.dbflute</groupId>
+			<artifactId>utflute-seasar</artifactId>
+			<version>${utflute.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.8.2</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+</project>

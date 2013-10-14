@@ -1,0 +1,4 @@
+map:{
+    ; STRING_CONVERTED = default\nvalue
+    ; DATE_DEFAULT = sysdate
+}
