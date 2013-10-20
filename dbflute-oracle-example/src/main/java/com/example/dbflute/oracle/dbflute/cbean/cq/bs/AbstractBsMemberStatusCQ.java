@@ -187,6 +187,48 @@ public abstract class AbstractBsMemberStatusCQ extends AbstractConditionQuery {
 
     /**
      * Set up ExistsReferrer (co-related sub-query). <br />
+     * {exists (select MEMBER_STATUS_CODE from MEMBER where ...)} <br />
+     * (会員)MEMBER by MEMBER_STATUS_CODE, named 'memberAsOne'.
+     * <pre>
+     * cb.query().<span style="color: #FD4747">existsMemberList</span>(new SubQuery&lt;MemberCB&gt;() {
+     *     public void query(MemberStatusCB subCB) {
+     *         subCB.query().setXxx...
+     *     }
+     * });
+     * </pre>
+     * @param subQuery The sub-query of MemberList for 'exists'. (NotNull)
+     */
+    public void existsMemberList(SubQuery<MemberCB> subQuery) {
+        assertObjectNotNull("subQuery<MemberCB>", subQuery);
+        MemberCB cb = new MemberCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
+        String subQueryPropertyName = keepMemberStatusCode_ExistsReferrer_MemberList(cb.query()); // for saving query-value.
+        registerExistsReferrer(cb.query(), "MEMBER_STATUS_CODE", "MEMBER_STATUS_CODE", subQueryPropertyName, "memberList");
+    }
+    public abstract String keepMemberStatusCode_ExistsReferrer_MemberList(MemberCQ subQuery);
+
+    /**
+     * Set up ExistsReferrer (co-related sub-query). <br />
+     * {exists (select LOGIN_MEMBER_STATUS_CODE from MEMBER_LOGIN where ...)} <br />
+     * (会員ログイン)MEMBER_LOGIN by LOGIN_MEMBER_STATUS_CODE, named 'memberLoginAsOne'.
+     * <pre>
+     * cb.query().<span style="color: #FD4747">existsMemberLoginList</span>(new SubQuery&lt;MemberLoginCB&gt;() {
+     *     public void query(MemberStatusCB subCB) {
+     *         subCB.query().setXxx...
+     *     }
+     * });
+     * </pre>
+     * @param subQuery The sub-query of MemberLoginList for 'exists'. (NotNull)
+     */
+    public void existsMemberLoginList(SubQuery<MemberLoginCB> subQuery) {
+        assertObjectNotNull("subQuery<MemberLoginCB>", subQuery);
+        MemberLoginCB cb = new MemberLoginCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
+        String subQueryPropertyName = keepMemberStatusCode_ExistsReferrer_MemberLoginList(cb.query()); // for saving query-value.
+        registerExistsReferrer(cb.query(), "MEMBER_STATUS_CODE", "LOGIN_MEMBER_STATUS_CODE", subQueryPropertyName, "memberLoginList");
+    }
+    public abstract String keepMemberStatusCode_ExistsReferrer_MemberLoginList(MemberLoginCQ subQuery);
+
+    /**
+     * Set up ExistsReferrer (co-related sub-query). <br />
      * {exists (select MEMBER_STATUS_CODE from MEMBER_VENDOR_SYNONYM where ...)} <br />
      * (会員)MEMBER_VENDOR_SYNONYM by MEMBER_STATUS_CODE, named 'memberVendorSynonymAsOne'.
      * <pre>
@@ -270,46 +312,46 @@ public abstract class AbstractBsMemberStatusCQ extends AbstractConditionQuery {
     public abstract String keepMemberStatusCode_ExistsReferrer_VendorSynonymMemberList(VendorSynonymMemberCQ subQuery);
 
     /**
-     * Set up ExistsReferrer (co-related sub-query). <br />
-     * {exists (select MEMBER_STATUS_CODE from MEMBER where ...)} <br />
+     * Set up NotExistsReferrer (co-related sub-query). <br />
+     * {not exists (select MEMBER_STATUS_CODE from MEMBER where ...)} <br />
      * (会員)MEMBER by MEMBER_STATUS_CODE, named 'memberAsOne'.
      * <pre>
-     * cb.query().<span style="color: #FD4747">existsMemberList</span>(new SubQuery&lt;MemberCB&gt;() {
+     * cb.query().<span style="color: #FD4747">notExistsMemberList</span>(new SubQuery&lt;MemberCB&gt;() {
      *     public void query(MemberStatusCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });
      * </pre>
-     * @param subQuery The sub-query of MemberList for 'exists'. (NotNull)
+     * @param subQuery The sub-query of MemberStatusCode_NotExistsReferrer_MemberList for 'not exists'. (NotNull)
      */
-    public void existsMemberList(SubQuery<MemberCB> subQuery) {
+    public void notExistsMemberList(SubQuery<MemberCB> subQuery) {
         assertObjectNotNull("subQuery<MemberCB>", subQuery);
         MemberCB cb = new MemberCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMemberStatusCode_ExistsReferrer_MemberList(cb.query()); // for saving query-value.
-        registerExistsReferrer(cb.query(), "MEMBER_STATUS_CODE", "MEMBER_STATUS_CODE", subQueryPropertyName, "memberList");
+        String subQueryPropertyName = keepMemberStatusCode_NotExistsReferrer_MemberList(cb.query()); // for saving query-value.
+        registerNotExistsReferrer(cb.query(), "MEMBER_STATUS_CODE", "MEMBER_STATUS_CODE", subQueryPropertyName, "memberList");
     }
-    public abstract String keepMemberStatusCode_ExistsReferrer_MemberList(MemberCQ subQuery);
+    public abstract String keepMemberStatusCode_NotExistsReferrer_MemberList(MemberCQ subQuery);
 
     /**
-     * Set up ExistsReferrer (co-related sub-query). <br />
-     * {exists (select LOGIN_MEMBER_STATUS_CODE from MEMBER_LOGIN where ...)} <br />
+     * Set up NotExistsReferrer (co-related sub-query). <br />
+     * {not exists (select LOGIN_MEMBER_STATUS_CODE from MEMBER_LOGIN where ...)} <br />
      * (会員ログイン)MEMBER_LOGIN by LOGIN_MEMBER_STATUS_CODE, named 'memberLoginAsOne'.
      * <pre>
-     * cb.query().<span style="color: #FD4747">existsMemberLoginList</span>(new SubQuery&lt;MemberLoginCB&gt;() {
+     * cb.query().<span style="color: #FD4747">notExistsMemberLoginList</span>(new SubQuery&lt;MemberLoginCB&gt;() {
      *     public void query(MemberStatusCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });
      * </pre>
-     * @param subQuery The sub-query of MemberLoginList for 'exists'. (NotNull)
+     * @param subQuery The sub-query of MemberStatusCode_NotExistsReferrer_MemberLoginList for 'not exists'. (NotNull)
      */
-    public void existsMemberLoginList(SubQuery<MemberLoginCB> subQuery) {
+    public void notExistsMemberLoginList(SubQuery<MemberLoginCB> subQuery) {
         assertObjectNotNull("subQuery<MemberLoginCB>", subQuery);
         MemberLoginCB cb = new MemberLoginCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMemberStatusCode_ExistsReferrer_MemberLoginList(cb.query()); // for saving query-value.
-        registerExistsReferrer(cb.query(), "MEMBER_STATUS_CODE", "LOGIN_MEMBER_STATUS_CODE", subQueryPropertyName, "memberLoginList");
+        String subQueryPropertyName = keepMemberStatusCode_NotExistsReferrer_MemberLoginList(cb.query()); // for saving query-value.
+        registerNotExistsReferrer(cb.query(), "MEMBER_STATUS_CODE", "LOGIN_MEMBER_STATUS_CODE", subQueryPropertyName, "memberLoginList");
     }
-    public abstract String keepMemberStatusCode_ExistsReferrer_MemberLoginList(MemberLoginCQ subQuery);
+    public abstract String keepMemberStatusCode_NotExistsReferrer_MemberLoginList(MemberLoginCQ subQuery);
 
     /**
      * Set up NotExistsReferrer (co-related sub-query). <br />
@@ -396,46 +438,32 @@ public abstract class AbstractBsMemberStatusCQ extends AbstractConditionQuery {
     public abstract String keepMemberStatusCode_NotExistsReferrer_VendorSynonymMemberList(VendorSynonymMemberCQ subQuery);
 
     /**
-     * Set up NotExistsReferrer (co-related sub-query). <br />
-     * {not exists (select MEMBER_STATUS_CODE from MEMBER where ...)} <br />
+     * Set up InScopeRelation (sub-query). <br />
+     * {in (select MEMBER_STATUS_CODE from MEMBER where ...)} <br />
      * (会員)MEMBER by MEMBER_STATUS_CODE, named 'memberAsOne'.
-     * <pre>
-     * cb.query().<span style="color: #FD4747">notExistsMemberList</span>(new SubQuery&lt;MemberCB&gt;() {
-     *     public void query(MemberStatusCB subCB) {
-     *         subCB.query().setXxx...
-     *     }
-     * });
-     * </pre>
-     * @param subQuery The sub-query of MemberStatusCode_NotExistsReferrer_MemberList for 'not exists'. (NotNull)
+     * @param subQuery The sub-query of MemberList for 'in-scope'. (NotNull)
      */
-    public void notExistsMemberList(SubQuery<MemberCB> subQuery) {
+    public void inScopeMemberList(SubQuery<MemberCB> subQuery) {
         assertObjectNotNull("subQuery<MemberCB>", subQuery);
-        MemberCB cb = new MemberCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMemberStatusCode_NotExistsReferrer_MemberList(cb.query()); // for saving query-value.
-        registerNotExistsReferrer(cb.query(), "MEMBER_STATUS_CODE", "MEMBER_STATUS_CODE", subQueryPropertyName, "memberList");
+        MemberCB cb = new MemberCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
+        String subQueryPropertyName = keepMemberStatusCode_InScopeRelation_MemberList(cb.query()); // for saving query-value.
+        registerInScopeRelation(cb.query(), "MEMBER_STATUS_CODE", "MEMBER_STATUS_CODE", subQueryPropertyName, "memberList");
     }
-    public abstract String keepMemberStatusCode_NotExistsReferrer_MemberList(MemberCQ subQuery);
+    public abstract String keepMemberStatusCode_InScopeRelation_MemberList(MemberCQ subQuery);
 
     /**
-     * Set up NotExistsReferrer (co-related sub-query). <br />
-     * {not exists (select LOGIN_MEMBER_STATUS_CODE from MEMBER_LOGIN where ...)} <br />
+     * Set up InScopeRelation (sub-query). <br />
+     * {in (select LOGIN_MEMBER_STATUS_CODE from MEMBER_LOGIN where ...)} <br />
      * (会員ログイン)MEMBER_LOGIN by LOGIN_MEMBER_STATUS_CODE, named 'memberLoginAsOne'.
-     * <pre>
-     * cb.query().<span style="color: #FD4747">notExistsMemberLoginList</span>(new SubQuery&lt;MemberLoginCB&gt;() {
-     *     public void query(MemberStatusCB subCB) {
-     *         subCB.query().setXxx...
-     *     }
-     * });
-     * </pre>
-     * @param subQuery The sub-query of MemberStatusCode_NotExistsReferrer_MemberLoginList for 'not exists'. (NotNull)
+     * @param subQuery The sub-query of MemberLoginList for 'in-scope'. (NotNull)
      */
-    public void notExistsMemberLoginList(SubQuery<MemberLoginCB> subQuery) {
+    public void inScopeMemberLoginList(SubQuery<MemberLoginCB> subQuery) {
         assertObjectNotNull("subQuery<MemberLoginCB>", subQuery);
-        MemberLoginCB cb = new MemberLoginCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMemberStatusCode_NotExistsReferrer_MemberLoginList(cb.query()); // for saving query-value.
-        registerNotExistsReferrer(cb.query(), "MEMBER_STATUS_CODE", "LOGIN_MEMBER_STATUS_CODE", subQueryPropertyName, "memberLoginList");
+        MemberLoginCB cb = new MemberLoginCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
+        String subQueryPropertyName = keepMemberStatusCode_InScopeRelation_MemberLoginList(cb.query()); // for saving query-value.
+        registerInScopeRelation(cb.query(), "MEMBER_STATUS_CODE", "LOGIN_MEMBER_STATUS_CODE", subQueryPropertyName, "memberLoginList");
     }
-    public abstract String keepMemberStatusCode_NotExistsReferrer_MemberLoginList(MemberLoginCQ subQuery);
+    public abstract String keepMemberStatusCode_InScopeRelation_MemberLoginList(MemberLoginCQ subQuery);
 
     /**
      * Set up InScopeRelation (sub-query). <br />
@@ -494,32 +522,32 @@ public abstract class AbstractBsMemberStatusCQ extends AbstractConditionQuery {
     public abstract String keepMemberStatusCode_InScopeRelation_VendorSynonymMemberList(VendorSynonymMemberCQ subQuery);
 
     /**
-     * Set up InScopeRelation (sub-query). <br />
-     * {in (select MEMBER_STATUS_CODE from MEMBER where ...)} <br />
+     * Set up NotInScopeRelation (sub-query). <br />
+     * {not in (select MEMBER_STATUS_CODE from MEMBER where ...)} <br />
      * (会員)MEMBER by MEMBER_STATUS_CODE, named 'memberAsOne'.
-     * @param subQuery The sub-query of MemberList for 'in-scope'. (NotNull)
+     * @param subQuery The sub-query of MemberList for 'not in-scope'. (NotNull)
      */
-    public void inScopeMemberList(SubQuery<MemberCB> subQuery) {
+    public void notInScopeMemberList(SubQuery<MemberCB> subQuery) {
         assertObjectNotNull("subQuery<MemberCB>", subQuery);
         MemberCB cb = new MemberCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMemberStatusCode_InScopeRelation_MemberList(cb.query()); // for saving query-value.
-        registerInScopeRelation(cb.query(), "MEMBER_STATUS_CODE", "MEMBER_STATUS_CODE", subQueryPropertyName, "memberList");
+        String subQueryPropertyName = keepMemberStatusCode_NotInScopeRelation_MemberList(cb.query()); // for saving query-value.
+        registerNotInScopeRelation(cb.query(), "MEMBER_STATUS_CODE", "MEMBER_STATUS_CODE", subQueryPropertyName, "memberList");
     }
-    public abstract String keepMemberStatusCode_InScopeRelation_MemberList(MemberCQ subQuery);
+    public abstract String keepMemberStatusCode_NotInScopeRelation_MemberList(MemberCQ subQuery);
 
     /**
-     * Set up InScopeRelation (sub-query). <br />
-     * {in (select LOGIN_MEMBER_STATUS_CODE from MEMBER_LOGIN where ...)} <br />
+     * Set up NotInScopeRelation (sub-query). <br />
+     * {not in (select LOGIN_MEMBER_STATUS_CODE from MEMBER_LOGIN where ...)} <br />
      * (会員ログイン)MEMBER_LOGIN by LOGIN_MEMBER_STATUS_CODE, named 'memberLoginAsOne'.
-     * @param subQuery The sub-query of MemberLoginList for 'in-scope'. (NotNull)
+     * @param subQuery The sub-query of MemberLoginList for 'not in-scope'. (NotNull)
      */
-    public void inScopeMemberLoginList(SubQuery<MemberLoginCB> subQuery) {
+    public void notInScopeMemberLoginList(SubQuery<MemberLoginCB> subQuery) {
         assertObjectNotNull("subQuery<MemberLoginCB>", subQuery);
         MemberLoginCB cb = new MemberLoginCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMemberStatusCode_InScopeRelation_MemberLoginList(cb.query()); // for saving query-value.
-        registerInScopeRelation(cb.query(), "MEMBER_STATUS_CODE", "LOGIN_MEMBER_STATUS_CODE", subQueryPropertyName, "memberLoginList");
+        String subQueryPropertyName = keepMemberStatusCode_NotInScopeRelation_MemberLoginList(cb.query()); // for saving query-value.
+        registerNotInScopeRelation(cb.query(), "MEMBER_STATUS_CODE", "LOGIN_MEMBER_STATUS_CODE", subQueryPropertyName, "memberLoginList");
     }
-    public abstract String keepMemberStatusCode_InScopeRelation_MemberLoginList(MemberLoginCQ subQuery);
+    public abstract String keepMemberStatusCode_NotInScopeRelation_MemberLoginList(MemberLoginCQ subQuery);
 
     /**
      * Set up NotInScopeRelation (sub-query). <br />
@@ -577,33 +605,21 @@ public abstract class AbstractBsMemberStatusCQ extends AbstractConditionQuery {
     }
     public abstract String keepMemberStatusCode_NotInScopeRelation_VendorSynonymMemberList(VendorSynonymMemberCQ subQuery);
 
-    /**
-     * Set up NotInScopeRelation (sub-query). <br />
-     * {not in (select MEMBER_STATUS_CODE from MEMBER where ...)} <br />
-     * (会員)MEMBER by MEMBER_STATUS_CODE, named 'memberAsOne'.
-     * @param subQuery The sub-query of MemberList for 'not in-scope'. (NotNull)
-     */
-    public void notInScopeMemberList(SubQuery<MemberCB> subQuery) {
+    public void xsderiveMemberList(String function, SubQuery<MemberCB> subQuery, String aliasName, DerivedReferrerOption option) {
         assertObjectNotNull("subQuery<MemberCB>", subQuery);
-        MemberCB cb = new MemberCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMemberStatusCode_NotInScopeRelation_MemberList(cb.query()); // for saving query-value.
-        registerNotInScopeRelation(cb.query(), "MEMBER_STATUS_CODE", "MEMBER_STATUS_CODE", subQueryPropertyName, "memberList");
+        MemberCB cb = new MemberCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
+        String subQueryPropertyName = keepMemberStatusCode_SpecifyDerivedReferrer_MemberList(cb.query()); // for saving query-value.
+        registerSpecifyDerivedReferrer(function, cb.query(), "MEMBER_STATUS_CODE", "MEMBER_STATUS_CODE", subQueryPropertyName, "memberList", aliasName, option);
     }
-    public abstract String keepMemberStatusCode_NotInScopeRelation_MemberList(MemberCQ subQuery);
+    public abstract String keepMemberStatusCode_SpecifyDerivedReferrer_MemberList(MemberCQ subQuery);
 
-    /**
-     * Set up NotInScopeRelation (sub-query). <br />
-     * {not in (select LOGIN_MEMBER_STATUS_CODE from MEMBER_LOGIN where ...)} <br />
-     * (会員ログイン)MEMBER_LOGIN by LOGIN_MEMBER_STATUS_CODE, named 'memberLoginAsOne'.
-     * @param subQuery The sub-query of MemberLoginList for 'not in-scope'. (NotNull)
-     */
-    public void notInScopeMemberLoginList(SubQuery<MemberLoginCB> subQuery) {
+    public void xsderiveMemberLoginList(String function, SubQuery<MemberLoginCB> subQuery, String aliasName, DerivedReferrerOption option) {
         assertObjectNotNull("subQuery<MemberLoginCB>", subQuery);
-        MemberLoginCB cb = new MemberLoginCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMemberStatusCode_NotInScopeRelation_MemberLoginList(cb.query()); // for saving query-value.
-        registerNotInScopeRelation(cb.query(), "MEMBER_STATUS_CODE", "LOGIN_MEMBER_STATUS_CODE", subQueryPropertyName, "memberLoginList");
+        MemberLoginCB cb = new MemberLoginCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
+        String subQueryPropertyName = keepMemberStatusCode_SpecifyDerivedReferrer_MemberLoginList(cb.query()); // for saving query-value.
+        registerSpecifyDerivedReferrer(function, cb.query(), "MEMBER_STATUS_CODE", "LOGIN_MEMBER_STATUS_CODE", subQueryPropertyName, "memberLoginList", aliasName, option);
     }
-    public abstract String keepMemberStatusCode_NotInScopeRelation_MemberLoginList(MemberLoginCQ subQuery);
+    public abstract String keepMemberStatusCode_SpecifyDerivedReferrer_MemberLoginList(MemberLoginCQ subQuery);
 
     public void xsderiveMemberVendorSynonymList(String function, SubQuery<MemberVendorSynonymCB> subQuery, String aliasName, DerivedReferrerOption option) {
         assertObjectNotNull("subQuery<MemberVendorSynonymCB>", subQuery);
@@ -637,21 +653,73 @@ public abstract class AbstractBsMemberStatusCQ extends AbstractConditionQuery {
     }
     public abstract String keepMemberStatusCode_SpecifyDerivedReferrer_VendorSynonymMemberList(VendorSynonymMemberCQ subQuery);
 
-    public void xsderiveMemberList(String function, SubQuery<MemberCB> subQuery, String aliasName, DerivedReferrerOption option) {
+    /**
+     * Prepare for (Query)DerivedReferrer. <br />
+     * {FOO &lt;= (select max(BAR) from MEMBER where ...)} <br />
+     * (会員)MEMBER by MEMBER_STATUS_CODE, named 'memberAsOne'.
+     * <pre>
+     * cb.query().<span style="color: #FD4747">derivedMemberList()</span>.<span style="color: #FD4747">max</span>(new SubQuery&lt;MemberCB&gt;() {
+     *     public void query(MemberCB subCB) {
+     *         subCB.specify().<span style="color: #FD4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
+     *         subCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
+     *     }
+     * }).<span style="color: #FD4747">greaterEqual</span>(123); <span style="color: #3F7E5E">// condition to derived column</span>
+     * </pre>
+     * @return The object to set up a function for referrer table. (NotNull)
+     */
+    public HpQDRFunction<MemberCB> derivedMemberList() {
+        return xcreateQDRFunctionMemberList();
+    }
+    protected HpQDRFunction<MemberCB> xcreateQDRFunctionMemberList() {
+        return new HpQDRFunction<MemberCB>(new HpQDRSetupper<MemberCB>() {
+            public void setup(String function, SubQuery<MemberCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
+                xqderiveMemberList(function, subQuery, operand, value, option);
+            }
+        });
+    }
+    public void xqderiveMemberList(String function, SubQuery<MemberCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
         assertObjectNotNull("subQuery<MemberCB>", subQuery);
         MemberCB cb = new MemberCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMemberStatusCode_SpecifyDerivedReferrer_MemberList(cb.query()); // for saving query-value.
-        registerSpecifyDerivedReferrer(function, cb.query(), "MEMBER_STATUS_CODE", "MEMBER_STATUS_CODE", subQueryPropertyName, "memberList", aliasName, option);
+        String subQueryPropertyName = keepMemberStatusCode_QueryDerivedReferrer_MemberList(cb.query()); // for saving query-value.
+        String parameterPropertyName = keepMemberStatusCode_QueryDerivedReferrer_MemberListParameter(value);
+        registerQueryDerivedReferrer(function, cb.query(), "MEMBER_STATUS_CODE", "MEMBER_STATUS_CODE", subQueryPropertyName, "memberList", operand, value, parameterPropertyName, option);
     }
-    public abstract String keepMemberStatusCode_SpecifyDerivedReferrer_MemberList(MemberCQ subQuery);
+    public abstract String keepMemberStatusCode_QueryDerivedReferrer_MemberList(MemberCQ subQuery);
+    public abstract String keepMemberStatusCode_QueryDerivedReferrer_MemberListParameter(Object parameterValue);
 
-    public void xsderiveMemberLoginList(String function, SubQuery<MemberLoginCB> subQuery, String aliasName, DerivedReferrerOption option) {
+    /**
+     * Prepare for (Query)DerivedReferrer. <br />
+     * {FOO &lt;= (select max(BAR) from MEMBER_LOGIN where ...)} <br />
+     * (会員ログイン)MEMBER_LOGIN by LOGIN_MEMBER_STATUS_CODE, named 'memberLoginAsOne'.
+     * <pre>
+     * cb.query().<span style="color: #FD4747">derivedMemberLoginList()</span>.<span style="color: #FD4747">max</span>(new SubQuery&lt;MemberLoginCB&gt;() {
+     *     public void query(MemberLoginCB subCB) {
+     *         subCB.specify().<span style="color: #FD4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
+     *         subCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
+     *     }
+     * }).<span style="color: #FD4747">greaterEqual</span>(123); <span style="color: #3F7E5E">// condition to derived column</span>
+     * </pre>
+     * @return The object to set up a function for referrer table. (NotNull)
+     */
+    public HpQDRFunction<MemberLoginCB> derivedMemberLoginList() {
+        return xcreateQDRFunctionMemberLoginList();
+    }
+    protected HpQDRFunction<MemberLoginCB> xcreateQDRFunctionMemberLoginList() {
+        return new HpQDRFunction<MemberLoginCB>(new HpQDRSetupper<MemberLoginCB>() {
+            public void setup(String function, SubQuery<MemberLoginCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
+                xqderiveMemberLoginList(function, subQuery, operand, value, option);
+            }
+        });
+    }
+    public void xqderiveMemberLoginList(String function, SubQuery<MemberLoginCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
         assertObjectNotNull("subQuery<MemberLoginCB>", subQuery);
         MemberLoginCB cb = new MemberLoginCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMemberStatusCode_SpecifyDerivedReferrer_MemberLoginList(cb.query()); // for saving query-value.
-        registerSpecifyDerivedReferrer(function, cb.query(), "MEMBER_STATUS_CODE", "LOGIN_MEMBER_STATUS_CODE", subQueryPropertyName, "memberLoginList", aliasName, option);
+        String subQueryPropertyName = keepMemberStatusCode_QueryDerivedReferrer_MemberLoginList(cb.query()); // for saving query-value.
+        String parameterPropertyName = keepMemberStatusCode_QueryDerivedReferrer_MemberLoginListParameter(value);
+        registerQueryDerivedReferrer(function, cb.query(), "MEMBER_STATUS_CODE", "LOGIN_MEMBER_STATUS_CODE", subQueryPropertyName, "memberLoginList", operand, value, parameterPropertyName, option);
     }
-    public abstract String keepMemberStatusCode_SpecifyDerivedReferrer_MemberLoginList(MemberLoginCQ subQuery);
+    public abstract String keepMemberStatusCode_QueryDerivedReferrer_MemberLoginList(MemberLoginCQ subQuery);
+    public abstract String keepMemberStatusCode_QueryDerivedReferrer_MemberLoginListParameter(Object parameterValue);
 
     /**
      * Prepare for (Query)DerivedReferrer. <br />
@@ -788,74 +856,6 @@ public abstract class AbstractBsMemberStatusCQ extends AbstractConditionQuery {
     }
     public abstract String keepMemberStatusCode_QueryDerivedReferrer_VendorSynonymMemberList(VendorSynonymMemberCQ subQuery);
     public abstract String keepMemberStatusCode_QueryDerivedReferrer_VendorSynonymMemberListParameter(Object parameterValue);
-
-    /**
-     * Prepare for (Query)DerivedReferrer. <br />
-     * {FOO &lt;= (select max(BAR) from MEMBER where ...)} <br />
-     * (会員)MEMBER by MEMBER_STATUS_CODE, named 'memberAsOne'.
-     * <pre>
-     * cb.query().<span style="color: #FD4747">derivedMemberList()</span>.<span style="color: #FD4747">max</span>(new SubQuery&lt;MemberCB&gt;() {
-     *     public void query(MemberCB subCB) {
-     *         subCB.specify().<span style="color: #FD4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
-     *         subCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
-     *     }
-     * }).<span style="color: #FD4747">greaterEqual</span>(123); <span style="color: #3F7E5E">// condition to derived column</span>
-     * </pre>
-     * @return The object to set up a function for referrer table. (NotNull)
-     */
-    public HpQDRFunction<MemberCB> derivedMemberList() {
-        return xcreateQDRFunctionMemberList();
-    }
-    protected HpQDRFunction<MemberCB> xcreateQDRFunctionMemberList() {
-        return new HpQDRFunction<MemberCB>(new HpQDRSetupper<MemberCB>() {
-            public void setup(String function, SubQuery<MemberCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-                xqderiveMemberList(function, subQuery, operand, value, option);
-            }
-        });
-    }
-    public void xqderiveMemberList(String function, SubQuery<MemberCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<MemberCB>", subQuery);
-        MemberCB cb = new MemberCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMemberStatusCode_QueryDerivedReferrer_MemberList(cb.query()); // for saving query-value.
-        String parameterPropertyName = keepMemberStatusCode_QueryDerivedReferrer_MemberListParameter(value);
-        registerQueryDerivedReferrer(function, cb.query(), "MEMBER_STATUS_CODE", "MEMBER_STATUS_CODE", subQueryPropertyName, "memberList", operand, value, parameterPropertyName, option);
-    }
-    public abstract String keepMemberStatusCode_QueryDerivedReferrer_MemberList(MemberCQ subQuery);
-    public abstract String keepMemberStatusCode_QueryDerivedReferrer_MemberListParameter(Object parameterValue);
-
-    /**
-     * Prepare for (Query)DerivedReferrer. <br />
-     * {FOO &lt;= (select max(BAR) from MEMBER_LOGIN where ...)} <br />
-     * (会員ログイン)MEMBER_LOGIN by LOGIN_MEMBER_STATUS_CODE, named 'memberLoginAsOne'.
-     * <pre>
-     * cb.query().<span style="color: #FD4747">derivedMemberLoginList()</span>.<span style="color: #FD4747">max</span>(new SubQuery&lt;MemberLoginCB&gt;() {
-     *     public void query(MemberLoginCB subCB) {
-     *         subCB.specify().<span style="color: #FD4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
-     *         subCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
-     *     }
-     * }).<span style="color: #FD4747">greaterEqual</span>(123); <span style="color: #3F7E5E">// condition to derived column</span>
-     * </pre>
-     * @return The object to set up a function for referrer table. (NotNull)
-     */
-    public HpQDRFunction<MemberLoginCB> derivedMemberLoginList() {
-        return xcreateQDRFunctionMemberLoginList();
-    }
-    protected HpQDRFunction<MemberLoginCB> xcreateQDRFunctionMemberLoginList() {
-        return new HpQDRFunction<MemberLoginCB>(new HpQDRSetupper<MemberLoginCB>() {
-            public void setup(String function, SubQuery<MemberLoginCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-                xqderiveMemberLoginList(function, subQuery, operand, value, option);
-            }
-        });
-    }
-    public void xqderiveMemberLoginList(String function, SubQuery<MemberLoginCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<MemberLoginCB>", subQuery);
-        MemberLoginCB cb = new MemberLoginCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMemberStatusCode_QueryDerivedReferrer_MemberLoginList(cb.query()); // for saving query-value.
-        String parameterPropertyName = keepMemberStatusCode_QueryDerivedReferrer_MemberLoginListParameter(value);
-        registerQueryDerivedReferrer(function, cb.query(), "MEMBER_STATUS_CODE", "LOGIN_MEMBER_STATUS_CODE", subQueryPropertyName, "memberLoginList", operand, value, parameterPropertyName, option);
-    }
-    public abstract String keepMemberStatusCode_QueryDerivedReferrer_MemberLoginList(MemberLoginCQ subQuery);
-    public abstract String keepMemberStatusCode_QueryDerivedReferrer_MemberLoginListParameter(Object parameterValue);
 
     /**
      * IsNull {is null}. And OnlyOnceRegistered. <br />

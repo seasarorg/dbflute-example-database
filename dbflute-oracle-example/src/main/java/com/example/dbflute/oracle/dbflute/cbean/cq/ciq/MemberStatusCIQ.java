@@ -70,6 +70,10 @@ public class MemberStatusCIQ extends AbstractBsMemberStatusCQ {
     //                                                                Override about Query
     //                                                                ====================
     protected ConditionValue getCValueMemberStatusCode() { return _myCQ.getMemberStatusCode(); }
+    public String keepMemberStatusCode_ExistsReferrer_MemberList(MemberCQ sq)
+    { throwIICBOE("ExistsReferrer"); return null; }
+    public String keepMemberStatusCode_ExistsReferrer_MemberLoginList(MemberLoginCQ sq)
+    { throwIICBOE("ExistsReferrer"); return null; }
     public String keepMemberStatusCode_ExistsReferrer_MemberVendorSynonymList(MemberVendorSynonymCQ sq)
     { throwIICBOE("ExistsReferrer"); return null; }
     public String keepMemberStatusCode_ExistsReferrer_SynonymMemberList(SynonymMemberCQ sq)
@@ -78,10 +82,10 @@ public class MemberStatusCIQ extends AbstractBsMemberStatusCQ {
     { throwIICBOE("ExistsReferrer"); return null; }
     public String keepMemberStatusCode_ExistsReferrer_VendorSynonymMemberList(VendorSynonymMemberCQ sq)
     { throwIICBOE("ExistsReferrer"); return null; }
-    public String keepMemberStatusCode_ExistsReferrer_MemberList(MemberCQ sq)
-    { throwIICBOE("ExistsReferrer"); return null; }
-    public String keepMemberStatusCode_ExistsReferrer_MemberLoginList(MemberLoginCQ sq)
-    { throwIICBOE("ExistsReferrer"); return null; }
+    public String keepMemberStatusCode_NotExistsReferrer_MemberList(MemberCQ sq)
+    { throwIICBOE("NotExistsReferrer"); return null; }
+    public String keepMemberStatusCode_NotExistsReferrer_MemberLoginList(MemberLoginCQ sq)
+    { throwIICBOE("NotExistsReferrer"); return null; }
     public String keepMemberStatusCode_NotExistsReferrer_MemberVendorSynonymList(MemberVendorSynonymCQ sq)
     { throwIICBOE("NotExistsReferrer"); return null; }
     public String keepMemberStatusCode_NotExistsReferrer_SynonymMemberList(SynonymMemberCQ sq)
@@ -90,10 +94,10 @@ public class MemberStatusCIQ extends AbstractBsMemberStatusCQ {
     { throwIICBOE("NotExistsReferrer"); return null; }
     public String keepMemberStatusCode_NotExistsReferrer_VendorSynonymMemberList(VendorSynonymMemberCQ sq)
     { throwIICBOE("NotExistsReferrer"); return null; }
-    public String keepMemberStatusCode_NotExistsReferrer_MemberList(MemberCQ sq)
-    { throwIICBOE("NotExistsReferrer"); return null; }
-    public String keepMemberStatusCode_NotExistsReferrer_MemberLoginList(MemberLoginCQ sq)
-    { throwIICBOE("NotExistsReferrer"); return null; }
+    public String keepMemberStatusCode_InScopeRelation_MemberList(MemberCQ sq)
+    { return _myCQ.keepMemberStatusCode_InScopeRelation_MemberList(sq); }
+    public String keepMemberStatusCode_InScopeRelation_MemberLoginList(MemberLoginCQ sq)
+    { return _myCQ.keepMemberStatusCode_InScopeRelation_MemberLoginList(sq); }
     public String keepMemberStatusCode_InScopeRelation_MemberVendorSynonymList(MemberVendorSynonymCQ sq)
     { return _myCQ.keepMemberStatusCode_InScopeRelation_MemberVendorSynonymList(sq); }
     public String keepMemberStatusCode_InScopeRelation_SynonymMemberList(SynonymMemberCQ sq)
@@ -102,10 +106,10 @@ public class MemberStatusCIQ extends AbstractBsMemberStatusCQ {
     { return _myCQ.keepMemberStatusCode_InScopeRelation_SynonymMemberLoginList(sq); }
     public String keepMemberStatusCode_InScopeRelation_VendorSynonymMemberList(VendorSynonymMemberCQ sq)
     { return _myCQ.keepMemberStatusCode_InScopeRelation_VendorSynonymMemberList(sq); }
-    public String keepMemberStatusCode_InScopeRelation_MemberList(MemberCQ sq)
-    { return _myCQ.keepMemberStatusCode_InScopeRelation_MemberList(sq); }
-    public String keepMemberStatusCode_InScopeRelation_MemberLoginList(MemberLoginCQ sq)
-    { return _myCQ.keepMemberStatusCode_InScopeRelation_MemberLoginList(sq); }
+    public String keepMemberStatusCode_NotInScopeRelation_MemberList(MemberCQ sq)
+    { return _myCQ.keepMemberStatusCode_NotInScopeRelation_MemberList(sq); }
+    public String keepMemberStatusCode_NotInScopeRelation_MemberLoginList(MemberLoginCQ sq)
+    { return _myCQ.keepMemberStatusCode_NotInScopeRelation_MemberLoginList(sq); }
     public String keepMemberStatusCode_NotInScopeRelation_MemberVendorSynonymList(MemberVendorSynonymCQ sq)
     { return _myCQ.keepMemberStatusCode_NotInScopeRelation_MemberVendorSynonymList(sq); }
     public String keepMemberStatusCode_NotInScopeRelation_SynonymMemberList(SynonymMemberCQ sq)
@@ -114,10 +118,10 @@ public class MemberStatusCIQ extends AbstractBsMemberStatusCQ {
     { return _myCQ.keepMemberStatusCode_NotInScopeRelation_SynonymMemberLoginList(sq); }
     public String keepMemberStatusCode_NotInScopeRelation_VendorSynonymMemberList(VendorSynonymMemberCQ sq)
     { return _myCQ.keepMemberStatusCode_NotInScopeRelation_VendorSynonymMemberList(sq); }
-    public String keepMemberStatusCode_NotInScopeRelation_MemberList(MemberCQ sq)
-    { return _myCQ.keepMemberStatusCode_NotInScopeRelation_MemberList(sq); }
-    public String keepMemberStatusCode_NotInScopeRelation_MemberLoginList(MemberLoginCQ sq)
-    { return _myCQ.keepMemberStatusCode_NotInScopeRelation_MemberLoginList(sq); }
+    public String keepMemberStatusCode_SpecifyDerivedReferrer_MemberList(MemberCQ sq)
+    { throwIICBOE("(Specify)DerivedReferrer"); return null; }
+    public String keepMemberStatusCode_SpecifyDerivedReferrer_MemberLoginList(MemberLoginCQ sq)
+    { throwIICBOE("(Specify)DerivedReferrer"); return null; }
     public String keepMemberStatusCode_SpecifyDerivedReferrer_MemberVendorSynonymList(MemberVendorSynonymCQ sq)
     { throwIICBOE("(Specify)DerivedReferrer"); return null; }
     public String keepMemberStatusCode_SpecifyDerivedReferrer_SynonymMemberList(SynonymMemberCQ sq)
@@ -126,10 +130,14 @@ public class MemberStatusCIQ extends AbstractBsMemberStatusCQ {
     { throwIICBOE("(Specify)DerivedReferrer"); return null; }
     public String keepMemberStatusCode_SpecifyDerivedReferrer_VendorSynonymMemberList(VendorSynonymMemberCQ sq)
     { throwIICBOE("(Specify)DerivedReferrer"); return null; }
-    public String keepMemberStatusCode_SpecifyDerivedReferrer_MemberList(MemberCQ sq)
-    { throwIICBOE("(Specify)DerivedReferrer"); return null; }
-    public String keepMemberStatusCode_SpecifyDerivedReferrer_MemberLoginList(MemberLoginCQ sq)
-    { throwIICBOE("(Specify)DerivedReferrer"); return null; }
+    public String keepMemberStatusCode_QueryDerivedReferrer_MemberList(MemberCQ sq)
+    { throwIICBOE("(Query)DerivedReferrer"); return null; }
+    public String keepMemberStatusCode_QueryDerivedReferrer_MemberListParameter(Object pv)
+    { throwIICBOE("(Query)DerivedReferrer"); return null; }
+    public String keepMemberStatusCode_QueryDerivedReferrer_MemberLoginList(MemberLoginCQ sq)
+    { throwIICBOE("(Query)DerivedReferrer"); return null; }
+    public String keepMemberStatusCode_QueryDerivedReferrer_MemberLoginListParameter(Object pv)
+    { throwIICBOE("(Query)DerivedReferrer"); return null; }
     public String keepMemberStatusCode_QueryDerivedReferrer_MemberVendorSynonymList(MemberVendorSynonymCQ sq)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
     public String keepMemberStatusCode_QueryDerivedReferrer_MemberVendorSynonymListParameter(Object pv)
@@ -145,14 +153,6 @@ public class MemberStatusCIQ extends AbstractBsMemberStatusCQ {
     public String keepMemberStatusCode_QueryDerivedReferrer_VendorSynonymMemberList(VendorSynonymMemberCQ sq)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
     public String keepMemberStatusCode_QueryDerivedReferrer_VendorSynonymMemberListParameter(Object pv)
-    { throwIICBOE("(Query)DerivedReferrer"); return null; }
-    public String keepMemberStatusCode_QueryDerivedReferrer_MemberList(MemberCQ sq)
-    { throwIICBOE("(Query)DerivedReferrer"); return null; }
-    public String keepMemberStatusCode_QueryDerivedReferrer_MemberListParameter(Object pv)
-    { throwIICBOE("(Query)DerivedReferrer"); return null; }
-    public String keepMemberStatusCode_QueryDerivedReferrer_MemberLoginList(MemberLoginCQ sq)
-    { throwIICBOE("(Query)DerivedReferrer"); return null; }
-    public String keepMemberStatusCode_QueryDerivedReferrer_MemberLoginListParameter(Object pv)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
     protected ConditionValue getCValueMemberStatusName() { return _myCQ.getMemberStatusName(); }
     protected ConditionValue getCValueDescription() { return _myCQ.getDescription(); }

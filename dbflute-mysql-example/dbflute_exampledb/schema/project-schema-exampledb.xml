@@ -466,6 +466,51 @@
             <unique-column name="DISPLAY_ORDER" position="1"/>
         </unique>
     </table>
+    <table comment="VIEW" name="summary_product"
+        schema="exampledb.$$NoNameSchema$$" type="VIEW">
+        <column comment="商品ID" dbType="INT" default="0"
+            javaType="Integer" name="PRODUCT_ID" required="true"
+            size="10" type="INTEGER"/>
+        <column comment="商品名称" dbType="VARCHAR" javaType="String"
+            name="PRODUCT_NAME" required="true" size="50" type="VARCHAR"/>
+        <column comment="商品ハンドルコード: 商品を識別する業務上のコード。" dbType="VARCHAR"
+            javaType="String" name="PRODUCT_HANDLE_CODE" required="true"
+            size="100" type="VARCHAR"/>
+        <column comment="" dbType="CHAR" javaType="String"
+            name="PRODUCT_STATUS_CODE" required="true" size="3" type="CHAR"/>
+        <column comment="" dbType="DATETIME"
+            javaType="java.sql.Timestamp"
+            name="LATEST_PURCHASE_DATETIME" size="19" type="TIMESTAMP"/>
+    </table>
+    <table comment="VIEW" name="summary_withdrawal"
+        schema="exampledb.$$NoNameSchema$$" type="VIEW">
+        <column comment="" dbType="INT" javaType="Integer"
+            name="MEMBER_ID" required="true" size="10" type="INTEGER"/>
+        <column comment="会員名称: 会員のフルネームの名称。" dbType="VARCHAR"
+            javaType="String" name="MEMBER_NAME" size="200" type="VARCHAR"/>
+        <column
+            comment="退会理由コード: 退会した定型理由を参照するコード。&#xa;何も言わずに退会する会員もいるので必須項目ではない。"
+            dbType="CHAR" javaType="String"
+            name="WITHDRAWAL_REASON_CODE" size="3" type="CHAR"/>
+        <column
+            comment="退会理由テキスト: 退会理由の内容。テキスト形式なので目いっぱい書けるが、&#xa;そうするとUI側できれいに見せるのが大変でしょうね。"
+            dbType="TEXT" javaType="String"
+            name="WITHDRAWAL_REASON_TEXT" size="65535" type="LONGVARCHAR"/>
+        <column
+            comment="退会理由入力テキスト: 会員がフリーテキストで入力できる退会理由。&#xa;もう言いたいこと言ってもらう感じ。"
+            dbType="TEXT" javaType="String"
+            name="WITHDRAWAL_REASON_INPUT_TEXT" size="65535" type="LONGVARCHAR"/>
+        <column
+            comment="退会日時: 退会した瞬間の日時。&#xa;正式会員日時と違い、こっちはone-to-oneの別テーブルで。"
+            dbType="DATETIME" javaType="java.sql.Timestamp"
+            name="WITHDRAWAL_DATETIME" required="true" size="19" type="TIMESTAMP"/>
+        <column comment="会員ステータスコード" dbType="CHAR" javaType="String"
+            name="MEMBER_STATUS_CODE" size="3" type="CHAR"/>
+        <column comment="会員ステータス名称" dbType="VARCHAR" javaType="String"
+            name="MEMBER_STATUS_NAME" size="50" type="VARCHAR"/>
+        <column comment="" dbType="BIGINT" javaType="Long"
+            name="MAX_PURCHASE_PRICE" size="19" type="BIGINT"/>
+    </table>
     <table name="vendor_check" schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="DECIMAL" javaType="Long"
             name="VENDOR_CHECK_ID" pkName="PRIMARY" primaryKey="true"
@@ -1046,6 +1091,22 @@
         <column comment="" dbType="INT" javaType="Integer"
             name="NO_PK_INTEGER" size="10" type="INTEGER"/>
     </table>
+    <table comment="VIEW" name="white_no_pk_relation"
+        schema="exampledb.$$NoNameSchema$$" type="VIEW">
+        <column comment="商品ID" dbType="INT" default="0"
+            javaType="Integer" name="PRODUCT_ID" required="true"
+            size="10" type="INTEGER"/>
+        <column comment="商品名称" dbType="VARCHAR" javaType="String"
+            name="PRODUCT_NAME" required="true" size="50" type="VARCHAR"/>
+        <column comment="商品ハンドルコード: 商品を識別する業務上のコード。" dbType="VARCHAR"
+            javaType="String" name="PRODUCT_HANDLE_CODE" required="true"
+            size="100" type="VARCHAR"/>
+        <column comment="" dbType="CHAR" javaType="String"
+            name="PRODUCT_STATUS_CODE" required="true" size="3" type="CHAR"/>
+        <column comment="" dbType="DATETIME"
+            javaType="java.sql.Timestamp"
+            name="LATEST_PURCHASE_DATETIME" size="19" type="TIMESTAMP"/>
+    </table>
     <table name="white_pg_reserv" schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="INT" javaType="Integer" name="CLASS"
             pkName="PRIMARY" primaryKey="true" required="true" size="10" type="INTEGER"/>
@@ -1409,67 +1470,6 @@
         <unique name="DISPLAY_ORDER">
             <unique-column name="DISPLAY_ORDER" position="1"/>
         </unique>
-    </table>
-    <table comment="VIEW" name="summary_product"
-        schema="exampledb.$$NoNameSchema$$" type="VIEW">
-        <column comment="商品ID" dbType="INT" default="0"
-            javaType="Integer" name="PRODUCT_ID" required="true"
-            size="10" type="INTEGER"/>
-        <column comment="商品名称" dbType="VARCHAR" javaType="String"
-            name="PRODUCT_NAME" required="true" size="50" type="VARCHAR"/>
-        <column comment="商品ハンドルコード: 商品を識別する業務上のコード。" dbType="VARCHAR"
-            javaType="String" name="PRODUCT_HANDLE_CODE" required="true"
-            size="100" type="VARCHAR"/>
-        <column comment="" dbType="CHAR" javaType="String"
-            name="PRODUCT_STATUS_CODE" required="true" size="3" type="CHAR"/>
-        <column comment="" dbType="DATETIME"
-            javaType="java.sql.Timestamp"
-            name="LATEST_PURCHASE_DATETIME" size="19" type="TIMESTAMP"/>
-    </table>
-    <table comment="VIEW" name="summary_withdrawal"
-        schema="exampledb.$$NoNameSchema$$" type="VIEW">
-        <column comment="" dbType="INT" javaType="Integer"
-            name="MEMBER_ID" required="true" size="10" type="INTEGER"/>
-        <column comment="会員名称: 会員のフルネームの名称。" dbType="VARCHAR"
-            javaType="String" name="MEMBER_NAME" size="200" type="VARCHAR"/>
-        <column
-            comment="退会理由コード: 退会した定型理由を参照するコード。&#xa;何も言わずに退会する会員もいるので必須項目ではない。"
-            dbType="CHAR" javaType="String"
-            name="WITHDRAWAL_REASON_CODE" size="3" type="CHAR"/>
-        <column
-            comment="退会理由テキスト: 退会理由の内容。テキスト形式なので目いっぱい書けるが、&#xa;そうするとUI側できれいに見せるのが大変でしょうね。"
-            dbType="TEXT" javaType="String"
-            name="WITHDRAWAL_REASON_TEXT" size="65535" type="LONGVARCHAR"/>
-        <column
-            comment="退会理由入力テキスト: 会員がフリーテキストで入力できる退会理由。&#xa;もう言いたいこと言ってもらう感じ。"
-            dbType="TEXT" javaType="String"
-            name="WITHDRAWAL_REASON_INPUT_TEXT" size="65535" type="LONGVARCHAR"/>
-        <column
-            comment="退会日時: 退会した瞬間の日時。&#xa;正式会員日時と違い、こっちはone-to-oneの別テーブルで。"
-            dbType="DATETIME" javaType="java.sql.Timestamp"
-            name="WITHDRAWAL_DATETIME" required="true" size="19" type="TIMESTAMP"/>
-        <column comment="会員ステータスコード" dbType="CHAR" javaType="String"
-            name="MEMBER_STATUS_CODE" size="3" type="CHAR"/>
-        <column comment="会員ステータス名称" dbType="VARCHAR" javaType="String"
-            name="MEMBER_STATUS_NAME" size="50" type="VARCHAR"/>
-        <column comment="" dbType="BIGINT" javaType="Long"
-            name="MAX_PURCHASE_PRICE" size="19" type="BIGINT"/>
-    </table>
-    <table comment="VIEW" name="white_no_pk_relation"
-        schema="exampledb.$$NoNameSchema$$" type="VIEW">
-        <column comment="商品ID" dbType="INT" default="0"
-            javaType="Integer" name="PRODUCT_ID" required="true"
-            size="10" type="INTEGER"/>
-        <column comment="商品名称" dbType="VARCHAR" javaType="String"
-            name="PRODUCT_NAME" required="true" size="50" type="VARCHAR"/>
-        <column comment="商品ハンドルコード: 商品を識別する業務上のコード。" dbType="VARCHAR"
-            javaType="String" name="PRODUCT_HANDLE_CODE" required="true"
-            size="100" type="VARCHAR"/>
-        <column comment="" dbType="CHAR" javaType="String"
-            name="PRODUCT_STATUS_CODE" required="true" size="3" type="CHAR"/>
-        <column comment="" dbType="DATETIME"
-            javaType="java.sql.Timestamp"
-            name="LATEST_PURCHASE_DATETIME" size="19" type="TIMESTAMP"/>
     </table>
     <table comment="隣の商品:" name="next_schema_product"
         schema="nextexampledb.$$NoNameSchema$$" type="TABLE">

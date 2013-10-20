@@ -19,6 +19,21 @@
     </bean>
 
     <!-- The components of Behavior. -->
+	<bean id="nextSchemaProductBhv" class="com.example.dbflute.postgresql.dbflute.exbhv.NextSchemaProductBhv" autowire="byType">
+        <property name="behaviorCommandInvoker"><ref bean="behaviorCommandInvoker"/></property>
+        <property name="behaviorSelector"><ref bean="behaviorSelector"/></property>
+        <property name="commonColumnAutoSetupper"><ref bean="commonColumnAutoSetupper"/></property>
+    </bean>
+	<bean id="nextschemaWhiteSameNameBhv" class="com.example.dbflute.postgresql.dbflute.exbhv.NextschemaWhiteSameNameBhv" autowire="byType">
+        <property name="behaviorCommandInvoker"><ref bean="behaviorCommandInvoker"/></property>
+        <property name="behaviorSelector"><ref bean="behaviorSelector"/></property>
+        <property name="commonColumnAutoSetupper"><ref bean="commonColumnAutoSetupper"/></property>
+    </bean>
+	<bean id="nextschemaWhiteSameNameRefBhv" class="com.example.dbflute.postgresql.dbflute.exbhv.NextschemaWhiteSameNameRefBhv" autowire="byType">
+        <property name="behaviorCommandInvoker"><ref bean="behaviorCommandInvoker"/></property>
+        <property name="behaviorSelector"><ref bean="behaviorSelector"/></property>
+        <property name="commonColumnAutoSetupper"><ref bean="commonColumnAutoSetupper"/></property>
+    </bean>
 	<bean id="vendor_non_compilableBhv" class="com.example.dbflute.postgresql.dbflute.exbhv.Vendor_non_compilableBhv" autowire="byType">
         <property name="behaviorCommandInvoker"><ref bean="behaviorCommandInvoker"/></property>
         <property name="behaviorSelector"><ref bean="behaviorSelector"/></property>
@@ -88,6 +103,10 @@
         <property name="behaviorCommandInvoker"><ref bean="behaviorCommandInvoker"/></property>
         <property name="behaviorSelector"><ref bean="behaviorSelector"/></property>
         <property name="commonColumnAutoSetupper"><ref bean="commonColumnAutoSetupper"/></property>
+    </bean>
+	<bean id="summaryProductBhv" class="com.example.dbflute.postgresql.dbflute.exbhv.SummaryProductBhv" autowire="byType">
+        <property name="behaviorCommandInvoker"><ref bean="behaviorCommandInvoker"/></property>
+        <property name="behaviorSelector"><ref bean="behaviorSelector"/></property>
     </bean>
 	<bean id="vendorDollarBhv" class="com.example.dbflute.postgresql.dbflute.exbhv.Vendor$DollarBhv" autowire="byType">
         <property name="behaviorCommandInvoker"><ref bean="behaviorCommandInvoker"/></property>
@@ -159,25 +178,6 @@
         <property name="commonColumnAutoSetupper"><ref bean="commonColumnAutoSetupper"/></property>
     </bean>
 	<bean id="withdrawalReasonBhv" class="com.example.dbflute.postgresql.dbflute.exbhv.WithdrawalReasonBhv" autowire="byType">
-        <property name="behaviorCommandInvoker"><ref bean="behaviorCommandInvoker"/></property>
-        <property name="behaviorSelector"><ref bean="behaviorSelector"/></property>
-        <property name="commonColumnAutoSetupper"><ref bean="commonColumnAutoSetupper"/></property>
-    </bean>
-	<bean id="summaryProductBhv" class="com.example.dbflute.postgresql.dbflute.exbhv.SummaryProductBhv" autowire="byType">
-        <property name="behaviorCommandInvoker"><ref bean="behaviorCommandInvoker"/></property>
-        <property name="behaviorSelector"><ref bean="behaviorSelector"/></property>
-    </bean>
-	<bean id="nextSchemaProductBhv" class="com.example.dbflute.postgresql.dbflute.exbhv.NextSchemaProductBhv" autowire="byType">
-        <property name="behaviorCommandInvoker"><ref bean="behaviorCommandInvoker"/></property>
-        <property name="behaviorSelector"><ref bean="behaviorSelector"/></property>
-        <property name="commonColumnAutoSetupper"><ref bean="commonColumnAutoSetupper"/></property>
-    </bean>
-	<bean id="nextschemaWhiteSameNameBhv" class="com.example.dbflute.postgresql.dbflute.exbhv.NextschemaWhiteSameNameBhv" autowire="byType">
-        <property name="behaviorCommandInvoker"><ref bean="behaviorCommandInvoker"/></property>
-        <property name="behaviorSelector"><ref bean="behaviorSelector"/></property>
-        <property name="commonColumnAutoSetupper"><ref bean="commonColumnAutoSetupper"/></property>
-    </bean>
-	<bean id="nextschemaWhiteSameNameRefBhv" class="com.example.dbflute.postgresql.dbflute.exbhv.NextschemaWhiteSameNameRefBhv" autowire="byType">
         <property name="behaviorCommandInvoker"><ref bean="behaviorCommandInvoker"/></property>
         <property name="behaviorSelector"><ref bean="behaviorSelector"/></property>
         <property name="commonColumnAutoSetupper"><ref bean="commonColumnAutoSetupper"/></property>

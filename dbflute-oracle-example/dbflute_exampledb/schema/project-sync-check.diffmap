@@ -1,7 +1,21 @@
 map:{
-    ; 2013/10/08 17:59:24 = map:{
-        ; diffDate = 2013/10/08 17:59:24
+    ; 2013/10/20 21:17:47 = map:{
+        ; diffDate = 2013/10/20 21:17:47
         ; tableDiff = map:{
+            ; MEMBER = map:{
+                ; tableName = MEMBER
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; MEMBER_ACCOUNT = map:{
+                        ; columnName = MEMBER_ACCOUNT
+                        ; diffType = CHANGE
+                        ; columnSizeDiff = map:{
+                            ; next = 80
+                            ; previous = 50
+                        }
+                    }
+                }
+            }
             ; MEMBER_VENDOR_SYNONYM = map:{
                 ; tableName = MEMBER_VENDOR_SYNONYM
                 ; diffType = CHANGE
@@ -32,20 +46,6 @@ map:{
             }
             ; VENDOR_SYNONYM_MEMBER = map:{
                 ; tableName = VENDOR_SYNONYM_MEMBER
-                ; diffType = CHANGE
-                ; columnDiff = map:{
-                    ; MEMBER_ACCOUNT = map:{
-                        ; columnName = MEMBER_ACCOUNT
-                        ; diffType = CHANGE
-                        ; columnSizeDiff = map:{
-                            ; next = 80
-                            ; previous = 50
-                        }
-                    }
-                }
-            }
-            ; MEMBER = map:{
-                ; tableName = MEMBER
                 ; diffType = CHANGE
                 ; columnDiff = map:{
                     ; MEMBER_ACCOUNT = map:{

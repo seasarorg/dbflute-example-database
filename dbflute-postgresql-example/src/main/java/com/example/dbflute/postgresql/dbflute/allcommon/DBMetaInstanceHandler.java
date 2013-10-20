@@ -32,6 +32,9 @@ public class DBMetaInstanceHandler implements DBMetaProvider {
     protected static final Map<String, String> _tableDbNameClassNameMap;
     static {
         final Map<String, String> tmpMap = newHashMap();
+        tmpMap.put("next_schema_product", "com.example.dbflute.postgresql.dbflute.bsentity.dbmeta.NextSchemaProductDbm");
+        tmpMap.put("nextschema.white_same_name", "com.example.dbflute.postgresql.dbflute.bsentity.dbmeta.NextschemaWhiteSameNameDbm");
+        tmpMap.put("nextschema.white_same_name_ref", "com.example.dbflute.postgresql.dbflute.bsentity.dbmeta.NextschemaWhiteSameNameRefDbm");
         tmpMap.put("VENDOR-NON COMPILABLE", "com.example.dbflute.postgresql.dbflute.bsentity.dbmeta.Vendor_non_compilableDbm");
         tmpMap.put("member", "com.example.dbflute.postgresql.dbflute.bsentity.dbmeta.MemberDbm");
         tmpMap.put("member_address", "com.example.dbflute.postgresql.dbflute.bsentity.dbmeta.MemberAddressDbm");
@@ -46,6 +49,7 @@ public class DBMetaInstanceHandler implements DBMetaProvider {
         tmpMap.put("purchase", "com.example.dbflute.postgresql.dbflute.bsentity.dbmeta.PurchaseDbm");
         tmpMap.put("region", "com.example.dbflute.postgresql.dbflute.bsentity.dbmeta.RegionDbm");
         tmpMap.put("service_rank", "com.example.dbflute.postgresql.dbflute.bsentity.dbmeta.ServiceRankDbm");
+        tmpMap.put("summary_product", "com.example.dbflute.postgresql.dbflute.bsentity.dbmeta.SummaryProductDbm");
         tmpMap.put("vendor_$_dollar", "com.example.dbflute.postgresql.dbflute.bsentity.dbmeta.Vendor$DollarDbm");
         tmpMap.put("vendor_check", "com.example.dbflute.postgresql.dbflute.bsentity.dbmeta.VendorCheckDbm");
         tmpMap.put("vendor_date_fk", "com.example.dbflute.postgresql.dbflute.bsentity.dbmeta.VendorDateFkDbm");
@@ -61,10 +65,6 @@ public class DBMetaInstanceHandler implements DBMetaProvider {
         tmpMap.put("white_same_name_ref", "com.example.dbflute.postgresql.dbflute.bsentity.dbmeta.WhiteSameNameRefDbm");
         tmpMap.put("white_xls_man", "com.example.dbflute.postgresql.dbflute.bsentity.dbmeta.WhiteXlsManDbm");
         tmpMap.put("withdrawal_reason", "com.example.dbflute.postgresql.dbflute.bsentity.dbmeta.WithdrawalReasonDbm");
-        tmpMap.put("summary_product", "com.example.dbflute.postgresql.dbflute.bsentity.dbmeta.SummaryProductDbm");
-        tmpMap.put("next_schema_product", "com.example.dbflute.postgresql.dbflute.bsentity.dbmeta.NextSchemaProductDbm");
-        tmpMap.put("nextschema.white_same_name", "com.example.dbflute.postgresql.dbflute.bsentity.dbmeta.NextschemaWhiteSameNameDbm");
-        tmpMap.put("nextschema.white_same_name_ref", "com.example.dbflute.postgresql.dbflute.bsentity.dbmeta.NextschemaWhiteSameNameRefDbm");
         _tableDbNameClassNameMap = Collections.unmodifiableMap(tmpMap);
     }
 

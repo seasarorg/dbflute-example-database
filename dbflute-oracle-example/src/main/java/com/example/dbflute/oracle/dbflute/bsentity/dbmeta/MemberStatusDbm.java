@@ -77,7 +77,7 @@ public class MemberStatusDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnMemberStatusCode = cci("MEMBER_STATUS_CODE", "MEMBER_STATUS_CODE", null, null, true, "memberStatusCode", String.class, true, false, "CHAR", 3, 0, null, false, null, null, null, "memberVendorSynonymList,synonymMemberList,synonymMemberLoginList,vendorSynonymMemberList,memberList,memberLoginList", CDef.DefMeta.MemberStatus);
+    protected final ColumnInfo _columnMemberStatusCode = cci("MEMBER_STATUS_CODE", "MEMBER_STATUS_CODE", null, null, true, "memberStatusCode", String.class, true, false, "CHAR", 3, 0, null, false, null, null, null, "memberList,memberLoginList,memberVendorSynonymList,synonymMemberList,synonymMemberLoginList,vendorSynonymMemberList", CDef.DefMeta.MemberStatus);
     protected final ColumnInfo _columnMemberStatusName = cci("MEMBER_STATUS_NAME", "MEMBER_STATUS_NAME", null, null, true, "memberStatusName", String.class, false, false, "VARCHAR2", 50, 0, null, false, null, null, null, null, null);
     protected final ColumnInfo _columnDescription = cci("DESCRIPTION", "DESCRIPTION", null, null, true, "description", String.class, false, false, "VARCHAR2", 200, 0, null, false, null, null, null, null, null);
     protected final ColumnInfo _columnDisplayOrder = cci("DISPLAY_ORDER", "DISPLAY_ORDER", null, null, true, "displayOrder", Long.class, false, false, "NUMBER", 16, 0, null, false, null, null, null, null, null);
@@ -118,6 +118,14 @@ public class MemberStatusDbm extends AbstractDBMeta {
     // -----------------------------------------------------
     //                                     Referrer Property
     //                                     -----------------
+    public ReferrerInfo referrerMemberList() {
+        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnMemberStatusCode(), MemberDbm.getInstance().columnMemberStatusCode());
+        return cri("FK_MEMBER_MEMBER_STATUS", "memberList", this, MemberDbm.getInstance(), map, false, "memberStatus");
+    }
+    public ReferrerInfo referrerMemberLoginList() {
+        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnMemberStatusCode(), MemberLoginDbm.getInstance().columnLoginMemberStatusCode());
+        return cri("FK_MEMBER_LOGIN_MEMBER_STATUS", "memberLoginList", this, MemberLoginDbm.getInstance(), map, false, "memberStatus");
+    }
     public ReferrerInfo referrerMemberVendorSynonymList() {
         Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnMemberStatusCode(), MemberVendorSynonymDbm.getInstance().columnMemberStatusCode());
         return cri("FK_MEMBER_MEMBER_STATUS", "memberVendorSynonymList", this, MemberVendorSynonymDbm.getInstance(), map, false, "memberStatus");
@@ -133,14 +141,6 @@ public class MemberStatusDbm extends AbstractDBMeta {
     public ReferrerInfo referrerVendorSynonymMemberList() {
         Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnMemberStatusCode(), VendorSynonymMemberDbm.getInstance().columnMemberStatusCode());
         return cri("FK_MEMBER_MEMBER_STATUS", "vendorSynonymMemberList", this, VendorSynonymMemberDbm.getInstance(), map, false, "memberStatus");
-    }
-    public ReferrerInfo referrerMemberList() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnMemberStatusCode(), MemberDbm.getInstance().columnMemberStatusCode());
-        return cri("FK_MEMBER_MEMBER_STATUS", "memberList", this, MemberDbm.getInstance(), map, false, "memberStatus");
-    }
-    public ReferrerInfo referrerMemberLoginList() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnMemberStatusCode(), MemberLoginDbm.getInstance().columnLoginMemberStatusCode());
-        return cri("FK_MEMBER_LOGIN_MEMBER_STATUS", "memberLoginList", this, MemberLoginDbm.getInstance(), map, false, "memberStatus");
     }
 
     // ===================================================================================

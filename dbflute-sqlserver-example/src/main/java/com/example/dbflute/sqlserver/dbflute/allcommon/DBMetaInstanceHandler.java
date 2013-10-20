@@ -45,11 +45,11 @@ public class DBMetaInstanceHandler implements DBMetaProvider {
         tmpMap.put("PURCHASE", "com.example.dbflute.sqlserver.dbflute.bsentity.dbmeta.PurchaseDbm");
         tmpMap.put("REGION", "com.example.dbflute.sqlserver.dbflute.bsentity.dbmeta.RegionDbm");
         tmpMap.put("SERVICE_RANK", "com.example.dbflute.sqlserver.dbflute.bsentity.dbmeta.ServiceRankDbm");
+        tmpMap.put("SUMMARY_PRODUCT", "com.example.dbflute.sqlserver.dbflute.bsentity.dbmeta.SummaryProductDbm");
+        tmpMap.put("SUMMARY_WITHDRAWAL", "com.example.dbflute.sqlserver.dbflute.bsentity.dbmeta.SummaryWithdrawalDbm");
         tmpMap.put("VENDOR_CHECK", "com.example.dbflute.sqlserver.dbflute.bsentity.dbmeta.VendorCheckDbm");
         tmpMap.put("WHITE_DELIMITER", "com.example.dbflute.sqlserver.dbflute.bsentity.dbmeta.WhiteDelimiterDbm");
         tmpMap.put("WITHDRAWAL_REASON", "com.example.dbflute.sqlserver.dbflute.bsentity.dbmeta.WithdrawalReasonDbm");
-        tmpMap.put("SUMMARY_PRODUCT", "com.example.dbflute.sqlserver.dbflute.bsentity.dbmeta.SummaryProductDbm");
-        tmpMap.put("SUMMARY_WITHDRAWAL", "com.example.dbflute.sqlserver.dbflute.bsentity.dbmeta.SummaryWithdrawalDbm");
         _tableDbNameClassNameMap = Collections.unmodifiableMap(tmpMap);
     }
 

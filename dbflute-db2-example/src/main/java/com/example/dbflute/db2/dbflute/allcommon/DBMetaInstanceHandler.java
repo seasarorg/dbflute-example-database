@@ -50,11 +50,11 @@ public class DBMetaInstanceHandler implements DBMetaProvider {
         tmpMap.put("PURCHASE", "com.example.dbflute.db2.dbflute.bsentity.dbmeta.PurchaseDbm");
         tmpMap.put("REGION", "com.example.dbflute.db2.dbflute.bsentity.dbmeta.RegionDbm");
         tmpMap.put("SERVICE_RANK", "com.example.dbflute.db2.dbflute.bsentity.dbmeta.ServiceRankDbm");
+        tmpMap.put("SUMMARY_PRODUCT", "com.example.dbflute.db2.dbflute.bsentity.dbmeta.SummaryProductDbm");
         tmpMap.put("VENDOR_CHECK", "com.example.dbflute.db2.dbflute.bsentity.dbmeta.VendorCheckDbm");
         tmpMap.put("WHITE_REF_TARGET", "com.example.dbflute.db2.dbflute.bsentity.dbmeta.WhiteRefTargetDbm");
         tmpMap.put("WHITE_TARGET", "com.example.dbflute.db2.dbflute.bsentity.dbmeta.WhiteTargetDbm");
         tmpMap.put("WITHDRAWAL_REASON", "com.example.dbflute.db2.dbflute.bsentity.dbmeta.WithdrawalReasonDbm");
-        tmpMap.put("SUMMARY_PRODUCT", "com.example.dbflute.db2.dbflute.bsentity.dbmeta.SummaryProductDbm");
         tmpMap.put("SUMMARY_MEMBER_PURCHASE", "com.example.dbflute.db2.dbflute.bsentity.dbmeta.SummaryMemberPurchaseDbm");
         _tableDbNameClassNameMap = Collections.unmodifiableMap(tmpMap);
     }

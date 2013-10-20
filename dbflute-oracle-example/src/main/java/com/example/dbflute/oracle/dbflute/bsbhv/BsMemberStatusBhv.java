@@ -34,13 +34,13 @@ import com.example.dbflute.oracle.dbflute.cbean.*;
  *     
  * 
  * [referrer table]
- *     MEMBER_VENDOR_SYNONYM, SYNONYM_MEMBER, SYNONYM_MEMBER_LOGIN, VENDOR_SYNONYM_MEMBER, MEMBER, MEMBER_LOGIN
+ *     MEMBER, MEMBER_LOGIN, MEMBER_VENDOR_SYNONYM, SYNONYM_MEMBER, SYNONYM_MEMBER_LOGIN, VENDOR_SYNONYM_MEMBER
  * 
  * [foreign property]
  *     
  * 
  * [referrer property]
- *     memberVendorSynonymList, synonymMemberList, synonymMemberLoginList, vendorSynonymMemberList, memberList, memberLoginList
+ *     memberList, memberLoginList, memberVendorSynonymList, synonymMemberList, synonymMemberLoginList, vendorSynonymMemberList
  * </pre>
  * @author oracleman
  */
@@ -369,6 +369,152 @@ public abstract class BsMemberStatusBhv extends AbstractBehaviorWritable {
      * @param memberStatus The entity of memberStatus. (NotNull)
      * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
      */
+    public void loadMemberList(MemberStatus memberStatus, ConditionBeanSetupper<MemberCB> conditionBeanSetupper) {
+        xassLRArg(memberStatus, conditionBeanSetupper);
+        loadMemberList(xnewLRLs(memberStatus), conditionBeanSetupper);
+    }
+    /**
+     * Load referrer of memberList with the set-upper for condition-bean of referrer. <br />
+     * (会員)MEMBER by MEMBER_STATUS_CODE, named 'memberList'.
+     * <pre>
+     * memberStatusBhv.<span style="color: #FD4747">loadMemberList</span>(memberStatusList, new ConditionBeanSetupper&lt;MemberCB&gt;() {
+     *     public void setup(MemberCB cb) {
+     *         cb.setupSelect...();
+     *         cb.query().setFoo...(value);
+     *         cb.query().addOrderBy_Bar...(); <span style="color: #3F7E5E">// basically you should order referrer list</span>
+     *     }
+     * });
+     * for (MemberStatus memberStatus : memberStatusList) {
+     *     ... = memberStatus.<span style="color: #FD4747">getMemberList()</span>;
+     * }
+     * </pre>
+     * About internal policy, the value of primary key(and others too) is treated as case-insensitive. <br />
+     * The condition-bean that the set-upper provides have settings before you touch it. It is as follows:
+     * <pre>
+     * cb.query().setMemberStatusCode_InScope(pkList);
+     * cb.query().addOrderBy_MemberStatusCode_Asc();
+     * </pre>
+     * @param memberStatusList The entity list of memberStatus. (NotNull)
+     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
+     */
+    public void loadMemberList(List<MemberStatus> memberStatusList, ConditionBeanSetupper<MemberCB> conditionBeanSetupper) {
+        xassLRArg(memberStatusList, conditionBeanSetupper);
+        loadMemberList(memberStatusList, new LoadReferrerOption<MemberCB, Member>().xinit(conditionBeanSetupper));
+    }
+    /**
+     * {Refer to overload method that has an argument of the list of entity.}
+     * @param memberStatus The entity of memberStatus. (NotNull)
+     * @param loadReferrerOption The option of load-referrer. (NotNull)
+     */
+    public void loadMemberList(MemberStatus memberStatus, LoadReferrerOption<MemberCB, Member> loadReferrerOption) {
+        xassLRArg(memberStatus, loadReferrerOption);
+        loadMemberList(xnewLRLs(memberStatus), loadReferrerOption);
+    }
+    /**
+     * {Refer to overload method that has an argument of condition-bean setupper.}
+     * @param memberStatusList The entity list of memberStatus. (NotNull)
+     * @param loadReferrerOption The option of load-referrer. (NotNull)
+     */
+    public void loadMemberList(List<MemberStatus> memberStatusList, LoadReferrerOption<MemberCB, Member> loadReferrerOption) {
+        xassLRArg(memberStatusList, loadReferrerOption);
+        if (memberStatusList.isEmpty()) { return; }
+        final MemberBhv referrerBhv = xgetBSFLR().select(MemberBhv.class);
+        helpLoadReferrerInternally(memberStatusList, loadReferrerOption, new InternalLoadReferrerCallback<MemberStatus, String, MemberCB, Member>() {
+            public String getPKVal(MemberStatus e)
+            { return e.getMemberStatusCode(); }
+            public void setRfLs(MemberStatus e, List<Member> ls)
+            { e.setMemberList(ls); }
+            public MemberCB newMyCB() { return referrerBhv.newMyConditionBean(); }
+            public void qyFKIn(MemberCB cb, List<String> ls)
+            { cb.query().setMemberStatusCode_InScope(ls); }
+            public void qyOdFKAsc(MemberCB cb) { cb.query().addOrderBy_MemberStatusCode_Asc(); }
+            public void spFKCol(MemberCB cb) { cb.specify().columnMemberStatusCode(); }
+            public List<Member> selRfLs(MemberCB cb) { return referrerBhv.selectList(cb); }
+            public String getFKVal(Member e) { return e.getMemberStatusCode(); }
+            public void setlcEt(Member re, MemberStatus le)
+            { re.setMemberStatus(le); }
+            public String getRfPrNm() { return "memberList"; }
+        });
+    }
+
+    /**
+     * {Refer to overload method that has an argument of the list of entity.}
+     * @param memberStatus The entity of memberStatus. (NotNull)
+     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
+     */
+    public void loadMemberLoginList(MemberStatus memberStatus, ConditionBeanSetupper<MemberLoginCB> conditionBeanSetupper) {
+        xassLRArg(memberStatus, conditionBeanSetupper);
+        loadMemberLoginList(xnewLRLs(memberStatus), conditionBeanSetupper);
+    }
+    /**
+     * Load referrer of memberLoginList with the set-upper for condition-bean of referrer. <br />
+     * (会員ログイン)MEMBER_LOGIN by LOGIN_MEMBER_STATUS_CODE, named 'memberLoginList'.
+     * <pre>
+     * memberStatusBhv.<span style="color: #FD4747">loadMemberLoginList</span>(memberStatusList, new ConditionBeanSetupper&lt;MemberLoginCB&gt;() {
+     *     public void setup(MemberLoginCB cb) {
+     *         cb.setupSelect...();
+     *         cb.query().setFoo...(value);
+     *         cb.query().addOrderBy_Bar...(); <span style="color: #3F7E5E">// basically you should order referrer list</span>
+     *     }
+     * });
+     * for (MemberStatus memberStatus : memberStatusList) {
+     *     ... = memberStatus.<span style="color: #FD4747">getMemberLoginList()</span>;
+     * }
+     * </pre>
+     * About internal policy, the value of primary key(and others too) is treated as case-insensitive. <br />
+     * The condition-bean that the set-upper provides have settings before you touch it. It is as follows:
+     * <pre>
+     * cb.query().setLoginMemberStatusCode_InScope(pkList);
+     * cb.query().addOrderBy_LoginMemberStatusCode_Asc();
+     * </pre>
+     * @param memberStatusList The entity list of memberStatus. (NotNull)
+     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
+     */
+    public void loadMemberLoginList(List<MemberStatus> memberStatusList, ConditionBeanSetupper<MemberLoginCB> conditionBeanSetupper) {
+        xassLRArg(memberStatusList, conditionBeanSetupper);
+        loadMemberLoginList(memberStatusList, new LoadReferrerOption<MemberLoginCB, MemberLogin>().xinit(conditionBeanSetupper));
+    }
+    /**
+     * {Refer to overload method that has an argument of the list of entity.}
+     * @param memberStatus The entity of memberStatus. (NotNull)
+     * @param loadReferrerOption The option of load-referrer. (NotNull)
+     */
+    public void loadMemberLoginList(MemberStatus memberStatus, LoadReferrerOption<MemberLoginCB, MemberLogin> loadReferrerOption) {
+        xassLRArg(memberStatus, loadReferrerOption);
+        loadMemberLoginList(xnewLRLs(memberStatus), loadReferrerOption);
+    }
+    /**
+     * {Refer to overload method that has an argument of condition-bean setupper.}
+     * @param memberStatusList The entity list of memberStatus. (NotNull)
+     * @param loadReferrerOption The option of load-referrer. (NotNull)
+     */
+    public void loadMemberLoginList(List<MemberStatus> memberStatusList, LoadReferrerOption<MemberLoginCB, MemberLogin> loadReferrerOption) {
+        xassLRArg(memberStatusList, loadReferrerOption);
+        if (memberStatusList.isEmpty()) { return; }
+        final MemberLoginBhv referrerBhv = xgetBSFLR().select(MemberLoginBhv.class);
+        helpLoadReferrerInternally(memberStatusList, loadReferrerOption, new InternalLoadReferrerCallback<MemberStatus, String, MemberLoginCB, MemberLogin>() {
+            public String getPKVal(MemberStatus e)
+            { return e.getMemberStatusCode(); }
+            public void setRfLs(MemberStatus e, List<MemberLogin> ls)
+            { e.setMemberLoginList(ls); }
+            public MemberLoginCB newMyCB() { return referrerBhv.newMyConditionBean(); }
+            public void qyFKIn(MemberLoginCB cb, List<String> ls)
+            { cb.query().setLoginMemberStatusCode_InScope(ls); }
+            public void qyOdFKAsc(MemberLoginCB cb) { cb.query().addOrderBy_LoginMemberStatusCode_Asc(); }
+            public void spFKCol(MemberLoginCB cb) { cb.specify().columnLoginMemberStatusCode(); }
+            public List<MemberLogin> selRfLs(MemberLoginCB cb) { return referrerBhv.selectList(cb); }
+            public String getFKVal(MemberLogin e) { return e.getLoginMemberStatusCode(); }
+            public void setlcEt(MemberLogin re, MemberStatus le)
+            { re.setMemberStatus(le); }
+            public String getRfPrNm() { return "memberLoginList"; }
+        });
+    }
+
+    /**
+     * {Refer to overload method that has an argument of the list of entity.}
+     * @param memberStatus The entity of memberStatus. (NotNull)
+     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
+     */
     public void loadMemberVendorSynonymList(MemberStatus memberStatus, ConditionBeanSetupper<MemberVendorSynonymCB> conditionBeanSetupper) {
         xassLRArg(memberStatus, conditionBeanSetupper);
         loadMemberVendorSynonymList(xnewLRLs(memberStatus), conditionBeanSetupper);
@@ -653,152 +799,6 @@ public abstract class BsMemberStatusBhv extends AbstractBehaviorWritable {
             public void setlcEt(VendorSynonymMember re, MemberStatus le)
             { re.setMemberStatus(le); }
             public String getRfPrNm() { return "vendorSynonymMemberList"; }
-        });
-    }
-
-    /**
-     * {Refer to overload method that has an argument of the list of entity.}
-     * @param memberStatus The entity of memberStatus. (NotNull)
-     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
-     */
-    public void loadMemberList(MemberStatus memberStatus, ConditionBeanSetupper<MemberCB> conditionBeanSetupper) {
-        xassLRArg(memberStatus, conditionBeanSetupper);
-        loadMemberList(xnewLRLs(memberStatus), conditionBeanSetupper);
-    }
-    /**
-     * Load referrer of memberList with the set-upper for condition-bean of referrer. <br />
-     * (会員)MEMBER by MEMBER_STATUS_CODE, named 'memberList'.
-     * <pre>
-     * memberStatusBhv.<span style="color: #FD4747">loadMemberList</span>(memberStatusList, new ConditionBeanSetupper&lt;MemberCB&gt;() {
-     *     public void setup(MemberCB cb) {
-     *         cb.setupSelect...();
-     *         cb.query().setFoo...(value);
-     *         cb.query().addOrderBy_Bar...(); <span style="color: #3F7E5E">// basically you should order referrer list</span>
-     *     }
-     * });
-     * for (MemberStatus memberStatus : memberStatusList) {
-     *     ... = memberStatus.<span style="color: #FD4747">getMemberList()</span>;
-     * }
-     * </pre>
-     * About internal policy, the value of primary key(and others too) is treated as case-insensitive. <br />
-     * The condition-bean that the set-upper provides have settings before you touch it. It is as follows:
-     * <pre>
-     * cb.query().setMemberStatusCode_InScope(pkList);
-     * cb.query().addOrderBy_MemberStatusCode_Asc();
-     * </pre>
-     * @param memberStatusList The entity list of memberStatus. (NotNull)
-     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
-     */
-    public void loadMemberList(List<MemberStatus> memberStatusList, ConditionBeanSetupper<MemberCB> conditionBeanSetupper) {
-        xassLRArg(memberStatusList, conditionBeanSetupper);
-        loadMemberList(memberStatusList, new LoadReferrerOption<MemberCB, Member>().xinit(conditionBeanSetupper));
-    }
-    /**
-     * {Refer to overload method that has an argument of the list of entity.}
-     * @param memberStatus The entity of memberStatus. (NotNull)
-     * @param loadReferrerOption The option of load-referrer. (NotNull)
-     */
-    public void loadMemberList(MemberStatus memberStatus, LoadReferrerOption<MemberCB, Member> loadReferrerOption) {
-        xassLRArg(memberStatus, loadReferrerOption);
-        loadMemberList(xnewLRLs(memberStatus), loadReferrerOption);
-    }
-    /**
-     * {Refer to overload method that has an argument of condition-bean setupper.}
-     * @param memberStatusList The entity list of memberStatus. (NotNull)
-     * @param loadReferrerOption The option of load-referrer. (NotNull)
-     */
-    public void loadMemberList(List<MemberStatus> memberStatusList, LoadReferrerOption<MemberCB, Member> loadReferrerOption) {
-        xassLRArg(memberStatusList, loadReferrerOption);
-        if (memberStatusList.isEmpty()) { return; }
-        final MemberBhv referrerBhv = xgetBSFLR().select(MemberBhv.class);
-        helpLoadReferrerInternally(memberStatusList, loadReferrerOption, new InternalLoadReferrerCallback<MemberStatus, String, MemberCB, Member>() {
-            public String getPKVal(MemberStatus e)
-            { return e.getMemberStatusCode(); }
-            public void setRfLs(MemberStatus e, List<Member> ls)
-            { e.setMemberList(ls); }
-            public MemberCB newMyCB() { return referrerBhv.newMyConditionBean(); }
-            public void qyFKIn(MemberCB cb, List<String> ls)
-            { cb.query().setMemberStatusCode_InScope(ls); }
-            public void qyOdFKAsc(MemberCB cb) { cb.query().addOrderBy_MemberStatusCode_Asc(); }
-            public void spFKCol(MemberCB cb) { cb.specify().columnMemberStatusCode(); }
-            public List<Member> selRfLs(MemberCB cb) { return referrerBhv.selectList(cb); }
-            public String getFKVal(Member e) { return e.getMemberStatusCode(); }
-            public void setlcEt(Member re, MemberStatus le)
-            { re.setMemberStatus(le); }
-            public String getRfPrNm() { return "memberList"; }
-        });
-    }
-
-    /**
-     * {Refer to overload method that has an argument of the list of entity.}
-     * @param memberStatus The entity of memberStatus. (NotNull)
-     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
-     */
-    public void loadMemberLoginList(MemberStatus memberStatus, ConditionBeanSetupper<MemberLoginCB> conditionBeanSetupper) {
-        xassLRArg(memberStatus, conditionBeanSetupper);
-        loadMemberLoginList(xnewLRLs(memberStatus), conditionBeanSetupper);
-    }
-    /**
-     * Load referrer of memberLoginList with the set-upper for condition-bean of referrer. <br />
-     * (会員ログイン)MEMBER_LOGIN by LOGIN_MEMBER_STATUS_CODE, named 'memberLoginList'.
-     * <pre>
-     * memberStatusBhv.<span style="color: #FD4747">loadMemberLoginList</span>(memberStatusList, new ConditionBeanSetupper&lt;MemberLoginCB&gt;() {
-     *     public void setup(MemberLoginCB cb) {
-     *         cb.setupSelect...();
-     *         cb.query().setFoo...(value);
-     *         cb.query().addOrderBy_Bar...(); <span style="color: #3F7E5E">// basically you should order referrer list</span>
-     *     }
-     * });
-     * for (MemberStatus memberStatus : memberStatusList) {
-     *     ... = memberStatus.<span style="color: #FD4747">getMemberLoginList()</span>;
-     * }
-     * </pre>
-     * About internal policy, the value of primary key(and others too) is treated as case-insensitive. <br />
-     * The condition-bean that the set-upper provides have settings before you touch it. It is as follows:
-     * <pre>
-     * cb.query().setLoginMemberStatusCode_InScope(pkList);
-     * cb.query().addOrderBy_LoginMemberStatusCode_Asc();
-     * </pre>
-     * @param memberStatusList The entity list of memberStatus. (NotNull)
-     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
-     */
-    public void loadMemberLoginList(List<MemberStatus> memberStatusList, ConditionBeanSetupper<MemberLoginCB> conditionBeanSetupper) {
-        xassLRArg(memberStatusList, conditionBeanSetupper);
-        loadMemberLoginList(memberStatusList, new LoadReferrerOption<MemberLoginCB, MemberLogin>().xinit(conditionBeanSetupper));
-    }
-    /**
-     * {Refer to overload method that has an argument of the list of entity.}
-     * @param memberStatus The entity of memberStatus. (NotNull)
-     * @param loadReferrerOption The option of load-referrer. (NotNull)
-     */
-    public void loadMemberLoginList(MemberStatus memberStatus, LoadReferrerOption<MemberLoginCB, MemberLogin> loadReferrerOption) {
-        xassLRArg(memberStatus, loadReferrerOption);
-        loadMemberLoginList(xnewLRLs(memberStatus), loadReferrerOption);
-    }
-    /**
-     * {Refer to overload method that has an argument of condition-bean setupper.}
-     * @param memberStatusList The entity list of memberStatus. (NotNull)
-     * @param loadReferrerOption The option of load-referrer. (NotNull)
-     */
-    public void loadMemberLoginList(List<MemberStatus> memberStatusList, LoadReferrerOption<MemberLoginCB, MemberLogin> loadReferrerOption) {
-        xassLRArg(memberStatusList, loadReferrerOption);
-        if (memberStatusList.isEmpty()) { return; }
-        final MemberLoginBhv referrerBhv = xgetBSFLR().select(MemberLoginBhv.class);
-        helpLoadReferrerInternally(memberStatusList, loadReferrerOption, new InternalLoadReferrerCallback<MemberStatus, String, MemberLoginCB, MemberLogin>() {
-            public String getPKVal(MemberStatus e)
-            { return e.getMemberStatusCode(); }
-            public void setRfLs(MemberStatus e, List<MemberLogin> ls)
-            { e.setMemberLoginList(ls); }
-            public MemberLoginCB newMyCB() { return referrerBhv.newMyConditionBean(); }
-            public void qyFKIn(MemberLoginCB cb, List<String> ls)
-            { cb.query().setLoginMemberStatusCode_InScope(ls); }
-            public void qyOdFKAsc(MemberLoginCB cb) { cb.query().addOrderBy_LoginMemberStatusCode_Asc(); }
-            public void spFKCol(MemberLoginCB cb) { cb.specify().columnLoginMemberStatusCode(); }
-            public List<MemberLogin> selRfLs(MemberLoginCB cb) { return referrerBhv.selectList(cb); }
-            public String getFKVal(MemberLogin e) { return e.getLoginMemberStatusCode(); }
-            public void setlcEt(MemberLogin re, MemberStatus le)
-            { re.setMemberStatus(le); }
-            public String getRfPrNm() { return "memberLoginList"; }
         });
     }
 

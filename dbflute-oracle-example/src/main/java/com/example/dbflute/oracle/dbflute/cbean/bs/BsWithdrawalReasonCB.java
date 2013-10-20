@@ -331,26 +331,6 @@ public class BsWithdrawalReasonCB extends AbstractConditionBean {
         protected String getTableDbName() { return "WITHDRAWAL_REASON"; }
         /**
          * Prepare for (Specify)DerivedReferrer. <br />
-         * {select max(FOO) from SYNONYM_MEMBER_WITHDRAWAL where ...) as FOO_MAX} <br />
-         * SYNONYM_MEMBER_WITHDRAWAL by WITHDRAWAL_REASON_CODE, named 'synonymMemberWithdrawalList'.
-         * <pre>
-         * cb.specify().<span style="color: #FD4747">derivedSynonymMemberWithdrawalList()</span>.<span style="color: #FD4747">max</span>(new SubQuery&lt;SynonymMemberWithdrawalCB&gt;() {
-         *     public void query(SynonymMemberWithdrawalCB subCB) {
-         *         subCB.specify().<span style="color: #FD4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
-         *         subCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
-         *     }
-         * }, SynonymMemberWithdrawal.<span style="color: #FD4747">ALIAS_foo...</span>);
-         * </pre>
-         * @return The object to set up a function for referrer table. (NotNull)
-         */
-        public HpSDRFunction<SynonymMemberWithdrawalCB, WithdrawalReasonCQ> derivedSynonymMemberWithdrawalList() {
-            assertDerived("synonymMemberWithdrawalList"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
-            return new HpSDRFunction<SynonymMemberWithdrawalCB, WithdrawalReasonCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<SynonymMemberWithdrawalCB, WithdrawalReasonCQ>() {
-                public void setup(String function, SubQuery<SynonymMemberWithdrawalCB> subQuery, WithdrawalReasonCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsderiveSynonymMemberWithdrawalList(function, subQuery, aliasName, option); } }, _dbmetaProvider);
-        }
-        /**
-         * Prepare for (Specify)DerivedReferrer. <br />
          * {select max(FOO) from MEMBER_WITHDRAWAL where ...) as FOO_MAX} <br />
          * MEMBER_WITHDRAWAL by WITHDRAWAL_REASON_CODE, named 'memberWithdrawalList'.
          * <pre>
@@ -368,6 +348,26 @@ public class BsWithdrawalReasonCB extends AbstractConditionBean {
             return new HpSDRFunction<MemberWithdrawalCB, WithdrawalReasonCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<MemberWithdrawalCB, WithdrawalReasonCQ>() {
                 public void setup(String function, SubQuery<MemberWithdrawalCB> subQuery, WithdrawalReasonCQ cq, String aliasName, DerivedReferrerOption option) {
                     cq.xsderiveMemberWithdrawalList(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+        }
+        /**
+         * Prepare for (Specify)DerivedReferrer. <br />
+         * {select max(FOO) from SYNONYM_MEMBER_WITHDRAWAL where ...) as FOO_MAX} <br />
+         * SYNONYM_MEMBER_WITHDRAWAL by WITHDRAWAL_REASON_CODE, named 'synonymMemberWithdrawalList'.
+         * <pre>
+         * cb.specify().<span style="color: #FD4747">derivedSynonymMemberWithdrawalList()</span>.<span style="color: #FD4747">max</span>(new SubQuery&lt;SynonymMemberWithdrawalCB&gt;() {
+         *     public void query(SynonymMemberWithdrawalCB subCB) {
+         *         subCB.specify().<span style="color: #FD4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
+         *         subCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
+         *     }
+         * }, SynonymMemberWithdrawal.<span style="color: #FD4747">ALIAS_foo...</span>);
+         * </pre>
+         * @return The object to set up a function for referrer table. (NotNull)
+         */
+        public HpSDRFunction<SynonymMemberWithdrawalCB, WithdrawalReasonCQ> derivedSynonymMemberWithdrawalList() {
+            assertDerived("synonymMemberWithdrawalList"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
+            return new HpSDRFunction<SynonymMemberWithdrawalCB, WithdrawalReasonCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<SynonymMemberWithdrawalCB, WithdrawalReasonCQ>() {
+                public void setup(String function, SubQuery<SynonymMemberWithdrawalCB> subQuery, WithdrawalReasonCQ cq, String aliasName, DerivedReferrerOption option) {
+                    cq.xsderiveSynonymMemberWithdrawalList(function, subQuery, aliasName, option); } }, _dbmetaProvider);
         }
         /**
          * Prepare for (Specify)MyselfDerived (SubQuery).

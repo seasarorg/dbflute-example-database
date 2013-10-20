@@ -34,13 +34,13 @@ import com.example.dbflute.oracle.dbflute.cbean.*;
  *     
  * 
  * [referrer table]
- *     SYNONYM_MEMBER_WITHDRAWAL, MEMBER_WITHDRAWAL
+ *     MEMBER_WITHDRAWAL, SYNONYM_MEMBER_WITHDRAWAL
  * 
  * [foreign property]
  *     
  * 
  * [referrer property]
- *     synonymMemberWithdrawalList, memberWithdrawalList
+ *     memberWithdrawalList, synonymMemberWithdrawalList
  * </pre>
  * @author oracleman
  */
@@ -368,79 +368,6 @@ public abstract class BsWithdrawalReasonBhv extends AbstractBehaviorWritable {
      * @param withdrawalReason The entity of withdrawalReason. (NotNull)
      * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
      */
-    public void loadSynonymMemberWithdrawalList(WithdrawalReason withdrawalReason, ConditionBeanSetupper<SynonymMemberWithdrawalCB> conditionBeanSetupper) {
-        xassLRArg(withdrawalReason, conditionBeanSetupper);
-        loadSynonymMemberWithdrawalList(xnewLRLs(withdrawalReason), conditionBeanSetupper);
-    }
-    /**
-     * Load referrer of synonymMemberWithdrawalList with the set-upper for condition-bean of referrer. <br />
-     * SYNONYM_MEMBER_WITHDRAWAL by WITHDRAWAL_REASON_CODE, named 'synonymMemberWithdrawalList'.
-     * <pre>
-     * withdrawalReasonBhv.<span style="color: #FD4747">loadSynonymMemberWithdrawalList</span>(withdrawalReasonList, new ConditionBeanSetupper&lt;SynonymMemberWithdrawalCB&gt;() {
-     *     public void setup(SynonymMemberWithdrawalCB cb) {
-     *         cb.setupSelect...();
-     *         cb.query().setFoo...(value);
-     *         cb.query().addOrderBy_Bar...(); <span style="color: #3F7E5E">// basically you should order referrer list</span>
-     *     }
-     * });
-     * for (WithdrawalReason withdrawalReason : withdrawalReasonList) {
-     *     ... = withdrawalReason.<span style="color: #FD4747">getSynonymMemberWithdrawalList()</span>;
-     * }
-     * </pre>
-     * About internal policy, the value of primary key(and others too) is treated as case-insensitive. <br />
-     * The condition-bean that the set-upper provides have settings before you touch it. It is as follows:
-     * <pre>
-     * cb.query().setWithdrawalReasonCode_InScope(pkList);
-     * cb.query().addOrderBy_WithdrawalReasonCode_Asc();
-     * </pre>
-     * @param withdrawalReasonList The entity list of withdrawalReason. (NotNull)
-     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
-     */
-    public void loadSynonymMemberWithdrawalList(List<WithdrawalReason> withdrawalReasonList, ConditionBeanSetupper<SynonymMemberWithdrawalCB> conditionBeanSetupper) {
-        xassLRArg(withdrawalReasonList, conditionBeanSetupper);
-        loadSynonymMemberWithdrawalList(withdrawalReasonList, new LoadReferrerOption<SynonymMemberWithdrawalCB, SynonymMemberWithdrawal>().xinit(conditionBeanSetupper));
-    }
-    /**
-     * {Refer to overload method that has an argument of the list of entity.}
-     * @param withdrawalReason The entity of withdrawalReason. (NotNull)
-     * @param loadReferrerOption The option of load-referrer. (NotNull)
-     */
-    public void loadSynonymMemberWithdrawalList(WithdrawalReason withdrawalReason, LoadReferrerOption<SynonymMemberWithdrawalCB, SynonymMemberWithdrawal> loadReferrerOption) {
-        xassLRArg(withdrawalReason, loadReferrerOption);
-        loadSynonymMemberWithdrawalList(xnewLRLs(withdrawalReason), loadReferrerOption);
-    }
-    /**
-     * {Refer to overload method that has an argument of condition-bean setupper.}
-     * @param withdrawalReasonList The entity list of withdrawalReason. (NotNull)
-     * @param loadReferrerOption The option of load-referrer. (NotNull)
-     */
-    public void loadSynonymMemberWithdrawalList(List<WithdrawalReason> withdrawalReasonList, LoadReferrerOption<SynonymMemberWithdrawalCB, SynonymMemberWithdrawal> loadReferrerOption) {
-        xassLRArg(withdrawalReasonList, loadReferrerOption);
-        if (withdrawalReasonList.isEmpty()) { return; }
-        final SynonymMemberWithdrawalBhv referrerBhv = xgetBSFLR().select(SynonymMemberWithdrawalBhv.class);
-        helpLoadReferrerInternally(withdrawalReasonList, loadReferrerOption, new InternalLoadReferrerCallback<WithdrawalReason, String, SynonymMemberWithdrawalCB, SynonymMemberWithdrawal>() {
-            public String getPKVal(WithdrawalReason e)
-            { return e.getWithdrawalReasonCode(); }
-            public void setRfLs(WithdrawalReason e, List<SynonymMemberWithdrawal> ls)
-            { e.setSynonymMemberWithdrawalList(ls); }
-            public SynonymMemberWithdrawalCB newMyCB() { return referrerBhv.newMyConditionBean(); }
-            public void qyFKIn(SynonymMemberWithdrawalCB cb, List<String> ls)
-            { cb.query().setWithdrawalReasonCode_InScope(ls); }
-            public void qyOdFKAsc(SynonymMemberWithdrawalCB cb) { cb.query().addOrderBy_WithdrawalReasonCode_Asc(); }
-            public void spFKCol(SynonymMemberWithdrawalCB cb) { cb.specify().columnWithdrawalReasonCode(); }
-            public List<SynonymMemberWithdrawal> selRfLs(SynonymMemberWithdrawalCB cb) { return referrerBhv.selectList(cb); }
-            public String getFKVal(SynonymMemberWithdrawal e) { return e.getWithdrawalReasonCode(); }
-            public void setlcEt(SynonymMemberWithdrawal re, WithdrawalReason le)
-            { re.setWithdrawalReason(le); }
-            public String getRfPrNm() { return "synonymMemberWithdrawalList"; }
-        });
-    }
-
-    /**
-     * {Refer to overload method that has an argument of the list of entity.}
-     * @param withdrawalReason The entity of withdrawalReason. (NotNull)
-     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
-     */
     public void loadMemberWithdrawalList(WithdrawalReason withdrawalReason, ConditionBeanSetupper<MemberWithdrawalCB> conditionBeanSetupper) {
         xassLRArg(withdrawalReason, conditionBeanSetupper);
         loadMemberWithdrawalList(xnewLRLs(withdrawalReason), conditionBeanSetupper);
@@ -506,6 +433,79 @@ public abstract class BsWithdrawalReasonBhv extends AbstractBehaviorWritable {
             public void setlcEt(MemberWithdrawal re, WithdrawalReason le)
             { re.setWithdrawalReason(le); }
             public String getRfPrNm() { return "memberWithdrawalList"; }
+        });
+    }
+
+    /**
+     * {Refer to overload method that has an argument of the list of entity.}
+     * @param withdrawalReason The entity of withdrawalReason. (NotNull)
+     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
+     */
+    public void loadSynonymMemberWithdrawalList(WithdrawalReason withdrawalReason, ConditionBeanSetupper<SynonymMemberWithdrawalCB> conditionBeanSetupper) {
+        xassLRArg(withdrawalReason, conditionBeanSetupper);
+        loadSynonymMemberWithdrawalList(xnewLRLs(withdrawalReason), conditionBeanSetupper);
+    }
+    /**
+     * Load referrer of synonymMemberWithdrawalList with the set-upper for condition-bean of referrer. <br />
+     * SYNONYM_MEMBER_WITHDRAWAL by WITHDRAWAL_REASON_CODE, named 'synonymMemberWithdrawalList'.
+     * <pre>
+     * withdrawalReasonBhv.<span style="color: #FD4747">loadSynonymMemberWithdrawalList</span>(withdrawalReasonList, new ConditionBeanSetupper&lt;SynonymMemberWithdrawalCB&gt;() {
+     *     public void setup(SynonymMemberWithdrawalCB cb) {
+     *         cb.setupSelect...();
+     *         cb.query().setFoo...(value);
+     *         cb.query().addOrderBy_Bar...(); <span style="color: #3F7E5E">// basically you should order referrer list</span>
+     *     }
+     * });
+     * for (WithdrawalReason withdrawalReason : withdrawalReasonList) {
+     *     ... = withdrawalReason.<span style="color: #FD4747">getSynonymMemberWithdrawalList()</span>;
+     * }
+     * </pre>
+     * About internal policy, the value of primary key(and others too) is treated as case-insensitive. <br />
+     * The condition-bean that the set-upper provides have settings before you touch it. It is as follows:
+     * <pre>
+     * cb.query().setWithdrawalReasonCode_InScope(pkList);
+     * cb.query().addOrderBy_WithdrawalReasonCode_Asc();
+     * </pre>
+     * @param withdrawalReasonList The entity list of withdrawalReason. (NotNull)
+     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
+     */
+    public void loadSynonymMemberWithdrawalList(List<WithdrawalReason> withdrawalReasonList, ConditionBeanSetupper<SynonymMemberWithdrawalCB> conditionBeanSetupper) {
+        xassLRArg(withdrawalReasonList, conditionBeanSetupper);
+        loadSynonymMemberWithdrawalList(withdrawalReasonList, new LoadReferrerOption<SynonymMemberWithdrawalCB, SynonymMemberWithdrawal>().xinit(conditionBeanSetupper));
+    }
+    /**
+     * {Refer to overload method that has an argument of the list of entity.}
+     * @param withdrawalReason The entity of withdrawalReason. (NotNull)
+     * @param loadReferrerOption The option of load-referrer. (NotNull)
+     */
+    public void loadSynonymMemberWithdrawalList(WithdrawalReason withdrawalReason, LoadReferrerOption<SynonymMemberWithdrawalCB, SynonymMemberWithdrawal> loadReferrerOption) {
+        xassLRArg(withdrawalReason, loadReferrerOption);
+        loadSynonymMemberWithdrawalList(xnewLRLs(withdrawalReason), loadReferrerOption);
+    }
+    /**
+     * {Refer to overload method that has an argument of condition-bean setupper.}
+     * @param withdrawalReasonList The entity list of withdrawalReason. (NotNull)
+     * @param loadReferrerOption The option of load-referrer. (NotNull)
+     */
+    public void loadSynonymMemberWithdrawalList(List<WithdrawalReason> withdrawalReasonList, LoadReferrerOption<SynonymMemberWithdrawalCB, SynonymMemberWithdrawal> loadReferrerOption) {
+        xassLRArg(withdrawalReasonList, loadReferrerOption);
+        if (withdrawalReasonList.isEmpty()) { return; }
+        final SynonymMemberWithdrawalBhv referrerBhv = xgetBSFLR().select(SynonymMemberWithdrawalBhv.class);
+        helpLoadReferrerInternally(withdrawalReasonList, loadReferrerOption, new InternalLoadReferrerCallback<WithdrawalReason, String, SynonymMemberWithdrawalCB, SynonymMemberWithdrawal>() {
+            public String getPKVal(WithdrawalReason e)
+            { return e.getWithdrawalReasonCode(); }
+            public void setRfLs(WithdrawalReason e, List<SynonymMemberWithdrawal> ls)
+            { e.setSynonymMemberWithdrawalList(ls); }
+            public SynonymMemberWithdrawalCB newMyCB() { return referrerBhv.newMyConditionBean(); }
+            public void qyFKIn(SynonymMemberWithdrawalCB cb, List<String> ls)
+            { cb.query().setWithdrawalReasonCode_InScope(ls); }
+            public void qyOdFKAsc(SynonymMemberWithdrawalCB cb) { cb.query().addOrderBy_WithdrawalReasonCode_Asc(); }
+            public void spFKCol(SynonymMemberWithdrawalCB cb) { cb.specify().columnWithdrawalReasonCode(); }
+            public List<SynonymMemberWithdrawal> selRfLs(SynonymMemberWithdrawalCB cb) { return referrerBhv.selectList(cb); }
+            public String getFKVal(SynonymMemberWithdrawal e) { return e.getWithdrawalReasonCode(); }
+            public void setlcEt(SynonymMemberWithdrawal re, WithdrawalReason le)
+            { re.setWithdrawalReason(le); }
+            public String getRfPrNm() { return "synonymMemberWithdrawalList"; }
         });
     }
 

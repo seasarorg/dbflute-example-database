@@ -34,13 +34,13 @@ import com.example.dbflute.oracle.dbflute.exentity.*;
  *     
  * 
  * [referrer table]
- *     MEMBER_VENDOR_SYNONYM, SYNONYM_MEMBER, SYNONYM_MEMBER_LOGIN, VENDOR_SYNONYM_MEMBER, MEMBER, MEMBER_LOGIN
+ *     MEMBER, MEMBER_LOGIN, MEMBER_VENDOR_SYNONYM, SYNONYM_MEMBER, SYNONYM_MEMBER_LOGIN, VENDOR_SYNONYM_MEMBER
  * 
  * [foreign property]
  *     
  * 
  * [referrer property]
- *     memberVendorSynonymList, synonymMemberList, synonymMemberLoginList, vendorSynonymMemberList, memberList, memberLoginList
+ *     memberList, memberLoginList, memberVendorSynonymList, synonymMemberList, synonymMemberLoginList, vendorSynonymMemberList
  * 
  * [get/set template]
  * /= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
@@ -225,6 +225,46 @@ public abstract class BsMemberStatus implements Entity, Serializable, Cloneable 
     // ===================================================================================
     //                                                                   Referrer Property
     //                                                                   =================
+    /** (会員)MEMBER by MEMBER_STATUS_CODE, named 'memberList'. */
+    protected List<Member> _memberList;
+
+    /**
+     * (会員)MEMBER by MEMBER_STATUS_CODE, named 'memberList'.
+     * @return The entity list of referrer property 'memberList'. (NotNull: even if no loading, returns empty list)
+     */
+    public List<Member> getMemberList() {
+        if (_memberList == null) { _memberList = newReferrerList(); }
+        return _memberList;
+    }
+
+    /**
+     * (会員)MEMBER by MEMBER_STATUS_CODE, named 'memberList'.
+     * @param memberList The entity list of referrer property 'memberList'. (NullAllowed)
+     */
+    public void setMemberList(List<Member> memberList) {
+        _memberList = memberList;
+    }
+
+    /** (会員ログイン)MEMBER_LOGIN by LOGIN_MEMBER_STATUS_CODE, named 'memberLoginList'. */
+    protected List<MemberLogin> _memberLoginList;
+
+    /**
+     * (会員ログイン)MEMBER_LOGIN by LOGIN_MEMBER_STATUS_CODE, named 'memberLoginList'.
+     * @return The entity list of referrer property 'memberLoginList'. (NotNull: even if no loading, returns empty list)
+     */
+    public List<MemberLogin> getMemberLoginList() {
+        if (_memberLoginList == null) { _memberLoginList = newReferrerList(); }
+        return _memberLoginList;
+    }
+
+    /**
+     * (会員ログイン)MEMBER_LOGIN by LOGIN_MEMBER_STATUS_CODE, named 'memberLoginList'.
+     * @param memberLoginList The entity list of referrer property 'memberLoginList'. (NullAllowed)
+     */
+    public void setMemberLoginList(List<MemberLogin> memberLoginList) {
+        _memberLoginList = memberLoginList;
+    }
+
     /** (会員)MEMBER_VENDOR_SYNONYM by MEMBER_STATUS_CODE, named 'memberVendorSynonymList'. */
     protected List<MemberVendorSynonym> _memberVendorSynonymList;
 
@@ -303,46 +343,6 @@ public abstract class BsMemberStatus implements Entity, Serializable, Cloneable 
      */
     public void setVendorSynonymMemberList(List<VendorSynonymMember> vendorSynonymMemberList) {
         _vendorSynonymMemberList = vendorSynonymMemberList;
-    }
-
-    /** (会員)MEMBER by MEMBER_STATUS_CODE, named 'memberList'. */
-    protected List<Member> _memberList;
-
-    /**
-     * (会員)MEMBER by MEMBER_STATUS_CODE, named 'memberList'.
-     * @return The entity list of referrer property 'memberList'. (NotNull: even if no loading, returns empty list)
-     */
-    public List<Member> getMemberList() {
-        if (_memberList == null) { _memberList = newReferrerList(); }
-        return _memberList;
-    }
-
-    /**
-     * (会員)MEMBER by MEMBER_STATUS_CODE, named 'memberList'.
-     * @param memberList The entity list of referrer property 'memberList'. (NullAllowed)
-     */
-    public void setMemberList(List<Member> memberList) {
-        _memberList = memberList;
-    }
-
-    /** (会員ログイン)MEMBER_LOGIN by LOGIN_MEMBER_STATUS_CODE, named 'memberLoginList'. */
-    protected List<MemberLogin> _memberLoginList;
-
-    /**
-     * (会員ログイン)MEMBER_LOGIN by LOGIN_MEMBER_STATUS_CODE, named 'memberLoginList'.
-     * @return The entity list of referrer property 'memberLoginList'. (NotNull: even if no loading, returns empty list)
-     */
-    public List<MemberLogin> getMemberLoginList() {
-        if (_memberLoginList == null) { _memberLoginList = newReferrerList(); }
-        return _memberLoginList;
-    }
-
-    /**
-     * (会員ログイン)MEMBER_LOGIN by LOGIN_MEMBER_STATUS_CODE, named 'memberLoginList'.
-     * @param memberLoginList The entity list of referrer property 'memberLoginList'. (NullAllowed)
-     */
-    public void setMemberLoginList(List<MemberLogin> memberLoginList) {
-        _memberLoginList = memberLoginList;
     }
 
     protected <ELEMENT> List<ELEMENT> newReferrerList() {
@@ -449,6 +449,10 @@ public abstract class BsMemberStatus implements Entity, Serializable, Cloneable 
         StringBuilder sb = new StringBuilder();
         sb.append(toString());
         String l = "\n  ";
+        if (_memberList != null) { for (Entity e : _memberList)
+        { if (e != null) { sb.append(l).append(xbRDS(e, "memberList")); } } }
+        if (_memberLoginList != null) { for (Entity e : _memberLoginList)
+        { if (e != null) { sb.append(l).append(xbRDS(e, "memberLoginList")); } } }
         if (_memberVendorSynonymList != null) { for (Entity e : _memberVendorSynonymList)
         { if (e != null) { sb.append(l).append(xbRDS(e, "memberVendorSynonymList")); } } }
         if (_synonymMemberList != null) { for (Entity e : _synonymMemberList)
@@ -457,10 +461,6 @@ public abstract class BsMemberStatus implements Entity, Serializable, Cloneable 
         { if (e != null) { sb.append(l).append(xbRDS(e, "synonymMemberLoginList")); } } }
         if (_vendorSynonymMemberList != null) { for (Entity e : _vendorSynonymMemberList)
         { if (e != null) { sb.append(l).append(xbRDS(e, "vendorSynonymMemberList")); } } }
-        if (_memberList != null) { for (Entity e : _memberList)
-        { if (e != null) { sb.append(l).append(xbRDS(e, "memberList")); } } }
-        if (_memberLoginList != null) { for (Entity e : _memberLoginList)
-        { if (e != null) { sb.append(l).append(xbRDS(e, "memberLoginList")); } } }
         return sb.toString();
     }
     protected String xbRDS(Entity e, String name) { // buildRelationDisplayString()
@@ -494,6 +494,10 @@ public abstract class BsMemberStatus implements Entity, Serializable, Cloneable 
     protected String buildRelationString() {
         StringBuilder sb = new StringBuilder();
         String c = ",";
+        if (_memberList != null && !_memberList.isEmpty())
+        { sb.append(c).append("memberList"); }
+        if (_memberLoginList != null && !_memberLoginList.isEmpty())
+        { sb.append(c).append("memberLoginList"); }
         if (_memberVendorSynonymList != null && !_memberVendorSynonymList.isEmpty())
         { sb.append(c).append("memberVendorSynonymList"); }
         if (_synonymMemberList != null && !_synonymMemberList.isEmpty())
@@ -502,10 +506,6 @@ public abstract class BsMemberStatus implements Entity, Serializable, Cloneable 
         { sb.append(c).append("synonymMemberLoginList"); }
         if (_vendorSynonymMemberList != null && !_vendorSynonymMemberList.isEmpty())
         { sb.append(c).append("vendorSynonymMemberList"); }
-        if (_memberList != null && !_memberList.isEmpty())
-        { sb.append(c).append("memberList"); }
-        if (_memberLoginList != null && !_memberLoginList.isEmpty())
-        { sb.append(c).append("memberLoginList"); }
         if (sb.length() > c.length()) {
             sb.delete(0, c.length()).insert(0, "(").append(")");
         }

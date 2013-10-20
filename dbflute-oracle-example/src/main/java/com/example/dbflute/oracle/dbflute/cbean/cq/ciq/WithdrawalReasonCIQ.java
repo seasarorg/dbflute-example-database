@@ -70,33 +70,33 @@ public class WithdrawalReasonCIQ extends AbstractBsWithdrawalReasonCQ {
     //                                                                Override about Query
     //                                                                ====================
     protected ConditionValue getCValueWithdrawalReasonCode() { return _myCQ.getWithdrawalReasonCode(); }
-    public String keepWithdrawalReasonCode_ExistsReferrer_SynonymMemberWithdrawalList(SynonymMemberWithdrawalCQ sq)
-    { throwIICBOE("ExistsReferrer"); return null; }
     public String keepWithdrawalReasonCode_ExistsReferrer_MemberWithdrawalList(MemberWithdrawalCQ sq)
     { throwIICBOE("ExistsReferrer"); return null; }
-    public String keepWithdrawalReasonCode_NotExistsReferrer_SynonymMemberWithdrawalList(SynonymMemberWithdrawalCQ sq)
-    { throwIICBOE("NotExistsReferrer"); return null; }
+    public String keepWithdrawalReasonCode_ExistsReferrer_SynonymMemberWithdrawalList(SynonymMemberWithdrawalCQ sq)
+    { throwIICBOE("ExistsReferrer"); return null; }
     public String keepWithdrawalReasonCode_NotExistsReferrer_MemberWithdrawalList(MemberWithdrawalCQ sq)
     { throwIICBOE("NotExistsReferrer"); return null; }
-    public String keepWithdrawalReasonCode_InScopeRelation_SynonymMemberWithdrawalList(SynonymMemberWithdrawalCQ sq)
-    { return _myCQ.keepWithdrawalReasonCode_InScopeRelation_SynonymMemberWithdrawalList(sq); }
+    public String keepWithdrawalReasonCode_NotExistsReferrer_SynonymMemberWithdrawalList(SynonymMemberWithdrawalCQ sq)
+    { throwIICBOE("NotExistsReferrer"); return null; }
     public String keepWithdrawalReasonCode_InScopeRelation_MemberWithdrawalList(MemberWithdrawalCQ sq)
     { return _myCQ.keepWithdrawalReasonCode_InScopeRelation_MemberWithdrawalList(sq); }
-    public String keepWithdrawalReasonCode_NotInScopeRelation_SynonymMemberWithdrawalList(SynonymMemberWithdrawalCQ sq)
-    { return _myCQ.keepWithdrawalReasonCode_NotInScopeRelation_SynonymMemberWithdrawalList(sq); }
+    public String keepWithdrawalReasonCode_InScopeRelation_SynonymMemberWithdrawalList(SynonymMemberWithdrawalCQ sq)
+    { return _myCQ.keepWithdrawalReasonCode_InScopeRelation_SynonymMemberWithdrawalList(sq); }
     public String keepWithdrawalReasonCode_NotInScopeRelation_MemberWithdrawalList(MemberWithdrawalCQ sq)
     { return _myCQ.keepWithdrawalReasonCode_NotInScopeRelation_MemberWithdrawalList(sq); }
-    public String keepWithdrawalReasonCode_SpecifyDerivedReferrer_SynonymMemberWithdrawalList(SynonymMemberWithdrawalCQ sq)
-    { throwIICBOE("(Specify)DerivedReferrer"); return null; }
+    public String keepWithdrawalReasonCode_NotInScopeRelation_SynonymMemberWithdrawalList(SynonymMemberWithdrawalCQ sq)
+    { return _myCQ.keepWithdrawalReasonCode_NotInScopeRelation_SynonymMemberWithdrawalList(sq); }
     public String keepWithdrawalReasonCode_SpecifyDerivedReferrer_MemberWithdrawalList(MemberWithdrawalCQ sq)
     { throwIICBOE("(Specify)DerivedReferrer"); return null; }
-    public String keepWithdrawalReasonCode_QueryDerivedReferrer_SynonymMemberWithdrawalList(SynonymMemberWithdrawalCQ sq)
-    { throwIICBOE("(Query)DerivedReferrer"); return null; }
-    public String keepWithdrawalReasonCode_QueryDerivedReferrer_SynonymMemberWithdrawalListParameter(Object pv)
-    { throwIICBOE("(Query)DerivedReferrer"); return null; }
+    public String keepWithdrawalReasonCode_SpecifyDerivedReferrer_SynonymMemberWithdrawalList(SynonymMemberWithdrawalCQ sq)
+    { throwIICBOE("(Specify)DerivedReferrer"); return null; }
     public String keepWithdrawalReasonCode_QueryDerivedReferrer_MemberWithdrawalList(MemberWithdrawalCQ sq)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
     public String keepWithdrawalReasonCode_QueryDerivedReferrer_MemberWithdrawalListParameter(Object pv)
+    { throwIICBOE("(Query)DerivedReferrer"); return null; }
+    public String keepWithdrawalReasonCode_QueryDerivedReferrer_SynonymMemberWithdrawalList(SynonymMemberWithdrawalCQ sq)
+    { throwIICBOE("(Query)DerivedReferrer"); return null; }
+    public String keepWithdrawalReasonCode_QueryDerivedReferrer_SynonymMemberWithdrawalListParameter(Object pv)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
     protected ConditionValue getCValueWithdrawalReasonText() { return _myCQ.getWithdrawalReasonText(); }
     protected ConditionValue getCValueDisplayOrder() { return _myCQ.getDisplayOrder(); }

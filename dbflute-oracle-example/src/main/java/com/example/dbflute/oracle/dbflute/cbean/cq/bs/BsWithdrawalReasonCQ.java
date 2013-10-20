@@ -79,14 +79,6 @@ public class BsWithdrawalReasonCQ extends AbstractBsWithdrawalReasonCQ {
     }
     protected ConditionValue getCValueWithdrawalReasonCode() { return getWithdrawalReasonCode(); }
 
-    protected Map<String, SynonymMemberWithdrawalCQ> _withdrawalReasonCode_ExistsReferrer_SynonymMemberWithdrawalListMap;
-    public Map<String, SynonymMemberWithdrawalCQ> getWithdrawalReasonCode_ExistsReferrer_SynonymMemberWithdrawalList() { return _withdrawalReasonCode_ExistsReferrer_SynonymMemberWithdrawalListMap; }
-    public String keepWithdrawalReasonCode_ExistsReferrer_SynonymMemberWithdrawalList(SynonymMemberWithdrawalCQ subQuery) {
-        if (_withdrawalReasonCode_ExistsReferrer_SynonymMemberWithdrawalListMap == null) { _withdrawalReasonCode_ExistsReferrer_SynonymMemberWithdrawalListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_withdrawalReasonCode_ExistsReferrer_SynonymMemberWithdrawalListMap.size() + 1);
-        _withdrawalReasonCode_ExistsReferrer_SynonymMemberWithdrawalListMap.put(key, subQuery); return "withdrawalReasonCode_ExistsReferrer_SynonymMemberWithdrawalList." + key;
-    }
-
     protected Map<String, MemberWithdrawalCQ> _withdrawalReasonCode_ExistsReferrer_MemberWithdrawalListMap;
     public Map<String, MemberWithdrawalCQ> getWithdrawalReasonCode_ExistsReferrer_MemberWithdrawalList() { return _withdrawalReasonCode_ExistsReferrer_MemberWithdrawalListMap; }
     public String keepWithdrawalReasonCode_ExistsReferrer_MemberWithdrawalList(MemberWithdrawalCQ subQuery) {
@@ -95,12 +87,12 @@ public class BsWithdrawalReasonCQ extends AbstractBsWithdrawalReasonCQ {
         _withdrawalReasonCode_ExistsReferrer_MemberWithdrawalListMap.put(key, subQuery); return "withdrawalReasonCode_ExistsReferrer_MemberWithdrawalList." + key;
     }
 
-    protected Map<String, SynonymMemberWithdrawalCQ> _withdrawalReasonCode_NotExistsReferrer_SynonymMemberWithdrawalListMap;
-    public Map<String, SynonymMemberWithdrawalCQ> getWithdrawalReasonCode_NotExistsReferrer_SynonymMemberWithdrawalList() { return _withdrawalReasonCode_NotExistsReferrer_SynonymMemberWithdrawalListMap; }
-    public String keepWithdrawalReasonCode_NotExistsReferrer_SynonymMemberWithdrawalList(SynonymMemberWithdrawalCQ subQuery) {
-        if (_withdrawalReasonCode_NotExistsReferrer_SynonymMemberWithdrawalListMap == null) { _withdrawalReasonCode_NotExistsReferrer_SynonymMemberWithdrawalListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_withdrawalReasonCode_NotExistsReferrer_SynonymMemberWithdrawalListMap.size() + 1);
-        _withdrawalReasonCode_NotExistsReferrer_SynonymMemberWithdrawalListMap.put(key, subQuery); return "withdrawalReasonCode_NotExistsReferrer_SynonymMemberWithdrawalList." + key;
+    protected Map<String, SynonymMemberWithdrawalCQ> _withdrawalReasonCode_ExistsReferrer_SynonymMemberWithdrawalListMap;
+    public Map<String, SynonymMemberWithdrawalCQ> getWithdrawalReasonCode_ExistsReferrer_SynonymMemberWithdrawalList() { return _withdrawalReasonCode_ExistsReferrer_SynonymMemberWithdrawalListMap; }
+    public String keepWithdrawalReasonCode_ExistsReferrer_SynonymMemberWithdrawalList(SynonymMemberWithdrawalCQ subQuery) {
+        if (_withdrawalReasonCode_ExistsReferrer_SynonymMemberWithdrawalListMap == null) { _withdrawalReasonCode_ExistsReferrer_SynonymMemberWithdrawalListMap = newLinkedHashMapSized(4); }
+        String key = "subQueryMapKey" + (_withdrawalReasonCode_ExistsReferrer_SynonymMemberWithdrawalListMap.size() + 1);
+        _withdrawalReasonCode_ExistsReferrer_SynonymMemberWithdrawalListMap.put(key, subQuery); return "withdrawalReasonCode_ExistsReferrer_SynonymMemberWithdrawalList." + key;
     }
 
     protected Map<String, MemberWithdrawalCQ> _withdrawalReasonCode_NotExistsReferrer_MemberWithdrawalListMap;
@@ -111,12 +103,12 @@ public class BsWithdrawalReasonCQ extends AbstractBsWithdrawalReasonCQ {
         _withdrawalReasonCode_NotExistsReferrer_MemberWithdrawalListMap.put(key, subQuery); return "withdrawalReasonCode_NotExistsReferrer_MemberWithdrawalList." + key;
     }
 
-    protected Map<String, SynonymMemberWithdrawalCQ> _withdrawalReasonCode_InScopeRelation_SynonymMemberWithdrawalListMap;
-    public Map<String, SynonymMemberWithdrawalCQ> getWithdrawalReasonCode_InScopeRelation_SynonymMemberWithdrawalList() { return _withdrawalReasonCode_InScopeRelation_SynonymMemberWithdrawalListMap; }
-    public String keepWithdrawalReasonCode_InScopeRelation_SynonymMemberWithdrawalList(SynonymMemberWithdrawalCQ subQuery) {
-        if (_withdrawalReasonCode_InScopeRelation_SynonymMemberWithdrawalListMap == null) { _withdrawalReasonCode_InScopeRelation_SynonymMemberWithdrawalListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_withdrawalReasonCode_InScopeRelation_SynonymMemberWithdrawalListMap.size() + 1);
-        _withdrawalReasonCode_InScopeRelation_SynonymMemberWithdrawalListMap.put(key, subQuery); return "withdrawalReasonCode_InScopeRelation_SynonymMemberWithdrawalList." + key;
+    protected Map<String, SynonymMemberWithdrawalCQ> _withdrawalReasonCode_NotExistsReferrer_SynonymMemberWithdrawalListMap;
+    public Map<String, SynonymMemberWithdrawalCQ> getWithdrawalReasonCode_NotExistsReferrer_SynonymMemberWithdrawalList() { return _withdrawalReasonCode_NotExistsReferrer_SynonymMemberWithdrawalListMap; }
+    public String keepWithdrawalReasonCode_NotExistsReferrer_SynonymMemberWithdrawalList(SynonymMemberWithdrawalCQ subQuery) {
+        if (_withdrawalReasonCode_NotExistsReferrer_SynonymMemberWithdrawalListMap == null) { _withdrawalReasonCode_NotExistsReferrer_SynonymMemberWithdrawalListMap = newLinkedHashMapSized(4); }
+        String key = "subQueryMapKey" + (_withdrawalReasonCode_NotExistsReferrer_SynonymMemberWithdrawalListMap.size() + 1);
+        _withdrawalReasonCode_NotExistsReferrer_SynonymMemberWithdrawalListMap.put(key, subQuery); return "withdrawalReasonCode_NotExistsReferrer_SynonymMemberWithdrawalList." + key;
     }
 
     protected Map<String, MemberWithdrawalCQ> _withdrawalReasonCode_InScopeRelation_MemberWithdrawalListMap;
@@ -127,12 +119,12 @@ public class BsWithdrawalReasonCQ extends AbstractBsWithdrawalReasonCQ {
         _withdrawalReasonCode_InScopeRelation_MemberWithdrawalListMap.put(key, subQuery); return "withdrawalReasonCode_InScopeRelation_MemberWithdrawalList." + key;
     }
 
-    protected Map<String, SynonymMemberWithdrawalCQ> _withdrawalReasonCode_NotInScopeRelation_SynonymMemberWithdrawalListMap;
-    public Map<String, SynonymMemberWithdrawalCQ> getWithdrawalReasonCode_NotInScopeRelation_SynonymMemberWithdrawalList() { return _withdrawalReasonCode_NotInScopeRelation_SynonymMemberWithdrawalListMap; }
-    public String keepWithdrawalReasonCode_NotInScopeRelation_SynonymMemberWithdrawalList(SynonymMemberWithdrawalCQ subQuery) {
-        if (_withdrawalReasonCode_NotInScopeRelation_SynonymMemberWithdrawalListMap == null) { _withdrawalReasonCode_NotInScopeRelation_SynonymMemberWithdrawalListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_withdrawalReasonCode_NotInScopeRelation_SynonymMemberWithdrawalListMap.size() + 1);
-        _withdrawalReasonCode_NotInScopeRelation_SynonymMemberWithdrawalListMap.put(key, subQuery); return "withdrawalReasonCode_NotInScopeRelation_SynonymMemberWithdrawalList." + key;
+    protected Map<String, SynonymMemberWithdrawalCQ> _withdrawalReasonCode_InScopeRelation_SynonymMemberWithdrawalListMap;
+    public Map<String, SynonymMemberWithdrawalCQ> getWithdrawalReasonCode_InScopeRelation_SynonymMemberWithdrawalList() { return _withdrawalReasonCode_InScopeRelation_SynonymMemberWithdrawalListMap; }
+    public String keepWithdrawalReasonCode_InScopeRelation_SynonymMemberWithdrawalList(SynonymMemberWithdrawalCQ subQuery) {
+        if (_withdrawalReasonCode_InScopeRelation_SynonymMemberWithdrawalListMap == null) { _withdrawalReasonCode_InScopeRelation_SynonymMemberWithdrawalListMap = newLinkedHashMapSized(4); }
+        String key = "subQueryMapKey" + (_withdrawalReasonCode_InScopeRelation_SynonymMemberWithdrawalListMap.size() + 1);
+        _withdrawalReasonCode_InScopeRelation_SynonymMemberWithdrawalListMap.put(key, subQuery); return "withdrawalReasonCode_InScopeRelation_SynonymMemberWithdrawalList." + key;
     }
 
     protected Map<String, MemberWithdrawalCQ> _withdrawalReasonCode_NotInScopeRelation_MemberWithdrawalListMap;
@@ -143,12 +135,12 @@ public class BsWithdrawalReasonCQ extends AbstractBsWithdrawalReasonCQ {
         _withdrawalReasonCode_NotInScopeRelation_MemberWithdrawalListMap.put(key, subQuery); return "withdrawalReasonCode_NotInScopeRelation_MemberWithdrawalList." + key;
     }
 
-    protected Map<String, SynonymMemberWithdrawalCQ> _withdrawalReasonCode_SpecifyDerivedReferrer_SynonymMemberWithdrawalListMap;
-    public Map<String, SynonymMemberWithdrawalCQ> getWithdrawalReasonCode_SpecifyDerivedReferrer_SynonymMemberWithdrawalList() { return _withdrawalReasonCode_SpecifyDerivedReferrer_SynonymMemberWithdrawalListMap; }
-    public String keepWithdrawalReasonCode_SpecifyDerivedReferrer_SynonymMemberWithdrawalList(SynonymMemberWithdrawalCQ subQuery) {
-        if (_withdrawalReasonCode_SpecifyDerivedReferrer_SynonymMemberWithdrawalListMap == null) { _withdrawalReasonCode_SpecifyDerivedReferrer_SynonymMemberWithdrawalListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_withdrawalReasonCode_SpecifyDerivedReferrer_SynonymMemberWithdrawalListMap.size() + 1);
-        _withdrawalReasonCode_SpecifyDerivedReferrer_SynonymMemberWithdrawalListMap.put(key, subQuery); return "withdrawalReasonCode_SpecifyDerivedReferrer_SynonymMemberWithdrawalList." + key;
+    protected Map<String, SynonymMemberWithdrawalCQ> _withdrawalReasonCode_NotInScopeRelation_SynonymMemberWithdrawalListMap;
+    public Map<String, SynonymMemberWithdrawalCQ> getWithdrawalReasonCode_NotInScopeRelation_SynonymMemberWithdrawalList() { return _withdrawalReasonCode_NotInScopeRelation_SynonymMemberWithdrawalListMap; }
+    public String keepWithdrawalReasonCode_NotInScopeRelation_SynonymMemberWithdrawalList(SynonymMemberWithdrawalCQ subQuery) {
+        if (_withdrawalReasonCode_NotInScopeRelation_SynonymMemberWithdrawalListMap == null) { _withdrawalReasonCode_NotInScopeRelation_SynonymMemberWithdrawalListMap = newLinkedHashMapSized(4); }
+        String key = "subQueryMapKey" + (_withdrawalReasonCode_NotInScopeRelation_SynonymMemberWithdrawalListMap.size() + 1);
+        _withdrawalReasonCode_NotInScopeRelation_SynonymMemberWithdrawalListMap.put(key, subQuery); return "withdrawalReasonCode_NotInScopeRelation_SynonymMemberWithdrawalList." + key;
     }
 
     protected Map<String, MemberWithdrawalCQ> _withdrawalReasonCode_SpecifyDerivedReferrer_MemberWithdrawalListMap;
@@ -159,19 +151,12 @@ public class BsWithdrawalReasonCQ extends AbstractBsWithdrawalReasonCQ {
         _withdrawalReasonCode_SpecifyDerivedReferrer_MemberWithdrawalListMap.put(key, subQuery); return "withdrawalReasonCode_SpecifyDerivedReferrer_MemberWithdrawalList." + key;
     }
 
-    protected Map<String, SynonymMemberWithdrawalCQ> _withdrawalReasonCode_QueryDerivedReferrer_SynonymMemberWithdrawalListMap;
-    public Map<String, SynonymMemberWithdrawalCQ> getWithdrawalReasonCode_QueryDerivedReferrer_SynonymMemberWithdrawalList() { return _withdrawalReasonCode_QueryDerivedReferrer_SynonymMemberWithdrawalListMap; }
-    public String keepWithdrawalReasonCode_QueryDerivedReferrer_SynonymMemberWithdrawalList(SynonymMemberWithdrawalCQ subQuery) {
-        if (_withdrawalReasonCode_QueryDerivedReferrer_SynonymMemberWithdrawalListMap == null) { _withdrawalReasonCode_QueryDerivedReferrer_SynonymMemberWithdrawalListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_withdrawalReasonCode_QueryDerivedReferrer_SynonymMemberWithdrawalListMap.size() + 1);
-        _withdrawalReasonCode_QueryDerivedReferrer_SynonymMemberWithdrawalListMap.put(key, subQuery); return "withdrawalReasonCode_QueryDerivedReferrer_SynonymMemberWithdrawalList." + key;
-    }
-    protected Map<String, Object> _withdrawalReasonCode_QueryDerivedReferrer_SynonymMemberWithdrawalListParameterMap;
-    public Map<String, Object> getWithdrawalReasonCode_QueryDerivedReferrer_SynonymMemberWithdrawalListParameter() { return _withdrawalReasonCode_QueryDerivedReferrer_SynonymMemberWithdrawalListParameterMap; }
-    public String keepWithdrawalReasonCode_QueryDerivedReferrer_SynonymMemberWithdrawalListParameter(Object parameterValue) {
-        if (_withdrawalReasonCode_QueryDerivedReferrer_SynonymMemberWithdrawalListParameterMap == null) { _withdrawalReasonCode_QueryDerivedReferrer_SynonymMemberWithdrawalListParameterMap = newLinkedHashMapSized(4); }
-        String key = "subQueryParameterKey" + (_withdrawalReasonCode_QueryDerivedReferrer_SynonymMemberWithdrawalListParameterMap.size() + 1);
-        _withdrawalReasonCode_QueryDerivedReferrer_SynonymMemberWithdrawalListParameterMap.put(key, parameterValue); return "withdrawalReasonCode_QueryDerivedReferrer_SynonymMemberWithdrawalListParameter." + key;
+    protected Map<String, SynonymMemberWithdrawalCQ> _withdrawalReasonCode_SpecifyDerivedReferrer_SynonymMemberWithdrawalListMap;
+    public Map<String, SynonymMemberWithdrawalCQ> getWithdrawalReasonCode_SpecifyDerivedReferrer_SynonymMemberWithdrawalList() { return _withdrawalReasonCode_SpecifyDerivedReferrer_SynonymMemberWithdrawalListMap; }
+    public String keepWithdrawalReasonCode_SpecifyDerivedReferrer_SynonymMemberWithdrawalList(SynonymMemberWithdrawalCQ subQuery) {
+        if (_withdrawalReasonCode_SpecifyDerivedReferrer_SynonymMemberWithdrawalListMap == null) { _withdrawalReasonCode_SpecifyDerivedReferrer_SynonymMemberWithdrawalListMap = newLinkedHashMapSized(4); }
+        String key = "subQueryMapKey" + (_withdrawalReasonCode_SpecifyDerivedReferrer_SynonymMemberWithdrawalListMap.size() + 1);
+        _withdrawalReasonCode_SpecifyDerivedReferrer_SynonymMemberWithdrawalListMap.put(key, subQuery); return "withdrawalReasonCode_SpecifyDerivedReferrer_SynonymMemberWithdrawalList." + key;
     }
 
     protected Map<String, MemberWithdrawalCQ> _withdrawalReasonCode_QueryDerivedReferrer_MemberWithdrawalListMap;
@@ -187,6 +172,21 @@ public class BsWithdrawalReasonCQ extends AbstractBsWithdrawalReasonCQ {
         if (_withdrawalReasonCode_QueryDerivedReferrer_MemberWithdrawalListParameterMap == null) { _withdrawalReasonCode_QueryDerivedReferrer_MemberWithdrawalListParameterMap = newLinkedHashMapSized(4); }
         String key = "subQueryParameterKey" + (_withdrawalReasonCode_QueryDerivedReferrer_MemberWithdrawalListParameterMap.size() + 1);
         _withdrawalReasonCode_QueryDerivedReferrer_MemberWithdrawalListParameterMap.put(key, parameterValue); return "withdrawalReasonCode_QueryDerivedReferrer_MemberWithdrawalListParameter." + key;
+    }
+
+    protected Map<String, SynonymMemberWithdrawalCQ> _withdrawalReasonCode_QueryDerivedReferrer_SynonymMemberWithdrawalListMap;
+    public Map<String, SynonymMemberWithdrawalCQ> getWithdrawalReasonCode_QueryDerivedReferrer_SynonymMemberWithdrawalList() { return _withdrawalReasonCode_QueryDerivedReferrer_SynonymMemberWithdrawalListMap; }
+    public String keepWithdrawalReasonCode_QueryDerivedReferrer_SynonymMemberWithdrawalList(SynonymMemberWithdrawalCQ subQuery) {
+        if (_withdrawalReasonCode_QueryDerivedReferrer_SynonymMemberWithdrawalListMap == null) { _withdrawalReasonCode_QueryDerivedReferrer_SynonymMemberWithdrawalListMap = newLinkedHashMapSized(4); }
+        String key = "subQueryMapKey" + (_withdrawalReasonCode_QueryDerivedReferrer_SynonymMemberWithdrawalListMap.size() + 1);
+        _withdrawalReasonCode_QueryDerivedReferrer_SynonymMemberWithdrawalListMap.put(key, subQuery); return "withdrawalReasonCode_QueryDerivedReferrer_SynonymMemberWithdrawalList." + key;
+    }
+    protected Map<String, Object> _withdrawalReasonCode_QueryDerivedReferrer_SynonymMemberWithdrawalListParameterMap;
+    public Map<String, Object> getWithdrawalReasonCode_QueryDerivedReferrer_SynonymMemberWithdrawalListParameter() { return _withdrawalReasonCode_QueryDerivedReferrer_SynonymMemberWithdrawalListParameterMap; }
+    public String keepWithdrawalReasonCode_QueryDerivedReferrer_SynonymMemberWithdrawalListParameter(Object parameterValue) {
+        if (_withdrawalReasonCode_QueryDerivedReferrer_SynonymMemberWithdrawalListParameterMap == null) { _withdrawalReasonCode_QueryDerivedReferrer_SynonymMemberWithdrawalListParameterMap = newLinkedHashMapSized(4); }
+        String key = "subQueryParameterKey" + (_withdrawalReasonCode_QueryDerivedReferrer_SynonymMemberWithdrawalListParameterMap.size() + 1);
+        _withdrawalReasonCode_QueryDerivedReferrer_SynonymMemberWithdrawalListParameterMap.put(key, parameterValue); return "withdrawalReasonCode_QueryDerivedReferrer_SynonymMemberWithdrawalListParameter." + key;
     }
 
     /** 

@@ -336,6 +336,46 @@ public class BsMemberStatusCB extends AbstractConditionBean {
         protected String getTableDbName() { return "MEMBER_STATUS"; }
         /**
          * Prepare for (Specify)DerivedReferrer. <br />
+         * {select max(FOO) from MEMBER where ...) as FOO_MAX} <br />
+         * (会員)MEMBER by MEMBER_STATUS_CODE, named 'memberList'.
+         * <pre>
+         * cb.specify().<span style="color: #FD4747">derivedMemberList()</span>.<span style="color: #FD4747">max</span>(new SubQuery&lt;MemberCB&gt;() {
+         *     public void query(MemberCB subCB) {
+         *         subCB.specify().<span style="color: #FD4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
+         *         subCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
+         *     }
+         * }, Member.<span style="color: #FD4747">ALIAS_foo...</span>);
+         * </pre>
+         * @return The object to set up a function for referrer table. (NotNull)
+         */
+        public HpSDRFunction<MemberCB, MemberStatusCQ> derivedMemberList() {
+            assertDerived("memberList"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
+            return new HpSDRFunction<MemberCB, MemberStatusCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<MemberCB, MemberStatusCQ>() {
+                public void setup(String function, SubQuery<MemberCB> subQuery, MemberStatusCQ cq, String aliasName, DerivedReferrerOption option) {
+                    cq.xsderiveMemberList(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+        }
+        /**
+         * Prepare for (Specify)DerivedReferrer. <br />
+         * {select max(FOO) from MEMBER_LOGIN where ...) as FOO_MAX} <br />
+         * (会員ログイン)MEMBER_LOGIN by LOGIN_MEMBER_STATUS_CODE, named 'memberLoginList'.
+         * <pre>
+         * cb.specify().<span style="color: #FD4747">derivedMemberLoginList()</span>.<span style="color: #FD4747">max</span>(new SubQuery&lt;MemberLoginCB&gt;() {
+         *     public void query(MemberLoginCB subCB) {
+         *         subCB.specify().<span style="color: #FD4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
+         *         subCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
+         *     }
+         * }, MemberLogin.<span style="color: #FD4747">ALIAS_foo...</span>);
+         * </pre>
+         * @return The object to set up a function for referrer table. (NotNull)
+         */
+        public HpSDRFunction<MemberLoginCB, MemberStatusCQ> derivedMemberLoginList() {
+            assertDerived("memberLoginList"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
+            return new HpSDRFunction<MemberLoginCB, MemberStatusCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<MemberLoginCB, MemberStatusCQ>() {
+                public void setup(String function, SubQuery<MemberLoginCB> subQuery, MemberStatusCQ cq, String aliasName, DerivedReferrerOption option) {
+                    cq.xsderiveMemberLoginList(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+        }
+        /**
+         * Prepare for (Specify)DerivedReferrer. <br />
          * {select max(FOO) from MEMBER_VENDOR_SYNONYM where ...) as FOO_MAX} <br />
          * (会員)MEMBER_VENDOR_SYNONYM by MEMBER_STATUS_CODE, named 'memberVendorSynonymList'.
          * <pre>
@@ -413,46 +453,6 @@ public class BsMemberStatusCB extends AbstractConditionBean {
             return new HpSDRFunction<VendorSynonymMemberCB, MemberStatusCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<VendorSynonymMemberCB, MemberStatusCQ>() {
                 public void setup(String function, SubQuery<VendorSynonymMemberCB> subQuery, MemberStatusCQ cq, String aliasName, DerivedReferrerOption option) {
                     cq.xsderiveVendorSynonymMemberList(function, subQuery, aliasName, option); } }, _dbmetaProvider);
-        }
-        /**
-         * Prepare for (Specify)DerivedReferrer. <br />
-         * {select max(FOO) from MEMBER where ...) as FOO_MAX} <br />
-         * (会員)MEMBER by MEMBER_STATUS_CODE, named 'memberList'.
-         * <pre>
-         * cb.specify().<span style="color: #FD4747">derivedMemberList()</span>.<span style="color: #FD4747">max</span>(new SubQuery&lt;MemberCB&gt;() {
-         *     public void query(MemberCB subCB) {
-         *         subCB.specify().<span style="color: #FD4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
-         *         subCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
-         *     }
-         * }, Member.<span style="color: #FD4747">ALIAS_foo...</span>);
-         * </pre>
-         * @return The object to set up a function for referrer table. (NotNull)
-         */
-        public HpSDRFunction<MemberCB, MemberStatusCQ> derivedMemberList() {
-            assertDerived("memberList"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
-            return new HpSDRFunction<MemberCB, MemberStatusCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<MemberCB, MemberStatusCQ>() {
-                public void setup(String function, SubQuery<MemberCB> subQuery, MemberStatusCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsderiveMemberList(function, subQuery, aliasName, option); } }, _dbmetaProvider);
-        }
-        /**
-         * Prepare for (Specify)DerivedReferrer. <br />
-         * {select max(FOO) from MEMBER_LOGIN where ...) as FOO_MAX} <br />
-         * (会員ログイン)MEMBER_LOGIN by LOGIN_MEMBER_STATUS_CODE, named 'memberLoginList'.
-         * <pre>
-         * cb.specify().<span style="color: #FD4747">derivedMemberLoginList()</span>.<span style="color: #FD4747">max</span>(new SubQuery&lt;MemberLoginCB&gt;() {
-         *     public void query(MemberLoginCB subCB) {
-         *         subCB.specify().<span style="color: #FD4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
-         *         subCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
-         *     }
-         * }, MemberLogin.<span style="color: #FD4747">ALIAS_foo...</span>);
-         * </pre>
-         * @return The object to set up a function for referrer table. (NotNull)
-         */
-        public HpSDRFunction<MemberLoginCB, MemberStatusCQ> derivedMemberLoginList() {
-            assertDerived("memberLoginList"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
-            return new HpSDRFunction<MemberLoginCB, MemberStatusCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<MemberLoginCB, MemberStatusCQ>() {
-                public void setup(String function, SubQuery<MemberLoginCB> subQuery, MemberStatusCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsderiveMemberLoginList(function, subQuery, aliasName, option); } }, _dbmetaProvider);
         }
         /**
          * Prepare for (Specify)MyselfDerived (SubQuery).

@@ -31,10 +31,10 @@
     <component name="purchaseBhv" class="com.example.dbflute.db2.dbflute.exbhv.PurchaseBhv"/>
     <component name="regionBhv" class="com.example.dbflute.db2.dbflute.exbhv.RegionBhv"/>
     <component name="serviceRankBhv" class="com.example.dbflute.db2.dbflute.exbhv.ServiceRankBhv"/>
+    <component name="summaryProductBhv" class="com.example.dbflute.db2.dbflute.exbhv.SummaryProductBhv"/>
     <component name="vendorCheckBhv" class="com.example.dbflute.db2.dbflute.exbhv.VendorCheckBhv"/>
     <component name="whiteRefTargetBhv" class="com.example.dbflute.db2.dbflute.exbhv.WhiteRefTargetBhv"/>
     <component name="whiteTargetBhv" class="com.example.dbflute.db2.dbflute.exbhv.WhiteTargetBhv"/>
     <component name="withdrawalReasonBhv" class="com.example.dbflute.db2.dbflute.exbhv.WithdrawalReasonBhv"/>
-    <component name="summaryProductBhv" class="com.example.dbflute.db2.dbflute.exbhv.SummaryProductBhv"/>
     <component name="summaryMemberPurchaseBhv" class="com.example.dbflute.db2.dbflute.exbhv.SummaryMemberPurchaseBhv"/>
 </components>

@@ -68,7 +68,7 @@ public class WithdrawalReasonDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnWithdrawalReasonCode = cci("WITHDRAWAL_REASON_CODE", "WITHDRAWAL_REASON_CODE", null, null, true, "withdrawalReasonCode", String.class, true, false, "CHAR", 3, 0, null, false, null, null, null, "synonymMemberWithdrawalList,memberWithdrawalList", null);
+    protected final ColumnInfo _columnWithdrawalReasonCode = cci("WITHDRAWAL_REASON_CODE", "WITHDRAWAL_REASON_CODE", null, null, true, "withdrawalReasonCode", String.class, true, false, "CHAR", 3, 0, null, false, null, null, null, "memberWithdrawalList,synonymMemberWithdrawalList", null);
     protected final ColumnInfo _columnWithdrawalReasonText = cci("WITHDRAWAL_REASON_TEXT", "WITHDRAWAL_REASON_TEXT", null, null, true, "withdrawalReasonText", String.class, false, false, "CLOB", 4000, 0, null, false, null, null, null, null, null);
     protected final ColumnInfo _columnDisplayOrder = cci("DISPLAY_ORDER", "DISPLAY_ORDER", null, null, true, "displayOrder", Long.class, false, false, "NUMBER", 16, 0, null, false, null, null, null, null, null);
 
@@ -106,13 +106,13 @@ public class WithdrawalReasonDbm extends AbstractDBMeta {
     // -----------------------------------------------------
     //                                     Referrer Property
     //                                     -----------------
-    public ReferrerInfo referrerSynonymMemberWithdrawalList() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnWithdrawalReasonCode(), SynonymMemberWithdrawalDbm.getInstance().columnWithdrawalReasonCode());
-        return cri("FK_MEMBER_WITHDRAWAL_REASON", "synonymMemberWithdrawalList", this, SynonymMemberWithdrawalDbm.getInstance(), map, false, "withdrawalReason");
-    }
     public ReferrerInfo referrerMemberWithdrawalList() {
         Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnWithdrawalReasonCode(), MemberWithdrawalDbm.getInstance().columnWithdrawalReasonCode());
         return cri("FK_MEMBER_WITHDRAWAL_REASON", "memberWithdrawalList", this, MemberWithdrawalDbm.getInstance(), map, false, "withdrawalReason");
+    }
+    public ReferrerInfo referrerSynonymMemberWithdrawalList() {
+        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnWithdrawalReasonCode(), SynonymMemberWithdrawalDbm.getInstance().columnWithdrawalReasonCode());
+        return cri("FK_MEMBER_WITHDRAWAL_REASON", "synonymMemberWithdrawalList", this, SynonymMemberWithdrawalDbm.getInstance(), map, false, "withdrawalReason");
     }
 
     // ===================================================================================

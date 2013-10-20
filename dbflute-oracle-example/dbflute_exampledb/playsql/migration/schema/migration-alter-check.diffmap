@@ -1,6 +1,6 @@
 map:{
-    ; 2013/10/08 18:00:51 = map:{
-        ; diffDate = 2013/10/08 18:00:51
+    ; 2013/10/20 21:18:36 = map:{
+        ; diffDate = 2013/10/20 21:18:36
         ; tableCount = map:{
             ; next = 47
             ; previous = 45
@@ -14,6 +14,46 @@ map:{
                 ; tableName = REGION
                 ; diffType = ADD
             }
+            ; MEMBER = map:{
+                ; tableName = MEMBER
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; MEMBER_ACCOUNT = map:{
+                        ; columnName = MEMBER_ACCOUNT
+                        ; diffType = CHANGE
+                        ; columnSizeDiff = map:{
+                            ; next = 80
+                            ; previous = 50
+                        }
+                    }
+                }
+            }
+            ; MEMBER_ADDRESS = map:{
+                ; tableName = MEMBER_ADDRESS
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; REGION_ID = map:{
+                        ; columnName = REGION_ID
+                        ; diffType = ADD
+                    }
+                }
+                ; foreignKeyDiff = map:{
+                    ; FK_MEMBER_ADDRESS_REGION = map:{
+                        ; constraintName = FK_MEMBER_ADDRESS_REGION
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; MEMBER_SECURITY = map:{
+                ; tableName = MEMBER_SECURITY
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; REMINDER_USE_COUNT = map:{
+                        ; columnName = REMINDER_USE_COUNT
+                        ; diffType = ADD
+                    }
+                }
+            }
             ; MEMBER_VENDOR_SYNONYM = map:{
                 ; tableName = MEMBER_VENDOR_SYNONYM
                 ; diffType = CHANGE
@@ -25,6 +65,20 @@ map:{
                             ; next = 80
                             ; previous = 50
                         }
+                    }
+                }
+            }
+            ; PRODUCT = map:{
+                ; tableName = PRODUCT
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; PRODUCT_CATEGORY_CODE = map:{
+                        ; columnName = PRODUCT_CATEGORY_CODE
+                        ; diffType = ADD
+                    }
+                    ; REGULAR_PRICE = map:{
+                        ; columnName = REGULAR_PRICE
+                        ; diffType = ADD
                     }
                 }
             }
@@ -67,60 +121,6 @@ map:{
                             ; next = 80
                             ; previous = 50
                         }
-                    }
-                }
-            }
-            ; MEMBER = map:{
-                ; tableName = MEMBER
-                ; diffType = CHANGE
-                ; columnDiff = map:{
-                    ; MEMBER_ACCOUNT = map:{
-                        ; columnName = MEMBER_ACCOUNT
-                        ; diffType = CHANGE
-                        ; columnSizeDiff = map:{
-                            ; next = 80
-                            ; previous = 50
-                        }
-                    }
-                }
-            }
-            ; MEMBER_ADDRESS = map:{
-                ; tableName = MEMBER_ADDRESS
-                ; diffType = CHANGE
-                ; columnDiff = map:{
-                    ; REGION_ID = map:{
-                        ; columnName = REGION_ID
-                        ; diffType = ADD
-                    }
-                }
-                ; foreignKeyDiff = map:{
-                    ; FK_MEMBER_ADDRESS_REGION = map:{
-                        ; constraintName = FK_MEMBER_ADDRESS_REGION
-                        ; diffType = ADD
-                    }
-                }
-            }
-            ; MEMBER_SECURITY = map:{
-                ; tableName = MEMBER_SECURITY
-                ; diffType = CHANGE
-                ; columnDiff = map:{
-                    ; REMINDER_USE_COUNT = map:{
-                        ; columnName = REMINDER_USE_COUNT
-                        ; diffType = ADD
-                    }
-                }
-            }
-            ; PRODUCT = map:{
-                ; tableName = PRODUCT
-                ; diffType = CHANGE
-                ; columnDiff = map:{
-                    ; PRODUCT_CATEGORY_CODE = map:{
-                        ; columnName = PRODUCT_CATEGORY_CODE
-                        ; diffType = ADD
-                    }
-                    ; REGULAR_PRICE = map:{
-                        ; columnName = REGULAR_PRICE
-                        ; diffType = ADD
                     }
                 }
             }

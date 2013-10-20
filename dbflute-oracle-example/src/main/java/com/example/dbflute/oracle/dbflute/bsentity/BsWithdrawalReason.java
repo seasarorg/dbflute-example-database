@@ -32,13 +32,13 @@ import com.example.dbflute.oracle.dbflute.exentity.*;
  *     
  * 
  * [referrer table]
- *     SYNONYM_MEMBER_WITHDRAWAL, MEMBER_WITHDRAWAL
+ *     MEMBER_WITHDRAWAL, SYNONYM_MEMBER_WITHDRAWAL
  * 
  * [foreign property]
  *     
  * 
  * [referrer property]
- *     synonymMemberWithdrawalList, memberWithdrawalList
+ *     memberWithdrawalList, synonymMemberWithdrawalList
  * 
  * [get/set template]
  * /= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
@@ -128,26 +128,6 @@ public abstract class BsWithdrawalReason implements Entity, Serializable, Clonea
     // ===================================================================================
     //                                                                   Referrer Property
     //                                                                   =================
-    /** SYNONYM_MEMBER_WITHDRAWAL by WITHDRAWAL_REASON_CODE, named 'synonymMemberWithdrawalList'. */
-    protected List<SynonymMemberWithdrawal> _synonymMemberWithdrawalList;
-
-    /**
-     * SYNONYM_MEMBER_WITHDRAWAL by WITHDRAWAL_REASON_CODE, named 'synonymMemberWithdrawalList'.
-     * @return The entity list of referrer property 'synonymMemberWithdrawalList'. (NotNull: even if no loading, returns empty list)
-     */
-    public List<SynonymMemberWithdrawal> getSynonymMemberWithdrawalList() {
-        if (_synonymMemberWithdrawalList == null) { _synonymMemberWithdrawalList = newReferrerList(); }
-        return _synonymMemberWithdrawalList;
-    }
-
-    /**
-     * SYNONYM_MEMBER_WITHDRAWAL by WITHDRAWAL_REASON_CODE, named 'synonymMemberWithdrawalList'.
-     * @param synonymMemberWithdrawalList The entity list of referrer property 'synonymMemberWithdrawalList'. (NullAllowed)
-     */
-    public void setSynonymMemberWithdrawalList(List<SynonymMemberWithdrawal> synonymMemberWithdrawalList) {
-        _synonymMemberWithdrawalList = synonymMemberWithdrawalList;
-    }
-
     /** MEMBER_WITHDRAWAL by WITHDRAWAL_REASON_CODE, named 'memberWithdrawalList'. */
     protected List<MemberWithdrawal> _memberWithdrawalList;
 
@@ -166,6 +146,26 @@ public abstract class BsWithdrawalReason implements Entity, Serializable, Clonea
      */
     public void setMemberWithdrawalList(List<MemberWithdrawal> memberWithdrawalList) {
         _memberWithdrawalList = memberWithdrawalList;
+    }
+
+    /** SYNONYM_MEMBER_WITHDRAWAL by WITHDRAWAL_REASON_CODE, named 'synonymMemberWithdrawalList'. */
+    protected List<SynonymMemberWithdrawal> _synonymMemberWithdrawalList;
+
+    /**
+     * SYNONYM_MEMBER_WITHDRAWAL by WITHDRAWAL_REASON_CODE, named 'synonymMemberWithdrawalList'.
+     * @return The entity list of referrer property 'synonymMemberWithdrawalList'. (NotNull: even if no loading, returns empty list)
+     */
+    public List<SynonymMemberWithdrawal> getSynonymMemberWithdrawalList() {
+        if (_synonymMemberWithdrawalList == null) { _synonymMemberWithdrawalList = newReferrerList(); }
+        return _synonymMemberWithdrawalList;
+    }
+
+    /**
+     * SYNONYM_MEMBER_WITHDRAWAL by WITHDRAWAL_REASON_CODE, named 'synonymMemberWithdrawalList'.
+     * @param synonymMemberWithdrawalList The entity list of referrer property 'synonymMemberWithdrawalList'. (NullAllowed)
+     */
+    public void setSynonymMemberWithdrawalList(List<SynonymMemberWithdrawal> synonymMemberWithdrawalList) {
+        _synonymMemberWithdrawalList = synonymMemberWithdrawalList;
     }
 
     protected <ELEMENT> List<ELEMENT> newReferrerList() {
@@ -272,10 +272,10 @@ public abstract class BsWithdrawalReason implements Entity, Serializable, Clonea
         StringBuilder sb = new StringBuilder();
         sb.append(toString());
         String l = "\n  ";
-        if (_synonymMemberWithdrawalList != null) { for (Entity e : _synonymMemberWithdrawalList)
-        { if (e != null) { sb.append(l).append(xbRDS(e, "synonymMemberWithdrawalList")); } } }
         if (_memberWithdrawalList != null) { for (Entity e : _memberWithdrawalList)
         { if (e != null) { sb.append(l).append(xbRDS(e, "memberWithdrawalList")); } } }
+        if (_synonymMemberWithdrawalList != null) { for (Entity e : _synonymMemberWithdrawalList)
+        { if (e != null) { sb.append(l).append(xbRDS(e, "synonymMemberWithdrawalList")); } } }
         return sb.toString();
     }
     protected String xbRDS(Entity e, String name) { // buildRelationDisplayString()
@@ -308,10 +308,10 @@ public abstract class BsWithdrawalReason implements Entity, Serializable, Clonea
     protected String buildRelationString() {
         StringBuilder sb = new StringBuilder();
         String c = ",";
-        if (_synonymMemberWithdrawalList != null && !_synonymMemberWithdrawalList.isEmpty())
-        { sb.append(c).append("synonymMemberWithdrawalList"); }
         if (_memberWithdrawalList != null && !_memberWithdrawalList.isEmpty())
         { sb.append(c).append("memberWithdrawalList"); }
+        if (_synonymMemberWithdrawalList != null && !_synonymMemberWithdrawalList.isEmpty())
+        { sb.append(c).append("synonymMemberWithdrawalList"); }
         if (sb.length() > c.length()) {
             sb.delete(0, c.length()).insert(0, "(").append(")");
         }

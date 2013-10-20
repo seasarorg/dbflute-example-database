@@ -60,6 +60,8 @@ public class DBMetaInstanceHandler implements DBMetaProvider {
         tmpMap.put("purchase", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.PurchaseDbm");
         tmpMap.put("region", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.RegionDbm");
         tmpMap.put("service_rank", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.ServiceRankDbm");
+        tmpMap.put("summary_product", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.SummaryProductDbm");
+        tmpMap.put("summary_withdrawal", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.SummaryWithdrawalDbm");
         tmpMap.put("vendor_check", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.VendorCheckDbm");
         tmpMap.put("vendor_constraint_name_auto_bar", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.VendorConstraintNameAutoBarDbm");
         tmpMap.put("vendor_constraint_name_auto_foo", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.VendorConstraintNameAutoFooDbm");
@@ -95,6 +97,7 @@ public class DBMetaInstanceHandler implements DBMetaProvider {
         tmpMap.put("white_myself", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteMyselfDbm");
         tmpMap.put("white_myself_check", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteMyselfCheckDbm");
         tmpMap.put("white_no_pk", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteNoPkDbm");
+        tmpMap.put("white_no_pk_relation", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteNoPkRelationDbm");
         tmpMap.put("white_pg_reserv", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhitePgReservDbm");
         tmpMap.put("white_pg_reserv_ref", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhitePgReservRefDbm");
         tmpMap.put("white_purchase_referrer", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhitePurchaseReferrerDbm");
@@ -119,9 +122,6 @@ public class DBMetaInstanceHandler implements DBMetaProvider {
         tmpMap.put("white_variant_relation_referrer", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteVariantRelationReferrerDbm");
         tmpMap.put("white_xls_man", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteXlsManDbm");
         tmpMap.put("withdrawal_reason", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WithdrawalReasonDbm");
-        tmpMap.put("summary_product", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.SummaryProductDbm");
-        tmpMap.put("summary_withdrawal", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.SummaryWithdrawalDbm");
-        tmpMap.put("white_no_pk_relation", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteNoPkRelationDbm");
         tmpMap.put("next_schema_product", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.NextSchemaProductDbm");
         tmpMap.put("white_additional", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteAdditionalDbm");
         _tableDbNameClassNameMap = Collections.unmodifiableMap(tmpMap);
