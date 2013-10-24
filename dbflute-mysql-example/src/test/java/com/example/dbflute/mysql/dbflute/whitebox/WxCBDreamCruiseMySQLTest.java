@@ -15,11 +15,14 @@ import org.seasar.dbflute.cbean.coption.LikeSearchOption;
 import org.seasar.dbflute.util.Srl;
 
 import com.example.dbflute.mysql.dbflute.cbean.MemberCB;
+import com.example.dbflute.mysql.dbflute.cbean.MemberSecurityCB;
 import com.example.dbflute.mysql.dbflute.cbean.MemberServiceCB;
 import com.example.dbflute.mysql.dbflute.cbean.PurchaseCB;
 import com.example.dbflute.mysql.dbflute.exbhv.MemberBhv;
+import com.example.dbflute.mysql.dbflute.exbhv.MemberSecurityBhv;
 import com.example.dbflute.mysql.dbflute.exbhv.MemberServiceBhv;
 import com.example.dbflute.mysql.dbflute.exentity.Member;
+import com.example.dbflute.mysql.dbflute.exentity.MemberSecurity;
 import com.example.dbflute.mysql.dbflute.exentity.MemberService;
 import com.example.dbflute.mysql.unit.UnitContainerTestCase;
 
@@ -33,6 +36,7 @@ public class WxCBDreamCruiseMySQLTest extends UnitContainerTestCase {
     //                                                                           Attribute
     //                                                                           =========
     private MemberBhv memberBhv;
+    private MemberSecurityBhv memberSecurityBhv;
     private MemberServiceBhv memberServiceBhv;
 
     // ===================================================================================
@@ -232,20 +236,20 @@ public class WxCBDreamCruiseMySQLTest extends UnitContainerTestCase {
 
     public void test_DreamCruise_ManualOrder_union() throws Exception {
         // ## Arrange ##
-        ListResultBean<MemberService> serviceList = memberServiceBhv.selectList(new MemberServiceCB());
-        Map<Integer, MemberService> serviceMap = new HashMap<Integer, MemberService>();
-        for (MemberService service : serviceList) {
-            serviceMap.put(service.getMemberId(), service);
+        ListResultBean<MemberSecurity> securityList = memberSecurityBhv.selectList(new MemberSecurityCB());
+        Map<Integer, MemberSecurity> securityMap = new HashMap<Integer, MemberSecurity>();
+        for (MemberSecurity security : securityList) {
+            securityMap.put(security.getMemberId(), security);
         }
         MemberCB cb = new MemberCB();
-        //cb.setupSelect_MemberServiceAsOne(); // auto-resolved
+        //cb.setupSelect_MemberSecurityAsOne(); // auto-resolved
         cb.union(new UnionQuery<MemberCB>() {
             public void query(MemberCB unionCB) {
             }
         });
         MemberCB dreamCruiseCB = cb.dreamCruiseCB();
         ManualOrderBean mob = new ManualOrderBean();
-        mob.multiply(dreamCruiseCB.specify().specifyMemberServiceAsOne().columnServicePointCount());
+        mob.multiply(dreamCruiseCB.specify().specifyMemberSecurityAsOne().columnReminderUseCount());
         cb.query().addOrderBy_MemberId_Asc().withManualOrder(mob);
 
         // ## Act ##
@@ -256,13 +260,13 @@ public class WxCBDreamCruiseMySQLTest extends UnitContainerTestCase {
         Integer previousSortValue = null;
         for (Member member : memberList) {
             Integer memberId = member.getMemberId();
-            Integer servicePointCount = serviceMap.get(memberId).getServicePointCount();
-            Integer sortValue = memberId * servicePointCount;
+            Integer useCount = securityMap.get(memberId).getReminderUseCount();
+            Integer sortValue = memberId * useCount;
             if (previousSortValue != null && previousSortValue > sortValue) {
                 fail();
             }
             previousSortValue = sortValue;
-            log(member.getMemberId() + ", " + servicePointCount + ", " + sortValue);
+            log(member.getMemberId() + ", " + useCount + ", " + sortValue);
         }
     }
 }

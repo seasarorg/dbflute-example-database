@@ -41,7 +41,8 @@ public class VendorConstraintNameAutoRefNss {
      */
     public VendorConstraintNameAutoFooNss withVendorConstraintNameAutoFoo() {
         _query.doNss(new VendorConstraintNameAutoRefCQ.NssCall() { public ConditionQuery qf() { return _query.queryVendorConstraintNameAutoFoo(); }});
-        return new VendorConstraintNameAutoFooNss(_query.queryVendorConstraintNameAutoFoo());
+        VendorConstraintNameAutoFooNss moreNss = new VendorConstraintNameAutoFooNss(_query.queryVendorConstraintNameAutoFoo());
+        return moreNss;
     }
     /**
      * With nested relation columns to select clause. <br />
@@ -50,7 +51,8 @@ public class VendorConstraintNameAutoRefNss {
      */
     public VendorConstraintNameAutoBarNss withVendorConstraintNameAutoBar() {
         _query.doNss(new VendorConstraintNameAutoRefCQ.NssCall() { public ConditionQuery qf() { return _query.queryVendorConstraintNameAutoBar(); }});
-        return new VendorConstraintNameAutoBarNss(_query.queryVendorConstraintNameAutoBar());
+        VendorConstraintNameAutoBarNss moreNss = new VendorConstraintNameAutoBarNss(_query.queryVendorConstraintNameAutoBar());
+        return moreNss;
     }
     /**
      * With nested relation columns to select clause. <br />
@@ -59,7 +61,8 @@ public class VendorConstraintNameAutoRefNss {
      */
     public VendorConstraintNameAutoQuxNss withVendorConstraintNameAutoQux() {
         _query.doNss(new VendorConstraintNameAutoRefCQ.NssCall() { public ConditionQuery qf() { return _query.queryVendorConstraintNameAutoQux(); }});
-        return new VendorConstraintNameAutoQuxNss(_query.queryVendorConstraintNameAutoQux());
+        VendorConstraintNameAutoQuxNss moreNss = new VendorConstraintNameAutoQuxNss(_query.queryVendorConstraintNameAutoQux());
+        return moreNss;
     }
 
 }

@@ -41,7 +41,8 @@ public class WhiteUqReferenceRefNestNss {
      */
     public WhiteUqReferenceRefNss withWhiteUqReferenceRef() {
         _query.doNss(new WhiteUqReferenceRefNestCQ.NssCall() { public ConditionQuery qf() { return _query.queryWhiteUqReferenceRef(); }});
-        return new WhiteUqReferenceRefNss(_query.queryWhiteUqReferenceRef());
+        WhiteUqReferenceRefNss moreNss = new WhiteUqReferenceRefNss(_query.queryWhiteUqReferenceRef());
+        return moreNss;
     }
 
 }

@@ -41,7 +41,8 @@ public class SummaryProductNss {
      */
     public ProductStatusNss withProductStatus() {
         _query.doNss(new SummaryProductCQ.NssCall() { public ConditionQuery qf() { return _query.queryProductStatus(); }});
-        return new ProductStatusNss(_query.queryProductStatus());
+        ProductStatusNss moreNss = new ProductStatusNss(_query.queryProductStatus());
+        return moreNss;
     }
 
 }

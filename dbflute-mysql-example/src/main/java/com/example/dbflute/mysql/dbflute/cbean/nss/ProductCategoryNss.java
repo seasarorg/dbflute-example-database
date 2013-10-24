@@ -41,7 +41,8 @@ public class ProductCategoryNss {
      */
     public ProductCategoryNss withProductCategorySelf() {
         _query.doNss(new ProductCategoryCQ.NssCall() { public ConditionQuery qf() { return _query.queryProductCategorySelf(); }});
-        return new ProductCategoryNss(_query.queryProductCategorySelf());
+        ProductCategoryNss moreNss = new ProductCategoryNss(_query.queryProductCategorySelf());
+        return moreNss;
     }
 
 }

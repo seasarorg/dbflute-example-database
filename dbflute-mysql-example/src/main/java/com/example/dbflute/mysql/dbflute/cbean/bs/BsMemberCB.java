@@ -777,6 +777,7 @@ public class BsMemberCB extends AbstractConditionBean {
     public MemberServiceNss setupSelect_MemberServiceAsOne() {
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryMemberServiceAsOne(); } });
         if (_nssMemberServiceAsOne == null || !_nssMemberServiceAsOne.hasConditionQuery()) { _nssMemberServiceAsOne = new MemberServiceNss(query().queryMemberServiceAsOne()); }
+        _nssMemberServiceAsOne.withServiceRank();
         return _nssMemberServiceAsOne;
     }
 

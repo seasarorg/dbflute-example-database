@@ -41,7 +41,8 @@ public class WhiteVariantRelationReferrerNss {
      */
     public WhiteVariantRelationMasterFooNss withWhiteVariantRelationMasterFooAsVariant() {
         _query.doNss(new WhiteVariantRelationReferrerCQ.NssCall() { public ConditionQuery qf() { return _query.queryWhiteVariantRelationMasterFooAsVariant(); }});
-        return new WhiteVariantRelationMasterFooNss(_query.queryWhiteVariantRelationMasterFooAsVariant());
+        WhiteVariantRelationMasterFooNss moreNss = new WhiteVariantRelationMasterFooNss(_query.queryWhiteVariantRelationMasterFooAsVariant());
+        return moreNss;
     }
     /**
      * With nested relation columns to select clause. <br />
@@ -50,7 +51,8 @@ public class WhiteVariantRelationReferrerNss {
      */
     public WhiteVariantRelationMasterBarNss withWhiteVariantRelationMasterBarAsVariant() {
         _query.doNss(new WhiteVariantRelationReferrerCQ.NssCall() { public ConditionQuery qf() { return _query.queryWhiteVariantRelationMasterBarAsVariant(); }});
-        return new WhiteVariantRelationMasterBarNss(_query.queryWhiteVariantRelationMasterBarAsVariant());
+        WhiteVariantRelationMasterBarNss moreNss = new WhiteVariantRelationMasterBarNss(_query.queryWhiteVariantRelationMasterBarAsVariant());
+        return moreNss;
     }
     /**
      * With nested relation columns to select clause. <br />
@@ -59,7 +61,8 @@ public class WhiteVariantRelationReferrerNss {
      */
     public WhiteVariantRelationMasterQuxNss withWhiteVariantRelationMasterQuxAsVariantByQue() {
         _query.doNss(new WhiteVariantRelationReferrerCQ.NssCall() { public ConditionQuery qf() { return _query.queryWhiteVariantRelationMasterQuxAsVariantByQue(); }});
-        return new WhiteVariantRelationMasterQuxNss(_query.queryWhiteVariantRelationMasterQuxAsVariantByQue());
+        WhiteVariantRelationMasterQuxNss moreNss = new WhiteVariantRelationMasterQuxNss(_query.queryWhiteVariantRelationMasterQuxAsVariantByQue());
+        return moreNss;
     }
     /**
      * With nested relation columns to select clause. <br />
@@ -69,7 +72,8 @@ public class WhiteVariantRelationReferrerNss {
      */
     public WhiteVariantRelationMasterCorgeNss withWhiteVariantRelationMasterCorgeAsVariantByQuxType(final com.example.dbflute.mysql.dbflute.allcommon.CDef.VariantRelationQuxType quxType) {
         _query.doNss(new WhiteVariantRelationReferrerCQ.NssCall() { public ConditionQuery qf() { return _query.queryWhiteVariantRelationMasterCorgeAsVariantByQuxType(quxType); }});
-        return new WhiteVariantRelationMasterCorgeNss(_query.queryWhiteVariantRelationMasterCorgeAsVariantByQuxType(quxType));
+        WhiteVariantRelationMasterCorgeNss moreNss = new WhiteVariantRelationMasterCorgeNss(_query.queryWhiteVariantRelationMasterCorgeAsVariantByQuxType(quxType));
+        return moreNss;
     }
 
 }

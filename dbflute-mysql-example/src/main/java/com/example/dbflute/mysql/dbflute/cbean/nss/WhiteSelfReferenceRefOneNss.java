@@ -41,7 +41,8 @@ public class WhiteSelfReferenceRefOneNss {
      */
     public WhiteSelfReferenceNss withWhiteSelfReference() {
         _query.doNss(new WhiteSelfReferenceRefOneCQ.NssCall() { public ConditionQuery qf() { return _query.queryWhiteSelfReference(); }});
-        return new WhiteSelfReferenceNss(_query.queryWhiteSelfReference());
+        WhiteSelfReferenceNss moreNss = new WhiteSelfReferenceNss(_query.queryWhiteSelfReference());
+        return moreNss;
     }
     /**
      * With nested relation columns to select clause. <br />
@@ -50,7 +51,8 @@ public class WhiteSelfReferenceRefOneNss {
      */
     public WhiteSelfReferenceNss withWhiteSelfReferenceAsDirectParent() {
         _query.doNss(new WhiteSelfReferenceRefOneCQ.NssCall() { public ConditionQuery qf() { return _query.queryWhiteSelfReferenceAsDirectParent(); }});
-        return new WhiteSelfReferenceNss(_query.queryWhiteSelfReferenceAsDirectParent());
+        WhiteSelfReferenceNss moreNss = new WhiteSelfReferenceNss(_query.queryWhiteSelfReferenceAsDirectParent());
+        return moreNss;
     }
 
 }

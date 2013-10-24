@@ -41,7 +41,8 @@ public class PurchaseNss {
      */
     public MemberNss withMember() {
         _query.doNss(new PurchaseCQ.NssCall() { public ConditionQuery qf() { return _query.queryMember(); }});
-        return new MemberNss(_query.queryMember());
+        MemberNss moreNss = new MemberNss(_query.queryMember());
+        return moreNss;
     }
     /**
      * With nested relation columns to select clause. <br />
@@ -50,7 +51,8 @@ public class PurchaseNss {
      */
     public ProductNss withProduct() {
         _query.doNss(new PurchaseCQ.NssCall() { public ConditionQuery qf() { return _query.queryProduct(); }});
-        return new ProductNss(_query.queryProduct());
+        ProductNss moreNss = new ProductNss(_query.queryProduct());
+        return moreNss;
     }
     /**
      * With nested relation columns to select clause. <br />
@@ -59,7 +61,8 @@ public class PurchaseNss {
      */
     public SummaryProductNss withSummaryProduct() {
         _query.doNss(new PurchaseCQ.NssCall() { public ConditionQuery qf() { return _query.querySummaryProduct(); }});
-        return new SummaryProductNss(_query.querySummaryProduct());
+        SummaryProductNss moreNss = new SummaryProductNss(_query.querySummaryProduct());
+        return moreNss;
     }
     /**
      * With nested relation columns to select clause. <br />
@@ -68,7 +71,8 @@ public class PurchaseNss {
      */
     public SummaryWithdrawalNss withSummaryWithdrawal() {
         _query.doNss(new PurchaseCQ.NssCall() { public ConditionQuery qf() { return _query.querySummaryWithdrawal(); }});
-        return new SummaryWithdrawalNss(_query.querySummaryWithdrawal());
+        SummaryWithdrawalNss moreNss = new SummaryWithdrawalNss(_query.querySummaryWithdrawal());
+        return moreNss;
     }
     /**
      * With nested relation columns to select clause. <br />
@@ -77,7 +81,8 @@ public class PurchaseNss {
      */
     public WhiteNoPkRelationNss withWhiteNoPkRelation() {
         _query.doNss(new PurchaseCQ.NssCall() { public ConditionQuery qf() { return _query.queryWhiteNoPkRelation(); }});
-        return new WhiteNoPkRelationNss(_query.queryWhiteNoPkRelation());
+        WhiteNoPkRelationNss moreNss = new WhiteNoPkRelationNss(_query.queryWhiteNoPkRelation());
+        return moreNss;
     }
     /**
      * With nested relation columns to select clause. <br />
@@ -86,7 +91,8 @@ public class PurchaseNss {
      */
     public PurchaseNss withPurchaseSelf() {
         _query.doNss(new PurchaseCQ.NssCall() { public ConditionQuery qf() { return _query.queryPurchaseSelf(); }});
-        return new PurchaseNss(_query.queryPurchaseSelf());
+        PurchaseNss moreNss = new PurchaseNss(_query.queryPurchaseSelf());
+        return moreNss;
     }
     /**
      * With nested relation columns to select clause. <br />
@@ -96,7 +102,8 @@ public class PurchaseNss {
      */
     public MemberAddressNss withMemberAddressAsSkipRelation(final java.util.Date targetDate) {
         _query.doNss(new PurchaseCQ.NssCall() { public ConditionQuery qf() { return _query.queryMemberAddressAsSkipRelation(targetDate); }});
-        return new MemberAddressNss(_query.queryMemberAddressAsSkipRelation(targetDate));
+        MemberAddressNss moreNss = new MemberAddressNss(_query.queryMemberAddressAsSkipRelation(targetDate));
+        return moreNss;
     }
 
     /**
@@ -106,7 +113,8 @@ public class PurchaseNss {
      */
     public WhitePurchaseReferrerNss withWhitePurchaseReferrerAsOne() {
         _query.doNss(new PurchaseCQ.NssCall() { public ConditionQuery qf() { return _query.queryWhitePurchaseReferrerAsOne(); }});
-        return new WhitePurchaseReferrerNss(_query.queryWhitePurchaseReferrerAsOne());
+        WhitePurchaseReferrerNss moreNss = new WhitePurchaseReferrerNss(_query.queryWhitePurchaseReferrerAsOne());
+        return moreNss;
     }
     /**
      * With nested relation columns to select clause. <br />
@@ -115,6 +123,7 @@ public class PurchaseNss {
      */
     public PurchaseNss withPurchaseSelfAsOne() {
         _query.doNss(new PurchaseCQ.NssCall() { public ConditionQuery qf() { return _query.queryPurchaseSelfAsOne(); }});
-        return new PurchaseNss(_query.queryPurchaseSelfAsOne());
+        PurchaseNss moreNss = new PurchaseNss(_query.queryPurchaseSelfAsOne());
+        return moreNss;
     }
 }

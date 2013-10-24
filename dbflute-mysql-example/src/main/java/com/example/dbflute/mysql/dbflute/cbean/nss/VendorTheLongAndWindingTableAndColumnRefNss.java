@@ -41,7 +41,8 @@ public class VendorTheLongAndWindingTableAndColumnRefNss {
      */
     public VendorTheLongAndWindingTableAndColumnNss withVendorTheLongAndWindingTableAndColumn() {
         _query.doNss(new VendorTheLongAndWindingTableAndColumnRefCQ.NssCall() { public ConditionQuery qf() { return _query.queryVendorTheLongAndWindingTableAndColumn(); }});
-        return new VendorTheLongAndWindingTableAndColumnNss(_query.queryVendorTheLongAndWindingTableAndColumn());
+        VendorTheLongAndWindingTableAndColumnNss moreNss = new VendorTheLongAndWindingTableAndColumnNss(_query.queryVendorTheLongAndWindingTableAndColumn());
+        return moreNss;
     }
 
 }

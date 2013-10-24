@@ -41,7 +41,8 @@ public class MemberServiceNss {
      */
     public MemberNss withMember() {
         _query.doNss(new MemberServiceCQ.NssCall() { public ConditionQuery qf() { return _query.queryMember(); }});
-        return new MemberNss(_query.queryMember());
+        MemberNss moreNss = new MemberNss(_query.queryMember());
+        return moreNss;
     }
     /**
      * With nested relation columns to select clause. <br />
@@ -50,7 +51,8 @@ public class MemberServiceNss {
      */
     public ServiceRankNss withServiceRank() {
         _query.doNss(new MemberServiceCQ.NssCall() { public ConditionQuery qf() { return _query.queryServiceRank(); }});
-        return new ServiceRankNss(_query.queryServiceRank());
+        ServiceRankNss moreNss = new ServiceRankNss(_query.queryServiceRank());
+        return moreNss;
     }
 
 }

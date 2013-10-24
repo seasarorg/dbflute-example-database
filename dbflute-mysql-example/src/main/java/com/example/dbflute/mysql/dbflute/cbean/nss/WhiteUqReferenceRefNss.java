@@ -41,7 +41,8 @@ public class WhiteUqReferenceRefNss {
      */
     public WhiteUqReferenceNss withWhiteUqReferenceByFkToPkId() {
         _query.doNss(new WhiteUqReferenceRefCQ.NssCall() { public ConditionQuery qf() { return _query.queryWhiteUqReferenceByFkToPkId(); }});
-        return new WhiteUqReferenceNss(_query.queryWhiteUqReferenceByFkToPkId());
+        WhiteUqReferenceNss moreNss = new WhiteUqReferenceNss(_query.queryWhiteUqReferenceByFkToPkId());
+        return moreNss;
     }
     /**
      * With nested relation columns to select clause. <br />
@@ -50,7 +51,8 @@ public class WhiteUqReferenceRefNss {
      */
     public WhiteUqReferenceNss withWhiteUqReferenceByFkToUqCode() {
         _query.doNss(new WhiteUqReferenceRefCQ.NssCall() { public ConditionQuery qf() { return _query.queryWhiteUqReferenceByFkToUqCode(); }});
-        return new WhiteUqReferenceNss(_query.queryWhiteUqReferenceByFkToUqCode());
+        WhiteUqReferenceNss moreNss = new WhiteUqReferenceNss(_query.queryWhiteUqReferenceByFkToUqCode());
+        return moreNss;
     }
 
 }

@@ -61,6 +61,7 @@ public class BsMemberServiceCB extends AbstractConditionBean {
         if (DBFluteConfig.getInstance().isCheckCountBeforeQueryUpdate()) {
             enableCheckCountBeforeQueryUpdate();
         }
+        setupSelect_ServiceRank();
     }
 
     // ===================================================================================

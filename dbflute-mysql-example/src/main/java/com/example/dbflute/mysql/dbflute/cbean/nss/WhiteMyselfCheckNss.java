@@ -41,7 +41,8 @@ public class WhiteMyselfCheckNss {
      */
     public WhiteMyselfNss withWhiteMyself() {
         _query.doNss(new WhiteMyselfCheckCQ.NssCall() { public ConditionQuery qf() { return _query.queryWhiteMyself(); }});
-        return new WhiteMyselfNss(_query.queryWhiteMyself());
+        WhiteMyselfNss moreNss = new WhiteMyselfNss(_query.queryWhiteMyself());
+        return moreNss;
     }
 
 }

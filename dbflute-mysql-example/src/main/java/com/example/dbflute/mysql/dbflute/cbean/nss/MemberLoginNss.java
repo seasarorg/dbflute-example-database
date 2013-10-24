@@ -41,7 +41,8 @@ public class MemberLoginNss {
      */
     public MemberNss withMember() {
         _query.doNss(new MemberLoginCQ.NssCall() { public ConditionQuery qf() { return _query.queryMember(); }});
-        return new MemberNss(_query.queryMember());
+        MemberNss moreNss = new MemberNss(_query.queryMember());
+        return moreNss;
     }
     /**
      * With nested relation columns to select clause. <br />
@@ -50,7 +51,8 @@ public class MemberLoginNss {
      */
     public MemberStatusNss withMemberStatus() {
         _query.doNss(new MemberLoginCQ.NssCall() { public ConditionQuery qf() { return _query.queryMemberStatus(); }});
-        return new MemberStatusNss(_query.queryMemberStatus());
+        MemberStatusNss moreNss = new MemberStatusNss(_query.queryMemberStatus());
+        return moreNss;
     }
 
 }

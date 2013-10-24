@@ -351,5 +351,13 @@ map:{
     # the test of check count for next-key-lock of MySQL
     # set this property if you test it  
     ; isCheckCountBeforeQueryUpdate = true
+
+    # the test of SetupSelect Forced Relation
+    ; setupSelectForcedRelationMap = map:{
+        ; MEMBER_SERVICE = list:{ serviceRank }
+
+        # infinity loop case
+        #; PRODUCT_CATEGORY = list:{ productCategorySelf }
+    }
 }
 # ----------------/

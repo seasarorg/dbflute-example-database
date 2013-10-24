@@ -41,7 +41,8 @@ public class WhitePgReservRefNss {
      */
     public WhitePgReservNss withWhitePgReserv() {
         _query.doNss(new WhitePgReservRefCQ.NssCall() { public ConditionQuery qf() { return _query.queryWhitePgReserv(); }});
-        return new WhitePgReservNss(_query.queryWhitePgReserv());
+        WhitePgReservNss moreNss = new WhitePgReservNss(_query.queryWhitePgReserv());
+        return moreNss;
     }
 
 }

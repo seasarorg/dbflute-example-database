@@ -41,7 +41,8 @@ public class MemberNss {
      */
     public MemberStatusNss withMemberStatus() {
         _query.doNss(new MemberCQ.NssCall() { public ConditionQuery qf() { return _query.queryMemberStatus(); }});
-        return new MemberStatusNss(_query.queryMemberStatus());
+        MemberStatusNss moreNss = new MemberStatusNss(_query.queryMemberStatus());
+        return moreNss;
     }
     /**
      * With nested relation columns to select clause. <br />
@@ -51,7 +52,8 @@ public class MemberNss {
      */
     public MemberAddressNss withMemberAddressAsValid(final java.util.Date targetDate) {
         _query.doNss(new MemberCQ.NssCall() { public ConditionQuery qf() { return _query.queryMemberAddressAsValid(targetDate); }});
-        return new MemberAddressNss(_query.queryMemberAddressAsValid(targetDate));
+        MemberAddressNss moreNss = new MemberAddressNss(_query.queryMemberAddressAsValid(targetDate));
+        return moreNss;
     }
     /**
      * With nested relation columns to select clause. <br />
@@ -61,7 +63,8 @@ public class MemberNss {
      */
     public MemberAddressNss withMemberAddressAsValidBefore(final java.util.Date targetDate) {
         _query.doNss(new MemberCQ.NssCall() { public ConditionQuery qf() { return _query.queryMemberAddressAsValidBefore(targetDate); }});
-        return new MemberAddressNss(_query.queryMemberAddressAsValidBefore(targetDate));
+        MemberAddressNss moreNss = new MemberAddressNss(_query.queryMemberAddressAsValidBefore(targetDate));
+        return moreNss;
     }
     /**
      * With nested relation columns to select clause. <br />
@@ -71,7 +74,8 @@ public class MemberNss {
      */
     public MemberLoginNss withMemberLoginAsLoginStatus(final com.example.dbflute.mysql.dbflute.allcommon.CDef.MemberStatus statusCode) {
         _query.doNss(new MemberCQ.NssCall() { public ConditionQuery qf() { return _query.queryMemberLoginAsLoginStatus(statusCode); }});
-        return new MemberLoginNss(_query.queryMemberLoginAsLoginStatus(statusCode));
+        MemberLoginNss moreNss = new MemberLoginNss(_query.queryMemberLoginAsLoginStatus(statusCode));
+        return moreNss;
     }
     /**
      * With nested relation columns to select clause. <br />
@@ -82,7 +86,8 @@ public class MemberNss {
      */
     public MemberAddressNss withMemberAddressAsIfComment(final java.util.Date targetDate, final com.example.dbflute.mysql.dbflute.allcommon.CDef.Region region) {
         _query.doNss(new MemberCQ.NssCall() { public ConditionQuery qf() { return _query.queryMemberAddressAsIfComment(targetDate, region); }});
-        return new MemberAddressNss(_query.queryMemberAddressAsIfComment(targetDate, region));
+        MemberAddressNss moreNss = new MemberAddressNss(_query.queryMemberAddressAsIfComment(targetDate, region));
+        return moreNss;
     }
     /**
      * With nested relation columns to select clause. <br />
@@ -92,7 +97,8 @@ public class MemberNss {
      */
     public MemberAddressNss withMemberAddressAsOnlyOneDate(final java.util.Date targetDate) {
         _query.doNss(new MemberCQ.NssCall() { public ConditionQuery qf() { return _query.queryMemberAddressAsOnlyOneDate(targetDate); }});
-        return new MemberAddressNss(_query.queryMemberAddressAsOnlyOneDate(targetDate));
+        MemberAddressNss moreNss = new MemberAddressNss(_query.queryMemberAddressAsOnlyOneDate(targetDate));
+        return moreNss;
     }
     /**
      * With nested relation columns to select clause. <br />
@@ -101,7 +107,8 @@ public class MemberNss {
      */
     public MemberLoginNss withMemberLoginAsLocalForeignOverTest() {
         _query.doNss(new MemberCQ.NssCall() { public ConditionQuery qf() { return _query.queryMemberLoginAsLocalForeignOverTest(); }});
-        return new MemberLoginNss(_query.queryMemberLoginAsLocalForeignOverTest());
+        MemberLoginNss moreNss = new MemberLoginNss(_query.queryMemberLoginAsLocalForeignOverTest());
+        return moreNss;
     }
     /**
      * With nested relation columns to select clause. <br />
@@ -110,7 +117,8 @@ public class MemberNss {
      */
     public MemberLoginNss withMemberLoginAsForeignForeignEachOverTest() {
         _query.doNss(new MemberCQ.NssCall() { public ConditionQuery qf() { return _query.queryMemberLoginAsForeignForeignEachOverTest(); }});
-        return new MemberLoginNss(_query.queryMemberLoginAsForeignForeignEachOverTest());
+        MemberLoginNss moreNss = new MemberLoginNss(_query.queryMemberLoginAsForeignForeignEachOverTest());
+        return moreNss;
     }
     /**
      * With nested relation columns to select clause. <br />
@@ -119,7 +127,8 @@ public class MemberNss {
      */
     public MemberLoginNss withMemberLoginAsForeignForeignOptimizedBasicOverTest() {
         _query.doNss(new MemberCQ.NssCall() { public ConditionQuery qf() { return _query.queryMemberLoginAsForeignForeignOptimizedBasicOverTest(); }});
-        return new MemberLoginNss(_query.queryMemberLoginAsForeignForeignOptimizedBasicOverTest());
+        MemberLoginNss moreNss = new MemberLoginNss(_query.queryMemberLoginAsForeignForeignOptimizedBasicOverTest());
+        return moreNss;
     }
     /**
      * With nested relation columns to select clause. <br />
@@ -128,7 +137,8 @@ public class MemberNss {
      */
     public MemberLoginNss withMemberLoginAsForeignForeignOptimizedMarkOverTest() {
         _query.doNss(new MemberCQ.NssCall() { public ConditionQuery qf() { return _query.queryMemberLoginAsForeignForeignOptimizedMarkOverTest(); }});
-        return new MemberLoginNss(_query.queryMemberLoginAsForeignForeignOptimizedMarkOverTest());
+        MemberLoginNss moreNss = new MemberLoginNss(_query.queryMemberLoginAsForeignForeignOptimizedMarkOverTest());
+        return moreNss;
     }
     /**
      * With nested relation columns to select clause. <br />
@@ -138,7 +148,8 @@ public class MemberNss {
      */
     public MemberLoginNss withMemberLoginAsForeignForeignOptimizedPartOverTest(final String memberName) {
         _query.doNss(new MemberCQ.NssCall() { public ConditionQuery qf() { return _query.queryMemberLoginAsForeignForeignOptimizedPartOverTest(memberName); }});
-        return new MemberLoginNss(_query.queryMemberLoginAsForeignForeignOptimizedPartOverTest(memberName));
+        MemberLoginNss moreNss = new MemberLoginNss(_query.queryMemberLoginAsForeignForeignOptimizedPartOverTest(memberName));
+        return moreNss;
     }
     /**
      * With nested relation columns to select clause. <br />
@@ -147,7 +158,8 @@ public class MemberNss {
      */
     public MemberLoginNss withMemberLoginAsForeignForeignOptimizedWholeOverTest() {
         _query.doNss(new MemberCQ.NssCall() { public ConditionQuery qf() { return _query.queryMemberLoginAsForeignForeignOptimizedWholeOverTest(); }});
-        return new MemberLoginNss(_query.queryMemberLoginAsForeignForeignOptimizedWholeOverTest());
+        MemberLoginNss moreNss = new MemberLoginNss(_query.queryMemberLoginAsForeignForeignOptimizedWholeOverTest());
+        return moreNss;
     }
     /**
      * With nested relation columns to select clause. <br />
@@ -157,7 +169,8 @@ public class MemberNss {
      */
     public MemberLoginNss withMemberLoginAsForeignForeignParameterOverTest(final java.util.Date targetDate) {
         _query.doNss(new MemberCQ.NssCall() { public ConditionQuery qf() { return _query.queryMemberLoginAsForeignForeignParameterOverTest(targetDate); }});
-        return new MemberLoginNss(_query.queryMemberLoginAsForeignForeignParameterOverTest(targetDate));
+        MemberLoginNss moreNss = new MemberLoginNss(_query.queryMemberLoginAsForeignForeignParameterOverTest(targetDate));
+        return moreNss;
     }
     /**
      * With nested relation columns to select clause. <br />
@@ -166,7 +179,8 @@ public class MemberNss {
      */
     public MemberLoginNss withMemberLoginAsForeignForeignVariousOverTest() {
         _query.doNss(new MemberCQ.NssCall() { public ConditionQuery qf() { return _query.queryMemberLoginAsForeignForeignVariousOverTest(); }});
-        return new MemberLoginNss(_query.queryMemberLoginAsForeignForeignVariousOverTest());
+        MemberLoginNss moreNss = new MemberLoginNss(_query.queryMemberLoginAsForeignForeignVariousOverTest());
+        return moreNss;
     }
     /**
      * With nested relation columns to select clause. <br />
@@ -175,7 +189,8 @@ public class MemberNss {
      */
     public MemberLoginNss withMemberLoginAsReferrerOverTest() {
         _query.doNss(new MemberCQ.NssCall() { public ConditionQuery qf() { return _query.queryMemberLoginAsReferrerOverTest(); }});
-        return new MemberLoginNss(_query.queryMemberLoginAsReferrerOverTest());
+        MemberLoginNss moreNss = new MemberLoginNss(_query.queryMemberLoginAsReferrerOverTest());
+        return moreNss;
     }
     /**
      * With nested relation columns to select clause. <br />
@@ -184,7 +199,8 @@ public class MemberNss {
      */
     public MemberLoginNss withMemberLoginAsReferrerForeignOverTest() {
         _query.doNss(new MemberCQ.NssCall() { public ConditionQuery qf() { return _query.queryMemberLoginAsReferrerForeignOverTest(); }});
-        return new MemberLoginNss(_query.queryMemberLoginAsReferrerForeignOverTest());
+        MemberLoginNss moreNss = new MemberLoginNss(_query.queryMemberLoginAsReferrerForeignOverTest());
+        return moreNss;
     }
     /**
      * With nested relation columns to select clause. <br />
@@ -194,7 +210,8 @@ public class MemberNss {
      */
     public MemberAddressNss withMemberAddressAsFormattedBasic(final java.util.Date targetDate) {
         _query.doNss(new MemberCQ.NssCall() { public ConditionQuery qf() { return _query.queryMemberAddressAsFormattedBasic(targetDate); }});
-        return new MemberAddressNss(_query.queryMemberAddressAsFormattedBasic(targetDate));
+        MemberAddressNss moreNss = new MemberAddressNss(_query.queryMemberAddressAsFormattedBasic(targetDate));
+        return moreNss;
     }
     /**
      * With nested relation columns to select clause. <br />
@@ -204,7 +221,8 @@ public class MemberNss {
      */
     public MemberAddressNss withMemberAddressAsFormattedLong(final java.util.Date targetDate) {
         _query.doNss(new MemberCQ.NssCall() { public ConditionQuery qf() { return _query.queryMemberAddressAsFormattedLong(targetDate); }});
-        return new MemberAddressNss(_query.queryMemberAddressAsFormattedLong(targetDate));
+        MemberAddressNss moreNss = new MemberAddressNss(_query.queryMemberAddressAsFormattedLong(targetDate));
+        return moreNss;
     }
     /**
      * With nested relation columns to select clause. <br />
@@ -213,7 +231,8 @@ public class MemberNss {
      */
     public MemberLoginNss withMemberLoginAsFormattedMany() {
         _query.doNss(new MemberCQ.NssCall() { public ConditionQuery qf() { return _query.queryMemberLoginAsFormattedMany(); }});
-        return new MemberLoginNss(_query.queryMemberLoginAsFormattedMany());
+        MemberLoginNss moreNss = new MemberLoginNss(_query.queryMemberLoginAsFormattedMany());
+        return moreNss;
     }
     /**
      * With nested relation columns to select clause. <br />
@@ -222,7 +241,8 @@ public class MemberNss {
      */
     public MemberLoginNss withMemberLoginAsLatest() {
         _query.doNss(new MemberCQ.NssCall() { public ConditionQuery qf() { return _query.queryMemberLoginAsLatest(); }});
-        return new MemberLoginNss(_query.queryMemberLoginAsLatest());
+        MemberLoginNss moreNss = new MemberLoginNss(_query.queryMemberLoginAsLatest());
+        return moreNss;
     }
 
     /**
@@ -232,7 +252,8 @@ public class MemberNss {
      */
     public MemberSecurityNss withMemberSecurityAsOne() {
         _query.doNss(new MemberCQ.NssCall() { public ConditionQuery qf() { return _query.queryMemberSecurityAsOne(); }});
-        return new MemberSecurityNss(_query.queryMemberSecurityAsOne());
+        MemberSecurityNss moreNss = new MemberSecurityNss(_query.queryMemberSecurityAsOne());
+        return moreNss;
     }
     /**
      * With nested relation columns to select clause. <br />
@@ -241,7 +262,9 @@ public class MemberNss {
      */
     public MemberServiceNss withMemberServiceAsOne() {
         _query.doNss(new MemberCQ.NssCall() { public ConditionQuery qf() { return _query.queryMemberServiceAsOne(); }});
-        return new MemberServiceNss(_query.queryMemberServiceAsOne());
+        MemberServiceNss moreNss = new MemberServiceNss(_query.queryMemberServiceAsOne());
+        moreNss.withServiceRank();
+        return moreNss;
     }
     /**
      * With nested relation columns to select clause. <br />
@@ -250,6 +273,7 @@ public class MemberNss {
      */
     public MemberWithdrawalNss withMemberWithdrawalAsOne() {
         _query.doNss(new MemberCQ.NssCall() { public ConditionQuery qf() { return _query.queryMemberWithdrawalAsOne(); }});
-        return new MemberWithdrawalNss(_query.queryMemberWithdrawalAsOne());
+        MemberWithdrawalNss moreNss = new MemberWithdrawalNss(_query.queryMemberWithdrawalAsOne());
+        return moreNss;
     }
 }
