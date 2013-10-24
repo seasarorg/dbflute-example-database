@@ -41,8 +41,7 @@ public class WhiteImplicitConvNumericNss {
      */
     public WhiteImplicitConvIntegerNss withWhiteImplicitConvInteger() {
         _query.doNss(new WhiteImplicitConvNumericCQ.NssCall() { public ConditionQuery qf() { return _query.queryWhiteImplicitConvInteger(); }});
-        WhiteImplicitConvIntegerNss moreNss = new WhiteImplicitConvIntegerNss(_query.queryWhiteImplicitConvInteger());
-        return moreNss;
+        return new WhiteImplicitConvIntegerNss(_query.queryWhiteImplicitConvInteger());
     }
     /**
      * With nested relation columns to select clause. <br />
@@ -51,8 +50,7 @@ public class WhiteImplicitConvNumericNss {
      */
     public WhiteImplicitConvStringNss withWhiteImplicitConvString() {
         _query.doNss(new WhiteImplicitConvNumericCQ.NssCall() { public ConditionQuery qf() { return _query.queryWhiteImplicitConvString(); }});
-        WhiteImplicitConvStringNss moreNss = new WhiteImplicitConvStringNss(_query.queryWhiteImplicitConvString());
-        return moreNss;
+        return new WhiteImplicitConvStringNss(_query.queryWhiteImplicitConvString());
     }
 
 }

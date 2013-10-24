@@ -42,8 +42,7 @@ public class WhiteImplicitReverseFkRefNss {
      */
     public WhiteImplicitReverseFkNss withWhiteImplicitReverseFk() {
         _query.doNss(new WhiteImplicitReverseFkRefCQ.NssCall() { public ConditionQuery qf() { return _query.queryWhiteImplicitReverseFk(); }});
-        WhiteImplicitReverseFkNss moreNss = new WhiteImplicitReverseFkNss(_query.queryWhiteImplicitReverseFk());
-        return moreNss;
+        return new WhiteImplicitReverseFkNss(_query.queryWhiteImplicitReverseFk());
     }
 
 }

@@ -41,8 +41,7 @@ public class WhiteAllInOneClsCompoundPkRefNss {
      */
     public WhiteAllInOneClsElementNss withWhiteAllInOneClsElementAsFoo() {
         _query.doNss(new WhiteAllInOneClsCompoundPkRefCQ.NssCall() { public ConditionQuery qf() { return _query.queryWhiteAllInOneClsElementAsFoo(); }});
-        WhiteAllInOneClsElementNss moreNss = new WhiteAllInOneClsElementNss(_query.queryWhiteAllInOneClsElementAsFoo());
-        return moreNss;
+        return new WhiteAllInOneClsElementNss(_query.queryWhiteAllInOneClsElementAsFoo());
     }
     /**
      * With nested relation columns to select clause. <br />
@@ -51,8 +50,7 @@ public class WhiteAllInOneClsCompoundPkRefNss {
      */
     public WhiteAllInOneClsElementNss withWhiteAllInOneClsElementAsBar() {
         _query.doNss(new WhiteAllInOneClsCompoundPkRefCQ.NssCall() { public ConditionQuery qf() { return _query.queryWhiteAllInOneClsElementAsBar(); }});
-        WhiteAllInOneClsElementNss moreNss = new WhiteAllInOneClsElementNss(_query.queryWhiteAllInOneClsElementAsBar());
-        return moreNss;
+        return new WhiteAllInOneClsElementNss(_query.queryWhiteAllInOneClsElementAsBar());
     }
 
 }

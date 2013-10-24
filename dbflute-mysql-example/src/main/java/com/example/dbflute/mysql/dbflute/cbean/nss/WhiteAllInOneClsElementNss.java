@@ -41,8 +41,7 @@ public class WhiteAllInOneClsElementNss {
      */
     public WhiteAllInOneClsCategoryNss withWhiteAllInOneClsCategory() {
         _query.doNss(new WhiteAllInOneClsElementCQ.NssCall() { public ConditionQuery qf() { return _query.queryWhiteAllInOneClsCategory(); }});
-        WhiteAllInOneClsCategoryNss moreNss = new WhiteAllInOneClsCategoryNss(_query.queryWhiteAllInOneClsCategory());
-        return moreNss;
+        return new WhiteAllInOneClsCategoryNss(_query.queryWhiteAllInOneClsCategory());
     }
 
 }

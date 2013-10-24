@@ -41,8 +41,7 @@ public class ProductNss {
      */
     public ProductCategoryNss withProductCategory() {
         _query.doNss(new ProductCQ.NssCall() { public ConditionQuery qf() { return _query.queryProductCategory(); }});
-        ProductCategoryNss moreNss = new ProductCategoryNss(_query.queryProductCategory());
-        return moreNss;
+        return new ProductCategoryNss(_query.queryProductCategory());
     }
     /**
      * With nested relation columns to select clause. <br />
@@ -51,8 +50,7 @@ public class ProductNss {
      */
     public ProductStatusNss withProductStatus() {
         _query.doNss(new ProductCQ.NssCall() { public ConditionQuery qf() { return _query.queryProductStatus(); }});
-        ProductStatusNss moreNss = new ProductStatusNss(_query.queryProductStatus());
-        return moreNss;
+        return new ProductStatusNss(_query.queryProductStatus());
     }
 
 }

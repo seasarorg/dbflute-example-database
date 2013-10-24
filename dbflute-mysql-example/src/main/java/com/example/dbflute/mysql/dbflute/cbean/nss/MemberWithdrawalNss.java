@@ -41,8 +41,7 @@ public class MemberWithdrawalNss {
      */
     public MemberNss withMember() {
         _query.doNss(new MemberWithdrawalCQ.NssCall() { public ConditionQuery qf() { return _query.queryMember(); }});
-        MemberNss moreNss = new MemberNss(_query.queryMember());
-        return moreNss;
+        return new MemberNss(_query.queryMember());
     }
     /**
      * With nested relation columns to select clause. <br />
@@ -51,8 +50,7 @@ public class MemberWithdrawalNss {
      */
     public WithdrawalReasonNss withWithdrawalReason() {
         _query.doNss(new MemberWithdrawalCQ.NssCall() { public ConditionQuery qf() { return _query.queryWithdrawalReason(); }});
-        WithdrawalReasonNss moreNss = new WithdrawalReasonNss(_query.queryWithdrawalReason());
-        return moreNss;
+        return new WithdrawalReasonNss(_query.queryWithdrawalReason());
     }
 
 }

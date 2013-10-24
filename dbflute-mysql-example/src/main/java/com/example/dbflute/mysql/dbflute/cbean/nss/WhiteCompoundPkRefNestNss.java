@@ -41,8 +41,7 @@ public class WhiteCompoundPkRefNestNss {
      */
     public WhiteCompoundPkRefNss withWhiteCompoundPkRefByQuxMultipleId() {
         _query.doNss(new WhiteCompoundPkRefNestCQ.NssCall() { public ConditionQuery qf() { return _query.queryWhiteCompoundPkRefByQuxMultipleId(); }});
-        WhiteCompoundPkRefNss moreNss = new WhiteCompoundPkRefNss(_query.queryWhiteCompoundPkRefByQuxMultipleId());
-        return moreNss;
+        return new WhiteCompoundPkRefNss(_query.queryWhiteCompoundPkRefByQuxMultipleId());
     }
     /**
      * With nested relation columns to select clause. <br />
@@ -51,8 +50,7 @@ public class WhiteCompoundPkRefNestNss {
      */
     public WhiteCompoundPkRefNss withWhiteCompoundPkRefByFooMultipleId() {
         _query.doNss(new WhiteCompoundPkRefNestCQ.NssCall() { public ConditionQuery qf() { return _query.queryWhiteCompoundPkRefByFooMultipleId(); }});
-        WhiteCompoundPkRefNss moreNss = new WhiteCompoundPkRefNss(_query.queryWhiteCompoundPkRefByFooMultipleId());
-        return moreNss;
+        return new WhiteCompoundPkRefNss(_query.queryWhiteCompoundPkRefByFooMultipleId());
     }
 
 }

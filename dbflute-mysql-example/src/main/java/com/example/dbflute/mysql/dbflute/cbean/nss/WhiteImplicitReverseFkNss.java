@@ -42,8 +42,7 @@ public class WhiteImplicitReverseFkNss {
      */
     public WhiteImplicitReverseFkRefNss withWhiteImplicitReverseFkRefWithImplicitReverseFK(final java.util.Date targetDate) {
         _query.doNss(new WhiteImplicitReverseFkCQ.NssCall() { public ConditionQuery qf() { return _query.queryWhiteImplicitReverseFkRefWithImplicitReverseFK(targetDate); }});
-        WhiteImplicitReverseFkRefNss moreNss = new WhiteImplicitReverseFkRefNss(_query.queryWhiteImplicitReverseFkRefWithImplicitReverseFK(targetDate));
-        return moreNss;
+        return new WhiteImplicitReverseFkRefNss(_query.queryWhiteImplicitReverseFkRefWithImplicitReverseFK(targetDate));
     }
     /**
      * With nested relation columns to select clause. <br />
@@ -53,8 +52,7 @@ public class WhiteImplicitReverseFkNss {
      */
     public WhiteImplicitReverseFkSuppressNss withWhiteImplicitReverseFkSuppressSuppressImplicitReverseFK(final java.util.Date targetDate) {
         _query.doNss(new WhiteImplicitReverseFkCQ.NssCall() { public ConditionQuery qf() { return _query.queryWhiteImplicitReverseFkSuppressSuppressImplicitReverseFK(targetDate); }});
-        WhiteImplicitReverseFkSuppressNss moreNss = new WhiteImplicitReverseFkSuppressNss(_query.queryWhiteImplicitReverseFkSuppressSuppressImplicitReverseFK(targetDate));
-        return moreNss;
+        return new WhiteImplicitReverseFkSuppressNss(_query.queryWhiteImplicitReverseFkSuppressSuppressImplicitReverseFK(targetDate));
     }
 
 }

@@ -41,8 +41,7 @@ public class WhiteSplitMultipleFkBaseNss {
      */
     public WhiteSplitMultipleFkNextNss withWhiteSplitMultipleFkNext() {
         _query.doNss(new WhiteSplitMultipleFkBaseCQ.NssCall() { public ConditionQuery qf() { return _query.queryWhiteSplitMultipleFkNext(); }});
-        WhiteSplitMultipleFkNextNss moreNss = new WhiteSplitMultipleFkNextNss(_query.queryWhiteSplitMultipleFkNext());
-        return moreNss;
+        return new WhiteSplitMultipleFkNextNss(_query.queryWhiteSplitMultipleFkNext());
     }
     /**
      * With nested relation columns to select clause. <br />
@@ -51,8 +50,7 @@ public class WhiteSplitMultipleFkBaseNss {
      */
     public WhiteSplitMultipleFkRefNss withWhiteSplitMultipleFkRefAsSplitMultipleFkTest() {
         _query.doNss(new WhiteSplitMultipleFkBaseCQ.NssCall() { public ConditionQuery qf() { return _query.queryWhiteSplitMultipleFkRefAsSplitMultipleFkTest(); }});
-        WhiteSplitMultipleFkRefNss moreNss = new WhiteSplitMultipleFkRefNss(_query.queryWhiteSplitMultipleFkRefAsSplitMultipleFkTest());
-        return moreNss;
+        return new WhiteSplitMultipleFkRefNss(_query.queryWhiteSplitMultipleFkRefAsSplitMultipleFkTest());
     }
 
 }

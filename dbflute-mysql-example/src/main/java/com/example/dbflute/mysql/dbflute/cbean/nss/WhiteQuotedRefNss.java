@@ -41,8 +41,7 @@ public class WhiteQuotedRefNss {
      */
     public WhiteQuotedNss withWhiteQuoted() {
         _query.doNss(new WhiteQuotedRefCQ.NssCall() { public ConditionQuery qf() { return _query.queryWhiteQuoted(); }});
-        WhiteQuotedNss moreNss = new WhiteQuotedNss(_query.queryWhiteQuoted());
-        return moreNss;
+        return new WhiteQuotedNss(_query.queryWhiteQuoted());
     }
 
 }

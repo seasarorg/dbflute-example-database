@@ -41,8 +41,7 @@ public class VendorLargeDataRefNss {
      */
     public VendorLargeDataNss withVendorLargeData() {
         _query.doNss(new VendorLargeDataRefCQ.NssCall() { public ConditionQuery qf() { return _query.queryVendorLargeData(); }});
-        VendorLargeDataNss moreNss = new VendorLargeDataNss(_query.queryVendorLargeData());
-        return moreNss;
+        return new VendorLargeDataNss(_query.queryVendorLargeData());
     }
     /**
      * With nested relation columns to select clause. <br />
@@ -51,8 +50,7 @@ public class VendorLargeDataRefNss {
      */
     public VendorLargeDataRefNss withVendorLargeDataRefSelf() {
         _query.doNss(new VendorLargeDataRefCQ.NssCall() { public ConditionQuery qf() { return _query.queryVendorLargeDataRefSelf(); }});
-        VendorLargeDataRefNss moreNss = new VendorLargeDataRefNss(_query.queryVendorLargeDataRefSelf());
-        return moreNss;
+        return new VendorLargeDataRefNss(_query.queryVendorLargeDataRefSelf());
     }
 
 }
