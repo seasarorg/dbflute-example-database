@@ -1,4 +1,42 @@
 map:{
+    ; 2013/11/04 12:03:23 = map:{
+        ; diffDate = 2013/11/04 12:03:23
+        ; tableDiff = map:{
+            ; white_uq_reference_without_pk = map:{
+                ; tableName = white_uq_reference_without_pk
+                ; diffType = ADD
+            }
+            ; white_uq_reference_without_pk_ref = map:{
+                ; tableName = white_uq_reference_without_pk_ref
+                ; diffType = ADD
+            }
+            ; white_uq_reference_no_pk = map:{
+                ; tableName = white_uq_reference_no_pk
+                ; diffType = DELETE
+            }
+            ; white_uq_reference_no_pk_ref = map:{
+                ; tableName = white_uq_reference_no_pk_ref
+                ; diffType = DELETE
+            }
+        }
+    }
+    ; 2013/11/04 11:43:13 = map:{
+        ; diffDate = 2013/11/04 11:43:13
+        ; tableCount = map:{
+            ; next = 80
+            ; previous = 78
+        }
+        ; tableDiff = map:{
+            ; white_uq_reference_no_pk = map:{
+                ; tableName = white_uq_reference_no_pk
+                ; diffType = ADD
+            }
+            ; white_uq_reference_no_pk_ref = map:{
+                ; tableName = white_uq_reference_no_pk_ref
+                ; diffType = ADD
+            }
+        }
+    }
     ; 2013/07/06 13:57:59 = map:{
         ; diffDate = 2013/07/06 13:57:59
         ; tableCount = map:{

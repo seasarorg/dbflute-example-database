@@ -81,6 +81,8 @@
     <component name="whiteUqReferenceBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteUqReferenceBhv"/>
     <component name="whiteUqReferenceRefBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteUqReferenceRefBhv"/>
     <component name="whiteUqReferenceRefNestBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteUqReferenceRefNestBhv"/>
+    <component name="whiteUqReferenceWithoutPkBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteUqReferenceWithoutPkBhv"/>
+    <component name="whiteUqReferenceWithoutPkRefBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteUqReferenceWithoutPkRefBhv"/>
     <component name="whiteVariantRelationMasterBarBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteVariantRelationMasterBarBhv"/>
     <component name="whiteVariantRelationMasterCorgeBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteVariantRelationMasterCorgeBhv"/>
     <component name="whiteVariantRelationMasterFooBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteVariantRelationMasterFooBhv"/>

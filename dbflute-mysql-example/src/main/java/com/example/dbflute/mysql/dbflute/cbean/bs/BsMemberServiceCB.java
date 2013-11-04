@@ -285,6 +285,7 @@ public class BsMemberServiceCB extends AbstractConditionBean {
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryMember(); } });
         if (_nssMember == null || !_nssMember.hasConditionQuery())
         { _nssMember = new MemberNss(query().queryMember()); }
+        _nssMember.withMemberSecurityAsOne();
         return _nssMember;
     }
     protected ServiceRankNss _nssServiceRank;

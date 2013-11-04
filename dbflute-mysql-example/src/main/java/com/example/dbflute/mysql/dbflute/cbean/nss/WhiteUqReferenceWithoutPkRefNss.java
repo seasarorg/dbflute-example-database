@@ -16,19 +16,19 @@
 package com.example.dbflute.mysql.dbflute.cbean.nss;
 
 import org.seasar.dbflute.cbean.ConditionQuery;
-import com.example.dbflute.mysql.dbflute.cbean.cq.MemberAddressCQ;
+import com.example.dbflute.mysql.dbflute.cbean.cq.WhiteUqReferenceWithoutPkRefCQ;
 
 /**
- * The nest select set-upper of member_address.
+ * The nest select set-upper of white_uq_reference_without_pk_ref.
  * @author DBFlute(AutoGenerator)
  */
-public class MemberAddressNss {
+public class WhiteUqReferenceWithoutPkRefNss {
 
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    protected MemberAddressCQ _query;
-    public MemberAddressNss(MemberAddressCQ query) { _query = query; }
+    protected WhiteUqReferenceWithoutPkRefCQ _query;
+    public WhiteUqReferenceWithoutPkRefNss(WhiteUqReferenceWithoutPkRefCQ query) { _query = query; }
     public boolean hasConditionQuery() { return _query != null; }
 
     // ===================================================================================
@@ -36,23 +36,12 @@ public class MemberAddressNss {
     //                                                                     ===============
     /**
      * With nested relation columns to select clause. <br />
-     * (会員)member by my MEMBER_ID, named 'member'.
+     * white_uq_reference_without_pk by my UQ_REFERENCE_CODE, named 'whiteUqReferenceWithoutPk'.
      * @return The set-upper of more nested relation. {...with[nested-relation].with[more-nested-relation]} (NotNull)
      */
-    public MemberNss withMember() {
-        _query.doNss(new MemberAddressCQ.NssCall() { public ConditionQuery qf() { return _query.queryMember(); }});
-        MemberNss moreNss = new MemberNss(_query.queryMember());
-        moreNss.withMemberSecurityAsOne();
-        return moreNss;
-    }
-    /**
-     * With nested relation columns to select clause. <br />
-     * (地域)region by my REGION_ID, named 'region'.
-     * @return The set-upper of more nested relation. {...with[nested-relation].with[more-nested-relation]} (NotNull)
-     */
-    public RegionNss withRegion() {
-        _query.doNss(new MemberAddressCQ.NssCall() { public ConditionQuery qf() { return _query.queryRegion(); }});
-        return new RegionNss(_query.queryRegion());
+    public WhiteUqReferenceWithoutPkNss withWhiteUqReferenceWithoutPk() {
+        _query.doNss(new WhiteUqReferenceWithoutPkRefCQ.NssCall() { public ConditionQuery qf() { return _query.queryWhiteUqReferenceWithoutPk(); }});
+        return new WhiteUqReferenceWithoutPkNss(_query.queryWhiteUqReferenceWithoutPk());
     }
 
 }

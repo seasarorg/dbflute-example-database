@@ -13,9 +13,12 @@ import org.seasar.dbflute.util.Srl;
 import com.example.dbflute.mysql.dbflute.cbean.WhiteUqReferenceCB;
 import com.example.dbflute.mysql.dbflute.cbean.WhiteUqReferenceRefCB;
 import com.example.dbflute.mysql.dbflute.cbean.WhiteUqReferenceRefNestCB;
+import com.example.dbflute.mysql.dbflute.cbean.WhiteUqReferenceWithoutPkCB;
+import com.example.dbflute.mysql.dbflute.cbean.WhiteUqReferenceWithoutPkRefCB;
 import com.example.dbflute.mysql.dbflute.exbhv.WhiteUqReferenceBhv;
 import com.example.dbflute.mysql.dbflute.exbhv.WhiteUqReferenceRefBhv;
 import com.example.dbflute.mysql.dbflute.exbhv.WhiteUqReferenceRefNestBhv;
+import com.example.dbflute.mysql.dbflute.exbhv.WhiteUqReferenceWithoutPkBhv;
 import com.example.dbflute.mysql.dbflute.exentity.WhiteUqReference;
 import com.example.dbflute.mysql.dbflute.exentity.WhiteUqReferenceRef;
 import com.example.dbflute.mysql.dbflute.exentity.WhiteUqReferenceRefNest;
@@ -33,6 +36,7 @@ public class WxUniqueReferenceTest extends UnitContainerTestCase {
     private WhiteUqReferenceBhv whiteUqReferenceBhv;
     private WhiteUqReferenceRefBhv whiteUqReferenceRefBhv;
     private WhiteUqReferenceRefNestBhv whiteUqReferenceRefNestBhv;
+    private WhiteUqReferenceWithoutPkBhv whiteUqReferenceWithoutPkBhv;
 
     // ===================================================================================
     //                                                                               Basic
@@ -341,5 +345,22 @@ public class WxUniqueReferenceTest extends UnitContainerTestCase {
         nest.setCompoundUqSecondCode(secondCode);
         whiteUqReferenceRefNestBhv.insert(nest);
         return nest;
+    }
+
+    // ===================================================================================
+    //                                                                          Without PK
+    //                                                                          ==========
+    public void test_withoutPk_generated() throws Exception {
+        // ## Arrange ##
+        WhiteUqReferenceWithoutPkCB cb = new WhiteUqReferenceWithoutPkCB();
+        cb.query().existsWhiteUqReferenceWithoutPkRefList(new SubQuery<WhiteUqReferenceWithoutPkRefCB>() {
+            public void query(WhiteUqReferenceWithoutPkRefCB subCB) {
+                subCB.query().queryWhiteUqReferenceWithoutPk().setUqReferenceName_Equal("dummy");
+            }
+        });
+
+        // ## Act ##
+        // ## Assert ##
+        whiteUqReferenceWithoutPkBhv.selectCount(cb); // expect no exception
     }
 }

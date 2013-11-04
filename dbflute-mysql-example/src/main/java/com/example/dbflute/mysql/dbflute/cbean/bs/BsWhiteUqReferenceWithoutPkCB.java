@@ -35,23 +35,22 @@ import com.example.dbflute.mysql.dbflute.allcommon.ImplementedInvokerAssistant;
 import com.example.dbflute.mysql.dbflute.allcommon.ImplementedSqlClauseCreator;
 import com.example.dbflute.mysql.dbflute.cbean.*;
 import com.example.dbflute.mysql.dbflute.cbean.cq.*;
-import com.example.dbflute.mysql.dbflute.cbean.nss.*;
 
 /**
- * The base condition-bean of member_login.
+ * The base condition-bean of white_uq_reference_without_pk.
  * @author DBFlute(AutoGenerator)
  */
-public class BsMemberLoginCB extends AbstractConditionBean {
+public class BsWhiteUqReferenceWithoutPkCB extends AbstractConditionBean {
 
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    protected MemberLoginCQ _conditionQuery;
+    protected WhiteUqReferenceWithoutPkCQ _conditionQuery;
 
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public BsMemberLoginCB() {
+    public BsWhiteUqReferenceWithoutPkCB() {
         if (DBFluteConfig.getInstance().isPagingCountLater()) {
             enablePagingCountLater();
         }
@@ -87,26 +86,20 @@ public class BsMemberLoginCB extends AbstractConditionBean {
     //                                                                          Table Name
     //                                                                          ==========
     public String getTableDbName() {
-        return "member_login";
+        return "white_uq_reference_without_pk";
     }
 
     // ===================================================================================
     //                                                                 PrimaryKey Handling
     //                                                                 ===================
-    public void acceptPrimaryKey(Long memberLoginId) {
-        assertObjectNotNull("memberLoginId", memberLoginId);
-        BsMemberLoginCB cb = this;
-        cb.query().setMemberLoginId_Equal(memberLoginId);
-    }
-
     public ConditionBean addOrderBy_PK_Asc() {
-        query().addOrderBy_MemberLoginId_Asc();
-        return this;
+        String msg = "The table has no primary-keys: " + getTableDbName();
+        throw new UnsupportedOperationException(msg);
     }
 
     public ConditionBean addOrderBy_PK_Desc() {
-        query().addOrderBy_MemberLoginId_Desc();
-        return this;
+        String msg = "The table has no primary-keys: " + getTableDbName();
+        throw new UnsupportedOperationException(msg);
     }
 
     // ===================================================================================
@@ -186,30 +179,30 @@ public class BsMemberLoginCB extends AbstractConditionBean {
      * </pre>
      * @return The instance of condition-query for base-point table to set up query. (NotNull)
      */
-    public MemberLoginCQ query() {
+    public WhiteUqReferenceWithoutPkCQ query() {
         assertQueryPurpose(); // assert only when user-public query 
         return getConditionQuery();
     }
 
-    public MemberLoginCQ getConditionQuery() { // public for parameter comment and internal
+    public WhiteUqReferenceWithoutPkCQ getConditionQuery() { // public for parameter comment and internal
         if (_conditionQuery == null) {
             _conditionQuery = createLocalCQ();
         }
         return _conditionQuery;
     }
 
-    protected MemberLoginCQ createLocalCQ() {
+    protected WhiteUqReferenceWithoutPkCQ createLocalCQ() {
         return xcreateCQ(null, getSqlClause(), getSqlClause().getBasePointAliasName(), 0);
     }
 
-    protected MemberLoginCQ xcreateCQ(ConditionQuery childQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
-        MemberLoginCQ cq = xnewCQ(childQuery, sqlClause, aliasName, nestLevel);
+    protected WhiteUqReferenceWithoutPkCQ xcreateCQ(ConditionQuery childQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
+        WhiteUqReferenceWithoutPkCQ cq = xnewCQ(childQuery, sqlClause, aliasName, nestLevel);
         cq.xsetBaseCB(this);
         return cq;
     }
 
-    protected MemberLoginCQ xnewCQ(ConditionQuery childQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
-        return new MemberLoginCQ(childQuery, sqlClause, aliasName, nestLevel);
+    protected WhiteUqReferenceWithoutPkCQ xnewCQ(ConditionQuery childQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
+        return new WhiteUqReferenceWithoutPkCQ(childQuery, sqlClause, aliasName, nestLevel);
     }
 
     public ConditionQuery localCQ() {
@@ -224,18 +217,18 @@ public class BsMemberLoginCB extends AbstractConditionBean {
      * You don't need to call SetupSelect in union-query,
      * because it inherits calls before. (Don't call SetupSelect after here)
      * <pre>
-     * cb.query().<span style="color: #FD4747">union</span>(new UnionQuery&lt;MemberLoginCB&gt;() {
-     *     public void query(MemberLoginCB unionCB) {
+     * cb.query().<span style="color: #FD4747">union</span>(new UnionQuery&lt;WhiteUqReferenceWithoutPkCB&gt;() {
+     *     public void query(WhiteUqReferenceWithoutPkCB unionCB) {
      *         unionCB.query().setXxx...
      *     }
      * });
      * </pre>
      * @param unionQuery The query of 'union'. (NotNull)
      */
-    public void union(UnionQuery<MemberLoginCB> unionQuery) {
-        final MemberLoginCB cb = new MemberLoginCB();
+    public void union(UnionQuery<WhiteUqReferenceWithoutPkCB> unionQuery) {
+        final WhiteUqReferenceWithoutPkCB cb = new WhiteUqReferenceWithoutPkCB();
         cb.xsetupForUnion(this); xsyncUQ(cb); unionQuery.query(cb); xsaveUCB(cb);
-        final MemberLoginCQ cq = cb.query(); query().xsetUnionQuery(cq);
+        final WhiteUqReferenceWithoutPkCQ cq = cb.query(); query().xsetUnionQuery(cq);
     }
 
     /**
@@ -243,76 +236,23 @@ public class BsMemberLoginCB extends AbstractConditionBean {
      * You don't need to call SetupSelect in union-query,
      * because it inherits calls before. (Don't call SetupSelect after here)
      * <pre>
-     * cb.query().<span style="color: #FD4747">unionAll</span>(new UnionQuery&lt;MemberLoginCB&gt;() {
-     *     public void query(MemberLoginCB unionCB) {
+     * cb.query().<span style="color: #FD4747">unionAll</span>(new UnionQuery&lt;WhiteUqReferenceWithoutPkCB&gt;() {
+     *     public void query(WhiteUqReferenceWithoutPkCB unionCB) {
      *         unionCB.query().setXxx...
      *     }
      * });
      * </pre>
      * @param unionQuery The query of 'union all'. (NotNull)
      */
-    public void unionAll(UnionQuery<MemberLoginCB> unionQuery) {
-        final MemberLoginCB cb = new MemberLoginCB();
+    public void unionAll(UnionQuery<WhiteUqReferenceWithoutPkCB> unionQuery) {
+        final WhiteUqReferenceWithoutPkCB cb = new WhiteUqReferenceWithoutPkCB();
         cb.xsetupForUnion(this); xsyncUQ(cb); unionQuery.query(cb); xsaveUCB(cb);
-        final MemberLoginCQ cq = cb.query(); query().xsetUnionAllQuery(cq);
+        final WhiteUqReferenceWithoutPkCQ cq = cb.query(); query().xsetUnionAllQuery(cq);
     }
 
     // ===================================================================================
     //                                                                         SetupSelect
     //                                                                         ===========
-    protected MemberNss _nssMember;
-    public MemberNss getNssMember() {
-        if (_nssMember == null) { _nssMember = new MemberNss(null); }
-        return _nssMember;
-    }
-    /**
-     * Set up relation columns to select clause. <br />
-     * (会員)member by my MEMBER_ID, named 'member'.
-     * <pre>
-     * MemberLoginCB cb = new MemberLoginCB();
-     * cb.<span style="color: #FD4747">setupSelect_Member()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
-     * cb.query().setFoo...(value);
-     * MemberLogin memberLogin = memberLoginBhv.selectEntityWithDeletedCheck(cb);
-     * ... = memberLogin.<span style="color: #FD4747">getMember()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
-     * </pre>
-     * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
-     */
-    public MemberNss setupSelect_Member() {
-        if (hasSpecifiedColumn()) { // if reverse call
-            specify().columnMemberId();
-        }
-        doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryMember(); } });
-        if (_nssMember == null || !_nssMember.hasConditionQuery())
-        { _nssMember = new MemberNss(query().queryMember()); }
-        _nssMember.withMemberSecurityAsOne();
-        return _nssMember;
-    }
-    protected MemberStatusNss _nssMemberStatus;
-    public MemberStatusNss getNssMemberStatus() {
-        if (_nssMemberStatus == null) { _nssMemberStatus = new MemberStatusNss(null); }
-        return _nssMemberStatus;
-    }
-    /**
-     * Set up relation columns to select clause. <br />
-     * (会員ステータス)member_status by my LOGIN_MEMBER_STATUS_CODE, named 'memberStatus'.
-     * <pre>
-     * MemberLoginCB cb = new MemberLoginCB();
-     * cb.<span style="color: #FD4747">setupSelect_MemberStatus()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
-     * cb.query().setFoo...(value);
-     * MemberLogin memberLogin = memberLoginBhv.selectEntityWithDeletedCheck(cb);
-     * ... = memberLogin.<span style="color: #FD4747">getMemberStatus()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
-     * </pre>
-     * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
-     */
-    public MemberStatusNss setupSelect_MemberStatus() {
-        if (hasSpecifiedColumn()) { // if reverse call
-            specify().columnLoginMemberStatusCode();
-        }
-        doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryMemberStatus(); } });
-        if (_nssMemberStatus == null || !_nssMemberStatus.hasConditionQuery())
-        { _nssMemberStatus = new MemberStatusNss(query().queryMemberStatus()); }
-        return _nssMemberStatus;
-    }
 
     // [DBFlute-0.7.4]
     // ===================================================================================
@@ -339,9 +279,9 @@ public class BsMemberLoginCB extends AbstractConditionBean {
     public HpSpecification specify() {
         assertSpecifyPurpose();
         if (_specification == null) { _specification = new HpSpecification(this
-            , new HpSpQyCall<MemberLoginCQ>() {
+            , new HpSpQyCall<WhiteUqReferenceWithoutPkCQ>() {
                 public boolean has() { return true; }
-                public MemberLoginCQ qy() { return getConditionQuery(); }
+                public WhiteUqReferenceWithoutPkCQ qy() { return getConditionQuery(); }
             }
             , _purpose, getDBMetaProvider()); }
         return _specification;
@@ -355,104 +295,49 @@ public class BsMemberLoginCB extends AbstractConditionBean {
         return _specification != null && _specification.isAlreadySpecifiedRequiredColumn();
     }
 
-    public static class HpSpecification extends HpAbstractSpecification<MemberLoginCQ> {
-        protected MemberCB.HpSpecification _member;
-        protected MemberStatusCB.HpSpecification _memberStatus;
-        public HpSpecification(ConditionBean baseCB, HpSpQyCall<MemberLoginCQ> qyCall
+    public static class HpSpecification extends HpAbstractSpecification<WhiteUqReferenceWithoutPkCQ> {
+        public HpSpecification(ConditionBean baseCB, HpSpQyCall<WhiteUqReferenceWithoutPkCQ> qyCall
                              , HpCBPurpose purpose, DBMetaProvider dbmetaProvider)
         { super(baseCB, qyCall, purpose, dbmetaProvider); }
         /**
-         * (会員ログインID)MEMBER_LOGIN_ID: {PK, ID, NotNull, BIGINT(19)}
+         * UQ_REFERENCE_CODE: {UQ, NotNull, CHAR(3)}
          * @return The information object of specified column. (NotNull)
          */
-        public HpSpecifiedColumn columnMemberLoginId() { return doColumn("MEMBER_LOGIN_ID"); }
+        public HpSpecifiedColumn columnUqReferenceCode() { return doColumn("UQ_REFERENCE_CODE"); }
         /**
-         * (会員ID)MEMBER_ID: {UQ, NotNull, INT(10), FK to member}
+         * UQ_REFERENCE_NAME: {NotNull, VARCHAR(64)}
          * @return The information object of specified column. (NotNull)
          */
-        public HpSpecifiedColumn columnMemberId() { return doColumn("MEMBER_ID"); }
-        /**
-         * (ログイン日時)LOGIN_DATETIME: {UQ+, IX, NotNull, DATETIME(19)}
-         * @return The information object of specified column. (NotNull)
-         */
-        public HpSpecifiedColumn columnLoginDatetime() { return doColumn("LOGIN_DATETIME"); }
-        /**
-         * (モバイルログインフラグ)MOBILE_LOGIN_FLG: {NotNull, INT(10), classification=Flg}
-         * @return The information object of specified column. (NotNull)
-         */
-        public HpSpecifiedColumn columnMobileLoginFlg() { return doColumn("MOBILE_LOGIN_FLG"); }
-        /**
-         * (ログイン会員ステータスコード)LOGIN_MEMBER_STATUS_CODE: {IX, NotNull, CHAR(3), FK to member_status, classification=SubItemTable}
-         * @return The information object of specified column. (NotNull)
-         */
-        public HpSpecifiedColumn columnLoginMemberStatusCode() { return doColumn("LOGIN_MEMBER_STATUS_CODE"); }
+        public HpSpecifiedColumn columnUqReferenceName() { return doColumn("UQ_REFERENCE_NAME"); }
         public void everyColumn() { doEveryColumn(); }
         public void exceptRecordMetaColumn() { doExceptRecordMetaColumn(); }
         @Override
         protected void doSpecifyRequiredColumn() {
-            columnMemberLoginId(); // PK
-            if (qyCall().qy().hasConditionQueryMember()
-                    || qyCall().qy().xgetReferrerQuery() instanceof MemberCQ) {
-                columnMemberId(); // FK or one-to-one referrer
-            }
-            if (qyCall().qy().hasConditionQueryMemberStatus()
-                    || qyCall().qy().xgetReferrerQuery() instanceof MemberStatusCQ) {
-                columnLoginMemberStatusCode(); // FK or one-to-one referrer
+            if (qyCall().qy().xgetReferrerQuery() instanceof WhiteUqReferenceWithoutPkRefCQ) {
+                columnUqReferenceCode(); // non PK but referred column (and referrer also non PK)
             }
         }
         @Override
-        protected String getTableDbName() { return "member_login"; }
+        protected String getTableDbName() { return "white_uq_reference_without_pk"; }
         /**
-         * Prepare to specify functions about relation table. <br />
-         * (会員)member by my MEMBER_ID, named 'member'.
-         * @return The instance for specification for relation table to specify. (NotNull)
+         * Prepare for (Specify)DerivedReferrer. <br />
+         * {select max(FOO) from white_uq_reference_without_pk_ref where ...) as FOO_MAX} <br />
+         * white_uq_reference_without_pk_ref by UQ_REFERENCE_CODE, named 'whiteUqReferenceWithoutPkRefList'.
+         * <pre>
+         * cb.specify().<span style="color: #FD4747">derivedWhiteUqReferenceWithoutPkRefList()</span>.<span style="color: #FD4747">max</span>(new SubQuery&lt;WhiteUqReferenceWithoutPkRefCB&gt;() {
+         *     public void query(WhiteUqReferenceWithoutPkRefCB subCB) {
+         *         subCB.specify().<span style="color: #FD4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
+         *         subCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
+         *     }
+         * }, WhiteUqReferenceWithoutPkRef.<span style="color: #FD4747">ALIAS_foo...</span>);
+         * </pre>
+         * @return The object to set up a function for referrer table. (NotNull)
          */
-        public MemberCB.HpSpecification specifyMember() {
-            assertRelation("member");
-            if (_member == null) {
-                _member = new MemberCB.HpSpecification(_baseCB, new HpSpQyCall<MemberCQ>() {
-                    public boolean has() { return _qyCall.has() && _qyCall.qy().hasConditionQueryMember(); }
-                    public MemberCQ qy() { return _qyCall.qy().queryMember(); } }
-                    , _purpose, _dbmetaProvider);
-                if (xhasSyncQyCall()) { // inherits it
-                    _member.xsetSyncQyCall(new HpSpQyCall<MemberCQ>() {
-                        public boolean has() { return xsyncQyCall().has() && xsyncQyCall().qy().hasConditionQueryMember(); }
-                        public MemberCQ qy() { return xsyncQyCall().qy().queryMember(); }
-                    });
-                }
-            }
-            return _member;
-        }
-        /**
-         * Prepare to specify functions about relation table. <br />
-         * (会員ステータス)member_status by my LOGIN_MEMBER_STATUS_CODE, named 'memberStatus'.
-         * @return The instance for specification for relation table to specify. (NotNull)
-         */
-        public MemberStatusCB.HpSpecification specifyMemberStatus() {
-            assertRelation("memberStatus");
-            if (_memberStatus == null) {
-                _memberStatus = new MemberStatusCB.HpSpecification(_baseCB, new HpSpQyCall<MemberStatusCQ>() {
-                    public boolean has() { return _qyCall.has() && _qyCall.qy().hasConditionQueryMemberStatus(); }
-                    public MemberStatusCQ qy() { return _qyCall.qy().queryMemberStatus(); } }
-                    , _purpose, _dbmetaProvider);
-                if (xhasSyncQyCall()) { // inherits it
-                    _memberStatus.xsetSyncQyCall(new HpSpQyCall<MemberStatusCQ>() {
-                        public boolean has() { return xsyncQyCall().has() && xsyncQyCall().qy().hasConditionQueryMemberStatus(); }
-                        public MemberStatusCQ qy() { return xsyncQyCall().qy().queryMemberStatus(); }
-                    });
-                }
-            }
-            return _memberStatus;
-        }
-        /**
-         * Prepare for (Specify)MyselfDerived (SubQuery).
-         * @return The object to set up a function for myself table. (NotNull)
-         */
-        public HpSDRFunction<MemberLoginCB, MemberLoginCQ> myselfDerived() {
-            assertDerived("myselfDerived"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
-            return new HpSDRFunction<MemberLoginCB, MemberLoginCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<MemberLoginCB, MemberLoginCQ>() {
-                public void setup(String function, SubQuery<MemberLoginCB> subQuery, MemberLoginCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsmyselfDerive(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+        public HpSDRFunction<WhiteUqReferenceWithoutPkRefCB, WhiteUqReferenceWithoutPkCQ> derivedWhiteUqReferenceWithoutPkRefList() {
+            assertDerived("whiteUqReferenceWithoutPkRefList"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
+            return new HpSDRFunction<WhiteUqReferenceWithoutPkRefCB, WhiteUqReferenceWithoutPkCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<WhiteUqReferenceWithoutPkRefCB, WhiteUqReferenceWithoutPkCQ>() {
+                public void setup(String function, SubQuery<WhiteUqReferenceWithoutPkRefCB> subQuery, WhiteUqReferenceWithoutPkCQ cq, String aliasName, DerivedReferrerOption option) {
+                    cq.xsderiveWhiteUqReferenceWithoutPkRefList(function, subQuery, aliasName, option); } }, _dbmetaProvider);
         }
     }
 
@@ -464,12 +349,12 @@ public class BsMemberLoginCB extends AbstractConditionBean {
      * Set up column-query. {column1 = column2}
      * <pre>
      * <span style="color: #3F7E5E">// where FOO &lt; BAR</span>
-     * cb.<span style="color: #FD4747">columnQuery</span>(new SpecifyQuery&lt;MemberLoginCB&gt;() {
-     *     public void query(MemberLoginCB cb) {
+     * cb.<span style="color: #FD4747">columnQuery</span>(new SpecifyQuery&lt;WhiteUqReferenceWithoutPkCB&gt;() {
+     *     public void query(WhiteUqReferenceWithoutPkCB cb) {
      *         cb.specify().<span style="color: #FD4747">columnFoo()</span>; <span style="color: #3F7E5E">// left column</span>
      *     }
-     * }).lessThan(new SpecifyQuery&lt;MemberLoginCB&gt;() {
-     *     public void query(MemberLoginCB cb) {
+     * }).lessThan(new SpecifyQuery&lt;WhiteUqReferenceWithoutPkCB&gt;() {
+     *     public void query(WhiteUqReferenceWithoutPkCB cb) {
      *         cb.specify().<span style="color: #FD4747">columnBar()</span>; <span style="color: #3F7E5E">// right column</span>
      *     }
      * }); <span style="color: #3F7E5E">// you can calculate for right column like '}).plus(3);'</span>
@@ -477,17 +362,17 @@ public class BsMemberLoginCB extends AbstractConditionBean {
      * @param leftSpecifyQuery The specify-query for left column. (NotNull)
      * @return The object for setting up operand and right column. (NotNull)
      */
-    public HpColQyOperand<MemberLoginCB> columnQuery(final SpecifyQuery<MemberLoginCB> leftSpecifyQuery) {
-        return new HpColQyOperand<MemberLoginCB>(new HpColQyHandler<MemberLoginCB>() {
-            public HpCalculator handle(SpecifyQuery<MemberLoginCB> rightSp, String operand) {
+    public HpColQyOperand<WhiteUqReferenceWithoutPkCB> columnQuery(final SpecifyQuery<WhiteUqReferenceWithoutPkCB> leftSpecifyQuery) {
+        return new HpColQyOperand<WhiteUqReferenceWithoutPkCB>(new HpColQyHandler<WhiteUqReferenceWithoutPkCB>() {
+            public HpCalculator handle(SpecifyQuery<WhiteUqReferenceWithoutPkCB> rightSp, String operand) {
                 return xcolqy(xcreateColumnQueryCB(), xcreateColumnQueryCB(), leftSpecifyQuery, rightSp, operand);
             }
         });
     }
 
-    protected MemberLoginCB xcreateColumnQueryCB() {
-        MemberLoginCB cb = new MemberLoginCB();
-        cb.xsetupForColumnQuery((MemberLoginCB)this);
+    protected WhiteUqReferenceWithoutPkCB xcreateColumnQueryCB() {
+        WhiteUqReferenceWithoutPkCB cb = new WhiteUqReferenceWithoutPkCB();
+        cb.xsetupForColumnQuery((WhiteUqReferenceWithoutPkCB)this);
         return cb;
     }
 
@@ -499,9 +384,9 @@ public class BsMemberLoginCB extends AbstractConditionBean {
      * This is very specialty so you can get the frontier spirit. Bon voyage!
      * @return The condition-bean for dream cruise, which is linked to main condition-bean.
      */
-    public MemberLoginCB dreamCruiseCB() {
-        MemberLoginCB cb = new MemberLoginCB();
-        cb.xsetupForDreamCruise((MemberLoginCB) this);
+    public WhiteUqReferenceWithoutPkCB dreamCruiseCB() {
+        WhiteUqReferenceWithoutPkCB cb = new WhiteUqReferenceWithoutPkCB();
+        cb.xsetupForDreamCruise((WhiteUqReferenceWithoutPkCB) this);
         return cb;
     }
 
@@ -518,8 +403,8 @@ public class BsMemberLoginCB extends AbstractConditionBean {
      * (Same-column-and-same-condition-key conditions are allowed in or-scope)
      * <pre>
      * <span style="color: #3F7E5E">// where (FOO = '...' or BAR = '...')</span>
-     * cb.<span style="color: #FD4747">orScopeQuery</span>(new OrQuery&lt;MemberLoginCB&gt;() {
-     *     public void query(MemberLoginCB orCB) {
+     * cb.<span style="color: #FD4747">orScopeQuery</span>(new OrQuery&lt;WhiteUqReferenceWithoutPkCB&gt;() {
+     *     public void query(WhiteUqReferenceWithoutPkCB orCB) {
      *         orCB.query().setFOO_Equal...
      *         orCB.query().setBAR_Equal...
      *     }
@@ -527,8 +412,8 @@ public class BsMemberLoginCB extends AbstractConditionBean {
      * </pre>
      * @param orQuery The query for or-condition. (NotNull)
      */
-    public void orScopeQuery(OrQuery<MemberLoginCB> orQuery) {
-        xorSQ((MemberLoginCB)this, orQuery);
+    public void orScopeQuery(OrQuery<WhiteUqReferenceWithoutPkCB> orQuery) {
+        xorSQ((WhiteUqReferenceWithoutPkCB)this, orQuery);
     }
 
     /**
@@ -536,11 +421,11 @@ public class BsMemberLoginCB extends AbstractConditionBean {
      * (However nested or-scope query and as-or-split of like-search in and-part are unsupported)
      * <pre>
      * <span style="color: #3F7E5E">// where (FOO = '...' or (BAR = '...' and QUX = '...'))</span>
-     * cb.<span style="color: #FD4747">orScopeQuery</span>(new OrQuery&lt;MemberLoginCB&gt;() {
-     *     public void query(MemberLoginCB orCB) {
+     * cb.<span style="color: #FD4747">orScopeQuery</span>(new OrQuery&lt;WhiteUqReferenceWithoutPkCB&gt;() {
+     *     public void query(WhiteUqReferenceWithoutPkCB orCB) {
      *         orCB.query().setFOO_Equal...
-     *         orCB.<span style="color: #FD4747">orScopeQueryAndPart</span>(new AndQuery&lt;MemberLoginCB&gt;() {
-     *             public void query(MemberLoginCB andCB) {
+     *         orCB.<span style="color: #FD4747">orScopeQueryAndPart</span>(new AndQuery&lt;WhiteUqReferenceWithoutPkCB&gt;() {
+     *             public void query(WhiteUqReferenceWithoutPkCB andCB) {
      *                 andCB.query().setBar_...
      *                 andCB.query().setQux_...
      *             }
@@ -550,8 +435,8 @@ public class BsMemberLoginCB extends AbstractConditionBean {
      * </pre>
      * @param andQuery The query for and-condition. (NotNull)
      */
-    public void orScopeQueryAndPart(AndQuery<MemberLoginCB> andQuery) {
-        xorSQAP((MemberLoginCB)this, andQuery);
+    public void orScopeQueryAndPart(AndQuery<WhiteUqReferenceWithoutPkCB> andQuery) {
+        xorSQAP((WhiteUqReferenceWithoutPkCB)this, andQuery);
     }
 
     // ===================================================================================
@@ -577,15 +462,15 @@ public class BsMemberLoginCB extends AbstractConditionBean {
     //                                                                        ============
     @Override
     protected void xprepareSyncQyCall(ConditionBean mainCB) {
-        final MemberLoginCB cb;
+        final WhiteUqReferenceWithoutPkCB cb;
         if (mainCB != null) {
-            cb = (MemberLoginCB)mainCB;
+            cb = (WhiteUqReferenceWithoutPkCB)mainCB;
         } else {
-            cb = new MemberLoginCB();
+            cb = new WhiteUqReferenceWithoutPkCB();
         }
-        specify().xsetSyncQyCall(new HpSpQyCall<MemberLoginCQ>() {
+        specify().xsetSyncQyCall(new HpSpQyCall<WhiteUqReferenceWithoutPkCQ>() {
             public boolean has() { return true; }
-            public MemberLoginCQ qy() { return cb.query(); }
+            public WhiteUqReferenceWithoutPkCQ qy() { return cb.query(); }
         });
     }
 
@@ -593,8 +478,8 @@ public class BsMemberLoginCB extends AbstractConditionBean {
     //                                                                            Internal
     //                                                                            ========
     // very internal (for suppressing warn about 'Not Use Import')
-    protected String getConditionBeanClassNameInternally() { return MemberLoginCB.class.getName(); }
-    protected String getConditionQueryClassNameInternally() { return MemberLoginCQ.class.getName(); }
+    protected String getConditionBeanClassNameInternally() { return WhiteUqReferenceWithoutPkCB.class.getName(); }
+    protected String getConditionQueryClassNameInternally() { return WhiteUqReferenceWithoutPkCQ.class.getName(); }
     protected String getSubQueryClassNameInternally() { return SubQuery.class.getName(); }
     protected String getConditionOptionClassNameInternally() { return ConditionOption.class.getName(); }
 }
