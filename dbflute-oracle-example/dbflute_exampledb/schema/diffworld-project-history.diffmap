@@ -1,4 +1,394 @@
 map:{
+    ; 2013/11/05 00:18:33 = map:{
+        ; diffDate = 2013/11/05 00:18:33
+        ; tableDiff = map:{
+            ; MEMBER = map:{
+                ; tableName = MEMBER
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; MEMBER_ACCOUNT = map:{
+                        ; columnName = MEMBER_ACCOUNT
+                        ; diffType = CHANGE
+                        ; columnSizeDiff = map:{
+                            ; next = 80
+                            ; previous = 50
+                        }
+                    }
+                }
+            }
+            ; MEMBER_VENDOR_SYNONYM = map:{
+                ; tableName = MEMBER_VENDOR_SYNONYM
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; MEMBER_ACCOUNT = map:{
+                        ; columnName = MEMBER_ACCOUNT
+                        ; diffType = CHANGE
+                        ; columnSizeDiff = map:{
+                            ; next = 80
+                            ; previous = 50
+                        }
+                    }
+                }
+            }
+            ; SYNONYM_MEMBER = map:{
+                ; tableName = SYNONYM_MEMBER
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; MEMBER_ACCOUNT = map:{
+                        ; columnName = MEMBER_ACCOUNT
+                        ; diffType = CHANGE
+                        ; columnSizeDiff = map:{
+                            ; next = 80
+                            ; previous = 50
+                        }
+                    }
+                }
+            }
+            ; VENDOR_SYNONYM_MEMBER = map:{
+                ; tableName = VENDOR_SYNONYM_MEMBER
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; MEMBER_ACCOUNT = map:{
+                        ; columnName = MEMBER_ACCOUNT
+                        ; diffType = CHANGE
+                        ; columnSizeDiff = map:{
+                            ; next = 80
+                            ; previous = 50
+                        }
+                    }
+                }
+            }
+        }
+    }
+    ; 2013/11/05 00:17:52 = map:{
+        ; diffDate = 2013/11/05 00:17:52
+        ; tableDiff = map:{
+            ; MEMBER = map:{
+                ; tableName = MEMBER
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; MEMBER_ACCOUNT = map:{
+                        ; columnName = MEMBER_ACCOUNT
+                        ; diffType = CHANGE
+                        ; columnSizeDiff = map:{
+                            ; next = 50
+                            ; previous = 80
+                        }
+                    }
+                }
+            }
+            ; MEMBER_VENDOR_SYNONYM = map:{
+                ; tableName = MEMBER_VENDOR_SYNONYM
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; MEMBER_ACCOUNT = map:{
+                        ; columnName = MEMBER_ACCOUNT
+                        ; diffType = CHANGE
+                        ; columnSizeDiff = map:{
+                            ; next = 50
+                            ; previous = 80
+                        }
+                    }
+                }
+            }
+            ; SYNONYM_MEMBER = map:{
+                ; tableName = SYNONYM_MEMBER
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; MEMBER_ACCOUNT = map:{
+                        ; columnName = MEMBER_ACCOUNT
+                        ; diffType = CHANGE
+                        ; columnSizeDiff = map:{
+                            ; next = 50
+                            ; previous = 80
+                        }
+                    }
+                }
+            }
+            ; VENDOR_SYNONYM_MEMBER = map:{
+                ; tableName = VENDOR_SYNONYM_MEMBER
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; MEMBER_ACCOUNT = map:{
+                        ; columnName = MEMBER_ACCOUNT
+                        ; diffType = CHANGE
+                        ; columnSizeDiff = map:{
+                            ; next = 50
+                            ; previous = 80
+                        }
+                    }
+                }
+            }
+        }
+    }
+    ; 2013/11/04 23:21:42 = map:{
+        ; diffDate = 2013/11/04 23:21:42
+        ; tableDiff = map:{
+            ; MEMBER = map:{
+                ; tableName = MEMBER
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; MEMBER_ACCOUNT = map:{
+                        ; columnName = MEMBER_ACCOUNT
+                        ; diffType = CHANGE
+                        ; columnSizeDiff = map:{
+                            ; next = 80
+                            ; previous = 50
+                        }
+                    }
+                }
+            }
+            ; MEMBER_VENDOR_SYNONYM = map:{
+                ; tableName = MEMBER_VENDOR_SYNONYM
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; MEMBER_ACCOUNT = map:{
+                        ; columnName = MEMBER_ACCOUNT
+                        ; diffType = CHANGE
+                        ; columnSizeDiff = map:{
+                            ; next = 80
+                            ; previous = 50
+                        }
+                    }
+                }
+            }
+            ; SYNONYM_MEMBER = map:{
+                ; tableName = SYNONYM_MEMBER
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; MEMBER_ACCOUNT = map:{
+                        ; columnName = MEMBER_ACCOUNT
+                        ; diffType = CHANGE
+                        ; columnSizeDiff = map:{
+                            ; next = 80
+                            ; previous = 50
+                        }
+                    }
+                }
+            }
+            ; VENDOR_SYNONYM_MEMBER = map:{
+                ; tableName = VENDOR_SYNONYM_MEMBER
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; MEMBER_ACCOUNT = map:{
+                        ; columnName = MEMBER_ACCOUNT
+                        ; diffType = CHANGE
+                        ; columnSizeDiff = map:{
+                            ; next = 80
+                            ; previous = 50
+                        }
+                    }
+                }
+            }
+        }
+    }
+    ; 2013/11/04 23:21:06 = map:{
+        ; diffDate = 2013/11/04 23:21:06
+        ; tableDiff = map:{
+            ; MEMBER = map:{
+                ; tableName = MEMBER
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; MEMBER_ACCOUNT = map:{
+                        ; columnName = MEMBER_ACCOUNT
+                        ; diffType = CHANGE
+                        ; columnSizeDiff = map:{
+                            ; next = 50
+                            ; previous = 80
+                        }
+                    }
+                }
+            }
+            ; MEMBER_VENDOR_SYNONYM = map:{
+                ; tableName = MEMBER_VENDOR_SYNONYM
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; MEMBER_ACCOUNT = map:{
+                        ; columnName = MEMBER_ACCOUNT
+                        ; diffType = CHANGE
+                        ; columnSizeDiff = map:{
+                            ; next = 50
+                            ; previous = 80
+                        }
+                    }
+                }
+            }
+            ; SYNONYM_MEMBER = map:{
+                ; tableName = SYNONYM_MEMBER
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; MEMBER_ACCOUNT = map:{
+                        ; columnName = MEMBER_ACCOUNT
+                        ; diffType = CHANGE
+                        ; columnSizeDiff = map:{
+                            ; next = 50
+                            ; previous = 80
+                        }
+                    }
+                }
+            }
+            ; VENDOR_SYNONYM_MEMBER = map:{
+                ; tableName = VENDOR_SYNONYM_MEMBER
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; MEMBER_ACCOUNT = map:{
+                        ; columnName = MEMBER_ACCOUNT
+                        ; diffType = CHANGE
+                        ; columnSizeDiff = map:{
+                            ; next = 50
+                            ; previous = 80
+                        }
+                    }
+                }
+            }
+        }
+    }
+    ; 2013/11/04 23:00:05 = map:{
+        ; diffDate = 2013/11/04 23:00:05
+        ; tableDiff = map:{
+            ; MEMBER = map:{
+                ; tableName = MEMBER
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; MEMBER_ACCOUNT = map:{
+                        ; columnName = MEMBER_ACCOUNT
+                        ; diffType = CHANGE
+                        ; columnSizeDiff = map:{
+                            ; next = 80
+                            ; previous = 50
+                        }
+                    }
+                }
+            }
+            ; MEMBER_VENDOR_SYNONYM = map:{
+                ; tableName = MEMBER_VENDOR_SYNONYM
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; MEMBER_ACCOUNT = map:{
+                        ; columnName = MEMBER_ACCOUNT
+                        ; diffType = CHANGE
+                        ; columnSizeDiff = map:{
+                            ; next = 80
+                            ; previous = 50
+                        }
+                    }
+                }
+            }
+            ; SYNONYM_MEMBER = map:{
+                ; tableName = SYNONYM_MEMBER
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; MEMBER_ACCOUNT = map:{
+                        ; columnName = MEMBER_ACCOUNT
+                        ; diffType = CHANGE
+                        ; columnSizeDiff = map:{
+                            ; next = 80
+                            ; previous = 50
+                        }
+                    }
+                }
+            }
+            ; VENDOR_SYNONYM_MEMBER = map:{
+                ; tableName = VENDOR_SYNONYM_MEMBER
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; MEMBER_ACCOUNT = map:{
+                        ; columnName = MEMBER_ACCOUNT
+                        ; diffType = CHANGE
+                        ; columnSizeDiff = map:{
+                            ; next = 80
+                            ; previous = 50
+                        }
+                    }
+                }
+            }
+        }
+    }
+    ; 2013/11/04 22:59:25 = map:{
+        ; diffDate = 2013/11/04 22:59:25
+        ; tableCount = map:{
+            ; next = 50
+            ; previous = 45
+        }
+        ; tableDiff = map:{
+            ; WHITE_UQ_FK = map:{
+                ; tableName = WHITE_UQ_FK
+                ; diffType = ADD
+            }
+            ; WHITE_UQ_FK_REF = map:{
+                ; tableName = WHITE_UQ_FK_REF
+                ; diffType = ADD
+            }
+            ; WHITE_UQ_FK_REF_NEST = map:{
+                ; tableName = WHITE_UQ_FK_REF_NEST
+                ; diffType = ADD
+            }
+            ; WHITE_UQ_FK_WITHOUT_PK = map:{
+                ; tableName = WHITE_UQ_FK_WITHOUT_PK
+                ; diffType = ADD
+            }
+            ; WHITE_UQ_FK_WITHOUT_PK_REF = map:{
+                ; tableName = WHITE_UQ_FK_WITHOUT_PK_REF
+                ; diffType = ADD
+            }
+            ; MEMBER = map:{
+                ; tableName = MEMBER
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; MEMBER_ACCOUNT = map:{
+                        ; columnName = MEMBER_ACCOUNT
+                        ; diffType = CHANGE
+                        ; columnSizeDiff = map:{
+                            ; next = 50
+                            ; previous = 80
+                        }
+                    }
+                }
+            }
+            ; MEMBER_VENDOR_SYNONYM = map:{
+                ; tableName = MEMBER_VENDOR_SYNONYM
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; MEMBER_ACCOUNT = map:{
+                        ; columnName = MEMBER_ACCOUNT
+                        ; diffType = CHANGE
+                        ; columnSizeDiff = map:{
+                            ; next = 50
+                            ; previous = 80
+                        }
+                    }
+                }
+            }
+            ; SYNONYM_MEMBER = map:{
+                ; tableName = SYNONYM_MEMBER
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; MEMBER_ACCOUNT = map:{
+                        ; columnName = MEMBER_ACCOUNT
+                        ; diffType = CHANGE
+                        ; columnSizeDiff = map:{
+                            ; next = 50
+                            ; previous = 80
+                        }
+                    }
+                }
+            }
+            ; VENDOR_SYNONYM_MEMBER = map:{
+                ; tableName = VENDOR_SYNONYM_MEMBER
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; MEMBER_ACCOUNT = map:{
+                        ; columnName = MEMBER_ACCOUNT
+                        ; diffType = CHANGE
+                        ; columnSizeDiff = map:{
+                            ; next = 50
+                            ; previous = 80
+                        }
+                    }
+                }
+            }
+        }
+    }
     ; 2013/10/20 21:17:02 = map:{
         ; diffDate = 2013/10/20 21:17:02
         ; tableDiff = map:{

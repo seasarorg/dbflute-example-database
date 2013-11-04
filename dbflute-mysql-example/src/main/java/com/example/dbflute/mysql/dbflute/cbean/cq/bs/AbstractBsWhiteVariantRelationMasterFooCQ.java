@@ -154,7 +154,7 @@ public abstract class AbstractBsWhiteVariantRelationMasterFooCQ extends Abstract
      * white_variant_relation_referrer by VARIANT_MASTER_ID, named 'whiteVariantRelationReferrerAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">existsWhiteVariantRelationReferrerAsVariantList</span>(new SubQuery&lt;WhiteVariantRelationReferrerCB&gt;() {
-     *     public void query(WhiteVariantRelationMasterFooCB subCB) {
+     *     public void query(WhiteVariantRelationReferrerCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });
@@ -175,7 +175,7 @@ public abstract class AbstractBsWhiteVariantRelationMasterFooCQ extends Abstract
      * white_variant_relation_referrer by VARIANT_MASTER_ID, named 'whiteVariantRelationReferrerAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">notExistsWhiteVariantRelationReferrerAsVariantList</span>(new SubQuery&lt;WhiteVariantRelationReferrerCB&gt;() {
-     *     public void query(WhiteVariantRelationMasterFooCB subCB) {
+     *     public void query(WhiteVariantRelationReferrerCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });

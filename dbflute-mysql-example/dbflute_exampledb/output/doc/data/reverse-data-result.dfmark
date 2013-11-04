@@ -4,7 +4,7 @@
 * Load Data Reverse *
 *                   *
 * * * * * * * * * * *
-...Outputting load data: tables=74
+...Outputting load data: tables=76
   isReplaceSchemaDirectUse = false
   isOverrideExistingDataFile = false
   isSynchronizeOriginDate = false
@@ -68,17 +68,21 @@
   WHITE_SELF_REFERENCE (6)
   WHITE_SELF_REFERENCE_REF_ONE (0)
 
-[reverse-data-07-WHITE.xls]: tables=8
+[reverse-data-07-WHITE_TABLE-plus.xls]: tables=5
   WHITE_SPLIT_MULTIPLE_FK_NEXT (0)
   WHITE_SPLIT_MULTIPLE_FK_REF (0)
   WHITE_TABLE_EXCEPT_GEN_HEAD (0)
   WHITE_TABLE_EXCEPT_GEN_ONLY (0)
   WHITE_TABLE_EXCEPT_GEN_REF (0)
-  WHITE_UQ_REFERENCE (0)
-  WHITE_UQ_REFERENCE_REF (0)
-  WHITE_UQ_REFERENCE_REF_NEST (0)
 
-[reverse-data-08-WHITE_VARIANT-plus.xls]: tables=7
+[reverse-data-08-WHITE_UQ.xls]: tables=5
+  WHITE_UQ_FK (0)
+  WHITE_UQ_FK_REF (0)
+  WHITE_UQ_FK_REF_NEST (0)
+  WHITE_UQ_FK_WITHOUT_PK (0)
+  WHITE_UQ_FK_WITHOUT_PK_REF (0)
+
+[reverse-data-09-WHITE_VARIANT-plus.xls]: tables=7
   WHITE_VARIANT_RELATION_MASTER_BAR (0)
   WHITE_VARIANT_RELATION_MASTER_CORGE (0)
   WHITE_VARIANT_RELATION_MASTER_FOO (0)
@@ -87,7 +91,7 @@
   WHITE_XLS_MAN (14)
   WITHDRAWAL_REASON (4)
 
-[reverse-data-09-MEMBER-plus.xls]: tables=8
+[reverse-data-10-MEMBER-plus.xls]: tables=8
   MEMBER (20)
   MEMBER_ADDRESS (20)
   MEMBER_LOGIN (56)
@@ -97,9 +101,9 @@
   PRODUCT (20)
   PURCHASE (60)
 
-[reverse-data-10-WHITE_SPLIT-plus.xls]: tables=3
+[reverse-data-11-WHITE_SPLIT-plus.xls]: tables=3
   WHITE_PURCHASE_REFERRER (0)
   WHITE_SPLIT_MULTIPLE_FK_BASE (0)
   WHITE_SPLIT_MULTIPLE_FK_CHILD (0)
 
-Output Date: 2013/10/25 02:56:04
+Output Date: 2013/11/05 00:23:19

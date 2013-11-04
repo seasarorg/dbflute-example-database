@@ -1,6 +1,6 @@
 map:{
-    ; 2013/10/20 21:17:47 = map:{
-        ; diffDate = 2013/10/20 21:17:47
+    ; 2013/11/05 00:19:30 = map:{
+        ; diffDate = 2013/11/05 00:19:30
         ; tableDiff = map:{
             ; MEMBER = map:{
                 ; tableName = MEMBER
@@ -55,6 +55,36 @@ map:{
                             ; next = 80
                             ; previous = 50
                         }
+                    }
+                }
+            }
+            ; WHITE_UQ_FK_REF = map:{
+                ; tableName = WHITE_UQ_FK_REF
+                ; diffType = CHANGE
+                ; foreignKeyDiff = map:{
+                    ; FK_WHITE_UQ_FK_REF_UQ = map:{
+                        ; constraintName = FK_WHITE_UQ_FK_REF_UQ
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; WHITE_UQ_FK_REF_NEST = map:{
+                ; tableName = WHITE_UQ_FK_REF_NEST
+                ; diffType = CHANGE
+                ; foreignKeyDiff = map:{
+                    ; FK_WHITE_UQ_FK_REF_NEST_UQ = map:{
+                        ; constraintName = FK_WHITE_UQ_FK_REF_NEST_UQ
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; WHITE_UQ_FK_WITHOUT_PK_REF = map:{
+                ; tableName = WHITE_UQ_FK_WITHOUT_PK_REF
+                ; diffType = CHANGE
+                ; foreignKeyDiff = map:{
+                    ; FK_WHITE_UQ_FK_WITHOUT_PK_REF = map:{
+                        ; constraintName = FK_WHITE_UQ_FK_WITHOUT_PK_REF
+                        ; diffType = ADD
                     }
                 }
             }

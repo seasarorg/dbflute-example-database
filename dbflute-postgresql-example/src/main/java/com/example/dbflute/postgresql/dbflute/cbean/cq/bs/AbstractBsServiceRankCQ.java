@@ -134,7 +134,7 @@ public abstract class AbstractBsServiceRankCQ extends AbstractConditionQuery {
      * (会員サービス)member_service by service_rank_code, named 'memberServiceAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">existsMemberServiceList</span>(new SubQuery&lt;MemberServiceCB&gt;() {
-     *     public void query(ServiceRankCB subCB) {
+     *     public void query(MemberServiceCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });
@@ -155,7 +155,7 @@ public abstract class AbstractBsServiceRankCQ extends AbstractConditionQuery {
      * (会員サービス)member_service by service_rank_code, named 'memberServiceAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">notExistsMemberServiceList</span>(new SubQuery&lt;MemberServiceCB&gt;() {
-     *     public void query(ServiceRankCB subCB) {
+     *     public void query(MemberServiceCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });

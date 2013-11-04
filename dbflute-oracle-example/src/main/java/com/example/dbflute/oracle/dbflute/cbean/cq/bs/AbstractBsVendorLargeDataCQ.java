@@ -139,7 +139,7 @@ public abstract class AbstractBsVendorLargeDataCQ extends AbstractConditionQuery
      * VENDOR_LARGE_DATA_REF by LARGE_DATA_ID, named 'vendorLargeDataRefAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">existsVendorLargeDataRefList</span>(new SubQuery&lt;VendorLargeDataRefCB&gt;() {
-     *     public void query(VendorLargeDataCB subCB) {
+     *     public void query(VendorLargeDataRefCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });
@@ -160,7 +160,7 @@ public abstract class AbstractBsVendorLargeDataCQ extends AbstractConditionQuery
      * VENDOR_LARGE_DATA_REF by LARGE_DATA_ID, named 'vendorLargeDataRefAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">notExistsVendorLargeDataRefList</span>(new SubQuery&lt;VendorLargeDataRefCB&gt;() {
-     *     public void query(VendorLargeDataCB subCB) {
+     *     public void query(VendorLargeDataRefCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });

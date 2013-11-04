@@ -175,7 +175,7 @@ public abstract class AbstractBsWhiteSelfReferenceCQ extends AbstractConditionQu
      * white_self_reference_ref_one by SELF_REFERENCE_ID, named 'whiteSelfReferenceRefOneAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">existsWhiteSelfReferenceRefOneAsOne</span>(new SubQuery&lt;WhiteSelfReferenceRefOneCB&gt;() {
-     *     public void query(WhiteSelfReferenceCB subCB) {
+     *     public void query(WhiteSelfReferenceRefOneCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });
@@ -217,7 +217,7 @@ public abstract class AbstractBsWhiteSelfReferenceCQ extends AbstractConditionQu
      * white_self_reference_ref_one by SELF_REFERENCE_ID, named 'whiteSelfReferenceRefOneAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">notExistsWhiteSelfReferenceRefOneAsOne</span>(new SubQuery&lt;WhiteSelfReferenceRefOneCB&gt;() {
-     *     public void query(WhiteSelfReferenceCB subCB) {
+     *     public void query(WhiteSelfReferenceRefOneCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });

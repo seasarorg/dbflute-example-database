@@ -134,7 +134,7 @@ public abstract class AbstractBsNextSchemaProductStatusCQ extends AbstractCondit
      * WHITE_REF_NEXT_TARGET by NEXT_TARGET_CODE, named 'whiteRefNextTargetAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">existsWhiteRefNextTargetList</span>(new SubQuery&lt;WhiteRefNextTargetCB&gt;() {
-     *     public void query(NextSchemaProductStatusCB subCB) {
+     *     public void query(WhiteRefNextTargetCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });
@@ -155,7 +155,7 @@ public abstract class AbstractBsNextSchemaProductStatusCQ extends AbstractCondit
      * (隣のスキーマ)NEXT_SCHEMA_PRODUCT by PRODUCT_STATUS_CODE, named 'nextSchemaProductAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">existsNextSchemaProductList</span>(new SubQuery&lt;NextSchemaProductCB&gt;() {
-     *     public void query(NextSchemaProductStatusCB subCB) {
+     *     public void query(NextSchemaProductCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });
@@ -176,7 +176,7 @@ public abstract class AbstractBsNextSchemaProductStatusCQ extends AbstractCondit
      * WHITE_REF_NEXT_TARGET by NEXT_TARGET_CODE, named 'whiteRefNextTargetAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">notExistsWhiteRefNextTargetList</span>(new SubQuery&lt;WhiteRefNextTargetCB&gt;() {
-     *     public void query(NextSchemaProductStatusCB subCB) {
+     *     public void query(WhiteRefNextTargetCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });
@@ -197,7 +197,7 @@ public abstract class AbstractBsNextSchemaProductStatusCQ extends AbstractCondit
      * (隣のスキーマ)NEXT_SCHEMA_PRODUCT by PRODUCT_STATUS_CODE, named 'nextSchemaProductAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">notExistsNextSchemaProductList</span>(new SubQuery&lt;NextSchemaProductCB&gt;() {
-     *     public void query(NextSchemaProductStatusCB subCB) {
+     *     public void query(NextSchemaProductCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });

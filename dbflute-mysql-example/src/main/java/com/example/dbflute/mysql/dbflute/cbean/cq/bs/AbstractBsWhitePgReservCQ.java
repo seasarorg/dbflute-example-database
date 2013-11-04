@@ -154,7 +154,7 @@ public abstract class AbstractBsWhitePgReservCQ extends AbstractConditionQuery {
      * white_pg_reserv_ref by CLASS, named 'whitePgReservRefAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">existsWhitePgReservRefList</span>(new SubQuery&lt;WhitePgReservRefCB&gt;() {
-     *     public void query(WhitePgReservCB subCB) {
+     *     public void query(WhitePgReservRefCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });
@@ -175,7 +175,7 @@ public abstract class AbstractBsWhitePgReservCQ extends AbstractConditionQuery {
      * white_pg_reserv_ref by CLASS, named 'whitePgReservRefAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">notExistsWhitePgReservRefList</span>(new SubQuery&lt;WhitePgReservRefCB&gt;() {
-     *     public void query(WhitePgReservCB subCB) {
+     *     public void query(WhitePgReservRefCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });

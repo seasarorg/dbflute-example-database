@@ -139,7 +139,7 @@ public abstract class AbstractBsNextschemaWhiteSameNameCQ extends AbstractCondit
      * nextschema.white_same_name_ref by same_name_id, named 'whiteSameNameRefAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">existsWhiteSameNameRefList</span>(new SubQuery&lt;NextschemaWhiteSameNameRefCB&gt;() {
-     *     public void query(NextschemaWhiteSameNameCB subCB) {
+     *     public void query(NextschemaWhiteSameNameRefCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });
@@ -160,7 +160,7 @@ public abstract class AbstractBsNextschemaWhiteSameNameCQ extends AbstractCondit
      * nextschema.white_same_name_ref by same_name_id, named 'whiteSameNameRefAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">notExistsWhiteSameNameRefList</span>(new SubQuery&lt;NextschemaWhiteSameNameRefCB&gt;() {
-     *     public void query(NextschemaWhiteSameNameCB subCB) {
+     *     public void query(NextschemaWhiteSameNameRefCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });

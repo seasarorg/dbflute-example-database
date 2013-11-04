@@ -139,7 +139,7 @@ public abstract class AbstractBsNextSchemaProductCQ extends AbstractConditionQue
      * white_same_name by next_schema_product_id, named 'whiteSameNameAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">existsWhiteSameNameList</span>(new SubQuery&lt;WhiteSameNameCB&gt;() {
-     *     public void query(NextSchemaProductCB subCB) {
+     *     public void query(WhiteSameNameCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });
@@ -160,7 +160,7 @@ public abstract class AbstractBsNextSchemaProductCQ extends AbstractConditionQue
      * white_same_name by next_schema_product_id, named 'whiteSameNameAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">notExistsWhiteSameNameList</span>(new SubQuery&lt;WhiteSameNameCB&gt;() {
-     *     public void query(NextSchemaProductCB subCB) {
+     *     public void query(WhiteSameNameCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });

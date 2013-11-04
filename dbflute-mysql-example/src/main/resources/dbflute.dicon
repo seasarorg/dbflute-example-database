@@ -78,11 +78,11 @@
     <component name="whiteSuppressDefCheckBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteSuppressDefCheckBhv"/>
     <component name="whiteTableExceptGenHeadBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteTableExceptGenHeadBhv"/>
     <component name="whiteTableExceptGenRefBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteTableExceptGenRefBhv"/>
-    <component name="whiteUqReferenceBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteUqReferenceBhv"/>
-    <component name="whiteUqReferenceRefBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteUqReferenceRefBhv"/>
-    <component name="whiteUqReferenceRefNestBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteUqReferenceRefNestBhv"/>
-    <component name="whiteUqReferenceWithoutPkBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteUqReferenceWithoutPkBhv"/>
-    <component name="whiteUqReferenceWithoutPkRefBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteUqReferenceWithoutPkRefBhv"/>
+    <component name="whiteUqFkBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteUqFkBhv"/>
+    <component name="whiteUqFkRefBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteUqFkRefBhv"/>
+    <component name="whiteUqFkRefNestBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteUqFkRefNestBhv"/>
+    <component name="whiteUqFkWithoutPkBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteUqFkWithoutPkBhv"/>
+    <component name="whiteUqFkWithoutPkRefBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteUqFkWithoutPkRefBhv"/>
     <component name="whiteVariantRelationMasterBarBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteVariantRelationMasterBarBhv"/>
     <component name="whiteVariantRelationMasterCorgeBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteVariantRelationMasterCorgeBhv"/>
     <component name="whiteVariantRelationMasterFooBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteVariantRelationMasterFooBhv"/>

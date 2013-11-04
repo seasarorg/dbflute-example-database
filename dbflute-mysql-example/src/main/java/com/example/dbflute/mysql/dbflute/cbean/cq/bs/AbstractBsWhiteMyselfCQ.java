@@ -154,7 +154,7 @@ public abstract class AbstractBsWhiteMyselfCQ extends AbstractConditionQuery {
      * white_myself_check by MYSELF_ID, named 'whiteMyselfCheckAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">existsWhiteMyselfCheckList</span>(new SubQuery&lt;WhiteMyselfCheckCB&gt;() {
-     *     public void query(WhiteMyselfCB subCB) {
+     *     public void query(WhiteMyselfCheckCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });
@@ -175,7 +175,7 @@ public abstract class AbstractBsWhiteMyselfCQ extends AbstractConditionQuery {
      * white_myself_check by MYSELF_ID, named 'whiteMyselfCheckAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">notExistsWhiteMyselfCheckList</span>(new SubQuery&lt;WhiteMyselfCheckCB&gt;() {
-     *     public void query(WhiteMyselfCB subCB) {
+     *     public void query(WhiteMyselfCheckCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });

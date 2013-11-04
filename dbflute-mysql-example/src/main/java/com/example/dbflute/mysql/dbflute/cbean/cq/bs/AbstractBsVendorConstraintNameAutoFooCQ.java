@@ -154,7 +154,7 @@ public abstract class AbstractBsVendorConstraintNameAutoFooCQ extends AbstractCo
      * vendor_constraint_name_auto_ref by CONSTRAINT_NAME_AUTO_FOO_ID, named 'vendorConstraintNameAutoRefAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">existsVendorConstraintNameAutoRefList</span>(new SubQuery&lt;VendorConstraintNameAutoRefCB&gt;() {
-     *     public void query(VendorConstraintNameAutoFooCB subCB) {
+     *     public void query(VendorConstraintNameAutoRefCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });
@@ -175,7 +175,7 @@ public abstract class AbstractBsVendorConstraintNameAutoFooCQ extends AbstractCo
      * vendor_constraint_name_auto_ref by CONSTRAINT_NAME_AUTO_FOO_ID, named 'vendorConstraintNameAutoRefAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">notExistsVendorConstraintNameAutoRefList</span>(new SubQuery&lt;VendorConstraintNameAutoRefCB&gt;() {
-     *     public void query(VendorConstraintNameAutoFooCB subCB) {
+     *     public void query(VendorConstraintNameAutoRefCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });

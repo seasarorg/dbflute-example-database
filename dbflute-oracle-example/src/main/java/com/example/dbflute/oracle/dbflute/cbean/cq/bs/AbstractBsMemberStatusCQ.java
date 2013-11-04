@@ -191,7 +191,7 @@ public abstract class AbstractBsMemberStatusCQ extends AbstractConditionQuery {
      * (会員)MEMBER by MEMBER_STATUS_CODE, named 'memberAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">existsMemberList</span>(new SubQuery&lt;MemberCB&gt;() {
-     *     public void query(MemberStatusCB subCB) {
+     *     public void query(MemberCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });
@@ -212,7 +212,7 @@ public abstract class AbstractBsMemberStatusCQ extends AbstractConditionQuery {
      * (会員ログイン)MEMBER_LOGIN by LOGIN_MEMBER_STATUS_CODE, named 'memberLoginAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">existsMemberLoginList</span>(new SubQuery&lt;MemberLoginCB&gt;() {
-     *     public void query(MemberStatusCB subCB) {
+     *     public void query(MemberLoginCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });
@@ -233,7 +233,7 @@ public abstract class AbstractBsMemberStatusCQ extends AbstractConditionQuery {
      * (会員)MEMBER_VENDOR_SYNONYM by MEMBER_STATUS_CODE, named 'memberVendorSynonymAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">existsMemberVendorSynonymList</span>(new SubQuery&lt;MemberVendorSynonymCB&gt;() {
-     *     public void query(MemberStatusCB subCB) {
+     *     public void query(MemberVendorSynonymCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });
@@ -254,7 +254,7 @@ public abstract class AbstractBsMemberStatusCQ extends AbstractConditionQuery {
      * (会員)SYNONYM_MEMBER by MEMBER_STATUS_CODE, named 'synonymMemberAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">existsSynonymMemberList</span>(new SubQuery&lt;SynonymMemberCB&gt;() {
-     *     public void query(MemberStatusCB subCB) {
+     *     public void query(SynonymMemberCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });
@@ -275,7 +275,7 @@ public abstract class AbstractBsMemberStatusCQ extends AbstractConditionQuery {
      * (会員ログイン)SYNONYM_MEMBER_LOGIN by LOGIN_MEMBER_STATUS_CODE, named 'synonymMemberLoginAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">existsSynonymMemberLoginList</span>(new SubQuery&lt;SynonymMemberLoginCB&gt;() {
-     *     public void query(MemberStatusCB subCB) {
+     *     public void query(SynonymMemberLoginCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });
@@ -296,7 +296,7 @@ public abstract class AbstractBsMemberStatusCQ extends AbstractConditionQuery {
      * (会員)VENDOR_SYNONYM_MEMBER by MEMBER_STATUS_CODE, named 'vendorSynonymMemberAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">existsVendorSynonymMemberList</span>(new SubQuery&lt;VendorSynonymMemberCB&gt;() {
-     *     public void query(MemberStatusCB subCB) {
+     *     public void query(VendorSynonymMemberCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });
@@ -317,7 +317,7 @@ public abstract class AbstractBsMemberStatusCQ extends AbstractConditionQuery {
      * (会員)MEMBER by MEMBER_STATUS_CODE, named 'memberAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">notExistsMemberList</span>(new SubQuery&lt;MemberCB&gt;() {
-     *     public void query(MemberStatusCB subCB) {
+     *     public void query(MemberCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });
@@ -338,7 +338,7 @@ public abstract class AbstractBsMemberStatusCQ extends AbstractConditionQuery {
      * (会員ログイン)MEMBER_LOGIN by LOGIN_MEMBER_STATUS_CODE, named 'memberLoginAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">notExistsMemberLoginList</span>(new SubQuery&lt;MemberLoginCB&gt;() {
-     *     public void query(MemberStatusCB subCB) {
+     *     public void query(MemberLoginCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });
@@ -359,7 +359,7 @@ public abstract class AbstractBsMemberStatusCQ extends AbstractConditionQuery {
      * (会員)MEMBER_VENDOR_SYNONYM by MEMBER_STATUS_CODE, named 'memberVendorSynonymAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">notExistsMemberVendorSynonymList</span>(new SubQuery&lt;MemberVendorSynonymCB&gt;() {
-     *     public void query(MemberStatusCB subCB) {
+     *     public void query(MemberVendorSynonymCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });
@@ -380,7 +380,7 @@ public abstract class AbstractBsMemberStatusCQ extends AbstractConditionQuery {
      * (会員)SYNONYM_MEMBER by MEMBER_STATUS_CODE, named 'synonymMemberAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">notExistsSynonymMemberList</span>(new SubQuery&lt;SynonymMemberCB&gt;() {
-     *     public void query(MemberStatusCB subCB) {
+     *     public void query(SynonymMemberCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });
@@ -401,7 +401,7 @@ public abstract class AbstractBsMemberStatusCQ extends AbstractConditionQuery {
      * (会員ログイン)SYNONYM_MEMBER_LOGIN by LOGIN_MEMBER_STATUS_CODE, named 'synonymMemberLoginAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">notExistsSynonymMemberLoginList</span>(new SubQuery&lt;SynonymMemberLoginCB&gt;() {
-     *     public void query(MemberStatusCB subCB) {
+     *     public void query(SynonymMemberLoginCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });
@@ -422,7 +422,7 @@ public abstract class AbstractBsMemberStatusCQ extends AbstractConditionQuery {
      * (会員)VENDOR_SYNONYM_MEMBER by MEMBER_STATUS_CODE, named 'vendorSynonymMemberAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">notExistsVendorSynonymMemberList</span>(new SubQuery&lt;VendorSynonymMemberCB&gt;() {
-     *     public void query(MemberStatusCB subCB) {
+     *     public void query(VendorSynonymMemberCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });

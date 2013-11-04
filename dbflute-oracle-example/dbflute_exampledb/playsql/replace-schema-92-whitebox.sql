@@ -71,6 +71,59 @@ CREATE TABLE WHITE_SAME_NAME_REF_REF
 )  ;
 
 -- =======================================================================================
+--                                                                            UniqueKey FK
+--                                                                            ============
+-- /= = = = = = = = = = = = = = = = = = 
+-- for the test of unique-key FK
+-- = = = = = = = = = =/
+CREATE TABLE WHITE_UQ_FK (
+	UQ_FK_ID NUMERIC(16) NOT NULL PRIMARY KEY,
+	UQ_FK_CODE CHAR(3) NOT NULL,
+	UNIQUE (UQ_FK_CODE)
+) ;
+
+CREATE TABLE WHITE_UQ_FK_REF (
+	UQ_FK_REF_ID NUMERIC(16) NOT NULL PRIMARY KEY,
+	FK_TO_PK_ID NUMERIC(16) NOT NULL,
+	FK_TO_UQ_CODE CHAR(3) NOT NULL,
+	COMPOUND_UQ_FIRST_CODE CHAR(3) NOT NULL,
+	COMPOUND_UQ_SECOND_CODE CHAR(3) NOT NULL,
+	UNIQUE (COMPOUND_UQ_FIRST_CODE, COMPOUND_UQ_SECOND_CODE)
+) ;
+
+ALTER TABLE WHITE_UQ_FK_REF ADD CONSTRAINT FK_WHITE_UQ_FK_REF_PK
+	FOREIGN KEY (FK_TO_PK_ID) REFERENCES WHITE_UQ_FK (UQ_FK_ID) ;
+
+ALTER TABLE WHITE_UQ_FK_REF ADD CONSTRAINT FK_WHITE_UQ_FK_REF_UQ
+	FOREIGN KEY (FK_TO_UQ_CODE) REFERENCES WHITE_UQ_FK (UQ_FK_CODE) ;
+
+-- for the test of compound unique key
+-- and the test of same name key
+CREATE TABLE WHITE_UQ_FK_REF_NEST (
+	UQ_FK_REF_NEST_ID NUMERIC(16) NOT NULL PRIMARY KEY,
+	COMPOUND_UQ_FIRST_CODE CHAR(3) NOT NULL,
+	COMPOUND_UQ_SECOND_CODE CHAR(3) NOT NULL
+) ;
+
+ALTER TABLE WHITE_UQ_FK_REF_NEST ADD CONSTRAINT FK_WHITE_UQ_FK_REF_NEST_UQ
+	FOREIGN KEY (COMPOUND_UQ_FIRST_CODE, COMPOUND_UQ_SECOND_CODE)
+	REFERENCES WHITE_UQ_FK_REF (COMPOUND_UQ_FIRST_CODE, COMPOUND_UQ_SECOND_CODE) ;
+
+CREATE TABLE WHITE_UQ_FK_WITHOUT_PK (
+	UQ_FK_CODE CHAR(3) NOT NULL,
+	UQ_FK_NAME VARCHAR(64) NOT NULL,
+	UNIQUE (UQ_FK_CODE)
+) ;
+
+CREATE TABLE WHITE_UQ_FK_WITHOUT_PK_REF (
+	UQ_FK_REF_ID NUMERIC(16) NOT NULL,
+	FK_TO_UQ_CODE CHAR(3) NOT NULL
+) ;
+
+ALTER TABLE WHITE_UQ_FK_WITHOUT_PK_REF ADD CONSTRAINT FK_WHITE_UQ_FK_WITHOUT_PK_REF
+	FOREIGN KEY (FK_TO_UQ_CODE) REFERENCES WHITE_UQ_FK_WITHOUT_PK (UQ_FK_CODE) ;
+
+-- =======================================================================================
 --                                                                              Diff World
 --                                                                              ==========
 -- for the test of craft diff

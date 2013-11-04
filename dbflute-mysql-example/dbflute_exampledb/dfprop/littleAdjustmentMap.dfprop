@@ -354,7 +354,6 @@ map:{
 
     # the test of SetupSelect Forced Relation
     ; setupSelectForcedRelationMap = map:{
-        ; MEMBER = list:{ memberSecurityAsOne }
         ; MEMBER_SERVICE = list:{ serviceRank }
 
         # infinity loop case

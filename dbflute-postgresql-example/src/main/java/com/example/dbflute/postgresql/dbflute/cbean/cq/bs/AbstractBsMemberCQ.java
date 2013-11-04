@@ -139,7 +139,7 @@ public abstract class AbstractBsMemberCQ extends AbstractConditionQuery {
      * (会員住所情報)member_address by member_id, named 'memberAddressAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">existsMemberAddressList</span>(new SubQuery&lt;MemberAddressCB&gt;() {
-     *     public void query(MemberCB subCB) {
+     *     public void query(MemberAddressCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });
@@ -160,7 +160,7 @@ public abstract class AbstractBsMemberCQ extends AbstractConditionQuery {
      * (会員ログイン)member_login by member_id, named 'memberLoginAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">existsMemberLoginList</span>(new SubQuery&lt;MemberLoginCB&gt;() {
-     *     public void query(MemberCB subCB) {
+     *     public void query(MemberLoginCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });
@@ -181,7 +181,7 @@ public abstract class AbstractBsMemberCQ extends AbstractConditionQuery {
      * (会員セキュリティ情報)member_security by member_id, named 'memberSecurityAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">existsMemberSecurityAsOne</span>(new SubQuery&lt;MemberSecurityCB&gt;() {
-     *     public void query(MemberCB subCB) {
+     *     public void query(MemberSecurityCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });
@@ -202,7 +202,7 @@ public abstract class AbstractBsMemberCQ extends AbstractConditionQuery {
      * (会員退会情報)member_withdrawal by member_id, named 'memberWithdrawalAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">existsMemberWithdrawalAsOne</span>(new SubQuery&lt;MemberWithdrawalCB&gt;() {
-     *     public void query(MemberCB subCB) {
+     *     public void query(MemberWithdrawalCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });
@@ -223,7 +223,7 @@ public abstract class AbstractBsMemberCQ extends AbstractConditionQuery {
      * (購入)purchase by member_id, named 'purchaseAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">existsPurchaseList</span>(new SubQuery&lt;PurchaseCB&gt;() {
-     *     public void query(MemberCB subCB) {
+     *     public void query(PurchaseCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });
@@ -244,7 +244,7 @@ public abstract class AbstractBsMemberCQ extends AbstractConditionQuery {
      * (会員住所情報)member_address by member_id, named 'memberAddressAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">notExistsMemberAddressList</span>(new SubQuery&lt;MemberAddressCB&gt;() {
-     *     public void query(MemberCB subCB) {
+     *     public void query(MemberAddressCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });
@@ -265,7 +265,7 @@ public abstract class AbstractBsMemberCQ extends AbstractConditionQuery {
      * (会員ログイン)member_login by member_id, named 'memberLoginAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">notExistsMemberLoginList</span>(new SubQuery&lt;MemberLoginCB&gt;() {
-     *     public void query(MemberCB subCB) {
+     *     public void query(MemberLoginCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });
@@ -286,7 +286,7 @@ public abstract class AbstractBsMemberCQ extends AbstractConditionQuery {
      * (会員セキュリティ情報)member_security by member_id, named 'memberSecurityAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">notExistsMemberSecurityAsOne</span>(new SubQuery&lt;MemberSecurityCB&gt;() {
-     *     public void query(MemberCB subCB) {
+     *     public void query(MemberSecurityCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });
@@ -307,7 +307,7 @@ public abstract class AbstractBsMemberCQ extends AbstractConditionQuery {
      * (会員退会情報)member_withdrawal by member_id, named 'memberWithdrawalAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">notExistsMemberWithdrawalAsOne</span>(new SubQuery&lt;MemberWithdrawalCB&gt;() {
-     *     public void query(MemberCB subCB) {
+     *     public void query(MemberWithdrawalCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });
@@ -328,7 +328,7 @@ public abstract class AbstractBsMemberCQ extends AbstractConditionQuery {
      * (購入)purchase by member_id, named 'purchaseAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">notExistsPurchaseList</span>(new SubQuery&lt;PurchaseCB&gt;() {
-     *     public void query(MemberCB subCB) {
+     *     public void query(PurchaseCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });

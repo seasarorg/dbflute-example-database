@@ -154,7 +154,7 @@ public abstract class AbstractBsWhiteSplitMultipleFkNextCQ extends AbstractCondi
      * white_split_multiple_fk_base by NEXT_ID, named 'whiteSplitMultipleFkBaseAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">existsWhiteSplitMultipleFkBaseList</span>(new SubQuery&lt;WhiteSplitMultipleFkBaseCB&gt;() {
-     *     public void query(WhiteSplitMultipleFkNextCB subCB) {
+     *     public void query(WhiteSplitMultipleFkBaseCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });
@@ -175,7 +175,7 @@ public abstract class AbstractBsWhiteSplitMultipleFkNextCQ extends AbstractCondi
      * white_split_multiple_fk_base by NEXT_ID, named 'whiteSplitMultipleFkBaseAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">notExistsWhiteSplitMultipleFkBaseList</span>(new SubQuery&lt;WhiteSplitMultipleFkBaseCB&gt;() {
-     *     public void query(WhiteSplitMultipleFkNextCB subCB) {
+     *     public void query(WhiteSplitMultipleFkBaseCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });

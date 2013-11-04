@@ -155,7 +155,7 @@ public abstract class AbstractBsWhiteSelfReferenceRefOneCQ extends AbstractCondi
      * This relation is auto-detected as implicit reverse FK.
      * <pre>
      * cb.query().<span style="color: #FD4747">existsWhiteSelfReferenceByParentIdList</span>(new SubQuery&lt;WhiteSelfReferenceCB&gt;() {
-     *     public void query(WhiteSelfReferenceRefOneCB subCB) {
+     *     public void query(WhiteSelfReferenceCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });
@@ -177,7 +177,7 @@ public abstract class AbstractBsWhiteSelfReferenceRefOneCQ extends AbstractCondi
      * This relation is auto-detected as implicit reverse FK.
      * <pre>
      * cb.query().<span style="color: #FD4747">notExistsWhiteSelfReferenceByParentIdList</span>(new SubQuery&lt;WhiteSelfReferenceCB&gt;() {
-     *     public void query(WhiteSelfReferenceRefOneCB subCB) {
+     *     public void query(WhiteSelfReferenceCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });

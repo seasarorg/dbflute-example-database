@@ -154,7 +154,7 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
      * white_purchase_referrer by PURCHASE_REFERRER_ID, named 'whitePurchaseReferrerAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">existsWhitePurchaseReferrerAsOne</span>(new SubQuery&lt;WhitePurchaseReferrerCB&gt;() {
-     *     public void query(PurchaseCB subCB) {
+     *     public void query(WhitePurchaseReferrerCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });
@@ -196,7 +196,7 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
      * white_purchase_referrer by PURCHASE_REFERRER_ID, named 'whitePurchaseReferrerAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">notExistsWhitePurchaseReferrerAsOne</span>(new SubQuery&lt;WhitePurchaseReferrerCB&gt;() {
-     *     public void query(PurchaseCB subCB) {
+     *     public void query(WhitePurchaseReferrerCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });

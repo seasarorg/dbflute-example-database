@@ -1,4 +1,49 @@
 map:{
+    ; 2013/11/04 22:33:31 = map:{
+        ; diffDate = 2013/11/04 22:33:31
+        ; tableDiff = map:{
+            ; white_uq_fk = map:{
+                ; tableName = white_uq_fk
+                ; diffType = ADD
+            }
+            ; white_uq_fk_ref = map:{
+                ; tableName = white_uq_fk_ref
+                ; diffType = ADD
+            }
+            ; white_uq_fk_ref_nest = map:{
+                ; tableName = white_uq_fk_ref_nest
+                ; diffType = ADD
+            }
+            ; white_uq_fk_without_pk = map:{
+                ; tableName = white_uq_fk_without_pk
+                ; diffType = ADD
+            }
+            ; white_uq_fk_without_pk_ref = map:{
+                ; tableName = white_uq_fk_without_pk_ref
+                ; diffType = ADD
+            }
+            ; white_uq_reference = map:{
+                ; tableName = white_uq_reference
+                ; diffType = DELETE
+            }
+            ; white_uq_reference_ref = map:{
+                ; tableName = white_uq_reference_ref
+                ; diffType = DELETE
+            }
+            ; white_uq_reference_ref_nest = map:{
+                ; tableName = white_uq_reference_ref_nest
+                ; diffType = DELETE
+            }
+            ; white_uq_reference_without_pk = map:{
+                ; tableName = white_uq_reference_without_pk
+                ; diffType = DELETE
+            }
+            ; white_uq_reference_without_pk_ref = map:{
+                ; tableName = white_uq_reference_without_pk_ref
+                ; diffType = DELETE
+            }
+        }
+    }
     ; 2013/11/04 12:03:23 = map:{
         ; diffDate = 2013/11/04 12:03:23
         ; tableDiff = map:{

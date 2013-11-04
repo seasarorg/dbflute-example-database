@@ -139,7 +139,7 @@ public abstract class AbstractBsSynonymMemberCQ extends AbstractConditionQuery {
      * (会員ログイン)SYNONYM_MEMBER_LOGIN by MEMBER_ID, named 'synonymMemberLoginAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">existsSynonymMemberLoginList</span>(new SubQuery&lt;SynonymMemberLoginCB&gt;() {
-     *     public void query(SynonymMemberCB subCB) {
+     *     public void query(SynonymMemberLoginCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });
@@ -160,7 +160,7 @@ public abstract class AbstractBsSynonymMemberCQ extends AbstractConditionQuery {
      * SYNONYM_MEMBER_WITHDRAWAL by MEMBER_ID, named 'synonymMemberWithdrawalAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">existsSynonymMemberWithdrawalAsOne</span>(new SubQuery&lt;SynonymMemberWithdrawalCB&gt;() {
-     *     public void query(SynonymMemberCB subCB) {
+     *     public void query(SynonymMemberWithdrawalCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });
@@ -181,7 +181,7 @@ public abstract class AbstractBsSynonymMemberCQ extends AbstractConditionQuery {
      * (会員ログイン)SYNONYM_MEMBER_LOGIN by MEMBER_ID, named 'synonymMemberLoginAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">notExistsSynonymMemberLoginList</span>(new SubQuery&lt;SynonymMemberLoginCB&gt;() {
-     *     public void query(SynonymMemberCB subCB) {
+     *     public void query(SynonymMemberLoginCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });
@@ -202,7 +202,7 @@ public abstract class AbstractBsSynonymMemberCQ extends AbstractConditionQuery {
      * SYNONYM_MEMBER_WITHDRAWAL by MEMBER_ID, named 'synonymMemberWithdrawalAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">notExistsSynonymMemberWithdrawalAsOne</span>(new SubQuery&lt;SynonymMemberWithdrawalCB&gt;() {
-     *     public void query(SynonymMemberCB subCB) {
+     *     public void query(SynonymMemberWithdrawalCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });

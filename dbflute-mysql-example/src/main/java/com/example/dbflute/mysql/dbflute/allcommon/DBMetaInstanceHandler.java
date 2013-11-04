@@ -112,11 +112,11 @@ public class DBMetaInstanceHandler implements DBMetaProvider {
         tmpMap.put("white_suppress_def_check", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteSuppressDefCheckDbm");
         tmpMap.put("white_table_except_gen_head", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteTableExceptGenHeadDbm");
         tmpMap.put("white_table_except_gen_ref", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteTableExceptGenRefDbm");
-        tmpMap.put("white_uq_reference", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteUqReferenceDbm");
-        tmpMap.put("white_uq_reference_ref", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteUqReferenceRefDbm");
-        tmpMap.put("white_uq_reference_ref_nest", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteUqReferenceRefNestDbm");
-        tmpMap.put("white_uq_reference_without_pk", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteUqReferenceWithoutPkDbm");
-        tmpMap.put("white_uq_reference_without_pk_ref", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteUqReferenceWithoutPkRefDbm");
+        tmpMap.put("white_uq_fk", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteUqFkDbm");
+        tmpMap.put("white_uq_fk_ref", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteUqFkRefDbm");
+        tmpMap.put("white_uq_fk_ref_nest", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteUqFkRefNestDbm");
+        tmpMap.put("white_uq_fk_without_pk", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteUqFkWithoutPkDbm");
+        tmpMap.put("white_uq_fk_without_pk_ref", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteUqFkWithoutPkRefDbm");
         tmpMap.put("white_variant_relation_master_bar", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteVariantRelationMasterBarDbm");
         tmpMap.put("white_variant_relation_master_corge", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteVariantRelationMasterCorgeDbm");
         tmpMap.put("white_variant_relation_master_foo", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteVariantRelationMasterFooDbm");

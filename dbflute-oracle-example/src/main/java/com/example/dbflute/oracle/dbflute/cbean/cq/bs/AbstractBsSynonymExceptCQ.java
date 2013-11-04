@@ -139,7 +139,7 @@ public abstract class AbstractBsSynonymExceptCQ extends AbstractConditionQuery {
      * SYNONYM_REF_EXCEPT by EXCEPT_ID, named 'synonymRefExceptAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">existsSynonymRefExceptList</span>(new SubQuery&lt;SynonymRefExceptCB&gt;() {
-     *     public void query(SynonymExceptCB subCB) {
+     *     public void query(SynonymRefExceptCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });
@@ -160,7 +160,7 @@ public abstract class AbstractBsSynonymExceptCQ extends AbstractConditionQuery {
      * SYNONYM_REF_EXCEPT by EXCEPT_ID, named 'synonymRefExceptAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">notExistsSynonymRefExceptList</span>(new SubQuery&lt;SynonymRefExceptCB&gt;() {
-     *     public void query(SynonymExceptCB subCB) {
+     *     public void query(SynonymRefExceptCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });

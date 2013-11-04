@@ -61,7 +61,6 @@ public class BsMemberCB extends AbstractConditionBean {
         if (DBFluteConfig.getInstance().isCheckCountBeforeQueryUpdate()) {
             enableCheckCountBeforeQueryUpdate();
         }
-        setupSelect_MemberSecurityAsOne();
     }
 
     // ===================================================================================

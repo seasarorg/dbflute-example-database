@@ -74,6 +74,11 @@ public class DBMetaInstanceHandler implements DBMetaProvider {
         tmpMap.put("WHITE_SAME_NAME", "com.example.dbflute.oracle.dbflute.bsentity.dbmeta.WhiteSameNameDbm");
         tmpMap.put("WHITE_SAME_NAME_REF_REF", "com.example.dbflute.oracle.dbflute.bsentity.dbmeta.WhiteSameNameRefRefDbm");
         tmpMap.put("WHITE_TARGET", "com.example.dbflute.oracle.dbflute.bsentity.dbmeta.WhiteTargetDbm");
+        tmpMap.put("WHITE_UQ_FK", "com.example.dbflute.oracle.dbflute.bsentity.dbmeta.WhiteUqFkDbm");
+        tmpMap.put("WHITE_UQ_FK_REF", "com.example.dbflute.oracle.dbflute.bsentity.dbmeta.WhiteUqFkRefDbm");
+        tmpMap.put("WHITE_UQ_FK_REF_NEST", "com.example.dbflute.oracle.dbflute.bsentity.dbmeta.WhiteUqFkRefNestDbm");
+        tmpMap.put("WHITE_UQ_FK_WITHOUT_PK", "com.example.dbflute.oracle.dbflute.bsentity.dbmeta.WhiteUqFkWithoutPkDbm");
+        tmpMap.put("WHITE_UQ_FK_WITHOUT_PK_REF", "com.example.dbflute.oracle.dbflute.bsentity.dbmeta.WhiteUqFkWithoutPkRefDbm");
         tmpMap.put("WITHDRAWAL_REASON", "com.example.dbflute.oracle.dbflute.bsentity.dbmeta.WithdrawalReasonDbm");
         tmpMap.put("NEXT_SCHEMA_PRODUCT", "com.example.dbflute.oracle.dbflute.bsentity.dbmeta.NextSchemaProductDbm");
         tmpMap.put("NEXT_SCHEMA_PRODUCT_STATUS", "com.example.dbflute.oracle.dbflute.bsentity.dbmeta.NextSchemaProductStatusDbm");

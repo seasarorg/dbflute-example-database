@@ -149,7 +149,7 @@ public abstract class AbstractBsWhiteAllInOneClsCategoryCQ extends AbstractCondi
      * white_all_in_one_cls_element by CLS_CATEGORY_CODE, named 'whiteAllInOneClsElementAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">existsWhiteAllInOneClsElementList</span>(new SubQuery&lt;WhiteAllInOneClsElementCB&gt;() {
-     *     public void query(WhiteAllInOneClsCategoryCB subCB) {
+     *     public void query(WhiteAllInOneClsElementCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });
@@ -170,7 +170,7 @@ public abstract class AbstractBsWhiteAllInOneClsCategoryCQ extends AbstractCondi
      * white_all_in_one_cls_element by CLS_CATEGORY_CODE, named 'whiteAllInOneClsElementAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">notExistsWhiteAllInOneClsElementList</span>(new SubQuery&lt;WhiteAllInOneClsElementCB&gt;() {
-     *     public void query(WhiteAllInOneClsCategoryCB subCB) {
+     *     public void query(WhiteAllInOneClsElementCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });

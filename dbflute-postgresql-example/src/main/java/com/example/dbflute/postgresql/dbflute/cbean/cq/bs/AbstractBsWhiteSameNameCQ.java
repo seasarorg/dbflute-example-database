@@ -139,7 +139,7 @@ public abstract class AbstractBsWhiteSameNameCQ extends AbstractConditionQuery {
      * white_same_name_ref by same_name_id, named 'whiteSameNameRefAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">existsWhiteSameNameRefList</span>(new SubQuery&lt;WhiteSameNameRefCB&gt;() {
-     *     public void query(WhiteSameNameCB subCB) {
+     *     public void query(WhiteSameNameRefCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });
@@ -160,7 +160,7 @@ public abstract class AbstractBsWhiteSameNameCQ extends AbstractConditionQuery {
      * white_same_name_ref by same_name_id, named 'whiteSameNameRefAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">notExistsWhiteSameNameRefList</span>(new SubQuery&lt;WhiteSameNameRefCB&gt;() {
-     *     public void query(WhiteSameNameCB subCB) {
+     *     public void query(WhiteSameNameRefCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });

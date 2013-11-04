@@ -154,7 +154,7 @@ public abstract class AbstractBsWhiteImplicitConvNumericCQ extends AbstractCondi
      * white_implicit_conv_integer by IMPLICIT_CONV_NUMERIC_ID, named 'whiteImplicitConvIntegerAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">existsWhiteImplicitConvIntegerList</span>(new SubQuery&lt;WhiteImplicitConvIntegerCB&gt;() {
-     *     public void query(WhiteImplicitConvNumericCB subCB) {
+     *     public void query(WhiteImplicitConvIntegerCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });
@@ -175,7 +175,7 @@ public abstract class AbstractBsWhiteImplicitConvNumericCQ extends AbstractCondi
      * white_implicit_conv_string by IMPLICIT_CONV_NUMERIC_ID, named 'whiteImplicitConvStringAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">existsWhiteImplicitConvStringList</span>(new SubQuery&lt;WhiteImplicitConvStringCB&gt;() {
-     *     public void query(WhiteImplicitConvNumericCB subCB) {
+     *     public void query(WhiteImplicitConvStringCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });
@@ -196,7 +196,7 @@ public abstract class AbstractBsWhiteImplicitConvNumericCQ extends AbstractCondi
      * white_implicit_conv_integer by IMPLICIT_CONV_NUMERIC_ID, named 'whiteImplicitConvIntegerAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">notExistsWhiteImplicitConvIntegerList</span>(new SubQuery&lt;WhiteImplicitConvIntegerCB&gt;() {
-     *     public void query(WhiteImplicitConvNumericCB subCB) {
+     *     public void query(WhiteImplicitConvIntegerCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });
@@ -217,7 +217,7 @@ public abstract class AbstractBsWhiteImplicitConvNumericCQ extends AbstractCondi
      * white_implicit_conv_string by IMPLICIT_CONV_NUMERIC_ID, named 'whiteImplicitConvStringAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">notExistsWhiteImplicitConvStringList</span>(new SubQuery&lt;WhiteImplicitConvStringCB&gt;() {
-     *     public void query(WhiteImplicitConvNumericCB subCB) {
+     *     public void query(WhiteImplicitConvStringCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });

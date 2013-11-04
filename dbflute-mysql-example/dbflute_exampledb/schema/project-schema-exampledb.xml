@@ -1339,21 +1339,20 @@
             <index-column name="GEN_ONLY_ID" position="1"/>
         </index>
     </table>
-    <table name="white_uq_reference" schema="exampledb.$$NoNameSchema$$" type="TABLE">
+    <table name="white_uq_fk" schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="DECIMAL" javaType="Long"
-            name="UQ_REFERENCE_ID" pkName="PRIMARY" primaryKey="true"
+            name="UQ_FK_ID" pkName="PRIMARY" primaryKey="true"
             required="true" size="16" type="DECIMAL"/>
         <column comment="" dbType="CHAR" javaType="String"
-            name="UQ_REFERENCE_CODE" required="true" size="3" type="CHAR"/>
-        <unique name="UQ_REFERENCE_CODE">
-            <unique-column name="UQ_REFERENCE_CODE" position="1"/>
+            name="UQ_FK_CODE" required="true" size="3" type="CHAR"/>
+        <unique name="UQ_FK_CODE">
+            <unique-column name="UQ_FK_CODE" position="1"/>
         </unique>
     </table>
-    <table name="white_uq_reference_ref"
-        schema="exampledb.$$NoNameSchema$$" type="TABLE">
+    <table name="white_uq_fk_ref" schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="DECIMAL" javaType="Long"
-            name="UQ_REFERENCE_REF_ID" pkName="PRIMARY"
-            primaryKey="true" required="true" size="16" type="DECIMAL"/>
+            name="UQ_FK_REF_ID" pkName="PRIMARY" primaryKey="true"
+            required="true" size="16" type="DECIMAL"/>
         <column comment="" dbType="DECIMAL" javaType="Long"
             name="FK_TO_PK_ID" required="true" size="16" type="DECIMAL"/>
         <column comment="" dbType="CHAR" javaType="String"
@@ -1363,65 +1362,65 @@
         <column comment="" dbType="CHAR" javaType="String"
             name="COMPOUND_UQ_SECOND_CODE" required="true" size="3" type="CHAR"/>
         <foreign-key foreignSchema="exampledb.$$NoNameSchema$$"
-            foreignTable="white_uq_reference" name="FK_WHITE_UQ_REFERENCE_REF_PK">
-            <reference foreign="UQ_REFERENCE_ID" local="FK_TO_PK_ID"/>
+            foreignTable="white_uq_fk" name="FK_WHITE_UQ_FK_REF_PK">
+            <reference foreign="UQ_FK_ID" local="FK_TO_PK_ID"/>
         </foreign-key>
         <foreign-key foreignSchema="exampledb.$$NoNameSchema$$"
-            foreignTable="white_uq_reference" name="FK_WHITE_UQ_REFERENCE_REF_UQ">
-            <reference foreign="UQ_REFERENCE_CODE" local="FK_TO_UQ_CODE"/>
+            foreignTable="white_uq_fk" name="FK_WHITE_UQ_FK_REF_UQ">
+            <reference foreign="UQ_FK_CODE" local="FK_TO_UQ_CODE"/>
         </foreign-key>
         <unique name="COMPOUND_UQ_FIRST_CODE">
             <unique-column name="COMPOUND_UQ_FIRST_CODE" position="1"/>
             <unique-column name="COMPOUND_UQ_SECOND_CODE" position="2"/>
         </unique>
-        <index name="FK_WHITE_UQ_REFERENCE_REF_PK">
+        <index name="FK_WHITE_UQ_FK_REF_PK">
             <index-column name="FK_TO_PK_ID" position="1"/>
         </index>
-        <index name="FK_WHITE_UQ_REFERENCE_REF_UQ">
+        <index name="FK_WHITE_UQ_FK_REF_UQ">
             <index-column name="FK_TO_UQ_CODE" position="1"/>
         </index>
     </table>
-    <table name="white_uq_reference_ref_nest"
+    <table name="white_uq_fk_ref_nest"
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="DECIMAL" javaType="Long"
-            name="UQ_REFERENCE_REF_NEST_ID" pkName="PRIMARY"
-            primaryKey="true" required="true" size="16" type="DECIMAL"/>
+            name="UQ_FK_REF_NEST_ID" pkName="PRIMARY" primaryKey="true"
+            required="true" size="16" type="DECIMAL"/>
         <column comment="" dbType="CHAR" javaType="String"
             name="COMPOUND_UQ_FIRST_CODE" required="true" size="3" type="CHAR"/>
         <column comment="" dbType="CHAR" javaType="String"
             name="COMPOUND_UQ_SECOND_CODE" required="true" size="3" type="CHAR"/>
         <foreign-key foreignSchema="exampledb.$$NoNameSchema$$"
-            foreignTable="white_uq_reference_ref" name="FK_WHITE_UQ_REFERENCE_REF_NEST_UQ">
+            foreignTable="white_uq_fk_ref" name="FK_WHITE_UQ_FK_REF_NEST_UQ">
             <reference foreign="COMPOUND_UQ_FIRST_CODE" local="COMPOUND_UQ_FIRST_CODE"/>
             <reference foreign="COMPOUND_UQ_SECOND_CODE" local="COMPOUND_UQ_SECOND_CODE"/>
         </foreign-key>
-        <index name="FK_WHITE_UQ_REFERENCE_REF_NEST_UQ">
+        <index name="FK_WHITE_UQ_FK_REF_NEST_UQ">
             <index-column name="COMPOUND_UQ_FIRST_CODE" position="1"/>
             <index-column name="COMPOUND_UQ_SECOND_CODE" position="2"/>
         </index>
     </table>
-    <table name="white_uq_reference_without_pk"
+    <table name="white_uq_fk_without_pk"
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="CHAR" javaType="String"
-            name="UQ_REFERENCE_CODE" required="true" size="3" type="CHAR"/>
+            name="UQ_FK_CODE" required="true" size="3" type="CHAR"/>
         <column comment="" dbType="VARCHAR" javaType="String"
-            name="UQ_REFERENCE_NAME" required="true" size="64" type="VARCHAR"/>
-        <unique name="UQ_REFERENCE_CODE">
-            <unique-column name="UQ_REFERENCE_CODE" position="1"/>
+            name="UQ_FK_NAME" required="true" size="64" type="VARCHAR"/>
+        <unique name="UQ_FK_CODE">
+            <unique-column name="UQ_FK_CODE" position="1"/>
         </unique>
     </table>
-    <table name="white_uq_reference_without_pk_ref"
+    <table name="white_uq_fk_without_pk_ref"
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="DECIMAL" javaType="Long"
-            name="UQ_REFERENCE_REF_ID" required="true" size="16" type="DECIMAL"/>
+            name="UQ_FK_REF_ID" required="true" size="16" type="DECIMAL"/>
         <column comment="" dbType="CHAR" javaType="String"
-            name="UQ_REFERENCE_CODE" required="true" size="3" type="CHAR"/>
+            name="FK_TO_UQ_CODE" required="true" size="3" type="CHAR"/>
         <foreign-key foreignSchema="exampledb.$$NoNameSchema$$"
-            foreignTable="white_uq_reference_without_pk" name="FK_WHITE_UQ_REFERENCE_WITHOUT_PK_REF">
-            <reference foreign="UQ_REFERENCE_CODE" local="UQ_REFERENCE_CODE"/>
+            foreignTable="white_uq_fk_without_pk" name="FK_WHITE_UQ_FK_WITHOUT_PK_REF">
+            <reference foreign="UQ_FK_CODE" local="FK_TO_UQ_CODE"/>
         </foreign-key>
-        <index name="FK_WHITE_UQ_REFERENCE_WITHOUT_PK_REF">
-            <index-column name="UQ_REFERENCE_CODE" position="1"/>
+        <index name="FK_WHITE_UQ_FK_WITHOUT_PK_REF">
+            <index-column name="FK_TO_UQ_CODE" position="1"/>
         </index>
     </table>
     <table name="white_variant_relation_master_bar"

@@ -1,4 +1,138 @@
 map:{
+    ; 2013/11/04 21:36:08 = map:{
+        ; diffDate = 2013/11/04 21:36:08
+        ; tableDiff = map:{
+            ; WHITE_UQ_FK_REF = map:{
+                ; tableName = WHITE_UQ_FK_REF
+                ; diffType = CHANGE
+                ; foreignKeyDiff = map:{
+                    ; FK_WHITE_UQ_FK_REF_UQ = map:{
+                        ; constraintName = FK_WHITE_UQ_FK_REF_UQ
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; WHITE_UQ_FK_REF_NEST = map:{
+                ; tableName = WHITE_UQ_FK_REF_NEST
+                ; diffType = CHANGE
+                ; foreignKeyDiff = map:{
+                    ; FK_WHITE_UQ_FK_REF_NEST_UQ = map:{
+                        ; constraintName = FK_WHITE_UQ_FK_REF_NEST_UQ
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; WHITE_UQ_FK_WITHOUT_PK_REF = map:{
+                ; tableName = WHITE_UQ_FK_WITHOUT_PK_REF
+                ; diffType = CHANGE
+                ; foreignKeyDiff = map:{
+                    ; FK_WHITE_UQ_FK_WITHOUT_PK_REF = map:{
+                        ; constraintName = FK_WHITE_UQ_FK_WITHOUT_PK_REF
+                        ; diffType = ADD
+                    }
+                }
+            }
+        }
+    }
+    ; 2013/11/04 21:25:29 = map:{
+        ; diffDate = 2013/11/04 21:25:29
+        ; tableDiff = map:{
+            ; WHITE_UQ_FK = map:{
+                ; tableName = WHITE_UQ_FK
+                ; diffType = ADD
+            }
+            ; WHITE_UQ_FK_REF = map:{
+                ; tableName = WHITE_UQ_FK_REF
+                ; diffType = ADD
+            }
+            ; WHITE_UQ_FK_REF_NEST = map:{
+                ; tableName = WHITE_UQ_FK_REF_NEST
+                ; diffType = ADD
+            }
+            ; WHITE_UQ_FK_WITHOUT_PK = map:{
+                ; tableName = WHITE_UQ_FK_WITHOUT_PK
+                ; diffType = ADD
+            }
+            ; WHITE_UQ_FK_WITHOUT_PK_REF = map:{
+                ; tableName = WHITE_UQ_FK_WITHOUT_PK_REF
+                ; diffType = ADD
+            }
+            ; WHITE_UQ_REF = map:{
+                ; tableName = WHITE_UQ_REF
+                ; diffType = DELETE
+            }
+            ; WHITE_UQ_REF_REF = map:{
+                ; tableName = WHITE_UQ_REF_REF
+                ; diffType = DELETE
+            }
+            ; WHITE_UQ_REF_REF_NEST = map:{
+                ; tableName = WHITE_UQ_REF_REF_NEST
+                ; diffType = DELETE
+            }
+            ; WHITE_UQ_REF_WITHOUT_PK = map:{
+                ; tableName = WHITE_UQ_REF_WITHOUT_PK
+                ; diffType = DELETE
+            }
+            ; WHITE_UQ_REF_WITHOUT_PK_REF = map:{
+                ; tableName = WHITE_UQ_REF_WITHOUT_PK_REF
+                ; diffType = DELETE
+            }
+        }
+    }
+    ; 2013/11/04 21:20:46 = map:{
+        ; diffDate = 2013/11/04 21:20:46
+        ; tableCount = map:{
+            ; next = 50
+            ; previous = 47
+        }
+        ; tableDiff = map:{
+            ; WHITE_UQ_REF = map:{
+                ; tableName = WHITE_UQ_REF
+                ; diffType = ADD
+            }
+            ; WHITE_UQ_REF_REF = map:{
+                ; tableName = WHITE_UQ_REF_REF
+                ; diffType = ADD
+            }
+            ; WHITE_UQ_REF_REF_NEST = map:{
+                ; tableName = WHITE_UQ_REF_REF_NEST
+                ; diffType = ADD
+            }
+            ; WHITE_UQ_REF_WITHOUT_PK = map:{
+                ; tableName = WHITE_UQ_REF_WITHOUT_PK
+                ; diffType = ADD
+            }
+            ; WHITE_UQ_REF_WITHOUT_PK_REF = map:{
+                ; tableName = WHITE_UQ_REF_WITHOUT_PK_REF
+                ; diffType = ADD
+            }
+            ; M_FOO = map:{
+                ; tableName = M_FOO
+                ; diffType = DELETE
+            }
+            ; T_BAR = map:{
+                ; tableName = T_BAR
+                ; diffType = DELETE
+            }
+        }
+    }
+    ; 2013/11/04 14:24:18 = map:{
+        ; diffDate = 2013/11/04 14:24:18
+        ; tableCount = map:{
+            ; next = 47
+            ; previous = 45
+        }
+        ; tableDiff = map:{
+            ; M_FOO = map:{
+                ; tableName = M_FOO
+                ; diffType = ADD
+            }
+            ; T_BAR = map:{
+                ; tableName = T_BAR
+                ; diffType = ADD
+            }
+        }
+    }
     ; 2013/03/16 00:22:53 = map:{
         ; diffDate = 2013/03/16 00:22:53
         ; tableDiff = map:{

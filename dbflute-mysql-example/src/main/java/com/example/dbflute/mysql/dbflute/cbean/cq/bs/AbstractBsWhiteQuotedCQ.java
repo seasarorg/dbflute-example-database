@@ -154,7 +154,7 @@ public abstract class AbstractBsWhiteQuotedCQ extends AbstractConditionQuery {
      * white_quoted_ref by ORDER, named 'whiteQuotedRefAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">existsWhiteQuotedRefList</span>(new SubQuery&lt;WhiteQuotedRefCB&gt;() {
-     *     public void query(WhiteQuotedCB subCB) {
+     *     public void query(WhiteQuotedRefCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });
@@ -175,7 +175,7 @@ public abstract class AbstractBsWhiteQuotedCQ extends AbstractConditionQuery {
      * white_quoted_ref by ORDER, named 'whiteQuotedRefAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">notExistsWhiteQuotedRefList</span>(new SubQuery&lt;WhiteQuotedRefCB&gt;() {
-     *     public void query(WhiteQuotedCB subCB) {
+     *     public void query(WhiteQuotedRefCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });

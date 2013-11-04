@@ -139,7 +139,7 @@ public abstract class AbstractBsVendorLargeName901234567890CQ extends AbstractCo
      * VENDOR_LARGE_NAME_90123456_REF by VENDOR_LARGE_NAME_901234567_ID, named 'vendorLargeName90123456RefAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">existsVendorLargeName90123456RefList</span>(new SubQuery&lt;VendorLargeName90123456RefCB&gt;() {
-     *     public void query(VendorLargeName901234567890CB subCB) {
+     *     public void query(VendorLargeName90123456RefCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });
@@ -160,7 +160,7 @@ public abstract class AbstractBsVendorLargeName901234567890CQ extends AbstractCo
      * VENDOR_LARGE_NAME_90123456_REF by VENDOR_LARGE_NAME_901234567_ID, named 'vendorLargeName90123456RefAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">notExistsVendorLargeName90123456RefList</span>(new SubQuery&lt;VendorLargeName90123456RefCB&gt;() {
-     *     public void query(VendorLargeName901234567890CB subCB) {
+     *     public void query(VendorLargeName90123456RefCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });

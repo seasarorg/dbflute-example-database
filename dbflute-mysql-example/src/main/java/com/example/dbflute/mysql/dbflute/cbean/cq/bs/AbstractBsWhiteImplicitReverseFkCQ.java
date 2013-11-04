@@ -155,7 +155,7 @@ public abstract class AbstractBsWhiteImplicitReverseFkCQ extends AbstractConditi
      * This relation is auto-detected as implicit reverse FK.
      * <pre>
      * cb.query().<span style="color: #FD4747">existsWhiteImplicitReverseFkRefList</span>(new SubQuery&lt;WhiteImplicitReverseFkRefCB&gt;() {
-     *     public void query(WhiteImplicitReverseFkCB subCB) {
+     *     public void query(WhiteImplicitReverseFkRefCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });
@@ -177,7 +177,7 @@ public abstract class AbstractBsWhiteImplicitReverseFkCQ extends AbstractConditi
      * This relation is auto-detected as implicit reverse FK.
      * <pre>
      * cb.query().<span style="color: #FD4747">notExistsWhiteImplicitReverseFkRefList</span>(new SubQuery&lt;WhiteImplicitReverseFkRefCB&gt;() {
-     *     public void query(WhiteImplicitReverseFkCB subCB) {
+     *     public void query(WhiteImplicitReverseFkRefCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });

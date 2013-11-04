@@ -134,7 +134,7 @@ public abstract class AbstractBsSynonymProductStatusCQ extends AbstractCondition
      * (商品)SYNONYM_PRODUCT by PRODUCT_STATUS_CODE, named 'synonymProductAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">existsSynonymProductList</span>(new SubQuery&lt;SynonymProductCB&gt;() {
-     *     public void query(SynonymProductStatusCB subCB) {
+     *     public void query(SynonymProductCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });
@@ -155,7 +155,7 @@ public abstract class AbstractBsSynonymProductStatusCQ extends AbstractCondition
      * (商品)SYNONYM_PRODUCT by PRODUCT_STATUS_CODE, named 'synonymProductAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">notExistsSynonymProductList</span>(new SubQuery&lt;SynonymProductCB&gt;() {
-     *     public void query(SynonymProductStatusCB subCB) {
+     *     public void query(SynonymProductCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });

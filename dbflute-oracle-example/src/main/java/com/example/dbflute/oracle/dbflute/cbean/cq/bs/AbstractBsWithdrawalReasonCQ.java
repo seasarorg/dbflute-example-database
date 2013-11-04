@@ -134,7 +134,7 @@ public abstract class AbstractBsWithdrawalReasonCQ extends AbstractConditionQuer
      * MEMBER_WITHDRAWAL by WITHDRAWAL_REASON_CODE, named 'memberWithdrawalAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">existsMemberWithdrawalList</span>(new SubQuery&lt;MemberWithdrawalCB&gt;() {
-     *     public void query(WithdrawalReasonCB subCB) {
+     *     public void query(MemberWithdrawalCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });
@@ -155,7 +155,7 @@ public abstract class AbstractBsWithdrawalReasonCQ extends AbstractConditionQuer
      * SYNONYM_MEMBER_WITHDRAWAL by WITHDRAWAL_REASON_CODE, named 'synonymMemberWithdrawalAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">existsSynonymMemberWithdrawalList</span>(new SubQuery&lt;SynonymMemberWithdrawalCB&gt;() {
-     *     public void query(WithdrawalReasonCB subCB) {
+     *     public void query(SynonymMemberWithdrawalCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });
@@ -176,7 +176,7 @@ public abstract class AbstractBsWithdrawalReasonCQ extends AbstractConditionQuer
      * MEMBER_WITHDRAWAL by WITHDRAWAL_REASON_CODE, named 'memberWithdrawalAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">notExistsMemberWithdrawalList</span>(new SubQuery&lt;MemberWithdrawalCB&gt;() {
-     *     public void query(WithdrawalReasonCB subCB) {
+     *     public void query(MemberWithdrawalCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });
@@ -197,7 +197,7 @@ public abstract class AbstractBsWithdrawalReasonCQ extends AbstractConditionQuer
      * SYNONYM_MEMBER_WITHDRAWAL by WITHDRAWAL_REASON_CODE, named 'synonymMemberWithdrawalAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">notExistsSynonymMemberWithdrawalList</span>(new SubQuery&lt;SynonymMemberWithdrawalCB&gt;() {
-     *     public void query(WithdrawalReasonCB subCB) {
+     *     public void query(SynonymMemberWithdrawalCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });

@@ -154,7 +154,7 @@ public abstract class AbstractBsProductCQ extends AbstractConditionQuery {
      * (購入)purchase by PRODUCT_ID, named 'purchaseAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">existsPurchaseList</span>(new SubQuery&lt;PurchaseCB&gt;() {
-     *     public void query(ProductCB subCB) {
+     *     public void query(PurchaseCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });
@@ -175,7 +175,7 @@ public abstract class AbstractBsProductCQ extends AbstractConditionQuery {
      * (購入)purchase by PRODUCT_ID, named 'purchaseAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">notExistsPurchaseList</span>(new SubQuery&lt;PurchaseCB&gt;() {
-     *     public void query(ProductCB subCB) {
+     *     public void query(PurchaseCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });

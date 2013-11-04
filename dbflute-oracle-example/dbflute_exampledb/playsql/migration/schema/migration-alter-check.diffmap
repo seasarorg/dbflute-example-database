@@ -1,8 +1,8 @@
 map:{
-    ; 2013/10/20 21:18:36 = map:{
-        ; diffDate = 2013/10/20 21:18:36
+    ; 2013/11/05 00:20:30 = map:{
+        ; diffDate = 2013/11/05 00:20:30
         ; tableCount = map:{
-            ; next = 47
+            ; next = 52
             ; previous = 45
         }
         ; tableDiff = map:{
@@ -12,6 +12,26 @@ map:{
             }
             ; REGION = map:{
                 ; tableName = REGION
+                ; diffType = ADD
+            }
+            ; WHITE_UQ_FK = map:{
+                ; tableName = WHITE_UQ_FK
+                ; diffType = ADD
+            }
+            ; WHITE_UQ_FK_REF = map:{
+                ; tableName = WHITE_UQ_FK_REF
+                ; diffType = ADD
+            }
+            ; WHITE_UQ_FK_REF_NEST = map:{
+                ; tableName = WHITE_UQ_FK_REF_NEST
+                ; diffType = ADD
+            }
+            ; WHITE_UQ_FK_WITHOUT_PK = map:{
+                ; tableName = WHITE_UQ_FK_WITHOUT_PK
+                ; diffType = ADD
+            }
+            ; WHITE_UQ_FK_WITHOUT_PK_REF = map:{
+                ; tableName = WHITE_UQ_FK_WITHOUT_PK_REF
                 ; diffType = ADD
             }
             ; MEMBER = map:{

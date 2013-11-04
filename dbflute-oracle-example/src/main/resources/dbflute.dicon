@@ -55,6 +55,11 @@
     <component name="whiteSameNameBhv" class="com.example.dbflute.oracle.dbflute.exbhv.WhiteSameNameBhv"/>
     <component name="whiteSameNameRefRefBhv" class="com.example.dbflute.oracle.dbflute.exbhv.WhiteSameNameRefRefBhv"/>
     <component name="whiteTargetBhv" class="com.example.dbflute.oracle.dbflute.exbhv.WhiteTargetBhv"/>
+    <component name="whiteUqFkBhv" class="com.example.dbflute.oracle.dbflute.exbhv.WhiteUqFkBhv"/>
+    <component name="whiteUqFkRefBhv" class="com.example.dbflute.oracle.dbflute.exbhv.WhiteUqFkRefBhv"/>
+    <component name="whiteUqFkRefNestBhv" class="com.example.dbflute.oracle.dbflute.exbhv.WhiteUqFkRefNestBhv"/>
+    <component name="whiteUqFkWithoutPkBhv" class="com.example.dbflute.oracle.dbflute.exbhv.WhiteUqFkWithoutPkBhv"/>
+    <component name="whiteUqFkWithoutPkRefBhv" class="com.example.dbflute.oracle.dbflute.exbhv.WhiteUqFkWithoutPkRefBhv"/>
     <component name="withdrawalReasonBhv" class="com.example.dbflute.oracle.dbflute.exbhv.WithdrawalReasonBhv"/>
     <component name="nextSchemaProductBhv" class="com.example.dbflute.oracle.dbflute.exbhv.NextSchemaProductBhv"/>
     <component name="nextSchemaProductStatusBhv" class="com.example.dbflute.oracle.dbflute.exbhv.NextSchemaProductStatusBhv"/>

@@ -10,18 +10,18 @@ import org.seasar.dbflute.cbean.ListResultBean;
 import org.seasar.dbflute.cbean.SubQuery;
 import org.seasar.dbflute.util.Srl;
 
-import com.example.dbflute.mysql.dbflute.cbean.WhiteUqReferenceCB;
-import com.example.dbflute.mysql.dbflute.cbean.WhiteUqReferenceRefCB;
-import com.example.dbflute.mysql.dbflute.cbean.WhiteUqReferenceRefNestCB;
-import com.example.dbflute.mysql.dbflute.cbean.WhiteUqReferenceWithoutPkCB;
-import com.example.dbflute.mysql.dbflute.cbean.WhiteUqReferenceWithoutPkRefCB;
-import com.example.dbflute.mysql.dbflute.exbhv.WhiteUqReferenceBhv;
-import com.example.dbflute.mysql.dbflute.exbhv.WhiteUqReferenceRefBhv;
-import com.example.dbflute.mysql.dbflute.exbhv.WhiteUqReferenceRefNestBhv;
-import com.example.dbflute.mysql.dbflute.exbhv.WhiteUqReferenceWithoutPkBhv;
-import com.example.dbflute.mysql.dbflute.exentity.WhiteUqReference;
-import com.example.dbflute.mysql.dbflute.exentity.WhiteUqReferenceRef;
-import com.example.dbflute.mysql.dbflute.exentity.WhiteUqReferenceRefNest;
+import com.example.dbflute.mysql.dbflute.cbean.WhiteUqFkCB;
+import com.example.dbflute.mysql.dbflute.cbean.WhiteUqFkRefCB;
+import com.example.dbflute.mysql.dbflute.cbean.WhiteUqFkRefNestCB;
+import com.example.dbflute.mysql.dbflute.cbean.WhiteUqFkWithoutPkCB;
+import com.example.dbflute.mysql.dbflute.cbean.WhiteUqFkWithoutPkRefCB;
+import com.example.dbflute.mysql.dbflute.exbhv.WhiteUqFkBhv;
+import com.example.dbflute.mysql.dbflute.exbhv.WhiteUqFkRefBhv;
+import com.example.dbflute.mysql.dbflute.exbhv.WhiteUqFkRefNestBhv;
+import com.example.dbflute.mysql.dbflute.exbhv.WhiteUqFkWithoutPkBhv;
+import com.example.dbflute.mysql.dbflute.exentity.WhiteUqFk;
+import com.example.dbflute.mysql.dbflute.exentity.WhiteUqFkRef;
+import com.example.dbflute.mysql.dbflute.exentity.WhiteUqFkRefNest;
 import com.example.dbflute.mysql.unit.UnitContainerTestCase;
 
 /**
@@ -33,104 +33,104 @@ public class WxUniqueReferenceTest extends UnitContainerTestCase {
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    private WhiteUqReferenceBhv whiteUqReferenceBhv;
-    private WhiteUqReferenceRefBhv whiteUqReferenceRefBhv;
-    private WhiteUqReferenceRefNestBhv whiteUqReferenceRefNestBhv;
-    private WhiteUqReferenceWithoutPkBhv whiteUqReferenceWithoutPkBhv;
+    private WhiteUqFkBhv whiteUqFkBhv;
+    private WhiteUqFkRefBhv whiteUqFkRefBhv;
+    private WhiteUqFkRefNestBhv whiteUqFkRefNestBhv;
+    private WhiteUqFkWithoutPkBhv whiteUqFkWithoutPkBhv;
 
     // ===================================================================================
     //                                                                               Basic
     //                                                                               =====
-    public void test_UqReference_SetupSelect_both() {
+    public void test_UqFk_SetupSelect_both() {
         // ## Arrange ##
         registerTestData();
-        WhiteUqReferenceRefCB cb = new WhiteUqReferenceRefCB();
-        cb.setupSelect_WhiteUqReferenceByFkToPkId();
-        cb.setupSelect_WhiteUqReferenceByFkToUqCode();
+        WhiteUqFkRefCB cb = new WhiteUqFkRefCB();
+        cb.setupSelect_WhiteUqFkByFkToPkId();
+        cb.setupSelect_WhiteUqFkByFkToUqCode();
 
         // ## Act ##
-        ListResultBean<WhiteUqReferenceRef> refList = whiteUqReferenceRefBhv.selectList(cb);
+        ListResultBean<WhiteUqFkRef> refList = whiteUqFkRefBhv.selectList(cb);
 
         // ## Assert ##
         assertNotSame(0, refList.size());
-        for (WhiteUqReferenceRef ref : refList) {
+        for (WhiteUqFkRef ref : refList) {
             log(ln() + ref.toStringWithRelation());
-            WhiteUqReference byFkToPkId = ref.getWhiteUqReferenceByFkToPkId();
-            WhiteUqReference byFkToUqCode = ref.getWhiteUqReferenceByFkToUqCode();
+            WhiteUqFk byFkToPkId = ref.getWhiteUqFkByFkToPkId();
+            WhiteUqFk byFkToUqCode = ref.getWhiteUqFkByFkToUqCode();
             assertNotNull(byFkToPkId);
             assertNotNull(byFkToUqCode);
             assertNotSame(byFkToPkId, byFkToUqCode);
         }
     }
 
-    public void test_UqReference_SetupSelect_uqOnly() {
+    public void test_UqFk_SetupSelect_uqOnly() {
         // ## Arrange ##
         registerTestData();
-        WhiteUqReferenceRefCB cb = new WhiteUqReferenceRefCB();
-        cb.setupSelect_WhiteUqReferenceByFkToUqCode();
+        WhiteUqFkRefCB cb = new WhiteUqFkRefCB();
+        cb.setupSelect_WhiteUqFkByFkToUqCode();
 
         // ## Act ##
-        ListResultBean<WhiteUqReferenceRef> refList = whiteUqReferenceRefBhv.selectList(cb);
+        ListResultBean<WhiteUqFkRef> refList = whiteUqFkRefBhv.selectList(cb);
 
         // ## Assert ##
         assertNotSame(0, refList.size());
-        for (WhiteUqReferenceRef ref : refList) {
+        for (WhiteUqFkRef ref : refList) {
             log(ln() + ref.toStringWithRelation());
-            WhiteUqReference byFkToPkId = ref.getWhiteUqReferenceByFkToPkId();
-            WhiteUqReference byFkToUqCode = ref.getWhiteUqReferenceByFkToUqCode();
+            WhiteUqFk byFkToPkId = ref.getWhiteUqFkByFkToPkId();
+            WhiteUqFk byFkToUqCode = ref.getWhiteUqFkByFkToUqCode();
             assertNull(byFkToPkId);
             assertNotNull(byFkToUqCode);
         }
     }
 
-    public void test_UqReference_SetupSelect_multipleUq() {
+    public void test_UqFk_SetupSelect_multipleUq() {
         // ## Arrange ##
         registerTestData();
-        WhiteUqReferenceRefNestCB cb = new WhiteUqReferenceRefNestCB();
-        cb.setupSelect_WhiteUqReferenceRef();
+        WhiteUqFkRefNestCB cb = new WhiteUqFkRefNestCB();
+        cb.setupSelect_WhiteUqFkRef();
 
         // ## Act ##
-        ListResultBean<WhiteUqReferenceRefNest> nestList = whiteUqReferenceRefNestBhv.selectList(cb);
+        ListResultBean<WhiteUqFkRefNest> nestList = whiteUqFkRefNestBhv.selectList(cb);
 
         // ## Assert ##
         assertNotSame(0, nestList.size());
-        for (WhiteUqReferenceRefNest nest : nestList) {
+        for (WhiteUqFkRefNest nest : nestList) {
             log(ln() + nest.toStringWithRelation());
-            assertNotNull(nest.getWhiteUqReferenceRef());
+            assertNotNull(nest.getWhiteUqFkRef());
         }
     }
 
-    public void test_UqReference_ExistsReferrer_byUq() {
+    public void test_UqFk_ExistsReferrer_byUq() {
         // ## Arrange ##
         registerTestData();
-        WhiteUqReferenceCB cb = new WhiteUqReferenceCB();
-        cb.query().existsWhiteUqReferenceRefByFkToUqCodeList(new SubQuery<WhiteUqReferenceRefCB>() {
-            public void query(WhiteUqReferenceRefCB subCB) {
+        WhiteUqFkCB cb = new WhiteUqFkCB();
+        cb.query().existsWhiteUqFkRefByFkToUqCodeList(new SubQuery<WhiteUqFkRefCB>() {
+            public void query(WhiteUqFkRefCB subCB) {
                 subCB.query().setCompoundUqFirstCode_Equal("F03");
             }
         });
 
         // ## Act ##
-        ListResultBean<WhiteUqReference> mainList = whiteUqReferenceBhv.selectList(cb);
+        ListResultBean<WhiteUqFk> mainList = whiteUqFkBhv.selectList(cb);
 
         // ## Assert ##
         assertNotSame(0, mainList.size());
-        for (WhiteUqReference main : mainList) {
+        for (WhiteUqFk main : mainList) {
             log(main);
         }
         assertTrue(Srl.containsAll(cb.toDisplaySql(), "exists", // ln
-                "where sub1loc.FK_TO_UQ_CODE = dfloc.UQ_REFERENCE_CODE", // ln 
+                "where sub1loc.FK_TO_UQ_CODE = dfloc.UQ_FK_CODE", // ln 
                 "  and sub1loc.COMPOUND_UQ_FIRST_CODE = 'F03'"));
     }
 
-    public void test_UqReference_ExistsReferrer_byMutipleUq() {
+    public void test_UqFk_ExistsReferrer_byMutipleUq() {
         // ## Arrange ##
         registerTestData();
-        WhiteUqReferenceCB cb = new WhiteUqReferenceCB();
-        cb.query().existsWhiteUqReferenceRefByFkToUqCodeList(new SubQuery<WhiteUqReferenceRefCB>() {
-            public void query(WhiteUqReferenceRefCB subCB) {
-                subCB.query().existsWhiteUqReferenceRefNestList(new SubQuery<WhiteUqReferenceRefNestCB>() {
-                    public void query(WhiteUqReferenceRefNestCB subCB) {
+        WhiteUqFkCB cb = new WhiteUqFkCB();
+        cb.query().existsWhiteUqFkRefByFkToUqCodeList(new SubQuery<WhiteUqFkRefCB>() {
+            public void query(WhiteUqFkRefCB subCB) {
+                subCB.query().existsWhiteUqFkRefNestList(new SubQuery<WhiteUqFkRefNestCB>() {
+                    public void query(WhiteUqFkRefNestCB subCB) {
                         subCB.query().setCompoundUqSecondCode_Equal("S04");
                     }
                 });
@@ -138,75 +138,72 @@ public class WxUniqueReferenceTest extends UnitContainerTestCase {
         });
 
         // ## Act ##
-        ListResultBean<WhiteUqReference> mainList = whiteUqReferenceBhv.selectList(cb);
+        ListResultBean<WhiteUqFk> mainList = whiteUqFkBhv.selectList(cb);
 
         // ## Assert ##
         assertNotSame(0, mainList.size());
-        for (WhiteUqReference main : mainList) {
+        for (WhiteUqFk main : mainList) {
             log(main);
         }
-        assertTrue(Srl.containsAll(cb.toDisplaySql(), "exists",
-                "where sub1loc.FK_TO_UQ_CODE = dfloc.UQ_REFERENCE_CODE",
+        assertTrue(Srl.containsAll(cb.toDisplaySql(), "exists", "where sub1loc.FK_TO_UQ_CODE = dfloc.UQ_FK_CODE",
                 "  and exists (select sub2loc.COMPOUND_UQ_FIRST_CODE",
                 "where sub2loc.COMPOUND_UQ_FIRST_CODE = sub1loc.COMPOUND_UQ_FIRST_CODE",
                 "  and sub2loc.COMPOUND_UQ_SECOND_CODE = sub1loc.COMPOUND_UQ_SECOND_CODE",
                 "  and sub2loc.COMPOUND_UQ_SECOND_CODE = 'S04'"));
     }
 
-    public void test_UqReference_InScopeRelation_byUq() {
+    public void test_UqFk_InScopeRelation_byUq() {
         // ## Arrange ##
         registerTestData();
-        WhiteUqReferenceRefCB cb = new WhiteUqReferenceRefCB();
-        cb.setupSelect_WhiteUqReferenceByFkToUqCode();
-        cb.query().inScopeWhiteUqReferenceByFkToUqCode(new SubQuery<WhiteUqReferenceCB>() {
-            public void query(WhiteUqReferenceCB subCB) {
-                subCB.query().setUqReferenceCode_Equal("FOO");
+        WhiteUqFkRefCB cb = new WhiteUqFkRefCB();
+        cb.setupSelect_WhiteUqFkByFkToUqCode();
+        cb.query().inScopeWhiteUqFkByFkToUqCode(new SubQuery<WhiteUqFkCB>() {
+            public void query(WhiteUqFkCB subCB) {
+                subCB.query().setUqFkCode_Equal("FOO");
             }
         });
 
         // ## Act ##
-        List<WhiteUqReferenceRef> refList = whiteUqReferenceRefBhv.selectList(cb);
+        List<WhiteUqFkRef> refList = whiteUqFkRefBhv.selectList(cb);
 
         // ## Assert ##
         assertNotSame(0, refList.size());
-        for (WhiteUqReferenceRef ref : refList) {
+        for (WhiteUqFkRef ref : refList) {
             log(ln() + ref.toStringWithRelation());
-            WhiteUqReference byFkToPkId = ref.getWhiteUqReferenceByFkToPkId();
-            WhiteUqReference byFkToUqCode = ref.getWhiteUqReferenceByFkToUqCode();
+            WhiteUqFk byFkToPkId = ref.getWhiteUqFkByFkToPkId();
+            WhiteUqFk byFkToUqCode = ref.getWhiteUqFkByFkToUqCode();
             assertNull(byFkToPkId);
             assertNotNull(byFkToUqCode);
-            assertEquals("FOO", byFkToUqCode.getUqReferenceCode());
+            assertEquals("FOO", byFkToUqCode.getUqFkCode());
         }
     }
 
     // ===================================================================================
     //                                                                       Load Referrer
     //                                                                       =============
-    public void test_UqReference_LoadReferrer_both() {
+    public void test_UqFk_LoadReferrer_both() {
         // ## Arrange ##
         registerTestData();
-        WhiteUqReferenceCB cb = new WhiteUqReferenceCB();
+        WhiteUqFkCB cb = new WhiteUqFkCB();
 
         // ## Act ##
-        ListResultBean<WhiteUqReference> mainList = whiteUqReferenceBhv.selectList(cb);
-        whiteUqReferenceBhv.loadWhiteUqReferenceRefByFkToPkIdList(mainList,
-                new ConditionBeanSetupper<WhiteUqReferenceRefCB>() {
-                    public void setup(WhiteUqReferenceRefCB cb) {
-                    }
-                });
-        whiteUqReferenceBhv.loadWhiteUqReferenceRefByFkToUqCodeList(mainList,
-                new ConditionBeanSetupper<WhiteUqReferenceRefCB>() {
-                    public void setup(WhiteUqReferenceRefCB cb) {
-                    }
-                });
+        ListResultBean<WhiteUqFk> mainList = whiteUqFkBhv.selectList(cb);
+        whiteUqFkBhv.loadWhiteUqFkRefByFkToPkIdList(mainList, new ConditionBeanSetupper<WhiteUqFkRefCB>() {
+            public void setup(WhiteUqFkRefCB cb) {
+            }
+        });
+        whiteUqFkBhv.loadWhiteUqFkRefByFkToUqCodeList(mainList, new ConditionBeanSetupper<WhiteUqFkRefCB>() {
+            public void setup(WhiteUqFkRefCB cb) {
+            }
+        });
 
         // ## Assert ##
         assertNotSame(0, mainList.size());
         StringBuilder logSb = new StringBuilder();
-        for (WhiteUqReference main : mainList) {
+        for (WhiteUqFk main : mainList) {
             logSb.append(ln() + main.toStringWithRelation());
-            List<WhiteUqReferenceRef> byFkToPkIdList = main.getWhiteUqReferenceRefByFkToPkIdList();
-            List<WhiteUqReferenceRef> byFkToUqCodeList = main.getWhiteUqReferenceRefByFkToUqCodeList();
+            List<WhiteUqFkRef> byFkToPkIdList = main.getWhiteUqFkRefByFkToPkIdList();
+            List<WhiteUqFkRef> byFkToUqCodeList = main.getWhiteUqFkRefByFkToUqCodeList();
             assertFalse(byFkToPkIdList.isEmpty());
             assertFalse(byFkToUqCodeList.isEmpty());
             assertNotSame(byFkToPkIdList, byFkToUqCodeList);
@@ -214,76 +211,74 @@ public class WxUniqueReferenceTest extends UnitContainerTestCase {
         log(logSb);
     }
 
-    public void test_UqReference_LoadReferrer_uqOnly() {
+    public void test_UqFk_LoadReferrer_uqOnly() {
         // ## Arrange ##
         registerTestData();
-        WhiteUqReferenceCB cb = new WhiteUqReferenceCB();
+        WhiteUqFkCB cb = new WhiteUqFkCB();
 
         // ## Act ##
-        ListResultBean<WhiteUqReference> mainList = whiteUqReferenceBhv.selectList(cb);
-        whiteUqReferenceBhv.loadWhiteUqReferenceRefByFkToUqCodeList(mainList,
-                new ConditionBeanSetupper<WhiteUqReferenceRefCB>() {
-                    public void setup(WhiteUqReferenceRefCB cb) {
-                    }
-                });
+        ListResultBean<WhiteUqFk> mainList = whiteUqFkBhv.selectList(cb);
+        whiteUqFkBhv.loadWhiteUqFkRefByFkToUqCodeList(mainList, new ConditionBeanSetupper<WhiteUqFkRefCB>() {
+            public void setup(WhiteUqFkRefCB cb) {
+            }
+        });
 
         // ## Assert ##
         assertNotSame(0, mainList.size());
         StringBuilder logSb = new StringBuilder();
-        for (WhiteUqReference main : mainList) {
+        for (WhiteUqFk main : mainList) {
             logSb.append(ln() + main.toStringWithRelation());
-            List<WhiteUqReferenceRef> byFkToPkIdList = main.getWhiteUqReferenceRefByFkToPkIdList();
-            List<WhiteUqReferenceRef> byFkToUqCodeList = main.getWhiteUqReferenceRefByFkToUqCodeList();
+            List<WhiteUqFkRef> byFkToPkIdList = main.getWhiteUqFkRefByFkToPkIdList();
+            List<WhiteUqFkRef> byFkToUqCodeList = main.getWhiteUqFkRefByFkToUqCodeList();
             assertTrue(byFkToPkIdList.isEmpty());
             assertFalse(byFkToUqCodeList.isEmpty());
-            for (WhiteUqReferenceRef ref : byFkToUqCodeList) {
-                assertEquals(main.getUqReferenceCode(), ref.getFkToUqCode());
+            for (WhiteUqFkRef ref : byFkToUqCodeList) {
+                assertEquals(main.getUqFkCode(), ref.getFkToUqCode());
             }
         }
         log(logSb);
     }
 
-    public void test_UqReference_LoadReferrer_multipleUq() {
+    public void test_UqFk_LoadReferrer_multipleUq() {
         // ## Arrange ##
         registerTestData();
-        WhiteUqReferenceCB cb = new WhiteUqReferenceCB();
+        WhiteUqFkCB cb = new WhiteUqFkCB();
 
         // ## Act ##
-        ListResultBean<WhiteUqReference> mainList = whiteUqReferenceBhv.selectList(cb);
-        LoadReferrerOption<WhiteUqReferenceRefCB, WhiteUqReferenceRef> option = new LoadReferrerOption<WhiteUqReferenceRefCB, WhiteUqReferenceRef>();
-        option.setConditionBeanSetupper(new ConditionBeanSetupper<WhiteUqReferenceRefCB>() {
-            public void setup(WhiteUqReferenceRefCB cb) {
+        ListResultBean<WhiteUqFk> mainList = whiteUqFkBhv.selectList(cb);
+        LoadReferrerOption<WhiteUqFkRefCB, WhiteUqFkRef> option = new LoadReferrerOption<WhiteUqFkRefCB, WhiteUqFkRef>();
+        option.setConditionBeanSetupper(new ConditionBeanSetupper<WhiteUqFkRefCB>() {
+            public void setup(WhiteUqFkRefCB cb) {
             }
         });
-        option.setEntityListSetupper(new EntityListSetupper<WhiteUqReferenceRef>() {
-            public void setup(List<WhiteUqReferenceRef> entityList) {
-                whiteUqReferenceRefBhv.loadWhiteUqReferenceRefNestList(entityList,
-                        new ConditionBeanSetupper<WhiteUqReferenceRefNestCB>() {
-                            public void setup(WhiteUqReferenceRefNestCB cb) {
-                            }
-                        });
+        option.setEntityListSetupper(new EntityListSetupper<WhiteUqFkRef>() {
+            public void setup(List<WhiteUqFkRef> entityList) {
+                whiteUqFkRefBhv.loadWhiteUqFkRefNestList(entityList, new ConditionBeanSetupper<WhiteUqFkRefNestCB>() {
+                    public void setup(WhiteUqFkRefNestCB cb) {
+                    }
+                });
             }
         });
-        whiteUqReferenceBhv.loadWhiteUqReferenceRefByFkToUqCodeList(mainList, option);
+        whiteUqFkBhv.loadWhiteUqFkRefByFkToUqCodeList(mainList, option);
 
         // ## Assert ##
         assertNotSame(0, mainList.size());
         boolean exists = false;
-        for (WhiteUqReference main : mainList) {
-            log(main.getUqReferenceId() + ", " + main.getUqReferenceCode());
-            List<WhiteUqReferenceRef> byFkToPkIdList = main.getWhiteUqReferenceRefByFkToPkIdList();
-            List<WhiteUqReferenceRef> byFkToUqCodeList = main.getWhiteUqReferenceRefByFkToUqCodeList();
+        for (WhiteUqFk main : mainList) {
+            log(main.getUqFkId() + ", " + main.getUqFkCode());
+            List<WhiteUqFkRef> byFkToPkIdList = main.getWhiteUqFkRefByFkToPkIdList();
+            List<WhiteUqFkRef> byFkToUqCodeList = main.getWhiteUqFkRefByFkToUqCodeList();
             assertTrue(byFkToPkIdList.isEmpty());
             assertFalse(byFkToUqCodeList.isEmpty());
-            for (WhiteUqReferenceRef ref : byFkToUqCodeList) {
-                assertEquals(main.getUqReferenceCode(), ref.getFkToUqCode());
+            for (WhiteUqFkRef ref : byFkToUqCodeList) {
+                assertEquals(main.getUqFkCode(), ref.getFkToUqCode());
             }
-            for (WhiteUqReferenceRef ref : byFkToUqCodeList) {
-                log("  " + ref.getUqReferenceRefId());
-                List<WhiteUqReferenceRefNest> nestList = ref.getWhiteUqReferenceRefNestList();
+            for (WhiteUqFkRef ref : byFkToUqCodeList) {
+                log("  " + ref.getUqFkRefId());
+                List<WhiteUqFkRefNest> nestList = ref.getWhiteUqFkRefNestList();
                 if (!nestList.isEmpty()) {
                     exists = true;
-                    for (WhiteUqReferenceRefNest nest : nestList) {
+                    for (WhiteUqFkRefNest nest : nestList) {
                         log("    " + nest);
                         assertEquals(nest.getCompoundUqFirstCode(), nest.getCompoundUqFirstCode());
                         assertEquals(nest.getCompoundUqSecondCode(), nest.getCompoundUqSecondCode());
@@ -298,52 +293,51 @@ public class WxUniqueReferenceTest extends UnitContainerTestCase {
     // ===================================================================================
     //                                                                       Assist Helper
     //                                                                       =============
-    private List<WhiteUqReference> registerTestData() {
-        List<WhiteUqReference> mainList = new ArrayList<WhiteUqReference>();
-        mainList.add(xregisterWhiteUqReference(1, "FOO"));
-        mainList.add(xregisterWhiteUqReference(2, "BAR"));
-        mainList.add(xregisterWhiteUqReference(3, "QUX"));
+    private List<WhiteUqFk> registerTestData() {
+        List<WhiteUqFk> mainList = new ArrayList<WhiteUqFk>();
+        mainList.add(xregisterWhiteUqFk(1, "FOO"));
+        mainList.add(xregisterWhiteUqFk(2, "BAR"));
+        mainList.add(xregisterWhiteUqFk(3, "QUX"));
 
         // 1 to 1...*
-        xregisterWhiteUqReferenceRef(1, 1, "BAR", "F01", "S01");
-        xregisterWhiteUqReferenceRef(2, 2, "FOO", "F02", "S02");
-        xregisterWhiteUqReferenceRef(3, 3, "FOO", "F03", "S03");
-        xregisterWhiteUqReferenceRef(4, 3, "BAR", "F04", "S04");
-        xregisterWhiteUqReferenceRef(5, 3, "QUX", "F05", "S05");
+        xregisterWhiteUqFkRef(1, 1, "BAR", "F01", "S01");
+        xregisterWhiteUqFkRef(2, 2, "FOO", "F02", "S02");
+        xregisterWhiteUqFkRef(3, 3, "FOO", "F03", "S03");
+        xregisterWhiteUqFkRef(4, 3, "BAR", "F04", "S04");
+        xregisterWhiteUqFkRef(5, 3, "QUX", "F05", "S05");
 
         // 1 to 0...*
-        xregisterWhiteUqReferenceRefNest(1, "F01", "S01");
-        xregisterWhiteUqReferenceRefNest(2, "F01", "S01");
-        xregisterWhiteUqReferenceRefNest(3, "F04", "S04");
+        xregisterWhiteUqFkRefNest(1, "F01", "S01");
+        xregisterWhiteUqFkRefNest(2, "F01", "S01");
+        xregisterWhiteUqFkRefNest(3, "F04", "S04");
         return mainList;
     }
 
-    private WhiteUqReference xregisterWhiteUqReference(int id, String code) {
-        WhiteUqReference main = new WhiteUqReference();
-        main.setUqReferenceId(Long.valueOf(id));
-        main.setUqReferenceCode(code);
-        whiteUqReferenceBhv.insert(main);
+    private WhiteUqFk xregisterWhiteUqFk(int id, String code) {
+        WhiteUqFk main = new WhiteUqFk();
+        main.setUqFkId(Long.valueOf(id));
+        main.setUqFkCode(code);
+        whiteUqFkBhv.insert(main);
         return main;
     }
 
-    private WhiteUqReferenceRef xregisterWhiteUqReferenceRef(int id, int pkId, String uqCode, String firstCode,
-            String secondCode) {
-        WhiteUqReferenceRef ref = new WhiteUqReferenceRef();
-        ref.setUqReferenceRefId(Long.valueOf(id));
+    private WhiteUqFkRef xregisterWhiteUqFkRef(int id, int pkId, String uqCode, String firstCode, String secondCode) {
+        WhiteUqFkRef ref = new WhiteUqFkRef();
+        ref.setUqFkRefId(Long.valueOf(id));
         ref.setFkToPkId(Long.valueOf(pkId));
         ref.setFkToUqCode(uqCode);
         ref.setCompoundUqFirstCode(firstCode);
         ref.setCompoundUqSecondCode(secondCode);
-        whiteUqReferenceRefBhv.insert(ref);
+        whiteUqFkRefBhv.insert(ref);
         return ref;
     }
 
-    private WhiteUqReferenceRefNest xregisterWhiteUqReferenceRefNest(int id, String firstCode, String secondCode) {
-        WhiteUqReferenceRefNest nest = new WhiteUqReferenceRefNest();
-        nest.setUqReferenceRefNestId(Long.valueOf(id));
+    private WhiteUqFkRefNest xregisterWhiteUqFkRefNest(int id, String firstCode, String secondCode) {
+        WhiteUqFkRefNest nest = new WhiteUqFkRefNest();
+        nest.setUqFkRefNestId(Long.valueOf(id));
         nest.setCompoundUqFirstCode(firstCode);
         nest.setCompoundUqSecondCode(secondCode);
-        whiteUqReferenceRefNestBhv.insert(nest);
+        whiteUqFkRefNestBhv.insert(nest);
         return nest;
     }
 
@@ -352,15 +346,15 @@ public class WxUniqueReferenceTest extends UnitContainerTestCase {
     //                                                                          ==========
     public void test_withoutPk_generated() throws Exception {
         // ## Arrange ##
-        WhiteUqReferenceWithoutPkCB cb = new WhiteUqReferenceWithoutPkCB();
-        cb.query().existsWhiteUqReferenceWithoutPkRefList(new SubQuery<WhiteUqReferenceWithoutPkRefCB>() {
-            public void query(WhiteUqReferenceWithoutPkRefCB subCB) {
-                subCB.query().queryWhiteUqReferenceWithoutPk().setUqReferenceName_Equal("dummy");
+        WhiteUqFkWithoutPkCB cb = new WhiteUqFkWithoutPkCB();
+        cb.query().existsWhiteUqFkWithoutPkRefList(new SubQuery<WhiteUqFkWithoutPkRefCB>() {
+            public void query(WhiteUqFkWithoutPkRefCB subCB) {
+                subCB.query().queryWhiteUqFkWithoutPk().setUqFkName_Equal("dummy");
             }
         });
 
         // ## Act ##
         // ## Assert ##
-        whiteUqReferenceWithoutPkBhv.selectCount(cb); // expect no exception
+        whiteUqFkWithoutPkBhv.selectCount(cb); // expect no exception
     }
 }
