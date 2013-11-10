@@ -81,8 +81,8 @@ public class WhiteUqFkRefDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnUqFkRefId = cci("UQ_FK_REF_ID", "UQ_FK_REF_ID", null, null, true, "uqFkRefId", Long.class, true, false, "NUMBER", 16, 0, null, false, null, null, null, null, null);
     protected final ColumnInfo _columnFkToPkId = cci("FK_TO_PK_ID", "FK_TO_PK_ID", null, null, true, "fkToPkId", Long.class, false, false, "NUMBER", 16, 0, null, false, null, null, "whiteUqFkByFkToPkId", null, null);
     protected final ColumnInfo _columnFkToUqCode = cci("FK_TO_UQ_CODE", "FK_TO_UQ_CODE", null, null, true, "fkToUqCode", String.class, false, false, "CHAR", 3, 0, null, false, null, null, "whiteUqFkByFkToUqCode", null, null);
-    protected final ColumnInfo _columnCompoundUqFirstCode = cci("COMPOUND_UQ_FIRST_CODE", "COMPOUND_UQ_FIRST_CODE", null, null, true, "compoundUqFirstCode", String.class, false, false, "CHAR", 3, 0, null, false, null, null, null, "whiteUqFkRefNestList", null);
-    protected final ColumnInfo _columnCompoundUqSecondCode = cci("COMPOUND_UQ_SECOND_CODE", "COMPOUND_UQ_SECOND_CODE", null, null, true, "compoundUqSecondCode", String.class, false, false, "CHAR", 3, 0, null, false, null, null, null, "whiteUqFkRefNestList", null);
+    protected final ColumnInfo _columnCompoundUqFirstCode = cci("COMPOUND_UQ_FIRST_CODE", "COMPOUND_UQ_FIRST_CODE", null, null, true, "compoundUqFirstCode", String.class, false, false, "CHAR", 3, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnCompoundUqSecondCode = cci("COMPOUND_UQ_SECOND_CODE", "COMPOUND_UQ_SECOND_CODE", null, null, true, "compoundUqSecondCode", String.class, false, false, "CHAR", 3, 0, null, false, null, null, null, "whiteUqFkRefNestList,whiteUqFkRefNestList", null);
 
     public ColumnInfo columnUqFkRefId() { return _columnUqFkRefId; }
     public ColumnInfo columnFkToPkId() { return _columnFkToPkId; }
@@ -132,8 +132,8 @@ public class WhiteUqFkRefDbm extends AbstractDBMeta {
     //                                     -----------------
     public ReferrerInfo referrerWhiteUqFkRefNestList() {
         Map<ColumnInfo, ColumnInfo> map = newLinkedHashMapSized(4);
-        map.put(columnCompoundUqSecondCode(), WhiteUqFkRefNestDbm.getInstance().columnCompoundUqFirstCode());
-        map.put(columnCompoundUqFirstCode(), WhiteUqFkRefNestDbm.getInstance().columnCompoundUqSecondCode());
+        map.put(columnCompoundUqSecondCode(), WhiteUqFkRefNestDbm.getInstance().columnCompoundUqSecondCode());
+        map.put(columnCompoundUqSecondCode(), WhiteUqFkRefNestDbm.getInstance().columnCompoundUqSecondCode());
         return cri("FK_WHITE_UQ_FK_REF_NEST_UQ", "whiteUqFkRefNestList", this, WhiteUqFkRefNestDbm.getInstance(), map, false, "whiteUqFkRef");
     }
 

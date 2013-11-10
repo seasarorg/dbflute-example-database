@@ -105,7 +105,7 @@ public class WhiteUqFkRefNestDbm extends AbstractDBMeta {
     public ForeignInfo foreignWhiteUqFkRef() {
         Map<ColumnInfo, ColumnInfo> map = newLinkedHashMapSized(4);
         map.put(columnCompoundUqFirstCode(), WhiteUqFkRefDbm.getInstance().columnCompoundUqSecondCode());
-        map.put(columnCompoundUqSecondCode(), WhiteUqFkRefDbm.getInstance().columnCompoundUqFirstCode());
+        map.put(columnCompoundUqSecondCode(), WhiteUqFkRefDbm.getInstance().columnCompoundUqSecondCode());
         return cfi("FK_WHITE_UQ_FK_REF_NEST_UQ", "whiteUqFkRef", this, WhiteUqFkRefDbm.getInstance(), map, 0, false, false, false, false, null, null, false, "whiteUqFkRefNestList");
     }
 

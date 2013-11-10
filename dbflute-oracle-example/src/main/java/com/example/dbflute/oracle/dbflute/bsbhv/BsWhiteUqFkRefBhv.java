@@ -422,7 +422,7 @@ public abstract class BsWhiteUqFkRefBhv extends AbstractBehaviorWritable {
             public java.util.Map<String, Object> getPKVal(WhiteUqFkRef e) {
                 java.util.Map<String, Object> primaryKeyMap = new java.util.LinkedHashMap<String, Object>();
                 primaryKeyMap.put("CompoundUqSecondCode", e.getCompoundUqSecondCode());
-                primaryKeyMap.put("CompoundUqFirstCode", e.getCompoundUqFirstCode());
+                primaryKeyMap.put("CompoundUqSecondCode", e.getCompoundUqSecondCode());
                 return primaryKeyMap;
             }
             public void setRfLs(WhiteUqFkRef e, List<WhiteUqFkRefNest> ls) { e.setWhiteUqFkRefNestList(ls); }
@@ -433,13 +433,13 @@ public abstract class BsWhiteUqFkRefBhv extends AbstractBehaviorWritable {
                 StringBuilder sb = new StringBuilder();
                 for (java.util.Map<String, Object> primaryKeyMap : ls) {
                     if (sb.length() > 0) { sb.append(")").append(ln()).append("     or ("); }
-                    sb.append(aliasName).append(".COMPOUND_UQ_FIRST_CODE = ");
+                    sb.append(aliasName).append(".COMPOUND_UQ_SECOND_CODE = ");
                     identity = "whiteUqFkRefNestListCompoundUqSecondCode";
                     sb.append(cb.query().xregisterFreeParameterToThemeList(identity, primaryKeyMap.get("CompoundUqSecondCode")));
                     sb.append(" and ");
                     sb.append(aliasName).append(".COMPOUND_UQ_SECOND_CODE = ");
-                    identity = "whiteUqFkRefNestListCompoundUqFirstCode";
-                    sb.append(cb.query().xregisterFreeParameterToThemeList(identity, primaryKeyMap.get("CompoundUqFirstCode")));
+                    identity = "whiteUqFkRefNestListCompoundUqSecondCode";
+                    sb.append(cb.query().xregisterFreeParameterToThemeList(identity, primaryKeyMap.get("CompoundUqSecondCode")));
                 }
                 sb.insert(0, "((").append("))");
                 cb.getSqlClause().registerWhereClause(sb.toString(), aliasName);
@@ -456,7 +456,7 @@ public abstract class BsWhiteUqFkRefBhv extends AbstractBehaviorWritable {
             public java.util.Map<String, Object> getFKVal(WhiteUqFkRefNest e) {
                 java.util.Map<String, Object> foreignKeyMap = new java.util.LinkedHashMap<String, Object>();
                 foreignKeyMap.put("CompoundUqSecondCode", e.getCompoundUqFirstCode());
-                foreignKeyMap.put("CompoundUqFirstCode", e.getCompoundUqSecondCode());
+                foreignKeyMap.put("CompoundUqSecondCode", e.getCompoundUqSecondCode());
                 return foreignKeyMap;
             }
             public void setlcEt(WhiteUqFkRefNest re, WhiteUqFkRef le) { re.setWhiteUqFkRef(le); }

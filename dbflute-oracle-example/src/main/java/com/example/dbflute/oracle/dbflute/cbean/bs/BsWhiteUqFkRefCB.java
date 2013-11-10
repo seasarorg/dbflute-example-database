@@ -393,7 +393,7 @@ public class BsWhiteUqFkRefCB extends AbstractConditionBean {
             columnUqFkRefId(); // PK
             if (qyCall().qy().xgetReferrerQuery() instanceof WhiteUqFkRefNestCQ) {
                 columnCompoundUqSecondCode(); // non PK but referred column (and referrer also non PK)
-                columnCompoundUqFirstCode(); // non PK but referred column (and referrer also non PK)
+                columnCompoundUqSecondCode(); // non PK but referred column (and referrer also non PK)
             }
             if (qyCall().qy().hasConditionQueryWhiteUqFkByFkToPkId()
                     || qyCall().qy().xgetReferrerQuery() instanceof WhiteUqFkCQ) {
