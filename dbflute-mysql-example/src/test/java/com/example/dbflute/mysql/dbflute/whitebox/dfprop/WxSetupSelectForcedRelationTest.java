@@ -1,15 +1,23 @@
 package com.example.dbflute.mysql.dbflute.whitebox.dfprop;
 
+import java.util.List;
+
+import org.seasar.dbflute.bhv.ConditionBeanSetupper;
 import org.seasar.dbflute.cbean.ListResultBean;
+import org.seasar.dbflute.cbean.SubQuery;
 
 import com.example.dbflute.mysql.dbflute.cbean.MemberCB;
 import com.example.dbflute.mysql.dbflute.cbean.MemberServiceCB;
+import com.example.dbflute.mysql.dbflute.cbean.MemberStatusCB;
 import com.example.dbflute.mysql.dbflute.cbean.PurchaseCB;
 import com.example.dbflute.mysql.dbflute.exbhv.MemberBhv;
 import com.example.dbflute.mysql.dbflute.exbhv.MemberServiceBhv;
+import com.example.dbflute.mysql.dbflute.exbhv.MemberStatusBhv;
 import com.example.dbflute.mysql.dbflute.exbhv.PurchaseBhv;
 import com.example.dbflute.mysql.dbflute.exentity.Member;
 import com.example.dbflute.mysql.dbflute.exentity.MemberService;
+import com.example.dbflute.mysql.dbflute.exentity.MemberStatus;
+import com.example.dbflute.mysql.dbflute.exentity.MemberWithdrawal;
 import com.example.dbflute.mysql.dbflute.exentity.Purchase;
 import com.example.dbflute.mysql.unit.UnitContainerTestCase;
 
@@ -21,6 +29,7 @@ public class WxSetupSelectForcedRelationTest extends UnitContainerTestCase {
 
     private MemberBhv memberBhv;
     private MemberServiceBhv memberServiceBhv;
+    private MemberStatusBhv memberStatusBhv;
     private PurchaseBhv purchaseBhv;
 
     public void test_BasePoint_basic() throws Exception {
@@ -34,7 +43,7 @@ public class WxSetupSelectForcedRelationTest extends UnitContainerTestCase {
         assertHasAnyElement(serviceList);
         for (MemberService service : serviceList) {
             assertNull(service.getMember());
-            assertNotNull(service.getServiceRank()); // point
+            assertNull(service.getServiceRank()); // base point unsupported
         }
     }
 
@@ -76,5 +85,46 @@ public class WxSetupSelectForcedRelationTest extends UnitContainerTestCase {
             assertNotNull(purchase.getProduct());
             assertNull(purchase.getProduct().getProductStatus());
         }
+    }
+
+    public void test_ExistsReferrer_basic() throws Exception {
+        // ## Arrange ##
+        MemberStatusCB cb = new MemberStatusCB();
+        cb.query().existsMemberList(new SubQuery<MemberCB>() {
+            public void query(MemberCB subCB) {
+            }
+        });
+
+        // ## Act ##
+        ListResultBean<MemberStatus> statusList = memberStatusBhv.selectList(cb); // expect no exception
+
+        // ## Assert ##
+        assertHasAnyElement(statusList);
+    }
+
+    public void test_LoadReferrer_basic() throws Exception {
+        // ## Arrange ##
+        MemberStatusCB cb = new MemberStatusCB();
+
+        // ## Act ##
+        ListResultBean<MemberStatus> statusList = memberStatusBhv.selectList(cb); // expect no exception
+        memberStatusBhv.loadMemberList(statusList, new ConditionBeanSetupper<MemberCB>() {
+            public void setup(MemberCB cb) {
+            }
+        });
+
+        // ## Assert ##
+        assertHasAnyElement(statusList);
+        boolean existsWithdrawal = false;
+        for (MemberStatus status : statusList) {
+            List<Member> memberList = status.getMemberList();
+            for (Member member : memberList) {
+                MemberWithdrawal withdrawal = member.getMemberWithdrawalAsOne();
+                if (withdrawal != null) {
+                    existsWithdrawal = true;
+                }
+            }
+        }
+        assertFalse(existsWithdrawal); // base point unsupported
     }
 }

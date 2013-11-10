@@ -41,7 +41,9 @@ public class MemberSecurityNss {
      */
     public MemberNss withMember() {
         _query.doNss(new MemberSecurityCQ.NssCall() { public ConditionQuery qf() { return _query.queryMember(); }});
-        return new MemberNss(_query.queryMember());
+        MemberNss moreNss = new MemberNss(_query.queryMember());
+        moreNss.withMemberWithdrawalAsOne();
+        return moreNss;
     }
 
 }

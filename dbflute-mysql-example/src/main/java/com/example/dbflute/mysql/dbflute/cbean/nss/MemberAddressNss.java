@@ -41,7 +41,9 @@ public class MemberAddressNss {
      */
     public MemberNss withMember() {
         _query.doNss(new MemberAddressCQ.NssCall() { public ConditionQuery qf() { return _query.queryMember(); }});
-        return new MemberNss(_query.queryMember());
+        MemberNss moreNss = new MemberNss(_query.queryMember());
+        moreNss.withMemberWithdrawalAsOne();
+        return moreNss;
     }
     /**
      * With nested relation columns to select clause. <br />
