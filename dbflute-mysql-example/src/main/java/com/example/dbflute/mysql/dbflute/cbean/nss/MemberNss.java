@@ -241,9 +241,7 @@ public class MemberNss {
      */
     public MemberServiceNss withMemberServiceAsOne() {
         _query.doNss(new MemberCQ.NssCall() { public ConditionQuery qf() { return _query.queryMemberServiceAsOne(); }});
-        MemberServiceNss moreNss = new MemberServiceNss(_query.queryMemberServiceAsOne());
-        moreNss.withServiceRank();
-        return moreNss;
+        return new MemberServiceNss(_query.queryMemberServiceAsOne());
     }
     /**
      * With nested relation columns to select clause. <br />
