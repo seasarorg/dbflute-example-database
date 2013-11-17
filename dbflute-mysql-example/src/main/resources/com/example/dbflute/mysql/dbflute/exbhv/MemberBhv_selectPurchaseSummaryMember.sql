@@ -25,7 +25,7 @@ select member.MEMBER_ID -- // unique key of this result
  /*BEGIN*/
  where
    /*FOR pmb.memberNameList*/
-   /*NEXT 'and '*/member.MEMBER_NAME like /*#current*/'S%'
+   /*NEXT 'and '*/member.MEMBER_NAME like /*#current*/'%vi%'
    /*END*/
    /*IF pmb.memberStatusCode != null*/
    and member.MEMBER_STATUS_CODE = /*pmb.memberStatusCode*/'FML'
