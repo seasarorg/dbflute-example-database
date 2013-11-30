@@ -152,7 +152,7 @@ public abstract class AbstractBsAliasExceptCQ extends AbstractConditionQuery {
      * ALIAS_REF_EXCEPT by EXCEPT_ID, named 'aliasRefExceptAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">existsAliasRefExceptList</span>(new SubQuery&lt;AliasRefExceptCB&gt;() {
-     *     public void query(AliasExceptCB subCB) {
+     *     public void query(AliasRefExceptCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });
@@ -173,7 +173,7 @@ public abstract class AbstractBsAliasExceptCQ extends AbstractConditionQuery {
      * ALIAS_REF_EXCEPT by EXCEPT_ID, named 'aliasRefExceptAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">notExistsAliasRefExceptList</span>(new SubQuery&lt;AliasRefExceptCB&gt;() {
-     *     public void query(AliasExceptCB subCB) {
+     *     public void query(AliasRefExceptCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });

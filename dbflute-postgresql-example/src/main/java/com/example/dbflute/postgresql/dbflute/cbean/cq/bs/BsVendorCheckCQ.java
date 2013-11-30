@@ -345,6 +345,48 @@ public class BsVendorCheckCQ extends AbstractBsVendorCheckCQ {
      */
     public BsVendorCheckCQ addOrderBy_TypeOfBigint_Desc() { regOBD("type_of_bigint"); return this; }
 
+    protected ConditionValue _typeOfFloat;
+    public ConditionValue getTypeOfFloat() {
+        if (_typeOfFloat == null) { _typeOfFloat = nCV(); }
+        return _typeOfFloat;
+    }
+    protected ConditionValue getCValueTypeOfFloat() { return getTypeOfFloat(); }
+
+    /** 
+     * Add order-by as ascend. <br />
+     * type_of_float: {float8(17, 17)}
+     * @return this. (NotNull)
+     */
+    public BsVendorCheckCQ addOrderBy_TypeOfFloat_Asc() { regOBA("type_of_float"); return this; }
+
+    /**
+     * Add order-by as descend. <br />
+     * type_of_float: {float8(17, 17)}
+     * @return this. (NotNull)
+     */
+    public BsVendorCheckCQ addOrderBy_TypeOfFloat_Desc() { regOBD("type_of_float"); return this; }
+
+    protected ConditionValue _typeOfReal;
+    public ConditionValue getTypeOfReal() {
+        if (_typeOfReal == null) { _typeOfReal = nCV(); }
+        return _typeOfReal;
+    }
+    protected ConditionValue getCValueTypeOfReal() { return getTypeOfReal(); }
+
+    /** 
+     * Add order-by as ascend. <br />
+     * type_of_real: {float4(8, 8)}
+     * @return this. (NotNull)
+     */
+    public BsVendorCheckCQ addOrderBy_TypeOfReal_Asc() { regOBA("type_of_real"); return this; }
+
+    /**
+     * Add order-by as descend. <br />
+     * type_of_real: {float4(8, 8)}
+     * @return this. (NotNull)
+     */
+    public BsVendorCheckCQ addOrderBy_TypeOfReal_Desc() { regOBD("type_of_real"); return this; }
+
     protected ConditionValue _typeOfMoney;
     public ConditionValue getTypeOfMoney() {
         if (_typeOfMoney == null) { _typeOfMoney = nCV(); }

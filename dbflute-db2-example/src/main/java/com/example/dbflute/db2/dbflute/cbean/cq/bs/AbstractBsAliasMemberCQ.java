@@ -152,7 +152,7 @@ public abstract class AbstractBsAliasMemberCQ extends AbstractConditionQuery {
      * ALIAS_MEMBER_LOGIN by MEMBER_ID, named 'aliasMemberLoginAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">existsAliasMemberLoginList</span>(new SubQuery&lt;AliasMemberLoginCB&gt;() {
-     *     public void query(AliasMemberCB subCB) {
+     *     public void query(AliasMemberLoginCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });
@@ -173,7 +173,7 @@ public abstract class AbstractBsAliasMemberCQ extends AbstractConditionQuery {
      * ALIAS_MEMBER_LOGIN by MEMBER_ID, named 'aliasMemberLoginAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">notExistsAliasMemberLoginList</span>(new SubQuery&lt;AliasMemberLoginCB&gt;() {
-     *     public void query(AliasMemberCB subCB) {
+     *     public void query(AliasMemberLoginCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });

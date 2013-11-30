@@ -406,7 +406,7 @@ public class BsWhiteUqFkRefCQ extends AbstractBsWhiteUqFkRefCQ {
         assertObjectNotNull("subQuery<WhiteUqFkRefNestCB>", subQuery);
         WhiteUqFkRefNestCB cb = new WhiteUqFkRefNestCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
         String subQueryPropertyName = keepTwoOrMorePk_ExistsReferrer_WhiteUqFkRefNestList(cb.query()); // for saving query-value.
-        registerExistsReferrer(cb.query(), "COMPOUND_UQ_SECOND_CODE, COMPOUND_UQ_SECOND_CODE", "COMPOUND_UQ_FIRST_CODE, COMPOUND_UQ_SECOND_CODE", subQueryPropertyName, "whiteUqFkRefNestList");
+        registerExistsReferrer(cb.query(), "COMPOUND_UQ_SECOND_CODE, COMPOUND_UQ_FIRST_CODE", "COMPOUND_UQ_FIRST_CODE, COMPOUND_UQ_SECOND_CODE", subQueryPropertyName, "whiteUqFkRefNestList");
     }
     protected Map<String, WhiteUqFkRefNestCQ> _twoOrMorePk_ExistsReferrer_WhiteUqFkRefNestListMap;
     public Map<String, WhiteUqFkRefNestCQ> getTwoOrMorePk_ExistsReferrer_WhiteUqFkRefNestList() { return _twoOrMorePk_ExistsReferrer_WhiteUqFkRefNestListMap; }

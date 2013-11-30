@@ -57,6 +57,12 @@ public class BsVendorCheckCursorCursor {
     /** DB name of type_of_bigint. */
     public static final String DB_NAME_type_of_bigint = "type_of_bigint";
 
+    /** DB name of type_of_float. */
+    public static final String DB_NAME_type_of_float = "type_of_float";
+
+    /** DB name of type_of_real. */
+    public static final String DB_NAME_type_of_real = "type_of_real";
+
     /** DB name of type_of_money. */
     public static final String DB_NAME_type_of_money = "type_of_money";
 
@@ -112,6 +118,8 @@ public class BsVendorCheckCursorCursor {
     protected ValueType _vtTypeOfIntArray = vt(com.example.dbflute.postgresql.mytype.MyArray.class);
     protected ValueType _vtTypeOfInt4 = vt(Integer.class);
     protected ValueType _vtTypeOfBigint = vt(Long.class);
+    protected ValueType _vtTypeOfFloat = vt(java.math.BigDecimal.class);
+    protected ValueType _vtTypeOfReal = vt(java.math.BigDecimal.class);
     protected ValueType _vtTypeOfMoney = vt(java.math.BigDecimal.class);
     protected ValueType _vtTypeOfDate = vt(java.util.Date.class);
     protected ValueType _vtTypeOfTimestamp = vt(java.sql.Timestamp.class);
@@ -292,6 +300,24 @@ public class BsVendorCheckCursorCursor {
      */
     public Long getTypeOfBigint() throws SQLException {
         return (Long)_vtTypeOfBigint.getValue(_rs, DB_NAME_type_of_bigint);
+    }
+
+    /**
+     * [get] type_of_float: {float8(17, 17)} <br />
+     * @return The value of typeOfFloat. (NullAllowed)
+     * @throws java.sql.SQLException
+     */
+    public java.math.BigDecimal getTypeOfFloat() throws SQLException {
+        return (java.math.BigDecimal)_vtTypeOfFloat.getValue(_rs, DB_NAME_type_of_float);
+    }
+
+    /**
+     * [get] type_of_real: {float4(8, 8)} <br />
+     * @return The value of typeOfReal. (NullAllowed)
+     * @throws java.sql.SQLException
+     */
+    public java.math.BigDecimal getTypeOfReal() throws SQLException {
+        return (java.math.BigDecimal)_vtTypeOfReal.getValue(_rs, DB_NAME_type_of_real);
     }
 
     /**

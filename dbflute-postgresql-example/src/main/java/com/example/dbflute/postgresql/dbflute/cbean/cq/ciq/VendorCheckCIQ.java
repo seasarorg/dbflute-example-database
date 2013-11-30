@@ -82,6 +82,8 @@ public class VendorCheckCIQ extends AbstractBsVendorCheckCQ {
     protected ConditionValue getCValueTypeOfIntArray() { return _myCQ.getTypeOfIntArray(); }
     protected ConditionValue getCValueTypeOfInt4() { return _myCQ.getTypeOfInt4(); }
     protected ConditionValue getCValueTypeOfBigint() { return _myCQ.getTypeOfBigint(); }
+    protected ConditionValue getCValueTypeOfFloat() { return _myCQ.getTypeOfFloat(); }
+    protected ConditionValue getCValueTypeOfReal() { return _myCQ.getTypeOfReal(); }
     protected ConditionValue getCValueTypeOfMoney() { return _myCQ.getTypeOfMoney(); }
     protected ConditionValue getCValueTypeOfDate() { return _myCQ.getTypeOfDate(); }
     protected ConditionValue getCValueTypeOfTimestamp() { return _myCQ.getTypeOfTimestamp(); }

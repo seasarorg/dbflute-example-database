@@ -64,7 +64,7 @@ h4 {
 	font-size: 0.9em;
 	color: #114488;
 }
-#suggestion-list {
+.suggestionarea {
 	padding: 0 0.2em 0.2em 0.2em;
 	margin: 0;
 	position: absolute;
@@ -263,6 +263,7 @@ dl.procedurelist dd.column pre {
 <h2>Table List</h2>
 <div class="keywordsearch">
 	<input type="text" id="incremental-search-field" tabindex=1 value="" placeholder="Table Search" />
+	<ul id="suggestion-list" class="suggestionarea"></ul>
 	<span class="searchmemo">*Push 'tab' (primary tab order)</span>
 </div>
 <table summary="Tables in the Schema">
@@ -862,7 +863,7 @@ dl.procedurelist dd.column pre {
 	</thead>
 	<tr>
 		<td class="rownumcell">1</td>
-		<td class="flgcell" title="SYS_C0051527 :: sequence=SEQ_MEMBER:minimum(1),maximum(9999999999999999999999999999),increment(5),dfcache(5)">o</td>
+		<td class="flgcell" title="SYS_C0053344 :: sequence=SEQ_MEMBER:minimum(1),maximum(9999999999999999999999999999),increment(5),dfcache(5)">o</td>
 		<td class="flgcell">o</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -1121,7 +1122,7 @@ MEMBER_ADDRESS
 	</thead>
 	<tr>
 		<td class="rownumcell">1</td>
-		<td class="flgcell" title="SYS_C0051541 :: sequence=SEQ_MEMBER_ADDRESS:minimum(1),maximum(9999999999999999999999999999),increment(1)">o</td>
+		<td class="flgcell" title="SYS_C0053358 :: sequence=SEQ_MEMBER_ADDRESS:minimum(1),maximum(9999999999999999999999999999),increment(1)">o</td>
 		<td class="flgcell">o</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -1368,7 +1369,7 @@ MEMBER_ADDRESS
 	</thead>
 	<tr>
 		<td class="rownumcell">1</td>
-		<td class="flgcell" title="SYS_C0051547 :: sequence=SEQ_MEMBER_LOGIN:minimum(1),maximum(9999999999999999999999999999),increment(1),dfcache(12)">o</td>
+		<td class="flgcell" title="SYS_C0053364 :: sequence=SEQ_MEMBER_LOGIN:minimum(1),maximum(9999999999999999999999999999),increment(1),dfcache(12)">o</td>
 		<td class="flgcell">o</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -1478,7 +1479,7 @@ MEMBER_SECURITY
 	</thead>
 	<tr>
 		<td class="rownumcell">1</td>
-		<td class="flgcell" title="SYS_C0051572">o</td>
+		<td class="flgcell" title="SYS_C0053389">o</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -1707,7 +1708,7 @@ MEMBER_SERVICE
 	</thead>
 	<tr>
 		<td class="rownumcell">1</td>
-		<td class="flgcell" title="SYS_C0051559">o</td>
+		<td class="flgcell" title="SYS_C0053376">o</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -1921,7 +1922,7 @@ MEMBER_SERVICE
 	</thead>
 	<tr>
 		<td class="rownumcell">1</td>
-		<td class="flgcell" title="SYS_C0051633">o</td>
+		<td class="flgcell" title="SYS_C0053450">o</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -2015,7 +2016,7 @@ MEMBER_WITHDRAWAL
 	</thead>
 	<tr>
 		<td class="rownumcell">1</td>
-		<td class="flgcell" title="SYS_C0051582">o</td>
+		<td class="flgcell" title="SYS_C0053399">o</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -2227,7 +2228,7 @@ MEMBER_WITHDRAWAL
 	</thead>
 	<tr>
 		<td class="rownumcell">1</td>
-		<td class="flgcell" title="SYS_C0051611 :: sequence=SYNONYM_NEXT_SEQUENCE:minimum(1),maximum(9999999999999999999999999999),increment(1),dfcache(24)">o</td>
+		<td class="flgcell" title="SYS_C0053428 :: sequence=SYNONYM_NEXT_SEQUENCE:minimum(1),maximum(9999999999999999999999999999),increment(1),dfcache(24)">o</td>
 		<td class="flgcell">o</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -2473,7 +2474,7 @@ PRODUCT_CATEGORY
 	</thead>
 	<tr>
 		<td class="rownumcell">1</td>
-		<td class="flgcell" title="SYS_C0051614">o</td>
+		<td class="flgcell" title="SYS_C0053431">o</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -2550,7 +2551,7 @@ PRODUCT_STATUS
 	</thead>
 	<tr>
 		<td class="rownumcell">1</td>
-		<td class="flgcell" title="SYS_C0051618">o</td>
+		<td class="flgcell" title="SYS_C0053435">o</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -2627,7 +2628,7 @@ PRODUCT_STATUS
 	</thead>
 	<tr>
 		<td class="rownumcell">1</td>
-		<td class="flgcell" title="SYS_C0051597 :: sequence=SEQ_PURCHASE:minimum(1),maximum(9999999999999999999999999999),increment(1)">o</td>
+		<td class="flgcell" title="SYS_C0053414 :: sequence=SEQ_PURCHASE:minimum(1),maximum(9999999999999999999999999999),increment(1)">o</td>
 		<td class="flgcell">o</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -2890,7 +2891,7 @@ REGION
 	</thead>
 	<tr>
 		<td class="rownumcell">1</td>
-		<td class="flgcell" title="SYS_C0051621">o</td>
+		<td class="flgcell" title="SYS_C0053438">o</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -2949,7 +2950,7 @@ SERVICE_RANK
 	</thead>
 	<tr>
 		<td class="rownumcell">1</td>
-		<td class="flgcell" title="SYS_C0051628">o</td>
+		<td class="flgcell" title="SYS_C0053445">o</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -3153,7 +3154,7 @@ VENDOR_$_DOLLAR
 	</thead>
 	<tr>
 		<td class="rownumcell">1</td>
-		<td class="flgcell" title="SYS_C0051674">o</td>
+		<td class="flgcell" title="SYS_C0053491">o</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -3213,7 +3214,7 @@ VENDOR_CHECK
 	</thead>
 	<tr>
 		<td class="rownumcell">1</td>
-		<td class="flgcell" title="SYS_C0051664">o</td>
+		<td class="flgcell" title="SYS_C0053481">o</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -3765,7 +3766,7 @@ VENDOR_LARGE_DATA
 	</thead>
 	<tr>
 		<td class="rownumcell">1</td>
-		<td class="flgcell" title="SYS_C0051682">o</td>
+		<td class="flgcell" title="SYS_C0053499">o</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -3818,7 +3819,7 @@ VENDOR_LARGE_DATA
 		<td class="rownumcell">4</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
-		<td class="flgcell" title="SYS_C0051683(STRING_UNIQUE_INDEX)">o</td>
+		<td class="flgcell" title="SYS_C0053500(STRING_UNIQUE_INDEX)">o</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">*</td>
 		<td class="aliascell"></td>
@@ -3909,7 +3910,7 @@ VENDOR_LARGE_DATA_REF
 	</thead>
 	<tr>
 		<td class="rownumcell">1</td>
-		<td class="flgcell" title="SYS_C0051690">o</td>
+		<td class="flgcell" title="SYS_C0053507">o</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -4087,7 +4088,7 @@ VENDOR_LARGE_NAME_901234567890
 	</thead>
 	<tr>
 		<td class="rownumcell">1</td>
-		<td class="flgcell" title="SYS_C0051667">o</td>
+		<td class="flgcell" title="SYS_C0053484">o</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -4146,7 +4147,7 @@ VENDOR_LARGE_NAME_90123456_REF
 	</thead>
 	<tr>
 		<td class="rownumcell">1</td>
-		<td class="flgcell" title="SYS_C0051670">o</td>
+		<td class="flgcell" title="SYS_C0053487">o</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -4222,7 +4223,7 @@ WHITE_DIFF_WORLD
 	</thead>
 	<tr>
 		<td class="rownumcell">1</td>
-		<td class="flgcell" title="SYS_C0051744">o</td>
+		<td class="flgcell" title="SYS_C0053561">o</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -4281,7 +4282,7 @@ WHITE_REF_NEXT_EXCEPT
 	</thead>
 	<tr>
 		<td class="rownumcell">1</td>
-		<td class="flgcell" title="SYS_C0051701">o</td>
+		<td class="flgcell" title="SYS_C0053518">o</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -4340,7 +4341,7 @@ WHITE_REF_NEXT_TARGET
 	</thead>
 	<tr>
 		<td class="rownumcell">1</td>
-		<td class="flgcell" title="SYS_C0051709">o</td>
+		<td class="flgcell" title="SYS_C0053526">o</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -4399,7 +4400,7 @@ WHITE_REF_TARGET
 	</thead>
 	<tr>
 		<td class="rownumcell">1</td>
-		<td class="flgcell" title="SYS_C0051705">o</td>
+		<td class="flgcell" title="SYS_C0053522">o</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -4458,7 +4459,7 @@ WHITE_SAME_NAME
 	</thead>
 	<tr>
 		<td class="rownumcell">1</td>
-		<td class="flgcell" title="SYS_C0051713">o</td>
+		<td class="flgcell" title="SYS_C0053530">o</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -4517,7 +4518,7 @@ WHITE_SAME_NAME_REF_REF
 	</thead>
 	<tr>
 		<td class="rownumcell">1</td>
-		<td class="flgcell" title="SYS_C0051717">o</td>
+		<td class="flgcell" title="SYS_C0053534">o</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -4593,7 +4594,7 @@ WHITE_TARGET
 	</thead>
 	<tr>
 		<td class="rownumcell">1</td>
-		<td class="flgcell" title="SYS_C0051694">o</td>
+		<td class="flgcell" title="SYS_C0053511">o</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -4652,7 +4653,7 @@ WHITE_UQ_FK
 	</thead>
 	<tr>
 		<td class="rownumcell">1</td>
-		<td class="flgcell" title="SYS_C0051720">o</td>
+		<td class="flgcell" title="SYS_C0053537">o</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -4671,7 +4672,7 @@ WHITE_UQ_FK
 		<td class="rownumcell">2</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
-		<td class="flgcell" title="SYS_C0051721(UQ_FK_CODE)">o</td>
+		<td class="flgcell" title="SYS_C0053538(UQ_FK_CODE)">o</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">*</td>
 		<td class="aliascell"></td>
@@ -4711,7 +4712,7 @@ WHITE_UQ_FK_REF
 	</thead>
 	<tr>
 		<td class="rownumcell">1</td>
-		<td class="flgcell" title="SYS_C0051727">o</td>
+		<td class="flgcell" title="SYS_C0053544">o</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -4764,7 +4765,7 @@ WHITE_UQ_FK_REF
 		<td class="rownumcell">4</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
-		<td class="flgcell" title="SYS_C0051728(COMPOUND_UQ_FIRST_CODE, COMPOUND_UQ_SECOND_CODE)">o<span class="flgplus">+</span></td>
+		<td class="flgcell" title="SYS_C0053545(COMPOUND_UQ_FIRST_CODE, COMPOUND_UQ_SECOND_CODE)">o<span class="flgplus">+</span></td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">*</td>
 		<td class="aliascell"></td>
@@ -4781,7 +4782,7 @@ WHITE_UQ_FK_REF
 		<td class="rownumcell">5</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
-		<td class="flgcell" title="SYS_C0051728(COMPOUND_UQ_FIRST_CODE, COMPOUND_UQ_SECOND_CODE)">o<span class="flgplus">+</span></td>
+		<td class="flgcell" title="SYS_C0053545(COMPOUND_UQ_FIRST_CODE, COMPOUND_UQ_SECOND_CODE)">o<span class="flgplus">+</span></td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">*</td>
 		<td class="aliascell"></td>
@@ -4821,7 +4822,7 @@ WHITE_UQ_FK_REF_NEST
 	</thead>
 	<tr>
 		<td class="rownumcell">1</td>
-		<td class="flgcell" title="SYS_C0051734">o</td>
+		<td class="flgcell" title="SYS_C0053551">o</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -4899,7 +4900,7 @@ WHITE_UQ_FK_WITHOUT_PK
 		<td class="rownumcell">1</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
-		<td class="flgcell" title="SYS_C0051738(UQ_FK_CODE)">o</td>
+		<td class="flgcell" title="SYS_C0053555(UQ_FK_CODE)">o</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">*</td>
 		<td class="aliascell"></td>
@@ -5015,7 +5016,7 @@ WITHDRAWAL_REASON
 	</thead>
 	<tr>
 		<td class="rownumcell">1</td>
-		<td class="flgcell" title="SYS_C0051637">o</td>
+		<td class="flgcell" title="SYS_C0053454">o</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -5093,7 +5094,7 @@ WITHDRAWAL_REASON
 	</thead>
 	<tr>
 		<td class="rownumcell">1</td>
-		<td class="flgcell" title="SYS_C0051527">o</td>
+		<td class="flgcell" title="SYS_C0053344">o</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -5352,7 +5353,7 @@ SYNONYM_EXCEPT
 	</thead>
 	<tr>
 		<td class="rownumcell">1</td>
-		<td class="flgcell" title="SYS_C0051692">o</td>
+		<td class="flgcell" title="SYS_C0053509">o</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -5413,7 +5414,7 @@ SYNONYM_EXCEPT
 	</thead>
 	<tr>
 		<td class="rownumcell">1</td>
-		<td class="flgcell" title="SYS_C0051527">o</td>
+		<td class="flgcell" title="SYS_C0053344">o</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -5673,7 +5674,7 @@ SYNONYM_EXCEPT
 	</thead>
 	<tr>
 		<td class="rownumcell">1</td>
-		<td class="flgcell" title="SYS_C0051547">o</td>
+		<td class="flgcell" title="SYS_C0053364">o</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -5784,7 +5785,7 @@ SYNONYM_MEMBER_WITHDRAWAL
 	</thead>
 	<tr>
 		<td class="rownumcell">1</td>
-		<td class="flgcell" title="SYS_C0051582">o</td>
+		<td class="flgcell" title="SYS_C0053399">o</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -6635,7 +6636,7 @@ SYNONYM_NEXT_SAME_NAME_FK
 	</thead>
 	<tr>
 		<td class="rownumcell">1</td>
-		<td class="flgcell" title="SYS_C0051611">o</td>
+		<td class="flgcell" title="SYS_C0053428">o</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -6882,7 +6883,7 @@ SYNONYM_PRODUCT_STATUS
 	</thead>
 	<tr>
 		<td class="rownumcell">1</td>
-		<td class="flgcell" title="SYS_C0051618">o</td>
+		<td class="flgcell" title="SYS_C0053435">o</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -6958,7 +6959,7 @@ SYNONYM_REF_EXCEPT
 	</thead>
 	<tr>
 		<td class="rownumcell">1</td>
-		<td class="flgcell" title="SYS_C0051697">o</td>
+		<td class="flgcell" title="SYS_C0053514">o</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -7019,7 +7020,7 @@ SYNONYM_REF_EXCEPT
 	</thead>
 	<tr>
 		<td class="rownumcell">1</td>
-		<td class="flgcell" title="SYS_C0051527">o</td>
+		<td class="flgcell" title="SYS_C0053344">o</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -8384,12 +8385,10 @@ Incremental.prototype = {
 	 */
 	buildSuggestList: function () {
 		var fragment = document.createDocumentFragment(),
-			ul = document.createElement('ul'),
+			ul = document.getElementById('suggestion-list'),
 			li, anchor;
 
-		ul.id = 'suggestion-list';
 		this.ul = ul;
-
 		for (var i = 0, max = this.distDataList.length; i < max; i++) {
 			li = document.createElement('li');
 			li.style.display = 'none';
@@ -8409,7 +8408,6 @@ Incremental.prototype = {
 		}
 		ul.appendChild(fragment);
 
-		this.targetParent.appendChild(ul);
 		this.attachSuggestionEvent();
 	},
 

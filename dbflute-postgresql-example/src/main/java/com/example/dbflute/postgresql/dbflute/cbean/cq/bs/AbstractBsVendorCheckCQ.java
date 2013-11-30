@@ -1213,6 +1213,212 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
+     * type_of_float: {float8(17, 17)}
+     * @param typeOfFloat The value of typeOfFloat as equal. (NullAllowed: if null, no condition)
+     */
+    public void setTypeOfFloat_Equal(java.math.BigDecimal typeOfFloat) {
+        doSetTypeOfFloat_Equal(typeOfFloat);
+    }
+
+    protected void doSetTypeOfFloat_Equal(java.math.BigDecimal typeOfFloat) {
+        regTypeOfFloat(CK_EQ, typeOfFloat);
+    }
+
+    /**
+     * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br />
+     * type_of_float: {float8(17, 17)}
+     * @param typeOfFloat The value of typeOfFloat as greaterThan. (NullAllowed: if null, no condition)
+     */
+    public void setTypeOfFloat_GreaterThan(java.math.BigDecimal typeOfFloat) {
+        regTypeOfFloat(CK_GT, typeOfFloat);
+    }
+
+    /**
+     * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br />
+     * type_of_float: {float8(17, 17)}
+     * @param typeOfFloat The value of typeOfFloat as lessThan. (NullAllowed: if null, no condition)
+     */
+    public void setTypeOfFloat_LessThan(java.math.BigDecimal typeOfFloat) {
+        regTypeOfFloat(CK_LT, typeOfFloat);
+    }
+
+    /**
+     * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br />
+     * type_of_float: {float8(17, 17)}
+     * @param typeOfFloat The value of typeOfFloat as greaterEqual. (NullAllowed: if null, no condition)
+     */
+    public void setTypeOfFloat_GreaterEqual(java.math.BigDecimal typeOfFloat) {
+        regTypeOfFloat(CK_GE, typeOfFloat);
+    }
+
+    /**
+     * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br />
+     * type_of_float: {float8(17, 17)}
+     * @param typeOfFloat The value of typeOfFloat as lessEqual. (NullAllowed: if null, no condition)
+     */
+    public void setTypeOfFloat_LessEqual(java.math.BigDecimal typeOfFloat) {
+        regTypeOfFloat(CK_LE, typeOfFloat);
+    }
+
+    /**
+     * RangeOf with various options. (versatile) <br />
+     * {(default) minNumber &lt;= column &lt;= maxNumber} <br />
+     * And NullIgnored, OnlyOnceRegistered. <br />
+     * type_of_float: {float8(17, 17)}
+     * @param minNumber The min number of typeOfFloat. (NullAllowed: if null, no from-condition)
+     * @param maxNumber The max number of typeOfFloat. (NullAllowed: if null, no to-condition)
+     * @param rangeOfOption The option of range-of. (NotNull)
+     */
+    public void setTypeOfFloat_RangeOf(java.math.BigDecimal minNumber, java.math.BigDecimal maxNumber, RangeOfOption rangeOfOption) {
+        regROO(minNumber, maxNumber, getCValueTypeOfFloat(), "type_of_float", rangeOfOption);
+    }
+
+    /**
+     * InScope {in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br />
+     * type_of_float: {float8(17, 17)}
+     * @param typeOfFloatList The collection of typeOfFloat as inScope. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setTypeOfFloat_InScope(Collection<java.math.BigDecimal> typeOfFloatList) {
+        doSetTypeOfFloat_InScope(typeOfFloatList);
+    }
+
+    protected void doSetTypeOfFloat_InScope(Collection<java.math.BigDecimal> typeOfFloatList) {
+        regINS(CK_INS, cTL(typeOfFloatList), getCValueTypeOfFloat(), "type_of_float");
+    }
+
+    /**
+     * NotInScope {not in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br />
+     * type_of_float: {float8(17, 17)}
+     * @param typeOfFloatList The collection of typeOfFloat as notInScope. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setTypeOfFloat_NotInScope(Collection<java.math.BigDecimal> typeOfFloatList) {
+        doSetTypeOfFloat_NotInScope(typeOfFloatList);
+    }
+
+    protected void doSetTypeOfFloat_NotInScope(Collection<java.math.BigDecimal> typeOfFloatList) {
+        regINS(CK_NINS, cTL(typeOfFloatList), getCValueTypeOfFloat(), "type_of_float");
+    }
+
+    /**
+     * IsNull {is null}. And OnlyOnceRegistered. <br />
+     * type_of_float: {float8(17, 17)}
+     */
+    public void setTypeOfFloat_IsNull() { regTypeOfFloat(CK_ISN, DOBJ); }
+
+    /**
+     * IsNotNull {is not null}. And OnlyOnceRegistered. <br />
+     * type_of_float: {float8(17, 17)}
+     */
+    public void setTypeOfFloat_IsNotNull() { regTypeOfFloat(CK_ISNN, DOBJ); }
+
+    protected void regTypeOfFloat(ConditionKey k, Object v) { regQ(k, v, getCValueTypeOfFloat(), "type_of_float"); }
+    abstract protected ConditionValue getCValueTypeOfFloat();
+    
+    /**
+     * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
+     * type_of_real: {float4(8, 8)}
+     * @param typeOfReal The value of typeOfReal as equal. (NullAllowed: if null, no condition)
+     */
+    public void setTypeOfReal_Equal(java.math.BigDecimal typeOfReal) {
+        doSetTypeOfReal_Equal(typeOfReal);
+    }
+
+    protected void doSetTypeOfReal_Equal(java.math.BigDecimal typeOfReal) {
+        regTypeOfReal(CK_EQ, typeOfReal);
+    }
+
+    /**
+     * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br />
+     * type_of_real: {float4(8, 8)}
+     * @param typeOfReal The value of typeOfReal as greaterThan. (NullAllowed: if null, no condition)
+     */
+    public void setTypeOfReal_GreaterThan(java.math.BigDecimal typeOfReal) {
+        regTypeOfReal(CK_GT, typeOfReal);
+    }
+
+    /**
+     * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br />
+     * type_of_real: {float4(8, 8)}
+     * @param typeOfReal The value of typeOfReal as lessThan. (NullAllowed: if null, no condition)
+     */
+    public void setTypeOfReal_LessThan(java.math.BigDecimal typeOfReal) {
+        regTypeOfReal(CK_LT, typeOfReal);
+    }
+
+    /**
+     * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br />
+     * type_of_real: {float4(8, 8)}
+     * @param typeOfReal The value of typeOfReal as greaterEqual. (NullAllowed: if null, no condition)
+     */
+    public void setTypeOfReal_GreaterEqual(java.math.BigDecimal typeOfReal) {
+        regTypeOfReal(CK_GE, typeOfReal);
+    }
+
+    /**
+     * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br />
+     * type_of_real: {float4(8, 8)}
+     * @param typeOfReal The value of typeOfReal as lessEqual. (NullAllowed: if null, no condition)
+     */
+    public void setTypeOfReal_LessEqual(java.math.BigDecimal typeOfReal) {
+        regTypeOfReal(CK_LE, typeOfReal);
+    }
+
+    /**
+     * RangeOf with various options. (versatile) <br />
+     * {(default) minNumber &lt;= column &lt;= maxNumber} <br />
+     * And NullIgnored, OnlyOnceRegistered. <br />
+     * type_of_real: {float4(8, 8)}
+     * @param minNumber The min number of typeOfReal. (NullAllowed: if null, no from-condition)
+     * @param maxNumber The max number of typeOfReal. (NullAllowed: if null, no to-condition)
+     * @param rangeOfOption The option of range-of. (NotNull)
+     */
+    public void setTypeOfReal_RangeOf(java.math.BigDecimal minNumber, java.math.BigDecimal maxNumber, RangeOfOption rangeOfOption) {
+        regROO(minNumber, maxNumber, getCValueTypeOfReal(), "type_of_real", rangeOfOption);
+    }
+
+    /**
+     * InScope {in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br />
+     * type_of_real: {float4(8, 8)}
+     * @param typeOfRealList The collection of typeOfReal as inScope. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setTypeOfReal_InScope(Collection<java.math.BigDecimal> typeOfRealList) {
+        doSetTypeOfReal_InScope(typeOfRealList);
+    }
+
+    protected void doSetTypeOfReal_InScope(Collection<java.math.BigDecimal> typeOfRealList) {
+        regINS(CK_INS, cTL(typeOfRealList), getCValueTypeOfReal(), "type_of_real");
+    }
+
+    /**
+     * NotInScope {not in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br />
+     * type_of_real: {float4(8, 8)}
+     * @param typeOfRealList The collection of typeOfReal as notInScope. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setTypeOfReal_NotInScope(Collection<java.math.BigDecimal> typeOfRealList) {
+        doSetTypeOfReal_NotInScope(typeOfRealList);
+    }
+
+    protected void doSetTypeOfReal_NotInScope(Collection<java.math.BigDecimal> typeOfRealList) {
+        regINS(CK_NINS, cTL(typeOfRealList), getCValueTypeOfReal(), "type_of_real");
+    }
+
+    /**
+     * IsNull {is null}. And OnlyOnceRegistered. <br />
+     * type_of_real: {float4(8, 8)}
+     */
+    public void setTypeOfReal_IsNull() { regTypeOfReal(CK_ISN, DOBJ); }
+
+    /**
+     * IsNotNull {is not null}. And OnlyOnceRegistered. <br />
+     * type_of_real: {float4(8, 8)}
+     */
+    public void setTypeOfReal_IsNotNull() { regTypeOfReal(CK_ISNN, DOBJ); }
+
+    protected void regTypeOfReal(ConditionKey k, Object v) { regQ(k, v, getCValueTypeOfReal(), "type_of_real"); }
+    abstract protected ConditionValue getCValueTypeOfReal();
+    
+    /**
+     * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * type_of_money: {money(2147483647)}
      * @param typeOfMoney The value of typeOfMoney as equal. (NullAllowed: if null, no condition)
      */

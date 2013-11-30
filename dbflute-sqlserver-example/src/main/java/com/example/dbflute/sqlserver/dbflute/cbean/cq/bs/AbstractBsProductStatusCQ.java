@@ -134,7 +134,7 @@ public abstract class AbstractBsProductStatusCQ extends AbstractConditionQuery {
      * PRODUCT by PRODUCT_STATUS_CODE, named 'productAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">existsProductList</span>(new SubQuery&lt;ProductCB&gt;() {
-     *     public void query(ProductStatusCB subCB) {
+     *     public void query(ProductCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });
@@ -155,7 +155,7 @@ public abstract class AbstractBsProductStatusCQ extends AbstractConditionQuery {
      * PRODUCT by PRODUCT_STATUS_CODE, named 'productAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">notExistsProductList</span>(new SubQuery&lt;ProductCB&gt;() {
-     *     public void query(ProductStatusCB subCB) {
+     *     public void query(ProductCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });

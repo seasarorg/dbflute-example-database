@@ -19,4 +19,4 @@ data-directory: playsql/data/diffworld/xls
   PURCHASE (60)
 
 [80-vendor.xls]
-  VENDOR_CHECK (3)
+  venDor_Check (3)

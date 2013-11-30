@@ -19,7 +19,7 @@ data-directory: playsql/data/ut/xls
   PURCHASE (60)
 
 [90-vendor.xls]
-  VENDOR_CHECK (5)
+  venDor_Check (5)
 
 [92-whitebox-basic.xls]
   WHITE_QUOTED (3)

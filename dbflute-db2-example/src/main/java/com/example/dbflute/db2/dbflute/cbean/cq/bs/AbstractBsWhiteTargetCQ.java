@@ -152,7 +152,7 @@ public abstract class AbstractBsWhiteTargetCQ extends AbstractConditionQuery {
      * WHITE_REF_TARGET by TARGET_ID, named 'whiteRefTargetAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">existsWhiteRefTargetList</span>(new SubQuery&lt;WhiteRefTargetCB&gt;() {
-     *     public void query(WhiteTargetCB subCB) {
+     *     public void query(WhiteRefTargetCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });
@@ -173,7 +173,7 @@ public abstract class AbstractBsWhiteTargetCQ extends AbstractConditionQuery {
      * WHITE_REF_TARGET by TARGET_ID, named 'whiteRefTargetAsOne'.
      * <pre>
      * cb.query().<span style="color: #FD4747">notExistsWhiteRefTargetList</span>(new SubQuery&lt;WhiteRefTargetCB&gt;() {
-     *     public void query(WhiteTargetCB subCB) {
+     *     public void query(WhiteRefTargetCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });

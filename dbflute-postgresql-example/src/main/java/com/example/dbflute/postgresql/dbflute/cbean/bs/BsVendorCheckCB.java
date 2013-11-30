@@ -370,6 +370,16 @@ public class BsVendorCheckCB extends AbstractConditionBean {
          */
         public HpSpecifiedColumn columnTypeOfBigint() { return doColumn("type_of_bigint"); }
         /**
+         * type_of_float: {float8(17, 17)}
+         * @return The information object of specified column. (NotNull)
+         */
+        public HpSpecifiedColumn columnTypeOfFloat() { return doColumn("type_of_float"); }
+        /**
+         * type_of_real: {float4(8, 8)}
+         * @return The information object of specified column. (NotNull)
+         */
+        public HpSpecifiedColumn columnTypeOfReal() { return doColumn("type_of_real"); }
+        /**
          * type_of_money: {money(2147483647)}
          * @return The information object of specified column. (NotNull)
          */

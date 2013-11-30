@@ -214,7 +214,7 @@ public class BsWhiteUqFkRefNestCQ extends AbstractBsWhiteUqFkRefNestCQ {
         WhiteUqFkRefCQ cq = getConditionQueryWhiteUqFkRef();
         Map<String, String> joinOnMap = newLinkedHashMapSized(4);
         joinOnMap.put("COMPOUND_UQ_FIRST_CODE", "COMPOUND_UQ_SECOND_CODE");
-        joinOnMap.put("COMPOUND_UQ_SECOND_CODE", "COMPOUND_UQ_SECOND_CODE");
+        joinOnMap.put("COMPOUND_UQ_SECOND_CODE", "COMPOUND_UQ_FIRST_CODE");
         registerOuterJoin(cq, joinOnMap, "whiteUqFkRef");
     }
     public boolean hasConditionQueryWhiteUqFkRef() {

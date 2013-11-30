@@ -562,6 +562,10 @@
             size="10" type="INTEGER"/>
         <column dbType="int8" javaType="Long" name="type_of_bigint"
             size="19" type="BIGINT"/>
+        <column dbType="float8" javaType="java.math.BigDecimal"
+            name="type_of_float" size="17, 17" type="DOUBLE"/>
+        <column dbType="float4" javaType="java.math.BigDecimal"
+            name="type_of_real" size="8, 8" type="REAL"/>
         <column dbType="money" javaType="java.math.BigDecimal"
             name="type_of_money" size="2147483647" type="DOUBLE"/>
         <column dbType="date" javaType="java.util.Date"

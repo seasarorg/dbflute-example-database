@@ -17,3 +17,6 @@ data-directory: playsql/data/ut/xls
 [30-product.xls]
   PRODUCT (20)
   PURCHASE (60)
+
+[80-vendor.xls]
+  venDor_Check (3)

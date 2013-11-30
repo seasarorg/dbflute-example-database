@@ -95,11 +95,77 @@ p.tablecount {
 <h1>History for exampledb (postgresql)</h1>
 
 <div class="section">
+	<h2><span class="dt">Diff Date: </span>2013/11/30 23:29:00</h2>
+
+	<h3>Change Table</h3>
+	<div class="table-content">
+		<h4><a href="./schema-exampledb.html#vendor_large_data">vendor_large_data</a></h4>
+		<div class="change-table-content">
+			<h5>Add Index</h5>
+			<ul class="column-content">
+				<li>ix_large_data_numeric_integer</li>
+				<li>ix_large_data_string</li>
+			</ul>
+		</div>
+		<h4><a href="./schema-exampledb.html#vendor_large_data_ref">vendor_large_data_ref</a></h4>
+		<div class="change-table-content">
+			<h5>Add FK</h5>
+			<ul class="column-content">
+				<li>fk_vendor_large_data_ref_data</li>
+				<li>fk_vendor_large_data_ref_self</li>
+			</ul>
+			<h5>Add Index</h5>
+			<ul class="column-content">
+				<li>ix_large_data_ref_date</li>
+				<li>ix_large_data_ref_nullable_dec</li>
+				<li>ix_large_data_ref_timestamp</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="section">
+	<h2><span class="dt">Diff Date: </span>2013/11/30 20:55:26</h2>
+
+	<h3>Change Table</h3>
+	<div class="table-content">
+		<h4>vendor_check</h4>
+		<div class="change-table-content">
+			<h5>Add Column</h5>
+			<ul class="column-content">
+				<li>type_of_float</li>
+				<li>type_of_real</li>
+			</ul>
+		</div>
+		<h4>vendor_large_data</h4>
+		<div class="change-table-content">
+			<h5>Delete Index</h5>
+			<ul class="column-content">
+				<li>ix_large_data_numeric_integer</li>
+				<li>ix_large_data_string</li>
+			</ul>
+		</div>
+		<h4>vendor_large_data_ref</h4>
+		<div class="change-table-content">
+			<h5>Delete FK</h5>
+			<ul class="column-content">
+				<li>fk_vendor_large_data_ref_data</li>
+				<li>fk_vendor_large_data_ref_self</li>
+			</ul>
+			<h5>Delete Index</h5>
+			<ul class="column-content">
+				<li>ix_large_data_ref_date</li>
+				<li>ix_large_data_ref_nullable_dec</li>
+				<li>ix_large_data_ref_timestamp</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="section">
 	<h2><span class="dt">Diff Date: </span>2013/07/06 21:49:15</h2>
 
 	<h3>Change Table</h3>
 	<div class="table-content">
-		<h4><a href="./schema-exampledb.html#white_not_pk">white_not_pk</a></h4>
+		<h4>white_not_pk</h4>
 		<div class="change-table-content">
 			<h5>Change Column</h5>
 			<dl class="column-content">
@@ -108,7 +174,7 @@ p.tablecount {
 				<dd><span>Size</span>19&nbsp;-&gt;&nbsp;10</dd>
 			</dl>
 		</div>
-		<h4><a href="./schema-exampledb.html#white_same_name">white_same_name</a></h4>
+		<h4>white_same_name</h4>
 		<div class="change-table-content">
 			<h5>Change Column</h5>
 			<dl class="column-content">
