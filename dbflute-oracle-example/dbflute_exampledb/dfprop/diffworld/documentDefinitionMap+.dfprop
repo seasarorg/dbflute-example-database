@@ -1,4 +1,5 @@
 map:{
+    ; schemaHtmlFileName = diffworld-schema-exampledb.html
     ; historyHtmlFileName = diffworld-history-exampledb.html
     ; coreCraftMetaDirPath = $$DEFAULT$$/diffworld
 
