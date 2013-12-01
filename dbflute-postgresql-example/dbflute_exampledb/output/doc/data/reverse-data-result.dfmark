@@ -20,7 +20,7 @@
 
 [reverse-data-02-VENDOR.xls]: tables=7
   vendor_$_dollar (0)
-  vendor_check (7)
+  vendor_check (8)
   vendor_date_pk (0)
   vendor_large_data (0)
   vendor_large_data_ref (0)
@@ -41,11 +41,11 @@
   member_service (20)
   member_withdrawal (4)
   product (20)
-  purchase (60)
+  purchase (106)
   vendor_date_fk (0)
 
 [reverse-data-99-added-table.xls]: tables=2
   white_same_name (0)
   white_same_name_ref (0)
 
-Output Date: 2013/11/30 23:29:17
+Output Date: 2013/12/01 10:21:13

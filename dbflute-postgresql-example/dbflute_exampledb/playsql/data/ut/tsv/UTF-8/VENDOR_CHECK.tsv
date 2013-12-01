@@ -1,0 +1,2 @@
+VENDOR_CHECK_ID	TYPE_OF_VARCHAR	TYPE_OF_REAL	TYPE_OF_FLOAT
+1001	"test of real/float as string"	1.4	3.34
