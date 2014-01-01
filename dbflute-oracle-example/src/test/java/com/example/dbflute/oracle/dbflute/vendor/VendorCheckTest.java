@@ -297,6 +297,56 @@ public class VendorCheckTest extends UnitContainerTestCase {
         assertEquals("ABC|＿CB|_A", option.generateRealValue("ABC＿CB_A"));
         assertEquals("ABC|＿C[]B|_A", option.generateRealValue("ABC＿C[]B_A"));
     }
+    /**
+     * Oracleのバージョン対応の「全角の％と＿もWildcardとして扱わない」のExample実装
+     */
+    public void test_LikeSearch_WildCard_DoubleByte_suppress() {
+        // TODO jflute
+        // ## Arrange ##
+        String keyword = "100％ジュース|和歌山＿テ";
+        String expectedMemberName = "果汁" + keyword + "スト";
+        String dummyMemberName = "果汁100パーセントジュース|和歌山Aテスト";
+
+        // escape処理の必要な会員がいなかったので、ここで一時的に登録
+        Member escapeMember = new Member();
+        escapeMember.setMemberName(expectedMemberName);
+        escapeMember.setMemberAccount("temporaryAccount");
+        escapeMember.setMemberStatusCode_Formalized();
+        memberBhv.insert(escapeMember);
+
+        // escape処理をしない場合にHITする会員も登録
+        Member nonEscapeOnlyMember = new Member();
+        nonEscapeOnlyMember.setMemberName(dummyMemberName);
+        nonEscapeOnlyMember.setMemberAccount("temporaryAccount2");
+        nonEscapeOnlyMember.setMemberStatusCode_Formalized();
+        memberBhv.insert(nonEscapeOnlyMember);
+
+        // 一時的に登録した会員が想定しているものかどうかをチェック
+        MemberCB checkCB = new MemberCB();
+
+        // Check!
+        checkCB.query().setMemberName_LikeSearch(keyword, new LikeSearchOption().likeContain().notEscape());
+        assertEquals("escapeなしで2件ともHITすること", 2, memberBhv.selectList(checkCB).size());
+
+        // /- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+        MemberCB cb = new MemberCB();
+        LikeSearchOption option = new LikeSearchOption().likeContain(); // *Point!
+        cb.query().setMemberName_LikeSearch(keyword, option);
+        // - - - - - - - - - -/
+
+        String displaySql = cb.toDisplaySql();
+        assertTrue(displaySql.contains("100|％ジュース||和歌山|＿テ"));
+
+        // ## Act ##
+        List<Member> memberList = memberBhv.selectList(cb);
+
+        // ## Assert ##
+        assertNotNull(memberList);
+        assertEquals(1, memberList.size());// このキーワードにHITする人は１人しかいない
+        Member actualMember = memberList.get(0);
+        log(actualMember);
+        assertEquals(expectedMemberName, actualMember.getMemberName());
+    }
 
     // ===================================================================================
     //                                                                        InScopeQuery

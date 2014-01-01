@@ -1,0 +1,45 @@
+map:{
+    ; 2010/06/09 05:37:48 = map:{
+        ; diffDate = 2010/06/09 05:37:48
+        ; tableCount = map:{
+            ; next = 10
+            ; previous = 10
+        }
+        ; tableDiff = map:{
+            ; MEMBER_ADDRESS = map:{
+                ; tableName = MEMBER_ADDRESS
+                ; diffType = CHANGE
+                ; indexDiff = map:{
+                    ; FK_MEMBER_ADDRESS_MEMBER = map:{
+                        ; constraintName = FK_MEMBER_ADDRESS_MEMBER
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; MEMBER_LOGIN = map:{
+                ; tableName = MEMBER_LOGIN
+                ; diffType = CHANGE
+                ; indexDiff = map:{
+                    ; MEMBER_ID = map:{
+                        ; constraintName = MEMBER_ID
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; PURCHASE = map:{
+                ; tableName = PURCHASE
+                ; diffType = CHANGE
+                ; indexDiff = map:{
+                    ; MEMBER_ID = map:{
+                        ; constraintName = MEMBER_ID
+                        ; diffType = ADD
+                    }
+                    ; PRODUCT_ID = map:{
+                        ; constraintName = PRODUCT_ID
+                        ; diffType = ADD
+                    }
+                }
+            }
+        }
+    }
+}

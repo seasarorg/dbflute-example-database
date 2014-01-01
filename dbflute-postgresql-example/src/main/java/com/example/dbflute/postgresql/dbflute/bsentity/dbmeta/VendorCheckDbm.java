@@ -48,8 +48,8 @@ public class VendorCheckDbm extends AbstractDBMeta {
         setupEpg(_epgMap, new EpgTypeOfIntArray(), "typeOfIntArray");
         setupEpg(_epgMap, new EpgTypeOfInt4(), "typeOfInt4");
         setupEpg(_epgMap, new EpgTypeOfBigint(), "typeOfBigint");
-        setupEpg(_epgMap, new EpgTypeOfFloat(), "typeOfFloat");
         setupEpg(_epgMap, new EpgTypeOfReal(), "typeOfReal");
+        setupEpg(_epgMap, new EpgTypeOfFloat(), "typeOfFloat");
         setupEpg(_epgMap, new EpgTypeOfMoney(), "typeOfMoney");
         setupEpg(_epgMap, new EpgTypeOfDate(), "typeOfDate");
         setupEpg(_epgMap, new EpgTypeOfTimestamp(), "typeOfTimestamp");
@@ -117,13 +117,13 @@ public class VendorCheckDbm extends AbstractDBMeta {
         public Object read(Entity e) { return ((VendorCheck)e).getTypeOfBigint(); }
         public void write(Entity e, Object v) { ((VendorCheck)e).setTypeOfBigint(ctl(v)); }
     }
-    public static class EpgTypeOfFloat implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorCheck)e).getTypeOfFloat(); }
-        public void write(Entity e, Object v) { ((VendorCheck)e).setTypeOfFloat(ctb(v)); }
-    }
     public static class EpgTypeOfReal implements PropertyGateway {
         public Object read(Entity e) { return ((VendorCheck)e).getTypeOfReal(); }
         public void write(Entity e, Object v) { ((VendorCheck)e).setTypeOfReal(ctb(v)); }
+    }
+    public static class EpgTypeOfFloat implements PropertyGateway {
+        public Object read(Entity e) { return ((VendorCheck)e).getTypeOfFloat(); }
+        public void write(Entity e, Object v) { ((VendorCheck)e).setTypeOfFloat(ctb(v)); }
     }
     public static class EpgTypeOfMoney implements PropertyGateway {
         public Object read(Entity e) { return ((VendorCheck)e).getTypeOfMoney(); }
@@ -204,8 +204,8 @@ public class VendorCheckDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnTypeOfIntArray = cci("type_of_int_array", "type_of_int_array", null, null, false, "typeOfIntArray", com.example.dbflute.postgresql.mytype.MyArray.class, false, false, "_int8", 19, 0, null, false, null, null, null, null, null);
     protected final ColumnInfo _columnTypeOfInt4 = cci("type_of_int4", "type_of_int4", null, null, false, "typeOfInt4", Integer.class, false, false, "int4", 10, 0, null, false, null, null, null, null, null);
     protected final ColumnInfo _columnTypeOfBigint = cci("type_of_bigint", "type_of_bigint", null, null, false, "typeOfBigint", Long.class, false, false, "int8", 19, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfFloat = cci("type_of_float", "type_of_float", null, null, false, "typeOfFloat", java.math.BigDecimal.class, false, false, "float8", 17, 17, null, false, null, null, null, null, null);
     protected final ColumnInfo _columnTypeOfReal = cci("type_of_real", "type_of_real", null, null, false, "typeOfReal", java.math.BigDecimal.class, false, false, "float4", 8, 8, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfFloat = cci("type_of_float", "type_of_float", null, null, false, "typeOfFloat", java.math.BigDecimal.class, false, false, "float8", 17, 17, null, false, null, null, null, null, null);
     protected final ColumnInfo _columnTypeOfMoney = cci("type_of_money", "type_of_money", null, null, false, "typeOfMoney", java.math.BigDecimal.class, false, false, "money", 2147483647, 0, null, false, null, null, null, null, null);
     protected final ColumnInfo _columnTypeOfDate = cci("type_of_date", "type_of_date", null, null, false, "typeOfDate", java.util.Date.class, false, false, "date", 13, 0, null, false, null, null, null, null, null);
     protected final ColumnInfo _columnTypeOfTimestamp = cci("type_of_timestamp", "type_of_timestamp", null, null, false, "typeOfTimestamp", java.sql.Timestamp.class, false, false, "timestamp", 29, 6, null, false, null, null, null, null, null);
@@ -232,8 +232,8 @@ public class VendorCheckDbm extends AbstractDBMeta {
     public ColumnInfo columnTypeOfIntArray() { return _columnTypeOfIntArray; }
     public ColumnInfo columnTypeOfInt4() { return _columnTypeOfInt4; }
     public ColumnInfo columnTypeOfBigint() { return _columnTypeOfBigint; }
-    public ColumnInfo columnTypeOfFloat() { return _columnTypeOfFloat; }
     public ColumnInfo columnTypeOfReal() { return _columnTypeOfReal; }
+    public ColumnInfo columnTypeOfFloat() { return _columnTypeOfFloat; }
     public ColumnInfo columnTypeOfMoney() { return _columnTypeOfMoney; }
     public ColumnInfo columnTypeOfDate() { return _columnTypeOfDate; }
     public ColumnInfo columnTypeOfTimestamp() { return _columnTypeOfTimestamp; }
@@ -262,8 +262,8 @@ public class VendorCheckDbm extends AbstractDBMeta {
         ls.add(columnTypeOfIntArray());
         ls.add(columnTypeOfInt4());
         ls.add(columnTypeOfBigint());
-        ls.add(columnTypeOfFloat());
         ls.add(columnTypeOfReal());
+        ls.add(columnTypeOfFloat());
         ls.add(columnTypeOfMoney());
         ls.add(columnTypeOfDate());
         ls.add(columnTypeOfTimestamp());

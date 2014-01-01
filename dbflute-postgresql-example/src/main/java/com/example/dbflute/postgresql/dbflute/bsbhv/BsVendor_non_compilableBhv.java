@@ -339,7 +339,7 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
      * </pre>
      * @param <RESULT> The type of result.
      * @param resultType The type of result. (NotNull)
-     * @return The scalar value derived by a function. (NullAllowed)
+     * @return The scalar function object to specify function for scalar value. (NotNull)
      */
     public <RESULT> SLFunction<Vendor_non_compilableCB, RESULT> scalarSelect(Class<RESULT> resultType) {
         return doScalarSelect(resultType, newMyConditionBean());
@@ -348,7 +348,15 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
     protected <RESULT, CB extends Vendor_non_compilableCB> SLFunction<CB, RESULT> doScalarSelect(Class<RESULT> resultType, CB cb) {
         assertObjectNotNull("resultType", resultType); assertCBStateValid(cb);
         cb.xsetupForScalarSelect(); cb.getSqlClause().disableSelectIndex(); // for when you use union
+        return createSLFunction(cb, resultType);
+    }
+
+    protected <RESULT, CB extends Vendor_non_compilableCB> SLFunction<CB, RESULT> createSLFunction(CB cb, Class<RESULT> resultType) {
         return new SLFunction<CB, RESULT>(cb, resultType);
+    }
+
+    protected <RESULT> SLFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> resultType) {
+        return doScalarSelect(resultType, newMyConditionBean());
     }
 
     // ===================================================================================

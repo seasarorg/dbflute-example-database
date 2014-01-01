@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.4//EN"
+	"http://www.seasar.org/dtd/components24.dtd">
+<components namespace="jdbc">
+	<include path="jta.dicon"/>
+
+	<!-- for MS-Access -->
+	<component name="xaDataSource"
+		class="org.seasar.extension.dbcp.impl.XADataSourceImpl">
+		<property name="driverClassName">
+			"sun.jdbc.odbc.JdbcOdbcDriver"
+		</property>
+		<property name="URL">
+			"jdbc:odbc:exampledb"
+		</property>
+		<property name="user">"sa"</property>
+		<property name="password">""</property>
+		<initMethod name="addProperty">
+			<arg>"charSet"</arg>
+			<arg>"MS932"</arg>
+		</initMethod>
+	</component>
+
+	<component name="connectionPool"
+		class="org.seasar.extension.dbcp.impl.ConnectionPoolImpl">
+		<property name="timeout">600</property>
+		<property name="maxPoolSize">10</property>
+		<property name="allowLocalTx">true</property>
+		<destroyMethod name="close"/>
+	</component>
+
+	<component name="DataSource"
+		class="org.seasar.extension.dbcp.impl.DataSourceImpl"
+	/>
+
+	<!-- from JNDI -->
+	<!--
+	<component name="DataSource"
+		class="javax.sql.DataSource">
+		@org.seasar.extension.j2ee.JndiResourceLocator@lookup("java:comp/env/jdbc/DataSource")
+	</component>
+	-->
+
+	<!--
+	<component name="dataSource"
+		class="org.seasar.extension.datasource.impl.SelectableDataSourceProxy"/>
+	-->
+</components>

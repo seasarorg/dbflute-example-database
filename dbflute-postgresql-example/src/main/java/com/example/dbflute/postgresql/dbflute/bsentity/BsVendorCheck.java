@@ -19,7 +19,7 @@ import com.example.dbflute.postgresql.dbflute.exentity.*;
  *     vendor_check_id
  * 
  * [column]
- *     vendor_check_id, type_of_char, type_of_varchar, type_of_vc_array, type_of_text, type_of_numeric_integer, type_of_numeric_bigint, type_of_numeric_decimal, type_of_decimal, type_of_int8, type_of_int_array, type_of_int4, type_of_bigint, type_of_float, type_of_real, type_of_money, type_of_date, type_of_timestamp, type_of_time, type_of_timetz, type_of_interval, type_of_bool, type_of_bit, type_of_bytea, type_of_oid, type_of_uuid, type_of_xml
+ *     vendor_check_id, type_of_char, type_of_varchar, type_of_vc_array, type_of_text, type_of_numeric_integer, type_of_numeric_bigint, type_of_numeric_decimal, type_of_decimal, type_of_int8, type_of_int_array, type_of_int4, type_of_bigint, type_of_real, type_of_float, type_of_money, type_of_date, type_of_timestamp, type_of_time, type_of_timetz, type_of_interval, type_of_bool, type_of_bit, type_of_bytea, type_of_oid, type_of_uuid, type_of_xml
  * 
  * [sequence]
  *     
@@ -57,8 +57,8 @@ import com.example.dbflute.postgresql.dbflute.exentity.*;
  * com.example.dbflute.postgresql.mytype.MyArray typeOfIntArray = entity.getTypeOfIntArray();
  * Integer typeOfInt4 = entity.getTypeOfInt4();
  * Long typeOfBigint = entity.getTypeOfBigint();
- * java.math.BigDecimal typeOfFloat = entity.getTypeOfFloat();
  * java.math.BigDecimal typeOfReal = entity.getTypeOfReal();
+ * java.math.BigDecimal typeOfFloat = entity.getTypeOfFloat();
  * java.math.BigDecimal typeOfMoney = entity.getTypeOfMoney();
  * java.util.Date typeOfDate = entity.getTypeOfDate();
  * java.sql.Timestamp typeOfTimestamp = entity.getTypeOfTimestamp();
@@ -84,8 +84,8 @@ import com.example.dbflute.postgresql.dbflute.exentity.*;
  * entity.setTypeOfIntArray(typeOfIntArray);
  * entity.setTypeOfInt4(typeOfInt4);
  * entity.setTypeOfBigint(typeOfBigint);
- * entity.setTypeOfFloat(typeOfFloat);
  * entity.setTypeOfReal(typeOfReal);
+ * entity.setTypeOfFloat(typeOfFloat);
  * entity.setTypeOfMoney(typeOfMoney);
  * entity.setTypeOfDate(typeOfDate);
  * entity.setTypeOfTimestamp(typeOfTimestamp);
@@ -155,11 +155,11 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
     /** type_of_bigint: {int8(19)} */
     protected Long _typeOfBigint;
 
-    /** type_of_float: {float8(17, 17)} */
-    protected java.math.BigDecimal _typeOfFloat;
-
     /** type_of_real: {float4(8, 8)} */
     protected java.math.BigDecimal _typeOfReal;
+
+    /** type_of_float: {float8(17, 17)} */
+    protected java.math.BigDecimal _typeOfFloat;
 
     /** type_of_money: {money(2147483647)} */
     protected java.math.BigDecimal _typeOfMoney;
@@ -463,8 +463,8 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
         sb.append(delimiter).append(getTypeOfIntArray());
         sb.append(delimiter).append(getTypeOfInt4());
         sb.append(delimiter).append(getTypeOfBigint());
-        sb.append(delimiter).append(getTypeOfFloat());
         sb.append(delimiter).append(getTypeOfReal());
+        sb.append(delimiter).append(getTypeOfFloat());
         sb.append(delimiter).append(getTypeOfMoney());
         sb.append(delimiter).append(xfUD(getTypeOfDate()));
         sb.append(delimiter).append(getTypeOfTimestamp());
@@ -733,23 +733,6 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
     }
 
     /**
-     * [get] type_of_float: {float8(17, 17)} <br />
-     * @return The value of the column 'type_of_float'. (NullAllowed even if selected: for no constraint)
-     */
-    public java.math.BigDecimal getTypeOfFloat() {
-        return _typeOfFloat;
-    }
-
-    /**
-     * [set] type_of_float: {float8(17, 17)} <br />
-     * @param typeOfFloat The value of the column 'type_of_float'. (NullAllowed: null update allowed for no constraint)
-     */
-    public void setTypeOfFloat(java.math.BigDecimal typeOfFloat) {
-        __modifiedProperties.addPropertyName("typeOfFloat");
-        this._typeOfFloat = typeOfFloat;
-    }
-
-    /**
      * [get] type_of_real: {float4(8, 8)} <br />
      * @return The value of the column 'type_of_real'. (NullAllowed even if selected: for no constraint)
      */
@@ -764,6 +747,23 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
     public void setTypeOfReal(java.math.BigDecimal typeOfReal) {
         __modifiedProperties.addPropertyName("typeOfReal");
         this._typeOfReal = typeOfReal;
+    }
+
+    /**
+     * [get] type_of_float: {float8(17, 17)} <br />
+     * @return The value of the column 'type_of_float'. (NullAllowed even if selected: for no constraint)
+     */
+    public java.math.BigDecimal getTypeOfFloat() {
+        return _typeOfFloat;
+    }
+
+    /**
+     * [set] type_of_float: {float8(17, 17)} <br />
+     * @param typeOfFloat The value of the column 'type_of_float'. (NullAllowed: null update allowed for no constraint)
+     */
+    public void setTypeOfFloat(java.math.BigDecimal typeOfFloat) {
+        __modifiedProperties.addPropertyName("typeOfFloat");
+        this._typeOfFloat = typeOfFloat;
     }
 
     /**

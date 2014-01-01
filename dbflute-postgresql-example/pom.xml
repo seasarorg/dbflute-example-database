@@ -11,10 +11,10 @@
 	<description>The example project for PostgreSQL and DBFlute</description>
 
 	<properties>
-		<spring.version>2.5.6</spring.version>
-		<dbflute.version>1.0.5A</dbflute.version>
+		<spring.version>3.0.5.RELEASE</spring.version>
+		<dbflute.version>1.0.5B</dbflute.version>
 		<postgresql.jdbc.version>9.1-901.jdbc3</postgresql.jdbc.version>
-		<utflute.version>0.3.4</utflute.version>
+		<utflute.version>0.3.6</utflute.version>
 	</properties>
 
 	<url>http://dbflute.sandbox.seasar.org/</url>
@@ -178,7 +178,12 @@
 		<!-- =============== -->
 		<dependency>
 		    <groupId>org.springframework</groupId>
-		    <artifactId>spring</artifactId>
+		    <artifactId>spring-core</artifactId>
+		    <version>${spring.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-jdbc</artifactId>
 		    <version>${spring.version}</version>
 		</dependency>
 		<dependency>
