@@ -1,7 +1,6 @@
 package com.example.dbflute.oracle.dbflute.vendor;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.seasar.dbflute.DBDef;
@@ -13,6 +12,7 @@ import org.seasar.dbflute.dbway.WayOfOracle;
 import org.seasar.dbflute.exception.BatchEntityAlreadyUpdatedException;
 import org.seasar.dbflute.exception.EntityAlreadyDeletedException;
 import org.seasar.dbflute.exception.EntityAlreadyUpdatedException;
+import org.seasar.dbflute.util.DfCollectionUtil;
 
 import com.example.dbflute.oracle.dbflute.allcommon.DBCurrent;
 import com.example.dbflute.oracle.dbflute.cbean.MemberCB;
@@ -305,7 +305,6 @@ public class VendorCheckTest extends UnitContainerTestCase {
      * Oracleのバージョン対応の「全角の％と＿もWildcardとして扱わない」のExample実装
      */
     public void test_LikeSearch_WildCard_DoubleByte_suppress() {
-        // TODO jflute
         // ## Arrange ##
         DBDef currentDBDef = DBCurrent.getInstance().currentDBDef();
         DBWay original = currentDBDef.dbway();
@@ -313,7 +312,7 @@ public class VendorCheckTest extends UnitContainerTestCase {
             private static final long serialVersionUID = 1L;
 
             public List<String> getOriginalWildCardList() {
-                return Arrays.asList();
+                return DfCollectionUtil.emptyList();
             }
         });
         try {
