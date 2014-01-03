@@ -3,16 +3,13 @@ package com.example.dbflute.oracle.dbflute.vendor;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.seasar.dbflute.DBDef;
 import org.seasar.dbflute.cbean.ListResultBean;
 import org.seasar.dbflute.cbean.OrQuery;
 import org.seasar.dbflute.cbean.coption.LikeSearchOption;
 import org.seasar.dbflute.dbway.DBWay;
-import org.seasar.dbflute.dbway.WayOfOracle;
 import org.seasar.dbflute.exception.BatchEntityAlreadyUpdatedException;
 import org.seasar.dbflute.exception.EntityAlreadyDeletedException;
 import org.seasar.dbflute.exception.EntityAlreadyUpdatedException;
-import org.seasar.dbflute.util.DfCollectionUtil;
 
 import com.example.dbflute.oracle.dbflute.allcommon.DBCurrent;
 import com.example.dbflute.oracle.dbflute.cbean.MemberCB;
@@ -299,66 +296,6 @@ public class VendorCheckTest extends UnitContainerTestCase {
         assertEquals("ABC|％CB|%A", option.generateRealValue("ABC％CB%A"));
         assertEquals("ABC|＿CB|_A", option.generateRealValue("ABC＿CB_A"));
         assertEquals("ABC|＿C[]B|_A", option.generateRealValue("ABC＿C[]B_A"));
-    }
-
-    /**
-     * Oracleのバージョン対応の「全角の％と＿もWildcardとして扱わない」のExample実装
-     */
-    public void test_LikeSearch_WildCard_DoubleByte_suppress() {
-        // ## Arrange ##
-        DBDef currentDBDef = DBCurrent.getInstance().currentDBDef();
-        DBWay original = currentDBDef.dbway();
-        currentDBDef.switchDBWay(new WayOfOracle() {
-            private static final long serialVersionUID = 1L;
-
-            public List<String> getOriginalWildCardList() {
-                return DfCollectionUtil.emptyList();
-            }
-        });
-        try {
-            String keyword = "100％ジュース|和歌山＿テ";
-            String expectedMemberName = "果汁" + keyword + "スト";
-            String dummyMemberName = "果汁100パーセントジュース|和歌山Aテスト";
-
-            // escape処理の必要な会員がいなかったので、ここで一時的に登録
-            Member escapeMember = new Member();
-            escapeMember.setMemberName(expectedMemberName);
-            escapeMember.setMemberAccount("temporaryAccount");
-            escapeMember.setMemberStatusCode_Formalized();
-            memberBhv.insert(escapeMember);
-
-            // escape処理をしない場合にHITする会員も登録
-            Member nonEscapeOnlyMember = new Member();
-            nonEscapeOnlyMember.setMemberName(dummyMemberName);
-            nonEscapeOnlyMember.setMemberAccount("temporaryAccount2");
-            nonEscapeOnlyMember.setMemberStatusCode_Formalized();
-            memberBhv.insert(nonEscapeOnlyMember);
-
-            // 一時的に登録した会員が想定しているものかどうかをチェック
-            MemberCB checkCB = new MemberCB();
-
-            // Check!
-            checkCB.query().setMemberName_LikeSearch(keyword, new LikeSearchOption().likeContain().notEscape());
-            assertEquals("escapeなしで2件ともHITすること", 2, memberBhv.selectList(checkCB).size());
-
-            // /- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-            MemberCB cb = new MemberCB();
-            LikeSearchOption option = new LikeSearchOption().likeContain(); // *Point!
-            cb.query().setMemberName_LikeSearch(keyword, option);
-            // - - - - - - - - - -/
-
-            String displaySql = cb.toDisplaySql();
-            assertTrue(displaySql.contains("100％ジュース||和歌山＿テ"));
-
-            // ## Act ##
-            List<Member> memberList = memberBhv.selectList(cb);
-
-            // ## Assert ##
-            assertNotNull(memberList);
-            assertEquals(2, memberList.size());// このキーワードにHITする人は１人しかいない
-        } finally {
-            currentDBDef.switchDBWay(original);
-        }
     }
 
     // ===================================================================================
