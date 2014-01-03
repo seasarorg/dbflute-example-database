@@ -2,6 +2,7 @@ package com.example.dbflute.oracle.dbflute.whitebox;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.seasar.dbflute.CallbackContext;
 import org.seasar.dbflute.DBDef;
@@ -35,7 +36,7 @@ public class WxSwitchDBWayTest extends UnitContainerTestCase {
     //                                                                       =============
     public void test_LikeSearch_WildCard_DoubleByte_ConditionBean_default() {
         // ## Arrange ##
-        final HashSet<SqlLogInfo> logInfoSet = new HashSet<SqlLogInfo>();
+        final Set<SqlLogInfo> logInfoSet = new HashSet<SqlLogInfo>();
         CallbackContext.setSqlLogHandlerOnThread(new SqlLogHandler() {
             public void handle(SqlLogInfo info) {
                 logInfoSet.add(info);
@@ -61,7 +62,7 @@ public class WxSwitchDBWayTest extends UnitContainerTestCase {
         // ## Arrange ##
         DBDef currentDBDef = DBCurrent.getInstance().currentDBDef();
         DBWay original = switchDBWay(currentDBDef);
-        final HashSet<SqlLogInfo> logInfoSet = new HashSet<SqlLogInfo>();
+        final Set<SqlLogInfo> logInfoSet = new HashSet<SqlLogInfo>();
         CallbackContext.setSqlLogHandlerOnThread(new SqlLogHandler() {
             public void handle(SqlLogInfo info) {
                 logInfoSet.add(info);
@@ -139,7 +140,7 @@ public class WxSwitchDBWayTest extends UnitContainerTestCase {
     //                                                                          ==========
     public void test_LikeSearch_WildCard_DoubleByte_OutsideSql_default() {
         // ## Arrange ##
-        final HashSet<SqlLogInfo> logInfoSet = new HashSet<SqlLogInfo>();
+        final Set<SqlLogInfo> logInfoSet = new HashSet<SqlLogInfo>();
         CallbackContext.setSqlLogHandlerOnThread(new SqlLogHandler() {
             public void handle(SqlLogInfo info) {
                 logInfoSet.add(info);
@@ -165,7 +166,7 @@ public class WxSwitchDBWayTest extends UnitContainerTestCase {
         // ## Arrange ##
         DBDef currentDBDef = DBCurrent.getInstance().currentDBDef();
         DBWay original = switchDBWay(currentDBDef);
-        final HashSet<SqlLogInfo> logInfoSet = new HashSet<SqlLogInfo>();
+        final Set<SqlLogInfo> logInfoSet = new HashSet<SqlLogInfo>();
         CallbackContext.setSqlLogHandlerOnThread(new SqlLogHandler() {
             public void handle(SqlLogInfo info) {
                 logInfoSet.add(info);
@@ -196,7 +197,9 @@ public class WxSwitchDBWayTest extends UnitContainerTestCase {
         currentDBDef.switchDBWay(new WayOfOracle() {
             private static final long serialVersionUID = 1L;
 
+            @Override
             public List<String> getOriginalWildCardList() {
+                // suppress double-byte wild-cards
                 return DfCollectionUtil.emptyList();
             }
         });
