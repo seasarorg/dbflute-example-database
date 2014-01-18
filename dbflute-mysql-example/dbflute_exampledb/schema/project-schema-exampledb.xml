@@ -11,7 +11,7 @@
             pkName="PRIMARY" primaryKey="true" required="true" size="10" type="INTEGER"/>
         <column comment="会員名称: 会員のフルネームの名称。" dbType="VARCHAR"
             javaType="String" name="MEMBER_NAME" required="true"
-            size="200" type="VARCHAR"/>
+            size="180" type="VARCHAR"/>
         <column comment="会員アカウント: 会員がログイン時に利用するアカウントNO。"
             dbType="VARCHAR" javaType="String" name="MEMBER_ACCOUNT"
             required="true" size="50" type="VARCHAR"/>
@@ -487,7 +487,7 @@
         <column comment="" dbType="INT" javaType="Integer"
             name="MEMBER_ID" required="true" size="10" type="INTEGER"/>
         <column comment="会員名称: 会員のフルネームの名称。" dbType="VARCHAR"
-            javaType="String" name="MEMBER_NAME" size="200" type="VARCHAR"/>
+            javaType="String" name="MEMBER_NAME" size="180" type="VARCHAR"/>
         <column
             comment="退会理由コード: 退会した定型理由を参照するコード。&#xa;何も言わずに退会する会員もいるので必須項目ではない。"
             dbType="CHAR" javaType="String"
@@ -664,11 +664,11 @@
             name="LARGE_DATA_ID" pkName="PRIMARY" primaryKey="true"
             required="true" size="19" type="BIGINT"/>
         <column comment="" dbType="VARCHAR" javaType="String"
-            name="STRING_INDEX" required="true" size="200" type="VARCHAR"/>
+            name="STRING_INDEX" required="true" size="180" type="VARCHAR"/>
         <column comment="" dbType="VARCHAR" javaType="String"
-            name="STRING_NO_INDEX" required="true" size="200" type="VARCHAR"/>
+            name="STRING_NO_INDEX" required="true" size="180" type="VARCHAR"/>
         <column comment="" dbType="VARCHAR" javaType="String"
-            name="STRING_UNIQUE_INDEX" required="true" size="200" type="VARCHAR"/>
+            name="STRING_UNIQUE_INDEX" required="true" size="180" type="VARCHAR"/>
         <column comment="" dbType="INT" javaType="Integer"
             name="INTFLG_INDEX" required="true" size="10" type="INTEGER"/>
         <column comment="" dbType="DECIMAL" javaType="Integer"
@@ -741,7 +741,7 @@
             pkName="PRIMARY" primaryKey="true" required="true" size="19" type="BIGINT"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="THE_LONG_AND_WINDING_TABLE_AND_COLUMN_NAME"
-            required="true" size="200" type="VARCHAR"/>
+            required="true" size="180" type="VARCHAR"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="SHORT_NAME" required="true" size="200" type="VARCHAR"/>
         <column comment="" dbType="INT" javaType="Integer"

@@ -2,7 +2,7 @@
 create table MEMBER(
     MEMBER_ID INTEGER AUTO_INCREMENT NOT NULL COMMENT '会員ID: 会員を識別するID。連番として基本的に自動採番される。
 （会員IDだけに限らず）採番方法はDBMSによって変わる。',
-    MEMBER_NAME VARCHAR(200) NOT NULL COMMENT '会員名称: 会員のフルネームの名称。',
+    MEMBER_NAME VARCHAR(180) NOT NULL COMMENT '会員名称: 会員のフルネームの名称。',
     MEMBER_ACCOUNT VARCHAR(50) NOT NULL COMMENT '会員アカウント: 会員がログイン時に利用するアカウントNO。',
     MEMBER_STATUS_CODE CHAR(3) NOT NULL COMMENT '会員ステータスコード',
     FORMALIZED_DATETIME DATETIME COMMENT '正式会員日時: 会員が正式に確定した日時。一度確定したら更新されない。

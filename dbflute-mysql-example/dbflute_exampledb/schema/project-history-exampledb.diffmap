@@ -1,4 +1,81 @@
 map:{
+    ; 2014/01/18 22:39:01 = map:{
+        ; diffDate = 2014/01/18 22:39:01
+        ; tableDiff = map:{
+            ; member = map:{
+                ; tableName = member
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; MEMBER_NAME = map:{
+                        ; columnName = MEMBER_NAME
+                        ; diffType = CHANGE
+                        ; columnSizeDiff = map:{
+                            ; next = 180
+                            ; previous = 200
+                        }
+                    }
+                }
+            }
+            ; summary_withdrawal = map:{
+                ; tableName = summary_withdrawal
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; MEMBER_NAME = map:{
+                        ; columnName = MEMBER_NAME
+                        ; diffType = CHANGE
+                        ; columnSizeDiff = map:{
+                            ; next = 180
+                            ; previous = 200
+                        }
+                    }
+                }
+            }
+            ; vendor_large_data = map:{
+                ; tableName = vendor_large_data
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; STRING_INDEX = map:{
+                        ; columnName = STRING_INDEX
+                        ; diffType = CHANGE
+                        ; columnSizeDiff = map:{
+                            ; next = 180
+                            ; previous = 200
+                        }
+                    }
+                    ; STRING_NO_INDEX = map:{
+                        ; columnName = STRING_NO_INDEX
+                        ; diffType = CHANGE
+                        ; columnSizeDiff = map:{
+                            ; next = 180
+                            ; previous = 200
+                        }
+                    }
+                    ; STRING_UNIQUE_INDEX = map:{
+                        ; columnName = STRING_UNIQUE_INDEX
+                        ; diffType = CHANGE
+                        ; columnSizeDiff = map:{
+                            ; next = 180
+                            ; previous = 200
+                        }
+                    }
+                }
+            }
+            ; vendor_the_long_and_winding_table_and_column = map:{
+                ; tableName = vendor_the_long_and_winding_table_and_column
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; THE_LONG_AND_WINDING_TABLE_AND_COLUMN_NAME = map:{
+                        ; columnName = THE_LONG_AND_WINDING_TABLE_AND_COLUMN_NAME
+                        ; diffType = CHANGE
+                        ; columnSizeDiff = map:{
+                            ; next = 180
+                            ; previous = 200
+                        }
+                    }
+                }
+            }
+        }
+    }
     ; 2013/11/04 22:33:31 = map:{
         ; diffDate = 2013/11/04 22:33:31
         ; tableDiff = map:{

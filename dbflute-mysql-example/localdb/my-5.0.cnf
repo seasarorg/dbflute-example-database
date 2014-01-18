@@ -18,7 +18,7 @@
 [client]
 #password = your_password
 port      = 43306
-socket    = /tmp/mysql.sock
+socket    = /tmp/dbflute-mysql.sock
 
 # Here follows entries for some specific programs
 
@@ -27,7 +27,7 @@ socket    = /tmp/mysql.sock
 basedir = ./mysql
 datadir = ./mysql/data
 port    = 43306
-socket  = /tmp/mysql.sock
+socket  = /tmp/dbflute-mysql.sock
 
 # /* * * * * * * * * * * * * * * * * * * * * * * * Custom Settings
 default-table-type=InnoDB

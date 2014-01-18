@@ -16,7 +16,7 @@
 #
 map:{
 	; driver		= com.mysql.jdbc.Driver
-	; url			= jdbc:mysql://localhost:43306/exampledb
+	; url			= jdbc:mysql://localhost:43306/exampledb?characterEncoding=UTF-8
 	; schema		= 
 	; user			= exampledb
 	; password		= exampledb
