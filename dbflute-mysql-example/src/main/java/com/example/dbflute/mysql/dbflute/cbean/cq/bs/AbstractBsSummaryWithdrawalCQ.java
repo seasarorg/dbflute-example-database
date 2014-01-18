@@ -153,7 +153,7 @@ public abstract class AbstractBsSummaryWithdrawalCQ extends AbstractConditionQue
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
-     * (会員名称)MEMBER_NAME: {VARCHAR(200)}
+     * (会員名称)MEMBER_NAME: {VARCHAR(180)}
      * @param memberName The value of memberName as equal. (NullAllowed: if null (or empty), no condition)
      */
     public void setMemberName_Equal(String memberName) {
@@ -166,7 +166,7 @@ public abstract class AbstractBsSummaryWithdrawalCQ extends AbstractConditionQue
 
     /**
      * NotEqual(&lt;&gt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
-     * (会員名称)MEMBER_NAME: {VARCHAR(200)}
+     * (会員名称)MEMBER_NAME: {VARCHAR(180)}
      * @param memberName The value of memberName as notEqual. (NullAllowed: if null (or empty), no condition)
      */
     public void setMemberName_NotEqual(String memberName) {
@@ -179,7 +179,7 @@ public abstract class AbstractBsSummaryWithdrawalCQ extends AbstractConditionQue
 
     /**
      * InScope {in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br />
-     * (会員名称)MEMBER_NAME: {VARCHAR(200)}
+     * (会員名称)MEMBER_NAME: {VARCHAR(180)}
      * @param memberNameList The collection of memberName as inScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setMemberName_InScope(Collection<String> memberNameList) {
@@ -192,7 +192,7 @@ public abstract class AbstractBsSummaryWithdrawalCQ extends AbstractConditionQue
 
     /**
      * NotInScope {not in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br />
-     * (会員名称)MEMBER_NAME: {VARCHAR(200)}
+     * (会員名称)MEMBER_NAME: {VARCHAR(180)}
      * @param memberNameList The collection of memberName as notInScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setMemberName_NotInScope(Collection<String> memberNameList) {
@@ -205,7 +205,7 @@ public abstract class AbstractBsSummaryWithdrawalCQ extends AbstractConditionQue
 
     /**
      * PrefixSearch {like 'xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br />
-     * (会員名称)MEMBER_NAME: {VARCHAR(200)}
+     * (会員名称)MEMBER_NAME: {VARCHAR(180)}
      * @param memberName The value of memberName as prefixSearch. (NullAllowed: if null (or empty), no condition)
      */
     public void setMemberName_PrefixSearch(String memberName) {
@@ -214,7 +214,7 @@ public abstract class AbstractBsSummaryWithdrawalCQ extends AbstractConditionQue
 
     /**
      * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br />
-     * (会員名称)MEMBER_NAME: {VARCHAR(200)} <br />
+     * (会員名称)MEMBER_NAME: {VARCHAR(180)} <br />
      * <pre>e.g. setMemberName_LikeSearch("xxx", new <span style="color: #FD4747">LikeSearchOption</span>().likeContain());</pre>
      * @param memberName The value of memberName as likeSearch. (NullAllowed: if null (or empty), no condition)
      * @param likeSearchOption The option of like-search. (NotNull)
@@ -226,7 +226,7 @@ public abstract class AbstractBsSummaryWithdrawalCQ extends AbstractConditionQue
     /**
      * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br />
      * And NullOrEmptyIgnored, SeveralRegistered. <br />
-     * (会員名称)MEMBER_NAME: {VARCHAR(200)}
+     * (会員名称)MEMBER_NAME: {VARCHAR(180)}
      * @param memberName The value of memberName as notLikeSearch. (NullAllowed: if null (or empty), no condition)
      * @param likeSearchOption The option of not-like-search. (NotNull)
      */
@@ -236,19 +236,19 @@ public abstract class AbstractBsSummaryWithdrawalCQ extends AbstractConditionQue
 
     /**
      * IsNull {is null}. And OnlyOnceRegistered. <br />
-     * (会員名称)MEMBER_NAME: {VARCHAR(200)}
+     * (会員名称)MEMBER_NAME: {VARCHAR(180)}
      */
     public void setMemberName_IsNull() { regMemberName(CK_ISN, DOBJ); }
 
     /**
      * IsNullOrEmpty {is null or empty}. And OnlyOnceRegistered. <br />
-     * (会員名称)MEMBER_NAME: {VARCHAR(200)}
+     * (会員名称)MEMBER_NAME: {VARCHAR(180)}
      */
     public void setMemberName_IsNullOrEmpty() { regMemberName(CK_ISNOE, DOBJ); }
 
     /**
      * IsNotNull {is not null}. And OnlyOnceRegistered. <br />
-     * (会員名称)MEMBER_NAME: {VARCHAR(200)}
+     * (会員名称)MEMBER_NAME: {VARCHAR(180)}
      */
     public void setMemberName_IsNotNull() { regMemberName(CK_ISNN, DOBJ); }
 

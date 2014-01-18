@@ -32,28 +32,28 @@ import com.example.dbflute.mysql.dbflute.cbean.*;
  * <pre>
  * [primary key]
  *     SELF_REFERENCE_ID
- * 
+ *
  * [column]
  *     SELF_REFERENCE_ID, SELF_REFERENCE_REF_ONE_NAME
- * 
+ *
  * [sequence]
  *     
- * 
+ *
  * [identity]
  *     
- * 
+ *
  * [version-no]
  *     
- * 
+ *
  * [foreign table]
  *     white_self_reference, WHITE_SELF_REFERENCE(AsDirectParent)
- * 
+ *
  * [referrer table]
  *     white_self_reference
- * 
+ *
  * [foreign property]
  *     whiteSelfReference, whiteSelfReferenceAsDirectParent
- * 
+ *
  * [referrer property]
  *     whiteSelfReferenceByParentIdList
  * </pre>
@@ -115,7 +115,7 @@ public abstract class BsWhiteSelfReferenceRefOneBhv extends AbstractBehaviorWrit
         return doSelectCountUniquely(cb);
     }
 
-    protected int doSelectCountUniquely(WhiteSelfReferenceRefOneCB cb) { // called by selectCount(cb) 
+    protected int doSelectCountUniquely(WhiteSelfReferenceRefOneCB cb) { // called by selectCount(cb)
         assertCBStateValid(cb);
         return delegateSelectCountUniquely(cb);
     }
@@ -563,7 +563,7 @@ public abstract class BsWhiteSelfReferenceRefOneBhv extends AbstractBehaviorWrit
      *     whiteSelfReferenceRefOneBhv.<span style="color: #FD4747">update</span>(whiteSelfReferenceRefOne);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
-     * } 
+     * }
      * </pre>
      * @param whiteSelfReferenceRefOne The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
@@ -665,7 +665,7 @@ public abstract class BsWhiteSelfReferenceRefOneBhv extends AbstractBehaviorWrit
      *     whiteSelfReferenceRefOneBhv.<span style="color: #FD4747">delete</span>(whiteSelfReferenceRefOne);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
-     * } 
+     * }
      * </pre>
      * @param whiteSelfReferenceRefOne The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
@@ -798,14 +798,14 @@ public abstract class BsWhiteSelfReferenceRefOneBhv extends AbstractBehaviorWrit
      * Batch-update the entity list specified-only. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * <pre>
-     * <span style="color: #3F7E5E">// e.g. update two columns only</span> 
+     * <span style="color: #3F7E5E">// e.g. update two columns only</span>
      * whiteSelfReferenceRefOneBhv.<span style="color: #FD4747">batchUpdate</span>(whiteSelfReferenceRefOneList, new SpecifyQuery<WhiteSelfReferenceRefOneCB>() {
      *     public void specify(WhiteSelfReferenceRefOneCB cb) { <span style="color: #3F7E5E">// the two only updated</span>
      *         cb.specify().<span style="color: #FD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
      *         cb.specify().<span style="color: #FD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
      *     }
      * });
-     * <span style="color: #3F7E5E">// e.g. update every column in the table</span> 
+     * <span style="color: #3F7E5E">// e.g. update every column in the table</span>
      * whiteSelfReferenceRefOneBhv.<span style="color: #FD4747">batchUpdate</span>(whiteSelfReferenceRefOneList, new SpecifyQuery<WhiteSelfReferenceRefOneCB>() {
      *     public void specify(WhiteSelfReferenceRefOneCB cb) { <span style="color: #3F7E5E">// all columns are updated</span>
      *         cb.specify().<span style="color: #FD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
@@ -869,7 +869,7 @@ public abstract class BsWhiteSelfReferenceRefOneBhv extends AbstractBehaviorWrit
      *     public ConditionBean setup(whiteSelfReferenceRefOne entity, WhiteSelfReferenceRefOneCB intoCB) {
      *         FooCB cb = FooCB();
      *         cb.setupSelect_Bar();
-     * 
+     *
      *         <span style="color: #3F7E5E">// mapping</span>
      *         intoCB.specify().columnMyName().mappedFrom(cb.specify().columnFooName());
      *         intoCB.specify().columnMyCount().mappedFrom(cb.specify().columnFooCount());
@@ -880,7 +880,7 @@ public abstract class BsWhiteSelfReferenceRefOneBhv extends AbstractBehaviorWrit
      *         <span style="color: #3F7E5E">//entity.set...;</span>
      *         <span style="color: #3F7E5E">// you don't need to set a value of exclusive control column</span>
      *         <span style="color: #3F7E5E">//entity.setVersionNo(value);</span>
-     * 
+     *
      *         return cb;
      *     }
      * });
@@ -1121,7 +1121,7 @@ public abstract class BsWhiteSelfReferenceRefOneBhv extends AbstractBehaviorWrit
     /**
      * Insert the several entities by query with varying requests (modified-only for fixed value). <br />
      * For example, disableCommonColumnAutoSetup(), disablePrimaryKeyIdentity(). <br />
-     * Other specifications are same as queryInsert(entity, setupper). 
+     * Other specifications are same as queryInsert(entity, setupper).
      * @param setupper The setup-per of query-insert. (NotNull)
      * @param option The option of insert for varying requests. (NotNull)
      * @return The inserted count.
@@ -1135,7 +1135,7 @@ public abstract class BsWhiteSelfReferenceRefOneBhv extends AbstractBehaviorWrit
      * Update the several entities by query with varying requests non-strictly modified-only. {NonExclusiveControl} <br />
      * For example, self(selfCalculationSpecification), specify(updateColumnSpecification)
      * , disableCommonColumnAutoSetup(), allowNonQueryUpdate(). <br />
-     * Other specifications are same as queryUpdate(entity, cb). 
+     * Other specifications are same as queryUpdate(entity, cb).
      * <pre>
      * <span style="color: #3F7E5E">// ex) you can update by self calculation values</span>
      * WhiteSelfReferenceRefOne whiteSelfReferenceRefOne = new WhiteSelfReferenceRefOne();
@@ -1192,27 +1192,27 @@ public abstract class BsWhiteSelfReferenceRefOneBhv extends AbstractBehaviorWrit
      *   o selectList()
      *   o execute()
      *   o call()
-     * 
+     *
      * {Entity}
      *   o entityHandling().selectEntity()
      *   o entityHandling().selectEntityWithDeletedCheck()
-     * 
+     *
      * {Paging}
      *   o autoPaging().selectList()
      *   o autoPaging().selectPage()
      *   o manualPaging().selectList()
      *   o manualPaging().selectPage()
-     * 
+     *
      * {Cursor}
      *   o cursorHandling().selectCursor()
-     * 
+     *
      * {Option}
      *   o dynamicBinding().selectList()
      *   o removeBlockComment().selectList()
      *   o removeLineComment().selectList()
      *   o formatSql().selectList()
      * </pre>
-     * @return The basic executor of outside-SQL. (NotNull) 
+     * @return The basic executor of outside-SQL. (NotNull)
      */
     public OutsideSqlBasicExecutor<WhiteSelfReferenceRefOneBhv> outsideSql() {
         return doOutsideSql();

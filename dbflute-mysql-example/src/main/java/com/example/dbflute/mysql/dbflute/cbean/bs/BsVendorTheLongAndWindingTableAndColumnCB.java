@@ -311,7 +311,7 @@ public class BsVendorTheLongAndWindingTableAndColumnCB extends AbstractCondition
          */
         public HpSpecifiedColumn columnTheLongAndWindingTableAndColumnId() { return doColumn("THE_LONG_AND_WINDING_TABLE_AND_COLUMN_ID"); }
         /**
-         * THE_LONG_AND_WINDING_TABLE_AND_COLUMN_NAME: {UQ, NotNull, VARCHAR(200)}
+         * THE_LONG_AND_WINDING_TABLE_AND_COLUMN_NAME: {UQ, NotNull, VARCHAR(180)}
          * @return The information object of specified column. (NotNull)
          */
         public HpSpecifiedColumn columnTheLongAndWindingTableAndColumnName() { return doColumn("THE_LONG_AND_WINDING_TABLE_AND_COLUMN_NAME"); }

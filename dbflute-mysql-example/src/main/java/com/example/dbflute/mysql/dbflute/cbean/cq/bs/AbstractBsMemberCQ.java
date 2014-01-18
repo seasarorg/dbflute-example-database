@@ -711,7 +711,7 @@ public abstract class AbstractBsMemberCQ extends AbstractConditionQuery {
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
-     * (会員名称)MEMBER_NAME: {IX, NotNull, VARCHAR(200)}
+     * (会員名称)MEMBER_NAME: {IX, NotNull, VARCHAR(180)}
      * @param memberName The value of memberName as equal. (NullAllowed: if null (or empty), no condition)
      */
     public void setMemberName_Equal(String memberName) {
@@ -724,7 +724,7 @@ public abstract class AbstractBsMemberCQ extends AbstractConditionQuery {
 
     /**
      * NotEqual(&lt;&gt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
-     * (会員名称)MEMBER_NAME: {IX, NotNull, VARCHAR(200)}
+     * (会員名称)MEMBER_NAME: {IX, NotNull, VARCHAR(180)}
      * @param memberName The value of memberName as notEqual. (NullAllowed: if null (or empty), no condition)
      */
     public void setMemberName_NotEqual(String memberName) {
@@ -737,7 +737,7 @@ public abstract class AbstractBsMemberCQ extends AbstractConditionQuery {
 
     /**
      * InScope {in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br />
-     * (会員名称)MEMBER_NAME: {IX, NotNull, VARCHAR(200)}
+     * (会員名称)MEMBER_NAME: {IX, NotNull, VARCHAR(180)}
      * @param memberNameList The collection of memberName as inScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setMemberName_InScope(Collection<String> memberNameList) {
@@ -750,7 +750,7 @@ public abstract class AbstractBsMemberCQ extends AbstractConditionQuery {
 
     /**
      * NotInScope {not in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br />
-     * (会員名称)MEMBER_NAME: {IX, NotNull, VARCHAR(200)}
+     * (会員名称)MEMBER_NAME: {IX, NotNull, VARCHAR(180)}
      * @param memberNameList The collection of memberName as notInScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setMemberName_NotInScope(Collection<String> memberNameList) {
@@ -763,7 +763,7 @@ public abstract class AbstractBsMemberCQ extends AbstractConditionQuery {
 
     /**
      * PrefixSearch {like 'xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br />
-     * (会員名称)MEMBER_NAME: {IX, NotNull, VARCHAR(200)}
+     * (会員名称)MEMBER_NAME: {IX, NotNull, VARCHAR(180)}
      * @param memberName The value of memberName as prefixSearch. (NullAllowed: if null (or empty), no condition)
      */
     public void setMemberName_PrefixSearch(String memberName) {
@@ -772,7 +772,7 @@ public abstract class AbstractBsMemberCQ extends AbstractConditionQuery {
 
     /**
      * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br />
-     * (会員名称)MEMBER_NAME: {IX, NotNull, VARCHAR(200)} <br />
+     * (会員名称)MEMBER_NAME: {IX, NotNull, VARCHAR(180)} <br />
      * <pre>e.g. setMemberName_LikeSearch("xxx", new <span style="color: #FD4747">LikeSearchOption</span>().likeContain());</pre>
      * @param memberName The value of memberName as likeSearch. (NullAllowed: if null (or empty), no condition)
      * @param likeSearchOption The option of like-search. (NotNull)
@@ -784,7 +784,7 @@ public abstract class AbstractBsMemberCQ extends AbstractConditionQuery {
     /**
      * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br />
      * And NullOrEmptyIgnored, SeveralRegistered. <br />
-     * (会員名称)MEMBER_NAME: {IX, NotNull, VARCHAR(200)}
+     * (会員名称)MEMBER_NAME: {IX, NotNull, VARCHAR(180)}
      * @param memberName The value of memberName as notLikeSearch. (NullAllowed: if null (or empty), no condition)
      * @param likeSearchOption The option of not-like-search. (NotNull)
      */

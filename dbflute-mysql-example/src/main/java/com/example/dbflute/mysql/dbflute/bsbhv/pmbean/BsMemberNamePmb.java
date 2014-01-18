@@ -71,7 +71,7 @@ public abstract class BsMemberNamePmb implements ListHandlingPmb<MemberBhv, Stri
 
     /**
      * Get the type of an entity for result. (implementation)
-     * @return The type instance of an entity, VARCHAR(200), refers to member.MEMBER_NAME. (NotNull)
+     * @return The type instance of an entity, VARCHAR(180), refers to member.MEMBER_NAME. (NotNull)
      */
     public Class<String> getEntityType() {
         return String.class;

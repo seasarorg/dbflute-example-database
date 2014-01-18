@@ -125,7 +125,7 @@ public class BsPurchaseSummaryMemberCursor {
     }
 
     /**
-     * [get] (会員名称)MEMBER_NAME: {VARCHAR(200), refers to member.MEMBER_NAME} <br />
+     * [get] (会員名称)MEMBER_NAME: {VARCHAR(180), refers to member.MEMBER_NAME} <br />
      * 会員のフルネームの名称。
      * @return The value of memberName. (NullAllowed)
      * @throws java.sql.SQLException

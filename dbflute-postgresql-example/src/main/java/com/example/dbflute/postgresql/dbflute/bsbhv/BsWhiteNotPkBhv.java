@@ -17,28 +17,28 @@ import com.example.dbflute.postgresql.dbflute.cbean.*;
  * <pre>
  * [primary key]
  *     
- * 
+ *
  * [column]
  *     not_pk_id, not_pk_name, not_pk_integer
- * 
+ *
  * [sequence]
  *     
- * 
+ *
  * [identity]
  *     
- * 
+ *
  * [version-no]
  *     
- * 
+ *
  * [foreign table]
  *     
- * 
+ *
  * [referrer table]
  *     
- * 
+ *
  * [foreign property]
  *     
- * 
+ *
  * [referrer property]
  *     
  * </pre>
@@ -100,7 +100,7 @@ public abstract class BsWhiteNotPkBhv extends AbstractBehaviorReadable {
         return doSelectCountUniquely(cb);
     }
 
-    protected int doSelectCountUniquely(WhiteNotPkCB cb) { // called by selectCount(cb) 
+    protected int doSelectCountUniquely(WhiteNotPkCB cb) { // called by selectCount(cb)
         assertCBStateValid(cb);
         return delegateSelectCountUniquely(cb);
     }
@@ -369,27 +369,27 @@ public abstract class BsWhiteNotPkBhv extends AbstractBehaviorReadable {
      *   o selectList()
      *   o execute()
      *   o call()
-     * 
+     *
      * {Entity}
      *   o entityHandling().selectEntity()
      *   o entityHandling().selectEntityWithDeletedCheck()
-     * 
+     *
      * {Paging}
      *   o autoPaging().selectList()
      *   o autoPaging().selectPage()
      *   o manualPaging().selectList()
      *   o manualPaging().selectPage()
-     * 
+     *
      * {Cursor}
      *   o cursorHandling().selectCursor()
-     * 
+     *
      * {Option}
      *   o dynamicBinding().selectList()
      *   o removeBlockComment().selectList()
      *   o removeLineComment().selectList()
      *   o formatSql().selectList()
      * </pre>
-     * @return The basic executor of outside-SQL. (NotNull) 
+     * @return The basic executor of outside-SQL. (NotNull)
      */
     public OutsideSqlBasicExecutor<WhiteNotPkBhv> outsideSql() {
         return doOutsideSql();

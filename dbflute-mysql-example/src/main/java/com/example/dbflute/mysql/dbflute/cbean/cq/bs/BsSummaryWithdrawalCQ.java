@@ -117,14 +117,14 @@ public class BsSummaryWithdrawalCQ extends AbstractBsSummaryWithdrawalCQ {
 
     /** 
      * Add order-by as ascend. <br />
-     * (会員名称)MEMBER_NAME: {VARCHAR(200)}
+     * (会員名称)MEMBER_NAME: {VARCHAR(180)}
      * @return this. (NotNull)
      */
     public BsSummaryWithdrawalCQ addOrderBy_MemberName_Asc() { regOBA("MEMBER_NAME"); return this; }
 
     /**
      * Add order-by as descend. <br />
-     * (会員名称)MEMBER_NAME: {VARCHAR(200)}
+     * (会員名称)MEMBER_NAME: {VARCHAR(180)}
      * @return this. (NotNull)
      */
     public BsSummaryWithdrawalCQ addOrderBy_MemberName_Desc() { regOBD("MEMBER_NAME"); return this; }

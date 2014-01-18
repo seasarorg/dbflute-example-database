@@ -17,28 +17,28 @@ import com.example.dbflute.postgresql.dbflute.cbean.*;
  * <pre>
  * [primary key]
  *     member_service_id
- * 
+ *
  * [column]
  *     member_service_id, member_id, service_point_count, service_rank_code, register_datetime, register_process, register_user, update_datetime, update_process, update_user, version_no
- * 
+ *
  * [sequence]
  *     member_service_member_service_id_seq
- * 
+ *
  * [identity]
  *     
- * 
+ *
  * [version-no]
  *     version_no
- * 
+ *
  * [foreign table]
  *     service_rank
- * 
+ *
  * [referrer table]
  *     
- * 
+ *
  * [foreign property]
  *     serviceRank
- * 
+ *
  * [referrer property]
  *     
  * </pre>
@@ -100,7 +100,7 @@ public abstract class BsMemberServiceBhv extends AbstractBehaviorWritable {
         return doSelectCountUniquely(cb);
     }
 
-    protected int doSelectCountUniquely(MemberServiceCB cb) { // called by selectCount(cb) 
+    protected int doSelectCountUniquely(MemberServiceCB cb) { // called by selectCount(cb)
         assertCBStateValid(cb);
         return delegateSelectCountUniquely(cb);
     }
@@ -365,7 +365,7 @@ public abstract class BsMemberServiceBhv extends AbstractBehaviorWritable {
     /**
      * Select the next value as sequence. <br />
      * This method is called when insert() and set to primary-key automatically.
-     * So you don't need to call this as long as you need to get next value before insert().  
+     * So you don't need to call this as long as you need to get next value before insert().
      * @return The next value. (NotNull)
      */
     public Integer selectNextVal() {
@@ -471,7 +471,7 @@ public abstract class BsMemberServiceBhv extends AbstractBehaviorWritable {
      *     memberServiceBhv.<span style="color: #FD4747">update</span>(memberService);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
-     * } 
+     * }
      * </pre>
      * @param memberService The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @exception org.seasar.dbflute.exception.EntityAlreadyUpdatedException When the entity has already been updated.
@@ -629,7 +629,7 @@ public abstract class BsMemberServiceBhv extends AbstractBehaviorWritable {
      *     memberServiceBhv.<span style="color: #FD4747">delete</span>(memberService);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
-     * } 
+     * }
      * </pre>
      * @param memberService The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @exception org.seasar.dbflute.exception.EntityAlreadyUpdatedException When the entity has already been updated.
@@ -813,14 +813,14 @@ public abstract class BsMemberServiceBhv extends AbstractBehaviorWritable {
      * Batch-update the entity list specified-only. (ExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * <pre>
-     * <span style="color: #3F7E5E">// e.g. update two columns only</span> 
+     * <span style="color: #3F7E5E">// e.g. update two columns only</span>
      * memberServiceBhv.<span style="color: #FD4747">batchUpdate</span>(memberServiceList, new SpecifyQuery<MemberServiceCB>() {
      *     public void specify(MemberServiceCB cb) { <span style="color: #3F7E5E">// the two only updated</span>
      *         cb.specify().<span style="color: #FD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
      *         cb.specify().<span style="color: #FD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
      *     }
      * });
-     * <span style="color: #3F7E5E">// e.g. update every column in the table</span> 
+     * <span style="color: #3F7E5E">// e.g. update every column in the table</span>
      * memberServiceBhv.<span style="color: #FD4747">batchUpdate</span>(memberServiceList, new SpecifyQuery<MemberServiceCB>() {
      *     public void specify(MemberServiceCB cb) { <span style="color: #3F7E5E">// all columns are updated</span>
      *         cb.specify().<span style="color: #FD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
@@ -880,14 +880,14 @@ public abstract class BsMemberServiceBhv extends AbstractBehaviorWritable {
      * Batch-update the entity list non-strictly specified-only. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * <pre>
-     * <span style="color: #3F7E5E">// e.g. update two columns only</span> 
+     * <span style="color: #3F7E5E">// e.g. update two columns only</span>
      * memberServiceBhv.<span style="color: #FD4747">batchUpdateNonstrict</span>(memberServiceList, new SpecifyQuery<MemberServiceCB>() {
      *     public void specify(MemberServiceCB cb) { <span style="color: #3F7E5E">// the two only updated</span>
      *         cb.specify().<span style="color: #FD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
      *         cb.specify().<span style="color: #FD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
      *     }
      * });
-     * <span style="color: #3F7E5E">// e.g. update every column in the table</span> 
+     * <span style="color: #3F7E5E">// e.g. update every column in the table</span>
      * memberServiceBhv.<span style="color: #FD4747">batchUpdateNonstrict</span>(memberServiceList, new SpecifyQuery<MemberServiceCB>() {
      *     public void specify(MemberServiceCB cb) { <span style="color: #3F7E5E">// all columns are updated</span>
      *         cb.specify().<span style="color: #FD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
@@ -969,7 +969,7 @@ public abstract class BsMemberServiceBhv extends AbstractBehaviorWritable {
      *     public ConditionBean setup(memberService entity, MemberServiceCB intoCB) {
      *         FooCB cb = FooCB();
      *         cb.setupSelect_Bar();
-     * 
+     *
      *         <span style="color: #3F7E5E">// mapping</span>
      *         intoCB.specify().columnMyName().mappedFrom(cb.specify().columnFooName());
      *         intoCB.specify().columnMyCount().mappedFrom(cb.specify().columnFooCount());
@@ -980,7 +980,7 @@ public abstract class BsMemberServiceBhv extends AbstractBehaviorWritable {
      *         <span style="color: #3F7E5E">//entity.set...;</span>
      *         <span style="color: #3F7E5E">// you don't need to set a value of exclusive control column</span>
      *         <span style="color: #3F7E5E">//entity.setVersionNo(value);</span>
-     * 
+     *
      *         return cb;
      *     }
      * });
@@ -1308,7 +1308,7 @@ public abstract class BsMemberServiceBhv extends AbstractBehaviorWritable {
     /**
      * Insert the several entities by query with varying requests (modified-only for fixed value). <br />
      * For example, disableCommonColumnAutoSetup(), disablePrimaryKeyIdentity(). <br />
-     * Other specifications are same as queryInsert(entity, setupper). 
+     * Other specifications are same as queryInsert(entity, setupper).
      * @param setupper The setup-per of query-insert. (NotNull)
      * @param option The option of insert for varying requests. (NotNull)
      * @return The inserted count.
@@ -1322,7 +1322,7 @@ public abstract class BsMemberServiceBhv extends AbstractBehaviorWritable {
      * Update the several entities by query with varying requests non-strictly modified-only. {NonExclusiveControl} <br />
      * For example, self(selfCalculationSpecification), specify(updateColumnSpecification)
      * , disableCommonColumnAutoSetup(), allowNonQueryUpdate(). <br />
-     * Other specifications are same as queryUpdate(entity, cb). 
+     * Other specifications are same as queryUpdate(entity, cb).
      * <pre>
      * <span style="color: #3F7E5E">// ex) you can update by self calculation values</span>
      * MemberService memberService = new MemberService();
@@ -1379,27 +1379,27 @@ public abstract class BsMemberServiceBhv extends AbstractBehaviorWritable {
      *   o selectList()
      *   o execute()
      *   o call()
-     * 
+     *
      * {Entity}
      *   o entityHandling().selectEntity()
      *   o entityHandling().selectEntityWithDeletedCheck()
-     * 
+     *
      * {Paging}
      *   o autoPaging().selectList()
      *   o autoPaging().selectPage()
      *   o manualPaging().selectList()
      *   o manualPaging().selectPage()
-     * 
+     *
      * {Cursor}
      *   o cursorHandling().selectCursor()
-     * 
+     *
      * {Option}
      *   o dynamicBinding().selectList()
      *   o removeBlockComment().selectList()
      *   o removeLineComment().selectList()
      *   o formatSql().selectList()
      * </pre>
-     * @return The basic executor of outside-SQL. (NotNull) 
+     * @return The basic executor of outside-SQL. (NotNull)
      */
     public OutsideSqlBasicExecutor<MemberServiceBhv> outsideSql() {
         return doOutsideSql();

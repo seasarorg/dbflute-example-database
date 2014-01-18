@@ -172,14 +172,14 @@ public class BsVendorLargeDataCQ extends AbstractBsVendorLargeDataCQ {
 
     /** 
      * Add order-by as ascend. <br />
-     * STRING_INDEX: {IX, NotNull, VARCHAR(200)}
+     * STRING_INDEX: {IX, NotNull, VARCHAR(180)}
      * @return this. (NotNull)
      */
     public BsVendorLargeDataCQ addOrderBy_StringIndex_Asc() { regOBA("STRING_INDEX"); return this; }
 
     /**
      * Add order-by as descend. <br />
-     * STRING_INDEX: {IX, NotNull, VARCHAR(200)}
+     * STRING_INDEX: {IX, NotNull, VARCHAR(180)}
      * @return this. (NotNull)
      */
     public BsVendorLargeDataCQ addOrderBy_StringIndex_Desc() { regOBD("STRING_INDEX"); return this; }
@@ -193,14 +193,14 @@ public class BsVendorLargeDataCQ extends AbstractBsVendorLargeDataCQ {
 
     /** 
      * Add order-by as ascend. <br />
-     * STRING_NO_INDEX: {NotNull, VARCHAR(200)}
+     * STRING_NO_INDEX: {NotNull, VARCHAR(180)}
      * @return this. (NotNull)
      */
     public BsVendorLargeDataCQ addOrderBy_StringNoIndex_Asc() { regOBA("STRING_NO_INDEX"); return this; }
 
     /**
      * Add order-by as descend. <br />
-     * STRING_NO_INDEX: {NotNull, VARCHAR(200)}
+     * STRING_NO_INDEX: {NotNull, VARCHAR(180)}
      * @return this. (NotNull)
      */
     public BsVendorLargeDataCQ addOrderBy_StringNoIndex_Desc() { regOBD("STRING_NO_INDEX"); return this; }
@@ -214,14 +214,14 @@ public class BsVendorLargeDataCQ extends AbstractBsVendorLargeDataCQ {
 
     /** 
      * Add order-by as ascend. <br />
-     * STRING_UNIQUE_INDEX: {UQ, NotNull, VARCHAR(200)}
+     * STRING_UNIQUE_INDEX: {UQ, NotNull, VARCHAR(180)}
      * @return this. (NotNull)
      */
     public BsVendorLargeDataCQ addOrderBy_StringUniqueIndex_Asc() { regOBA("STRING_UNIQUE_INDEX"); return this; }
 
     /**
      * Add order-by as descend. <br />
-     * STRING_UNIQUE_INDEX: {UQ, NotNull, VARCHAR(200)}
+     * STRING_UNIQUE_INDEX: {UQ, NotNull, VARCHAR(180)}
      * @return this. (NotNull)
      */
     public BsVendorLargeDataCQ addOrderBy_StringUniqueIndex_Desc() { regOBD("STRING_UNIQUE_INDEX"); return this; }

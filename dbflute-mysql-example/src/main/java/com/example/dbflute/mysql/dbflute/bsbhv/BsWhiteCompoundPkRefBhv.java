@@ -32,28 +32,28 @@ import com.example.dbflute.mysql.dbflute.cbean.*;
  * <pre>
  * [primary key]
  *     MULTIPLE_FIRST_ID, MULTIPLE_SECOND_ID
- * 
+ *
  * [column]
  *     MULTIPLE_FIRST_ID, MULTIPLE_SECOND_ID, REF_FIRST_ID, REF_SECOND_ID
- * 
+ *
  * [sequence]
  *     
- * 
+ *
  * [identity]
  *     
- * 
+ *
  * [version-no]
  *     
- * 
+ *
  * [foreign table]
  *     white_compound_pk
- * 
+ *
  * [referrer table]
  *     white_compound_pk_ref_nest
- * 
+ *
  * [foreign property]
  *     whiteCompoundPk
- * 
+ *
  * [referrer property]
  *     whiteCompoundPkRefNestByQuxMultipleIdList, whiteCompoundPkRefNestByFooMultipleIdList
  * </pre>
@@ -115,7 +115,7 @@ public abstract class BsWhiteCompoundPkRefBhv extends AbstractBehaviorWritable {
         return doSelectCountUniquely(cb);
     }
 
-    protected int doSelectCountUniquely(WhiteCompoundPkRefCB cb) { // called by selectCount(cb) 
+    protected int doSelectCountUniquely(WhiteCompoundPkRefCB cb) { // called by selectCount(cb)
         assertCBStateValid(cb);
         return delegateSelectCountUniquely(cb);
     }
@@ -670,7 +670,7 @@ public abstract class BsWhiteCompoundPkRefBhv extends AbstractBehaviorWritable {
      *     whiteCompoundPkRefBhv.<span style="color: #FD4747">update</span>(whiteCompoundPkRef);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
-     * } 
+     * }
      * </pre>
      * @param whiteCompoundPkRef The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
@@ -772,7 +772,7 @@ public abstract class BsWhiteCompoundPkRefBhv extends AbstractBehaviorWritable {
      *     whiteCompoundPkRefBhv.<span style="color: #FD4747">delete</span>(whiteCompoundPkRef);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
-     * } 
+     * }
      * </pre>
      * @param whiteCompoundPkRef The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
@@ -905,14 +905,14 @@ public abstract class BsWhiteCompoundPkRefBhv extends AbstractBehaviorWritable {
      * Batch-update the entity list specified-only. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * <pre>
-     * <span style="color: #3F7E5E">// e.g. update two columns only</span> 
+     * <span style="color: #3F7E5E">// e.g. update two columns only</span>
      * whiteCompoundPkRefBhv.<span style="color: #FD4747">batchUpdate</span>(whiteCompoundPkRefList, new SpecifyQuery<WhiteCompoundPkRefCB>() {
      *     public void specify(WhiteCompoundPkRefCB cb) { <span style="color: #3F7E5E">// the two only updated</span>
      *         cb.specify().<span style="color: #FD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
      *         cb.specify().<span style="color: #FD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
      *     }
      * });
-     * <span style="color: #3F7E5E">// e.g. update every column in the table</span> 
+     * <span style="color: #3F7E5E">// e.g. update every column in the table</span>
      * whiteCompoundPkRefBhv.<span style="color: #FD4747">batchUpdate</span>(whiteCompoundPkRefList, new SpecifyQuery<WhiteCompoundPkRefCB>() {
      *     public void specify(WhiteCompoundPkRefCB cb) { <span style="color: #3F7E5E">// all columns are updated</span>
      *         cb.specify().<span style="color: #FD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
@@ -976,7 +976,7 @@ public abstract class BsWhiteCompoundPkRefBhv extends AbstractBehaviorWritable {
      *     public ConditionBean setup(whiteCompoundPkRef entity, WhiteCompoundPkRefCB intoCB) {
      *         FooCB cb = FooCB();
      *         cb.setupSelect_Bar();
-     * 
+     *
      *         <span style="color: #3F7E5E">// mapping</span>
      *         intoCB.specify().columnMyName().mappedFrom(cb.specify().columnFooName());
      *         intoCB.specify().columnMyCount().mappedFrom(cb.specify().columnFooCount());
@@ -987,7 +987,7 @@ public abstract class BsWhiteCompoundPkRefBhv extends AbstractBehaviorWritable {
      *         <span style="color: #3F7E5E">//entity.set...;</span>
      *         <span style="color: #3F7E5E">// you don't need to set a value of exclusive control column</span>
      *         <span style="color: #3F7E5E">//entity.setVersionNo(value);</span>
-     * 
+     *
      *         return cb;
      *     }
      * });
@@ -1228,7 +1228,7 @@ public abstract class BsWhiteCompoundPkRefBhv extends AbstractBehaviorWritable {
     /**
      * Insert the several entities by query with varying requests (modified-only for fixed value). <br />
      * For example, disableCommonColumnAutoSetup(), disablePrimaryKeyIdentity(). <br />
-     * Other specifications are same as queryInsert(entity, setupper). 
+     * Other specifications are same as queryInsert(entity, setupper).
      * @param setupper The setup-per of query-insert. (NotNull)
      * @param option The option of insert for varying requests. (NotNull)
      * @return The inserted count.
@@ -1242,7 +1242,7 @@ public abstract class BsWhiteCompoundPkRefBhv extends AbstractBehaviorWritable {
      * Update the several entities by query with varying requests non-strictly modified-only. {NonExclusiveControl} <br />
      * For example, self(selfCalculationSpecification), specify(updateColumnSpecification)
      * , disableCommonColumnAutoSetup(), allowNonQueryUpdate(). <br />
-     * Other specifications are same as queryUpdate(entity, cb). 
+     * Other specifications are same as queryUpdate(entity, cb).
      * <pre>
      * <span style="color: #3F7E5E">// ex) you can update by self calculation values</span>
      * WhiteCompoundPkRef whiteCompoundPkRef = new WhiteCompoundPkRef();
@@ -1299,27 +1299,27 @@ public abstract class BsWhiteCompoundPkRefBhv extends AbstractBehaviorWritable {
      *   o selectList()
      *   o execute()
      *   o call()
-     * 
+     *
      * {Entity}
      *   o entityHandling().selectEntity()
      *   o entityHandling().selectEntityWithDeletedCheck()
-     * 
+     *
      * {Paging}
      *   o autoPaging().selectList()
      *   o autoPaging().selectPage()
      *   o manualPaging().selectList()
      *   o manualPaging().selectPage()
-     * 
+     *
      * {Cursor}
      *   o cursorHandling().selectCursor()
-     * 
+     *
      * {Option}
      *   o dynamicBinding().selectList()
      *   o removeBlockComment().selectList()
      *   o removeLineComment().selectList()
      *   o formatSql().selectList()
      * </pre>
-     * @return The basic executor of outside-SQL. (NotNull) 
+     * @return The basic executor of outside-SQL. (NotNull)
      */
     public OutsideSqlBasicExecutor<WhiteCompoundPkRefBhv> outsideSql() {
         return doOutsideSql();

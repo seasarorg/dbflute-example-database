@@ -92,13 +92,13 @@ public abstract class BsVendorLargeData implements Entity, Serializable, Cloneab
     /** LARGE_DATA_ID: {PK, NotNull, BIGINT(19)} */
     protected Long _largeDataId;
 
-    /** STRING_INDEX: {IX, NotNull, VARCHAR(200)} */
+    /** STRING_INDEX: {IX, NotNull, VARCHAR(180)} */
     protected String _stringIndex;
 
-    /** STRING_NO_INDEX: {NotNull, VARCHAR(200)} */
+    /** STRING_NO_INDEX: {NotNull, VARCHAR(180)} */
     protected String _stringNoIndex;
 
-    /** STRING_UNIQUE_INDEX: {UQ, NotNull, VARCHAR(200)} */
+    /** STRING_UNIQUE_INDEX: {UQ, NotNull, VARCHAR(180)} */
     protected String _stringUniqueIndex;
 
     /** INTFLG_INDEX: {NotNull, INT(10)} */
@@ -366,7 +366,7 @@ public abstract class BsVendorLargeData implements Entity, Serializable, Cloneab
     }
 
     /**
-     * [get] STRING_INDEX: {IX, NotNull, VARCHAR(200)} <br />
+     * [get] STRING_INDEX: {IX, NotNull, VARCHAR(180)} <br />
      * @return The value of the column 'STRING_INDEX'. (basically NotNull if selected: for the constraint)
      */
     public String getStringIndex() {
@@ -374,7 +374,7 @@ public abstract class BsVendorLargeData implements Entity, Serializable, Cloneab
     }
 
     /**
-     * [set] STRING_INDEX: {IX, NotNull, VARCHAR(200)} <br />
+     * [set] STRING_INDEX: {IX, NotNull, VARCHAR(180)} <br />
      * @param stringIndex The value of the column 'STRING_INDEX'. (basically NotNull if update: for the constraint)
      */
     public void setStringIndex(String stringIndex) {
@@ -383,7 +383,7 @@ public abstract class BsVendorLargeData implements Entity, Serializable, Cloneab
     }
 
     /**
-     * [get] STRING_NO_INDEX: {NotNull, VARCHAR(200)} <br />
+     * [get] STRING_NO_INDEX: {NotNull, VARCHAR(180)} <br />
      * @return The value of the column 'STRING_NO_INDEX'. (basically NotNull if selected: for the constraint)
      */
     public String getStringNoIndex() {
@@ -391,7 +391,7 @@ public abstract class BsVendorLargeData implements Entity, Serializable, Cloneab
     }
 
     /**
-     * [set] STRING_NO_INDEX: {NotNull, VARCHAR(200)} <br />
+     * [set] STRING_NO_INDEX: {NotNull, VARCHAR(180)} <br />
      * @param stringNoIndex The value of the column 'STRING_NO_INDEX'. (basically NotNull if update: for the constraint)
      */
     public void setStringNoIndex(String stringNoIndex) {
@@ -400,7 +400,7 @@ public abstract class BsVendorLargeData implements Entity, Serializable, Cloneab
     }
 
     /**
-     * [get] STRING_UNIQUE_INDEX: {UQ, NotNull, VARCHAR(200)} <br />
+     * [get] STRING_UNIQUE_INDEX: {UQ, NotNull, VARCHAR(180)} <br />
      * @return The value of the column 'STRING_UNIQUE_INDEX'. (basically NotNull if selected: for the constraint)
      */
     public String getStringUniqueIndex() {
@@ -408,7 +408,7 @@ public abstract class BsVendorLargeData implements Entity, Serializable, Cloneab
     }
 
     /**
-     * [set] STRING_UNIQUE_INDEX: {UQ, NotNull, VARCHAR(200)} <br />
+     * [set] STRING_UNIQUE_INDEX: {UQ, NotNull, VARCHAR(180)} <br />
      * @param stringUniqueIndex The value of the column 'STRING_UNIQUE_INDEX'. (basically NotNull if update: for the constraint)
      */
     public void setStringUniqueIndex(String stringUniqueIndex) {

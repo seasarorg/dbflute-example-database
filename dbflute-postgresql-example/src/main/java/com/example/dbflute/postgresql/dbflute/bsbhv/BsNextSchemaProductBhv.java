@@ -17,28 +17,28 @@ import com.example.dbflute.postgresql.dbflute.cbean.*;
  * <pre>
  * [primary key]
  *     product_id
- * 
+ *
  * [column]
  *     product_id, product_name
- * 
+ *
  * [sequence]
  *     nextschema.next_schema_product_product_id_seq
- * 
+ *
  * [identity]
  *     
- * 
+ *
  * [version-no]
  *     
- * 
+ *
  * [foreign table]
  *     
- * 
+ *
  * [referrer table]
  *     white_same_name
- * 
+ *
  * [foreign property]
  *     
- * 
+ *
  * [referrer property]
  *     whiteSameNameList
  * </pre>
@@ -100,7 +100,7 @@ public abstract class BsNextSchemaProductBhv extends AbstractBehaviorWritable {
         return doSelectCountUniquely(cb);
     }
 
-    protected int doSelectCountUniquely(NextSchemaProductCB cb) { // called by selectCount(cb) 
+    protected int doSelectCountUniquely(NextSchemaProductCB cb) { // called by selectCount(cb)
         assertCBStateValid(cb);
         return delegateSelectCountUniquely(cb);
     }
@@ -365,7 +365,7 @@ public abstract class BsNextSchemaProductBhv extends AbstractBehaviorWritable {
     /**
      * Select the next value as sequence. <br />
      * This method is called when insert() and set to primary-key automatically.
-     * So you don't need to call this as long as you need to get next value before insert().  
+     * So you don't need to call this as long as you need to get next value before insert().
      * @return The next value. (NotNull)
      */
     public Integer selectNextVal() {
@@ -534,7 +534,7 @@ public abstract class BsNextSchemaProductBhv extends AbstractBehaviorWritable {
      *     nextSchemaProductBhv.<span style="color: #FD4747">update</span>(nextSchemaProduct);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
-     * } 
+     * }
      * </pre>
      * @param nextSchemaProduct The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
@@ -636,7 +636,7 @@ public abstract class BsNextSchemaProductBhv extends AbstractBehaviorWritable {
      *     nextSchemaProductBhv.<span style="color: #FD4747">delete</span>(nextSchemaProduct);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
-     * } 
+     * }
      * </pre>
      * @param nextSchemaProduct The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
@@ -769,14 +769,14 @@ public abstract class BsNextSchemaProductBhv extends AbstractBehaviorWritable {
      * Batch-update the entity list specified-only. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * <pre>
-     * <span style="color: #3F7E5E">// e.g. update two columns only</span> 
+     * <span style="color: #3F7E5E">// e.g. update two columns only</span>
      * nextSchemaProductBhv.<span style="color: #FD4747">batchUpdate</span>(nextSchemaProductList, new SpecifyQuery<NextSchemaProductCB>() {
      *     public void specify(NextSchemaProductCB cb) { <span style="color: #3F7E5E">// the two only updated</span>
      *         cb.specify().<span style="color: #FD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
      *         cb.specify().<span style="color: #FD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
      *     }
      * });
-     * <span style="color: #3F7E5E">// e.g. update every column in the table</span> 
+     * <span style="color: #3F7E5E">// e.g. update every column in the table</span>
      * nextSchemaProductBhv.<span style="color: #FD4747">batchUpdate</span>(nextSchemaProductList, new SpecifyQuery<NextSchemaProductCB>() {
      *     public void specify(NextSchemaProductCB cb) { <span style="color: #3F7E5E">// all columns are updated</span>
      *         cb.specify().<span style="color: #FD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
@@ -840,7 +840,7 @@ public abstract class BsNextSchemaProductBhv extends AbstractBehaviorWritable {
      *     public ConditionBean setup(nextSchemaProduct entity, NextSchemaProductCB intoCB) {
      *         FooCB cb = FooCB();
      *         cb.setupSelect_Bar();
-     * 
+     *
      *         <span style="color: #3F7E5E">// mapping</span>
      *         intoCB.specify().columnMyName().mappedFrom(cb.specify().columnFooName());
      *         intoCB.specify().columnMyCount().mappedFrom(cb.specify().columnFooCount());
@@ -851,7 +851,7 @@ public abstract class BsNextSchemaProductBhv extends AbstractBehaviorWritable {
      *         <span style="color: #3F7E5E">//entity.set...;</span>
      *         <span style="color: #3F7E5E">// you don't need to set a value of exclusive control column</span>
      *         <span style="color: #3F7E5E">//entity.setVersionNo(value);</span>
-     * 
+     *
      *         return cb;
      *     }
      * });
@@ -1092,7 +1092,7 @@ public abstract class BsNextSchemaProductBhv extends AbstractBehaviorWritable {
     /**
      * Insert the several entities by query with varying requests (modified-only for fixed value). <br />
      * For example, disableCommonColumnAutoSetup(), disablePrimaryKeyIdentity(). <br />
-     * Other specifications are same as queryInsert(entity, setupper). 
+     * Other specifications are same as queryInsert(entity, setupper).
      * @param setupper The setup-per of query-insert. (NotNull)
      * @param option The option of insert for varying requests. (NotNull)
      * @return The inserted count.
@@ -1106,7 +1106,7 @@ public abstract class BsNextSchemaProductBhv extends AbstractBehaviorWritable {
      * Update the several entities by query with varying requests non-strictly modified-only. {NonExclusiveControl} <br />
      * For example, self(selfCalculationSpecification), specify(updateColumnSpecification)
      * , disableCommonColumnAutoSetup(), allowNonQueryUpdate(). <br />
-     * Other specifications are same as queryUpdate(entity, cb). 
+     * Other specifications are same as queryUpdate(entity, cb).
      * <pre>
      * <span style="color: #3F7E5E">// ex) you can update by self calculation values</span>
      * NextSchemaProduct nextSchemaProduct = new NextSchemaProduct();
@@ -1163,27 +1163,27 @@ public abstract class BsNextSchemaProductBhv extends AbstractBehaviorWritable {
      *   o selectList()
      *   o execute()
      *   o call()
-     * 
+     *
      * {Entity}
      *   o entityHandling().selectEntity()
      *   o entityHandling().selectEntityWithDeletedCheck()
-     * 
+     *
      * {Paging}
      *   o autoPaging().selectList()
      *   o autoPaging().selectPage()
      *   o manualPaging().selectList()
      *   o manualPaging().selectPage()
-     * 
+     *
      * {Cursor}
      *   o cursorHandling().selectCursor()
-     * 
+     *
      * {Option}
      *   o dynamicBinding().selectList()
      *   o removeBlockComment().selectList()
      *   o removeLineComment().selectList()
      *   o formatSql().selectList()
      * </pre>
-     * @return The basic executor of outside-SQL. (NotNull) 
+     * @return The basic executor of outside-SQL. (NotNull)
      */
     public OutsideSqlBasicExecutor<NextSchemaProductBhv> outsideSql() {
         return doOutsideSql();

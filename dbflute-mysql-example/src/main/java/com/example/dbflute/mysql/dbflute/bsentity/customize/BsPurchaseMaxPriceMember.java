@@ -85,7 +85,7 @@ public abstract class BsPurchaseMaxPriceMember implements Entity, Serializable, 
     /** (会員ID)MEMBER_ID: {INT(11), refers to member.MEMBER_ID} */
     protected Integer _memberId;
 
-    /** (会員名称)MEMBER_NAME: {VARCHAR(200), refers to member.MEMBER_NAME} */
+    /** (会員名称)MEMBER_NAME: {VARCHAR(180), refers to member.MEMBER_NAME} */
     protected String _memberName;
 
     /** PURCHASE_MAX_PRICE: {INT(11)} */
@@ -325,7 +325,7 @@ public abstract class BsPurchaseMaxPriceMember implements Entity, Serializable, 
     }
 
     /**
-     * [get] (会員名称)MEMBER_NAME: {VARCHAR(200), refers to member.MEMBER_NAME} <br />
+     * [get] (会員名称)MEMBER_NAME: {VARCHAR(180), refers to member.MEMBER_NAME} <br />
      * 会員のフルネームの名称。
      * @return The value of the column 'MEMBER_NAME'. (NullAllowed even if selected: for no constraint)
      */
@@ -334,7 +334,7 @@ public abstract class BsPurchaseMaxPriceMember implements Entity, Serializable, 
     }
 
     /**
-     * [set] (会員名称)MEMBER_NAME: {VARCHAR(200), refers to member.MEMBER_NAME} <br />
+     * [set] (会員名称)MEMBER_NAME: {VARCHAR(180), refers to member.MEMBER_NAME} <br />
      * 会員のフルネームの名称。
      * @param memberName The value of the column 'MEMBER_NAME'. (NullAllowed: null update allowed for no constraint)
      */

@@ -83,7 +83,7 @@ public abstract class BsDoubleByteOnSql implements Entity, Serializable, Cloneab
     /** (会員ID)MEMBER_ID: {INT(11), refers to member.MEMBER_ID} */
     protected Integer _memberId;
 
-    /** MEMBER_NAME_WITH_SPACE: {VARCHAR(201)} */
+    /** MEMBER_NAME_WITH_SPACE: {VARCHAR(181)} */
     protected String _memberNameWithSpace;
 
     /** (会員ステータス名称)MEMBER_STATUS_NAME: {VARCHAR(50), refers to member_status.MEMBER_STATUS_NAME} */
@@ -315,7 +315,7 @@ public abstract class BsDoubleByteOnSql implements Entity, Serializable, Cloneab
     }
 
     /**
-     * [get] MEMBER_NAME_WITH_SPACE: {VARCHAR(201)} <br />
+     * [get] MEMBER_NAME_WITH_SPACE: {VARCHAR(181)} <br />
      * @return The value of the column 'MEMBER_NAME_WITH_SPACE'. (NullAllowed even if selected: for no constraint)
      */
     public String getMemberNameWithSpace() {
@@ -323,7 +323,7 @@ public abstract class BsDoubleByteOnSql implements Entity, Serializable, Cloneab
     }
 
     /**
-     * [set] MEMBER_NAME_WITH_SPACE: {VARCHAR(201)} <br />
+     * [set] MEMBER_NAME_WITH_SPACE: {VARCHAR(181)} <br />
      * @param memberNameWithSpace The value of the column 'MEMBER_NAME_WITH_SPACE'. (NullAllowed: null update allowed for no constraint)
      */
     public void setMemberNameWithSpace(String memberNameWithSpace) {

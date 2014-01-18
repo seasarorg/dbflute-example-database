@@ -277,7 +277,7 @@ public abstract class AbstractBsVendorLargeDataCQ extends AbstractConditionQuery
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
-     * STRING_INDEX: {IX, NotNull, VARCHAR(200)}
+     * STRING_INDEX: {IX, NotNull, VARCHAR(180)}
      * @param stringIndex The value of stringIndex as equal. (NullAllowed: if null (or empty), no condition)
      */
     public void setStringIndex_Equal(String stringIndex) {
@@ -290,7 +290,7 @@ public abstract class AbstractBsVendorLargeDataCQ extends AbstractConditionQuery
 
     /**
      * NotEqual(&lt;&gt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
-     * STRING_INDEX: {IX, NotNull, VARCHAR(200)}
+     * STRING_INDEX: {IX, NotNull, VARCHAR(180)}
      * @param stringIndex The value of stringIndex as notEqual. (NullAllowed: if null (or empty), no condition)
      */
     public void setStringIndex_NotEqual(String stringIndex) {
@@ -303,7 +303,7 @@ public abstract class AbstractBsVendorLargeDataCQ extends AbstractConditionQuery
 
     /**
      * InScope {in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br />
-     * STRING_INDEX: {IX, NotNull, VARCHAR(200)}
+     * STRING_INDEX: {IX, NotNull, VARCHAR(180)}
      * @param stringIndexList The collection of stringIndex as inScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setStringIndex_InScope(Collection<String> stringIndexList) {
@@ -316,7 +316,7 @@ public abstract class AbstractBsVendorLargeDataCQ extends AbstractConditionQuery
 
     /**
      * NotInScope {not in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br />
-     * STRING_INDEX: {IX, NotNull, VARCHAR(200)}
+     * STRING_INDEX: {IX, NotNull, VARCHAR(180)}
      * @param stringIndexList The collection of stringIndex as notInScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setStringIndex_NotInScope(Collection<String> stringIndexList) {
@@ -329,7 +329,7 @@ public abstract class AbstractBsVendorLargeDataCQ extends AbstractConditionQuery
 
     /**
      * PrefixSearch {like 'xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br />
-     * STRING_INDEX: {IX, NotNull, VARCHAR(200)}
+     * STRING_INDEX: {IX, NotNull, VARCHAR(180)}
      * @param stringIndex The value of stringIndex as prefixSearch. (NullAllowed: if null (or empty), no condition)
      */
     public void setStringIndex_PrefixSearch(String stringIndex) {
@@ -338,7 +338,7 @@ public abstract class AbstractBsVendorLargeDataCQ extends AbstractConditionQuery
 
     /**
      * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br />
-     * STRING_INDEX: {IX, NotNull, VARCHAR(200)} <br />
+     * STRING_INDEX: {IX, NotNull, VARCHAR(180)} <br />
      * <pre>e.g. setStringIndex_LikeSearch("xxx", new <span style="color: #FD4747">LikeSearchOption</span>().likeContain());</pre>
      * @param stringIndex The value of stringIndex as likeSearch. (NullAllowed: if null (or empty), no condition)
      * @param likeSearchOption The option of like-search. (NotNull)
@@ -350,7 +350,7 @@ public abstract class AbstractBsVendorLargeDataCQ extends AbstractConditionQuery
     /**
      * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br />
      * And NullOrEmptyIgnored, SeveralRegistered. <br />
-     * STRING_INDEX: {IX, NotNull, VARCHAR(200)}
+     * STRING_INDEX: {IX, NotNull, VARCHAR(180)}
      * @param stringIndex The value of stringIndex as notLikeSearch. (NullAllowed: if null (or empty), no condition)
      * @param likeSearchOption The option of not-like-search. (NotNull)
      */
@@ -363,7 +363,7 @@ public abstract class AbstractBsVendorLargeDataCQ extends AbstractConditionQuery
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
-     * STRING_NO_INDEX: {NotNull, VARCHAR(200)}
+     * STRING_NO_INDEX: {NotNull, VARCHAR(180)}
      * @param stringNoIndex The value of stringNoIndex as equal. (NullAllowed: if null (or empty), no condition)
      */
     public void setStringNoIndex_Equal(String stringNoIndex) {
@@ -376,7 +376,7 @@ public abstract class AbstractBsVendorLargeDataCQ extends AbstractConditionQuery
 
     /**
      * NotEqual(&lt;&gt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
-     * STRING_NO_INDEX: {NotNull, VARCHAR(200)}
+     * STRING_NO_INDEX: {NotNull, VARCHAR(180)}
      * @param stringNoIndex The value of stringNoIndex as notEqual. (NullAllowed: if null (or empty), no condition)
      */
     public void setStringNoIndex_NotEqual(String stringNoIndex) {
@@ -389,7 +389,7 @@ public abstract class AbstractBsVendorLargeDataCQ extends AbstractConditionQuery
 
     /**
      * InScope {in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br />
-     * STRING_NO_INDEX: {NotNull, VARCHAR(200)}
+     * STRING_NO_INDEX: {NotNull, VARCHAR(180)}
      * @param stringNoIndexList The collection of stringNoIndex as inScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setStringNoIndex_InScope(Collection<String> stringNoIndexList) {
@@ -402,7 +402,7 @@ public abstract class AbstractBsVendorLargeDataCQ extends AbstractConditionQuery
 
     /**
      * NotInScope {not in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br />
-     * STRING_NO_INDEX: {NotNull, VARCHAR(200)}
+     * STRING_NO_INDEX: {NotNull, VARCHAR(180)}
      * @param stringNoIndexList The collection of stringNoIndex as notInScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setStringNoIndex_NotInScope(Collection<String> stringNoIndexList) {
@@ -415,7 +415,7 @@ public abstract class AbstractBsVendorLargeDataCQ extends AbstractConditionQuery
 
     /**
      * PrefixSearch {like 'xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br />
-     * STRING_NO_INDEX: {NotNull, VARCHAR(200)}
+     * STRING_NO_INDEX: {NotNull, VARCHAR(180)}
      * @param stringNoIndex The value of stringNoIndex as prefixSearch. (NullAllowed: if null (or empty), no condition)
      */
     public void setStringNoIndex_PrefixSearch(String stringNoIndex) {
@@ -424,7 +424,7 @@ public abstract class AbstractBsVendorLargeDataCQ extends AbstractConditionQuery
 
     /**
      * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br />
-     * STRING_NO_INDEX: {NotNull, VARCHAR(200)} <br />
+     * STRING_NO_INDEX: {NotNull, VARCHAR(180)} <br />
      * <pre>e.g. setStringNoIndex_LikeSearch("xxx", new <span style="color: #FD4747">LikeSearchOption</span>().likeContain());</pre>
      * @param stringNoIndex The value of stringNoIndex as likeSearch. (NullAllowed: if null (or empty), no condition)
      * @param likeSearchOption The option of like-search. (NotNull)
@@ -436,7 +436,7 @@ public abstract class AbstractBsVendorLargeDataCQ extends AbstractConditionQuery
     /**
      * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br />
      * And NullOrEmptyIgnored, SeveralRegistered. <br />
-     * STRING_NO_INDEX: {NotNull, VARCHAR(200)}
+     * STRING_NO_INDEX: {NotNull, VARCHAR(180)}
      * @param stringNoIndex The value of stringNoIndex as notLikeSearch. (NullAllowed: if null (or empty), no condition)
      * @param likeSearchOption The option of not-like-search. (NotNull)
      */
@@ -449,7 +449,7 @@ public abstract class AbstractBsVendorLargeDataCQ extends AbstractConditionQuery
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
-     * STRING_UNIQUE_INDEX: {UQ, NotNull, VARCHAR(200)}
+     * STRING_UNIQUE_INDEX: {UQ, NotNull, VARCHAR(180)}
      * @param stringUniqueIndex The value of stringUniqueIndex as equal. (NullAllowed: if null (or empty), no condition)
      */
     public void setStringUniqueIndex_Equal(String stringUniqueIndex) {
@@ -462,7 +462,7 @@ public abstract class AbstractBsVendorLargeDataCQ extends AbstractConditionQuery
 
     /**
      * NotEqual(&lt;&gt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
-     * STRING_UNIQUE_INDEX: {UQ, NotNull, VARCHAR(200)}
+     * STRING_UNIQUE_INDEX: {UQ, NotNull, VARCHAR(180)}
      * @param stringUniqueIndex The value of stringUniqueIndex as notEqual. (NullAllowed: if null (or empty), no condition)
      */
     public void setStringUniqueIndex_NotEqual(String stringUniqueIndex) {
@@ -475,7 +475,7 @@ public abstract class AbstractBsVendorLargeDataCQ extends AbstractConditionQuery
 
     /**
      * InScope {in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br />
-     * STRING_UNIQUE_INDEX: {UQ, NotNull, VARCHAR(200)}
+     * STRING_UNIQUE_INDEX: {UQ, NotNull, VARCHAR(180)}
      * @param stringUniqueIndexList The collection of stringUniqueIndex as inScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setStringUniqueIndex_InScope(Collection<String> stringUniqueIndexList) {
@@ -488,7 +488,7 @@ public abstract class AbstractBsVendorLargeDataCQ extends AbstractConditionQuery
 
     /**
      * NotInScope {not in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br />
-     * STRING_UNIQUE_INDEX: {UQ, NotNull, VARCHAR(200)}
+     * STRING_UNIQUE_INDEX: {UQ, NotNull, VARCHAR(180)}
      * @param stringUniqueIndexList The collection of stringUniqueIndex as notInScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setStringUniqueIndex_NotInScope(Collection<String> stringUniqueIndexList) {
@@ -501,7 +501,7 @@ public abstract class AbstractBsVendorLargeDataCQ extends AbstractConditionQuery
 
     /**
      * PrefixSearch {like 'xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br />
-     * STRING_UNIQUE_INDEX: {UQ, NotNull, VARCHAR(200)}
+     * STRING_UNIQUE_INDEX: {UQ, NotNull, VARCHAR(180)}
      * @param stringUniqueIndex The value of stringUniqueIndex as prefixSearch. (NullAllowed: if null (or empty), no condition)
      */
     public void setStringUniqueIndex_PrefixSearch(String stringUniqueIndex) {
@@ -510,7 +510,7 @@ public abstract class AbstractBsVendorLargeDataCQ extends AbstractConditionQuery
 
     /**
      * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br />
-     * STRING_UNIQUE_INDEX: {UQ, NotNull, VARCHAR(200)} <br />
+     * STRING_UNIQUE_INDEX: {UQ, NotNull, VARCHAR(180)} <br />
      * <pre>e.g. setStringUniqueIndex_LikeSearch("xxx", new <span style="color: #FD4747">LikeSearchOption</span>().likeContain());</pre>
      * @param stringUniqueIndex The value of stringUniqueIndex as likeSearch. (NullAllowed: if null (or empty), no condition)
      * @param likeSearchOption The option of like-search. (NotNull)
@@ -522,7 +522,7 @@ public abstract class AbstractBsVendorLargeDataCQ extends AbstractConditionQuery
     /**
      * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br />
      * And NullOrEmptyIgnored, SeveralRegistered. <br />
-     * STRING_UNIQUE_INDEX: {UQ, NotNull, VARCHAR(200)}
+     * STRING_UNIQUE_INDEX: {UQ, NotNull, VARCHAR(180)}
      * @param stringUniqueIndex The value of stringUniqueIndex as notLikeSearch. (NullAllowed: if null (or empty), no condition)
      * @param likeSearchOption The option of not-like-search. (NotNull)
      */

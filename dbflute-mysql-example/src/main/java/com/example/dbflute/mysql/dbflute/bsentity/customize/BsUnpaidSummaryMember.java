@@ -86,7 +86,7 @@ public abstract class BsUnpaidSummaryMember implements Entity, Serializable, Clo
     /** (会員ID)UNPAID_MAN_ID: {PK, INT(11), refers to member.MEMBER_ID} */
     protected Integer _unpaidManId;
 
-    /** (会員名称)UNPAID_MAN_NAME: {VARCHAR(200), refers to member.MEMBER_NAME} */
+    /** (会員名称)UNPAID_MAN_NAME: {VARCHAR(180), refers to member.MEMBER_NAME} */
     protected String _unpaidManName;
 
     /** UNPAID_PRICE_SUMMARY: {DECIMAL(32)} */
@@ -373,7 +373,7 @@ public abstract class BsUnpaidSummaryMember implements Entity, Serializable, Clo
     }
 
     /**
-     * [get] (会員名称)UNPAID_MAN_NAME: {VARCHAR(200), refers to member.MEMBER_NAME} <br />
+     * [get] (会員名称)UNPAID_MAN_NAME: {VARCHAR(180), refers to member.MEMBER_NAME} <br />
      * 会員のフルネームの名称。
      * @return The value of the column 'UNPAID_MAN_NAME'. (NullAllowed even if selected: for no constraint)
      */
@@ -382,7 +382,7 @@ public abstract class BsUnpaidSummaryMember implements Entity, Serializable, Clo
     }
 
     /**
-     * [set] (会員名称)UNPAID_MAN_NAME: {VARCHAR(200), refers to member.MEMBER_NAME} <br />
+     * [set] (会員名称)UNPAID_MAN_NAME: {VARCHAR(180), refers to member.MEMBER_NAME} <br />
      * 会員のフルネームの名称。
      * @param unpaidManName The value of the column 'UNPAID_MAN_NAME'. (NullAllowed: null update allowed for no constraint)
      */

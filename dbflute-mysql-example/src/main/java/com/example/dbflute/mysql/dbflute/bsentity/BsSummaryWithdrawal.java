@@ -97,7 +97,7 @@ public abstract class BsSummaryWithdrawal implements Entity, Serializable, Clone
     /** MEMBER_ID: {NotNull, INT(10)} */
     protected Integer _memberId;
 
-    /** (会員名称)MEMBER_NAME: {VARCHAR(200)} */
+    /** (会員名称)MEMBER_NAME: {VARCHAR(180)} */
     protected String _memberName;
 
     /** (退会理由コード)WITHDRAWAL_REASON_CODE: {CHAR(3)} */
@@ -469,7 +469,7 @@ public abstract class BsSummaryWithdrawal implements Entity, Serializable, Clone
     }
 
     /**
-     * [get] (会員名称)MEMBER_NAME: {VARCHAR(200)} <br />
+     * [get] (会員名称)MEMBER_NAME: {VARCHAR(180)} <br />
      * 会員のフルネームの名称。
      * @return The value of the column 'MEMBER_NAME'. (NullAllowed even if selected: for no constraint)
      */
@@ -478,7 +478,7 @@ public abstract class BsSummaryWithdrawal implements Entity, Serializable, Clone
     }
 
     /**
-     * [set] (会員名称)MEMBER_NAME: {VARCHAR(200)} <br />
+     * [set] (会員名称)MEMBER_NAME: {VARCHAR(180)} <br />
      * 会員のフルネームの名称。
      * @param memberName The value of the column 'MEMBER_NAME'. (NullAllowed: null update allowed for no constraint)
      */

@@ -305,7 +305,7 @@ public class BsSummaryWithdrawalCB extends AbstractConditionBean {
          */
         public HpSpecifiedColumn columnMemberId() { return doColumn("MEMBER_ID"); }
         /**
-         * (会員名称)MEMBER_NAME: {VARCHAR(200)}
+         * (会員名称)MEMBER_NAME: {VARCHAR(180)}
          * @return The information object of specified column. (NotNull)
          */
         public HpSpecifiedColumn columnMemberName() { return doColumn("MEMBER_NAME"); }

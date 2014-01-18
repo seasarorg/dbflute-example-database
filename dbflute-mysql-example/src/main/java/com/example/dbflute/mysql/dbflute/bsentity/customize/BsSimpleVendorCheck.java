@@ -92,7 +92,7 @@ public abstract class BsSimpleVendorCheck implements Entity, Serializable, Clone
     /** VENDOR_CHECK_ID: {DECIMAL(16), refers to vendor_check.VENDOR_CHECK_ID} */
     protected Long _vendorCheckId;
 
-    /** TYPE_OF_TEXT: {VARCHAR(21845), refers to vendor_check.TYPE_OF_TEXT} */
+    /** TYPE_OF_TEXT: {VARCHAR(16383), refers to vendor_check.TYPE_OF_TEXT} */
     protected String _typeOfText;
 
     /** TYPE_OF_NUMERIC_DECIMAL: {DECIMAL(5, 3), refers to vendor_check.TYPE_OF_NUMERIC_DECIMAL} */
@@ -427,7 +427,7 @@ public abstract class BsSimpleVendorCheck implements Entity, Serializable, Clone
     }
 
     /**
-     * [get] TYPE_OF_TEXT: {VARCHAR(21845), refers to vendor_check.TYPE_OF_TEXT} <br />
+     * [get] TYPE_OF_TEXT: {VARCHAR(16383), refers to vendor_check.TYPE_OF_TEXT} <br />
      * @return The value of the column 'TYPE_OF_TEXT'. (NullAllowed even if selected: for no constraint)
      */
     public String getTypeOfText() {
@@ -435,7 +435,7 @@ public abstract class BsSimpleVendorCheck implements Entity, Serializable, Clone
     }
 
     /**
-     * [set] TYPE_OF_TEXT: {VARCHAR(21845), refers to vendor_check.TYPE_OF_TEXT} <br />
+     * [set] TYPE_OF_TEXT: {VARCHAR(16383), refers to vendor_check.TYPE_OF_TEXT} <br />
      * @param typeOfText The value of the column 'TYPE_OF_TEXT'. (NullAllowed: null update allowed for no constraint)
      */
     public void setTypeOfText(String typeOfText) {

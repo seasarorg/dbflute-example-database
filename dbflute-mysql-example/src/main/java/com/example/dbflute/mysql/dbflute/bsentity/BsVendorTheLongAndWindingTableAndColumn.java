@@ -86,7 +86,7 @@ public abstract class BsVendorTheLongAndWindingTableAndColumn implements Entity,
     /** THE_LONG_AND_WINDING_TABLE_AND_COLUMN_ID: {PK, NotNull, BIGINT(19)} */
     protected Long _theLongAndWindingTableAndColumnId;
 
-    /** THE_LONG_AND_WINDING_TABLE_AND_COLUMN_NAME: {UQ, NotNull, VARCHAR(200)} */
+    /** THE_LONG_AND_WINDING_TABLE_AND_COLUMN_NAME: {UQ, NotNull, VARCHAR(180)} */
     protected String _theLongAndWindingTableAndColumnName;
 
     /** SHORT_NAME: {NotNull, VARCHAR(200)} */
@@ -348,7 +348,7 @@ public abstract class BsVendorTheLongAndWindingTableAndColumn implements Entity,
     }
 
     /**
-     * [get] THE_LONG_AND_WINDING_TABLE_AND_COLUMN_NAME: {UQ, NotNull, VARCHAR(200)} <br />
+     * [get] THE_LONG_AND_WINDING_TABLE_AND_COLUMN_NAME: {UQ, NotNull, VARCHAR(180)} <br />
      * @return The value of the column 'THE_LONG_AND_WINDING_TABLE_AND_COLUMN_NAME'. (basically NotNull if selected: for the constraint)
      */
     public String getTheLongAndWindingTableAndColumnName() {
@@ -356,7 +356,7 @@ public abstract class BsVendorTheLongAndWindingTableAndColumn implements Entity,
     }
 
     /**
-     * [set] THE_LONG_AND_WINDING_TABLE_AND_COLUMN_NAME: {UQ, NotNull, VARCHAR(200)} <br />
+     * [set] THE_LONG_AND_WINDING_TABLE_AND_COLUMN_NAME: {UQ, NotNull, VARCHAR(180)} <br />
      * @param theLongAndWindingTableAndColumnName The value of the column 'THE_LONG_AND_WINDING_TABLE_AND_COLUMN_NAME'. (basically NotNull if update: for the constraint)
      */
     public void setTheLongAndWindingTableAndColumnName(String theLongAndWindingTableAndColumnName) {

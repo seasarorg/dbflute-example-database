@@ -311,17 +311,17 @@ public class BsVendorLargeDataCB extends AbstractConditionBean {
          */
         public HpSpecifiedColumn columnLargeDataId() { return doColumn("LARGE_DATA_ID"); }
         /**
-         * STRING_INDEX: {IX, NotNull, VARCHAR(200)}
+         * STRING_INDEX: {IX, NotNull, VARCHAR(180)}
          * @return The information object of specified column. (NotNull)
          */
         public HpSpecifiedColumn columnStringIndex() { return doColumn("STRING_INDEX"); }
         /**
-         * STRING_NO_INDEX: {NotNull, VARCHAR(200)}
+         * STRING_NO_INDEX: {NotNull, VARCHAR(180)}
          * @return The information object of specified column. (NotNull)
          */
         public HpSpecifiedColumn columnStringNoIndex() { return doColumn("STRING_NO_INDEX"); }
         /**
-         * STRING_UNIQUE_INDEX: {UQ, NotNull, VARCHAR(200)}
+         * STRING_UNIQUE_INDEX: {UQ, NotNull, VARCHAR(180)}
          * @return The information object of specified column. (NotNull)
          */
         public HpSpecifiedColumn columnStringUniqueIndex() { return doColumn("STRING_UNIQUE_INDEX"); }
