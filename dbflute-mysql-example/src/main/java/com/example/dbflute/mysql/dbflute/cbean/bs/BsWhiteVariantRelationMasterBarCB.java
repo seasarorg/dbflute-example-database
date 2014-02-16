@@ -340,8 +340,8 @@ public class BsWhiteVariantRelationMasterBarCB extends AbstractConditionBean {
         public HpSDRFunction<WhiteVariantRelationReferrerCB, WhiteVariantRelationMasterBarCQ> derivedWhiteVariantRelationReferrerAsVariantList() {
             assertDerived("whiteVariantRelationReferrerAsVariantList"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<WhiteVariantRelationReferrerCB, WhiteVariantRelationMasterBarCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<WhiteVariantRelationReferrerCB, WhiteVariantRelationMasterBarCQ>() {
-                public void setup(String function, SubQuery<WhiteVariantRelationReferrerCB> subQuery, WhiteVariantRelationMasterBarCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsderiveWhiteVariantRelationReferrerAsVariantList(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<WhiteVariantRelationReferrerCB> sq, WhiteVariantRelationMasterBarCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsderiveWhiteVariantRelationReferrerAsVariantList(fn, sq, al, op); } }, _dbmetaProvider);
         }
         /**
          * Prepare for (Specify)MyselfDerived (SubQuery).
@@ -350,8 +350,8 @@ public class BsWhiteVariantRelationMasterBarCB extends AbstractConditionBean {
         public HpSDRFunction<WhiteVariantRelationMasterBarCB, WhiteVariantRelationMasterBarCQ> myselfDerived() {
             assertDerived("myselfDerived"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<WhiteVariantRelationMasterBarCB, WhiteVariantRelationMasterBarCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<WhiteVariantRelationMasterBarCB, WhiteVariantRelationMasterBarCQ>() {
-                public void setup(String function, SubQuery<WhiteVariantRelationMasterBarCB> subQuery, WhiteVariantRelationMasterBarCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsmyselfDerive(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<WhiteVariantRelationMasterBarCB> sq, WhiteVariantRelationMasterBarCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsmyselfDerive(fn, sq, al, op); } }, _dbmetaProvider);
         }
     }
 

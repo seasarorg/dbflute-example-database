@@ -145,8 +145,8 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
      */
     public void setVendorCheckId_IsNotNull() { regVendorCheckId(CK_ISNN, DOBJ); }
 
-    protected void regVendorCheckId(ConditionKey k, Object v) { regQ(k, v, getCValueVendorCheckId(), "VENDOR_CHECK_ID"); }
-    abstract protected ConditionValue getCValueVendorCheckId();
+    protected void regVendorCheckId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueVendorCheckId(), "VENDOR_CHECK_ID"); }
+    protected abstract ConditionValue getCValueVendorCheckId();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -249,8 +249,8 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
      */
     public void setTypeOfVarchar_IsNotNull() { regTypeOfVarchar(CK_ISNN, DOBJ); }
 
-    protected void regTypeOfVarchar(ConditionKey k, Object v) { regQ(k, v, getCValueTypeOfVarchar(), "TYPE_OF_VARCHAR"); }
-    abstract protected ConditionValue getCValueTypeOfVarchar();
+    protected void regTypeOfVarchar(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueTypeOfVarchar(), "TYPE_OF_VARCHAR"); }
+    protected abstract ConditionValue getCValueTypeOfVarchar();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -353,8 +353,8 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
      */
     public void setTypeOfNvarchar_IsNotNull() { regTypeOfNvarchar(CK_ISNN, DOBJ); }
 
-    protected void regTypeOfNvarchar(ConditionKey k, Object v) { regQ(k, v, getCValueTypeOfNvarchar(), "TYPE_OF_NVARCHAR"); }
-    abstract protected ConditionValue getCValueTypeOfNvarchar();
+    protected void regTypeOfNvarchar(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueTypeOfNvarchar(), "TYPE_OF_NVARCHAR"); }
+    protected abstract ConditionValue getCValueTypeOfNvarchar();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -457,8 +457,8 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
      */
     public void setTypeOfText_IsNotNull() { regTypeOfText(CK_ISNN, DOBJ); }
 
-    protected void regTypeOfText(ConditionKey k, Object v) { regQ(k, v, getCValueTypeOfText(), "TYPE_OF_TEXT"); }
-    abstract protected ConditionValue getCValueTypeOfText();
+    protected void regTypeOfText(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueTypeOfText(), "TYPE_OF_TEXT"); }
+    protected abstract ConditionValue getCValueTypeOfText();
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -560,8 +560,8 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
      */
     public void setTypeOfNumericDecimal_IsNotNull() { regTypeOfNumericDecimal(CK_ISNN, DOBJ); }
 
-    protected void regTypeOfNumericDecimal(ConditionKey k, Object v) { regQ(k, v, getCValueTypeOfNumericDecimal(), "TYPE_OF_NUMERIC_DECIMAL"); }
-    abstract protected ConditionValue getCValueTypeOfNumericDecimal();
+    protected void regTypeOfNumericDecimal(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueTypeOfNumericDecimal(), "TYPE_OF_NUMERIC_DECIMAL"); }
+    protected abstract ConditionValue getCValueTypeOfNumericDecimal();
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -663,8 +663,8 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
      */
     public void setTypeOfNumericInteger_IsNotNull() { regTypeOfNumericInteger(CK_ISNN, DOBJ); }
 
-    protected void regTypeOfNumericInteger(ConditionKey k, Object v) { regQ(k, v, getCValueTypeOfNumericInteger(), "TYPE_OF_NUMERIC_INTEGER"); }
-    abstract protected ConditionValue getCValueTypeOfNumericInteger();
+    protected void regTypeOfNumericInteger(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueTypeOfNumericInteger(), "TYPE_OF_NUMERIC_INTEGER"); }
+    protected abstract ConditionValue getCValueTypeOfNumericInteger();
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -766,8 +766,8 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
      */
     public void setTypeOfNumericBigint_IsNotNull() { regTypeOfNumericBigint(CK_ISNN, DOBJ); }
 
-    protected void regTypeOfNumericBigint(ConditionKey k, Object v) { regQ(k, v, getCValueTypeOfNumericBigint(), "TYPE_OF_NUMERIC_BIGINT"); }
-    abstract protected ConditionValue getCValueTypeOfNumericBigint();
+    protected void regTypeOfNumericBigint(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueTypeOfNumericBigint(), "TYPE_OF_NUMERIC_BIGINT"); }
+    protected abstract ConditionValue getCValueTypeOfNumericBigint();
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -869,8 +869,8 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
      */
     public void setTypeOfSmallinteger_IsNotNull() { regTypeOfSmallinteger(CK_ISNN, DOBJ); }
 
-    protected void regTypeOfSmallinteger(ConditionKey k, Object v) { regQ(k, v, getCValueTypeOfSmallinteger(), "TYPE_OF_SMALLINTEGER"); }
-    abstract protected ConditionValue getCValueTypeOfSmallinteger();
+    protected void regTypeOfSmallinteger(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueTypeOfSmallinteger(), "TYPE_OF_SMALLINTEGER"); }
+    protected abstract ConditionValue getCValueTypeOfSmallinteger();
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -972,8 +972,8 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
      */
     public void setTypeOfInteger_IsNotNull() { regTypeOfInteger(CK_ISNN, DOBJ); }
 
-    protected void regTypeOfInteger(ConditionKey k, Object v) { regQ(k, v, getCValueTypeOfInteger(), "TYPE_OF_INTEGER"); }
-    abstract protected ConditionValue getCValueTypeOfInteger();
+    protected void regTypeOfInteger(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueTypeOfInteger(), "TYPE_OF_INTEGER"); }
+    protected abstract ConditionValue getCValueTypeOfInteger();
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -1075,8 +1075,8 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
      */
     public void setTypeOfBigint_IsNotNull() { regTypeOfBigint(CK_ISNN, DOBJ); }
 
-    protected void regTypeOfBigint(ConditionKey k, Object v) { regQ(k, v, getCValueTypeOfBigint(), "TYPE_OF_BIGINT"); }
-    abstract protected ConditionValue getCValueTypeOfBigint();
+    protected void regTypeOfBigint(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueTypeOfBigint(), "TYPE_OF_BIGINT"); }
+    protected abstract ConditionValue getCValueTypeOfBigint();
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -1178,8 +1178,8 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
      */
     public void setTypeOfMoney_IsNotNull() { regTypeOfMoney(CK_ISNN, DOBJ); }
 
-    protected void regTypeOfMoney(ConditionKey k, Object v) { regQ(k, v, getCValueTypeOfMoney(), "TYPE_OF_MONEY"); }
-    abstract protected ConditionValue getCValueTypeOfMoney();
+    protected void regTypeOfMoney(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueTypeOfMoney(), "TYPE_OF_MONEY"); }
+    protected abstract ConditionValue getCValueTypeOfMoney();
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -1281,8 +1281,8 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
      */
     public void setTypeOfSmallmoney_IsNotNull() { regTypeOfSmallmoney(CK_ISNN, DOBJ); }
 
-    protected void regTypeOfSmallmoney(ConditionKey k, Object v) { regQ(k, v, getCValueTypeOfSmallmoney(), "TYPE_OF_SMALLMONEY"); }
-    abstract protected ConditionValue getCValueTypeOfSmallmoney();
+    protected void regTypeOfSmallmoney(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueTypeOfSmallmoney(), "TYPE_OF_SMALLMONEY"); }
+    protected abstract ConditionValue getCValueTypeOfSmallmoney();
 
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -1338,7 +1338,7 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
      * @param toDatetime The to-datetime(yyyy/MM/dd HH:mm:ss.SSS) of typeOfDatetime. (NullAllowed: if null, no to-condition)
      * @param fromToOption The option of from-to. (NotNull)
      */
-    public void setTypeOfDatetime_FromTo(java.util.Date fromDatetime, java.util.Date toDatetime, FromToOption fromToOption) {
+    public void setTypeOfDatetime_FromTo(Date fromDatetime, Date toDatetime, FromToOption fromToOption) {
         regFTQ((fromDatetime != null ? new java.sql.Timestamp(fromDatetime.getTime()) : null), (toDatetime != null ? new java.sql.Timestamp(toDatetime.getTime()) : null), getCValueTypeOfDatetime(), "TYPE_OF_DATETIME", fromToOption);
     }
 
@@ -1353,7 +1353,7 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
      * @param fromDate The from-date(yyyy/MM/dd) of typeOfDatetime. (NullAllowed: if null, no from-condition)
      * @param toDate The to-date(yyyy/MM/dd) of typeOfDatetime. (NullAllowed: if null, no to-condition)
      */
-    public void setTypeOfDatetime_DateFromTo(java.util.Date fromDate, java.util.Date toDate) {
+    public void setTypeOfDatetime_DateFromTo(Date fromDate, Date toDate) {
         setTypeOfDatetime_FromTo(fromDate, toDate, new FromToOption().compareAsDate());
     }
 
@@ -1395,8 +1395,8 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
      */
     public void setTypeOfDatetime_IsNotNull() { regTypeOfDatetime(CK_ISNN, DOBJ); }
 
-    protected void regTypeOfDatetime(ConditionKey k, Object v) { regQ(k, v, getCValueTypeOfDatetime(), "TYPE_OF_DATETIME"); }
-    abstract protected ConditionValue getCValueTypeOfDatetime();
+    protected void regTypeOfDatetime(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueTypeOfDatetime(), "TYPE_OF_DATETIME"); }
+    protected abstract ConditionValue getCValueTypeOfDatetime();
 
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -1452,7 +1452,7 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
      * @param toDatetime The to-datetime(yyyy/MM/dd HH:mm:ss.SSS) of typeOfSmalldatetime. (NullAllowed: if null, no to-condition)
      * @param fromToOption The option of from-to. (NotNull)
      */
-    public void setTypeOfSmalldatetime_FromTo(java.util.Date fromDatetime, java.util.Date toDatetime, FromToOption fromToOption) {
+    public void setTypeOfSmalldatetime_FromTo(Date fromDatetime, Date toDatetime, FromToOption fromToOption) {
         regFTQ((fromDatetime != null ? new java.sql.Timestamp(fromDatetime.getTime()) : null), (toDatetime != null ? new java.sql.Timestamp(toDatetime.getTime()) : null), getCValueTypeOfSmalldatetime(), "TYPE_OF_SMALLDATETIME", fromToOption);
     }
 
@@ -1467,7 +1467,7 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
      * @param fromDate The from-date(yyyy/MM/dd) of typeOfSmalldatetime. (NullAllowed: if null, no from-condition)
      * @param toDate The to-date(yyyy/MM/dd) of typeOfSmalldatetime. (NullAllowed: if null, no to-condition)
      */
-    public void setTypeOfSmalldatetime_DateFromTo(java.util.Date fromDate, java.util.Date toDate) {
+    public void setTypeOfSmalldatetime_DateFromTo(Date fromDate, Date toDate) {
         setTypeOfSmalldatetime_FromTo(fromDate, toDate, new FromToOption().compareAsDate());
     }
 
@@ -1509,8 +1509,8 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
      */
     public void setTypeOfSmalldatetime_IsNotNull() { regTypeOfSmalldatetime(CK_ISNN, DOBJ); }
 
-    protected void regTypeOfSmalldatetime(ConditionKey k, Object v) { regQ(k, v, getCValueTypeOfSmalldatetime(), "TYPE_OF_SMALLDATETIME"); }
-    abstract protected ConditionValue getCValueTypeOfSmalldatetime();
+    protected void regTypeOfSmalldatetime(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueTypeOfSmalldatetime(), "TYPE_OF_SMALLDATETIME"); }
+    protected abstract ConditionValue getCValueTypeOfSmalldatetime();
 
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -1533,8 +1533,8 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
      */
     public void setTypeOfBit_IsNotNull() { regTypeOfBit(CK_ISNN, DOBJ); }
 
-    protected void regTypeOfBit(ConditionKey k, Object v) { regQ(k, v, getCValueTypeOfBit(), "TYPE_OF_BIT"); }
-    abstract protected ConditionValue getCValueTypeOfBit();
+    protected void regTypeOfBit(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueTypeOfBit(), "TYPE_OF_BIT"); }
+    protected abstract ConditionValue getCValueTypeOfBit();
 
     /**
      * IsNull {is null}. And OnlyOnceRegistered. <br />
@@ -1548,8 +1548,8 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
      */
     public void setTypeOfBinary_IsNotNull() { regTypeOfBinary(CK_ISNN, DOBJ); }
 
-    protected void regTypeOfBinary(ConditionKey k, Object v) { regQ(k, v, getCValueTypeOfBinary(), "TYPE_OF_BINARY"); }
-    abstract protected ConditionValue getCValueTypeOfBinary();
+    protected void regTypeOfBinary(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueTypeOfBinary(), "TYPE_OF_BINARY"); }
+    protected abstract ConditionValue getCValueTypeOfBinary();
 
     /**
      * IsNull {is null}. And OnlyOnceRegistered. <br />
@@ -1563,8 +1563,8 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
      */
     public void setTypeOfVarbinary_IsNotNull() { regTypeOfVarbinary(CK_ISNN, DOBJ); }
 
-    protected void regTypeOfVarbinary(ConditionKey k, Object v) { regQ(k, v, getCValueTypeOfVarbinary(), "TYPE_OF_VARBINARY"); }
-    abstract protected ConditionValue getCValueTypeOfVarbinary();
+    protected void regTypeOfVarbinary(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueTypeOfVarbinary(), "TYPE_OF_VARBINARY"); }
+    protected abstract ConditionValue getCValueTypeOfVarbinary();
 
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -1596,8 +1596,8 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
      */
     public void setTypeOfUniqueidentifier_IsNotNull() { regTypeOfUniqueidentifier(CK_ISNN, DOBJ); }
 
-    protected void regTypeOfUniqueidentifier(ConditionKey k, Object v) { regQ(k, v, getCValueTypeOfUniqueidentifier(), "TYPE_OF_UNIQUEIDENTIFIER"); }
-    abstract protected ConditionValue getCValueTypeOfUniqueidentifier();
+    protected void regTypeOfUniqueidentifier(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueTypeOfUniqueidentifier(), "TYPE_OF_UNIQUEIDENTIFIER"); }
+    protected abstract ConditionValue getCValueTypeOfUniqueidentifier();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -1700,8 +1700,8 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
      */
     public void setTypeOfXml_IsNotNull() { regTypeOfXml(CK_ISNN, DOBJ); }
 
-    protected void regTypeOfXml(ConditionKey k, Object v) { regQ(k, v, getCValueTypeOfXml(), "TYPE_OF_XML"); }
-    abstract protected ConditionValue getCValueTypeOfXml();
+    protected void regTypeOfXml(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueTypeOfXml(), "TYPE_OF_XML"); }
+    protected abstract ConditionValue getCValueTypeOfXml();
 
     // ===================================================================================
     //                                                                     ScalarCondition
@@ -1808,22 +1808,22 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
         return xcreateSSQFunction(CK_LE.getOperand());
     }
 
-    protected HpSSQFunction<VendorCheckCB> xcreateSSQFunction(final String operand) {
+    protected HpSSQFunction<VendorCheckCB> xcreateSSQFunction(final String rd) {
         return new HpSSQFunction<VendorCheckCB>(new HpSSQSetupper<VendorCheckCB>() {
-            public void setup(String function, SubQuery<VendorCheckCB> subQuery, HpSSQOption<VendorCheckCB> option) {
-                xscalarCondition(function, subQuery, operand, option);
+            public void setup(String fn, SubQuery<VendorCheckCB> sq, HpSSQOption<VendorCheckCB> op) {
+                xscalarCondition(fn, sq, rd, op);
             }
         });
     }
 
-    protected void xscalarCondition(String function, SubQuery<VendorCheckCB> subQuery, String operand, HpSSQOption<VendorCheckCB> option) {
-        assertObjectNotNull("subQuery<VendorCheckCB>", subQuery);
-        VendorCheckCB cb = xcreateScalarConditionCB(); subQuery.query(cb);
-        String subQueryPropertyName = keepScalarCondition(cb.query()); // for saving query-value
-        option.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
-        registerScalarCondition(function, cb.query(), subQueryPropertyName, operand, option);
+    protected void xscalarCondition(String fn, SubQuery<VendorCheckCB> sq, String rd, HpSSQOption<VendorCheckCB> op) {
+        assertObjectNotNull("subQuery", sq);
+        VendorCheckCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        String pp = keepScalarCondition(cb.query()); // for saving query-value
+        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
-    public abstract String keepScalarCondition(VendorCheckCQ subQuery);
+    public abstract String keepScalarCondition(VendorCheckCQ sq);
 
     protected VendorCheckCB xcreateScalarConditionCB() {
         VendorCheckCB cb = new VendorCheckCB();
@@ -1840,13 +1840,14 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    public void xsmyselfDerive(String function, SubQuery<VendorCheckCB> subQuery, String aliasName, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<VendorCheckCB>", subQuery);
-        VendorCheckCB cb = new VendorCheckCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
-        registerSpecifyMyselfDerived(function, cb.query(), "VENDOR_CHECK_ID", "VENDOR_CHECK_ID", subQueryPropertyName, "myselfDerived", aliasName, option);
+    public void xsmyselfDerive(String fn, SubQuery<VendorCheckCB> sq, String al, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        VendorCheckCB cb = new VendorCheckCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "VENDOR_CHECK_ID";
+        String pp = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
+        registerSpecifyMyselfDerived(fn, cb.query(), pk, pk, pp, "myselfDerived", al, op);
     }
-    public abstract String keepSpecifyMyselfDerived(VendorCheckCQ subQuery);
+    public abstract String keepSpecifyMyselfDerived(VendorCheckCQ sq);
 
     /**
      * Prepare for (Query)MyselfDerived (SubQuery).
@@ -1857,20 +1858,21 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
     }
     protected HpQDRFunction<VendorCheckCB> xcreateQDRFunctionMyselfDerived() {
         return new HpQDRFunction<VendorCheckCB>(new HpQDRSetupper<VendorCheckCB>() {
-            public void setup(String function, SubQuery<VendorCheckCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-                xqderiveMyselfDerived(function, subQuery, operand, value, option);
+            public void setup(String fn, SubQuery<VendorCheckCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+                xqderiveMyselfDerived(fn, sq, rd, vl, op);
             }
         });
     }
-    public void xqderiveMyselfDerived(String function, SubQuery<VendorCheckCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<VendorCheckCB>", subQuery);
-        VendorCheckCB cb = new VendorCheckCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepQueryMyselfDerived(cb.query()); // for saving query-value.
-        String parameterPropertyName = keepQueryMyselfDerivedParameter(value);
-        registerQueryMyselfDerived(function, cb.query(), "VENDOR_CHECK_ID", "VENDOR_CHECK_ID", subQueryPropertyName, "myselfDerived", operand, value, parameterPropertyName, option);
+    public void xqderiveMyselfDerived(String fn, SubQuery<VendorCheckCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        VendorCheckCB cb = new VendorCheckCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "VENDOR_CHECK_ID";
+        String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
+        String prpp = keepQueryMyselfDerivedParameter(vl);
+        registerQueryMyselfDerived(fn, cb.query(), pk, pk, sqpp, "myselfDerived", rd, vl, prpp, op);
     }
-    public abstract String keepQueryMyselfDerived(VendorCheckCQ subQuery);
-    public abstract String keepQueryMyselfDerivedParameter(Object parameterValue);
+    public abstract String keepQueryMyselfDerived(VendorCheckCQ sq);
+    public abstract String keepQueryMyselfDerivedParameter(Object vl);
 
     // ===================================================================================
     //                                                                        MyselfExists
@@ -1880,12 +1882,12 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfExists(SubQuery<VendorCheckCB> subQuery) {
-        assertObjectNotNull("subQuery<VendorCheckCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         VendorCheckCB cb = new VendorCheckCB(); cb.xsetupForMyselfExists(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfExists(cb.query()); // for saving query-value.
-        registerMyselfExists(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfExists(cb.query()); // for saving query-value.
+        registerMyselfExists(cb.query(), pp);
     }
-    public abstract String keepMyselfExists(VendorCheckCQ subQuery);
+    public abstract String keepMyselfExists(VendorCheckCQ sq);
 
     // ===================================================================================
     //                                                                       MyselfInScope
@@ -1895,12 +1897,12 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfInScope(SubQuery<VendorCheckCB> subQuery) {
-        assertObjectNotNull("subQuery<VendorCheckCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         VendorCheckCB cb = new VendorCheckCB(); cb.xsetupForMyselfInScope(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfInScope(cb.query()); // for saving query-value.
-        registerMyselfInScope(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfInScope(cb.query()); // for saving query-value.
+        registerMyselfInScope(cb.query(), pp);
     }
-    public abstract String keepMyselfInScope(VendorCheckCQ subQuery);
+    public abstract String keepMyselfInScope(VendorCheckCQ sq);
 
     // ===================================================================================
     //                                                                       Very Internal

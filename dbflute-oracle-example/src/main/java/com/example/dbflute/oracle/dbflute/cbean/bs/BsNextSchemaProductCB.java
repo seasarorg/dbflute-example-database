@@ -429,8 +429,8 @@ public class BsNextSchemaProductCB extends AbstractConditionBean {
         public HpSDRFunction<NextSchemaProductCB, NextSchemaProductCQ> myselfDerived() {
             assertDerived("myselfDerived"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<NextSchemaProductCB, NextSchemaProductCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<NextSchemaProductCB, NextSchemaProductCQ>() {
-                public void setup(String function, SubQuery<NextSchemaProductCB> subQuery, NextSchemaProductCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsmyselfDerive(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<NextSchemaProductCB> sq, NextSchemaProductCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsmyselfDerive(fn, sq, al, op); } }, _dbmetaProvider);
         }
     }
 

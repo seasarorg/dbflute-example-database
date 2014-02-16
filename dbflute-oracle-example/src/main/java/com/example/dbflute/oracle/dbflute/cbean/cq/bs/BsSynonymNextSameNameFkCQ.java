@@ -175,7 +175,7 @@ public class BsSynonymNextSameNameFkCQ extends AbstractBsSynonymNextSameNameFkCQ
     // ===================================================================================
     //                                                                         Union Query
     //                                                                         ===========
-    protected void reflectRelationOnUnionQuery(ConditionQuery baseQueryAsSuper, ConditionQuery unionQueryAsSuper) {
+    protected void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
     }
 
     // ===================================================================================
@@ -190,10 +190,10 @@ public class BsSynonymNextSameNameFkCQ extends AbstractBsSynonymNextSameNameFkCQ
     //                                                                     ===============
     protected Map<String, SynonymNextSameNameFkCQ> _scalarConditionMap;
     public Map<String, SynonymNextSameNameFkCQ> getScalarCondition() { return _scalarConditionMap; }
-    public String keepScalarCondition(SynonymNextSameNameFkCQ subQuery) {
+    public String keepScalarCondition(SynonymNextSameNameFkCQ sq) {
         if (_scalarConditionMap == null) { _scalarConditionMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
-        _scalarConditionMap.put(key, subQuery); return "scalarCondition." + key;
+        String ky = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
+        _scalarConditionMap.put(ky, sq); return "scalarCondition." + ky;
     }
 
     // ===================================================================================
@@ -201,25 +201,25 @@ public class BsSynonymNextSameNameFkCQ extends AbstractBsSynonymNextSameNameFkCQ
     //                                                                       =============
     protected Map<String, SynonymNextSameNameFkCQ> _specifyMyselfDerivedMap;
     public Map<String, SynonymNextSameNameFkCQ> getSpecifyMyselfDerived() { return _specifyMyselfDerivedMap; }
-    public String keepSpecifyMyselfDerived(SynonymNextSameNameFkCQ subQuery) {
+    public String keepSpecifyMyselfDerived(SynonymNextSameNameFkCQ sq) {
         if (_specifyMyselfDerivedMap == null) { _specifyMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
-        _specifyMyselfDerivedMap.put(key, subQuery); return "specifyMyselfDerived." + key;
+        String ky = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
+        _specifyMyselfDerivedMap.put(ky, sq); return "specifyMyselfDerived." + ky;
     }
 
     protected Map<String, SynonymNextSameNameFkCQ> _queryMyselfDerivedMap;
     public Map<String, SynonymNextSameNameFkCQ> getQueryMyselfDerived() { return _queryMyselfDerivedMap; }
-    public String keepQueryMyselfDerived(SynonymNextSameNameFkCQ subQuery) {
+    public String keepQueryMyselfDerived(SynonymNextSameNameFkCQ sq) {
         if (_queryMyselfDerivedMap == null) { _queryMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
-        _queryMyselfDerivedMap.put(key, subQuery); return "queryMyselfDerived." + key;
+        String ky = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
+        _queryMyselfDerivedMap.put(ky, sq); return "queryMyselfDerived." + ky;
     }
     protected Map<String, Object> _qyeryMyselfDerivedParameterMap;
     public Map<String, Object> getQueryMyselfDerivedParameter() { return _qyeryMyselfDerivedParameterMap; }
-    public String keepQueryMyselfDerivedParameter(Object parameterValue) {
+    public String keepQueryMyselfDerivedParameter(Object vl) {
         if (_qyeryMyselfDerivedParameterMap == null) { _qyeryMyselfDerivedParameterMap = newLinkedHashMapSized(4); }
-        String key = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
-        _qyeryMyselfDerivedParameterMap.put(key, parameterValue); return "queryMyselfDerivedParameter." + key;
+        String ky = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
+        _qyeryMyselfDerivedParameterMap.put(ky, vl); return "queryMyselfDerivedParameter." + ky;
     }
 
     // ===================================================================================
@@ -227,10 +227,10 @@ public class BsSynonymNextSameNameFkCQ extends AbstractBsSynonymNextSameNameFkCQ
     //                                                                        ============
     protected Map<String, SynonymNextSameNameFkCQ> _myselfExistsMap;
     public Map<String, SynonymNextSameNameFkCQ> getMyselfExists() { return _myselfExistsMap; }
-    public String keepMyselfExists(SynonymNextSameNameFkCQ subQuery) {
+    public String keepMyselfExists(SynonymNextSameNameFkCQ sq) {
         if (_myselfExistsMap == null) { _myselfExistsMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
-        _myselfExistsMap.put(key, subQuery); return "myselfExists." + key;
+        String ky = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
+        _myselfExistsMap.put(ky, sq); return "myselfExists." + ky;
     }
 
     // ===================================================================================
@@ -238,10 +238,10 @@ public class BsSynonymNextSameNameFkCQ extends AbstractBsSynonymNextSameNameFkCQ
     //                                                                       =============
     protected Map<String, SynonymNextSameNameFkCQ> _myselfInScopeMap;
     public Map<String, SynonymNextSameNameFkCQ> getMyselfInScope() { return _myselfInScopeMap; }
-    public String keepMyselfInScope(SynonymNextSameNameFkCQ subQuery) {
+    public String keepMyselfInScope(SynonymNextSameNameFkCQ sq) {
         if (_myselfInScopeMap == null) { _myselfInScopeMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
-        _myselfInScopeMap.put(key, subQuery); return "myselfInScope." + key;
+        String ky = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
+        _myselfInScopeMap.put(ky, sq); return "myselfInScope." + ky;
     }
 
     // ===================================================================================

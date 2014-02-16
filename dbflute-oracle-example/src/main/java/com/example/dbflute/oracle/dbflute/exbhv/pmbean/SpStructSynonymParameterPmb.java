@@ -5,7 +5,7 @@ import com.example.dbflute.oracle.dbflute.bsbhv.pmbean.BsSpStructSynonymParamete
 /**
  * <!-- df:beginClassDescription -->
  * The typed parameter-bean of SpStructSynonymParameter. <br />
- * This is related to "<span style="color: #AD4747">SP_STRUCT_SYNONYM_PARAMETER</span>".
+ * This is related to "<span style="color: #AD4747">SP_STRUCT_SYNONYM_PARAMETER</span>". <br />
  * <!-- df:endClassDescription -->
  * <p>
  * You can implement your original methods here.

@@ -160,8 +160,8 @@ public abstract class AbstractBsWhiteXlsManCQ extends AbstractConditionQuery {
      */
     public void setXlsManId_IsNotNull() { regXlsManId(CK_ISNN, DOBJ); }
 
-    protected void regXlsManId(ConditionKey k, Object v) { regQ(k, v, getCValueXlsManId(), "XLS_MAN_ID"); }
-    abstract protected ConditionValue getCValueXlsManId();
+    protected void regXlsManId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueXlsManId(), "XLS_MAN_ID"); }
+    protected abstract ConditionValue getCValueXlsManId();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -264,8 +264,8 @@ public abstract class AbstractBsWhiteXlsManCQ extends AbstractConditionQuery {
      */
     public void setStringConverted_IsNotNull() { regStringConverted(CK_ISNN, DOBJ); }
 
-    protected void regStringConverted(ConditionKey k, Object v) { regQ(k, v, getCValueStringConverted(), "STRING_CONVERTED"); }
-    abstract protected ConditionValue getCValueStringConverted();
+    protected void regStringConverted(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueStringConverted(), "STRING_CONVERTED"); }
+    protected abstract ConditionValue getCValueStringConverted();
 
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -321,7 +321,7 @@ public abstract class AbstractBsWhiteXlsManCQ extends AbstractConditionQuery {
      * @param toDatetime The to-datetime(yyyy/MM/dd HH:mm:ss.SSS) of timestampConverted. (NullAllowed: if null, no to-condition)
      * @param fromToOption The option of from-to. (NotNull)
      */
-    public void setTimestampConverted_FromTo(java.util.Date fromDatetime, java.util.Date toDatetime, FromToOption fromToOption) {
+    public void setTimestampConverted_FromTo(Date fromDatetime, Date toDatetime, FromToOption fromToOption) {
         regFTQ((fromDatetime != null ? new java.sql.Timestamp(fromDatetime.getTime()) : null), (toDatetime != null ? new java.sql.Timestamp(toDatetime.getTime()) : null), getCValueTimestampConverted(), "TIMESTAMP_CONVERTED", fromToOption);
     }
 
@@ -336,7 +336,7 @@ public abstract class AbstractBsWhiteXlsManCQ extends AbstractConditionQuery {
      * @param fromDate The from-date(yyyy/MM/dd) of timestampConverted. (NullAllowed: if null, no from-condition)
      * @param toDate The to-date(yyyy/MM/dd) of timestampConverted. (NullAllowed: if null, no to-condition)
      */
-    public void setTimestampConverted_DateFromTo(java.util.Date fromDate, java.util.Date toDate) {
+    public void setTimestampConverted_DateFromTo(Date fromDate, Date toDate) {
         setTimestampConverted_FromTo(fromDate, toDate, new FromToOption().compareAsDate());
     }
 
@@ -352,8 +352,8 @@ public abstract class AbstractBsWhiteXlsManCQ extends AbstractConditionQuery {
      */
     public void setTimestampConverted_IsNotNull() { regTimestampConverted(CK_ISNN, DOBJ); }
 
-    protected void regTimestampConverted(ConditionKey k, Object v) { regQ(k, v, getCValueTimestampConverted(), "TIMESTAMP_CONVERTED"); }
-    abstract protected ConditionValue getCValueTimestampConverted();
+    protected void regTimestampConverted(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueTimestampConverted(), "TIMESTAMP_CONVERTED"); }
+    protected abstract ConditionValue getCValueTimestampConverted();
 
     // ===================================================================================
     //                                                                     ScalarCondition
@@ -460,22 +460,22 @@ public abstract class AbstractBsWhiteXlsManCQ extends AbstractConditionQuery {
         return xcreateSSQFunction(CK_LE.getOperand());
     }
 
-    protected HpSSQFunction<WhiteXlsManCB> xcreateSSQFunction(final String operand) {
+    protected HpSSQFunction<WhiteXlsManCB> xcreateSSQFunction(final String rd) {
         return new HpSSQFunction<WhiteXlsManCB>(new HpSSQSetupper<WhiteXlsManCB>() {
-            public void setup(String function, SubQuery<WhiteXlsManCB> subQuery, HpSSQOption<WhiteXlsManCB> option) {
-                xscalarCondition(function, subQuery, operand, option);
+            public void setup(String fn, SubQuery<WhiteXlsManCB> sq, HpSSQOption<WhiteXlsManCB> op) {
+                xscalarCondition(fn, sq, rd, op);
             }
         });
     }
 
-    protected void xscalarCondition(String function, SubQuery<WhiteXlsManCB> subQuery, String operand, HpSSQOption<WhiteXlsManCB> option) {
-        assertObjectNotNull("subQuery<WhiteXlsManCB>", subQuery);
-        WhiteXlsManCB cb = xcreateScalarConditionCB(); subQuery.query(cb);
-        String subQueryPropertyName = keepScalarCondition(cb.query()); // for saving query-value
-        option.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
-        registerScalarCondition(function, cb.query(), subQueryPropertyName, operand, option);
+    protected void xscalarCondition(String fn, SubQuery<WhiteXlsManCB> sq, String rd, HpSSQOption<WhiteXlsManCB> op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteXlsManCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        String pp = keepScalarCondition(cb.query()); // for saving query-value
+        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
-    public abstract String keepScalarCondition(WhiteXlsManCQ subQuery);
+    public abstract String keepScalarCondition(WhiteXlsManCQ sq);
 
     protected WhiteXlsManCB xcreateScalarConditionCB() {
         WhiteXlsManCB cb = new WhiteXlsManCB();
@@ -492,13 +492,14 @@ public abstract class AbstractBsWhiteXlsManCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    public void xsmyselfDerive(String function, SubQuery<WhiteXlsManCB> subQuery, String aliasName, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<WhiteXlsManCB>", subQuery);
-        WhiteXlsManCB cb = new WhiteXlsManCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
-        registerSpecifyMyselfDerived(function, cb.query(), "XLS_MAN_ID", "XLS_MAN_ID", subQueryPropertyName, "myselfDerived", aliasName, option);
+    public void xsmyselfDerive(String fn, SubQuery<WhiteXlsManCB> sq, String al, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteXlsManCB cb = new WhiteXlsManCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "XLS_MAN_ID";
+        String pp = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
+        registerSpecifyMyselfDerived(fn, cb.query(), pk, pk, pp, "myselfDerived", al, op);
     }
-    public abstract String keepSpecifyMyselfDerived(WhiteXlsManCQ subQuery);
+    public abstract String keepSpecifyMyselfDerived(WhiteXlsManCQ sq);
 
     /**
      * Prepare for (Query)MyselfDerived (SubQuery).
@@ -509,20 +510,21 @@ public abstract class AbstractBsWhiteXlsManCQ extends AbstractConditionQuery {
     }
     protected HpQDRFunction<WhiteXlsManCB> xcreateQDRFunctionMyselfDerived() {
         return new HpQDRFunction<WhiteXlsManCB>(new HpQDRSetupper<WhiteXlsManCB>() {
-            public void setup(String function, SubQuery<WhiteXlsManCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-                xqderiveMyselfDerived(function, subQuery, operand, value, option);
+            public void setup(String fn, SubQuery<WhiteXlsManCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+                xqderiveMyselfDerived(fn, sq, rd, vl, op);
             }
         });
     }
-    public void xqderiveMyselfDerived(String function, SubQuery<WhiteXlsManCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<WhiteXlsManCB>", subQuery);
-        WhiteXlsManCB cb = new WhiteXlsManCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepQueryMyselfDerived(cb.query()); // for saving query-value.
-        String parameterPropertyName = keepQueryMyselfDerivedParameter(value);
-        registerQueryMyselfDerived(function, cb.query(), "XLS_MAN_ID", "XLS_MAN_ID", subQueryPropertyName, "myselfDerived", operand, value, parameterPropertyName, option);
+    public void xqderiveMyselfDerived(String fn, SubQuery<WhiteXlsManCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteXlsManCB cb = new WhiteXlsManCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "XLS_MAN_ID";
+        String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
+        String prpp = keepQueryMyselfDerivedParameter(vl);
+        registerQueryMyselfDerived(fn, cb.query(), pk, pk, sqpp, "myselfDerived", rd, vl, prpp, op);
     }
-    public abstract String keepQueryMyselfDerived(WhiteXlsManCQ subQuery);
-    public abstract String keepQueryMyselfDerivedParameter(Object parameterValue);
+    public abstract String keepQueryMyselfDerived(WhiteXlsManCQ sq);
+    public abstract String keepQueryMyselfDerivedParameter(Object vl);
 
     // ===================================================================================
     //                                                                        MyselfExists
@@ -532,12 +534,12 @@ public abstract class AbstractBsWhiteXlsManCQ extends AbstractConditionQuery {
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfExists(SubQuery<WhiteXlsManCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteXlsManCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteXlsManCB cb = new WhiteXlsManCB(); cb.xsetupForMyselfExists(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfExists(cb.query()); // for saving query-value.
-        registerMyselfExists(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfExists(cb.query()); // for saving query-value.
+        registerMyselfExists(cb.query(), pp);
     }
-    public abstract String keepMyselfExists(WhiteXlsManCQ subQuery);
+    public abstract String keepMyselfExists(WhiteXlsManCQ sq);
 
     // ===================================================================================
     //                                                                       MyselfInScope
@@ -547,12 +549,12 @@ public abstract class AbstractBsWhiteXlsManCQ extends AbstractConditionQuery {
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfInScope(SubQuery<WhiteXlsManCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteXlsManCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteXlsManCB cb = new WhiteXlsManCB(); cb.xsetupForMyselfInScope(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfInScope(cb.query()); // for saving query-value.
-        registerMyselfInScope(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfInScope(cb.query()); // for saving query-value.
+        registerMyselfInScope(cb.query(), pp);
     }
-    public abstract String keepMyselfInScope(WhiteXlsManCQ subQuery);
+    public abstract String keepMyselfInScope(WhiteXlsManCQ sq);
 
     // ===================================================================================
     //                                                                    Full Text Search
@@ -578,7 +580,7 @@ public abstract class AbstractBsWhiteXlsManCQ extends AbstractConditionQuery {
      * @param conditionValue The condition value embedded without binding (by MySQL restriction) but escaped. (NullAllowed: if null or empty, no condition)
      * @param modifier The modifier of full-text search. (NullAllowed: If the value is null, no modifier specified)
      */
-    public void match(java.util.List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList
+    public void match(List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList
                     , String conditionValue
                     , org.seasar.dbflute.dbway.WayOfMySQL.FullTextSearchModifier modifier) {
         xdoMatchForMySQL(textColumnList, conditionValue, modifier);

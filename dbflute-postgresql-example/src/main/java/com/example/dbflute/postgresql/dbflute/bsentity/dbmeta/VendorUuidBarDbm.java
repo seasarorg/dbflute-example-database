@@ -41,12 +41,12 @@ public class VendorUuidBarDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgBarId implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorUuidBar)e).getBarId(); }
-        public void write(Entity e, Object v) { ((VendorUuidBar)e).setBarId((java.util.UUID)v); }
+        public Object read(Entity et) { return ((VendorUuidBar)et).getBarId(); }
+        public void write(Entity et, Object vl) { ((VendorUuidBar)et).setBarId((java.util.UUID)vl); }
     }
     public static class EpgBarName implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorUuidBar)e).getBarName(); }
-        public void write(Entity e, Object v) { ((VendorUuidBar)e).setBarName((String)v); }
+        public Object read(Entity et) { return ((VendorUuidBar)et).getBarName(); }
+        public void write(Entity et, Object vl) { ((VendorUuidBar)et).setBarName((String)vl); }
     }
 
     // ===================================================================================
@@ -99,8 +99,8 @@ public class VendorUuidBarDbm extends AbstractDBMeta {
     //                                     Referrer Property
     //                                     -----------------
     public ReferrerInfo referrerVendorUuidFooList() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnBarId(), VendorUuidFooDbm.getInstance().columnBarId());
-        return cri("fk_vendor_uuid_foo_bar", "vendorUuidFooList", this, VendorUuidFooDbm.getInstance(), map, false, "vendorUuidBar");
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnBarId(), VendorUuidFooDbm.getInstance().columnBarId());
+        return cri("fk_vendor_uuid_foo_bar", "vendorUuidFooList", this, VendorUuidFooDbm.getInstance(), mp, false, "vendorUuidBar");
     }
 
     // ===================================================================================
@@ -128,10 +128,10 @@ public class VendorUuidBarDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((VendorUuidBar)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((VendorUuidBar)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((VendorUuidBar)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((VendorUuidBar)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

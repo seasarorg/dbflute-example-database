@@ -145,8 +145,8 @@ public abstract class AbstractBsWhiteRefNextExceptCQ extends AbstractConditionQu
      */
     public void setRefNextExceptId_IsNotNull() { regRefNextExceptId(CK_ISNN, DOBJ); }
 
-    protected void regRefNextExceptId(ConditionKey k, Object v) { regQ(k, v, getCValueRefNextExceptId(), "REF_NEXT_EXCEPT_ID"); }
-    abstract protected ConditionValue getCValueRefNextExceptId();
+    protected void regRefNextExceptId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueRefNextExceptId(), "REF_NEXT_EXCEPT_ID"); }
+    protected abstract ConditionValue getCValueRefNextExceptId();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -231,8 +231,8 @@ public abstract class AbstractBsWhiteRefNextExceptCQ extends AbstractConditionQu
         regLSQ(CK_NLS, fRES(nextExceptCode), getCValueNextExceptCode(), "NEXT_EXCEPT_CODE", likeSearchOption);
     }
 
-    protected void regNextExceptCode(ConditionKey k, Object v) { regQ(k, v, getCValueNextExceptCode(), "NEXT_EXCEPT_CODE"); }
-    abstract protected ConditionValue getCValueNextExceptCode();
+    protected void regNextExceptCode(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueNextExceptCode(), "NEXT_EXCEPT_CODE"); }
+    protected abstract ConditionValue getCValueNextExceptCode();
 
     // ===================================================================================
     //                                                                     ScalarCondition
@@ -339,22 +339,22 @@ public abstract class AbstractBsWhiteRefNextExceptCQ extends AbstractConditionQu
         return xcreateSSQFunction(CK_LE.getOperand());
     }
 
-    protected HpSSQFunction<WhiteRefNextExceptCB> xcreateSSQFunction(final String operand) {
+    protected HpSSQFunction<WhiteRefNextExceptCB> xcreateSSQFunction(final String rd) {
         return new HpSSQFunction<WhiteRefNextExceptCB>(new HpSSQSetupper<WhiteRefNextExceptCB>() {
-            public void setup(String function, SubQuery<WhiteRefNextExceptCB> subQuery, HpSSQOption<WhiteRefNextExceptCB> option) {
-                xscalarCondition(function, subQuery, operand, option);
+            public void setup(String fn, SubQuery<WhiteRefNextExceptCB> sq, HpSSQOption<WhiteRefNextExceptCB> op) {
+                xscalarCondition(fn, sq, rd, op);
             }
         });
     }
 
-    protected void xscalarCondition(String function, SubQuery<WhiteRefNextExceptCB> subQuery, String operand, HpSSQOption<WhiteRefNextExceptCB> option) {
-        assertObjectNotNull("subQuery<WhiteRefNextExceptCB>", subQuery);
-        WhiteRefNextExceptCB cb = xcreateScalarConditionCB(); subQuery.query(cb);
-        String subQueryPropertyName = keepScalarCondition(cb.query()); // for saving query-value
-        option.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
-        registerScalarCondition(function, cb.query(), subQueryPropertyName, operand, option);
+    protected void xscalarCondition(String fn, SubQuery<WhiteRefNextExceptCB> sq, String rd, HpSSQOption<WhiteRefNextExceptCB> op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteRefNextExceptCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        String pp = keepScalarCondition(cb.query()); // for saving query-value
+        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
-    public abstract String keepScalarCondition(WhiteRefNextExceptCQ subQuery);
+    public abstract String keepScalarCondition(WhiteRefNextExceptCQ sq);
 
     protected WhiteRefNextExceptCB xcreateScalarConditionCB() {
         WhiteRefNextExceptCB cb = new WhiteRefNextExceptCB();
@@ -371,13 +371,14 @@ public abstract class AbstractBsWhiteRefNextExceptCQ extends AbstractConditionQu
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    public void xsmyselfDerive(String function, SubQuery<WhiteRefNextExceptCB> subQuery, String aliasName, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<WhiteRefNextExceptCB>", subQuery);
-        WhiteRefNextExceptCB cb = new WhiteRefNextExceptCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
-        registerSpecifyMyselfDerived(function, cb.query(), "REF_NEXT_EXCEPT_ID", "REF_NEXT_EXCEPT_ID", subQueryPropertyName, "myselfDerived", aliasName, option);
+    public void xsmyselfDerive(String fn, SubQuery<WhiteRefNextExceptCB> sq, String al, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteRefNextExceptCB cb = new WhiteRefNextExceptCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "REF_NEXT_EXCEPT_ID";
+        String pp = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
+        registerSpecifyMyselfDerived(fn, cb.query(), pk, pk, pp, "myselfDerived", al, op);
     }
-    public abstract String keepSpecifyMyselfDerived(WhiteRefNextExceptCQ subQuery);
+    public abstract String keepSpecifyMyselfDerived(WhiteRefNextExceptCQ sq);
 
     /**
      * Prepare for (Query)MyselfDerived (SubQuery).
@@ -388,20 +389,21 @@ public abstract class AbstractBsWhiteRefNextExceptCQ extends AbstractConditionQu
     }
     protected HpQDRFunction<WhiteRefNextExceptCB> xcreateQDRFunctionMyselfDerived() {
         return new HpQDRFunction<WhiteRefNextExceptCB>(new HpQDRSetupper<WhiteRefNextExceptCB>() {
-            public void setup(String function, SubQuery<WhiteRefNextExceptCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-                xqderiveMyselfDerived(function, subQuery, operand, value, option);
+            public void setup(String fn, SubQuery<WhiteRefNextExceptCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+                xqderiveMyselfDerived(fn, sq, rd, vl, op);
             }
         });
     }
-    public void xqderiveMyselfDerived(String function, SubQuery<WhiteRefNextExceptCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<WhiteRefNextExceptCB>", subQuery);
-        WhiteRefNextExceptCB cb = new WhiteRefNextExceptCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepQueryMyselfDerived(cb.query()); // for saving query-value.
-        String parameterPropertyName = keepQueryMyselfDerivedParameter(value);
-        registerQueryMyselfDerived(function, cb.query(), "REF_NEXT_EXCEPT_ID", "REF_NEXT_EXCEPT_ID", subQueryPropertyName, "myselfDerived", operand, value, parameterPropertyName, option);
+    public void xqderiveMyselfDerived(String fn, SubQuery<WhiteRefNextExceptCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteRefNextExceptCB cb = new WhiteRefNextExceptCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "REF_NEXT_EXCEPT_ID";
+        String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
+        String prpp = keepQueryMyselfDerivedParameter(vl);
+        registerQueryMyselfDerived(fn, cb.query(), pk, pk, sqpp, "myselfDerived", rd, vl, prpp, op);
     }
-    public abstract String keepQueryMyselfDerived(WhiteRefNextExceptCQ subQuery);
-    public abstract String keepQueryMyselfDerivedParameter(Object parameterValue);
+    public abstract String keepQueryMyselfDerived(WhiteRefNextExceptCQ sq);
+    public abstract String keepQueryMyselfDerivedParameter(Object vl);
 
     // ===================================================================================
     //                                                                        MyselfExists
@@ -411,12 +413,12 @@ public abstract class AbstractBsWhiteRefNextExceptCQ extends AbstractConditionQu
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfExists(SubQuery<WhiteRefNextExceptCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteRefNextExceptCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteRefNextExceptCB cb = new WhiteRefNextExceptCB(); cb.xsetupForMyselfExists(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfExists(cb.query()); // for saving query-value.
-        registerMyselfExists(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfExists(cb.query()); // for saving query-value.
+        registerMyselfExists(cb.query(), pp);
     }
-    public abstract String keepMyselfExists(WhiteRefNextExceptCQ subQuery);
+    public abstract String keepMyselfExists(WhiteRefNextExceptCQ sq);
 
     // ===================================================================================
     //                                                                       MyselfInScope
@@ -426,12 +428,12 @@ public abstract class AbstractBsWhiteRefNextExceptCQ extends AbstractConditionQu
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfInScope(SubQuery<WhiteRefNextExceptCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteRefNextExceptCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteRefNextExceptCB cb = new WhiteRefNextExceptCB(); cb.xsetupForMyselfInScope(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfInScope(cb.query()); // for saving query-value.
-        registerMyselfInScope(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfInScope(cb.query()); // for saving query-value.
+        registerMyselfInScope(cb.query(), pp);
     }
-    public abstract String keepMyselfInScope(WhiteRefNextExceptCQ subQuery);
+    public abstract String keepMyselfInScope(WhiteRefNextExceptCQ sq);
 
     // ===================================================================================
     //                                                                    Full Text Search
@@ -452,7 +454,7 @@ public abstract class AbstractBsWhiteRefNextExceptCQ extends AbstractConditionQu
      * @param textColumnList The list of text column. (NotNull, NotEmpty, StringColumn, TargetTableColumn)
      * @param conditionValue The condition value. (NullAllowed: if null or empty, no condition)
      */
-    public void match(java.util.List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList, String conditionValue) {
+    public void match(List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList, String conditionValue) {
         xdoMatchByLikeSearch(textColumnList, conditionValue);
     }
 

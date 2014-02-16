@@ -8,7 +8,7 @@ import com.example.dbflute.mysql.dbflute.bsbhv.pmbean.BsSpTransactionInheritPmb;
 /**
  * <!-- df:beginClassDescription -->
  * The typed parameter-bean of SpTransactionInherit. <br />
- * This is related to "<span style="color: #AD4747">SP_TRANSACTION_INHERIT</span>".
+ * This is related to "<span style="color: #AD4747">SP_TRANSACTION_INHERIT</span>". <br />
  * <!-- df:endClassDescription -->
  * <p>
  * You can implement your original methods here.

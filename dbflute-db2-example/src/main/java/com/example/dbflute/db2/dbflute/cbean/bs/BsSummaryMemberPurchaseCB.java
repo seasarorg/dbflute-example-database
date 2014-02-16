@@ -338,8 +338,8 @@ public class BsSummaryMemberPurchaseCB extends AbstractConditionBean {
         public HpSDRFunction<SummaryMemberPurchaseCB, SummaryMemberPurchaseCQ> myselfDerived() {
             assertDerived("myselfDerived"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<SummaryMemberPurchaseCB, SummaryMemberPurchaseCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<SummaryMemberPurchaseCB, SummaryMemberPurchaseCQ>() {
-                public void setup(String function, SubQuery<SummaryMemberPurchaseCB> subQuery, SummaryMemberPurchaseCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsmyselfDerive(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<SummaryMemberPurchaseCB> sq, SummaryMemberPurchaseCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsmyselfDerive(fn, sq, al, op); } }, _dbmetaProvider);
         }
     }
 

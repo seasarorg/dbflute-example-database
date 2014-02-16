@@ -6,7 +6,7 @@ import com.example.dbflute.oracle.dbflute.bsbhv.pmbean.BsPurchaseMaxPriceMemberP
  * <!-- df:beginClassDescription -->
  * The typed parameter-bean of PurchaseMaxPriceMember. <span style="color: #AD4747">(typed to entity, manual-paging)</span><br />
  * This is related to "<span style="color: #AD4747">selectPurchaseMaxPriceMember</span>" on MemberBhv, <br />
- * described as "Manual Paging Example for Oracle".
+ * described as "Manual Paging Example for Oracle". <br />
  * <!-- df:endClassDescription -->
  * <p>
  * You can implement your original methods here.

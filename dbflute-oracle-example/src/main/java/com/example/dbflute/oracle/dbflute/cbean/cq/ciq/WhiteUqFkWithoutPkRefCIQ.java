@@ -75,7 +75,7 @@ public class WhiteUqFkWithoutPkRefCIQ extends AbstractBsWhiteUqFkWithoutPkRefCQ 
     { return _myCQ.keepFkToUqCode_InScopeRelation_WhiteUqFkWithoutPk(sq); }
     public String keepFkToUqCode_NotInScopeRelation_WhiteUqFkWithoutPk(WhiteUqFkWithoutPkCQ sq)
     { return _myCQ.keepFkToUqCode_NotInScopeRelation_WhiteUqFkWithoutPk(sq); }
-    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) { return null; }
+    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
 
     protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()
         throw new IllegalConditionBeanOperationException(name + " at InlineView is unsupported.");

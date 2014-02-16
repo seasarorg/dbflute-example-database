@@ -391,8 +391,8 @@ public class BsWhiteUqFkRefNestCB extends AbstractConditionBean {
         public HpSDRFunction<WhiteUqFkRefNestCB, WhiteUqFkRefNestCQ> myselfDerived() {
             assertDerived("myselfDerived"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<WhiteUqFkRefNestCB, WhiteUqFkRefNestCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<WhiteUqFkRefNestCB, WhiteUqFkRefNestCQ>() {
-                public void setup(String function, SubQuery<WhiteUqFkRefNestCB> subQuery, WhiteUqFkRefNestCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsmyselfDerive(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<WhiteUqFkRefNestCB> sq, WhiteUqFkRefNestCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsmyselfDerive(fn, sq, al, op); } }, _dbmetaProvider);
         }
     }
 

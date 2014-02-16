@@ -97,21 +97,21 @@ public class WhiteVariantRelationMasterBarCIQ extends AbstractBsWhiteVariantRela
     { throwIICBOE("(Specify)DerivedReferrer"); return null; }
     public String keepMasterBarId_QueryDerivedReferrer_WhiteVariantRelationReferrerAsVariantList(WhiteVariantRelationReferrerCQ sq)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
-    public String keepMasterBarId_QueryDerivedReferrer_WhiteVariantRelationReferrerAsVariantListParameter(Object pv)
+    public String keepMasterBarId_QueryDerivedReferrer_WhiteVariantRelationReferrerAsVariantListParameter(Object vl)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
     protected ConditionValue getCValueMasterBarName() { return _myCQ.getMasterBarName(); }
-    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) { return null; }
-    public String keepScalarCondition(WhiteVariantRelationMasterBarCQ subQuery)
+    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
+    public String keepScalarCondition(WhiteVariantRelationMasterBarCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }
-    public String keepSpecifyMyselfDerived(WhiteVariantRelationMasterBarCQ subQuery)
+    public String keepSpecifyMyselfDerived(WhiteVariantRelationMasterBarCQ sq)
     { throwIICBOE("(Specify)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerived(WhiteVariantRelationMasterBarCQ subQuery)
+    public String keepQueryMyselfDerived(WhiteVariantRelationMasterBarCQ sq)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerivedParameter(Object parameterValue)
+    public String keepQueryMyselfDerivedParameter(Object vl)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepMyselfExists(WhiteVariantRelationMasterBarCQ subQuery)
+    public String keepMyselfExists(WhiteVariantRelationMasterBarCQ sq)
     { throwIICBOE("MyselfExists"); return null;}
-    public String keepMyselfInScope(WhiteVariantRelationMasterBarCQ subQuery)
+    public String keepMyselfInScope(WhiteVariantRelationMasterBarCQ sq)
     { throwIICBOE("MyselfInScope"); return null;}
 
     protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()

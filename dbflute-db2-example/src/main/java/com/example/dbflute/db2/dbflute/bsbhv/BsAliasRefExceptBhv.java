@@ -17,28 +17,28 @@ import com.example.dbflute.db2.dbflute.cbean.*;
  * <pre>
  * [primary key]
  *     REF_EXCEPT_ID
- * 
+ *
  * [column]
  *     REF_EXCEPT_ID, EXCEPT_ID
- * 
+ *
  * [sequence]
  *     
- * 
+ *
  * [identity]
  *     
- * 
+ *
  * [version-no]
  *     
- * 
+ *
  * [foreign table]
  *     ALIAS_EXCEPT
- * 
+ *
  * [referrer table]
  *     
- * 
+ *
  * [foreign property]
  *     aliasExcept
- * 
+ *
  * [referrer property]
  *     
  * </pre>
@@ -100,7 +100,7 @@ public abstract class BsAliasRefExceptBhv extends AbstractBehaviorWritable {
         return doSelectCountUniquely(cb);
     }
 
-    protected int doSelectCountUniquely(AliasRefExceptCB cb) { // called by selectCount(cb) 
+    protected int doSelectCountUniquely(AliasRefExceptCB cb) { // called by selectCount(cb)
         assertCBStateValid(cb);
         return delegateSelectCountUniquely(cb);
     }
@@ -139,10 +139,10 @@ public abstract class BsAliasRefExceptBhv extends AbstractBehaviorWritable {
         return doSelectEntity(cb, AliasRefExcept.class);
     }
 
-    protected <ENTITY extends AliasRefExcept> ENTITY doSelectEntity(final AliasRefExceptCB cb, Class<ENTITY> entityType) {
+    protected <ENTITY extends AliasRefExcept> ENTITY doSelectEntity(final AliasRefExceptCB cb, Class<ENTITY> tp) {
         assertCBStateValid(cb);
-        return helpSelectEntityInternally(cb, entityType, new InternalSelectEntityCallback<ENTITY, AliasRefExceptCB>() {
-            public List<ENTITY> callbackSelectList(AliasRefExceptCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); } });
+        return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, AliasRefExceptCB>() {
+            public List<ENTITY> callbackSelectList(AliasRefExceptCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
     }
 
     @Override
@@ -168,10 +168,10 @@ public abstract class BsAliasRefExceptBhv extends AbstractBehaviorWritable {
         return doSelectEntityWithDeletedCheck(cb, AliasRefExcept.class);
     }
 
-    protected <ENTITY extends AliasRefExcept> ENTITY doSelectEntityWithDeletedCheck(final AliasRefExceptCB cb, Class<ENTITY> entityType) {
+    protected <ENTITY extends AliasRefExcept> ENTITY doSelectEntityWithDeletedCheck(final AliasRefExceptCB cb, Class<ENTITY> tp) {
         assertCBStateValid(cb);
-        return helpSelectEntityWithDeletedCheckInternally(cb, entityType, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, AliasRefExceptCB>() {
-            public List<ENTITY> callbackSelectList(AliasRefExceptCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); } });
+        return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, AliasRefExceptCB>() {
+            public List<ENTITY> callbackSelectList(AliasRefExceptCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
     }
 
     @Override
@@ -239,11 +239,11 @@ public abstract class BsAliasRefExceptBhv extends AbstractBehaviorWritable {
         return doSelectList(cb, AliasRefExcept.class);
     }
 
-    protected <ENTITY extends AliasRefExcept> ListResultBean<ENTITY> doSelectList(AliasRefExceptCB cb, Class<ENTITY> entityType) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", entityType);
-        assertSpecifyDerivedReferrerEntityProperty(cb, entityType);
-        return helpSelectListInternally(cb, entityType, new InternalSelectListCallback<ENTITY, AliasRefExceptCB>() {
-            public List<ENTITY> callbackSelectList(AliasRefExceptCB cb, Class<ENTITY> entityType) { return delegateSelectList(cb, entityType); } });
+    protected <ENTITY extends AliasRefExcept> ListResultBean<ENTITY> doSelectList(AliasRefExceptCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
+        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
+        return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, AliasRefExceptCB>() {
+            public List<ENTITY> callbackSelectList(AliasRefExceptCB cb, Class<ENTITY> tp) { return delegateSelectList(cb, tp); } });
     }
 
     @Override
@@ -280,11 +280,11 @@ public abstract class BsAliasRefExceptBhv extends AbstractBehaviorWritable {
         return doSelectPage(cb, AliasRefExcept.class);
     }
 
-    protected <ENTITY extends AliasRefExcept> PagingResultBean<ENTITY> doSelectPage(AliasRefExceptCB cb, Class<ENTITY> entityType) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", entityType);
-        return helpSelectPageInternally(cb, entityType, new InternalSelectPageCallback<ENTITY, AliasRefExceptCB>() {
+    protected <ENTITY extends AliasRefExcept> PagingResultBean<ENTITY> doSelectPage(AliasRefExceptCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
+        return helpSelectPageInternally(cb, tp, new InternalSelectPageCallback<ENTITY, AliasRefExceptCB>() {
             public int callbackSelectCount(AliasRefExceptCB cb) { return doSelectCountPlainly(cb); }
-            public List<ENTITY> callbackSelectList(AliasRefExceptCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); }
+            public List<ENTITY> callbackSelectList(AliasRefExceptCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
         });
     }
 
@@ -314,12 +314,12 @@ public abstract class BsAliasRefExceptBhv extends AbstractBehaviorWritable {
         doSelectCursor(cb, entityRowHandler, AliasRefExcept.class);
     }
 
-    protected <ENTITY extends AliasRefExcept> void doSelectCursor(AliasRefExceptCB cb, EntityRowHandler<ENTITY> entityRowHandler, Class<ENTITY> entityType) {
-        assertCBStateValid(cb); assertObjectNotNull("entityRowHandler<AliasRefExcept>", entityRowHandler); assertObjectNotNull("entityType", entityType);
-        assertSpecifyDerivedReferrerEntityProperty(cb, entityType);
-        helpSelectCursorInternally(cb, entityRowHandler, entityType, new InternalSelectCursorCallback<ENTITY, AliasRefExceptCB>() {
-            public void callbackSelectCursor(AliasRefExceptCB cb, EntityRowHandler<ENTITY> entityRowHandler, Class<ENTITY> entityType) { delegateSelectCursor(cb, entityRowHandler, entityType); }
-            public List<ENTITY> callbackSelectList(AliasRefExceptCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); }
+    protected <ENTITY extends AliasRefExcept> void doSelectCursor(AliasRefExceptCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
+        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
+        helpSelectCursorInternally(cb, handler, tp, new InternalSelectCursorCallback<ENTITY, AliasRefExceptCB>() {
+            public void callbackSelectCursor(AliasRefExceptCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) { delegateSelectCursor(cb, handler, tp); }
+            public List<ENTITY> callbackSelectList(AliasRefExceptCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
         });
     }
 
@@ -345,18 +345,18 @@ public abstract class BsAliasRefExceptBhv extends AbstractBehaviorWritable {
         return doScalarSelect(resultType, newMyConditionBean());
     }
 
-    protected <RESULT, CB extends AliasRefExceptCB> SLFunction<CB, RESULT> doScalarSelect(Class<RESULT> resultType, CB cb) {
-        assertObjectNotNull("resultType", resultType); assertCBStateValid(cb);
+    protected <RESULT, CB extends AliasRefExceptCB> SLFunction<CB, RESULT> doScalarSelect(Class<RESULT> tp, CB cb) {
+        assertObjectNotNull("resultType", tp); assertCBStateValid(cb);
         cb.xsetupForScalarSelect(); cb.getSqlClause().disableSelectIndex(); // for when you use union
-        return createSLFunction(cb, resultType);
+        return createSLFunction(cb, tp);
     }
 
-    protected <RESULT, CB extends AliasRefExceptCB> SLFunction<CB, RESULT> createSLFunction(CB cb, Class<RESULT> resultType) {
-        return new SLFunction<CB, RESULT>(cb, resultType);
+    protected <RESULT, CB extends AliasRefExceptCB> SLFunction<CB, RESULT> createSLFunction(CB cb, Class<RESULT> tp) {
+        return new SLFunction<CB, RESULT>(cb, tp);
     }
 
-    protected <RESULT> SLFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> resultType) {
-        return doScalarSelect(resultType, newMyConditionBean());
+    protected <RESULT> SLFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) {
+        return doScalarSelect(tp, newMyConditionBean());
     }
 
     // ===================================================================================
@@ -378,10 +378,10 @@ public abstract class BsAliasRefExceptBhv extends AbstractBehaviorWritable {
      */
     public List<AliasExcept> pulloutAliasExcept(List<AliasRefExcept> aliasRefExceptList) {
         return helpPulloutInternally(aliasRefExceptList, new InternalPulloutCallback<AliasRefExcept, AliasExcept>() {
-            public AliasExcept getFr(AliasRefExcept e) { return e.getAliasExcept(); }
+            public AliasExcept getFr(AliasRefExcept et) { return et.getAliasExcept(); }
             public boolean hasRf() { return true; }
-            public void setRfLs(AliasExcept e, List<AliasRefExcept> ls)
-            { e.setAliasRefExceptList(ls); }
+            public void setRfLs(AliasExcept et, List<AliasRefExcept> ls)
+            { et.setAliasRefExceptList(ls); }
         });
     }
 
@@ -395,7 +395,7 @@ public abstract class BsAliasRefExceptBhv extends AbstractBehaviorWritable {
      */
     public List<Long> extractRefExceptIdList(List<AliasRefExcept> aliasRefExceptList) {
         return helpExtractListInternally(aliasRefExceptList, new InternalExtractCallback<AliasRefExcept, Long>() {
-            public Long getCV(AliasRefExcept e) { return e.getRefExceptId(); }
+            public Long getCV(AliasRefExcept et) { return et.getRefExceptId(); }
         });
     }
 
@@ -423,24 +423,24 @@ public abstract class BsAliasRefExceptBhv extends AbstractBehaviorWritable {
         doInsert(aliasRefExcept, null);
     }
 
-    protected void doInsert(AliasRefExcept aliasRefExcept, InsertOption<AliasRefExceptCB> option) {
+    protected void doInsert(AliasRefExcept aliasRefExcept, InsertOption<AliasRefExceptCB> op) {
         assertObjectNotNull("aliasRefExcept", aliasRefExcept);
-        prepareInsertOption(option);
-        delegateInsert(aliasRefExcept, option);
+        prepareInsertOption(op);
+        delegateInsert(aliasRefExcept, op);
     }
 
-    protected void prepareInsertOption(InsertOption<AliasRefExceptCB> option) {
-        if (option == null) { return; }
-        assertInsertOptionStatus(option);
-        if (option.hasSpecifiedInsertColumn()) {
-            option.resolveInsertColumnSpecification(createCBForSpecifiedUpdate());
+    protected void prepareInsertOption(InsertOption<AliasRefExceptCB> op) {
+        if (op == null) { return; }
+        assertInsertOptionStatus(op);
+        if (op.hasSpecifiedInsertColumn()) {
+            op.resolveInsertColumnSpecification(createCBForSpecifiedUpdate());
         }
     }
 
     @Override
-    protected void doCreate(Entity entity, InsertOption<? extends ConditionBean> option) {
-        if (option == null) { insert(downcast(entity)); }
-        else { varyingInsert(downcast(entity), downcast(option)); }
+    protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) {
+        if (op == null) { insert(downcast(et)); }
+        else { varyingInsert(downcast(et), downcast(op)); }
     }
 
     /**
@@ -458,7 +458,7 @@ public abstract class BsAliasRefExceptBhv extends AbstractBehaviorWritable {
      *     aliasRefExceptBhv.<span style="color: #FD4747">update</span>(aliasRefExcept);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
-     * } 
+     * }
      * </pre>
      * @param aliasRefExcept The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
@@ -469,21 +469,21 @@ public abstract class BsAliasRefExceptBhv extends AbstractBehaviorWritable {
         doUpdate(aliasRefExcept, null);
     }
 
-    protected void doUpdate(AliasRefExcept aliasRefExcept, final UpdateOption<AliasRefExceptCB> option) {
+    protected void doUpdate(AliasRefExcept aliasRefExcept, final UpdateOption<AliasRefExceptCB> op) {
         assertObjectNotNull("aliasRefExcept", aliasRefExcept);
-        prepareUpdateOption(option);
+        prepareUpdateOption(op);
         helpUpdateInternally(aliasRefExcept, new InternalUpdateCallback<AliasRefExcept>() {
-            public int callbackDelegateUpdate(AliasRefExcept entity) { return delegateUpdate(entity, option); } });
+            public int callbackDelegateUpdate(AliasRefExcept et) { return delegateUpdate(et, op); } });
     }
 
-    protected void prepareUpdateOption(UpdateOption<AliasRefExceptCB> option) {
-        if (option == null) { return; }
-        assertUpdateOptionStatus(option);
-        if (option.hasSelfSpecification()) {
-            option.resolveSelfSpecification(createCBForVaryingUpdate());
+    protected void prepareUpdateOption(UpdateOption<AliasRefExceptCB> op) {
+        if (op == null) { return; }
+        assertUpdateOptionStatus(op);
+        if (op.hasSelfSpecification()) {
+            op.resolveSelfSpecification(createCBForVaryingUpdate());
         }
-        if (option.hasSpecifiedUpdateColumn()) {
-            option.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate());
+        if (op.hasSpecifiedUpdateColumn()) {
+            op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate());
         }
     }
 
@@ -500,14 +500,14 @@ public abstract class BsAliasRefExceptBhv extends AbstractBehaviorWritable {
     }
 
     @Override
-    protected void doModify(Entity entity, UpdateOption<? extends ConditionBean> option) {
-        if (option == null) { update(downcast(entity)); }
-        else { varyingUpdate(downcast(entity), downcast(option)); }
+    protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) {
+        if (op == null) { update(downcast(et)); }
+        else { varyingUpdate(downcast(et), downcast(op)); }
     }
 
     @Override
-    protected void doModifyNonstrict(Entity entity, UpdateOption<? extends ConditionBean> option) {
-        doModify(entity, option);
+    protected void doModifyNonstrict(Entity et, UpdateOption<? extends ConditionBean> op) {
+        doModify(et, op);
     }
 
     /**
@@ -523,30 +523,28 @@ public abstract class BsAliasRefExceptBhv extends AbstractBehaviorWritable {
         doInesrtOrUpdate(aliasRefExcept, null, null);
     }
 
-    protected void doInesrtOrUpdate(AliasRefExcept aliasRefExcept, final InsertOption<AliasRefExceptCB> insertOption, final UpdateOption<AliasRefExceptCB> updateOption) {
+    protected void doInesrtOrUpdate(AliasRefExcept aliasRefExcept, final InsertOption<AliasRefExceptCB> iop, final UpdateOption<AliasRefExceptCB> uop) {
         helpInsertOrUpdateInternally(aliasRefExcept, new InternalInsertOrUpdateCallback<AliasRefExcept, AliasRefExceptCB>() {
-            public void callbackInsert(AliasRefExcept entity) { doInsert(entity, insertOption); }
-            public void callbackUpdate(AliasRefExcept entity) { doUpdate(entity, updateOption); }
+            public void callbackInsert(AliasRefExcept et) { doInsert(et, iop); }
+            public void callbackUpdate(AliasRefExcept et) { doUpdate(et, uop); }
             public AliasRefExceptCB callbackNewMyConditionBean() { return newMyConditionBean(); }
             public int callbackSelectCount(AliasRefExceptCB cb) { return selectCount(cb); }
         });
     }
 
     @Override
-    protected void doCreateOrModify(Entity entity, InsertOption<? extends ConditionBean> insertOption,
-            UpdateOption<? extends ConditionBean> updateOption) {
-        if (insertOption == null && updateOption == null) { insertOrUpdate(downcast(entity)); }
+    protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
+        if (iop == null && uop == null) { insertOrUpdate(downcast(et)); }
         else {
-            insertOption = insertOption == null ? new InsertOption<AliasRefExceptCB>() : insertOption;
-            updateOption = updateOption == null ? new UpdateOption<AliasRefExceptCB>() : updateOption;
-            varyingInsertOrUpdate(downcast(entity), downcast(insertOption), downcast(updateOption));
+            iop = iop != null ? iop : new InsertOption<AliasRefExceptCB>();
+            uop = uop != null ? uop : new UpdateOption<AliasRefExceptCB>();
+            varyingInsertOrUpdate(downcast(et), downcast(iop), downcast(uop));
         }
     }
 
     @Override
-    protected void doCreateOrModifyNonstrict(Entity entity, InsertOption<? extends ConditionBean> insertOption,
-            UpdateOption<? extends ConditionBean> updateOption) {
-        doCreateOrModify(entity, insertOption, updateOption);
+    protected void doCreateOrModifyNonstrict(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
+        doCreateOrModify(et, iop, uop);
     }
 
     /**
@@ -560,7 +558,7 @@ public abstract class BsAliasRefExceptBhv extends AbstractBehaviorWritable {
      *     aliasRefExceptBhv.<span style="color: #FD4747">delete</span>(aliasRefExcept);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
-     * } 
+     * }
      * </pre>
      * @param aliasRefExcept The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
@@ -570,27 +568,27 @@ public abstract class BsAliasRefExceptBhv extends AbstractBehaviorWritable {
         doDelete(aliasRefExcept, null);
     }
 
-    protected void doDelete(AliasRefExcept aliasRefExcept, final DeleteOption<AliasRefExceptCB> option) {
+    protected void doDelete(AliasRefExcept aliasRefExcept, final DeleteOption<AliasRefExceptCB> op) {
         assertObjectNotNull("aliasRefExcept", aliasRefExcept);
-        prepareDeleteOption(option);
+        prepareDeleteOption(op);
         helpDeleteInternally(aliasRefExcept, new InternalDeleteCallback<AliasRefExcept>() {
-            public int callbackDelegateDelete(AliasRefExcept entity) { return delegateDelete(entity, option); } });
+            public int callbackDelegateDelete(AliasRefExcept et) { return delegateDelete(et, op); } });
     }
 
-    protected void prepareDeleteOption(DeleteOption<AliasRefExceptCB> option) {
-        if (option == null) { return; }
-        assertDeleteOptionStatus(option);
-    }
-
-    @Override
-    protected void doRemove(Entity entity, DeleteOption<? extends ConditionBean> option) {
-        if (option == null) { delete(downcast(entity)); }
-        else { varyingDelete(downcast(entity), downcast(option)); }
+    protected void prepareDeleteOption(DeleteOption<AliasRefExceptCB> op) {
+        if (op == null) { return; }
+        assertDeleteOptionStatus(op);
     }
 
     @Override
-    protected void doRemoveNonstrict(Entity entity, DeleteOption<? extends ConditionBean> option) {
-        doRemove(entity, option);
+    protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) {
+        if (op == null) { delete(downcast(et)); }
+        else { varyingDelete(downcast(et), downcast(op)); }
+    }
+
+    @Override
+    protected void doRemoveNonstrict(Entity et, DeleteOption<? extends ConditionBean> op) {
+        doRemove(et, op);
     }
 
     // ===================================================================================
@@ -621,26 +619,26 @@ public abstract class BsAliasRefExceptBhv extends AbstractBehaviorWritable {
      * @return The array of inserted count. (NotNull, EmptyAllowed)
      */
     public int[] batchInsert(List<AliasRefExcept> aliasRefExceptList) {
-        InsertOption<AliasRefExceptCB> option = createInsertUpdateOption();
-        return doBatchInsert(aliasRefExceptList, option);
+        InsertOption<AliasRefExceptCB> op = createInsertUpdateOption();
+        return doBatchInsert(aliasRefExceptList, op);
     }
 
-    protected int[] doBatchInsert(List<AliasRefExcept> aliasRefExceptList, InsertOption<AliasRefExceptCB> option) {
+    protected int[] doBatchInsert(List<AliasRefExcept> aliasRefExceptList, InsertOption<AliasRefExceptCB> op) {
         assertObjectNotNull("aliasRefExceptList", aliasRefExceptList);
-        prepareBatchInsertOption(aliasRefExceptList, option);
-        return delegateBatchInsert(aliasRefExceptList, option);
+        prepareBatchInsertOption(aliasRefExceptList, op);
+        return delegateBatchInsert(aliasRefExceptList, op);
     }
 
-    protected void prepareBatchInsertOption(List<AliasRefExcept> aliasRefExceptList, InsertOption<AliasRefExceptCB> option) {
-        option.xallowInsertColumnModifiedPropertiesFragmented();
-        option.xacceptInsertColumnModifiedPropertiesIfNeeds(aliasRefExceptList);
-        prepareInsertOption(option);
+    protected void prepareBatchInsertOption(List<AliasRefExcept> aliasRefExceptList, InsertOption<AliasRefExceptCB> op) {
+        op.xallowInsertColumnModifiedPropertiesFragmented();
+        op.xacceptInsertColumnModifiedPropertiesIfNeeds(aliasRefExceptList);
+        prepareInsertOption(op);
     }
 
     @Override
-    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> option) {
-        if (option == null) { return batchInsert(downcast(ls)); }
-        else { return varyingBatchInsert(downcast(ls), downcast(option)); }
+    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) {
+        if (op == null) { return batchInsert(downcast(ls)); }
+        else { return varyingBatchInsert(downcast(ls), downcast(op)); }
     }
 
     /**
@@ -668,39 +666,39 @@ public abstract class BsAliasRefExceptBhv extends AbstractBehaviorWritable {
      * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<AliasRefExcept> aliasRefExceptList) {
-        UpdateOption<AliasRefExceptCB> option = createPlainUpdateOption();
-        return doBatchUpdate(aliasRefExceptList, option);
+        UpdateOption<AliasRefExceptCB> op = createPlainUpdateOption();
+        return doBatchUpdate(aliasRefExceptList, op);
     }
 
-    protected int[] doBatchUpdate(List<AliasRefExcept> aliasRefExceptList, UpdateOption<AliasRefExceptCB> option) {
+    protected int[] doBatchUpdate(List<AliasRefExcept> aliasRefExceptList, UpdateOption<AliasRefExceptCB> op) {
         assertObjectNotNull("aliasRefExceptList", aliasRefExceptList);
-        prepareBatchUpdateOption(aliasRefExceptList, option);
-        return delegateBatchUpdate(aliasRefExceptList, option);
+        prepareBatchUpdateOption(aliasRefExceptList, op);
+        return delegateBatchUpdate(aliasRefExceptList, op);
     }
 
-    protected void prepareBatchUpdateOption(List<AliasRefExcept> aliasRefExceptList, UpdateOption<AliasRefExceptCB> option) {
-        option.xacceptUpdateColumnModifiedPropertiesIfNeeds(aliasRefExceptList);
-        prepareUpdateOption(option);
+    protected void prepareBatchUpdateOption(List<AliasRefExcept> aliasRefExceptList, UpdateOption<AliasRefExceptCB> op) {
+        op.xacceptUpdateColumnModifiedPropertiesIfNeeds(aliasRefExceptList);
+        prepareUpdateOption(op);
     }
 
     @Override
-    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> option) {
-        if (option == null) { return batchUpdate(downcast(ls)); }
-        else { return varyingBatchUpdate(downcast(ls), downcast(option)); }
+    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) {
+        if (op == null) { return batchUpdate(downcast(ls)); }
+        else { return varyingBatchUpdate(downcast(ls), downcast(op)); }
     }
 
     /**
      * Batch-update the entity list specified-only. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * <pre>
-     * <span style="color: #3F7E5E">// e.g. update two columns only</span> 
+     * <span style="color: #3F7E5E">// e.g. update two columns only</span>
      * aliasRefExceptBhv.<span style="color: #FD4747">batchUpdate</span>(aliasRefExceptList, new SpecifyQuery<AliasRefExceptCB>() {
      *     public void specify(AliasRefExceptCB cb) { <span style="color: #3F7E5E">// the two only updated</span>
      *         cb.specify().<span style="color: #FD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
      *         cb.specify().<span style="color: #FD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
      *     }
      * });
-     * <span style="color: #3F7E5E">// e.g. update every column in the table</span> 
+     * <span style="color: #3F7E5E">// e.g. update every column in the table</span>
      * aliasRefExceptBhv.<span style="color: #FD4747">batchUpdate</span>(aliasRefExceptList, new SpecifyQuery<AliasRefExceptCB>() {
      *     public void specify(AliasRefExceptCB cb) { <span style="color: #3F7E5E">// all columns are updated</span>
      *         cb.specify().<span style="color: #FD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
@@ -722,8 +720,8 @@ public abstract class BsAliasRefExceptBhv extends AbstractBehaviorWritable {
     }
 
     @Override
-    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> option) {
-        return doLumpModify(ls, option);
+    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> op) {
+        return doLumpModify(ls, op);
     }
 
     /**
@@ -737,21 +735,21 @@ public abstract class BsAliasRefExceptBhv extends AbstractBehaviorWritable {
         return doBatchDelete(aliasRefExceptList, null);
     }
 
-    protected int[] doBatchDelete(List<AliasRefExcept> aliasRefExceptList, DeleteOption<AliasRefExceptCB> option) {
+    protected int[] doBatchDelete(List<AliasRefExcept> aliasRefExceptList, DeleteOption<AliasRefExceptCB> op) {
         assertObjectNotNull("aliasRefExceptList", aliasRefExceptList);
-        prepareDeleteOption(option);
-        return delegateBatchDelete(aliasRefExceptList, option);
+        prepareDeleteOption(op);
+        return delegateBatchDelete(aliasRefExceptList, op);
     }
 
     @Override
-    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> option) {
-        if (option == null) { return batchDelete(downcast(ls)); }
-        else { return varyingBatchDelete(downcast(ls), downcast(option)); }
+    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) {
+        if (op == null) { return batchDelete(downcast(ls)); }
+        else { return varyingBatchDelete(downcast(ls), downcast(op)); }
     }
 
     @Override
-    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> option) {
-        return doLumpRemove(ls, option);
+    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> op) {
+        return doLumpRemove(ls, op);
     }
 
     // ===================================================================================
@@ -764,7 +762,7 @@ public abstract class BsAliasRefExceptBhv extends AbstractBehaviorWritable {
      *     public ConditionBean setup(aliasRefExcept entity, AliasRefExceptCB intoCB) {
      *         FooCB cb = FooCB();
      *         cb.setupSelect_Bar();
-     * 
+     *
      *         <span style="color: #3F7E5E">// mapping</span>
      *         intoCB.specify().columnMyName().mappedFrom(cb.specify().columnFooName());
      *         intoCB.specify().columnMyCount().mappedFrom(cb.specify().columnFooCount());
@@ -775,7 +773,7 @@ public abstract class BsAliasRefExceptBhv extends AbstractBehaviorWritable {
      *         <span style="color: #3F7E5E">//entity.set...;</span>
      *         <span style="color: #3F7E5E">// you don't need to set a value of exclusive control column</span>
      *         <span style="color: #3F7E5E">//entity.setVersionNo(value);</span>
-     * 
+     *
      *         return cb;
      *     }
      * });
@@ -787,13 +785,12 @@ public abstract class BsAliasRefExceptBhv extends AbstractBehaviorWritable {
         return doQueryInsert(setupper, null);
     }
 
-    protected int doQueryInsert(QueryInsertSetupper<AliasRefExcept, AliasRefExceptCB> setupper, InsertOption<AliasRefExceptCB> option) {
-        assertObjectNotNull("setupper", setupper);
-        prepareInsertOption(option);
-        AliasRefExcept entity = new AliasRefExcept();
-        AliasRefExceptCB intoCB = createCBForQueryInsert();
-        ConditionBean resourceCB = setupper.setup(entity, intoCB);
-        return delegateQueryInsert(entity, intoCB, resourceCB, option);
+    protected int doQueryInsert(QueryInsertSetupper<AliasRefExcept, AliasRefExceptCB> sp, InsertOption<AliasRefExceptCB> op) {
+        assertObjectNotNull("setupper", sp);
+        prepareInsertOption(op);
+        AliasRefExcept e = new AliasRefExcept();
+        AliasRefExceptCB cb = createCBForQueryInsert();
+        return delegateQueryInsert(e, cb, sp.setup(e, cb), op);
     }
 
     protected AliasRefExceptCB createCBForQueryInsert() {
@@ -834,16 +831,16 @@ public abstract class BsAliasRefExceptBhv extends AbstractBehaviorWritable {
         return doQueryUpdate(aliasRefExcept, cb, null);
     }
 
-    protected int doQueryUpdate(AliasRefExcept aliasRefExcept, AliasRefExceptCB cb, UpdateOption<AliasRefExceptCB> option) {
+    protected int doQueryUpdate(AliasRefExcept aliasRefExcept, AliasRefExceptCB cb, UpdateOption<AliasRefExceptCB> op) {
         assertObjectNotNull("aliasRefExcept", aliasRefExcept); assertCBStateValid(cb);
-        prepareUpdateOption(option);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(aliasRefExcept, cb, option) : 0;
+        prepareUpdateOption(op);
+        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(aliasRefExcept, cb, op) : 0;
     }
 
     @Override
-    protected int doRangeModify(Entity entity, ConditionBean cb, UpdateOption<? extends ConditionBean> option) {
-        if (option == null) { return queryUpdate(downcast(entity), (AliasRefExceptCB)cb); }
-        else { return varyingQueryUpdate(downcast(entity), (AliasRefExceptCB)cb, downcast(option)); }
+    protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op) {
+        if (op == null) { return queryUpdate(downcast(et), (AliasRefExceptCB)cb); }
+        else { return varyingQueryUpdate(downcast(et), (AliasRefExceptCB)cb, downcast(op)); }
     }
 
     /**
@@ -861,16 +858,16 @@ public abstract class BsAliasRefExceptBhv extends AbstractBehaviorWritable {
         return doQueryDelete(cb, null);
     }
 
-    protected int doQueryDelete(AliasRefExceptCB cb, DeleteOption<AliasRefExceptCB> option) {
+    protected int doQueryDelete(AliasRefExceptCB cb, DeleteOption<AliasRefExceptCB> op) {
         assertCBStateValid(cb);
-        prepareDeleteOption(option);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryDelete(cb, option) : 0;
+        prepareDeleteOption(op);
+        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryDelete(cb, op) : 0;
     }
 
     @Override
-    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> option) {
-        if (option == null) { return queryDelete((AliasRefExceptCB)cb); }
-        else { return varyingQueryDelete((AliasRefExceptCB)cb, downcast(option)); }
+    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) {
+        if (op == null) { return queryDelete((AliasRefExceptCB)cb); }
+        else { return varyingQueryDelete((AliasRefExceptCB)cb, downcast(op)); }
     }
 
     // ===================================================================================
@@ -1016,7 +1013,7 @@ public abstract class BsAliasRefExceptBhv extends AbstractBehaviorWritable {
     /**
      * Insert the several entities by query with varying requests (modified-only for fixed value). <br />
      * For example, disableCommonColumnAutoSetup(), disablePrimaryKeyIdentity(). <br />
-     * Other specifications are same as queryInsert(entity, setupper). 
+     * Other specifications are same as queryInsert(entity, setupper).
      * @param setupper The setup-per of query-insert. (NotNull)
      * @param option The option of insert for varying requests. (NotNull)
      * @return The inserted count.
@@ -1030,7 +1027,7 @@ public abstract class BsAliasRefExceptBhv extends AbstractBehaviorWritable {
      * Update the several entities by query with varying requests non-strictly modified-only. {NonExclusiveControl} <br />
      * For example, self(selfCalculationSpecification), specify(updateColumnSpecification)
      * , disableCommonColumnAutoSetup(), allowNonQueryUpdate(). <br />
-     * Other specifications are same as queryUpdate(entity, cb). 
+     * Other specifications are same as queryUpdate(entity, cb).
      * <pre>
      * <span style="color: #3F7E5E">// ex) you can update by self calculation values</span>
      * AliasRefExcept aliasRefExcept = new AliasRefExcept();
@@ -1087,27 +1084,27 @@ public abstract class BsAliasRefExceptBhv extends AbstractBehaviorWritable {
      *   o selectList()
      *   o execute()
      *   o call()
-     * 
+     *
      * {Entity}
      *   o entityHandling().selectEntity()
      *   o entityHandling().selectEntityWithDeletedCheck()
-     * 
+     *
      * {Paging}
      *   o autoPaging().selectList()
      *   o autoPaging().selectPage()
      *   o manualPaging().selectList()
      *   o manualPaging().selectPage()
-     * 
+     *
      * {Cursor}
      *   o cursorHandling().selectCursor()
-     * 
+     *
      * {Option}
      *   o dynamicBinding().selectList()
      *   o removeBlockComment().selectList()
      *   o removeLineComment().selectList()
      *   o formatSql().selectList()
      * </pre>
-     * @return The basic executor of outside-SQL. (NotNull) 
+     * @return The basic executor of outside-SQL. (NotNull)
      */
     public OutsideSqlBasicExecutor<AliasRefExceptBhv> outsideSql() {
         return doOutsideSql();
@@ -1122,29 +1119,29 @@ public abstract class BsAliasRefExceptBhv extends AbstractBehaviorWritable {
     //                                                ------
     protected int delegateSelectCountUniquely(AliasRefExceptCB cb) { return invoke(createSelectCountCBCommand(cb, true)); }
     protected int delegateSelectCountPlainly(AliasRefExceptCB cb) { return invoke(createSelectCountCBCommand(cb, false)); }
-    protected <ENTITY extends AliasRefExcept> void delegateSelectCursor(AliasRefExceptCB cb, EntityRowHandler<ENTITY> erh, Class<ENTITY> et)
-    { invoke(createSelectCursorCBCommand(cb, erh, et)); }
-    protected <ENTITY extends AliasRefExcept> List<ENTITY> delegateSelectList(AliasRefExceptCB cb, Class<ENTITY> et)
-    { return invoke(createSelectListCBCommand(cb, et)); }
+    protected <ENTITY extends AliasRefExcept> void delegateSelectCursor(AliasRefExceptCB cb, EntityRowHandler<ENTITY> rh, Class<ENTITY> tp)
+    { invoke(createSelectCursorCBCommand(cb, rh, tp)); }
+    protected <ENTITY extends AliasRefExcept> List<ENTITY> delegateSelectList(AliasRefExceptCB cb, Class<ENTITY> tp)
+    { return invoke(createSelectListCBCommand(cb, tp)); }
 
     // -----------------------------------------------------
     //                                                Update
     //                                                ------
-    protected int delegateInsert(AliasRefExcept e, InsertOption<AliasRefExceptCB> op)
-    { if (!processBeforeInsert(e, op)) { return 0; }
-      return invoke(createInsertEntityCommand(e, op)); }
-    protected int delegateUpdate(AliasRefExcept e, UpdateOption<AliasRefExceptCB> op)
-    { if (!processBeforeUpdate(e, op)) { return 0; }
-      return delegateUpdateNonstrict(e, op); }
-    protected int delegateUpdateNonstrict(AliasRefExcept e, UpdateOption<AliasRefExceptCB> op)
-    { if (!processBeforeUpdate(e, op)) { return 0; }
-      return invoke(createUpdateNonstrictEntityCommand(e, op)); }
-    protected int delegateDelete(AliasRefExcept e, DeleteOption<AliasRefExceptCB> op)
-    { if (!processBeforeDelete(e, op)) { return 0; }
-      return delegateDeleteNonstrict(e, op); }
-    protected int delegateDeleteNonstrict(AliasRefExcept e, DeleteOption<AliasRefExceptCB> op)
-    { if (!processBeforeDelete(e, op)) { return 0; }
-      return invoke(createDeleteNonstrictEntityCommand(e, op)); }
+    protected int delegateInsert(AliasRefExcept et, InsertOption<AliasRefExceptCB> op)
+    { if (!processBeforeInsert(et, op)) { return 0; }
+      return invoke(createInsertEntityCommand(et, op)); }
+    protected int delegateUpdate(AliasRefExcept et, UpdateOption<AliasRefExceptCB> op)
+    { if (!processBeforeUpdate(et, op)) { return 0; }
+      return delegateUpdateNonstrict(et, op); }
+    protected int delegateUpdateNonstrict(AliasRefExcept et, UpdateOption<AliasRefExceptCB> op)
+    { if (!processBeforeUpdate(et, op)) { return 0; }
+      return invoke(createUpdateNonstrictEntityCommand(et, op)); }
+    protected int delegateDelete(AliasRefExcept et, DeleteOption<AliasRefExceptCB> op)
+    { if (!processBeforeDelete(et, op)) { return 0; }
+      return delegateDeleteNonstrict(et, op); }
+    protected int delegateDeleteNonstrict(AliasRefExcept et, DeleteOption<AliasRefExceptCB> op)
+    { if (!processBeforeDelete(et, op)) { return 0; }
+      return invoke(createDeleteNonstrictEntityCommand(et, op)); }
 
     protected int[] delegateBatchInsert(List<AliasRefExcept> ls, InsertOption<AliasRefExceptCB> op)
     { if (ls.isEmpty()) { return new int[]{}; }
@@ -1162,10 +1159,10 @@ public abstract class BsAliasRefExceptBhv extends AbstractBehaviorWritable {
     { if (ls.isEmpty()) { return new int[]{}; }
       return invoke(createBatchDeleteNonstrictCommand(processBatchInternally(ls, op, true), op)); }
 
-    protected int delegateQueryInsert(AliasRefExcept e, AliasRefExceptCB inCB, ConditionBean resCB, InsertOption<AliasRefExceptCB> op)
-    { if (!processBeforeQueryInsert(e, inCB, resCB, op)) { return 0; } return invoke(createQueryInsertCBCommand(e, inCB, resCB, op));  }
-    protected int delegateQueryUpdate(AliasRefExcept e, AliasRefExceptCB cb, UpdateOption<AliasRefExceptCB> op)
-    { if (!processBeforeQueryUpdate(e, cb, op)) { return 0; } return invoke(createQueryUpdateCBCommand(e, cb, op));  }
+    protected int delegateQueryInsert(AliasRefExcept et, AliasRefExceptCB inCB, ConditionBean resCB, InsertOption<AliasRefExceptCB> op)
+    { if (!processBeforeQueryInsert(et, inCB, resCB, op)) { return 0; } return invoke(createQueryInsertCBCommand(et, inCB, resCB, op));  }
+    protected int delegateQueryUpdate(AliasRefExcept et, AliasRefExceptCB cb, UpdateOption<AliasRefExceptCB> op)
+    { if (!processBeforeQueryUpdate(et, cb, op)) { return 0; } return invoke(createQueryUpdateCBCommand(et, cb, op));  }
     protected int delegateQueryDelete(AliasRefExceptCB cb, DeleteOption<AliasRefExceptCB> op)
     { if (!processBeforeQueryDelete(cb, op)) { return 0; } return invoke(createQueryDeleteCBCommand(cb, op));  }
 
@@ -1176,7 +1173,7 @@ public abstract class BsAliasRefExceptBhv extends AbstractBehaviorWritable {
      * {@inheritDoc}
      */
     @Override
-    protected boolean hasVersionNoValue(Entity entity) {
+    protected boolean hasVersionNoValue(Entity et) {
         return false;
     }
 
@@ -1184,15 +1181,15 @@ public abstract class BsAliasRefExceptBhv extends AbstractBehaviorWritable {
      * {@inheritDoc}
      */
     @Override
-    protected boolean hasUpdateDateValue(Entity entity) {
+    protected boolean hasUpdateDateValue(Entity et) {
         return false;
     }
 
     // ===================================================================================
     //                                                                     Downcast Helper
     //                                                                     ===============
-    protected AliasRefExcept downcast(Entity entity) {
-        return helpEntityDowncastInternally(entity, AliasRefExcept.class);
+    protected AliasRefExcept downcast(Entity et) {
+        return helpEntityDowncastInternally(et, AliasRefExcept.class);
     }
 
     protected AliasRefExceptCB downcast(ConditionBean cb) {
@@ -1200,27 +1197,27 @@ public abstract class BsAliasRefExceptBhv extends AbstractBehaviorWritable {
     }
 
     @SuppressWarnings("unchecked")
-    protected List<AliasRefExcept> downcast(List<? extends Entity> entityList) {
-        return (List<AliasRefExcept>)entityList;
+    protected List<AliasRefExcept> downcast(List<? extends Entity> ls) {
+        return (List<AliasRefExcept>)ls;
     }
 
     @SuppressWarnings("unchecked")
-    protected InsertOption<AliasRefExceptCB> downcast(InsertOption<? extends ConditionBean> option) {
-        return (InsertOption<AliasRefExceptCB>)option;
+    protected InsertOption<AliasRefExceptCB> downcast(InsertOption<? extends ConditionBean> op) {
+        return (InsertOption<AliasRefExceptCB>)op;
     }
 
     @SuppressWarnings("unchecked")
-    protected UpdateOption<AliasRefExceptCB> downcast(UpdateOption<? extends ConditionBean> option) {
-        return (UpdateOption<AliasRefExceptCB>)option;
+    protected UpdateOption<AliasRefExceptCB> downcast(UpdateOption<? extends ConditionBean> op) {
+        return (UpdateOption<AliasRefExceptCB>)op;
     }
 
     @SuppressWarnings("unchecked")
-    protected DeleteOption<AliasRefExceptCB> downcast(DeleteOption<? extends ConditionBean> option) {
-        return (DeleteOption<AliasRefExceptCB>)option;
+    protected DeleteOption<AliasRefExceptCB> downcast(DeleteOption<? extends ConditionBean> op) {
+        return (DeleteOption<AliasRefExceptCB>)op;
     }
 
     @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<AliasRefExcept, AliasRefExceptCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> option) {
-        return (QueryInsertSetupper<AliasRefExcept, AliasRefExceptCB>)option;
+    protected QueryInsertSetupper<AliasRefExcept, AliasRefExceptCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp) {
+        return (QueryInsertSetupper<AliasRefExcept, AliasRefExceptCB>)sp;
     }
 }

@@ -382,8 +382,8 @@ public class BsVendorDateFkCB extends AbstractConditionBean {
         public HpSDRFunction<VendorDateFkCB, VendorDateFkCQ> myselfDerived() {
             assertDerived("myselfDerived"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<VendorDateFkCB, VendorDateFkCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<VendorDateFkCB, VendorDateFkCQ>() {
-                public void setup(String function, SubQuery<VendorDateFkCB> subQuery, VendorDateFkCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsmyselfDerive(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<VendorDateFkCB> sq, VendorDateFkCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsmyselfDerive(fn, sq, al, op); } }, _dbmetaProvider);
         }
     }
 

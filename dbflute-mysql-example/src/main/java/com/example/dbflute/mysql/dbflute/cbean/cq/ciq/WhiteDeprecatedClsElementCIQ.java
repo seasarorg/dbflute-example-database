@@ -86,18 +86,18 @@ public class WhiteDeprecatedClsElementCIQ extends AbstractBsWhiteDeprecatedClsEl
     //                                                                ====================
     protected ConditionValue getCValueDeprecatedClsElementCode() { return _myCQ.getDeprecatedClsElementCode(); }
     protected ConditionValue getCValueDeprecatedClsElementName() { return _myCQ.getDeprecatedClsElementName(); }
-    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) { return null; }
-    public String keepScalarCondition(WhiteDeprecatedClsElementCQ subQuery)
+    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
+    public String keepScalarCondition(WhiteDeprecatedClsElementCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }
-    public String keepSpecifyMyselfDerived(WhiteDeprecatedClsElementCQ subQuery)
+    public String keepSpecifyMyselfDerived(WhiteDeprecatedClsElementCQ sq)
     { throwIICBOE("(Specify)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerived(WhiteDeprecatedClsElementCQ subQuery)
+    public String keepQueryMyselfDerived(WhiteDeprecatedClsElementCQ sq)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerivedParameter(Object parameterValue)
+    public String keepQueryMyselfDerivedParameter(Object vl)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepMyselfExists(WhiteDeprecatedClsElementCQ subQuery)
+    public String keepMyselfExists(WhiteDeprecatedClsElementCQ sq)
     { throwIICBOE("MyselfExists"); return null;}
-    public String keepMyselfInScope(WhiteDeprecatedClsElementCQ subQuery)
+    public String keepMyselfInScope(WhiteDeprecatedClsElementCQ sq)
     { throwIICBOE("MyselfInScope"); return null;}
 
     protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()

@@ -97,21 +97,21 @@ public class WhiteSplitMultipleFkNextCIQ extends AbstractBsWhiteSplitMultipleFkN
     { throwIICBOE("(Specify)DerivedReferrer"); return null; }
     public String keepNextId_QueryDerivedReferrer_WhiteSplitMultipleFkBaseList(WhiteSplitMultipleFkBaseCQ sq)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
-    public String keepNextId_QueryDerivedReferrer_WhiteSplitMultipleFkBaseListParameter(Object pv)
+    public String keepNextId_QueryDerivedReferrer_WhiteSplitMultipleFkBaseListParameter(Object vl)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
     protected ConditionValue getCValueSecondCode() { return _myCQ.getSecondCode(); }
-    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) { return null; }
-    public String keepScalarCondition(WhiteSplitMultipleFkNextCQ subQuery)
+    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
+    public String keepScalarCondition(WhiteSplitMultipleFkNextCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }
-    public String keepSpecifyMyselfDerived(WhiteSplitMultipleFkNextCQ subQuery)
+    public String keepSpecifyMyselfDerived(WhiteSplitMultipleFkNextCQ sq)
     { throwIICBOE("(Specify)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerived(WhiteSplitMultipleFkNextCQ subQuery)
+    public String keepQueryMyselfDerived(WhiteSplitMultipleFkNextCQ sq)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerivedParameter(Object parameterValue)
+    public String keepQueryMyselfDerivedParameter(Object vl)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepMyselfExists(WhiteSplitMultipleFkNextCQ subQuery)
+    public String keepMyselfExists(WhiteSplitMultipleFkNextCQ sq)
     { throwIICBOE("MyselfExists"); return null;}
-    public String keepMyselfInScope(WhiteSplitMultipleFkNextCQ subQuery)
+    public String keepMyselfInScope(WhiteSplitMultipleFkNextCQ sq)
     { throwIICBOE("MyselfInScope"); return null;}
 
     protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()

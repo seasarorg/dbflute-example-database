@@ -102,18 +102,18 @@ public class BsWhiteUqFkWithoutPkRefCQ extends AbstractBsWhiteUqFkWithoutPkRefCQ
 
     protected Map<String, WhiteUqFkWithoutPkCQ> _fkToUqCode_InScopeRelation_WhiteUqFkWithoutPkMap;
     public Map<String, WhiteUqFkWithoutPkCQ> getFkToUqCode_InScopeRelation_WhiteUqFkWithoutPk() { return _fkToUqCode_InScopeRelation_WhiteUqFkWithoutPkMap; }
-    public String keepFkToUqCode_InScopeRelation_WhiteUqFkWithoutPk(WhiteUqFkWithoutPkCQ subQuery) {
+    public String keepFkToUqCode_InScopeRelation_WhiteUqFkWithoutPk(WhiteUqFkWithoutPkCQ sq) {
         if (_fkToUqCode_InScopeRelation_WhiteUqFkWithoutPkMap == null) { _fkToUqCode_InScopeRelation_WhiteUqFkWithoutPkMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_fkToUqCode_InScopeRelation_WhiteUqFkWithoutPkMap.size() + 1);
-        _fkToUqCode_InScopeRelation_WhiteUqFkWithoutPkMap.put(key, subQuery); return "fkToUqCode_InScopeRelation_WhiteUqFkWithoutPk." + key;
+        String ky = "subQueryMapKey" + (_fkToUqCode_InScopeRelation_WhiteUqFkWithoutPkMap.size() + 1);
+        _fkToUqCode_InScopeRelation_WhiteUqFkWithoutPkMap.put(ky, sq); return "fkToUqCode_InScopeRelation_WhiteUqFkWithoutPk." + ky;
     }
 
     protected Map<String, WhiteUqFkWithoutPkCQ> _fkToUqCode_NotInScopeRelation_WhiteUqFkWithoutPkMap;
     public Map<String, WhiteUqFkWithoutPkCQ> getFkToUqCode_NotInScopeRelation_WhiteUqFkWithoutPk() { return _fkToUqCode_NotInScopeRelation_WhiteUqFkWithoutPkMap; }
-    public String keepFkToUqCode_NotInScopeRelation_WhiteUqFkWithoutPk(WhiteUqFkWithoutPkCQ subQuery) {
+    public String keepFkToUqCode_NotInScopeRelation_WhiteUqFkWithoutPk(WhiteUqFkWithoutPkCQ sq) {
         if (_fkToUqCode_NotInScopeRelation_WhiteUqFkWithoutPkMap == null) { _fkToUqCode_NotInScopeRelation_WhiteUqFkWithoutPkMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_fkToUqCode_NotInScopeRelation_WhiteUqFkWithoutPkMap.size() + 1);
-        _fkToUqCode_NotInScopeRelation_WhiteUqFkWithoutPkMap.put(key, subQuery); return "fkToUqCode_NotInScopeRelation_WhiteUqFkWithoutPk." + key;
+        String ky = "subQueryMapKey" + (_fkToUqCode_NotInScopeRelation_WhiteUqFkWithoutPkMap.size() + 1);
+        _fkToUqCode_NotInScopeRelation_WhiteUqFkWithoutPkMap.put(ky, sq); return "fkToUqCode_NotInScopeRelation_WhiteUqFkWithoutPk." + ky;
     }
 
     /** 
@@ -170,11 +170,11 @@ public class BsWhiteUqFkWithoutPkRefCQ extends AbstractBsWhiteUqFkWithoutPkRefCQ
     // ===================================================================================
     //                                                                         Union Query
     //                                                                         ===========
-    protected void reflectRelationOnUnionQuery(ConditionQuery baseQueryAsSuper, ConditionQuery unionQueryAsSuper) {
-        WhiteUqFkWithoutPkRefCQ baseQuery = (WhiteUqFkWithoutPkRefCQ)baseQueryAsSuper;
-        WhiteUqFkWithoutPkRefCQ unionQuery = (WhiteUqFkWithoutPkRefCQ)unionQueryAsSuper;
-        if (baseQuery.hasConditionQueryWhiteUqFkWithoutPk()) {
-            unionQuery.queryWhiteUqFkWithoutPk().reflectRelationOnUnionQuery(baseQuery.queryWhiteUqFkWithoutPk(), unionQuery.queryWhiteUqFkWithoutPk());
+    protected void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
+        WhiteUqFkWithoutPkRefCQ bq = (WhiteUqFkWithoutPkRefCQ)bqs;
+        WhiteUqFkWithoutPkRefCQ uq = (WhiteUqFkWithoutPkRefCQ)uqs;
+        if (bq.hasConditionQueryWhiteUqFkWithoutPk()) {
+            uq.queryWhiteUqFkWithoutPk().reflectRelationOnUnionQuery(bq.queryWhiteUqFkWithoutPk(), uq.queryWhiteUqFkWithoutPk());
         }
     }
 

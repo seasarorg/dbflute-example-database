@@ -87,7 +87,7 @@ public class WhiteCompoundPkCIQ extends AbstractBsWhiteCompoundPkCQ {
     protected ConditionValue getCValuePkFirstId() { return _myCQ.getPkFirstId(); }
     protected ConditionValue getCValuePkSecondId() { return _myCQ.getPkSecondId(); }
     protected ConditionValue getCValuePkName() { return _myCQ.getPkName(); }
-    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) { return null; }
+    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
 
     protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()
         throw new IllegalConditionBeanOperationException(name + " at InlineView is unsupported.");

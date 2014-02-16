@@ -71,18 +71,18 @@ public class VendorUuidBarCIQ extends AbstractBsVendorUuidBarCQ {
     //                                                                ====================
     protected ConditionValue getCValueBarId() { return _myCQ.getBarId(); }
     protected ConditionValue getCValueBarName() { return _myCQ.getBarName(); }
-    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) { return null; }
-    public String keepScalarCondition(VendorUuidBarCQ subQuery)
+    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
+    public String keepScalarCondition(VendorUuidBarCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }
-    public String keepSpecifyMyselfDerived(VendorUuidBarCQ subQuery)
+    public String keepSpecifyMyselfDerived(VendorUuidBarCQ sq)
     { throwIICBOE("(Specify)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerived(VendorUuidBarCQ subQuery)
+    public String keepQueryMyselfDerived(VendorUuidBarCQ sq)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerivedParameter(Object parameterValue)
+    public String keepQueryMyselfDerivedParameter(Object vl)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepMyselfExists(VendorUuidBarCQ subQuery)
+    public String keepMyselfExists(VendorUuidBarCQ sq)
     { throwIICBOE("MyselfExists"); return null;}
-    public String keepMyselfInScope(VendorUuidBarCQ subQuery)
+    public String keepMyselfInScope(VendorUuidBarCQ sq)
     { throwIICBOE("MyselfInScope"); return null;}
 
     protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()

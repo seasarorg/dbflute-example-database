@@ -58,20 +58,20 @@ public class WhiteAdditionalDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgFooId implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteAdditional)e).getFooId(); }
-        public void write(Entity e, Object v) { ((WhiteAdditional)e).setFooId(cti(v)); }
+        public Object read(Entity et) { return ((WhiteAdditional)et).getFooId(); }
+        public void write(Entity et, Object vl) { ((WhiteAdditional)et).setFooId(cti(vl)); }
     }
     public static class EpgFooName implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteAdditional)e).getFooName(); }
-        public void write(Entity e, Object v) { ((WhiteAdditional)e).setFooName((String)v); }
+        public Object read(Entity et) { return ((WhiteAdditional)et).getFooName(); }
+        public void write(Entity et, Object vl) { ((WhiteAdditional)et).setFooName((String)vl); }
     }
     public static class EpgFooDate implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteAdditional)e).getFooDate(); }
-        public void write(Entity e, Object v) { ((WhiteAdditional)e).setFooDate((java.util.Date)v); }
+        public Object read(Entity et) { return ((WhiteAdditional)et).getFooDate(); }
+        public void write(Entity et, Object vl) { ((WhiteAdditional)et).setFooDate((java.util.Date)vl); }
     }
     public static class EpgRegisterDatetime implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteAdditional)e).getRegisterDatetime(); }
-        public void write(Entity e, Object v) { ((WhiteAdditional)e).setRegisterDatetime((java.sql.Timestamp)v); }
+        public Object read(Entity et) { return ((WhiteAdditional)et).getRegisterDatetime(); }
+        public void write(Entity et, Object vl) { ((WhiteAdditional)et).setRegisterDatetime((java.sql.Timestamp)vl); }
     }
 
     // ===================================================================================
@@ -160,10 +160,10 @@ public class WhiteAdditionalDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((WhiteAdditional)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((WhiteAdditional)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((WhiteAdditional)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((WhiteAdditional)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

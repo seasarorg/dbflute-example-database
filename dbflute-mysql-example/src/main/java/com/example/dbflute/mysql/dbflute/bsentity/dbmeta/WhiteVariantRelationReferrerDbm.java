@@ -57,19 +57,19 @@ public class WhiteVariantRelationReferrerDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgReferrerId implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteVariantRelationReferrer)e).getReferrerId(); }
-        public void write(Entity e, Object v) { ((WhiteVariantRelationReferrer)e).setReferrerId(ctl(v)); }
+        public Object read(Entity et) { return ((WhiteVariantRelationReferrer)et).getReferrerId(); }
+        public void write(Entity et, Object vl) { ((WhiteVariantRelationReferrer)et).setReferrerId(ctl(vl)); }
     }
     public static class EpgVariantMasterId implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteVariantRelationReferrer)e).getVariantMasterId(); }
-        public void write(Entity e, Object v) { ((WhiteVariantRelationReferrer)e).setVariantMasterId(ctl(v)); }
+        public Object read(Entity et) { return ((WhiteVariantRelationReferrer)et).getVariantMasterId(); }
+        public void write(Entity et, Object vl) { ((WhiteVariantRelationReferrer)et).setVariantMasterId(ctl(vl)); }
     }
     public class EpgMasterTypeCode implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteVariantRelationReferrer)e).getMasterTypeCode(); }
-        public void write(Entity e, Object v) {
+        public Object read(Entity et) { return ((WhiteVariantRelationReferrer)et).getMasterTypeCode(); }
+        public void write(Entity et, Object vl) {
             ColumnInfo col = columnMasterTypeCode();
-            ccls(col, v);
-            ((WhiteVariantRelationReferrer)e).setMasterTypeCodeAsVariantRelationMasterType((CDef.VariantRelationMasterType)gcls(col, v));
+            ccls(col, vl);
+            ((WhiteVariantRelationReferrer)et).setMasterTypeCodeAsVariantRelationMasterType((CDef.VariantRelationMasterType)gcls(col, vl));
         }
     }
 
@@ -122,20 +122,20 @@ public class WhiteVariantRelationReferrerDbm extends AbstractDBMeta {
     //                                      Foreign Property
     //                                      ----------------
     public ForeignInfo foreignWhiteVariantRelationMasterFooAsVariant() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnVariantMasterId(), WhiteVariantRelationMasterFooDbm.getInstance().columnMasterFooId());
-        return cfi("FK_WHITE_VARIANT_RELATION_FOO", "whiteVariantRelationMasterFooAsVariant", this, WhiteVariantRelationMasterFooDbm.getInstance(), map, 0, false, false, false, true, "$$localAlias$$.MASTER_TYPE_CODE = 'FOO'", null, false, "whiteVariantRelationReferrerAsVariantList");
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnVariantMasterId(), WhiteVariantRelationMasterFooDbm.getInstance().columnMasterFooId());
+        return cfi("FK_WHITE_VARIANT_RELATION_FOO", "whiteVariantRelationMasterFooAsVariant", this, WhiteVariantRelationMasterFooDbm.getInstance(), mp, 0, false, false, false, true, "$$localAlias$$.MASTER_TYPE_CODE = 'FOO'", null, false, "whiteVariantRelationReferrerAsVariantList");
     }
     public ForeignInfo foreignWhiteVariantRelationMasterBarAsVariant() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnVariantMasterId(), WhiteVariantRelationMasterBarDbm.getInstance().columnMasterBarId());
-        return cfi("FK_WHITE_VARIANT_RELATION_BAR", "whiteVariantRelationMasterBarAsVariant", this, WhiteVariantRelationMasterBarDbm.getInstance(), map, 1, false, false, false, true, "$$localAlias$$.MASTER_TYPE_CODE = 'BAR'", null, false, "whiteVariantRelationReferrerAsVariantList");
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnVariantMasterId(), WhiteVariantRelationMasterBarDbm.getInstance().columnMasterBarId());
+        return cfi("FK_WHITE_VARIANT_RELATION_BAR", "whiteVariantRelationMasterBarAsVariant", this, WhiteVariantRelationMasterBarDbm.getInstance(), mp, 1, false, false, false, true, "$$localAlias$$.MASTER_TYPE_CODE = 'BAR'", null, false, "whiteVariantRelationReferrerAsVariantList");
     }
     public ForeignInfo foreignWhiteVariantRelationMasterQuxAsVariantByQue() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnVariantMasterId(), WhiteVariantRelationMasterQuxDbm.getInstance().columnMasterQuxId());
-        return cfi("FK_WHITE_VARIANT_RELATION_QUX", "whiteVariantRelationMasterQuxAsVariantByQue", this, WhiteVariantRelationMasterQuxDbm.getInstance(), map, 2, false, false, false, true, "$$localAlias$$.MASTER_TYPE_CODE = 'QUX'\n     and $$foreignAlias$$.QUX_TYPE_CODE = 'Que'", null, false, null);
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnVariantMasterId(), WhiteVariantRelationMasterQuxDbm.getInstance().columnMasterQuxId());
+        return cfi("FK_WHITE_VARIANT_RELATION_QUX", "whiteVariantRelationMasterQuxAsVariantByQue", this, WhiteVariantRelationMasterQuxDbm.getInstance(), mp, 2, false, false, false, true, "$$localAlias$$.MASTER_TYPE_CODE = 'QUX'\n     and $$foreignAlias$$.QUX_TYPE_CODE = 'Que'", null, false, null);
     }
     public ForeignInfo foreignWhiteVariantRelationMasterCorgeAsVariantByQuxType() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnVariantMasterId(), WhiteVariantRelationMasterCorgeDbm.getInstance().columnMasterCorgeId());
-        return cfi("FK_WHITE_VARIANT_RELATION_CORGE", "whiteVariantRelationMasterCorgeAsVariantByQuxType", this, WhiteVariantRelationMasterCorgeDbm.getInstance(), map, 3, false, false, false, true, "$$localAlias$$.MASTER_TYPE_CODE = 'CORGE'\n     and $$foreignAlias$$.CORGE_TYPE_CODE = /*$$locationBase$$.parameterMapWhiteVariantRelationMasterCorgeAsVariantByQuxType.quxType*/null", newArrayList("quxType"), false, null);
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnVariantMasterId(), WhiteVariantRelationMasterCorgeDbm.getInstance().columnMasterCorgeId());
+        return cfi("FK_WHITE_VARIANT_RELATION_CORGE", "whiteVariantRelationMasterCorgeAsVariantByQuxType", this, WhiteVariantRelationMasterCorgeDbm.getInstance(), mp, 3, false, false, false, true, "$$localAlias$$.MASTER_TYPE_CODE = 'CORGE'\n     and $$foreignAlias$$.CORGE_TYPE_CODE = /*$$locationBase$$.parameterMapWhiteVariantRelationMasterCorgeAsVariantByQuxType.quxType*/null", newArrayList("quxType"), false, null);
     }
 
     // -----------------------------------------------------
@@ -167,10 +167,10 @@ public class WhiteVariantRelationReferrerDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((WhiteVariantRelationReferrer)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((WhiteVariantRelationReferrer)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((WhiteVariantRelationReferrer)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((WhiteVariantRelationReferrer)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

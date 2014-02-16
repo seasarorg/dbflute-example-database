@@ -330,8 +330,8 @@ public class BsWhiteDelimiterCB extends AbstractConditionBean {
         public HpSDRFunction<WhiteDelimiterCB, WhiteDelimiterCQ> myselfDerived() {
             assertDerived("myselfDerived"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<WhiteDelimiterCB, WhiteDelimiterCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<WhiteDelimiterCB, WhiteDelimiterCQ>() {
-                public void setup(String function, SubQuery<WhiteDelimiterCB> subQuery, WhiteDelimiterCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsmyselfDerive(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<WhiteDelimiterCB> sq, WhiteDelimiterCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsmyselfDerive(fn, sq, al, op); } }, _dbmetaProvider);
         }
     }
 

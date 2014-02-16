@@ -145,8 +145,8 @@ public abstract class AbstractBsSynonymMemberLoginCQ extends AbstractConditionQu
      */
     public void setMemberLoginId_IsNotNull() { regMemberLoginId(CK_ISNN, DOBJ); }
 
-    protected void regMemberLoginId(ConditionKey k, Object v) { regQ(k, v, getCValueMemberLoginId(), "MEMBER_LOGIN_ID"); }
-    abstract protected ConditionValue getCValueMemberLoginId();
+    protected void regMemberLoginId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueMemberLoginId(), "MEMBER_LOGIN_ID"); }
+    protected abstract ConditionValue getCValueMemberLoginId();
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -243,12 +243,12 @@ public abstract class AbstractBsSynonymMemberLoginCQ extends AbstractConditionQu
      * @param subQuery The sub-query of MemberVendorSynonym for 'in-scope'. (NotNull)
      */
     public void inScopeMemberVendorSynonym(SubQuery<MemberVendorSynonymCB> subQuery) {
-        assertObjectNotNull("subQuery<MemberVendorSynonymCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         MemberVendorSynonymCB cb = new MemberVendorSynonymCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMemberId_InScopeRelation_MemberVendorSynonym(cb.query()); // for saving query-value.
-        registerInScopeRelation(cb.query(), "MEMBER_ID", "MEMBER_ID", subQueryPropertyName, "memberVendorSynonym");
+        String pp = keepMemberId_InScopeRelation_MemberVendorSynonym(cb.query()); // for saving query-value.
+        registerInScopeRelation(cb.query(), "MEMBER_ID", "MEMBER_ID", pp, "memberVendorSynonym");
     }
-    public abstract String keepMemberId_InScopeRelation_MemberVendorSynonym(MemberVendorSynonymCQ subQuery);
+    public abstract String keepMemberId_InScopeRelation_MemberVendorSynonym(MemberVendorSynonymCQ sq);
 
     /**
      * Set up NotInScopeRelation (sub-query). <br />
@@ -257,15 +257,15 @@ public abstract class AbstractBsSynonymMemberLoginCQ extends AbstractConditionQu
      * @param subQuery The sub-query of MemberVendorSynonym for 'not in-scope'. (NotNull)
      */
     public void notInScopeMemberVendorSynonym(SubQuery<MemberVendorSynonymCB> subQuery) {
-        assertObjectNotNull("subQuery<MemberVendorSynonymCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         MemberVendorSynonymCB cb = new MemberVendorSynonymCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMemberId_NotInScopeRelation_MemberVendorSynonym(cb.query()); // for saving query-value.
-        registerNotInScopeRelation(cb.query(), "MEMBER_ID", "MEMBER_ID", subQueryPropertyName, "memberVendorSynonym");
+        String pp = keepMemberId_NotInScopeRelation_MemberVendorSynonym(cb.query()); // for saving query-value.
+        registerNotInScopeRelation(cb.query(), "MEMBER_ID", "MEMBER_ID", pp, "memberVendorSynonym");
     }
-    public abstract String keepMemberId_NotInScopeRelation_MemberVendorSynonym(MemberVendorSynonymCQ subQuery);
+    public abstract String keepMemberId_NotInScopeRelation_MemberVendorSynonym(MemberVendorSynonymCQ sq);
 
-    protected void regMemberId(ConditionKey k, Object v) { regQ(k, v, getCValueMemberId(), "MEMBER_ID"); }
-    abstract protected ConditionValue getCValueMemberId();
+    protected void regMemberId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueMemberId(), "MEMBER_ID"); }
+    protected abstract ConditionValue getCValueMemberId();
 
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -321,7 +321,7 @@ public abstract class AbstractBsSynonymMemberLoginCQ extends AbstractConditionQu
      * @param toDatetime The to-datetime(yyyy/MM/dd HH:mm:ss.SSS) of loginDatetime. (NullAllowed: if null, no to-condition)
      * @param fromToOption The option of from-to. (NotNull)
      */
-    public void setLoginDatetime_FromTo(java.util.Date fromDatetime, java.util.Date toDatetime, FromToOption fromToOption) {
+    public void setLoginDatetime_FromTo(Date fromDatetime, Date toDatetime, FromToOption fromToOption) {
         regFTQ(fCTPD(fromDatetime), fCTPD(toDatetime), getCValueLoginDatetime(), "LOGIN_DATETIME", fromToOption);
     }
 
@@ -336,12 +336,12 @@ public abstract class AbstractBsSynonymMemberLoginCQ extends AbstractConditionQu
      * @param fromDate The from-date(yyyy/MM/dd) of loginDatetime. (NullAllowed: if null, no from-condition)
      * @param toDate The to-date(yyyy/MM/dd) of loginDatetime. (NullAllowed: if null, no to-condition)
      */
-    public void setLoginDatetime_DateFromTo(java.util.Date fromDate, java.util.Date toDate) {
+    public void setLoginDatetime_DateFromTo(Date fromDate, Date toDate) {
         setLoginDatetime_FromTo(fromDate, toDate, new FromToOption().compareAsDate());
     }
 
-    protected void regLoginDatetime(ConditionKey k, Object v) { regQ(k, v, getCValueLoginDatetime(), "LOGIN_DATETIME"); }
-    abstract protected ConditionValue getCValueLoginDatetime();
+    protected void regLoginDatetime(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueLoginDatetime(), "LOGIN_DATETIME"); }
+    protected abstract ConditionValue getCValueLoginDatetime();
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -428,8 +428,8 @@ public abstract class AbstractBsSynonymMemberLoginCQ extends AbstractConditionQu
         regINS(CK_NINS, cTL(mobileLoginFlgList), getCValueMobileLoginFlg(), "MOBILE_LOGIN_FLG");
     }
 
-    protected void regMobileLoginFlg(ConditionKey k, Object v) { regQ(k, v, getCValueMobileLoginFlg(), "MOBILE_LOGIN_FLG"); }
-    abstract protected ConditionValue getCValueMobileLoginFlg();
+    protected void regMobileLoginFlg(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueMobileLoginFlg(), "MOBILE_LOGIN_FLG"); }
+    protected abstract ConditionValue getCValueMobileLoginFlg();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -578,12 +578,12 @@ public abstract class AbstractBsSynonymMemberLoginCQ extends AbstractConditionQu
      * @param subQuery The sub-query of MemberStatus for 'in-scope'. (NotNull)
      */
     public void inScopeMemberStatus(SubQuery<MemberStatusCB> subQuery) {
-        assertObjectNotNull("subQuery<MemberStatusCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         MemberStatusCB cb = new MemberStatusCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String subQueryPropertyName = keepLoginMemberStatusCode_InScopeRelation_MemberStatus(cb.query()); // for saving query-value.
-        registerInScopeRelation(cb.query(), "LOGIN_MEMBER_STATUS_CODE", "MEMBER_STATUS_CODE", subQueryPropertyName, "memberStatus");
+        String pp = keepLoginMemberStatusCode_InScopeRelation_MemberStatus(cb.query()); // for saving query-value.
+        registerInScopeRelation(cb.query(), "LOGIN_MEMBER_STATUS_CODE", "MEMBER_STATUS_CODE", pp, "memberStatus");
     }
-    public abstract String keepLoginMemberStatusCode_InScopeRelation_MemberStatus(MemberStatusCQ subQuery);
+    public abstract String keepLoginMemberStatusCode_InScopeRelation_MemberStatus(MemberStatusCQ sq);
 
     /**
      * Set up NotInScopeRelation (sub-query). <br />
@@ -592,15 +592,15 @@ public abstract class AbstractBsSynonymMemberLoginCQ extends AbstractConditionQu
      * @param subQuery The sub-query of MemberStatus for 'not in-scope'. (NotNull)
      */
     public void notInScopeMemberStatus(SubQuery<MemberStatusCB> subQuery) {
-        assertObjectNotNull("subQuery<MemberStatusCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         MemberStatusCB cb = new MemberStatusCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String subQueryPropertyName = keepLoginMemberStatusCode_NotInScopeRelation_MemberStatus(cb.query()); // for saving query-value.
-        registerNotInScopeRelation(cb.query(), "LOGIN_MEMBER_STATUS_CODE", "MEMBER_STATUS_CODE", subQueryPropertyName, "memberStatus");
+        String pp = keepLoginMemberStatusCode_NotInScopeRelation_MemberStatus(cb.query()); // for saving query-value.
+        registerNotInScopeRelation(cb.query(), "LOGIN_MEMBER_STATUS_CODE", "MEMBER_STATUS_CODE", pp, "memberStatus");
     }
-    public abstract String keepLoginMemberStatusCode_NotInScopeRelation_MemberStatus(MemberStatusCQ subQuery);
+    public abstract String keepLoginMemberStatusCode_NotInScopeRelation_MemberStatus(MemberStatusCQ sq);
 
-    protected void regLoginMemberStatusCode(ConditionKey k, Object v) { regQ(k, v, getCValueLoginMemberStatusCode(), "LOGIN_MEMBER_STATUS_CODE"); }
-    abstract protected ConditionValue getCValueLoginMemberStatusCode();
+    protected void regLoginMemberStatusCode(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueLoginMemberStatusCode(), "LOGIN_MEMBER_STATUS_CODE"); }
+    protected abstract ConditionValue getCValueLoginMemberStatusCode();
 
     // ===================================================================================
     //                                                                     ScalarCondition
@@ -707,22 +707,22 @@ public abstract class AbstractBsSynonymMemberLoginCQ extends AbstractConditionQu
         return xcreateSSQFunction(CK_LE.getOperand());
     }
 
-    protected HpSSQFunction<SynonymMemberLoginCB> xcreateSSQFunction(final String operand) {
+    protected HpSSQFunction<SynonymMemberLoginCB> xcreateSSQFunction(final String rd) {
         return new HpSSQFunction<SynonymMemberLoginCB>(new HpSSQSetupper<SynonymMemberLoginCB>() {
-            public void setup(String function, SubQuery<SynonymMemberLoginCB> subQuery, HpSSQOption<SynonymMemberLoginCB> option) {
-                xscalarCondition(function, subQuery, operand, option);
+            public void setup(String fn, SubQuery<SynonymMemberLoginCB> sq, HpSSQOption<SynonymMemberLoginCB> op) {
+                xscalarCondition(fn, sq, rd, op);
             }
         });
     }
 
-    protected void xscalarCondition(String function, SubQuery<SynonymMemberLoginCB> subQuery, String operand, HpSSQOption<SynonymMemberLoginCB> option) {
-        assertObjectNotNull("subQuery<SynonymMemberLoginCB>", subQuery);
-        SynonymMemberLoginCB cb = xcreateScalarConditionCB(); subQuery.query(cb);
-        String subQueryPropertyName = keepScalarCondition(cb.query()); // for saving query-value
-        option.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
-        registerScalarCondition(function, cb.query(), subQueryPropertyName, operand, option);
+    protected void xscalarCondition(String fn, SubQuery<SynonymMemberLoginCB> sq, String rd, HpSSQOption<SynonymMemberLoginCB> op) {
+        assertObjectNotNull("subQuery", sq);
+        SynonymMemberLoginCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        String pp = keepScalarCondition(cb.query()); // for saving query-value
+        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
-    public abstract String keepScalarCondition(SynonymMemberLoginCQ subQuery);
+    public abstract String keepScalarCondition(SynonymMemberLoginCQ sq);
 
     protected SynonymMemberLoginCB xcreateScalarConditionCB() {
         SynonymMemberLoginCB cb = new SynonymMemberLoginCB();
@@ -739,13 +739,14 @@ public abstract class AbstractBsSynonymMemberLoginCQ extends AbstractConditionQu
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    public void xsmyselfDerive(String function, SubQuery<SynonymMemberLoginCB> subQuery, String aliasName, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<SynonymMemberLoginCB>", subQuery);
-        SynonymMemberLoginCB cb = new SynonymMemberLoginCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
-        registerSpecifyMyselfDerived(function, cb.query(), "MEMBER_LOGIN_ID", "MEMBER_LOGIN_ID", subQueryPropertyName, "myselfDerived", aliasName, option);
+    public void xsmyselfDerive(String fn, SubQuery<SynonymMemberLoginCB> sq, String al, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        SynonymMemberLoginCB cb = new SynonymMemberLoginCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "MEMBER_LOGIN_ID";
+        String pp = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
+        registerSpecifyMyselfDerived(fn, cb.query(), pk, pk, pp, "myselfDerived", al, op);
     }
-    public abstract String keepSpecifyMyselfDerived(SynonymMemberLoginCQ subQuery);
+    public abstract String keepSpecifyMyselfDerived(SynonymMemberLoginCQ sq);
 
     /**
      * Prepare for (Query)MyselfDerived (SubQuery).
@@ -756,20 +757,21 @@ public abstract class AbstractBsSynonymMemberLoginCQ extends AbstractConditionQu
     }
     protected HpQDRFunction<SynonymMemberLoginCB> xcreateQDRFunctionMyselfDerived() {
         return new HpQDRFunction<SynonymMemberLoginCB>(new HpQDRSetupper<SynonymMemberLoginCB>() {
-            public void setup(String function, SubQuery<SynonymMemberLoginCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-                xqderiveMyselfDerived(function, subQuery, operand, value, option);
+            public void setup(String fn, SubQuery<SynonymMemberLoginCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+                xqderiveMyselfDerived(fn, sq, rd, vl, op);
             }
         });
     }
-    public void xqderiveMyselfDerived(String function, SubQuery<SynonymMemberLoginCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<SynonymMemberLoginCB>", subQuery);
-        SynonymMemberLoginCB cb = new SynonymMemberLoginCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepQueryMyselfDerived(cb.query()); // for saving query-value.
-        String parameterPropertyName = keepQueryMyselfDerivedParameter(value);
-        registerQueryMyselfDerived(function, cb.query(), "MEMBER_LOGIN_ID", "MEMBER_LOGIN_ID", subQueryPropertyName, "myselfDerived", operand, value, parameterPropertyName, option);
+    public void xqderiveMyselfDerived(String fn, SubQuery<SynonymMemberLoginCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        SynonymMemberLoginCB cb = new SynonymMemberLoginCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "MEMBER_LOGIN_ID";
+        String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
+        String prpp = keepQueryMyselfDerivedParameter(vl);
+        registerQueryMyselfDerived(fn, cb.query(), pk, pk, sqpp, "myselfDerived", rd, vl, prpp, op);
     }
-    public abstract String keepQueryMyselfDerived(SynonymMemberLoginCQ subQuery);
-    public abstract String keepQueryMyselfDerivedParameter(Object parameterValue);
+    public abstract String keepQueryMyselfDerived(SynonymMemberLoginCQ sq);
+    public abstract String keepQueryMyselfDerivedParameter(Object vl);
 
     // ===================================================================================
     //                                                                        MyselfExists
@@ -779,12 +781,12 @@ public abstract class AbstractBsSynonymMemberLoginCQ extends AbstractConditionQu
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfExists(SubQuery<SynonymMemberLoginCB> subQuery) {
-        assertObjectNotNull("subQuery<SynonymMemberLoginCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         SynonymMemberLoginCB cb = new SynonymMemberLoginCB(); cb.xsetupForMyselfExists(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfExists(cb.query()); // for saving query-value.
-        registerMyselfExists(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfExists(cb.query()); // for saving query-value.
+        registerMyselfExists(cb.query(), pp);
     }
-    public abstract String keepMyselfExists(SynonymMemberLoginCQ subQuery);
+    public abstract String keepMyselfExists(SynonymMemberLoginCQ sq);
 
     // ===================================================================================
     //                                                                       MyselfInScope
@@ -794,12 +796,12 @@ public abstract class AbstractBsSynonymMemberLoginCQ extends AbstractConditionQu
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfInScope(SubQuery<SynonymMemberLoginCB> subQuery) {
-        assertObjectNotNull("subQuery<SynonymMemberLoginCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         SynonymMemberLoginCB cb = new SynonymMemberLoginCB(); cb.xsetupForMyselfInScope(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfInScope(cb.query()); // for saving query-value.
-        registerMyselfInScope(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfInScope(cb.query()); // for saving query-value.
+        registerMyselfInScope(cb.query(), pp);
     }
-    public abstract String keepMyselfInScope(SynonymMemberLoginCQ subQuery);
+    public abstract String keepMyselfInScope(SynonymMemberLoginCQ sq);
 
     // ===================================================================================
     //                                                                    Full Text Search
@@ -820,7 +822,7 @@ public abstract class AbstractBsSynonymMemberLoginCQ extends AbstractConditionQu
      * @param textColumnList The list of text column. (NotNull, NotEmpty, StringColumn, TargetTableColumn)
      * @param conditionValue The condition value. (NullAllowed: if null or empty, no condition)
      */
-    public void match(java.util.List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList, String conditionValue) {
+    public void match(List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList, String conditionValue) {
         xdoMatchByLikeSearch(textColumnList, conditionValue);
     }
 

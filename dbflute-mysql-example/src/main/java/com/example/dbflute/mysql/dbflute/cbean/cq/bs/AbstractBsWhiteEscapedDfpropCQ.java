@@ -212,8 +212,8 @@ public abstract class AbstractBsWhiteEscapedDfpropCQ extends AbstractConditionQu
      */
     public void setEscapedDfpropCode_IsNotNull() { regEscapedDfpropCode(CK_ISNN, DOBJ); }
 
-    protected void regEscapedDfpropCode(ConditionKey k, Object v) { regQ(k, v, getCValueEscapedDfpropCode(), "ESCAPED_DFPROP_CODE"); }
-    abstract protected ConditionValue getCValueEscapedDfpropCode();
+    protected void regEscapedDfpropCode(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueEscapedDfpropCode(), "ESCAPED_DFPROP_CODE"); }
+    protected abstract ConditionValue getCValueEscapedDfpropCode();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -316,8 +316,8 @@ public abstract class AbstractBsWhiteEscapedDfpropCQ extends AbstractConditionQu
      */
     public void setEscapedDfpropName_IsNotNull() { regEscapedDfpropName(CK_ISNN, DOBJ); }
 
-    protected void regEscapedDfpropName(ConditionKey k, Object v) { regQ(k, v, getCValueEscapedDfpropName(), "ESCAPED_DFPROP_NAME"); }
-    abstract protected ConditionValue getCValueEscapedDfpropName();
+    protected void regEscapedDfpropName(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueEscapedDfpropName(), "ESCAPED_DFPROP_NAME"); }
+    protected abstract ConditionValue getCValueEscapedDfpropName();
 
     // ===================================================================================
     //                                                                     ScalarCondition
@@ -424,22 +424,22 @@ public abstract class AbstractBsWhiteEscapedDfpropCQ extends AbstractConditionQu
         return xcreateSSQFunction(CK_LE.getOperand());
     }
 
-    protected HpSSQFunction<WhiteEscapedDfpropCB> xcreateSSQFunction(final String operand) {
+    protected HpSSQFunction<WhiteEscapedDfpropCB> xcreateSSQFunction(final String rd) {
         return new HpSSQFunction<WhiteEscapedDfpropCB>(new HpSSQSetupper<WhiteEscapedDfpropCB>() {
-            public void setup(String function, SubQuery<WhiteEscapedDfpropCB> subQuery, HpSSQOption<WhiteEscapedDfpropCB> option) {
-                xscalarCondition(function, subQuery, operand, option);
+            public void setup(String fn, SubQuery<WhiteEscapedDfpropCB> sq, HpSSQOption<WhiteEscapedDfpropCB> op) {
+                xscalarCondition(fn, sq, rd, op);
             }
         });
     }
 
-    protected void xscalarCondition(String function, SubQuery<WhiteEscapedDfpropCB> subQuery, String operand, HpSSQOption<WhiteEscapedDfpropCB> option) {
-        assertObjectNotNull("subQuery<WhiteEscapedDfpropCB>", subQuery);
-        WhiteEscapedDfpropCB cb = xcreateScalarConditionCB(); subQuery.query(cb);
-        String subQueryPropertyName = keepScalarCondition(cb.query()); // for saving query-value
-        option.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
-        registerScalarCondition(function, cb.query(), subQueryPropertyName, operand, option);
+    protected void xscalarCondition(String fn, SubQuery<WhiteEscapedDfpropCB> sq, String rd, HpSSQOption<WhiteEscapedDfpropCB> op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteEscapedDfpropCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        String pp = keepScalarCondition(cb.query()); // for saving query-value
+        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
-    public abstract String keepScalarCondition(WhiteEscapedDfpropCQ subQuery);
+    public abstract String keepScalarCondition(WhiteEscapedDfpropCQ sq);
 
     protected WhiteEscapedDfpropCB xcreateScalarConditionCB() {
         WhiteEscapedDfpropCB cb = new WhiteEscapedDfpropCB();
@@ -456,13 +456,14 @@ public abstract class AbstractBsWhiteEscapedDfpropCQ extends AbstractConditionQu
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    public void xsmyselfDerive(String function, SubQuery<WhiteEscapedDfpropCB> subQuery, String aliasName, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<WhiteEscapedDfpropCB>", subQuery);
-        WhiteEscapedDfpropCB cb = new WhiteEscapedDfpropCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
-        registerSpecifyMyselfDerived(function, cb.query(), "ESCAPED_DFPROP_CODE", "ESCAPED_DFPROP_CODE", subQueryPropertyName, "myselfDerived", aliasName, option);
+    public void xsmyselfDerive(String fn, SubQuery<WhiteEscapedDfpropCB> sq, String al, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteEscapedDfpropCB cb = new WhiteEscapedDfpropCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "ESCAPED_DFPROP_CODE";
+        String pp = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
+        registerSpecifyMyselfDerived(fn, cb.query(), pk, pk, pp, "myselfDerived", al, op);
     }
-    public abstract String keepSpecifyMyselfDerived(WhiteEscapedDfpropCQ subQuery);
+    public abstract String keepSpecifyMyselfDerived(WhiteEscapedDfpropCQ sq);
 
     /**
      * Prepare for (Query)MyselfDerived (SubQuery).
@@ -473,20 +474,21 @@ public abstract class AbstractBsWhiteEscapedDfpropCQ extends AbstractConditionQu
     }
     protected HpQDRFunction<WhiteEscapedDfpropCB> xcreateQDRFunctionMyselfDerived() {
         return new HpQDRFunction<WhiteEscapedDfpropCB>(new HpQDRSetupper<WhiteEscapedDfpropCB>() {
-            public void setup(String function, SubQuery<WhiteEscapedDfpropCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-                xqderiveMyselfDerived(function, subQuery, operand, value, option);
+            public void setup(String fn, SubQuery<WhiteEscapedDfpropCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+                xqderiveMyselfDerived(fn, sq, rd, vl, op);
             }
         });
     }
-    public void xqderiveMyselfDerived(String function, SubQuery<WhiteEscapedDfpropCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<WhiteEscapedDfpropCB>", subQuery);
-        WhiteEscapedDfpropCB cb = new WhiteEscapedDfpropCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepQueryMyselfDerived(cb.query()); // for saving query-value.
-        String parameterPropertyName = keepQueryMyselfDerivedParameter(value);
-        registerQueryMyselfDerived(function, cb.query(), "ESCAPED_DFPROP_CODE", "ESCAPED_DFPROP_CODE", subQueryPropertyName, "myselfDerived", operand, value, parameterPropertyName, option);
+    public void xqderiveMyselfDerived(String fn, SubQuery<WhiteEscapedDfpropCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteEscapedDfpropCB cb = new WhiteEscapedDfpropCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "ESCAPED_DFPROP_CODE";
+        String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
+        String prpp = keepQueryMyselfDerivedParameter(vl);
+        registerQueryMyselfDerived(fn, cb.query(), pk, pk, sqpp, "myselfDerived", rd, vl, prpp, op);
     }
-    public abstract String keepQueryMyselfDerived(WhiteEscapedDfpropCQ subQuery);
-    public abstract String keepQueryMyselfDerivedParameter(Object parameterValue);
+    public abstract String keepQueryMyselfDerived(WhiteEscapedDfpropCQ sq);
+    public abstract String keepQueryMyselfDerivedParameter(Object vl);
 
     // ===================================================================================
     //                                                                        MyselfExists
@@ -496,12 +498,12 @@ public abstract class AbstractBsWhiteEscapedDfpropCQ extends AbstractConditionQu
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfExists(SubQuery<WhiteEscapedDfpropCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteEscapedDfpropCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteEscapedDfpropCB cb = new WhiteEscapedDfpropCB(); cb.xsetupForMyselfExists(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfExists(cb.query()); // for saving query-value.
-        registerMyselfExists(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfExists(cb.query()); // for saving query-value.
+        registerMyselfExists(cb.query(), pp);
     }
-    public abstract String keepMyselfExists(WhiteEscapedDfpropCQ subQuery);
+    public abstract String keepMyselfExists(WhiteEscapedDfpropCQ sq);
 
     // ===================================================================================
     //                                                                       MyselfInScope
@@ -511,12 +513,12 @@ public abstract class AbstractBsWhiteEscapedDfpropCQ extends AbstractConditionQu
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfInScope(SubQuery<WhiteEscapedDfpropCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteEscapedDfpropCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteEscapedDfpropCB cb = new WhiteEscapedDfpropCB(); cb.xsetupForMyselfInScope(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfInScope(cb.query()); // for saving query-value.
-        registerMyselfInScope(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfInScope(cb.query()); // for saving query-value.
+        registerMyselfInScope(cb.query(), pp);
     }
-    public abstract String keepMyselfInScope(WhiteEscapedDfpropCQ subQuery);
+    public abstract String keepMyselfInScope(WhiteEscapedDfpropCQ sq);
 
     // ===================================================================================
     //                                                                    Full Text Search
@@ -542,7 +544,7 @@ public abstract class AbstractBsWhiteEscapedDfpropCQ extends AbstractConditionQu
      * @param conditionValue The condition value embedded without binding (by MySQL restriction) but escaped. (NullAllowed: if null or empty, no condition)
      * @param modifier The modifier of full-text search. (NullAllowed: If the value is null, no modifier specified)
      */
-    public void match(java.util.List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList
+    public void match(List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList
                     , String conditionValue
                     , org.seasar.dbflute.dbway.WayOfMySQL.FullTextSearchModifier modifier) {
         xdoMatchForMySQL(textColumnList, conditionValue, modifier);

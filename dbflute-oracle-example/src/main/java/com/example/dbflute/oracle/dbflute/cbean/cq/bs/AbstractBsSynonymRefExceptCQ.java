@@ -145,8 +145,8 @@ public abstract class AbstractBsSynonymRefExceptCQ extends AbstractConditionQuer
      */
     public void setRefExceptId_IsNotNull() { regRefExceptId(CK_ISNN, DOBJ); }
 
-    protected void regRefExceptId(ConditionKey k, Object v) { regQ(k, v, getCValueRefExceptId(), "REF_EXCEPT_ID"); }
-    abstract protected ConditionValue getCValueRefExceptId();
+    protected void regRefExceptId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueRefExceptId(), "REF_EXCEPT_ID"); }
+    protected abstract ConditionValue getCValueRefExceptId();
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -243,12 +243,12 @@ public abstract class AbstractBsSynonymRefExceptCQ extends AbstractConditionQuer
      * @param subQuery The sub-query of SynonymExcept for 'in-scope'. (NotNull)
      */
     public void inScopeSynonymExcept(SubQuery<SynonymExceptCB> subQuery) {
-        assertObjectNotNull("subQuery<SynonymExceptCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         SynonymExceptCB cb = new SynonymExceptCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String subQueryPropertyName = keepExceptId_InScopeRelation_SynonymExcept(cb.query()); // for saving query-value.
-        registerInScopeRelation(cb.query(), "EXCEPT_ID", "EXCEPT_ID", subQueryPropertyName, "synonymExcept");
+        String pp = keepExceptId_InScopeRelation_SynonymExcept(cb.query()); // for saving query-value.
+        registerInScopeRelation(cb.query(), "EXCEPT_ID", "EXCEPT_ID", pp, "synonymExcept");
     }
-    public abstract String keepExceptId_InScopeRelation_SynonymExcept(SynonymExceptCQ subQuery);
+    public abstract String keepExceptId_InScopeRelation_SynonymExcept(SynonymExceptCQ sq);
 
     /**
      * Set up NotInScopeRelation (sub-query). <br />
@@ -257,15 +257,15 @@ public abstract class AbstractBsSynonymRefExceptCQ extends AbstractConditionQuer
      * @param subQuery The sub-query of SynonymExcept for 'not in-scope'. (NotNull)
      */
     public void notInScopeSynonymExcept(SubQuery<SynonymExceptCB> subQuery) {
-        assertObjectNotNull("subQuery<SynonymExceptCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         SynonymExceptCB cb = new SynonymExceptCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String subQueryPropertyName = keepExceptId_NotInScopeRelation_SynonymExcept(cb.query()); // for saving query-value.
-        registerNotInScopeRelation(cb.query(), "EXCEPT_ID", "EXCEPT_ID", subQueryPropertyName, "synonymExcept");
+        String pp = keepExceptId_NotInScopeRelation_SynonymExcept(cb.query()); // for saving query-value.
+        registerNotInScopeRelation(cb.query(), "EXCEPT_ID", "EXCEPT_ID", pp, "synonymExcept");
     }
-    public abstract String keepExceptId_NotInScopeRelation_SynonymExcept(SynonymExceptCQ subQuery);
+    public abstract String keepExceptId_NotInScopeRelation_SynonymExcept(SynonymExceptCQ sq);
 
-    protected void regExceptId(ConditionKey k, Object v) { regQ(k, v, getCValueExceptId(), "EXCEPT_ID"); }
-    abstract protected ConditionValue getCValueExceptId();
+    protected void regExceptId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueExceptId(), "EXCEPT_ID"); }
+    protected abstract ConditionValue getCValueExceptId();
 
     // ===================================================================================
     //                                                                     ScalarCondition
@@ -372,22 +372,22 @@ public abstract class AbstractBsSynonymRefExceptCQ extends AbstractConditionQuer
         return xcreateSSQFunction(CK_LE.getOperand());
     }
 
-    protected HpSSQFunction<SynonymRefExceptCB> xcreateSSQFunction(final String operand) {
+    protected HpSSQFunction<SynonymRefExceptCB> xcreateSSQFunction(final String rd) {
         return new HpSSQFunction<SynonymRefExceptCB>(new HpSSQSetupper<SynonymRefExceptCB>() {
-            public void setup(String function, SubQuery<SynonymRefExceptCB> subQuery, HpSSQOption<SynonymRefExceptCB> option) {
-                xscalarCondition(function, subQuery, operand, option);
+            public void setup(String fn, SubQuery<SynonymRefExceptCB> sq, HpSSQOption<SynonymRefExceptCB> op) {
+                xscalarCondition(fn, sq, rd, op);
             }
         });
     }
 
-    protected void xscalarCondition(String function, SubQuery<SynonymRefExceptCB> subQuery, String operand, HpSSQOption<SynonymRefExceptCB> option) {
-        assertObjectNotNull("subQuery<SynonymRefExceptCB>", subQuery);
-        SynonymRefExceptCB cb = xcreateScalarConditionCB(); subQuery.query(cb);
-        String subQueryPropertyName = keepScalarCondition(cb.query()); // for saving query-value
-        option.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
-        registerScalarCondition(function, cb.query(), subQueryPropertyName, operand, option);
+    protected void xscalarCondition(String fn, SubQuery<SynonymRefExceptCB> sq, String rd, HpSSQOption<SynonymRefExceptCB> op) {
+        assertObjectNotNull("subQuery", sq);
+        SynonymRefExceptCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        String pp = keepScalarCondition(cb.query()); // for saving query-value
+        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
-    public abstract String keepScalarCondition(SynonymRefExceptCQ subQuery);
+    public abstract String keepScalarCondition(SynonymRefExceptCQ sq);
 
     protected SynonymRefExceptCB xcreateScalarConditionCB() {
         SynonymRefExceptCB cb = new SynonymRefExceptCB();
@@ -404,13 +404,14 @@ public abstract class AbstractBsSynonymRefExceptCQ extends AbstractConditionQuer
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    public void xsmyselfDerive(String function, SubQuery<SynonymRefExceptCB> subQuery, String aliasName, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<SynonymRefExceptCB>", subQuery);
-        SynonymRefExceptCB cb = new SynonymRefExceptCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
-        registerSpecifyMyselfDerived(function, cb.query(), "REF_EXCEPT_ID", "REF_EXCEPT_ID", subQueryPropertyName, "myselfDerived", aliasName, option);
+    public void xsmyselfDerive(String fn, SubQuery<SynonymRefExceptCB> sq, String al, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        SynonymRefExceptCB cb = new SynonymRefExceptCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "REF_EXCEPT_ID";
+        String pp = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
+        registerSpecifyMyselfDerived(fn, cb.query(), pk, pk, pp, "myselfDerived", al, op);
     }
-    public abstract String keepSpecifyMyselfDerived(SynonymRefExceptCQ subQuery);
+    public abstract String keepSpecifyMyselfDerived(SynonymRefExceptCQ sq);
 
     /**
      * Prepare for (Query)MyselfDerived (SubQuery).
@@ -421,20 +422,21 @@ public abstract class AbstractBsSynonymRefExceptCQ extends AbstractConditionQuer
     }
     protected HpQDRFunction<SynonymRefExceptCB> xcreateQDRFunctionMyselfDerived() {
         return new HpQDRFunction<SynonymRefExceptCB>(new HpQDRSetupper<SynonymRefExceptCB>() {
-            public void setup(String function, SubQuery<SynonymRefExceptCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-                xqderiveMyselfDerived(function, subQuery, operand, value, option);
+            public void setup(String fn, SubQuery<SynonymRefExceptCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+                xqderiveMyselfDerived(fn, sq, rd, vl, op);
             }
         });
     }
-    public void xqderiveMyselfDerived(String function, SubQuery<SynonymRefExceptCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<SynonymRefExceptCB>", subQuery);
-        SynonymRefExceptCB cb = new SynonymRefExceptCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepQueryMyselfDerived(cb.query()); // for saving query-value.
-        String parameterPropertyName = keepQueryMyselfDerivedParameter(value);
-        registerQueryMyselfDerived(function, cb.query(), "REF_EXCEPT_ID", "REF_EXCEPT_ID", subQueryPropertyName, "myselfDerived", operand, value, parameterPropertyName, option);
+    public void xqderiveMyselfDerived(String fn, SubQuery<SynonymRefExceptCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        SynonymRefExceptCB cb = new SynonymRefExceptCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "REF_EXCEPT_ID";
+        String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
+        String prpp = keepQueryMyselfDerivedParameter(vl);
+        registerQueryMyselfDerived(fn, cb.query(), pk, pk, sqpp, "myselfDerived", rd, vl, prpp, op);
     }
-    public abstract String keepQueryMyselfDerived(SynonymRefExceptCQ subQuery);
-    public abstract String keepQueryMyselfDerivedParameter(Object parameterValue);
+    public abstract String keepQueryMyselfDerived(SynonymRefExceptCQ sq);
+    public abstract String keepQueryMyselfDerivedParameter(Object vl);
 
     // ===================================================================================
     //                                                                        MyselfExists
@@ -444,12 +446,12 @@ public abstract class AbstractBsSynonymRefExceptCQ extends AbstractConditionQuer
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfExists(SubQuery<SynonymRefExceptCB> subQuery) {
-        assertObjectNotNull("subQuery<SynonymRefExceptCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         SynonymRefExceptCB cb = new SynonymRefExceptCB(); cb.xsetupForMyselfExists(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfExists(cb.query()); // for saving query-value.
-        registerMyselfExists(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfExists(cb.query()); // for saving query-value.
+        registerMyselfExists(cb.query(), pp);
     }
-    public abstract String keepMyselfExists(SynonymRefExceptCQ subQuery);
+    public abstract String keepMyselfExists(SynonymRefExceptCQ sq);
 
     // ===================================================================================
     //                                                                       MyselfInScope
@@ -459,12 +461,12 @@ public abstract class AbstractBsSynonymRefExceptCQ extends AbstractConditionQuer
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfInScope(SubQuery<SynonymRefExceptCB> subQuery) {
-        assertObjectNotNull("subQuery<SynonymRefExceptCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         SynonymRefExceptCB cb = new SynonymRefExceptCB(); cb.xsetupForMyselfInScope(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfInScope(cb.query()); // for saving query-value.
-        registerMyselfInScope(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfInScope(cb.query()); // for saving query-value.
+        registerMyselfInScope(cb.query(), pp);
     }
-    public abstract String keepMyselfInScope(SynonymRefExceptCQ subQuery);
+    public abstract String keepMyselfInScope(SynonymRefExceptCQ sq);
 
     // ===================================================================================
     //                                                                    Full Text Search
@@ -485,7 +487,7 @@ public abstract class AbstractBsSynonymRefExceptCQ extends AbstractConditionQuer
      * @param textColumnList The list of text column. (NotNull, NotEmpty, StringColumn, TargetTableColumn)
      * @param conditionValue The condition value. (NullAllowed: if null or empty, no condition)
      */
-    public void match(java.util.List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList, String conditionValue) {
+    public void match(List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList, String conditionValue) {
         xdoMatchByLikeSearch(textColumnList, conditionValue);
     }
 

@@ -52,56 +52,56 @@ public class SpReturnResultSetWithNotParamResult1Dbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgMemberId implements PropertyGateway {
-        public Object read(Entity e) { return ((SpReturnResultSetWithNotParamResult1)e).getMemberId(); }
-        public void write(Entity e, Object v) { ((SpReturnResultSetWithNotParamResult1)e).setMemberId(cti(v)); }
+        public Object read(Entity et) { return ((SpReturnResultSetWithNotParamResult1)et).getMemberId(); }
+        public void write(Entity et, Object vl) { ((SpReturnResultSetWithNotParamResult1)et).setMemberId(cti(vl)); }
     }
     public static class EpgMemberName implements PropertyGateway {
-        public Object read(Entity e) { return ((SpReturnResultSetWithNotParamResult1)e).getMemberName(); }
-        public void write(Entity e, Object v) { ((SpReturnResultSetWithNotParamResult1)e).setMemberName((String)v); }
+        public Object read(Entity et) { return ((SpReturnResultSetWithNotParamResult1)et).getMemberName(); }
+        public void write(Entity et, Object vl) { ((SpReturnResultSetWithNotParamResult1)et).setMemberName((String)vl); }
     }
     public static class EpgMemberAccount implements PropertyGateway {
-        public Object read(Entity e) { return ((SpReturnResultSetWithNotParamResult1)e).getMemberAccount(); }
-        public void write(Entity e, Object v) { ((SpReturnResultSetWithNotParamResult1)e).setMemberAccount((String)v); }
+        public Object read(Entity et) { return ((SpReturnResultSetWithNotParamResult1)et).getMemberAccount(); }
+        public void write(Entity et, Object vl) { ((SpReturnResultSetWithNotParamResult1)et).setMemberAccount((String)vl); }
     }
     public static class EpgMemberStatusCode implements PropertyGateway {
-        public Object read(Entity e) { return ((SpReturnResultSetWithNotParamResult1)e).getMemberStatusCode(); }
-        public void write(Entity e, Object v) { ((SpReturnResultSetWithNotParamResult1)e).setMemberStatusCode((String)v); }
+        public Object read(Entity et) { return ((SpReturnResultSetWithNotParamResult1)et).getMemberStatusCode(); }
+        public void write(Entity et, Object vl) { ((SpReturnResultSetWithNotParamResult1)et).setMemberStatusCode((String)vl); }
     }
     public static class EpgFormalizedDatetime implements PropertyGateway {
-        public Object read(Entity e) { return ((SpReturnResultSetWithNotParamResult1)e).getFormalizedDatetime(); }
-        public void write(Entity e, Object v) { ((SpReturnResultSetWithNotParamResult1)e).setFormalizedDatetime((java.sql.Timestamp)v); }
+        public Object read(Entity et) { return ((SpReturnResultSetWithNotParamResult1)et).getFormalizedDatetime(); }
+        public void write(Entity et, Object vl) { ((SpReturnResultSetWithNotParamResult1)et).setFormalizedDatetime((java.sql.Timestamp)vl); }
     }
     public static class EpgBirthdate implements PropertyGateway {
-        public Object read(Entity e) { return ((SpReturnResultSetWithNotParamResult1)e).getBirthdate(); }
-        public void write(Entity e, Object v) { ((SpReturnResultSetWithNotParamResult1)e).setBirthdate((java.sql.Timestamp)v); }
+        public Object read(Entity et) { return ((SpReturnResultSetWithNotParamResult1)et).getBirthdate(); }
+        public void write(Entity et, Object vl) { ((SpReturnResultSetWithNotParamResult1)et).setBirthdate((java.sql.Timestamp)vl); }
     }
     public static class EpgRegisterDatetime implements PropertyGateway {
-        public Object read(Entity e) { return ((SpReturnResultSetWithNotParamResult1)e).getRegisterDatetime(); }
-        public void write(Entity e, Object v) { ((SpReturnResultSetWithNotParamResult1)e).setRegisterDatetime((java.sql.Timestamp)v); }
+        public Object read(Entity et) { return ((SpReturnResultSetWithNotParamResult1)et).getRegisterDatetime(); }
+        public void write(Entity et, Object vl) { ((SpReturnResultSetWithNotParamResult1)et).setRegisterDatetime((java.sql.Timestamp)vl); }
     }
     public static class EpgRegisterUser implements PropertyGateway {
-        public Object read(Entity e) { return ((SpReturnResultSetWithNotParamResult1)e).getRegisterUser(); }
-        public void write(Entity e, Object v) { ((SpReturnResultSetWithNotParamResult1)e).setRegisterUser((String)v); }
+        public Object read(Entity et) { return ((SpReturnResultSetWithNotParamResult1)et).getRegisterUser(); }
+        public void write(Entity et, Object vl) { ((SpReturnResultSetWithNotParamResult1)et).setRegisterUser((String)vl); }
     }
     public static class EpgRegisterProcess implements PropertyGateway {
-        public Object read(Entity e) { return ((SpReturnResultSetWithNotParamResult1)e).getRegisterProcess(); }
-        public void write(Entity e, Object v) { ((SpReturnResultSetWithNotParamResult1)e).setRegisterProcess((String)v); }
+        public Object read(Entity et) { return ((SpReturnResultSetWithNotParamResult1)et).getRegisterProcess(); }
+        public void write(Entity et, Object vl) { ((SpReturnResultSetWithNotParamResult1)et).setRegisterProcess((String)vl); }
     }
     public static class EpgUpdateDatetime implements PropertyGateway {
-        public Object read(Entity e) { return ((SpReturnResultSetWithNotParamResult1)e).getUpdateDatetime(); }
-        public void write(Entity e, Object v) { ((SpReturnResultSetWithNotParamResult1)e).setUpdateDatetime((java.sql.Timestamp)v); }
+        public Object read(Entity et) { return ((SpReturnResultSetWithNotParamResult1)et).getUpdateDatetime(); }
+        public void write(Entity et, Object vl) { ((SpReturnResultSetWithNotParamResult1)et).setUpdateDatetime((java.sql.Timestamp)vl); }
     }
     public static class EpgUpdateUser implements PropertyGateway {
-        public Object read(Entity e) { return ((SpReturnResultSetWithNotParamResult1)e).getUpdateUser(); }
-        public void write(Entity e, Object v) { ((SpReturnResultSetWithNotParamResult1)e).setUpdateUser((String)v); }
+        public Object read(Entity et) { return ((SpReturnResultSetWithNotParamResult1)et).getUpdateUser(); }
+        public void write(Entity et, Object vl) { ((SpReturnResultSetWithNotParamResult1)et).setUpdateUser((String)vl); }
     }
     public static class EpgUpdateProcess implements PropertyGateway {
-        public Object read(Entity e) { return ((SpReturnResultSetWithNotParamResult1)e).getUpdateProcess(); }
-        public void write(Entity e, Object v) { ((SpReturnResultSetWithNotParamResult1)e).setUpdateProcess((String)v); }
+        public Object read(Entity et) { return ((SpReturnResultSetWithNotParamResult1)et).getUpdateProcess(); }
+        public void write(Entity et, Object vl) { ((SpReturnResultSetWithNotParamResult1)et).setUpdateProcess((String)vl); }
     }
     public static class EpgVersionNo implements PropertyGateway {
-        public Object read(Entity e) { return ((SpReturnResultSetWithNotParamResult1)e).getVersionNo(); }
-        public void write(Entity e, Object v) { ((SpReturnResultSetWithNotParamResult1)e).setVersionNo(ctl(v)); }
+        public Object read(Entity et) { return ((SpReturnResultSetWithNotParamResult1)et).getVersionNo(); }
+        public void write(Entity et, Object vl) { ((SpReturnResultSetWithNotParamResult1)et).setVersionNo(ctl(vl)); }
     }
 
     // ===================================================================================
@@ -216,10 +216,10 @@ public class SpReturnResultSetWithNotParamResult1Dbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((SpReturnResultSetWithNotParamResult1)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((SpReturnResultSetWithNotParamResult1)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((SpReturnResultSetWithNotParamResult1)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((SpReturnResultSetWithNotParamResult1)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

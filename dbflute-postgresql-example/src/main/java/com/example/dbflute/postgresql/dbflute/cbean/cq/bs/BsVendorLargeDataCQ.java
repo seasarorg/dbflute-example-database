@@ -81,57 +81,57 @@ public class BsVendorLargeDataCQ extends AbstractBsVendorLargeDataCQ {
 
     protected Map<String, VendorLargeDataRefCQ> _largeDataId_ExistsReferrer_VendorLargeDataRefListMap;
     public Map<String, VendorLargeDataRefCQ> getLargeDataId_ExistsReferrer_VendorLargeDataRefList() { return _largeDataId_ExistsReferrer_VendorLargeDataRefListMap; }
-    public String keepLargeDataId_ExistsReferrer_VendorLargeDataRefList(VendorLargeDataRefCQ subQuery) {
+    public String keepLargeDataId_ExistsReferrer_VendorLargeDataRefList(VendorLargeDataRefCQ sq) {
         if (_largeDataId_ExistsReferrer_VendorLargeDataRefListMap == null) { _largeDataId_ExistsReferrer_VendorLargeDataRefListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_largeDataId_ExistsReferrer_VendorLargeDataRefListMap.size() + 1);
-        _largeDataId_ExistsReferrer_VendorLargeDataRefListMap.put(key, subQuery); return "largeDataId_ExistsReferrer_VendorLargeDataRefList." + key;
+        String ky = "subQueryMapKey" + (_largeDataId_ExistsReferrer_VendorLargeDataRefListMap.size() + 1);
+        _largeDataId_ExistsReferrer_VendorLargeDataRefListMap.put(ky, sq); return "largeDataId_ExistsReferrer_VendorLargeDataRefList." + ky;
     }
 
     protected Map<String, VendorLargeDataRefCQ> _largeDataId_NotExistsReferrer_VendorLargeDataRefListMap;
     public Map<String, VendorLargeDataRefCQ> getLargeDataId_NotExistsReferrer_VendorLargeDataRefList() { return _largeDataId_NotExistsReferrer_VendorLargeDataRefListMap; }
-    public String keepLargeDataId_NotExistsReferrer_VendorLargeDataRefList(VendorLargeDataRefCQ subQuery) {
+    public String keepLargeDataId_NotExistsReferrer_VendorLargeDataRefList(VendorLargeDataRefCQ sq) {
         if (_largeDataId_NotExistsReferrer_VendorLargeDataRefListMap == null) { _largeDataId_NotExistsReferrer_VendorLargeDataRefListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_largeDataId_NotExistsReferrer_VendorLargeDataRefListMap.size() + 1);
-        _largeDataId_NotExistsReferrer_VendorLargeDataRefListMap.put(key, subQuery); return "largeDataId_NotExistsReferrer_VendorLargeDataRefList." + key;
+        String ky = "subQueryMapKey" + (_largeDataId_NotExistsReferrer_VendorLargeDataRefListMap.size() + 1);
+        _largeDataId_NotExistsReferrer_VendorLargeDataRefListMap.put(ky, sq); return "largeDataId_NotExistsReferrer_VendorLargeDataRefList." + ky;
     }
 
     protected Map<String, VendorLargeDataRefCQ> _largeDataId_SpecifyDerivedReferrer_VendorLargeDataRefListMap;
     public Map<String, VendorLargeDataRefCQ> getLargeDataId_SpecifyDerivedReferrer_VendorLargeDataRefList() { return _largeDataId_SpecifyDerivedReferrer_VendorLargeDataRefListMap; }
-    public String keepLargeDataId_SpecifyDerivedReferrer_VendorLargeDataRefList(VendorLargeDataRefCQ subQuery) {
+    public String keepLargeDataId_SpecifyDerivedReferrer_VendorLargeDataRefList(VendorLargeDataRefCQ sq) {
         if (_largeDataId_SpecifyDerivedReferrer_VendorLargeDataRefListMap == null) { _largeDataId_SpecifyDerivedReferrer_VendorLargeDataRefListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_largeDataId_SpecifyDerivedReferrer_VendorLargeDataRefListMap.size() + 1);
-        _largeDataId_SpecifyDerivedReferrer_VendorLargeDataRefListMap.put(key, subQuery); return "largeDataId_SpecifyDerivedReferrer_VendorLargeDataRefList." + key;
+        String ky = "subQueryMapKey" + (_largeDataId_SpecifyDerivedReferrer_VendorLargeDataRefListMap.size() + 1);
+        _largeDataId_SpecifyDerivedReferrer_VendorLargeDataRefListMap.put(ky, sq); return "largeDataId_SpecifyDerivedReferrer_VendorLargeDataRefList." + ky;
     }
 
     protected Map<String, VendorLargeDataRefCQ> _largeDataId_InScopeRelation_VendorLargeDataRefListMap;
     public Map<String, VendorLargeDataRefCQ> getLargeDataId_InScopeRelation_VendorLargeDataRefList() { return _largeDataId_InScopeRelation_VendorLargeDataRefListMap; }
-    public String keepLargeDataId_InScopeRelation_VendorLargeDataRefList(VendorLargeDataRefCQ subQuery) {
+    public String keepLargeDataId_InScopeRelation_VendorLargeDataRefList(VendorLargeDataRefCQ sq) {
         if (_largeDataId_InScopeRelation_VendorLargeDataRefListMap == null) { _largeDataId_InScopeRelation_VendorLargeDataRefListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_largeDataId_InScopeRelation_VendorLargeDataRefListMap.size() + 1);
-        _largeDataId_InScopeRelation_VendorLargeDataRefListMap.put(key, subQuery); return "largeDataId_InScopeRelation_VendorLargeDataRefList." + key;
+        String ky = "subQueryMapKey" + (_largeDataId_InScopeRelation_VendorLargeDataRefListMap.size() + 1);
+        _largeDataId_InScopeRelation_VendorLargeDataRefListMap.put(ky, sq); return "largeDataId_InScopeRelation_VendorLargeDataRefList." + ky;
     }
 
     protected Map<String, VendorLargeDataRefCQ> _largeDataId_NotInScopeRelation_VendorLargeDataRefListMap;
     public Map<String, VendorLargeDataRefCQ> getLargeDataId_NotInScopeRelation_VendorLargeDataRefList() { return _largeDataId_NotInScopeRelation_VendorLargeDataRefListMap; }
-    public String keepLargeDataId_NotInScopeRelation_VendorLargeDataRefList(VendorLargeDataRefCQ subQuery) {
+    public String keepLargeDataId_NotInScopeRelation_VendorLargeDataRefList(VendorLargeDataRefCQ sq) {
         if (_largeDataId_NotInScopeRelation_VendorLargeDataRefListMap == null) { _largeDataId_NotInScopeRelation_VendorLargeDataRefListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_largeDataId_NotInScopeRelation_VendorLargeDataRefListMap.size() + 1);
-        _largeDataId_NotInScopeRelation_VendorLargeDataRefListMap.put(key, subQuery); return "largeDataId_NotInScopeRelation_VendorLargeDataRefList." + key;
+        String ky = "subQueryMapKey" + (_largeDataId_NotInScopeRelation_VendorLargeDataRefListMap.size() + 1);
+        _largeDataId_NotInScopeRelation_VendorLargeDataRefListMap.put(ky, sq); return "largeDataId_NotInScopeRelation_VendorLargeDataRefList." + ky;
     }
 
     protected Map<String, VendorLargeDataRefCQ> _largeDataId_QueryDerivedReferrer_VendorLargeDataRefListMap;
     public Map<String, VendorLargeDataRefCQ> getLargeDataId_QueryDerivedReferrer_VendorLargeDataRefList() { return _largeDataId_QueryDerivedReferrer_VendorLargeDataRefListMap; }
-    public String keepLargeDataId_QueryDerivedReferrer_VendorLargeDataRefList(VendorLargeDataRefCQ subQuery) {
+    public String keepLargeDataId_QueryDerivedReferrer_VendorLargeDataRefList(VendorLargeDataRefCQ sq) {
         if (_largeDataId_QueryDerivedReferrer_VendorLargeDataRefListMap == null) { _largeDataId_QueryDerivedReferrer_VendorLargeDataRefListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_largeDataId_QueryDerivedReferrer_VendorLargeDataRefListMap.size() + 1);
-        _largeDataId_QueryDerivedReferrer_VendorLargeDataRefListMap.put(key, subQuery); return "largeDataId_QueryDerivedReferrer_VendorLargeDataRefList." + key;
+        String ky = "subQueryMapKey" + (_largeDataId_QueryDerivedReferrer_VendorLargeDataRefListMap.size() + 1);
+        _largeDataId_QueryDerivedReferrer_VendorLargeDataRefListMap.put(ky, sq); return "largeDataId_QueryDerivedReferrer_VendorLargeDataRefList." + ky;
     }
     protected Map<String, Object> _largeDataId_QueryDerivedReferrer_VendorLargeDataRefListParameterMap;
     public Map<String, Object> getLargeDataId_QueryDerivedReferrer_VendorLargeDataRefListParameter() { return _largeDataId_QueryDerivedReferrer_VendorLargeDataRefListParameterMap; }
-    public String keepLargeDataId_QueryDerivedReferrer_VendorLargeDataRefListParameter(Object parameterValue) {
+    public String keepLargeDataId_QueryDerivedReferrer_VendorLargeDataRefListParameter(Object vl) {
         if (_largeDataId_QueryDerivedReferrer_VendorLargeDataRefListParameterMap == null) { _largeDataId_QueryDerivedReferrer_VendorLargeDataRefListParameterMap = newLinkedHashMapSized(4); }
-        String key = "subQueryParameterKey" + (_largeDataId_QueryDerivedReferrer_VendorLargeDataRefListParameterMap.size() + 1);
-        _largeDataId_QueryDerivedReferrer_VendorLargeDataRefListParameterMap.put(key, parameterValue); return "largeDataId_QueryDerivedReferrer_VendorLargeDataRefListParameter." + key;
+        String ky = "subQueryParameterKey" + (_largeDataId_QueryDerivedReferrer_VendorLargeDataRefListParameterMap.size() + 1);
+        _largeDataId_QueryDerivedReferrer_VendorLargeDataRefListParameterMap.put(ky, vl); return "largeDataId_QueryDerivedReferrer_VendorLargeDataRefListParameter." + ky;
     }
 
     /** 
@@ -314,7 +314,7 @@ public class BsVendorLargeDataCQ extends AbstractBsVendorLargeDataCQ {
     // ===================================================================================
     //                                                                         Union Query
     //                                                                         ===========
-    protected void reflectRelationOnUnionQuery(ConditionQuery baseQueryAsSuper, ConditionQuery unionQueryAsSuper) {
+    protected void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
     }
 
     // ===================================================================================
@@ -329,10 +329,10 @@ public class BsVendorLargeDataCQ extends AbstractBsVendorLargeDataCQ {
     //                                                                     ===============
     protected Map<String, VendorLargeDataCQ> _scalarConditionMap;
     public Map<String, VendorLargeDataCQ> getScalarCondition() { return _scalarConditionMap; }
-    public String keepScalarCondition(VendorLargeDataCQ subQuery) {
+    public String keepScalarCondition(VendorLargeDataCQ sq) {
         if (_scalarConditionMap == null) { _scalarConditionMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
-        _scalarConditionMap.put(key, subQuery); return "scalarCondition." + key;
+        String ky = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
+        _scalarConditionMap.put(ky, sq); return "scalarCondition." + ky;
     }
 
     // ===================================================================================
@@ -340,25 +340,25 @@ public class BsVendorLargeDataCQ extends AbstractBsVendorLargeDataCQ {
     //                                                                       =============
     protected Map<String, VendorLargeDataCQ> _specifyMyselfDerivedMap;
     public Map<String, VendorLargeDataCQ> getSpecifyMyselfDerived() { return _specifyMyselfDerivedMap; }
-    public String keepSpecifyMyselfDerived(VendorLargeDataCQ subQuery) {
+    public String keepSpecifyMyselfDerived(VendorLargeDataCQ sq) {
         if (_specifyMyselfDerivedMap == null) { _specifyMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
-        _specifyMyselfDerivedMap.put(key, subQuery); return "specifyMyselfDerived." + key;
+        String ky = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
+        _specifyMyselfDerivedMap.put(ky, sq); return "specifyMyselfDerived." + ky;
     }
 
     protected Map<String, VendorLargeDataCQ> _queryMyselfDerivedMap;
     public Map<String, VendorLargeDataCQ> getQueryMyselfDerived() { return _queryMyselfDerivedMap; }
-    public String keepQueryMyselfDerived(VendorLargeDataCQ subQuery) {
+    public String keepQueryMyselfDerived(VendorLargeDataCQ sq) {
         if (_queryMyselfDerivedMap == null) { _queryMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
-        _queryMyselfDerivedMap.put(key, subQuery); return "queryMyselfDerived." + key;
+        String ky = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
+        _queryMyselfDerivedMap.put(ky, sq); return "queryMyselfDerived." + ky;
     }
     protected Map<String, Object> _qyeryMyselfDerivedParameterMap;
     public Map<String, Object> getQueryMyselfDerivedParameter() { return _qyeryMyselfDerivedParameterMap; }
-    public String keepQueryMyselfDerivedParameter(Object parameterValue) {
+    public String keepQueryMyselfDerivedParameter(Object vl) {
         if (_qyeryMyselfDerivedParameterMap == null) { _qyeryMyselfDerivedParameterMap = newLinkedHashMapSized(4); }
-        String key = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
-        _qyeryMyselfDerivedParameterMap.put(key, parameterValue); return "queryMyselfDerivedParameter." + key;
+        String ky = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
+        _qyeryMyselfDerivedParameterMap.put(ky, vl); return "queryMyselfDerivedParameter." + ky;
     }
 
     // ===================================================================================
@@ -366,10 +366,10 @@ public class BsVendorLargeDataCQ extends AbstractBsVendorLargeDataCQ {
     //                                                                        ============
     protected Map<String, VendorLargeDataCQ> _myselfExistsMap;
     public Map<String, VendorLargeDataCQ> getMyselfExists() { return _myselfExistsMap; }
-    public String keepMyselfExists(VendorLargeDataCQ subQuery) {
+    public String keepMyselfExists(VendorLargeDataCQ sq) {
         if (_myselfExistsMap == null) { _myselfExistsMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
-        _myselfExistsMap.put(key, subQuery); return "myselfExists." + key;
+        String ky = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
+        _myselfExistsMap.put(ky, sq); return "myselfExists." + ky;
     }
 
     // ===================================================================================
@@ -377,10 +377,10 @@ public class BsVendorLargeDataCQ extends AbstractBsVendorLargeDataCQ {
     //                                                                       =============
     protected Map<String, VendorLargeDataCQ> _myselfInScopeMap;
     public Map<String, VendorLargeDataCQ> getMyselfInScope() { return _myselfInScopeMap; }
-    public String keepMyselfInScope(VendorLargeDataCQ subQuery) {
+    public String keepMyselfInScope(VendorLargeDataCQ sq) {
         if (_myselfInScopeMap == null) { _myselfInScopeMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
-        _myselfInScopeMap.put(key, subQuery); return "myselfInScope." + key;
+        String ky = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
+        _myselfInScopeMap.put(ky, sq); return "myselfInScope." + ky;
     }
 
     // ===================================================================================

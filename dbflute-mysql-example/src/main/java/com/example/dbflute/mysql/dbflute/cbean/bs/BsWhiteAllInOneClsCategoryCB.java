@@ -345,8 +345,8 @@ public class BsWhiteAllInOneClsCategoryCB extends AbstractConditionBean {
         public HpSDRFunction<WhiteAllInOneClsElementCB, WhiteAllInOneClsCategoryCQ> derivedWhiteAllInOneClsElementList() {
             assertDerived("whiteAllInOneClsElementList"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<WhiteAllInOneClsElementCB, WhiteAllInOneClsCategoryCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<WhiteAllInOneClsElementCB, WhiteAllInOneClsCategoryCQ>() {
-                public void setup(String function, SubQuery<WhiteAllInOneClsElementCB> subQuery, WhiteAllInOneClsCategoryCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsderiveWhiteAllInOneClsElementList(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<WhiteAllInOneClsElementCB> sq, WhiteAllInOneClsCategoryCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsderiveWhiteAllInOneClsElementList(fn, sq, al, op); } }, _dbmetaProvider);
         }
         /**
          * Prepare for (Specify)MyselfDerived (SubQuery).
@@ -355,8 +355,8 @@ public class BsWhiteAllInOneClsCategoryCB extends AbstractConditionBean {
         public HpSDRFunction<WhiteAllInOneClsCategoryCB, WhiteAllInOneClsCategoryCQ> myselfDerived() {
             assertDerived("myselfDerived"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<WhiteAllInOneClsCategoryCB, WhiteAllInOneClsCategoryCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<WhiteAllInOneClsCategoryCB, WhiteAllInOneClsCategoryCQ>() {
-                public void setup(String function, SubQuery<WhiteAllInOneClsCategoryCB> subQuery, WhiteAllInOneClsCategoryCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsmyselfDerive(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<WhiteAllInOneClsCategoryCB> sq, WhiteAllInOneClsCategoryCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsmyselfDerive(fn, sq, al, op); } }, _dbmetaProvider);
         }
     }
 

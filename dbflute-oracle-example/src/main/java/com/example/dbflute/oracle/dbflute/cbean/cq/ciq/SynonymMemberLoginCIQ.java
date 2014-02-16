@@ -82,18 +82,18 @@ public class SynonymMemberLoginCIQ extends AbstractBsSynonymMemberLoginCQ {
     { return _myCQ.keepLoginMemberStatusCode_InScopeRelation_MemberStatus(sq); }
     public String keepLoginMemberStatusCode_NotInScopeRelation_MemberStatus(MemberStatusCQ sq)
     { return _myCQ.keepLoginMemberStatusCode_NotInScopeRelation_MemberStatus(sq); }
-    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) { return null; }
-    public String keepScalarCondition(SynonymMemberLoginCQ subQuery)
+    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
+    public String keepScalarCondition(SynonymMemberLoginCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }
-    public String keepSpecifyMyselfDerived(SynonymMemberLoginCQ subQuery)
+    public String keepSpecifyMyselfDerived(SynonymMemberLoginCQ sq)
     { throwIICBOE("(Specify)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerived(SynonymMemberLoginCQ subQuery)
+    public String keepQueryMyselfDerived(SynonymMemberLoginCQ sq)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerivedParameter(Object parameterValue)
+    public String keepQueryMyselfDerivedParameter(Object vl)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepMyselfExists(SynonymMemberLoginCQ subQuery)
+    public String keepMyselfExists(SynonymMemberLoginCQ sq)
     { throwIICBOE("MyselfExists"); return null;}
-    public String keepMyselfInScope(SynonymMemberLoginCQ subQuery)
+    public String keepMyselfInScope(SynonymMemberLoginCQ sq)
     { throwIICBOE("MyselfInScope"); return null;}
 
     protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()

@@ -58,20 +58,20 @@ public class WhiteImplicitReverseFkSuppressDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgWhiteImplicitReverseFkSuppressId implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteImplicitReverseFkSuppress)e).getWhiteImplicitReverseFkSuppressId(); }
-        public void write(Entity e, Object v) { ((WhiteImplicitReverseFkSuppress)e).setWhiteImplicitReverseFkSuppressId(cti(v)); }
+        public Object read(Entity et) { return ((WhiteImplicitReverseFkSuppress)et).getWhiteImplicitReverseFkSuppressId(); }
+        public void write(Entity et, Object vl) { ((WhiteImplicitReverseFkSuppress)et).setWhiteImplicitReverseFkSuppressId(cti(vl)); }
     }
     public static class EpgWhiteImplicitReverseFkId implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteImplicitReverseFkSuppress)e).getWhiteImplicitReverseFkId(); }
-        public void write(Entity e, Object v) { ((WhiteImplicitReverseFkSuppress)e).setWhiteImplicitReverseFkId(cti(v)); }
+        public Object read(Entity et) { return ((WhiteImplicitReverseFkSuppress)et).getWhiteImplicitReverseFkId(); }
+        public void write(Entity et, Object vl) { ((WhiteImplicitReverseFkSuppress)et).setWhiteImplicitReverseFkId(cti(vl)); }
     }
     public static class EpgValidBeginDate implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteImplicitReverseFkSuppress)e).getValidBeginDate(); }
-        public void write(Entity e, Object v) { ((WhiteImplicitReverseFkSuppress)e).setValidBeginDate((java.util.Date)v); }
+        public Object read(Entity et) { return ((WhiteImplicitReverseFkSuppress)et).getValidBeginDate(); }
+        public void write(Entity et, Object vl) { ((WhiteImplicitReverseFkSuppress)et).setValidBeginDate((java.util.Date)vl); }
     }
     public static class EpgValidEndDate implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteImplicitReverseFkSuppress)e).getValidEndDate(); }
-        public void write(Entity e, Object v) { ((WhiteImplicitReverseFkSuppress)e).setValidEndDate((java.util.Date)v); }
+        public Object read(Entity et) { return ((WhiteImplicitReverseFkSuppress)et).getValidEndDate(); }
+        public void write(Entity et, Object vl) { ((WhiteImplicitReverseFkSuppress)et).setValidEndDate((java.util.Date)vl); }
     }
 
     // ===================================================================================
@@ -156,10 +156,10 @@ public class WhiteImplicitReverseFkSuppressDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((WhiteImplicitReverseFkSuppress)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((WhiteImplicitReverseFkSuppress)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((WhiteImplicitReverseFkSuppress)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((WhiteImplicitReverseFkSuppress)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

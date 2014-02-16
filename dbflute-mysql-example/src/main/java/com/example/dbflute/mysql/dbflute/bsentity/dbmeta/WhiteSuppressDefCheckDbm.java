@@ -56,12 +56,12 @@ public class WhiteSuppressDefCheckDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgDefCheckId implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteSuppressDefCheck)e).getDefCheckId(); }
-        public void write(Entity e, Object v) { ((WhiteSuppressDefCheck)e).setDefCheckId(ctl(v)); }
+        public Object read(Entity et) { return ((WhiteSuppressDefCheck)et).getDefCheckId(); }
+        public void write(Entity et, Object vl) { ((WhiteSuppressDefCheck)et).setDefCheckId(ctl(vl)); }
     }
     public static class EpgDefCheckName implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteSuppressDefCheck)e).getDefCheckName(); }
-        public void write(Entity e, Object v) { ((WhiteSuppressDefCheck)e).setDefCheckName((String)v); }
+        public Object read(Entity et) { return ((WhiteSuppressDefCheck)et).getDefCheckName(); }
+        public void write(Entity et, Object vl) { ((WhiteSuppressDefCheck)et).setDefCheckName((String)vl); }
     }
 
     // ===================================================================================
@@ -139,10 +139,10 @@ public class WhiteSuppressDefCheckDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((WhiteSuppressDefCheck)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((WhiteSuppressDefCheck)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((WhiteSuppressDefCheck)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((WhiteSuppressDefCheck)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

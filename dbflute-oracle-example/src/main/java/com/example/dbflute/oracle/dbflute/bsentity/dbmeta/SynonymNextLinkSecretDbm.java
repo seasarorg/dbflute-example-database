@@ -42,16 +42,16 @@ public class SynonymNextLinkSecretDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgSecretCode implements PropertyGateway {
-        public Object read(Entity e) { return ((SynonymNextLinkSecret)e).getSecretCode(); }
-        public void write(Entity e, Object v) { ((SynonymNextLinkSecret)e).setSecretCode((String)v); }
+        public Object read(Entity et) { return ((SynonymNextLinkSecret)et).getSecretCode(); }
+        public void write(Entity et, Object vl) { ((SynonymNextLinkSecret)et).setSecretCode((String)vl); }
     }
     public static class EpgSecretName implements PropertyGateway {
-        public Object read(Entity e) { return ((SynonymNextLinkSecret)e).getSecretName(); }
-        public void write(Entity e, Object v) { ((SynonymNextLinkSecret)e).setSecretName((String)v); }
+        public Object read(Entity et) { return ((SynonymNextLinkSecret)et).getSecretName(); }
+        public void write(Entity et, Object vl) { ((SynonymNextLinkSecret)et).setSecretName((String)vl); }
     }
     public static class EpgSecretAuthCode implements PropertyGateway {
-        public Object read(Entity e) { return ((SynonymNextLinkSecret)e).getSecretAuthCode(); }
-        public void write(Entity e, Object v) { ((SynonymNextLinkSecret)e).setSecretAuthCode((String)v); }
+        public Object read(Entity et) { return ((SynonymNextLinkSecret)et).getSecretAuthCode(); }
+        public void write(Entity et, Object vl) { ((SynonymNextLinkSecret)et).setSecretAuthCode((String)vl); }
     }
 
     // ===================================================================================
@@ -132,10 +132,10 @@ public class SynonymNextLinkSecretDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((SynonymNextLinkSecret)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((SynonymNextLinkSecret)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((SynonymNextLinkSecret)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((SynonymNextLinkSecret)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

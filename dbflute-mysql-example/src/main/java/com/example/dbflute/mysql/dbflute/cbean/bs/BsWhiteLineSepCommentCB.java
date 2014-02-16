@@ -330,8 +330,8 @@ public class BsWhiteLineSepCommentCB extends AbstractConditionBean {
         public HpSDRFunction<WhiteLineSepCommentCB, WhiteLineSepCommentCQ> myselfDerived() {
             assertDerived("myselfDerived"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<WhiteLineSepCommentCB, WhiteLineSepCommentCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<WhiteLineSepCommentCB, WhiteLineSepCommentCQ>() {
-                public void setup(String function, SubQuery<WhiteLineSepCommentCB> subQuery, WhiteLineSepCommentCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsmyselfDerive(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<WhiteLineSepCommentCB> sq, WhiteLineSepCommentCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsmyselfDerive(fn, sq, al, op); } }, _dbmetaProvider);
         }
     }
 

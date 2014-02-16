@@ -163,12 +163,12 @@ public abstract class AbstractBsWhiteImplicitReverseFkCQ extends AbstractConditi
      * @param subQuery The sub-query of WhiteImplicitReverseFkRefList for 'exists'. (NotNull)
      */
     public void existsWhiteImplicitReverseFkRefList(SubQuery<WhiteImplicitReverseFkRefCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteImplicitReverseFkRefCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteImplicitReverseFkRefCB cb = new WhiteImplicitReverseFkRefCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepWhiteImplicitReverseFkId_ExistsReferrer_WhiteImplicitReverseFkRefList(cb.query()); // for saving query-value.
-        registerExistsReferrer(cb.query(), "WHITE_IMPLICIT_REVERSE_FK_ID", "WHITE_IMPLICIT_REVERSE_FK_ID", subQueryPropertyName, "whiteImplicitReverseFkRefList");
+        String pp = keepWhiteImplicitReverseFkId_ExistsReferrer_WhiteImplicitReverseFkRefList(cb.query()); // for saving query-value.
+        registerExistsReferrer(cb.query(), "WHITE_IMPLICIT_REVERSE_FK_ID", "WHITE_IMPLICIT_REVERSE_FK_ID", pp, "whiteImplicitReverseFkRefList");
     }
-    public abstract String keepWhiteImplicitReverseFkId_ExistsReferrer_WhiteImplicitReverseFkRefList(WhiteImplicitReverseFkRefCQ subQuery);
+    public abstract String keepWhiteImplicitReverseFkId_ExistsReferrer_WhiteImplicitReverseFkRefList(WhiteImplicitReverseFkRefCQ sq);
 
     /**
      * Set up NotExistsReferrer (co-related sub-query). <br />
@@ -185,12 +185,12 @@ public abstract class AbstractBsWhiteImplicitReverseFkCQ extends AbstractConditi
      * @param subQuery The sub-query of WhiteImplicitReverseFkId_NotExistsReferrer_WhiteImplicitReverseFkRefList for 'not exists'. (NotNull)
      */
     public void notExistsWhiteImplicitReverseFkRefList(SubQuery<WhiteImplicitReverseFkRefCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteImplicitReverseFkRefCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteImplicitReverseFkRefCB cb = new WhiteImplicitReverseFkRefCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepWhiteImplicitReverseFkId_NotExistsReferrer_WhiteImplicitReverseFkRefList(cb.query()); // for saving query-value.
-        registerNotExistsReferrer(cb.query(), "WHITE_IMPLICIT_REVERSE_FK_ID", "WHITE_IMPLICIT_REVERSE_FK_ID", subQueryPropertyName, "whiteImplicitReverseFkRefList");
+        String pp = keepWhiteImplicitReverseFkId_NotExistsReferrer_WhiteImplicitReverseFkRefList(cb.query()); // for saving query-value.
+        registerNotExistsReferrer(cb.query(), "WHITE_IMPLICIT_REVERSE_FK_ID", "WHITE_IMPLICIT_REVERSE_FK_ID", pp, "whiteImplicitReverseFkRefList");
     }
-    public abstract String keepWhiteImplicitReverseFkId_NotExistsReferrer_WhiteImplicitReverseFkRefList(WhiteImplicitReverseFkRefCQ subQuery);
+    public abstract String keepWhiteImplicitReverseFkId_NotExistsReferrer_WhiteImplicitReverseFkRefList(WhiteImplicitReverseFkRefCQ sq);
 
     /**
      * Set up InScopeRelation (sub-query). <br />
@@ -200,12 +200,12 @@ public abstract class AbstractBsWhiteImplicitReverseFkCQ extends AbstractConditi
      * @param subQuery The sub-query of WhiteImplicitReverseFkRefList for 'in-scope'. (NotNull)
      */
     public void inScopeWhiteImplicitReverseFkRefList(SubQuery<WhiteImplicitReverseFkRefCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteImplicitReverseFkRefCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteImplicitReverseFkRefCB cb = new WhiteImplicitReverseFkRefCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String subQueryPropertyName = keepWhiteImplicitReverseFkId_InScopeRelation_WhiteImplicitReverseFkRefList(cb.query()); // for saving query-value.
-        registerInScopeRelation(cb.query(), "WHITE_IMPLICIT_REVERSE_FK_ID", "WHITE_IMPLICIT_REVERSE_FK_ID", subQueryPropertyName, "whiteImplicitReverseFkRefList");
+        String pp = keepWhiteImplicitReverseFkId_InScopeRelation_WhiteImplicitReverseFkRefList(cb.query()); // for saving query-value.
+        registerInScopeRelation(cb.query(), "WHITE_IMPLICIT_REVERSE_FK_ID", "WHITE_IMPLICIT_REVERSE_FK_ID", pp, "whiteImplicitReverseFkRefList");
     }
-    public abstract String keepWhiteImplicitReverseFkId_InScopeRelation_WhiteImplicitReverseFkRefList(WhiteImplicitReverseFkRefCQ subQuery);
+    public abstract String keepWhiteImplicitReverseFkId_InScopeRelation_WhiteImplicitReverseFkRefList(WhiteImplicitReverseFkRefCQ sq);
 
     /**
      * Set up NotInScopeRelation (sub-query). <br />
@@ -215,20 +215,20 @@ public abstract class AbstractBsWhiteImplicitReverseFkCQ extends AbstractConditi
      * @param subQuery The sub-query of WhiteImplicitReverseFkRefList for 'not in-scope'. (NotNull)
      */
     public void notInScopeWhiteImplicitReverseFkRefList(SubQuery<WhiteImplicitReverseFkRefCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteImplicitReverseFkRefCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteImplicitReverseFkRefCB cb = new WhiteImplicitReverseFkRefCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String subQueryPropertyName = keepWhiteImplicitReverseFkId_NotInScopeRelation_WhiteImplicitReverseFkRefList(cb.query()); // for saving query-value.
-        registerNotInScopeRelation(cb.query(), "WHITE_IMPLICIT_REVERSE_FK_ID", "WHITE_IMPLICIT_REVERSE_FK_ID", subQueryPropertyName, "whiteImplicitReverseFkRefList");
+        String pp = keepWhiteImplicitReverseFkId_NotInScopeRelation_WhiteImplicitReverseFkRefList(cb.query()); // for saving query-value.
+        registerNotInScopeRelation(cb.query(), "WHITE_IMPLICIT_REVERSE_FK_ID", "WHITE_IMPLICIT_REVERSE_FK_ID", pp, "whiteImplicitReverseFkRefList");
     }
-    public abstract String keepWhiteImplicitReverseFkId_NotInScopeRelation_WhiteImplicitReverseFkRefList(WhiteImplicitReverseFkRefCQ subQuery);
+    public abstract String keepWhiteImplicitReverseFkId_NotInScopeRelation_WhiteImplicitReverseFkRefList(WhiteImplicitReverseFkRefCQ sq);
 
-    public void xsderiveWhiteImplicitReverseFkRefList(String function, SubQuery<WhiteImplicitReverseFkRefCB> subQuery, String aliasName, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<WhiteImplicitReverseFkRefCB>", subQuery);
-        WhiteImplicitReverseFkRefCB cb = new WhiteImplicitReverseFkRefCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepWhiteImplicitReverseFkId_SpecifyDerivedReferrer_WhiteImplicitReverseFkRefList(cb.query()); // for saving query-value.
-        registerSpecifyDerivedReferrer(function, cb.query(), "WHITE_IMPLICIT_REVERSE_FK_ID", "WHITE_IMPLICIT_REVERSE_FK_ID", subQueryPropertyName, "whiteImplicitReverseFkRefList", aliasName, option);
+    public void xsderiveWhiteImplicitReverseFkRefList(String fn, SubQuery<WhiteImplicitReverseFkRefCB> sq, String al, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteImplicitReverseFkRefCB cb = new WhiteImplicitReverseFkRefCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pp = keepWhiteImplicitReverseFkId_SpecifyDerivedReferrer_WhiteImplicitReverseFkRefList(cb.query()); // for saving query-value.
+        registerSpecifyDerivedReferrer(fn, cb.query(), "WHITE_IMPLICIT_REVERSE_FK_ID", "WHITE_IMPLICIT_REVERSE_FK_ID", pp, "whiteImplicitReverseFkRefList", al, op);
     }
-    public abstract String keepWhiteImplicitReverseFkId_SpecifyDerivedReferrer_WhiteImplicitReverseFkRefList(WhiteImplicitReverseFkRefCQ subQuery);
+    public abstract String keepWhiteImplicitReverseFkId_SpecifyDerivedReferrer_WhiteImplicitReverseFkRefList(WhiteImplicitReverseFkRefCQ sq);
 
     /**
      * Prepare for (Query)DerivedReferrer. <br />
@@ -250,20 +250,20 @@ public abstract class AbstractBsWhiteImplicitReverseFkCQ extends AbstractConditi
     }
     protected HpQDRFunction<WhiteImplicitReverseFkRefCB> xcreateQDRFunctionWhiteImplicitReverseFkRefList() {
         return new HpQDRFunction<WhiteImplicitReverseFkRefCB>(new HpQDRSetupper<WhiteImplicitReverseFkRefCB>() {
-            public void setup(String function, SubQuery<WhiteImplicitReverseFkRefCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-                xqderiveWhiteImplicitReverseFkRefList(function, subQuery, operand, value, option);
+            public void setup(String fn, SubQuery<WhiteImplicitReverseFkRefCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+                xqderiveWhiteImplicitReverseFkRefList(fn, sq, rd, vl, op);
             }
         });
     }
-    public void xqderiveWhiteImplicitReverseFkRefList(String function, SubQuery<WhiteImplicitReverseFkRefCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<WhiteImplicitReverseFkRefCB>", subQuery);
-        WhiteImplicitReverseFkRefCB cb = new WhiteImplicitReverseFkRefCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepWhiteImplicitReverseFkId_QueryDerivedReferrer_WhiteImplicitReverseFkRefList(cb.query()); // for saving query-value.
-        String parameterPropertyName = keepWhiteImplicitReverseFkId_QueryDerivedReferrer_WhiteImplicitReverseFkRefListParameter(value);
-        registerQueryDerivedReferrer(function, cb.query(), "WHITE_IMPLICIT_REVERSE_FK_ID", "WHITE_IMPLICIT_REVERSE_FK_ID", subQueryPropertyName, "whiteImplicitReverseFkRefList", operand, value, parameterPropertyName, option);
+    public void xqderiveWhiteImplicitReverseFkRefList(String fn, SubQuery<WhiteImplicitReverseFkRefCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteImplicitReverseFkRefCB cb = new WhiteImplicitReverseFkRefCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String sqpp = keepWhiteImplicitReverseFkId_QueryDerivedReferrer_WhiteImplicitReverseFkRefList(cb.query()); // for saving query-value.
+        String prpp = keepWhiteImplicitReverseFkId_QueryDerivedReferrer_WhiteImplicitReverseFkRefListParameter(vl);
+        registerQueryDerivedReferrer(fn, cb.query(), "WHITE_IMPLICIT_REVERSE_FK_ID", "WHITE_IMPLICIT_REVERSE_FK_ID", sqpp, "whiteImplicitReverseFkRefList", rd, vl, prpp, op);
     }
-    public abstract String keepWhiteImplicitReverseFkId_QueryDerivedReferrer_WhiteImplicitReverseFkRefList(WhiteImplicitReverseFkRefCQ subQuery);
-    public abstract String keepWhiteImplicitReverseFkId_QueryDerivedReferrer_WhiteImplicitReverseFkRefListParameter(Object parameterValue);
+    public abstract String keepWhiteImplicitReverseFkId_QueryDerivedReferrer_WhiteImplicitReverseFkRefList(WhiteImplicitReverseFkRefCQ sq);
+    public abstract String keepWhiteImplicitReverseFkId_QueryDerivedReferrer_WhiteImplicitReverseFkRefListParameter(Object vl);
 
     /**
      * IsNull {is null}. And OnlyOnceRegistered. <br />
@@ -277,8 +277,8 @@ public abstract class AbstractBsWhiteImplicitReverseFkCQ extends AbstractConditi
      */
     public void setWhiteImplicitReverseFkId_IsNotNull() { regWhiteImplicitReverseFkId(CK_ISNN, DOBJ); }
 
-    protected void regWhiteImplicitReverseFkId(ConditionKey k, Object v) { regQ(k, v, getCValueWhiteImplicitReverseFkId(), "WHITE_IMPLICIT_REVERSE_FK_ID"); }
-    abstract protected ConditionValue getCValueWhiteImplicitReverseFkId();
+    protected void regWhiteImplicitReverseFkId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueWhiteImplicitReverseFkId(), "WHITE_IMPLICIT_REVERSE_FK_ID"); }
+    protected abstract ConditionValue getCValueWhiteImplicitReverseFkId();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -363,8 +363,8 @@ public abstract class AbstractBsWhiteImplicitReverseFkCQ extends AbstractConditi
         regLSQ(CK_NLS, fRES(whiteImplicitReverseFkName), getCValueWhiteImplicitReverseFkName(), "WHITE_IMPLICIT_REVERSE_FK_NAME", likeSearchOption);
     }
 
-    protected void regWhiteImplicitReverseFkName(ConditionKey k, Object v) { regQ(k, v, getCValueWhiteImplicitReverseFkName(), "WHITE_IMPLICIT_REVERSE_FK_NAME"); }
-    abstract protected ConditionValue getCValueWhiteImplicitReverseFkName();
+    protected void regWhiteImplicitReverseFkName(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueWhiteImplicitReverseFkName(), "WHITE_IMPLICIT_REVERSE_FK_NAME"); }
+    protected abstract ConditionValue getCValueWhiteImplicitReverseFkName();
 
     // ===================================================================================
     //                                                                     ScalarCondition
@@ -471,22 +471,22 @@ public abstract class AbstractBsWhiteImplicitReverseFkCQ extends AbstractConditi
         return xcreateSSQFunction(CK_LE.getOperand());
     }
 
-    protected HpSSQFunction<WhiteImplicitReverseFkCB> xcreateSSQFunction(final String operand) {
+    protected HpSSQFunction<WhiteImplicitReverseFkCB> xcreateSSQFunction(final String rd) {
         return new HpSSQFunction<WhiteImplicitReverseFkCB>(new HpSSQSetupper<WhiteImplicitReverseFkCB>() {
-            public void setup(String function, SubQuery<WhiteImplicitReverseFkCB> subQuery, HpSSQOption<WhiteImplicitReverseFkCB> option) {
-                xscalarCondition(function, subQuery, operand, option);
+            public void setup(String fn, SubQuery<WhiteImplicitReverseFkCB> sq, HpSSQOption<WhiteImplicitReverseFkCB> op) {
+                xscalarCondition(fn, sq, rd, op);
             }
         });
     }
 
-    protected void xscalarCondition(String function, SubQuery<WhiteImplicitReverseFkCB> subQuery, String operand, HpSSQOption<WhiteImplicitReverseFkCB> option) {
-        assertObjectNotNull("subQuery<WhiteImplicitReverseFkCB>", subQuery);
-        WhiteImplicitReverseFkCB cb = xcreateScalarConditionCB(); subQuery.query(cb);
-        String subQueryPropertyName = keepScalarCondition(cb.query()); // for saving query-value
-        option.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
-        registerScalarCondition(function, cb.query(), subQueryPropertyName, operand, option);
+    protected void xscalarCondition(String fn, SubQuery<WhiteImplicitReverseFkCB> sq, String rd, HpSSQOption<WhiteImplicitReverseFkCB> op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteImplicitReverseFkCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        String pp = keepScalarCondition(cb.query()); // for saving query-value
+        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
-    public abstract String keepScalarCondition(WhiteImplicitReverseFkCQ subQuery);
+    public abstract String keepScalarCondition(WhiteImplicitReverseFkCQ sq);
 
     protected WhiteImplicitReverseFkCB xcreateScalarConditionCB() {
         WhiteImplicitReverseFkCB cb = new WhiteImplicitReverseFkCB();
@@ -503,13 +503,14 @@ public abstract class AbstractBsWhiteImplicitReverseFkCQ extends AbstractConditi
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    public void xsmyselfDerive(String function, SubQuery<WhiteImplicitReverseFkCB> subQuery, String aliasName, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<WhiteImplicitReverseFkCB>", subQuery);
-        WhiteImplicitReverseFkCB cb = new WhiteImplicitReverseFkCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
-        registerSpecifyMyselfDerived(function, cb.query(), "WHITE_IMPLICIT_REVERSE_FK_ID", "WHITE_IMPLICIT_REVERSE_FK_ID", subQueryPropertyName, "myselfDerived", aliasName, option);
+    public void xsmyselfDerive(String fn, SubQuery<WhiteImplicitReverseFkCB> sq, String al, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteImplicitReverseFkCB cb = new WhiteImplicitReverseFkCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "WHITE_IMPLICIT_REVERSE_FK_ID";
+        String pp = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
+        registerSpecifyMyselfDerived(fn, cb.query(), pk, pk, pp, "myselfDerived", al, op);
     }
-    public abstract String keepSpecifyMyselfDerived(WhiteImplicitReverseFkCQ subQuery);
+    public abstract String keepSpecifyMyselfDerived(WhiteImplicitReverseFkCQ sq);
 
     /**
      * Prepare for (Query)MyselfDerived (SubQuery).
@@ -520,20 +521,21 @@ public abstract class AbstractBsWhiteImplicitReverseFkCQ extends AbstractConditi
     }
     protected HpQDRFunction<WhiteImplicitReverseFkCB> xcreateQDRFunctionMyselfDerived() {
         return new HpQDRFunction<WhiteImplicitReverseFkCB>(new HpQDRSetupper<WhiteImplicitReverseFkCB>() {
-            public void setup(String function, SubQuery<WhiteImplicitReverseFkCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-                xqderiveMyselfDerived(function, subQuery, operand, value, option);
+            public void setup(String fn, SubQuery<WhiteImplicitReverseFkCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+                xqderiveMyselfDerived(fn, sq, rd, vl, op);
             }
         });
     }
-    public void xqderiveMyselfDerived(String function, SubQuery<WhiteImplicitReverseFkCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<WhiteImplicitReverseFkCB>", subQuery);
-        WhiteImplicitReverseFkCB cb = new WhiteImplicitReverseFkCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepQueryMyselfDerived(cb.query()); // for saving query-value.
-        String parameterPropertyName = keepQueryMyselfDerivedParameter(value);
-        registerQueryMyselfDerived(function, cb.query(), "WHITE_IMPLICIT_REVERSE_FK_ID", "WHITE_IMPLICIT_REVERSE_FK_ID", subQueryPropertyName, "myselfDerived", operand, value, parameterPropertyName, option);
+    public void xqderiveMyselfDerived(String fn, SubQuery<WhiteImplicitReverseFkCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteImplicitReverseFkCB cb = new WhiteImplicitReverseFkCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "WHITE_IMPLICIT_REVERSE_FK_ID";
+        String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
+        String prpp = keepQueryMyselfDerivedParameter(vl);
+        registerQueryMyselfDerived(fn, cb.query(), pk, pk, sqpp, "myselfDerived", rd, vl, prpp, op);
     }
-    public abstract String keepQueryMyselfDerived(WhiteImplicitReverseFkCQ subQuery);
-    public abstract String keepQueryMyselfDerivedParameter(Object parameterValue);
+    public abstract String keepQueryMyselfDerived(WhiteImplicitReverseFkCQ sq);
+    public abstract String keepQueryMyselfDerivedParameter(Object vl);
 
     // ===================================================================================
     //                                                                        MyselfExists
@@ -543,12 +545,12 @@ public abstract class AbstractBsWhiteImplicitReverseFkCQ extends AbstractConditi
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfExists(SubQuery<WhiteImplicitReverseFkCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteImplicitReverseFkCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteImplicitReverseFkCB cb = new WhiteImplicitReverseFkCB(); cb.xsetupForMyselfExists(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfExists(cb.query()); // for saving query-value.
-        registerMyselfExists(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfExists(cb.query()); // for saving query-value.
+        registerMyselfExists(cb.query(), pp);
     }
-    public abstract String keepMyselfExists(WhiteImplicitReverseFkCQ subQuery);
+    public abstract String keepMyselfExists(WhiteImplicitReverseFkCQ sq);
 
     // ===================================================================================
     //                                                                       MyselfInScope
@@ -558,12 +560,12 @@ public abstract class AbstractBsWhiteImplicitReverseFkCQ extends AbstractConditi
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfInScope(SubQuery<WhiteImplicitReverseFkCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteImplicitReverseFkCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteImplicitReverseFkCB cb = new WhiteImplicitReverseFkCB(); cb.xsetupForMyselfInScope(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfInScope(cb.query()); // for saving query-value.
-        registerMyselfInScope(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfInScope(cb.query()); // for saving query-value.
+        registerMyselfInScope(cb.query(), pp);
     }
-    public abstract String keepMyselfInScope(WhiteImplicitReverseFkCQ subQuery);
+    public abstract String keepMyselfInScope(WhiteImplicitReverseFkCQ sq);
 
     // ===================================================================================
     //                                                                    Full Text Search
@@ -589,7 +591,7 @@ public abstract class AbstractBsWhiteImplicitReverseFkCQ extends AbstractConditi
      * @param conditionValue The condition value embedded without binding (by MySQL restriction) but escaped. (NullAllowed: if null or empty, no condition)
      * @param modifier The modifier of full-text search. (NullAllowed: If the value is null, no modifier specified)
      */
-    public void match(java.util.List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList
+    public void match(List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList
                     , String conditionValue
                     , org.seasar.dbflute.dbway.WayOfMySQL.FullTextSearchModifier modifier) {
         xdoMatchForMySQL(textColumnList, conditionValue, modifier);

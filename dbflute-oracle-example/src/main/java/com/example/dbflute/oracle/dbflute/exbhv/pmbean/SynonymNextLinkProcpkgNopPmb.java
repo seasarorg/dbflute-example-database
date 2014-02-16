@@ -5,7 +5,7 @@ import com.example.dbflute.oracle.dbflute.bsbhv.pmbean.BsSynonymNextLinkProcpkgN
 /**
  * <!-- df:beginClassDescription -->
  * The typed parameter-bean of SynonymNextLinkProcpkgNop. <br />
- * This is related to "<span style="color: #AD4747">SYNONYM_NEXT_LINK_PROCPKG_NOP</span>".
+ * This is related to "<span style="color: #AD4747">SYNONYM_NEXT_LINK_PROCPKG_NOP</span>". <br />
  * <!-- df:endClassDescription -->
  * <p>
  * You can implement your original methods here.

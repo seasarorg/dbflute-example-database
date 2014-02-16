@@ -56,12 +56,12 @@ public class WhiteQuotedDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgSelect implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteQuoted)e).getSelect(); }
-        public void write(Entity e, Object v) { ((WhiteQuoted)e).setSelect(cti(v)); }
+        public Object read(Entity et) { return ((WhiteQuoted)et).getSelect(); }
+        public void write(Entity et, Object vl) { ((WhiteQuoted)et).setSelect(cti(vl)); }
     }
     public static class EpgFrom implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteQuoted)e).getFrom(); }
-        public void write(Entity e, Object v) { ((WhiteQuoted)e).setFrom((String)v); }
+        public Object read(Entity et) { return ((WhiteQuoted)et).getFrom(); }
+        public void write(Entity et, Object vl) { ((WhiteQuoted)et).setFrom((String)vl); }
     }
 
     // ===================================================================================
@@ -114,8 +114,8 @@ public class WhiteQuotedDbm extends AbstractDBMeta {
     //                                     Referrer Property
     //                                     -----------------
     public ReferrerInfo referrerWhiteQuotedRefList() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnSelect(), WhiteQuotedRefDbm.getInstance().columnOrder());
-        return cri("FK_WHITE_QUOTED_REF", "whiteQuotedRefList", this, WhiteQuotedRefDbm.getInstance(), map, false, "whiteQuoted");
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnSelect(), WhiteQuotedRefDbm.getInstance().columnOrder());
+        return cri("FK_WHITE_QUOTED_REF", "whiteQuotedRefList", this, WhiteQuotedRefDbm.getInstance(), mp, false, "whiteQuoted");
     }
 
     // ===================================================================================
@@ -143,10 +143,10 @@ public class WhiteQuotedDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((WhiteQuoted)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((WhiteQuoted)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((WhiteQuoted)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((WhiteQuoted)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

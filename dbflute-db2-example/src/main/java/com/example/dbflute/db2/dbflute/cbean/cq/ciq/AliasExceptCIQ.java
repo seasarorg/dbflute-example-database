@@ -82,21 +82,21 @@ public class AliasExceptCIQ extends AbstractBsAliasExceptCQ {
     { throwIICBOE("(Specify)DerivedReferrer"); return null; }
     public String keepExceptId_QueryDerivedReferrer_AliasRefExceptList(AliasRefExceptCQ sq)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
-    public String keepExceptId_QueryDerivedReferrer_AliasRefExceptListParameter(Object pv)
+    public String keepExceptId_QueryDerivedReferrer_AliasRefExceptListParameter(Object vl)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
     protected ConditionValue getCValueExceptName() { return _myCQ.getExceptName(); }
-    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) { return null; }
-    public String keepScalarCondition(AliasExceptCQ subQuery)
+    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
+    public String keepScalarCondition(AliasExceptCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }
-    public String keepSpecifyMyselfDerived(AliasExceptCQ subQuery)
+    public String keepSpecifyMyselfDerived(AliasExceptCQ sq)
     { throwIICBOE("(Specify)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerived(AliasExceptCQ subQuery)
+    public String keepQueryMyselfDerived(AliasExceptCQ sq)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerivedParameter(Object parameterValue)
+    public String keepQueryMyselfDerivedParameter(Object vl)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepMyselfExists(AliasExceptCQ subQuery)
+    public String keepMyselfExists(AliasExceptCQ sq)
     { throwIICBOE("MyselfExists"); return null;}
-    public String keepMyselfInScope(AliasExceptCQ subQuery)
+    public String keepMyselfInScope(AliasExceptCQ sq)
     { throwIICBOE("MyselfInScope"); return null;}
 
     protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()

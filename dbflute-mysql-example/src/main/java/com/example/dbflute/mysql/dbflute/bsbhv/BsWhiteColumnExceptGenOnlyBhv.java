@@ -154,10 +154,10 @@ public abstract class BsWhiteColumnExceptGenOnlyBhv extends AbstractBehaviorWrit
         return doSelectEntity(cb, WhiteColumnExceptGenOnly.class);
     }
 
-    protected <ENTITY extends WhiteColumnExceptGenOnly> ENTITY doSelectEntity(final WhiteColumnExceptGenOnlyCB cb, Class<ENTITY> entityType) {
+    protected <ENTITY extends WhiteColumnExceptGenOnly> ENTITY doSelectEntity(final WhiteColumnExceptGenOnlyCB cb, Class<ENTITY> tp) {
         assertCBStateValid(cb);
-        return helpSelectEntityInternally(cb, entityType, new InternalSelectEntityCallback<ENTITY, WhiteColumnExceptGenOnlyCB>() {
-            public List<ENTITY> callbackSelectList(WhiteColumnExceptGenOnlyCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); } });
+        return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, WhiteColumnExceptGenOnlyCB>() {
+            public List<ENTITY> callbackSelectList(WhiteColumnExceptGenOnlyCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
     }
 
     @Override
@@ -183,10 +183,10 @@ public abstract class BsWhiteColumnExceptGenOnlyBhv extends AbstractBehaviorWrit
         return doSelectEntityWithDeletedCheck(cb, WhiteColumnExceptGenOnly.class);
     }
 
-    protected <ENTITY extends WhiteColumnExceptGenOnly> ENTITY doSelectEntityWithDeletedCheck(final WhiteColumnExceptGenOnlyCB cb, Class<ENTITY> entityType) {
+    protected <ENTITY extends WhiteColumnExceptGenOnly> ENTITY doSelectEntityWithDeletedCheck(final WhiteColumnExceptGenOnlyCB cb, Class<ENTITY> tp) {
         assertCBStateValid(cb);
-        return helpSelectEntityWithDeletedCheckInternally(cb, entityType, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, WhiteColumnExceptGenOnlyCB>() {
-            public List<ENTITY> callbackSelectList(WhiteColumnExceptGenOnlyCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); } });
+        return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, WhiteColumnExceptGenOnlyCB>() {
+            public List<ENTITY> callbackSelectList(WhiteColumnExceptGenOnlyCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
     }
 
     @Override
@@ -254,11 +254,11 @@ public abstract class BsWhiteColumnExceptGenOnlyBhv extends AbstractBehaviorWrit
         return doSelectList(cb, WhiteColumnExceptGenOnly.class);
     }
 
-    protected <ENTITY extends WhiteColumnExceptGenOnly> ListResultBean<ENTITY> doSelectList(WhiteColumnExceptGenOnlyCB cb, Class<ENTITY> entityType) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", entityType);
-        assertSpecifyDerivedReferrerEntityProperty(cb, entityType);
-        return helpSelectListInternally(cb, entityType, new InternalSelectListCallback<ENTITY, WhiteColumnExceptGenOnlyCB>() {
-            public List<ENTITY> callbackSelectList(WhiteColumnExceptGenOnlyCB cb, Class<ENTITY> entityType) { return delegateSelectList(cb, entityType); } });
+    protected <ENTITY extends WhiteColumnExceptGenOnly> ListResultBean<ENTITY> doSelectList(WhiteColumnExceptGenOnlyCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
+        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
+        return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, WhiteColumnExceptGenOnlyCB>() {
+            public List<ENTITY> callbackSelectList(WhiteColumnExceptGenOnlyCB cb, Class<ENTITY> tp) { return delegateSelectList(cb, tp); } });
     }
 
     @Override
@@ -295,11 +295,11 @@ public abstract class BsWhiteColumnExceptGenOnlyBhv extends AbstractBehaviorWrit
         return doSelectPage(cb, WhiteColumnExceptGenOnly.class);
     }
 
-    protected <ENTITY extends WhiteColumnExceptGenOnly> PagingResultBean<ENTITY> doSelectPage(WhiteColumnExceptGenOnlyCB cb, Class<ENTITY> entityType) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", entityType);
-        return helpSelectPageInternally(cb, entityType, new InternalSelectPageCallback<ENTITY, WhiteColumnExceptGenOnlyCB>() {
+    protected <ENTITY extends WhiteColumnExceptGenOnly> PagingResultBean<ENTITY> doSelectPage(WhiteColumnExceptGenOnlyCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
+        return helpSelectPageInternally(cb, tp, new InternalSelectPageCallback<ENTITY, WhiteColumnExceptGenOnlyCB>() {
             public int callbackSelectCount(WhiteColumnExceptGenOnlyCB cb) { return doSelectCountPlainly(cb); }
-            public List<ENTITY> callbackSelectList(WhiteColumnExceptGenOnlyCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); }
+            public List<ENTITY> callbackSelectList(WhiteColumnExceptGenOnlyCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
         });
     }
 
@@ -329,12 +329,12 @@ public abstract class BsWhiteColumnExceptGenOnlyBhv extends AbstractBehaviorWrit
         doSelectCursor(cb, entityRowHandler, WhiteColumnExceptGenOnly.class);
     }
 
-    protected <ENTITY extends WhiteColumnExceptGenOnly> void doSelectCursor(WhiteColumnExceptGenOnlyCB cb, EntityRowHandler<ENTITY> entityRowHandler, Class<ENTITY> entityType) {
-        assertCBStateValid(cb); assertObjectNotNull("entityRowHandler<WhiteColumnExceptGenOnly>", entityRowHandler); assertObjectNotNull("entityType", entityType);
-        assertSpecifyDerivedReferrerEntityProperty(cb, entityType);
-        helpSelectCursorInternally(cb, entityRowHandler, entityType, new InternalSelectCursorCallback<ENTITY, WhiteColumnExceptGenOnlyCB>() {
-            public void callbackSelectCursor(WhiteColumnExceptGenOnlyCB cb, EntityRowHandler<ENTITY> entityRowHandler, Class<ENTITY> entityType) { delegateSelectCursor(cb, entityRowHandler, entityType); }
-            public List<ENTITY> callbackSelectList(WhiteColumnExceptGenOnlyCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); }
+    protected <ENTITY extends WhiteColumnExceptGenOnly> void doSelectCursor(WhiteColumnExceptGenOnlyCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
+        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
+        helpSelectCursorInternally(cb, handler, tp, new InternalSelectCursorCallback<ENTITY, WhiteColumnExceptGenOnlyCB>() {
+            public void callbackSelectCursor(WhiteColumnExceptGenOnlyCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) { delegateSelectCursor(cb, handler, tp); }
+            public List<ENTITY> callbackSelectList(WhiteColumnExceptGenOnlyCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
         });
     }
 
@@ -360,18 +360,18 @@ public abstract class BsWhiteColumnExceptGenOnlyBhv extends AbstractBehaviorWrit
         return doScalarSelect(resultType, newMyConditionBean());
     }
 
-    protected <RESULT, CB extends WhiteColumnExceptGenOnlyCB> SLFunction<CB, RESULT> doScalarSelect(Class<RESULT> resultType, CB cb) {
-        assertObjectNotNull("resultType", resultType); assertCBStateValid(cb);
+    protected <RESULT, CB extends WhiteColumnExceptGenOnlyCB> SLFunction<CB, RESULT> doScalarSelect(Class<RESULT> tp, CB cb) {
+        assertObjectNotNull("resultType", tp); assertCBStateValid(cb);
         cb.xsetupForScalarSelect(); cb.getSqlClause().disableSelectIndex(); // for when you use union
-        return createSLFunction(cb, resultType);
+        return createSLFunction(cb, tp);
     }
 
-    protected <RESULT, CB extends WhiteColumnExceptGenOnlyCB> SLFunction<CB, RESULT> createSLFunction(CB cb, Class<RESULT> resultType) {
-        return new SLFunction<CB, RESULT>(cb, resultType);
+    protected <RESULT, CB extends WhiteColumnExceptGenOnlyCB> SLFunction<CB, RESULT> createSLFunction(CB cb, Class<RESULT> tp) {
+        return new SLFunction<CB, RESULT>(cb, tp);
     }
 
-    protected <RESULT> SLFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> resultType) {
-        return doScalarSelect(resultType, newMyConditionBean());
+    protected <RESULT> SLFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) {
+        return doScalarSelect(tp, newMyConditionBean());
     }
 
     // ===================================================================================
@@ -397,7 +397,7 @@ public abstract class BsWhiteColumnExceptGenOnlyBhv extends AbstractBehaviorWrit
      */
     public List<Long> extractGenOnlyIdList(List<WhiteColumnExceptGenOnly> whiteColumnExceptGenOnlyList) {
         return helpExtractListInternally(whiteColumnExceptGenOnlyList, new InternalExtractCallback<WhiteColumnExceptGenOnly, Long>() {
-            public Long getCV(WhiteColumnExceptGenOnly e) { return e.getGenOnlyId(); }
+            public Long getCV(WhiteColumnExceptGenOnly et) { return et.getGenOnlyId(); }
         });
     }
 
@@ -425,24 +425,24 @@ public abstract class BsWhiteColumnExceptGenOnlyBhv extends AbstractBehaviorWrit
         doInsert(whiteColumnExceptGenOnly, null);
     }
 
-    protected void doInsert(WhiteColumnExceptGenOnly whiteColumnExceptGenOnly, InsertOption<WhiteColumnExceptGenOnlyCB> option) {
+    protected void doInsert(WhiteColumnExceptGenOnly whiteColumnExceptGenOnly, InsertOption<WhiteColumnExceptGenOnlyCB> op) {
         assertObjectNotNull("whiteColumnExceptGenOnly", whiteColumnExceptGenOnly);
-        prepareInsertOption(option);
-        delegateInsert(whiteColumnExceptGenOnly, option);
+        prepareInsertOption(op);
+        delegateInsert(whiteColumnExceptGenOnly, op);
     }
 
-    protected void prepareInsertOption(InsertOption<WhiteColumnExceptGenOnlyCB> option) {
-        if (option == null) { return; }
-        assertInsertOptionStatus(option);
-        if (option.hasSpecifiedInsertColumn()) {
-            option.resolveInsertColumnSpecification(createCBForSpecifiedUpdate());
+    protected void prepareInsertOption(InsertOption<WhiteColumnExceptGenOnlyCB> op) {
+        if (op == null) { return; }
+        assertInsertOptionStatus(op);
+        if (op.hasSpecifiedInsertColumn()) {
+            op.resolveInsertColumnSpecification(createCBForSpecifiedUpdate());
         }
     }
 
     @Override
-    protected void doCreate(Entity entity, InsertOption<? extends ConditionBean> option) {
-        if (option == null) { insert(downcast(entity)); }
-        else { varyingInsert(downcast(entity), downcast(option)); }
+    protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) {
+        if (op == null) { insert(downcast(et)); }
+        else { varyingInsert(downcast(et), downcast(op)); }
     }
 
     /**
@@ -471,21 +471,21 @@ public abstract class BsWhiteColumnExceptGenOnlyBhv extends AbstractBehaviorWrit
         doUpdate(whiteColumnExceptGenOnly, null);
     }
 
-    protected void doUpdate(WhiteColumnExceptGenOnly whiteColumnExceptGenOnly, final UpdateOption<WhiteColumnExceptGenOnlyCB> option) {
+    protected void doUpdate(WhiteColumnExceptGenOnly whiteColumnExceptGenOnly, final UpdateOption<WhiteColumnExceptGenOnlyCB> op) {
         assertObjectNotNull("whiteColumnExceptGenOnly", whiteColumnExceptGenOnly);
-        prepareUpdateOption(option);
+        prepareUpdateOption(op);
         helpUpdateInternally(whiteColumnExceptGenOnly, new InternalUpdateCallback<WhiteColumnExceptGenOnly>() {
-            public int callbackDelegateUpdate(WhiteColumnExceptGenOnly entity) { return delegateUpdate(entity, option); } });
+            public int callbackDelegateUpdate(WhiteColumnExceptGenOnly et) { return delegateUpdate(et, op); } });
     }
 
-    protected void prepareUpdateOption(UpdateOption<WhiteColumnExceptGenOnlyCB> option) {
-        if (option == null) { return; }
-        assertUpdateOptionStatus(option);
-        if (option.hasSelfSpecification()) {
-            option.resolveSelfSpecification(createCBForVaryingUpdate());
+    protected void prepareUpdateOption(UpdateOption<WhiteColumnExceptGenOnlyCB> op) {
+        if (op == null) { return; }
+        assertUpdateOptionStatus(op);
+        if (op.hasSelfSpecification()) {
+            op.resolveSelfSpecification(createCBForVaryingUpdate());
         }
-        if (option.hasSpecifiedUpdateColumn()) {
-            option.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate());
+        if (op.hasSpecifiedUpdateColumn()) {
+            op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate());
         }
     }
 
@@ -502,14 +502,14 @@ public abstract class BsWhiteColumnExceptGenOnlyBhv extends AbstractBehaviorWrit
     }
 
     @Override
-    protected void doModify(Entity entity, UpdateOption<? extends ConditionBean> option) {
-        if (option == null) { update(downcast(entity)); }
-        else { varyingUpdate(downcast(entity), downcast(option)); }
+    protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) {
+        if (op == null) { update(downcast(et)); }
+        else { varyingUpdate(downcast(et), downcast(op)); }
     }
 
     @Override
-    protected void doModifyNonstrict(Entity entity, UpdateOption<? extends ConditionBean> option) {
-        doModify(entity, option);
+    protected void doModifyNonstrict(Entity et, UpdateOption<? extends ConditionBean> op) {
+        doModify(et, op);
     }
 
     /**
@@ -525,30 +525,28 @@ public abstract class BsWhiteColumnExceptGenOnlyBhv extends AbstractBehaviorWrit
         doInesrtOrUpdate(whiteColumnExceptGenOnly, null, null);
     }
 
-    protected void doInesrtOrUpdate(WhiteColumnExceptGenOnly whiteColumnExceptGenOnly, final InsertOption<WhiteColumnExceptGenOnlyCB> insertOption, final UpdateOption<WhiteColumnExceptGenOnlyCB> updateOption) {
+    protected void doInesrtOrUpdate(WhiteColumnExceptGenOnly whiteColumnExceptGenOnly, final InsertOption<WhiteColumnExceptGenOnlyCB> iop, final UpdateOption<WhiteColumnExceptGenOnlyCB> uop) {
         helpInsertOrUpdateInternally(whiteColumnExceptGenOnly, new InternalInsertOrUpdateCallback<WhiteColumnExceptGenOnly, WhiteColumnExceptGenOnlyCB>() {
-            public void callbackInsert(WhiteColumnExceptGenOnly entity) { doInsert(entity, insertOption); }
-            public void callbackUpdate(WhiteColumnExceptGenOnly entity) { doUpdate(entity, updateOption); }
+            public void callbackInsert(WhiteColumnExceptGenOnly et) { doInsert(et, iop); }
+            public void callbackUpdate(WhiteColumnExceptGenOnly et) { doUpdate(et, uop); }
             public WhiteColumnExceptGenOnlyCB callbackNewMyConditionBean() { return newMyConditionBean(); }
             public int callbackSelectCount(WhiteColumnExceptGenOnlyCB cb) { return selectCount(cb); }
         });
     }
 
     @Override
-    protected void doCreateOrModify(Entity entity, InsertOption<? extends ConditionBean> insertOption,
-            UpdateOption<? extends ConditionBean> updateOption) {
-        if (insertOption == null && updateOption == null) { insertOrUpdate(downcast(entity)); }
+    protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
+        if (iop == null && uop == null) { insertOrUpdate(downcast(et)); }
         else {
-            insertOption = insertOption == null ? new InsertOption<WhiteColumnExceptGenOnlyCB>() : insertOption;
-            updateOption = updateOption == null ? new UpdateOption<WhiteColumnExceptGenOnlyCB>() : updateOption;
-            varyingInsertOrUpdate(downcast(entity), downcast(insertOption), downcast(updateOption));
+            iop = iop != null ? iop : new InsertOption<WhiteColumnExceptGenOnlyCB>();
+            uop = uop != null ? uop : new UpdateOption<WhiteColumnExceptGenOnlyCB>();
+            varyingInsertOrUpdate(downcast(et), downcast(iop), downcast(uop));
         }
     }
 
     @Override
-    protected void doCreateOrModifyNonstrict(Entity entity, InsertOption<? extends ConditionBean> insertOption,
-            UpdateOption<? extends ConditionBean> updateOption) {
-        doCreateOrModify(entity, insertOption, updateOption);
+    protected void doCreateOrModifyNonstrict(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
+        doCreateOrModify(et, iop, uop);
     }
 
     /**
@@ -572,27 +570,27 @@ public abstract class BsWhiteColumnExceptGenOnlyBhv extends AbstractBehaviorWrit
         doDelete(whiteColumnExceptGenOnly, null);
     }
 
-    protected void doDelete(WhiteColumnExceptGenOnly whiteColumnExceptGenOnly, final DeleteOption<WhiteColumnExceptGenOnlyCB> option) {
+    protected void doDelete(WhiteColumnExceptGenOnly whiteColumnExceptGenOnly, final DeleteOption<WhiteColumnExceptGenOnlyCB> op) {
         assertObjectNotNull("whiteColumnExceptGenOnly", whiteColumnExceptGenOnly);
-        prepareDeleteOption(option);
+        prepareDeleteOption(op);
         helpDeleteInternally(whiteColumnExceptGenOnly, new InternalDeleteCallback<WhiteColumnExceptGenOnly>() {
-            public int callbackDelegateDelete(WhiteColumnExceptGenOnly entity) { return delegateDelete(entity, option); } });
+            public int callbackDelegateDelete(WhiteColumnExceptGenOnly et) { return delegateDelete(et, op); } });
     }
 
-    protected void prepareDeleteOption(DeleteOption<WhiteColumnExceptGenOnlyCB> option) {
-        if (option == null) { return; }
-        assertDeleteOptionStatus(option);
-    }
-
-    @Override
-    protected void doRemove(Entity entity, DeleteOption<? extends ConditionBean> option) {
-        if (option == null) { delete(downcast(entity)); }
-        else { varyingDelete(downcast(entity), downcast(option)); }
+    protected void prepareDeleteOption(DeleteOption<WhiteColumnExceptGenOnlyCB> op) {
+        if (op == null) { return; }
+        assertDeleteOptionStatus(op);
     }
 
     @Override
-    protected void doRemoveNonstrict(Entity entity, DeleteOption<? extends ConditionBean> option) {
-        doRemove(entity, option);
+    protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) {
+        if (op == null) { delete(downcast(et)); }
+        else { varyingDelete(downcast(et), downcast(op)); }
+    }
+
+    @Override
+    protected void doRemoveNonstrict(Entity et, DeleteOption<? extends ConditionBean> op) {
+        doRemove(et, op);
     }
 
     // ===================================================================================
@@ -623,26 +621,26 @@ public abstract class BsWhiteColumnExceptGenOnlyBhv extends AbstractBehaviorWrit
      * @return The array of inserted count. (NotNull, EmptyAllowed)
      */
     public int[] batchInsert(List<WhiteColumnExceptGenOnly> whiteColumnExceptGenOnlyList) {
-        InsertOption<WhiteColumnExceptGenOnlyCB> option = createInsertUpdateOption();
-        return doBatchInsert(whiteColumnExceptGenOnlyList, option);
+        InsertOption<WhiteColumnExceptGenOnlyCB> op = createInsertUpdateOption();
+        return doBatchInsert(whiteColumnExceptGenOnlyList, op);
     }
 
-    protected int[] doBatchInsert(List<WhiteColumnExceptGenOnly> whiteColumnExceptGenOnlyList, InsertOption<WhiteColumnExceptGenOnlyCB> option) {
+    protected int[] doBatchInsert(List<WhiteColumnExceptGenOnly> whiteColumnExceptGenOnlyList, InsertOption<WhiteColumnExceptGenOnlyCB> op) {
         assertObjectNotNull("whiteColumnExceptGenOnlyList", whiteColumnExceptGenOnlyList);
-        prepareBatchInsertOption(whiteColumnExceptGenOnlyList, option);
-        return delegateBatchInsert(whiteColumnExceptGenOnlyList, option);
+        prepareBatchInsertOption(whiteColumnExceptGenOnlyList, op);
+        return delegateBatchInsert(whiteColumnExceptGenOnlyList, op);
     }
 
-    protected void prepareBatchInsertOption(List<WhiteColumnExceptGenOnly> whiteColumnExceptGenOnlyList, InsertOption<WhiteColumnExceptGenOnlyCB> option) {
-        option.xallowInsertColumnModifiedPropertiesFragmented();
-        option.xacceptInsertColumnModifiedPropertiesIfNeeds(whiteColumnExceptGenOnlyList);
-        prepareInsertOption(option);
+    protected void prepareBatchInsertOption(List<WhiteColumnExceptGenOnly> whiteColumnExceptGenOnlyList, InsertOption<WhiteColumnExceptGenOnlyCB> op) {
+        op.xallowInsertColumnModifiedPropertiesFragmented();
+        op.xacceptInsertColumnModifiedPropertiesIfNeeds(whiteColumnExceptGenOnlyList);
+        prepareInsertOption(op);
     }
 
     @Override
-    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> option) {
-        if (option == null) { return batchInsert(downcast(ls)); }
-        else { return varyingBatchInsert(downcast(ls), downcast(option)); }
+    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) {
+        if (op == null) { return batchInsert(downcast(ls)); }
+        else { return varyingBatchInsert(downcast(ls), downcast(op)); }
     }
 
     /**
@@ -670,25 +668,25 @@ public abstract class BsWhiteColumnExceptGenOnlyBhv extends AbstractBehaviorWrit
      * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<WhiteColumnExceptGenOnly> whiteColumnExceptGenOnlyList) {
-        UpdateOption<WhiteColumnExceptGenOnlyCB> option = createPlainUpdateOption();
-        return doBatchUpdate(whiteColumnExceptGenOnlyList, option);
+        UpdateOption<WhiteColumnExceptGenOnlyCB> op = createPlainUpdateOption();
+        return doBatchUpdate(whiteColumnExceptGenOnlyList, op);
     }
 
-    protected int[] doBatchUpdate(List<WhiteColumnExceptGenOnly> whiteColumnExceptGenOnlyList, UpdateOption<WhiteColumnExceptGenOnlyCB> option) {
+    protected int[] doBatchUpdate(List<WhiteColumnExceptGenOnly> whiteColumnExceptGenOnlyList, UpdateOption<WhiteColumnExceptGenOnlyCB> op) {
         assertObjectNotNull("whiteColumnExceptGenOnlyList", whiteColumnExceptGenOnlyList);
-        prepareBatchUpdateOption(whiteColumnExceptGenOnlyList, option);
-        return delegateBatchUpdate(whiteColumnExceptGenOnlyList, option);
+        prepareBatchUpdateOption(whiteColumnExceptGenOnlyList, op);
+        return delegateBatchUpdate(whiteColumnExceptGenOnlyList, op);
     }
 
-    protected void prepareBatchUpdateOption(List<WhiteColumnExceptGenOnly> whiteColumnExceptGenOnlyList, UpdateOption<WhiteColumnExceptGenOnlyCB> option) {
-        option.xacceptUpdateColumnModifiedPropertiesIfNeeds(whiteColumnExceptGenOnlyList);
-        prepareUpdateOption(option);
+    protected void prepareBatchUpdateOption(List<WhiteColumnExceptGenOnly> whiteColumnExceptGenOnlyList, UpdateOption<WhiteColumnExceptGenOnlyCB> op) {
+        op.xacceptUpdateColumnModifiedPropertiesIfNeeds(whiteColumnExceptGenOnlyList);
+        prepareUpdateOption(op);
     }
 
     @Override
-    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> option) {
-        if (option == null) { return batchUpdate(downcast(ls)); }
-        else { return varyingBatchUpdate(downcast(ls), downcast(option)); }
+    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) {
+        if (op == null) { return batchUpdate(downcast(ls)); }
+        else { return varyingBatchUpdate(downcast(ls), downcast(op)); }
     }
 
     /**
@@ -724,8 +722,8 @@ public abstract class BsWhiteColumnExceptGenOnlyBhv extends AbstractBehaviorWrit
     }
 
     @Override
-    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> option) {
-        return doLumpModify(ls, option);
+    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> op) {
+        return doLumpModify(ls, op);
     }
 
     /**
@@ -739,21 +737,21 @@ public abstract class BsWhiteColumnExceptGenOnlyBhv extends AbstractBehaviorWrit
         return doBatchDelete(whiteColumnExceptGenOnlyList, null);
     }
 
-    protected int[] doBatchDelete(List<WhiteColumnExceptGenOnly> whiteColumnExceptGenOnlyList, DeleteOption<WhiteColumnExceptGenOnlyCB> option) {
+    protected int[] doBatchDelete(List<WhiteColumnExceptGenOnly> whiteColumnExceptGenOnlyList, DeleteOption<WhiteColumnExceptGenOnlyCB> op) {
         assertObjectNotNull("whiteColumnExceptGenOnlyList", whiteColumnExceptGenOnlyList);
-        prepareDeleteOption(option);
-        return delegateBatchDelete(whiteColumnExceptGenOnlyList, option);
+        prepareDeleteOption(op);
+        return delegateBatchDelete(whiteColumnExceptGenOnlyList, op);
     }
 
     @Override
-    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> option) {
-        if (option == null) { return batchDelete(downcast(ls)); }
-        else { return varyingBatchDelete(downcast(ls), downcast(option)); }
+    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) {
+        if (op == null) { return batchDelete(downcast(ls)); }
+        else { return varyingBatchDelete(downcast(ls), downcast(op)); }
     }
 
     @Override
-    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> option) {
-        return doLumpRemove(ls, option);
+    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> op) {
+        return doLumpRemove(ls, op);
     }
 
     // ===================================================================================
@@ -789,13 +787,12 @@ public abstract class BsWhiteColumnExceptGenOnlyBhv extends AbstractBehaviorWrit
         return doQueryInsert(setupper, null);
     }
 
-    protected int doQueryInsert(QueryInsertSetupper<WhiteColumnExceptGenOnly, WhiteColumnExceptGenOnlyCB> setupper, InsertOption<WhiteColumnExceptGenOnlyCB> option) {
-        assertObjectNotNull("setupper", setupper);
-        prepareInsertOption(option);
-        WhiteColumnExceptGenOnly entity = new WhiteColumnExceptGenOnly();
-        WhiteColumnExceptGenOnlyCB intoCB = createCBForQueryInsert();
-        ConditionBean resourceCB = setupper.setup(entity, intoCB);
-        return delegateQueryInsert(entity, intoCB, resourceCB, option);
+    protected int doQueryInsert(QueryInsertSetupper<WhiteColumnExceptGenOnly, WhiteColumnExceptGenOnlyCB> sp, InsertOption<WhiteColumnExceptGenOnlyCB> op) {
+        assertObjectNotNull("setupper", sp);
+        prepareInsertOption(op);
+        WhiteColumnExceptGenOnly e = new WhiteColumnExceptGenOnly();
+        WhiteColumnExceptGenOnlyCB cb = createCBForQueryInsert();
+        return delegateQueryInsert(e, cb, sp.setup(e, cb), op);
     }
 
     protected WhiteColumnExceptGenOnlyCB createCBForQueryInsert() {
@@ -836,16 +833,16 @@ public abstract class BsWhiteColumnExceptGenOnlyBhv extends AbstractBehaviorWrit
         return doQueryUpdate(whiteColumnExceptGenOnly, cb, null);
     }
 
-    protected int doQueryUpdate(WhiteColumnExceptGenOnly whiteColumnExceptGenOnly, WhiteColumnExceptGenOnlyCB cb, UpdateOption<WhiteColumnExceptGenOnlyCB> option) {
+    protected int doQueryUpdate(WhiteColumnExceptGenOnly whiteColumnExceptGenOnly, WhiteColumnExceptGenOnlyCB cb, UpdateOption<WhiteColumnExceptGenOnlyCB> op) {
         assertObjectNotNull("whiteColumnExceptGenOnly", whiteColumnExceptGenOnly); assertCBStateValid(cb);
-        prepareUpdateOption(option);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(whiteColumnExceptGenOnly, cb, option) : 0;
+        prepareUpdateOption(op);
+        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(whiteColumnExceptGenOnly, cb, op) : 0;
     }
 
     @Override
-    protected int doRangeModify(Entity entity, ConditionBean cb, UpdateOption<? extends ConditionBean> option) {
-        if (option == null) { return queryUpdate(downcast(entity), (WhiteColumnExceptGenOnlyCB)cb); }
-        else { return varyingQueryUpdate(downcast(entity), (WhiteColumnExceptGenOnlyCB)cb, downcast(option)); }
+    protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op) {
+        if (op == null) { return queryUpdate(downcast(et), (WhiteColumnExceptGenOnlyCB)cb); }
+        else { return varyingQueryUpdate(downcast(et), (WhiteColumnExceptGenOnlyCB)cb, downcast(op)); }
     }
 
     /**
@@ -863,16 +860,16 @@ public abstract class BsWhiteColumnExceptGenOnlyBhv extends AbstractBehaviorWrit
         return doQueryDelete(cb, null);
     }
 
-    protected int doQueryDelete(WhiteColumnExceptGenOnlyCB cb, DeleteOption<WhiteColumnExceptGenOnlyCB> option) {
+    protected int doQueryDelete(WhiteColumnExceptGenOnlyCB cb, DeleteOption<WhiteColumnExceptGenOnlyCB> op) {
         assertCBStateValid(cb);
-        prepareDeleteOption(option);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryDelete(cb, option) : 0;
+        prepareDeleteOption(op);
+        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryDelete(cb, op) : 0;
     }
 
     @Override
-    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> option) {
-        if (option == null) { return queryDelete((WhiteColumnExceptGenOnlyCB)cb); }
-        else { return varyingQueryDelete((WhiteColumnExceptGenOnlyCB)cb, downcast(option)); }
+    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) {
+        if (op == null) { return queryDelete((WhiteColumnExceptGenOnlyCB)cb); }
+        else { return varyingQueryDelete((WhiteColumnExceptGenOnlyCB)cb, downcast(op)); }
     }
 
     // ===================================================================================
@@ -1124,29 +1121,29 @@ public abstract class BsWhiteColumnExceptGenOnlyBhv extends AbstractBehaviorWrit
     //                                                ------
     protected int delegateSelectCountUniquely(WhiteColumnExceptGenOnlyCB cb) { return invoke(createSelectCountCBCommand(cb, true)); }
     protected int delegateSelectCountPlainly(WhiteColumnExceptGenOnlyCB cb) { return invoke(createSelectCountCBCommand(cb, false)); }
-    protected <ENTITY extends WhiteColumnExceptGenOnly> void delegateSelectCursor(WhiteColumnExceptGenOnlyCB cb, EntityRowHandler<ENTITY> erh, Class<ENTITY> et)
-    { invoke(createSelectCursorCBCommand(cb, erh, et)); }
-    protected <ENTITY extends WhiteColumnExceptGenOnly> List<ENTITY> delegateSelectList(WhiteColumnExceptGenOnlyCB cb, Class<ENTITY> et)
-    { return invoke(createSelectListCBCommand(cb, et)); }
+    protected <ENTITY extends WhiteColumnExceptGenOnly> void delegateSelectCursor(WhiteColumnExceptGenOnlyCB cb, EntityRowHandler<ENTITY> rh, Class<ENTITY> tp)
+    { invoke(createSelectCursorCBCommand(cb, rh, tp)); }
+    protected <ENTITY extends WhiteColumnExceptGenOnly> List<ENTITY> delegateSelectList(WhiteColumnExceptGenOnlyCB cb, Class<ENTITY> tp)
+    { return invoke(createSelectListCBCommand(cb, tp)); }
 
     // -----------------------------------------------------
     //                                                Update
     //                                                ------
-    protected int delegateInsert(WhiteColumnExceptGenOnly e, InsertOption<WhiteColumnExceptGenOnlyCB> op)
-    { if (!processBeforeInsert(e, op)) { return 0; }
-      return invoke(createInsertEntityCommand(e, op)); }
-    protected int delegateUpdate(WhiteColumnExceptGenOnly e, UpdateOption<WhiteColumnExceptGenOnlyCB> op)
-    { if (!processBeforeUpdate(e, op)) { return 0; }
-      return delegateUpdateNonstrict(e, op); }
-    protected int delegateUpdateNonstrict(WhiteColumnExceptGenOnly e, UpdateOption<WhiteColumnExceptGenOnlyCB> op)
-    { if (!processBeforeUpdate(e, op)) { return 0; }
-      return invoke(createUpdateNonstrictEntityCommand(e, op)); }
-    protected int delegateDelete(WhiteColumnExceptGenOnly e, DeleteOption<WhiteColumnExceptGenOnlyCB> op)
-    { if (!processBeforeDelete(e, op)) { return 0; }
-      return delegateDeleteNonstrict(e, op); }
-    protected int delegateDeleteNonstrict(WhiteColumnExceptGenOnly e, DeleteOption<WhiteColumnExceptGenOnlyCB> op)
-    { if (!processBeforeDelete(e, op)) { return 0; }
-      return invoke(createDeleteNonstrictEntityCommand(e, op)); }
+    protected int delegateInsert(WhiteColumnExceptGenOnly et, InsertOption<WhiteColumnExceptGenOnlyCB> op)
+    { if (!processBeforeInsert(et, op)) { return 0; }
+      return invoke(createInsertEntityCommand(et, op)); }
+    protected int delegateUpdate(WhiteColumnExceptGenOnly et, UpdateOption<WhiteColumnExceptGenOnlyCB> op)
+    { if (!processBeforeUpdate(et, op)) { return 0; }
+      return delegateUpdateNonstrict(et, op); }
+    protected int delegateUpdateNonstrict(WhiteColumnExceptGenOnly et, UpdateOption<WhiteColumnExceptGenOnlyCB> op)
+    { if (!processBeforeUpdate(et, op)) { return 0; }
+      return invoke(createUpdateNonstrictEntityCommand(et, op)); }
+    protected int delegateDelete(WhiteColumnExceptGenOnly et, DeleteOption<WhiteColumnExceptGenOnlyCB> op)
+    { if (!processBeforeDelete(et, op)) { return 0; }
+      return delegateDeleteNonstrict(et, op); }
+    protected int delegateDeleteNonstrict(WhiteColumnExceptGenOnly et, DeleteOption<WhiteColumnExceptGenOnlyCB> op)
+    { if (!processBeforeDelete(et, op)) { return 0; }
+      return invoke(createDeleteNonstrictEntityCommand(et, op)); }
 
     protected int[] delegateBatchInsert(List<WhiteColumnExceptGenOnly> ls, InsertOption<WhiteColumnExceptGenOnlyCB> op)
     { if (ls.isEmpty()) { return new int[]{}; }
@@ -1164,10 +1161,10 @@ public abstract class BsWhiteColumnExceptGenOnlyBhv extends AbstractBehaviorWrit
     { if (ls.isEmpty()) { return new int[]{}; }
       return invoke(createBatchDeleteNonstrictCommand(processBatchInternally(ls, op, true), op)); }
 
-    protected int delegateQueryInsert(WhiteColumnExceptGenOnly e, WhiteColumnExceptGenOnlyCB inCB, ConditionBean resCB, InsertOption<WhiteColumnExceptGenOnlyCB> op)
-    { if (!processBeforeQueryInsert(e, inCB, resCB, op)) { return 0; } return invoke(createQueryInsertCBCommand(e, inCB, resCB, op));  }
-    protected int delegateQueryUpdate(WhiteColumnExceptGenOnly e, WhiteColumnExceptGenOnlyCB cb, UpdateOption<WhiteColumnExceptGenOnlyCB> op)
-    { if (!processBeforeQueryUpdate(e, cb, op)) { return 0; } return invoke(createQueryUpdateCBCommand(e, cb, op));  }
+    protected int delegateQueryInsert(WhiteColumnExceptGenOnly et, WhiteColumnExceptGenOnlyCB inCB, ConditionBean resCB, InsertOption<WhiteColumnExceptGenOnlyCB> op)
+    { if (!processBeforeQueryInsert(et, inCB, resCB, op)) { return 0; } return invoke(createQueryInsertCBCommand(et, inCB, resCB, op));  }
+    protected int delegateQueryUpdate(WhiteColumnExceptGenOnly et, WhiteColumnExceptGenOnlyCB cb, UpdateOption<WhiteColumnExceptGenOnlyCB> op)
+    { if (!processBeforeQueryUpdate(et, cb, op)) { return 0; } return invoke(createQueryUpdateCBCommand(et, cb, op));  }
     protected int delegateQueryDelete(WhiteColumnExceptGenOnlyCB cb, DeleteOption<WhiteColumnExceptGenOnlyCB> op)
     { if (!processBeforeQueryDelete(cb, op)) { return 0; } return invoke(createQueryDeleteCBCommand(cb, op));  }
 
@@ -1178,7 +1175,7 @@ public abstract class BsWhiteColumnExceptGenOnlyBhv extends AbstractBehaviorWrit
      * {@inheritDoc}
      */
     @Override
-    protected boolean hasVersionNoValue(Entity entity) {
+    protected boolean hasVersionNoValue(Entity et) {
         return false;
     }
 
@@ -1186,15 +1183,15 @@ public abstract class BsWhiteColumnExceptGenOnlyBhv extends AbstractBehaviorWrit
      * {@inheritDoc}
      */
     @Override
-    protected boolean hasUpdateDateValue(Entity entity) {
+    protected boolean hasUpdateDateValue(Entity et) {
         return false;
     }
 
     // ===================================================================================
     //                                                                     Downcast Helper
     //                                                                     ===============
-    protected WhiteColumnExceptGenOnly downcast(Entity entity) {
-        return helpEntityDowncastInternally(entity, WhiteColumnExceptGenOnly.class);
+    protected WhiteColumnExceptGenOnly downcast(Entity et) {
+        return helpEntityDowncastInternally(et, WhiteColumnExceptGenOnly.class);
     }
 
     protected WhiteColumnExceptGenOnlyCB downcast(ConditionBean cb) {
@@ -1202,27 +1199,27 @@ public abstract class BsWhiteColumnExceptGenOnlyBhv extends AbstractBehaviorWrit
     }
 
     @SuppressWarnings("unchecked")
-    protected List<WhiteColumnExceptGenOnly> downcast(List<? extends Entity> entityList) {
-        return (List<WhiteColumnExceptGenOnly>)entityList;
+    protected List<WhiteColumnExceptGenOnly> downcast(List<? extends Entity> ls) {
+        return (List<WhiteColumnExceptGenOnly>)ls;
     }
 
     @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteColumnExceptGenOnlyCB> downcast(InsertOption<? extends ConditionBean> option) {
-        return (InsertOption<WhiteColumnExceptGenOnlyCB>)option;
+    protected InsertOption<WhiteColumnExceptGenOnlyCB> downcast(InsertOption<? extends ConditionBean> op) {
+        return (InsertOption<WhiteColumnExceptGenOnlyCB>)op;
     }
 
     @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteColumnExceptGenOnlyCB> downcast(UpdateOption<? extends ConditionBean> option) {
-        return (UpdateOption<WhiteColumnExceptGenOnlyCB>)option;
+    protected UpdateOption<WhiteColumnExceptGenOnlyCB> downcast(UpdateOption<? extends ConditionBean> op) {
+        return (UpdateOption<WhiteColumnExceptGenOnlyCB>)op;
     }
 
     @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteColumnExceptGenOnlyCB> downcast(DeleteOption<? extends ConditionBean> option) {
-        return (DeleteOption<WhiteColumnExceptGenOnlyCB>)option;
+    protected DeleteOption<WhiteColumnExceptGenOnlyCB> downcast(DeleteOption<? extends ConditionBean> op) {
+        return (DeleteOption<WhiteColumnExceptGenOnlyCB>)op;
     }
 
     @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhiteColumnExceptGenOnly, WhiteColumnExceptGenOnlyCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> option) {
-        return (QueryInsertSetupper<WhiteColumnExceptGenOnly, WhiteColumnExceptGenOnlyCB>)option;
+    protected QueryInsertSetupper<WhiteColumnExceptGenOnly, WhiteColumnExceptGenOnlyCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp) {
+        return (QueryInsertSetupper<WhiteColumnExceptGenOnly, WhiteColumnExceptGenOnlyCB>)sp;
     }
 }

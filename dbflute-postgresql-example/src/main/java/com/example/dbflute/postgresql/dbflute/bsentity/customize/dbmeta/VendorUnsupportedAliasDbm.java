@@ -43,20 +43,20 @@ public class VendorUnsupportedAliasDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgVendorCheckId implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorUnsupportedAlias)e).getVendorCheckId(); }
-        public void write(Entity e, Object v) { ((VendorUnsupportedAlias)e).setVendorCheckId(ctl(v)); }
+        public Object read(Entity et) { return ((VendorUnsupportedAlias)et).getVendorCheckId(); }
+        public void write(Entity et, Object vl) { ((VendorUnsupportedAlias)et).setVendorCheckId(ctl(vl)); }
     }
     public static class EpgHyphen_exists implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorUnsupportedAlias)e).getHyphen_exists(); }
-        public void write(Entity e, Object v) { ((VendorUnsupportedAlias)e).setHyphen_exists((String)v); }
+        public Object read(Entity et) { return ((VendorUnsupportedAlias)et).getHyphen_exists(); }
+        public void write(Entity et, Object vl) { ((VendorUnsupportedAlias)et).setHyphen_exists((String)vl); }
     }
     public static class EpgSpace_exists implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorUnsupportedAlias)e).getSpace_exists(); }
-        public void write(Entity e, Object v) { ((VendorUnsupportedAlias)e).setSpace_exists(cti(v)); }
+        public Object read(Entity et) { return ((VendorUnsupportedAlias)et).getSpace_exists(); }
+        public void write(Entity et, Object vl) { ((VendorUnsupportedAlias)et).setSpace_exists(cti(vl)); }
     }
     public static class EpgDollar$exists implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorUnsupportedAlias)e).getDollar$exists(); }
-        public void write(Entity e, Object v) { ((VendorUnsupportedAlias)e).setDollar$exists((java.util.Date)v); }
+        public Object read(Entity et) { return ((VendorUnsupportedAlias)et).getDollar$exists(); }
+        public void write(Entity et, Object vl) { ((VendorUnsupportedAlias)et).setDollar$exists((java.util.Date)vl); }
     }
 
     // ===================================================================================
@@ -142,10 +142,10 @@ public class VendorUnsupportedAliasDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((VendorUnsupportedAlias)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((VendorUnsupportedAlias)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((VendorUnsupportedAlias)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((VendorUnsupportedAlias)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

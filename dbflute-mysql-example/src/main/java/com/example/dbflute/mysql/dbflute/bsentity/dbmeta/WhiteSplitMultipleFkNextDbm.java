@@ -56,12 +56,12 @@ public class WhiteSplitMultipleFkNextDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgNextId implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteSplitMultipleFkNext)e).getNextId(); }
-        public void write(Entity e, Object v) { ((WhiteSplitMultipleFkNext)e).setNextId(ctl(v)); }
+        public Object read(Entity et) { return ((WhiteSplitMultipleFkNext)et).getNextId(); }
+        public void write(Entity et, Object vl) { ((WhiteSplitMultipleFkNext)et).setNextId(ctl(vl)); }
     }
     public static class EpgSecondCode implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteSplitMultipleFkNext)e).getSecondCode(); }
-        public void write(Entity e, Object v) { ((WhiteSplitMultipleFkNext)e).setSecondCode((String)v); }
+        public Object read(Entity et) { return ((WhiteSplitMultipleFkNext)et).getSecondCode(); }
+        public void write(Entity et, Object vl) { ((WhiteSplitMultipleFkNext)et).setSecondCode((String)vl); }
     }
 
     // ===================================================================================
@@ -114,8 +114,8 @@ public class WhiteSplitMultipleFkNextDbm extends AbstractDBMeta {
     //                                     Referrer Property
     //                                     -----------------
     public ReferrerInfo referrerWhiteSplitMultipleFkBaseList() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnNextId(), WhiteSplitMultipleFkBaseDbm.getInstance().columnNextId());
-        return cri("FK_WHITE_SPLIT_MULTIPLE_FK_NEXT", "whiteSplitMultipleFkBaseList", this, WhiteSplitMultipleFkBaseDbm.getInstance(), map, false, "whiteSplitMultipleFkNext");
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnNextId(), WhiteSplitMultipleFkBaseDbm.getInstance().columnNextId());
+        return cri("FK_WHITE_SPLIT_MULTIPLE_FK_NEXT", "whiteSplitMultipleFkBaseList", this, WhiteSplitMultipleFkBaseDbm.getInstance(), mp, false, "whiteSplitMultipleFkNext");
     }
 
     // ===================================================================================
@@ -143,10 +143,10 @@ public class WhiteSplitMultipleFkNextDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((WhiteSplitMultipleFkNext)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((WhiteSplitMultipleFkNext)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((WhiteSplitMultipleFkNext)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((WhiteSplitMultipleFkNext)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

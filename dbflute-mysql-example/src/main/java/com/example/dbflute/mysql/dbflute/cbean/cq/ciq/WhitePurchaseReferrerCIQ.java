@@ -90,18 +90,18 @@ public class WhitePurchaseReferrerCIQ extends AbstractBsWhitePurchaseReferrerCQ 
     public String keepPurchaseReferrerId_NotInScopeRelation_Purchase(PurchaseCQ sq)
     { return _myCQ.keepPurchaseReferrerId_NotInScopeRelation_Purchase(sq); }
     protected ConditionValue getCValuePurchaseReferrerName() { return _myCQ.getPurchaseReferrerName(); }
-    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) { return null; }
-    public String keepScalarCondition(WhitePurchaseReferrerCQ subQuery)
+    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
+    public String keepScalarCondition(WhitePurchaseReferrerCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }
-    public String keepSpecifyMyselfDerived(WhitePurchaseReferrerCQ subQuery)
+    public String keepSpecifyMyselfDerived(WhitePurchaseReferrerCQ sq)
     { throwIICBOE("(Specify)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerived(WhitePurchaseReferrerCQ subQuery)
+    public String keepQueryMyselfDerived(WhitePurchaseReferrerCQ sq)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerivedParameter(Object parameterValue)
+    public String keepQueryMyselfDerivedParameter(Object vl)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepMyselfExists(WhitePurchaseReferrerCQ subQuery)
+    public String keepMyselfExists(WhitePurchaseReferrerCQ sq)
     { throwIICBOE("MyselfExists"); return null;}
-    public String keepMyselfInScope(WhitePurchaseReferrerCQ subQuery)
+    public String keepMyselfInScope(WhitePurchaseReferrerCQ sq)
     { throwIICBOE("MyselfInScope"); return null;}
 
     protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()

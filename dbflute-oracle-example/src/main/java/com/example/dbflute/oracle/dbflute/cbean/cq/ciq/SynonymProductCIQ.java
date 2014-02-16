@@ -86,18 +86,18 @@ public class SynonymProductCIQ extends AbstractBsSynonymProductCQ {
     protected ConditionValue getCValueUpdateUser() { return _myCQ.getUpdateUser(); }
     protected ConditionValue getCValueUpdateProcess() { return _myCQ.getUpdateProcess(); }
     protected ConditionValue getCValueVersionNo() { return _myCQ.getVersionNo(); }
-    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) { return null; }
-    public String keepScalarCondition(SynonymProductCQ subQuery)
+    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
+    public String keepScalarCondition(SynonymProductCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }
-    public String keepSpecifyMyselfDerived(SynonymProductCQ subQuery)
+    public String keepSpecifyMyselfDerived(SynonymProductCQ sq)
     { throwIICBOE("(Specify)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerived(SynonymProductCQ subQuery)
+    public String keepQueryMyselfDerived(SynonymProductCQ sq)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerivedParameter(Object parameterValue)
+    public String keepQueryMyselfDerivedParameter(Object vl)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepMyselfExists(SynonymProductCQ subQuery)
+    public String keepMyselfExists(SynonymProductCQ sq)
     { throwIICBOE("MyselfExists"); return null;}
-    public String keepMyselfInScope(SynonymProductCQ subQuery)
+    public String keepMyselfInScope(SynonymProductCQ sq)
     { throwIICBOE("MyselfInScope"); return null;}
 
     protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()

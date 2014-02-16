@@ -56,16 +56,16 @@ public class WhiteDeprecatedClsElementDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public class EpgDeprecatedClsElementCode implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteDeprecatedClsElement)e).getDeprecatedClsElementCode(); }
-        public void write(Entity e, Object v) {
+        public Object read(Entity et) { return ((WhiteDeprecatedClsElement)et).getDeprecatedClsElementCode(); }
+        public void write(Entity et, Object vl) {
             ColumnInfo col = columnDeprecatedClsElementCode();
-            ccls(col, v);
-            ((WhiteDeprecatedClsElement)e).setDeprecatedClsElementCodeAsDeprecatedMapCollaborationType((CDef.DeprecatedMapCollaborationType)gcls(col, v));
+            ccls(col, vl);
+            ((WhiteDeprecatedClsElement)et).setDeprecatedClsElementCodeAsDeprecatedMapCollaborationType((CDef.DeprecatedMapCollaborationType)gcls(col, vl));
         }
     }
     public static class EpgDeprecatedClsElementName implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteDeprecatedClsElement)e).getDeprecatedClsElementName(); }
-        public void write(Entity e, Object v) { ((WhiteDeprecatedClsElement)e).setDeprecatedClsElementName((String)v); }
+        public Object read(Entity et) { return ((WhiteDeprecatedClsElement)et).getDeprecatedClsElementName(); }
+        public void write(Entity et, Object vl) { ((WhiteDeprecatedClsElement)et).setDeprecatedClsElementName((String)vl); }
     }
 
     // ===================================================================================
@@ -143,10 +143,10 @@ public class WhiteDeprecatedClsElementDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((WhiteDeprecatedClsElement)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((WhiteDeprecatedClsElement)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((WhiteDeprecatedClsElement)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((WhiteDeprecatedClsElement)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

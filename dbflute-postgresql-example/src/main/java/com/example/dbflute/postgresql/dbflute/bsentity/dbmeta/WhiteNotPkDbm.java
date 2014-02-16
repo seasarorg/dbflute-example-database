@@ -42,16 +42,16 @@ public class WhiteNotPkDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgNotPkId implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteNotPk)e).getNotPkId(); }
-        public void write(Entity e, Object v) { ((WhiteNotPk)e).setNotPkId(ctl(v)); }
+        public Object read(Entity et) { return ((WhiteNotPk)et).getNotPkId(); }
+        public void write(Entity et, Object vl) { ((WhiteNotPk)et).setNotPkId(ctl(vl)); }
     }
     public static class EpgNotPkName implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteNotPk)e).getNotPkName(); }
-        public void write(Entity e, Object v) { ((WhiteNotPk)e).setNotPkName((String)v); }
+        public Object read(Entity et) { return ((WhiteNotPk)et).getNotPkName(); }
+        public void write(Entity et, Object vl) { ((WhiteNotPk)et).setNotPkName((String)vl); }
     }
     public static class EpgNotPkInteger implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteNotPk)e).getNotPkInteger(); }
-        public void write(Entity e, Object v) { ((WhiteNotPk)e).setNotPkInteger(cti(v)); }
+        public Object read(Entity et) { return ((WhiteNotPk)et).getNotPkInteger(); }
+        public void write(Entity et, Object vl) { ((WhiteNotPk)et).setNotPkInteger(cti(vl)); }
     }
 
     // ===================================================================================
@@ -134,10 +134,10 @@ public class WhiteNotPkDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((WhiteNotPk)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((WhiteNotPk)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((WhiteNotPk)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((WhiteNotPk)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

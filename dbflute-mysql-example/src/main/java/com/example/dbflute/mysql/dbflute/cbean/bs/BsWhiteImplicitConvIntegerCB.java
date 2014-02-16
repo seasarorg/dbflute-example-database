@@ -455,8 +455,8 @@ public class BsWhiteImplicitConvIntegerCB extends AbstractConditionBean {
         public HpSDRFunction<WhiteImplicitConvNumericCB, WhiteImplicitConvIntegerCQ> derivedWhiteImplicitConvNumericList() {
             assertDerived("whiteImplicitConvNumericList"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<WhiteImplicitConvNumericCB, WhiteImplicitConvIntegerCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<WhiteImplicitConvNumericCB, WhiteImplicitConvIntegerCQ>() {
-                public void setup(String function, SubQuery<WhiteImplicitConvNumericCB> subQuery, WhiteImplicitConvIntegerCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsderiveWhiteImplicitConvNumericList(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<WhiteImplicitConvNumericCB> sq, WhiteImplicitConvIntegerCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsderiveWhiteImplicitConvNumericList(fn, sq, al, op); } }, _dbmetaProvider);
         }
         /**
          * Prepare for (Specify)DerivedReferrer. <br />
@@ -475,8 +475,8 @@ public class BsWhiteImplicitConvIntegerCB extends AbstractConditionBean {
         public HpSDRFunction<WhiteImplicitConvStringCB, WhiteImplicitConvIntegerCQ> derivedWhiteImplicitConvStringList() {
             assertDerived("whiteImplicitConvStringList"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<WhiteImplicitConvStringCB, WhiteImplicitConvIntegerCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<WhiteImplicitConvStringCB, WhiteImplicitConvIntegerCQ>() {
-                public void setup(String function, SubQuery<WhiteImplicitConvStringCB> subQuery, WhiteImplicitConvIntegerCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsderiveWhiteImplicitConvStringList(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<WhiteImplicitConvStringCB> sq, WhiteImplicitConvIntegerCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsderiveWhiteImplicitConvStringList(fn, sq, al, op); } }, _dbmetaProvider);
         }
         /**
          * Prepare for (Specify)MyselfDerived (SubQuery).
@@ -485,8 +485,8 @@ public class BsWhiteImplicitConvIntegerCB extends AbstractConditionBean {
         public HpSDRFunction<WhiteImplicitConvIntegerCB, WhiteImplicitConvIntegerCQ> myselfDerived() {
             assertDerived("myselfDerived"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<WhiteImplicitConvIntegerCB, WhiteImplicitConvIntegerCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<WhiteImplicitConvIntegerCB, WhiteImplicitConvIntegerCQ>() {
-                public void setup(String function, SubQuery<WhiteImplicitConvIntegerCB> subQuery, WhiteImplicitConvIntegerCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsmyselfDerive(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<WhiteImplicitConvIntegerCB> sq, WhiteImplicitConvIntegerCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsmyselfDerive(fn, sq, al, op); } }, _dbmetaProvider);
         }
     }
 

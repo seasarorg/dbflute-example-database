@@ -44,24 +44,24 @@ public class WhiteDelimiterDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgDelimiterId implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteDelimiter)e).getDelimiterId(); }
-        public void write(Entity e, Object v) { ((WhiteDelimiter)e).setDelimiterId(ctl(v)); }
+        public Object read(Entity et) { return ((WhiteDelimiter)et).getDelimiterId(); }
+        public void write(Entity et, Object vl) { ((WhiteDelimiter)et).setDelimiterId(ctl(vl)); }
     }
     public static class EpgNumberNullable implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteDelimiter)e).getNumberNullable(); }
-        public void write(Entity e, Object v) { ((WhiteDelimiter)e).setNumberNullable(cti(v)); }
+        public Object read(Entity et) { return ((WhiteDelimiter)et).getNumberNullable(); }
+        public void write(Entity et, Object vl) { ((WhiteDelimiter)et).setNumberNullable(cti(vl)); }
     }
     public static class EpgStringConverted implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteDelimiter)e).getStringConverted(); }
-        public void write(Entity e, Object v) { ((WhiteDelimiter)e).setStringConverted((String)v); }
+        public Object read(Entity et) { return ((WhiteDelimiter)et).getStringConverted(); }
+        public void write(Entity et, Object vl) { ((WhiteDelimiter)et).setStringConverted((String)vl); }
     }
     public static class EpgStringNonConverted implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteDelimiter)e).getStringNonConverted(); }
-        public void write(Entity e, Object v) { ((WhiteDelimiter)e).setStringNonConverted((String)v); }
+        public Object read(Entity et) { return ((WhiteDelimiter)et).getStringNonConverted(); }
+        public void write(Entity et, Object vl) { ((WhiteDelimiter)et).setStringNonConverted((String)vl); }
     }
     public static class EpgDateDefault implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteDelimiter)e).getDateDefault(); }
-        public void write(Entity e, Object v) { ((WhiteDelimiter)e).setDateDefault((java.sql.Timestamp)v); }
+        public Object read(Entity et) { return ((WhiteDelimiter)et).getDateDefault(); }
+        public void write(Entity et, Object vl) { ((WhiteDelimiter)et).setDateDefault((java.sql.Timestamp)vl); }
     }
 
     // ===================================================================================
@@ -149,10 +149,10 @@ public class WhiteDelimiterDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((WhiteDelimiter)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((WhiteDelimiter)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((WhiteDelimiter)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((WhiteDelimiter)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

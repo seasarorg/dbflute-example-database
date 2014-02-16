@@ -82,7 +82,7 @@ public class WhiteSameNameCIQ extends AbstractBsWhiteSameNameCQ {
     { throwIICBOE("(Specify)DerivedReferrer"); return null; }
     public String keepSameNameId_QueryDerivedReferrer_WhiteSameNameRefList(WhiteSameNameRefCQ sq)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
-    public String keepSameNameId_QueryDerivedReferrer_WhiteSameNameRefListParameter(Object pv)
+    public String keepSameNameId_QueryDerivedReferrer_WhiteSameNameRefListParameter(Object vl)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
     protected ConditionValue getCValueSameNameName() { return _myCQ.getSameNameName(); }
     protected ConditionValue getCValueSameNameInteger() { return _myCQ.getSameNameInteger(); }
@@ -91,18 +91,18 @@ public class WhiteSameNameCIQ extends AbstractBsWhiteSameNameCQ {
     { return _myCQ.keepNextSchemaProductId_InScopeRelation_NextSchemaProduct(sq); }
     public String keepNextSchemaProductId_NotInScopeRelation_NextSchemaProduct(NextSchemaProductCQ sq)
     { return _myCQ.keepNextSchemaProductId_NotInScopeRelation_NextSchemaProduct(sq); }
-    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) { return null; }
-    public String keepScalarCondition(WhiteSameNameCQ subQuery)
+    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
+    public String keepScalarCondition(WhiteSameNameCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }
-    public String keepSpecifyMyselfDerived(WhiteSameNameCQ subQuery)
+    public String keepSpecifyMyselfDerived(WhiteSameNameCQ sq)
     { throwIICBOE("(Specify)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerived(WhiteSameNameCQ subQuery)
+    public String keepQueryMyselfDerived(WhiteSameNameCQ sq)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerivedParameter(Object parameterValue)
+    public String keepQueryMyselfDerivedParameter(Object vl)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepMyselfExists(WhiteSameNameCQ subQuery)
+    public String keepMyselfExists(WhiteSameNameCQ sq)
     { throwIICBOE("MyselfExists"); return null;}
-    public String keepMyselfInScope(WhiteSameNameCQ subQuery)
+    public String keepMyselfInScope(WhiteSameNameCQ sq)
     { throwIICBOE("MyselfInScope"); return null;}
 
     protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()

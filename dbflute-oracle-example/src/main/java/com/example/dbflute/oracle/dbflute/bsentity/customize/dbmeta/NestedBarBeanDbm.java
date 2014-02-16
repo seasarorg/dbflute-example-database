@@ -47,39 +47,39 @@ public class NestedBarBeanDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgBarId implements PropertyGateway {
-        public Object read(Entity e) { return ((NestedBarBean)e).getBarId(); }
-        public void write(Entity e, Object v) { ((NestedBarBean)e).setBarId(cti(v)); }
+        public Object read(Entity et) { return ((NestedBarBean)et).getBarId(); }
+        public void write(Entity et, Object vl) { ((NestedBarBean)et).setBarId(cti(vl)); }
     }
     public static class EpgBarName implements PropertyGateway {
-        public Object read(Entity e) { return ((NestedBarBean)e).getBarName(); }
-        public void write(Entity e, Object v) { ((NestedBarBean)e).setBarName((String)v); }
+        public Object read(Entity et) { return ((NestedBarBean)et).getBarName(); }
+        public void write(Entity et, Object vl) { ((NestedBarBean)et).setBarName((String)vl); }
     }
     public static class EpgBarDate implements PropertyGateway {
-        public Object read(Entity e) { return ((NestedBarBean)e).getBarDate(); }
-        public void write(Entity e, Object v) { ((NestedBarBean)e).setBarDate((java.util.Date)v); }
+        public Object read(Entity et) { return ((NestedBarBean)et).getBarDate(); }
+        public void write(Entity et, Object vl) { ((NestedBarBean)et).setBarDate((java.util.Date)vl); }
     }
     public static class EpgBarList implements PropertyGateway {
-        public Object read(Entity e) { return ((NestedBarBean)e).getBarList(); }
+        public Object read(Entity et) { return ((NestedBarBean)et).getBarList(); }
         @SuppressWarnings("unchecked")
-        public void write(Entity e, Object v) { ((NestedBarBean)e).setBarList((List<BarBean>)v); }
+        public void write(Entity et, Object vl) { ((NestedBarBean)et).setBarList((List<BarBean>)vl); }
     }
     public static class EpgBazBean1 implements PropertyGateway {
-        public Object read(Entity e) { return ((NestedBarBean)e).getBazBean1(); }
-        public void write(Entity e, Object v) { ((NestedBarBean)e).setBazBean1((NestedBazBean)v); }
+        public Object read(Entity et) { return ((NestedBarBean)et).getBazBean1(); }
+        public void write(Entity et, Object vl) { ((NestedBarBean)et).setBazBean1((NestedBazBean)vl); }
     }
     public static class EpgBazBean2 implements PropertyGateway {
-        public Object read(Entity e) { return ((NestedBarBean)e).getBazBean2(); }
-        public void write(Entity e, Object v) { ((NestedBarBean)e).setBazBean2((NestedBazBean)v); }
+        public Object read(Entity et) { return ((NestedBarBean)et).getBazBean2(); }
+        public void write(Entity et, Object vl) { ((NestedBarBean)et).setBazBean2((NestedBazBean)vl); }
     }
     public static class EpgQuxList implements PropertyGateway {
-        public Object read(Entity e) { return ((NestedBarBean)e).getQuxList(); }
+        public Object read(Entity et) { return ((NestedBarBean)et).getQuxList(); }
         @SuppressWarnings("unchecked")
-        public void write(Entity e, Object v) { ((NestedBarBean)e).setQuxList((List<java.math.BigDecimal>)v); }
+        public void write(Entity et, Object vl) { ((NestedBarBean)et).setQuxList((List<java.math.BigDecimal>)vl); }
     }
     public static class EpgQuuxList implements PropertyGateway {
-        public Object read(Entity e) { return ((NestedBarBean)e).getQuuxList(); }
+        public Object read(Entity et) { return ((NestedBarBean)et).getQuuxList(); }
         @SuppressWarnings("unchecked")
-        public void write(Entity e, Object v) { ((NestedBarBean)e).setQuuxList((List<java.math.BigDecimal>)v); }
+        public void write(Entity et, Object vl) { ((NestedBarBean)et).setQuuxList((List<java.math.BigDecimal>)vl); }
     }
 
     // ===================================================================================
@@ -177,10 +177,10 @@ public class NestedBarBeanDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((NestedBarBean)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((NestedBarBean)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((NestedBarBean)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((NestedBarBean)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

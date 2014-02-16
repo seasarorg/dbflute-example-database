@@ -155,12 +155,12 @@ public abstract class AbstractBsWhitePurchaseReferrerCQ extends AbstractConditio
      * @param subQuery The sub-query of Purchase for 'in-scope'. (NotNull)
      */
     public void inScopePurchase(SubQuery<PurchaseCB> subQuery) {
-        assertObjectNotNull("subQuery<PurchaseCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         PurchaseCB cb = new PurchaseCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String subQueryPropertyName = keepPurchaseReferrerId_InScopeRelation_Purchase(cb.query()); // for saving query-value.
-        registerInScopeRelation(cb.query(), "PURCHASE_REFERRER_ID", "PURCHASE_ID", subQueryPropertyName, "purchase");
+        String pp = keepPurchaseReferrerId_InScopeRelation_Purchase(cb.query()); // for saving query-value.
+        registerInScopeRelation(cb.query(), "PURCHASE_REFERRER_ID", "PURCHASE_ID", pp, "purchase");
     }
-    public abstract String keepPurchaseReferrerId_InScopeRelation_Purchase(PurchaseCQ subQuery);
+    public abstract String keepPurchaseReferrerId_InScopeRelation_Purchase(PurchaseCQ sq);
 
     /**
      * Set up NotInScopeRelation (sub-query). <br />
@@ -169,12 +169,12 @@ public abstract class AbstractBsWhitePurchaseReferrerCQ extends AbstractConditio
      * @param subQuery The sub-query of Purchase for 'not in-scope'. (NotNull)
      */
     public void notInScopePurchase(SubQuery<PurchaseCB> subQuery) {
-        assertObjectNotNull("subQuery<PurchaseCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         PurchaseCB cb = new PurchaseCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String subQueryPropertyName = keepPurchaseReferrerId_NotInScopeRelation_Purchase(cb.query()); // for saving query-value.
-        registerNotInScopeRelation(cb.query(), "PURCHASE_REFERRER_ID", "PURCHASE_ID", subQueryPropertyName, "purchase");
+        String pp = keepPurchaseReferrerId_NotInScopeRelation_Purchase(cb.query()); // for saving query-value.
+        registerNotInScopeRelation(cb.query(), "PURCHASE_REFERRER_ID", "PURCHASE_ID", pp, "purchase");
     }
-    public abstract String keepPurchaseReferrerId_NotInScopeRelation_Purchase(PurchaseCQ subQuery);
+    public abstract String keepPurchaseReferrerId_NotInScopeRelation_Purchase(PurchaseCQ sq);
 
     /**
      * IsNull {is null}. And OnlyOnceRegistered. <br />
@@ -188,8 +188,8 @@ public abstract class AbstractBsWhitePurchaseReferrerCQ extends AbstractConditio
      */
     public void setPurchaseReferrerId_IsNotNull() { regPurchaseReferrerId(CK_ISNN, DOBJ); }
 
-    protected void regPurchaseReferrerId(ConditionKey k, Object v) { regQ(k, v, getCValuePurchaseReferrerId(), "PURCHASE_REFERRER_ID"); }
-    abstract protected ConditionValue getCValuePurchaseReferrerId();
+    protected void regPurchaseReferrerId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValuePurchaseReferrerId(), "PURCHASE_REFERRER_ID"); }
+    protected abstract ConditionValue getCValuePurchaseReferrerId();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -274,8 +274,8 @@ public abstract class AbstractBsWhitePurchaseReferrerCQ extends AbstractConditio
         regLSQ(CK_NLS, fRES(purchaseReferrerName), getCValuePurchaseReferrerName(), "PURCHASE_REFERRER_NAME", likeSearchOption);
     }
 
-    protected void regPurchaseReferrerName(ConditionKey k, Object v) { regQ(k, v, getCValuePurchaseReferrerName(), "PURCHASE_REFERRER_NAME"); }
-    abstract protected ConditionValue getCValuePurchaseReferrerName();
+    protected void regPurchaseReferrerName(ConditionKey ky, Object vl) { regQ(ky, vl, getCValuePurchaseReferrerName(), "PURCHASE_REFERRER_NAME"); }
+    protected abstract ConditionValue getCValuePurchaseReferrerName();
 
     // ===================================================================================
     //                                                                     ScalarCondition
@@ -382,22 +382,22 @@ public abstract class AbstractBsWhitePurchaseReferrerCQ extends AbstractConditio
         return xcreateSSQFunction(CK_LE.getOperand());
     }
 
-    protected HpSSQFunction<WhitePurchaseReferrerCB> xcreateSSQFunction(final String operand) {
+    protected HpSSQFunction<WhitePurchaseReferrerCB> xcreateSSQFunction(final String rd) {
         return new HpSSQFunction<WhitePurchaseReferrerCB>(new HpSSQSetupper<WhitePurchaseReferrerCB>() {
-            public void setup(String function, SubQuery<WhitePurchaseReferrerCB> subQuery, HpSSQOption<WhitePurchaseReferrerCB> option) {
-                xscalarCondition(function, subQuery, operand, option);
+            public void setup(String fn, SubQuery<WhitePurchaseReferrerCB> sq, HpSSQOption<WhitePurchaseReferrerCB> op) {
+                xscalarCondition(fn, sq, rd, op);
             }
         });
     }
 
-    protected void xscalarCondition(String function, SubQuery<WhitePurchaseReferrerCB> subQuery, String operand, HpSSQOption<WhitePurchaseReferrerCB> option) {
-        assertObjectNotNull("subQuery<WhitePurchaseReferrerCB>", subQuery);
-        WhitePurchaseReferrerCB cb = xcreateScalarConditionCB(); subQuery.query(cb);
-        String subQueryPropertyName = keepScalarCondition(cb.query()); // for saving query-value
-        option.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
-        registerScalarCondition(function, cb.query(), subQueryPropertyName, operand, option);
+    protected void xscalarCondition(String fn, SubQuery<WhitePurchaseReferrerCB> sq, String rd, HpSSQOption<WhitePurchaseReferrerCB> op) {
+        assertObjectNotNull("subQuery", sq);
+        WhitePurchaseReferrerCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        String pp = keepScalarCondition(cb.query()); // for saving query-value
+        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
-    public abstract String keepScalarCondition(WhitePurchaseReferrerCQ subQuery);
+    public abstract String keepScalarCondition(WhitePurchaseReferrerCQ sq);
 
     protected WhitePurchaseReferrerCB xcreateScalarConditionCB() {
         WhitePurchaseReferrerCB cb = new WhitePurchaseReferrerCB();
@@ -414,13 +414,14 @@ public abstract class AbstractBsWhitePurchaseReferrerCQ extends AbstractConditio
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    public void xsmyselfDerive(String function, SubQuery<WhitePurchaseReferrerCB> subQuery, String aliasName, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<WhitePurchaseReferrerCB>", subQuery);
-        WhitePurchaseReferrerCB cb = new WhitePurchaseReferrerCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
-        registerSpecifyMyselfDerived(function, cb.query(), "PURCHASE_REFERRER_ID", "PURCHASE_REFERRER_ID", subQueryPropertyName, "myselfDerived", aliasName, option);
+    public void xsmyselfDerive(String fn, SubQuery<WhitePurchaseReferrerCB> sq, String al, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhitePurchaseReferrerCB cb = new WhitePurchaseReferrerCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "PURCHASE_REFERRER_ID";
+        String pp = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
+        registerSpecifyMyselfDerived(fn, cb.query(), pk, pk, pp, "myselfDerived", al, op);
     }
-    public abstract String keepSpecifyMyselfDerived(WhitePurchaseReferrerCQ subQuery);
+    public abstract String keepSpecifyMyselfDerived(WhitePurchaseReferrerCQ sq);
 
     /**
      * Prepare for (Query)MyselfDerived (SubQuery).
@@ -431,20 +432,21 @@ public abstract class AbstractBsWhitePurchaseReferrerCQ extends AbstractConditio
     }
     protected HpQDRFunction<WhitePurchaseReferrerCB> xcreateQDRFunctionMyselfDerived() {
         return new HpQDRFunction<WhitePurchaseReferrerCB>(new HpQDRSetupper<WhitePurchaseReferrerCB>() {
-            public void setup(String function, SubQuery<WhitePurchaseReferrerCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-                xqderiveMyselfDerived(function, subQuery, operand, value, option);
+            public void setup(String fn, SubQuery<WhitePurchaseReferrerCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+                xqderiveMyselfDerived(fn, sq, rd, vl, op);
             }
         });
     }
-    public void xqderiveMyselfDerived(String function, SubQuery<WhitePurchaseReferrerCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<WhitePurchaseReferrerCB>", subQuery);
-        WhitePurchaseReferrerCB cb = new WhitePurchaseReferrerCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepQueryMyselfDerived(cb.query()); // for saving query-value.
-        String parameterPropertyName = keepQueryMyselfDerivedParameter(value);
-        registerQueryMyselfDerived(function, cb.query(), "PURCHASE_REFERRER_ID", "PURCHASE_REFERRER_ID", subQueryPropertyName, "myselfDerived", operand, value, parameterPropertyName, option);
+    public void xqderiveMyselfDerived(String fn, SubQuery<WhitePurchaseReferrerCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhitePurchaseReferrerCB cb = new WhitePurchaseReferrerCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "PURCHASE_REFERRER_ID";
+        String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
+        String prpp = keepQueryMyselfDerivedParameter(vl);
+        registerQueryMyselfDerived(fn, cb.query(), pk, pk, sqpp, "myselfDerived", rd, vl, prpp, op);
     }
-    public abstract String keepQueryMyselfDerived(WhitePurchaseReferrerCQ subQuery);
-    public abstract String keepQueryMyselfDerivedParameter(Object parameterValue);
+    public abstract String keepQueryMyselfDerived(WhitePurchaseReferrerCQ sq);
+    public abstract String keepQueryMyselfDerivedParameter(Object vl);
 
     // ===================================================================================
     //                                                                        MyselfExists
@@ -454,12 +456,12 @@ public abstract class AbstractBsWhitePurchaseReferrerCQ extends AbstractConditio
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfExists(SubQuery<WhitePurchaseReferrerCB> subQuery) {
-        assertObjectNotNull("subQuery<WhitePurchaseReferrerCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhitePurchaseReferrerCB cb = new WhitePurchaseReferrerCB(); cb.xsetupForMyselfExists(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfExists(cb.query()); // for saving query-value.
-        registerMyselfExists(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfExists(cb.query()); // for saving query-value.
+        registerMyselfExists(cb.query(), pp);
     }
-    public abstract String keepMyselfExists(WhitePurchaseReferrerCQ subQuery);
+    public abstract String keepMyselfExists(WhitePurchaseReferrerCQ sq);
 
     // ===================================================================================
     //                                                                       MyselfInScope
@@ -469,12 +471,12 @@ public abstract class AbstractBsWhitePurchaseReferrerCQ extends AbstractConditio
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfInScope(SubQuery<WhitePurchaseReferrerCB> subQuery) {
-        assertObjectNotNull("subQuery<WhitePurchaseReferrerCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhitePurchaseReferrerCB cb = new WhitePurchaseReferrerCB(); cb.xsetupForMyselfInScope(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfInScope(cb.query()); // for saving query-value.
-        registerMyselfInScope(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfInScope(cb.query()); // for saving query-value.
+        registerMyselfInScope(cb.query(), pp);
     }
-    public abstract String keepMyselfInScope(WhitePurchaseReferrerCQ subQuery);
+    public abstract String keepMyselfInScope(WhitePurchaseReferrerCQ sq);
 
     // ===================================================================================
     //                                                                    Full Text Search
@@ -500,7 +502,7 @@ public abstract class AbstractBsWhitePurchaseReferrerCQ extends AbstractConditio
      * @param conditionValue The condition value embedded without binding (by MySQL restriction) but escaped. (NullAllowed: if null or empty, no condition)
      * @param modifier The modifier of full-text search. (NullAllowed: If the value is null, no modifier specified)
      */
-    public void match(java.util.List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList
+    public void match(List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList
                     , String conditionValue
                     , org.seasar.dbflute.dbway.WayOfMySQL.FullTextSearchModifier modifier) {
         xdoMatchForMySQL(textColumnList, conditionValue, modifier);

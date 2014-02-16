@@ -81,57 +81,57 @@ public class BsAliasExceptCQ extends AbstractBsAliasExceptCQ {
 
     protected Map<String, AliasRefExceptCQ> _exceptId_ExistsReferrer_AliasRefExceptListMap;
     public Map<String, AliasRefExceptCQ> getExceptId_ExistsReferrer_AliasRefExceptList() { return _exceptId_ExistsReferrer_AliasRefExceptListMap; }
-    public String keepExceptId_ExistsReferrer_AliasRefExceptList(AliasRefExceptCQ subQuery) {
+    public String keepExceptId_ExistsReferrer_AliasRefExceptList(AliasRefExceptCQ sq) {
         if (_exceptId_ExistsReferrer_AliasRefExceptListMap == null) { _exceptId_ExistsReferrer_AliasRefExceptListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_exceptId_ExistsReferrer_AliasRefExceptListMap.size() + 1);
-        _exceptId_ExistsReferrer_AliasRefExceptListMap.put(key, subQuery); return "exceptId_ExistsReferrer_AliasRefExceptList." + key;
+        String ky = "subQueryMapKey" + (_exceptId_ExistsReferrer_AliasRefExceptListMap.size() + 1);
+        _exceptId_ExistsReferrer_AliasRefExceptListMap.put(ky, sq); return "exceptId_ExistsReferrer_AliasRefExceptList." + ky;
     }
 
     protected Map<String, AliasRefExceptCQ> _exceptId_NotExistsReferrer_AliasRefExceptListMap;
     public Map<String, AliasRefExceptCQ> getExceptId_NotExistsReferrer_AliasRefExceptList() { return _exceptId_NotExistsReferrer_AliasRefExceptListMap; }
-    public String keepExceptId_NotExistsReferrer_AliasRefExceptList(AliasRefExceptCQ subQuery) {
+    public String keepExceptId_NotExistsReferrer_AliasRefExceptList(AliasRefExceptCQ sq) {
         if (_exceptId_NotExistsReferrer_AliasRefExceptListMap == null) { _exceptId_NotExistsReferrer_AliasRefExceptListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_exceptId_NotExistsReferrer_AliasRefExceptListMap.size() + 1);
-        _exceptId_NotExistsReferrer_AliasRefExceptListMap.put(key, subQuery); return "exceptId_NotExistsReferrer_AliasRefExceptList." + key;
+        String ky = "subQueryMapKey" + (_exceptId_NotExistsReferrer_AliasRefExceptListMap.size() + 1);
+        _exceptId_NotExistsReferrer_AliasRefExceptListMap.put(ky, sq); return "exceptId_NotExistsReferrer_AliasRefExceptList." + ky;
     }
 
     protected Map<String, AliasRefExceptCQ> _exceptId_SpecifyDerivedReferrer_AliasRefExceptListMap;
     public Map<String, AliasRefExceptCQ> getExceptId_SpecifyDerivedReferrer_AliasRefExceptList() { return _exceptId_SpecifyDerivedReferrer_AliasRefExceptListMap; }
-    public String keepExceptId_SpecifyDerivedReferrer_AliasRefExceptList(AliasRefExceptCQ subQuery) {
+    public String keepExceptId_SpecifyDerivedReferrer_AliasRefExceptList(AliasRefExceptCQ sq) {
         if (_exceptId_SpecifyDerivedReferrer_AliasRefExceptListMap == null) { _exceptId_SpecifyDerivedReferrer_AliasRefExceptListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_exceptId_SpecifyDerivedReferrer_AliasRefExceptListMap.size() + 1);
-        _exceptId_SpecifyDerivedReferrer_AliasRefExceptListMap.put(key, subQuery); return "exceptId_SpecifyDerivedReferrer_AliasRefExceptList." + key;
+        String ky = "subQueryMapKey" + (_exceptId_SpecifyDerivedReferrer_AliasRefExceptListMap.size() + 1);
+        _exceptId_SpecifyDerivedReferrer_AliasRefExceptListMap.put(ky, sq); return "exceptId_SpecifyDerivedReferrer_AliasRefExceptList." + ky;
     }
 
     protected Map<String, AliasRefExceptCQ> _exceptId_InScopeRelation_AliasRefExceptListMap;
     public Map<String, AliasRefExceptCQ> getExceptId_InScopeRelation_AliasRefExceptList() { return _exceptId_InScopeRelation_AliasRefExceptListMap; }
-    public String keepExceptId_InScopeRelation_AliasRefExceptList(AliasRefExceptCQ subQuery) {
+    public String keepExceptId_InScopeRelation_AliasRefExceptList(AliasRefExceptCQ sq) {
         if (_exceptId_InScopeRelation_AliasRefExceptListMap == null) { _exceptId_InScopeRelation_AliasRefExceptListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_exceptId_InScopeRelation_AliasRefExceptListMap.size() + 1);
-        _exceptId_InScopeRelation_AliasRefExceptListMap.put(key, subQuery); return "exceptId_InScopeRelation_AliasRefExceptList." + key;
+        String ky = "subQueryMapKey" + (_exceptId_InScopeRelation_AliasRefExceptListMap.size() + 1);
+        _exceptId_InScopeRelation_AliasRefExceptListMap.put(ky, sq); return "exceptId_InScopeRelation_AliasRefExceptList." + ky;
     }
 
     protected Map<String, AliasRefExceptCQ> _exceptId_NotInScopeRelation_AliasRefExceptListMap;
     public Map<String, AliasRefExceptCQ> getExceptId_NotInScopeRelation_AliasRefExceptList() { return _exceptId_NotInScopeRelation_AliasRefExceptListMap; }
-    public String keepExceptId_NotInScopeRelation_AliasRefExceptList(AliasRefExceptCQ subQuery) {
+    public String keepExceptId_NotInScopeRelation_AliasRefExceptList(AliasRefExceptCQ sq) {
         if (_exceptId_NotInScopeRelation_AliasRefExceptListMap == null) { _exceptId_NotInScopeRelation_AliasRefExceptListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_exceptId_NotInScopeRelation_AliasRefExceptListMap.size() + 1);
-        _exceptId_NotInScopeRelation_AliasRefExceptListMap.put(key, subQuery); return "exceptId_NotInScopeRelation_AliasRefExceptList." + key;
+        String ky = "subQueryMapKey" + (_exceptId_NotInScopeRelation_AliasRefExceptListMap.size() + 1);
+        _exceptId_NotInScopeRelation_AliasRefExceptListMap.put(ky, sq); return "exceptId_NotInScopeRelation_AliasRefExceptList." + ky;
     }
 
     protected Map<String, AliasRefExceptCQ> _exceptId_QueryDerivedReferrer_AliasRefExceptListMap;
     public Map<String, AliasRefExceptCQ> getExceptId_QueryDerivedReferrer_AliasRefExceptList() { return _exceptId_QueryDerivedReferrer_AliasRefExceptListMap; }
-    public String keepExceptId_QueryDerivedReferrer_AliasRefExceptList(AliasRefExceptCQ subQuery) {
+    public String keepExceptId_QueryDerivedReferrer_AliasRefExceptList(AliasRefExceptCQ sq) {
         if (_exceptId_QueryDerivedReferrer_AliasRefExceptListMap == null) { _exceptId_QueryDerivedReferrer_AliasRefExceptListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_exceptId_QueryDerivedReferrer_AliasRefExceptListMap.size() + 1);
-        _exceptId_QueryDerivedReferrer_AliasRefExceptListMap.put(key, subQuery); return "exceptId_QueryDerivedReferrer_AliasRefExceptList." + key;
+        String ky = "subQueryMapKey" + (_exceptId_QueryDerivedReferrer_AliasRefExceptListMap.size() + 1);
+        _exceptId_QueryDerivedReferrer_AliasRefExceptListMap.put(ky, sq); return "exceptId_QueryDerivedReferrer_AliasRefExceptList." + ky;
     }
     protected Map<String, Object> _exceptId_QueryDerivedReferrer_AliasRefExceptListParameterMap;
     public Map<String, Object> getExceptId_QueryDerivedReferrer_AliasRefExceptListParameter() { return _exceptId_QueryDerivedReferrer_AliasRefExceptListParameterMap; }
-    public String keepExceptId_QueryDerivedReferrer_AliasRefExceptListParameter(Object parameterValue) {
+    public String keepExceptId_QueryDerivedReferrer_AliasRefExceptListParameter(Object vl) {
         if (_exceptId_QueryDerivedReferrer_AliasRefExceptListParameterMap == null) { _exceptId_QueryDerivedReferrer_AliasRefExceptListParameterMap = newLinkedHashMapSized(4); }
-        String key = "subQueryParameterKey" + (_exceptId_QueryDerivedReferrer_AliasRefExceptListParameterMap.size() + 1);
-        _exceptId_QueryDerivedReferrer_AliasRefExceptListParameterMap.put(key, parameterValue); return "exceptId_QueryDerivedReferrer_AliasRefExceptListParameter." + key;
+        String ky = "subQueryParameterKey" + (_exceptId_QueryDerivedReferrer_AliasRefExceptListParameterMap.size() + 1);
+        _exceptId_QueryDerivedReferrer_AliasRefExceptListParameterMap.put(ky, vl); return "exceptId_QueryDerivedReferrer_AliasRefExceptListParameter." + ky;
     }
 
     /** 
@@ -209,7 +209,7 @@ public class BsAliasExceptCQ extends AbstractBsAliasExceptCQ {
     // ===================================================================================
     //                                                                         Union Query
     //                                                                         ===========
-    protected void reflectRelationOnUnionQuery(ConditionQuery baseQueryAsSuper, ConditionQuery unionQueryAsSuper) {
+    protected void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
     }
 
     // ===================================================================================
@@ -224,10 +224,10 @@ public class BsAliasExceptCQ extends AbstractBsAliasExceptCQ {
     //                                                                     ===============
     protected Map<String, AliasExceptCQ> _scalarConditionMap;
     public Map<String, AliasExceptCQ> getScalarCondition() { return _scalarConditionMap; }
-    public String keepScalarCondition(AliasExceptCQ subQuery) {
+    public String keepScalarCondition(AliasExceptCQ sq) {
         if (_scalarConditionMap == null) { _scalarConditionMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
-        _scalarConditionMap.put(key, subQuery); return "scalarCondition." + key;
+        String ky = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
+        _scalarConditionMap.put(ky, sq); return "scalarCondition." + ky;
     }
 
     // ===================================================================================
@@ -235,25 +235,25 @@ public class BsAliasExceptCQ extends AbstractBsAliasExceptCQ {
     //                                                                       =============
     protected Map<String, AliasExceptCQ> _specifyMyselfDerivedMap;
     public Map<String, AliasExceptCQ> getSpecifyMyselfDerived() { return _specifyMyselfDerivedMap; }
-    public String keepSpecifyMyselfDerived(AliasExceptCQ subQuery) {
+    public String keepSpecifyMyselfDerived(AliasExceptCQ sq) {
         if (_specifyMyselfDerivedMap == null) { _specifyMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
-        _specifyMyselfDerivedMap.put(key, subQuery); return "specifyMyselfDerived." + key;
+        String ky = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
+        _specifyMyselfDerivedMap.put(ky, sq); return "specifyMyselfDerived." + ky;
     }
 
     protected Map<String, AliasExceptCQ> _queryMyselfDerivedMap;
     public Map<String, AliasExceptCQ> getQueryMyselfDerived() { return _queryMyselfDerivedMap; }
-    public String keepQueryMyselfDerived(AliasExceptCQ subQuery) {
+    public String keepQueryMyselfDerived(AliasExceptCQ sq) {
         if (_queryMyselfDerivedMap == null) { _queryMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
-        _queryMyselfDerivedMap.put(key, subQuery); return "queryMyselfDerived." + key;
+        String ky = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
+        _queryMyselfDerivedMap.put(ky, sq); return "queryMyselfDerived." + ky;
     }
     protected Map<String, Object> _qyeryMyselfDerivedParameterMap;
     public Map<String, Object> getQueryMyselfDerivedParameter() { return _qyeryMyselfDerivedParameterMap; }
-    public String keepQueryMyselfDerivedParameter(Object parameterValue) {
+    public String keepQueryMyselfDerivedParameter(Object vl) {
         if (_qyeryMyselfDerivedParameterMap == null) { _qyeryMyselfDerivedParameterMap = newLinkedHashMapSized(4); }
-        String key = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
-        _qyeryMyselfDerivedParameterMap.put(key, parameterValue); return "queryMyselfDerivedParameter." + key;
+        String ky = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
+        _qyeryMyselfDerivedParameterMap.put(ky, vl); return "queryMyselfDerivedParameter." + ky;
     }
 
     // ===================================================================================
@@ -261,10 +261,10 @@ public class BsAliasExceptCQ extends AbstractBsAliasExceptCQ {
     //                                                                        ============
     protected Map<String, AliasExceptCQ> _myselfExistsMap;
     public Map<String, AliasExceptCQ> getMyselfExists() { return _myselfExistsMap; }
-    public String keepMyselfExists(AliasExceptCQ subQuery) {
+    public String keepMyselfExists(AliasExceptCQ sq) {
         if (_myselfExistsMap == null) { _myselfExistsMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
-        _myselfExistsMap.put(key, subQuery); return "myselfExists." + key;
+        String ky = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
+        _myselfExistsMap.put(ky, sq); return "myselfExists." + ky;
     }
 
     // ===================================================================================
@@ -272,10 +272,10 @@ public class BsAliasExceptCQ extends AbstractBsAliasExceptCQ {
     //                                                                       =============
     protected Map<String, AliasExceptCQ> _myselfInScopeMap;
     public Map<String, AliasExceptCQ> getMyselfInScope() { return _myselfInScopeMap; }
-    public String keepMyselfInScope(AliasExceptCQ subQuery) {
+    public String keepMyselfInScope(AliasExceptCQ sq) {
         if (_myselfInScopeMap == null) { _myselfInScopeMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
-        _myselfInScopeMap.put(key, subQuery); return "myselfInScope." + key;
+        String ky = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
+        _myselfInScopeMap.put(ky, sq); return "myselfInScope." + ky;
     }
 
     // ===================================================================================

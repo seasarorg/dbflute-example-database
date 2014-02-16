@@ -330,8 +330,8 @@ public class BsProductStatusCB extends AbstractConditionBean {
         public HpSDRFunction<ProductCB, ProductStatusCQ> derivedProductList() {
             assertDerived("productList"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<ProductCB, ProductStatusCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<ProductCB, ProductStatusCQ>() {
-                public void setup(String function, SubQuery<ProductCB> subQuery, ProductStatusCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsderiveProductList(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<ProductCB> sq, ProductStatusCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsderiveProductList(fn, sq, al, op); } }, _dbmetaProvider);
         }
         /**
          * Prepare for (Specify)MyselfDerived (SubQuery).
@@ -340,8 +340,8 @@ public class BsProductStatusCB extends AbstractConditionBean {
         public HpSDRFunction<ProductStatusCB, ProductStatusCQ> myselfDerived() {
             assertDerived("myselfDerived"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<ProductStatusCB, ProductStatusCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<ProductStatusCB, ProductStatusCQ>() {
-                public void setup(String function, SubQuery<ProductStatusCB> subQuery, ProductStatusCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsmyselfDerive(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<ProductStatusCB> sq, ProductStatusCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsmyselfDerive(fn, sq, al, op); } }, _dbmetaProvider);
         }
     }
 

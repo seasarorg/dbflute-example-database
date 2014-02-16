@@ -43,20 +43,20 @@ public class MemberStatusDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgMemberStatusCode implements PropertyGateway {
-        public Object read(Entity e) { return ((MemberStatus)e).getMemberStatusCode(); }
-        public void write(Entity e, Object v) { ((MemberStatus)e).setMemberStatusCode((String)v); }
+        public Object read(Entity et) { return ((MemberStatus)et).getMemberStatusCode(); }
+        public void write(Entity et, Object vl) { ((MemberStatus)et).setMemberStatusCode((String)vl); }
     }
     public static class EpgMemberStatusName implements PropertyGateway {
-        public Object read(Entity e) { return ((MemberStatus)e).getMemberStatusName(); }
-        public void write(Entity e, Object v) { ((MemberStatus)e).setMemberStatusName((String)v); }
+        public Object read(Entity et) { return ((MemberStatus)et).getMemberStatusName(); }
+        public void write(Entity et, Object vl) { ((MemberStatus)et).setMemberStatusName((String)vl); }
     }
     public static class EpgDescription implements PropertyGateway {
-        public Object read(Entity e) { return ((MemberStatus)e).getDescription(); }
-        public void write(Entity e, Object v) { ((MemberStatus)e).setDescription((String)v); }
+        public Object read(Entity et) { return ((MemberStatus)et).getDescription(); }
+        public void write(Entity et, Object vl) { ((MemberStatus)et).setDescription((String)vl); }
     }
     public static class EpgDisplayOrder implements PropertyGateway {
-        public Object read(Entity e) { return ((MemberStatus)e).getDisplayOrder(); }
-        public void write(Entity e, Object v) { ((MemberStatus)e).setDisplayOrder(ctl(v)); }
+        public Object read(Entity et) { return ((MemberStatus)et).getDisplayOrder(); }
+        public void write(Entity et, Object vl) { ((MemberStatus)et).setDisplayOrder(ctl(vl)); }
     }
 
     // ===================================================================================
@@ -119,28 +119,28 @@ public class MemberStatusDbm extends AbstractDBMeta {
     //                                     Referrer Property
     //                                     -----------------
     public ReferrerInfo referrerMemberList() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnMemberStatusCode(), MemberDbm.getInstance().columnMemberStatusCode());
-        return cri("FK_MEMBER_MEMBER_STATUS", "memberList", this, MemberDbm.getInstance(), map, false, "memberStatus");
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnMemberStatusCode(), MemberDbm.getInstance().columnMemberStatusCode());
+        return cri("FK_MEMBER_MEMBER_STATUS", "memberList", this, MemberDbm.getInstance(), mp, false, "memberStatus");
     }
     public ReferrerInfo referrerMemberLoginList() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnMemberStatusCode(), MemberLoginDbm.getInstance().columnLoginMemberStatusCode());
-        return cri("FK_MEMBER_LOGIN_MEMBER_STATUS", "memberLoginList", this, MemberLoginDbm.getInstance(), map, false, "memberStatus");
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnMemberStatusCode(), MemberLoginDbm.getInstance().columnLoginMemberStatusCode());
+        return cri("FK_MEMBER_LOGIN_MEMBER_STATUS", "memberLoginList", this, MemberLoginDbm.getInstance(), mp, false, "memberStatus");
     }
     public ReferrerInfo referrerMemberVendorSynonymList() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnMemberStatusCode(), MemberVendorSynonymDbm.getInstance().columnMemberStatusCode());
-        return cri("FK_MEMBER_MEMBER_STATUS", "memberVendorSynonymList", this, MemberVendorSynonymDbm.getInstance(), map, false, "memberStatus");
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnMemberStatusCode(), MemberVendorSynonymDbm.getInstance().columnMemberStatusCode());
+        return cri("FK_MEMBER_MEMBER_STATUS", "memberVendorSynonymList", this, MemberVendorSynonymDbm.getInstance(), mp, false, "memberStatus");
     }
     public ReferrerInfo referrerSynonymMemberList() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnMemberStatusCode(), SynonymMemberDbm.getInstance().columnMemberStatusCode());
-        return cri("FK_MEMBER_MEMBER_STATUS", "synonymMemberList", this, SynonymMemberDbm.getInstance(), map, false, "memberStatus");
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnMemberStatusCode(), SynonymMemberDbm.getInstance().columnMemberStatusCode());
+        return cri("FK_MEMBER_MEMBER_STATUS", "synonymMemberList", this, SynonymMemberDbm.getInstance(), mp, false, "memberStatus");
     }
     public ReferrerInfo referrerSynonymMemberLoginList() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnMemberStatusCode(), SynonymMemberLoginDbm.getInstance().columnLoginMemberStatusCode());
-        return cri("FK_MEMBER_LOGIN_MEMBER_STATUS", "synonymMemberLoginList", this, SynonymMemberLoginDbm.getInstance(), map, false, "memberStatus");
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnMemberStatusCode(), SynonymMemberLoginDbm.getInstance().columnLoginMemberStatusCode());
+        return cri("FK_MEMBER_LOGIN_MEMBER_STATUS", "synonymMemberLoginList", this, SynonymMemberLoginDbm.getInstance(), mp, false, "memberStatus");
     }
     public ReferrerInfo referrerVendorSynonymMemberList() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnMemberStatusCode(), VendorSynonymMemberDbm.getInstance().columnMemberStatusCode());
-        return cri("FK_MEMBER_MEMBER_STATUS", "vendorSynonymMemberList", this, VendorSynonymMemberDbm.getInstance(), map, false, "memberStatus");
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnMemberStatusCode(), VendorSynonymMemberDbm.getInstance().columnMemberStatusCode());
+        return cri("FK_MEMBER_MEMBER_STATUS", "vendorSynonymMemberList", this, VendorSynonymMemberDbm.getInstance(), mp, false, "memberStatus");
     }
 
     // ===================================================================================
@@ -168,10 +168,10 @@ public class MemberStatusDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((MemberStatus)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((MemberStatus)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((MemberStatus)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((MemberStatus)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

@@ -205,8 +205,8 @@ public abstract class AbstractBsWhiteEscapedJavaDocCQ extends AbstractConditionQ
      */
     public void setEscapedJavaDocCode_IsNotNull() { regEscapedJavaDocCode(CK_ISNN, DOBJ); }
 
-    protected void regEscapedJavaDocCode(ConditionKey k, Object v) { regQ(k, v, getCValueEscapedJavaDocCode(), "ESCAPED_JAVA_DOC_CODE"); }
-    abstract protected ConditionValue getCValueEscapedJavaDocCode();
+    protected void regEscapedJavaDocCode(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueEscapedJavaDocCode(), "ESCAPED_JAVA_DOC_CODE"); }
+    protected abstract ConditionValue getCValueEscapedJavaDocCode();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -309,8 +309,8 @@ public abstract class AbstractBsWhiteEscapedJavaDocCQ extends AbstractConditionQ
      */
     public void setEscapedJavaDocName_IsNotNull() { regEscapedJavaDocName(CK_ISNN, DOBJ); }
 
-    protected void regEscapedJavaDocName(ConditionKey k, Object v) { regQ(k, v, getCValueEscapedJavaDocName(), "ESCAPED_JAVA_DOC_NAME"); }
-    abstract protected ConditionValue getCValueEscapedJavaDocName();
+    protected void regEscapedJavaDocName(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueEscapedJavaDocName(), "ESCAPED_JAVA_DOC_NAME"); }
+    protected abstract ConditionValue getCValueEscapedJavaDocName();
 
     // ===================================================================================
     //                                                                     ScalarCondition
@@ -417,22 +417,22 @@ public abstract class AbstractBsWhiteEscapedJavaDocCQ extends AbstractConditionQ
         return xcreateSSQFunction(CK_LE.getOperand());
     }
 
-    protected HpSSQFunction<WhiteEscapedJavaDocCB> xcreateSSQFunction(final String operand) {
+    protected HpSSQFunction<WhiteEscapedJavaDocCB> xcreateSSQFunction(final String rd) {
         return new HpSSQFunction<WhiteEscapedJavaDocCB>(new HpSSQSetupper<WhiteEscapedJavaDocCB>() {
-            public void setup(String function, SubQuery<WhiteEscapedJavaDocCB> subQuery, HpSSQOption<WhiteEscapedJavaDocCB> option) {
-                xscalarCondition(function, subQuery, operand, option);
+            public void setup(String fn, SubQuery<WhiteEscapedJavaDocCB> sq, HpSSQOption<WhiteEscapedJavaDocCB> op) {
+                xscalarCondition(fn, sq, rd, op);
             }
         });
     }
 
-    protected void xscalarCondition(String function, SubQuery<WhiteEscapedJavaDocCB> subQuery, String operand, HpSSQOption<WhiteEscapedJavaDocCB> option) {
-        assertObjectNotNull("subQuery<WhiteEscapedJavaDocCB>", subQuery);
-        WhiteEscapedJavaDocCB cb = xcreateScalarConditionCB(); subQuery.query(cb);
-        String subQueryPropertyName = keepScalarCondition(cb.query()); // for saving query-value
-        option.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
-        registerScalarCondition(function, cb.query(), subQueryPropertyName, operand, option);
+    protected void xscalarCondition(String fn, SubQuery<WhiteEscapedJavaDocCB> sq, String rd, HpSSQOption<WhiteEscapedJavaDocCB> op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteEscapedJavaDocCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        String pp = keepScalarCondition(cb.query()); // for saving query-value
+        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
-    public abstract String keepScalarCondition(WhiteEscapedJavaDocCQ subQuery);
+    public abstract String keepScalarCondition(WhiteEscapedJavaDocCQ sq);
 
     protected WhiteEscapedJavaDocCB xcreateScalarConditionCB() {
         WhiteEscapedJavaDocCB cb = new WhiteEscapedJavaDocCB();
@@ -449,13 +449,14 @@ public abstract class AbstractBsWhiteEscapedJavaDocCQ extends AbstractConditionQ
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    public void xsmyselfDerive(String function, SubQuery<WhiteEscapedJavaDocCB> subQuery, String aliasName, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<WhiteEscapedJavaDocCB>", subQuery);
-        WhiteEscapedJavaDocCB cb = new WhiteEscapedJavaDocCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
-        registerSpecifyMyselfDerived(function, cb.query(), "ESCAPED_JAVA_DOC_CODE", "ESCAPED_JAVA_DOC_CODE", subQueryPropertyName, "myselfDerived", aliasName, option);
+    public void xsmyselfDerive(String fn, SubQuery<WhiteEscapedJavaDocCB> sq, String al, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteEscapedJavaDocCB cb = new WhiteEscapedJavaDocCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "ESCAPED_JAVA_DOC_CODE";
+        String pp = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
+        registerSpecifyMyselfDerived(fn, cb.query(), pk, pk, pp, "myselfDerived", al, op);
     }
-    public abstract String keepSpecifyMyselfDerived(WhiteEscapedJavaDocCQ subQuery);
+    public abstract String keepSpecifyMyselfDerived(WhiteEscapedJavaDocCQ sq);
 
     /**
      * Prepare for (Query)MyselfDerived (SubQuery).
@@ -466,20 +467,21 @@ public abstract class AbstractBsWhiteEscapedJavaDocCQ extends AbstractConditionQ
     }
     protected HpQDRFunction<WhiteEscapedJavaDocCB> xcreateQDRFunctionMyselfDerived() {
         return new HpQDRFunction<WhiteEscapedJavaDocCB>(new HpQDRSetupper<WhiteEscapedJavaDocCB>() {
-            public void setup(String function, SubQuery<WhiteEscapedJavaDocCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-                xqderiveMyselfDerived(function, subQuery, operand, value, option);
+            public void setup(String fn, SubQuery<WhiteEscapedJavaDocCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+                xqderiveMyselfDerived(fn, sq, rd, vl, op);
             }
         });
     }
-    public void xqderiveMyselfDerived(String function, SubQuery<WhiteEscapedJavaDocCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<WhiteEscapedJavaDocCB>", subQuery);
-        WhiteEscapedJavaDocCB cb = new WhiteEscapedJavaDocCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepQueryMyselfDerived(cb.query()); // for saving query-value.
-        String parameterPropertyName = keepQueryMyselfDerivedParameter(value);
-        registerQueryMyselfDerived(function, cb.query(), "ESCAPED_JAVA_DOC_CODE", "ESCAPED_JAVA_DOC_CODE", subQueryPropertyName, "myselfDerived", operand, value, parameterPropertyName, option);
+    public void xqderiveMyselfDerived(String fn, SubQuery<WhiteEscapedJavaDocCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteEscapedJavaDocCB cb = new WhiteEscapedJavaDocCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "ESCAPED_JAVA_DOC_CODE";
+        String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
+        String prpp = keepQueryMyselfDerivedParameter(vl);
+        registerQueryMyselfDerived(fn, cb.query(), pk, pk, sqpp, "myselfDerived", rd, vl, prpp, op);
     }
-    public abstract String keepQueryMyselfDerived(WhiteEscapedJavaDocCQ subQuery);
-    public abstract String keepQueryMyselfDerivedParameter(Object parameterValue);
+    public abstract String keepQueryMyselfDerived(WhiteEscapedJavaDocCQ sq);
+    public abstract String keepQueryMyselfDerivedParameter(Object vl);
 
     // ===================================================================================
     //                                                                        MyselfExists
@@ -489,12 +491,12 @@ public abstract class AbstractBsWhiteEscapedJavaDocCQ extends AbstractConditionQ
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfExists(SubQuery<WhiteEscapedJavaDocCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteEscapedJavaDocCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteEscapedJavaDocCB cb = new WhiteEscapedJavaDocCB(); cb.xsetupForMyselfExists(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfExists(cb.query()); // for saving query-value.
-        registerMyselfExists(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfExists(cb.query()); // for saving query-value.
+        registerMyselfExists(cb.query(), pp);
     }
-    public abstract String keepMyselfExists(WhiteEscapedJavaDocCQ subQuery);
+    public abstract String keepMyselfExists(WhiteEscapedJavaDocCQ sq);
 
     // ===================================================================================
     //                                                                       MyselfInScope
@@ -504,12 +506,12 @@ public abstract class AbstractBsWhiteEscapedJavaDocCQ extends AbstractConditionQ
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfInScope(SubQuery<WhiteEscapedJavaDocCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteEscapedJavaDocCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteEscapedJavaDocCB cb = new WhiteEscapedJavaDocCB(); cb.xsetupForMyselfInScope(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfInScope(cb.query()); // for saving query-value.
-        registerMyselfInScope(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfInScope(cb.query()); // for saving query-value.
+        registerMyselfInScope(cb.query(), pp);
     }
-    public abstract String keepMyselfInScope(WhiteEscapedJavaDocCQ subQuery);
+    public abstract String keepMyselfInScope(WhiteEscapedJavaDocCQ sq);
 
     // ===================================================================================
     //                                                                    Full Text Search
@@ -535,7 +537,7 @@ public abstract class AbstractBsWhiteEscapedJavaDocCQ extends AbstractConditionQ
      * @param conditionValue The condition value embedded without binding (by MySQL restriction) but escaped. (NullAllowed: if null or empty, no condition)
      * @param modifier The modifier of full-text search. (NullAllowed: If the value is null, no modifier specified)
      */
-    public void match(java.util.List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList
+    public void match(List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList
                     , String conditionValue
                     , org.seasar.dbflute.dbway.WayOfMySQL.FullTextSearchModifier modifier) {
         xdoMatchForMySQL(textColumnList, conditionValue, modifier);

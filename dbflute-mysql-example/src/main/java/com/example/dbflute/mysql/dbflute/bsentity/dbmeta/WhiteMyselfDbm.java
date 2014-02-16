@@ -56,12 +56,12 @@ public class WhiteMyselfDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgMyselfId implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteMyself)e).getMyselfId(); }
-        public void write(Entity e, Object v) { ((WhiteMyself)e).setMyselfId(cti(v)); }
+        public Object read(Entity et) { return ((WhiteMyself)et).getMyselfId(); }
+        public void write(Entity et, Object vl) { ((WhiteMyself)et).setMyselfId(cti(vl)); }
     }
     public static class EpgMyselfName implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteMyself)e).getMyselfName(); }
-        public void write(Entity e, Object v) { ((WhiteMyself)e).setMyselfName((String)v); }
+        public Object read(Entity et) { return ((WhiteMyself)et).getMyselfName(); }
+        public void write(Entity et, Object vl) { ((WhiteMyself)et).setMyselfName((String)vl); }
     }
 
     // ===================================================================================
@@ -114,8 +114,8 @@ public class WhiteMyselfDbm extends AbstractDBMeta {
     //                                     Referrer Property
     //                                     -----------------
     public ReferrerInfo referrerWhiteMyselfCheckList() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnMyselfId(), WhiteMyselfCheckDbm.getInstance().columnMyselfId());
-        return cri("FK_WHITE_MYSELF_CHECK_SELF", "whiteMyselfCheckList", this, WhiteMyselfCheckDbm.getInstance(), map, false, "whiteMyself");
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnMyselfId(), WhiteMyselfCheckDbm.getInstance().columnMyselfId());
+        return cri("FK_WHITE_MYSELF_CHECK_SELF", "whiteMyselfCheckList", this, WhiteMyselfCheckDbm.getInstance(), mp, false, "whiteMyself");
     }
 
     // ===================================================================================
@@ -143,10 +143,10 @@ public class WhiteMyselfDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((WhiteMyself)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((WhiteMyself)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((WhiteMyself)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((WhiteMyself)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

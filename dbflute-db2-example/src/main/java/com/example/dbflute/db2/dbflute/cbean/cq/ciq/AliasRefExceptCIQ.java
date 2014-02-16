@@ -75,18 +75,18 @@ public class AliasRefExceptCIQ extends AbstractBsAliasRefExceptCQ {
     { return _myCQ.keepExceptId_InScopeRelation_AliasExcept(sq); }
     public String keepExceptId_NotInScopeRelation_AliasExcept(AliasExceptCQ sq)
     { return _myCQ.keepExceptId_NotInScopeRelation_AliasExcept(sq); }
-    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) { return null; }
-    public String keepScalarCondition(AliasRefExceptCQ subQuery)
+    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
+    public String keepScalarCondition(AliasRefExceptCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }
-    public String keepSpecifyMyselfDerived(AliasRefExceptCQ subQuery)
+    public String keepSpecifyMyselfDerived(AliasRefExceptCQ sq)
     { throwIICBOE("(Specify)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerived(AliasRefExceptCQ subQuery)
+    public String keepQueryMyselfDerived(AliasRefExceptCQ sq)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerivedParameter(Object parameterValue)
+    public String keepQueryMyselfDerivedParameter(Object vl)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepMyselfExists(AliasRefExceptCQ subQuery)
+    public String keepMyselfExists(AliasRefExceptCQ sq)
     { throwIICBOE("MyselfExists"); return null;}
-    public String keepMyselfInScope(AliasRefExceptCQ subQuery)
+    public String keepMyselfInScope(AliasRefExceptCQ sq)
     { throwIICBOE("MyselfInScope"); return null;}
 
     protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()

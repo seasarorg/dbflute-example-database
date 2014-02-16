@@ -5,7 +5,7 @@ import com.example.dbflute.oracle.dbflute.bsbhv.pmbean.BsOverloadPkgSpOverloadPa
 /**
  * <!-- df:beginClassDescription -->
  * The typed parameter-bean of OverloadPkgSpOverloadParameter. <br />
- * This is related to "<span style="color: #AD4747">OVERLOAD_PKG.SP_OVERLOAD_PARAMETER</span>".
+ * This is related to "<span style="color: #AD4747">OVERLOAD_PKG.SP_OVERLOAD_PARAMETER</span>". <br />
  * <!-- df:endClassDescription -->
  * <p>
  * You can implement your original methods here.

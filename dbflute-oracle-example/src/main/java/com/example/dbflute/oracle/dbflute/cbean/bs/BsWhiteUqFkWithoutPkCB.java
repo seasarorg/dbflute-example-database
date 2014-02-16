@@ -337,8 +337,8 @@ public class BsWhiteUqFkWithoutPkCB extends AbstractConditionBean {
         public HpSDRFunction<WhiteUqFkWithoutPkRefCB, WhiteUqFkWithoutPkCQ> derivedWhiteUqFkWithoutPkRefList() {
             assertDerived("whiteUqFkWithoutPkRefList"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<WhiteUqFkWithoutPkRefCB, WhiteUqFkWithoutPkCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<WhiteUqFkWithoutPkRefCB, WhiteUqFkWithoutPkCQ>() {
-                public void setup(String function, SubQuery<WhiteUqFkWithoutPkRefCB> subQuery, WhiteUqFkWithoutPkCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsderiveWhiteUqFkWithoutPkRefList(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<WhiteUqFkWithoutPkRefCB> sq, WhiteUqFkWithoutPkCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsderiveWhiteUqFkWithoutPkRefList(fn, sq, al, op); } }, _dbmetaProvider);
         }
     }
 

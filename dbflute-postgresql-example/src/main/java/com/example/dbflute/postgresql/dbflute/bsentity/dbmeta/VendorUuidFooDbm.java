@@ -42,16 +42,16 @@ public class VendorUuidFooDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgFooId implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorUuidFoo)e).getFooId(); }
-        public void write(Entity e, Object v) { ((VendorUuidFoo)e).setFooId((java.util.UUID)v); }
+        public Object read(Entity et) { return ((VendorUuidFoo)et).getFooId(); }
+        public void write(Entity et, Object vl) { ((VendorUuidFoo)et).setFooId((java.util.UUID)vl); }
     }
     public static class EpgFooName implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorUuidFoo)e).getFooName(); }
-        public void write(Entity e, Object v) { ((VendorUuidFoo)e).setFooName((String)v); }
+        public Object read(Entity et) { return ((VendorUuidFoo)et).getFooName(); }
+        public void write(Entity et, Object vl) { ((VendorUuidFoo)et).setFooName((String)vl); }
     }
     public static class EpgBarId implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorUuidFoo)e).getBarId(); }
-        public void write(Entity e, Object v) { ((VendorUuidFoo)e).setBarId((java.util.UUID)v); }
+        public Object read(Entity et) { return ((VendorUuidFoo)et).getBarId(); }
+        public void write(Entity et, Object vl) { ((VendorUuidFoo)et).setBarId((java.util.UUID)vl); }
     }
 
     // ===================================================================================
@@ -103,8 +103,8 @@ public class VendorUuidFooDbm extends AbstractDBMeta {
     //                                      Foreign Property
     //                                      ----------------
     public ForeignInfo foreignVendorUuidBar() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnBarId(), VendorUuidBarDbm.getInstance().columnBarId());
-        return cfi("fk_vendor_uuid_foo_bar", "vendorUuidBar", this, VendorUuidBarDbm.getInstance(), map, 0, false, false, false, false, null, null, false, "vendorUuidFooList");
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnBarId(), VendorUuidBarDbm.getInstance().columnBarId());
+        return cfi("fk_vendor_uuid_foo_bar", "vendorUuidBar", this, VendorUuidBarDbm.getInstance(), mp, 0, false, false, false, false, null, null, false, "vendorUuidFooList");
     }
 
     // -----------------------------------------------------
@@ -136,10 +136,10 @@ public class VendorUuidFooDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((VendorUuidFoo)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((VendorUuidFoo)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((VendorUuidFoo)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((VendorUuidFoo)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

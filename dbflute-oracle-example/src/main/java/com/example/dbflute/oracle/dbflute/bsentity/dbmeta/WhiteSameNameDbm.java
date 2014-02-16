@@ -41,12 +41,12 @@ public class WhiteSameNameDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgSameNameId implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteSameName)e).getSameNameId(); }
-        public void write(Entity e, Object v) { ((WhiteSameName)e).setSameNameId(ctl(v)); }
+        public Object read(Entity et) { return ((WhiteSameName)et).getSameNameId(); }
+        public void write(Entity et, Object vl) { ((WhiteSameName)et).setSameNameId(ctl(vl)); }
     }
     public static class EpgSameNameName implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteSameName)e).getSameNameName(); }
-        public void write(Entity e, Object v) { ((WhiteSameName)e).setSameNameName((String)v); }
+        public Object read(Entity et) { return ((WhiteSameName)et).getSameNameName(); }
+        public void write(Entity et, Object vl) { ((WhiteSameName)et).setSameNameName((String)vl); }
     }
 
     // ===================================================================================
@@ -124,10 +124,10 @@ public class WhiteSameNameDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((WhiteSameName)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((WhiteSameName)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((WhiteSameName)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((WhiteSameName)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

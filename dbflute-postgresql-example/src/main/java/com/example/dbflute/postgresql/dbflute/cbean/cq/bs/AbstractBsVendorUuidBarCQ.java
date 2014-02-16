@@ -75,8 +75,8 @@ public abstract class AbstractBsVendorUuidBarCQ extends AbstractConditionQuery {
      */
     public void setBarId_IsNotNull() { regBarId(CK_ISNN, DOBJ); }
 
-    protected void regBarId(ConditionKey k, Object v) { regQ(k, v, getCValueBarId(), "bar_id"); }
-    abstract protected ConditionValue getCValueBarId();
+    protected void regBarId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueBarId(), "bar_id"); }
+    protected abstract ConditionValue getCValueBarId();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -161,8 +161,8 @@ public abstract class AbstractBsVendorUuidBarCQ extends AbstractConditionQuery {
         regLSQ(CK_NLS, fRES(barName), getCValueBarName(), "bar_name", likeSearchOption);
     }
 
-    protected void regBarName(ConditionKey k, Object v) { regQ(k, v, getCValueBarName(), "bar_name"); }
-    abstract protected ConditionValue getCValueBarName();
+    protected void regBarName(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueBarName(), "bar_name"); }
+    protected abstract ConditionValue getCValueBarName();
 
     // ===================================================================================
     //                                                                     ScalarCondition
@@ -269,22 +269,22 @@ public abstract class AbstractBsVendorUuidBarCQ extends AbstractConditionQuery {
         return xcreateSSQFunction(CK_LE.getOperand());
     }
 
-    protected HpSSQFunction<VendorUuidBarCB> xcreateSSQFunction(final String operand) {
+    protected HpSSQFunction<VendorUuidBarCB> xcreateSSQFunction(final String rd) {
         return new HpSSQFunction<VendorUuidBarCB>(new HpSSQSetupper<VendorUuidBarCB>() {
-            public void setup(String function, SubQuery<VendorUuidBarCB> subQuery, HpSSQOption<VendorUuidBarCB> option) {
-                xscalarCondition(function, subQuery, operand, option);
+            public void setup(String fn, SubQuery<VendorUuidBarCB> sq, HpSSQOption<VendorUuidBarCB> op) {
+                xscalarCondition(fn, sq, rd, op);
             }
         });
     }
 
-    protected void xscalarCondition(String function, SubQuery<VendorUuidBarCB> subQuery, String operand, HpSSQOption<VendorUuidBarCB> option) {
-        assertObjectNotNull("subQuery<VendorUuidBarCB>", subQuery);
-        VendorUuidBarCB cb = xcreateScalarConditionCB(); subQuery.query(cb);
-        String subQueryPropertyName = keepScalarCondition(cb.query()); // for saving query-value
-        option.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
-        registerScalarCondition(function, cb.query(), subQueryPropertyName, operand, option);
+    protected void xscalarCondition(String fn, SubQuery<VendorUuidBarCB> sq, String rd, HpSSQOption<VendorUuidBarCB> op) {
+        assertObjectNotNull("subQuery", sq);
+        VendorUuidBarCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        String pp = keepScalarCondition(cb.query()); // for saving query-value
+        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
-    public abstract String keepScalarCondition(VendorUuidBarCQ subQuery);
+    public abstract String keepScalarCondition(VendorUuidBarCQ sq);
 
     protected VendorUuidBarCB xcreateScalarConditionCB() {
         VendorUuidBarCB cb = new VendorUuidBarCB();
@@ -301,13 +301,14 @@ public abstract class AbstractBsVendorUuidBarCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    public void xsmyselfDerive(String function, SubQuery<VendorUuidBarCB> subQuery, String aliasName, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<VendorUuidBarCB>", subQuery);
-        VendorUuidBarCB cb = new VendorUuidBarCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
-        registerSpecifyMyselfDerived(function, cb.query(), "bar_id", "bar_id", subQueryPropertyName, "myselfDerived", aliasName, option);
+    public void xsmyselfDerive(String fn, SubQuery<VendorUuidBarCB> sq, String al, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        VendorUuidBarCB cb = new VendorUuidBarCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "bar_id";
+        String pp = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
+        registerSpecifyMyselfDerived(fn, cb.query(), pk, pk, pp, "myselfDerived", al, op);
     }
-    public abstract String keepSpecifyMyselfDerived(VendorUuidBarCQ subQuery);
+    public abstract String keepSpecifyMyselfDerived(VendorUuidBarCQ sq);
 
     /**
      * Prepare for (Query)MyselfDerived (SubQuery).
@@ -318,20 +319,21 @@ public abstract class AbstractBsVendorUuidBarCQ extends AbstractConditionQuery {
     }
     protected HpQDRFunction<VendorUuidBarCB> xcreateQDRFunctionMyselfDerived() {
         return new HpQDRFunction<VendorUuidBarCB>(new HpQDRSetupper<VendorUuidBarCB>() {
-            public void setup(String function, SubQuery<VendorUuidBarCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-                xqderiveMyselfDerived(function, subQuery, operand, value, option);
+            public void setup(String fn, SubQuery<VendorUuidBarCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+                xqderiveMyselfDerived(fn, sq, rd, vl, op);
             }
         });
     }
-    public void xqderiveMyselfDerived(String function, SubQuery<VendorUuidBarCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<VendorUuidBarCB>", subQuery);
-        VendorUuidBarCB cb = new VendorUuidBarCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepQueryMyselfDerived(cb.query()); // for saving query-value.
-        String parameterPropertyName = keepQueryMyselfDerivedParameter(value);
-        registerQueryMyselfDerived(function, cb.query(), "bar_id", "bar_id", subQueryPropertyName, "myselfDerived", operand, value, parameterPropertyName, option);
+    public void xqderiveMyselfDerived(String fn, SubQuery<VendorUuidBarCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        VendorUuidBarCB cb = new VendorUuidBarCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "bar_id";
+        String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
+        String prpp = keepQueryMyselfDerivedParameter(vl);
+        registerQueryMyselfDerived(fn, cb.query(), pk, pk, sqpp, "myselfDerived", rd, vl, prpp, op);
     }
-    public abstract String keepQueryMyselfDerived(VendorUuidBarCQ subQuery);
-    public abstract String keepQueryMyselfDerivedParameter(Object parameterValue);
+    public abstract String keepQueryMyselfDerived(VendorUuidBarCQ sq);
+    public abstract String keepQueryMyselfDerivedParameter(Object vl);
 
     // ===================================================================================
     //                                                                        MyselfExists
@@ -341,12 +343,12 @@ public abstract class AbstractBsVendorUuidBarCQ extends AbstractConditionQuery {
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfExists(SubQuery<VendorUuidBarCB> subQuery) {
-        assertObjectNotNull("subQuery<VendorUuidBarCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         VendorUuidBarCB cb = new VendorUuidBarCB(); cb.xsetupForMyselfExists(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfExists(cb.query()); // for saving query-value.
-        registerMyselfExists(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfExists(cb.query()); // for saving query-value.
+        registerMyselfExists(cb.query(), pp);
     }
-    public abstract String keepMyselfExists(VendorUuidBarCQ subQuery);
+    public abstract String keepMyselfExists(VendorUuidBarCQ sq);
 
     // ===================================================================================
     //                                                                       MyselfInScope
@@ -356,12 +358,12 @@ public abstract class AbstractBsVendorUuidBarCQ extends AbstractConditionQuery {
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfInScope(SubQuery<VendorUuidBarCB> subQuery) {
-        assertObjectNotNull("subQuery<VendorUuidBarCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         VendorUuidBarCB cb = new VendorUuidBarCB(); cb.xsetupForMyselfInScope(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfInScope(cb.query()); // for saving query-value.
-        registerMyselfInScope(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfInScope(cb.query()); // for saving query-value.
+        registerMyselfInScope(cb.query(), pp);
     }
-    public abstract String keepMyselfInScope(VendorUuidBarCQ subQuery);
+    public abstract String keepMyselfInScope(VendorUuidBarCQ sq);
 
     // ===================================================================================
     //                                                                    Full Text Search
@@ -381,7 +383,7 @@ public abstract class AbstractBsVendorUuidBarCQ extends AbstractConditionQuery {
      * @param textColumnList The list of text column. (NotNull, NotEmpty, StringColumn, TargetTableColumn)
      * @param conditionValue The condition value. (NullAllowed: if null or empty, no condition)
      */
-    public void match(java.util.List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList, String conditionValue) {
+    public void match(List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList, String conditionValue) {
         xdoMatchByLikeSearch(textColumnList, conditionValue);
     }
 

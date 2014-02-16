@@ -97,21 +97,21 @@ public class WhiteQuotedCIQ extends AbstractBsWhiteQuotedCQ {
     { throwIICBOE("(Specify)DerivedReferrer"); return null; }
     public String keepSelect_QueryDerivedReferrer_WhiteQuotedRefList(WhiteQuotedRefCQ sq)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
-    public String keepSelect_QueryDerivedReferrer_WhiteQuotedRefListParameter(Object pv)
+    public String keepSelect_QueryDerivedReferrer_WhiteQuotedRefListParameter(Object vl)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
     protected ConditionValue getCValueFrom() { return _myCQ.getFrom(); }
-    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) { return null; }
-    public String keepScalarCondition(WhiteQuotedCQ subQuery)
+    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
+    public String keepScalarCondition(WhiteQuotedCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }
-    public String keepSpecifyMyselfDerived(WhiteQuotedCQ subQuery)
+    public String keepSpecifyMyselfDerived(WhiteQuotedCQ sq)
     { throwIICBOE("(Specify)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerived(WhiteQuotedCQ subQuery)
+    public String keepQueryMyselfDerived(WhiteQuotedCQ sq)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerivedParameter(Object parameterValue)
+    public String keepQueryMyselfDerivedParameter(Object vl)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepMyselfExists(WhiteQuotedCQ subQuery)
+    public String keepMyselfExists(WhiteQuotedCQ sq)
     { throwIICBOE("MyselfExists"); return null;}
-    public String keepMyselfInScope(WhiteQuotedCQ subQuery)
+    public String keepMyselfInScope(WhiteQuotedCQ sq)
     { throwIICBOE("MyselfInScope"); return null;}
 
     protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()

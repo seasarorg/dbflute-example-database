@@ -8,7 +8,7 @@ import com.example.dbflute.mysql.dbflute.bsbhv.pmbean.BsSpInOutParameterPmb;
 /**
  * <!-- df:beginClassDescription -->
  * The typed parameter-bean of SpInOutParameter. <br />
- * This is related to "<span style="color: #AD4747">SP_IN_OUT_PARAMETER</span>".
+ * This is related to "<span style="color: #AD4747">SP_IN_OUT_PARAMETER</span>". <br />
  * <!-- df:endClassDescription -->
  * <p>
  * You can implement your original methods here.

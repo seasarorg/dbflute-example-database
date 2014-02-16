@@ -72,18 +72,18 @@ public class SummaryMemberPurchaseCIQ extends AbstractBsSummaryMemberPurchaseCQ 
     protected ConditionValue getCValueMemberId() { return _myCQ.getMemberId(); }
     protected ConditionValue getCValueAllsumPurchasePrice() { return _myCQ.getAllsumPurchasePrice(); }
     protected ConditionValue getCValueLatestPurchaseDatetime() { return _myCQ.getLatestPurchaseDatetime(); }
-    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) { return null; }
-    public String keepScalarCondition(SummaryMemberPurchaseCQ subQuery)
+    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
+    public String keepScalarCondition(SummaryMemberPurchaseCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }
-    public String keepSpecifyMyselfDerived(SummaryMemberPurchaseCQ subQuery)
+    public String keepSpecifyMyselfDerived(SummaryMemberPurchaseCQ sq)
     { throwIICBOE("(Specify)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerived(SummaryMemberPurchaseCQ subQuery)
+    public String keepQueryMyselfDerived(SummaryMemberPurchaseCQ sq)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerivedParameter(Object parameterValue)
+    public String keepQueryMyselfDerivedParameter(Object vl)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepMyselfExists(SummaryMemberPurchaseCQ subQuery)
+    public String keepMyselfExists(SummaryMemberPurchaseCQ sq)
     { throwIICBOE("MyselfExists"); return null;}
-    public String keepMyselfInScope(SummaryMemberPurchaseCQ subQuery)
+    public String keepMyselfInScope(SummaryMemberPurchaseCQ sq)
     { throwIICBOE("MyselfInScope"); return null;}
 
     protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()

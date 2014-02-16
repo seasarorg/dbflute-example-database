@@ -56,16 +56,16 @@ public class WhiteLineSepCommentDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public class EpgLineSepCommentCode implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteLineSepComment)e).getLineSepCommentCode(); }
-        public void write(Entity e, Object v) {
+        public Object read(Entity et) { return ((WhiteLineSepComment)et).getLineSepCommentCode(); }
+        public void write(Entity et, Object vl) {
             ColumnInfo col = columnLineSepCommentCode();
-            ccls(col, v);
-            ((WhiteLineSepComment)e).setLineSepCommentCodeAsLineSepCommentCls((CDef.LineSepCommentCls)gcls(col, v));
+            ccls(col, vl);
+            ((WhiteLineSepComment)et).setLineSepCommentCodeAsLineSepCommentCls((CDef.LineSepCommentCls)gcls(col, vl));
         }
     }
     public static class EpgLineSepCommentName implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteLineSepComment)e).getLineSepCommentName(); }
-        public void write(Entity e, Object v) { ((WhiteLineSepComment)e).setLineSepCommentName((String)v); }
+        public Object read(Entity et) { return ((WhiteLineSepComment)et).getLineSepCommentName(); }
+        public void write(Entity et, Object vl) { ((WhiteLineSepComment)et).setLineSepCommentName((String)vl); }
     }
 
     // ===================================================================================
@@ -143,10 +143,10 @@ public class WhiteLineSepCommentDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((WhiteLineSepComment)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((WhiteLineSepComment)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((WhiteLineSepComment)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((WhiteLineSepComment)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

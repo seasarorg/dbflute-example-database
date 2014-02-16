@@ -42,16 +42,16 @@ public class NextschemaWhiteSameNameDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgSameNameId implements PropertyGateway {
-        public Object read(Entity e) { return ((NextschemaWhiteSameName)e).getSameNameId(); }
-        public void write(Entity e, Object v) { ((NextschemaWhiteSameName)e).setSameNameId(cti(v)); }
+        public Object read(Entity et) { return ((NextschemaWhiteSameName)et).getSameNameId(); }
+        public void write(Entity et, Object vl) { ((NextschemaWhiteSameName)et).setSameNameId(cti(vl)); }
     }
     public static class EpgSameNameName implements PropertyGateway {
-        public Object read(Entity e) { return ((NextschemaWhiteSameName)e).getSameNameName(); }
-        public void write(Entity e, Object v) { ((NextschemaWhiteSameName)e).setSameNameName((String)v); }
+        public Object read(Entity et) { return ((NextschemaWhiteSameName)et).getSameNameName(); }
+        public void write(Entity et, Object vl) { ((NextschemaWhiteSameName)et).setSameNameName((String)vl); }
     }
     public static class EpgSameNameLong implements PropertyGateway {
-        public Object read(Entity e) { return ((NextschemaWhiteSameName)e).getSameNameLong(); }
-        public void write(Entity e, Object v) { ((NextschemaWhiteSameName)e).setSameNameLong(ctl(v)); }
+        public Object read(Entity et) { return ((NextschemaWhiteSameName)et).getSameNameLong(); }
+        public void write(Entity et, Object vl) { ((NextschemaWhiteSameName)et).setSameNameLong(ctl(vl)); }
     }
 
     // ===================================================================================
@@ -107,8 +107,8 @@ public class NextschemaWhiteSameNameDbm extends AbstractDBMeta {
     //                                     Referrer Property
     //                                     -----------------
     public ReferrerInfo referrerWhiteSameNameRefList() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnSameNameId(), NextschemaWhiteSameNameRefDbm.getInstance().columnSameNameId());
-        return cri("fk_white_same_name_ref", "whiteSameNameRefList", this, NextschemaWhiteSameNameRefDbm.getInstance(), map, false, "whiteSameName");
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnSameNameId(), NextschemaWhiteSameNameRefDbm.getInstance().columnSameNameId());
+        return cri("fk_white_same_name_ref", "whiteSameNameRefList", this, NextschemaWhiteSameNameRefDbm.getInstance(), mp, false, "whiteSameName");
     }
 
     // ===================================================================================
@@ -136,10 +136,10 @@ public class NextschemaWhiteSameNameDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((NextschemaWhiteSameName)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((NextschemaWhiteSameName)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((NextschemaWhiteSameName)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((NextschemaWhiteSameName)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

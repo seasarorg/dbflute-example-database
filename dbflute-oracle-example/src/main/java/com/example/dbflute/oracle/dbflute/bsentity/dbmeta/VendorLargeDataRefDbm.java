@@ -48,40 +48,40 @@ public class VendorLargeDataRefDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgLargeDataRefId implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorLargeDataRef)e).getLargeDataRefId(); }
-        public void write(Entity e, Object v) { ((VendorLargeDataRef)e).setLargeDataRefId(ctl(v)); }
+        public Object read(Entity et) { return ((VendorLargeDataRef)et).getLargeDataRefId(); }
+        public void write(Entity et, Object vl) { ((VendorLargeDataRef)et).setLargeDataRefId(ctl(vl)); }
     }
     public static class EpgLargeDataId implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorLargeDataRef)e).getLargeDataId(); }
-        public void write(Entity e, Object v) { ((VendorLargeDataRef)e).setLargeDataId(ctl(v)); }
+        public Object read(Entity et) { return ((VendorLargeDataRef)et).getLargeDataId(); }
+        public void write(Entity et, Object vl) { ((VendorLargeDataRef)et).setLargeDataId(ctl(vl)); }
     }
     public static class EpgDateIndex implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorLargeDataRef)e).getDateIndex(); }
-        public void write(Entity e, Object v) { ((VendorLargeDataRef)e).setDateIndex((java.util.Date)v); }
+        public Object read(Entity et) { return ((VendorLargeDataRef)et).getDateIndex(); }
+        public void write(Entity et, Object vl) { ((VendorLargeDataRef)et).setDateIndex((java.util.Date)vl); }
     }
     public static class EpgDateNoIndex implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorLargeDataRef)e).getDateNoIndex(); }
-        public void write(Entity e, Object v) { ((VendorLargeDataRef)e).setDateNoIndex((java.util.Date)v); }
+        public Object read(Entity et) { return ((VendorLargeDataRef)et).getDateNoIndex(); }
+        public void write(Entity et, Object vl) { ((VendorLargeDataRef)et).setDateNoIndex((java.util.Date)vl); }
     }
     public static class EpgTimestampIndex implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorLargeDataRef)e).getTimestampIndex(); }
-        public void write(Entity e, Object v) { ((VendorLargeDataRef)e).setTimestampIndex((java.sql.Timestamp)v); }
+        public Object read(Entity et) { return ((VendorLargeDataRef)et).getTimestampIndex(); }
+        public void write(Entity et, Object vl) { ((VendorLargeDataRef)et).setTimestampIndex((java.sql.Timestamp)vl); }
     }
     public static class EpgTimestampNoIndex implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorLargeDataRef)e).getTimestampNoIndex(); }
-        public void write(Entity e, Object v) { ((VendorLargeDataRef)e).setTimestampNoIndex((java.sql.Timestamp)v); }
+        public Object read(Entity et) { return ((VendorLargeDataRef)et).getTimestampNoIndex(); }
+        public void write(Entity et, Object vl) { ((VendorLargeDataRef)et).setTimestampNoIndex((java.sql.Timestamp)vl); }
     }
     public static class EpgNullableDecimalIndex implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorLargeDataRef)e).getNullableDecimalIndex(); }
-        public void write(Entity e, Object v) { ((VendorLargeDataRef)e).setNullableDecimalIndex(ctb(v)); }
+        public Object read(Entity et) { return ((VendorLargeDataRef)et).getNullableDecimalIndex(); }
+        public void write(Entity et, Object vl) { ((VendorLargeDataRef)et).setNullableDecimalIndex(ctb(vl)); }
     }
     public static class EpgNullableDecimalNoIndex implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorLargeDataRef)e).getNullableDecimalNoIndex(); }
-        public void write(Entity e, Object v) { ((VendorLargeDataRef)e).setNullableDecimalNoIndex(ctb(v)); }
+        public Object read(Entity et) { return ((VendorLargeDataRef)et).getNullableDecimalNoIndex(); }
+        public void write(Entity et, Object vl) { ((VendorLargeDataRef)et).setNullableDecimalNoIndex(ctb(vl)); }
     }
     public static class EpgSelfParentId implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorLargeDataRef)e).getSelfParentId(); }
-        public void write(Entity e, Object v) { ((VendorLargeDataRef)e).setSelfParentId(ctl(v)); }
+        public Object read(Entity et) { return ((VendorLargeDataRef)et).getSelfParentId(); }
+        public void write(Entity et, Object vl) { ((VendorLargeDataRef)et).setSelfParentId(ctl(vl)); }
     }
 
     // ===================================================================================
@@ -151,20 +151,20 @@ public class VendorLargeDataRefDbm extends AbstractDBMeta {
     //                                      Foreign Property
     //                                      ----------------
     public ForeignInfo foreignVendorLargeData() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnLargeDataId(), VendorLargeDataDbm.getInstance().columnLargeDataId());
-        return cfi("FK_VENDOR_LARGE_DATA_REF_DATA", "vendorLargeData", this, VendorLargeDataDbm.getInstance(), map, 0, false, false, false, false, null, null, false, "vendorLargeDataRefList");
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnLargeDataId(), VendorLargeDataDbm.getInstance().columnLargeDataId());
+        return cfi("FK_VENDOR_LARGE_DATA_REF_DATA", "vendorLargeData", this, VendorLargeDataDbm.getInstance(), mp, 0, false, false, false, false, null, null, false, "vendorLargeDataRefList");
     }
     public ForeignInfo foreignVendorLargeDataRefSelf() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnSelfParentId(), VendorLargeDataRefDbm.getInstance().columnLargeDataRefId());
-        return cfi("FK_VENDOR_LARGE_DATA_REF_SELF", "vendorLargeDataRefSelf", this, VendorLargeDataRefDbm.getInstance(), map, 1, false, false, false, false, null, null, false, "vendorLargeDataRefSelfList");
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnSelfParentId(), VendorLargeDataRefDbm.getInstance().columnLargeDataRefId());
+        return cfi("FK_VENDOR_LARGE_DATA_REF_SELF", "vendorLargeDataRefSelf", this, VendorLargeDataRefDbm.getInstance(), mp, 1, false, false, false, false, null, null, false, "vendorLargeDataRefSelfList");
     }
 
     // -----------------------------------------------------
     //                                     Referrer Property
     //                                     -----------------
     public ReferrerInfo referrerVendorLargeDataRefSelfList() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnLargeDataRefId(), VendorLargeDataRefDbm.getInstance().columnSelfParentId());
-        return cri("FK_VENDOR_LARGE_DATA_REF_SELF", "vendorLargeDataRefSelfList", this, VendorLargeDataRefDbm.getInstance(), map, false, "vendorLargeDataRefSelf");
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnLargeDataRefId(), VendorLargeDataRefDbm.getInstance().columnSelfParentId());
+        return cri("FK_VENDOR_LARGE_DATA_REF_SELF", "vendorLargeDataRefSelfList", this, VendorLargeDataRefDbm.getInstance(), mp, false, "vendorLargeDataRefSelf");
     }
 
     // ===================================================================================
@@ -192,10 +192,10 @@ public class VendorLargeDataRefDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((VendorLargeDataRef)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((VendorLargeDataRef)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((VendorLargeDataRef)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((VendorLargeDataRef)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

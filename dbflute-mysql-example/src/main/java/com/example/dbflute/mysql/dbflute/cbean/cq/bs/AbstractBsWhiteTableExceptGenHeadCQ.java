@@ -160,8 +160,8 @@ public abstract class AbstractBsWhiteTableExceptGenHeadCQ extends AbstractCondit
      */
     public void setGenHeadId_IsNotNull() { regGenHeadId(CK_ISNN, DOBJ); }
 
-    protected void regGenHeadId(ConditionKey k, Object v) { regQ(k, v, getCValueGenHeadId(), "GEN_HEAD_ID"); }
-    abstract protected ConditionValue getCValueGenHeadId();
+    protected void regGenHeadId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueGenHeadId(), "GEN_HEAD_ID"); }
+    protected abstract ConditionValue getCValueGenHeadId();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -246,8 +246,8 @@ public abstract class AbstractBsWhiteTableExceptGenHeadCQ extends AbstractCondit
         regLSQ(CK_NLS, fRES(genHeadName), getCValueGenHeadName(), "GEN_HEAD_NAME", likeSearchOption);
     }
 
-    protected void regGenHeadName(ConditionKey k, Object v) { regQ(k, v, getCValueGenHeadName(), "GEN_HEAD_NAME"); }
-    abstract protected ConditionValue getCValueGenHeadName();
+    protected void regGenHeadName(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueGenHeadName(), "GEN_HEAD_NAME"); }
+    protected abstract ConditionValue getCValueGenHeadName();
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -349,8 +349,8 @@ public abstract class AbstractBsWhiteTableExceptGenHeadCQ extends AbstractCondit
      */
     public void setNometaId_IsNotNull() { regNometaId(CK_ISNN, DOBJ); }
 
-    protected void regNometaId(ConditionKey k, Object v) { regQ(k, v, getCValueNometaId(), "NOMETA_ID"); }
-    abstract protected ConditionValue getCValueNometaId();
+    protected void regNometaId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueNometaId(), "NOMETA_ID"); }
+    protected abstract ConditionValue getCValueNometaId();
 
     // ===================================================================================
     //                                                                     ScalarCondition
@@ -457,22 +457,22 @@ public abstract class AbstractBsWhiteTableExceptGenHeadCQ extends AbstractCondit
         return xcreateSSQFunction(CK_LE.getOperand());
     }
 
-    protected HpSSQFunction<WhiteTableExceptGenHeadCB> xcreateSSQFunction(final String operand) {
+    protected HpSSQFunction<WhiteTableExceptGenHeadCB> xcreateSSQFunction(final String rd) {
         return new HpSSQFunction<WhiteTableExceptGenHeadCB>(new HpSSQSetupper<WhiteTableExceptGenHeadCB>() {
-            public void setup(String function, SubQuery<WhiteTableExceptGenHeadCB> subQuery, HpSSQOption<WhiteTableExceptGenHeadCB> option) {
-                xscalarCondition(function, subQuery, operand, option);
+            public void setup(String fn, SubQuery<WhiteTableExceptGenHeadCB> sq, HpSSQOption<WhiteTableExceptGenHeadCB> op) {
+                xscalarCondition(fn, sq, rd, op);
             }
         });
     }
 
-    protected void xscalarCondition(String function, SubQuery<WhiteTableExceptGenHeadCB> subQuery, String operand, HpSSQOption<WhiteTableExceptGenHeadCB> option) {
-        assertObjectNotNull("subQuery<WhiteTableExceptGenHeadCB>", subQuery);
-        WhiteTableExceptGenHeadCB cb = xcreateScalarConditionCB(); subQuery.query(cb);
-        String subQueryPropertyName = keepScalarCondition(cb.query()); // for saving query-value
-        option.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
-        registerScalarCondition(function, cb.query(), subQueryPropertyName, operand, option);
+    protected void xscalarCondition(String fn, SubQuery<WhiteTableExceptGenHeadCB> sq, String rd, HpSSQOption<WhiteTableExceptGenHeadCB> op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteTableExceptGenHeadCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        String pp = keepScalarCondition(cb.query()); // for saving query-value
+        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
-    public abstract String keepScalarCondition(WhiteTableExceptGenHeadCQ subQuery);
+    public abstract String keepScalarCondition(WhiteTableExceptGenHeadCQ sq);
 
     protected WhiteTableExceptGenHeadCB xcreateScalarConditionCB() {
         WhiteTableExceptGenHeadCB cb = new WhiteTableExceptGenHeadCB();
@@ -489,13 +489,14 @@ public abstract class AbstractBsWhiteTableExceptGenHeadCQ extends AbstractCondit
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    public void xsmyselfDerive(String function, SubQuery<WhiteTableExceptGenHeadCB> subQuery, String aliasName, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<WhiteTableExceptGenHeadCB>", subQuery);
-        WhiteTableExceptGenHeadCB cb = new WhiteTableExceptGenHeadCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
-        registerSpecifyMyselfDerived(function, cb.query(), "GEN_HEAD_ID", "GEN_HEAD_ID", subQueryPropertyName, "myselfDerived", aliasName, option);
+    public void xsmyselfDerive(String fn, SubQuery<WhiteTableExceptGenHeadCB> sq, String al, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteTableExceptGenHeadCB cb = new WhiteTableExceptGenHeadCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "GEN_HEAD_ID";
+        String pp = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
+        registerSpecifyMyselfDerived(fn, cb.query(), pk, pk, pp, "myselfDerived", al, op);
     }
-    public abstract String keepSpecifyMyselfDerived(WhiteTableExceptGenHeadCQ subQuery);
+    public abstract String keepSpecifyMyselfDerived(WhiteTableExceptGenHeadCQ sq);
 
     /**
      * Prepare for (Query)MyselfDerived (SubQuery).
@@ -506,20 +507,21 @@ public abstract class AbstractBsWhiteTableExceptGenHeadCQ extends AbstractCondit
     }
     protected HpQDRFunction<WhiteTableExceptGenHeadCB> xcreateQDRFunctionMyselfDerived() {
         return new HpQDRFunction<WhiteTableExceptGenHeadCB>(new HpQDRSetupper<WhiteTableExceptGenHeadCB>() {
-            public void setup(String function, SubQuery<WhiteTableExceptGenHeadCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-                xqderiveMyselfDerived(function, subQuery, operand, value, option);
+            public void setup(String fn, SubQuery<WhiteTableExceptGenHeadCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+                xqderiveMyselfDerived(fn, sq, rd, vl, op);
             }
         });
     }
-    public void xqderiveMyselfDerived(String function, SubQuery<WhiteTableExceptGenHeadCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<WhiteTableExceptGenHeadCB>", subQuery);
-        WhiteTableExceptGenHeadCB cb = new WhiteTableExceptGenHeadCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepQueryMyselfDerived(cb.query()); // for saving query-value.
-        String parameterPropertyName = keepQueryMyselfDerivedParameter(value);
-        registerQueryMyselfDerived(function, cb.query(), "GEN_HEAD_ID", "GEN_HEAD_ID", subQueryPropertyName, "myselfDerived", operand, value, parameterPropertyName, option);
+    public void xqderiveMyselfDerived(String fn, SubQuery<WhiteTableExceptGenHeadCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteTableExceptGenHeadCB cb = new WhiteTableExceptGenHeadCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "GEN_HEAD_ID";
+        String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
+        String prpp = keepQueryMyselfDerivedParameter(vl);
+        registerQueryMyselfDerived(fn, cb.query(), pk, pk, sqpp, "myselfDerived", rd, vl, prpp, op);
     }
-    public abstract String keepQueryMyselfDerived(WhiteTableExceptGenHeadCQ subQuery);
-    public abstract String keepQueryMyselfDerivedParameter(Object parameterValue);
+    public abstract String keepQueryMyselfDerived(WhiteTableExceptGenHeadCQ sq);
+    public abstract String keepQueryMyselfDerivedParameter(Object vl);
 
     // ===================================================================================
     //                                                                        MyselfExists
@@ -529,12 +531,12 @@ public abstract class AbstractBsWhiteTableExceptGenHeadCQ extends AbstractCondit
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfExists(SubQuery<WhiteTableExceptGenHeadCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteTableExceptGenHeadCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteTableExceptGenHeadCB cb = new WhiteTableExceptGenHeadCB(); cb.xsetupForMyselfExists(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfExists(cb.query()); // for saving query-value.
-        registerMyselfExists(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfExists(cb.query()); // for saving query-value.
+        registerMyselfExists(cb.query(), pp);
     }
-    public abstract String keepMyselfExists(WhiteTableExceptGenHeadCQ subQuery);
+    public abstract String keepMyselfExists(WhiteTableExceptGenHeadCQ sq);
 
     // ===================================================================================
     //                                                                       MyselfInScope
@@ -544,12 +546,12 @@ public abstract class AbstractBsWhiteTableExceptGenHeadCQ extends AbstractCondit
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfInScope(SubQuery<WhiteTableExceptGenHeadCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteTableExceptGenHeadCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteTableExceptGenHeadCB cb = new WhiteTableExceptGenHeadCB(); cb.xsetupForMyselfInScope(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfInScope(cb.query()); // for saving query-value.
-        registerMyselfInScope(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfInScope(cb.query()); // for saving query-value.
+        registerMyselfInScope(cb.query(), pp);
     }
-    public abstract String keepMyselfInScope(WhiteTableExceptGenHeadCQ subQuery);
+    public abstract String keepMyselfInScope(WhiteTableExceptGenHeadCQ sq);
 
     // ===================================================================================
     //                                                                    Full Text Search
@@ -575,7 +577,7 @@ public abstract class AbstractBsWhiteTableExceptGenHeadCQ extends AbstractCondit
      * @param conditionValue The condition value embedded without binding (by MySQL restriction) but escaped. (NullAllowed: if null or empty, no condition)
      * @param modifier The modifier of full-text search. (NullAllowed: If the value is null, no modifier specified)
      */
-    public void match(java.util.List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList
+    public void match(List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList
                     , String conditionValue
                     , org.seasar.dbflute.dbway.WayOfMySQL.FullTextSearchModifier modifier) {
         xdoMatchForMySQL(textColumnList, conditionValue, modifier);

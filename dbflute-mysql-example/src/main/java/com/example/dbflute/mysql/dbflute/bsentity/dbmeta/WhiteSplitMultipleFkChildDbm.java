@@ -57,16 +57,16 @@ public class WhiteSplitMultipleFkChildDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgChildId implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteSplitMultipleFkChild)e).getChildId(); }
-        public void write(Entity e, Object v) { ((WhiteSplitMultipleFkChild)e).setChildId(ctl(v)); }
+        public Object read(Entity et) { return ((WhiteSplitMultipleFkChild)et).getChildId(); }
+        public void write(Entity et, Object vl) { ((WhiteSplitMultipleFkChild)et).setChildId(ctl(vl)); }
     }
     public static class EpgBaseId implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteSplitMultipleFkChild)e).getBaseId(); }
-        public void write(Entity e, Object v) { ((WhiteSplitMultipleFkChild)e).setBaseId(ctl(v)); }
+        public Object read(Entity et) { return ((WhiteSplitMultipleFkChild)et).getBaseId(); }
+        public void write(Entity et, Object vl) { ((WhiteSplitMultipleFkChild)et).setBaseId(ctl(vl)); }
     }
     public static class EpgChildName implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteSplitMultipleFkChild)e).getChildName(); }
-        public void write(Entity e, Object v) { ((WhiteSplitMultipleFkChild)e).setChildName((String)v); }
+        public Object read(Entity et) { return ((WhiteSplitMultipleFkChild)et).getChildName(); }
+        public void write(Entity et, Object vl) { ((WhiteSplitMultipleFkChild)et).setChildName((String)vl); }
     }
 
     // ===================================================================================
@@ -118,8 +118,8 @@ public class WhiteSplitMultipleFkChildDbm extends AbstractDBMeta {
     //                                      Foreign Property
     //                                      ----------------
     public ForeignInfo foreignWhiteSplitMultipleFkBase() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnBaseId(), WhiteSplitMultipleFkBaseDbm.getInstance().columnBaseId());
-        return cfi("FK_WHITE_SPLIT_MULTIPLE_FK_BASE", "whiteSplitMultipleFkBase", this, WhiteSplitMultipleFkBaseDbm.getInstance(), map, 0, false, false, false, false, null, null, false, "whiteSplitMultipleFkChildList");
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnBaseId(), WhiteSplitMultipleFkBaseDbm.getInstance().columnBaseId());
+        return cfi("FK_WHITE_SPLIT_MULTIPLE_FK_BASE", "whiteSplitMultipleFkBase", this, WhiteSplitMultipleFkBaseDbm.getInstance(), mp, 0, false, false, false, false, null, null, false, "whiteSplitMultipleFkChildList");
     }
 
     // -----------------------------------------------------
@@ -151,10 +151,10 @@ public class WhiteSplitMultipleFkChildDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((WhiteSplitMultipleFkChild)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((WhiteSplitMultipleFkChild)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((WhiteSplitMultipleFkChild)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((WhiteSplitMultipleFkChild)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

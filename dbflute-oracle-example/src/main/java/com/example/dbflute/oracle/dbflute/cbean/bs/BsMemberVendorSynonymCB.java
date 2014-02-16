@@ -494,8 +494,8 @@ public class BsMemberVendorSynonymCB extends AbstractConditionBean {
         public HpSDRFunction<SynonymMemberLoginCB, MemberVendorSynonymCQ> derivedSynonymMemberLoginList() {
             assertDerived("synonymMemberLoginList"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<SynonymMemberLoginCB, MemberVendorSynonymCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<SynonymMemberLoginCB, MemberVendorSynonymCQ>() {
-                public void setup(String function, SubQuery<SynonymMemberLoginCB> subQuery, MemberVendorSynonymCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsderiveSynonymMemberLoginList(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<SynonymMemberLoginCB> sq, MemberVendorSynonymCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsderiveSynonymMemberLoginList(fn, sq, al, op); } }, _dbmetaProvider);
         }
         /**
          * Prepare for (Specify)MyselfDerived (SubQuery).
@@ -504,8 +504,8 @@ public class BsMemberVendorSynonymCB extends AbstractConditionBean {
         public HpSDRFunction<MemberVendorSynonymCB, MemberVendorSynonymCQ> myselfDerived() {
             assertDerived("myselfDerived"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<MemberVendorSynonymCB, MemberVendorSynonymCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<MemberVendorSynonymCB, MemberVendorSynonymCQ>() {
-                public void setup(String function, SubQuery<MemberVendorSynonymCB> subQuery, MemberVendorSynonymCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsmyselfDerive(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<MemberVendorSynonymCB> sq, MemberVendorSynonymCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsmyselfDerive(fn, sq, al, op); } }, _dbmetaProvider);
         }
     }
 

@@ -154,10 +154,10 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
         return doSelectEntity(cb, WhiteAllInOneClsNormalColRef.class);
     }
 
-    protected <ENTITY extends WhiteAllInOneClsNormalColRef> ENTITY doSelectEntity(final WhiteAllInOneClsNormalColRefCB cb, Class<ENTITY> entityType) {
+    protected <ENTITY extends WhiteAllInOneClsNormalColRef> ENTITY doSelectEntity(final WhiteAllInOneClsNormalColRefCB cb, Class<ENTITY> tp) {
         assertCBStateValid(cb);
-        return helpSelectEntityInternally(cb, entityType, new InternalSelectEntityCallback<ENTITY, WhiteAllInOneClsNormalColRefCB>() {
-            public List<ENTITY> callbackSelectList(WhiteAllInOneClsNormalColRefCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); } });
+        return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, WhiteAllInOneClsNormalColRefCB>() {
+            public List<ENTITY> callbackSelectList(WhiteAllInOneClsNormalColRefCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
     }
 
     @Override
@@ -183,10 +183,10 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
         return doSelectEntityWithDeletedCheck(cb, WhiteAllInOneClsNormalColRef.class);
     }
 
-    protected <ENTITY extends WhiteAllInOneClsNormalColRef> ENTITY doSelectEntityWithDeletedCheck(final WhiteAllInOneClsNormalColRefCB cb, Class<ENTITY> entityType) {
+    protected <ENTITY extends WhiteAllInOneClsNormalColRef> ENTITY doSelectEntityWithDeletedCheck(final WhiteAllInOneClsNormalColRefCB cb, Class<ENTITY> tp) {
         assertCBStateValid(cb);
-        return helpSelectEntityWithDeletedCheckInternally(cb, entityType, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, WhiteAllInOneClsNormalColRefCB>() {
-            public List<ENTITY> callbackSelectList(WhiteAllInOneClsNormalColRefCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); } });
+        return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, WhiteAllInOneClsNormalColRefCB>() {
+            public List<ENTITY> callbackSelectList(WhiteAllInOneClsNormalColRefCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
     }
 
     @Override
@@ -258,11 +258,11 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
         return doSelectList(cb, WhiteAllInOneClsNormalColRef.class);
     }
 
-    protected <ENTITY extends WhiteAllInOneClsNormalColRef> ListResultBean<ENTITY> doSelectList(WhiteAllInOneClsNormalColRefCB cb, Class<ENTITY> entityType) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", entityType);
-        assertSpecifyDerivedReferrerEntityProperty(cb, entityType);
-        return helpSelectListInternally(cb, entityType, new InternalSelectListCallback<ENTITY, WhiteAllInOneClsNormalColRefCB>() {
-            public List<ENTITY> callbackSelectList(WhiteAllInOneClsNormalColRefCB cb, Class<ENTITY> entityType) { return delegateSelectList(cb, entityType); } });
+    protected <ENTITY extends WhiteAllInOneClsNormalColRef> ListResultBean<ENTITY> doSelectList(WhiteAllInOneClsNormalColRefCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
+        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
+        return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, WhiteAllInOneClsNormalColRefCB>() {
+            public List<ENTITY> callbackSelectList(WhiteAllInOneClsNormalColRefCB cb, Class<ENTITY> tp) { return delegateSelectList(cb, tp); } });
     }
 
     @Override
@@ -299,11 +299,11 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
         return doSelectPage(cb, WhiteAllInOneClsNormalColRef.class);
     }
 
-    protected <ENTITY extends WhiteAllInOneClsNormalColRef> PagingResultBean<ENTITY> doSelectPage(WhiteAllInOneClsNormalColRefCB cb, Class<ENTITY> entityType) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", entityType);
-        return helpSelectPageInternally(cb, entityType, new InternalSelectPageCallback<ENTITY, WhiteAllInOneClsNormalColRefCB>() {
+    protected <ENTITY extends WhiteAllInOneClsNormalColRef> PagingResultBean<ENTITY> doSelectPage(WhiteAllInOneClsNormalColRefCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
+        return helpSelectPageInternally(cb, tp, new InternalSelectPageCallback<ENTITY, WhiteAllInOneClsNormalColRefCB>() {
             public int callbackSelectCount(WhiteAllInOneClsNormalColRefCB cb) { return doSelectCountPlainly(cb); }
-            public List<ENTITY> callbackSelectList(WhiteAllInOneClsNormalColRefCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); }
+            public List<ENTITY> callbackSelectList(WhiteAllInOneClsNormalColRefCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
         });
     }
 
@@ -333,12 +333,12 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
         doSelectCursor(cb, entityRowHandler, WhiteAllInOneClsNormalColRef.class);
     }
 
-    protected <ENTITY extends WhiteAllInOneClsNormalColRef> void doSelectCursor(WhiteAllInOneClsNormalColRefCB cb, EntityRowHandler<ENTITY> entityRowHandler, Class<ENTITY> entityType) {
-        assertCBStateValid(cb); assertObjectNotNull("entityRowHandler<WhiteAllInOneClsNormalColRef>", entityRowHandler); assertObjectNotNull("entityType", entityType);
-        assertSpecifyDerivedReferrerEntityProperty(cb, entityType);
-        helpSelectCursorInternally(cb, entityRowHandler, entityType, new InternalSelectCursorCallback<ENTITY, WhiteAllInOneClsNormalColRefCB>() {
-            public void callbackSelectCursor(WhiteAllInOneClsNormalColRefCB cb, EntityRowHandler<ENTITY> entityRowHandler, Class<ENTITY> entityType) { delegateSelectCursor(cb, entityRowHandler, entityType); }
-            public List<ENTITY> callbackSelectList(WhiteAllInOneClsNormalColRefCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); }
+    protected <ENTITY extends WhiteAllInOneClsNormalColRef> void doSelectCursor(WhiteAllInOneClsNormalColRefCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
+        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
+        helpSelectCursorInternally(cb, handler, tp, new InternalSelectCursorCallback<ENTITY, WhiteAllInOneClsNormalColRefCB>() {
+            public void callbackSelectCursor(WhiteAllInOneClsNormalColRefCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) { delegateSelectCursor(cb, handler, tp); }
+            public List<ENTITY> callbackSelectList(WhiteAllInOneClsNormalColRefCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
         });
     }
 
@@ -364,18 +364,18 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
         return doScalarSelect(resultType, newMyConditionBean());
     }
 
-    protected <RESULT, CB extends WhiteAllInOneClsNormalColRefCB> SLFunction<CB, RESULT> doScalarSelect(Class<RESULT> resultType, CB cb) {
-        assertObjectNotNull("resultType", resultType); assertCBStateValid(cb);
+    protected <RESULT, CB extends WhiteAllInOneClsNormalColRefCB> SLFunction<CB, RESULT> doScalarSelect(Class<RESULT> tp, CB cb) {
+        assertObjectNotNull("resultType", tp); assertCBStateValid(cb);
         cb.xsetupForScalarSelect(); cb.getSqlClause().disableSelectIndex(); // for when you use union
-        return createSLFunction(cb, resultType);
+        return createSLFunction(cb, tp);
     }
 
-    protected <RESULT, CB extends WhiteAllInOneClsNormalColRefCB> SLFunction<CB, RESULT> createSLFunction(CB cb, Class<RESULT> resultType) {
-        return new SLFunction<CB, RESULT>(cb, resultType);
+    protected <RESULT, CB extends WhiteAllInOneClsNormalColRefCB> SLFunction<CB, RESULT> createSLFunction(CB cb, Class<RESULT> tp) {
+        return new SLFunction<CB, RESULT>(cb, tp);
     }
 
-    protected <RESULT> SLFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> resultType) {
-        return doScalarSelect(resultType, newMyConditionBean());
+    protected <RESULT> SLFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) {
+        return doScalarSelect(tp, newMyConditionBean());
     }
 
     // ===================================================================================
@@ -397,9 +397,9 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
      */
     public List<WhiteAllInOneClsElement> pulloutWhiteAllInOneClsElementAsFoo(List<WhiteAllInOneClsNormalColRef> whiteAllInOneClsNormalColRefList) {
         return helpPulloutInternally(whiteAllInOneClsNormalColRefList, new InternalPulloutCallback<WhiteAllInOneClsNormalColRef, WhiteAllInOneClsElement>() {
-            public WhiteAllInOneClsElement getFr(WhiteAllInOneClsNormalColRef e) { return e.getWhiteAllInOneClsElementAsFoo(); }
+            public WhiteAllInOneClsElement getFr(WhiteAllInOneClsNormalColRef et) { return et.getWhiteAllInOneClsElementAsFoo(); }
             public boolean hasRf() { return false; }
-            public void setRfLs(WhiteAllInOneClsElement e, List<WhiteAllInOneClsNormalColRef> ls)
+            public void setRfLs(WhiteAllInOneClsElement et, List<WhiteAllInOneClsNormalColRef> ls)
             { throw new UnsupportedOperationException(); }
         });
     }
@@ -410,9 +410,9 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
      */
     public List<WhiteAllInOneClsElement> pulloutWhiteAllInOneClsElementAsBar(List<WhiteAllInOneClsNormalColRef> whiteAllInOneClsNormalColRefList) {
         return helpPulloutInternally(whiteAllInOneClsNormalColRefList, new InternalPulloutCallback<WhiteAllInOneClsNormalColRef, WhiteAllInOneClsElement>() {
-            public WhiteAllInOneClsElement getFr(WhiteAllInOneClsNormalColRef e) { return e.getWhiteAllInOneClsElementAsBar(); }
+            public WhiteAllInOneClsElement getFr(WhiteAllInOneClsNormalColRef et) { return et.getWhiteAllInOneClsElementAsBar(); }
             public boolean hasRf() { return false; }
-            public void setRfLs(WhiteAllInOneClsElement e, List<WhiteAllInOneClsNormalColRef> ls)
+            public void setRfLs(WhiteAllInOneClsElement et, List<WhiteAllInOneClsNormalColRef> ls)
             { throw new UnsupportedOperationException(); }
         });
     }
@@ -445,24 +445,24 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
         doInsert(whiteAllInOneClsNormalColRef, null);
     }
 
-    protected void doInsert(WhiteAllInOneClsNormalColRef whiteAllInOneClsNormalColRef, InsertOption<WhiteAllInOneClsNormalColRefCB> option) {
+    protected void doInsert(WhiteAllInOneClsNormalColRef whiteAllInOneClsNormalColRef, InsertOption<WhiteAllInOneClsNormalColRefCB> op) {
         assertObjectNotNull("whiteAllInOneClsNormalColRef", whiteAllInOneClsNormalColRef);
-        prepareInsertOption(option);
-        delegateInsert(whiteAllInOneClsNormalColRef, option);
+        prepareInsertOption(op);
+        delegateInsert(whiteAllInOneClsNormalColRef, op);
     }
 
-    protected void prepareInsertOption(InsertOption<WhiteAllInOneClsNormalColRefCB> option) {
-        if (option == null) { return; }
-        assertInsertOptionStatus(option);
-        if (option.hasSpecifiedInsertColumn()) {
-            option.resolveInsertColumnSpecification(createCBForSpecifiedUpdate());
+    protected void prepareInsertOption(InsertOption<WhiteAllInOneClsNormalColRefCB> op) {
+        if (op == null) { return; }
+        assertInsertOptionStatus(op);
+        if (op.hasSpecifiedInsertColumn()) {
+            op.resolveInsertColumnSpecification(createCBForSpecifiedUpdate());
         }
     }
 
     @Override
-    protected void doCreate(Entity entity, InsertOption<? extends ConditionBean> option) {
-        if (option == null) { insert(downcast(entity)); }
-        else { varyingInsert(downcast(entity), downcast(option)); }
+    protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) {
+        if (op == null) { insert(downcast(et)); }
+        else { varyingInsert(downcast(et), downcast(op)); }
     }
 
     /**
@@ -491,21 +491,21 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
         doUpdate(whiteAllInOneClsNormalColRef, null);
     }
 
-    protected void doUpdate(WhiteAllInOneClsNormalColRef whiteAllInOneClsNormalColRef, final UpdateOption<WhiteAllInOneClsNormalColRefCB> option) {
+    protected void doUpdate(WhiteAllInOneClsNormalColRef whiteAllInOneClsNormalColRef, final UpdateOption<WhiteAllInOneClsNormalColRefCB> op) {
         assertObjectNotNull("whiteAllInOneClsNormalColRef", whiteAllInOneClsNormalColRef);
-        prepareUpdateOption(option);
+        prepareUpdateOption(op);
         helpUpdateInternally(whiteAllInOneClsNormalColRef, new InternalUpdateCallback<WhiteAllInOneClsNormalColRef>() {
-            public int callbackDelegateUpdate(WhiteAllInOneClsNormalColRef entity) { return delegateUpdate(entity, option); } });
+            public int callbackDelegateUpdate(WhiteAllInOneClsNormalColRef et) { return delegateUpdate(et, op); } });
     }
 
-    protected void prepareUpdateOption(UpdateOption<WhiteAllInOneClsNormalColRefCB> option) {
-        if (option == null) { return; }
-        assertUpdateOptionStatus(option);
-        if (option.hasSelfSpecification()) {
-            option.resolveSelfSpecification(createCBForVaryingUpdate());
+    protected void prepareUpdateOption(UpdateOption<WhiteAllInOneClsNormalColRefCB> op) {
+        if (op == null) { return; }
+        assertUpdateOptionStatus(op);
+        if (op.hasSelfSpecification()) {
+            op.resolveSelfSpecification(createCBForVaryingUpdate());
         }
-        if (option.hasSpecifiedUpdateColumn()) {
-            option.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate());
+        if (op.hasSpecifiedUpdateColumn()) {
+            op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate());
         }
     }
 
@@ -522,14 +522,14 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
     }
 
     @Override
-    protected void doModify(Entity entity, UpdateOption<? extends ConditionBean> option) {
-        if (option == null) { update(downcast(entity)); }
-        else { varyingUpdate(downcast(entity), downcast(option)); }
+    protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) {
+        if (op == null) { update(downcast(et)); }
+        else { varyingUpdate(downcast(et), downcast(op)); }
     }
 
     @Override
-    protected void doModifyNonstrict(Entity entity, UpdateOption<? extends ConditionBean> option) {
-        doModify(entity, option);
+    protected void doModifyNonstrict(Entity et, UpdateOption<? extends ConditionBean> op) {
+        doModify(et, op);
     }
 
     /**
@@ -545,30 +545,28 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
         doInesrtOrUpdate(whiteAllInOneClsNormalColRef, null, null);
     }
 
-    protected void doInesrtOrUpdate(WhiteAllInOneClsNormalColRef whiteAllInOneClsNormalColRef, final InsertOption<WhiteAllInOneClsNormalColRefCB> insertOption, final UpdateOption<WhiteAllInOneClsNormalColRefCB> updateOption) {
+    protected void doInesrtOrUpdate(WhiteAllInOneClsNormalColRef whiteAllInOneClsNormalColRef, final InsertOption<WhiteAllInOneClsNormalColRefCB> iop, final UpdateOption<WhiteAllInOneClsNormalColRefCB> uop) {
         helpInsertOrUpdateInternally(whiteAllInOneClsNormalColRef, new InternalInsertOrUpdateCallback<WhiteAllInOneClsNormalColRef, WhiteAllInOneClsNormalColRefCB>() {
-            public void callbackInsert(WhiteAllInOneClsNormalColRef entity) { doInsert(entity, insertOption); }
-            public void callbackUpdate(WhiteAllInOneClsNormalColRef entity) { doUpdate(entity, updateOption); }
+            public void callbackInsert(WhiteAllInOneClsNormalColRef et) { doInsert(et, iop); }
+            public void callbackUpdate(WhiteAllInOneClsNormalColRef et) { doUpdate(et, uop); }
             public WhiteAllInOneClsNormalColRefCB callbackNewMyConditionBean() { return newMyConditionBean(); }
             public int callbackSelectCount(WhiteAllInOneClsNormalColRefCB cb) { return selectCount(cb); }
         });
     }
 
     @Override
-    protected void doCreateOrModify(Entity entity, InsertOption<? extends ConditionBean> insertOption,
-            UpdateOption<? extends ConditionBean> updateOption) {
-        if (insertOption == null && updateOption == null) { insertOrUpdate(downcast(entity)); }
+    protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
+        if (iop == null && uop == null) { insertOrUpdate(downcast(et)); }
         else {
-            insertOption = insertOption == null ? new InsertOption<WhiteAllInOneClsNormalColRefCB>() : insertOption;
-            updateOption = updateOption == null ? new UpdateOption<WhiteAllInOneClsNormalColRefCB>() : updateOption;
-            varyingInsertOrUpdate(downcast(entity), downcast(insertOption), downcast(updateOption));
+            iop = iop != null ? iop : new InsertOption<WhiteAllInOneClsNormalColRefCB>();
+            uop = uop != null ? uop : new UpdateOption<WhiteAllInOneClsNormalColRefCB>();
+            varyingInsertOrUpdate(downcast(et), downcast(iop), downcast(uop));
         }
     }
 
     @Override
-    protected void doCreateOrModifyNonstrict(Entity entity, InsertOption<? extends ConditionBean> insertOption,
-            UpdateOption<? extends ConditionBean> updateOption) {
-        doCreateOrModify(entity, insertOption, updateOption);
+    protected void doCreateOrModifyNonstrict(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
+        doCreateOrModify(et, iop, uop);
     }
 
     /**
@@ -592,27 +590,27 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
         doDelete(whiteAllInOneClsNormalColRef, null);
     }
 
-    protected void doDelete(WhiteAllInOneClsNormalColRef whiteAllInOneClsNormalColRef, final DeleteOption<WhiteAllInOneClsNormalColRefCB> option) {
+    protected void doDelete(WhiteAllInOneClsNormalColRef whiteAllInOneClsNormalColRef, final DeleteOption<WhiteAllInOneClsNormalColRefCB> op) {
         assertObjectNotNull("whiteAllInOneClsNormalColRef", whiteAllInOneClsNormalColRef);
-        prepareDeleteOption(option);
+        prepareDeleteOption(op);
         helpDeleteInternally(whiteAllInOneClsNormalColRef, new InternalDeleteCallback<WhiteAllInOneClsNormalColRef>() {
-            public int callbackDelegateDelete(WhiteAllInOneClsNormalColRef entity) { return delegateDelete(entity, option); } });
+            public int callbackDelegateDelete(WhiteAllInOneClsNormalColRef et) { return delegateDelete(et, op); } });
     }
 
-    protected void prepareDeleteOption(DeleteOption<WhiteAllInOneClsNormalColRefCB> option) {
-        if (option == null) { return; }
-        assertDeleteOptionStatus(option);
-    }
-
-    @Override
-    protected void doRemove(Entity entity, DeleteOption<? extends ConditionBean> option) {
-        if (option == null) { delete(downcast(entity)); }
-        else { varyingDelete(downcast(entity), downcast(option)); }
+    protected void prepareDeleteOption(DeleteOption<WhiteAllInOneClsNormalColRefCB> op) {
+        if (op == null) { return; }
+        assertDeleteOptionStatus(op);
     }
 
     @Override
-    protected void doRemoveNonstrict(Entity entity, DeleteOption<? extends ConditionBean> option) {
-        doRemove(entity, option);
+    protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) {
+        if (op == null) { delete(downcast(et)); }
+        else { varyingDelete(downcast(et), downcast(op)); }
+    }
+
+    @Override
+    protected void doRemoveNonstrict(Entity et, DeleteOption<? extends ConditionBean> op) {
+        doRemove(et, op);
     }
 
     // ===================================================================================
@@ -643,26 +641,26 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
      * @return The array of inserted count. (NotNull, EmptyAllowed)
      */
     public int[] batchInsert(List<WhiteAllInOneClsNormalColRef> whiteAllInOneClsNormalColRefList) {
-        InsertOption<WhiteAllInOneClsNormalColRefCB> option = createInsertUpdateOption();
-        return doBatchInsert(whiteAllInOneClsNormalColRefList, option);
+        InsertOption<WhiteAllInOneClsNormalColRefCB> op = createInsertUpdateOption();
+        return doBatchInsert(whiteAllInOneClsNormalColRefList, op);
     }
 
-    protected int[] doBatchInsert(List<WhiteAllInOneClsNormalColRef> whiteAllInOneClsNormalColRefList, InsertOption<WhiteAllInOneClsNormalColRefCB> option) {
+    protected int[] doBatchInsert(List<WhiteAllInOneClsNormalColRef> whiteAllInOneClsNormalColRefList, InsertOption<WhiteAllInOneClsNormalColRefCB> op) {
         assertObjectNotNull("whiteAllInOneClsNormalColRefList", whiteAllInOneClsNormalColRefList);
-        prepareBatchInsertOption(whiteAllInOneClsNormalColRefList, option);
-        return delegateBatchInsert(whiteAllInOneClsNormalColRefList, option);
+        prepareBatchInsertOption(whiteAllInOneClsNormalColRefList, op);
+        return delegateBatchInsert(whiteAllInOneClsNormalColRefList, op);
     }
 
-    protected void prepareBatchInsertOption(List<WhiteAllInOneClsNormalColRef> whiteAllInOneClsNormalColRefList, InsertOption<WhiteAllInOneClsNormalColRefCB> option) {
-        option.xallowInsertColumnModifiedPropertiesFragmented();
-        option.xacceptInsertColumnModifiedPropertiesIfNeeds(whiteAllInOneClsNormalColRefList);
-        prepareInsertOption(option);
+    protected void prepareBatchInsertOption(List<WhiteAllInOneClsNormalColRef> whiteAllInOneClsNormalColRefList, InsertOption<WhiteAllInOneClsNormalColRefCB> op) {
+        op.xallowInsertColumnModifiedPropertiesFragmented();
+        op.xacceptInsertColumnModifiedPropertiesIfNeeds(whiteAllInOneClsNormalColRefList);
+        prepareInsertOption(op);
     }
 
     @Override
-    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> option) {
-        if (option == null) { return batchInsert(downcast(ls)); }
-        else { return varyingBatchInsert(downcast(ls), downcast(option)); }
+    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) {
+        if (op == null) { return batchInsert(downcast(ls)); }
+        else { return varyingBatchInsert(downcast(ls), downcast(op)); }
     }
 
     /**
@@ -690,25 +688,25 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
      * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<WhiteAllInOneClsNormalColRef> whiteAllInOneClsNormalColRefList) {
-        UpdateOption<WhiteAllInOneClsNormalColRefCB> option = createPlainUpdateOption();
-        return doBatchUpdate(whiteAllInOneClsNormalColRefList, option);
+        UpdateOption<WhiteAllInOneClsNormalColRefCB> op = createPlainUpdateOption();
+        return doBatchUpdate(whiteAllInOneClsNormalColRefList, op);
     }
 
-    protected int[] doBatchUpdate(List<WhiteAllInOneClsNormalColRef> whiteAllInOneClsNormalColRefList, UpdateOption<WhiteAllInOneClsNormalColRefCB> option) {
+    protected int[] doBatchUpdate(List<WhiteAllInOneClsNormalColRef> whiteAllInOneClsNormalColRefList, UpdateOption<WhiteAllInOneClsNormalColRefCB> op) {
         assertObjectNotNull("whiteAllInOneClsNormalColRefList", whiteAllInOneClsNormalColRefList);
-        prepareBatchUpdateOption(whiteAllInOneClsNormalColRefList, option);
-        return delegateBatchUpdate(whiteAllInOneClsNormalColRefList, option);
+        prepareBatchUpdateOption(whiteAllInOneClsNormalColRefList, op);
+        return delegateBatchUpdate(whiteAllInOneClsNormalColRefList, op);
     }
 
-    protected void prepareBatchUpdateOption(List<WhiteAllInOneClsNormalColRef> whiteAllInOneClsNormalColRefList, UpdateOption<WhiteAllInOneClsNormalColRefCB> option) {
-        option.xacceptUpdateColumnModifiedPropertiesIfNeeds(whiteAllInOneClsNormalColRefList);
-        prepareUpdateOption(option);
+    protected void prepareBatchUpdateOption(List<WhiteAllInOneClsNormalColRef> whiteAllInOneClsNormalColRefList, UpdateOption<WhiteAllInOneClsNormalColRefCB> op) {
+        op.xacceptUpdateColumnModifiedPropertiesIfNeeds(whiteAllInOneClsNormalColRefList);
+        prepareUpdateOption(op);
     }
 
     @Override
-    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> option) {
-        if (option == null) { return batchUpdate(downcast(ls)); }
-        else { return varyingBatchUpdate(downcast(ls), downcast(option)); }
+    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) {
+        if (op == null) { return batchUpdate(downcast(ls)); }
+        else { return varyingBatchUpdate(downcast(ls), downcast(op)); }
     }
 
     /**
@@ -744,8 +742,8 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
     }
 
     @Override
-    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> option) {
-        return doLumpModify(ls, option);
+    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> op) {
+        return doLumpModify(ls, op);
     }
 
     /**
@@ -759,21 +757,21 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
         return doBatchDelete(whiteAllInOneClsNormalColRefList, null);
     }
 
-    protected int[] doBatchDelete(List<WhiteAllInOneClsNormalColRef> whiteAllInOneClsNormalColRefList, DeleteOption<WhiteAllInOneClsNormalColRefCB> option) {
+    protected int[] doBatchDelete(List<WhiteAllInOneClsNormalColRef> whiteAllInOneClsNormalColRefList, DeleteOption<WhiteAllInOneClsNormalColRefCB> op) {
         assertObjectNotNull("whiteAllInOneClsNormalColRefList", whiteAllInOneClsNormalColRefList);
-        prepareDeleteOption(option);
-        return delegateBatchDelete(whiteAllInOneClsNormalColRefList, option);
+        prepareDeleteOption(op);
+        return delegateBatchDelete(whiteAllInOneClsNormalColRefList, op);
     }
 
     @Override
-    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> option) {
-        if (option == null) { return batchDelete(downcast(ls)); }
-        else { return varyingBatchDelete(downcast(ls), downcast(option)); }
+    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) {
+        if (op == null) { return batchDelete(downcast(ls)); }
+        else { return varyingBatchDelete(downcast(ls), downcast(op)); }
     }
 
     @Override
-    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> option) {
-        return doLumpRemove(ls, option);
+    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> op) {
+        return doLumpRemove(ls, op);
     }
 
     // ===================================================================================
@@ -809,13 +807,12 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
         return doQueryInsert(setupper, null);
     }
 
-    protected int doQueryInsert(QueryInsertSetupper<WhiteAllInOneClsNormalColRef, WhiteAllInOneClsNormalColRefCB> setupper, InsertOption<WhiteAllInOneClsNormalColRefCB> option) {
-        assertObjectNotNull("setupper", setupper);
-        prepareInsertOption(option);
-        WhiteAllInOneClsNormalColRef entity = new WhiteAllInOneClsNormalColRef();
-        WhiteAllInOneClsNormalColRefCB intoCB = createCBForQueryInsert();
-        ConditionBean resourceCB = setupper.setup(entity, intoCB);
-        return delegateQueryInsert(entity, intoCB, resourceCB, option);
+    protected int doQueryInsert(QueryInsertSetupper<WhiteAllInOneClsNormalColRef, WhiteAllInOneClsNormalColRefCB> sp, InsertOption<WhiteAllInOneClsNormalColRefCB> op) {
+        assertObjectNotNull("setupper", sp);
+        prepareInsertOption(op);
+        WhiteAllInOneClsNormalColRef e = new WhiteAllInOneClsNormalColRef();
+        WhiteAllInOneClsNormalColRefCB cb = createCBForQueryInsert();
+        return delegateQueryInsert(e, cb, sp.setup(e, cb), op);
     }
 
     protected WhiteAllInOneClsNormalColRefCB createCBForQueryInsert() {
@@ -856,16 +853,16 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
         return doQueryUpdate(whiteAllInOneClsNormalColRef, cb, null);
     }
 
-    protected int doQueryUpdate(WhiteAllInOneClsNormalColRef whiteAllInOneClsNormalColRef, WhiteAllInOneClsNormalColRefCB cb, UpdateOption<WhiteAllInOneClsNormalColRefCB> option) {
+    protected int doQueryUpdate(WhiteAllInOneClsNormalColRef whiteAllInOneClsNormalColRef, WhiteAllInOneClsNormalColRefCB cb, UpdateOption<WhiteAllInOneClsNormalColRefCB> op) {
         assertObjectNotNull("whiteAllInOneClsNormalColRef", whiteAllInOneClsNormalColRef); assertCBStateValid(cb);
-        prepareUpdateOption(option);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(whiteAllInOneClsNormalColRef, cb, option) : 0;
+        prepareUpdateOption(op);
+        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(whiteAllInOneClsNormalColRef, cb, op) : 0;
     }
 
     @Override
-    protected int doRangeModify(Entity entity, ConditionBean cb, UpdateOption<? extends ConditionBean> option) {
-        if (option == null) { return queryUpdate(downcast(entity), (WhiteAllInOneClsNormalColRefCB)cb); }
-        else { return varyingQueryUpdate(downcast(entity), (WhiteAllInOneClsNormalColRefCB)cb, downcast(option)); }
+    protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op) {
+        if (op == null) { return queryUpdate(downcast(et), (WhiteAllInOneClsNormalColRefCB)cb); }
+        else { return varyingQueryUpdate(downcast(et), (WhiteAllInOneClsNormalColRefCB)cb, downcast(op)); }
     }
 
     /**
@@ -883,16 +880,16 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
         return doQueryDelete(cb, null);
     }
 
-    protected int doQueryDelete(WhiteAllInOneClsNormalColRefCB cb, DeleteOption<WhiteAllInOneClsNormalColRefCB> option) {
+    protected int doQueryDelete(WhiteAllInOneClsNormalColRefCB cb, DeleteOption<WhiteAllInOneClsNormalColRefCB> op) {
         assertCBStateValid(cb);
-        prepareDeleteOption(option);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryDelete(cb, option) : 0;
+        prepareDeleteOption(op);
+        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryDelete(cb, op) : 0;
     }
 
     @Override
-    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> option) {
-        if (option == null) { return queryDelete((WhiteAllInOneClsNormalColRefCB)cb); }
-        else { return varyingQueryDelete((WhiteAllInOneClsNormalColRefCB)cb, downcast(option)); }
+    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) {
+        if (op == null) { return queryDelete((WhiteAllInOneClsNormalColRefCB)cb); }
+        else { return varyingQueryDelete((WhiteAllInOneClsNormalColRefCB)cb, downcast(op)); }
     }
 
     // ===================================================================================
@@ -1144,29 +1141,29 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
     //                                                ------
     protected int delegateSelectCountUniquely(WhiteAllInOneClsNormalColRefCB cb) { return invoke(createSelectCountCBCommand(cb, true)); }
     protected int delegateSelectCountPlainly(WhiteAllInOneClsNormalColRefCB cb) { return invoke(createSelectCountCBCommand(cb, false)); }
-    protected <ENTITY extends WhiteAllInOneClsNormalColRef> void delegateSelectCursor(WhiteAllInOneClsNormalColRefCB cb, EntityRowHandler<ENTITY> erh, Class<ENTITY> et)
-    { invoke(createSelectCursorCBCommand(cb, erh, et)); }
-    protected <ENTITY extends WhiteAllInOneClsNormalColRef> List<ENTITY> delegateSelectList(WhiteAllInOneClsNormalColRefCB cb, Class<ENTITY> et)
-    { return invoke(createSelectListCBCommand(cb, et)); }
+    protected <ENTITY extends WhiteAllInOneClsNormalColRef> void delegateSelectCursor(WhiteAllInOneClsNormalColRefCB cb, EntityRowHandler<ENTITY> rh, Class<ENTITY> tp)
+    { invoke(createSelectCursorCBCommand(cb, rh, tp)); }
+    protected <ENTITY extends WhiteAllInOneClsNormalColRef> List<ENTITY> delegateSelectList(WhiteAllInOneClsNormalColRefCB cb, Class<ENTITY> tp)
+    { return invoke(createSelectListCBCommand(cb, tp)); }
 
     // -----------------------------------------------------
     //                                                Update
     //                                                ------
-    protected int delegateInsert(WhiteAllInOneClsNormalColRef e, InsertOption<WhiteAllInOneClsNormalColRefCB> op)
-    { if (!processBeforeInsert(e, op)) { return 0; }
-      return invoke(createInsertEntityCommand(e, op)); }
-    protected int delegateUpdate(WhiteAllInOneClsNormalColRef e, UpdateOption<WhiteAllInOneClsNormalColRefCB> op)
-    { if (!processBeforeUpdate(e, op)) { return 0; }
-      return delegateUpdateNonstrict(e, op); }
-    protected int delegateUpdateNonstrict(WhiteAllInOneClsNormalColRef e, UpdateOption<WhiteAllInOneClsNormalColRefCB> op)
-    { if (!processBeforeUpdate(e, op)) { return 0; }
-      return invoke(createUpdateNonstrictEntityCommand(e, op)); }
-    protected int delegateDelete(WhiteAllInOneClsNormalColRef e, DeleteOption<WhiteAllInOneClsNormalColRefCB> op)
-    { if (!processBeforeDelete(e, op)) { return 0; }
-      return delegateDeleteNonstrict(e, op); }
-    protected int delegateDeleteNonstrict(WhiteAllInOneClsNormalColRef e, DeleteOption<WhiteAllInOneClsNormalColRefCB> op)
-    { if (!processBeforeDelete(e, op)) { return 0; }
-      return invoke(createDeleteNonstrictEntityCommand(e, op)); }
+    protected int delegateInsert(WhiteAllInOneClsNormalColRef et, InsertOption<WhiteAllInOneClsNormalColRefCB> op)
+    { if (!processBeforeInsert(et, op)) { return 0; }
+      return invoke(createInsertEntityCommand(et, op)); }
+    protected int delegateUpdate(WhiteAllInOneClsNormalColRef et, UpdateOption<WhiteAllInOneClsNormalColRefCB> op)
+    { if (!processBeforeUpdate(et, op)) { return 0; }
+      return delegateUpdateNonstrict(et, op); }
+    protected int delegateUpdateNonstrict(WhiteAllInOneClsNormalColRef et, UpdateOption<WhiteAllInOneClsNormalColRefCB> op)
+    { if (!processBeforeUpdate(et, op)) { return 0; }
+      return invoke(createUpdateNonstrictEntityCommand(et, op)); }
+    protected int delegateDelete(WhiteAllInOneClsNormalColRef et, DeleteOption<WhiteAllInOneClsNormalColRefCB> op)
+    { if (!processBeforeDelete(et, op)) { return 0; }
+      return delegateDeleteNonstrict(et, op); }
+    protected int delegateDeleteNonstrict(WhiteAllInOneClsNormalColRef et, DeleteOption<WhiteAllInOneClsNormalColRefCB> op)
+    { if (!processBeforeDelete(et, op)) { return 0; }
+      return invoke(createDeleteNonstrictEntityCommand(et, op)); }
 
     protected int[] delegateBatchInsert(List<WhiteAllInOneClsNormalColRef> ls, InsertOption<WhiteAllInOneClsNormalColRefCB> op)
     { if (ls.isEmpty()) { return new int[]{}; }
@@ -1184,10 +1181,10 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
     { if (ls.isEmpty()) { return new int[]{}; }
       return invoke(createBatchDeleteNonstrictCommand(processBatchInternally(ls, op, true), op)); }
 
-    protected int delegateQueryInsert(WhiteAllInOneClsNormalColRef e, WhiteAllInOneClsNormalColRefCB inCB, ConditionBean resCB, InsertOption<WhiteAllInOneClsNormalColRefCB> op)
-    { if (!processBeforeQueryInsert(e, inCB, resCB, op)) { return 0; } return invoke(createQueryInsertCBCommand(e, inCB, resCB, op));  }
-    protected int delegateQueryUpdate(WhiteAllInOneClsNormalColRef e, WhiteAllInOneClsNormalColRefCB cb, UpdateOption<WhiteAllInOneClsNormalColRefCB> op)
-    { if (!processBeforeQueryUpdate(e, cb, op)) { return 0; } return invoke(createQueryUpdateCBCommand(e, cb, op));  }
+    protected int delegateQueryInsert(WhiteAllInOneClsNormalColRef et, WhiteAllInOneClsNormalColRefCB inCB, ConditionBean resCB, InsertOption<WhiteAllInOneClsNormalColRefCB> op)
+    { if (!processBeforeQueryInsert(et, inCB, resCB, op)) { return 0; } return invoke(createQueryInsertCBCommand(et, inCB, resCB, op));  }
+    protected int delegateQueryUpdate(WhiteAllInOneClsNormalColRef et, WhiteAllInOneClsNormalColRefCB cb, UpdateOption<WhiteAllInOneClsNormalColRefCB> op)
+    { if (!processBeforeQueryUpdate(et, cb, op)) { return 0; } return invoke(createQueryUpdateCBCommand(et, cb, op));  }
     protected int delegateQueryDelete(WhiteAllInOneClsNormalColRefCB cb, DeleteOption<WhiteAllInOneClsNormalColRefCB> op)
     { if (!processBeforeQueryDelete(cb, op)) { return 0; } return invoke(createQueryDeleteCBCommand(cb, op));  }
 
@@ -1198,7 +1195,7 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
      * {@inheritDoc}
      */
     @Override
-    protected boolean hasVersionNoValue(Entity entity) {
+    protected boolean hasVersionNoValue(Entity et) {
         return false;
     }
 
@@ -1206,15 +1203,15 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
      * {@inheritDoc}
      */
     @Override
-    protected boolean hasUpdateDateValue(Entity entity) {
+    protected boolean hasUpdateDateValue(Entity et) {
         return false;
     }
 
     // ===================================================================================
     //                                                                     Downcast Helper
     //                                                                     ===============
-    protected WhiteAllInOneClsNormalColRef downcast(Entity entity) {
-        return helpEntityDowncastInternally(entity, WhiteAllInOneClsNormalColRef.class);
+    protected WhiteAllInOneClsNormalColRef downcast(Entity et) {
+        return helpEntityDowncastInternally(et, WhiteAllInOneClsNormalColRef.class);
     }
 
     protected WhiteAllInOneClsNormalColRefCB downcast(ConditionBean cb) {
@@ -1222,27 +1219,27 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
     }
 
     @SuppressWarnings("unchecked")
-    protected List<WhiteAllInOneClsNormalColRef> downcast(List<? extends Entity> entityList) {
-        return (List<WhiteAllInOneClsNormalColRef>)entityList;
+    protected List<WhiteAllInOneClsNormalColRef> downcast(List<? extends Entity> ls) {
+        return (List<WhiteAllInOneClsNormalColRef>)ls;
     }
 
     @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteAllInOneClsNormalColRefCB> downcast(InsertOption<? extends ConditionBean> option) {
-        return (InsertOption<WhiteAllInOneClsNormalColRefCB>)option;
+    protected InsertOption<WhiteAllInOneClsNormalColRefCB> downcast(InsertOption<? extends ConditionBean> op) {
+        return (InsertOption<WhiteAllInOneClsNormalColRefCB>)op;
     }
 
     @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteAllInOneClsNormalColRefCB> downcast(UpdateOption<? extends ConditionBean> option) {
-        return (UpdateOption<WhiteAllInOneClsNormalColRefCB>)option;
+    protected UpdateOption<WhiteAllInOneClsNormalColRefCB> downcast(UpdateOption<? extends ConditionBean> op) {
+        return (UpdateOption<WhiteAllInOneClsNormalColRefCB>)op;
     }
 
     @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteAllInOneClsNormalColRefCB> downcast(DeleteOption<? extends ConditionBean> option) {
-        return (DeleteOption<WhiteAllInOneClsNormalColRefCB>)option;
+    protected DeleteOption<WhiteAllInOneClsNormalColRefCB> downcast(DeleteOption<? extends ConditionBean> op) {
+        return (DeleteOption<WhiteAllInOneClsNormalColRefCB>)op;
     }
 
     @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhiteAllInOneClsNormalColRef, WhiteAllInOneClsNormalColRefCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> option) {
-        return (QueryInsertSetupper<WhiteAllInOneClsNormalColRef, WhiteAllInOneClsNormalColRefCB>)option;
+    protected QueryInsertSetupper<WhiteAllInOneClsNormalColRef, WhiteAllInOneClsNormalColRefCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp) {
+        return (QueryInsertSetupper<WhiteAllInOneClsNormalColRef, WhiteAllInOneClsNormalColRefCB>)sp;
     }
 }

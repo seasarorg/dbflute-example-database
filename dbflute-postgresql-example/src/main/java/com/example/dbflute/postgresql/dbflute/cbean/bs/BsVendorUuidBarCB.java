@@ -329,8 +329,8 @@ public class BsVendorUuidBarCB extends AbstractConditionBean {
         public HpSDRFunction<VendorUuidBarCB, VendorUuidBarCQ> myselfDerived() {
             assertDerived("myselfDerived"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<VendorUuidBarCB, VendorUuidBarCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<VendorUuidBarCB, VendorUuidBarCQ>() {
-                public void setup(String function, SubQuery<VendorUuidBarCB> subQuery, VendorUuidBarCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsmyselfDerive(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<VendorUuidBarCB> sq, VendorUuidBarCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsmyselfDerive(fn, sq, al, op); } }, _dbmetaProvider);
         }
     }
 

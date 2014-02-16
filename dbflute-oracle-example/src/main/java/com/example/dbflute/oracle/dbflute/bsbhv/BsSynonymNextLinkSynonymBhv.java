@@ -17,28 +17,28 @@ import com.example.dbflute.oracle.dbflute.cbean.*;
  * <pre>
  * [primary key]
  *     PRODUCT_ID
- * 
+ *
  * [column]
  *     PRODUCT_ID, PRODUCT_NAME, PRODUCT_HANDLE_CODE, PRODUCT_STATUS_CODE, REGISTER_DATETIME, REGISTER_USER, REGISTER_PROCESS, UPDATE_DATETIME, UPDATE_USER, UPDATE_PROCESS, VERSION_NO
- * 
+ *
  * [sequence]
  *     
- * 
+ *
  * [identity]
  *     
- * 
+ *
  * [version-no]
  *     VERSION_NO
- * 
+ *
  * [foreign table]
  *     
- * 
+ *
  * [referrer table]
  *     
- * 
+ *
  * [foreign property]
  *     
- * 
+ *
  * [referrer property]
  *     
  * </pre>
@@ -100,7 +100,7 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
         return doSelectCountUniquely(cb);
     }
 
-    protected int doSelectCountUniquely(SynonymNextLinkSynonymCB cb) { // called by selectCount(cb) 
+    protected int doSelectCountUniquely(SynonymNextLinkSynonymCB cb) { // called by selectCount(cb)
         assertCBStateValid(cb);
         return delegateSelectCountUniquely(cb);
     }
@@ -139,10 +139,10 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
         return doSelectEntity(cb, SynonymNextLinkSynonym.class);
     }
 
-    protected <ENTITY extends SynonymNextLinkSynonym> ENTITY doSelectEntity(final SynonymNextLinkSynonymCB cb, Class<ENTITY> entityType) {
+    protected <ENTITY extends SynonymNextLinkSynonym> ENTITY doSelectEntity(final SynonymNextLinkSynonymCB cb, Class<ENTITY> tp) {
         assertCBStateValid(cb);
-        return helpSelectEntityInternally(cb, entityType, new InternalSelectEntityCallback<ENTITY, SynonymNextLinkSynonymCB>() {
-            public List<ENTITY> callbackSelectList(SynonymNextLinkSynonymCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); } });
+        return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, SynonymNextLinkSynonymCB>() {
+            public List<ENTITY> callbackSelectList(SynonymNextLinkSynonymCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
     }
 
     @Override
@@ -168,10 +168,10 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
         return doSelectEntityWithDeletedCheck(cb, SynonymNextLinkSynonym.class);
     }
 
-    protected <ENTITY extends SynonymNextLinkSynonym> ENTITY doSelectEntityWithDeletedCheck(final SynonymNextLinkSynonymCB cb, Class<ENTITY> entityType) {
+    protected <ENTITY extends SynonymNextLinkSynonym> ENTITY doSelectEntityWithDeletedCheck(final SynonymNextLinkSynonymCB cb, Class<ENTITY> tp) {
         assertCBStateValid(cb);
-        return helpSelectEntityWithDeletedCheckInternally(cb, entityType, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, SynonymNextLinkSynonymCB>() {
-            public List<ENTITY> callbackSelectList(SynonymNextLinkSynonymCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); } });
+        return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, SynonymNextLinkSynonymCB>() {
+            public List<ENTITY> callbackSelectList(SynonymNextLinkSynonymCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
     }
 
     @Override
@@ -239,11 +239,11 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
         return doSelectList(cb, SynonymNextLinkSynonym.class);
     }
 
-    protected <ENTITY extends SynonymNextLinkSynonym> ListResultBean<ENTITY> doSelectList(SynonymNextLinkSynonymCB cb, Class<ENTITY> entityType) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", entityType);
-        assertSpecifyDerivedReferrerEntityProperty(cb, entityType);
-        return helpSelectListInternally(cb, entityType, new InternalSelectListCallback<ENTITY, SynonymNextLinkSynonymCB>() {
-            public List<ENTITY> callbackSelectList(SynonymNextLinkSynonymCB cb, Class<ENTITY> entityType) { return delegateSelectList(cb, entityType); } });
+    protected <ENTITY extends SynonymNextLinkSynonym> ListResultBean<ENTITY> doSelectList(SynonymNextLinkSynonymCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
+        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
+        return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, SynonymNextLinkSynonymCB>() {
+            public List<ENTITY> callbackSelectList(SynonymNextLinkSynonymCB cb, Class<ENTITY> tp) { return delegateSelectList(cb, tp); } });
     }
 
     @Override
@@ -280,11 +280,11 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
         return doSelectPage(cb, SynonymNextLinkSynonym.class);
     }
 
-    protected <ENTITY extends SynonymNextLinkSynonym> PagingResultBean<ENTITY> doSelectPage(SynonymNextLinkSynonymCB cb, Class<ENTITY> entityType) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", entityType);
-        return helpSelectPageInternally(cb, entityType, new InternalSelectPageCallback<ENTITY, SynonymNextLinkSynonymCB>() {
+    protected <ENTITY extends SynonymNextLinkSynonym> PagingResultBean<ENTITY> doSelectPage(SynonymNextLinkSynonymCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
+        return helpSelectPageInternally(cb, tp, new InternalSelectPageCallback<ENTITY, SynonymNextLinkSynonymCB>() {
             public int callbackSelectCount(SynonymNextLinkSynonymCB cb) { return doSelectCountPlainly(cb); }
-            public List<ENTITY> callbackSelectList(SynonymNextLinkSynonymCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); }
+            public List<ENTITY> callbackSelectList(SynonymNextLinkSynonymCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
         });
     }
 
@@ -314,12 +314,12 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
         doSelectCursor(cb, entityRowHandler, SynonymNextLinkSynonym.class);
     }
 
-    protected <ENTITY extends SynonymNextLinkSynonym> void doSelectCursor(SynonymNextLinkSynonymCB cb, EntityRowHandler<ENTITY> entityRowHandler, Class<ENTITY> entityType) {
-        assertCBStateValid(cb); assertObjectNotNull("entityRowHandler<SynonymNextLinkSynonym>", entityRowHandler); assertObjectNotNull("entityType", entityType);
-        assertSpecifyDerivedReferrerEntityProperty(cb, entityType);
-        helpSelectCursorInternally(cb, entityRowHandler, entityType, new InternalSelectCursorCallback<ENTITY, SynonymNextLinkSynonymCB>() {
-            public void callbackSelectCursor(SynonymNextLinkSynonymCB cb, EntityRowHandler<ENTITY> entityRowHandler, Class<ENTITY> entityType) { delegateSelectCursor(cb, entityRowHandler, entityType); }
-            public List<ENTITY> callbackSelectList(SynonymNextLinkSynonymCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); }
+    protected <ENTITY extends SynonymNextLinkSynonym> void doSelectCursor(SynonymNextLinkSynonymCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
+        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
+        helpSelectCursorInternally(cb, handler, tp, new InternalSelectCursorCallback<ENTITY, SynonymNextLinkSynonymCB>() {
+            public void callbackSelectCursor(SynonymNextLinkSynonymCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) { delegateSelectCursor(cb, handler, tp); }
+            public List<ENTITY> callbackSelectList(SynonymNextLinkSynonymCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
         });
     }
 
@@ -345,18 +345,18 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
         return doScalarSelect(resultType, newMyConditionBean());
     }
 
-    protected <RESULT, CB extends SynonymNextLinkSynonymCB> SLFunction<CB, RESULT> doScalarSelect(Class<RESULT> resultType, CB cb) {
-        assertObjectNotNull("resultType", resultType); assertCBStateValid(cb);
+    protected <RESULT, CB extends SynonymNextLinkSynonymCB> SLFunction<CB, RESULT> doScalarSelect(Class<RESULT> tp, CB cb) {
+        assertObjectNotNull("resultType", tp); assertCBStateValid(cb);
         cb.xsetupForScalarSelect(); cb.getSqlClause().disableSelectIndex(); // for when you use union
-        return createSLFunction(cb, resultType);
+        return createSLFunction(cb, tp);
     }
 
-    protected <RESULT, CB extends SynonymNextLinkSynonymCB> SLFunction<CB, RESULT> createSLFunction(CB cb, Class<RESULT> resultType) {
-        return new SLFunction<CB, RESULT>(cb, resultType);
+    protected <RESULT, CB extends SynonymNextLinkSynonymCB> SLFunction<CB, RESULT> createSLFunction(CB cb, Class<RESULT> tp) {
+        return new SLFunction<CB, RESULT>(cb, tp);
     }
 
-    protected <RESULT> SLFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> resultType) {
-        return doScalarSelect(resultType, newMyConditionBean());
+    protected <RESULT> SLFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) {
+        return doScalarSelect(tp, newMyConditionBean());
     }
 
     // ===================================================================================
@@ -382,7 +382,7 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
      */
     public List<Long> extractProductIdList(List<SynonymNextLinkSynonym> synonymNextLinkSynonymList) {
         return helpExtractListInternally(synonymNextLinkSynonymList, new InternalExtractCallback<SynonymNextLinkSynonym, Long>() {
-            public Long getCV(SynonymNextLinkSynonym e) { return e.getProductId(); }
+            public Long getCV(SynonymNextLinkSynonym et) { return et.getProductId(); }
         });
     }
 
@@ -410,24 +410,24 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
         doInsert(synonymNextLinkSynonym, null);
     }
 
-    protected void doInsert(SynonymNextLinkSynonym synonymNextLinkSynonym, InsertOption<SynonymNextLinkSynonymCB> option) {
+    protected void doInsert(SynonymNextLinkSynonym synonymNextLinkSynonym, InsertOption<SynonymNextLinkSynonymCB> op) {
         assertObjectNotNull("synonymNextLinkSynonym", synonymNextLinkSynonym);
-        prepareInsertOption(option);
-        delegateInsert(synonymNextLinkSynonym, option);
+        prepareInsertOption(op);
+        delegateInsert(synonymNextLinkSynonym, op);
     }
 
-    protected void prepareInsertOption(InsertOption<SynonymNextLinkSynonymCB> option) {
-        if (option == null) { return; }
-        assertInsertOptionStatus(option);
-        if (option.hasSpecifiedInsertColumn()) {
-            option.resolveInsertColumnSpecification(createCBForSpecifiedUpdate());
+    protected void prepareInsertOption(InsertOption<SynonymNextLinkSynonymCB> op) {
+        if (op == null) { return; }
+        assertInsertOptionStatus(op);
+        if (op.hasSpecifiedInsertColumn()) {
+            op.resolveInsertColumnSpecification(createCBForSpecifiedUpdate());
         }
     }
 
     @Override
-    protected void doCreate(Entity entity, InsertOption<? extends ConditionBean> option) {
-        if (option == null) { insert(downcast(entity)); }
-        else { varyingInsert(downcast(entity), downcast(option)); }
+    protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) {
+        if (op == null) { insert(downcast(et)); }
+        else { varyingInsert(downcast(et), downcast(op)); }
     }
 
     /**
@@ -445,7 +445,7 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
      *     synonymNextLinkSynonymBhv.<span style="color: #FD4747">update</span>(synonymNextLinkSynonym);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
-     * } 
+     * }
      * </pre>
      * @param synonymNextLinkSynonym The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @exception org.seasar.dbflute.exception.EntityAlreadyUpdatedException When the entity has already been updated.
@@ -456,21 +456,21 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
         doUpdate(synonymNextLinkSynonym, null);
     }
 
-    protected void doUpdate(SynonymNextLinkSynonym synonymNextLinkSynonym, final UpdateOption<SynonymNextLinkSynonymCB> option) {
+    protected void doUpdate(SynonymNextLinkSynonym synonymNextLinkSynonym, final UpdateOption<SynonymNextLinkSynonymCB> op) {
         assertObjectNotNull("synonymNextLinkSynonym", synonymNextLinkSynonym);
-        prepareUpdateOption(option);
+        prepareUpdateOption(op);
         helpUpdateInternally(synonymNextLinkSynonym, new InternalUpdateCallback<SynonymNextLinkSynonym>() {
-            public int callbackDelegateUpdate(SynonymNextLinkSynonym entity) { return delegateUpdate(entity, option); } });
+            public int callbackDelegateUpdate(SynonymNextLinkSynonym et) { return delegateUpdate(et, op); } });
     }
 
-    protected void prepareUpdateOption(UpdateOption<SynonymNextLinkSynonymCB> option) {
-        if (option == null) { return; }
-        assertUpdateOptionStatus(option);
-        if (option.hasSelfSpecification()) {
-            option.resolveSelfSpecification(createCBForVaryingUpdate());
+    protected void prepareUpdateOption(UpdateOption<SynonymNextLinkSynonymCB> op) {
+        if (op == null) { return; }
+        assertUpdateOptionStatus(op);
+        if (op.hasSelfSpecification()) {
+            op.resolveSelfSpecification(createCBForVaryingUpdate());
         }
-        if (option.hasSpecifiedUpdateColumn()) {
-            option.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate());
+        if (op.hasSpecifiedUpdateColumn()) {
+            op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate());
         }
     }
 
@@ -487,9 +487,9 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
     }
 
     @Override
-    protected void doModify(Entity entity, UpdateOption<? extends ConditionBean> option) {
-        if (option == null) { update(downcast(entity)); }
-        else { varyingUpdate(downcast(entity), downcast(option)); }
+    protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) {
+        if (op == null) { update(downcast(et)); }
+        else { varyingUpdate(downcast(et), downcast(op)); }
     }
 
     /**
@@ -515,17 +515,17 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
         doUpdateNonstrict(synonymNextLinkSynonym, null);
     }
 
-    protected void doUpdateNonstrict(SynonymNextLinkSynonym synonymNextLinkSynonym, final UpdateOption<SynonymNextLinkSynonymCB> option) {
+    protected void doUpdateNonstrict(SynonymNextLinkSynonym synonymNextLinkSynonym, final UpdateOption<SynonymNextLinkSynonymCB> op) {
         assertObjectNotNull("synonymNextLinkSynonym", synonymNextLinkSynonym);
-        prepareUpdateOption(option);
+        prepareUpdateOption(op);
         helpUpdateNonstrictInternally(synonymNextLinkSynonym, new InternalUpdateNonstrictCallback<SynonymNextLinkSynonym>() {
-            public int callbackDelegateUpdateNonstrict(SynonymNextLinkSynonym entity) { return delegateUpdateNonstrict(entity, option); } });
+            public int callbackDelegateUpdateNonstrict(SynonymNextLinkSynonym et) { return delegateUpdateNonstrict(et, op); } });
     }
 
     @Override
-    protected void doModifyNonstrict(Entity entity, UpdateOption<? extends ConditionBean> option) {
-        if (option == null) { updateNonstrict(downcast(entity)); }
-        else { varyingUpdateNonstrict(downcast(entity), downcast(option)); }
+    protected void doModifyNonstrict(Entity et, UpdateOption<? extends ConditionBean> op) {
+        if (op == null) { updateNonstrict(downcast(et)); }
+        else { varyingUpdateNonstrict(downcast(et), downcast(op)); }
     }
 
     /**
@@ -541,23 +541,22 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
         doInesrtOrUpdate(synonymNextLinkSynonym, null, null);
     }
 
-    protected void doInesrtOrUpdate(SynonymNextLinkSynonym synonymNextLinkSynonym, final InsertOption<SynonymNextLinkSynonymCB> insertOption, final UpdateOption<SynonymNextLinkSynonymCB> updateOption) {
+    protected void doInesrtOrUpdate(SynonymNextLinkSynonym synonymNextLinkSynonym, final InsertOption<SynonymNextLinkSynonymCB> iop, final UpdateOption<SynonymNextLinkSynonymCB> uop) {
         helpInsertOrUpdateInternally(synonymNextLinkSynonym, new InternalInsertOrUpdateCallback<SynonymNextLinkSynonym, SynonymNextLinkSynonymCB>() {
-            public void callbackInsert(SynonymNextLinkSynonym entity) { doInsert(entity, insertOption); }
-            public void callbackUpdate(SynonymNextLinkSynonym entity) { doUpdate(entity, updateOption); }
+            public void callbackInsert(SynonymNextLinkSynonym et) { doInsert(et, iop); }
+            public void callbackUpdate(SynonymNextLinkSynonym et) { doUpdate(et, uop); }
             public SynonymNextLinkSynonymCB callbackNewMyConditionBean() { return newMyConditionBean(); }
             public int callbackSelectCount(SynonymNextLinkSynonymCB cb) { return selectCount(cb); }
         });
     }
 
     @Override
-    protected void doCreateOrModify(Entity entity, InsertOption<? extends ConditionBean> insertOption,
-            UpdateOption<? extends ConditionBean> updateOption) {
-        if (insertOption == null && updateOption == null) { insertOrUpdate(downcast(entity)); }
+    protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
+        if (iop == null && uop == null) { insertOrUpdate(downcast(et)); }
         else {
-            insertOption = insertOption == null ? new InsertOption<SynonymNextLinkSynonymCB>() : insertOption;
-            updateOption = updateOption == null ? new UpdateOption<SynonymNextLinkSynonymCB>() : updateOption;
-            varyingInsertOrUpdate(downcast(entity), downcast(insertOption), downcast(updateOption));
+            iop = iop != null ? iop : new InsertOption<SynonymNextLinkSynonymCB>();
+            uop = uop != null ? uop : new UpdateOption<SynonymNextLinkSynonymCB>();
+            varyingInsertOrUpdate(downcast(et), downcast(iop), downcast(uop));
         }
     }
 
@@ -574,21 +573,20 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
         doInesrtOrUpdateNonstrict(synonymNextLinkSynonym, null, null);
     }
 
-    protected void doInesrtOrUpdateNonstrict(SynonymNextLinkSynonym synonymNextLinkSynonym, final InsertOption<SynonymNextLinkSynonymCB> insertOption, final UpdateOption<SynonymNextLinkSynonymCB> updateOption) {
+    protected void doInesrtOrUpdateNonstrict(SynonymNextLinkSynonym synonymNextLinkSynonym, final InsertOption<SynonymNextLinkSynonymCB> iop, final UpdateOption<SynonymNextLinkSynonymCB> uop) {
         helpInsertOrUpdateInternally(synonymNextLinkSynonym, new InternalInsertOrUpdateNonstrictCallback<SynonymNextLinkSynonym>() {
-            public void callbackInsert(SynonymNextLinkSynonym entity) { doInsert(entity, insertOption); }
-            public void callbackUpdateNonstrict(SynonymNextLinkSynonym entity) { doUpdateNonstrict(entity, updateOption); }
+            public void callbackInsert(SynonymNextLinkSynonym et) { doInsert(et, iop); }
+            public void callbackUpdateNonstrict(SynonymNextLinkSynonym et) { doUpdateNonstrict(et, uop); }
         });
     }
 
     @Override
-    protected void doCreateOrModifyNonstrict(Entity entity, InsertOption<? extends ConditionBean> insertOption,
-            UpdateOption<? extends ConditionBean> updateOption) {
-        if (insertOption == null && updateOption == null) { insertOrUpdateNonstrict(downcast(entity)); }
+    protected void doCreateOrModifyNonstrict(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
+        if (iop == null && uop == null) { insertOrUpdateNonstrict(downcast(et)); }
         else {
-            insertOption = insertOption == null ? new InsertOption<SynonymNextLinkSynonymCB>() : insertOption;
-            updateOption = updateOption == null ? new UpdateOption<SynonymNextLinkSynonymCB>() : updateOption;
-            varyingInsertOrUpdateNonstrict(downcast(entity), downcast(insertOption), downcast(updateOption));
+            iop = iop != null ? iop : new InsertOption<SynonymNextLinkSynonymCB>();
+            uop = uop != null ? uop : new UpdateOption<SynonymNextLinkSynonymCB>();
+            varyingInsertOrUpdateNonstrict(downcast(et), downcast(iop), downcast(uop));
         }
     }
 
@@ -603,7 +601,7 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
      *     synonymNextLinkSynonymBhv.<span style="color: #FD4747">delete</span>(synonymNextLinkSynonym);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
-     * } 
+     * }
      * </pre>
      * @param synonymNextLinkSynonym The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @exception org.seasar.dbflute.exception.EntityAlreadyUpdatedException When the entity has already been updated.
@@ -613,22 +611,22 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
         doDelete(synonymNextLinkSynonym, null);
     }
 
-    protected void doDelete(SynonymNextLinkSynonym synonymNextLinkSynonym, final DeleteOption<SynonymNextLinkSynonymCB> option) {
+    protected void doDelete(SynonymNextLinkSynonym synonymNextLinkSynonym, final DeleteOption<SynonymNextLinkSynonymCB> op) {
         assertObjectNotNull("synonymNextLinkSynonym", synonymNextLinkSynonym);
-        prepareDeleteOption(option);
+        prepareDeleteOption(op);
         helpDeleteInternally(synonymNextLinkSynonym, new InternalDeleteCallback<SynonymNextLinkSynonym>() {
-            public int callbackDelegateDelete(SynonymNextLinkSynonym entity) { return delegateDelete(entity, option); } });
+            public int callbackDelegateDelete(SynonymNextLinkSynonym et) { return delegateDelete(et, op); } });
     }
 
-    protected void prepareDeleteOption(DeleteOption<SynonymNextLinkSynonymCB> option) {
-        if (option == null) { return; }
-        assertDeleteOptionStatus(option);
+    protected void prepareDeleteOption(DeleteOption<SynonymNextLinkSynonymCB> op) {
+        if (op == null) { return; }
+        assertDeleteOptionStatus(op);
     }
 
     @Override
-    protected void doRemove(Entity entity, DeleteOption<? extends ConditionBean> option) {
-        if (option == null) { delete(downcast(entity)); }
-        else { varyingDelete(downcast(entity), downcast(option)); }
+    protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) {
+        if (op == null) { delete(downcast(et)); }
+        else { varyingDelete(downcast(et), downcast(op)); }
     }
 
     /**
@@ -649,11 +647,11 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
         doDeleteNonstrict(synonymNextLinkSynonym, null);
     }
 
-    protected void doDeleteNonstrict(SynonymNextLinkSynonym synonymNextLinkSynonym, final DeleteOption<SynonymNextLinkSynonymCB> option) {
+    protected void doDeleteNonstrict(SynonymNextLinkSynonym synonymNextLinkSynonym, final DeleteOption<SynonymNextLinkSynonymCB> op) {
         assertObjectNotNull("synonymNextLinkSynonym", synonymNextLinkSynonym);
-        prepareDeleteOption(option);
+        prepareDeleteOption(op);
         helpDeleteNonstrictInternally(synonymNextLinkSynonym, new InternalDeleteNonstrictCallback<SynonymNextLinkSynonym>() {
-            public int callbackDelegateDeleteNonstrict(SynonymNextLinkSynonym entity) { return delegateDeleteNonstrict(entity, option); } });
+            public int callbackDelegateDeleteNonstrict(SynonymNextLinkSynonym et) { return delegateDeleteNonstrict(et, op); } });
     }
 
     /**
@@ -674,17 +672,17 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
         doDeleteNonstrictIgnoreDeleted(synonymNextLinkSynonym, null);
     }
 
-    protected void doDeleteNonstrictIgnoreDeleted(SynonymNextLinkSynonym synonymNextLinkSynonym, final DeleteOption<SynonymNextLinkSynonymCB> option) {
+    protected void doDeleteNonstrictIgnoreDeleted(SynonymNextLinkSynonym synonymNextLinkSynonym, final DeleteOption<SynonymNextLinkSynonymCB> op) {
         assertObjectNotNull("synonymNextLinkSynonym", synonymNextLinkSynonym);
-        prepareDeleteOption(option);
+        prepareDeleteOption(op);
         helpDeleteNonstrictIgnoreDeletedInternally(synonymNextLinkSynonym, new InternalDeleteNonstrictIgnoreDeletedCallback<SynonymNextLinkSynonym>() {
-            public int callbackDelegateDeleteNonstrict(SynonymNextLinkSynonym entity) { return delegateDeleteNonstrict(entity, option); } });
+            public int callbackDelegateDeleteNonstrict(SynonymNextLinkSynonym et) { return delegateDeleteNonstrict(et, op); } });
     }
 
     @Override
-    protected void doRemoveNonstrict(Entity entity, DeleteOption<? extends ConditionBean> option) {
-        if (option == null) { deleteNonstrict(downcast(entity)); }
-        else { varyingDeleteNonstrict(downcast(entity), downcast(option)); }
+    protected void doRemoveNonstrict(Entity et, DeleteOption<? extends ConditionBean> op) {
+        if (op == null) { deleteNonstrict(downcast(et)); }
+        else { varyingDeleteNonstrict(downcast(et), downcast(op)); }
     }
 
     // ===================================================================================
@@ -715,26 +713,26 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
      * @return The array of inserted count. (NotNull, EmptyAllowed)
      */
     public int[] batchInsert(List<SynonymNextLinkSynonym> synonymNextLinkSynonymList) {
-        InsertOption<SynonymNextLinkSynonymCB> option = createInsertUpdateOption();
-        return doBatchInsert(synonymNextLinkSynonymList, option);
+        InsertOption<SynonymNextLinkSynonymCB> op = createInsertUpdateOption();
+        return doBatchInsert(synonymNextLinkSynonymList, op);
     }
 
-    protected int[] doBatchInsert(List<SynonymNextLinkSynonym> synonymNextLinkSynonymList, InsertOption<SynonymNextLinkSynonymCB> option) {
+    protected int[] doBatchInsert(List<SynonymNextLinkSynonym> synonymNextLinkSynonymList, InsertOption<SynonymNextLinkSynonymCB> op) {
         assertObjectNotNull("synonymNextLinkSynonymList", synonymNextLinkSynonymList);
-        prepareBatchInsertOption(synonymNextLinkSynonymList, option);
-        return delegateBatchInsert(synonymNextLinkSynonymList, option);
+        prepareBatchInsertOption(synonymNextLinkSynonymList, op);
+        return delegateBatchInsert(synonymNextLinkSynonymList, op);
     }
 
-    protected void prepareBatchInsertOption(List<SynonymNextLinkSynonym> synonymNextLinkSynonymList, InsertOption<SynonymNextLinkSynonymCB> option) {
-        option.xallowInsertColumnModifiedPropertiesFragmented();
-        option.xacceptInsertColumnModifiedPropertiesIfNeeds(synonymNextLinkSynonymList);
-        prepareInsertOption(option);
+    protected void prepareBatchInsertOption(List<SynonymNextLinkSynonym> synonymNextLinkSynonymList, InsertOption<SynonymNextLinkSynonymCB> op) {
+        op.xallowInsertColumnModifiedPropertiesFragmented();
+        op.xacceptInsertColumnModifiedPropertiesIfNeeds(synonymNextLinkSynonymList);
+        prepareInsertOption(op);
     }
 
     @Override
-    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> option) {
-        if (option == null) { return batchInsert(downcast(ls)); }
-        else { return varyingBatchInsert(downcast(ls), downcast(option)); }
+    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) {
+        if (op == null) { return batchInsert(downcast(ls)); }
+        else { return varyingBatchInsert(downcast(ls), downcast(op)); }
     }
 
     /**
@@ -762,39 +760,39 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
      * @exception org.seasar.dbflute.exception.BatchEntityAlreadyUpdatedException When the entity has already been updated. This exception extends EntityAlreadyUpdatedException.
      */
     public int[] batchUpdate(List<SynonymNextLinkSynonym> synonymNextLinkSynonymList) {
-        UpdateOption<SynonymNextLinkSynonymCB> option = createPlainUpdateOption();
-        return doBatchUpdate(synonymNextLinkSynonymList, option);
+        UpdateOption<SynonymNextLinkSynonymCB> op = createPlainUpdateOption();
+        return doBatchUpdate(synonymNextLinkSynonymList, op);
     }
 
-    protected int[] doBatchUpdate(List<SynonymNextLinkSynonym> synonymNextLinkSynonymList, UpdateOption<SynonymNextLinkSynonymCB> option) {
+    protected int[] doBatchUpdate(List<SynonymNextLinkSynonym> synonymNextLinkSynonymList, UpdateOption<SynonymNextLinkSynonymCB> op) {
         assertObjectNotNull("synonymNextLinkSynonymList", synonymNextLinkSynonymList);
-        prepareBatchUpdateOption(synonymNextLinkSynonymList, option);
-        return delegateBatchUpdate(synonymNextLinkSynonymList, option);
+        prepareBatchUpdateOption(synonymNextLinkSynonymList, op);
+        return delegateBatchUpdate(synonymNextLinkSynonymList, op);
     }
 
-    protected void prepareBatchUpdateOption(List<SynonymNextLinkSynonym> synonymNextLinkSynonymList, UpdateOption<SynonymNextLinkSynonymCB> option) {
-        option.xacceptUpdateColumnModifiedPropertiesIfNeeds(synonymNextLinkSynonymList);
-        prepareUpdateOption(option);
+    protected void prepareBatchUpdateOption(List<SynonymNextLinkSynonym> synonymNextLinkSynonymList, UpdateOption<SynonymNextLinkSynonymCB> op) {
+        op.xacceptUpdateColumnModifiedPropertiesIfNeeds(synonymNextLinkSynonymList);
+        prepareUpdateOption(op);
     }
 
     @Override
-    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> option) {
-        if (option == null) { return batchUpdate(downcast(ls)); }
-        else { return varyingBatchUpdate(downcast(ls), downcast(option)); }
+    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) {
+        if (op == null) { return batchUpdate(downcast(ls)); }
+        else { return varyingBatchUpdate(downcast(ls), downcast(op)); }
     }
 
     /**
      * Batch-update the entity list specified-only. (ExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * <pre>
-     * <span style="color: #3F7E5E">// e.g. update two columns only</span> 
+     * <span style="color: #3F7E5E">// e.g. update two columns only</span>
      * synonymNextLinkSynonymBhv.<span style="color: #FD4747">batchUpdate</span>(synonymNextLinkSynonymList, new SpecifyQuery<SynonymNextLinkSynonymCB>() {
      *     public void specify(SynonymNextLinkSynonymCB cb) { <span style="color: #3F7E5E">// the two only updated</span>
      *         cb.specify().<span style="color: #FD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
      *         cb.specify().<span style="color: #FD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
      *     }
      * });
-     * <span style="color: #3F7E5E">// e.g. update every column in the table</span> 
+     * <span style="color: #3F7E5E">// e.g. update every column in the table</span>
      * synonymNextLinkSynonymBhv.<span style="color: #FD4747">batchUpdate</span>(synonymNextLinkSynonymList, new SpecifyQuery<SynonymNextLinkSynonymCB>() {
      *     public void specify(SynonymNextLinkSynonymCB cb) { <span style="color: #3F7E5E">// all columns are updated</span>
      *         cb.specify().<span style="color: #FD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
@@ -844,24 +842,24 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
         return doBatchUpdateNonstrict(synonymNextLinkSynonymList, option);
     }
 
-    protected int[] doBatchUpdateNonstrict(List<SynonymNextLinkSynonym> synonymNextLinkSynonymList, UpdateOption<SynonymNextLinkSynonymCB> option) {
+    protected int[] doBatchUpdateNonstrict(List<SynonymNextLinkSynonym> synonymNextLinkSynonymList, UpdateOption<SynonymNextLinkSynonymCB> op) {
         assertObjectNotNull("synonymNextLinkSynonymList", synonymNextLinkSynonymList);
-        prepareBatchUpdateOption(synonymNextLinkSynonymList, option);
-        return delegateBatchUpdateNonstrict(synonymNextLinkSynonymList, option);
+        prepareBatchUpdateOption(synonymNextLinkSynonymList, op);
+        return delegateBatchUpdateNonstrict(synonymNextLinkSynonymList, op);
     }
 
     /**
      * Batch-update the entity list non-strictly specified-only. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * <pre>
-     * <span style="color: #3F7E5E">// e.g. update two columns only</span> 
+     * <span style="color: #3F7E5E">// e.g. update two columns only</span>
      * synonymNextLinkSynonymBhv.<span style="color: #FD4747">batchUpdateNonstrict</span>(synonymNextLinkSynonymList, new SpecifyQuery<SynonymNextLinkSynonymCB>() {
      *     public void specify(SynonymNextLinkSynonymCB cb) { <span style="color: #3F7E5E">// the two only updated</span>
      *         cb.specify().<span style="color: #FD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
      *         cb.specify().<span style="color: #FD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
      *     }
      * });
-     * <span style="color: #3F7E5E">// e.g. update every column in the table</span> 
+     * <span style="color: #3F7E5E">// e.g. update every column in the table</span>
      * synonymNextLinkSynonymBhv.<span style="color: #FD4747">batchUpdateNonstrict</span>(synonymNextLinkSynonymList, new SpecifyQuery<SynonymNextLinkSynonymCB>() {
      *     public void specify(SynonymNextLinkSynonymCB cb) { <span style="color: #3F7E5E">// all columns are updated</span>
      *         cb.specify().<span style="color: #FD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
@@ -882,9 +880,9 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
     }
 
     @Override
-    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> option) {
-        if (option == null) { return batchUpdateNonstrict(downcast(ls)); }
-        else { return varyingBatchUpdateNonstrict(downcast(ls), downcast(option)); }
+    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> op) {
+        if (op == null) { return batchUpdateNonstrict(downcast(ls)); }
+        else { return varyingBatchUpdateNonstrict(downcast(ls), downcast(op)); }
     }
 
     /**
@@ -898,16 +896,16 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
         return doBatchDelete(synonymNextLinkSynonymList, null);
     }
 
-    protected int[] doBatchDelete(List<SynonymNextLinkSynonym> synonymNextLinkSynonymList, DeleteOption<SynonymNextLinkSynonymCB> option) {
+    protected int[] doBatchDelete(List<SynonymNextLinkSynonym> synonymNextLinkSynonymList, DeleteOption<SynonymNextLinkSynonymCB> op) {
         assertObjectNotNull("synonymNextLinkSynonymList", synonymNextLinkSynonymList);
-        prepareDeleteOption(option);
-        return delegateBatchDelete(synonymNextLinkSynonymList, option);
+        prepareDeleteOption(op);
+        return delegateBatchDelete(synonymNextLinkSynonymList, op);
     }
 
     @Override
-    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> option) {
-        if (option == null) { return batchDelete(downcast(ls)); }
-        else { return varyingBatchDelete(downcast(ls), downcast(option)); }
+    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) {
+        if (op == null) { return batchDelete(downcast(ls)); }
+        else { return varyingBatchDelete(downcast(ls), downcast(op)); }
     }
 
     /**
@@ -921,16 +919,16 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
         return doBatchDeleteNonstrict(synonymNextLinkSynonymList, null);
     }
 
-    protected int[] doBatchDeleteNonstrict(List<SynonymNextLinkSynonym> synonymNextLinkSynonymList, DeleteOption<SynonymNextLinkSynonymCB> option) {
+    protected int[] doBatchDeleteNonstrict(List<SynonymNextLinkSynonym> synonymNextLinkSynonymList, DeleteOption<SynonymNextLinkSynonymCB> op) {
         assertObjectNotNull("synonymNextLinkSynonymList", synonymNextLinkSynonymList);
-        prepareDeleteOption(option);
-        return delegateBatchDeleteNonstrict(synonymNextLinkSynonymList, option);
+        prepareDeleteOption(op);
+        return delegateBatchDeleteNonstrict(synonymNextLinkSynonymList, op);
     }
 
     @Override
-    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> option) {
-        if (option == null) { return batchDeleteNonstrict(downcast(ls)); }
-        else { return varyingBatchDeleteNonstrict(downcast(ls), downcast(option)); }
+    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> op) {
+        if (op == null) { return batchDeleteNonstrict(downcast(ls)); }
+        else { return varyingBatchDeleteNonstrict(downcast(ls), downcast(op)); }
     }
 
     // ===================================================================================
@@ -943,7 +941,7 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
      *     public ConditionBean setup(synonymNextLinkSynonym entity, SynonymNextLinkSynonymCB intoCB) {
      *         FooCB cb = FooCB();
      *         cb.setupSelect_Bar();
-     * 
+     *
      *         <span style="color: #3F7E5E">// mapping</span>
      *         intoCB.specify().columnMyName().mappedFrom(cb.specify().columnFooName());
      *         intoCB.specify().columnMyCount().mappedFrom(cb.specify().columnFooCount());
@@ -954,7 +952,7 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
      *         <span style="color: #3F7E5E">//entity.set...;</span>
      *         <span style="color: #3F7E5E">// you don't need to set a value of exclusive control column</span>
      *         <span style="color: #3F7E5E">//entity.setVersionNo(value);</span>
-     * 
+     *
      *         return cb;
      *     }
      * });
@@ -966,13 +964,12 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
         return doQueryInsert(setupper, null);
     }
 
-    protected int doQueryInsert(QueryInsertSetupper<SynonymNextLinkSynonym, SynonymNextLinkSynonymCB> setupper, InsertOption<SynonymNextLinkSynonymCB> option) {
-        assertObjectNotNull("setupper", setupper);
-        prepareInsertOption(option);
-        SynonymNextLinkSynonym entity = new SynonymNextLinkSynonym();
-        SynonymNextLinkSynonymCB intoCB = createCBForQueryInsert();
-        ConditionBean resourceCB = setupper.setup(entity, intoCB);
-        return delegateQueryInsert(entity, intoCB, resourceCB, option);
+    protected int doQueryInsert(QueryInsertSetupper<SynonymNextLinkSynonym, SynonymNextLinkSynonymCB> sp, InsertOption<SynonymNextLinkSynonymCB> op) {
+        assertObjectNotNull("setupper", sp);
+        prepareInsertOption(op);
+        SynonymNextLinkSynonym e = new SynonymNextLinkSynonym();
+        SynonymNextLinkSynonymCB cb = createCBForQueryInsert();
+        return delegateQueryInsert(e, cb, sp.setup(e, cb), op);
     }
 
     protected SynonymNextLinkSynonymCB createCBForQueryInsert() {
@@ -1013,16 +1010,16 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
         return doQueryUpdate(synonymNextLinkSynonym, cb, null);
     }
 
-    protected int doQueryUpdate(SynonymNextLinkSynonym synonymNextLinkSynonym, SynonymNextLinkSynonymCB cb, UpdateOption<SynonymNextLinkSynonymCB> option) {
+    protected int doQueryUpdate(SynonymNextLinkSynonym synonymNextLinkSynonym, SynonymNextLinkSynonymCB cb, UpdateOption<SynonymNextLinkSynonymCB> op) {
         assertObjectNotNull("synonymNextLinkSynonym", synonymNextLinkSynonym); assertCBStateValid(cb);
-        prepareUpdateOption(option);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(synonymNextLinkSynonym, cb, option) : 0;
+        prepareUpdateOption(op);
+        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(synonymNextLinkSynonym, cb, op) : 0;
     }
 
     @Override
-    protected int doRangeModify(Entity entity, ConditionBean cb, UpdateOption<? extends ConditionBean> option) {
-        if (option == null) { return queryUpdate(downcast(entity), (SynonymNextLinkSynonymCB)cb); }
-        else { return varyingQueryUpdate(downcast(entity), (SynonymNextLinkSynonymCB)cb, downcast(option)); }
+    protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op) {
+        if (op == null) { return queryUpdate(downcast(et), (SynonymNextLinkSynonymCB)cb); }
+        else { return varyingQueryUpdate(downcast(et), (SynonymNextLinkSynonymCB)cb, downcast(op)); }
     }
 
     /**
@@ -1040,16 +1037,16 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
         return doQueryDelete(cb, null);
     }
 
-    protected int doQueryDelete(SynonymNextLinkSynonymCB cb, DeleteOption<SynonymNextLinkSynonymCB> option) {
+    protected int doQueryDelete(SynonymNextLinkSynonymCB cb, DeleteOption<SynonymNextLinkSynonymCB> op) {
         assertCBStateValid(cb);
-        prepareDeleteOption(option);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryDelete(cb, option) : 0;
+        prepareDeleteOption(op);
+        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryDelete(cb, op) : 0;
     }
 
     @Override
-    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> option) {
-        if (option == null) { return queryDelete((SynonymNextLinkSynonymCB)cb); }
-        else { return varyingQueryDelete((SynonymNextLinkSynonymCB)cb, downcast(option)); }
+    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) {
+        if (op == null) { return queryDelete((SynonymNextLinkSynonymCB)cb); }
+        else { return varyingQueryDelete((SynonymNextLinkSynonymCB)cb, downcast(op)); }
     }
 
     // ===================================================================================
@@ -1282,7 +1279,7 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
     /**
      * Insert the several entities by query with varying requests (modified-only for fixed value). <br />
      * For example, disableCommonColumnAutoSetup(), disablePrimaryKeyIdentity(). <br />
-     * Other specifications are same as queryInsert(entity, setupper). 
+     * Other specifications are same as queryInsert(entity, setupper).
      * @param setupper The setup-per of query-insert. (NotNull)
      * @param option The option of insert for varying requests. (NotNull)
      * @return The inserted count.
@@ -1296,7 +1293,7 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
      * Update the several entities by query with varying requests non-strictly modified-only. {NonExclusiveControl} <br />
      * For example, self(selfCalculationSpecification), specify(updateColumnSpecification)
      * , disableCommonColumnAutoSetup(), allowNonQueryUpdate(). <br />
-     * Other specifications are same as queryUpdate(entity, cb). 
+     * Other specifications are same as queryUpdate(entity, cb).
      * <pre>
      * <span style="color: #3F7E5E">// ex) you can update by self calculation values</span>
      * SynonymNextLinkSynonym synonymNextLinkSynonym = new SynonymNextLinkSynonym();
@@ -1353,27 +1350,27 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
      *   o selectList()
      *   o execute()
      *   o call()
-     * 
+     *
      * {Entity}
      *   o entityHandling().selectEntity()
      *   o entityHandling().selectEntityWithDeletedCheck()
-     * 
+     *
      * {Paging}
      *   o autoPaging().selectList()
      *   o autoPaging().selectPage()
      *   o manualPaging().selectList()
      *   o manualPaging().selectPage()
-     * 
+     *
      * {Cursor}
      *   o cursorHandling().selectCursor()
-     * 
+     *
      * {Option}
      *   o dynamicBinding().selectList()
      *   o removeBlockComment().selectList()
      *   o removeLineComment().selectList()
      *   o formatSql().selectList()
      * </pre>
-     * @return The basic executor of outside-SQL. (NotNull) 
+     * @return The basic executor of outside-SQL. (NotNull)
      */
     public OutsideSqlBasicExecutor<SynonymNextLinkSynonymBhv> outsideSql() {
         return doOutsideSql();
@@ -1388,29 +1385,29 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
     //                                                ------
     protected int delegateSelectCountUniquely(SynonymNextLinkSynonymCB cb) { return invoke(createSelectCountCBCommand(cb, true)); }
     protected int delegateSelectCountPlainly(SynonymNextLinkSynonymCB cb) { return invoke(createSelectCountCBCommand(cb, false)); }
-    protected <ENTITY extends SynonymNextLinkSynonym> void delegateSelectCursor(SynonymNextLinkSynonymCB cb, EntityRowHandler<ENTITY> erh, Class<ENTITY> et)
-    { invoke(createSelectCursorCBCommand(cb, erh, et)); }
-    protected <ENTITY extends SynonymNextLinkSynonym> List<ENTITY> delegateSelectList(SynonymNextLinkSynonymCB cb, Class<ENTITY> et)
-    { return invoke(createSelectListCBCommand(cb, et)); }
+    protected <ENTITY extends SynonymNextLinkSynonym> void delegateSelectCursor(SynonymNextLinkSynonymCB cb, EntityRowHandler<ENTITY> rh, Class<ENTITY> tp)
+    { invoke(createSelectCursorCBCommand(cb, rh, tp)); }
+    protected <ENTITY extends SynonymNextLinkSynonym> List<ENTITY> delegateSelectList(SynonymNextLinkSynonymCB cb, Class<ENTITY> tp)
+    { return invoke(createSelectListCBCommand(cb, tp)); }
 
     // -----------------------------------------------------
     //                                                Update
     //                                                ------
-    protected int delegateInsert(SynonymNextLinkSynonym e, InsertOption<SynonymNextLinkSynonymCB> op)
-    { if (!processBeforeInsert(e, op)) { return 0; }
-      return invoke(createInsertEntityCommand(e, op)); }
-    protected int delegateUpdate(SynonymNextLinkSynonym e, UpdateOption<SynonymNextLinkSynonymCB> op)
-    { if (!processBeforeUpdate(e, op)) { return 0; }
-      return invoke(createUpdateEntityCommand(e, op)); }
-    protected int delegateUpdateNonstrict(SynonymNextLinkSynonym e, UpdateOption<SynonymNextLinkSynonymCB> op)
-    { if (!processBeforeUpdate(e, op)) { return 0; }
-      return invoke(createUpdateNonstrictEntityCommand(e, op)); }
-    protected int delegateDelete(SynonymNextLinkSynonym e, DeleteOption<SynonymNextLinkSynonymCB> op)
-    { if (!processBeforeDelete(e, op)) { return 0; }
-      return invoke(createDeleteEntityCommand(e, op)); }
-    protected int delegateDeleteNonstrict(SynonymNextLinkSynonym e, DeleteOption<SynonymNextLinkSynonymCB> op)
-    { if (!processBeforeDelete(e, op)) { return 0; }
-      return invoke(createDeleteNonstrictEntityCommand(e, op)); }
+    protected int delegateInsert(SynonymNextLinkSynonym et, InsertOption<SynonymNextLinkSynonymCB> op)
+    { if (!processBeforeInsert(et, op)) { return 0; }
+      return invoke(createInsertEntityCommand(et, op)); }
+    protected int delegateUpdate(SynonymNextLinkSynonym et, UpdateOption<SynonymNextLinkSynonymCB> op)
+    { if (!processBeforeUpdate(et, op)) { return 0; }
+      return invoke(createUpdateEntityCommand(et, op)); }
+    protected int delegateUpdateNonstrict(SynonymNextLinkSynonym et, UpdateOption<SynonymNextLinkSynonymCB> op)
+    { if (!processBeforeUpdate(et, op)) { return 0; }
+      return invoke(createUpdateNonstrictEntityCommand(et, op)); }
+    protected int delegateDelete(SynonymNextLinkSynonym et, DeleteOption<SynonymNextLinkSynonymCB> op)
+    { if (!processBeforeDelete(et, op)) { return 0; }
+      return invoke(createDeleteEntityCommand(et, op)); }
+    protected int delegateDeleteNonstrict(SynonymNextLinkSynonym et, DeleteOption<SynonymNextLinkSynonymCB> op)
+    { if (!processBeforeDelete(et, op)) { return 0; }
+      return invoke(createDeleteNonstrictEntityCommand(et, op)); }
 
     protected int[] delegateBatchInsert(List<SynonymNextLinkSynonym> ls, InsertOption<SynonymNextLinkSynonymCB> op)
     { if (ls.isEmpty()) { return new int[]{}; }
@@ -1428,10 +1425,10 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
     { if (ls.isEmpty()) { return new int[]{}; }
       return invoke(createBatchDeleteNonstrictCommand(processBatchInternally(ls, op, true), op)); }
 
-    protected int delegateQueryInsert(SynonymNextLinkSynonym e, SynonymNextLinkSynonymCB inCB, ConditionBean resCB, InsertOption<SynonymNextLinkSynonymCB> op)
-    { if (!processBeforeQueryInsert(e, inCB, resCB, op)) { return 0; } return invoke(createQueryInsertCBCommand(e, inCB, resCB, op));  }
-    protected int delegateQueryUpdate(SynonymNextLinkSynonym e, SynonymNextLinkSynonymCB cb, UpdateOption<SynonymNextLinkSynonymCB> op)
-    { if (!processBeforeQueryUpdate(e, cb, op)) { return 0; } return invoke(createQueryUpdateCBCommand(e, cb, op));  }
+    protected int delegateQueryInsert(SynonymNextLinkSynonym et, SynonymNextLinkSynonymCB inCB, ConditionBean resCB, InsertOption<SynonymNextLinkSynonymCB> op)
+    { if (!processBeforeQueryInsert(et, inCB, resCB, op)) { return 0; } return invoke(createQueryInsertCBCommand(et, inCB, resCB, op));  }
+    protected int delegateQueryUpdate(SynonymNextLinkSynonym et, SynonymNextLinkSynonymCB cb, UpdateOption<SynonymNextLinkSynonymCB> op)
+    { if (!processBeforeQueryUpdate(et, cb, op)) { return 0; } return invoke(createQueryUpdateCBCommand(et, cb, op));  }
     protected int delegateQueryDelete(SynonymNextLinkSynonymCB cb, DeleteOption<SynonymNextLinkSynonymCB> op)
     { if (!processBeforeQueryDelete(cb, op)) { return 0; } return invoke(createQueryDeleteCBCommand(cb, op));  }
 
@@ -1442,23 +1439,23 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
      * {@inheritDoc}
      */
     @Override
-    protected boolean hasVersionNoValue(Entity entity) {
-        return !(downcast(entity).getVersionNo() + "").equals("null");// For primitive type
+    protected boolean hasVersionNoValue(Entity et) {
+        return !(downcast(et).getVersionNo() + "").equals("null");// For primitive type
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    protected boolean hasUpdateDateValue(Entity entity) {
+    protected boolean hasUpdateDateValue(Entity et) {
         return false;
     }
 
     // ===================================================================================
     //                                                                     Downcast Helper
     //                                                                     ===============
-    protected SynonymNextLinkSynonym downcast(Entity entity) {
-        return helpEntityDowncastInternally(entity, SynonymNextLinkSynonym.class);
+    protected SynonymNextLinkSynonym downcast(Entity et) {
+        return helpEntityDowncastInternally(et, SynonymNextLinkSynonym.class);
     }
 
     protected SynonymNextLinkSynonymCB downcast(ConditionBean cb) {
@@ -1466,27 +1463,27 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
     }
 
     @SuppressWarnings("unchecked")
-    protected List<SynonymNextLinkSynonym> downcast(List<? extends Entity> entityList) {
-        return (List<SynonymNextLinkSynonym>)entityList;
+    protected List<SynonymNextLinkSynonym> downcast(List<? extends Entity> ls) {
+        return (List<SynonymNextLinkSynonym>)ls;
     }
 
     @SuppressWarnings("unchecked")
-    protected InsertOption<SynonymNextLinkSynonymCB> downcast(InsertOption<? extends ConditionBean> option) {
-        return (InsertOption<SynonymNextLinkSynonymCB>)option;
+    protected InsertOption<SynonymNextLinkSynonymCB> downcast(InsertOption<? extends ConditionBean> op) {
+        return (InsertOption<SynonymNextLinkSynonymCB>)op;
     }
 
     @SuppressWarnings("unchecked")
-    protected UpdateOption<SynonymNextLinkSynonymCB> downcast(UpdateOption<? extends ConditionBean> option) {
-        return (UpdateOption<SynonymNextLinkSynonymCB>)option;
+    protected UpdateOption<SynonymNextLinkSynonymCB> downcast(UpdateOption<? extends ConditionBean> op) {
+        return (UpdateOption<SynonymNextLinkSynonymCB>)op;
     }
 
     @SuppressWarnings("unchecked")
-    protected DeleteOption<SynonymNextLinkSynonymCB> downcast(DeleteOption<? extends ConditionBean> option) {
-        return (DeleteOption<SynonymNextLinkSynonymCB>)option;
+    protected DeleteOption<SynonymNextLinkSynonymCB> downcast(DeleteOption<? extends ConditionBean> op) {
+        return (DeleteOption<SynonymNextLinkSynonymCB>)op;
     }
 
     @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<SynonymNextLinkSynonym, SynonymNextLinkSynonymCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> option) {
-        return (QueryInsertSetupper<SynonymNextLinkSynonym, SynonymNextLinkSynonymCB>)option;
+    protected QueryInsertSetupper<SynonymNextLinkSynonym, SynonymNextLinkSynonymCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp) {
+        return (QueryInsertSetupper<SynonymNextLinkSynonym, SynonymNextLinkSynonymCB>)sp;
     }
 }

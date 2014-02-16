@@ -340,8 +340,8 @@ public class BsWhiteImplicitReverseFkSuppressCB extends AbstractConditionBean {
         public HpSDRFunction<WhiteImplicitReverseFkSuppressCB, WhiteImplicitReverseFkSuppressCQ> myselfDerived() {
             assertDerived("myselfDerived"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<WhiteImplicitReverseFkSuppressCB, WhiteImplicitReverseFkSuppressCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<WhiteImplicitReverseFkSuppressCB, WhiteImplicitReverseFkSuppressCQ>() {
-                public void setup(String function, SubQuery<WhiteImplicitReverseFkSuppressCB> subQuery, WhiteImplicitReverseFkSuppressCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsmyselfDerive(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<WhiteImplicitReverseFkSuppressCB> sq, WhiteImplicitReverseFkSuppressCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsmyselfDerive(fn, sq, al, op); } }, _dbmetaProvider);
         }
     }
 

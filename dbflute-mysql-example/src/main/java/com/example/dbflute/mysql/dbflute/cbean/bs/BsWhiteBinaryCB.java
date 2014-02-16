@@ -335,8 +335,8 @@ public class BsWhiteBinaryCB extends AbstractConditionBean {
         public HpSDRFunction<WhiteBinaryCB, WhiteBinaryCQ> myselfDerived() {
             assertDerived("myselfDerived"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<WhiteBinaryCB, WhiteBinaryCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<WhiteBinaryCB, WhiteBinaryCQ>() {
-                public void setup(String function, SubQuery<WhiteBinaryCB> subQuery, WhiteBinaryCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsmyselfDerive(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<WhiteBinaryCB> sq, WhiteBinaryCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsmyselfDerive(fn, sq, al, op); } }, _dbmetaProvider);
         }
     }
 

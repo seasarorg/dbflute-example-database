@@ -57,16 +57,16 @@ public class WhiteUqFkRefNestDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgUqFkRefNestId implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteUqFkRefNest)e).getUqFkRefNestId(); }
-        public void write(Entity e, Object v) { ((WhiteUqFkRefNest)e).setUqFkRefNestId(ctl(v)); }
+        public Object read(Entity et) { return ((WhiteUqFkRefNest)et).getUqFkRefNestId(); }
+        public void write(Entity et, Object vl) { ((WhiteUqFkRefNest)et).setUqFkRefNestId(ctl(vl)); }
     }
     public static class EpgCompoundUqFirstCode implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteUqFkRefNest)e).getCompoundUqFirstCode(); }
-        public void write(Entity e, Object v) { ((WhiteUqFkRefNest)e).setCompoundUqFirstCode((String)v); }
+        public Object read(Entity et) { return ((WhiteUqFkRefNest)et).getCompoundUqFirstCode(); }
+        public void write(Entity et, Object vl) { ((WhiteUqFkRefNest)et).setCompoundUqFirstCode((String)vl); }
     }
     public static class EpgCompoundUqSecondCode implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteUqFkRefNest)e).getCompoundUqSecondCode(); }
-        public void write(Entity e, Object v) { ((WhiteUqFkRefNest)e).setCompoundUqSecondCode((String)v); }
+        public Object read(Entity et) { return ((WhiteUqFkRefNest)et).getCompoundUqSecondCode(); }
+        public void write(Entity et, Object vl) { ((WhiteUqFkRefNest)et).setCompoundUqSecondCode((String)vl); }
     }
 
     // ===================================================================================
@@ -118,10 +118,10 @@ public class WhiteUqFkRefNestDbm extends AbstractDBMeta {
     //                                      Foreign Property
     //                                      ----------------
     public ForeignInfo foreignWhiteUqFkRef() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMapSized(4);
-        map.put(columnCompoundUqFirstCode(), WhiteUqFkRefDbm.getInstance().columnCompoundUqFirstCode());
-        map.put(columnCompoundUqSecondCode(), WhiteUqFkRefDbm.getInstance().columnCompoundUqSecondCode());
-        return cfi("FK_WHITE_UQ_FK_REF_NEST_UQ", "whiteUqFkRef", this, WhiteUqFkRefDbm.getInstance(), map, 0, false, false, false, false, null, null, false, "whiteUqFkRefNestList");
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMapSized(4);
+        mp.put(columnCompoundUqFirstCode(), WhiteUqFkRefDbm.getInstance().columnCompoundUqFirstCode());
+        mp.put(columnCompoundUqSecondCode(), WhiteUqFkRefDbm.getInstance().columnCompoundUqSecondCode());
+        return cfi("FK_WHITE_UQ_FK_REF_NEST_UQ", "whiteUqFkRef", this, WhiteUqFkRefDbm.getInstance(), mp, 0, false, false, false, false, null, null, false, "whiteUqFkRefNestList");
     }
 
     // -----------------------------------------------------
@@ -153,10 +153,10 @@ public class WhiteUqFkRefNestDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((WhiteUqFkRefNest)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((WhiteUqFkRefNest)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((WhiteUqFkRefNest)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((WhiteUqFkRefNest)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

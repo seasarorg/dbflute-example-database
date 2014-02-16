@@ -82,21 +82,21 @@ public class NextSchemaProductCIQ extends AbstractBsNextSchemaProductCQ {
     { throwIICBOE("(Specify)DerivedReferrer"); return null; }
     public String keepProductId_QueryDerivedReferrer_WhiteSameNameList(WhiteSameNameCQ sq)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
-    public String keepProductId_QueryDerivedReferrer_WhiteSameNameListParameter(Object pv)
+    public String keepProductId_QueryDerivedReferrer_WhiteSameNameListParameter(Object vl)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
     protected ConditionValue getCValueProductName() { return _myCQ.getProductName(); }
-    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) { return null; }
-    public String keepScalarCondition(NextSchemaProductCQ subQuery)
+    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
+    public String keepScalarCondition(NextSchemaProductCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }
-    public String keepSpecifyMyselfDerived(NextSchemaProductCQ subQuery)
+    public String keepSpecifyMyselfDerived(NextSchemaProductCQ sq)
     { throwIICBOE("(Specify)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerived(NextSchemaProductCQ subQuery)
+    public String keepQueryMyselfDerived(NextSchemaProductCQ sq)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerivedParameter(Object parameterValue)
+    public String keepQueryMyselfDerivedParameter(Object vl)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepMyselfExists(NextSchemaProductCQ subQuery)
+    public String keepMyselfExists(NextSchemaProductCQ sq)
     { throwIICBOE("MyselfExists"); return null;}
-    public String keepMyselfInScope(NextSchemaProductCQ subQuery)
+    public String keepMyselfInScope(NextSchemaProductCQ sq)
     { throwIICBOE("MyselfInScope"); return null;}
 
     protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()

@@ -346,8 +346,8 @@ public class BsSynonymProductStatusCB extends AbstractConditionBean {
         public HpSDRFunction<SynonymProductCB, SynonymProductStatusCQ> derivedSynonymProductList() {
             assertDerived("synonymProductList"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<SynonymProductCB, SynonymProductStatusCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<SynonymProductCB, SynonymProductStatusCQ>() {
-                public void setup(String function, SubQuery<SynonymProductCB> subQuery, SynonymProductStatusCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsderiveSynonymProductList(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<SynonymProductCB> sq, SynonymProductStatusCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsderiveSynonymProductList(fn, sq, al, op); } }, _dbmetaProvider);
         }
         /**
          * Prepare for (Specify)MyselfDerived (SubQuery).
@@ -356,8 +356,8 @@ public class BsSynonymProductStatusCB extends AbstractConditionBean {
         public HpSDRFunction<SynonymProductStatusCB, SynonymProductStatusCQ> myselfDerived() {
             assertDerived("myselfDerived"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<SynonymProductStatusCB, SynonymProductStatusCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<SynonymProductStatusCB, SynonymProductStatusCQ>() {
-                public void setup(String function, SubQuery<SynonymProductStatusCB> subQuery, SynonymProductStatusCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsmyselfDerive(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<SynonymProductStatusCB> sq, SynonymProductStatusCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsmyselfDerive(fn, sq, al, op); } }, _dbmetaProvider);
         }
     }
 

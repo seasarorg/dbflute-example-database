@@ -96,57 +96,57 @@ public class BsWhiteQuotedCQ extends AbstractBsWhiteQuotedCQ {
 
     protected Map<String, WhiteQuotedRefCQ> _select_ExistsReferrer_WhiteQuotedRefListMap;
     public Map<String, WhiteQuotedRefCQ> getSelect_ExistsReferrer_WhiteQuotedRefList() { return _select_ExistsReferrer_WhiteQuotedRefListMap; }
-    public String keepSelect_ExistsReferrer_WhiteQuotedRefList(WhiteQuotedRefCQ subQuery) {
+    public String keepSelect_ExistsReferrer_WhiteQuotedRefList(WhiteQuotedRefCQ sq) {
         if (_select_ExistsReferrer_WhiteQuotedRefListMap == null) { _select_ExistsReferrer_WhiteQuotedRefListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_select_ExistsReferrer_WhiteQuotedRefListMap.size() + 1);
-        _select_ExistsReferrer_WhiteQuotedRefListMap.put(key, subQuery); return "select_ExistsReferrer_WhiteQuotedRefList." + key;
+        String ky = "subQueryMapKey" + (_select_ExistsReferrer_WhiteQuotedRefListMap.size() + 1);
+        _select_ExistsReferrer_WhiteQuotedRefListMap.put(ky, sq); return "select_ExistsReferrer_WhiteQuotedRefList." + ky;
     }
 
     protected Map<String, WhiteQuotedRefCQ> _select_NotExistsReferrer_WhiteQuotedRefListMap;
     public Map<String, WhiteQuotedRefCQ> getSelect_NotExistsReferrer_WhiteQuotedRefList() { return _select_NotExistsReferrer_WhiteQuotedRefListMap; }
-    public String keepSelect_NotExistsReferrer_WhiteQuotedRefList(WhiteQuotedRefCQ subQuery) {
+    public String keepSelect_NotExistsReferrer_WhiteQuotedRefList(WhiteQuotedRefCQ sq) {
         if (_select_NotExistsReferrer_WhiteQuotedRefListMap == null) { _select_NotExistsReferrer_WhiteQuotedRefListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_select_NotExistsReferrer_WhiteQuotedRefListMap.size() + 1);
-        _select_NotExistsReferrer_WhiteQuotedRefListMap.put(key, subQuery); return "select_NotExistsReferrer_WhiteQuotedRefList." + key;
+        String ky = "subQueryMapKey" + (_select_NotExistsReferrer_WhiteQuotedRefListMap.size() + 1);
+        _select_NotExistsReferrer_WhiteQuotedRefListMap.put(ky, sq); return "select_NotExistsReferrer_WhiteQuotedRefList." + ky;
     }
 
     protected Map<String, WhiteQuotedRefCQ> _select_SpecifyDerivedReferrer_WhiteQuotedRefListMap;
     public Map<String, WhiteQuotedRefCQ> getSelect_SpecifyDerivedReferrer_WhiteQuotedRefList() { return _select_SpecifyDerivedReferrer_WhiteQuotedRefListMap; }
-    public String keepSelect_SpecifyDerivedReferrer_WhiteQuotedRefList(WhiteQuotedRefCQ subQuery) {
+    public String keepSelect_SpecifyDerivedReferrer_WhiteQuotedRefList(WhiteQuotedRefCQ sq) {
         if (_select_SpecifyDerivedReferrer_WhiteQuotedRefListMap == null) { _select_SpecifyDerivedReferrer_WhiteQuotedRefListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_select_SpecifyDerivedReferrer_WhiteQuotedRefListMap.size() + 1);
-        _select_SpecifyDerivedReferrer_WhiteQuotedRefListMap.put(key, subQuery); return "select_SpecifyDerivedReferrer_WhiteQuotedRefList." + key;
+        String ky = "subQueryMapKey" + (_select_SpecifyDerivedReferrer_WhiteQuotedRefListMap.size() + 1);
+        _select_SpecifyDerivedReferrer_WhiteQuotedRefListMap.put(ky, sq); return "select_SpecifyDerivedReferrer_WhiteQuotedRefList." + ky;
     }
 
     protected Map<String, WhiteQuotedRefCQ> _select_InScopeRelation_WhiteQuotedRefListMap;
     public Map<String, WhiteQuotedRefCQ> getSelect_InScopeRelation_WhiteQuotedRefList() { return _select_InScopeRelation_WhiteQuotedRefListMap; }
-    public String keepSelect_InScopeRelation_WhiteQuotedRefList(WhiteQuotedRefCQ subQuery) {
+    public String keepSelect_InScopeRelation_WhiteQuotedRefList(WhiteQuotedRefCQ sq) {
         if (_select_InScopeRelation_WhiteQuotedRefListMap == null) { _select_InScopeRelation_WhiteQuotedRefListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_select_InScopeRelation_WhiteQuotedRefListMap.size() + 1);
-        _select_InScopeRelation_WhiteQuotedRefListMap.put(key, subQuery); return "select_InScopeRelation_WhiteQuotedRefList." + key;
+        String ky = "subQueryMapKey" + (_select_InScopeRelation_WhiteQuotedRefListMap.size() + 1);
+        _select_InScopeRelation_WhiteQuotedRefListMap.put(ky, sq); return "select_InScopeRelation_WhiteQuotedRefList." + ky;
     }
 
     protected Map<String, WhiteQuotedRefCQ> _select_NotInScopeRelation_WhiteQuotedRefListMap;
     public Map<String, WhiteQuotedRefCQ> getSelect_NotInScopeRelation_WhiteQuotedRefList() { return _select_NotInScopeRelation_WhiteQuotedRefListMap; }
-    public String keepSelect_NotInScopeRelation_WhiteQuotedRefList(WhiteQuotedRefCQ subQuery) {
+    public String keepSelect_NotInScopeRelation_WhiteQuotedRefList(WhiteQuotedRefCQ sq) {
         if (_select_NotInScopeRelation_WhiteQuotedRefListMap == null) { _select_NotInScopeRelation_WhiteQuotedRefListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_select_NotInScopeRelation_WhiteQuotedRefListMap.size() + 1);
-        _select_NotInScopeRelation_WhiteQuotedRefListMap.put(key, subQuery); return "select_NotInScopeRelation_WhiteQuotedRefList." + key;
+        String ky = "subQueryMapKey" + (_select_NotInScopeRelation_WhiteQuotedRefListMap.size() + 1);
+        _select_NotInScopeRelation_WhiteQuotedRefListMap.put(ky, sq); return "select_NotInScopeRelation_WhiteQuotedRefList." + ky;
     }
 
     protected Map<String, WhiteQuotedRefCQ> _select_QueryDerivedReferrer_WhiteQuotedRefListMap;
     public Map<String, WhiteQuotedRefCQ> getSelect_QueryDerivedReferrer_WhiteQuotedRefList() { return _select_QueryDerivedReferrer_WhiteQuotedRefListMap; }
-    public String keepSelect_QueryDerivedReferrer_WhiteQuotedRefList(WhiteQuotedRefCQ subQuery) {
+    public String keepSelect_QueryDerivedReferrer_WhiteQuotedRefList(WhiteQuotedRefCQ sq) {
         if (_select_QueryDerivedReferrer_WhiteQuotedRefListMap == null) { _select_QueryDerivedReferrer_WhiteQuotedRefListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_select_QueryDerivedReferrer_WhiteQuotedRefListMap.size() + 1);
-        _select_QueryDerivedReferrer_WhiteQuotedRefListMap.put(key, subQuery); return "select_QueryDerivedReferrer_WhiteQuotedRefList." + key;
+        String ky = "subQueryMapKey" + (_select_QueryDerivedReferrer_WhiteQuotedRefListMap.size() + 1);
+        _select_QueryDerivedReferrer_WhiteQuotedRefListMap.put(ky, sq); return "select_QueryDerivedReferrer_WhiteQuotedRefList." + ky;
     }
     protected Map<String, Object> _select_QueryDerivedReferrer_WhiteQuotedRefListParameterMap;
     public Map<String, Object> getSelect_QueryDerivedReferrer_WhiteQuotedRefListParameter() { return _select_QueryDerivedReferrer_WhiteQuotedRefListParameterMap; }
-    public String keepSelect_QueryDerivedReferrer_WhiteQuotedRefListParameter(Object parameterValue) {
+    public String keepSelect_QueryDerivedReferrer_WhiteQuotedRefListParameter(Object vl) {
         if (_select_QueryDerivedReferrer_WhiteQuotedRefListParameterMap == null) { _select_QueryDerivedReferrer_WhiteQuotedRefListParameterMap = newLinkedHashMapSized(4); }
-        String key = "subQueryParameterKey" + (_select_QueryDerivedReferrer_WhiteQuotedRefListParameterMap.size() + 1);
-        _select_QueryDerivedReferrer_WhiteQuotedRefListParameterMap.put(key, parameterValue); return "select_QueryDerivedReferrer_WhiteQuotedRefListParameter." + key;
+        String ky = "subQueryParameterKey" + (_select_QueryDerivedReferrer_WhiteQuotedRefListParameterMap.size() + 1);
+        _select_QueryDerivedReferrer_WhiteQuotedRefListParameterMap.put(ky, vl); return "select_QueryDerivedReferrer_WhiteQuotedRefListParameter." + ky;
     }
 
     /** 
@@ -224,7 +224,7 @@ public class BsWhiteQuotedCQ extends AbstractBsWhiteQuotedCQ {
     // ===================================================================================
     //                                                                         Union Query
     //                                                                         ===========
-    protected void reflectRelationOnUnionQuery(ConditionQuery baseQueryAsSuper, ConditionQuery unionQueryAsSuper) {
+    protected void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
     }
 
     // ===================================================================================
@@ -239,10 +239,10 @@ public class BsWhiteQuotedCQ extends AbstractBsWhiteQuotedCQ {
     //                                                                     ===============
     protected Map<String, WhiteQuotedCQ> _scalarConditionMap;
     public Map<String, WhiteQuotedCQ> getScalarCondition() { return _scalarConditionMap; }
-    public String keepScalarCondition(WhiteQuotedCQ subQuery) {
+    public String keepScalarCondition(WhiteQuotedCQ sq) {
         if (_scalarConditionMap == null) { _scalarConditionMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
-        _scalarConditionMap.put(key, subQuery); return "scalarCondition." + key;
+        String ky = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
+        _scalarConditionMap.put(ky, sq); return "scalarCondition." + ky;
     }
 
     // ===================================================================================
@@ -250,25 +250,25 @@ public class BsWhiteQuotedCQ extends AbstractBsWhiteQuotedCQ {
     //                                                                       =============
     protected Map<String, WhiteQuotedCQ> _specifyMyselfDerivedMap;
     public Map<String, WhiteQuotedCQ> getSpecifyMyselfDerived() { return _specifyMyselfDerivedMap; }
-    public String keepSpecifyMyselfDerived(WhiteQuotedCQ subQuery) {
+    public String keepSpecifyMyselfDerived(WhiteQuotedCQ sq) {
         if (_specifyMyselfDerivedMap == null) { _specifyMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
-        _specifyMyselfDerivedMap.put(key, subQuery); return "specifyMyselfDerived." + key;
+        String ky = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
+        _specifyMyselfDerivedMap.put(ky, sq); return "specifyMyselfDerived." + ky;
     }
 
     protected Map<String, WhiteQuotedCQ> _queryMyselfDerivedMap;
     public Map<String, WhiteQuotedCQ> getQueryMyselfDerived() { return _queryMyselfDerivedMap; }
-    public String keepQueryMyselfDerived(WhiteQuotedCQ subQuery) {
+    public String keepQueryMyselfDerived(WhiteQuotedCQ sq) {
         if (_queryMyselfDerivedMap == null) { _queryMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
-        _queryMyselfDerivedMap.put(key, subQuery); return "queryMyselfDerived." + key;
+        String ky = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
+        _queryMyselfDerivedMap.put(ky, sq); return "queryMyselfDerived." + ky;
     }
     protected Map<String, Object> _qyeryMyselfDerivedParameterMap;
     public Map<String, Object> getQueryMyselfDerivedParameter() { return _qyeryMyselfDerivedParameterMap; }
-    public String keepQueryMyselfDerivedParameter(Object parameterValue) {
+    public String keepQueryMyselfDerivedParameter(Object vl) {
         if (_qyeryMyselfDerivedParameterMap == null) { _qyeryMyselfDerivedParameterMap = newLinkedHashMapSized(4); }
-        String key = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
-        _qyeryMyselfDerivedParameterMap.put(key, parameterValue); return "queryMyselfDerivedParameter." + key;
+        String ky = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
+        _qyeryMyselfDerivedParameterMap.put(ky, vl); return "queryMyselfDerivedParameter." + ky;
     }
 
     // ===================================================================================
@@ -276,10 +276,10 @@ public class BsWhiteQuotedCQ extends AbstractBsWhiteQuotedCQ {
     //                                                                        ============
     protected Map<String, WhiteQuotedCQ> _myselfExistsMap;
     public Map<String, WhiteQuotedCQ> getMyselfExists() { return _myselfExistsMap; }
-    public String keepMyselfExists(WhiteQuotedCQ subQuery) {
+    public String keepMyselfExists(WhiteQuotedCQ sq) {
         if (_myselfExistsMap == null) { _myselfExistsMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
-        _myselfExistsMap.put(key, subQuery); return "myselfExists." + key;
+        String ky = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
+        _myselfExistsMap.put(ky, sq); return "myselfExists." + ky;
     }
 
     // ===================================================================================
@@ -287,10 +287,10 @@ public class BsWhiteQuotedCQ extends AbstractBsWhiteQuotedCQ {
     //                                                                       =============
     protected Map<String, WhiteQuotedCQ> _myselfInScopeMap;
     public Map<String, WhiteQuotedCQ> getMyselfInScope() { return _myselfInScopeMap; }
-    public String keepMyselfInScope(WhiteQuotedCQ subQuery) {
+    public String keepMyselfInScope(WhiteQuotedCQ sq) {
         if (_myselfInScopeMap == null) { _myselfInScopeMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
-        _myselfInScopeMap.put(key, subQuery); return "myselfInScope." + key;
+        String ky = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
+        _myselfInScopeMap.put(ky, sq); return "myselfInScope." + ky;
     }
 
     // ===================================================================================

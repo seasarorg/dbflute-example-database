@@ -205,8 +205,8 @@ public abstract class AbstractBsWhiteLineSepCommentCQ extends AbstractConditionQ
      */
     public void setLineSepCommentCode_IsNotNull() { regLineSepCommentCode(CK_ISNN, DOBJ); }
 
-    protected void regLineSepCommentCode(ConditionKey k, Object v) { regQ(k, v, getCValueLineSepCommentCode(), "LINE_SEP_COMMENT_CODE"); }
-    abstract protected ConditionValue getCValueLineSepCommentCode();
+    protected void regLineSepCommentCode(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueLineSepCommentCode(), "LINE_SEP_COMMENT_CODE"); }
+    protected abstract ConditionValue getCValueLineSepCommentCode();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -309,8 +309,8 @@ public abstract class AbstractBsWhiteLineSepCommentCQ extends AbstractConditionQ
      */
     public void setLineSepCommentName_IsNotNull() { regLineSepCommentName(CK_ISNN, DOBJ); }
 
-    protected void regLineSepCommentName(ConditionKey k, Object v) { regQ(k, v, getCValueLineSepCommentName(), "LINE_SEP_COMMENT_NAME"); }
-    abstract protected ConditionValue getCValueLineSepCommentName();
+    protected void regLineSepCommentName(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueLineSepCommentName(), "LINE_SEP_COMMENT_NAME"); }
+    protected abstract ConditionValue getCValueLineSepCommentName();
 
     // ===================================================================================
     //                                                                     ScalarCondition
@@ -417,22 +417,22 @@ public abstract class AbstractBsWhiteLineSepCommentCQ extends AbstractConditionQ
         return xcreateSSQFunction(CK_LE.getOperand());
     }
 
-    protected HpSSQFunction<WhiteLineSepCommentCB> xcreateSSQFunction(final String operand) {
+    protected HpSSQFunction<WhiteLineSepCommentCB> xcreateSSQFunction(final String rd) {
         return new HpSSQFunction<WhiteLineSepCommentCB>(new HpSSQSetupper<WhiteLineSepCommentCB>() {
-            public void setup(String function, SubQuery<WhiteLineSepCommentCB> subQuery, HpSSQOption<WhiteLineSepCommentCB> option) {
-                xscalarCondition(function, subQuery, operand, option);
+            public void setup(String fn, SubQuery<WhiteLineSepCommentCB> sq, HpSSQOption<WhiteLineSepCommentCB> op) {
+                xscalarCondition(fn, sq, rd, op);
             }
         });
     }
 
-    protected void xscalarCondition(String function, SubQuery<WhiteLineSepCommentCB> subQuery, String operand, HpSSQOption<WhiteLineSepCommentCB> option) {
-        assertObjectNotNull("subQuery<WhiteLineSepCommentCB>", subQuery);
-        WhiteLineSepCommentCB cb = xcreateScalarConditionCB(); subQuery.query(cb);
-        String subQueryPropertyName = keepScalarCondition(cb.query()); // for saving query-value
-        option.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
-        registerScalarCondition(function, cb.query(), subQueryPropertyName, operand, option);
+    protected void xscalarCondition(String fn, SubQuery<WhiteLineSepCommentCB> sq, String rd, HpSSQOption<WhiteLineSepCommentCB> op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteLineSepCommentCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        String pp = keepScalarCondition(cb.query()); // for saving query-value
+        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
-    public abstract String keepScalarCondition(WhiteLineSepCommentCQ subQuery);
+    public abstract String keepScalarCondition(WhiteLineSepCommentCQ sq);
 
     protected WhiteLineSepCommentCB xcreateScalarConditionCB() {
         WhiteLineSepCommentCB cb = new WhiteLineSepCommentCB();
@@ -449,13 +449,14 @@ public abstract class AbstractBsWhiteLineSepCommentCQ extends AbstractConditionQ
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    public void xsmyselfDerive(String function, SubQuery<WhiteLineSepCommentCB> subQuery, String aliasName, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<WhiteLineSepCommentCB>", subQuery);
-        WhiteLineSepCommentCB cb = new WhiteLineSepCommentCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
-        registerSpecifyMyselfDerived(function, cb.query(), "LINE_SEP_COMMENT_CODE", "LINE_SEP_COMMENT_CODE", subQueryPropertyName, "myselfDerived", aliasName, option);
+    public void xsmyselfDerive(String fn, SubQuery<WhiteLineSepCommentCB> sq, String al, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteLineSepCommentCB cb = new WhiteLineSepCommentCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "LINE_SEP_COMMENT_CODE";
+        String pp = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
+        registerSpecifyMyselfDerived(fn, cb.query(), pk, pk, pp, "myselfDerived", al, op);
     }
-    public abstract String keepSpecifyMyselfDerived(WhiteLineSepCommentCQ subQuery);
+    public abstract String keepSpecifyMyselfDerived(WhiteLineSepCommentCQ sq);
 
     /**
      * Prepare for (Query)MyselfDerived (SubQuery).
@@ -466,20 +467,21 @@ public abstract class AbstractBsWhiteLineSepCommentCQ extends AbstractConditionQ
     }
     protected HpQDRFunction<WhiteLineSepCommentCB> xcreateQDRFunctionMyselfDerived() {
         return new HpQDRFunction<WhiteLineSepCommentCB>(new HpQDRSetupper<WhiteLineSepCommentCB>() {
-            public void setup(String function, SubQuery<WhiteLineSepCommentCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-                xqderiveMyselfDerived(function, subQuery, operand, value, option);
+            public void setup(String fn, SubQuery<WhiteLineSepCommentCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+                xqderiveMyselfDerived(fn, sq, rd, vl, op);
             }
         });
     }
-    public void xqderiveMyselfDerived(String function, SubQuery<WhiteLineSepCommentCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<WhiteLineSepCommentCB>", subQuery);
-        WhiteLineSepCommentCB cb = new WhiteLineSepCommentCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepQueryMyselfDerived(cb.query()); // for saving query-value.
-        String parameterPropertyName = keepQueryMyselfDerivedParameter(value);
-        registerQueryMyselfDerived(function, cb.query(), "LINE_SEP_COMMENT_CODE", "LINE_SEP_COMMENT_CODE", subQueryPropertyName, "myselfDerived", operand, value, parameterPropertyName, option);
+    public void xqderiveMyselfDerived(String fn, SubQuery<WhiteLineSepCommentCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteLineSepCommentCB cb = new WhiteLineSepCommentCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "LINE_SEP_COMMENT_CODE";
+        String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
+        String prpp = keepQueryMyselfDerivedParameter(vl);
+        registerQueryMyselfDerived(fn, cb.query(), pk, pk, sqpp, "myselfDerived", rd, vl, prpp, op);
     }
-    public abstract String keepQueryMyselfDerived(WhiteLineSepCommentCQ subQuery);
-    public abstract String keepQueryMyselfDerivedParameter(Object parameterValue);
+    public abstract String keepQueryMyselfDerived(WhiteLineSepCommentCQ sq);
+    public abstract String keepQueryMyselfDerivedParameter(Object vl);
 
     // ===================================================================================
     //                                                                        MyselfExists
@@ -489,12 +491,12 @@ public abstract class AbstractBsWhiteLineSepCommentCQ extends AbstractConditionQ
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfExists(SubQuery<WhiteLineSepCommentCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteLineSepCommentCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteLineSepCommentCB cb = new WhiteLineSepCommentCB(); cb.xsetupForMyselfExists(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfExists(cb.query()); // for saving query-value.
-        registerMyselfExists(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfExists(cb.query()); // for saving query-value.
+        registerMyselfExists(cb.query(), pp);
     }
-    public abstract String keepMyselfExists(WhiteLineSepCommentCQ subQuery);
+    public abstract String keepMyselfExists(WhiteLineSepCommentCQ sq);
 
     // ===================================================================================
     //                                                                       MyselfInScope
@@ -504,12 +506,12 @@ public abstract class AbstractBsWhiteLineSepCommentCQ extends AbstractConditionQ
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfInScope(SubQuery<WhiteLineSepCommentCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteLineSepCommentCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteLineSepCommentCB cb = new WhiteLineSepCommentCB(); cb.xsetupForMyselfInScope(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfInScope(cb.query()); // for saving query-value.
-        registerMyselfInScope(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfInScope(cb.query()); // for saving query-value.
+        registerMyselfInScope(cb.query(), pp);
     }
-    public abstract String keepMyselfInScope(WhiteLineSepCommentCQ subQuery);
+    public abstract String keepMyselfInScope(WhiteLineSepCommentCQ sq);
 
     // ===================================================================================
     //                                                                    Full Text Search
@@ -535,7 +537,7 @@ public abstract class AbstractBsWhiteLineSepCommentCQ extends AbstractConditionQ
      * @param conditionValue The condition value embedded without binding (by MySQL restriction) but escaped. (NullAllowed: if null or empty, no condition)
      * @param modifier The modifier of full-text search. (NullAllowed: If the value is null, no modifier specified)
      */
-    public void match(java.util.List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList
+    public void match(List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList
                     , String conditionValue
                     , org.seasar.dbflute.dbway.WayOfMySQL.FullTextSearchModifier modifier) {
         xdoMatchForMySQL(textColumnList, conditionValue, modifier);

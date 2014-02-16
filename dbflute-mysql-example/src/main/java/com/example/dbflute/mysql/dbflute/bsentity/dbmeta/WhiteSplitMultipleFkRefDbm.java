@@ -57,16 +57,16 @@ public class WhiteSplitMultipleFkRefDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgFirstId implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteSplitMultipleFkRef)e).getFirstId(); }
-        public void write(Entity e, Object v) { ((WhiteSplitMultipleFkRef)e).setFirstId(cti(v)); }
+        public Object read(Entity et) { return ((WhiteSplitMultipleFkRef)et).getFirstId(); }
+        public void write(Entity et, Object vl) { ((WhiteSplitMultipleFkRef)et).setFirstId(cti(vl)); }
     }
     public static class EpgSecondCode implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteSplitMultipleFkRef)e).getSecondCode(); }
-        public void write(Entity e, Object v) { ((WhiteSplitMultipleFkRef)e).setSecondCode((String)v); }
+        public Object read(Entity et) { return ((WhiteSplitMultipleFkRef)et).getSecondCode(); }
+        public void write(Entity et, Object vl) { ((WhiteSplitMultipleFkRef)et).setSecondCode((String)vl); }
     }
     public static class EpgRefName implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteSplitMultipleFkRef)e).getRefName(); }
-        public void write(Entity e, Object v) { ((WhiteSplitMultipleFkRef)e).setRefName((String)v); }
+        public Object read(Entity et) { return ((WhiteSplitMultipleFkRef)et).getRefName(); }
+        public void write(Entity et, Object vl) { ((WhiteSplitMultipleFkRef)et).setRefName((String)vl); }
     }
 
     // ===================================================================================
@@ -152,10 +152,10 @@ public class WhiteSplitMultipleFkRefDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((WhiteSplitMultipleFkRef)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((WhiteSplitMultipleFkRef)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((WhiteSplitMultipleFkRef)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((WhiteSplitMultipleFkRef)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

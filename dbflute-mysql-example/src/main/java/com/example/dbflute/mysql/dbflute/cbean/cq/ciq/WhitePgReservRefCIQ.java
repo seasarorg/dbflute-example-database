@@ -90,18 +90,18 @@ public class WhitePgReservRefCIQ extends AbstractBsWhitePgReservRefCQ {
     { return _myCQ.keepClassSynonym_InScopeRelation_WhitePgReserv(sq); }
     public String keepClassSynonym_NotInScopeRelation_WhitePgReserv(WhitePgReservCQ sq)
     { return _myCQ.keepClassSynonym_NotInScopeRelation_WhitePgReserv(sq); }
-    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) { return null; }
-    public String keepScalarCondition(WhitePgReservRefCQ subQuery)
+    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
+    public String keepScalarCondition(WhitePgReservRefCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }
-    public String keepSpecifyMyselfDerived(WhitePgReservRefCQ subQuery)
+    public String keepSpecifyMyselfDerived(WhitePgReservRefCQ sq)
     { throwIICBOE("(Specify)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerived(WhitePgReservRefCQ subQuery)
+    public String keepQueryMyselfDerived(WhitePgReservRefCQ sq)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerivedParameter(Object parameterValue)
+    public String keepQueryMyselfDerivedParameter(Object vl)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepMyselfExists(WhitePgReservRefCQ subQuery)
+    public String keepMyselfExists(WhitePgReservRefCQ sq)
     { throwIICBOE("MyselfExists"); return null;}
-    public String keepMyselfInScope(WhitePgReservRefCQ subQuery)
+    public String keepMyselfInScope(WhitePgReservRefCQ sq)
     { throwIICBOE("MyselfInScope"); return null;}
 
     protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()

@@ -86,18 +86,18 @@ public class WhiteColumnExceptCIQ extends AbstractBsWhiteColumnExceptCQ {
     //                                                                ====================
     protected ConditionValue getCValueExceptColumnId() { return _myCQ.getExceptColumnId(); }
     protected ConditionValue getCValueColumnExceptTest() { return _myCQ.getColumnExceptTest(); }
-    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) { return null; }
-    public String keepScalarCondition(WhiteColumnExceptCQ subQuery)
+    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
+    public String keepScalarCondition(WhiteColumnExceptCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }
-    public String keepSpecifyMyselfDerived(WhiteColumnExceptCQ subQuery)
+    public String keepSpecifyMyselfDerived(WhiteColumnExceptCQ sq)
     { throwIICBOE("(Specify)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerived(WhiteColumnExceptCQ subQuery)
+    public String keepQueryMyselfDerived(WhiteColumnExceptCQ sq)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerivedParameter(Object parameterValue)
+    public String keepQueryMyselfDerivedParameter(Object vl)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepMyselfExists(WhiteColumnExceptCQ subQuery)
+    public String keepMyselfExists(WhiteColumnExceptCQ sq)
     { throwIICBOE("MyselfExists"); return null;}
-    public String keepMyselfInScope(WhiteColumnExceptCQ subQuery)
+    public String keepMyselfInScope(WhiteColumnExceptCQ sq)
     { throwIICBOE("MyselfInScope"); return null;}
 
     protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()

@@ -41,12 +41,12 @@ public class NextSchemaProductDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgProductId implements PropertyGateway {
-        public Object read(Entity e) { return ((NextSchemaProduct)e).getProductId(); }
-        public void write(Entity e, Object v) { ((NextSchemaProduct)e).setProductId(cti(v)); }
+        public Object read(Entity et) { return ((NextSchemaProduct)et).getProductId(); }
+        public void write(Entity et, Object vl) { ((NextSchemaProduct)et).setProductId(cti(vl)); }
     }
     public static class EpgProductName implements PropertyGateway {
-        public Object read(Entity e) { return ((NextSchemaProduct)e).getProductName(); }
-        public void write(Entity e, Object v) { ((NextSchemaProduct)e).setProductName((String)v); }
+        public Object read(Entity et) { return ((NextSchemaProduct)et).getProductName(); }
+        public void write(Entity et, Object vl) { ((NextSchemaProduct)et).setProductName((String)vl); }
     }
 
     // ===================================================================================
@@ -99,8 +99,8 @@ public class NextSchemaProductDbm extends AbstractDBMeta {
     //                                     Referrer Property
     //                                     -----------------
     public ReferrerInfo referrerWhiteSameNameList() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnProductId(), WhiteSameNameDbm.getInstance().columnNextSchemaProductId());
-        return cri("FK_WHITE_SAME_NAME_NEXT_SCHEMA_PRODUCT", "whiteSameNameList", this, WhiteSameNameDbm.getInstance(), map, false, "nextSchemaProduct");
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnProductId(), WhiteSameNameDbm.getInstance().columnNextSchemaProductId());
+        return cri("FK_WHITE_SAME_NAME_NEXT_SCHEMA_PRODUCT", "whiteSameNameList", this, WhiteSameNameDbm.getInstance(), mp, false, "nextSchemaProduct");
     }
 
     // ===================================================================================
@@ -132,10 +132,10 @@ public class NextSchemaProductDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((NextSchemaProduct)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((NextSchemaProduct)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((NextSchemaProduct)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((NextSchemaProduct)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

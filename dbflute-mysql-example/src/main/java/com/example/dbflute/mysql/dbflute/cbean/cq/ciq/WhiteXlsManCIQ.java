@@ -87,18 +87,18 @@ public class WhiteXlsManCIQ extends AbstractBsWhiteXlsManCQ {
     protected ConditionValue getCValueXlsManId() { return _myCQ.getXlsManId(); }
     protected ConditionValue getCValueStringConverted() { return _myCQ.getStringConverted(); }
     protected ConditionValue getCValueTimestampConverted() { return _myCQ.getTimestampConverted(); }
-    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) { return null; }
-    public String keepScalarCondition(WhiteXlsManCQ subQuery)
+    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
+    public String keepScalarCondition(WhiteXlsManCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }
-    public String keepSpecifyMyselfDerived(WhiteXlsManCQ subQuery)
+    public String keepSpecifyMyselfDerived(WhiteXlsManCQ sq)
     { throwIICBOE("(Specify)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerived(WhiteXlsManCQ subQuery)
+    public String keepQueryMyselfDerived(WhiteXlsManCQ sq)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerivedParameter(Object parameterValue)
+    public String keepQueryMyselfDerivedParameter(Object vl)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepMyselfExists(WhiteXlsManCQ subQuery)
+    public String keepMyselfExists(WhiteXlsManCQ sq)
     { throwIICBOE("MyselfExists"); return null;}
-    public String keepMyselfInScope(WhiteXlsManCQ subQuery)
+    public String keepMyselfInScope(WhiteXlsManCQ sq)
     { throwIICBOE("MyselfInScope"); return null;}
 
     protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()

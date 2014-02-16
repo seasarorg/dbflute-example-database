@@ -387,8 +387,8 @@ public class BsWhiteSameNameRefCB extends AbstractConditionBean {
         public HpSDRFunction<WhiteSameNameRefCB, WhiteSameNameRefCQ> myselfDerived() {
             assertDerived("myselfDerived"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<WhiteSameNameRefCB, WhiteSameNameRefCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<WhiteSameNameRefCB, WhiteSameNameRefCQ>() {
-                public void setup(String function, SubQuery<WhiteSameNameRefCB> subQuery, WhiteSameNameRefCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsmyselfDerive(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<WhiteSameNameRefCB> sq, WhiteSameNameRefCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsmyselfDerive(fn, sq, al, op); } }, _dbmetaProvider);
         }
     }
 

@@ -162,12 +162,12 @@ public abstract class AbstractBsWhitePgReservCQ extends AbstractConditionQuery {
      * @param subQuery The sub-query of WhitePgReservRefList for 'exists'. (NotNull)
      */
     public void existsWhitePgReservRefList(SubQuery<WhitePgReservRefCB> subQuery) {
-        assertObjectNotNull("subQuery<WhitePgReservRefCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhitePgReservRefCB cb = new WhitePgReservRefCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepClassSynonym_ExistsReferrer_WhitePgReservRefList(cb.query()); // for saving query-value.
-        registerExistsReferrer(cb.query(), "CLASS", "CLASS", subQueryPropertyName, "whitePgReservRefList");
+        String pp = keepClassSynonym_ExistsReferrer_WhitePgReservRefList(cb.query()); // for saving query-value.
+        registerExistsReferrer(cb.query(), "CLASS", "CLASS", pp, "whitePgReservRefList");
     }
-    public abstract String keepClassSynonym_ExistsReferrer_WhitePgReservRefList(WhitePgReservRefCQ subQuery);
+    public abstract String keepClassSynonym_ExistsReferrer_WhitePgReservRefList(WhitePgReservRefCQ sq);
 
     /**
      * Set up NotExistsReferrer (co-related sub-query). <br />
@@ -183,12 +183,12 @@ public abstract class AbstractBsWhitePgReservCQ extends AbstractConditionQuery {
      * @param subQuery The sub-query of ClassSynonym_NotExistsReferrer_WhitePgReservRefList for 'not exists'. (NotNull)
      */
     public void notExistsWhitePgReservRefList(SubQuery<WhitePgReservRefCB> subQuery) {
-        assertObjectNotNull("subQuery<WhitePgReservRefCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhitePgReservRefCB cb = new WhitePgReservRefCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepClassSynonym_NotExistsReferrer_WhitePgReservRefList(cb.query()); // for saving query-value.
-        registerNotExistsReferrer(cb.query(), "CLASS", "CLASS", subQueryPropertyName, "whitePgReservRefList");
+        String pp = keepClassSynonym_NotExistsReferrer_WhitePgReservRefList(cb.query()); // for saving query-value.
+        registerNotExistsReferrer(cb.query(), "CLASS", "CLASS", pp, "whitePgReservRefList");
     }
-    public abstract String keepClassSynonym_NotExistsReferrer_WhitePgReservRefList(WhitePgReservRefCQ subQuery);
+    public abstract String keepClassSynonym_NotExistsReferrer_WhitePgReservRefList(WhitePgReservRefCQ sq);
 
     /**
      * Set up InScopeRelation (sub-query). <br />
@@ -197,12 +197,12 @@ public abstract class AbstractBsWhitePgReservCQ extends AbstractConditionQuery {
      * @param subQuery The sub-query of WhitePgReservRefList for 'in-scope'. (NotNull)
      */
     public void inScopeWhitePgReservRefList(SubQuery<WhitePgReservRefCB> subQuery) {
-        assertObjectNotNull("subQuery<WhitePgReservRefCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhitePgReservRefCB cb = new WhitePgReservRefCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String subQueryPropertyName = keepClassSynonym_InScopeRelation_WhitePgReservRefList(cb.query()); // for saving query-value.
-        registerInScopeRelation(cb.query(), "CLASS", "CLASS", subQueryPropertyName, "whitePgReservRefList");
+        String pp = keepClassSynonym_InScopeRelation_WhitePgReservRefList(cb.query()); // for saving query-value.
+        registerInScopeRelation(cb.query(), "CLASS", "CLASS", pp, "whitePgReservRefList");
     }
-    public abstract String keepClassSynonym_InScopeRelation_WhitePgReservRefList(WhitePgReservRefCQ subQuery);
+    public abstract String keepClassSynonym_InScopeRelation_WhitePgReservRefList(WhitePgReservRefCQ sq);
 
     /**
      * Set up NotInScopeRelation (sub-query). <br />
@@ -211,20 +211,20 @@ public abstract class AbstractBsWhitePgReservCQ extends AbstractConditionQuery {
      * @param subQuery The sub-query of WhitePgReservRefList for 'not in-scope'. (NotNull)
      */
     public void notInScopeWhitePgReservRefList(SubQuery<WhitePgReservRefCB> subQuery) {
-        assertObjectNotNull("subQuery<WhitePgReservRefCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhitePgReservRefCB cb = new WhitePgReservRefCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String subQueryPropertyName = keepClassSynonym_NotInScopeRelation_WhitePgReservRefList(cb.query()); // for saving query-value.
-        registerNotInScopeRelation(cb.query(), "CLASS", "CLASS", subQueryPropertyName, "whitePgReservRefList");
+        String pp = keepClassSynonym_NotInScopeRelation_WhitePgReservRefList(cb.query()); // for saving query-value.
+        registerNotInScopeRelation(cb.query(), "CLASS", "CLASS", pp, "whitePgReservRefList");
     }
-    public abstract String keepClassSynonym_NotInScopeRelation_WhitePgReservRefList(WhitePgReservRefCQ subQuery);
+    public abstract String keepClassSynonym_NotInScopeRelation_WhitePgReservRefList(WhitePgReservRefCQ sq);
 
-    public void xsderiveWhitePgReservRefList(String function, SubQuery<WhitePgReservRefCB> subQuery, String aliasName, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<WhitePgReservRefCB>", subQuery);
-        WhitePgReservRefCB cb = new WhitePgReservRefCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepClassSynonym_SpecifyDerivedReferrer_WhitePgReservRefList(cb.query()); // for saving query-value.
-        registerSpecifyDerivedReferrer(function, cb.query(), "CLASS", "CLASS", subQueryPropertyName, "whitePgReservRefList", aliasName, option);
+    public void xsderiveWhitePgReservRefList(String fn, SubQuery<WhitePgReservRefCB> sq, String al, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhitePgReservRefCB cb = new WhitePgReservRefCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pp = keepClassSynonym_SpecifyDerivedReferrer_WhitePgReservRefList(cb.query()); // for saving query-value.
+        registerSpecifyDerivedReferrer(fn, cb.query(), "CLASS", "CLASS", pp, "whitePgReservRefList", al, op);
     }
-    public abstract String keepClassSynonym_SpecifyDerivedReferrer_WhitePgReservRefList(WhitePgReservRefCQ subQuery);
+    public abstract String keepClassSynonym_SpecifyDerivedReferrer_WhitePgReservRefList(WhitePgReservRefCQ sq);
 
     /**
      * Prepare for (Query)DerivedReferrer. <br />
@@ -245,20 +245,20 @@ public abstract class AbstractBsWhitePgReservCQ extends AbstractConditionQuery {
     }
     protected HpQDRFunction<WhitePgReservRefCB> xcreateQDRFunctionWhitePgReservRefList() {
         return new HpQDRFunction<WhitePgReservRefCB>(new HpQDRSetupper<WhitePgReservRefCB>() {
-            public void setup(String function, SubQuery<WhitePgReservRefCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-                xqderiveWhitePgReservRefList(function, subQuery, operand, value, option);
+            public void setup(String fn, SubQuery<WhitePgReservRefCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+                xqderiveWhitePgReservRefList(fn, sq, rd, vl, op);
             }
         });
     }
-    public void xqderiveWhitePgReservRefList(String function, SubQuery<WhitePgReservRefCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<WhitePgReservRefCB>", subQuery);
-        WhitePgReservRefCB cb = new WhitePgReservRefCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepClassSynonym_QueryDerivedReferrer_WhitePgReservRefList(cb.query()); // for saving query-value.
-        String parameterPropertyName = keepClassSynonym_QueryDerivedReferrer_WhitePgReservRefListParameter(value);
-        registerQueryDerivedReferrer(function, cb.query(), "CLASS", "CLASS", subQueryPropertyName, "whitePgReservRefList", operand, value, parameterPropertyName, option);
+    public void xqderiveWhitePgReservRefList(String fn, SubQuery<WhitePgReservRefCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhitePgReservRefCB cb = new WhitePgReservRefCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String sqpp = keepClassSynonym_QueryDerivedReferrer_WhitePgReservRefList(cb.query()); // for saving query-value.
+        String prpp = keepClassSynonym_QueryDerivedReferrer_WhitePgReservRefListParameter(vl);
+        registerQueryDerivedReferrer(fn, cb.query(), "CLASS", "CLASS", sqpp, "whitePgReservRefList", rd, vl, prpp, op);
     }
-    public abstract String keepClassSynonym_QueryDerivedReferrer_WhitePgReservRefList(WhitePgReservRefCQ subQuery);
-    public abstract String keepClassSynonym_QueryDerivedReferrer_WhitePgReservRefListParameter(Object parameterValue);
+    public abstract String keepClassSynonym_QueryDerivedReferrer_WhitePgReservRefList(WhitePgReservRefCQ sq);
+    public abstract String keepClassSynonym_QueryDerivedReferrer_WhitePgReservRefListParameter(Object vl);
 
     /**
      * IsNull {is null}. And OnlyOnceRegistered. <br />
@@ -272,8 +272,8 @@ public abstract class AbstractBsWhitePgReservCQ extends AbstractConditionQuery {
      */
     public void setClassSynonym_IsNotNull() { regClassSynonym(CK_ISNN, DOBJ); }
 
-    protected void regClassSynonym(ConditionKey k, Object v) { regQ(k, v, getCValueClassSynonym(), "CLASS"); }
-    abstract protected ConditionValue getCValueClassSynonym();
+    protected void regClassSynonym(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueClassSynonym(), "CLASS"); }
+    protected abstract ConditionValue getCValueClassSynonym();
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -375,8 +375,8 @@ public abstract class AbstractBsWhitePgReservCQ extends AbstractConditionQuery {
      */
     public void setCaseSynonym_IsNotNull() { regCaseSynonym(CK_ISNN, DOBJ); }
 
-    protected void regCaseSynonym(ConditionKey k, Object v) { regQ(k, v, getCValueCaseSynonym(), "CASE"); }
-    abstract protected ConditionValue getCValueCaseSynonym();
+    protected void regCaseSynonym(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueCaseSynonym(), "CASE"); }
+    protected abstract ConditionValue getCValueCaseSynonym();
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -478,8 +478,8 @@ public abstract class AbstractBsWhitePgReservCQ extends AbstractConditionQuery {
      */
     public void setPackageSynonym_IsNotNull() { regPackageSynonym(CK_ISNN, DOBJ); }
 
-    protected void regPackageSynonym(ConditionKey k, Object v) { regQ(k, v, getCValuePackageSynonym(), "PACKAGE"); }
-    abstract protected ConditionValue getCValuePackageSynonym();
+    protected void regPackageSynonym(ConditionKey ky, Object vl) { regQ(ky, vl, getCValuePackageSynonym(), "PACKAGE"); }
+    protected abstract ConditionValue getCValuePackageSynonym();
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -581,8 +581,8 @@ public abstract class AbstractBsWhitePgReservCQ extends AbstractConditionQuery {
      */
     public void setDefaultSynonym_IsNotNull() { regDefaultSynonym(CK_ISNN, DOBJ); }
 
-    protected void regDefaultSynonym(ConditionKey k, Object v) { regQ(k, v, getCValueDefaultSynonym(), "DEFAULT"); }
-    abstract protected ConditionValue getCValueDefaultSynonym();
+    protected void regDefaultSynonym(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueDefaultSynonym(), "DEFAULT"); }
+    protected abstract ConditionValue getCValueDefaultSynonym();
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -684,8 +684,8 @@ public abstract class AbstractBsWhitePgReservCQ extends AbstractConditionQuery {
      */
     public void setNewSynonym_IsNotNull() { regNewSynonym(CK_ISNN, DOBJ); }
 
-    protected void regNewSynonym(ConditionKey k, Object v) { regQ(k, v, getCValueNewSynonym(), "NEW"); }
-    abstract protected ConditionValue getCValueNewSynonym();
+    protected void regNewSynonym(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueNewSynonym(), "NEW"); }
+    protected abstract ConditionValue getCValueNewSynonym();
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -787,8 +787,8 @@ public abstract class AbstractBsWhitePgReservCQ extends AbstractConditionQuery {
      */
     public void setNativeSynonym_IsNotNull() { regNativeSynonym(CK_ISNN, DOBJ); }
 
-    protected void regNativeSynonym(ConditionKey k, Object v) { regQ(k, v, getCValueNativeSynonym(), "NATIVE"); }
-    abstract protected ConditionValue getCValueNativeSynonym();
+    protected void regNativeSynonym(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueNativeSynonym(), "NATIVE"); }
+    protected abstract ConditionValue getCValueNativeSynonym();
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -890,8 +890,8 @@ public abstract class AbstractBsWhitePgReservCQ extends AbstractConditionQuery {
      */
     public void setVoidSynonym_IsNotNull() { regVoidSynonym(CK_ISNN, DOBJ); }
 
-    protected void regVoidSynonym(ConditionKey k, Object v) { regQ(k, v, getCValueVoidSynonym(), "VOID"); }
-    abstract protected ConditionValue getCValueVoidSynonym();
+    protected void regVoidSynonym(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueVoidSynonym(), "VOID"); }
+    protected abstract ConditionValue getCValueVoidSynonym();
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -993,8 +993,8 @@ public abstract class AbstractBsWhitePgReservCQ extends AbstractConditionQuery {
      */
     public void setPublicSynonym_IsNotNull() { regPublicSynonym(CK_ISNN, DOBJ); }
 
-    protected void regPublicSynonym(ConditionKey k, Object v) { regQ(k, v, getCValuePublicSynonym(), "PUBLIC"); }
-    abstract protected ConditionValue getCValuePublicSynonym();
+    protected void regPublicSynonym(ConditionKey ky, Object vl) { regQ(ky, vl, getCValuePublicSynonym(), "PUBLIC"); }
+    protected abstract ConditionValue getCValuePublicSynonym();
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -1096,8 +1096,8 @@ public abstract class AbstractBsWhitePgReservCQ extends AbstractConditionQuery {
      */
     public void setProtectedSynonym_IsNotNull() { regProtectedSynonym(CK_ISNN, DOBJ); }
 
-    protected void regProtectedSynonym(ConditionKey k, Object v) { regQ(k, v, getCValueProtectedSynonym(), "PROTECTED"); }
-    abstract protected ConditionValue getCValueProtectedSynonym();
+    protected void regProtectedSynonym(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueProtectedSynonym(), "PROTECTED"); }
+    protected abstract ConditionValue getCValueProtectedSynonym();
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -1199,8 +1199,8 @@ public abstract class AbstractBsWhitePgReservCQ extends AbstractConditionQuery {
      */
     public void setPrivateSynonym_IsNotNull() { regPrivateSynonym(CK_ISNN, DOBJ); }
 
-    protected void regPrivateSynonym(ConditionKey k, Object v) { regQ(k, v, getCValuePrivateSynonym(), "PRIVATE"); }
-    abstract protected ConditionValue getCValuePrivateSynonym();
+    protected void regPrivateSynonym(ConditionKey ky, Object vl) { regQ(ky, vl, getCValuePrivateSynonym(), "PRIVATE"); }
+    protected abstract ConditionValue getCValuePrivateSynonym();
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -1302,8 +1302,8 @@ public abstract class AbstractBsWhitePgReservCQ extends AbstractConditionQuery {
      */
     public void setInterfaceSynonym_IsNotNull() { regInterfaceSynonym(CK_ISNN, DOBJ); }
 
-    protected void regInterfaceSynonym(ConditionKey k, Object v) { regQ(k, v, getCValueInterfaceSynonym(), "INTERFACE"); }
-    abstract protected ConditionValue getCValueInterfaceSynonym();
+    protected void regInterfaceSynonym(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueInterfaceSynonym(), "INTERFACE"); }
+    protected abstract ConditionValue getCValueInterfaceSynonym();
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -1405,8 +1405,8 @@ public abstract class AbstractBsWhitePgReservCQ extends AbstractConditionQuery {
      */
     public void setAbstractSynonym_IsNotNull() { regAbstractSynonym(CK_ISNN, DOBJ); }
 
-    protected void regAbstractSynonym(ConditionKey k, Object v) { regQ(k, v, getCValueAbstractSynonym(), "ABSTRACT"); }
-    abstract protected ConditionValue getCValueAbstractSynonym();
+    protected void regAbstractSynonym(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueAbstractSynonym(), "ABSTRACT"); }
+    protected abstract ConditionValue getCValueAbstractSynonym();
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -1508,8 +1508,8 @@ public abstract class AbstractBsWhitePgReservCQ extends AbstractConditionQuery {
      */
     public void setFinalSynonym_IsNotNull() { regFinalSynonym(CK_ISNN, DOBJ); }
 
-    protected void regFinalSynonym(ConditionKey k, Object v) { regQ(k, v, getCValueFinalSynonym(), "FINAL"); }
-    abstract protected ConditionValue getCValueFinalSynonym();
+    protected void regFinalSynonym(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueFinalSynonym(), "FINAL"); }
+    protected abstract ConditionValue getCValueFinalSynonym();
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -1611,8 +1611,8 @@ public abstract class AbstractBsWhitePgReservCQ extends AbstractConditionQuery {
      */
     public void setFinallySynonym_IsNotNull() { regFinallySynonym(CK_ISNN, DOBJ); }
 
-    protected void regFinallySynonym(ConditionKey k, Object v) { regQ(k, v, getCValueFinallySynonym(), "FINALLY"); }
-    abstract protected ConditionValue getCValueFinallySynonym();
+    protected void regFinallySynonym(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueFinallySynonym(), "FINALLY"); }
+    protected abstract ConditionValue getCValueFinallySynonym();
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -1714,8 +1714,8 @@ public abstract class AbstractBsWhitePgReservCQ extends AbstractConditionQuery {
      */
     public void setReturnSynonym_IsNotNull() { regReturnSynonym(CK_ISNN, DOBJ); }
 
-    protected void regReturnSynonym(ConditionKey k, Object v) { regQ(k, v, getCValueReturnSynonym(), "RETURN"); }
-    abstract protected ConditionValue getCValueReturnSynonym();
+    protected void regReturnSynonym(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueReturnSynonym(), "RETURN"); }
+    protected abstract ConditionValue getCValueReturnSynonym();
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -1817,8 +1817,8 @@ public abstract class AbstractBsWhitePgReservCQ extends AbstractConditionQuery {
      */
     public void setDoubleSynonym_IsNotNull() { regDoubleSynonym(CK_ISNN, DOBJ); }
 
-    protected void regDoubleSynonym(ConditionKey k, Object v) { regQ(k, v, getCValueDoubleSynonym(), "DOUBLE"); }
-    abstract protected ConditionValue getCValueDoubleSynonym();
+    protected void regDoubleSynonym(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueDoubleSynonym(), "DOUBLE"); }
+    protected abstract ConditionValue getCValueDoubleSynonym();
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -1920,8 +1920,8 @@ public abstract class AbstractBsWhitePgReservCQ extends AbstractConditionQuery {
      */
     public void setFloatSynonym_IsNotNull() { regFloatSynonym(CK_ISNN, DOBJ); }
 
-    protected void regFloatSynonym(ConditionKey k, Object v) { regQ(k, v, getCValueFloatSynonym(), "FLOAT"); }
-    abstract protected ConditionValue getCValueFloatSynonym();
+    protected void regFloatSynonym(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueFloatSynonym(), "FLOAT"); }
+    protected abstract ConditionValue getCValueFloatSynonym();
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -2023,8 +2023,8 @@ public abstract class AbstractBsWhitePgReservCQ extends AbstractConditionQuery {
      */
     public void setShortSynonym_IsNotNull() { regShortSynonym(CK_ISNN, DOBJ); }
 
-    protected void regShortSynonym(ConditionKey k, Object v) { regQ(k, v, getCValueShortSynonym(), "SHORT"); }
-    abstract protected ConditionValue getCValueShortSynonym();
+    protected void regShortSynonym(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueShortSynonym(), "SHORT"); }
+    protected abstract ConditionValue getCValueShortSynonym();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -2127,8 +2127,8 @@ public abstract class AbstractBsWhitePgReservCQ extends AbstractConditionQuery {
      */
     public void setType_IsNotNull() { regType(CK_ISNN, DOBJ); }
 
-    protected void regType(ConditionKey k, Object v) { regQ(k, v, getCValueType(), "TYPE"); }
-    abstract protected ConditionValue getCValueType();
+    protected void regType(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueType(), "TYPE"); }
+    protected abstract ConditionValue getCValueType();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -2213,8 +2213,8 @@ public abstract class AbstractBsWhitePgReservCQ extends AbstractConditionQuery {
         regLSQ(CK_NLS, fRES(reservName), getCValueReservName(), "RESERV_NAME", likeSearchOption);
     }
 
-    protected void regReservName(ConditionKey k, Object v) { regQ(k, v, getCValueReservName(), "RESERV_NAME"); }
-    abstract protected ConditionValue getCValueReservName();
+    protected void regReservName(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueReservName(), "RESERV_NAME"); }
+    protected abstract ConditionValue getCValueReservName();
 
     // ===================================================================================
     //                                                                     ScalarCondition
@@ -2321,22 +2321,22 @@ public abstract class AbstractBsWhitePgReservCQ extends AbstractConditionQuery {
         return xcreateSSQFunction(CK_LE.getOperand());
     }
 
-    protected HpSSQFunction<WhitePgReservCB> xcreateSSQFunction(final String operand) {
+    protected HpSSQFunction<WhitePgReservCB> xcreateSSQFunction(final String rd) {
         return new HpSSQFunction<WhitePgReservCB>(new HpSSQSetupper<WhitePgReservCB>() {
-            public void setup(String function, SubQuery<WhitePgReservCB> subQuery, HpSSQOption<WhitePgReservCB> option) {
-                xscalarCondition(function, subQuery, operand, option);
+            public void setup(String fn, SubQuery<WhitePgReservCB> sq, HpSSQOption<WhitePgReservCB> op) {
+                xscalarCondition(fn, sq, rd, op);
             }
         });
     }
 
-    protected void xscalarCondition(String function, SubQuery<WhitePgReservCB> subQuery, String operand, HpSSQOption<WhitePgReservCB> option) {
-        assertObjectNotNull("subQuery<WhitePgReservCB>", subQuery);
-        WhitePgReservCB cb = xcreateScalarConditionCB(); subQuery.query(cb);
-        String subQueryPropertyName = keepScalarCondition(cb.query()); // for saving query-value
-        option.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
-        registerScalarCondition(function, cb.query(), subQueryPropertyName, operand, option);
+    protected void xscalarCondition(String fn, SubQuery<WhitePgReservCB> sq, String rd, HpSSQOption<WhitePgReservCB> op) {
+        assertObjectNotNull("subQuery", sq);
+        WhitePgReservCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        String pp = keepScalarCondition(cb.query()); // for saving query-value
+        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
-    public abstract String keepScalarCondition(WhitePgReservCQ subQuery);
+    public abstract String keepScalarCondition(WhitePgReservCQ sq);
 
     protected WhitePgReservCB xcreateScalarConditionCB() {
         WhitePgReservCB cb = new WhitePgReservCB();
@@ -2353,13 +2353,14 @@ public abstract class AbstractBsWhitePgReservCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    public void xsmyselfDerive(String function, SubQuery<WhitePgReservCB> subQuery, String aliasName, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<WhitePgReservCB>", subQuery);
-        WhitePgReservCB cb = new WhitePgReservCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
-        registerSpecifyMyselfDerived(function, cb.query(), "CLASS", "CLASS", subQueryPropertyName, "myselfDerived", aliasName, option);
+    public void xsmyselfDerive(String fn, SubQuery<WhitePgReservCB> sq, String al, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhitePgReservCB cb = new WhitePgReservCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "CLASS";
+        String pp = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
+        registerSpecifyMyselfDerived(fn, cb.query(), pk, pk, pp, "myselfDerived", al, op);
     }
-    public abstract String keepSpecifyMyselfDerived(WhitePgReservCQ subQuery);
+    public abstract String keepSpecifyMyselfDerived(WhitePgReservCQ sq);
 
     /**
      * Prepare for (Query)MyselfDerived (SubQuery).
@@ -2370,20 +2371,21 @@ public abstract class AbstractBsWhitePgReservCQ extends AbstractConditionQuery {
     }
     protected HpQDRFunction<WhitePgReservCB> xcreateQDRFunctionMyselfDerived() {
         return new HpQDRFunction<WhitePgReservCB>(new HpQDRSetupper<WhitePgReservCB>() {
-            public void setup(String function, SubQuery<WhitePgReservCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-                xqderiveMyselfDerived(function, subQuery, operand, value, option);
+            public void setup(String fn, SubQuery<WhitePgReservCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+                xqderiveMyselfDerived(fn, sq, rd, vl, op);
             }
         });
     }
-    public void xqderiveMyselfDerived(String function, SubQuery<WhitePgReservCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<WhitePgReservCB>", subQuery);
-        WhitePgReservCB cb = new WhitePgReservCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepQueryMyselfDerived(cb.query()); // for saving query-value.
-        String parameterPropertyName = keepQueryMyselfDerivedParameter(value);
-        registerQueryMyselfDerived(function, cb.query(), "CLASS", "CLASS", subQueryPropertyName, "myselfDerived", operand, value, parameterPropertyName, option);
+    public void xqderiveMyselfDerived(String fn, SubQuery<WhitePgReservCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhitePgReservCB cb = new WhitePgReservCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "CLASS";
+        String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
+        String prpp = keepQueryMyselfDerivedParameter(vl);
+        registerQueryMyselfDerived(fn, cb.query(), pk, pk, sqpp, "myselfDerived", rd, vl, prpp, op);
     }
-    public abstract String keepQueryMyselfDerived(WhitePgReservCQ subQuery);
-    public abstract String keepQueryMyselfDerivedParameter(Object parameterValue);
+    public abstract String keepQueryMyselfDerived(WhitePgReservCQ sq);
+    public abstract String keepQueryMyselfDerivedParameter(Object vl);
 
     // ===================================================================================
     //                                                                        MyselfExists
@@ -2393,12 +2395,12 @@ public abstract class AbstractBsWhitePgReservCQ extends AbstractConditionQuery {
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfExists(SubQuery<WhitePgReservCB> subQuery) {
-        assertObjectNotNull("subQuery<WhitePgReservCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhitePgReservCB cb = new WhitePgReservCB(); cb.xsetupForMyselfExists(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfExists(cb.query()); // for saving query-value.
-        registerMyselfExists(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfExists(cb.query()); // for saving query-value.
+        registerMyselfExists(cb.query(), pp);
     }
-    public abstract String keepMyselfExists(WhitePgReservCQ subQuery);
+    public abstract String keepMyselfExists(WhitePgReservCQ sq);
 
     // ===================================================================================
     //                                                                       MyselfInScope
@@ -2408,12 +2410,12 @@ public abstract class AbstractBsWhitePgReservCQ extends AbstractConditionQuery {
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfInScope(SubQuery<WhitePgReservCB> subQuery) {
-        assertObjectNotNull("subQuery<WhitePgReservCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhitePgReservCB cb = new WhitePgReservCB(); cb.xsetupForMyselfInScope(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfInScope(cb.query()); // for saving query-value.
-        registerMyselfInScope(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfInScope(cb.query()); // for saving query-value.
+        registerMyselfInScope(cb.query(), pp);
     }
-    public abstract String keepMyselfInScope(WhitePgReservCQ subQuery);
+    public abstract String keepMyselfInScope(WhitePgReservCQ sq);
 
     // ===================================================================================
     //                                                                    Full Text Search
@@ -2439,7 +2441,7 @@ public abstract class AbstractBsWhitePgReservCQ extends AbstractConditionQuery {
      * @param conditionValue The condition value embedded without binding (by MySQL restriction) but escaped. (NullAllowed: if null or empty, no condition)
      * @param modifier The modifier of full-text search. (NullAllowed: If the value is null, no modifier specified)
      */
-    public void match(java.util.List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList
+    public void match(List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList
                     , String conditionValue
                     , org.seasar.dbflute.dbway.WayOfMySQL.FullTextSearchModifier modifier) {
         xdoMatchForMySQL(textColumnList, conditionValue, modifier);

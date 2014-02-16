@@ -87,18 +87,18 @@ public class WhiteBinaryCIQ extends AbstractBsWhiteBinaryCQ {
     protected ConditionValue getCValueBinaryId() { return _myCQ.getBinaryId(); }
     protected ConditionValue getCValueBinaryData() { return _myCQ.getBinaryData(); }
     protected ConditionValue getCValueBlobData() { return _myCQ.getBlobData(); }
-    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) { return null; }
-    public String keepScalarCondition(WhiteBinaryCQ subQuery)
+    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
+    public String keepScalarCondition(WhiteBinaryCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }
-    public String keepSpecifyMyselfDerived(WhiteBinaryCQ subQuery)
+    public String keepSpecifyMyselfDerived(WhiteBinaryCQ sq)
     { throwIICBOE("(Specify)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerived(WhiteBinaryCQ subQuery)
+    public String keepQueryMyselfDerived(WhiteBinaryCQ sq)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerivedParameter(Object parameterValue)
+    public String keepQueryMyselfDerivedParameter(Object vl)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepMyselfExists(WhiteBinaryCQ subQuery)
+    public String keepMyselfExists(WhiteBinaryCQ sq)
     { throwIICBOE("MyselfExists"); return null;}
-    public String keepMyselfInScope(WhiteBinaryCQ subQuery)
+    public String keepMyselfInScope(WhiteBinaryCQ sq)
     { throwIICBOE("MyselfInScope"); return null;}
 
     protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()

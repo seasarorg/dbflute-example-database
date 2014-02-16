@@ -157,12 +157,12 @@ public abstract class AbstractBsWhiteAllInOneClsCategoryCQ extends AbstractCondi
      * @param subQuery The sub-query of WhiteAllInOneClsElementList for 'exists'. (NotNull)
      */
     public void existsWhiteAllInOneClsElementList(SubQuery<WhiteAllInOneClsElementCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteAllInOneClsElementCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteAllInOneClsElementCB cb = new WhiteAllInOneClsElementCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepClsCategoryCode_ExistsReferrer_WhiteAllInOneClsElementList(cb.query()); // for saving query-value.
-        registerExistsReferrer(cb.query(), "CLS_CATEGORY_CODE", "CLS_CATEGORY_CODE", subQueryPropertyName, "whiteAllInOneClsElementList");
+        String pp = keepClsCategoryCode_ExistsReferrer_WhiteAllInOneClsElementList(cb.query()); // for saving query-value.
+        registerExistsReferrer(cb.query(), "CLS_CATEGORY_CODE", "CLS_CATEGORY_CODE", pp, "whiteAllInOneClsElementList");
     }
-    public abstract String keepClsCategoryCode_ExistsReferrer_WhiteAllInOneClsElementList(WhiteAllInOneClsElementCQ subQuery);
+    public abstract String keepClsCategoryCode_ExistsReferrer_WhiteAllInOneClsElementList(WhiteAllInOneClsElementCQ sq);
 
     /**
      * Set up NotExistsReferrer (co-related sub-query). <br />
@@ -178,12 +178,12 @@ public abstract class AbstractBsWhiteAllInOneClsCategoryCQ extends AbstractCondi
      * @param subQuery The sub-query of ClsCategoryCode_NotExistsReferrer_WhiteAllInOneClsElementList for 'not exists'. (NotNull)
      */
     public void notExistsWhiteAllInOneClsElementList(SubQuery<WhiteAllInOneClsElementCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteAllInOneClsElementCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteAllInOneClsElementCB cb = new WhiteAllInOneClsElementCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepClsCategoryCode_NotExistsReferrer_WhiteAllInOneClsElementList(cb.query()); // for saving query-value.
-        registerNotExistsReferrer(cb.query(), "CLS_CATEGORY_CODE", "CLS_CATEGORY_CODE", subQueryPropertyName, "whiteAllInOneClsElementList");
+        String pp = keepClsCategoryCode_NotExistsReferrer_WhiteAllInOneClsElementList(cb.query()); // for saving query-value.
+        registerNotExistsReferrer(cb.query(), "CLS_CATEGORY_CODE", "CLS_CATEGORY_CODE", pp, "whiteAllInOneClsElementList");
     }
-    public abstract String keepClsCategoryCode_NotExistsReferrer_WhiteAllInOneClsElementList(WhiteAllInOneClsElementCQ subQuery);
+    public abstract String keepClsCategoryCode_NotExistsReferrer_WhiteAllInOneClsElementList(WhiteAllInOneClsElementCQ sq);
 
     /**
      * Set up InScopeRelation (sub-query). <br />
@@ -192,12 +192,12 @@ public abstract class AbstractBsWhiteAllInOneClsCategoryCQ extends AbstractCondi
      * @param subQuery The sub-query of WhiteAllInOneClsElementList for 'in-scope'. (NotNull)
      */
     public void inScopeWhiteAllInOneClsElementList(SubQuery<WhiteAllInOneClsElementCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteAllInOneClsElementCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteAllInOneClsElementCB cb = new WhiteAllInOneClsElementCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String subQueryPropertyName = keepClsCategoryCode_InScopeRelation_WhiteAllInOneClsElementList(cb.query()); // for saving query-value.
-        registerInScopeRelation(cb.query(), "CLS_CATEGORY_CODE", "CLS_CATEGORY_CODE", subQueryPropertyName, "whiteAllInOneClsElementList");
+        String pp = keepClsCategoryCode_InScopeRelation_WhiteAllInOneClsElementList(cb.query()); // for saving query-value.
+        registerInScopeRelation(cb.query(), "CLS_CATEGORY_CODE", "CLS_CATEGORY_CODE", pp, "whiteAllInOneClsElementList");
     }
-    public abstract String keepClsCategoryCode_InScopeRelation_WhiteAllInOneClsElementList(WhiteAllInOneClsElementCQ subQuery);
+    public abstract String keepClsCategoryCode_InScopeRelation_WhiteAllInOneClsElementList(WhiteAllInOneClsElementCQ sq);
 
     /**
      * Set up NotInScopeRelation (sub-query). <br />
@@ -206,20 +206,20 @@ public abstract class AbstractBsWhiteAllInOneClsCategoryCQ extends AbstractCondi
      * @param subQuery The sub-query of WhiteAllInOneClsElementList for 'not in-scope'. (NotNull)
      */
     public void notInScopeWhiteAllInOneClsElementList(SubQuery<WhiteAllInOneClsElementCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteAllInOneClsElementCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteAllInOneClsElementCB cb = new WhiteAllInOneClsElementCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String subQueryPropertyName = keepClsCategoryCode_NotInScopeRelation_WhiteAllInOneClsElementList(cb.query()); // for saving query-value.
-        registerNotInScopeRelation(cb.query(), "CLS_CATEGORY_CODE", "CLS_CATEGORY_CODE", subQueryPropertyName, "whiteAllInOneClsElementList");
+        String pp = keepClsCategoryCode_NotInScopeRelation_WhiteAllInOneClsElementList(cb.query()); // for saving query-value.
+        registerNotInScopeRelation(cb.query(), "CLS_CATEGORY_CODE", "CLS_CATEGORY_CODE", pp, "whiteAllInOneClsElementList");
     }
-    public abstract String keepClsCategoryCode_NotInScopeRelation_WhiteAllInOneClsElementList(WhiteAllInOneClsElementCQ subQuery);
+    public abstract String keepClsCategoryCode_NotInScopeRelation_WhiteAllInOneClsElementList(WhiteAllInOneClsElementCQ sq);
 
-    public void xsderiveWhiteAllInOneClsElementList(String function, SubQuery<WhiteAllInOneClsElementCB> subQuery, String aliasName, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<WhiteAllInOneClsElementCB>", subQuery);
-        WhiteAllInOneClsElementCB cb = new WhiteAllInOneClsElementCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepClsCategoryCode_SpecifyDerivedReferrer_WhiteAllInOneClsElementList(cb.query()); // for saving query-value.
-        registerSpecifyDerivedReferrer(function, cb.query(), "CLS_CATEGORY_CODE", "CLS_CATEGORY_CODE", subQueryPropertyName, "whiteAllInOneClsElementList", aliasName, option);
+    public void xsderiveWhiteAllInOneClsElementList(String fn, SubQuery<WhiteAllInOneClsElementCB> sq, String al, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteAllInOneClsElementCB cb = new WhiteAllInOneClsElementCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pp = keepClsCategoryCode_SpecifyDerivedReferrer_WhiteAllInOneClsElementList(cb.query()); // for saving query-value.
+        registerSpecifyDerivedReferrer(fn, cb.query(), "CLS_CATEGORY_CODE", "CLS_CATEGORY_CODE", pp, "whiteAllInOneClsElementList", al, op);
     }
-    public abstract String keepClsCategoryCode_SpecifyDerivedReferrer_WhiteAllInOneClsElementList(WhiteAllInOneClsElementCQ subQuery);
+    public abstract String keepClsCategoryCode_SpecifyDerivedReferrer_WhiteAllInOneClsElementList(WhiteAllInOneClsElementCQ sq);
 
     /**
      * Prepare for (Query)DerivedReferrer. <br />
@@ -240,20 +240,20 @@ public abstract class AbstractBsWhiteAllInOneClsCategoryCQ extends AbstractCondi
     }
     protected HpQDRFunction<WhiteAllInOneClsElementCB> xcreateQDRFunctionWhiteAllInOneClsElementList() {
         return new HpQDRFunction<WhiteAllInOneClsElementCB>(new HpQDRSetupper<WhiteAllInOneClsElementCB>() {
-            public void setup(String function, SubQuery<WhiteAllInOneClsElementCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-                xqderiveWhiteAllInOneClsElementList(function, subQuery, operand, value, option);
+            public void setup(String fn, SubQuery<WhiteAllInOneClsElementCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+                xqderiveWhiteAllInOneClsElementList(fn, sq, rd, vl, op);
             }
         });
     }
-    public void xqderiveWhiteAllInOneClsElementList(String function, SubQuery<WhiteAllInOneClsElementCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<WhiteAllInOneClsElementCB>", subQuery);
-        WhiteAllInOneClsElementCB cb = new WhiteAllInOneClsElementCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepClsCategoryCode_QueryDerivedReferrer_WhiteAllInOneClsElementList(cb.query()); // for saving query-value.
-        String parameterPropertyName = keepClsCategoryCode_QueryDerivedReferrer_WhiteAllInOneClsElementListParameter(value);
-        registerQueryDerivedReferrer(function, cb.query(), "CLS_CATEGORY_CODE", "CLS_CATEGORY_CODE", subQueryPropertyName, "whiteAllInOneClsElementList", operand, value, parameterPropertyName, option);
+    public void xqderiveWhiteAllInOneClsElementList(String fn, SubQuery<WhiteAllInOneClsElementCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteAllInOneClsElementCB cb = new WhiteAllInOneClsElementCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String sqpp = keepClsCategoryCode_QueryDerivedReferrer_WhiteAllInOneClsElementList(cb.query()); // for saving query-value.
+        String prpp = keepClsCategoryCode_QueryDerivedReferrer_WhiteAllInOneClsElementListParameter(vl);
+        registerQueryDerivedReferrer(fn, cb.query(), "CLS_CATEGORY_CODE", "CLS_CATEGORY_CODE", sqpp, "whiteAllInOneClsElementList", rd, vl, prpp, op);
     }
-    public abstract String keepClsCategoryCode_QueryDerivedReferrer_WhiteAllInOneClsElementList(WhiteAllInOneClsElementCQ subQuery);
-    public abstract String keepClsCategoryCode_QueryDerivedReferrer_WhiteAllInOneClsElementListParameter(Object parameterValue);
+    public abstract String keepClsCategoryCode_QueryDerivedReferrer_WhiteAllInOneClsElementList(WhiteAllInOneClsElementCQ sq);
+    public abstract String keepClsCategoryCode_QueryDerivedReferrer_WhiteAllInOneClsElementListParameter(Object vl);
 
     /**
      * IsNull {is null}. And OnlyOnceRegistered. <br />
@@ -267,8 +267,8 @@ public abstract class AbstractBsWhiteAllInOneClsCategoryCQ extends AbstractCondi
      */
     public void setClsCategoryCode_IsNotNull() { regClsCategoryCode(CK_ISNN, DOBJ); }
 
-    protected void regClsCategoryCode(ConditionKey k, Object v) { regQ(k, v, getCValueClsCategoryCode(), "CLS_CATEGORY_CODE"); }
-    abstract protected ConditionValue getCValueClsCategoryCode();
+    protected void regClsCategoryCode(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueClsCategoryCode(), "CLS_CATEGORY_CODE"); }
+    protected abstract ConditionValue getCValueClsCategoryCode();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -353,8 +353,8 @@ public abstract class AbstractBsWhiteAllInOneClsCategoryCQ extends AbstractCondi
         regLSQ(CK_NLS, fRES(clsCategoryName), getCValueClsCategoryName(), "CLS_CATEGORY_NAME", likeSearchOption);
     }
 
-    protected void regClsCategoryName(ConditionKey k, Object v) { regQ(k, v, getCValueClsCategoryName(), "CLS_CATEGORY_NAME"); }
-    abstract protected ConditionValue getCValueClsCategoryName();
+    protected void regClsCategoryName(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueClsCategoryName(), "CLS_CATEGORY_NAME"); }
+    protected abstract ConditionValue getCValueClsCategoryName();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -439,8 +439,8 @@ public abstract class AbstractBsWhiteAllInOneClsCategoryCQ extends AbstractCondi
         regLSQ(CK_NLS, fRES(description), getCValueDescription(), "DESCRIPTION", likeSearchOption);
     }
 
-    protected void regDescription(ConditionKey k, Object v) { regQ(k, v, getCValueDescription(), "DESCRIPTION"); }
-    abstract protected ConditionValue getCValueDescription();
+    protected void regDescription(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueDescription(), "DESCRIPTION"); }
+    protected abstract ConditionValue getCValueDescription();
 
     // ===================================================================================
     //                                                                     ScalarCondition
@@ -547,22 +547,22 @@ public abstract class AbstractBsWhiteAllInOneClsCategoryCQ extends AbstractCondi
         return xcreateSSQFunction(CK_LE.getOperand());
     }
 
-    protected HpSSQFunction<WhiteAllInOneClsCategoryCB> xcreateSSQFunction(final String operand) {
+    protected HpSSQFunction<WhiteAllInOneClsCategoryCB> xcreateSSQFunction(final String rd) {
         return new HpSSQFunction<WhiteAllInOneClsCategoryCB>(new HpSSQSetupper<WhiteAllInOneClsCategoryCB>() {
-            public void setup(String function, SubQuery<WhiteAllInOneClsCategoryCB> subQuery, HpSSQOption<WhiteAllInOneClsCategoryCB> option) {
-                xscalarCondition(function, subQuery, operand, option);
+            public void setup(String fn, SubQuery<WhiteAllInOneClsCategoryCB> sq, HpSSQOption<WhiteAllInOneClsCategoryCB> op) {
+                xscalarCondition(fn, sq, rd, op);
             }
         });
     }
 
-    protected void xscalarCondition(String function, SubQuery<WhiteAllInOneClsCategoryCB> subQuery, String operand, HpSSQOption<WhiteAllInOneClsCategoryCB> option) {
-        assertObjectNotNull("subQuery<WhiteAllInOneClsCategoryCB>", subQuery);
-        WhiteAllInOneClsCategoryCB cb = xcreateScalarConditionCB(); subQuery.query(cb);
-        String subQueryPropertyName = keepScalarCondition(cb.query()); // for saving query-value
-        option.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
-        registerScalarCondition(function, cb.query(), subQueryPropertyName, operand, option);
+    protected void xscalarCondition(String fn, SubQuery<WhiteAllInOneClsCategoryCB> sq, String rd, HpSSQOption<WhiteAllInOneClsCategoryCB> op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteAllInOneClsCategoryCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        String pp = keepScalarCondition(cb.query()); // for saving query-value
+        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
-    public abstract String keepScalarCondition(WhiteAllInOneClsCategoryCQ subQuery);
+    public abstract String keepScalarCondition(WhiteAllInOneClsCategoryCQ sq);
 
     protected WhiteAllInOneClsCategoryCB xcreateScalarConditionCB() {
         WhiteAllInOneClsCategoryCB cb = new WhiteAllInOneClsCategoryCB();
@@ -579,13 +579,14 @@ public abstract class AbstractBsWhiteAllInOneClsCategoryCQ extends AbstractCondi
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    public void xsmyselfDerive(String function, SubQuery<WhiteAllInOneClsCategoryCB> subQuery, String aliasName, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<WhiteAllInOneClsCategoryCB>", subQuery);
-        WhiteAllInOneClsCategoryCB cb = new WhiteAllInOneClsCategoryCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
-        registerSpecifyMyselfDerived(function, cb.query(), "CLS_CATEGORY_CODE", "CLS_CATEGORY_CODE", subQueryPropertyName, "myselfDerived", aliasName, option);
+    public void xsmyselfDerive(String fn, SubQuery<WhiteAllInOneClsCategoryCB> sq, String al, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteAllInOneClsCategoryCB cb = new WhiteAllInOneClsCategoryCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "CLS_CATEGORY_CODE";
+        String pp = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
+        registerSpecifyMyselfDerived(fn, cb.query(), pk, pk, pp, "myselfDerived", al, op);
     }
-    public abstract String keepSpecifyMyselfDerived(WhiteAllInOneClsCategoryCQ subQuery);
+    public abstract String keepSpecifyMyselfDerived(WhiteAllInOneClsCategoryCQ sq);
 
     /**
      * Prepare for (Query)MyselfDerived (SubQuery).
@@ -596,20 +597,21 @@ public abstract class AbstractBsWhiteAllInOneClsCategoryCQ extends AbstractCondi
     }
     protected HpQDRFunction<WhiteAllInOneClsCategoryCB> xcreateQDRFunctionMyselfDerived() {
         return new HpQDRFunction<WhiteAllInOneClsCategoryCB>(new HpQDRSetupper<WhiteAllInOneClsCategoryCB>() {
-            public void setup(String function, SubQuery<WhiteAllInOneClsCategoryCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-                xqderiveMyselfDerived(function, subQuery, operand, value, option);
+            public void setup(String fn, SubQuery<WhiteAllInOneClsCategoryCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+                xqderiveMyselfDerived(fn, sq, rd, vl, op);
             }
         });
     }
-    public void xqderiveMyselfDerived(String function, SubQuery<WhiteAllInOneClsCategoryCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<WhiteAllInOneClsCategoryCB>", subQuery);
-        WhiteAllInOneClsCategoryCB cb = new WhiteAllInOneClsCategoryCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepQueryMyselfDerived(cb.query()); // for saving query-value.
-        String parameterPropertyName = keepQueryMyselfDerivedParameter(value);
-        registerQueryMyselfDerived(function, cb.query(), "CLS_CATEGORY_CODE", "CLS_CATEGORY_CODE", subQueryPropertyName, "myselfDerived", operand, value, parameterPropertyName, option);
+    public void xqderiveMyselfDerived(String fn, SubQuery<WhiteAllInOneClsCategoryCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteAllInOneClsCategoryCB cb = new WhiteAllInOneClsCategoryCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "CLS_CATEGORY_CODE";
+        String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
+        String prpp = keepQueryMyselfDerivedParameter(vl);
+        registerQueryMyselfDerived(fn, cb.query(), pk, pk, sqpp, "myselfDerived", rd, vl, prpp, op);
     }
-    public abstract String keepQueryMyselfDerived(WhiteAllInOneClsCategoryCQ subQuery);
-    public abstract String keepQueryMyselfDerivedParameter(Object parameterValue);
+    public abstract String keepQueryMyselfDerived(WhiteAllInOneClsCategoryCQ sq);
+    public abstract String keepQueryMyselfDerivedParameter(Object vl);
 
     // ===================================================================================
     //                                                                        MyselfExists
@@ -619,12 +621,12 @@ public abstract class AbstractBsWhiteAllInOneClsCategoryCQ extends AbstractCondi
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfExists(SubQuery<WhiteAllInOneClsCategoryCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteAllInOneClsCategoryCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteAllInOneClsCategoryCB cb = new WhiteAllInOneClsCategoryCB(); cb.xsetupForMyselfExists(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfExists(cb.query()); // for saving query-value.
-        registerMyselfExists(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfExists(cb.query()); // for saving query-value.
+        registerMyselfExists(cb.query(), pp);
     }
-    public abstract String keepMyselfExists(WhiteAllInOneClsCategoryCQ subQuery);
+    public abstract String keepMyselfExists(WhiteAllInOneClsCategoryCQ sq);
 
     // ===================================================================================
     //                                                                       MyselfInScope
@@ -634,12 +636,12 @@ public abstract class AbstractBsWhiteAllInOneClsCategoryCQ extends AbstractCondi
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfInScope(SubQuery<WhiteAllInOneClsCategoryCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteAllInOneClsCategoryCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteAllInOneClsCategoryCB cb = new WhiteAllInOneClsCategoryCB(); cb.xsetupForMyselfInScope(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfInScope(cb.query()); // for saving query-value.
-        registerMyselfInScope(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfInScope(cb.query()); // for saving query-value.
+        registerMyselfInScope(cb.query(), pp);
     }
-    public abstract String keepMyselfInScope(WhiteAllInOneClsCategoryCQ subQuery);
+    public abstract String keepMyselfInScope(WhiteAllInOneClsCategoryCQ sq);
 
     // ===================================================================================
     //                                                                    Full Text Search
@@ -665,7 +667,7 @@ public abstract class AbstractBsWhiteAllInOneClsCategoryCQ extends AbstractCondi
      * @param conditionValue The condition value embedded without binding (by MySQL restriction) but escaped. (NullAllowed: if null or empty, no condition)
      * @param modifier The modifier of full-text search. (NullAllowed: If the value is null, no modifier specified)
      */
-    public void match(java.util.List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList
+    public void match(List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList
                     , String conditionValue
                     , org.seasar.dbflute.dbway.WayOfMySQL.FullTextSearchModifier modifier) {
         xdoMatchForMySQL(textColumnList, conditionValue, modifier);

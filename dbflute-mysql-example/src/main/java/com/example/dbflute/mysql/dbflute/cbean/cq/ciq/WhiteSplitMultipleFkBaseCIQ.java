@@ -97,7 +97,7 @@ public class WhiteSplitMultipleFkBaseCIQ extends AbstractBsWhiteSplitMultipleFkB
     { throwIICBOE("(Specify)DerivedReferrer"); return null; }
     public String keepBaseId_QueryDerivedReferrer_WhiteSplitMultipleFkChildList(WhiteSplitMultipleFkChildCQ sq)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
-    public String keepBaseId_QueryDerivedReferrer_WhiteSplitMultipleFkChildListParameter(Object pv)
+    public String keepBaseId_QueryDerivedReferrer_WhiteSplitMultipleFkChildListParameter(Object vl)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
     protected ConditionValue getCValueFirstId() { return _myCQ.getFirstId(); }
     protected ConditionValue getCValueNextId() { return _myCQ.getNextId(); }
@@ -106,18 +106,18 @@ public class WhiteSplitMultipleFkBaseCIQ extends AbstractBsWhiteSplitMultipleFkB
     public String keepNextId_NotInScopeRelation_WhiteSplitMultipleFkNext(WhiteSplitMultipleFkNextCQ sq)
     { return _myCQ.keepNextId_NotInScopeRelation_WhiteSplitMultipleFkNext(sq); }
     protected ConditionValue getCValueSplitName() { return _myCQ.getSplitName(); }
-    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) { return null; }
-    public String keepScalarCondition(WhiteSplitMultipleFkBaseCQ subQuery)
+    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
+    public String keepScalarCondition(WhiteSplitMultipleFkBaseCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }
-    public String keepSpecifyMyselfDerived(WhiteSplitMultipleFkBaseCQ subQuery)
+    public String keepSpecifyMyselfDerived(WhiteSplitMultipleFkBaseCQ sq)
     { throwIICBOE("(Specify)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerived(WhiteSplitMultipleFkBaseCQ subQuery)
+    public String keepQueryMyselfDerived(WhiteSplitMultipleFkBaseCQ sq)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerivedParameter(Object parameterValue)
+    public String keepQueryMyselfDerivedParameter(Object vl)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepMyselfExists(WhiteSplitMultipleFkBaseCQ subQuery)
+    public String keepMyselfExists(WhiteSplitMultipleFkBaseCQ sq)
     { throwIICBOE("MyselfExists"); return null;}
-    public String keepMyselfInScope(WhiteSplitMultipleFkBaseCQ subQuery)
+    public String keepMyselfInScope(WhiteSplitMultipleFkBaseCQ sq)
     { throwIICBOE("MyselfInScope"); return null;}
 
     protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()

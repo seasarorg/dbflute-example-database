@@ -81,57 +81,57 @@ public class BsSynonymProductStatusCQ extends AbstractBsSynonymProductStatusCQ {
 
     protected Map<String, SynonymProductCQ> _productStatusCode_ExistsReferrer_SynonymProductListMap;
     public Map<String, SynonymProductCQ> getProductStatusCode_ExistsReferrer_SynonymProductList() { return _productStatusCode_ExistsReferrer_SynonymProductListMap; }
-    public String keepProductStatusCode_ExistsReferrer_SynonymProductList(SynonymProductCQ subQuery) {
+    public String keepProductStatusCode_ExistsReferrer_SynonymProductList(SynonymProductCQ sq) {
         if (_productStatusCode_ExistsReferrer_SynonymProductListMap == null) { _productStatusCode_ExistsReferrer_SynonymProductListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_productStatusCode_ExistsReferrer_SynonymProductListMap.size() + 1);
-        _productStatusCode_ExistsReferrer_SynonymProductListMap.put(key, subQuery); return "productStatusCode_ExistsReferrer_SynonymProductList." + key;
+        String ky = "subQueryMapKey" + (_productStatusCode_ExistsReferrer_SynonymProductListMap.size() + 1);
+        _productStatusCode_ExistsReferrer_SynonymProductListMap.put(ky, sq); return "productStatusCode_ExistsReferrer_SynonymProductList." + ky;
     }
 
     protected Map<String, SynonymProductCQ> _productStatusCode_NotExistsReferrer_SynonymProductListMap;
     public Map<String, SynonymProductCQ> getProductStatusCode_NotExistsReferrer_SynonymProductList() { return _productStatusCode_NotExistsReferrer_SynonymProductListMap; }
-    public String keepProductStatusCode_NotExistsReferrer_SynonymProductList(SynonymProductCQ subQuery) {
+    public String keepProductStatusCode_NotExistsReferrer_SynonymProductList(SynonymProductCQ sq) {
         if (_productStatusCode_NotExistsReferrer_SynonymProductListMap == null) { _productStatusCode_NotExistsReferrer_SynonymProductListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_productStatusCode_NotExistsReferrer_SynonymProductListMap.size() + 1);
-        _productStatusCode_NotExistsReferrer_SynonymProductListMap.put(key, subQuery); return "productStatusCode_NotExistsReferrer_SynonymProductList." + key;
+        String ky = "subQueryMapKey" + (_productStatusCode_NotExistsReferrer_SynonymProductListMap.size() + 1);
+        _productStatusCode_NotExistsReferrer_SynonymProductListMap.put(ky, sq); return "productStatusCode_NotExistsReferrer_SynonymProductList." + ky;
     }
 
     protected Map<String, SynonymProductCQ> _productStatusCode_InScopeRelation_SynonymProductListMap;
     public Map<String, SynonymProductCQ> getProductStatusCode_InScopeRelation_SynonymProductList() { return _productStatusCode_InScopeRelation_SynonymProductListMap; }
-    public String keepProductStatusCode_InScopeRelation_SynonymProductList(SynonymProductCQ subQuery) {
+    public String keepProductStatusCode_InScopeRelation_SynonymProductList(SynonymProductCQ sq) {
         if (_productStatusCode_InScopeRelation_SynonymProductListMap == null) { _productStatusCode_InScopeRelation_SynonymProductListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_productStatusCode_InScopeRelation_SynonymProductListMap.size() + 1);
-        _productStatusCode_InScopeRelation_SynonymProductListMap.put(key, subQuery); return "productStatusCode_InScopeRelation_SynonymProductList." + key;
+        String ky = "subQueryMapKey" + (_productStatusCode_InScopeRelation_SynonymProductListMap.size() + 1);
+        _productStatusCode_InScopeRelation_SynonymProductListMap.put(ky, sq); return "productStatusCode_InScopeRelation_SynonymProductList." + ky;
     }
 
     protected Map<String, SynonymProductCQ> _productStatusCode_NotInScopeRelation_SynonymProductListMap;
     public Map<String, SynonymProductCQ> getProductStatusCode_NotInScopeRelation_SynonymProductList() { return _productStatusCode_NotInScopeRelation_SynonymProductListMap; }
-    public String keepProductStatusCode_NotInScopeRelation_SynonymProductList(SynonymProductCQ subQuery) {
+    public String keepProductStatusCode_NotInScopeRelation_SynonymProductList(SynonymProductCQ sq) {
         if (_productStatusCode_NotInScopeRelation_SynonymProductListMap == null) { _productStatusCode_NotInScopeRelation_SynonymProductListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_productStatusCode_NotInScopeRelation_SynonymProductListMap.size() + 1);
-        _productStatusCode_NotInScopeRelation_SynonymProductListMap.put(key, subQuery); return "productStatusCode_NotInScopeRelation_SynonymProductList." + key;
+        String ky = "subQueryMapKey" + (_productStatusCode_NotInScopeRelation_SynonymProductListMap.size() + 1);
+        _productStatusCode_NotInScopeRelation_SynonymProductListMap.put(ky, sq); return "productStatusCode_NotInScopeRelation_SynonymProductList." + ky;
     }
 
     protected Map<String, SynonymProductCQ> _productStatusCode_SpecifyDerivedReferrer_SynonymProductListMap;
     public Map<String, SynonymProductCQ> getProductStatusCode_SpecifyDerivedReferrer_SynonymProductList() { return _productStatusCode_SpecifyDerivedReferrer_SynonymProductListMap; }
-    public String keepProductStatusCode_SpecifyDerivedReferrer_SynonymProductList(SynonymProductCQ subQuery) {
+    public String keepProductStatusCode_SpecifyDerivedReferrer_SynonymProductList(SynonymProductCQ sq) {
         if (_productStatusCode_SpecifyDerivedReferrer_SynonymProductListMap == null) { _productStatusCode_SpecifyDerivedReferrer_SynonymProductListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_productStatusCode_SpecifyDerivedReferrer_SynonymProductListMap.size() + 1);
-        _productStatusCode_SpecifyDerivedReferrer_SynonymProductListMap.put(key, subQuery); return "productStatusCode_SpecifyDerivedReferrer_SynonymProductList." + key;
+        String ky = "subQueryMapKey" + (_productStatusCode_SpecifyDerivedReferrer_SynonymProductListMap.size() + 1);
+        _productStatusCode_SpecifyDerivedReferrer_SynonymProductListMap.put(ky, sq); return "productStatusCode_SpecifyDerivedReferrer_SynonymProductList." + ky;
     }
 
     protected Map<String, SynonymProductCQ> _productStatusCode_QueryDerivedReferrer_SynonymProductListMap;
     public Map<String, SynonymProductCQ> getProductStatusCode_QueryDerivedReferrer_SynonymProductList() { return _productStatusCode_QueryDerivedReferrer_SynonymProductListMap; }
-    public String keepProductStatusCode_QueryDerivedReferrer_SynonymProductList(SynonymProductCQ subQuery) {
+    public String keepProductStatusCode_QueryDerivedReferrer_SynonymProductList(SynonymProductCQ sq) {
         if (_productStatusCode_QueryDerivedReferrer_SynonymProductListMap == null) { _productStatusCode_QueryDerivedReferrer_SynonymProductListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_productStatusCode_QueryDerivedReferrer_SynonymProductListMap.size() + 1);
-        _productStatusCode_QueryDerivedReferrer_SynonymProductListMap.put(key, subQuery); return "productStatusCode_QueryDerivedReferrer_SynonymProductList." + key;
+        String ky = "subQueryMapKey" + (_productStatusCode_QueryDerivedReferrer_SynonymProductListMap.size() + 1);
+        _productStatusCode_QueryDerivedReferrer_SynonymProductListMap.put(ky, sq); return "productStatusCode_QueryDerivedReferrer_SynonymProductList." + ky;
     }
     protected Map<String, Object> _productStatusCode_QueryDerivedReferrer_SynonymProductListParameterMap;
     public Map<String, Object> getProductStatusCode_QueryDerivedReferrer_SynonymProductListParameter() { return _productStatusCode_QueryDerivedReferrer_SynonymProductListParameterMap; }
-    public String keepProductStatusCode_QueryDerivedReferrer_SynonymProductListParameter(Object parameterValue) {
+    public String keepProductStatusCode_QueryDerivedReferrer_SynonymProductListParameter(Object vl) {
         if (_productStatusCode_QueryDerivedReferrer_SynonymProductListParameterMap == null) { _productStatusCode_QueryDerivedReferrer_SynonymProductListParameterMap = newLinkedHashMapSized(4); }
-        String key = "subQueryParameterKey" + (_productStatusCode_QueryDerivedReferrer_SynonymProductListParameterMap.size() + 1);
-        _productStatusCode_QueryDerivedReferrer_SynonymProductListParameterMap.put(key, parameterValue); return "productStatusCode_QueryDerivedReferrer_SynonymProductListParameter." + key;
+        String ky = "subQueryParameterKey" + (_productStatusCode_QueryDerivedReferrer_SynonymProductListParameterMap.size() + 1);
+        _productStatusCode_QueryDerivedReferrer_SynonymProductListParameterMap.put(ky, vl); return "productStatusCode_QueryDerivedReferrer_SynonymProductListParameter." + ky;
     }
 
     /** 
@@ -230,7 +230,7 @@ public class BsSynonymProductStatusCQ extends AbstractBsSynonymProductStatusCQ {
     // ===================================================================================
     //                                                                         Union Query
     //                                                                         ===========
-    protected void reflectRelationOnUnionQuery(ConditionQuery baseQueryAsSuper, ConditionQuery unionQueryAsSuper) {
+    protected void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
     }
 
     // ===================================================================================
@@ -245,10 +245,10 @@ public class BsSynonymProductStatusCQ extends AbstractBsSynonymProductStatusCQ {
     //                                                                     ===============
     protected Map<String, SynonymProductStatusCQ> _scalarConditionMap;
     public Map<String, SynonymProductStatusCQ> getScalarCondition() { return _scalarConditionMap; }
-    public String keepScalarCondition(SynonymProductStatusCQ subQuery) {
+    public String keepScalarCondition(SynonymProductStatusCQ sq) {
         if (_scalarConditionMap == null) { _scalarConditionMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
-        _scalarConditionMap.put(key, subQuery); return "scalarCondition." + key;
+        String ky = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
+        _scalarConditionMap.put(ky, sq); return "scalarCondition." + ky;
     }
 
     // ===================================================================================
@@ -256,25 +256,25 @@ public class BsSynonymProductStatusCQ extends AbstractBsSynonymProductStatusCQ {
     //                                                                       =============
     protected Map<String, SynonymProductStatusCQ> _specifyMyselfDerivedMap;
     public Map<String, SynonymProductStatusCQ> getSpecifyMyselfDerived() { return _specifyMyselfDerivedMap; }
-    public String keepSpecifyMyselfDerived(SynonymProductStatusCQ subQuery) {
+    public String keepSpecifyMyselfDerived(SynonymProductStatusCQ sq) {
         if (_specifyMyselfDerivedMap == null) { _specifyMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
-        _specifyMyselfDerivedMap.put(key, subQuery); return "specifyMyselfDerived." + key;
+        String ky = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
+        _specifyMyselfDerivedMap.put(ky, sq); return "specifyMyselfDerived." + ky;
     }
 
     protected Map<String, SynonymProductStatusCQ> _queryMyselfDerivedMap;
     public Map<String, SynonymProductStatusCQ> getQueryMyselfDerived() { return _queryMyselfDerivedMap; }
-    public String keepQueryMyselfDerived(SynonymProductStatusCQ subQuery) {
+    public String keepQueryMyselfDerived(SynonymProductStatusCQ sq) {
         if (_queryMyselfDerivedMap == null) { _queryMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
-        _queryMyselfDerivedMap.put(key, subQuery); return "queryMyselfDerived." + key;
+        String ky = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
+        _queryMyselfDerivedMap.put(ky, sq); return "queryMyselfDerived." + ky;
     }
     protected Map<String, Object> _qyeryMyselfDerivedParameterMap;
     public Map<String, Object> getQueryMyselfDerivedParameter() { return _qyeryMyselfDerivedParameterMap; }
-    public String keepQueryMyselfDerivedParameter(Object parameterValue) {
+    public String keepQueryMyselfDerivedParameter(Object vl) {
         if (_qyeryMyselfDerivedParameterMap == null) { _qyeryMyselfDerivedParameterMap = newLinkedHashMapSized(4); }
-        String key = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
-        _qyeryMyselfDerivedParameterMap.put(key, parameterValue); return "queryMyselfDerivedParameter." + key;
+        String ky = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
+        _qyeryMyselfDerivedParameterMap.put(ky, vl); return "queryMyselfDerivedParameter." + ky;
     }
 
     // ===================================================================================
@@ -282,10 +282,10 @@ public class BsSynonymProductStatusCQ extends AbstractBsSynonymProductStatusCQ {
     //                                                                        ============
     protected Map<String, SynonymProductStatusCQ> _myselfExistsMap;
     public Map<String, SynonymProductStatusCQ> getMyselfExists() { return _myselfExistsMap; }
-    public String keepMyselfExists(SynonymProductStatusCQ subQuery) {
+    public String keepMyselfExists(SynonymProductStatusCQ sq) {
         if (_myselfExistsMap == null) { _myselfExistsMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
-        _myselfExistsMap.put(key, subQuery); return "myselfExists." + key;
+        String ky = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
+        _myselfExistsMap.put(ky, sq); return "myselfExists." + ky;
     }
 
     // ===================================================================================
@@ -293,10 +293,10 @@ public class BsSynonymProductStatusCQ extends AbstractBsSynonymProductStatusCQ {
     //                                                                       =============
     protected Map<String, SynonymProductStatusCQ> _myselfInScopeMap;
     public Map<String, SynonymProductStatusCQ> getMyselfInScope() { return _myselfInScopeMap; }
-    public String keepMyselfInScope(SynonymProductStatusCQ subQuery) {
+    public String keepMyselfInScope(SynonymProductStatusCQ sq) {
         if (_myselfInScopeMap == null) { _myselfInScopeMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
-        _myselfInScopeMap.put(key, subQuery); return "myselfInScope." + key;
+        String ky = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
+        _myselfInScopeMap.put(ky, sq); return "myselfInScope." + ky;
     }
 
     // ===================================================================================

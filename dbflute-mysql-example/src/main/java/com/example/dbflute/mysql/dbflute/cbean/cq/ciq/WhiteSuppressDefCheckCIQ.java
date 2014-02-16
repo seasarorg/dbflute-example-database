@@ -86,18 +86,18 @@ public class WhiteSuppressDefCheckCIQ extends AbstractBsWhiteSuppressDefCheckCQ 
     //                                                                ====================
     protected ConditionValue getCValueDefCheckId() { return _myCQ.getDefCheckId(); }
     protected ConditionValue getCValueDefCheckName() { return _myCQ.getDefCheckName(); }
-    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) { return null; }
-    public String keepScalarCondition(WhiteSuppressDefCheckCQ subQuery)
+    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
+    public String keepScalarCondition(WhiteSuppressDefCheckCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }
-    public String keepSpecifyMyselfDerived(WhiteSuppressDefCheckCQ subQuery)
+    public String keepSpecifyMyselfDerived(WhiteSuppressDefCheckCQ sq)
     { throwIICBOE("(Specify)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerived(WhiteSuppressDefCheckCQ subQuery)
+    public String keepQueryMyselfDerived(WhiteSuppressDefCheckCQ sq)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerivedParameter(Object parameterValue)
+    public String keepQueryMyselfDerivedParameter(Object vl)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepMyselfExists(WhiteSuppressDefCheckCQ subQuery)
+    public String keepMyselfExists(WhiteSuppressDefCheckCQ sq)
     { throwIICBOE("MyselfExists"); return null;}
-    public String keepMyselfInScope(WhiteSuppressDefCheckCQ subQuery)
+    public String keepMyselfInScope(WhiteSuppressDefCheckCQ sq)
     { throwIICBOE("MyselfInScope"); return null;}
 
     protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()

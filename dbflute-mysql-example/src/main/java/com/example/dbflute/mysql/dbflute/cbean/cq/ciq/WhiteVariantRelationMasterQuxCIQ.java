@@ -87,18 +87,18 @@ public class WhiteVariantRelationMasterQuxCIQ extends AbstractBsWhiteVariantRela
     protected ConditionValue getCValueMasterQuxId() { return _myCQ.getMasterQuxId(); }
     protected ConditionValue getCValueMasterQuxName() { return _myCQ.getMasterQuxName(); }
     protected ConditionValue getCValueQuxTypeCode() { return _myCQ.getQuxTypeCode(); }
-    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) { return null; }
-    public String keepScalarCondition(WhiteVariantRelationMasterQuxCQ subQuery)
+    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
+    public String keepScalarCondition(WhiteVariantRelationMasterQuxCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }
-    public String keepSpecifyMyselfDerived(WhiteVariantRelationMasterQuxCQ subQuery)
+    public String keepSpecifyMyselfDerived(WhiteVariantRelationMasterQuxCQ sq)
     { throwIICBOE("(Specify)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerived(WhiteVariantRelationMasterQuxCQ subQuery)
+    public String keepQueryMyselfDerived(WhiteVariantRelationMasterQuxCQ sq)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerivedParameter(Object parameterValue)
+    public String keepQueryMyselfDerivedParameter(Object vl)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepMyselfExists(WhiteVariantRelationMasterQuxCQ subQuery)
+    public String keepMyselfExists(WhiteVariantRelationMasterQuxCQ sq)
     { throwIICBOE("MyselfExists"); return null;}
-    public String keepMyselfInScope(WhiteVariantRelationMasterQuxCQ subQuery)
+    public String keepMyselfInScope(WhiteVariantRelationMasterQuxCQ sq)
     { throwIICBOE("MyselfInScope"); return null;}
 
     protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()

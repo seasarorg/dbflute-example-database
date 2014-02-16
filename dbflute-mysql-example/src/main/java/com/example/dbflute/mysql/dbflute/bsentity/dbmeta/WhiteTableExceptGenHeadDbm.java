@@ -57,16 +57,16 @@ public class WhiteTableExceptGenHeadDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgGenHeadId implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteTableExceptGenHead)e).getGenHeadId(); }
-        public void write(Entity e, Object v) { ((WhiteTableExceptGenHead)e).setGenHeadId(ctl(v)); }
+        public Object read(Entity et) { return ((WhiteTableExceptGenHead)et).getGenHeadId(); }
+        public void write(Entity et, Object vl) { ((WhiteTableExceptGenHead)et).setGenHeadId(ctl(vl)); }
     }
     public static class EpgGenHeadName implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteTableExceptGenHead)e).getGenHeadName(); }
-        public void write(Entity e, Object v) { ((WhiteTableExceptGenHead)e).setGenHeadName((String)v); }
+        public Object read(Entity et) { return ((WhiteTableExceptGenHead)et).getGenHeadName(); }
+        public void write(Entity et, Object vl) { ((WhiteTableExceptGenHead)et).setGenHeadName((String)vl); }
     }
     public static class EpgNometaId implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteTableExceptGenHead)e).getNometaId(); }
-        public void write(Entity e, Object v) { ((WhiteTableExceptGenHead)e).setNometaId(ctl(v)); }
+        public Object read(Entity et) { return ((WhiteTableExceptGenHead)et).getNometaId(); }
+        public void write(Entity et, Object vl) { ((WhiteTableExceptGenHead)et).setNometaId(ctl(vl)); }
     }
 
     // ===================================================================================
@@ -147,10 +147,10 @@ public class WhiteTableExceptGenHeadDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((WhiteTableExceptGenHead)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((WhiteTableExceptGenHead)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((WhiteTableExceptGenHead)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((WhiteTableExceptGenHead)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

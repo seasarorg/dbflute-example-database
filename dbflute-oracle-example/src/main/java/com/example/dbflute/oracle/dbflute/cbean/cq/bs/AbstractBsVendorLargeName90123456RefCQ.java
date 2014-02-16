@@ -145,8 +145,8 @@ public abstract class AbstractBsVendorLargeName90123456RefCQ extends AbstractCon
      */
     public void setVendorLargeName90123RefId_IsNotNull() { regVendorLargeName90123RefId(CK_ISNN, DOBJ); }
 
-    protected void regVendorLargeName90123RefId(ConditionKey k, Object v) { regQ(k, v, getCValueVendorLargeName90123RefId(), "VENDOR_LARGE_NAME_90123_REF_ID"); }
-    abstract protected ConditionValue getCValueVendorLargeName90123RefId();
+    protected void regVendorLargeName90123RefId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueVendorLargeName90123RefId(), "VENDOR_LARGE_NAME_90123_REF_ID"); }
+    protected abstract ConditionValue getCValueVendorLargeName90123RefId();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -231,8 +231,8 @@ public abstract class AbstractBsVendorLargeName90123456RefCQ extends AbstractCon
         regLSQ(CK_NLS, fRES(vendorLargeName901RefName), getCValueVendorLargeName901RefName(), "VENDOR_LARGE_NAME_901_REF_NAME", likeSearchOption);
     }
 
-    protected void regVendorLargeName901RefName(ConditionKey k, Object v) { regQ(k, v, getCValueVendorLargeName901RefName(), "VENDOR_LARGE_NAME_901_REF_NAME"); }
-    abstract protected ConditionValue getCValueVendorLargeName901RefName();
+    protected void regVendorLargeName901RefName(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueVendorLargeName901RefName(), "VENDOR_LARGE_NAME_901_REF_NAME"); }
+    protected abstract ConditionValue getCValueVendorLargeName901RefName();
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -329,12 +329,12 @@ public abstract class AbstractBsVendorLargeName90123456RefCQ extends AbstractCon
      * @param subQuery The sub-query of VendorLargeName901234567890 for 'in-scope'. (NotNull)
      */
     public void inScopeVendorLargeName901234567890(SubQuery<VendorLargeName901234567890CB> subQuery) {
-        assertObjectNotNull("subQuery<VendorLargeName901234567890CB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         VendorLargeName901234567890CB cb = new VendorLargeName901234567890CB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String subQueryPropertyName = keepVendorLargeName901234567Id_InScopeRelation_VendorLargeName901234567890(cb.query()); // for saving query-value.
-        registerInScopeRelation(cb.query(), "VENDOR_LARGE_NAME_901234567_ID", "VENDOR_LARGE_NAME_901234567_ID", subQueryPropertyName, "vendorLargeName901234567890");
+        String pp = keepVendorLargeName901234567Id_InScopeRelation_VendorLargeName901234567890(cb.query()); // for saving query-value.
+        registerInScopeRelation(cb.query(), "VENDOR_LARGE_NAME_901234567_ID", "VENDOR_LARGE_NAME_901234567_ID", pp, "vendorLargeName901234567890");
     }
-    public abstract String keepVendorLargeName901234567Id_InScopeRelation_VendorLargeName901234567890(VendorLargeName901234567890CQ subQuery);
+    public abstract String keepVendorLargeName901234567Id_InScopeRelation_VendorLargeName901234567890(VendorLargeName901234567890CQ sq);
 
     /**
      * Set up NotInScopeRelation (sub-query). <br />
@@ -343,12 +343,12 @@ public abstract class AbstractBsVendorLargeName90123456RefCQ extends AbstractCon
      * @param subQuery The sub-query of VendorLargeName901234567890 for 'not in-scope'. (NotNull)
      */
     public void notInScopeVendorLargeName901234567890(SubQuery<VendorLargeName901234567890CB> subQuery) {
-        assertObjectNotNull("subQuery<VendorLargeName901234567890CB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         VendorLargeName901234567890CB cb = new VendorLargeName901234567890CB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String subQueryPropertyName = keepVendorLargeName901234567Id_NotInScopeRelation_VendorLargeName901234567890(cb.query()); // for saving query-value.
-        registerNotInScopeRelation(cb.query(), "VENDOR_LARGE_NAME_901234567_ID", "VENDOR_LARGE_NAME_901234567_ID", subQueryPropertyName, "vendorLargeName901234567890");
+        String pp = keepVendorLargeName901234567Id_NotInScopeRelation_VendorLargeName901234567890(cb.query()); // for saving query-value.
+        registerNotInScopeRelation(cb.query(), "VENDOR_LARGE_NAME_901234567_ID", "VENDOR_LARGE_NAME_901234567_ID", pp, "vendorLargeName901234567890");
     }
-    public abstract String keepVendorLargeName901234567Id_NotInScopeRelation_VendorLargeName901234567890(VendorLargeName901234567890CQ subQuery);
+    public abstract String keepVendorLargeName901234567Id_NotInScopeRelation_VendorLargeName901234567890(VendorLargeName901234567890CQ sq);
 
     /**
      * IsNull {is null}. And OnlyOnceRegistered. <br />
@@ -362,8 +362,8 @@ public abstract class AbstractBsVendorLargeName90123456RefCQ extends AbstractCon
      */
     public void setVendorLargeName901234567Id_IsNotNull() { regVendorLargeName901234567Id(CK_ISNN, DOBJ); }
 
-    protected void regVendorLargeName901234567Id(ConditionKey k, Object v) { regQ(k, v, getCValueVendorLargeName901234567Id(), "VENDOR_LARGE_NAME_901234567_ID"); }
-    abstract protected ConditionValue getCValueVendorLargeName901234567Id();
+    protected void regVendorLargeName901234567Id(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueVendorLargeName901234567Id(), "VENDOR_LARGE_NAME_901234567_ID"); }
+    protected abstract ConditionValue getCValueVendorLargeName901234567Id();
 
     // ===================================================================================
     //                                                                     ScalarCondition
@@ -470,22 +470,22 @@ public abstract class AbstractBsVendorLargeName90123456RefCQ extends AbstractCon
         return xcreateSSQFunction(CK_LE.getOperand());
     }
 
-    protected HpSSQFunction<VendorLargeName90123456RefCB> xcreateSSQFunction(final String operand) {
+    protected HpSSQFunction<VendorLargeName90123456RefCB> xcreateSSQFunction(final String rd) {
         return new HpSSQFunction<VendorLargeName90123456RefCB>(new HpSSQSetupper<VendorLargeName90123456RefCB>() {
-            public void setup(String function, SubQuery<VendorLargeName90123456RefCB> subQuery, HpSSQOption<VendorLargeName90123456RefCB> option) {
-                xscalarCondition(function, subQuery, operand, option);
+            public void setup(String fn, SubQuery<VendorLargeName90123456RefCB> sq, HpSSQOption<VendorLargeName90123456RefCB> op) {
+                xscalarCondition(fn, sq, rd, op);
             }
         });
     }
 
-    protected void xscalarCondition(String function, SubQuery<VendorLargeName90123456RefCB> subQuery, String operand, HpSSQOption<VendorLargeName90123456RefCB> option) {
-        assertObjectNotNull("subQuery<VendorLargeName90123456RefCB>", subQuery);
-        VendorLargeName90123456RefCB cb = xcreateScalarConditionCB(); subQuery.query(cb);
-        String subQueryPropertyName = keepScalarCondition(cb.query()); // for saving query-value
-        option.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
-        registerScalarCondition(function, cb.query(), subQueryPropertyName, operand, option);
+    protected void xscalarCondition(String fn, SubQuery<VendorLargeName90123456RefCB> sq, String rd, HpSSQOption<VendorLargeName90123456RefCB> op) {
+        assertObjectNotNull("subQuery", sq);
+        VendorLargeName90123456RefCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        String pp = keepScalarCondition(cb.query()); // for saving query-value
+        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
-    public abstract String keepScalarCondition(VendorLargeName90123456RefCQ subQuery);
+    public abstract String keepScalarCondition(VendorLargeName90123456RefCQ sq);
 
     protected VendorLargeName90123456RefCB xcreateScalarConditionCB() {
         VendorLargeName90123456RefCB cb = new VendorLargeName90123456RefCB();
@@ -502,13 +502,14 @@ public abstract class AbstractBsVendorLargeName90123456RefCQ extends AbstractCon
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    public void xsmyselfDerive(String function, SubQuery<VendorLargeName90123456RefCB> subQuery, String aliasName, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<VendorLargeName90123456RefCB>", subQuery);
-        VendorLargeName90123456RefCB cb = new VendorLargeName90123456RefCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
-        registerSpecifyMyselfDerived(function, cb.query(), "VENDOR_LARGE_NAME_90123_REF_ID", "VENDOR_LARGE_NAME_90123_REF_ID", subQueryPropertyName, "myselfDerived", aliasName, option);
+    public void xsmyselfDerive(String fn, SubQuery<VendorLargeName90123456RefCB> sq, String al, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        VendorLargeName90123456RefCB cb = new VendorLargeName90123456RefCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "VENDOR_LARGE_NAME_90123_REF_ID";
+        String pp = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
+        registerSpecifyMyselfDerived(fn, cb.query(), pk, pk, pp, "myselfDerived", al, op);
     }
-    public abstract String keepSpecifyMyselfDerived(VendorLargeName90123456RefCQ subQuery);
+    public abstract String keepSpecifyMyselfDerived(VendorLargeName90123456RefCQ sq);
 
     /**
      * Prepare for (Query)MyselfDerived (SubQuery).
@@ -519,20 +520,21 @@ public abstract class AbstractBsVendorLargeName90123456RefCQ extends AbstractCon
     }
     protected HpQDRFunction<VendorLargeName90123456RefCB> xcreateQDRFunctionMyselfDerived() {
         return new HpQDRFunction<VendorLargeName90123456RefCB>(new HpQDRSetupper<VendorLargeName90123456RefCB>() {
-            public void setup(String function, SubQuery<VendorLargeName90123456RefCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-                xqderiveMyselfDerived(function, subQuery, operand, value, option);
+            public void setup(String fn, SubQuery<VendorLargeName90123456RefCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+                xqderiveMyselfDerived(fn, sq, rd, vl, op);
             }
         });
     }
-    public void xqderiveMyselfDerived(String function, SubQuery<VendorLargeName90123456RefCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<VendorLargeName90123456RefCB>", subQuery);
-        VendorLargeName90123456RefCB cb = new VendorLargeName90123456RefCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepQueryMyselfDerived(cb.query()); // for saving query-value.
-        String parameterPropertyName = keepQueryMyselfDerivedParameter(value);
-        registerQueryMyselfDerived(function, cb.query(), "VENDOR_LARGE_NAME_90123_REF_ID", "VENDOR_LARGE_NAME_90123_REF_ID", subQueryPropertyName, "myselfDerived", operand, value, parameterPropertyName, option);
+    public void xqderiveMyselfDerived(String fn, SubQuery<VendorLargeName90123456RefCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        VendorLargeName90123456RefCB cb = new VendorLargeName90123456RefCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "VENDOR_LARGE_NAME_90123_REF_ID";
+        String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
+        String prpp = keepQueryMyselfDerivedParameter(vl);
+        registerQueryMyselfDerived(fn, cb.query(), pk, pk, sqpp, "myselfDerived", rd, vl, prpp, op);
     }
-    public abstract String keepQueryMyselfDerived(VendorLargeName90123456RefCQ subQuery);
-    public abstract String keepQueryMyselfDerivedParameter(Object parameterValue);
+    public abstract String keepQueryMyselfDerived(VendorLargeName90123456RefCQ sq);
+    public abstract String keepQueryMyselfDerivedParameter(Object vl);
 
     // ===================================================================================
     //                                                                        MyselfExists
@@ -542,12 +544,12 @@ public abstract class AbstractBsVendorLargeName90123456RefCQ extends AbstractCon
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfExists(SubQuery<VendorLargeName90123456RefCB> subQuery) {
-        assertObjectNotNull("subQuery<VendorLargeName90123456RefCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         VendorLargeName90123456RefCB cb = new VendorLargeName90123456RefCB(); cb.xsetupForMyselfExists(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfExists(cb.query()); // for saving query-value.
-        registerMyselfExists(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfExists(cb.query()); // for saving query-value.
+        registerMyselfExists(cb.query(), pp);
     }
-    public abstract String keepMyselfExists(VendorLargeName90123456RefCQ subQuery);
+    public abstract String keepMyselfExists(VendorLargeName90123456RefCQ sq);
 
     // ===================================================================================
     //                                                                       MyselfInScope
@@ -557,12 +559,12 @@ public abstract class AbstractBsVendorLargeName90123456RefCQ extends AbstractCon
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfInScope(SubQuery<VendorLargeName90123456RefCB> subQuery) {
-        assertObjectNotNull("subQuery<VendorLargeName90123456RefCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         VendorLargeName90123456RefCB cb = new VendorLargeName90123456RefCB(); cb.xsetupForMyselfInScope(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfInScope(cb.query()); // for saving query-value.
-        registerMyselfInScope(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfInScope(cb.query()); // for saving query-value.
+        registerMyselfInScope(cb.query(), pp);
     }
-    public abstract String keepMyselfInScope(VendorLargeName90123456RefCQ subQuery);
+    public abstract String keepMyselfInScope(VendorLargeName90123456RefCQ sq);
 
     // ===================================================================================
     //                                                                    Full Text Search
@@ -583,7 +585,7 @@ public abstract class AbstractBsVendorLargeName90123456RefCQ extends AbstractCon
      * @param textColumnList The list of text column. (NotNull, NotEmpty, StringColumn, TargetTableColumn)
      * @param conditionValue The condition value. (NullAllowed: if null or empty, no condition)
      */
-    public void match(java.util.List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList, String conditionValue) {
+    public void match(List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList, String conditionValue) {
         xdoMatchByLikeSearch(textColumnList, conditionValue);
     }
 

@@ -439,8 +439,8 @@ public class BsSynonymProductCB extends AbstractConditionBean {
         public HpSDRFunction<SynonymProductCB, SynonymProductCQ> myselfDerived() {
             assertDerived("myselfDerived"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<SynonymProductCB, SynonymProductCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<SynonymProductCB, SynonymProductCQ>() {
-                public void setup(String function, SubQuery<SynonymProductCB> subQuery, SynonymProductCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsmyselfDerive(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<SynonymProductCB> sq, SynonymProductCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsmyselfDerive(fn, sq, al, op); } }, _dbmetaProvider);
         }
     }
 

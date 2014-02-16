@@ -57,19 +57,19 @@ public class WhiteVariantRelationMasterCorgeDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgMasterCorgeId implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteVariantRelationMasterCorge)e).getMasterCorgeId(); }
-        public void write(Entity e, Object v) { ((WhiteVariantRelationMasterCorge)e).setMasterCorgeId(ctl(v)); }
+        public Object read(Entity et) { return ((WhiteVariantRelationMasterCorge)et).getMasterCorgeId(); }
+        public void write(Entity et, Object vl) { ((WhiteVariantRelationMasterCorge)et).setMasterCorgeId(ctl(vl)); }
     }
     public static class EpgMasterCorgeName implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteVariantRelationMasterCorge)e).getMasterCorgeName(); }
-        public void write(Entity e, Object v) { ((WhiteVariantRelationMasterCorge)e).setMasterCorgeName((String)v); }
+        public Object read(Entity et) { return ((WhiteVariantRelationMasterCorge)et).getMasterCorgeName(); }
+        public void write(Entity et, Object vl) { ((WhiteVariantRelationMasterCorge)et).setMasterCorgeName((String)vl); }
     }
     public class EpgCorgeTypeCode implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteVariantRelationMasterCorge)e).getCorgeTypeCode(); }
-        public void write(Entity e, Object v) {
+        public Object read(Entity et) { return ((WhiteVariantRelationMasterCorge)et).getCorgeTypeCode(); }
+        public void write(Entity et, Object vl) {
             ColumnInfo col = columnCorgeTypeCode();
-            ccls(col, v);
-            ((WhiteVariantRelationMasterCorge)e).setCorgeTypeCodeAsVariantRelationQuxType((CDef.VariantRelationQuxType)gcls(col, v));
+            ccls(col, vl);
+            ((WhiteVariantRelationMasterCorge)et).setCorgeTypeCodeAsVariantRelationQuxType((CDef.VariantRelationQuxType)gcls(col, vl));
         }
     }
 
@@ -151,10 +151,10 @@ public class WhiteVariantRelationMasterCorgeDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((WhiteVariantRelationMasterCorge)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((WhiteVariantRelationMasterCorge)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((WhiteVariantRelationMasterCorge)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((WhiteVariantRelationMasterCorge)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

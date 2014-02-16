@@ -82,18 +82,18 @@ public class AliasMemberLoginCIQ extends AbstractBsAliasMemberLoginCQ {
     { return _myCQ.keepLoginMemberStatusCode_InScopeRelation_MemberStatus(sq); }
     public String keepLoginMemberStatusCode_NotInScopeRelation_MemberStatus(MemberStatusCQ sq)
     { return _myCQ.keepLoginMemberStatusCode_NotInScopeRelation_MemberStatus(sq); }
-    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) { return null; }
-    public String keepScalarCondition(AliasMemberLoginCQ subQuery)
+    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
+    public String keepScalarCondition(AliasMemberLoginCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }
-    public String keepSpecifyMyselfDerived(AliasMemberLoginCQ subQuery)
+    public String keepSpecifyMyselfDerived(AliasMemberLoginCQ sq)
     { throwIICBOE("(Specify)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerived(AliasMemberLoginCQ subQuery)
+    public String keepQueryMyselfDerived(AliasMemberLoginCQ sq)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerivedParameter(Object parameterValue)
+    public String keepQueryMyselfDerivedParameter(Object vl)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepMyselfExists(AliasMemberLoginCQ subQuery)
+    public String keepMyselfExists(AliasMemberLoginCQ sq)
     { throwIICBOE("MyselfExists"); return null;}
-    public String keepMyselfInScope(AliasMemberLoginCQ subQuery)
+    public String keepMyselfInScope(AliasMemberLoginCQ sq)
     { throwIICBOE("MyselfInScope"); return null;}
 
     protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()

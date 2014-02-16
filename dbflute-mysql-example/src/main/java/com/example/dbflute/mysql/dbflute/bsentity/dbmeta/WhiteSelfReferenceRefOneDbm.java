@@ -56,12 +56,12 @@ public class WhiteSelfReferenceRefOneDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgSelfReferenceId implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteSelfReferenceRefOne)e).getSelfReferenceId(); }
-        public void write(Entity e, Object v) { ((WhiteSelfReferenceRefOne)e).setSelfReferenceId(ctl(v)); }
+        public Object read(Entity et) { return ((WhiteSelfReferenceRefOne)et).getSelfReferenceId(); }
+        public void write(Entity et, Object vl) { ((WhiteSelfReferenceRefOne)et).setSelfReferenceId(ctl(vl)); }
     }
     public static class EpgSelfReferenceRefOneName implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteSelfReferenceRefOne)e).getSelfReferenceRefOneName(); }
-        public void write(Entity e, Object v) { ((WhiteSelfReferenceRefOne)e).setSelfReferenceRefOneName((String)v); }
+        public Object read(Entity et) { return ((WhiteSelfReferenceRefOne)et).getSelfReferenceRefOneName(); }
+        public void write(Entity et, Object vl) { ((WhiteSelfReferenceRefOne)et).setSelfReferenceRefOneName((String)vl); }
     }
 
     // ===================================================================================
@@ -110,20 +110,20 @@ public class WhiteSelfReferenceRefOneDbm extends AbstractDBMeta {
     //                                      Foreign Property
     //                                      ----------------
     public ForeignInfo foreignWhiteSelfReference() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnSelfReferenceId(), WhiteSelfReferenceDbm.getInstance().columnSelfReferenceId());
-        return cfi("FK_WHITE_SELF_REFERENCE_REF_ONE", "whiteSelfReference", this, WhiteSelfReferenceDbm.getInstance(), map, 0, true, false, false, false, null, null, false, "whiteSelfReferenceRefOneAsOne");
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnSelfReferenceId(), WhiteSelfReferenceDbm.getInstance().columnSelfReferenceId());
+        return cfi("FK_WHITE_SELF_REFERENCE_REF_ONE", "whiteSelfReference", this, WhiteSelfReferenceDbm.getInstance(), mp, 0, true, false, false, false, null, null, false, "whiteSelfReferenceRefOneAsOne");
     }
     public ForeignInfo foreignWhiteSelfReferenceAsDirectParent() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnSelfReferenceId(), WhiteSelfReferenceDbm.getInstance().columnParentId());
-        return cfi("FK_WHITE_SELF_REFERENCE_REF_ONE_DIRECT_PARENT", "whiteSelfReferenceAsDirectParent", this, WhiteSelfReferenceDbm.getInstance(), map, 1, true, true, false, true, "1=1", null, false, null);
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnSelfReferenceId(), WhiteSelfReferenceDbm.getInstance().columnParentId());
+        return cfi("FK_WHITE_SELF_REFERENCE_REF_ONE_DIRECT_PARENT", "whiteSelfReferenceAsDirectParent", this, WhiteSelfReferenceDbm.getInstance(), mp, 1, true, true, false, true, "1=1", null, false, null);
     }
 
     // -----------------------------------------------------
     //                                     Referrer Property
     //                                     -----------------
     public ReferrerInfo referrerWhiteSelfReferenceByParentIdList() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnSelfReferenceId(), WhiteSelfReferenceDbm.getInstance().columnParentId());
-        return cri("FK_white_self_reference_white_self_reference_ref_one_IMPLICIT", "whiteSelfReferenceByParentIdList", this, WhiteSelfReferenceDbm.getInstance(), map, false, "whiteSelfReferenceRefOneByParentId");
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnSelfReferenceId(), WhiteSelfReferenceDbm.getInstance().columnParentId());
+        return cri("FK_white_self_reference_white_self_reference_ref_one_IMPLICIT", "whiteSelfReferenceByParentIdList", this, WhiteSelfReferenceDbm.getInstance(), mp, false, "whiteSelfReferenceRefOneByParentId");
     }
 
     // ===================================================================================
@@ -151,10 +151,10 @@ public class WhiteSelfReferenceRefOneDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((WhiteSelfReferenceRefOne)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((WhiteSelfReferenceRefOne)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((WhiteSelfReferenceRefOne)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((WhiteSelfReferenceRefOne)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

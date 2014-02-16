@@ -478,8 +478,8 @@ public class BsWhiteImplicitReverseFkCB extends AbstractConditionBean {
         public HpSDRFunction<WhiteImplicitReverseFkRefCB, WhiteImplicitReverseFkCQ> derivedWhiteImplicitReverseFkRefList() {
             assertDerived("whiteImplicitReverseFkRefList"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<WhiteImplicitReverseFkRefCB, WhiteImplicitReverseFkCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<WhiteImplicitReverseFkRefCB, WhiteImplicitReverseFkCQ>() {
-                public void setup(String function, SubQuery<WhiteImplicitReverseFkRefCB> subQuery, WhiteImplicitReverseFkCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsderiveWhiteImplicitReverseFkRefList(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<WhiteImplicitReverseFkRefCB> sq, WhiteImplicitReverseFkCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsderiveWhiteImplicitReverseFkRefList(fn, sq, al, op); } }, _dbmetaProvider);
         }
         /**
          * Prepare for (Specify)MyselfDerived (SubQuery).
@@ -488,8 +488,8 @@ public class BsWhiteImplicitReverseFkCB extends AbstractConditionBean {
         public HpSDRFunction<WhiteImplicitReverseFkCB, WhiteImplicitReverseFkCQ> myselfDerived() {
             assertDerived("myselfDerived"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<WhiteImplicitReverseFkCB, WhiteImplicitReverseFkCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<WhiteImplicitReverseFkCB, WhiteImplicitReverseFkCQ>() {
-                public void setup(String function, SubQuery<WhiteImplicitReverseFkCB> subQuery, WhiteImplicitReverseFkCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsmyselfDerive(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<WhiteImplicitReverseFkCB> sq, WhiteImplicitReverseFkCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsmyselfDerive(fn, sq, al, op); } }, _dbmetaProvider);
         }
     }
 

@@ -154,10 +154,10 @@ public abstract class BsWhiteSuppressDefCheckBhv extends AbstractBehaviorWritabl
         return doSelectEntity(cb, WhiteSuppressDefCheck.class);
     }
 
-    protected <ENTITY extends WhiteSuppressDefCheck> ENTITY doSelectEntity(final WhiteSuppressDefCheckCB cb, Class<ENTITY> entityType) {
+    protected <ENTITY extends WhiteSuppressDefCheck> ENTITY doSelectEntity(final WhiteSuppressDefCheckCB cb, Class<ENTITY> tp) {
         assertCBStateValid(cb);
-        return helpSelectEntityInternally(cb, entityType, new InternalSelectEntityCallback<ENTITY, WhiteSuppressDefCheckCB>() {
-            public List<ENTITY> callbackSelectList(WhiteSuppressDefCheckCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); } });
+        return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, WhiteSuppressDefCheckCB>() {
+            public List<ENTITY> callbackSelectList(WhiteSuppressDefCheckCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
     }
 
     @Override
@@ -183,10 +183,10 @@ public abstract class BsWhiteSuppressDefCheckBhv extends AbstractBehaviorWritabl
         return doSelectEntityWithDeletedCheck(cb, WhiteSuppressDefCheck.class);
     }
 
-    protected <ENTITY extends WhiteSuppressDefCheck> ENTITY doSelectEntityWithDeletedCheck(final WhiteSuppressDefCheckCB cb, Class<ENTITY> entityType) {
+    protected <ENTITY extends WhiteSuppressDefCheck> ENTITY doSelectEntityWithDeletedCheck(final WhiteSuppressDefCheckCB cb, Class<ENTITY> tp) {
         assertCBStateValid(cb);
-        return helpSelectEntityWithDeletedCheckInternally(cb, entityType, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, WhiteSuppressDefCheckCB>() {
-            public List<ENTITY> callbackSelectList(WhiteSuppressDefCheckCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); } });
+        return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, WhiteSuppressDefCheckCB>() {
+            public List<ENTITY> callbackSelectList(WhiteSuppressDefCheckCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
     }
 
     @Override
@@ -254,11 +254,11 @@ public abstract class BsWhiteSuppressDefCheckBhv extends AbstractBehaviorWritabl
         return doSelectList(cb, WhiteSuppressDefCheck.class);
     }
 
-    protected <ENTITY extends WhiteSuppressDefCheck> ListResultBean<ENTITY> doSelectList(WhiteSuppressDefCheckCB cb, Class<ENTITY> entityType) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", entityType);
-        assertSpecifyDerivedReferrerEntityProperty(cb, entityType);
-        return helpSelectListInternally(cb, entityType, new InternalSelectListCallback<ENTITY, WhiteSuppressDefCheckCB>() {
-            public List<ENTITY> callbackSelectList(WhiteSuppressDefCheckCB cb, Class<ENTITY> entityType) { return delegateSelectList(cb, entityType); } });
+    protected <ENTITY extends WhiteSuppressDefCheck> ListResultBean<ENTITY> doSelectList(WhiteSuppressDefCheckCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
+        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
+        return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, WhiteSuppressDefCheckCB>() {
+            public List<ENTITY> callbackSelectList(WhiteSuppressDefCheckCB cb, Class<ENTITY> tp) { return delegateSelectList(cb, tp); } });
     }
 
     @Override
@@ -295,11 +295,11 @@ public abstract class BsWhiteSuppressDefCheckBhv extends AbstractBehaviorWritabl
         return doSelectPage(cb, WhiteSuppressDefCheck.class);
     }
 
-    protected <ENTITY extends WhiteSuppressDefCheck> PagingResultBean<ENTITY> doSelectPage(WhiteSuppressDefCheckCB cb, Class<ENTITY> entityType) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", entityType);
-        return helpSelectPageInternally(cb, entityType, new InternalSelectPageCallback<ENTITY, WhiteSuppressDefCheckCB>() {
+    protected <ENTITY extends WhiteSuppressDefCheck> PagingResultBean<ENTITY> doSelectPage(WhiteSuppressDefCheckCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
+        return helpSelectPageInternally(cb, tp, new InternalSelectPageCallback<ENTITY, WhiteSuppressDefCheckCB>() {
             public int callbackSelectCount(WhiteSuppressDefCheckCB cb) { return doSelectCountPlainly(cb); }
-            public List<ENTITY> callbackSelectList(WhiteSuppressDefCheckCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); }
+            public List<ENTITY> callbackSelectList(WhiteSuppressDefCheckCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
         });
     }
 
@@ -329,12 +329,12 @@ public abstract class BsWhiteSuppressDefCheckBhv extends AbstractBehaviorWritabl
         doSelectCursor(cb, entityRowHandler, WhiteSuppressDefCheck.class);
     }
 
-    protected <ENTITY extends WhiteSuppressDefCheck> void doSelectCursor(WhiteSuppressDefCheckCB cb, EntityRowHandler<ENTITY> entityRowHandler, Class<ENTITY> entityType) {
-        assertCBStateValid(cb); assertObjectNotNull("entityRowHandler<WhiteSuppressDefCheck>", entityRowHandler); assertObjectNotNull("entityType", entityType);
-        assertSpecifyDerivedReferrerEntityProperty(cb, entityType);
-        helpSelectCursorInternally(cb, entityRowHandler, entityType, new InternalSelectCursorCallback<ENTITY, WhiteSuppressDefCheckCB>() {
-            public void callbackSelectCursor(WhiteSuppressDefCheckCB cb, EntityRowHandler<ENTITY> entityRowHandler, Class<ENTITY> entityType) { delegateSelectCursor(cb, entityRowHandler, entityType); }
-            public List<ENTITY> callbackSelectList(WhiteSuppressDefCheckCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); }
+    protected <ENTITY extends WhiteSuppressDefCheck> void doSelectCursor(WhiteSuppressDefCheckCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
+        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
+        helpSelectCursorInternally(cb, handler, tp, new InternalSelectCursorCallback<ENTITY, WhiteSuppressDefCheckCB>() {
+            public void callbackSelectCursor(WhiteSuppressDefCheckCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) { delegateSelectCursor(cb, handler, tp); }
+            public List<ENTITY> callbackSelectList(WhiteSuppressDefCheckCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
         });
     }
 
@@ -360,18 +360,18 @@ public abstract class BsWhiteSuppressDefCheckBhv extends AbstractBehaviorWritabl
         return doScalarSelect(resultType, newMyConditionBean());
     }
 
-    protected <RESULT, CB extends WhiteSuppressDefCheckCB> SLFunction<CB, RESULT> doScalarSelect(Class<RESULT> resultType, CB cb) {
-        assertObjectNotNull("resultType", resultType); assertCBStateValid(cb);
+    protected <RESULT, CB extends WhiteSuppressDefCheckCB> SLFunction<CB, RESULT> doScalarSelect(Class<RESULT> tp, CB cb) {
+        assertObjectNotNull("resultType", tp); assertCBStateValid(cb);
         cb.xsetupForScalarSelect(); cb.getSqlClause().disableSelectIndex(); // for when you use union
-        return createSLFunction(cb, resultType);
+        return createSLFunction(cb, tp);
     }
 
-    protected <RESULT, CB extends WhiteSuppressDefCheckCB> SLFunction<CB, RESULT> createSLFunction(CB cb, Class<RESULT> resultType) {
-        return new SLFunction<CB, RESULT>(cb, resultType);
+    protected <RESULT, CB extends WhiteSuppressDefCheckCB> SLFunction<CB, RESULT> createSLFunction(CB cb, Class<RESULT> tp) {
+        return new SLFunction<CB, RESULT>(cb, tp);
     }
 
-    protected <RESULT> SLFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> resultType) {
-        return doScalarSelect(resultType, newMyConditionBean());
+    protected <RESULT> SLFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) {
+        return doScalarSelect(tp, newMyConditionBean());
     }
 
     // ===================================================================================
@@ -397,7 +397,7 @@ public abstract class BsWhiteSuppressDefCheckBhv extends AbstractBehaviorWritabl
      */
     public List<Long> extractDefCheckIdList(List<WhiteSuppressDefCheck> whiteSuppressDefCheckList) {
         return helpExtractListInternally(whiteSuppressDefCheckList, new InternalExtractCallback<WhiteSuppressDefCheck, Long>() {
-            public Long getCV(WhiteSuppressDefCheck e) { return e.getDefCheckId(); }
+            public Long getCV(WhiteSuppressDefCheck et) { return et.getDefCheckId(); }
         });
     }
 
@@ -425,24 +425,24 @@ public abstract class BsWhiteSuppressDefCheckBhv extends AbstractBehaviorWritabl
         doInsert(whiteSuppressDefCheck, null);
     }
 
-    protected void doInsert(WhiteSuppressDefCheck whiteSuppressDefCheck, InsertOption<WhiteSuppressDefCheckCB> option) {
+    protected void doInsert(WhiteSuppressDefCheck whiteSuppressDefCheck, InsertOption<WhiteSuppressDefCheckCB> op) {
         assertObjectNotNull("whiteSuppressDefCheck", whiteSuppressDefCheck);
-        prepareInsertOption(option);
-        delegateInsert(whiteSuppressDefCheck, option);
+        prepareInsertOption(op);
+        delegateInsert(whiteSuppressDefCheck, op);
     }
 
-    protected void prepareInsertOption(InsertOption<WhiteSuppressDefCheckCB> option) {
-        if (option == null) { return; }
-        assertInsertOptionStatus(option);
-        if (option.hasSpecifiedInsertColumn()) {
-            option.resolveInsertColumnSpecification(createCBForSpecifiedUpdate());
+    protected void prepareInsertOption(InsertOption<WhiteSuppressDefCheckCB> op) {
+        if (op == null) { return; }
+        assertInsertOptionStatus(op);
+        if (op.hasSpecifiedInsertColumn()) {
+            op.resolveInsertColumnSpecification(createCBForSpecifiedUpdate());
         }
     }
 
     @Override
-    protected void doCreate(Entity entity, InsertOption<? extends ConditionBean> option) {
-        if (option == null) { insert(downcast(entity)); }
-        else { varyingInsert(downcast(entity), downcast(option)); }
+    protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) {
+        if (op == null) { insert(downcast(et)); }
+        else { varyingInsert(downcast(et), downcast(op)); }
     }
 
     /**
@@ -471,21 +471,21 @@ public abstract class BsWhiteSuppressDefCheckBhv extends AbstractBehaviorWritabl
         doUpdate(whiteSuppressDefCheck, null);
     }
 
-    protected void doUpdate(WhiteSuppressDefCheck whiteSuppressDefCheck, final UpdateOption<WhiteSuppressDefCheckCB> option) {
+    protected void doUpdate(WhiteSuppressDefCheck whiteSuppressDefCheck, final UpdateOption<WhiteSuppressDefCheckCB> op) {
         assertObjectNotNull("whiteSuppressDefCheck", whiteSuppressDefCheck);
-        prepareUpdateOption(option);
+        prepareUpdateOption(op);
         helpUpdateInternally(whiteSuppressDefCheck, new InternalUpdateCallback<WhiteSuppressDefCheck>() {
-            public int callbackDelegateUpdate(WhiteSuppressDefCheck entity) { return delegateUpdate(entity, option); } });
+            public int callbackDelegateUpdate(WhiteSuppressDefCheck et) { return delegateUpdate(et, op); } });
     }
 
-    protected void prepareUpdateOption(UpdateOption<WhiteSuppressDefCheckCB> option) {
-        if (option == null) { return; }
-        assertUpdateOptionStatus(option);
-        if (option.hasSelfSpecification()) {
-            option.resolveSelfSpecification(createCBForVaryingUpdate());
+    protected void prepareUpdateOption(UpdateOption<WhiteSuppressDefCheckCB> op) {
+        if (op == null) { return; }
+        assertUpdateOptionStatus(op);
+        if (op.hasSelfSpecification()) {
+            op.resolveSelfSpecification(createCBForVaryingUpdate());
         }
-        if (option.hasSpecifiedUpdateColumn()) {
-            option.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate());
+        if (op.hasSpecifiedUpdateColumn()) {
+            op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate());
         }
     }
 
@@ -502,14 +502,14 @@ public abstract class BsWhiteSuppressDefCheckBhv extends AbstractBehaviorWritabl
     }
 
     @Override
-    protected void doModify(Entity entity, UpdateOption<? extends ConditionBean> option) {
-        if (option == null) { update(downcast(entity)); }
-        else { varyingUpdate(downcast(entity), downcast(option)); }
+    protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) {
+        if (op == null) { update(downcast(et)); }
+        else { varyingUpdate(downcast(et), downcast(op)); }
     }
 
     @Override
-    protected void doModifyNonstrict(Entity entity, UpdateOption<? extends ConditionBean> option) {
-        doModify(entity, option);
+    protected void doModifyNonstrict(Entity et, UpdateOption<? extends ConditionBean> op) {
+        doModify(et, op);
     }
 
     /**
@@ -525,30 +525,28 @@ public abstract class BsWhiteSuppressDefCheckBhv extends AbstractBehaviorWritabl
         doInesrtOrUpdate(whiteSuppressDefCheck, null, null);
     }
 
-    protected void doInesrtOrUpdate(WhiteSuppressDefCheck whiteSuppressDefCheck, final InsertOption<WhiteSuppressDefCheckCB> insertOption, final UpdateOption<WhiteSuppressDefCheckCB> updateOption) {
+    protected void doInesrtOrUpdate(WhiteSuppressDefCheck whiteSuppressDefCheck, final InsertOption<WhiteSuppressDefCheckCB> iop, final UpdateOption<WhiteSuppressDefCheckCB> uop) {
         helpInsertOrUpdateInternally(whiteSuppressDefCheck, new InternalInsertOrUpdateCallback<WhiteSuppressDefCheck, WhiteSuppressDefCheckCB>() {
-            public void callbackInsert(WhiteSuppressDefCheck entity) { doInsert(entity, insertOption); }
-            public void callbackUpdate(WhiteSuppressDefCheck entity) { doUpdate(entity, updateOption); }
+            public void callbackInsert(WhiteSuppressDefCheck et) { doInsert(et, iop); }
+            public void callbackUpdate(WhiteSuppressDefCheck et) { doUpdate(et, uop); }
             public WhiteSuppressDefCheckCB callbackNewMyConditionBean() { return newMyConditionBean(); }
             public int callbackSelectCount(WhiteSuppressDefCheckCB cb) { return selectCount(cb); }
         });
     }
 
     @Override
-    protected void doCreateOrModify(Entity entity, InsertOption<? extends ConditionBean> insertOption,
-            UpdateOption<? extends ConditionBean> updateOption) {
-        if (insertOption == null && updateOption == null) { insertOrUpdate(downcast(entity)); }
+    protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
+        if (iop == null && uop == null) { insertOrUpdate(downcast(et)); }
         else {
-            insertOption = insertOption == null ? new InsertOption<WhiteSuppressDefCheckCB>() : insertOption;
-            updateOption = updateOption == null ? new UpdateOption<WhiteSuppressDefCheckCB>() : updateOption;
-            varyingInsertOrUpdate(downcast(entity), downcast(insertOption), downcast(updateOption));
+            iop = iop != null ? iop : new InsertOption<WhiteSuppressDefCheckCB>();
+            uop = uop != null ? uop : new UpdateOption<WhiteSuppressDefCheckCB>();
+            varyingInsertOrUpdate(downcast(et), downcast(iop), downcast(uop));
         }
     }
 
     @Override
-    protected void doCreateOrModifyNonstrict(Entity entity, InsertOption<? extends ConditionBean> insertOption,
-            UpdateOption<? extends ConditionBean> updateOption) {
-        doCreateOrModify(entity, insertOption, updateOption);
+    protected void doCreateOrModifyNonstrict(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
+        doCreateOrModify(et, iop, uop);
     }
 
     /**
@@ -572,27 +570,27 @@ public abstract class BsWhiteSuppressDefCheckBhv extends AbstractBehaviorWritabl
         doDelete(whiteSuppressDefCheck, null);
     }
 
-    protected void doDelete(WhiteSuppressDefCheck whiteSuppressDefCheck, final DeleteOption<WhiteSuppressDefCheckCB> option) {
+    protected void doDelete(WhiteSuppressDefCheck whiteSuppressDefCheck, final DeleteOption<WhiteSuppressDefCheckCB> op) {
         assertObjectNotNull("whiteSuppressDefCheck", whiteSuppressDefCheck);
-        prepareDeleteOption(option);
+        prepareDeleteOption(op);
         helpDeleteInternally(whiteSuppressDefCheck, new InternalDeleteCallback<WhiteSuppressDefCheck>() {
-            public int callbackDelegateDelete(WhiteSuppressDefCheck entity) { return delegateDelete(entity, option); } });
+            public int callbackDelegateDelete(WhiteSuppressDefCheck et) { return delegateDelete(et, op); } });
     }
 
-    protected void prepareDeleteOption(DeleteOption<WhiteSuppressDefCheckCB> option) {
-        if (option == null) { return; }
-        assertDeleteOptionStatus(option);
-    }
-
-    @Override
-    protected void doRemove(Entity entity, DeleteOption<? extends ConditionBean> option) {
-        if (option == null) { delete(downcast(entity)); }
-        else { varyingDelete(downcast(entity), downcast(option)); }
+    protected void prepareDeleteOption(DeleteOption<WhiteSuppressDefCheckCB> op) {
+        if (op == null) { return; }
+        assertDeleteOptionStatus(op);
     }
 
     @Override
-    protected void doRemoveNonstrict(Entity entity, DeleteOption<? extends ConditionBean> option) {
-        doRemove(entity, option);
+    protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) {
+        if (op == null) { delete(downcast(et)); }
+        else { varyingDelete(downcast(et), downcast(op)); }
+    }
+
+    @Override
+    protected void doRemoveNonstrict(Entity et, DeleteOption<? extends ConditionBean> op) {
+        doRemove(et, op);
     }
 
     // ===================================================================================
@@ -623,26 +621,26 @@ public abstract class BsWhiteSuppressDefCheckBhv extends AbstractBehaviorWritabl
      * @return The array of inserted count. (NotNull, EmptyAllowed)
      */
     public int[] batchInsert(List<WhiteSuppressDefCheck> whiteSuppressDefCheckList) {
-        InsertOption<WhiteSuppressDefCheckCB> option = createInsertUpdateOption();
-        return doBatchInsert(whiteSuppressDefCheckList, option);
+        InsertOption<WhiteSuppressDefCheckCB> op = createInsertUpdateOption();
+        return doBatchInsert(whiteSuppressDefCheckList, op);
     }
 
-    protected int[] doBatchInsert(List<WhiteSuppressDefCheck> whiteSuppressDefCheckList, InsertOption<WhiteSuppressDefCheckCB> option) {
+    protected int[] doBatchInsert(List<WhiteSuppressDefCheck> whiteSuppressDefCheckList, InsertOption<WhiteSuppressDefCheckCB> op) {
         assertObjectNotNull("whiteSuppressDefCheckList", whiteSuppressDefCheckList);
-        prepareBatchInsertOption(whiteSuppressDefCheckList, option);
-        return delegateBatchInsert(whiteSuppressDefCheckList, option);
+        prepareBatchInsertOption(whiteSuppressDefCheckList, op);
+        return delegateBatchInsert(whiteSuppressDefCheckList, op);
     }
 
-    protected void prepareBatchInsertOption(List<WhiteSuppressDefCheck> whiteSuppressDefCheckList, InsertOption<WhiteSuppressDefCheckCB> option) {
-        option.xallowInsertColumnModifiedPropertiesFragmented();
-        option.xacceptInsertColumnModifiedPropertiesIfNeeds(whiteSuppressDefCheckList);
-        prepareInsertOption(option);
+    protected void prepareBatchInsertOption(List<WhiteSuppressDefCheck> whiteSuppressDefCheckList, InsertOption<WhiteSuppressDefCheckCB> op) {
+        op.xallowInsertColumnModifiedPropertiesFragmented();
+        op.xacceptInsertColumnModifiedPropertiesIfNeeds(whiteSuppressDefCheckList);
+        prepareInsertOption(op);
     }
 
     @Override
-    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> option) {
-        if (option == null) { return batchInsert(downcast(ls)); }
-        else { return varyingBatchInsert(downcast(ls), downcast(option)); }
+    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) {
+        if (op == null) { return batchInsert(downcast(ls)); }
+        else { return varyingBatchInsert(downcast(ls), downcast(op)); }
     }
 
     /**
@@ -670,25 +668,25 @@ public abstract class BsWhiteSuppressDefCheckBhv extends AbstractBehaviorWritabl
      * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<WhiteSuppressDefCheck> whiteSuppressDefCheckList) {
-        UpdateOption<WhiteSuppressDefCheckCB> option = createPlainUpdateOption();
-        return doBatchUpdate(whiteSuppressDefCheckList, option);
+        UpdateOption<WhiteSuppressDefCheckCB> op = createPlainUpdateOption();
+        return doBatchUpdate(whiteSuppressDefCheckList, op);
     }
 
-    protected int[] doBatchUpdate(List<WhiteSuppressDefCheck> whiteSuppressDefCheckList, UpdateOption<WhiteSuppressDefCheckCB> option) {
+    protected int[] doBatchUpdate(List<WhiteSuppressDefCheck> whiteSuppressDefCheckList, UpdateOption<WhiteSuppressDefCheckCB> op) {
         assertObjectNotNull("whiteSuppressDefCheckList", whiteSuppressDefCheckList);
-        prepareBatchUpdateOption(whiteSuppressDefCheckList, option);
-        return delegateBatchUpdate(whiteSuppressDefCheckList, option);
+        prepareBatchUpdateOption(whiteSuppressDefCheckList, op);
+        return delegateBatchUpdate(whiteSuppressDefCheckList, op);
     }
 
-    protected void prepareBatchUpdateOption(List<WhiteSuppressDefCheck> whiteSuppressDefCheckList, UpdateOption<WhiteSuppressDefCheckCB> option) {
-        option.xacceptUpdateColumnModifiedPropertiesIfNeeds(whiteSuppressDefCheckList);
-        prepareUpdateOption(option);
+    protected void prepareBatchUpdateOption(List<WhiteSuppressDefCheck> whiteSuppressDefCheckList, UpdateOption<WhiteSuppressDefCheckCB> op) {
+        op.xacceptUpdateColumnModifiedPropertiesIfNeeds(whiteSuppressDefCheckList);
+        prepareUpdateOption(op);
     }
 
     @Override
-    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> option) {
-        if (option == null) { return batchUpdate(downcast(ls)); }
-        else { return varyingBatchUpdate(downcast(ls), downcast(option)); }
+    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) {
+        if (op == null) { return batchUpdate(downcast(ls)); }
+        else { return varyingBatchUpdate(downcast(ls), downcast(op)); }
     }
 
     /**
@@ -724,8 +722,8 @@ public abstract class BsWhiteSuppressDefCheckBhv extends AbstractBehaviorWritabl
     }
 
     @Override
-    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> option) {
-        return doLumpModify(ls, option);
+    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> op) {
+        return doLumpModify(ls, op);
     }
 
     /**
@@ -739,21 +737,21 @@ public abstract class BsWhiteSuppressDefCheckBhv extends AbstractBehaviorWritabl
         return doBatchDelete(whiteSuppressDefCheckList, null);
     }
 
-    protected int[] doBatchDelete(List<WhiteSuppressDefCheck> whiteSuppressDefCheckList, DeleteOption<WhiteSuppressDefCheckCB> option) {
+    protected int[] doBatchDelete(List<WhiteSuppressDefCheck> whiteSuppressDefCheckList, DeleteOption<WhiteSuppressDefCheckCB> op) {
         assertObjectNotNull("whiteSuppressDefCheckList", whiteSuppressDefCheckList);
-        prepareDeleteOption(option);
-        return delegateBatchDelete(whiteSuppressDefCheckList, option);
+        prepareDeleteOption(op);
+        return delegateBatchDelete(whiteSuppressDefCheckList, op);
     }
 
     @Override
-    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> option) {
-        if (option == null) { return batchDelete(downcast(ls)); }
-        else { return varyingBatchDelete(downcast(ls), downcast(option)); }
+    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) {
+        if (op == null) { return batchDelete(downcast(ls)); }
+        else { return varyingBatchDelete(downcast(ls), downcast(op)); }
     }
 
     @Override
-    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> option) {
-        return doLumpRemove(ls, option);
+    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> op) {
+        return doLumpRemove(ls, op);
     }
 
     // ===================================================================================
@@ -789,13 +787,12 @@ public abstract class BsWhiteSuppressDefCheckBhv extends AbstractBehaviorWritabl
         return doQueryInsert(setupper, null);
     }
 
-    protected int doQueryInsert(QueryInsertSetupper<WhiteSuppressDefCheck, WhiteSuppressDefCheckCB> setupper, InsertOption<WhiteSuppressDefCheckCB> option) {
-        assertObjectNotNull("setupper", setupper);
-        prepareInsertOption(option);
-        WhiteSuppressDefCheck entity = new WhiteSuppressDefCheck();
-        WhiteSuppressDefCheckCB intoCB = createCBForQueryInsert();
-        ConditionBean resourceCB = setupper.setup(entity, intoCB);
-        return delegateQueryInsert(entity, intoCB, resourceCB, option);
+    protected int doQueryInsert(QueryInsertSetupper<WhiteSuppressDefCheck, WhiteSuppressDefCheckCB> sp, InsertOption<WhiteSuppressDefCheckCB> op) {
+        assertObjectNotNull("setupper", sp);
+        prepareInsertOption(op);
+        WhiteSuppressDefCheck e = new WhiteSuppressDefCheck();
+        WhiteSuppressDefCheckCB cb = createCBForQueryInsert();
+        return delegateQueryInsert(e, cb, sp.setup(e, cb), op);
     }
 
     protected WhiteSuppressDefCheckCB createCBForQueryInsert() {
@@ -836,16 +833,16 @@ public abstract class BsWhiteSuppressDefCheckBhv extends AbstractBehaviorWritabl
         return doQueryUpdate(whiteSuppressDefCheck, cb, null);
     }
 
-    protected int doQueryUpdate(WhiteSuppressDefCheck whiteSuppressDefCheck, WhiteSuppressDefCheckCB cb, UpdateOption<WhiteSuppressDefCheckCB> option) {
+    protected int doQueryUpdate(WhiteSuppressDefCheck whiteSuppressDefCheck, WhiteSuppressDefCheckCB cb, UpdateOption<WhiteSuppressDefCheckCB> op) {
         assertObjectNotNull("whiteSuppressDefCheck", whiteSuppressDefCheck); assertCBStateValid(cb);
-        prepareUpdateOption(option);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(whiteSuppressDefCheck, cb, option) : 0;
+        prepareUpdateOption(op);
+        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(whiteSuppressDefCheck, cb, op) : 0;
     }
 
     @Override
-    protected int doRangeModify(Entity entity, ConditionBean cb, UpdateOption<? extends ConditionBean> option) {
-        if (option == null) { return queryUpdate(downcast(entity), (WhiteSuppressDefCheckCB)cb); }
-        else { return varyingQueryUpdate(downcast(entity), (WhiteSuppressDefCheckCB)cb, downcast(option)); }
+    protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op) {
+        if (op == null) { return queryUpdate(downcast(et), (WhiteSuppressDefCheckCB)cb); }
+        else { return varyingQueryUpdate(downcast(et), (WhiteSuppressDefCheckCB)cb, downcast(op)); }
     }
 
     /**
@@ -863,16 +860,16 @@ public abstract class BsWhiteSuppressDefCheckBhv extends AbstractBehaviorWritabl
         return doQueryDelete(cb, null);
     }
 
-    protected int doQueryDelete(WhiteSuppressDefCheckCB cb, DeleteOption<WhiteSuppressDefCheckCB> option) {
+    protected int doQueryDelete(WhiteSuppressDefCheckCB cb, DeleteOption<WhiteSuppressDefCheckCB> op) {
         assertCBStateValid(cb);
-        prepareDeleteOption(option);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryDelete(cb, option) : 0;
+        prepareDeleteOption(op);
+        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryDelete(cb, op) : 0;
     }
 
     @Override
-    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> option) {
-        if (option == null) { return queryDelete((WhiteSuppressDefCheckCB)cb); }
-        else { return varyingQueryDelete((WhiteSuppressDefCheckCB)cb, downcast(option)); }
+    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) {
+        if (op == null) { return queryDelete((WhiteSuppressDefCheckCB)cb); }
+        else { return varyingQueryDelete((WhiteSuppressDefCheckCB)cb, downcast(op)); }
     }
 
     // ===================================================================================
@@ -1124,29 +1121,29 @@ public abstract class BsWhiteSuppressDefCheckBhv extends AbstractBehaviorWritabl
     //                                                ------
     protected int delegateSelectCountUniquely(WhiteSuppressDefCheckCB cb) { return invoke(createSelectCountCBCommand(cb, true)); }
     protected int delegateSelectCountPlainly(WhiteSuppressDefCheckCB cb) { return invoke(createSelectCountCBCommand(cb, false)); }
-    protected <ENTITY extends WhiteSuppressDefCheck> void delegateSelectCursor(WhiteSuppressDefCheckCB cb, EntityRowHandler<ENTITY> erh, Class<ENTITY> et)
-    { invoke(createSelectCursorCBCommand(cb, erh, et)); }
-    protected <ENTITY extends WhiteSuppressDefCheck> List<ENTITY> delegateSelectList(WhiteSuppressDefCheckCB cb, Class<ENTITY> et)
-    { return invoke(createSelectListCBCommand(cb, et)); }
+    protected <ENTITY extends WhiteSuppressDefCheck> void delegateSelectCursor(WhiteSuppressDefCheckCB cb, EntityRowHandler<ENTITY> rh, Class<ENTITY> tp)
+    { invoke(createSelectCursorCBCommand(cb, rh, tp)); }
+    protected <ENTITY extends WhiteSuppressDefCheck> List<ENTITY> delegateSelectList(WhiteSuppressDefCheckCB cb, Class<ENTITY> tp)
+    { return invoke(createSelectListCBCommand(cb, tp)); }
 
     // -----------------------------------------------------
     //                                                Update
     //                                                ------
-    protected int delegateInsert(WhiteSuppressDefCheck e, InsertOption<WhiteSuppressDefCheckCB> op)
-    { if (!processBeforeInsert(e, op)) { return 0; }
-      return invoke(createInsertEntityCommand(e, op)); }
-    protected int delegateUpdate(WhiteSuppressDefCheck e, UpdateOption<WhiteSuppressDefCheckCB> op)
-    { if (!processBeforeUpdate(e, op)) { return 0; }
-      return delegateUpdateNonstrict(e, op); }
-    protected int delegateUpdateNonstrict(WhiteSuppressDefCheck e, UpdateOption<WhiteSuppressDefCheckCB> op)
-    { if (!processBeforeUpdate(e, op)) { return 0; }
-      return invoke(createUpdateNonstrictEntityCommand(e, op)); }
-    protected int delegateDelete(WhiteSuppressDefCheck e, DeleteOption<WhiteSuppressDefCheckCB> op)
-    { if (!processBeforeDelete(e, op)) { return 0; }
-      return delegateDeleteNonstrict(e, op); }
-    protected int delegateDeleteNonstrict(WhiteSuppressDefCheck e, DeleteOption<WhiteSuppressDefCheckCB> op)
-    { if (!processBeforeDelete(e, op)) { return 0; }
-      return invoke(createDeleteNonstrictEntityCommand(e, op)); }
+    protected int delegateInsert(WhiteSuppressDefCheck et, InsertOption<WhiteSuppressDefCheckCB> op)
+    { if (!processBeforeInsert(et, op)) { return 0; }
+      return invoke(createInsertEntityCommand(et, op)); }
+    protected int delegateUpdate(WhiteSuppressDefCheck et, UpdateOption<WhiteSuppressDefCheckCB> op)
+    { if (!processBeforeUpdate(et, op)) { return 0; }
+      return delegateUpdateNonstrict(et, op); }
+    protected int delegateUpdateNonstrict(WhiteSuppressDefCheck et, UpdateOption<WhiteSuppressDefCheckCB> op)
+    { if (!processBeforeUpdate(et, op)) { return 0; }
+      return invoke(createUpdateNonstrictEntityCommand(et, op)); }
+    protected int delegateDelete(WhiteSuppressDefCheck et, DeleteOption<WhiteSuppressDefCheckCB> op)
+    { if (!processBeforeDelete(et, op)) { return 0; }
+      return delegateDeleteNonstrict(et, op); }
+    protected int delegateDeleteNonstrict(WhiteSuppressDefCheck et, DeleteOption<WhiteSuppressDefCheckCB> op)
+    { if (!processBeforeDelete(et, op)) { return 0; }
+      return invoke(createDeleteNonstrictEntityCommand(et, op)); }
 
     protected int[] delegateBatchInsert(List<WhiteSuppressDefCheck> ls, InsertOption<WhiteSuppressDefCheckCB> op)
     { if (ls.isEmpty()) { return new int[]{}; }
@@ -1164,10 +1161,10 @@ public abstract class BsWhiteSuppressDefCheckBhv extends AbstractBehaviorWritabl
     { if (ls.isEmpty()) { return new int[]{}; }
       return invoke(createBatchDeleteNonstrictCommand(processBatchInternally(ls, op, true), op)); }
 
-    protected int delegateQueryInsert(WhiteSuppressDefCheck e, WhiteSuppressDefCheckCB inCB, ConditionBean resCB, InsertOption<WhiteSuppressDefCheckCB> op)
-    { if (!processBeforeQueryInsert(e, inCB, resCB, op)) { return 0; } return invoke(createQueryInsertCBCommand(e, inCB, resCB, op));  }
-    protected int delegateQueryUpdate(WhiteSuppressDefCheck e, WhiteSuppressDefCheckCB cb, UpdateOption<WhiteSuppressDefCheckCB> op)
-    { if (!processBeforeQueryUpdate(e, cb, op)) { return 0; } return invoke(createQueryUpdateCBCommand(e, cb, op));  }
+    protected int delegateQueryInsert(WhiteSuppressDefCheck et, WhiteSuppressDefCheckCB inCB, ConditionBean resCB, InsertOption<WhiteSuppressDefCheckCB> op)
+    { if (!processBeforeQueryInsert(et, inCB, resCB, op)) { return 0; } return invoke(createQueryInsertCBCommand(et, inCB, resCB, op));  }
+    protected int delegateQueryUpdate(WhiteSuppressDefCheck et, WhiteSuppressDefCheckCB cb, UpdateOption<WhiteSuppressDefCheckCB> op)
+    { if (!processBeforeQueryUpdate(et, cb, op)) { return 0; } return invoke(createQueryUpdateCBCommand(et, cb, op));  }
     protected int delegateQueryDelete(WhiteSuppressDefCheckCB cb, DeleteOption<WhiteSuppressDefCheckCB> op)
     { if (!processBeforeQueryDelete(cb, op)) { return 0; } return invoke(createQueryDeleteCBCommand(cb, op));  }
 
@@ -1178,7 +1175,7 @@ public abstract class BsWhiteSuppressDefCheckBhv extends AbstractBehaviorWritabl
      * {@inheritDoc}
      */
     @Override
-    protected boolean hasVersionNoValue(Entity entity) {
+    protected boolean hasVersionNoValue(Entity et) {
         return false;
     }
 
@@ -1186,15 +1183,15 @@ public abstract class BsWhiteSuppressDefCheckBhv extends AbstractBehaviorWritabl
      * {@inheritDoc}
      */
     @Override
-    protected boolean hasUpdateDateValue(Entity entity) {
+    protected boolean hasUpdateDateValue(Entity et) {
         return false;
     }
 
     // ===================================================================================
     //                                                                     Downcast Helper
     //                                                                     ===============
-    protected WhiteSuppressDefCheck downcast(Entity entity) {
-        return helpEntityDowncastInternally(entity, WhiteSuppressDefCheck.class);
+    protected WhiteSuppressDefCheck downcast(Entity et) {
+        return helpEntityDowncastInternally(et, WhiteSuppressDefCheck.class);
     }
 
     protected WhiteSuppressDefCheckCB downcast(ConditionBean cb) {
@@ -1202,27 +1199,27 @@ public abstract class BsWhiteSuppressDefCheckBhv extends AbstractBehaviorWritabl
     }
 
     @SuppressWarnings("unchecked")
-    protected List<WhiteSuppressDefCheck> downcast(List<? extends Entity> entityList) {
-        return (List<WhiteSuppressDefCheck>)entityList;
+    protected List<WhiteSuppressDefCheck> downcast(List<? extends Entity> ls) {
+        return (List<WhiteSuppressDefCheck>)ls;
     }
 
     @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteSuppressDefCheckCB> downcast(InsertOption<? extends ConditionBean> option) {
-        return (InsertOption<WhiteSuppressDefCheckCB>)option;
+    protected InsertOption<WhiteSuppressDefCheckCB> downcast(InsertOption<? extends ConditionBean> op) {
+        return (InsertOption<WhiteSuppressDefCheckCB>)op;
     }
 
     @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteSuppressDefCheckCB> downcast(UpdateOption<? extends ConditionBean> option) {
-        return (UpdateOption<WhiteSuppressDefCheckCB>)option;
+    protected UpdateOption<WhiteSuppressDefCheckCB> downcast(UpdateOption<? extends ConditionBean> op) {
+        return (UpdateOption<WhiteSuppressDefCheckCB>)op;
     }
 
     @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteSuppressDefCheckCB> downcast(DeleteOption<? extends ConditionBean> option) {
-        return (DeleteOption<WhiteSuppressDefCheckCB>)option;
+    protected DeleteOption<WhiteSuppressDefCheckCB> downcast(DeleteOption<? extends ConditionBean> op) {
+        return (DeleteOption<WhiteSuppressDefCheckCB>)op;
     }
 
     @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhiteSuppressDefCheck, WhiteSuppressDefCheckCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> option) {
-        return (QueryInsertSetupper<WhiteSuppressDefCheck, WhiteSuppressDefCheckCB>)option;
+    protected QueryInsertSetupper<WhiteSuppressDefCheck, WhiteSuppressDefCheckCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp) {
+        return (QueryInsertSetupper<WhiteSuppressDefCheck, WhiteSuppressDefCheckCB>)sp;
     }
 }

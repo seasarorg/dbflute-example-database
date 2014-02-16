@@ -5,7 +5,7 @@ import com.example.dbflute.postgresql.dbflute.bsbhv.pmbean.BsUnpaidSummaryMember
 /**
  * <!-- df:beginClassDescription -->
  * The typed parameter-bean of UnpaidSummaryMember. <span style="color: #AD4747">(typed to entity, auto-paging)</span><br />
- * This is related to "<span style="color: #AD4747">selectUnpaidSummaryMember</span>" on MemberBhv.
+ * This is related to "<span style="color: #AD4747">selectUnpaidSummaryMember</span>" on MemberBhv. <br />
  * <!-- df:endClassDescription -->
  * <p>
  * You can implement your original methods here.

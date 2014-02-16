@@ -145,8 +145,8 @@ public abstract class AbstractBsWhiteUqFkRefCQ extends AbstractConditionQuery {
      */
     public void setUqFkRefId_IsNotNull() { regUqFkRefId(CK_ISNN, DOBJ); }
 
-    protected void regUqFkRefId(ConditionKey k, Object v) { regQ(k, v, getCValueUqFkRefId(), "UQ_FK_REF_ID"); }
-    abstract protected ConditionValue getCValueUqFkRefId();
+    protected void regUqFkRefId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueUqFkRefId(), "UQ_FK_REF_ID"); }
+    protected abstract ConditionValue getCValueUqFkRefId();
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -243,12 +243,12 @@ public abstract class AbstractBsWhiteUqFkRefCQ extends AbstractConditionQuery {
      * @param subQuery The sub-query of WhiteUqFkByFkToPkId for 'in-scope'. (NotNull)
      */
     public void inScopeWhiteUqFkByFkToPkId(SubQuery<WhiteUqFkCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteUqFkCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteUqFkCB cb = new WhiteUqFkCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String subQueryPropertyName = keepFkToPkId_InScopeRelation_WhiteUqFkByFkToPkId(cb.query()); // for saving query-value.
-        registerInScopeRelation(cb.query(), "FK_TO_PK_ID", "UQ_FK_ID", subQueryPropertyName, "whiteUqFkByFkToPkId");
+        String pp = keepFkToPkId_InScopeRelation_WhiteUqFkByFkToPkId(cb.query()); // for saving query-value.
+        registerInScopeRelation(cb.query(), "FK_TO_PK_ID", "UQ_FK_ID", pp, "whiteUqFkByFkToPkId");
     }
-    public abstract String keepFkToPkId_InScopeRelation_WhiteUqFkByFkToPkId(WhiteUqFkCQ subQuery);
+    public abstract String keepFkToPkId_InScopeRelation_WhiteUqFkByFkToPkId(WhiteUqFkCQ sq);
 
     /**
      * Set up NotInScopeRelation (sub-query). <br />
@@ -257,15 +257,15 @@ public abstract class AbstractBsWhiteUqFkRefCQ extends AbstractConditionQuery {
      * @param subQuery The sub-query of WhiteUqFkByFkToPkId for 'not in-scope'. (NotNull)
      */
     public void notInScopeWhiteUqFkByFkToPkId(SubQuery<WhiteUqFkCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteUqFkCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteUqFkCB cb = new WhiteUqFkCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String subQueryPropertyName = keepFkToPkId_NotInScopeRelation_WhiteUqFkByFkToPkId(cb.query()); // for saving query-value.
-        registerNotInScopeRelation(cb.query(), "FK_TO_PK_ID", "UQ_FK_ID", subQueryPropertyName, "whiteUqFkByFkToPkId");
+        String pp = keepFkToPkId_NotInScopeRelation_WhiteUqFkByFkToPkId(cb.query()); // for saving query-value.
+        registerNotInScopeRelation(cb.query(), "FK_TO_PK_ID", "UQ_FK_ID", pp, "whiteUqFkByFkToPkId");
     }
-    public abstract String keepFkToPkId_NotInScopeRelation_WhiteUqFkByFkToPkId(WhiteUqFkCQ subQuery);
+    public abstract String keepFkToPkId_NotInScopeRelation_WhiteUqFkByFkToPkId(WhiteUqFkCQ sq);
 
-    protected void regFkToPkId(ConditionKey k, Object v) { regQ(k, v, getCValueFkToPkId(), "FK_TO_PK_ID"); }
-    abstract protected ConditionValue getCValueFkToPkId();
+    protected void regFkToPkId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueFkToPkId(), "FK_TO_PK_ID"); }
+    protected abstract ConditionValue getCValueFkToPkId();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -357,12 +357,12 @@ public abstract class AbstractBsWhiteUqFkRefCQ extends AbstractConditionQuery {
      * @param subQuery The sub-query of WhiteUqFkByFkToUqCode for 'in-scope'. (NotNull)
      */
     public void inScopeWhiteUqFkByFkToUqCode(SubQuery<WhiteUqFkCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteUqFkCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteUqFkCB cb = new WhiteUqFkCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String subQueryPropertyName = keepFkToUqCode_InScopeRelation_WhiteUqFkByFkToUqCode(cb.query()); // for saving query-value.
-        registerInScopeRelation(cb.query(), "FK_TO_UQ_CODE", "UQ_FK_CODE", subQueryPropertyName, "whiteUqFkByFkToUqCode");
+        String pp = keepFkToUqCode_InScopeRelation_WhiteUqFkByFkToUqCode(cb.query()); // for saving query-value.
+        registerInScopeRelation(cb.query(), "FK_TO_UQ_CODE", "UQ_FK_CODE", pp, "whiteUqFkByFkToUqCode");
     }
-    public abstract String keepFkToUqCode_InScopeRelation_WhiteUqFkByFkToUqCode(WhiteUqFkCQ subQuery);
+    public abstract String keepFkToUqCode_InScopeRelation_WhiteUqFkByFkToUqCode(WhiteUqFkCQ sq);
 
     /**
      * Set up NotInScopeRelation (sub-query). <br />
@@ -371,15 +371,15 @@ public abstract class AbstractBsWhiteUqFkRefCQ extends AbstractConditionQuery {
      * @param subQuery The sub-query of WhiteUqFkByFkToUqCode for 'not in-scope'. (NotNull)
      */
     public void notInScopeWhiteUqFkByFkToUqCode(SubQuery<WhiteUqFkCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteUqFkCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteUqFkCB cb = new WhiteUqFkCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String subQueryPropertyName = keepFkToUqCode_NotInScopeRelation_WhiteUqFkByFkToUqCode(cb.query()); // for saving query-value.
-        registerNotInScopeRelation(cb.query(), "FK_TO_UQ_CODE", "UQ_FK_CODE", subQueryPropertyName, "whiteUqFkByFkToUqCode");
+        String pp = keepFkToUqCode_NotInScopeRelation_WhiteUqFkByFkToUqCode(cb.query()); // for saving query-value.
+        registerNotInScopeRelation(cb.query(), "FK_TO_UQ_CODE", "UQ_FK_CODE", pp, "whiteUqFkByFkToUqCode");
     }
-    public abstract String keepFkToUqCode_NotInScopeRelation_WhiteUqFkByFkToUqCode(WhiteUqFkCQ subQuery);
+    public abstract String keepFkToUqCode_NotInScopeRelation_WhiteUqFkByFkToUqCode(WhiteUqFkCQ sq);
 
-    protected void regFkToUqCode(ConditionKey k, Object v) { regQ(k, v, getCValueFkToUqCode(), "FK_TO_UQ_CODE"); }
-    abstract protected ConditionValue getCValueFkToUqCode();
+    protected void regFkToUqCode(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueFkToUqCode(), "FK_TO_UQ_CODE"); }
+    protected abstract ConditionValue getCValueFkToUqCode();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -464,8 +464,8 @@ public abstract class AbstractBsWhiteUqFkRefCQ extends AbstractConditionQuery {
         regLSQ(CK_NLS, fRES(compoundUqFirstCode), getCValueCompoundUqFirstCode(), "COMPOUND_UQ_FIRST_CODE", likeSearchOption);
     }
 
-    protected void regCompoundUqFirstCode(ConditionKey k, Object v) { regQ(k, v, getCValueCompoundUqFirstCode(), "COMPOUND_UQ_FIRST_CODE"); }
-    abstract protected ConditionValue getCValueCompoundUqFirstCode();
+    protected void regCompoundUqFirstCode(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueCompoundUqFirstCode(), "COMPOUND_UQ_FIRST_CODE"); }
+    protected abstract ConditionValue getCValueCompoundUqFirstCode();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -550,8 +550,8 @@ public abstract class AbstractBsWhiteUqFkRefCQ extends AbstractConditionQuery {
         regLSQ(CK_NLS, fRES(compoundUqSecondCode), getCValueCompoundUqSecondCode(), "COMPOUND_UQ_SECOND_CODE", likeSearchOption);
     }
 
-    protected void regCompoundUqSecondCode(ConditionKey k, Object v) { regQ(k, v, getCValueCompoundUqSecondCode(), "COMPOUND_UQ_SECOND_CODE"); }
-    abstract protected ConditionValue getCValueCompoundUqSecondCode();
+    protected void regCompoundUqSecondCode(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueCompoundUqSecondCode(), "COMPOUND_UQ_SECOND_CODE"); }
+    protected abstract ConditionValue getCValueCompoundUqSecondCode();
 
     // ===================================================================================
     //                                                                     ScalarCondition
@@ -658,22 +658,22 @@ public abstract class AbstractBsWhiteUqFkRefCQ extends AbstractConditionQuery {
         return xcreateSSQFunction(CK_LE.getOperand());
     }
 
-    protected HpSSQFunction<WhiteUqFkRefCB> xcreateSSQFunction(final String operand) {
+    protected HpSSQFunction<WhiteUqFkRefCB> xcreateSSQFunction(final String rd) {
         return new HpSSQFunction<WhiteUqFkRefCB>(new HpSSQSetupper<WhiteUqFkRefCB>() {
-            public void setup(String function, SubQuery<WhiteUqFkRefCB> subQuery, HpSSQOption<WhiteUqFkRefCB> option) {
-                xscalarCondition(function, subQuery, operand, option);
+            public void setup(String fn, SubQuery<WhiteUqFkRefCB> sq, HpSSQOption<WhiteUqFkRefCB> op) {
+                xscalarCondition(fn, sq, rd, op);
             }
         });
     }
 
-    protected void xscalarCondition(String function, SubQuery<WhiteUqFkRefCB> subQuery, String operand, HpSSQOption<WhiteUqFkRefCB> option) {
-        assertObjectNotNull("subQuery<WhiteUqFkRefCB>", subQuery);
-        WhiteUqFkRefCB cb = xcreateScalarConditionCB(); subQuery.query(cb);
-        String subQueryPropertyName = keepScalarCondition(cb.query()); // for saving query-value
-        option.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
-        registerScalarCondition(function, cb.query(), subQueryPropertyName, operand, option);
+    protected void xscalarCondition(String fn, SubQuery<WhiteUqFkRefCB> sq, String rd, HpSSQOption<WhiteUqFkRefCB> op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteUqFkRefCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        String pp = keepScalarCondition(cb.query()); // for saving query-value
+        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
-    public abstract String keepScalarCondition(WhiteUqFkRefCQ subQuery);
+    public abstract String keepScalarCondition(WhiteUqFkRefCQ sq);
 
     protected WhiteUqFkRefCB xcreateScalarConditionCB() {
         WhiteUqFkRefCB cb = new WhiteUqFkRefCB();
@@ -690,13 +690,14 @@ public abstract class AbstractBsWhiteUqFkRefCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    public void xsmyselfDerive(String function, SubQuery<WhiteUqFkRefCB> subQuery, String aliasName, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<WhiteUqFkRefCB>", subQuery);
-        WhiteUqFkRefCB cb = new WhiteUqFkRefCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
-        registerSpecifyMyselfDerived(function, cb.query(), "UQ_FK_REF_ID", "UQ_FK_REF_ID", subQueryPropertyName, "myselfDerived", aliasName, option);
+    public void xsmyselfDerive(String fn, SubQuery<WhiteUqFkRefCB> sq, String al, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteUqFkRefCB cb = new WhiteUqFkRefCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "UQ_FK_REF_ID";
+        String pp = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
+        registerSpecifyMyselfDerived(fn, cb.query(), pk, pk, pp, "myselfDerived", al, op);
     }
-    public abstract String keepSpecifyMyselfDerived(WhiteUqFkRefCQ subQuery);
+    public abstract String keepSpecifyMyselfDerived(WhiteUqFkRefCQ sq);
 
     /**
      * Prepare for (Query)MyselfDerived (SubQuery).
@@ -707,20 +708,21 @@ public abstract class AbstractBsWhiteUqFkRefCQ extends AbstractConditionQuery {
     }
     protected HpQDRFunction<WhiteUqFkRefCB> xcreateQDRFunctionMyselfDerived() {
         return new HpQDRFunction<WhiteUqFkRefCB>(new HpQDRSetupper<WhiteUqFkRefCB>() {
-            public void setup(String function, SubQuery<WhiteUqFkRefCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-                xqderiveMyselfDerived(function, subQuery, operand, value, option);
+            public void setup(String fn, SubQuery<WhiteUqFkRefCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+                xqderiveMyselfDerived(fn, sq, rd, vl, op);
             }
         });
     }
-    public void xqderiveMyselfDerived(String function, SubQuery<WhiteUqFkRefCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<WhiteUqFkRefCB>", subQuery);
-        WhiteUqFkRefCB cb = new WhiteUqFkRefCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepQueryMyselfDerived(cb.query()); // for saving query-value.
-        String parameterPropertyName = keepQueryMyselfDerivedParameter(value);
-        registerQueryMyselfDerived(function, cb.query(), "UQ_FK_REF_ID", "UQ_FK_REF_ID", subQueryPropertyName, "myselfDerived", operand, value, parameterPropertyName, option);
+    public void xqderiveMyselfDerived(String fn, SubQuery<WhiteUqFkRefCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteUqFkRefCB cb = new WhiteUqFkRefCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "UQ_FK_REF_ID";
+        String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
+        String prpp = keepQueryMyselfDerivedParameter(vl);
+        registerQueryMyselfDerived(fn, cb.query(), pk, pk, sqpp, "myselfDerived", rd, vl, prpp, op);
     }
-    public abstract String keepQueryMyselfDerived(WhiteUqFkRefCQ subQuery);
-    public abstract String keepQueryMyselfDerivedParameter(Object parameterValue);
+    public abstract String keepQueryMyselfDerived(WhiteUqFkRefCQ sq);
+    public abstract String keepQueryMyselfDerivedParameter(Object vl);
 
     // ===================================================================================
     //                                                                        MyselfExists
@@ -730,12 +732,12 @@ public abstract class AbstractBsWhiteUqFkRefCQ extends AbstractConditionQuery {
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfExists(SubQuery<WhiteUqFkRefCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteUqFkRefCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteUqFkRefCB cb = new WhiteUqFkRefCB(); cb.xsetupForMyselfExists(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfExists(cb.query()); // for saving query-value.
-        registerMyselfExists(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfExists(cb.query()); // for saving query-value.
+        registerMyselfExists(cb.query(), pp);
     }
-    public abstract String keepMyselfExists(WhiteUqFkRefCQ subQuery);
+    public abstract String keepMyselfExists(WhiteUqFkRefCQ sq);
 
     // ===================================================================================
     //                                                                       MyselfInScope
@@ -745,12 +747,12 @@ public abstract class AbstractBsWhiteUqFkRefCQ extends AbstractConditionQuery {
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfInScope(SubQuery<WhiteUqFkRefCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteUqFkRefCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteUqFkRefCB cb = new WhiteUqFkRefCB(); cb.xsetupForMyselfInScope(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfInScope(cb.query()); // for saving query-value.
-        registerMyselfInScope(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfInScope(cb.query()); // for saving query-value.
+        registerMyselfInScope(cb.query(), pp);
     }
-    public abstract String keepMyselfInScope(WhiteUqFkRefCQ subQuery);
+    public abstract String keepMyselfInScope(WhiteUqFkRefCQ sq);
 
     // ===================================================================================
     //                                                                    Full Text Search
@@ -771,7 +773,7 @@ public abstract class AbstractBsWhiteUqFkRefCQ extends AbstractConditionQuery {
      * @param textColumnList The list of text column. (NotNull, NotEmpty, StringColumn, TargetTableColumn)
      * @param conditionValue The condition value. (NullAllowed: if null or empty, no condition)
      */
-    public void match(java.util.List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList, String conditionValue) {
+    public void match(List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList, String conditionValue) {
         xdoMatchByLikeSearch(textColumnList, conditionValue);
     }
 

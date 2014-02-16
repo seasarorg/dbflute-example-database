@@ -76,18 +76,18 @@ public class VendorLargeName90123456RefCIQ extends AbstractBsVendorLargeName9012
     { return _myCQ.keepVendorLargeName901234567Id_InScopeRelation_VendorLargeName901234567890(sq); }
     public String keepVendorLargeName901234567Id_NotInScopeRelation_VendorLargeName901234567890(VendorLargeName901234567890CQ sq)
     { return _myCQ.keepVendorLargeName901234567Id_NotInScopeRelation_VendorLargeName901234567890(sq); }
-    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) { return null; }
-    public String keepScalarCondition(VendorLargeName90123456RefCQ subQuery)
+    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
+    public String keepScalarCondition(VendorLargeName90123456RefCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }
-    public String keepSpecifyMyselfDerived(VendorLargeName90123456RefCQ subQuery)
+    public String keepSpecifyMyselfDerived(VendorLargeName90123456RefCQ sq)
     { throwIICBOE("(Specify)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerived(VendorLargeName90123456RefCQ subQuery)
+    public String keepQueryMyselfDerived(VendorLargeName90123456RefCQ sq)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerivedParameter(Object parameterValue)
+    public String keepQueryMyselfDerivedParameter(Object vl)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepMyselfExists(VendorLargeName90123456RefCQ subQuery)
+    public String keepMyselfExists(VendorLargeName90123456RefCQ sq)
     { throwIICBOE("MyselfExists"); return null;}
-    public String keepMyselfInScope(VendorLargeName90123456RefCQ subQuery)
+    public String keepMyselfInScope(VendorLargeName90123456RefCQ sq)
     { throwIICBOE("MyselfInScope"); return null;}
 
     protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()

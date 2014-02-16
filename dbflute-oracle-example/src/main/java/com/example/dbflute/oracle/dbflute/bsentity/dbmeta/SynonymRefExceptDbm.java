@@ -41,12 +41,12 @@ public class SynonymRefExceptDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgRefExceptId implements PropertyGateway {
-        public Object read(Entity e) { return ((SynonymRefExcept)e).getRefExceptId(); }
-        public void write(Entity e, Object v) { ((SynonymRefExcept)e).setRefExceptId(ctl(v)); }
+        public Object read(Entity et) { return ((SynonymRefExcept)et).getRefExceptId(); }
+        public void write(Entity et, Object vl) { ((SynonymRefExcept)et).setRefExceptId(ctl(vl)); }
     }
     public static class EpgExceptId implements PropertyGateway {
-        public Object read(Entity e) { return ((SynonymRefExcept)e).getExceptId(); }
-        public void write(Entity e, Object v) { ((SynonymRefExcept)e).setExceptId(ctl(v)); }
+        public Object read(Entity et) { return ((SynonymRefExcept)et).getExceptId(); }
+        public void write(Entity et, Object vl) { ((SynonymRefExcept)et).setExceptId(ctl(vl)); }
     }
 
     // ===================================================================================
@@ -95,8 +95,8 @@ public class SynonymRefExceptDbm extends AbstractDBMeta {
     //                                      Foreign Property
     //                                      ----------------
     public ForeignInfo foreignSynonymExcept() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnExceptId(), SynonymExceptDbm.getInstance().columnExceptId());
-        return cfi("FK_WHITE_REF_EXCEPT_SYNONYM1", "synonymExcept", this, SynonymExceptDbm.getInstance(), map, 0, false, false, false, false, null, null, false, "synonymRefExceptList");
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnExceptId(), SynonymExceptDbm.getInstance().columnExceptId());
+        return cfi("FK_WHITE_REF_EXCEPT_SYNONYM1", "synonymExcept", this, SynonymExceptDbm.getInstance(), mp, 0, false, false, false, false, null, null, false, "synonymRefExceptList");
     }
 
     // -----------------------------------------------------
@@ -128,10 +128,10 @@ public class SynonymRefExceptDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((SynonymRefExcept)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((SynonymRefExcept)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((SynonymRefExcept)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((SynonymRefExcept)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

@@ -160,8 +160,8 @@ public abstract class AbstractBsWhiteSplitMultipleFkRefCQ extends AbstractCondit
      */
     public void setFirstId_IsNotNull() { regFirstId(CK_ISNN, DOBJ); }
 
-    protected void regFirstId(ConditionKey k, Object v) { regQ(k, v, getCValueFirstId(), "FIRST_ID"); }
-    abstract protected ConditionValue getCValueFirstId();
+    protected void regFirstId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueFirstId(), "FIRST_ID"); }
+    protected abstract ConditionValue getCValueFirstId();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -258,8 +258,8 @@ public abstract class AbstractBsWhiteSplitMultipleFkRefCQ extends AbstractCondit
      */
     public void setSecondCode_IsNotNull() { regSecondCode(CK_ISNN, DOBJ); }
 
-    protected void regSecondCode(ConditionKey k, Object v) { regQ(k, v, getCValueSecondCode(), "SECOND_CODE"); }
-    abstract protected ConditionValue getCValueSecondCode();
+    protected void regSecondCode(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueSecondCode(), "SECOND_CODE"); }
+    protected abstract ConditionValue getCValueSecondCode();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -344,8 +344,8 @@ public abstract class AbstractBsWhiteSplitMultipleFkRefCQ extends AbstractCondit
         regLSQ(CK_NLS, fRES(refName), getCValueRefName(), "REF_NAME", likeSearchOption);
     }
 
-    protected void regRefName(ConditionKey k, Object v) { regQ(k, v, getCValueRefName(), "REF_NAME"); }
-    abstract protected ConditionValue getCValueRefName();
+    protected void regRefName(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueRefName(), "REF_NAME"); }
+    protected abstract ConditionValue getCValueRefName();
 
     // ===================================================================================
     //                                                                    Full Text Search
@@ -371,7 +371,7 @@ public abstract class AbstractBsWhiteSplitMultipleFkRefCQ extends AbstractCondit
      * @param conditionValue The condition value embedded without binding (by MySQL restriction) but escaped. (NullAllowed: if null or empty, no condition)
      * @param modifier The modifier of full-text search. (NullAllowed: If the value is null, no modifier specified)
      */
-    public void match(java.util.List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList
+    public void match(List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList
                     , String conditionValue
                     , org.seasar.dbflute.dbway.WayOfMySQL.FullTextSearchModifier modifier) {
         xdoMatchForMySQL(textColumnList, conditionValue, modifier);

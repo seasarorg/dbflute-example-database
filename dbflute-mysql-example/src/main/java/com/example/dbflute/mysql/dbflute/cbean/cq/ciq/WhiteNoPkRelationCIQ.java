@@ -89,7 +89,7 @@ public class WhiteNoPkRelationCIQ extends AbstractBsWhiteNoPkRelationCQ {
     protected ConditionValue getCValueProductHandleCode() { return _myCQ.getProductHandleCode(); }
     protected ConditionValue getCValueProductStatusCode() { return _myCQ.getProductStatusCode(); }
     protected ConditionValue getCValueLatestPurchaseDatetime() { return _myCQ.getLatestPurchaseDatetime(); }
-    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) { return null; }
+    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
 
     protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()
         throw new IllegalConditionBeanOperationException(name + " at InlineView is unsupported.");

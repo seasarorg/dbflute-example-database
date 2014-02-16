@@ -92,7 +92,7 @@ public class WhiteAllInOneClsElementCIQ extends AbstractBsWhiteAllInOneClsElemen
     protected ConditionValue getCValueClsElementCode() { return _myCQ.getClsElementCode(); }
     protected ConditionValue getCValueClsElementName() { return _myCQ.getClsElementName(); }
     protected ConditionValue getCValueAttributeExp() { return _myCQ.getAttributeExp(); }
-    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) { return null; }
+    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
 
     protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()
         throw new IllegalConditionBeanOperationException(name + " at InlineView is unsupported.");

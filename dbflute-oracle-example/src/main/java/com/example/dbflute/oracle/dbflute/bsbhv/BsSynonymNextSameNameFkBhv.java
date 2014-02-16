@@ -17,28 +17,28 @@ import com.example.dbflute.oracle.dbflute.cbean.*;
  * <pre>
  * [primary key]
  *     REF_ID
- * 
+ *
  * [column]
  *     REF_ID, REF_NAME, SAME_NAME_ID
- * 
+ *
  * [sequence]
  *     
- * 
+ *
  * [identity]
  *     
- * 
+ *
  * [version-no]
  *     
- * 
+ *
  * [foreign table]
  *     
- * 
+ *
  * [referrer table]
  *     
- * 
+ *
  * [foreign property]
  *     
- * 
+ *
  * [referrer property]
  *     
  * </pre>
@@ -100,7 +100,7 @@ public abstract class BsSynonymNextSameNameFkBhv extends AbstractBehaviorWritabl
         return doSelectCountUniquely(cb);
     }
 
-    protected int doSelectCountUniquely(SynonymNextSameNameFkCB cb) { // called by selectCount(cb) 
+    protected int doSelectCountUniquely(SynonymNextSameNameFkCB cb) { // called by selectCount(cb)
         assertCBStateValid(cb);
         return delegateSelectCountUniquely(cb);
     }
@@ -139,10 +139,10 @@ public abstract class BsSynonymNextSameNameFkBhv extends AbstractBehaviorWritabl
         return doSelectEntity(cb, SynonymNextSameNameFk.class);
     }
 
-    protected <ENTITY extends SynonymNextSameNameFk> ENTITY doSelectEntity(final SynonymNextSameNameFkCB cb, Class<ENTITY> entityType) {
+    protected <ENTITY extends SynonymNextSameNameFk> ENTITY doSelectEntity(final SynonymNextSameNameFkCB cb, Class<ENTITY> tp) {
         assertCBStateValid(cb);
-        return helpSelectEntityInternally(cb, entityType, new InternalSelectEntityCallback<ENTITY, SynonymNextSameNameFkCB>() {
-            public List<ENTITY> callbackSelectList(SynonymNextSameNameFkCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); } });
+        return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, SynonymNextSameNameFkCB>() {
+            public List<ENTITY> callbackSelectList(SynonymNextSameNameFkCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
     }
 
     @Override
@@ -168,10 +168,10 @@ public abstract class BsSynonymNextSameNameFkBhv extends AbstractBehaviorWritabl
         return doSelectEntityWithDeletedCheck(cb, SynonymNextSameNameFk.class);
     }
 
-    protected <ENTITY extends SynonymNextSameNameFk> ENTITY doSelectEntityWithDeletedCheck(final SynonymNextSameNameFkCB cb, Class<ENTITY> entityType) {
+    protected <ENTITY extends SynonymNextSameNameFk> ENTITY doSelectEntityWithDeletedCheck(final SynonymNextSameNameFkCB cb, Class<ENTITY> tp) {
         assertCBStateValid(cb);
-        return helpSelectEntityWithDeletedCheckInternally(cb, entityType, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, SynonymNextSameNameFkCB>() {
-            public List<ENTITY> callbackSelectList(SynonymNextSameNameFkCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); } });
+        return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, SynonymNextSameNameFkCB>() {
+            public List<ENTITY> callbackSelectList(SynonymNextSameNameFkCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
     }
 
     @Override
@@ -239,11 +239,11 @@ public abstract class BsSynonymNextSameNameFkBhv extends AbstractBehaviorWritabl
         return doSelectList(cb, SynonymNextSameNameFk.class);
     }
 
-    protected <ENTITY extends SynonymNextSameNameFk> ListResultBean<ENTITY> doSelectList(SynonymNextSameNameFkCB cb, Class<ENTITY> entityType) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", entityType);
-        assertSpecifyDerivedReferrerEntityProperty(cb, entityType);
-        return helpSelectListInternally(cb, entityType, new InternalSelectListCallback<ENTITY, SynonymNextSameNameFkCB>() {
-            public List<ENTITY> callbackSelectList(SynonymNextSameNameFkCB cb, Class<ENTITY> entityType) { return delegateSelectList(cb, entityType); } });
+    protected <ENTITY extends SynonymNextSameNameFk> ListResultBean<ENTITY> doSelectList(SynonymNextSameNameFkCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
+        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
+        return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, SynonymNextSameNameFkCB>() {
+            public List<ENTITY> callbackSelectList(SynonymNextSameNameFkCB cb, Class<ENTITY> tp) { return delegateSelectList(cb, tp); } });
     }
 
     @Override
@@ -280,11 +280,11 @@ public abstract class BsSynonymNextSameNameFkBhv extends AbstractBehaviorWritabl
         return doSelectPage(cb, SynonymNextSameNameFk.class);
     }
 
-    protected <ENTITY extends SynonymNextSameNameFk> PagingResultBean<ENTITY> doSelectPage(SynonymNextSameNameFkCB cb, Class<ENTITY> entityType) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", entityType);
-        return helpSelectPageInternally(cb, entityType, new InternalSelectPageCallback<ENTITY, SynonymNextSameNameFkCB>() {
+    protected <ENTITY extends SynonymNextSameNameFk> PagingResultBean<ENTITY> doSelectPage(SynonymNextSameNameFkCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
+        return helpSelectPageInternally(cb, tp, new InternalSelectPageCallback<ENTITY, SynonymNextSameNameFkCB>() {
             public int callbackSelectCount(SynonymNextSameNameFkCB cb) { return doSelectCountPlainly(cb); }
-            public List<ENTITY> callbackSelectList(SynonymNextSameNameFkCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); }
+            public List<ENTITY> callbackSelectList(SynonymNextSameNameFkCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
         });
     }
 
@@ -314,12 +314,12 @@ public abstract class BsSynonymNextSameNameFkBhv extends AbstractBehaviorWritabl
         doSelectCursor(cb, entityRowHandler, SynonymNextSameNameFk.class);
     }
 
-    protected <ENTITY extends SynonymNextSameNameFk> void doSelectCursor(SynonymNextSameNameFkCB cb, EntityRowHandler<ENTITY> entityRowHandler, Class<ENTITY> entityType) {
-        assertCBStateValid(cb); assertObjectNotNull("entityRowHandler<SynonymNextSameNameFk>", entityRowHandler); assertObjectNotNull("entityType", entityType);
-        assertSpecifyDerivedReferrerEntityProperty(cb, entityType);
-        helpSelectCursorInternally(cb, entityRowHandler, entityType, new InternalSelectCursorCallback<ENTITY, SynonymNextSameNameFkCB>() {
-            public void callbackSelectCursor(SynonymNextSameNameFkCB cb, EntityRowHandler<ENTITY> entityRowHandler, Class<ENTITY> entityType) { delegateSelectCursor(cb, entityRowHandler, entityType); }
-            public List<ENTITY> callbackSelectList(SynonymNextSameNameFkCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); }
+    protected <ENTITY extends SynonymNextSameNameFk> void doSelectCursor(SynonymNextSameNameFkCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
+        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
+        helpSelectCursorInternally(cb, handler, tp, new InternalSelectCursorCallback<ENTITY, SynonymNextSameNameFkCB>() {
+            public void callbackSelectCursor(SynonymNextSameNameFkCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) { delegateSelectCursor(cb, handler, tp); }
+            public List<ENTITY> callbackSelectList(SynonymNextSameNameFkCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
         });
     }
 
@@ -345,18 +345,18 @@ public abstract class BsSynonymNextSameNameFkBhv extends AbstractBehaviorWritabl
         return doScalarSelect(resultType, newMyConditionBean());
     }
 
-    protected <RESULT, CB extends SynonymNextSameNameFkCB> SLFunction<CB, RESULT> doScalarSelect(Class<RESULT> resultType, CB cb) {
-        assertObjectNotNull("resultType", resultType); assertCBStateValid(cb);
+    protected <RESULT, CB extends SynonymNextSameNameFkCB> SLFunction<CB, RESULT> doScalarSelect(Class<RESULT> tp, CB cb) {
+        assertObjectNotNull("resultType", tp); assertCBStateValid(cb);
         cb.xsetupForScalarSelect(); cb.getSqlClause().disableSelectIndex(); // for when you use union
-        return createSLFunction(cb, resultType);
+        return createSLFunction(cb, tp);
     }
 
-    protected <RESULT, CB extends SynonymNextSameNameFkCB> SLFunction<CB, RESULT> createSLFunction(CB cb, Class<RESULT> resultType) {
-        return new SLFunction<CB, RESULT>(cb, resultType);
+    protected <RESULT, CB extends SynonymNextSameNameFkCB> SLFunction<CB, RESULT> createSLFunction(CB cb, Class<RESULT> tp) {
+        return new SLFunction<CB, RESULT>(cb, tp);
     }
 
-    protected <RESULT> SLFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> resultType) {
-        return doScalarSelect(resultType, newMyConditionBean());
+    protected <RESULT> SLFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) {
+        return doScalarSelect(tp, newMyConditionBean());
     }
 
     // ===================================================================================
@@ -382,7 +382,7 @@ public abstract class BsSynonymNextSameNameFkBhv extends AbstractBehaviorWritabl
      */
     public List<Long> extractRefIdList(List<SynonymNextSameNameFk> synonymNextSameNameFkList) {
         return helpExtractListInternally(synonymNextSameNameFkList, new InternalExtractCallback<SynonymNextSameNameFk, Long>() {
-            public Long getCV(SynonymNextSameNameFk e) { return e.getRefId(); }
+            public Long getCV(SynonymNextSameNameFk et) { return et.getRefId(); }
         });
     }
 
@@ -410,24 +410,24 @@ public abstract class BsSynonymNextSameNameFkBhv extends AbstractBehaviorWritabl
         doInsert(synonymNextSameNameFk, null);
     }
 
-    protected void doInsert(SynonymNextSameNameFk synonymNextSameNameFk, InsertOption<SynonymNextSameNameFkCB> option) {
+    protected void doInsert(SynonymNextSameNameFk synonymNextSameNameFk, InsertOption<SynonymNextSameNameFkCB> op) {
         assertObjectNotNull("synonymNextSameNameFk", synonymNextSameNameFk);
-        prepareInsertOption(option);
-        delegateInsert(synonymNextSameNameFk, option);
+        prepareInsertOption(op);
+        delegateInsert(synonymNextSameNameFk, op);
     }
 
-    protected void prepareInsertOption(InsertOption<SynonymNextSameNameFkCB> option) {
-        if (option == null) { return; }
-        assertInsertOptionStatus(option);
-        if (option.hasSpecifiedInsertColumn()) {
-            option.resolveInsertColumnSpecification(createCBForSpecifiedUpdate());
+    protected void prepareInsertOption(InsertOption<SynonymNextSameNameFkCB> op) {
+        if (op == null) { return; }
+        assertInsertOptionStatus(op);
+        if (op.hasSpecifiedInsertColumn()) {
+            op.resolveInsertColumnSpecification(createCBForSpecifiedUpdate());
         }
     }
 
     @Override
-    protected void doCreate(Entity entity, InsertOption<? extends ConditionBean> option) {
-        if (option == null) { insert(downcast(entity)); }
-        else { varyingInsert(downcast(entity), downcast(option)); }
+    protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) {
+        if (op == null) { insert(downcast(et)); }
+        else { varyingInsert(downcast(et), downcast(op)); }
     }
 
     /**
@@ -445,7 +445,7 @@ public abstract class BsSynonymNextSameNameFkBhv extends AbstractBehaviorWritabl
      *     synonymNextSameNameFkBhv.<span style="color: #FD4747">update</span>(synonymNextSameNameFk);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
-     * } 
+     * }
      * </pre>
      * @param synonymNextSameNameFk The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
@@ -456,21 +456,21 @@ public abstract class BsSynonymNextSameNameFkBhv extends AbstractBehaviorWritabl
         doUpdate(synonymNextSameNameFk, null);
     }
 
-    protected void doUpdate(SynonymNextSameNameFk synonymNextSameNameFk, final UpdateOption<SynonymNextSameNameFkCB> option) {
+    protected void doUpdate(SynonymNextSameNameFk synonymNextSameNameFk, final UpdateOption<SynonymNextSameNameFkCB> op) {
         assertObjectNotNull("synonymNextSameNameFk", synonymNextSameNameFk);
-        prepareUpdateOption(option);
+        prepareUpdateOption(op);
         helpUpdateInternally(synonymNextSameNameFk, new InternalUpdateCallback<SynonymNextSameNameFk>() {
-            public int callbackDelegateUpdate(SynonymNextSameNameFk entity) { return delegateUpdate(entity, option); } });
+            public int callbackDelegateUpdate(SynonymNextSameNameFk et) { return delegateUpdate(et, op); } });
     }
 
-    protected void prepareUpdateOption(UpdateOption<SynonymNextSameNameFkCB> option) {
-        if (option == null) { return; }
-        assertUpdateOptionStatus(option);
-        if (option.hasSelfSpecification()) {
-            option.resolveSelfSpecification(createCBForVaryingUpdate());
+    protected void prepareUpdateOption(UpdateOption<SynonymNextSameNameFkCB> op) {
+        if (op == null) { return; }
+        assertUpdateOptionStatus(op);
+        if (op.hasSelfSpecification()) {
+            op.resolveSelfSpecification(createCBForVaryingUpdate());
         }
-        if (option.hasSpecifiedUpdateColumn()) {
-            option.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate());
+        if (op.hasSpecifiedUpdateColumn()) {
+            op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate());
         }
     }
 
@@ -487,14 +487,14 @@ public abstract class BsSynonymNextSameNameFkBhv extends AbstractBehaviorWritabl
     }
 
     @Override
-    protected void doModify(Entity entity, UpdateOption<? extends ConditionBean> option) {
-        if (option == null) { update(downcast(entity)); }
-        else { varyingUpdate(downcast(entity), downcast(option)); }
+    protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) {
+        if (op == null) { update(downcast(et)); }
+        else { varyingUpdate(downcast(et), downcast(op)); }
     }
 
     @Override
-    protected void doModifyNonstrict(Entity entity, UpdateOption<? extends ConditionBean> option) {
-        doModify(entity, option);
+    protected void doModifyNonstrict(Entity et, UpdateOption<? extends ConditionBean> op) {
+        doModify(et, op);
     }
 
     /**
@@ -510,30 +510,28 @@ public abstract class BsSynonymNextSameNameFkBhv extends AbstractBehaviorWritabl
         doInesrtOrUpdate(synonymNextSameNameFk, null, null);
     }
 
-    protected void doInesrtOrUpdate(SynonymNextSameNameFk synonymNextSameNameFk, final InsertOption<SynonymNextSameNameFkCB> insertOption, final UpdateOption<SynonymNextSameNameFkCB> updateOption) {
+    protected void doInesrtOrUpdate(SynonymNextSameNameFk synonymNextSameNameFk, final InsertOption<SynonymNextSameNameFkCB> iop, final UpdateOption<SynonymNextSameNameFkCB> uop) {
         helpInsertOrUpdateInternally(synonymNextSameNameFk, new InternalInsertOrUpdateCallback<SynonymNextSameNameFk, SynonymNextSameNameFkCB>() {
-            public void callbackInsert(SynonymNextSameNameFk entity) { doInsert(entity, insertOption); }
-            public void callbackUpdate(SynonymNextSameNameFk entity) { doUpdate(entity, updateOption); }
+            public void callbackInsert(SynonymNextSameNameFk et) { doInsert(et, iop); }
+            public void callbackUpdate(SynonymNextSameNameFk et) { doUpdate(et, uop); }
             public SynonymNextSameNameFkCB callbackNewMyConditionBean() { return newMyConditionBean(); }
             public int callbackSelectCount(SynonymNextSameNameFkCB cb) { return selectCount(cb); }
         });
     }
 
     @Override
-    protected void doCreateOrModify(Entity entity, InsertOption<? extends ConditionBean> insertOption,
-            UpdateOption<? extends ConditionBean> updateOption) {
-        if (insertOption == null && updateOption == null) { insertOrUpdate(downcast(entity)); }
+    protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
+        if (iop == null && uop == null) { insertOrUpdate(downcast(et)); }
         else {
-            insertOption = insertOption == null ? new InsertOption<SynonymNextSameNameFkCB>() : insertOption;
-            updateOption = updateOption == null ? new UpdateOption<SynonymNextSameNameFkCB>() : updateOption;
-            varyingInsertOrUpdate(downcast(entity), downcast(insertOption), downcast(updateOption));
+            iop = iop != null ? iop : new InsertOption<SynonymNextSameNameFkCB>();
+            uop = uop != null ? uop : new UpdateOption<SynonymNextSameNameFkCB>();
+            varyingInsertOrUpdate(downcast(et), downcast(iop), downcast(uop));
         }
     }
 
     @Override
-    protected void doCreateOrModifyNonstrict(Entity entity, InsertOption<? extends ConditionBean> insertOption,
-            UpdateOption<? extends ConditionBean> updateOption) {
-        doCreateOrModify(entity, insertOption, updateOption);
+    protected void doCreateOrModifyNonstrict(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
+        doCreateOrModify(et, iop, uop);
     }
 
     /**
@@ -547,7 +545,7 @@ public abstract class BsSynonymNextSameNameFkBhv extends AbstractBehaviorWritabl
      *     synonymNextSameNameFkBhv.<span style="color: #FD4747">delete</span>(synonymNextSameNameFk);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
-     * } 
+     * }
      * </pre>
      * @param synonymNextSameNameFk The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
@@ -557,27 +555,27 @@ public abstract class BsSynonymNextSameNameFkBhv extends AbstractBehaviorWritabl
         doDelete(synonymNextSameNameFk, null);
     }
 
-    protected void doDelete(SynonymNextSameNameFk synonymNextSameNameFk, final DeleteOption<SynonymNextSameNameFkCB> option) {
+    protected void doDelete(SynonymNextSameNameFk synonymNextSameNameFk, final DeleteOption<SynonymNextSameNameFkCB> op) {
         assertObjectNotNull("synonymNextSameNameFk", synonymNextSameNameFk);
-        prepareDeleteOption(option);
+        prepareDeleteOption(op);
         helpDeleteInternally(synonymNextSameNameFk, new InternalDeleteCallback<SynonymNextSameNameFk>() {
-            public int callbackDelegateDelete(SynonymNextSameNameFk entity) { return delegateDelete(entity, option); } });
+            public int callbackDelegateDelete(SynonymNextSameNameFk et) { return delegateDelete(et, op); } });
     }
 
-    protected void prepareDeleteOption(DeleteOption<SynonymNextSameNameFkCB> option) {
-        if (option == null) { return; }
-        assertDeleteOptionStatus(option);
-    }
-
-    @Override
-    protected void doRemove(Entity entity, DeleteOption<? extends ConditionBean> option) {
-        if (option == null) { delete(downcast(entity)); }
-        else { varyingDelete(downcast(entity), downcast(option)); }
+    protected void prepareDeleteOption(DeleteOption<SynonymNextSameNameFkCB> op) {
+        if (op == null) { return; }
+        assertDeleteOptionStatus(op);
     }
 
     @Override
-    protected void doRemoveNonstrict(Entity entity, DeleteOption<? extends ConditionBean> option) {
-        doRemove(entity, option);
+    protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) {
+        if (op == null) { delete(downcast(et)); }
+        else { varyingDelete(downcast(et), downcast(op)); }
+    }
+
+    @Override
+    protected void doRemoveNonstrict(Entity et, DeleteOption<? extends ConditionBean> op) {
+        doRemove(et, op);
     }
 
     // ===================================================================================
@@ -608,26 +606,26 @@ public abstract class BsSynonymNextSameNameFkBhv extends AbstractBehaviorWritabl
      * @return The array of inserted count. (NotNull, EmptyAllowed)
      */
     public int[] batchInsert(List<SynonymNextSameNameFk> synonymNextSameNameFkList) {
-        InsertOption<SynonymNextSameNameFkCB> option = createInsertUpdateOption();
-        return doBatchInsert(synonymNextSameNameFkList, option);
+        InsertOption<SynonymNextSameNameFkCB> op = createInsertUpdateOption();
+        return doBatchInsert(synonymNextSameNameFkList, op);
     }
 
-    protected int[] doBatchInsert(List<SynonymNextSameNameFk> synonymNextSameNameFkList, InsertOption<SynonymNextSameNameFkCB> option) {
+    protected int[] doBatchInsert(List<SynonymNextSameNameFk> synonymNextSameNameFkList, InsertOption<SynonymNextSameNameFkCB> op) {
         assertObjectNotNull("synonymNextSameNameFkList", synonymNextSameNameFkList);
-        prepareBatchInsertOption(synonymNextSameNameFkList, option);
-        return delegateBatchInsert(synonymNextSameNameFkList, option);
+        prepareBatchInsertOption(synonymNextSameNameFkList, op);
+        return delegateBatchInsert(synonymNextSameNameFkList, op);
     }
 
-    protected void prepareBatchInsertOption(List<SynonymNextSameNameFk> synonymNextSameNameFkList, InsertOption<SynonymNextSameNameFkCB> option) {
-        option.xallowInsertColumnModifiedPropertiesFragmented();
-        option.xacceptInsertColumnModifiedPropertiesIfNeeds(synonymNextSameNameFkList);
-        prepareInsertOption(option);
+    protected void prepareBatchInsertOption(List<SynonymNextSameNameFk> synonymNextSameNameFkList, InsertOption<SynonymNextSameNameFkCB> op) {
+        op.xallowInsertColumnModifiedPropertiesFragmented();
+        op.xacceptInsertColumnModifiedPropertiesIfNeeds(synonymNextSameNameFkList);
+        prepareInsertOption(op);
     }
 
     @Override
-    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> option) {
-        if (option == null) { return batchInsert(downcast(ls)); }
-        else { return varyingBatchInsert(downcast(ls), downcast(option)); }
+    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) {
+        if (op == null) { return batchInsert(downcast(ls)); }
+        else { return varyingBatchInsert(downcast(ls), downcast(op)); }
     }
 
     /**
@@ -655,39 +653,39 @@ public abstract class BsSynonymNextSameNameFkBhv extends AbstractBehaviorWritabl
      * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<SynonymNextSameNameFk> synonymNextSameNameFkList) {
-        UpdateOption<SynonymNextSameNameFkCB> option = createPlainUpdateOption();
-        return doBatchUpdate(synonymNextSameNameFkList, option);
+        UpdateOption<SynonymNextSameNameFkCB> op = createPlainUpdateOption();
+        return doBatchUpdate(synonymNextSameNameFkList, op);
     }
 
-    protected int[] doBatchUpdate(List<SynonymNextSameNameFk> synonymNextSameNameFkList, UpdateOption<SynonymNextSameNameFkCB> option) {
+    protected int[] doBatchUpdate(List<SynonymNextSameNameFk> synonymNextSameNameFkList, UpdateOption<SynonymNextSameNameFkCB> op) {
         assertObjectNotNull("synonymNextSameNameFkList", synonymNextSameNameFkList);
-        prepareBatchUpdateOption(synonymNextSameNameFkList, option);
-        return delegateBatchUpdate(synonymNextSameNameFkList, option);
+        prepareBatchUpdateOption(synonymNextSameNameFkList, op);
+        return delegateBatchUpdate(synonymNextSameNameFkList, op);
     }
 
-    protected void prepareBatchUpdateOption(List<SynonymNextSameNameFk> synonymNextSameNameFkList, UpdateOption<SynonymNextSameNameFkCB> option) {
-        option.xacceptUpdateColumnModifiedPropertiesIfNeeds(synonymNextSameNameFkList);
-        prepareUpdateOption(option);
+    protected void prepareBatchUpdateOption(List<SynonymNextSameNameFk> synonymNextSameNameFkList, UpdateOption<SynonymNextSameNameFkCB> op) {
+        op.xacceptUpdateColumnModifiedPropertiesIfNeeds(synonymNextSameNameFkList);
+        prepareUpdateOption(op);
     }
 
     @Override
-    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> option) {
-        if (option == null) { return batchUpdate(downcast(ls)); }
-        else { return varyingBatchUpdate(downcast(ls), downcast(option)); }
+    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) {
+        if (op == null) { return batchUpdate(downcast(ls)); }
+        else { return varyingBatchUpdate(downcast(ls), downcast(op)); }
     }
 
     /**
      * Batch-update the entity list specified-only. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * <pre>
-     * <span style="color: #3F7E5E">// e.g. update two columns only</span> 
+     * <span style="color: #3F7E5E">// e.g. update two columns only</span>
      * synonymNextSameNameFkBhv.<span style="color: #FD4747">batchUpdate</span>(synonymNextSameNameFkList, new SpecifyQuery<SynonymNextSameNameFkCB>() {
      *     public void specify(SynonymNextSameNameFkCB cb) { <span style="color: #3F7E5E">// the two only updated</span>
      *         cb.specify().<span style="color: #FD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
      *         cb.specify().<span style="color: #FD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
      *     }
      * });
-     * <span style="color: #3F7E5E">// e.g. update every column in the table</span> 
+     * <span style="color: #3F7E5E">// e.g. update every column in the table</span>
      * synonymNextSameNameFkBhv.<span style="color: #FD4747">batchUpdate</span>(synonymNextSameNameFkList, new SpecifyQuery<SynonymNextSameNameFkCB>() {
      *     public void specify(SynonymNextSameNameFkCB cb) { <span style="color: #3F7E5E">// all columns are updated</span>
      *         cb.specify().<span style="color: #FD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
@@ -709,8 +707,8 @@ public abstract class BsSynonymNextSameNameFkBhv extends AbstractBehaviorWritabl
     }
 
     @Override
-    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> option) {
-        return doLumpModify(ls, option);
+    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> op) {
+        return doLumpModify(ls, op);
     }
 
     /**
@@ -724,21 +722,21 @@ public abstract class BsSynonymNextSameNameFkBhv extends AbstractBehaviorWritabl
         return doBatchDelete(synonymNextSameNameFkList, null);
     }
 
-    protected int[] doBatchDelete(List<SynonymNextSameNameFk> synonymNextSameNameFkList, DeleteOption<SynonymNextSameNameFkCB> option) {
+    protected int[] doBatchDelete(List<SynonymNextSameNameFk> synonymNextSameNameFkList, DeleteOption<SynonymNextSameNameFkCB> op) {
         assertObjectNotNull("synonymNextSameNameFkList", synonymNextSameNameFkList);
-        prepareDeleteOption(option);
-        return delegateBatchDelete(synonymNextSameNameFkList, option);
+        prepareDeleteOption(op);
+        return delegateBatchDelete(synonymNextSameNameFkList, op);
     }
 
     @Override
-    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> option) {
-        if (option == null) { return batchDelete(downcast(ls)); }
-        else { return varyingBatchDelete(downcast(ls), downcast(option)); }
+    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) {
+        if (op == null) { return batchDelete(downcast(ls)); }
+        else { return varyingBatchDelete(downcast(ls), downcast(op)); }
     }
 
     @Override
-    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> option) {
-        return doLumpRemove(ls, option);
+    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> op) {
+        return doLumpRemove(ls, op);
     }
 
     // ===================================================================================
@@ -751,7 +749,7 @@ public abstract class BsSynonymNextSameNameFkBhv extends AbstractBehaviorWritabl
      *     public ConditionBean setup(synonymNextSameNameFk entity, SynonymNextSameNameFkCB intoCB) {
      *         FooCB cb = FooCB();
      *         cb.setupSelect_Bar();
-     * 
+     *
      *         <span style="color: #3F7E5E">// mapping</span>
      *         intoCB.specify().columnMyName().mappedFrom(cb.specify().columnFooName());
      *         intoCB.specify().columnMyCount().mappedFrom(cb.specify().columnFooCount());
@@ -762,7 +760,7 @@ public abstract class BsSynonymNextSameNameFkBhv extends AbstractBehaviorWritabl
      *         <span style="color: #3F7E5E">//entity.set...;</span>
      *         <span style="color: #3F7E5E">// you don't need to set a value of exclusive control column</span>
      *         <span style="color: #3F7E5E">//entity.setVersionNo(value);</span>
-     * 
+     *
      *         return cb;
      *     }
      * });
@@ -774,13 +772,12 @@ public abstract class BsSynonymNextSameNameFkBhv extends AbstractBehaviorWritabl
         return doQueryInsert(setupper, null);
     }
 
-    protected int doQueryInsert(QueryInsertSetupper<SynonymNextSameNameFk, SynonymNextSameNameFkCB> setupper, InsertOption<SynonymNextSameNameFkCB> option) {
-        assertObjectNotNull("setupper", setupper);
-        prepareInsertOption(option);
-        SynonymNextSameNameFk entity = new SynonymNextSameNameFk();
-        SynonymNextSameNameFkCB intoCB = createCBForQueryInsert();
-        ConditionBean resourceCB = setupper.setup(entity, intoCB);
-        return delegateQueryInsert(entity, intoCB, resourceCB, option);
+    protected int doQueryInsert(QueryInsertSetupper<SynonymNextSameNameFk, SynonymNextSameNameFkCB> sp, InsertOption<SynonymNextSameNameFkCB> op) {
+        assertObjectNotNull("setupper", sp);
+        prepareInsertOption(op);
+        SynonymNextSameNameFk e = new SynonymNextSameNameFk();
+        SynonymNextSameNameFkCB cb = createCBForQueryInsert();
+        return delegateQueryInsert(e, cb, sp.setup(e, cb), op);
     }
 
     protected SynonymNextSameNameFkCB createCBForQueryInsert() {
@@ -821,16 +818,16 @@ public abstract class BsSynonymNextSameNameFkBhv extends AbstractBehaviorWritabl
         return doQueryUpdate(synonymNextSameNameFk, cb, null);
     }
 
-    protected int doQueryUpdate(SynonymNextSameNameFk synonymNextSameNameFk, SynonymNextSameNameFkCB cb, UpdateOption<SynonymNextSameNameFkCB> option) {
+    protected int doQueryUpdate(SynonymNextSameNameFk synonymNextSameNameFk, SynonymNextSameNameFkCB cb, UpdateOption<SynonymNextSameNameFkCB> op) {
         assertObjectNotNull("synonymNextSameNameFk", synonymNextSameNameFk); assertCBStateValid(cb);
-        prepareUpdateOption(option);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(synonymNextSameNameFk, cb, option) : 0;
+        prepareUpdateOption(op);
+        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(synonymNextSameNameFk, cb, op) : 0;
     }
 
     @Override
-    protected int doRangeModify(Entity entity, ConditionBean cb, UpdateOption<? extends ConditionBean> option) {
-        if (option == null) { return queryUpdate(downcast(entity), (SynonymNextSameNameFkCB)cb); }
-        else { return varyingQueryUpdate(downcast(entity), (SynonymNextSameNameFkCB)cb, downcast(option)); }
+    protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op) {
+        if (op == null) { return queryUpdate(downcast(et), (SynonymNextSameNameFkCB)cb); }
+        else { return varyingQueryUpdate(downcast(et), (SynonymNextSameNameFkCB)cb, downcast(op)); }
     }
 
     /**
@@ -848,16 +845,16 @@ public abstract class BsSynonymNextSameNameFkBhv extends AbstractBehaviorWritabl
         return doQueryDelete(cb, null);
     }
 
-    protected int doQueryDelete(SynonymNextSameNameFkCB cb, DeleteOption<SynonymNextSameNameFkCB> option) {
+    protected int doQueryDelete(SynonymNextSameNameFkCB cb, DeleteOption<SynonymNextSameNameFkCB> op) {
         assertCBStateValid(cb);
-        prepareDeleteOption(option);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryDelete(cb, option) : 0;
+        prepareDeleteOption(op);
+        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryDelete(cb, op) : 0;
     }
 
     @Override
-    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> option) {
-        if (option == null) { return queryDelete((SynonymNextSameNameFkCB)cb); }
-        else { return varyingQueryDelete((SynonymNextSameNameFkCB)cb, downcast(option)); }
+    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) {
+        if (op == null) { return queryDelete((SynonymNextSameNameFkCB)cb); }
+        else { return varyingQueryDelete((SynonymNextSameNameFkCB)cb, downcast(op)); }
     }
 
     // ===================================================================================
@@ -1003,7 +1000,7 @@ public abstract class BsSynonymNextSameNameFkBhv extends AbstractBehaviorWritabl
     /**
      * Insert the several entities by query with varying requests (modified-only for fixed value). <br />
      * For example, disableCommonColumnAutoSetup(), disablePrimaryKeyIdentity(). <br />
-     * Other specifications are same as queryInsert(entity, setupper). 
+     * Other specifications are same as queryInsert(entity, setupper).
      * @param setupper The setup-per of query-insert. (NotNull)
      * @param option The option of insert for varying requests. (NotNull)
      * @return The inserted count.
@@ -1017,7 +1014,7 @@ public abstract class BsSynonymNextSameNameFkBhv extends AbstractBehaviorWritabl
      * Update the several entities by query with varying requests non-strictly modified-only. {NonExclusiveControl} <br />
      * For example, self(selfCalculationSpecification), specify(updateColumnSpecification)
      * , disableCommonColumnAutoSetup(), allowNonQueryUpdate(). <br />
-     * Other specifications are same as queryUpdate(entity, cb). 
+     * Other specifications are same as queryUpdate(entity, cb).
      * <pre>
      * <span style="color: #3F7E5E">// ex) you can update by self calculation values</span>
      * SynonymNextSameNameFk synonymNextSameNameFk = new SynonymNextSameNameFk();
@@ -1074,27 +1071,27 @@ public abstract class BsSynonymNextSameNameFkBhv extends AbstractBehaviorWritabl
      *   o selectList()
      *   o execute()
      *   o call()
-     * 
+     *
      * {Entity}
      *   o entityHandling().selectEntity()
      *   o entityHandling().selectEntityWithDeletedCheck()
-     * 
+     *
      * {Paging}
      *   o autoPaging().selectList()
      *   o autoPaging().selectPage()
      *   o manualPaging().selectList()
      *   o manualPaging().selectPage()
-     * 
+     *
      * {Cursor}
      *   o cursorHandling().selectCursor()
-     * 
+     *
      * {Option}
      *   o dynamicBinding().selectList()
      *   o removeBlockComment().selectList()
      *   o removeLineComment().selectList()
      *   o formatSql().selectList()
      * </pre>
-     * @return The basic executor of outside-SQL. (NotNull) 
+     * @return The basic executor of outside-SQL. (NotNull)
      */
     public OutsideSqlBasicExecutor<SynonymNextSameNameFkBhv> outsideSql() {
         return doOutsideSql();
@@ -1109,29 +1106,29 @@ public abstract class BsSynonymNextSameNameFkBhv extends AbstractBehaviorWritabl
     //                                                ------
     protected int delegateSelectCountUniquely(SynonymNextSameNameFkCB cb) { return invoke(createSelectCountCBCommand(cb, true)); }
     protected int delegateSelectCountPlainly(SynonymNextSameNameFkCB cb) { return invoke(createSelectCountCBCommand(cb, false)); }
-    protected <ENTITY extends SynonymNextSameNameFk> void delegateSelectCursor(SynonymNextSameNameFkCB cb, EntityRowHandler<ENTITY> erh, Class<ENTITY> et)
-    { invoke(createSelectCursorCBCommand(cb, erh, et)); }
-    protected <ENTITY extends SynonymNextSameNameFk> List<ENTITY> delegateSelectList(SynonymNextSameNameFkCB cb, Class<ENTITY> et)
-    { return invoke(createSelectListCBCommand(cb, et)); }
+    protected <ENTITY extends SynonymNextSameNameFk> void delegateSelectCursor(SynonymNextSameNameFkCB cb, EntityRowHandler<ENTITY> rh, Class<ENTITY> tp)
+    { invoke(createSelectCursorCBCommand(cb, rh, tp)); }
+    protected <ENTITY extends SynonymNextSameNameFk> List<ENTITY> delegateSelectList(SynonymNextSameNameFkCB cb, Class<ENTITY> tp)
+    { return invoke(createSelectListCBCommand(cb, tp)); }
 
     // -----------------------------------------------------
     //                                                Update
     //                                                ------
-    protected int delegateInsert(SynonymNextSameNameFk e, InsertOption<SynonymNextSameNameFkCB> op)
-    { if (!processBeforeInsert(e, op)) { return 0; }
-      return invoke(createInsertEntityCommand(e, op)); }
-    protected int delegateUpdate(SynonymNextSameNameFk e, UpdateOption<SynonymNextSameNameFkCB> op)
-    { if (!processBeforeUpdate(e, op)) { return 0; }
-      return delegateUpdateNonstrict(e, op); }
-    protected int delegateUpdateNonstrict(SynonymNextSameNameFk e, UpdateOption<SynonymNextSameNameFkCB> op)
-    { if (!processBeforeUpdate(e, op)) { return 0; }
-      return invoke(createUpdateNonstrictEntityCommand(e, op)); }
-    protected int delegateDelete(SynonymNextSameNameFk e, DeleteOption<SynonymNextSameNameFkCB> op)
-    { if (!processBeforeDelete(e, op)) { return 0; }
-      return delegateDeleteNonstrict(e, op); }
-    protected int delegateDeleteNonstrict(SynonymNextSameNameFk e, DeleteOption<SynonymNextSameNameFkCB> op)
-    { if (!processBeforeDelete(e, op)) { return 0; }
-      return invoke(createDeleteNonstrictEntityCommand(e, op)); }
+    protected int delegateInsert(SynonymNextSameNameFk et, InsertOption<SynonymNextSameNameFkCB> op)
+    { if (!processBeforeInsert(et, op)) { return 0; }
+      return invoke(createInsertEntityCommand(et, op)); }
+    protected int delegateUpdate(SynonymNextSameNameFk et, UpdateOption<SynonymNextSameNameFkCB> op)
+    { if (!processBeforeUpdate(et, op)) { return 0; }
+      return delegateUpdateNonstrict(et, op); }
+    protected int delegateUpdateNonstrict(SynonymNextSameNameFk et, UpdateOption<SynonymNextSameNameFkCB> op)
+    { if (!processBeforeUpdate(et, op)) { return 0; }
+      return invoke(createUpdateNonstrictEntityCommand(et, op)); }
+    protected int delegateDelete(SynonymNextSameNameFk et, DeleteOption<SynonymNextSameNameFkCB> op)
+    { if (!processBeforeDelete(et, op)) { return 0; }
+      return delegateDeleteNonstrict(et, op); }
+    protected int delegateDeleteNonstrict(SynonymNextSameNameFk et, DeleteOption<SynonymNextSameNameFkCB> op)
+    { if (!processBeforeDelete(et, op)) { return 0; }
+      return invoke(createDeleteNonstrictEntityCommand(et, op)); }
 
     protected int[] delegateBatchInsert(List<SynonymNextSameNameFk> ls, InsertOption<SynonymNextSameNameFkCB> op)
     { if (ls.isEmpty()) { return new int[]{}; }
@@ -1149,10 +1146,10 @@ public abstract class BsSynonymNextSameNameFkBhv extends AbstractBehaviorWritabl
     { if (ls.isEmpty()) { return new int[]{}; }
       return invoke(createBatchDeleteNonstrictCommand(processBatchInternally(ls, op, true), op)); }
 
-    protected int delegateQueryInsert(SynonymNextSameNameFk e, SynonymNextSameNameFkCB inCB, ConditionBean resCB, InsertOption<SynonymNextSameNameFkCB> op)
-    { if (!processBeforeQueryInsert(e, inCB, resCB, op)) { return 0; } return invoke(createQueryInsertCBCommand(e, inCB, resCB, op));  }
-    protected int delegateQueryUpdate(SynonymNextSameNameFk e, SynonymNextSameNameFkCB cb, UpdateOption<SynonymNextSameNameFkCB> op)
-    { if (!processBeforeQueryUpdate(e, cb, op)) { return 0; } return invoke(createQueryUpdateCBCommand(e, cb, op));  }
+    protected int delegateQueryInsert(SynonymNextSameNameFk et, SynonymNextSameNameFkCB inCB, ConditionBean resCB, InsertOption<SynonymNextSameNameFkCB> op)
+    { if (!processBeforeQueryInsert(et, inCB, resCB, op)) { return 0; } return invoke(createQueryInsertCBCommand(et, inCB, resCB, op));  }
+    protected int delegateQueryUpdate(SynonymNextSameNameFk et, SynonymNextSameNameFkCB cb, UpdateOption<SynonymNextSameNameFkCB> op)
+    { if (!processBeforeQueryUpdate(et, cb, op)) { return 0; } return invoke(createQueryUpdateCBCommand(et, cb, op));  }
     protected int delegateQueryDelete(SynonymNextSameNameFkCB cb, DeleteOption<SynonymNextSameNameFkCB> op)
     { if (!processBeforeQueryDelete(cb, op)) { return 0; } return invoke(createQueryDeleteCBCommand(cb, op));  }
 
@@ -1163,7 +1160,7 @@ public abstract class BsSynonymNextSameNameFkBhv extends AbstractBehaviorWritabl
      * {@inheritDoc}
      */
     @Override
-    protected boolean hasVersionNoValue(Entity entity) {
+    protected boolean hasVersionNoValue(Entity et) {
         return false;
     }
 
@@ -1171,15 +1168,15 @@ public abstract class BsSynonymNextSameNameFkBhv extends AbstractBehaviorWritabl
      * {@inheritDoc}
      */
     @Override
-    protected boolean hasUpdateDateValue(Entity entity) {
+    protected boolean hasUpdateDateValue(Entity et) {
         return false;
     }
 
     // ===================================================================================
     //                                                                     Downcast Helper
     //                                                                     ===============
-    protected SynonymNextSameNameFk downcast(Entity entity) {
-        return helpEntityDowncastInternally(entity, SynonymNextSameNameFk.class);
+    protected SynonymNextSameNameFk downcast(Entity et) {
+        return helpEntityDowncastInternally(et, SynonymNextSameNameFk.class);
     }
 
     protected SynonymNextSameNameFkCB downcast(ConditionBean cb) {
@@ -1187,27 +1184,27 @@ public abstract class BsSynonymNextSameNameFkBhv extends AbstractBehaviorWritabl
     }
 
     @SuppressWarnings("unchecked")
-    protected List<SynonymNextSameNameFk> downcast(List<? extends Entity> entityList) {
-        return (List<SynonymNextSameNameFk>)entityList;
+    protected List<SynonymNextSameNameFk> downcast(List<? extends Entity> ls) {
+        return (List<SynonymNextSameNameFk>)ls;
     }
 
     @SuppressWarnings("unchecked")
-    protected InsertOption<SynonymNextSameNameFkCB> downcast(InsertOption<? extends ConditionBean> option) {
-        return (InsertOption<SynonymNextSameNameFkCB>)option;
+    protected InsertOption<SynonymNextSameNameFkCB> downcast(InsertOption<? extends ConditionBean> op) {
+        return (InsertOption<SynonymNextSameNameFkCB>)op;
     }
 
     @SuppressWarnings("unchecked")
-    protected UpdateOption<SynonymNextSameNameFkCB> downcast(UpdateOption<? extends ConditionBean> option) {
-        return (UpdateOption<SynonymNextSameNameFkCB>)option;
+    protected UpdateOption<SynonymNextSameNameFkCB> downcast(UpdateOption<? extends ConditionBean> op) {
+        return (UpdateOption<SynonymNextSameNameFkCB>)op;
     }
 
     @SuppressWarnings("unchecked")
-    protected DeleteOption<SynonymNextSameNameFkCB> downcast(DeleteOption<? extends ConditionBean> option) {
-        return (DeleteOption<SynonymNextSameNameFkCB>)option;
+    protected DeleteOption<SynonymNextSameNameFkCB> downcast(DeleteOption<? extends ConditionBean> op) {
+        return (DeleteOption<SynonymNextSameNameFkCB>)op;
     }
 
     @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<SynonymNextSameNameFk, SynonymNextSameNameFkCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> option) {
-        return (QueryInsertSetupper<SynonymNextSameNameFk, SynonymNextSameNameFkCB>)option;
+    protected QueryInsertSetupper<SynonymNextSameNameFk, SynonymNextSameNameFkCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp) {
+        return (QueryInsertSetupper<SynonymNextSameNameFk, SynonymNextSameNameFkCB>)sp;
     }
 }

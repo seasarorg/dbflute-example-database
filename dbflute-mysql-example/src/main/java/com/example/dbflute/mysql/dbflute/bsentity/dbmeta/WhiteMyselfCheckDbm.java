@@ -57,16 +57,16 @@ public class WhiteMyselfCheckDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgMyselfCheckId implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteMyselfCheck)e).getMyselfCheckId(); }
-        public void write(Entity e, Object v) { ((WhiteMyselfCheck)e).setMyselfCheckId(cti(v)); }
+        public Object read(Entity et) { return ((WhiteMyselfCheck)et).getMyselfCheckId(); }
+        public void write(Entity et, Object vl) { ((WhiteMyselfCheck)et).setMyselfCheckId(cti(vl)); }
     }
     public static class EpgMyselfCheckName implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteMyselfCheck)e).getMyselfCheckName(); }
-        public void write(Entity e, Object v) { ((WhiteMyselfCheck)e).setMyselfCheckName((String)v); }
+        public Object read(Entity et) { return ((WhiteMyselfCheck)et).getMyselfCheckName(); }
+        public void write(Entity et, Object vl) { ((WhiteMyselfCheck)et).setMyselfCheckName((String)vl); }
     }
     public static class EpgMyselfId implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteMyselfCheck)e).getMyselfId(); }
-        public void write(Entity e, Object v) { ((WhiteMyselfCheck)e).setMyselfId(cti(v)); }
+        public Object read(Entity et) { return ((WhiteMyselfCheck)et).getMyselfId(); }
+        public void write(Entity et, Object vl) { ((WhiteMyselfCheck)et).setMyselfId(cti(vl)); }
     }
 
     // ===================================================================================
@@ -118,8 +118,8 @@ public class WhiteMyselfCheckDbm extends AbstractDBMeta {
     //                                      Foreign Property
     //                                      ----------------
     public ForeignInfo foreignWhiteMyself() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnMyselfId(), WhiteMyselfDbm.getInstance().columnMyselfId());
-        return cfi("FK_WHITE_MYSELF_CHECK_SELF", "whiteMyself", this, WhiteMyselfDbm.getInstance(), map, 0, false, false, false, false, null, null, false, "whiteMyselfCheckList");
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnMyselfId(), WhiteMyselfDbm.getInstance().columnMyselfId());
+        return cfi("FK_WHITE_MYSELF_CHECK_SELF", "whiteMyself", this, WhiteMyselfDbm.getInstance(), mp, 0, false, false, false, false, null, null, false, "whiteMyselfCheckList");
     }
 
     // -----------------------------------------------------
@@ -151,10 +151,10 @@ public class WhiteMyselfCheckDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((WhiteMyselfCheck)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((WhiteMyselfCheck)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((WhiteMyselfCheck)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((WhiteMyselfCheck)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

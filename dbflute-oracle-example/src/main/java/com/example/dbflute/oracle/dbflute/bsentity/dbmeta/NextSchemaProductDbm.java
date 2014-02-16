@@ -50,48 +50,48 @@ public class NextSchemaProductDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgProductId implements PropertyGateway {
-        public Object read(Entity e) { return ((NextSchemaProduct)e).getProductId(); }
-        public void write(Entity e, Object v) { ((NextSchemaProduct)e).setProductId(ctl(v)); }
+        public Object read(Entity et) { return ((NextSchemaProduct)et).getProductId(); }
+        public void write(Entity et, Object vl) { ((NextSchemaProduct)et).setProductId(ctl(vl)); }
     }
     public static class EpgProductName implements PropertyGateway {
-        public Object read(Entity e) { return ((NextSchemaProduct)e).getProductName(); }
-        public void write(Entity e, Object v) { ((NextSchemaProduct)e).setProductName((String)v); }
+        public Object read(Entity et) { return ((NextSchemaProduct)et).getProductName(); }
+        public void write(Entity et, Object vl) { ((NextSchemaProduct)et).setProductName((String)vl); }
     }
     public static class EpgProductHandleCode implements PropertyGateway {
-        public Object read(Entity e) { return ((NextSchemaProduct)e).getProductHandleCode(); }
-        public void write(Entity e, Object v) { ((NextSchemaProduct)e).setProductHandleCode((String)v); }
+        public Object read(Entity et) { return ((NextSchemaProduct)et).getProductHandleCode(); }
+        public void write(Entity et, Object vl) { ((NextSchemaProduct)et).setProductHandleCode((String)vl); }
     }
     public static class EpgProductStatusCode implements PropertyGateway {
-        public Object read(Entity e) { return ((NextSchemaProduct)e).getProductStatusCode(); }
-        public void write(Entity e, Object v) { ((NextSchemaProduct)e).setProductStatusCode((String)v); }
+        public Object read(Entity et) { return ((NextSchemaProduct)et).getProductStatusCode(); }
+        public void write(Entity et, Object vl) { ((NextSchemaProduct)et).setProductStatusCode((String)vl); }
     }
     public static class EpgRegisterDatetime implements PropertyGateway {
-        public Object read(Entity e) { return ((NextSchemaProduct)e).getRegisterDatetime(); }
-        public void write(Entity e, Object v) { ((NextSchemaProduct)e).setRegisterDatetime((java.util.Date)v); }
+        public Object read(Entity et) { return ((NextSchemaProduct)et).getRegisterDatetime(); }
+        public void write(Entity et, Object vl) { ((NextSchemaProduct)et).setRegisterDatetime((java.util.Date)vl); }
     }
     public static class EpgRegisterUser implements PropertyGateway {
-        public Object read(Entity e) { return ((NextSchemaProduct)e).getRegisterUser(); }
-        public void write(Entity e, Object v) { ((NextSchemaProduct)e).setRegisterUser((String)v); }
+        public Object read(Entity et) { return ((NextSchemaProduct)et).getRegisterUser(); }
+        public void write(Entity et, Object vl) { ((NextSchemaProduct)et).setRegisterUser((String)vl); }
     }
     public static class EpgRegisterProcess implements PropertyGateway {
-        public Object read(Entity e) { return ((NextSchemaProduct)e).getRegisterProcess(); }
-        public void write(Entity e, Object v) { ((NextSchemaProduct)e).setRegisterProcess((String)v); }
+        public Object read(Entity et) { return ((NextSchemaProduct)et).getRegisterProcess(); }
+        public void write(Entity et, Object vl) { ((NextSchemaProduct)et).setRegisterProcess((String)vl); }
     }
     public static class EpgUpdateDatetime implements PropertyGateway {
-        public Object read(Entity e) { return ((NextSchemaProduct)e).getUpdateDatetime(); }
-        public void write(Entity e, Object v) { ((NextSchemaProduct)e).setUpdateDatetime((java.util.Date)v); }
+        public Object read(Entity et) { return ((NextSchemaProduct)et).getUpdateDatetime(); }
+        public void write(Entity et, Object vl) { ((NextSchemaProduct)et).setUpdateDatetime((java.util.Date)vl); }
     }
     public static class EpgUpdateUser implements PropertyGateway {
-        public Object read(Entity e) { return ((NextSchemaProduct)e).getUpdateUser(); }
-        public void write(Entity e, Object v) { ((NextSchemaProduct)e).setUpdateUser((String)v); }
+        public Object read(Entity et) { return ((NextSchemaProduct)et).getUpdateUser(); }
+        public void write(Entity et, Object vl) { ((NextSchemaProduct)et).setUpdateUser((String)vl); }
     }
     public static class EpgUpdateProcess implements PropertyGateway {
-        public Object read(Entity e) { return ((NextSchemaProduct)e).getUpdateProcess(); }
-        public void write(Entity e, Object v) { ((NextSchemaProduct)e).setUpdateProcess((String)v); }
+        public Object read(Entity et) { return ((NextSchemaProduct)et).getUpdateProcess(); }
+        public void write(Entity et, Object vl) { ((NextSchemaProduct)et).setUpdateProcess((String)vl); }
     }
     public static class EpgVersionNo implements PropertyGateway {
-        public Object read(Entity e) { return ((NextSchemaProduct)e).getVersionNo(); }
-        public void write(Entity e, Object v) { ((NextSchemaProduct)e).setVersionNo(ctb(v)); }
+        public Object read(Entity et) { return ((NextSchemaProduct)et).getVersionNo(); }
+        public void write(Entity et, Object vl) { ((NextSchemaProduct)et).setVersionNo(ctb(vl)); }
     }
 
     // ===================================================================================
@@ -171,8 +171,8 @@ public class NextSchemaProductDbm extends AbstractDBMeta {
     //                                      Foreign Property
     //                                      ----------------
     public ForeignInfo foreignNextSchemaProductStatus() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnProductStatusCode(), NextSchemaProductStatusDbm.getInstance().columnProductStatusCode());
-        return cfi("FK_NEXT_SCHEMA_PRODUCT", "nextSchemaProductStatus", this, NextSchemaProductStatusDbm.getInstance(), map, 0, false, false, false, false, null, null, false, "nextSchemaProductList");
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnProductStatusCode(), NextSchemaProductStatusDbm.getInstance().columnProductStatusCode());
+        return cfi("FK_NEXT_SCHEMA_PRODUCT", "nextSchemaProductStatus", this, NextSchemaProductStatusDbm.getInstance(), mp, 0, false, false, false, false, null, null, false, "nextSchemaProductList");
     }
 
     // -----------------------------------------------------
@@ -217,10 +217,10 @@ public class NextSchemaProductDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((NextSchemaProduct)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((NextSchemaProduct)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((NextSchemaProduct)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((NextSchemaProduct)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

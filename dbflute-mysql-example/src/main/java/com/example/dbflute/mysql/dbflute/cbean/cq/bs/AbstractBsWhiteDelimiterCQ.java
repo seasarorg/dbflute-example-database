@@ -160,8 +160,8 @@ public abstract class AbstractBsWhiteDelimiterCQ extends AbstractConditionQuery 
      */
     public void setDelimiterId_IsNotNull() { regDelimiterId(CK_ISNN, DOBJ); }
 
-    protected void regDelimiterId(ConditionKey k, Object v) { regQ(k, v, getCValueDelimiterId(), "DELIMITER_ID"); }
-    abstract protected ConditionValue getCValueDelimiterId();
+    protected void regDelimiterId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueDelimiterId(), "DELIMITER_ID"); }
+    protected abstract ConditionValue getCValueDelimiterId();
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -263,8 +263,8 @@ public abstract class AbstractBsWhiteDelimiterCQ extends AbstractConditionQuery 
      */
     public void setNumberNullable_IsNotNull() { regNumberNullable(CK_ISNN, DOBJ); }
 
-    protected void regNumberNullable(ConditionKey k, Object v) { regQ(k, v, getCValueNumberNullable(), "NUMBER_NULLABLE"); }
-    abstract protected ConditionValue getCValueNumberNullable();
+    protected void regNumberNullable(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueNumberNullable(), "NUMBER_NULLABLE"); }
+    protected abstract ConditionValue getCValueNumberNullable();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -367,8 +367,8 @@ public abstract class AbstractBsWhiteDelimiterCQ extends AbstractConditionQuery 
      */
     public void setStringConverted_IsNotNull() { regStringConverted(CK_ISNN, DOBJ); }
 
-    protected void regStringConverted(ConditionKey k, Object v) { regQ(k, v, getCValueStringConverted(), "STRING_CONVERTED"); }
-    abstract protected ConditionValue getCValueStringConverted();
+    protected void regStringConverted(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueStringConverted(), "STRING_CONVERTED"); }
+    protected abstract ConditionValue getCValueStringConverted();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -471,8 +471,8 @@ public abstract class AbstractBsWhiteDelimiterCQ extends AbstractConditionQuery 
      */
     public void setStringNonConverted_IsNotNull() { regStringNonConverted(CK_ISNN, DOBJ); }
 
-    protected void regStringNonConverted(ConditionKey k, Object v) { regQ(k, v, getCValueStringNonConverted(), "STRING_NON_CONVERTED"); }
-    abstract protected ConditionValue getCValueStringNonConverted();
+    protected void regStringNonConverted(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueStringNonConverted(), "STRING_NON_CONVERTED"); }
+    protected abstract ConditionValue getCValueStringNonConverted();
 
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -528,7 +528,7 @@ public abstract class AbstractBsWhiteDelimiterCQ extends AbstractConditionQuery 
      * @param toDatetime The to-datetime(yyyy/MM/dd HH:mm:ss.SSS) of dateDefault. (NullAllowed: if null, no to-condition)
      * @param fromToOption The option of from-to. (NotNull)
      */
-    public void setDateDefault_FromTo(java.util.Date fromDatetime, java.util.Date toDatetime, FromToOption fromToOption) {
+    public void setDateDefault_FromTo(Date fromDatetime, Date toDatetime, FromToOption fromToOption) {
         regFTQ(fCTPD(fromDatetime), fCTPD(toDatetime), getCValueDateDefault(), "DATE_DEFAULT", fromToOption);
     }
 
@@ -543,12 +543,12 @@ public abstract class AbstractBsWhiteDelimiterCQ extends AbstractConditionQuery 
      * @param fromDate The from-date(yyyy/MM/dd) of dateDefault. (NullAllowed: if null, no from-condition)
      * @param toDate The to-date(yyyy/MM/dd) of dateDefault. (NullAllowed: if null, no to-condition)
      */
-    public void setDateDefault_DateFromTo(java.util.Date fromDate, java.util.Date toDate) {
+    public void setDateDefault_DateFromTo(Date fromDate, Date toDate) {
         setDateDefault_FromTo(fromDate, toDate, new FromToOption().compareAsDate());
     }
 
-    protected void regDateDefault(ConditionKey k, Object v) { regQ(k, v, getCValueDateDefault(), "DATE_DEFAULT"); }
-    abstract protected ConditionValue getCValueDateDefault();
+    protected void regDateDefault(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueDateDefault(), "DATE_DEFAULT"); }
+    protected abstract ConditionValue getCValueDateDefault();
 
     // ===================================================================================
     //                                                                     ScalarCondition
@@ -655,22 +655,22 @@ public abstract class AbstractBsWhiteDelimiterCQ extends AbstractConditionQuery 
         return xcreateSSQFunction(CK_LE.getOperand());
     }
 
-    protected HpSSQFunction<WhiteDelimiterCB> xcreateSSQFunction(final String operand) {
+    protected HpSSQFunction<WhiteDelimiterCB> xcreateSSQFunction(final String rd) {
         return new HpSSQFunction<WhiteDelimiterCB>(new HpSSQSetupper<WhiteDelimiterCB>() {
-            public void setup(String function, SubQuery<WhiteDelimiterCB> subQuery, HpSSQOption<WhiteDelimiterCB> option) {
-                xscalarCondition(function, subQuery, operand, option);
+            public void setup(String fn, SubQuery<WhiteDelimiterCB> sq, HpSSQOption<WhiteDelimiterCB> op) {
+                xscalarCondition(fn, sq, rd, op);
             }
         });
     }
 
-    protected void xscalarCondition(String function, SubQuery<WhiteDelimiterCB> subQuery, String operand, HpSSQOption<WhiteDelimiterCB> option) {
-        assertObjectNotNull("subQuery<WhiteDelimiterCB>", subQuery);
-        WhiteDelimiterCB cb = xcreateScalarConditionCB(); subQuery.query(cb);
-        String subQueryPropertyName = keepScalarCondition(cb.query()); // for saving query-value
-        option.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
-        registerScalarCondition(function, cb.query(), subQueryPropertyName, operand, option);
+    protected void xscalarCondition(String fn, SubQuery<WhiteDelimiterCB> sq, String rd, HpSSQOption<WhiteDelimiterCB> op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteDelimiterCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        String pp = keepScalarCondition(cb.query()); // for saving query-value
+        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
-    public abstract String keepScalarCondition(WhiteDelimiterCQ subQuery);
+    public abstract String keepScalarCondition(WhiteDelimiterCQ sq);
 
     protected WhiteDelimiterCB xcreateScalarConditionCB() {
         WhiteDelimiterCB cb = new WhiteDelimiterCB();
@@ -687,13 +687,14 @@ public abstract class AbstractBsWhiteDelimiterCQ extends AbstractConditionQuery 
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    public void xsmyselfDerive(String function, SubQuery<WhiteDelimiterCB> subQuery, String aliasName, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<WhiteDelimiterCB>", subQuery);
-        WhiteDelimiterCB cb = new WhiteDelimiterCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
-        registerSpecifyMyselfDerived(function, cb.query(), "DELIMITER_ID", "DELIMITER_ID", subQueryPropertyName, "myselfDerived", aliasName, option);
+    public void xsmyselfDerive(String fn, SubQuery<WhiteDelimiterCB> sq, String al, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteDelimiterCB cb = new WhiteDelimiterCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "DELIMITER_ID";
+        String pp = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
+        registerSpecifyMyselfDerived(fn, cb.query(), pk, pk, pp, "myselfDerived", al, op);
     }
-    public abstract String keepSpecifyMyselfDerived(WhiteDelimiterCQ subQuery);
+    public abstract String keepSpecifyMyselfDerived(WhiteDelimiterCQ sq);
 
     /**
      * Prepare for (Query)MyselfDerived (SubQuery).
@@ -704,20 +705,21 @@ public abstract class AbstractBsWhiteDelimiterCQ extends AbstractConditionQuery 
     }
     protected HpQDRFunction<WhiteDelimiterCB> xcreateQDRFunctionMyselfDerived() {
         return new HpQDRFunction<WhiteDelimiterCB>(new HpQDRSetupper<WhiteDelimiterCB>() {
-            public void setup(String function, SubQuery<WhiteDelimiterCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-                xqderiveMyselfDerived(function, subQuery, operand, value, option);
+            public void setup(String fn, SubQuery<WhiteDelimiterCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+                xqderiveMyselfDerived(fn, sq, rd, vl, op);
             }
         });
     }
-    public void xqderiveMyselfDerived(String function, SubQuery<WhiteDelimiterCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<WhiteDelimiterCB>", subQuery);
-        WhiteDelimiterCB cb = new WhiteDelimiterCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepQueryMyselfDerived(cb.query()); // for saving query-value.
-        String parameterPropertyName = keepQueryMyselfDerivedParameter(value);
-        registerQueryMyselfDerived(function, cb.query(), "DELIMITER_ID", "DELIMITER_ID", subQueryPropertyName, "myselfDerived", operand, value, parameterPropertyName, option);
+    public void xqderiveMyselfDerived(String fn, SubQuery<WhiteDelimiterCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteDelimiterCB cb = new WhiteDelimiterCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "DELIMITER_ID";
+        String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
+        String prpp = keepQueryMyselfDerivedParameter(vl);
+        registerQueryMyselfDerived(fn, cb.query(), pk, pk, sqpp, "myselfDerived", rd, vl, prpp, op);
     }
-    public abstract String keepQueryMyselfDerived(WhiteDelimiterCQ subQuery);
-    public abstract String keepQueryMyselfDerivedParameter(Object parameterValue);
+    public abstract String keepQueryMyselfDerived(WhiteDelimiterCQ sq);
+    public abstract String keepQueryMyselfDerivedParameter(Object vl);
 
     // ===================================================================================
     //                                                                        MyselfExists
@@ -727,12 +729,12 @@ public abstract class AbstractBsWhiteDelimiterCQ extends AbstractConditionQuery 
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfExists(SubQuery<WhiteDelimiterCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteDelimiterCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteDelimiterCB cb = new WhiteDelimiterCB(); cb.xsetupForMyselfExists(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfExists(cb.query()); // for saving query-value.
-        registerMyselfExists(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfExists(cb.query()); // for saving query-value.
+        registerMyselfExists(cb.query(), pp);
     }
-    public abstract String keepMyselfExists(WhiteDelimiterCQ subQuery);
+    public abstract String keepMyselfExists(WhiteDelimiterCQ sq);
 
     // ===================================================================================
     //                                                                       MyselfInScope
@@ -742,12 +744,12 @@ public abstract class AbstractBsWhiteDelimiterCQ extends AbstractConditionQuery 
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfInScope(SubQuery<WhiteDelimiterCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteDelimiterCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteDelimiterCB cb = new WhiteDelimiterCB(); cb.xsetupForMyselfInScope(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfInScope(cb.query()); // for saving query-value.
-        registerMyselfInScope(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfInScope(cb.query()); // for saving query-value.
+        registerMyselfInScope(cb.query(), pp);
     }
-    public abstract String keepMyselfInScope(WhiteDelimiterCQ subQuery);
+    public abstract String keepMyselfInScope(WhiteDelimiterCQ sq);
 
     // ===================================================================================
     //                                                                    Full Text Search
@@ -773,7 +775,7 @@ public abstract class AbstractBsWhiteDelimiterCQ extends AbstractConditionQuery 
      * @param conditionValue The condition value embedded without binding (by MySQL restriction) but escaped. (NullAllowed: if null or empty, no condition)
      * @param modifier The modifier of full-text search. (NullAllowed: If the value is null, no modifier specified)
      */
-    public void match(java.util.List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList
+    public void match(List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList
                     , String conditionValue
                     , org.seasar.dbflute.dbway.WayOfMySQL.FullTextSearchModifier modifier) {
         xdoMatchForMySQL(textColumnList, conditionValue, modifier);

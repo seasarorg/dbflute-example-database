@@ -160,8 +160,8 @@ public abstract class AbstractBsWhiteSplitMultipleFkChildCQ extends AbstractCond
      */
     public void setChildId_IsNotNull() { regChildId(CK_ISNN, DOBJ); }
 
-    protected void regChildId(ConditionKey k, Object v) { regQ(k, v, getCValueChildId(), "CHILD_ID"); }
-    abstract protected ConditionValue getCValueChildId();
+    protected void regChildId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueChildId(), "CHILD_ID"); }
+    protected abstract ConditionValue getCValueChildId();
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -258,12 +258,12 @@ public abstract class AbstractBsWhiteSplitMultipleFkChildCQ extends AbstractCond
      * @param subQuery The sub-query of WhiteSplitMultipleFkBase for 'in-scope'. (NotNull)
      */
     public void inScopeWhiteSplitMultipleFkBase(SubQuery<WhiteSplitMultipleFkBaseCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteSplitMultipleFkBaseCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteSplitMultipleFkBaseCB cb = new WhiteSplitMultipleFkBaseCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String subQueryPropertyName = keepBaseId_InScopeRelation_WhiteSplitMultipleFkBase(cb.query()); // for saving query-value.
-        registerInScopeRelation(cb.query(), "BASE_ID", "BASE_ID", subQueryPropertyName, "whiteSplitMultipleFkBase");
+        String pp = keepBaseId_InScopeRelation_WhiteSplitMultipleFkBase(cb.query()); // for saving query-value.
+        registerInScopeRelation(cb.query(), "BASE_ID", "BASE_ID", pp, "whiteSplitMultipleFkBase");
     }
-    public abstract String keepBaseId_InScopeRelation_WhiteSplitMultipleFkBase(WhiteSplitMultipleFkBaseCQ subQuery);
+    public abstract String keepBaseId_InScopeRelation_WhiteSplitMultipleFkBase(WhiteSplitMultipleFkBaseCQ sq);
 
     /**
      * Set up NotInScopeRelation (sub-query). <br />
@@ -272,15 +272,15 @@ public abstract class AbstractBsWhiteSplitMultipleFkChildCQ extends AbstractCond
      * @param subQuery The sub-query of WhiteSplitMultipleFkBase for 'not in-scope'. (NotNull)
      */
     public void notInScopeWhiteSplitMultipleFkBase(SubQuery<WhiteSplitMultipleFkBaseCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteSplitMultipleFkBaseCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteSplitMultipleFkBaseCB cb = new WhiteSplitMultipleFkBaseCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String subQueryPropertyName = keepBaseId_NotInScopeRelation_WhiteSplitMultipleFkBase(cb.query()); // for saving query-value.
-        registerNotInScopeRelation(cb.query(), "BASE_ID", "BASE_ID", subQueryPropertyName, "whiteSplitMultipleFkBase");
+        String pp = keepBaseId_NotInScopeRelation_WhiteSplitMultipleFkBase(cb.query()); // for saving query-value.
+        registerNotInScopeRelation(cb.query(), "BASE_ID", "BASE_ID", pp, "whiteSplitMultipleFkBase");
     }
-    public abstract String keepBaseId_NotInScopeRelation_WhiteSplitMultipleFkBase(WhiteSplitMultipleFkBaseCQ subQuery);
+    public abstract String keepBaseId_NotInScopeRelation_WhiteSplitMultipleFkBase(WhiteSplitMultipleFkBaseCQ sq);
 
-    protected void regBaseId(ConditionKey k, Object v) { regQ(k, v, getCValueBaseId(), "BASE_ID"); }
-    abstract protected ConditionValue getCValueBaseId();
+    protected void regBaseId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueBaseId(), "BASE_ID"); }
+    protected abstract ConditionValue getCValueBaseId();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -365,8 +365,8 @@ public abstract class AbstractBsWhiteSplitMultipleFkChildCQ extends AbstractCond
         regLSQ(CK_NLS, fRES(childName), getCValueChildName(), "CHILD_NAME", likeSearchOption);
     }
 
-    protected void regChildName(ConditionKey k, Object v) { regQ(k, v, getCValueChildName(), "CHILD_NAME"); }
-    abstract protected ConditionValue getCValueChildName();
+    protected void regChildName(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueChildName(), "CHILD_NAME"); }
+    protected abstract ConditionValue getCValueChildName();
 
     // ===================================================================================
     //                                                                     ScalarCondition
@@ -473,22 +473,22 @@ public abstract class AbstractBsWhiteSplitMultipleFkChildCQ extends AbstractCond
         return xcreateSSQFunction(CK_LE.getOperand());
     }
 
-    protected HpSSQFunction<WhiteSplitMultipleFkChildCB> xcreateSSQFunction(final String operand) {
+    protected HpSSQFunction<WhiteSplitMultipleFkChildCB> xcreateSSQFunction(final String rd) {
         return new HpSSQFunction<WhiteSplitMultipleFkChildCB>(new HpSSQSetupper<WhiteSplitMultipleFkChildCB>() {
-            public void setup(String function, SubQuery<WhiteSplitMultipleFkChildCB> subQuery, HpSSQOption<WhiteSplitMultipleFkChildCB> option) {
-                xscalarCondition(function, subQuery, operand, option);
+            public void setup(String fn, SubQuery<WhiteSplitMultipleFkChildCB> sq, HpSSQOption<WhiteSplitMultipleFkChildCB> op) {
+                xscalarCondition(fn, sq, rd, op);
             }
         });
     }
 
-    protected void xscalarCondition(String function, SubQuery<WhiteSplitMultipleFkChildCB> subQuery, String operand, HpSSQOption<WhiteSplitMultipleFkChildCB> option) {
-        assertObjectNotNull("subQuery<WhiteSplitMultipleFkChildCB>", subQuery);
-        WhiteSplitMultipleFkChildCB cb = xcreateScalarConditionCB(); subQuery.query(cb);
-        String subQueryPropertyName = keepScalarCondition(cb.query()); // for saving query-value
-        option.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
-        registerScalarCondition(function, cb.query(), subQueryPropertyName, operand, option);
+    protected void xscalarCondition(String fn, SubQuery<WhiteSplitMultipleFkChildCB> sq, String rd, HpSSQOption<WhiteSplitMultipleFkChildCB> op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteSplitMultipleFkChildCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        String pp = keepScalarCondition(cb.query()); // for saving query-value
+        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
-    public abstract String keepScalarCondition(WhiteSplitMultipleFkChildCQ subQuery);
+    public abstract String keepScalarCondition(WhiteSplitMultipleFkChildCQ sq);
 
     protected WhiteSplitMultipleFkChildCB xcreateScalarConditionCB() {
         WhiteSplitMultipleFkChildCB cb = new WhiteSplitMultipleFkChildCB();
@@ -505,13 +505,14 @@ public abstract class AbstractBsWhiteSplitMultipleFkChildCQ extends AbstractCond
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    public void xsmyselfDerive(String function, SubQuery<WhiteSplitMultipleFkChildCB> subQuery, String aliasName, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<WhiteSplitMultipleFkChildCB>", subQuery);
-        WhiteSplitMultipleFkChildCB cb = new WhiteSplitMultipleFkChildCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
-        registerSpecifyMyselfDerived(function, cb.query(), "CHILD_ID", "CHILD_ID", subQueryPropertyName, "myselfDerived", aliasName, option);
+    public void xsmyselfDerive(String fn, SubQuery<WhiteSplitMultipleFkChildCB> sq, String al, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteSplitMultipleFkChildCB cb = new WhiteSplitMultipleFkChildCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "CHILD_ID";
+        String pp = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
+        registerSpecifyMyselfDerived(fn, cb.query(), pk, pk, pp, "myselfDerived", al, op);
     }
-    public abstract String keepSpecifyMyselfDerived(WhiteSplitMultipleFkChildCQ subQuery);
+    public abstract String keepSpecifyMyselfDerived(WhiteSplitMultipleFkChildCQ sq);
 
     /**
      * Prepare for (Query)MyselfDerived (SubQuery).
@@ -522,20 +523,21 @@ public abstract class AbstractBsWhiteSplitMultipleFkChildCQ extends AbstractCond
     }
     protected HpQDRFunction<WhiteSplitMultipleFkChildCB> xcreateQDRFunctionMyselfDerived() {
         return new HpQDRFunction<WhiteSplitMultipleFkChildCB>(new HpQDRSetupper<WhiteSplitMultipleFkChildCB>() {
-            public void setup(String function, SubQuery<WhiteSplitMultipleFkChildCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-                xqderiveMyselfDerived(function, subQuery, operand, value, option);
+            public void setup(String fn, SubQuery<WhiteSplitMultipleFkChildCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+                xqderiveMyselfDerived(fn, sq, rd, vl, op);
             }
         });
     }
-    public void xqderiveMyselfDerived(String function, SubQuery<WhiteSplitMultipleFkChildCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<WhiteSplitMultipleFkChildCB>", subQuery);
-        WhiteSplitMultipleFkChildCB cb = new WhiteSplitMultipleFkChildCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepQueryMyselfDerived(cb.query()); // for saving query-value.
-        String parameterPropertyName = keepQueryMyselfDerivedParameter(value);
-        registerQueryMyselfDerived(function, cb.query(), "CHILD_ID", "CHILD_ID", subQueryPropertyName, "myselfDerived", operand, value, parameterPropertyName, option);
+    public void xqderiveMyselfDerived(String fn, SubQuery<WhiteSplitMultipleFkChildCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteSplitMultipleFkChildCB cb = new WhiteSplitMultipleFkChildCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "CHILD_ID";
+        String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
+        String prpp = keepQueryMyselfDerivedParameter(vl);
+        registerQueryMyselfDerived(fn, cb.query(), pk, pk, sqpp, "myselfDerived", rd, vl, prpp, op);
     }
-    public abstract String keepQueryMyselfDerived(WhiteSplitMultipleFkChildCQ subQuery);
-    public abstract String keepQueryMyselfDerivedParameter(Object parameterValue);
+    public abstract String keepQueryMyselfDerived(WhiteSplitMultipleFkChildCQ sq);
+    public abstract String keepQueryMyselfDerivedParameter(Object vl);
 
     // ===================================================================================
     //                                                                        MyselfExists
@@ -545,12 +547,12 @@ public abstract class AbstractBsWhiteSplitMultipleFkChildCQ extends AbstractCond
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfExists(SubQuery<WhiteSplitMultipleFkChildCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteSplitMultipleFkChildCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteSplitMultipleFkChildCB cb = new WhiteSplitMultipleFkChildCB(); cb.xsetupForMyselfExists(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfExists(cb.query()); // for saving query-value.
-        registerMyselfExists(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfExists(cb.query()); // for saving query-value.
+        registerMyselfExists(cb.query(), pp);
     }
-    public abstract String keepMyselfExists(WhiteSplitMultipleFkChildCQ subQuery);
+    public abstract String keepMyselfExists(WhiteSplitMultipleFkChildCQ sq);
 
     // ===================================================================================
     //                                                                       MyselfInScope
@@ -560,12 +562,12 @@ public abstract class AbstractBsWhiteSplitMultipleFkChildCQ extends AbstractCond
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfInScope(SubQuery<WhiteSplitMultipleFkChildCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteSplitMultipleFkChildCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteSplitMultipleFkChildCB cb = new WhiteSplitMultipleFkChildCB(); cb.xsetupForMyselfInScope(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfInScope(cb.query()); // for saving query-value.
-        registerMyselfInScope(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfInScope(cb.query()); // for saving query-value.
+        registerMyselfInScope(cb.query(), pp);
     }
-    public abstract String keepMyselfInScope(WhiteSplitMultipleFkChildCQ subQuery);
+    public abstract String keepMyselfInScope(WhiteSplitMultipleFkChildCQ sq);
 
     // ===================================================================================
     //                                                                    Full Text Search
@@ -591,7 +593,7 @@ public abstract class AbstractBsWhiteSplitMultipleFkChildCQ extends AbstractCond
      * @param conditionValue The condition value embedded without binding (by MySQL restriction) but escaped. (NullAllowed: if null or empty, no condition)
      * @param modifier The modifier of full-text search. (NullAllowed: If the value is null, no modifier specified)
      */
-    public void match(java.util.List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList
+    public void match(List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList
                     , String conditionValue
                     , org.seasar.dbflute.dbway.WayOfMySQL.FullTextSearchModifier modifier) {
         xdoMatchForMySQL(textColumnList, conditionValue, modifier);

@@ -336,8 +336,8 @@ public class BsSynonymNextLinkSecretCB extends AbstractConditionBean {
         public HpSDRFunction<SynonymNextLinkSecretCB, SynonymNextLinkSecretCQ> myselfDerived() {
             assertDerived("myselfDerived"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<SynonymNextLinkSecretCB, SynonymNextLinkSecretCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<SynonymNextLinkSecretCB, SynonymNextLinkSecretCQ>() {
-                public void setup(String function, SubQuery<SynonymNextLinkSecretCB> subQuery, SynonymNextLinkSecretCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsmyselfDerive(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<SynonymNextLinkSecretCB> sq, SynonymNextLinkSecretCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsmyselfDerive(fn, sq, al, op); } }, _dbmetaProvider);
         }
     }
 

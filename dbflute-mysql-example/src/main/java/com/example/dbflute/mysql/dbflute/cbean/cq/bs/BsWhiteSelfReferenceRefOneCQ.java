@@ -96,73 +96,73 @@ public class BsWhiteSelfReferenceRefOneCQ extends AbstractBsWhiteSelfReferenceRe
 
     protected Map<String, WhiteSelfReferenceCQ> _selfReferenceId_ExistsReferrer_WhiteSelfReferenceByParentIdListMap;
     public Map<String, WhiteSelfReferenceCQ> getSelfReferenceId_ExistsReferrer_WhiteSelfReferenceByParentIdList() { return _selfReferenceId_ExistsReferrer_WhiteSelfReferenceByParentIdListMap; }
-    public String keepSelfReferenceId_ExistsReferrer_WhiteSelfReferenceByParentIdList(WhiteSelfReferenceCQ subQuery) {
+    public String keepSelfReferenceId_ExistsReferrer_WhiteSelfReferenceByParentIdList(WhiteSelfReferenceCQ sq) {
         if (_selfReferenceId_ExistsReferrer_WhiteSelfReferenceByParentIdListMap == null) { _selfReferenceId_ExistsReferrer_WhiteSelfReferenceByParentIdListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_selfReferenceId_ExistsReferrer_WhiteSelfReferenceByParentIdListMap.size() + 1);
-        _selfReferenceId_ExistsReferrer_WhiteSelfReferenceByParentIdListMap.put(key, subQuery); return "selfReferenceId_ExistsReferrer_WhiteSelfReferenceByParentIdList." + key;
+        String ky = "subQueryMapKey" + (_selfReferenceId_ExistsReferrer_WhiteSelfReferenceByParentIdListMap.size() + 1);
+        _selfReferenceId_ExistsReferrer_WhiteSelfReferenceByParentIdListMap.put(ky, sq); return "selfReferenceId_ExistsReferrer_WhiteSelfReferenceByParentIdList." + ky;
     }
 
     protected Map<String, WhiteSelfReferenceCQ> _selfReferenceId_NotExistsReferrer_WhiteSelfReferenceByParentIdListMap;
     public Map<String, WhiteSelfReferenceCQ> getSelfReferenceId_NotExistsReferrer_WhiteSelfReferenceByParentIdList() { return _selfReferenceId_NotExistsReferrer_WhiteSelfReferenceByParentIdListMap; }
-    public String keepSelfReferenceId_NotExistsReferrer_WhiteSelfReferenceByParentIdList(WhiteSelfReferenceCQ subQuery) {
+    public String keepSelfReferenceId_NotExistsReferrer_WhiteSelfReferenceByParentIdList(WhiteSelfReferenceCQ sq) {
         if (_selfReferenceId_NotExistsReferrer_WhiteSelfReferenceByParentIdListMap == null) { _selfReferenceId_NotExistsReferrer_WhiteSelfReferenceByParentIdListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_selfReferenceId_NotExistsReferrer_WhiteSelfReferenceByParentIdListMap.size() + 1);
-        _selfReferenceId_NotExistsReferrer_WhiteSelfReferenceByParentIdListMap.put(key, subQuery); return "selfReferenceId_NotExistsReferrer_WhiteSelfReferenceByParentIdList." + key;
+        String ky = "subQueryMapKey" + (_selfReferenceId_NotExistsReferrer_WhiteSelfReferenceByParentIdListMap.size() + 1);
+        _selfReferenceId_NotExistsReferrer_WhiteSelfReferenceByParentIdListMap.put(ky, sq); return "selfReferenceId_NotExistsReferrer_WhiteSelfReferenceByParentIdList." + ky;
     }
 
     protected Map<String, WhiteSelfReferenceCQ> _selfReferenceId_SpecifyDerivedReferrer_WhiteSelfReferenceByParentIdListMap;
     public Map<String, WhiteSelfReferenceCQ> getSelfReferenceId_SpecifyDerivedReferrer_WhiteSelfReferenceByParentIdList() { return _selfReferenceId_SpecifyDerivedReferrer_WhiteSelfReferenceByParentIdListMap; }
-    public String keepSelfReferenceId_SpecifyDerivedReferrer_WhiteSelfReferenceByParentIdList(WhiteSelfReferenceCQ subQuery) {
+    public String keepSelfReferenceId_SpecifyDerivedReferrer_WhiteSelfReferenceByParentIdList(WhiteSelfReferenceCQ sq) {
         if (_selfReferenceId_SpecifyDerivedReferrer_WhiteSelfReferenceByParentIdListMap == null) { _selfReferenceId_SpecifyDerivedReferrer_WhiteSelfReferenceByParentIdListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_selfReferenceId_SpecifyDerivedReferrer_WhiteSelfReferenceByParentIdListMap.size() + 1);
-        _selfReferenceId_SpecifyDerivedReferrer_WhiteSelfReferenceByParentIdListMap.put(key, subQuery); return "selfReferenceId_SpecifyDerivedReferrer_WhiteSelfReferenceByParentIdList." + key;
+        String ky = "subQueryMapKey" + (_selfReferenceId_SpecifyDerivedReferrer_WhiteSelfReferenceByParentIdListMap.size() + 1);
+        _selfReferenceId_SpecifyDerivedReferrer_WhiteSelfReferenceByParentIdListMap.put(ky, sq); return "selfReferenceId_SpecifyDerivedReferrer_WhiteSelfReferenceByParentIdList." + ky;
     }
 
     protected Map<String, WhiteSelfReferenceCQ> _selfReferenceId_InScopeRelation_WhiteSelfReferenceMap;
     public Map<String, WhiteSelfReferenceCQ> getSelfReferenceId_InScopeRelation_WhiteSelfReference() { return _selfReferenceId_InScopeRelation_WhiteSelfReferenceMap; }
-    public String keepSelfReferenceId_InScopeRelation_WhiteSelfReference(WhiteSelfReferenceCQ subQuery) {
+    public String keepSelfReferenceId_InScopeRelation_WhiteSelfReference(WhiteSelfReferenceCQ sq) {
         if (_selfReferenceId_InScopeRelation_WhiteSelfReferenceMap == null) { _selfReferenceId_InScopeRelation_WhiteSelfReferenceMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_selfReferenceId_InScopeRelation_WhiteSelfReferenceMap.size() + 1);
-        _selfReferenceId_InScopeRelation_WhiteSelfReferenceMap.put(key, subQuery); return "selfReferenceId_InScopeRelation_WhiteSelfReference." + key;
+        String ky = "subQueryMapKey" + (_selfReferenceId_InScopeRelation_WhiteSelfReferenceMap.size() + 1);
+        _selfReferenceId_InScopeRelation_WhiteSelfReferenceMap.put(ky, sq); return "selfReferenceId_InScopeRelation_WhiteSelfReference." + ky;
     }
 
     protected Map<String, WhiteSelfReferenceCQ> _selfReferenceId_InScopeRelation_WhiteSelfReferenceByParentIdListMap;
     public Map<String, WhiteSelfReferenceCQ> getSelfReferenceId_InScopeRelation_WhiteSelfReferenceByParentIdList() { return _selfReferenceId_InScopeRelation_WhiteSelfReferenceByParentIdListMap; }
-    public String keepSelfReferenceId_InScopeRelation_WhiteSelfReferenceByParentIdList(WhiteSelfReferenceCQ subQuery) {
+    public String keepSelfReferenceId_InScopeRelation_WhiteSelfReferenceByParentIdList(WhiteSelfReferenceCQ sq) {
         if (_selfReferenceId_InScopeRelation_WhiteSelfReferenceByParentIdListMap == null) { _selfReferenceId_InScopeRelation_WhiteSelfReferenceByParentIdListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_selfReferenceId_InScopeRelation_WhiteSelfReferenceByParentIdListMap.size() + 1);
-        _selfReferenceId_InScopeRelation_WhiteSelfReferenceByParentIdListMap.put(key, subQuery); return "selfReferenceId_InScopeRelation_WhiteSelfReferenceByParentIdList." + key;
+        String ky = "subQueryMapKey" + (_selfReferenceId_InScopeRelation_WhiteSelfReferenceByParentIdListMap.size() + 1);
+        _selfReferenceId_InScopeRelation_WhiteSelfReferenceByParentIdListMap.put(ky, sq); return "selfReferenceId_InScopeRelation_WhiteSelfReferenceByParentIdList." + ky;
     }
 
     protected Map<String, WhiteSelfReferenceCQ> _selfReferenceId_NotInScopeRelation_WhiteSelfReferenceMap;
     public Map<String, WhiteSelfReferenceCQ> getSelfReferenceId_NotInScopeRelation_WhiteSelfReference() { return _selfReferenceId_NotInScopeRelation_WhiteSelfReferenceMap; }
-    public String keepSelfReferenceId_NotInScopeRelation_WhiteSelfReference(WhiteSelfReferenceCQ subQuery) {
+    public String keepSelfReferenceId_NotInScopeRelation_WhiteSelfReference(WhiteSelfReferenceCQ sq) {
         if (_selfReferenceId_NotInScopeRelation_WhiteSelfReferenceMap == null) { _selfReferenceId_NotInScopeRelation_WhiteSelfReferenceMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_selfReferenceId_NotInScopeRelation_WhiteSelfReferenceMap.size() + 1);
-        _selfReferenceId_NotInScopeRelation_WhiteSelfReferenceMap.put(key, subQuery); return "selfReferenceId_NotInScopeRelation_WhiteSelfReference." + key;
+        String ky = "subQueryMapKey" + (_selfReferenceId_NotInScopeRelation_WhiteSelfReferenceMap.size() + 1);
+        _selfReferenceId_NotInScopeRelation_WhiteSelfReferenceMap.put(ky, sq); return "selfReferenceId_NotInScopeRelation_WhiteSelfReference." + ky;
     }
 
     protected Map<String, WhiteSelfReferenceCQ> _selfReferenceId_NotInScopeRelation_WhiteSelfReferenceByParentIdListMap;
     public Map<String, WhiteSelfReferenceCQ> getSelfReferenceId_NotInScopeRelation_WhiteSelfReferenceByParentIdList() { return _selfReferenceId_NotInScopeRelation_WhiteSelfReferenceByParentIdListMap; }
-    public String keepSelfReferenceId_NotInScopeRelation_WhiteSelfReferenceByParentIdList(WhiteSelfReferenceCQ subQuery) {
+    public String keepSelfReferenceId_NotInScopeRelation_WhiteSelfReferenceByParentIdList(WhiteSelfReferenceCQ sq) {
         if (_selfReferenceId_NotInScopeRelation_WhiteSelfReferenceByParentIdListMap == null) { _selfReferenceId_NotInScopeRelation_WhiteSelfReferenceByParentIdListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_selfReferenceId_NotInScopeRelation_WhiteSelfReferenceByParentIdListMap.size() + 1);
-        _selfReferenceId_NotInScopeRelation_WhiteSelfReferenceByParentIdListMap.put(key, subQuery); return "selfReferenceId_NotInScopeRelation_WhiteSelfReferenceByParentIdList." + key;
+        String ky = "subQueryMapKey" + (_selfReferenceId_NotInScopeRelation_WhiteSelfReferenceByParentIdListMap.size() + 1);
+        _selfReferenceId_NotInScopeRelation_WhiteSelfReferenceByParentIdListMap.put(ky, sq); return "selfReferenceId_NotInScopeRelation_WhiteSelfReferenceByParentIdList." + ky;
     }
 
     protected Map<String, WhiteSelfReferenceCQ> _selfReferenceId_QueryDerivedReferrer_WhiteSelfReferenceByParentIdListMap;
     public Map<String, WhiteSelfReferenceCQ> getSelfReferenceId_QueryDerivedReferrer_WhiteSelfReferenceByParentIdList() { return _selfReferenceId_QueryDerivedReferrer_WhiteSelfReferenceByParentIdListMap; }
-    public String keepSelfReferenceId_QueryDerivedReferrer_WhiteSelfReferenceByParentIdList(WhiteSelfReferenceCQ subQuery) {
+    public String keepSelfReferenceId_QueryDerivedReferrer_WhiteSelfReferenceByParentIdList(WhiteSelfReferenceCQ sq) {
         if (_selfReferenceId_QueryDerivedReferrer_WhiteSelfReferenceByParentIdListMap == null) { _selfReferenceId_QueryDerivedReferrer_WhiteSelfReferenceByParentIdListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_selfReferenceId_QueryDerivedReferrer_WhiteSelfReferenceByParentIdListMap.size() + 1);
-        _selfReferenceId_QueryDerivedReferrer_WhiteSelfReferenceByParentIdListMap.put(key, subQuery); return "selfReferenceId_QueryDerivedReferrer_WhiteSelfReferenceByParentIdList." + key;
+        String ky = "subQueryMapKey" + (_selfReferenceId_QueryDerivedReferrer_WhiteSelfReferenceByParentIdListMap.size() + 1);
+        _selfReferenceId_QueryDerivedReferrer_WhiteSelfReferenceByParentIdListMap.put(ky, sq); return "selfReferenceId_QueryDerivedReferrer_WhiteSelfReferenceByParentIdList." + ky;
     }
     protected Map<String, Object> _selfReferenceId_QueryDerivedReferrer_WhiteSelfReferenceByParentIdListParameterMap;
     public Map<String, Object> getSelfReferenceId_QueryDerivedReferrer_WhiteSelfReferenceByParentIdListParameter() { return _selfReferenceId_QueryDerivedReferrer_WhiteSelfReferenceByParentIdListParameterMap; }
-    public String keepSelfReferenceId_QueryDerivedReferrer_WhiteSelfReferenceByParentIdListParameter(Object parameterValue) {
+    public String keepSelfReferenceId_QueryDerivedReferrer_WhiteSelfReferenceByParentIdListParameter(Object vl) {
         if (_selfReferenceId_QueryDerivedReferrer_WhiteSelfReferenceByParentIdListParameterMap == null) { _selfReferenceId_QueryDerivedReferrer_WhiteSelfReferenceByParentIdListParameterMap = newLinkedHashMapSized(4); }
-        String key = "subQueryParameterKey" + (_selfReferenceId_QueryDerivedReferrer_WhiteSelfReferenceByParentIdListParameterMap.size() + 1);
-        _selfReferenceId_QueryDerivedReferrer_WhiteSelfReferenceByParentIdListParameterMap.put(key, parameterValue); return "selfReferenceId_QueryDerivedReferrer_WhiteSelfReferenceByParentIdListParameter." + key;
+        String ky = "subQueryParameterKey" + (_selfReferenceId_QueryDerivedReferrer_WhiteSelfReferenceByParentIdListParameterMap.size() + 1);
+        _selfReferenceId_QueryDerivedReferrer_WhiteSelfReferenceByParentIdListParameterMap.put(ky, vl); return "selfReferenceId_QueryDerivedReferrer_WhiteSelfReferenceByParentIdListParameter." + ky;
     }
 
     /** 
@@ -240,14 +240,14 @@ public class BsWhiteSelfReferenceRefOneCQ extends AbstractBsWhiteSelfReferenceRe
     // ===================================================================================
     //                                                                         Union Query
     //                                                                         ===========
-    protected void reflectRelationOnUnionQuery(ConditionQuery baseQueryAsSuper, ConditionQuery unionQueryAsSuper) {
-        WhiteSelfReferenceRefOneCQ baseQuery = (WhiteSelfReferenceRefOneCQ)baseQueryAsSuper;
-        WhiteSelfReferenceRefOneCQ unionQuery = (WhiteSelfReferenceRefOneCQ)unionQueryAsSuper;
-        if (baseQuery.hasConditionQueryWhiteSelfReference()) {
-            unionQuery.queryWhiteSelfReference().reflectRelationOnUnionQuery(baseQuery.queryWhiteSelfReference(), unionQuery.queryWhiteSelfReference());
+    protected void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
+        WhiteSelfReferenceRefOneCQ bq = (WhiteSelfReferenceRefOneCQ)bqs;
+        WhiteSelfReferenceRefOneCQ uq = (WhiteSelfReferenceRefOneCQ)uqs;
+        if (bq.hasConditionQueryWhiteSelfReference()) {
+            uq.queryWhiteSelfReference().reflectRelationOnUnionQuery(bq.queryWhiteSelfReference(), uq.queryWhiteSelfReference());
         }
-        if (baseQuery.hasConditionQueryWhiteSelfReferenceAsDirectParent()) {
-            unionQuery.queryWhiteSelfReferenceAsDirectParent().reflectRelationOnUnionQuery(baseQuery.queryWhiteSelfReferenceAsDirectParent(), unionQuery.queryWhiteSelfReferenceAsDirectParent());
+        if (bq.hasConditionQueryWhiteSelfReferenceAsDirectParent()) {
+            uq.queryWhiteSelfReferenceAsDirectParent().reflectRelationOnUnionQuery(bq.queryWhiteSelfReferenceAsDirectParent(), uq.queryWhiteSelfReferenceAsDirectParent());
         }
     }
 
@@ -331,10 +331,10 @@ public class BsWhiteSelfReferenceRefOneCQ extends AbstractBsWhiteSelfReferenceRe
     //                                                                     ===============
     protected Map<String, WhiteSelfReferenceRefOneCQ> _scalarConditionMap;
     public Map<String, WhiteSelfReferenceRefOneCQ> getScalarCondition() { return _scalarConditionMap; }
-    public String keepScalarCondition(WhiteSelfReferenceRefOneCQ subQuery) {
+    public String keepScalarCondition(WhiteSelfReferenceRefOneCQ sq) {
         if (_scalarConditionMap == null) { _scalarConditionMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
-        _scalarConditionMap.put(key, subQuery); return "scalarCondition." + key;
+        String ky = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
+        _scalarConditionMap.put(ky, sq); return "scalarCondition." + ky;
     }
 
     // ===================================================================================
@@ -342,25 +342,25 @@ public class BsWhiteSelfReferenceRefOneCQ extends AbstractBsWhiteSelfReferenceRe
     //                                                                       =============
     protected Map<String, WhiteSelfReferenceRefOneCQ> _specifyMyselfDerivedMap;
     public Map<String, WhiteSelfReferenceRefOneCQ> getSpecifyMyselfDerived() { return _specifyMyselfDerivedMap; }
-    public String keepSpecifyMyselfDerived(WhiteSelfReferenceRefOneCQ subQuery) {
+    public String keepSpecifyMyselfDerived(WhiteSelfReferenceRefOneCQ sq) {
         if (_specifyMyselfDerivedMap == null) { _specifyMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
-        _specifyMyselfDerivedMap.put(key, subQuery); return "specifyMyselfDerived." + key;
+        String ky = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
+        _specifyMyselfDerivedMap.put(ky, sq); return "specifyMyselfDerived." + ky;
     }
 
     protected Map<String, WhiteSelfReferenceRefOneCQ> _queryMyselfDerivedMap;
     public Map<String, WhiteSelfReferenceRefOneCQ> getQueryMyselfDerived() { return _queryMyselfDerivedMap; }
-    public String keepQueryMyselfDerived(WhiteSelfReferenceRefOneCQ subQuery) {
+    public String keepQueryMyselfDerived(WhiteSelfReferenceRefOneCQ sq) {
         if (_queryMyselfDerivedMap == null) { _queryMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
-        _queryMyselfDerivedMap.put(key, subQuery); return "queryMyselfDerived." + key;
+        String ky = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
+        _queryMyselfDerivedMap.put(ky, sq); return "queryMyselfDerived." + ky;
     }
     protected Map<String, Object> _qyeryMyselfDerivedParameterMap;
     public Map<String, Object> getQueryMyselfDerivedParameter() { return _qyeryMyselfDerivedParameterMap; }
-    public String keepQueryMyselfDerivedParameter(Object parameterValue) {
+    public String keepQueryMyselfDerivedParameter(Object vl) {
         if (_qyeryMyselfDerivedParameterMap == null) { _qyeryMyselfDerivedParameterMap = newLinkedHashMapSized(4); }
-        String key = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
-        _qyeryMyselfDerivedParameterMap.put(key, parameterValue); return "queryMyselfDerivedParameter." + key;
+        String ky = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
+        _qyeryMyselfDerivedParameterMap.put(ky, vl); return "queryMyselfDerivedParameter." + ky;
     }
 
     // ===================================================================================
@@ -368,10 +368,10 @@ public class BsWhiteSelfReferenceRefOneCQ extends AbstractBsWhiteSelfReferenceRe
     //                                                                        ============
     protected Map<String, WhiteSelfReferenceRefOneCQ> _myselfExistsMap;
     public Map<String, WhiteSelfReferenceRefOneCQ> getMyselfExists() { return _myselfExistsMap; }
-    public String keepMyselfExists(WhiteSelfReferenceRefOneCQ subQuery) {
+    public String keepMyselfExists(WhiteSelfReferenceRefOneCQ sq) {
         if (_myselfExistsMap == null) { _myselfExistsMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
-        _myselfExistsMap.put(key, subQuery); return "myselfExists." + key;
+        String ky = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
+        _myselfExistsMap.put(ky, sq); return "myselfExists." + ky;
     }
 
     // ===================================================================================
@@ -379,10 +379,10 @@ public class BsWhiteSelfReferenceRefOneCQ extends AbstractBsWhiteSelfReferenceRe
     //                                                                       =============
     protected Map<String, WhiteSelfReferenceRefOneCQ> _myselfInScopeMap;
     public Map<String, WhiteSelfReferenceRefOneCQ> getMyselfInScope() { return _myselfInScopeMap; }
-    public String keepMyselfInScope(WhiteSelfReferenceRefOneCQ subQuery) {
+    public String keepMyselfInScope(WhiteSelfReferenceRefOneCQ sq) {
         if (_myselfInScopeMap == null) { _myselfInScopeMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
-        _myselfInScopeMap.put(key, subQuery); return "myselfInScope." + key;
+        String ky = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
+        _myselfInScopeMap.put(ky, sq); return "myselfInScope." + ky;
     }
 
     // ===================================================================================

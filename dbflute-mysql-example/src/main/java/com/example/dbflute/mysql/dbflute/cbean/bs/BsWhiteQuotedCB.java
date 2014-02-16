@@ -340,8 +340,8 @@ public class BsWhiteQuotedCB extends AbstractConditionBean {
         public HpSDRFunction<WhiteQuotedRefCB, WhiteQuotedCQ> derivedWhiteQuotedRefList() {
             assertDerived("whiteQuotedRefList"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<WhiteQuotedRefCB, WhiteQuotedCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<WhiteQuotedRefCB, WhiteQuotedCQ>() {
-                public void setup(String function, SubQuery<WhiteQuotedRefCB> subQuery, WhiteQuotedCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsderiveWhiteQuotedRefList(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<WhiteQuotedRefCB> sq, WhiteQuotedCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsderiveWhiteQuotedRefList(fn, sq, al, op); } }, _dbmetaProvider);
         }
         /**
          * Prepare for (Specify)MyselfDerived (SubQuery).
@@ -350,8 +350,8 @@ public class BsWhiteQuotedCB extends AbstractConditionBean {
         public HpSDRFunction<WhiteQuotedCB, WhiteQuotedCQ> myselfDerived() {
             assertDerived("myselfDerived"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<WhiteQuotedCB, WhiteQuotedCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<WhiteQuotedCB, WhiteQuotedCQ>() {
-                public void setup(String function, SubQuery<WhiteQuotedCB> subQuery, WhiteQuotedCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsmyselfDerive(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<WhiteQuotedCB> sq, WhiteQuotedCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsmyselfDerive(fn, sq, al, op); } }, _dbmetaProvider);
         }
     }
 

@@ -17,28 +17,28 @@ import com.example.dbflute.oracle.dbflute.cbean.*;
  * <pre>
  * [primary key]
  *     VENDOR_$_DOLLAR_ID
- * 
+ *
  * [column]
  *     VENDOR_$_DOLLAR_ID, VENDOR_$_DOLLAR_NAME
- * 
+ *
  * [sequence]
  *     
- * 
+ *
  * [identity]
  *     
- * 
+ *
  * [version-no]
  *     
- * 
+ *
  * [foreign table]
  *     
- * 
+ *
  * [referrer table]
  *     
- * 
+ *
  * [foreign property]
  *     
- * 
+ *
  * [referrer property]
  *     
  * </pre>
@@ -100,7 +100,7 @@ public abstract class BsVendor$DollarBhv extends AbstractBehaviorWritable {
         return doSelectCountUniquely(cb);
     }
 
-    protected int doSelectCountUniquely(Vendor$DollarCB cb) { // called by selectCount(cb) 
+    protected int doSelectCountUniquely(Vendor$DollarCB cb) { // called by selectCount(cb)
         assertCBStateValid(cb);
         return delegateSelectCountUniquely(cb);
     }
@@ -139,10 +139,10 @@ public abstract class BsVendor$DollarBhv extends AbstractBehaviorWritable {
         return doSelectEntity(cb, Vendor$Dollar.class);
     }
 
-    protected <ENTITY extends Vendor$Dollar> ENTITY doSelectEntity(final Vendor$DollarCB cb, Class<ENTITY> entityType) {
+    protected <ENTITY extends Vendor$Dollar> ENTITY doSelectEntity(final Vendor$DollarCB cb, Class<ENTITY> tp) {
         assertCBStateValid(cb);
-        return helpSelectEntityInternally(cb, entityType, new InternalSelectEntityCallback<ENTITY, Vendor$DollarCB>() {
-            public List<ENTITY> callbackSelectList(Vendor$DollarCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); } });
+        return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, Vendor$DollarCB>() {
+            public List<ENTITY> callbackSelectList(Vendor$DollarCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
     }
 
     @Override
@@ -168,10 +168,10 @@ public abstract class BsVendor$DollarBhv extends AbstractBehaviorWritable {
         return doSelectEntityWithDeletedCheck(cb, Vendor$Dollar.class);
     }
 
-    protected <ENTITY extends Vendor$Dollar> ENTITY doSelectEntityWithDeletedCheck(final Vendor$DollarCB cb, Class<ENTITY> entityType) {
+    protected <ENTITY extends Vendor$Dollar> ENTITY doSelectEntityWithDeletedCheck(final Vendor$DollarCB cb, Class<ENTITY> tp) {
         assertCBStateValid(cb);
-        return helpSelectEntityWithDeletedCheckInternally(cb, entityType, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, Vendor$DollarCB>() {
-            public List<ENTITY> callbackSelectList(Vendor$DollarCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); } });
+        return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, Vendor$DollarCB>() {
+            public List<ENTITY> callbackSelectList(Vendor$DollarCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
     }
 
     @Override
@@ -239,11 +239,11 @@ public abstract class BsVendor$DollarBhv extends AbstractBehaviorWritable {
         return doSelectList(cb, Vendor$Dollar.class);
     }
 
-    protected <ENTITY extends Vendor$Dollar> ListResultBean<ENTITY> doSelectList(Vendor$DollarCB cb, Class<ENTITY> entityType) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", entityType);
-        assertSpecifyDerivedReferrerEntityProperty(cb, entityType);
-        return helpSelectListInternally(cb, entityType, new InternalSelectListCallback<ENTITY, Vendor$DollarCB>() {
-            public List<ENTITY> callbackSelectList(Vendor$DollarCB cb, Class<ENTITY> entityType) { return delegateSelectList(cb, entityType); } });
+    protected <ENTITY extends Vendor$Dollar> ListResultBean<ENTITY> doSelectList(Vendor$DollarCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
+        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
+        return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, Vendor$DollarCB>() {
+            public List<ENTITY> callbackSelectList(Vendor$DollarCB cb, Class<ENTITY> tp) { return delegateSelectList(cb, tp); } });
     }
 
     @Override
@@ -280,11 +280,11 @@ public abstract class BsVendor$DollarBhv extends AbstractBehaviorWritable {
         return doSelectPage(cb, Vendor$Dollar.class);
     }
 
-    protected <ENTITY extends Vendor$Dollar> PagingResultBean<ENTITY> doSelectPage(Vendor$DollarCB cb, Class<ENTITY> entityType) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", entityType);
-        return helpSelectPageInternally(cb, entityType, new InternalSelectPageCallback<ENTITY, Vendor$DollarCB>() {
+    protected <ENTITY extends Vendor$Dollar> PagingResultBean<ENTITY> doSelectPage(Vendor$DollarCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
+        return helpSelectPageInternally(cb, tp, new InternalSelectPageCallback<ENTITY, Vendor$DollarCB>() {
             public int callbackSelectCount(Vendor$DollarCB cb) { return doSelectCountPlainly(cb); }
-            public List<ENTITY> callbackSelectList(Vendor$DollarCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); }
+            public List<ENTITY> callbackSelectList(Vendor$DollarCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
         });
     }
 
@@ -314,12 +314,12 @@ public abstract class BsVendor$DollarBhv extends AbstractBehaviorWritable {
         doSelectCursor(cb, entityRowHandler, Vendor$Dollar.class);
     }
 
-    protected <ENTITY extends Vendor$Dollar> void doSelectCursor(Vendor$DollarCB cb, EntityRowHandler<ENTITY> entityRowHandler, Class<ENTITY> entityType) {
-        assertCBStateValid(cb); assertObjectNotNull("entityRowHandler<Vendor$Dollar>", entityRowHandler); assertObjectNotNull("entityType", entityType);
-        assertSpecifyDerivedReferrerEntityProperty(cb, entityType);
-        helpSelectCursorInternally(cb, entityRowHandler, entityType, new InternalSelectCursorCallback<ENTITY, Vendor$DollarCB>() {
-            public void callbackSelectCursor(Vendor$DollarCB cb, EntityRowHandler<ENTITY> entityRowHandler, Class<ENTITY> entityType) { delegateSelectCursor(cb, entityRowHandler, entityType); }
-            public List<ENTITY> callbackSelectList(Vendor$DollarCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); }
+    protected <ENTITY extends Vendor$Dollar> void doSelectCursor(Vendor$DollarCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
+        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
+        helpSelectCursorInternally(cb, handler, tp, new InternalSelectCursorCallback<ENTITY, Vendor$DollarCB>() {
+            public void callbackSelectCursor(Vendor$DollarCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) { delegateSelectCursor(cb, handler, tp); }
+            public List<ENTITY> callbackSelectList(Vendor$DollarCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
         });
     }
 
@@ -345,18 +345,18 @@ public abstract class BsVendor$DollarBhv extends AbstractBehaviorWritable {
         return doScalarSelect(resultType, newMyConditionBean());
     }
 
-    protected <RESULT, CB extends Vendor$DollarCB> SLFunction<CB, RESULT> doScalarSelect(Class<RESULT> resultType, CB cb) {
-        assertObjectNotNull("resultType", resultType); assertCBStateValid(cb);
+    protected <RESULT, CB extends Vendor$DollarCB> SLFunction<CB, RESULT> doScalarSelect(Class<RESULT> tp, CB cb) {
+        assertObjectNotNull("resultType", tp); assertCBStateValid(cb);
         cb.xsetupForScalarSelect(); cb.getSqlClause().disableSelectIndex(); // for when you use union
-        return createSLFunction(cb, resultType);
+        return createSLFunction(cb, tp);
     }
 
-    protected <RESULT, CB extends Vendor$DollarCB> SLFunction<CB, RESULT> createSLFunction(CB cb, Class<RESULT> resultType) {
-        return new SLFunction<CB, RESULT>(cb, resultType);
+    protected <RESULT, CB extends Vendor$DollarCB> SLFunction<CB, RESULT> createSLFunction(CB cb, Class<RESULT> tp) {
+        return new SLFunction<CB, RESULT>(cb, tp);
     }
 
-    protected <RESULT> SLFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> resultType) {
-        return doScalarSelect(resultType, newMyConditionBean());
+    protected <RESULT> SLFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) {
+        return doScalarSelect(tp, newMyConditionBean());
     }
 
     // ===================================================================================
@@ -382,7 +382,7 @@ public abstract class BsVendor$DollarBhv extends AbstractBehaviorWritable {
      */
     public List<Long> extractVendor$DollarIdList(List<Vendor$Dollar> vendor$DollarList) {
         return helpExtractListInternally(vendor$DollarList, new InternalExtractCallback<Vendor$Dollar, Long>() {
-            public Long getCV(Vendor$Dollar e) { return e.getVendor$DollarId(); }
+            public Long getCV(Vendor$Dollar et) { return et.getVendor$DollarId(); }
         });
     }
 
@@ -410,24 +410,24 @@ public abstract class BsVendor$DollarBhv extends AbstractBehaviorWritable {
         doInsert(vendor$Dollar, null);
     }
 
-    protected void doInsert(Vendor$Dollar vendor$Dollar, InsertOption<Vendor$DollarCB> option) {
+    protected void doInsert(Vendor$Dollar vendor$Dollar, InsertOption<Vendor$DollarCB> op) {
         assertObjectNotNull("vendor$Dollar", vendor$Dollar);
-        prepareInsertOption(option);
-        delegateInsert(vendor$Dollar, option);
+        prepareInsertOption(op);
+        delegateInsert(vendor$Dollar, op);
     }
 
-    protected void prepareInsertOption(InsertOption<Vendor$DollarCB> option) {
-        if (option == null) { return; }
-        assertInsertOptionStatus(option);
-        if (option.hasSpecifiedInsertColumn()) {
-            option.resolveInsertColumnSpecification(createCBForSpecifiedUpdate());
+    protected void prepareInsertOption(InsertOption<Vendor$DollarCB> op) {
+        if (op == null) { return; }
+        assertInsertOptionStatus(op);
+        if (op.hasSpecifiedInsertColumn()) {
+            op.resolveInsertColumnSpecification(createCBForSpecifiedUpdate());
         }
     }
 
     @Override
-    protected void doCreate(Entity entity, InsertOption<? extends ConditionBean> option) {
-        if (option == null) { insert(downcast(entity)); }
-        else { varyingInsert(downcast(entity), downcast(option)); }
+    protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) {
+        if (op == null) { insert(downcast(et)); }
+        else { varyingInsert(downcast(et), downcast(op)); }
     }
 
     /**
@@ -445,7 +445,7 @@ public abstract class BsVendor$DollarBhv extends AbstractBehaviorWritable {
      *     vendor$DollarBhv.<span style="color: #FD4747">update</span>(vendor$Dollar);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
-     * } 
+     * }
      * </pre>
      * @param vendor$Dollar The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
@@ -456,21 +456,21 @@ public abstract class BsVendor$DollarBhv extends AbstractBehaviorWritable {
         doUpdate(vendor$Dollar, null);
     }
 
-    protected void doUpdate(Vendor$Dollar vendor$Dollar, final UpdateOption<Vendor$DollarCB> option) {
+    protected void doUpdate(Vendor$Dollar vendor$Dollar, final UpdateOption<Vendor$DollarCB> op) {
         assertObjectNotNull("vendor$Dollar", vendor$Dollar);
-        prepareUpdateOption(option);
+        prepareUpdateOption(op);
         helpUpdateInternally(vendor$Dollar, new InternalUpdateCallback<Vendor$Dollar>() {
-            public int callbackDelegateUpdate(Vendor$Dollar entity) { return delegateUpdate(entity, option); } });
+            public int callbackDelegateUpdate(Vendor$Dollar et) { return delegateUpdate(et, op); } });
     }
 
-    protected void prepareUpdateOption(UpdateOption<Vendor$DollarCB> option) {
-        if (option == null) { return; }
-        assertUpdateOptionStatus(option);
-        if (option.hasSelfSpecification()) {
-            option.resolveSelfSpecification(createCBForVaryingUpdate());
+    protected void prepareUpdateOption(UpdateOption<Vendor$DollarCB> op) {
+        if (op == null) { return; }
+        assertUpdateOptionStatus(op);
+        if (op.hasSelfSpecification()) {
+            op.resolveSelfSpecification(createCBForVaryingUpdate());
         }
-        if (option.hasSpecifiedUpdateColumn()) {
-            option.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate());
+        if (op.hasSpecifiedUpdateColumn()) {
+            op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate());
         }
     }
 
@@ -487,14 +487,14 @@ public abstract class BsVendor$DollarBhv extends AbstractBehaviorWritable {
     }
 
     @Override
-    protected void doModify(Entity entity, UpdateOption<? extends ConditionBean> option) {
-        if (option == null) { update(downcast(entity)); }
-        else { varyingUpdate(downcast(entity), downcast(option)); }
+    protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) {
+        if (op == null) { update(downcast(et)); }
+        else { varyingUpdate(downcast(et), downcast(op)); }
     }
 
     @Override
-    protected void doModifyNonstrict(Entity entity, UpdateOption<? extends ConditionBean> option) {
-        doModify(entity, option);
+    protected void doModifyNonstrict(Entity et, UpdateOption<? extends ConditionBean> op) {
+        doModify(et, op);
     }
 
     /**
@@ -510,30 +510,28 @@ public abstract class BsVendor$DollarBhv extends AbstractBehaviorWritable {
         doInesrtOrUpdate(vendor$Dollar, null, null);
     }
 
-    protected void doInesrtOrUpdate(Vendor$Dollar vendor$Dollar, final InsertOption<Vendor$DollarCB> insertOption, final UpdateOption<Vendor$DollarCB> updateOption) {
+    protected void doInesrtOrUpdate(Vendor$Dollar vendor$Dollar, final InsertOption<Vendor$DollarCB> iop, final UpdateOption<Vendor$DollarCB> uop) {
         helpInsertOrUpdateInternally(vendor$Dollar, new InternalInsertOrUpdateCallback<Vendor$Dollar, Vendor$DollarCB>() {
-            public void callbackInsert(Vendor$Dollar entity) { doInsert(entity, insertOption); }
-            public void callbackUpdate(Vendor$Dollar entity) { doUpdate(entity, updateOption); }
+            public void callbackInsert(Vendor$Dollar et) { doInsert(et, iop); }
+            public void callbackUpdate(Vendor$Dollar et) { doUpdate(et, uop); }
             public Vendor$DollarCB callbackNewMyConditionBean() { return newMyConditionBean(); }
             public int callbackSelectCount(Vendor$DollarCB cb) { return selectCount(cb); }
         });
     }
 
     @Override
-    protected void doCreateOrModify(Entity entity, InsertOption<? extends ConditionBean> insertOption,
-            UpdateOption<? extends ConditionBean> updateOption) {
-        if (insertOption == null && updateOption == null) { insertOrUpdate(downcast(entity)); }
+    protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
+        if (iop == null && uop == null) { insertOrUpdate(downcast(et)); }
         else {
-            insertOption = insertOption == null ? new InsertOption<Vendor$DollarCB>() : insertOption;
-            updateOption = updateOption == null ? new UpdateOption<Vendor$DollarCB>() : updateOption;
-            varyingInsertOrUpdate(downcast(entity), downcast(insertOption), downcast(updateOption));
+            iop = iop != null ? iop : new InsertOption<Vendor$DollarCB>();
+            uop = uop != null ? uop : new UpdateOption<Vendor$DollarCB>();
+            varyingInsertOrUpdate(downcast(et), downcast(iop), downcast(uop));
         }
     }
 
     @Override
-    protected void doCreateOrModifyNonstrict(Entity entity, InsertOption<? extends ConditionBean> insertOption,
-            UpdateOption<? extends ConditionBean> updateOption) {
-        doCreateOrModify(entity, insertOption, updateOption);
+    protected void doCreateOrModifyNonstrict(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
+        doCreateOrModify(et, iop, uop);
     }
 
     /**
@@ -547,7 +545,7 @@ public abstract class BsVendor$DollarBhv extends AbstractBehaviorWritable {
      *     vendor$DollarBhv.<span style="color: #FD4747">delete</span>(vendor$Dollar);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
-     * } 
+     * }
      * </pre>
      * @param vendor$Dollar The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
@@ -557,27 +555,27 @@ public abstract class BsVendor$DollarBhv extends AbstractBehaviorWritable {
         doDelete(vendor$Dollar, null);
     }
 
-    protected void doDelete(Vendor$Dollar vendor$Dollar, final DeleteOption<Vendor$DollarCB> option) {
+    protected void doDelete(Vendor$Dollar vendor$Dollar, final DeleteOption<Vendor$DollarCB> op) {
         assertObjectNotNull("vendor$Dollar", vendor$Dollar);
-        prepareDeleteOption(option);
+        prepareDeleteOption(op);
         helpDeleteInternally(vendor$Dollar, new InternalDeleteCallback<Vendor$Dollar>() {
-            public int callbackDelegateDelete(Vendor$Dollar entity) { return delegateDelete(entity, option); } });
+            public int callbackDelegateDelete(Vendor$Dollar et) { return delegateDelete(et, op); } });
     }
 
-    protected void prepareDeleteOption(DeleteOption<Vendor$DollarCB> option) {
-        if (option == null) { return; }
-        assertDeleteOptionStatus(option);
-    }
-
-    @Override
-    protected void doRemove(Entity entity, DeleteOption<? extends ConditionBean> option) {
-        if (option == null) { delete(downcast(entity)); }
-        else { varyingDelete(downcast(entity), downcast(option)); }
+    protected void prepareDeleteOption(DeleteOption<Vendor$DollarCB> op) {
+        if (op == null) { return; }
+        assertDeleteOptionStatus(op);
     }
 
     @Override
-    protected void doRemoveNonstrict(Entity entity, DeleteOption<? extends ConditionBean> option) {
-        doRemove(entity, option);
+    protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) {
+        if (op == null) { delete(downcast(et)); }
+        else { varyingDelete(downcast(et), downcast(op)); }
+    }
+
+    @Override
+    protected void doRemoveNonstrict(Entity et, DeleteOption<? extends ConditionBean> op) {
+        doRemove(et, op);
     }
 
     // ===================================================================================
@@ -608,26 +606,26 @@ public abstract class BsVendor$DollarBhv extends AbstractBehaviorWritable {
      * @return The array of inserted count. (NotNull, EmptyAllowed)
      */
     public int[] batchInsert(List<Vendor$Dollar> vendor$DollarList) {
-        InsertOption<Vendor$DollarCB> option = createInsertUpdateOption();
-        return doBatchInsert(vendor$DollarList, option);
+        InsertOption<Vendor$DollarCB> op = createInsertUpdateOption();
+        return doBatchInsert(vendor$DollarList, op);
     }
 
-    protected int[] doBatchInsert(List<Vendor$Dollar> vendor$DollarList, InsertOption<Vendor$DollarCB> option) {
+    protected int[] doBatchInsert(List<Vendor$Dollar> vendor$DollarList, InsertOption<Vendor$DollarCB> op) {
         assertObjectNotNull("vendor$DollarList", vendor$DollarList);
-        prepareBatchInsertOption(vendor$DollarList, option);
-        return delegateBatchInsert(vendor$DollarList, option);
+        prepareBatchInsertOption(vendor$DollarList, op);
+        return delegateBatchInsert(vendor$DollarList, op);
     }
 
-    protected void prepareBatchInsertOption(List<Vendor$Dollar> vendor$DollarList, InsertOption<Vendor$DollarCB> option) {
-        option.xallowInsertColumnModifiedPropertiesFragmented();
-        option.xacceptInsertColumnModifiedPropertiesIfNeeds(vendor$DollarList);
-        prepareInsertOption(option);
+    protected void prepareBatchInsertOption(List<Vendor$Dollar> vendor$DollarList, InsertOption<Vendor$DollarCB> op) {
+        op.xallowInsertColumnModifiedPropertiesFragmented();
+        op.xacceptInsertColumnModifiedPropertiesIfNeeds(vendor$DollarList);
+        prepareInsertOption(op);
     }
 
     @Override
-    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> option) {
-        if (option == null) { return batchInsert(downcast(ls)); }
-        else { return varyingBatchInsert(downcast(ls), downcast(option)); }
+    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) {
+        if (op == null) { return batchInsert(downcast(ls)); }
+        else { return varyingBatchInsert(downcast(ls), downcast(op)); }
     }
 
     /**
@@ -655,39 +653,39 @@ public abstract class BsVendor$DollarBhv extends AbstractBehaviorWritable {
      * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<Vendor$Dollar> vendor$DollarList) {
-        UpdateOption<Vendor$DollarCB> option = createPlainUpdateOption();
-        return doBatchUpdate(vendor$DollarList, option);
+        UpdateOption<Vendor$DollarCB> op = createPlainUpdateOption();
+        return doBatchUpdate(vendor$DollarList, op);
     }
 
-    protected int[] doBatchUpdate(List<Vendor$Dollar> vendor$DollarList, UpdateOption<Vendor$DollarCB> option) {
+    protected int[] doBatchUpdate(List<Vendor$Dollar> vendor$DollarList, UpdateOption<Vendor$DollarCB> op) {
         assertObjectNotNull("vendor$DollarList", vendor$DollarList);
-        prepareBatchUpdateOption(vendor$DollarList, option);
-        return delegateBatchUpdate(vendor$DollarList, option);
+        prepareBatchUpdateOption(vendor$DollarList, op);
+        return delegateBatchUpdate(vendor$DollarList, op);
     }
 
-    protected void prepareBatchUpdateOption(List<Vendor$Dollar> vendor$DollarList, UpdateOption<Vendor$DollarCB> option) {
-        option.xacceptUpdateColumnModifiedPropertiesIfNeeds(vendor$DollarList);
-        prepareUpdateOption(option);
+    protected void prepareBatchUpdateOption(List<Vendor$Dollar> vendor$DollarList, UpdateOption<Vendor$DollarCB> op) {
+        op.xacceptUpdateColumnModifiedPropertiesIfNeeds(vendor$DollarList);
+        prepareUpdateOption(op);
     }
 
     @Override
-    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> option) {
-        if (option == null) { return batchUpdate(downcast(ls)); }
-        else { return varyingBatchUpdate(downcast(ls), downcast(option)); }
+    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) {
+        if (op == null) { return batchUpdate(downcast(ls)); }
+        else { return varyingBatchUpdate(downcast(ls), downcast(op)); }
     }
 
     /**
      * Batch-update the entity list specified-only. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * <pre>
-     * <span style="color: #3F7E5E">// e.g. update two columns only</span> 
+     * <span style="color: #3F7E5E">// e.g. update two columns only</span>
      * vendor$DollarBhv.<span style="color: #FD4747">batchUpdate</span>(vendor$DollarList, new SpecifyQuery<Vendor$DollarCB>() {
      *     public void specify(Vendor$DollarCB cb) { <span style="color: #3F7E5E">// the two only updated</span>
      *         cb.specify().<span style="color: #FD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
      *         cb.specify().<span style="color: #FD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
      *     }
      * });
-     * <span style="color: #3F7E5E">// e.g. update every column in the table</span> 
+     * <span style="color: #3F7E5E">// e.g. update every column in the table</span>
      * vendor$DollarBhv.<span style="color: #FD4747">batchUpdate</span>(vendor$DollarList, new SpecifyQuery<Vendor$DollarCB>() {
      *     public void specify(Vendor$DollarCB cb) { <span style="color: #3F7E5E">// all columns are updated</span>
      *         cb.specify().<span style="color: #FD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
@@ -709,8 +707,8 @@ public abstract class BsVendor$DollarBhv extends AbstractBehaviorWritable {
     }
 
     @Override
-    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> option) {
-        return doLumpModify(ls, option);
+    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> op) {
+        return doLumpModify(ls, op);
     }
 
     /**
@@ -724,21 +722,21 @@ public abstract class BsVendor$DollarBhv extends AbstractBehaviorWritable {
         return doBatchDelete(vendor$DollarList, null);
     }
 
-    protected int[] doBatchDelete(List<Vendor$Dollar> vendor$DollarList, DeleteOption<Vendor$DollarCB> option) {
+    protected int[] doBatchDelete(List<Vendor$Dollar> vendor$DollarList, DeleteOption<Vendor$DollarCB> op) {
         assertObjectNotNull("vendor$DollarList", vendor$DollarList);
-        prepareDeleteOption(option);
-        return delegateBatchDelete(vendor$DollarList, option);
+        prepareDeleteOption(op);
+        return delegateBatchDelete(vendor$DollarList, op);
     }
 
     @Override
-    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> option) {
-        if (option == null) { return batchDelete(downcast(ls)); }
-        else { return varyingBatchDelete(downcast(ls), downcast(option)); }
+    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) {
+        if (op == null) { return batchDelete(downcast(ls)); }
+        else { return varyingBatchDelete(downcast(ls), downcast(op)); }
     }
 
     @Override
-    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> option) {
-        return doLumpRemove(ls, option);
+    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> op) {
+        return doLumpRemove(ls, op);
     }
 
     // ===================================================================================
@@ -751,7 +749,7 @@ public abstract class BsVendor$DollarBhv extends AbstractBehaviorWritable {
      *     public ConditionBean setup(vendor$Dollar entity, Vendor$DollarCB intoCB) {
      *         FooCB cb = FooCB();
      *         cb.setupSelect_Bar();
-     * 
+     *
      *         <span style="color: #3F7E5E">// mapping</span>
      *         intoCB.specify().columnMyName().mappedFrom(cb.specify().columnFooName());
      *         intoCB.specify().columnMyCount().mappedFrom(cb.specify().columnFooCount());
@@ -762,7 +760,7 @@ public abstract class BsVendor$DollarBhv extends AbstractBehaviorWritable {
      *         <span style="color: #3F7E5E">//entity.set...;</span>
      *         <span style="color: #3F7E5E">// you don't need to set a value of exclusive control column</span>
      *         <span style="color: #3F7E5E">//entity.setVersionNo(value);</span>
-     * 
+     *
      *         return cb;
      *     }
      * });
@@ -774,13 +772,12 @@ public abstract class BsVendor$DollarBhv extends AbstractBehaviorWritable {
         return doQueryInsert(setupper, null);
     }
 
-    protected int doQueryInsert(QueryInsertSetupper<Vendor$Dollar, Vendor$DollarCB> setupper, InsertOption<Vendor$DollarCB> option) {
-        assertObjectNotNull("setupper", setupper);
-        prepareInsertOption(option);
-        Vendor$Dollar entity = new Vendor$Dollar();
-        Vendor$DollarCB intoCB = createCBForQueryInsert();
-        ConditionBean resourceCB = setupper.setup(entity, intoCB);
-        return delegateQueryInsert(entity, intoCB, resourceCB, option);
+    protected int doQueryInsert(QueryInsertSetupper<Vendor$Dollar, Vendor$DollarCB> sp, InsertOption<Vendor$DollarCB> op) {
+        assertObjectNotNull("setupper", sp);
+        prepareInsertOption(op);
+        Vendor$Dollar e = new Vendor$Dollar();
+        Vendor$DollarCB cb = createCBForQueryInsert();
+        return delegateQueryInsert(e, cb, sp.setup(e, cb), op);
     }
 
     protected Vendor$DollarCB createCBForQueryInsert() {
@@ -821,16 +818,16 @@ public abstract class BsVendor$DollarBhv extends AbstractBehaviorWritable {
         return doQueryUpdate(vendor$Dollar, cb, null);
     }
 
-    protected int doQueryUpdate(Vendor$Dollar vendor$Dollar, Vendor$DollarCB cb, UpdateOption<Vendor$DollarCB> option) {
+    protected int doQueryUpdate(Vendor$Dollar vendor$Dollar, Vendor$DollarCB cb, UpdateOption<Vendor$DollarCB> op) {
         assertObjectNotNull("vendor$Dollar", vendor$Dollar); assertCBStateValid(cb);
-        prepareUpdateOption(option);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(vendor$Dollar, cb, option) : 0;
+        prepareUpdateOption(op);
+        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(vendor$Dollar, cb, op) : 0;
     }
 
     @Override
-    protected int doRangeModify(Entity entity, ConditionBean cb, UpdateOption<? extends ConditionBean> option) {
-        if (option == null) { return queryUpdate(downcast(entity), (Vendor$DollarCB)cb); }
-        else { return varyingQueryUpdate(downcast(entity), (Vendor$DollarCB)cb, downcast(option)); }
+    protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op) {
+        if (op == null) { return queryUpdate(downcast(et), (Vendor$DollarCB)cb); }
+        else { return varyingQueryUpdate(downcast(et), (Vendor$DollarCB)cb, downcast(op)); }
     }
 
     /**
@@ -848,16 +845,16 @@ public abstract class BsVendor$DollarBhv extends AbstractBehaviorWritable {
         return doQueryDelete(cb, null);
     }
 
-    protected int doQueryDelete(Vendor$DollarCB cb, DeleteOption<Vendor$DollarCB> option) {
+    protected int doQueryDelete(Vendor$DollarCB cb, DeleteOption<Vendor$DollarCB> op) {
         assertCBStateValid(cb);
-        prepareDeleteOption(option);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryDelete(cb, option) : 0;
+        prepareDeleteOption(op);
+        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryDelete(cb, op) : 0;
     }
 
     @Override
-    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> option) {
-        if (option == null) { return queryDelete((Vendor$DollarCB)cb); }
-        else { return varyingQueryDelete((Vendor$DollarCB)cb, downcast(option)); }
+    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) {
+        if (op == null) { return queryDelete((Vendor$DollarCB)cb); }
+        else { return varyingQueryDelete((Vendor$DollarCB)cb, downcast(op)); }
     }
 
     // ===================================================================================
@@ -1003,7 +1000,7 @@ public abstract class BsVendor$DollarBhv extends AbstractBehaviorWritable {
     /**
      * Insert the several entities by query with varying requests (modified-only for fixed value). <br />
      * For example, disableCommonColumnAutoSetup(), disablePrimaryKeyIdentity(). <br />
-     * Other specifications are same as queryInsert(entity, setupper). 
+     * Other specifications are same as queryInsert(entity, setupper).
      * @param setupper The setup-per of query-insert. (NotNull)
      * @param option The option of insert for varying requests. (NotNull)
      * @return The inserted count.
@@ -1017,7 +1014,7 @@ public abstract class BsVendor$DollarBhv extends AbstractBehaviorWritable {
      * Update the several entities by query with varying requests non-strictly modified-only. {NonExclusiveControl} <br />
      * For example, self(selfCalculationSpecification), specify(updateColumnSpecification)
      * , disableCommonColumnAutoSetup(), allowNonQueryUpdate(). <br />
-     * Other specifications are same as queryUpdate(entity, cb). 
+     * Other specifications are same as queryUpdate(entity, cb).
      * <pre>
      * <span style="color: #3F7E5E">// ex) you can update by self calculation values</span>
      * Vendor$Dollar vendor$Dollar = new Vendor$Dollar();
@@ -1074,27 +1071,27 @@ public abstract class BsVendor$DollarBhv extends AbstractBehaviorWritable {
      *   o selectList()
      *   o execute()
      *   o call()
-     * 
+     *
      * {Entity}
      *   o entityHandling().selectEntity()
      *   o entityHandling().selectEntityWithDeletedCheck()
-     * 
+     *
      * {Paging}
      *   o autoPaging().selectList()
      *   o autoPaging().selectPage()
      *   o manualPaging().selectList()
      *   o manualPaging().selectPage()
-     * 
+     *
      * {Cursor}
      *   o cursorHandling().selectCursor()
-     * 
+     *
      * {Option}
      *   o dynamicBinding().selectList()
      *   o removeBlockComment().selectList()
      *   o removeLineComment().selectList()
      *   o formatSql().selectList()
      * </pre>
-     * @return The basic executor of outside-SQL. (NotNull) 
+     * @return The basic executor of outside-SQL. (NotNull)
      */
     public OutsideSqlBasicExecutor<Vendor$DollarBhv> outsideSql() {
         return doOutsideSql();
@@ -1109,29 +1106,29 @@ public abstract class BsVendor$DollarBhv extends AbstractBehaviorWritable {
     //                                                ------
     protected int delegateSelectCountUniquely(Vendor$DollarCB cb) { return invoke(createSelectCountCBCommand(cb, true)); }
     protected int delegateSelectCountPlainly(Vendor$DollarCB cb) { return invoke(createSelectCountCBCommand(cb, false)); }
-    protected <ENTITY extends Vendor$Dollar> void delegateSelectCursor(Vendor$DollarCB cb, EntityRowHandler<ENTITY> erh, Class<ENTITY> et)
-    { invoke(createSelectCursorCBCommand(cb, erh, et)); }
-    protected <ENTITY extends Vendor$Dollar> List<ENTITY> delegateSelectList(Vendor$DollarCB cb, Class<ENTITY> et)
-    { return invoke(createSelectListCBCommand(cb, et)); }
+    protected <ENTITY extends Vendor$Dollar> void delegateSelectCursor(Vendor$DollarCB cb, EntityRowHandler<ENTITY> rh, Class<ENTITY> tp)
+    { invoke(createSelectCursorCBCommand(cb, rh, tp)); }
+    protected <ENTITY extends Vendor$Dollar> List<ENTITY> delegateSelectList(Vendor$DollarCB cb, Class<ENTITY> tp)
+    { return invoke(createSelectListCBCommand(cb, tp)); }
 
     // -----------------------------------------------------
     //                                                Update
     //                                                ------
-    protected int delegateInsert(Vendor$Dollar e, InsertOption<Vendor$DollarCB> op)
-    { if (!processBeforeInsert(e, op)) { return 0; }
-      return invoke(createInsertEntityCommand(e, op)); }
-    protected int delegateUpdate(Vendor$Dollar e, UpdateOption<Vendor$DollarCB> op)
-    { if (!processBeforeUpdate(e, op)) { return 0; }
-      return delegateUpdateNonstrict(e, op); }
-    protected int delegateUpdateNonstrict(Vendor$Dollar e, UpdateOption<Vendor$DollarCB> op)
-    { if (!processBeforeUpdate(e, op)) { return 0; }
-      return invoke(createUpdateNonstrictEntityCommand(e, op)); }
-    protected int delegateDelete(Vendor$Dollar e, DeleteOption<Vendor$DollarCB> op)
-    { if (!processBeforeDelete(e, op)) { return 0; }
-      return delegateDeleteNonstrict(e, op); }
-    protected int delegateDeleteNonstrict(Vendor$Dollar e, DeleteOption<Vendor$DollarCB> op)
-    { if (!processBeforeDelete(e, op)) { return 0; }
-      return invoke(createDeleteNonstrictEntityCommand(e, op)); }
+    protected int delegateInsert(Vendor$Dollar et, InsertOption<Vendor$DollarCB> op)
+    { if (!processBeforeInsert(et, op)) { return 0; }
+      return invoke(createInsertEntityCommand(et, op)); }
+    protected int delegateUpdate(Vendor$Dollar et, UpdateOption<Vendor$DollarCB> op)
+    { if (!processBeforeUpdate(et, op)) { return 0; }
+      return delegateUpdateNonstrict(et, op); }
+    protected int delegateUpdateNonstrict(Vendor$Dollar et, UpdateOption<Vendor$DollarCB> op)
+    { if (!processBeforeUpdate(et, op)) { return 0; }
+      return invoke(createUpdateNonstrictEntityCommand(et, op)); }
+    protected int delegateDelete(Vendor$Dollar et, DeleteOption<Vendor$DollarCB> op)
+    { if (!processBeforeDelete(et, op)) { return 0; }
+      return delegateDeleteNonstrict(et, op); }
+    protected int delegateDeleteNonstrict(Vendor$Dollar et, DeleteOption<Vendor$DollarCB> op)
+    { if (!processBeforeDelete(et, op)) { return 0; }
+      return invoke(createDeleteNonstrictEntityCommand(et, op)); }
 
     protected int[] delegateBatchInsert(List<Vendor$Dollar> ls, InsertOption<Vendor$DollarCB> op)
     { if (ls.isEmpty()) { return new int[]{}; }
@@ -1149,10 +1146,10 @@ public abstract class BsVendor$DollarBhv extends AbstractBehaviorWritable {
     { if (ls.isEmpty()) { return new int[]{}; }
       return invoke(createBatchDeleteNonstrictCommand(processBatchInternally(ls, op, true), op)); }
 
-    protected int delegateQueryInsert(Vendor$Dollar e, Vendor$DollarCB inCB, ConditionBean resCB, InsertOption<Vendor$DollarCB> op)
-    { if (!processBeforeQueryInsert(e, inCB, resCB, op)) { return 0; } return invoke(createQueryInsertCBCommand(e, inCB, resCB, op));  }
-    protected int delegateQueryUpdate(Vendor$Dollar e, Vendor$DollarCB cb, UpdateOption<Vendor$DollarCB> op)
-    { if (!processBeforeQueryUpdate(e, cb, op)) { return 0; } return invoke(createQueryUpdateCBCommand(e, cb, op));  }
+    protected int delegateQueryInsert(Vendor$Dollar et, Vendor$DollarCB inCB, ConditionBean resCB, InsertOption<Vendor$DollarCB> op)
+    { if (!processBeforeQueryInsert(et, inCB, resCB, op)) { return 0; } return invoke(createQueryInsertCBCommand(et, inCB, resCB, op));  }
+    protected int delegateQueryUpdate(Vendor$Dollar et, Vendor$DollarCB cb, UpdateOption<Vendor$DollarCB> op)
+    { if (!processBeforeQueryUpdate(et, cb, op)) { return 0; } return invoke(createQueryUpdateCBCommand(et, cb, op));  }
     protected int delegateQueryDelete(Vendor$DollarCB cb, DeleteOption<Vendor$DollarCB> op)
     { if (!processBeforeQueryDelete(cb, op)) { return 0; } return invoke(createQueryDeleteCBCommand(cb, op));  }
 
@@ -1163,7 +1160,7 @@ public abstract class BsVendor$DollarBhv extends AbstractBehaviorWritable {
      * {@inheritDoc}
      */
     @Override
-    protected boolean hasVersionNoValue(Entity entity) {
+    protected boolean hasVersionNoValue(Entity et) {
         return false;
     }
 
@@ -1171,15 +1168,15 @@ public abstract class BsVendor$DollarBhv extends AbstractBehaviorWritable {
      * {@inheritDoc}
      */
     @Override
-    protected boolean hasUpdateDateValue(Entity entity) {
+    protected boolean hasUpdateDateValue(Entity et) {
         return false;
     }
 
     // ===================================================================================
     //                                                                     Downcast Helper
     //                                                                     ===============
-    protected Vendor$Dollar downcast(Entity entity) {
-        return helpEntityDowncastInternally(entity, Vendor$Dollar.class);
+    protected Vendor$Dollar downcast(Entity et) {
+        return helpEntityDowncastInternally(et, Vendor$Dollar.class);
     }
 
     protected Vendor$DollarCB downcast(ConditionBean cb) {
@@ -1187,27 +1184,27 @@ public abstract class BsVendor$DollarBhv extends AbstractBehaviorWritable {
     }
 
     @SuppressWarnings("unchecked")
-    protected List<Vendor$Dollar> downcast(List<? extends Entity> entityList) {
-        return (List<Vendor$Dollar>)entityList;
+    protected List<Vendor$Dollar> downcast(List<? extends Entity> ls) {
+        return (List<Vendor$Dollar>)ls;
     }
 
     @SuppressWarnings("unchecked")
-    protected InsertOption<Vendor$DollarCB> downcast(InsertOption<? extends ConditionBean> option) {
-        return (InsertOption<Vendor$DollarCB>)option;
+    protected InsertOption<Vendor$DollarCB> downcast(InsertOption<? extends ConditionBean> op) {
+        return (InsertOption<Vendor$DollarCB>)op;
     }
 
     @SuppressWarnings("unchecked")
-    protected UpdateOption<Vendor$DollarCB> downcast(UpdateOption<? extends ConditionBean> option) {
-        return (UpdateOption<Vendor$DollarCB>)option;
+    protected UpdateOption<Vendor$DollarCB> downcast(UpdateOption<? extends ConditionBean> op) {
+        return (UpdateOption<Vendor$DollarCB>)op;
     }
 
     @SuppressWarnings("unchecked")
-    protected DeleteOption<Vendor$DollarCB> downcast(DeleteOption<? extends ConditionBean> option) {
-        return (DeleteOption<Vendor$DollarCB>)option;
+    protected DeleteOption<Vendor$DollarCB> downcast(DeleteOption<? extends ConditionBean> op) {
+        return (DeleteOption<Vendor$DollarCB>)op;
     }
 
     @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<Vendor$Dollar, Vendor$DollarCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> option) {
-        return (QueryInsertSetupper<Vendor$Dollar, Vendor$DollarCB>)option;
+    protected QueryInsertSetupper<Vendor$Dollar, Vendor$DollarCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp) {
+        return (QueryInsertSetupper<Vendor$Dollar, Vendor$DollarCB>)sp;
     }
 }

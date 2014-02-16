@@ -46,32 +46,32 @@ public class VendorLargeDataDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgLargeDataId implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorLargeData)e).getLargeDataId(); }
-        public void write(Entity e, Object v) { ((VendorLargeData)e).setLargeDataId(ctl(v)); }
+        public Object read(Entity et) { return ((VendorLargeData)et).getLargeDataId(); }
+        public void write(Entity et, Object vl) { ((VendorLargeData)et).setLargeDataId(ctl(vl)); }
     }
     public static class EpgStringIndex implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorLargeData)e).getStringIndex(); }
-        public void write(Entity e, Object v) { ((VendorLargeData)e).setStringIndex((String)v); }
+        public Object read(Entity et) { return ((VendorLargeData)et).getStringIndex(); }
+        public void write(Entity et, Object vl) { ((VendorLargeData)et).setStringIndex((String)vl); }
     }
     public static class EpgStringNoIndex implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorLargeData)e).getStringNoIndex(); }
-        public void write(Entity e, Object v) { ((VendorLargeData)e).setStringNoIndex((String)v); }
+        public Object read(Entity et) { return ((VendorLargeData)et).getStringNoIndex(); }
+        public void write(Entity et, Object vl) { ((VendorLargeData)et).setStringNoIndex((String)vl); }
     }
     public static class EpgStringUniqueIndex implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorLargeData)e).getStringUniqueIndex(); }
-        public void write(Entity e, Object v) { ((VendorLargeData)e).setStringUniqueIndex((String)v); }
+        public Object read(Entity et) { return ((VendorLargeData)et).getStringUniqueIndex(); }
+        public void write(Entity et, Object vl) { ((VendorLargeData)et).setStringUniqueIndex((String)vl); }
     }
     public static class EpgIntflgIndex implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorLargeData)e).getIntflgIndex(); }
-        public void write(Entity e, Object v) { ((VendorLargeData)e).setIntflgIndex(cti(v)); }
+        public Object read(Entity et) { return ((VendorLargeData)et).getIntflgIndex(); }
+        public void write(Entity et, Object vl) { ((VendorLargeData)et).setIntflgIndex(cti(vl)); }
     }
     public static class EpgNumericIntegerIndex implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorLargeData)e).getNumericIntegerIndex(); }
-        public void write(Entity e, Object v) { ((VendorLargeData)e).setNumericIntegerIndex(cti(v)); }
+        public Object read(Entity et) { return ((VendorLargeData)et).getNumericIntegerIndex(); }
+        public void write(Entity et, Object vl) { ((VendorLargeData)et).setNumericIntegerIndex(cti(vl)); }
     }
     public static class EpgNumericIntegerNoIndex implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorLargeData)e).getNumericIntegerNoIndex(); }
-        public void write(Entity e, Object v) { ((VendorLargeData)e).setNumericIntegerNoIndex(cti(v)); }
+        public Object read(Entity et) { return ((VendorLargeData)et).getNumericIntegerNoIndex(); }
+        public void write(Entity et, Object vl) { ((VendorLargeData)et).setNumericIntegerNoIndex(cti(vl)); }
     }
 
     // ===================================================================================
@@ -139,8 +139,8 @@ public class VendorLargeDataDbm extends AbstractDBMeta {
     //                                     Referrer Property
     //                                     -----------------
     public ReferrerInfo referrerVendorLargeDataRefList() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnLargeDataId(), VendorLargeDataRefDbm.getInstance().columnLargeDataId());
-        return cri("FK_VENDOR_LARGE_DATA_REF_DATA", "vendorLargeDataRefList", this, VendorLargeDataRefDbm.getInstance(), map, false, "vendorLargeData");
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnLargeDataId(), VendorLargeDataRefDbm.getInstance().columnLargeDataId());
+        return cri("FK_VENDOR_LARGE_DATA_REF_DATA", "vendorLargeDataRefList", this, VendorLargeDataRefDbm.getInstance(), mp, false, "vendorLargeData");
     }
 
     // ===================================================================================
@@ -168,10 +168,10 @@ public class VendorLargeDataDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((VendorLargeData)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((VendorLargeData)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((VendorLargeData)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((VendorLargeData)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

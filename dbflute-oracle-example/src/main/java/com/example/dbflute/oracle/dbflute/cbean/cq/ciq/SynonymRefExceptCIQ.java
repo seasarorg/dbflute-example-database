@@ -75,18 +75,18 @@ public class SynonymRefExceptCIQ extends AbstractBsSynonymRefExceptCQ {
     { return _myCQ.keepExceptId_InScopeRelation_SynonymExcept(sq); }
     public String keepExceptId_NotInScopeRelation_SynonymExcept(SynonymExceptCQ sq)
     { return _myCQ.keepExceptId_NotInScopeRelation_SynonymExcept(sq); }
-    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) { return null; }
-    public String keepScalarCondition(SynonymRefExceptCQ subQuery)
+    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
+    public String keepScalarCondition(SynonymRefExceptCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }
-    public String keepSpecifyMyselfDerived(SynonymRefExceptCQ subQuery)
+    public String keepSpecifyMyselfDerived(SynonymRefExceptCQ sq)
     { throwIICBOE("(Specify)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerived(SynonymRefExceptCQ subQuery)
+    public String keepQueryMyselfDerived(SynonymRefExceptCQ sq)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerivedParameter(Object parameterValue)
+    public String keepQueryMyselfDerivedParameter(Object vl)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepMyselfExists(SynonymRefExceptCQ subQuery)
+    public String keepMyselfExists(SynonymRefExceptCQ sq)
     { throwIICBOE("MyselfExists"); return null;}
-    public String keepMyselfInScope(SynonymRefExceptCQ subQuery)
+    public String keepMyselfInScope(SynonymRefExceptCQ sq)
     { throwIICBOE("MyselfInScope"); return null;}
 
     protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()

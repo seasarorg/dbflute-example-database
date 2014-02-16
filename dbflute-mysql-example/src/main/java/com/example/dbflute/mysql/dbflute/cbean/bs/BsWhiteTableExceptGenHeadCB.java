@@ -335,8 +335,8 @@ public class BsWhiteTableExceptGenHeadCB extends AbstractConditionBean {
         public HpSDRFunction<WhiteTableExceptGenHeadCB, WhiteTableExceptGenHeadCQ> myselfDerived() {
             assertDerived("myselfDerived"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<WhiteTableExceptGenHeadCB, WhiteTableExceptGenHeadCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<WhiteTableExceptGenHeadCB, WhiteTableExceptGenHeadCQ>() {
-                public void setup(String function, SubQuery<WhiteTableExceptGenHeadCB> subQuery, WhiteTableExceptGenHeadCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsmyselfDerive(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<WhiteTableExceptGenHeadCB> sq, WhiteTableExceptGenHeadCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsmyselfDerive(fn, sq, al, op); } }, _dbmetaProvider);
         }
     }
 

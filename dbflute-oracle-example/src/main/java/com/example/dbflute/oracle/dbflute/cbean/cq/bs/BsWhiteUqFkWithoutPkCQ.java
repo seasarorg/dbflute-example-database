@@ -81,57 +81,57 @@ public class BsWhiteUqFkWithoutPkCQ extends AbstractBsWhiteUqFkWithoutPkCQ {
 
     protected Map<String, WhiteUqFkWithoutPkRefCQ> _uqFkCode_ExistsReferrer_WhiteUqFkWithoutPkRefListMap;
     public Map<String, WhiteUqFkWithoutPkRefCQ> getUqFkCode_ExistsReferrer_WhiteUqFkWithoutPkRefList() { return _uqFkCode_ExistsReferrer_WhiteUqFkWithoutPkRefListMap; }
-    public String keepUqFkCode_ExistsReferrer_WhiteUqFkWithoutPkRefList(WhiteUqFkWithoutPkRefCQ subQuery) {
+    public String keepUqFkCode_ExistsReferrer_WhiteUqFkWithoutPkRefList(WhiteUqFkWithoutPkRefCQ sq) {
         if (_uqFkCode_ExistsReferrer_WhiteUqFkWithoutPkRefListMap == null) { _uqFkCode_ExistsReferrer_WhiteUqFkWithoutPkRefListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_uqFkCode_ExistsReferrer_WhiteUqFkWithoutPkRefListMap.size() + 1);
-        _uqFkCode_ExistsReferrer_WhiteUqFkWithoutPkRefListMap.put(key, subQuery); return "uqFkCode_ExistsReferrer_WhiteUqFkWithoutPkRefList." + key;
+        String ky = "subQueryMapKey" + (_uqFkCode_ExistsReferrer_WhiteUqFkWithoutPkRefListMap.size() + 1);
+        _uqFkCode_ExistsReferrer_WhiteUqFkWithoutPkRefListMap.put(ky, sq); return "uqFkCode_ExistsReferrer_WhiteUqFkWithoutPkRefList." + ky;
     }
 
     protected Map<String, WhiteUqFkWithoutPkRefCQ> _uqFkCode_NotExistsReferrer_WhiteUqFkWithoutPkRefListMap;
     public Map<String, WhiteUqFkWithoutPkRefCQ> getUqFkCode_NotExistsReferrer_WhiteUqFkWithoutPkRefList() { return _uqFkCode_NotExistsReferrer_WhiteUqFkWithoutPkRefListMap; }
-    public String keepUqFkCode_NotExistsReferrer_WhiteUqFkWithoutPkRefList(WhiteUqFkWithoutPkRefCQ subQuery) {
+    public String keepUqFkCode_NotExistsReferrer_WhiteUqFkWithoutPkRefList(WhiteUqFkWithoutPkRefCQ sq) {
         if (_uqFkCode_NotExistsReferrer_WhiteUqFkWithoutPkRefListMap == null) { _uqFkCode_NotExistsReferrer_WhiteUqFkWithoutPkRefListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_uqFkCode_NotExistsReferrer_WhiteUqFkWithoutPkRefListMap.size() + 1);
-        _uqFkCode_NotExistsReferrer_WhiteUqFkWithoutPkRefListMap.put(key, subQuery); return "uqFkCode_NotExistsReferrer_WhiteUqFkWithoutPkRefList." + key;
+        String ky = "subQueryMapKey" + (_uqFkCode_NotExistsReferrer_WhiteUqFkWithoutPkRefListMap.size() + 1);
+        _uqFkCode_NotExistsReferrer_WhiteUqFkWithoutPkRefListMap.put(ky, sq); return "uqFkCode_NotExistsReferrer_WhiteUqFkWithoutPkRefList." + ky;
     }
 
     protected Map<String, WhiteUqFkWithoutPkRefCQ> _uqFkCode_InScopeRelation_WhiteUqFkWithoutPkRefListMap;
     public Map<String, WhiteUqFkWithoutPkRefCQ> getUqFkCode_InScopeRelation_WhiteUqFkWithoutPkRefList() { return _uqFkCode_InScopeRelation_WhiteUqFkWithoutPkRefListMap; }
-    public String keepUqFkCode_InScopeRelation_WhiteUqFkWithoutPkRefList(WhiteUqFkWithoutPkRefCQ subQuery) {
+    public String keepUqFkCode_InScopeRelation_WhiteUqFkWithoutPkRefList(WhiteUqFkWithoutPkRefCQ sq) {
         if (_uqFkCode_InScopeRelation_WhiteUqFkWithoutPkRefListMap == null) { _uqFkCode_InScopeRelation_WhiteUqFkWithoutPkRefListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_uqFkCode_InScopeRelation_WhiteUqFkWithoutPkRefListMap.size() + 1);
-        _uqFkCode_InScopeRelation_WhiteUqFkWithoutPkRefListMap.put(key, subQuery); return "uqFkCode_InScopeRelation_WhiteUqFkWithoutPkRefList." + key;
+        String ky = "subQueryMapKey" + (_uqFkCode_InScopeRelation_WhiteUqFkWithoutPkRefListMap.size() + 1);
+        _uqFkCode_InScopeRelation_WhiteUqFkWithoutPkRefListMap.put(ky, sq); return "uqFkCode_InScopeRelation_WhiteUqFkWithoutPkRefList." + ky;
     }
 
     protected Map<String, WhiteUqFkWithoutPkRefCQ> _uqFkCode_NotInScopeRelation_WhiteUqFkWithoutPkRefListMap;
     public Map<String, WhiteUqFkWithoutPkRefCQ> getUqFkCode_NotInScopeRelation_WhiteUqFkWithoutPkRefList() { return _uqFkCode_NotInScopeRelation_WhiteUqFkWithoutPkRefListMap; }
-    public String keepUqFkCode_NotInScopeRelation_WhiteUqFkWithoutPkRefList(WhiteUqFkWithoutPkRefCQ subQuery) {
+    public String keepUqFkCode_NotInScopeRelation_WhiteUqFkWithoutPkRefList(WhiteUqFkWithoutPkRefCQ sq) {
         if (_uqFkCode_NotInScopeRelation_WhiteUqFkWithoutPkRefListMap == null) { _uqFkCode_NotInScopeRelation_WhiteUqFkWithoutPkRefListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_uqFkCode_NotInScopeRelation_WhiteUqFkWithoutPkRefListMap.size() + 1);
-        _uqFkCode_NotInScopeRelation_WhiteUqFkWithoutPkRefListMap.put(key, subQuery); return "uqFkCode_NotInScopeRelation_WhiteUqFkWithoutPkRefList." + key;
+        String ky = "subQueryMapKey" + (_uqFkCode_NotInScopeRelation_WhiteUqFkWithoutPkRefListMap.size() + 1);
+        _uqFkCode_NotInScopeRelation_WhiteUqFkWithoutPkRefListMap.put(ky, sq); return "uqFkCode_NotInScopeRelation_WhiteUqFkWithoutPkRefList." + ky;
     }
 
     protected Map<String, WhiteUqFkWithoutPkRefCQ> _uqFkCode_SpecifyDerivedReferrer_WhiteUqFkWithoutPkRefListMap;
     public Map<String, WhiteUqFkWithoutPkRefCQ> getUqFkCode_SpecifyDerivedReferrer_WhiteUqFkWithoutPkRefList() { return _uqFkCode_SpecifyDerivedReferrer_WhiteUqFkWithoutPkRefListMap; }
-    public String keepUqFkCode_SpecifyDerivedReferrer_WhiteUqFkWithoutPkRefList(WhiteUqFkWithoutPkRefCQ subQuery) {
+    public String keepUqFkCode_SpecifyDerivedReferrer_WhiteUqFkWithoutPkRefList(WhiteUqFkWithoutPkRefCQ sq) {
         if (_uqFkCode_SpecifyDerivedReferrer_WhiteUqFkWithoutPkRefListMap == null) { _uqFkCode_SpecifyDerivedReferrer_WhiteUqFkWithoutPkRefListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_uqFkCode_SpecifyDerivedReferrer_WhiteUqFkWithoutPkRefListMap.size() + 1);
-        _uqFkCode_SpecifyDerivedReferrer_WhiteUqFkWithoutPkRefListMap.put(key, subQuery); return "uqFkCode_SpecifyDerivedReferrer_WhiteUqFkWithoutPkRefList." + key;
+        String ky = "subQueryMapKey" + (_uqFkCode_SpecifyDerivedReferrer_WhiteUqFkWithoutPkRefListMap.size() + 1);
+        _uqFkCode_SpecifyDerivedReferrer_WhiteUqFkWithoutPkRefListMap.put(ky, sq); return "uqFkCode_SpecifyDerivedReferrer_WhiteUqFkWithoutPkRefList." + ky;
     }
 
     protected Map<String, WhiteUqFkWithoutPkRefCQ> _uqFkCode_QueryDerivedReferrer_WhiteUqFkWithoutPkRefListMap;
     public Map<String, WhiteUqFkWithoutPkRefCQ> getUqFkCode_QueryDerivedReferrer_WhiteUqFkWithoutPkRefList() { return _uqFkCode_QueryDerivedReferrer_WhiteUqFkWithoutPkRefListMap; }
-    public String keepUqFkCode_QueryDerivedReferrer_WhiteUqFkWithoutPkRefList(WhiteUqFkWithoutPkRefCQ subQuery) {
+    public String keepUqFkCode_QueryDerivedReferrer_WhiteUqFkWithoutPkRefList(WhiteUqFkWithoutPkRefCQ sq) {
         if (_uqFkCode_QueryDerivedReferrer_WhiteUqFkWithoutPkRefListMap == null) { _uqFkCode_QueryDerivedReferrer_WhiteUqFkWithoutPkRefListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_uqFkCode_QueryDerivedReferrer_WhiteUqFkWithoutPkRefListMap.size() + 1);
-        _uqFkCode_QueryDerivedReferrer_WhiteUqFkWithoutPkRefListMap.put(key, subQuery); return "uqFkCode_QueryDerivedReferrer_WhiteUqFkWithoutPkRefList." + key;
+        String ky = "subQueryMapKey" + (_uqFkCode_QueryDerivedReferrer_WhiteUqFkWithoutPkRefListMap.size() + 1);
+        _uqFkCode_QueryDerivedReferrer_WhiteUqFkWithoutPkRefListMap.put(ky, sq); return "uqFkCode_QueryDerivedReferrer_WhiteUqFkWithoutPkRefList." + ky;
     }
     protected Map<String, Object> _uqFkCode_QueryDerivedReferrer_WhiteUqFkWithoutPkRefListParameterMap;
     public Map<String, Object> getUqFkCode_QueryDerivedReferrer_WhiteUqFkWithoutPkRefListParameter() { return _uqFkCode_QueryDerivedReferrer_WhiteUqFkWithoutPkRefListParameterMap; }
-    public String keepUqFkCode_QueryDerivedReferrer_WhiteUqFkWithoutPkRefListParameter(Object parameterValue) {
+    public String keepUqFkCode_QueryDerivedReferrer_WhiteUqFkWithoutPkRefListParameter(Object vl) {
         if (_uqFkCode_QueryDerivedReferrer_WhiteUqFkWithoutPkRefListParameterMap == null) { _uqFkCode_QueryDerivedReferrer_WhiteUqFkWithoutPkRefListParameterMap = newLinkedHashMapSized(4); }
-        String key = "subQueryParameterKey" + (_uqFkCode_QueryDerivedReferrer_WhiteUqFkWithoutPkRefListParameterMap.size() + 1);
-        _uqFkCode_QueryDerivedReferrer_WhiteUqFkWithoutPkRefListParameterMap.put(key, parameterValue); return "uqFkCode_QueryDerivedReferrer_WhiteUqFkWithoutPkRefListParameter." + key;
+        String ky = "subQueryParameterKey" + (_uqFkCode_QueryDerivedReferrer_WhiteUqFkWithoutPkRefListParameterMap.size() + 1);
+        _uqFkCode_QueryDerivedReferrer_WhiteUqFkWithoutPkRefListParameterMap.put(ky, vl); return "uqFkCode_QueryDerivedReferrer_WhiteUqFkWithoutPkRefListParameter." + ky;
     }
 
     /** 
@@ -209,7 +209,7 @@ public class BsWhiteUqFkWithoutPkCQ extends AbstractBsWhiteUqFkWithoutPkCQ {
     // ===================================================================================
     //                                                                         Union Query
     //                                                                         ===========
-    protected void reflectRelationOnUnionQuery(ConditionQuery baseQueryAsSuper, ConditionQuery unionQueryAsSuper) {
+    protected void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
     }
 
     // ===================================================================================

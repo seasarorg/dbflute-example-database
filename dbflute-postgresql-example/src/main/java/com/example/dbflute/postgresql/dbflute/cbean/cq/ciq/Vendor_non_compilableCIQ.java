@@ -82,7 +82,7 @@ public class Vendor_non_compilableCIQ extends AbstractBsVendor_non_compilableCQ 
     { throwIICBOE("(Specify)DerivedReferrer"); return null; }
     public String keepNon_compilable_id_QueryDerivedReferrer_Vendor_non_compilableSelfList(Vendor_non_compilableCQ sq)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
-    public String keepNon_compilable_id_QueryDerivedReferrer_Vendor_non_compilableSelfListParameter(Object pv)
+    public String keepNon_compilable_id_QueryDerivedReferrer_Vendor_non_compilableSelfListParameter(Object vl)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
     protected ConditionValue getCValueNon_compilable_name() { return _myCQ.getNon_compilable_name(); }
     protected ConditionValue getCValueParent_id() { return _myCQ.getParent_id(); }
@@ -90,18 +90,18 @@ public class Vendor_non_compilableCIQ extends AbstractBsVendor_non_compilableCQ 
     { return _myCQ.keepParent_id_InScopeRelation_Vendor_non_compilableSelf(sq); }
     public String keepParent_id_NotInScopeRelation_Vendor_non_compilableSelf(Vendor_non_compilableCQ sq)
     { return _myCQ.keepParent_id_NotInScopeRelation_Vendor_non_compilableSelf(sq); }
-    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) { return null; }
-    public String keepScalarCondition(Vendor_non_compilableCQ subQuery)
+    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
+    public String keepScalarCondition(Vendor_non_compilableCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }
-    public String keepSpecifyMyselfDerived(Vendor_non_compilableCQ subQuery)
+    public String keepSpecifyMyselfDerived(Vendor_non_compilableCQ sq)
     { throwIICBOE("(Specify)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerived(Vendor_non_compilableCQ subQuery)
+    public String keepQueryMyselfDerived(Vendor_non_compilableCQ sq)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerivedParameter(Object parameterValue)
+    public String keepQueryMyselfDerivedParameter(Object vl)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepMyselfExists(Vendor_non_compilableCQ subQuery)
+    public String keepMyselfExists(Vendor_non_compilableCQ sq)
     { throwIICBOE("MyselfExists"); return null;}
-    public String keepMyselfInScope(Vendor_non_compilableCQ subQuery)
+    public String keepMyselfInScope(Vendor_non_compilableCQ sq)
     { throwIICBOE("MyselfInScope"); return null;}
 
     protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()

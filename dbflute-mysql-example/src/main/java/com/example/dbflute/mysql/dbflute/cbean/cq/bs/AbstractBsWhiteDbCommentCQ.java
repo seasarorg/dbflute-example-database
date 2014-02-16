@@ -155,8 +155,8 @@ public abstract class AbstractBsWhiteDbCommentCQ extends AbstractConditionQuery 
      */
     public void setDbCommentCode_IsNotNull() { regDbCommentCode(CK_ISNN, DOBJ); }
 
-    protected void regDbCommentCode(ConditionKey k, Object v) { regQ(k, v, getCValueDbCommentCode(), "DB_COMMENT_CODE"); }
-    abstract protected ConditionValue getCValueDbCommentCode();
+    protected void regDbCommentCode(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueDbCommentCode(), "DB_COMMENT_CODE"); }
+    protected abstract ConditionValue getCValueDbCommentCode();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -259,8 +259,8 @@ public abstract class AbstractBsWhiteDbCommentCQ extends AbstractConditionQuery 
      */
     public void setDbCommentName_IsNotNull() { regDbCommentName(CK_ISNN, DOBJ); }
 
-    protected void regDbCommentName(ConditionKey k, Object v) { regQ(k, v, getCValueDbCommentName(), "DB_COMMENT_NAME"); }
-    abstract protected ConditionValue getCValueDbCommentName();
+    protected void regDbCommentName(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueDbCommentName(), "DB_COMMENT_NAME"); }
+    protected abstract ConditionValue getCValueDbCommentName();
 
     // ===================================================================================
     //                                                                     ScalarCondition
@@ -367,22 +367,22 @@ public abstract class AbstractBsWhiteDbCommentCQ extends AbstractConditionQuery 
         return xcreateSSQFunction(CK_LE.getOperand());
     }
 
-    protected HpSSQFunction<WhiteDbCommentCB> xcreateSSQFunction(final String operand) {
+    protected HpSSQFunction<WhiteDbCommentCB> xcreateSSQFunction(final String rd) {
         return new HpSSQFunction<WhiteDbCommentCB>(new HpSSQSetupper<WhiteDbCommentCB>() {
-            public void setup(String function, SubQuery<WhiteDbCommentCB> subQuery, HpSSQOption<WhiteDbCommentCB> option) {
-                xscalarCondition(function, subQuery, operand, option);
+            public void setup(String fn, SubQuery<WhiteDbCommentCB> sq, HpSSQOption<WhiteDbCommentCB> op) {
+                xscalarCondition(fn, sq, rd, op);
             }
         });
     }
 
-    protected void xscalarCondition(String function, SubQuery<WhiteDbCommentCB> subQuery, String operand, HpSSQOption<WhiteDbCommentCB> option) {
-        assertObjectNotNull("subQuery<WhiteDbCommentCB>", subQuery);
-        WhiteDbCommentCB cb = xcreateScalarConditionCB(); subQuery.query(cb);
-        String subQueryPropertyName = keepScalarCondition(cb.query()); // for saving query-value
-        option.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
-        registerScalarCondition(function, cb.query(), subQueryPropertyName, operand, option);
+    protected void xscalarCondition(String fn, SubQuery<WhiteDbCommentCB> sq, String rd, HpSSQOption<WhiteDbCommentCB> op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteDbCommentCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        String pp = keepScalarCondition(cb.query()); // for saving query-value
+        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
-    public abstract String keepScalarCondition(WhiteDbCommentCQ subQuery);
+    public abstract String keepScalarCondition(WhiteDbCommentCQ sq);
 
     protected WhiteDbCommentCB xcreateScalarConditionCB() {
         WhiteDbCommentCB cb = new WhiteDbCommentCB();
@@ -399,13 +399,14 @@ public abstract class AbstractBsWhiteDbCommentCQ extends AbstractConditionQuery 
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    public void xsmyselfDerive(String function, SubQuery<WhiteDbCommentCB> subQuery, String aliasName, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<WhiteDbCommentCB>", subQuery);
-        WhiteDbCommentCB cb = new WhiteDbCommentCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
-        registerSpecifyMyselfDerived(function, cb.query(), "DB_COMMENT_CODE", "DB_COMMENT_CODE", subQueryPropertyName, "myselfDerived", aliasName, option);
+    public void xsmyselfDerive(String fn, SubQuery<WhiteDbCommentCB> sq, String al, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteDbCommentCB cb = new WhiteDbCommentCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "DB_COMMENT_CODE";
+        String pp = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
+        registerSpecifyMyselfDerived(fn, cb.query(), pk, pk, pp, "myselfDerived", al, op);
     }
-    public abstract String keepSpecifyMyselfDerived(WhiteDbCommentCQ subQuery);
+    public abstract String keepSpecifyMyselfDerived(WhiteDbCommentCQ sq);
 
     /**
      * Prepare for (Query)MyselfDerived (SubQuery).
@@ -416,20 +417,21 @@ public abstract class AbstractBsWhiteDbCommentCQ extends AbstractConditionQuery 
     }
     protected HpQDRFunction<WhiteDbCommentCB> xcreateQDRFunctionMyselfDerived() {
         return new HpQDRFunction<WhiteDbCommentCB>(new HpQDRSetupper<WhiteDbCommentCB>() {
-            public void setup(String function, SubQuery<WhiteDbCommentCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-                xqderiveMyselfDerived(function, subQuery, operand, value, option);
+            public void setup(String fn, SubQuery<WhiteDbCommentCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+                xqderiveMyselfDerived(fn, sq, rd, vl, op);
             }
         });
     }
-    public void xqderiveMyselfDerived(String function, SubQuery<WhiteDbCommentCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<WhiteDbCommentCB>", subQuery);
-        WhiteDbCommentCB cb = new WhiteDbCommentCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepQueryMyselfDerived(cb.query()); // for saving query-value.
-        String parameterPropertyName = keepQueryMyselfDerivedParameter(value);
-        registerQueryMyselfDerived(function, cb.query(), "DB_COMMENT_CODE", "DB_COMMENT_CODE", subQueryPropertyName, "myselfDerived", operand, value, parameterPropertyName, option);
+    public void xqderiveMyselfDerived(String fn, SubQuery<WhiteDbCommentCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteDbCommentCB cb = new WhiteDbCommentCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "DB_COMMENT_CODE";
+        String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
+        String prpp = keepQueryMyselfDerivedParameter(vl);
+        registerQueryMyselfDerived(fn, cb.query(), pk, pk, sqpp, "myselfDerived", rd, vl, prpp, op);
     }
-    public abstract String keepQueryMyselfDerived(WhiteDbCommentCQ subQuery);
-    public abstract String keepQueryMyselfDerivedParameter(Object parameterValue);
+    public abstract String keepQueryMyselfDerived(WhiteDbCommentCQ sq);
+    public abstract String keepQueryMyselfDerivedParameter(Object vl);
 
     // ===================================================================================
     //                                                                        MyselfExists
@@ -439,12 +441,12 @@ public abstract class AbstractBsWhiteDbCommentCQ extends AbstractConditionQuery 
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfExists(SubQuery<WhiteDbCommentCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteDbCommentCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteDbCommentCB cb = new WhiteDbCommentCB(); cb.xsetupForMyselfExists(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfExists(cb.query()); // for saving query-value.
-        registerMyselfExists(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfExists(cb.query()); // for saving query-value.
+        registerMyselfExists(cb.query(), pp);
     }
-    public abstract String keepMyselfExists(WhiteDbCommentCQ subQuery);
+    public abstract String keepMyselfExists(WhiteDbCommentCQ sq);
 
     // ===================================================================================
     //                                                                       MyselfInScope
@@ -454,12 +456,12 @@ public abstract class AbstractBsWhiteDbCommentCQ extends AbstractConditionQuery 
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfInScope(SubQuery<WhiteDbCommentCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteDbCommentCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteDbCommentCB cb = new WhiteDbCommentCB(); cb.xsetupForMyselfInScope(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfInScope(cb.query()); // for saving query-value.
-        registerMyselfInScope(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfInScope(cb.query()); // for saving query-value.
+        registerMyselfInScope(cb.query(), pp);
     }
-    public abstract String keepMyselfInScope(WhiteDbCommentCQ subQuery);
+    public abstract String keepMyselfInScope(WhiteDbCommentCQ sq);
 
     // ===================================================================================
     //                                                                    Full Text Search
@@ -485,7 +487,7 @@ public abstract class AbstractBsWhiteDbCommentCQ extends AbstractConditionQuery 
      * @param conditionValue The condition value embedded without binding (by MySQL restriction) but escaped. (NullAllowed: if null or empty, no condition)
      * @param modifier The modifier of full-text search. (NullAllowed: If the value is null, no modifier specified)
      */
-    public void match(java.util.List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList
+    public void match(List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList
                     , String conditionValue
                     , org.seasar.dbflute.dbway.WayOfMySQL.FullTextSearchModifier modifier) {
         xdoMatchForMySQL(textColumnList, conditionValue, modifier);

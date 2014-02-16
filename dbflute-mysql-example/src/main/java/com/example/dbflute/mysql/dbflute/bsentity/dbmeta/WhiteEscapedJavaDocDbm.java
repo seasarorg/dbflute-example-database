@@ -56,16 +56,16 @@ public class WhiteEscapedJavaDocDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public class EpgEscapedJavaDocCode implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteEscapedJavaDoc)e).getEscapedJavaDocCode(); }
-        public void write(Entity e, Object v) {
+        public Object read(Entity et) { return ((WhiteEscapedJavaDoc)et).getEscapedJavaDocCode(); }
+        public void write(Entity et, Object vl) {
             ColumnInfo col = columnEscapedJavaDocCode();
-            ccls(col, v);
-            ((WhiteEscapedJavaDoc)e).setEscapedJavaDocCodeAsEscapedJavaDocCls((CDef.EscapedJavaDocCls)gcls(col, v));
+            ccls(col, vl);
+            ((WhiteEscapedJavaDoc)et).setEscapedJavaDocCodeAsEscapedJavaDocCls((CDef.EscapedJavaDocCls)gcls(col, vl));
         }
     }
     public static class EpgEscapedJavaDocName implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteEscapedJavaDoc)e).getEscapedJavaDocName(); }
-        public void write(Entity e, Object v) { ((WhiteEscapedJavaDoc)e).setEscapedJavaDocName((String)v); }
+        public Object read(Entity et) { return ((WhiteEscapedJavaDoc)et).getEscapedJavaDocName(); }
+        public void write(Entity et, Object vl) { ((WhiteEscapedJavaDoc)et).setEscapedJavaDocName((String)vl); }
     }
 
     // ===================================================================================
@@ -143,10 +143,10 @@ public class WhiteEscapedJavaDocDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((WhiteEscapedJavaDoc)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((WhiteEscapedJavaDoc)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((WhiteEscapedJavaDoc)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((WhiteEscapedJavaDoc)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

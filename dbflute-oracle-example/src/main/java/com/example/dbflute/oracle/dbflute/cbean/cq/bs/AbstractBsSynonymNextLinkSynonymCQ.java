@@ -145,8 +145,8 @@ public abstract class AbstractBsSynonymNextLinkSynonymCQ extends AbstractConditi
      */
     public void setProductId_IsNotNull() { regProductId(CK_ISNN, DOBJ); }
 
-    protected void regProductId(ConditionKey k, Object v) { regQ(k, v, getCValueProductId(), "PRODUCT_ID"); }
-    abstract protected ConditionValue getCValueProductId();
+    protected void regProductId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueProductId(), "PRODUCT_ID"); }
+    protected abstract ConditionValue getCValueProductId();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -231,8 +231,8 @@ public abstract class AbstractBsSynonymNextLinkSynonymCQ extends AbstractConditi
         regLSQ(CK_NLS, fRES(productName), getCValueProductName(), "PRODUCT_NAME", likeSearchOption);
     }
 
-    protected void regProductName(ConditionKey k, Object v) { regQ(k, v, getCValueProductName(), "PRODUCT_NAME"); }
-    abstract protected ConditionValue getCValueProductName();
+    protected void regProductName(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueProductName(), "PRODUCT_NAME"); }
+    protected abstract ConditionValue getCValueProductName();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -317,8 +317,8 @@ public abstract class AbstractBsSynonymNextLinkSynonymCQ extends AbstractConditi
         regLSQ(CK_NLS, fRES(productHandleCode), getCValueProductHandleCode(), "PRODUCT_HANDLE_CODE", likeSearchOption);
     }
 
-    protected void regProductHandleCode(ConditionKey k, Object v) { regQ(k, v, getCValueProductHandleCode(), "PRODUCT_HANDLE_CODE"); }
-    abstract protected ConditionValue getCValueProductHandleCode();
+    protected void regProductHandleCode(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueProductHandleCode(), "PRODUCT_HANDLE_CODE"); }
+    protected abstract ConditionValue getCValueProductHandleCode();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -403,8 +403,8 @@ public abstract class AbstractBsSynonymNextLinkSynonymCQ extends AbstractConditi
         regLSQ(CK_NLS, fRES(productStatusCode), getCValueProductStatusCode(), "PRODUCT_STATUS_CODE", likeSearchOption);
     }
 
-    protected void regProductStatusCode(ConditionKey k, Object v) { regQ(k, v, getCValueProductStatusCode(), "PRODUCT_STATUS_CODE"); }
-    abstract protected ConditionValue getCValueProductStatusCode();
+    protected void regProductStatusCode(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueProductStatusCode(), "PRODUCT_STATUS_CODE"); }
+    protected abstract ConditionValue getCValueProductStatusCode();
 
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -415,8 +415,8 @@ public abstract class AbstractBsSynonymNextLinkSynonymCQ extends AbstractConditi
         regRegisterDatetime(CK_EQ,  fCTPD(registerDatetime));
     }
 
-    protected void regRegisterDatetime(ConditionKey k, Object v) { regQ(k, v, getCValueRegisterDatetime(), "REGISTER_DATETIME"); }
-    abstract protected ConditionValue getCValueRegisterDatetime();
+    protected void regRegisterDatetime(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueRegisterDatetime(), "REGISTER_DATETIME"); }
+    protected abstract ConditionValue getCValueRegisterDatetime();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -431,8 +431,8 @@ public abstract class AbstractBsSynonymNextLinkSynonymCQ extends AbstractConditi
         regRegisterUser(CK_EQ, registerUser);
     }
 
-    protected void regRegisterUser(ConditionKey k, Object v) { regQ(k, v, getCValueRegisterUser(), "REGISTER_USER"); }
-    abstract protected ConditionValue getCValueRegisterUser();
+    protected void regRegisterUser(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueRegisterUser(), "REGISTER_USER"); }
+    protected abstract ConditionValue getCValueRegisterUser();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -447,8 +447,8 @@ public abstract class AbstractBsSynonymNextLinkSynonymCQ extends AbstractConditi
         regRegisterProcess(CK_EQ, registerProcess);
     }
 
-    protected void regRegisterProcess(ConditionKey k, Object v) { regQ(k, v, getCValueRegisterProcess(), "REGISTER_PROCESS"); }
-    abstract protected ConditionValue getCValueRegisterProcess();
+    protected void regRegisterProcess(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueRegisterProcess(), "REGISTER_PROCESS"); }
+    protected abstract ConditionValue getCValueRegisterProcess();
 
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -459,8 +459,8 @@ public abstract class AbstractBsSynonymNextLinkSynonymCQ extends AbstractConditi
         regUpdateDatetime(CK_EQ,  fCTPD(updateDatetime));
     }
 
-    protected void regUpdateDatetime(ConditionKey k, Object v) { regQ(k, v, getCValueUpdateDatetime(), "UPDATE_DATETIME"); }
-    abstract protected ConditionValue getCValueUpdateDatetime();
+    protected void regUpdateDatetime(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueUpdateDatetime(), "UPDATE_DATETIME"); }
+    protected abstract ConditionValue getCValueUpdateDatetime();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -475,8 +475,8 @@ public abstract class AbstractBsSynonymNextLinkSynonymCQ extends AbstractConditi
         regUpdateUser(CK_EQ, updateUser);
     }
 
-    protected void regUpdateUser(ConditionKey k, Object v) { regQ(k, v, getCValueUpdateUser(), "UPDATE_USER"); }
-    abstract protected ConditionValue getCValueUpdateUser();
+    protected void regUpdateUser(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueUpdateUser(), "UPDATE_USER"); }
+    protected abstract ConditionValue getCValueUpdateUser();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -491,8 +491,8 @@ public abstract class AbstractBsSynonymNextLinkSynonymCQ extends AbstractConditi
         regUpdateProcess(CK_EQ, updateProcess);
     }
 
-    protected void regUpdateProcess(ConditionKey k, Object v) { regQ(k, v, getCValueUpdateProcess(), "UPDATE_PROCESS"); }
-    abstract protected ConditionValue getCValueUpdateProcess();
+    protected void regUpdateProcess(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueUpdateProcess(), "UPDATE_PROCESS"); }
+    protected abstract ConditionValue getCValueUpdateProcess();
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -520,8 +520,8 @@ public abstract class AbstractBsSynonymNextLinkSynonymCQ extends AbstractConditi
         regROO(minNumber, maxNumber, getCValueVersionNo(), "VERSION_NO", rangeOfOption);
     }
 
-    protected void regVersionNo(ConditionKey k, Object v) { regQ(k, v, getCValueVersionNo(), "VERSION_NO"); }
-    abstract protected ConditionValue getCValueVersionNo();
+    protected void regVersionNo(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueVersionNo(), "VERSION_NO"); }
+    protected abstract ConditionValue getCValueVersionNo();
 
     // ===================================================================================
     //                                                                     ScalarCondition
@@ -628,22 +628,22 @@ public abstract class AbstractBsSynonymNextLinkSynonymCQ extends AbstractConditi
         return xcreateSSQFunction(CK_LE.getOperand());
     }
 
-    protected HpSSQFunction<SynonymNextLinkSynonymCB> xcreateSSQFunction(final String operand) {
+    protected HpSSQFunction<SynonymNextLinkSynonymCB> xcreateSSQFunction(final String rd) {
         return new HpSSQFunction<SynonymNextLinkSynonymCB>(new HpSSQSetupper<SynonymNextLinkSynonymCB>() {
-            public void setup(String function, SubQuery<SynonymNextLinkSynonymCB> subQuery, HpSSQOption<SynonymNextLinkSynonymCB> option) {
-                xscalarCondition(function, subQuery, operand, option);
+            public void setup(String fn, SubQuery<SynonymNextLinkSynonymCB> sq, HpSSQOption<SynonymNextLinkSynonymCB> op) {
+                xscalarCondition(fn, sq, rd, op);
             }
         });
     }
 
-    protected void xscalarCondition(String function, SubQuery<SynonymNextLinkSynonymCB> subQuery, String operand, HpSSQOption<SynonymNextLinkSynonymCB> option) {
-        assertObjectNotNull("subQuery<SynonymNextLinkSynonymCB>", subQuery);
-        SynonymNextLinkSynonymCB cb = xcreateScalarConditionCB(); subQuery.query(cb);
-        String subQueryPropertyName = keepScalarCondition(cb.query()); // for saving query-value
-        option.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
-        registerScalarCondition(function, cb.query(), subQueryPropertyName, operand, option);
+    protected void xscalarCondition(String fn, SubQuery<SynonymNextLinkSynonymCB> sq, String rd, HpSSQOption<SynonymNextLinkSynonymCB> op) {
+        assertObjectNotNull("subQuery", sq);
+        SynonymNextLinkSynonymCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        String pp = keepScalarCondition(cb.query()); // for saving query-value
+        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
-    public abstract String keepScalarCondition(SynonymNextLinkSynonymCQ subQuery);
+    public abstract String keepScalarCondition(SynonymNextLinkSynonymCQ sq);
 
     protected SynonymNextLinkSynonymCB xcreateScalarConditionCB() {
         SynonymNextLinkSynonymCB cb = new SynonymNextLinkSynonymCB();
@@ -660,13 +660,14 @@ public abstract class AbstractBsSynonymNextLinkSynonymCQ extends AbstractConditi
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    public void xsmyselfDerive(String function, SubQuery<SynonymNextLinkSynonymCB> subQuery, String aliasName, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<SynonymNextLinkSynonymCB>", subQuery);
-        SynonymNextLinkSynonymCB cb = new SynonymNextLinkSynonymCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
-        registerSpecifyMyselfDerived(function, cb.query(), "PRODUCT_ID", "PRODUCT_ID", subQueryPropertyName, "myselfDerived", aliasName, option);
+    public void xsmyselfDerive(String fn, SubQuery<SynonymNextLinkSynonymCB> sq, String al, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        SynonymNextLinkSynonymCB cb = new SynonymNextLinkSynonymCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "PRODUCT_ID";
+        String pp = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
+        registerSpecifyMyselfDerived(fn, cb.query(), pk, pk, pp, "myselfDerived", al, op);
     }
-    public abstract String keepSpecifyMyselfDerived(SynonymNextLinkSynonymCQ subQuery);
+    public abstract String keepSpecifyMyselfDerived(SynonymNextLinkSynonymCQ sq);
 
     /**
      * Prepare for (Query)MyselfDerived (SubQuery).
@@ -677,20 +678,21 @@ public abstract class AbstractBsSynonymNextLinkSynonymCQ extends AbstractConditi
     }
     protected HpQDRFunction<SynonymNextLinkSynonymCB> xcreateQDRFunctionMyselfDerived() {
         return new HpQDRFunction<SynonymNextLinkSynonymCB>(new HpQDRSetupper<SynonymNextLinkSynonymCB>() {
-            public void setup(String function, SubQuery<SynonymNextLinkSynonymCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-                xqderiveMyselfDerived(function, subQuery, operand, value, option);
+            public void setup(String fn, SubQuery<SynonymNextLinkSynonymCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+                xqderiveMyselfDerived(fn, sq, rd, vl, op);
             }
         });
     }
-    public void xqderiveMyselfDerived(String function, SubQuery<SynonymNextLinkSynonymCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<SynonymNextLinkSynonymCB>", subQuery);
-        SynonymNextLinkSynonymCB cb = new SynonymNextLinkSynonymCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepQueryMyselfDerived(cb.query()); // for saving query-value.
-        String parameterPropertyName = keepQueryMyselfDerivedParameter(value);
-        registerQueryMyselfDerived(function, cb.query(), "PRODUCT_ID", "PRODUCT_ID", subQueryPropertyName, "myselfDerived", operand, value, parameterPropertyName, option);
+    public void xqderiveMyselfDerived(String fn, SubQuery<SynonymNextLinkSynonymCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        SynonymNextLinkSynonymCB cb = new SynonymNextLinkSynonymCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "PRODUCT_ID";
+        String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
+        String prpp = keepQueryMyselfDerivedParameter(vl);
+        registerQueryMyselfDerived(fn, cb.query(), pk, pk, sqpp, "myselfDerived", rd, vl, prpp, op);
     }
-    public abstract String keepQueryMyselfDerived(SynonymNextLinkSynonymCQ subQuery);
-    public abstract String keepQueryMyselfDerivedParameter(Object parameterValue);
+    public abstract String keepQueryMyselfDerived(SynonymNextLinkSynonymCQ sq);
+    public abstract String keepQueryMyselfDerivedParameter(Object vl);
 
     // ===================================================================================
     //                                                                        MyselfExists
@@ -700,12 +702,12 @@ public abstract class AbstractBsSynonymNextLinkSynonymCQ extends AbstractConditi
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfExists(SubQuery<SynonymNextLinkSynonymCB> subQuery) {
-        assertObjectNotNull("subQuery<SynonymNextLinkSynonymCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         SynonymNextLinkSynonymCB cb = new SynonymNextLinkSynonymCB(); cb.xsetupForMyselfExists(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfExists(cb.query()); // for saving query-value.
-        registerMyselfExists(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfExists(cb.query()); // for saving query-value.
+        registerMyselfExists(cb.query(), pp);
     }
-    public abstract String keepMyselfExists(SynonymNextLinkSynonymCQ subQuery);
+    public abstract String keepMyselfExists(SynonymNextLinkSynonymCQ sq);
 
     // ===================================================================================
     //                                                                       MyselfInScope
@@ -715,12 +717,12 @@ public abstract class AbstractBsSynonymNextLinkSynonymCQ extends AbstractConditi
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfInScope(SubQuery<SynonymNextLinkSynonymCB> subQuery) {
-        assertObjectNotNull("subQuery<SynonymNextLinkSynonymCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         SynonymNextLinkSynonymCB cb = new SynonymNextLinkSynonymCB(); cb.xsetupForMyselfInScope(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfInScope(cb.query()); // for saving query-value.
-        registerMyselfInScope(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfInScope(cb.query()); // for saving query-value.
+        registerMyselfInScope(cb.query(), pp);
     }
-    public abstract String keepMyselfInScope(SynonymNextLinkSynonymCQ subQuery);
+    public abstract String keepMyselfInScope(SynonymNextLinkSynonymCQ sq);
 
     // ===================================================================================
     //                                                                    Full Text Search
@@ -741,7 +743,7 @@ public abstract class AbstractBsSynonymNextLinkSynonymCQ extends AbstractConditi
      * @param textColumnList The list of text column. (NotNull, NotEmpty, StringColumn, TargetTableColumn)
      * @param conditionValue The condition value. (NullAllowed: if null or empty, no condition)
      */
-    public void match(java.util.List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList, String conditionValue) {
+    public void match(List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList, String conditionValue) {
         xdoMatchByLikeSearch(textColumnList, conditionValue);
     }
 

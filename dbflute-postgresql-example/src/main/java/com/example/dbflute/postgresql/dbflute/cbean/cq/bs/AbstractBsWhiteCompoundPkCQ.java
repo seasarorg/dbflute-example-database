@@ -145,8 +145,8 @@ public abstract class AbstractBsWhiteCompoundPkCQ extends AbstractConditionQuery
      */
     public void setPkFirstId_IsNotNull() { regPkFirstId(CK_ISNN, DOBJ); }
 
-    protected void regPkFirstId(ConditionKey k, Object v) { regQ(k, v, getCValuePkFirstId(), "pk_first_id"); }
-    abstract protected ConditionValue getCValuePkFirstId();
+    protected void regPkFirstId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValuePkFirstId(), "pk_first_id"); }
+    protected abstract ConditionValue getCValuePkFirstId();
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -248,8 +248,8 @@ public abstract class AbstractBsWhiteCompoundPkCQ extends AbstractConditionQuery
      */
     public void setPkSecondId_IsNotNull() { regPkSecondId(CK_ISNN, DOBJ); }
 
-    protected void regPkSecondId(ConditionKey k, Object v) { regQ(k, v, getCValuePkSecondId(), "pk_second_id"); }
-    abstract protected ConditionValue getCValuePkSecondId();
+    protected void regPkSecondId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValuePkSecondId(), "pk_second_id"); }
+    protected abstract ConditionValue getCValuePkSecondId();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -334,8 +334,8 @@ public abstract class AbstractBsWhiteCompoundPkCQ extends AbstractConditionQuery
         regLSQ(CK_NLS, fRES(pkName), getCValuePkName(), "pk_name", likeSearchOption);
     }
 
-    protected void regPkName(ConditionKey k, Object v) { regQ(k, v, getCValuePkName(), "pk_name"); }
-    abstract protected ConditionValue getCValuePkName();
+    protected void regPkName(ConditionKey ky, Object vl) { regQ(ky, vl, getCValuePkName(), "pk_name"); }
+    protected abstract ConditionValue getCValuePkName();
 
     // ===================================================================================
     //                                                                    Full Text Search
@@ -355,7 +355,7 @@ public abstract class AbstractBsWhiteCompoundPkCQ extends AbstractConditionQuery
      * @param textColumnList The list of text column. (NotNull, NotEmpty, StringColumn, TargetTableColumn)
      * @param conditionValue The condition value. (NullAllowed: if null or empty, no condition)
      */
-    public void match(java.util.List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList, String conditionValue) {
+    public void match(List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList, String conditionValue) {
         xdoMatchByLikeSearch(textColumnList, conditionValue);
     }
 

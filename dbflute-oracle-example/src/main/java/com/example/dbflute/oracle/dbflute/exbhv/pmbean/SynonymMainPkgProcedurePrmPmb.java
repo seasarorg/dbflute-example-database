@@ -5,7 +5,7 @@ import com.example.dbflute.oracle.dbflute.bsbhv.pmbean.BsSynonymMainPkgProcedure
 /**
  * <!-- df:beginClassDescription -->
  * The typed parameter-bean of SynonymMainPkgProcedurePrm. <br />
- * This is related to "<span style="color: #AD4747">SYNONYM_MAIN_PKG_PROCEDURE_PRM</span>".
+ * This is related to "<span style="color: #AD4747">SYNONYM_MAIN_PKG_PROCEDURE_PRM</span>". <br />
  * <!-- df:endClassDescription -->
  * <p>
  * You can implement your original methods here.

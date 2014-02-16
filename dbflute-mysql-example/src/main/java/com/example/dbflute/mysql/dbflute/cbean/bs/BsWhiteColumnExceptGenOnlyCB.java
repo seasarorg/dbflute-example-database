@@ -330,8 +330,8 @@ public class BsWhiteColumnExceptGenOnlyCB extends AbstractConditionBean {
         public HpSDRFunction<WhiteColumnExceptGenOnlyCB, WhiteColumnExceptGenOnlyCQ> myselfDerived() {
             assertDerived("myselfDerived"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<WhiteColumnExceptGenOnlyCB, WhiteColumnExceptGenOnlyCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<WhiteColumnExceptGenOnlyCB, WhiteColumnExceptGenOnlyCQ>() {
-                public void setup(String function, SubQuery<WhiteColumnExceptGenOnlyCB> subQuery, WhiteColumnExceptGenOnlyCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsmyselfDerive(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<WhiteColumnExceptGenOnlyCB> sq, WhiteColumnExceptGenOnlyCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsmyselfDerive(fn, sq, al, op); } }, _dbmetaProvider);
         }
     }
 

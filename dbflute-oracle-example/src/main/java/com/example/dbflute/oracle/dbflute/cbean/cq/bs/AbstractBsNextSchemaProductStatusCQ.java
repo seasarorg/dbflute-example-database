@@ -142,12 +142,12 @@ public abstract class AbstractBsNextSchemaProductStatusCQ extends AbstractCondit
      * @param subQuery The sub-query of WhiteRefNextTargetList for 'exists'. (NotNull)
      */
     public void existsWhiteRefNextTargetList(SubQuery<WhiteRefNextTargetCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteRefNextTargetCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteRefNextTargetCB cb = new WhiteRefNextTargetCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepProductStatusCode_ExistsReferrer_WhiteRefNextTargetList(cb.query()); // for saving query-value.
-        registerExistsReferrer(cb.query(), "PRODUCT_STATUS_CODE", "NEXT_TARGET_CODE", subQueryPropertyName, "whiteRefNextTargetList");
+        String pp = keepProductStatusCode_ExistsReferrer_WhiteRefNextTargetList(cb.query()); // for saving query-value.
+        registerExistsReferrer(cb.query(), "PRODUCT_STATUS_CODE", "NEXT_TARGET_CODE", pp, "whiteRefNextTargetList");
     }
-    public abstract String keepProductStatusCode_ExistsReferrer_WhiteRefNextTargetList(WhiteRefNextTargetCQ subQuery);
+    public abstract String keepProductStatusCode_ExistsReferrer_WhiteRefNextTargetList(WhiteRefNextTargetCQ sq);
 
     /**
      * Set up ExistsReferrer (co-related sub-query). <br />
@@ -163,12 +163,12 @@ public abstract class AbstractBsNextSchemaProductStatusCQ extends AbstractCondit
      * @param subQuery The sub-query of NextSchemaProductList for 'exists'. (NotNull)
      */
     public void existsNextSchemaProductList(SubQuery<NextSchemaProductCB> subQuery) {
-        assertObjectNotNull("subQuery<NextSchemaProductCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         NextSchemaProductCB cb = new NextSchemaProductCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepProductStatusCode_ExistsReferrer_NextSchemaProductList(cb.query()); // for saving query-value.
-        registerExistsReferrer(cb.query(), "PRODUCT_STATUS_CODE", "PRODUCT_STATUS_CODE", subQueryPropertyName, "nextSchemaProductList");
+        String pp = keepProductStatusCode_ExistsReferrer_NextSchemaProductList(cb.query()); // for saving query-value.
+        registerExistsReferrer(cb.query(), "PRODUCT_STATUS_CODE", "PRODUCT_STATUS_CODE", pp, "nextSchemaProductList");
     }
-    public abstract String keepProductStatusCode_ExistsReferrer_NextSchemaProductList(NextSchemaProductCQ subQuery);
+    public abstract String keepProductStatusCode_ExistsReferrer_NextSchemaProductList(NextSchemaProductCQ sq);
 
     /**
      * Set up NotExistsReferrer (co-related sub-query). <br />
@@ -184,12 +184,12 @@ public abstract class AbstractBsNextSchemaProductStatusCQ extends AbstractCondit
      * @param subQuery The sub-query of ProductStatusCode_NotExistsReferrer_WhiteRefNextTargetList for 'not exists'. (NotNull)
      */
     public void notExistsWhiteRefNextTargetList(SubQuery<WhiteRefNextTargetCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteRefNextTargetCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteRefNextTargetCB cb = new WhiteRefNextTargetCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepProductStatusCode_NotExistsReferrer_WhiteRefNextTargetList(cb.query()); // for saving query-value.
-        registerNotExistsReferrer(cb.query(), "PRODUCT_STATUS_CODE", "NEXT_TARGET_CODE", subQueryPropertyName, "whiteRefNextTargetList");
+        String pp = keepProductStatusCode_NotExistsReferrer_WhiteRefNextTargetList(cb.query()); // for saving query-value.
+        registerNotExistsReferrer(cb.query(), "PRODUCT_STATUS_CODE", "NEXT_TARGET_CODE", pp, "whiteRefNextTargetList");
     }
-    public abstract String keepProductStatusCode_NotExistsReferrer_WhiteRefNextTargetList(WhiteRefNextTargetCQ subQuery);
+    public abstract String keepProductStatusCode_NotExistsReferrer_WhiteRefNextTargetList(WhiteRefNextTargetCQ sq);
 
     /**
      * Set up NotExistsReferrer (co-related sub-query). <br />
@@ -205,12 +205,12 @@ public abstract class AbstractBsNextSchemaProductStatusCQ extends AbstractCondit
      * @param subQuery The sub-query of ProductStatusCode_NotExistsReferrer_NextSchemaProductList for 'not exists'. (NotNull)
      */
     public void notExistsNextSchemaProductList(SubQuery<NextSchemaProductCB> subQuery) {
-        assertObjectNotNull("subQuery<NextSchemaProductCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         NextSchemaProductCB cb = new NextSchemaProductCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepProductStatusCode_NotExistsReferrer_NextSchemaProductList(cb.query()); // for saving query-value.
-        registerNotExistsReferrer(cb.query(), "PRODUCT_STATUS_CODE", "PRODUCT_STATUS_CODE", subQueryPropertyName, "nextSchemaProductList");
+        String pp = keepProductStatusCode_NotExistsReferrer_NextSchemaProductList(cb.query()); // for saving query-value.
+        registerNotExistsReferrer(cb.query(), "PRODUCT_STATUS_CODE", "PRODUCT_STATUS_CODE", pp, "nextSchemaProductList");
     }
-    public abstract String keepProductStatusCode_NotExistsReferrer_NextSchemaProductList(NextSchemaProductCQ subQuery);
+    public abstract String keepProductStatusCode_NotExistsReferrer_NextSchemaProductList(NextSchemaProductCQ sq);
 
     /**
      * Set up InScopeRelation (sub-query). <br />
@@ -219,12 +219,12 @@ public abstract class AbstractBsNextSchemaProductStatusCQ extends AbstractCondit
      * @param subQuery The sub-query of WhiteRefNextTargetList for 'in-scope'. (NotNull)
      */
     public void inScopeWhiteRefNextTargetList(SubQuery<WhiteRefNextTargetCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteRefNextTargetCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteRefNextTargetCB cb = new WhiteRefNextTargetCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String subQueryPropertyName = keepProductStatusCode_InScopeRelation_WhiteRefNextTargetList(cb.query()); // for saving query-value.
-        registerInScopeRelation(cb.query(), "PRODUCT_STATUS_CODE", "NEXT_TARGET_CODE", subQueryPropertyName, "whiteRefNextTargetList");
+        String pp = keepProductStatusCode_InScopeRelation_WhiteRefNextTargetList(cb.query()); // for saving query-value.
+        registerInScopeRelation(cb.query(), "PRODUCT_STATUS_CODE", "NEXT_TARGET_CODE", pp, "whiteRefNextTargetList");
     }
-    public abstract String keepProductStatusCode_InScopeRelation_WhiteRefNextTargetList(WhiteRefNextTargetCQ subQuery);
+    public abstract String keepProductStatusCode_InScopeRelation_WhiteRefNextTargetList(WhiteRefNextTargetCQ sq);
 
     /**
      * Set up InScopeRelation (sub-query). <br />
@@ -233,12 +233,12 @@ public abstract class AbstractBsNextSchemaProductStatusCQ extends AbstractCondit
      * @param subQuery The sub-query of NextSchemaProductList for 'in-scope'. (NotNull)
      */
     public void inScopeNextSchemaProductList(SubQuery<NextSchemaProductCB> subQuery) {
-        assertObjectNotNull("subQuery<NextSchemaProductCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         NextSchemaProductCB cb = new NextSchemaProductCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String subQueryPropertyName = keepProductStatusCode_InScopeRelation_NextSchemaProductList(cb.query()); // for saving query-value.
-        registerInScopeRelation(cb.query(), "PRODUCT_STATUS_CODE", "PRODUCT_STATUS_CODE", subQueryPropertyName, "nextSchemaProductList");
+        String pp = keepProductStatusCode_InScopeRelation_NextSchemaProductList(cb.query()); // for saving query-value.
+        registerInScopeRelation(cb.query(), "PRODUCT_STATUS_CODE", "PRODUCT_STATUS_CODE", pp, "nextSchemaProductList");
     }
-    public abstract String keepProductStatusCode_InScopeRelation_NextSchemaProductList(NextSchemaProductCQ subQuery);
+    public abstract String keepProductStatusCode_InScopeRelation_NextSchemaProductList(NextSchemaProductCQ sq);
 
     /**
      * Set up NotInScopeRelation (sub-query). <br />
@@ -247,12 +247,12 @@ public abstract class AbstractBsNextSchemaProductStatusCQ extends AbstractCondit
      * @param subQuery The sub-query of WhiteRefNextTargetList for 'not in-scope'. (NotNull)
      */
     public void notInScopeWhiteRefNextTargetList(SubQuery<WhiteRefNextTargetCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteRefNextTargetCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteRefNextTargetCB cb = new WhiteRefNextTargetCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String subQueryPropertyName = keepProductStatusCode_NotInScopeRelation_WhiteRefNextTargetList(cb.query()); // for saving query-value.
-        registerNotInScopeRelation(cb.query(), "PRODUCT_STATUS_CODE", "NEXT_TARGET_CODE", subQueryPropertyName, "whiteRefNextTargetList");
+        String pp = keepProductStatusCode_NotInScopeRelation_WhiteRefNextTargetList(cb.query()); // for saving query-value.
+        registerNotInScopeRelation(cb.query(), "PRODUCT_STATUS_CODE", "NEXT_TARGET_CODE", pp, "whiteRefNextTargetList");
     }
-    public abstract String keepProductStatusCode_NotInScopeRelation_WhiteRefNextTargetList(WhiteRefNextTargetCQ subQuery);
+    public abstract String keepProductStatusCode_NotInScopeRelation_WhiteRefNextTargetList(WhiteRefNextTargetCQ sq);
 
     /**
      * Set up NotInScopeRelation (sub-query). <br />
@@ -261,28 +261,28 @@ public abstract class AbstractBsNextSchemaProductStatusCQ extends AbstractCondit
      * @param subQuery The sub-query of NextSchemaProductList for 'not in-scope'. (NotNull)
      */
     public void notInScopeNextSchemaProductList(SubQuery<NextSchemaProductCB> subQuery) {
-        assertObjectNotNull("subQuery<NextSchemaProductCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         NextSchemaProductCB cb = new NextSchemaProductCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String subQueryPropertyName = keepProductStatusCode_NotInScopeRelation_NextSchemaProductList(cb.query()); // for saving query-value.
-        registerNotInScopeRelation(cb.query(), "PRODUCT_STATUS_CODE", "PRODUCT_STATUS_CODE", subQueryPropertyName, "nextSchemaProductList");
+        String pp = keepProductStatusCode_NotInScopeRelation_NextSchemaProductList(cb.query()); // for saving query-value.
+        registerNotInScopeRelation(cb.query(), "PRODUCT_STATUS_CODE", "PRODUCT_STATUS_CODE", pp, "nextSchemaProductList");
     }
-    public abstract String keepProductStatusCode_NotInScopeRelation_NextSchemaProductList(NextSchemaProductCQ subQuery);
+    public abstract String keepProductStatusCode_NotInScopeRelation_NextSchemaProductList(NextSchemaProductCQ sq);
 
-    public void xsderiveWhiteRefNextTargetList(String function, SubQuery<WhiteRefNextTargetCB> subQuery, String aliasName, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<WhiteRefNextTargetCB>", subQuery);
-        WhiteRefNextTargetCB cb = new WhiteRefNextTargetCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepProductStatusCode_SpecifyDerivedReferrer_WhiteRefNextTargetList(cb.query()); // for saving query-value.
-        registerSpecifyDerivedReferrer(function, cb.query(), "PRODUCT_STATUS_CODE", "NEXT_TARGET_CODE", subQueryPropertyName, "whiteRefNextTargetList", aliasName, option);
+    public void xsderiveWhiteRefNextTargetList(String fn, SubQuery<WhiteRefNextTargetCB> sq, String al, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteRefNextTargetCB cb = new WhiteRefNextTargetCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pp = keepProductStatusCode_SpecifyDerivedReferrer_WhiteRefNextTargetList(cb.query()); // for saving query-value.
+        registerSpecifyDerivedReferrer(fn, cb.query(), "PRODUCT_STATUS_CODE", "NEXT_TARGET_CODE", pp, "whiteRefNextTargetList", al, op);
     }
-    public abstract String keepProductStatusCode_SpecifyDerivedReferrer_WhiteRefNextTargetList(WhiteRefNextTargetCQ subQuery);
+    public abstract String keepProductStatusCode_SpecifyDerivedReferrer_WhiteRefNextTargetList(WhiteRefNextTargetCQ sq);
 
-    public void xsderiveNextSchemaProductList(String function, SubQuery<NextSchemaProductCB> subQuery, String aliasName, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<NextSchemaProductCB>", subQuery);
-        NextSchemaProductCB cb = new NextSchemaProductCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepProductStatusCode_SpecifyDerivedReferrer_NextSchemaProductList(cb.query()); // for saving query-value.
-        registerSpecifyDerivedReferrer(function, cb.query(), "PRODUCT_STATUS_CODE", "PRODUCT_STATUS_CODE", subQueryPropertyName, "nextSchemaProductList", aliasName, option);
+    public void xsderiveNextSchemaProductList(String fn, SubQuery<NextSchemaProductCB> sq, String al, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        NextSchemaProductCB cb = new NextSchemaProductCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pp = keepProductStatusCode_SpecifyDerivedReferrer_NextSchemaProductList(cb.query()); // for saving query-value.
+        registerSpecifyDerivedReferrer(fn, cb.query(), "PRODUCT_STATUS_CODE", "PRODUCT_STATUS_CODE", pp, "nextSchemaProductList", al, op);
     }
-    public abstract String keepProductStatusCode_SpecifyDerivedReferrer_NextSchemaProductList(NextSchemaProductCQ subQuery);
+    public abstract String keepProductStatusCode_SpecifyDerivedReferrer_NextSchemaProductList(NextSchemaProductCQ sq);
 
     /**
      * Prepare for (Query)DerivedReferrer. <br />
@@ -303,20 +303,20 @@ public abstract class AbstractBsNextSchemaProductStatusCQ extends AbstractCondit
     }
     protected HpQDRFunction<WhiteRefNextTargetCB> xcreateQDRFunctionWhiteRefNextTargetList() {
         return new HpQDRFunction<WhiteRefNextTargetCB>(new HpQDRSetupper<WhiteRefNextTargetCB>() {
-            public void setup(String function, SubQuery<WhiteRefNextTargetCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-                xqderiveWhiteRefNextTargetList(function, subQuery, operand, value, option);
+            public void setup(String fn, SubQuery<WhiteRefNextTargetCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+                xqderiveWhiteRefNextTargetList(fn, sq, rd, vl, op);
             }
         });
     }
-    public void xqderiveWhiteRefNextTargetList(String function, SubQuery<WhiteRefNextTargetCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<WhiteRefNextTargetCB>", subQuery);
-        WhiteRefNextTargetCB cb = new WhiteRefNextTargetCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepProductStatusCode_QueryDerivedReferrer_WhiteRefNextTargetList(cb.query()); // for saving query-value.
-        String parameterPropertyName = keepProductStatusCode_QueryDerivedReferrer_WhiteRefNextTargetListParameter(value);
-        registerQueryDerivedReferrer(function, cb.query(), "PRODUCT_STATUS_CODE", "NEXT_TARGET_CODE", subQueryPropertyName, "whiteRefNextTargetList", operand, value, parameterPropertyName, option);
+    public void xqderiveWhiteRefNextTargetList(String fn, SubQuery<WhiteRefNextTargetCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteRefNextTargetCB cb = new WhiteRefNextTargetCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String sqpp = keepProductStatusCode_QueryDerivedReferrer_WhiteRefNextTargetList(cb.query()); // for saving query-value.
+        String prpp = keepProductStatusCode_QueryDerivedReferrer_WhiteRefNextTargetListParameter(vl);
+        registerQueryDerivedReferrer(fn, cb.query(), "PRODUCT_STATUS_CODE", "NEXT_TARGET_CODE", sqpp, "whiteRefNextTargetList", rd, vl, prpp, op);
     }
-    public abstract String keepProductStatusCode_QueryDerivedReferrer_WhiteRefNextTargetList(WhiteRefNextTargetCQ subQuery);
-    public abstract String keepProductStatusCode_QueryDerivedReferrer_WhiteRefNextTargetListParameter(Object parameterValue);
+    public abstract String keepProductStatusCode_QueryDerivedReferrer_WhiteRefNextTargetList(WhiteRefNextTargetCQ sq);
+    public abstract String keepProductStatusCode_QueryDerivedReferrer_WhiteRefNextTargetListParameter(Object vl);
 
     /**
      * Prepare for (Query)DerivedReferrer. <br />
@@ -337,20 +337,20 @@ public abstract class AbstractBsNextSchemaProductStatusCQ extends AbstractCondit
     }
     protected HpQDRFunction<NextSchemaProductCB> xcreateQDRFunctionNextSchemaProductList() {
         return new HpQDRFunction<NextSchemaProductCB>(new HpQDRSetupper<NextSchemaProductCB>() {
-            public void setup(String function, SubQuery<NextSchemaProductCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-                xqderiveNextSchemaProductList(function, subQuery, operand, value, option);
+            public void setup(String fn, SubQuery<NextSchemaProductCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+                xqderiveNextSchemaProductList(fn, sq, rd, vl, op);
             }
         });
     }
-    public void xqderiveNextSchemaProductList(String function, SubQuery<NextSchemaProductCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<NextSchemaProductCB>", subQuery);
-        NextSchemaProductCB cb = new NextSchemaProductCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepProductStatusCode_QueryDerivedReferrer_NextSchemaProductList(cb.query()); // for saving query-value.
-        String parameterPropertyName = keepProductStatusCode_QueryDerivedReferrer_NextSchemaProductListParameter(value);
-        registerQueryDerivedReferrer(function, cb.query(), "PRODUCT_STATUS_CODE", "PRODUCT_STATUS_CODE", subQueryPropertyName, "nextSchemaProductList", operand, value, parameterPropertyName, option);
+    public void xqderiveNextSchemaProductList(String fn, SubQuery<NextSchemaProductCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        NextSchemaProductCB cb = new NextSchemaProductCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String sqpp = keepProductStatusCode_QueryDerivedReferrer_NextSchemaProductList(cb.query()); // for saving query-value.
+        String prpp = keepProductStatusCode_QueryDerivedReferrer_NextSchemaProductListParameter(vl);
+        registerQueryDerivedReferrer(fn, cb.query(), "PRODUCT_STATUS_CODE", "PRODUCT_STATUS_CODE", sqpp, "nextSchemaProductList", rd, vl, prpp, op);
     }
-    public abstract String keepProductStatusCode_QueryDerivedReferrer_NextSchemaProductList(NextSchemaProductCQ subQuery);
-    public abstract String keepProductStatusCode_QueryDerivedReferrer_NextSchemaProductListParameter(Object parameterValue);
+    public abstract String keepProductStatusCode_QueryDerivedReferrer_NextSchemaProductList(NextSchemaProductCQ sq);
+    public abstract String keepProductStatusCode_QueryDerivedReferrer_NextSchemaProductListParameter(Object vl);
 
     /**
      * IsNull {is null}. And OnlyOnceRegistered. <br />
@@ -364,8 +364,8 @@ public abstract class AbstractBsNextSchemaProductStatusCQ extends AbstractCondit
      */
     public void setProductStatusCode_IsNotNull() { regProductStatusCode(CK_ISNN, DOBJ); }
 
-    protected void regProductStatusCode(ConditionKey k, Object v) { regQ(k, v, getCValueProductStatusCode(), "PRODUCT_STATUS_CODE"); }
-    abstract protected ConditionValue getCValueProductStatusCode();
+    protected void regProductStatusCode(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueProductStatusCode(), "PRODUCT_STATUS_CODE"); }
+    protected abstract ConditionValue getCValueProductStatusCode();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -450,8 +450,8 @@ public abstract class AbstractBsNextSchemaProductStatusCQ extends AbstractCondit
         regLSQ(CK_NLS, fRES(productStatusName), getCValueProductStatusName(), "PRODUCT_STATUS_NAME", likeSearchOption);
     }
 
-    protected void regProductStatusName(ConditionKey k, Object v) { regQ(k, v, getCValueProductStatusName(), "PRODUCT_STATUS_NAME"); }
-    abstract protected ConditionValue getCValueProductStatusName();
+    protected void regProductStatusName(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueProductStatusName(), "PRODUCT_STATUS_NAME"); }
+    protected abstract ConditionValue getCValueProductStatusName();
 
     // ===================================================================================
     //                                                                     ScalarCondition
@@ -558,22 +558,22 @@ public abstract class AbstractBsNextSchemaProductStatusCQ extends AbstractCondit
         return xcreateSSQFunction(CK_LE.getOperand());
     }
 
-    protected HpSSQFunction<NextSchemaProductStatusCB> xcreateSSQFunction(final String operand) {
+    protected HpSSQFunction<NextSchemaProductStatusCB> xcreateSSQFunction(final String rd) {
         return new HpSSQFunction<NextSchemaProductStatusCB>(new HpSSQSetupper<NextSchemaProductStatusCB>() {
-            public void setup(String function, SubQuery<NextSchemaProductStatusCB> subQuery, HpSSQOption<NextSchemaProductStatusCB> option) {
-                xscalarCondition(function, subQuery, operand, option);
+            public void setup(String fn, SubQuery<NextSchemaProductStatusCB> sq, HpSSQOption<NextSchemaProductStatusCB> op) {
+                xscalarCondition(fn, sq, rd, op);
             }
         });
     }
 
-    protected void xscalarCondition(String function, SubQuery<NextSchemaProductStatusCB> subQuery, String operand, HpSSQOption<NextSchemaProductStatusCB> option) {
-        assertObjectNotNull("subQuery<NextSchemaProductStatusCB>", subQuery);
-        NextSchemaProductStatusCB cb = xcreateScalarConditionCB(); subQuery.query(cb);
-        String subQueryPropertyName = keepScalarCondition(cb.query()); // for saving query-value
-        option.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
-        registerScalarCondition(function, cb.query(), subQueryPropertyName, operand, option);
+    protected void xscalarCondition(String fn, SubQuery<NextSchemaProductStatusCB> sq, String rd, HpSSQOption<NextSchemaProductStatusCB> op) {
+        assertObjectNotNull("subQuery", sq);
+        NextSchemaProductStatusCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        String pp = keepScalarCondition(cb.query()); // for saving query-value
+        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
-    public abstract String keepScalarCondition(NextSchemaProductStatusCQ subQuery);
+    public abstract String keepScalarCondition(NextSchemaProductStatusCQ sq);
 
     protected NextSchemaProductStatusCB xcreateScalarConditionCB() {
         NextSchemaProductStatusCB cb = new NextSchemaProductStatusCB();
@@ -590,13 +590,14 @@ public abstract class AbstractBsNextSchemaProductStatusCQ extends AbstractCondit
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    public void xsmyselfDerive(String function, SubQuery<NextSchemaProductStatusCB> subQuery, String aliasName, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<NextSchemaProductStatusCB>", subQuery);
-        NextSchemaProductStatusCB cb = new NextSchemaProductStatusCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
-        registerSpecifyMyselfDerived(function, cb.query(), "PRODUCT_STATUS_CODE", "PRODUCT_STATUS_CODE", subQueryPropertyName, "myselfDerived", aliasName, option);
+    public void xsmyselfDerive(String fn, SubQuery<NextSchemaProductStatusCB> sq, String al, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        NextSchemaProductStatusCB cb = new NextSchemaProductStatusCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "PRODUCT_STATUS_CODE";
+        String pp = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
+        registerSpecifyMyselfDerived(fn, cb.query(), pk, pk, pp, "myselfDerived", al, op);
     }
-    public abstract String keepSpecifyMyselfDerived(NextSchemaProductStatusCQ subQuery);
+    public abstract String keepSpecifyMyselfDerived(NextSchemaProductStatusCQ sq);
 
     /**
      * Prepare for (Query)MyselfDerived (SubQuery).
@@ -607,20 +608,21 @@ public abstract class AbstractBsNextSchemaProductStatusCQ extends AbstractCondit
     }
     protected HpQDRFunction<NextSchemaProductStatusCB> xcreateQDRFunctionMyselfDerived() {
         return new HpQDRFunction<NextSchemaProductStatusCB>(new HpQDRSetupper<NextSchemaProductStatusCB>() {
-            public void setup(String function, SubQuery<NextSchemaProductStatusCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-                xqderiveMyselfDerived(function, subQuery, operand, value, option);
+            public void setup(String fn, SubQuery<NextSchemaProductStatusCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+                xqderiveMyselfDerived(fn, sq, rd, vl, op);
             }
         });
     }
-    public void xqderiveMyselfDerived(String function, SubQuery<NextSchemaProductStatusCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<NextSchemaProductStatusCB>", subQuery);
-        NextSchemaProductStatusCB cb = new NextSchemaProductStatusCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepQueryMyselfDerived(cb.query()); // for saving query-value.
-        String parameterPropertyName = keepQueryMyselfDerivedParameter(value);
-        registerQueryMyselfDerived(function, cb.query(), "PRODUCT_STATUS_CODE", "PRODUCT_STATUS_CODE", subQueryPropertyName, "myselfDerived", operand, value, parameterPropertyName, option);
+    public void xqderiveMyselfDerived(String fn, SubQuery<NextSchemaProductStatusCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        NextSchemaProductStatusCB cb = new NextSchemaProductStatusCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "PRODUCT_STATUS_CODE";
+        String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
+        String prpp = keepQueryMyselfDerivedParameter(vl);
+        registerQueryMyselfDerived(fn, cb.query(), pk, pk, sqpp, "myselfDerived", rd, vl, prpp, op);
     }
-    public abstract String keepQueryMyselfDerived(NextSchemaProductStatusCQ subQuery);
-    public abstract String keepQueryMyselfDerivedParameter(Object parameterValue);
+    public abstract String keepQueryMyselfDerived(NextSchemaProductStatusCQ sq);
+    public abstract String keepQueryMyselfDerivedParameter(Object vl);
 
     // ===================================================================================
     //                                                                        MyselfExists
@@ -630,12 +632,12 @@ public abstract class AbstractBsNextSchemaProductStatusCQ extends AbstractCondit
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfExists(SubQuery<NextSchemaProductStatusCB> subQuery) {
-        assertObjectNotNull("subQuery<NextSchemaProductStatusCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         NextSchemaProductStatusCB cb = new NextSchemaProductStatusCB(); cb.xsetupForMyselfExists(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfExists(cb.query()); // for saving query-value.
-        registerMyselfExists(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfExists(cb.query()); // for saving query-value.
+        registerMyselfExists(cb.query(), pp);
     }
-    public abstract String keepMyselfExists(NextSchemaProductStatusCQ subQuery);
+    public abstract String keepMyselfExists(NextSchemaProductStatusCQ sq);
 
     // ===================================================================================
     //                                                                       MyselfInScope
@@ -645,12 +647,12 @@ public abstract class AbstractBsNextSchemaProductStatusCQ extends AbstractCondit
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfInScope(SubQuery<NextSchemaProductStatusCB> subQuery) {
-        assertObjectNotNull("subQuery<NextSchemaProductStatusCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         NextSchemaProductStatusCB cb = new NextSchemaProductStatusCB(); cb.xsetupForMyselfInScope(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfInScope(cb.query()); // for saving query-value.
-        registerMyselfInScope(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfInScope(cb.query()); // for saving query-value.
+        registerMyselfInScope(cb.query(), pp);
     }
-    public abstract String keepMyselfInScope(NextSchemaProductStatusCQ subQuery);
+    public abstract String keepMyselfInScope(NextSchemaProductStatusCQ sq);
 
     // ===================================================================================
     //                                                                    Full Text Search
@@ -671,7 +673,7 @@ public abstract class AbstractBsNextSchemaProductStatusCQ extends AbstractCondit
      * @param textColumnList The list of text column. (NotNull, NotEmpty, StringColumn, TargetTableColumn)
      * @param conditionValue The condition value. (NullAllowed: if null or empty, no condition)
      */
-    public void match(java.util.List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList, String conditionValue) {
+    public void match(List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList, String conditionValue) {
         xdoMatchByLikeSearch(textColumnList, conditionValue);
     }
 

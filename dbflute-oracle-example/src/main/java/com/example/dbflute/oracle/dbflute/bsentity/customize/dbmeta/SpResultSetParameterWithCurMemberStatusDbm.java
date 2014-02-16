@@ -43,20 +43,20 @@ public class SpResultSetParameterWithCurMemberStatusDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgMemberStatusCode implements PropertyGateway {
-        public Object read(Entity e) { return ((SpResultSetParameterWithCurMemberStatus)e).getMemberStatusCode(); }
-        public void write(Entity e, Object v) { ((SpResultSetParameterWithCurMemberStatus)e).setMemberStatusCode((String)v); }
+        public Object read(Entity et) { return ((SpResultSetParameterWithCurMemberStatus)et).getMemberStatusCode(); }
+        public void write(Entity et, Object vl) { ((SpResultSetParameterWithCurMemberStatus)et).setMemberStatusCode((String)vl); }
     }
     public static class EpgMemberStatusName implements PropertyGateway {
-        public Object read(Entity e) { return ((SpResultSetParameterWithCurMemberStatus)e).getMemberStatusName(); }
-        public void write(Entity e, Object v) { ((SpResultSetParameterWithCurMemberStatus)e).setMemberStatusName((String)v); }
+        public Object read(Entity et) { return ((SpResultSetParameterWithCurMemberStatus)et).getMemberStatusName(); }
+        public void write(Entity et, Object vl) { ((SpResultSetParameterWithCurMemberStatus)et).setMemberStatusName((String)vl); }
     }
     public static class EpgDescription implements PropertyGateway {
-        public Object read(Entity e) { return ((SpResultSetParameterWithCurMemberStatus)e).getDescription(); }
-        public void write(Entity e, Object v) { ((SpResultSetParameterWithCurMemberStatus)e).setDescription((String)v); }
+        public Object read(Entity et) { return ((SpResultSetParameterWithCurMemberStatus)et).getDescription(); }
+        public void write(Entity et, Object vl) { ((SpResultSetParameterWithCurMemberStatus)et).setDescription((String)vl); }
     }
     public static class EpgDisplayOrder implements PropertyGateway {
-        public Object read(Entity e) { return ((SpResultSetParameterWithCurMemberStatus)e).getDisplayOrder(); }
-        public void write(Entity e, Object v) { ((SpResultSetParameterWithCurMemberStatus)e).setDisplayOrder(ctl(v)); }
+        public Object read(Entity et) { return ((SpResultSetParameterWithCurMemberStatus)et).getDisplayOrder(); }
+        public void write(Entity et, Object vl) { ((SpResultSetParameterWithCurMemberStatus)et).setDisplayOrder(ctl(vl)); }
     }
 
     // ===================================================================================
@@ -142,10 +142,10 @@ public class SpResultSetParameterWithCurMemberStatusDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((SpResultSetParameterWithCurMemberStatus)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((SpResultSetParameterWithCurMemberStatus)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((SpResultSetParameterWithCurMemberStatus)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((SpResultSetParameterWithCurMemberStatus)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

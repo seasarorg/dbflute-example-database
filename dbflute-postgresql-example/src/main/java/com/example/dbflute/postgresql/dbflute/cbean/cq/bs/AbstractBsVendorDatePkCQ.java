@@ -99,7 +99,7 @@ public abstract class AbstractBsVendorDatePkCQ extends AbstractConditionQuery {
      * @param toDatetime The to-datetime(yyyy/MM/dd HH:mm:ss.SSS) of fooDate. (NullAllowed: if null, no to-condition)
      * @param fromToOption The option of from-to. (NotNull)
      */
-    public void setFooDate_FromTo(java.util.Date fromDatetime, java.util.Date toDatetime, FromToOption fromToOption) {
+    public void setFooDate_FromTo(Date fromDatetime, Date toDatetime, FromToOption fromToOption) {
         regFTQ(fCTPD(fromDatetime), fCTPD(toDatetime), getCValueFooDate(), "foo_date", fromToOption);
     }
 
@@ -114,7 +114,7 @@ public abstract class AbstractBsVendorDatePkCQ extends AbstractConditionQuery {
      * @param fromDate The from-date(yyyy/MM/dd) of fooDate. (NullAllowed: if null, no from-condition)
      * @param toDate The to-date(yyyy/MM/dd) of fooDate. (NullAllowed: if null, no to-condition)
      */
-    public void setFooDate_DateFromTo(java.util.Date fromDate, java.util.Date toDate) {
+    public void setFooDate_DateFromTo(Date fromDate, Date toDate) {
         setFooDate_FromTo(fromDate, toDate, new FromToOption().compareAsDate());
     }
 
@@ -143,8 +143,8 @@ public abstract class AbstractBsVendorDatePkCQ extends AbstractConditionQuery {
      */
     public void setFooDate_IsNotNull() { regFooDate(CK_ISNN, DOBJ); }
 
-    protected void regFooDate(ConditionKey k, Object v) { regQ(k, v, getCValueFooDate(), "foo_date"); }
-    abstract protected ConditionValue getCValueFooDate();
+    protected void regFooDate(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueFooDate(), "foo_date"); }
+    protected abstract ConditionValue getCValueFooDate();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -229,8 +229,8 @@ public abstract class AbstractBsVendorDatePkCQ extends AbstractConditionQuery {
         regLSQ(CK_NLS, fRES(fooName), getCValueFooName(), "foo_name", likeSearchOption);
     }
 
-    protected void regFooName(ConditionKey k, Object v) { regQ(k, v, getCValueFooName(), "foo_name"); }
-    abstract protected ConditionValue getCValueFooName();
+    protected void regFooName(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueFooName(), "foo_name"); }
+    protected abstract ConditionValue getCValueFooName();
 
     // ===================================================================================
     //                                                                     ScalarCondition
@@ -337,22 +337,22 @@ public abstract class AbstractBsVendorDatePkCQ extends AbstractConditionQuery {
         return xcreateSSQFunction(CK_LE.getOperand());
     }
 
-    protected HpSSQFunction<VendorDatePkCB> xcreateSSQFunction(final String operand) {
+    protected HpSSQFunction<VendorDatePkCB> xcreateSSQFunction(final String rd) {
         return new HpSSQFunction<VendorDatePkCB>(new HpSSQSetupper<VendorDatePkCB>() {
-            public void setup(String function, SubQuery<VendorDatePkCB> subQuery, HpSSQOption<VendorDatePkCB> option) {
-                xscalarCondition(function, subQuery, operand, option);
+            public void setup(String fn, SubQuery<VendorDatePkCB> sq, HpSSQOption<VendorDatePkCB> op) {
+                xscalarCondition(fn, sq, rd, op);
             }
         });
     }
 
-    protected void xscalarCondition(String function, SubQuery<VendorDatePkCB> subQuery, String operand, HpSSQOption<VendorDatePkCB> option) {
-        assertObjectNotNull("subQuery<VendorDatePkCB>", subQuery);
-        VendorDatePkCB cb = xcreateScalarConditionCB(); subQuery.query(cb);
-        String subQueryPropertyName = keepScalarCondition(cb.query()); // for saving query-value
-        option.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
-        registerScalarCondition(function, cb.query(), subQueryPropertyName, operand, option);
+    protected void xscalarCondition(String fn, SubQuery<VendorDatePkCB> sq, String rd, HpSSQOption<VendorDatePkCB> op) {
+        assertObjectNotNull("subQuery", sq);
+        VendorDatePkCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        String pp = keepScalarCondition(cb.query()); // for saving query-value
+        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
-    public abstract String keepScalarCondition(VendorDatePkCQ subQuery);
+    public abstract String keepScalarCondition(VendorDatePkCQ sq);
 
     protected VendorDatePkCB xcreateScalarConditionCB() {
         VendorDatePkCB cb = new VendorDatePkCB();
@@ -369,13 +369,14 @@ public abstract class AbstractBsVendorDatePkCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    public void xsmyselfDerive(String function, SubQuery<VendorDatePkCB> subQuery, String aliasName, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<VendorDatePkCB>", subQuery);
-        VendorDatePkCB cb = new VendorDatePkCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
-        registerSpecifyMyselfDerived(function, cb.query(), "foo_date", "foo_date", subQueryPropertyName, "myselfDerived", aliasName, option);
+    public void xsmyselfDerive(String fn, SubQuery<VendorDatePkCB> sq, String al, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        VendorDatePkCB cb = new VendorDatePkCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "foo_date";
+        String pp = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
+        registerSpecifyMyselfDerived(fn, cb.query(), pk, pk, pp, "myselfDerived", al, op);
     }
-    public abstract String keepSpecifyMyselfDerived(VendorDatePkCQ subQuery);
+    public abstract String keepSpecifyMyselfDerived(VendorDatePkCQ sq);
 
     /**
      * Prepare for (Query)MyselfDerived (SubQuery).
@@ -386,20 +387,21 @@ public abstract class AbstractBsVendorDatePkCQ extends AbstractConditionQuery {
     }
     protected HpQDRFunction<VendorDatePkCB> xcreateQDRFunctionMyselfDerived() {
         return new HpQDRFunction<VendorDatePkCB>(new HpQDRSetupper<VendorDatePkCB>() {
-            public void setup(String function, SubQuery<VendorDatePkCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-                xqderiveMyselfDerived(function, subQuery, operand, value, option);
+            public void setup(String fn, SubQuery<VendorDatePkCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+                xqderiveMyselfDerived(fn, sq, rd, vl, op);
             }
         });
     }
-    public void xqderiveMyselfDerived(String function, SubQuery<VendorDatePkCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<VendorDatePkCB>", subQuery);
-        VendorDatePkCB cb = new VendorDatePkCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepQueryMyselfDerived(cb.query()); // for saving query-value.
-        String parameterPropertyName = keepQueryMyselfDerivedParameter(value);
-        registerQueryMyselfDerived(function, cb.query(), "foo_date", "foo_date", subQueryPropertyName, "myselfDerived", operand, value, parameterPropertyName, option);
+    public void xqderiveMyselfDerived(String fn, SubQuery<VendorDatePkCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        VendorDatePkCB cb = new VendorDatePkCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "foo_date";
+        String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
+        String prpp = keepQueryMyselfDerivedParameter(vl);
+        registerQueryMyselfDerived(fn, cb.query(), pk, pk, sqpp, "myselfDerived", rd, vl, prpp, op);
     }
-    public abstract String keepQueryMyselfDerived(VendorDatePkCQ subQuery);
-    public abstract String keepQueryMyselfDerivedParameter(Object parameterValue);
+    public abstract String keepQueryMyselfDerived(VendorDatePkCQ sq);
+    public abstract String keepQueryMyselfDerivedParameter(Object vl);
 
     // ===================================================================================
     //                                                                        MyselfExists
@@ -409,12 +411,12 @@ public abstract class AbstractBsVendorDatePkCQ extends AbstractConditionQuery {
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfExists(SubQuery<VendorDatePkCB> subQuery) {
-        assertObjectNotNull("subQuery<VendorDatePkCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         VendorDatePkCB cb = new VendorDatePkCB(); cb.xsetupForMyselfExists(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfExists(cb.query()); // for saving query-value.
-        registerMyselfExists(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfExists(cb.query()); // for saving query-value.
+        registerMyselfExists(cb.query(), pp);
     }
-    public abstract String keepMyselfExists(VendorDatePkCQ subQuery);
+    public abstract String keepMyselfExists(VendorDatePkCQ sq);
 
     // ===================================================================================
     //                                                                       MyselfInScope
@@ -424,12 +426,12 @@ public abstract class AbstractBsVendorDatePkCQ extends AbstractConditionQuery {
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfInScope(SubQuery<VendorDatePkCB> subQuery) {
-        assertObjectNotNull("subQuery<VendorDatePkCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         VendorDatePkCB cb = new VendorDatePkCB(); cb.xsetupForMyselfInScope(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfInScope(cb.query()); // for saving query-value.
-        registerMyselfInScope(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfInScope(cb.query()); // for saving query-value.
+        registerMyselfInScope(cb.query(), pp);
     }
-    public abstract String keepMyselfInScope(VendorDatePkCQ subQuery);
+    public abstract String keepMyselfInScope(VendorDatePkCQ sq);
 
     // ===================================================================================
     //                                                                    Full Text Search
@@ -449,7 +451,7 @@ public abstract class AbstractBsVendorDatePkCQ extends AbstractConditionQuery {
      * @param textColumnList The list of text column. (NotNull, NotEmpty, StringColumn, TargetTableColumn)
      * @param conditionValue The condition value. (NullAllowed: if null or empty, no condition)
      */
-    public void match(java.util.List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList, String conditionValue) {
+    public void match(List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList, String conditionValue) {
         xdoMatchByLikeSearch(textColumnList, conditionValue);
     }
 

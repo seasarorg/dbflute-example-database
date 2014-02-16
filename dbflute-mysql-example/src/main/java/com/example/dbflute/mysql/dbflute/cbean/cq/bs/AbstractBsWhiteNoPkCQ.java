@@ -148,8 +148,8 @@ public abstract class AbstractBsWhiteNoPkCQ extends AbstractConditionQuery {
         regINS(CK_NINS, cTL(noPkIdList), getCValueNoPkId(), "NO_PK_ID");
     }
 
-    protected void regNoPkId(ConditionKey k, Object v) { regQ(k, v, getCValueNoPkId(), "NO_PK_ID"); }
-    abstract protected ConditionValue getCValueNoPkId();
+    protected void regNoPkId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueNoPkId(), "NO_PK_ID"); }
+    protected abstract ConditionValue getCValueNoPkId();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -252,8 +252,8 @@ public abstract class AbstractBsWhiteNoPkCQ extends AbstractConditionQuery {
      */
     public void setNoPkName_IsNotNull() { regNoPkName(CK_ISNN, DOBJ); }
 
-    protected void regNoPkName(ConditionKey k, Object v) { regQ(k, v, getCValueNoPkName(), "NO_PK_NAME"); }
-    abstract protected ConditionValue getCValueNoPkName();
+    protected void regNoPkName(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueNoPkName(), "NO_PK_NAME"); }
+    protected abstract ConditionValue getCValueNoPkName();
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -355,8 +355,8 @@ public abstract class AbstractBsWhiteNoPkCQ extends AbstractConditionQuery {
      */
     public void setNoPkInteger_IsNotNull() { regNoPkInteger(CK_ISNN, DOBJ); }
 
-    protected void regNoPkInteger(ConditionKey k, Object v) { regQ(k, v, getCValueNoPkInteger(), "NO_PK_INTEGER"); }
-    abstract protected ConditionValue getCValueNoPkInteger();
+    protected void regNoPkInteger(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueNoPkInteger(), "NO_PK_INTEGER"); }
+    protected abstract ConditionValue getCValueNoPkInteger();
 
     // ===================================================================================
     //                                                                    Full Text Search
@@ -382,7 +382,7 @@ public abstract class AbstractBsWhiteNoPkCQ extends AbstractConditionQuery {
      * @param conditionValue The condition value embedded without binding (by MySQL restriction) but escaped. (NullAllowed: if null or empty, no condition)
      * @param modifier The modifier of full-text search. (NullAllowed: If the value is null, no modifier specified)
      */
-    public void match(java.util.List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList
+    public void match(List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList
                     , String conditionValue
                     , org.seasar.dbflute.dbway.WayOfMySQL.FullTextSearchModifier modifier) {
         xdoMatchForMySQL(textColumnList, conditionValue, modifier);

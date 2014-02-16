@@ -162,12 +162,12 @@ public abstract class AbstractBsWhiteVariantRelationMasterFooCQ extends Abstract
      * @param subQuery The sub-query of WhiteVariantRelationReferrerAsVariantList for 'exists'. (NotNull)
      */
     public void existsWhiteVariantRelationReferrerAsVariantList(SubQuery<WhiteVariantRelationReferrerCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteVariantRelationReferrerCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteVariantRelationReferrerCB cb = new WhiteVariantRelationReferrerCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMasterFooId_ExistsReferrer_WhiteVariantRelationReferrerAsVariantList(cb.query()); // for saving query-value.
-        registerExistsReferrer(cb.query(), "MASTER_FOO_ID", "VARIANT_MASTER_ID", subQueryPropertyName, "whiteVariantRelationReferrerAsVariantList");
+        String pp = keepMasterFooId_ExistsReferrer_WhiteVariantRelationReferrerAsVariantList(cb.query()); // for saving query-value.
+        registerExistsReferrer(cb.query(), "MASTER_FOO_ID", "VARIANT_MASTER_ID", pp, "whiteVariantRelationReferrerAsVariantList");
     }
-    public abstract String keepMasterFooId_ExistsReferrer_WhiteVariantRelationReferrerAsVariantList(WhiteVariantRelationReferrerCQ subQuery);
+    public abstract String keepMasterFooId_ExistsReferrer_WhiteVariantRelationReferrerAsVariantList(WhiteVariantRelationReferrerCQ sq);
 
     /**
      * Set up NotExistsReferrer (co-related sub-query). <br />
@@ -183,12 +183,12 @@ public abstract class AbstractBsWhiteVariantRelationMasterFooCQ extends Abstract
      * @param subQuery The sub-query of MasterFooId_NotExistsReferrer_WhiteVariantRelationReferrerAsVariantList for 'not exists'. (NotNull)
      */
     public void notExistsWhiteVariantRelationReferrerAsVariantList(SubQuery<WhiteVariantRelationReferrerCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteVariantRelationReferrerCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteVariantRelationReferrerCB cb = new WhiteVariantRelationReferrerCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMasterFooId_NotExistsReferrer_WhiteVariantRelationReferrerAsVariantList(cb.query()); // for saving query-value.
-        registerNotExistsReferrer(cb.query(), "MASTER_FOO_ID", "VARIANT_MASTER_ID", subQueryPropertyName, "whiteVariantRelationReferrerAsVariantList");
+        String pp = keepMasterFooId_NotExistsReferrer_WhiteVariantRelationReferrerAsVariantList(cb.query()); // for saving query-value.
+        registerNotExistsReferrer(cb.query(), "MASTER_FOO_ID", "VARIANT_MASTER_ID", pp, "whiteVariantRelationReferrerAsVariantList");
     }
-    public abstract String keepMasterFooId_NotExistsReferrer_WhiteVariantRelationReferrerAsVariantList(WhiteVariantRelationReferrerCQ subQuery);
+    public abstract String keepMasterFooId_NotExistsReferrer_WhiteVariantRelationReferrerAsVariantList(WhiteVariantRelationReferrerCQ sq);
 
     /**
      * Set up InScopeRelation (sub-query). <br />
@@ -197,12 +197,12 @@ public abstract class AbstractBsWhiteVariantRelationMasterFooCQ extends Abstract
      * @param subQuery The sub-query of WhiteVariantRelationReferrerAsVariantList for 'in-scope'. (NotNull)
      */
     public void inScopeWhiteVariantRelationReferrerAsVariantList(SubQuery<WhiteVariantRelationReferrerCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteVariantRelationReferrerCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteVariantRelationReferrerCB cb = new WhiteVariantRelationReferrerCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMasterFooId_InScopeRelation_WhiteVariantRelationReferrerAsVariantList(cb.query()); // for saving query-value.
-        registerInScopeRelation(cb.query(), "MASTER_FOO_ID", "VARIANT_MASTER_ID", subQueryPropertyName, "whiteVariantRelationReferrerAsVariantList");
+        String pp = keepMasterFooId_InScopeRelation_WhiteVariantRelationReferrerAsVariantList(cb.query()); // for saving query-value.
+        registerInScopeRelation(cb.query(), "MASTER_FOO_ID", "VARIANT_MASTER_ID", pp, "whiteVariantRelationReferrerAsVariantList");
     }
-    public abstract String keepMasterFooId_InScopeRelation_WhiteVariantRelationReferrerAsVariantList(WhiteVariantRelationReferrerCQ subQuery);
+    public abstract String keepMasterFooId_InScopeRelation_WhiteVariantRelationReferrerAsVariantList(WhiteVariantRelationReferrerCQ sq);
 
     /**
      * Set up NotInScopeRelation (sub-query). <br />
@@ -211,20 +211,20 @@ public abstract class AbstractBsWhiteVariantRelationMasterFooCQ extends Abstract
      * @param subQuery The sub-query of WhiteVariantRelationReferrerAsVariantList for 'not in-scope'. (NotNull)
      */
     public void notInScopeWhiteVariantRelationReferrerAsVariantList(SubQuery<WhiteVariantRelationReferrerCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteVariantRelationReferrerCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteVariantRelationReferrerCB cb = new WhiteVariantRelationReferrerCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMasterFooId_NotInScopeRelation_WhiteVariantRelationReferrerAsVariantList(cb.query()); // for saving query-value.
-        registerNotInScopeRelation(cb.query(), "MASTER_FOO_ID", "VARIANT_MASTER_ID", subQueryPropertyName, "whiteVariantRelationReferrerAsVariantList");
+        String pp = keepMasterFooId_NotInScopeRelation_WhiteVariantRelationReferrerAsVariantList(cb.query()); // for saving query-value.
+        registerNotInScopeRelation(cb.query(), "MASTER_FOO_ID", "VARIANT_MASTER_ID", pp, "whiteVariantRelationReferrerAsVariantList");
     }
-    public abstract String keepMasterFooId_NotInScopeRelation_WhiteVariantRelationReferrerAsVariantList(WhiteVariantRelationReferrerCQ subQuery);
+    public abstract String keepMasterFooId_NotInScopeRelation_WhiteVariantRelationReferrerAsVariantList(WhiteVariantRelationReferrerCQ sq);
 
-    public void xsderiveWhiteVariantRelationReferrerAsVariantList(String function, SubQuery<WhiteVariantRelationReferrerCB> subQuery, String aliasName, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<WhiteVariantRelationReferrerCB>", subQuery);
-        WhiteVariantRelationReferrerCB cb = new WhiteVariantRelationReferrerCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMasterFooId_SpecifyDerivedReferrer_WhiteVariantRelationReferrerAsVariantList(cb.query()); // for saving query-value.
-        registerSpecifyDerivedReferrer(function, cb.query(), "MASTER_FOO_ID", "VARIANT_MASTER_ID", subQueryPropertyName, "whiteVariantRelationReferrerAsVariantList", aliasName, option);
+    public void xsderiveWhiteVariantRelationReferrerAsVariantList(String fn, SubQuery<WhiteVariantRelationReferrerCB> sq, String al, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteVariantRelationReferrerCB cb = new WhiteVariantRelationReferrerCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pp = keepMasterFooId_SpecifyDerivedReferrer_WhiteVariantRelationReferrerAsVariantList(cb.query()); // for saving query-value.
+        registerSpecifyDerivedReferrer(fn, cb.query(), "MASTER_FOO_ID", "VARIANT_MASTER_ID", pp, "whiteVariantRelationReferrerAsVariantList", al, op);
     }
-    public abstract String keepMasterFooId_SpecifyDerivedReferrer_WhiteVariantRelationReferrerAsVariantList(WhiteVariantRelationReferrerCQ subQuery);
+    public abstract String keepMasterFooId_SpecifyDerivedReferrer_WhiteVariantRelationReferrerAsVariantList(WhiteVariantRelationReferrerCQ sq);
 
     /**
      * Prepare for (Query)DerivedReferrer. <br />
@@ -245,20 +245,20 @@ public abstract class AbstractBsWhiteVariantRelationMasterFooCQ extends Abstract
     }
     protected HpQDRFunction<WhiteVariantRelationReferrerCB> xcreateQDRFunctionWhiteVariantRelationReferrerAsVariantList() {
         return new HpQDRFunction<WhiteVariantRelationReferrerCB>(new HpQDRSetupper<WhiteVariantRelationReferrerCB>() {
-            public void setup(String function, SubQuery<WhiteVariantRelationReferrerCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-                xqderiveWhiteVariantRelationReferrerAsVariantList(function, subQuery, operand, value, option);
+            public void setup(String fn, SubQuery<WhiteVariantRelationReferrerCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+                xqderiveWhiteVariantRelationReferrerAsVariantList(fn, sq, rd, vl, op);
             }
         });
     }
-    public void xqderiveWhiteVariantRelationReferrerAsVariantList(String function, SubQuery<WhiteVariantRelationReferrerCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<WhiteVariantRelationReferrerCB>", subQuery);
-        WhiteVariantRelationReferrerCB cb = new WhiteVariantRelationReferrerCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMasterFooId_QueryDerivedReferrer_WhiteVariantRelationReferrerAsVariantList(cb.query()); // for saving query-value.
-        String parameterPropertyName = keepMasterFooId_QueryDerivedReferrer_WhiteVariantRelationReferrerAsVariantListParameter(value);
-        registerQueryDerivedReferrer(function, cb.query(), "MASTER_FOO_ID", "VARIANT_MASTER_ID", subQueryPropertyName, "whiteVariantRelationReferrerAsVariantList", operand, value, parameterPropertyName, option);
+    public void xqderiveWhiteVariantRelationReferrerAsVariantList(String fn, SubQuery<WhiteVariantRelationReferrerCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteVariantRelationReferrerCB cb = new WhiteVariantRelationReferrerCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String sqpp = keepMasterFooId_QueryDerivedReferrer_WhiteVariantRelationReferrerAsVariantList(cb.query()); // for saving query-value.
+        String prpp = keepMasterFooId_QueryDerivedReferrer_WhiteVariantRelationReferrerAsVariantListParameter(vl);
+        registerQueryDerivedReferrer(fn, cb.query(), "MASTER_FOO_ID", "VARIANT_MASTER_ID", sqpp, "whiteVariantRelationReferrerAsVariantList", rd, vl, prpp, op);
     }
-    public abstract String keepMasterFooId_QueryDerivedReferrer_WhiteVariantRelationReferrerAsVariantList(WhiteVariantRelationReferrerCQ subQuery);
-    public abstract String keepMasterFooId_QueryDerivedReferrer_WhiteVariantRelationReferrerAsVariantListParameter(Object parameterValue);
+    public abstract String keepMasterFooId_QueryDerivedReferrer_WhiteVariantRelationReferrerAsVariantList(WhiteVariantRelationReferrerCQ sq);
+    public abstract String keepMasterFooId_QueryDerivedReferrer_WhiteVariantRelationReferrerAsVariantListParameter(Object vl);
 
     /**
      * IsNull {is null}. And OnlyOnceRegistered. <br />
@@ -272,8 +272,8 @@ public abstract class AbstractBsWhiteVariantRelationMasterFooCQ extends Abstract
      */
     public void setMasterFooId_IsNotNull() { regMasterFooId(CK_ISNN, DOBJ); }
 
-    protected void regMasterFooId(ConditionKey k, Object v) { regQ(k, v, getCValueMasterFooId(), "MASTER_FOO_ID"); }
-    abstract protected ConditionValue getCValueMasterFooId();
+    protected void regMasterFooId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueMasterFooId(), "MASTER_FOO_ID"); }
+    protected abstract ConditionValue getCValueMasterFooId();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -358,8 +358,8 @@ public abstract class AbstractBsWhiteVariantRelationMasterFooCQ extends Abstract
         regLSQ(CK_NLS, fRES(masterFooName), getCValueMasterFooName(), "MASTER_FOO_NAME", likeSearchOption);
     }
 
-    protected void regMasterFooName(ConditionKey k, Object v) { regQ(k, v, getCValueMasterFooName(), "MASTER_FOO_NAME"); }
-    abstract protected ConditionValue getCValueMasterFooName();
+    protected void regMasterFooName(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueMasterFooName(), "MASTER_FOO_NAME"); }
+    protected abstract ConditionValue getCValueMasterFooName();
 
     // ===================================================================================
     //                                                                     ScalarCondition
@@ -466,22 +466,22 @@ public abstract class AbstractBsWhiteVariantRelationMasterFooCQ extends Abstract
         return xcreateSSQFunction(CK_LE.getOperand());
     }
 
-    protected HpSSQFunction<WhiteVariantRelationMasterFooCB> xcreateSSQFunction(final String operand) {
+    protected HpSSQFunction<WhiteVariantRelationMasterFooCB> xcreateSSQFunction(final String rd) {
         return new HpSSQFunction<WhiteVariantRelationMasterFooCB>(new HpSSQSetupper<WhiteVariantRelationMasterFooCB>() {
-            public void setup(String function, SubQuery<WhiteVariantRelationMasterFooCB> subQuery, HpSSQOption<WhiteVariantRelationMasterFooCB> option) {
-                xscalarCondition(function, subQuery, operand, option);
+            public void setup(String fn, SubQuery<WhiteVariantRelationMasterFooCB> sq, HpSSQOption<WhiteVariantRelationMasterFooCB> op) {
+                xscalarCondition(fn, sq, rd, op);
             }
         });
     }
 
-    protected void xscalarCondition(String function, SubQuery<WhiteVariantRelationMasterFooCB> subQuery, String operand, HpSSQOption<WhiteVariantRelationMasterFooCB> option) {
-        assertObjectNotNull("subQuery<WhiteVariantRelationMasterFooCB>", subQuery);
-        WhiteVariantRelationMasterFooCB cb = xcreateScalarConditionCB(); subQuery.query(cb);
-        String subQueryPropertyName = keepScalarCondition(cb.query()); // for saving query-value
-        option.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
-        registerScalarCondition(function, cb.query(), subQueryPropertyName, operand, option);
+    protected void xscalarCondition(String fn, SubQuery<WhiteVariantRelationMasterFooCB> sq, String rd, HpSSQOption<WhiteVariantRelationMasterFooCB> op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteVariantRelationMasterFooCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        String pp = keepScalarCondition(cb.query()); // for saving query-value
+        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
-    public abstract String keepScalarCondition(WhiteVariantRelationMasterFooCQ subQuery);
+    public abstract String keepScalarCondition(WhiteVariantRelationMasterFooCQ sq);
 
     protected WhiteVariantRelationMasterFooCB xcreateScalarConditionCB() {
         WhiteVariantRelationMasterFooCB cb = new WhiteVariantRelationMasterFooCB();
@@ -498,13 +498,14 @@ public abstract class AbstractBsWhiteVariantRelationMasterFooCQ extends Abstract
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    public void xsmyselfDerive(String function, SubQuery<WhiteVariantRelationMasterFooCB> subQuery, String aliasName, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<WhiteVariantRelationMasterFooCB>", subQuery);
-        WhiteVariantRelationMasterFooCB cb = new WhiteVariantRelationMasterFooCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
-        registerSpecifyMyselfDerived(function, cb.query(), "MASTER_FOO_ID", "MASTER_FOO_ID", subQueryPropertyName, "myselfDerived", aliasName, option);
+    public void xsmyselfDerive(String fn, SubQuery<WhiteVariantRelationMasterFooCB> sq, String al, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteVariantRelationMasterFooCB cb = new WhiteVariantRelationMasterFooCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "MASTER_FOO_ID";
+        String pp = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
+        registerSpecifyMyselfDerived(fn, cb.query(), pk, pk, pp, "myselfDerived", al, op);
     }
-    public abstract String keepSpecifyMyselfDerived(WhiteVariantRelationMasterFooCQ subQuery);
+    public abstract String keepSpecifyMyselfDerived(WhiteVariantRelationMasterFooCQ sq);
 
     /**
      * Prepare for (Query)MyselfDerived (SubQuery).
@@ -515,20 +516,21 @@ public abstract class AbstractBsWhiteVariantRelationMasterFooCQ extends Abstract
     }
     protected HpQDRFunction<WhiteVariantRelationMasterFooCB> xcreateQDRFunctionMyselfDerived() {
         return new HpQDRFunction<WhiteVariantRelationMasterFooCB>(new HpQDRSetupper<WhiteVariantRelationMasterFooCB>() {
-            public void setup(String function, SubQuery<WhiteVariantRelationMasterFooCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-                xqderiveMyselfDerived(function, subQuery, operand, value, option);
+            public void setup(String fn, SubQuery<WhiteVariantRelationMasterFooCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+                xqderiveMyselfDerived(fn, sq, rd, vl, op);
             }
         });
     }
-    public void xqderiveMyselfDerived(String function, SubQuery<WhiteVariantRelationMasterFooCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<WhiteVariantRelationMasterFooCB>", subQuery);
-        WhiteVariantRelationMasterFooCB cb = new WhiteVariantRelationMasterFooCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepQueryMyselfDerived(cb.query()); // for saving query-value.
-        String parameterPropertyName = keepQueryMyselfDerivedParameter(value);
-        registerQueryMyselfDerived(function, cb.query(), "MASTER_FOO_ID", "MASTER_FOO_ID", subQueryPropertyName, "myselfDerived", operand, value, parameterPropertyName, option);
+    public void xqderiveMyselfDerived(String fn, SubQuery<WhiteVariantRelationMasterFooCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteVariantRelationMasterFooCB cb = new WhiteVariantRelationMasterFooCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "MASTER_FOO_ID";
+        String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
+        String prpp = keepQueryMyselfDerivedParameter(vl);
+        registerQueryMyselfDerived(fn, cb.query(), pk, pk, sqpp, "myselfDerived", rd, vl, prpp, op);
     }
-    public abstract String keepQueryMyselfDerived(WhiteVariantRelationMasterFooCQ subQuery);
-    public abstract String keepQueryMyselfDerivedParameter(Object parameterValue);
+    public abstract String keepQueryMyselfDerived(WhiteVariantRelationMasterFooCQ sq);
+    public abstract String keepQueryMyselfDerivedParameter(Object vl);
 
     // ===================================================================================
     //                                                                        MyselfExists
@@ -538,12 +540,12 @@ public abstract class AbstractBsWhiteVariantRelationMasterFooCQ extends Abstract
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfExists(SubQuery<WhiteVariantRelationMasterFooCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteVariantRelationMasterFooCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteVariantRelationMasterFooCB cb = new WhiteVariantRelationMasterFooCB(); cb.xsetupForMyselfExists(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfExists(cb.query()); // for saving query-value.
-        registerMyselfExists(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfExists(cb.query()); // for saving query-value.
+        registerMyselfExists(cb.query(), pp);
     }
-    public abstract String keepMyselfExists(WhiteVariantRelationMasterFooCQ subQuery);
+    public abstract String keepMyselfExists(WhiteVariantRelationMasterFooCQ sq);
 
     // ===================================================================================
     //                                                                       MyselfInScope
@@ -553,12 +555,12 @@ public abstract class AbstractBsWhiteVariantRelationMasterFooCQ extends Abstract
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfInScope(SubQuery<WhiteVariantRelationMasterFooCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteVariantRelationMasterFooCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteVariantRelationMasterFooCB cb = new WhiteVariantRelationMasterFooCB(); cb.xsetupForMyselfInScope(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfInScope(cb.query()); // for saving query-value.
-        registerMyselfInScope(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfInScope(cb.query()); // for saving query-value.
+        registerMyselfInScope(cb.query(), pp);
     }
-    public abstract String keepMyselfInScope(WhiteVariantRelationMasterFooCQ subQuery);
+    public abstract String keepMyselfInScope(WhiteVariantRelationMasterFooCQ sq);
 
     // ===================================================================================
     //                                                                    Full Text Search
@@ -584,7 +586,7 @@ public abstract class AbstractBsWhiteVariantRelationMasterFooCQ extends Abstract
      * @param conditionValue The condition value embedded without binding (by MySQL restriction) but escaped. (NullAllowed: if null or empty, no condition)
      * @param modifier The modifier of full-text search. (NullAllowed: If the value is null, no modifier specified)
      */
-    public void match(java.util.List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList
+    public void match(List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList
                     , String conditionValue
                     , org.seasar.dbflute.dbway.WayOfMySQL.FullTextSearchModifier modifier) {
         xdoMatchForMySQL(textColumnList, conditionValue, modifier);

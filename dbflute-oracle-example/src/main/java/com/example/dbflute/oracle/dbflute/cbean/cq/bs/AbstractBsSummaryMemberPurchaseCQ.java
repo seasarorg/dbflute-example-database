@@ -133,8 +133,8 @@ public abstract class AbstractBsSummaryMemberPurchaseCQ extends AbstractConditio
         regINS(CK_NINS, cTL(memberIdList), getCValueMemberId(), "MEMBER_ID");
     }
 
-    protected void regMemberId(ConditionKey k, Object v) { regQ(k, v, getCValueMemberId(), "MEMBER_ID"); }
-    abstract protected ConditionValue getCValueMemberId();
+    protected void regMemberId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueMemberId(), "MEMBER_ID"); }
+    protected abstract ConditionValue getCValueMemberId();
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -236,8 +236,8 @@ public abstract class AbstractBsSummaryMemberPurchaseCQ extends AbstractConditio
      */
     public void setAllsumPurchasePrice_IsNotNull() { regAllsumPurchasePrice(CK_ISNN, DOBJ); }
 
-    protected void regAllsumPurchasePrice(ConditionKey k, Object v) { regQ(k, v, getCValueAllsumPurchasePrice(), "ALLSUM_PURCHASE_PRICE"); }
-    abstract protected ConditionValue getCValueAllsumPurchasePrice();
+    protected void regAllsumPurchasePrice(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueAllsumPurchasePrice(), "ALLSUM_PURCHASE_PRICE"); }
+    protected abstract ConditionValue getCValueAllsumPurchasePrice();
 
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -293,7 +293,7 @@ public abstract class AbstractBsSummaryMemberPurchaseCQ extends AbstractConditio
      * @param toDatetime The to-datetime(yyyy/MM/dd HH:mm:ss.SSS) of latestPurchaseDatetime. (NullAllowed: if null, no to-condition)
      * @param fromToOption The option of from-to. (NotNull)
      */
-    public void setLatestPurchaseDatetime_FromTo(java.util.Date fromDatetime, java.util.Date toDatetime, FromToOption fromToOption) {
+    public void setLatestPurchaseDatetime_FromTo(Date fromDatetime, Date toDatetime, FromToOption fromToOption) {
         regFTQ((fromDatetime != null ? new java.sql.Timestamp(fromDatetime.getTime()) : null), (toDatetime != null ? new java.sql.Timestamp(toDatetime.getTime()) : null), getCValueLatestPurchaseDatetime(), "LATEST_PURCHASE_DATETIME", fromToOption);
     }
 
@@ -308,7 +308,7 @@ public abstract class AbstractBsSummaryMemberPurchaseCQ extends AbstractConditio
      * @param fromDate The from-date(yyyy/MM/dd) of latestPurchaseDatetime. (NullAllowed: if null, no from-condition)
      * @param toDate The to-date(yyyy/MM/dd) of latestPurchaseDatetime. (NullAllowed: if null, no to-condition)
      */
-    public void setLatestPurchaseDatetime_DateFromTo(java.util.Date fromDate, java.util.Date toDate) {
+    public void setLatestPurchaseDatetime_DateFromTo(Date fromDate, Date toDate) {
         setLatestPurchaseDatetime_FromTo(fromDate, toDate, new FromToOption().compareAsDate());
     }
 
@@ -324,8 +324,8 @@ public abstract class AbstractBsSummaryMemberPurchaseCQ extends AbstractConditio
      */
     public void setLatestPurchaseDatetime_IsNotNull() { regLatestPurchaseDatetime(CK_ISNN, DOBJ); }
 
-    protected void regLatestPurchaseDatetime(ConditionKey k, Object v) { regQ(k, v, getCValueLatestPurchaseDatetime(), "LATEST_PURCHASE_DATETIME"); }
-    abstract protected ConditionValue getCValueLatestPurchaseDatetime();
+    protected void regLatestPurchaseDatetime(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueLatestPurchaseDatetime(), "LATEST_PURCHASE_DATETIME"); }
+    protected abstract ConditionValue getCValueLatestPurchaseDatetime();
 
     // ===================================================================================
     //                                                                    Full Text Search
@@ -346,7 +346,7 @@ public abstract class AbstractBsSummaryMemberPurchaseCQ extends AbstractConditio
      * @param textColumnList The list of text column. (NotNull, NotEmpty, StringColumn, TargetTableColumn)
      * @param conditionValue The condition value. (NullAllowed: if null or empty, no condition)
      */
-    public void match(java.util.List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList, String conditionValue) {
+    public void match(List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList, String conditionValue) {
         xdoMatchByLikeSearch(textColumnList, conditionValue);
     }
 

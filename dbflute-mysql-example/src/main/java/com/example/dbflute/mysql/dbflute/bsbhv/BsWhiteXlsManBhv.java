@@ -154,10 +154,10 @@ public abstract class BsWhiteXlsManBhv extends AbstractBehaviorWritable {
         return doSelectEntity(cb, WhiteXlsMan.class);
     }
 
-    protected <ENTITY extends WhiteXlsMan> ENTITY doSelectEntity(final WhiteXlsManCB cb, Class<ENTITY> entityType) {
+    protected <ENTITY extends WhiteXlsMan> ENTITY doSelectEntity(final WhiteXlsManCB cb, Class<ENTITY> tp) {
         assertCBStateValid(cb);
-        return helpSelectEntityInternally(cb, entityType, new InternalSelectEntityCallback<ENTITY, WhiteXlsManCB>() {
-            public List<ENTITY> callbackSelectList(WhiteXlsManCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); } });
+        return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, WhiteXlsManCB>() {
+            public List<ENTITY> callbackSelectList(WhiteXlsManCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
     }
 
     @Override
@@ -183,10 +183,10 @@ public abstract class BsWhiteXlsManBhv extends AbstractBehaviorWritable {
         return doSelectEntityWithDeletedCheck(cb, WhiteXlsMan.class);
     }
 
-    protected <ENTITY extends WhiteXlsMan> ENTITY doSelectEntityWithDeletedCheck(final WhiteXlsManCB cb, Class<ENTITY> entityType) {
+    protected <ENTITY extends WhiteXlsMan> ENTITY doSelectEntityWithDeletedCheck(final WhiteXlsManCB cb, Class<ENTITY> tp) {
         assertCBStateValid(cb);
-        return helpSelectEntityWithDeletedCheckInternally(cb, entityType, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, WhiteXlsManCB>() {
-            public List<ENTITY> callbackSelectList(WhiteXlsManCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); } });
+        return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, WhiteXlsManCB>() {
+            public List<ENTITY> callbackSelectList(WhiteXlsManCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
     }
 
     @Override
@@ -254,11 +254,11 @@ public abstract class BsWhiteXlsManBhv extends AbstractBehaviorWritable {
         return doSelectList(cb, WhiteXlsMan.class);
     }
 
-    protected <ENTITY extends WhiteXlsMan> ListResultBean<ENTITY> doSelectList(WhiteXlsManCB cb, Class<ENTITY> entityType) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", entityType);
-        assertSpecifyDerivedReferrerEntityProperty(cb, entityType);
-        return helpSelectListInternally(cb, entityType, new InternalSelectListCallback<ENTITY, WhiteXlsManCB>() {
-            public List<ENTITY> callbackSelectList(WhiteXlsManCB cb, Class<ENTITY> entityType) { return delegateSelectList(cb, entityType); } });
+    protected <ENTITY extends WhiteXlsMan> ListResultBean<ENTITY> doSelectList(WhiteXlsManCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
+        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
+        return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, WhiteXlsManCB>() {
+            public List<ENTITY> callbackSelectList(WhiteXlsManCB cb, Class<ENTITY> tp) { return delegateSelectList(cb, tp); } });
     }
 
     @Override
@@ -295,11 +295,11 @@ public abstract class BsWhiteXlsManBhv extends AbstractBehaviorWritable {
         return doSelectPage(cb, WhiteXlsMan.class);
     }
 
-    protected <ENTITY extends WhiteXlsMan> PagingResultBean<ENTITY> doSelectPage(WhiteXlsManCB cb, Class<ENTITY> entityType) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", entityType);
-        return helpSelectPageInternally(cb, entityType, new InternalSelectPageCallback<ENTITY, WhiteXlsManCB>() {
+    protected <ENTITY extends WhiteXlsMan> PagingResultBean<ENTITY> doSelectPage(WhiteXlsManCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
+        return helpSelectPageInternally(cb, tp, new InternalSelectPageCallback<ENTITY, WhiteXlsManCB>() {
             public int callbackSelectCount(WhiteXlsManCB cb) { return doSelectCountPlainly(cb); }
-            public List<ENTITY> callbackSelectList(WhiteXlsManCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); }
+            public List<ENTITY> callbackSelectList(WhiteXlsManCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
         });
     }
 
@@ -329,12 +329,12 @@ public abstract class BsWhiteXlsManBhv extends AbstractBehaviorWritable {
         doSelectCursor(cb, entityRowHandler, WhiteXlsMan.class);
     }
 
-    protected <ENTITY extends WhiteXlsMan> void doSelectCursor(WhiteXlsManCB cb, EntityRowHandler<ENTITY> entityRowHandler, Class<ENTITY> entityType) {
-        assertCBStateValid(cb); assertObjectNotNull("entityRowHandler<WhiteXlsMan>", entityRowHandler); assertObjectNotNull("entityType", entityType);
-        assertSpecifyDerivedReferrerEntityProperty(cb, entityType);
-        helpSelectCursorInternally(cb, entityRowHandler, entityType, new InternalSelectCursorCallback<ENTITY, WhiteXlsManCB>() {
-            public void callbackSelectCursor(WhiteXlsManCB cb, EntityRowHandler<ENTITY> entityRowHandler, Class<ENTITY> entityType) { delegateSelectCursor(cb, entityRowHandler, entityType); }
-            public List<ENTITY> callbackSelectList(WhiteXlsManCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); }
+    protected <ENTITY extends WhiteXlsMan> void doSelectCursor(WhiteXlsManCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
+        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
+        helpSelectCursorInternally(cb, handler, tp, new InternalSelectCursorCallback<ENTITY, WhiteXlsManCB>() {
+            public void callbackSelectCursor(WhiteXlsManCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) { delegateSelectCursor(cb, handler, tp); }
+            public List<ENTITY> callbackSelectList(WhiteXlsManCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
         });
     }
 
@@ -360,18 +360,18 @@ public abstract class BsWhiteXlsManBhv extends AbstractBehaviorWritable {
         return doScalarSelect(resultType, newMyConditionBean());
     }
 
-    protected <RESULT, CB extends WhiteXlsManCB> SLFunction<CB, RESULT> doScalarSelect(Class<RESULT> resultType, CB cb) {
-        assertObjectNotNull("resultType", resultType); assertCBStateValid(cb);
+    protected <RESULT, CB extends WhiteXlsManCB> SLFunction<CB, RESULT> doScalarSelect(Class<RESULT> tp, CB cb) {
+        assertObjectNotNull("resultType", tp); assertCBStateValid(cb);
         cb.xsetupForScalarSelect(); cb.getSqlClause().disableSelectIndex(); // for when you use union
-        return createSLFunction(cb, resultType);
+        return createSLFunction(cb, tp);
     }
 
-    protected <RESULT, CB extends WhiteXlsManCB> SLFunction<CB, RESULT> createSLFunction(CB cb, Class<RESULT> resultType) {
-        return new SLFunction<CB, RESULT>(cb, resultType);
+    protected <RESULT, CB extends WhiteXlsManCB> SLFunction<CB, RESULT> createSLFunction(CB cb, Class<RESULT> tp) {
+        return new SLFunction<CB, RESULT>(cb, tp);
     }
 
-    protected <RESULT> SLFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> resultType) {
-        return doScalarSelect(resultType, newMyConditionBean());
+    protected <RESULT> SLFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) {
+        return doScalarSelect(tp, newMyConditionBean());
     }
 
     // ===================================================================================
@@ -397,7 +397,7 @@ public abstract class BsWhiteXlsManBhv extends AbstractBehaviorWritable {
      */
     public List<Long> extractXlsManIdList(List<WhiteXlsMan> whiteXlsManList) {
         return helpExtractListInternally(whiteXlsManList, new InternalExtractCallback<WhiteXlsMan, Long>() {
-            public Long getCV(WhiteXlsMan e) { return e.getXlsManId(); }
+            public Long getCV(WhiteXlsMan et) { return et.getXlsManId(); }
         });
     }
 
@@ -425,24 +425,24 @@ public abstract class BsWhiteXlsManBhv extends AbstractBehaviorWritable {
         doInsert(whiteXlsMan, null);
     }
 
-    protected void doInsert(WhiteXlsMan whiteXlsMan, InsertOption<WhiteXlsManCB> option) {
+    protected void doInsert(WhiteXlsMan whiteXlsMan, InsertOption<WhiteXlsManCB> op) {
         assertObjectNotNull("whiteXlsMan", whiteXlsMan);
-        prepareInsertOption(option);
-        delegateInsert(whiteXlsMan, option);
+        prepareInsertOption(op);
+        delegateInsert(whiteXlsMan, op);
     }
 
-    protected void prepareInsertOption(InsertOption<WhiteXlsManCB> option) {
-        if (option == null) { return; }
-        assertInsertOptionStatus(option);
-        if (option.hasSpecifiedInsertColumn()) {
-            option.resolveInsertColumnSpecification(createCBForSpecifiedUpdate());
+    protected void prepareInsertOption(InsertOption<WhiteXlsManCB> op) {
+        if (op == null) { return; }
+        assertInsertOptionStatus(op);
+        if (op.hasSpecifiedInsertColumn()) {
+            op.resolveInsertColumnSpecification(createCBForSpecifiedUpdate());
         }
     }
 
     @Override
-    protected void doCreate(Entity entity, InsertOption<? extends ConditionBean> option) {
-        if (option == null) { insert(downcast(entity)); }
-        else { varyingInsert(downcast(entity), downcast(option)); }
+    protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) {
+        if (op == null) { insert(downcast(et)); }
+        else { varyingInsert(downcast(et), downcast(op)); }
     }
 
     /**
@@ -471,21 +471,21 @@ public abstract class BsWhiteXlsManBhv extends AbstractBehaviorWritable {
         doUpdate(whiteXlsMan, null);
     }
 
-    protected void doUpdate(WhiteXlsMan whiteXlsMan, final UpdateOption<WhiteXlsManCB> option) {
+    protected void doUpdate(WhiteXlsMan whiteXlsMan, final UpdateOption<WhiteXlsManCB> op) {
         assertObjectNotNull("whiteXlsMan", whiteXlsMan);
-        prepareUpdateOption(option);
+        prepareUpdateOption(op);
         helpUpdateInternally(whiteXlsMan, new InternalUpdateCallback<WhiteXlsMan>() {
-            public int callbackDelegateUpdate(WhiteXlsMan entity) { return delegateUpdate(entity, option); } });
+            public int callbackDelegateUpdate(WhiteXlsMan et) { return delegateUpdate(et, op); } });
     }
 
-    protected void prepareUpdateOption(UpdateOption<WhiteXlsManCB> option) {
-        if (option == null) { return; }
-        assertUpdateOptionStatus(option);
-        if (option.hasSelfSpecification()) {
-            option.resolveSelfSpecification(createCBForVaryingUpdate());
+    protected void prepareUpdateOption(UpdateOption<WhiteXlsManCB> op) {
+        if (op == null) { return; }
+        assertUpdateOptionStatus(op);
+        if (op.hasSelfSpecification()) {
+            op.resolveSelfSpecification(createCBForVaryingUpdate());
         }
-        if (option.hasSpecifiedUpdateColumn()) {
-            option.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate());
+        if (op.hasSpecifiedUpdateColumn()) {
+            op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate());
         }
     }
 
@@ -502,14 +502,14 @@ public abstract class BsWhiteXlsManBhv extends AbstractBehaviorWritable {
     }
 
     @Override
-    protected void doModify(Entity entity, UpdateOption<? extends ConditionBean> option) {
-        if (option == null) { update(downcast(entity)); }
-        else { varyingUpdate(downcast(entity), downcast(option)); }
+    protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) {
+        if (op == null) { update(downcast(et)); }
+        else { varyingUpdate(downcast(et), downcast(op)); }
     }
 
     @Override
-    protected void doModifyNonstrict(Entity entity, UpdateOption<? extends ConditionBean> option) {
-        doModify(entity, option);
+    protected void doModifyNonstrict(Entity et, UpdateOption<? extends ConditionBean> op) {
+        doModify(et, op);
     }
 
     /**
@@ -525,30 +525,28 @@ public abstract class BsWhiteXlsManBhv extends AbstractBehaviorWritable {
         doInesrtOrUpdate(whiteXlsMan, null, null);
     }
 
-    protected void doInesrtOrUpdate(WhiteXlsMan whiteXlsMan, final InsertOption<WhiteXlsManCB> insertOption, final UpdateOption<WhiteXlsManCB> updateOption) {
+    protected void doInesrtOrUpdate(WhiteXlsMan whiteXlsMan, final InsertOption<WhiteXlsManCB> iop, final UpdateOption<WhiteXlsManCB> uop) {
         helpInsertOrUpdateInternally(whiteXlsMan, new InternalInsertOrUpdateCallback<WhiteXlsMan, WhiteXlsManCB>() {
-            public void callbackInsert(WhiteXlsMan entity) { doInsert(entity, insertOption); }
-            public void callbackUpdate(WhiteXlsMan entity) { doUpdate(entity, updateOption); }
+            public void callbackInsert(WhiteXlsMan et) { doInsert(et, iop); }
+            public void callbackUpdate(WhiteXlsMan et) { doUpdate(et, uop); }
             public WhiteXlsManCB callbackNewMyConditionBean() { return newMyConditionBean(); }
             public int callbackSelectCount(WhiteXlsManCB cb) { return selectCount(cb); }
         });
     }
 
     @Override
-    protected void doCreateOrModify(Entity entity, InsertOption<? extends ConditionBean> insertOption,
-            UpdateOption<? extends ConditionBean> updateOption) {
-        if (insertOption == null && updateOption == null) { insertOrUpdate(downcast(entity)); }
+    protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
+        if (iop == null && uop == null) { insertOrUpdate(downcast(et)); }
         else {
-            insertOption = insertOption == null ? new InsertOption<WhiteXlsManCB>() : insertOption;
-            updateOption = updateOption == null ? new UpdateOption<WhiteXlsManCB>() : updateOption;
-            varyingInsertOrUpdate(downcast(entity), downcast(insertOption), downcast(updateOption));
+            iop = iop != null ? iop : new InsertOption<WhiteXlsManCB>();
+            uop = uop != null ? uop : new UpdateOption<WhiteXlsManCB>();
+            varyingInsertOrUpdate(downcast(et), downcast(iop), downcast(uop));
         }
     }
 
     @Override
-    protected void doCreateOrModifyNonstrict(Entity entity, InsertOption<? extends ConditionBean> insertOption,
-            UpdateOption<? extends ConditionBean> updateOption) {
-        doCreateOrModify(entity, insertOption, updateOption);
+    protected void doCreateOrModifyNonstrict(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
+        doCreateOrModify(et, iop, uop);
     }
 
     /**
@@ -572,27 +570,27 @@ public abstract class BsWhiteXlsManBhv extends AbstractBehaviorWritable {
         doDelete(whiteXlsMan, null);
     }
 
-    protected void doDelete(WhiteXlsMan whiteXlsMan, final DeleteOption<WhiteXlsManCB> option) {
+    protected void doDelete(WhiteXlsMan whiteXlsMan, final DeleteOption<WhiteXlsManCB> op) {
         assertObjectNotNull("whiteXlsMan", whiteXlsMan);
-        prepareDeleteOption(option);
+        prepareDeleteOption(op);
         helpDeleteInternally(whiteXlsMan, new InternalDeleteCallback<WhiteXlsMan>() {
-            public int callbackDelegateDelete(WhiteXlsMan entity) { return delegateDelete(entity, option); } });
+            public int callbackDelegateDelete(WhiteXlsMan et) { return delegateDelete(et, op); } });
     }
 
-    protected void prepareDeleteOption(DeleteOption<WhiteXlsManCB> option) {
-        if (option == null) { return; }
-        assertDeleteOptionStatus(option);
-    }
-
-    @Override
-    protected void doRemove(Entity entity, DeleteOption<? extends ConditionBean> option) {
-        if (option == null) { delete(downcast(entity)); }
-        else { varyingDelete(downcast(entity), downcast(option)); }
+    protected void prepareDeleteOption(DeleteOption<WhiteXlsManCB> op) {
+        if (op == null) { return; }
+        assertDeleteOptionStatus(op);
     }
 
     @Override
-    protected void doRemoveNonstrict(Entity entity, DeleteOption<? extends ConditionBean> option) {
-        doRemove(entity, option);
+    protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) {
+        if (op == null) { delete(downcast(et)); }
+        else { varyingDelete(downcast(et), downcast(op)); }
+    }
+
+    @Override
+    protected void doRemoveNonstrict(Entity et, DeleteOption<? extends ConditionBean> op) {
+        doRemove(et, op);
     }
 
     // ===================================================================================
@@ -623,26 +621,26 @@ public abstract class BsWhiteXlsManBhv extends AbstractBehaviorWritable {
      * @return The array of inserted count. (NotNull, EmptyAllowed)
      */
     public int[] batchInsert(List<WhiteXlsMan> whiteXlsManList) {
-        InsertOption<WhiteXlsManCB> option = createInsertUpdateOption();
-        return doBatchInsert(whiteXlsManList, option);
+        InsertOption<WhiteXlsManCB> op = createInsertUpdateOption();
+        return doBatchInsert(whiteXlsManList, op);
     }
 
-    protected int[] doBatchInsert(List<WhiteXlsMan> whiteXlsManList, InsertOption<WhiteXlsManCB> option) {
+    protected int[] doBatchInsert(List<WhiteXlsMan> whiteXlsManList, InsertOption<WhiteXlsManCB> op) {
         assertObjectNotNull("whiteXlsManList", whiteXlsManList);
-        prepareBatchInsertOption(whiteXlsManList, option);
-        return delegateBatchInsert(whiteXlsManList, option);
+        prepareBatchInsertOption(whiteXlsManList, op);
+        return delegateBatchInsert(whiteXlsManList, op);
     }
 
-    protected void prepareBatchInsertOption(List<WhiteXlsMan> whiteXlsManList, InsertOption<WhiteXlsManCB> option) {
-        option.xallowInsertColumnModifiedPropertiesFragmented();
-        option.xacceptInsertColumnModifiedPropertiesIfNeeds(whiteXlsManList);
-        prepareInsertOption(option);
+    protected void prepareBatchInsertOption(List<WhiteXlsMan> whiteXlsManList, InsertOption<WhiteXlsManCB> op) {
+        op.xallowInsertColumnModifiedPropertiesFragmented();
+        op.xacceptInsertColumnModifiedPropertiesIfNeeds(whiteXlsManList);
+        prepareInsertOption(op);
     }
 
     @Override
-    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> option) {
-        if (option == null) { return batchInsert(downcast(ls)); }
-        else { return varyingBatchInsert(downcast(ls), downcast(option)); }
+    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) {
+        if (op == null) { return batchInsert(downcast(ls)); }
+        else { return varyingBatchInsert(downcast(ls), downcast(op)); }
     }
 
     /**
@@ -670,25 +668,25 @@ public abstract class BsWhiteXlsManBhv extends AbstractBehaviorWritable {
      * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<WhiteXlsMan> whiteXlsManList) {
-        UpdateOption<WhiteXlsManCB> option = createPlainUpdateOption();
-        return doBatchUpdate(whiteXlsManList, option);
+        UpdateOption<WhiteXlsManCB> op = createPlainUpdateOption();
+        return doBatchUpdate(whiteXlsManList, op);
     }
 
-    protected int[] doBatchUpdate(List<WhiteXlsMan> whiteXlsManList, UpdateOption<WhiteXlsManCB> option) {
+    protected int[] doBatchUpdate(List<WhiteXlsMan> whiteXlsManList, UpdateOption<WhiteXlsManCB> op) {
         assertObjectNotNull("whiteXlsManList", whiteXlsManList);
-        prepareBatchUpdateOption(whiteXlsManList, option);
-        return delegateBatchUpdate(whiteXlsManList, option);
+        prepareBatchUpdateOption(whiteXlsManList, op);
+        return delegateBatchUpdate(whiteXlsManList, op);
     }
 
-    protected void prepareBatchUpdateOption(List<WhiteXlsMan> whiteXlsManList, UpdateOption<WhiteXlsManCB> option) {
-        option.xacceptUpdateColumnModifiedPropertiesIfNeeds(whiteXlsManList);
-        prepareUpdateOption(option);
+    protected void prepareBatchUpdateOption(List<WhiteXlsMan> whiteXlsManList, UpdateOption<WhiteXlsManCB> op) {
+        op.xacceptUpdateColumnModifiedPropertiesIfNeeds(whiteXlsManList);
+        prepareUpdateOption(op);
     }
 
     @Override
-    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> option) {
-        if (option == null) { return batchUpdate(downcast(ls)); }
-        else { return varyingBatchUpdate(downcast(ls), downcast(option)); }
+    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) {
+        if (op == null) { return batchUpdate(downcast(ls)); }
+        else { return varyingBatchUpdate(downcast(ls), downcast(op)); }
     }
 
     /**
@@ -724,8 +722,8 @@ public abstract class BsWhiteXlsManBhv extends AbstractBehaviorWritable {
     }
 
     @Override
-    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> option) {
-        return doLumpModify(ls, option);
+    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> op) {
+        return doLumpModify(ls, op);
     }
 
     /**
@@ -739,21 +737,21 @@ public abstract class BsWhiteXlsManBhv extends AbstractBehaviorWritable {
         return doBatchDelete(whiteXlsManList, null);
     }
 
-    protected int[] doBatchDelete(List<WhiteXlsMan> whiteXlsManList, DeleteOption<WhiteXlsManCB> option) {
+    protected int[] doBatchDelete(List<WhiteXlsMan> whiteXlsManList, DeleteOption<WhiteXlsManCB> op) {
         assertObjectNotNull("whiteXlsManList", whiteXlsManList);
-        prepareDeleteOption(option);
-        return delegateBatchDelete(whiteXlsManList, option);
+        prepareDeleteOption(op);
+        return delegateBatchDelete(whiteXlsManList, op);
     }
 
     @Override
-    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> option) {
-        if (option == null) { return batchDelete(downcast(ls)); }
-        else { return varyingBatchDelete(downcast(ls), downcast(option)); }
+    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) {
+        if (op == null) { return batchDelete(downcast(ls)); }
+        else { return varyingBatchDelete(downcast(ls), downcast(op)); }
     }
 
     @Override
-    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> option) {
-        return doLumpRemove(ls, option);
+    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> op) {
+        return doLumpRemove(ls, op);
     }
 
     // ===================================================================================
@@ -789,13 +787,12 @@ public abstract class BsWhiteXlsManBhv extends AbstractBehaviorWritable {
         return doQueryInsert(setupper, null);
     }
 
-    protected int doQueryInsert(QueryInsertSetupper<WhiteXlsMan, WhiteXlsManCB> setupper, InsertOption<WhiteXlsManCB> option) {
-        assertObjectNotNull("setupper", setupper);
-        prepareInsertOption(option);
-        WhiteXlsMan entity = new WhiteXlsMan();
-        WhiteXlsManCB intoCB = createCBForQueryInsert();
-        ConditionBean resourceCB = setupper.setup(entity, intoCB);
-        return delegateQueryInsert(entity, intoCB, resourceCB, option);
+    protected int doQueryInsert(QueryInsertSetupper<WhiteXlsMan, WhiteXlsManCB> sp, InsertOption<WhiteXlsManCB> op) {
+        assertObjectNotNull("setupper", sp);
+        prepareInsertOption(op);
+        WhiteXlsMan e = new WhiteXlsMan();
+        WhiteXlsManCB cb = createCBForQueryInsert();
+        return delegateQueryInsert(e, cb, sp.setup(e, cb), op);
     }
 
     protected WhiteXlsManCB createCBForQueryInsert() {
@@ -836,16 +833,16 @@ public abstract class BsWhiteXlsManBhv extends AbstractBehaviorWritable {
         return doQueryUpdate(whiteXlsMan, cb, null);
     }
 
-    protected int doQueryUpdate(WhiteXlsMan whiteXlsMan, WhiteXlsManCB cb, UpdateOption<WhiteXlsManCB> option) {
+    protected int doQueryUpdate(WhiteXlsMan whiteXlsMan, WhiteXlsManCB cb, UpdateOption<WhiteXlsManCB> op) {
         assertObjectNotNull("whiteXlsMan", whiteXlsMan); assertCBStateValid(cb);
-        prepareUpdateOption(option);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(whiteXlsMan, cb, option) : 0;
+        prepareUpdateOption(op);
+        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(whiteXlsMan, cb, op) : 0;
     }
 
     @Override
-    protected int doRangeModify(Entity entity, ConditionBean cb, UpdateOption<? extends ConditionBean> option) {
-        if (option == null) { return queryUpdate(downcast(entity), (WhiteXlsManCB)cb); }
-        else { return varyingQueryUpdate(downcast(entity), (WhiteXlsManCB)cb, downcast(option)); }
+    protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op) {
+        if (op == null) { return queryUpdate(downcast(et), (WhiteXlsManCB)cb); }
+        else { return varyingQueryUpdate(downcast(et), (WhiteXlsManCB)cb, downcast(op)); }
     }
 
     /**
@@ -863,16 +860,16 @@ public abstract class BsWhiteXlsManBhv extends AbstractBehaviorWritable {
         return doQueryDelete(cb, null);
     }
 
-    protected int doQueryDelete(WhiteXlsManCB cb, DeleteOption<WhiteXlsManCB> option) {
+    protected int doQueryDelete(WhiteXlsManCB cb, DeleteOption<WhiteXlsManCB> op) {
         assertCBStateValid(cb);
-        prepareDeleteOption(option);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryDelete(cb, option) : 0;
+        prepareDeleteOption(op);
+        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryDelete(cb, op) : 0;
     }
 
     @Override
-    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> option) {
-        if (option == null) { return queryDelete((WhiteXlsManCB)cb); }
-        else { return varyingQueryDelete((WhiteXlsManCB)cb, downcast(option)); }
+    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) {
+        if (op == null) { return queryDelete((WhiteXlsManCB)cb); }
+        else { return varyingQueryDelete((WhiteXlsManCB)cb, downcast(op)); }
     }
 
     // ===================================================================================
@@ -1124,29 +1121,29 @@ public abstract class BsWhiteXlsManBhv extends AbstractBehaviorWritable {
     //                                                ------
     protected int delegateSelectCountUniquely(WhiteXlsManCB cb) { return invoke(createSelectCountCBCommand(cb, true)); }
     protected int delegateSelectCountPlainly(WhiteXlsManCB cb) { return invoke(createSelectCountCBCommand(cb, false)); }
-    protected <ENTITY extends WhiteXlsMan> void delegateSelectCursor(WhiteXlsManCB cb, EntityRowHandler<ENTITY> erh, Class<ENTITY> et)
-    { invoke(createSelectCursorCBCommand(cb, erh, et)); }
-    protected <ENTITY extends WhiteXlsMan> List<ENTITY> delegateSelectList(WhiteXlsManCB cb, Class<ENTITY> et)
-    { return invoke(createSelectListCBCommand(cb, et)); }
+    protected <ENTITY extends WhiteXlsMan> void delegateSelectCursor(WhiteXlsManCB cb, EntityRowHandler<ENTITY> rh, Class<ENTITY> tp)
+    { invoke(createSelectCursorCBCommand(cb, rh, tp)); }
+    protected <ENTITY extends WhiteXlsMan> List<ENTITY> delegateSelectList(WhiteXlsManCB cb, Class<ENTITY> tp)
+    { return invoke(createSelectListCBCommand(cb, tp)); }
 
     // -----------------------------------------------------
     //                                                Update
     //                                                ------
-    protected int delegateInsert(WhiteXlsMan e, InsertOption<WhiteXlsManCB> op)
-    { if (!processBeforeInsert(e, op)) { return 0; }
-      return invoke(createInsertEntityCommand(e, op)); }
-    protected int delegateUpdate(WhiteXlsMan e, UpdateOption<WhiteXlsManCB> op)
-    { if (!processBeforeUpdate(e, op)) { return 0; }
-      return delegateUpdateNonstrict(e, op); }
-    protected int delegateUpdateNonstrict(WhiteXlsMan e, UpdateOption<WhiteXlsManCB> op)
-    { if (!processBeforeUpdate(e, op)) { return 0; }
-      return invoke(createUpdateNonstrictEntityCommand(e, op)); }
-    protected int delegateDelete(WhiteXlsMan e, DeleteOption<WhiteXlsManCB> op)
-    { if (!processBeforeDelete(e, op)) { return 0; }
-      return delegateDeleteNonstrict(e, op); }
-    protected int delegateDeleteNonstrict(WhiteXlsMan e, DeleteOption<WhiteXlsManCB> op)
-    { if (!processBeforeDelete(e, op)) { return 0; }
-      return invoke(createDeleteNonstrictEntityCommand(e, op)); }
+    protected int delegateInsert(WhiteXlsMan et, InsertOption<WhiteXlsManCB> op)
+    { if (!processBeforeInsert(et, op)) { return 0; }
+      return invoke(createInsertEntityCommand(et, op)); }
+    protected int delegateUpdate(WhiteXlsMan et, UpdateOption<WhiteXlsManCB> op)
+    { if (!processBeforeUpdate(et, op)) { return 0; }
+      return delegateUpdateNonstrict(et, op); }
+    protected int delegateUpdateNonstrict(WhiteXlsMan et, UpdateOption<WhiteXlsManCB> op)
+    { if (!processBeforeUpdate(et, op)) { return 0; }
+      return invoke(createUpdateNonstrictEntityCommand(et, op)); }
+    protected int delegateDelete(WhiteXlsMan et, DeleteOption<WhiteXlsManCB> op)
+    { if (!processBeforeDelete(et, op)) { return 0; }
+      return delegateDeleteNonstrict(et, op); }
+    protected int delegateDeleteNonstrict(WhiteXlsMan et, DeleteOption<WhiteXlsManCB> op)
+    { if (!processBeforeDelete(et, op)) { return 0; }
+      return invoke(createDeleteNonstrictEntityCommand(et, op)); }
 
     protected int[] delegateBatchInsert(List<WhiteXlsMan> ls, InsertOption<WhiteXlsManCB> op)
     { if (ls.isEmpty()) { return new int[]{}; }
@@ -1164,10 +1161,10 @@ public abstract class BsWhiteXlsManBhv extends AbstractBehaviorWritable {
     { if (ls.isEmpty()) { return new int[]{}; }
       return invoke(createBatchDeleteNonstrictCommand(processBatchInternally(ls, op, true), op)); }
 
-    protected int delegateQueryInsert(WhiteXlsMan e, WhiteXlsManCB inCB, ConditionBean resCB, InsertOption<WhiteXlsManCB> op)
-    { if (!processBeforeQueryInsert(e, inCB, resCB, op)) { return 0; } return invoke(createQueryInsertCBCommand(e, inCB, resCB, op));  }
-    protected int delegateQueryUpdate(WhiteXlsMan e, WhiteXlsManCB cb, UpdateOption<WhiteXlsManCB> op)
-    { if (!processBeforeQueryUpdate(e, cb, op)) { return 0; } return invoke(createQueryUpdateCBCommand(e, cb, op));  }
+    protected int delegateQueryInsert(WhiteXlsMan et, WhiteXlsManCB inCB, ConditionBean resCB, InsertOption<WhiteXlsManCB> op)
+    { if (!processBeforeQueryInsert(et, inCB, resCB, op)) { return 0; } return invoke(createQueryInsertCBCommand(et, inCB, resCB, op));  }
+    protected int delegateQueryUpdate(WhiteXlsMan et, WhiteXlsManCB cb, UpdateOption<WhiteXlsManCB> op)
+    { if (!processBeforeQueryUpdate(et, cb, op)) { return 0; } return invoke(createQueryUpdateCBCommand(et, cb, op));  }
     protected int delegateQueryDelete(WhiteXlsManCB cb, DeleteOption<WhiteXlsManCB> op)
     { if (!processBeforeQueryDelete(cb, op)) { return 0; } return invoke(createQueryDeleteCBCommand(cb, op));  }
 
@@ -1178,7 +1175,7 @@ public abstract class BsWhiteXlsManBhv extends AbstractBehaviorWritable {
      * {@inheritDoc}
      */
     @Override
-    protected boolean hasVersionNoValue(Entity entity) {
+    protected boolean hasVersionNoValue(Entity et) {
         return false;
     }
 
@@ -1186,15 +1183,15 @@ public abstract class BsWhiteXlsManBhv extends AbstractBehaviorWritable {
      * {@inheritDoc}
      */
     @Override
-    protected boolean hasUpdateDateValue(Entity entity) {
+    protected boolean hasUpdateDateValue(Entity et) {
         return false;
     }
 
     // ===================================================================================
     //                                                                     Downcast Helper
     //                                                                     ===============
-    protected WhiteXlsMan downcast(Entity entity) {
-        return helpEntityDowncastInternally(entity, WhiteXlsMan.class);
+    protected WhiteXlsMan downcast(Entity et) {
+        return helpEntityDowncastInternally(et, WhiteXlsMan.class);
     }
 
     protected WhiteXlsManCB downcast(ConditionBean cb) {
@@ -1202,27 +1199,27 @@ public abstract class BsWhiteXlsManBhv extends AbstractBehaviorWritable {
     }
 
     @SuppressWarnings("unchecked")
-    protected List<WhiteXlsMan> downcast(List<? extends Entity> entityList) {
-        return (List<WhiteXlsMan>)entityList;
+    protected List<WhiteXlsMan> downcast(List<? extends Entity> ls) {
+        return (List<WhiteXlsMan>)ls;
     }
 
     @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteXlsManCB> downcast(InsertOption<? extends ConditionBean> option) {
-        return (InsertOption<WhiteXlsManCB>)option;
+    protected InsertOption<WhiteXlsManCB> downcast(InsertOption<? extends ConditionBean> op) {
+        return (InsertOption<WhiteXlsManCB>)op;
     }
 
     @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteXlsManCB> downcast(UpdateOption<? extends ConditionBean> option) {
-        return (UpdateOption<WhiteXlsManCB>)option;
+    protected UpdateOption<WhiteXlsManCB> downcast(UpdateOption<? extends ConditionBean> op) {
+        return (UpdateOption<WhiteXlsManCB>)op;
     }
 
     @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteXlsManCB> downcast(DeleteOption<? extends ConditionBean> option) {
-        return (DeleteOption<WhiteXlsManCB>)option;
+    protected DeleteOption<WhiteXlsManCB> downcast(DeleteOption<? extends ConditionBean> op) {
+        return (DeleteOption<WhiteXlsManCB>)op;
     }
 
     @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhiteXlsMan, WhiteXlsManCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> option) {
-        return (QueryInsertSetupper<WhiteXlsMan, WhiteXlsManCB>)option;
+    protected QueryInsertSetupper<WhiteXlsMan, WhiteXlsManCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp) {
+        return (QueryInsertSetupper<WhiteXlsMan, WhiteXlsManCB>)sp;
     }
 }

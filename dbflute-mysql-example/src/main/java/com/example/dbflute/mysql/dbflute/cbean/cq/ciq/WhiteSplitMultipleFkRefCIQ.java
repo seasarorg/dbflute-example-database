@@ -87,7 +87,7 @@ public class WhiteSplitMultipleFkRefCIQ extends AbstractBsWhiteSplitMultipleFkRe
     protected ConditionValue getCValueFirstId() { return _myCQ.getFirstId(); }
     protected ConditionValue getCValueSecondCode() { return _myCQ.getSecondCode(); }
     protected ConditionValue getCValueRefName() { return _myCQ.getRefName(); }
-    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) { return null; }
+    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
 
     protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()
         throw new IllegalConditionBeanOperationException(name + " at InlineView is unsupported.");

@@ -44,24 +44,24 @@ public class SpResultSetParameterCurMemberDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgMemberId implements PropertyGateway {
-        public Object read(Entity e) { return ((SpResultSetParameterCurMember)e).getMemberId(); }
-        public void write(Entity e, Object v) { ((SpResultSetParameterCurMember)e).setMemberId(ctl(v)); }
+        public Object read(Entity et) { return ((SpResultSetParameterCurMember)et).getMemberId(); }
+        public void write(Entity et, Object vl) { ((SpResultSetParameterCurMember)et).setMemberId(ctl(vl)); }
     }
     public static class EpgMemberName implements PropertyGateway {
-        public Object read(Entity e) { return ((SpResultSetParameterCurMember)e).getMemberName(); }
-        public void write(Entity e, Object v) { ((SpResultSetParameterCurMember)e).setMemberName((String)v); }
+        public Object read(Entity et) { return ((SpResultSetParameterCurMember)et).getMemberName(); }
+        public void write(Entity et, Object vl) { ((SpResultSetParameterCurMember)et).setMemberName((String)vl); }
     }
     public static class EpgBirthdate implements PropertyGateway {
-        public Object read(Entity e) { return ((SpResultSetParameterCurMember)e).getBirthdate(); }
-        public void write(Entity e, Object v) { ((SpResultSetParameterCurMember)e).setBirthdate((java.util.Date)v); }
+        public Object read(Entity et) { return ((SpResultSetParameterCurMember)et).getBirthdate(); }
+        public void write(Entity et, Object vl) { ((SpResultSetParameterCurMember)et).setBirthdate((java.util.Date)vl); }
     }
     public static class EpgFormalizedDatetime implements PropertyGateway {
-        public Object read(Entity e) { return ((SpResultSetParameterCurMember)e).getFormalizedDatetime(); }
-        public void write(Entity e, Object v) { ((SpResultSetParameterCurMember)e).setFormalizedDatetime((java.sql.Timestamp)v); }
+        public Object read(Entity et) { return ((SpResultSetParameterCurMember)et).getFormalizedDatetime(); }
+        public void write(Entity et, Object vl) { ((SpResultSetParameterCurMember)et).setFormalizedDatetime((java.sql.Timestamp)vl); }
     }
     public static class EpgMemberStatusCode implements PropertyGateway {
-        public Object read(Entity e) { return ((SpResultSetParameterCurMember)e).getMemberStatusCode(); }
-        public void write(Entity e, Object v) { ((SpResultSetParameterCurMember)e).setMemberStatusCode((String)v); }
+        public Object read(Entity et) { return ((SpResultSetParameterCurMember)et).getMemberStatusCode(); }
+        public void write(Entity et, Object vl) { ((SpResultSetParameterCurMember)et).setMemberStatusCode((String)vl); }
     }
 
     // ===================================================================================
@@ -150,10 +150,10 @@ public class SpResultSetParameterCurMemberDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((SpResultSetParameterCurMember)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((SpResultSetParameterCurMember)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((SpResultSetParameterCurMember)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((SpResultSetParameterCurMember)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

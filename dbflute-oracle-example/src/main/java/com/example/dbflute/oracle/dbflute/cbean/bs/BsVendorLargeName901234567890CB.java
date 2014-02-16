@@ -341,8 +341,8 @@ public class BsVendorLargeName901234567890CB extends AbstractConditionBean {
         public HpSDRFunction<VendorLargeName90123456RefCB, VendorLargeName901234567890CQ> derivedVendorLargeName90123456RefList() {
             assertDerived("vendorLargeName90123456RefList"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<VendorLargeName90123456RefCB, VendorLargeName901234567890CQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<VendorLargeName90123456RefCB, VendorLargeName901234567890CQ>() {
-                public void setup(String function, SubQuery<VendorLargeName90123456RefCB> subQuery, VendorLargeName901234567890CQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsderiveVendorLargeName90123456RefList(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<VendorLargeName90123456RefCB> sq, VendorLargeName901234567890CQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsderiveVendorLargeName90123456RefList(fn, sq, al, op); } }, _dbmetaProvider);
         }
         /**
          * Prepare for (Specify)MyselfDerived (SubQuery).
@@ -351,8 +351,8 @@ public class BsVendorLargeName901234567890CB extends AbstractConditionBean {
         public HpSDRFunction<VendorLargeName901234567890CB, VendorLargeName901234567890CQ> myselfDerived() {
             assertDerived("myselfDerived"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<VendorLargeName901234567890CB, VendorLargeName901234567890CQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<VendorLargeName901234567890CB, VendorLargeName901234567890CQ>() {
-                public void setup(String function, SubQuery<VendorLargeName901234567890CB> subQuery, VendorLargeName901234567890CQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsmyselfDerive(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<VendorLargeName901234567890CB> sq, VendorLargeName901234567890CQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsmyselfDerive(fn, sq, al, op); } }, _dbmetaProvider);
         }
     }
 

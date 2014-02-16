@@ -107,11 +107,11 @@ public class WhiteImplicitConvStringCIQ extends AbstractBsWhiteImplicitConvStrin
     { throwIICBOE("(Specify)DerivedReferrer"); return null; }
     public String keepImplicitConvStringId_QueryDerivedReferrer_WhiteImplicitConvIntegerList(WhiteImplicitConvIntegerCQ sq)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
-    public String keepImplicitConvStringId_QueryDerivedReferrer_WhiteImplicitConvIntegerListParameter(Object pv)
+    public String keepImplicitConvStringId_QueryDerivedReferrer_WhiteImplicitConvIntegerListParameter(Object vl)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
     public String keepImplicitConvStringId_QueryDerivedReferrer_WhiteImplicitConvNumericList(WhiteImplicitConvNumericCQ sq)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
-    public String keepImplicitConvStringId_QueryDerivedReferrer_WhiteImplicitConvNumericListParameter(Object pv)
+    public String keepImplicitConvStringId_QueryDerivedReferrer_WhiteImplicitConvNumericListParameter(Object vl)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
     protected ConditionValue getCValueImplicitConvIntegerId() { return _myCQ.getImplicitConvIntegerId(); }
     public String keepImplicitConvIntegerId_InScopeRelation_WhiteImplicitConvInteger(WhiteImplicitConvIntegerCQ sq)
@@ -124,18 +124,18 @@ public class WhiteImplicitConvStringCIQ extends AbstractBsWhiteImplicitConvStrin
     public String keepImplicitConvNumericId_NotInScopeRelation_WhiteImplicitConvNumeric(WhiteImplicitConvNumericCQ sq)
     { return _myCQ.keepImplicitConvNumericId_NotInScopeRelation_WhiteImplicitConvNumeric(sq); }
     protected ConditionValue getCValueImplicitConvName() { return _myCQ.getImplicitConvName(); }
-    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) { return null; }
-    public String keepScalarCondition(WhiteImplicitConvStringCQ subQuery)
+    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
+    public String keepScalarCondition(WhiteImplicitConvStringCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }
-    public String keepSpecifyMyselfDerived(WhiteImplicitConvStringCQ subQuery)
+    public String keepSpecifyMyselfDerived(WhiteImplicitConvStringCQ sq)
     { throwIICBOE("(Specify)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerived(WhiteImplicitConvStringCQ subQuery)
+    public String keepQueryMyselfDerived(WhiteImplicitConvStringCQ sq)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerivedParameter(Object parameterValue)
+    public String keepQueryMyselfDerivedParameter(Object vl)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepMyselfExists(WhiteImplicitConvStringCQ subQuery)
+    public String keepMyselfExists(WhiteImplicitConvStringCQ sq)
     { throwIICBOE("MyselfExists"); return null;}
-    public String keepMyselfInScope(WhiteImplicitConvStringCQ subQuery)
+    public String keepMyselfInScope(WhiteImplicitConvStringCQ sq)
     { throwIICBOE("MyselfInScope"); return null;}
 
     protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()

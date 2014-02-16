@@ -5,7 +5,7 @@ import com.example.dbflute.oracle.dbflute.bsbhv.pmbean.BsSpStructNestedParameter
 /**
  * <!-- df:beginClassDescription -->
  * The typed parameter-bean of SpStructNestedParameter. <br />
- * This is related to "<span style="color: #AD4747">SP_STRUCT_NESTED_PARAMETER</span>".
+ * This is related to "<span style="color: #AD4747">SP_STRUCT_NESTED_PARAMETER</span>". <br />
  * <!-- df:endClassDescription -->
  * <p>
  * You can implement your original methods here.

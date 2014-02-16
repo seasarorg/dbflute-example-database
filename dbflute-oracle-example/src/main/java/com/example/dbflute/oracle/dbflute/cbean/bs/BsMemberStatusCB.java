@@ -351,8 +351,8 @@ public class BsMemberStatusCB extends AbstractConditionBean {
         public HpSDRFunction<MemberCB, MemberStatusCQ> derivedMemberList() {
             assertDerived("memberList"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<MemberCB, MemberStatusCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<MemberCB, MemberStatusCQ>() {
-                public void setup(String function, SubQuery<MemberCB> subQuery, MemberStatusCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsderiveMemberList(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<MemberCB> sq, MemberStatusCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsderiveMemberList(fn, sq, al, op); } }, _dbmetaProvider);
         }
         /**
          * Prepare for (Specify)DerivedReferrer. <br />
@@ -371,8 +371,8 @@ public class BsMemberStatusCB extends AbstractConditionBean {
         public HpSDRFunction<MemberLoginCB, MemberStatusCQ> derivedMemberLoginList() {
             assertDerived("memberLoginList"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<MemberLoginCB, MemberStatusCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<MemberLoginCB, MemberStatusCQ>() {
-                public void setup(String function, SubQuery<MemberLoginCB> subQuery, MemberStatusCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsderiveMemberLoginList(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<MemberLoginCB> sq, MemberStatusCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsderiveMemberLoginList(fn, sq, al, op); } }, _dbmetaProvider);
         }
         /**
          * Prepare for (Specify)DerivedReferrer. <br />
@@ -391,8 +391,8 @@ public class BsMemberStatusCB extends AbstractConditionBean {
         public HpSDRFunction<MemberVendorSynonymCB, MemberStatusCQ> derivedMemberVendorSynonymList() {
             assertDerived("memberVendorSynonymList"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<MemberVendorSynonymCB, MemberStatusCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<MemberVendorSynonymCB, MemberStatusCQ>() {
-                public void setup(String function, SubQuery<MemberVendorSynonymCB> subQuery, MemberStatusCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsderiveMemberVendorSynonymList(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<MemberVendorSynonymCB> sq, MemberStatusCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsderiveMemberVendorSynonymList(fn, sq, al, op); } }, _dbmetaProvider);
         }
         /**
          * Prepare for (Specify)DerivedReferrer. <br />
@@ -411,8 +411,8 @@ public class BsMemberStatusCB extends AbstractConditionBean {
         public HpSDRFunction<SynonymMemberCB, MemberStatusCQ> derivedSynonymMemberList() {
             assertDerived("synonymMemberList"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<SynonymMemberCB, MemberStatusCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<SynonymMemberCB, MemberStatusCQ>() {
-                public void setup(String function, SubQuery<SynonymMemberCB> subQuery, MemberStatusCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsderiveSynonymMemberList(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<SynonymMemberCB> sq, MemberStatusCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsderiveSynonymMemberList(fn, sq, al, op); } }, _dbmetaProvider);
         }
         /**
          * Prepare for (Specify)DerivedReferrer. <br />
@@ -431,8 +431,8 @@ public class BsMemberStatusCB extends AbstractConditionBean {
         public HpSDRFunction<SynonymMemberLoginCB, MemberStatusCQ> derivedSynonymMemberLoginList() {
             assertDerived("synonymMemberLoginList"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<SynonymMemberLoginCB, MemberStatusCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<SynonymMemberLoginCB, MemberStatusCQ>() {
-                public void setup(String function, SubQuery<SynonymMemberLoginCB> subQuery, MemberStatusCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsderiveSynonymMemberLoginList(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<SynonymMemberLoginCB> sq, MemberStatusCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsderiveSynonymMemberLoginList(fn, sq, al, op); } }, _dbmetaProvider);
         }
         /**
          * Prepare for (Specify)DerivedReferrer. <br />
@@ -451,8 +451,8 @@ public class BsMemberStatusCB extends AbstractConditionBean {
         public HpSDRFunction<VendorSynonymMemberCB, MemberStatusCQ> derivedVendorSynonymMemberList() {
             assertDerived("vendorSynonymMemberList"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<VendorSynonymMemberCB, MemberStatusCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<VendorSynonymMemberCB, MemberStatusCQ>() {
-                public void setup(String function, SubQuery<VendorSynonymMemberCB> subQuery, MemberStatusCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsderiveVendorSynonymMemberList(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<VendorSynonymMemberCB> sq, MemberStatusCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsderiveVendorSynonymMemberList(fn, sq, al, op); } }, _dbmetaProvider);
         }
         /**
          * Prepare for (Specify)MyselfDerived (SubQuery).
@@ -461,8 +461,8 @@ public class BsMemberStatusCB extends AbstractConditionBean {
         public HpSDRFunction<MemberStatusCB, MemberStatusCQ> myselfDerived() {
             assertDerived("myselfDerived"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<MemberStatusCB, MemberStatusCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<MemberStatusCB, MemberStatusCQ>() {
-                public void setup(String function, SubQuery<MemberStatusCB> subQuery, MemberStatusCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsmyselfDerive(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<MemberStatusCB> sq, MemberStatusCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsmyselfDerive(fn, sq, al, op); } }, _dbmetaProvider);
         }
     }
 

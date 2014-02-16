@@ -397,8 +397,8 @@ public class BsVendor_non_compilableCB extends AbstractConditionBean {
         public HpSDRFunction<Vendor_non_compilableCB, Vendor_non_compilableCQ> derivedVendor_non_compilableSelfList() {
             assertDerived("vendor_non_compilableSelfList"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<Vendor_non_compilableCB, Vendor_non_compilableCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<Vendor_non_compilableCB, Vendor_non_compilableCQ>() {
-                public void setup(String function, SubQuery<Vendor_non_compilableCB> subQuery, Vendor_non_compilableCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsderiveVendor_non_compilableSelfList(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<Vendor_non_compilableCB> sq, Vendor_non_compilableCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsderiveVendor_non_compilableSelfList(fn, sq, al, op); } }, _dbmetaProvider);
         }
         /**
          * Prepare for (Specify)MyselfDerived (SubQuery).
@@ -407,8 +407,8 @@ public class BsVendor_non_compilableCB extends AbstractConditionBean {
         public HpSDRFunction<Vendor_non_compilableCB, Vendor_non_compilableCQ> myselfDerived() {
             assertDerived("myselfDerived"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<Vendor_non_compilableCB, Vendor_non_compilableCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<Vendor_non_compilableCB, Vendor_non_compilableCQ>() {
-                public void setup(String function, SubQuery<Vendor_non_compilableCB> subQuery, Vendor_non_compilableCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsmyselfDerive(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<Vendor_non_compilableCB> sq, Vendor_non_compilableCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsmyselfDerive(fn, sq, al, op); } }, _dbmetaProvider);
         }
     }
 

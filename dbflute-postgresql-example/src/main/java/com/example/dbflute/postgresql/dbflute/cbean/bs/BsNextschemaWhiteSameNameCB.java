@@ -344,8 +344,8 @@ public class BsNextschemaWhiteSameNameCB extends AbstractConditionBean {
         public HpSDRFunction<NextschemaWhiteSameNameRefCB, NextschemaWhiteSameNameCQ> derivedWhiteSameNameRefList() {
             assertDerived("whiteSameNameRefList"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<NextschemaWhiteSameNameRefCB, NextschemaWhiteSameNameCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<NextschemaWhiteSameNameRefCB, NextschemaWhiteSameNameCQ>() {
-                public void setup(String function, SubQuery<NextschemaWhiteSameNameRefCB> subQuery, NextschemaWhiteSameNameCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsderiveWhiteSameNameRefList(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<NextschemaWhiteSameNameRefCB> sq, NextschemaWhiteSameNameCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsderiveWhiteSameNameRefList(fn, sq, al, op); } }, _dbmetaProvider);
         }
         /**
          * Prepare for (Specify)MyselfDerived (SubQuery).
@@ -354,8 +354,8 @@ public class BsNextschemaWhiteSameNameCB extends AbstractConditionBean {
         public HpSDRFunction<NextschemaWhiteSameNameCB, NextschemaWhiteSameNameCQ> myselfDerived() {
             assertDerived("myselfDerived"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<NextschemaWhiteSameNameCB, NextschemaWhiteSameNameCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<NextschemaWhiteSameNameCB, NextschemaWhiteSameNameCQ>() {
-                public void setup(String function, SubQuery<NextschemaWhiteSameNameCB> subQuery, NextschemaWhiteSameNameCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsmyselfDerive(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<NextschemaWhiteSameNameCB> sq, NextschemaWhiteSameNameCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsmyselfDerive(fn, sq, al, op); } }, _dbmetaProvider);
         }
     }
 

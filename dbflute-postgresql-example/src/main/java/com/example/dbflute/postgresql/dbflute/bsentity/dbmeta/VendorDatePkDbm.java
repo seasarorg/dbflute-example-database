@@ -41,12 +41,12 @@ public class VendorDatePkDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgFooDate implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorDatePk)e).getFooDate(); }
-        public void write(Entity e, Object v) { ((VendorDatePk)e).setFooDate((java.util.Date)v); }
+        public Object read(Entity et) { return ((VendorDatePk)et).getFooDate(); }
+        public void write(Entity et, Object vl) { ((VendorDatePk)et).setFooDate((java.util.Date)vl); }
     }
     public static class EpgFooName implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorDatePk)e).getFooName(); }
-        public void write(Entity e, Object v) { ((VendorDatePk)e).setFooName((String)v); }
+        public Object read(Entity et) { return ((VendorDatePk)et).getFooName(); }
+        public void write(Entity et, Object vl) { ((VendorDatePk)et).setFooName((String)vl); }
     }
 
     // ===================================================================================
@@ -99,8 +99,8 @@ public class VendorDatePkDbm extends AbstractDBMeta {
     //                                     Referrer Property
     //                                     -----------------
     public ReferrerInfo referrerVendorDateFkList() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnFooDate(), VendorDateFkDbm.getInstance().columnBarDate());
-        return cri("fk_vendor_date_fk_pk", "vendorDateFkList", this, VendorDateFkDbm.getInstance(), map, false, "vendorDatePk");
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnFooDate(), VendorDateFkDbm.getInstance().columnBarDate());
+        return cri("fk_vendor_date_fk_pk", "vendorDateFkList", this, VendorDateFkDbm.getInstance(), mp, false, "vendorDatePk");
     }
 
     // ===================================================================================
@@ -128,10 +128,10 @@ public class VendorDatePkDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((VendorDatePk)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((VendorDatePk)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((VendorDatePk)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((VendorDatePk)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

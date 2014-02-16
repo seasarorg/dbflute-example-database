@@ -41,12 +41,12 @@ public class NextSchemaProductStatusDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgProductStatusCode implements PropertyGateway {
-        public Object read(Entity e) { return ((NextSchemaProductStatus)e).getProductStatusCode(); }
-        public void write(Entity e, Object v) { ((NextSchemaProductStatus)e).setProductStatusCode((String)v); }
+        public Object read(Entity et) { return ((NextSchemaProductStatus)et).getProductStatusCode(); }
+        public void write(Entity et, Object vl) { ((NextSchemaProductStatus)et).setProductStatusCode((String)vl); }
     }
     public static class EpgProductStatusName implements PropertyGateway {
-        public Object read(Entity e) { return ((NextSchemaProductStatus)e).getProductStatusName(); }
-        public void write(Entity e, Object v) { ((NextSchemaProductStatus)e).setProductStatusName((String)v); }
+        public Object read(Entity et) { return ((NextSchemaProductStatus)et).getProductStatusName(); }
+        public void write(Entity et, Object vl) { ((NextSchemaProductStatus)et).setProductStatusName((String)vl); }
     }
 
     // ===================================================================================
@@ -103,12 +103,12 @@ public class NextSchemaProductStatusDbm extends AbstractDBMeta {
     //                                     Referrer Property
     //                                     -----------------
     public ReferrerInfo referrerWhiteRefNextTargetList() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnProductStatusCode(), WhiteRefNextTargetDbm.getInstance().columnNextTargetCode());
-        return cri("FK_WHITE_REF_NEXT_TARGET", "whiteRefNextTargetList", this, WhiteRefNextTargetDbm.getInstance(), map, false, "nextSchemaProductStatus");
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnProductStatusCode(), WhiteRefNextTargetDbm.getInstance().columnNextTargetCode());
+        return cri("FK_WHITE_REF_NEXT_TARGET", "whiteRefNextTargetList", this, WhiteRefNextTargetDbm.getInstance(), mp, false, "nextSchemaProductStatus");
     }
     public ReferrerInfo referrerNextSchemaProductList() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnProductStatusCode(), NextSchemaProductDbm.getInstance().columnProductStatusCode());
-        return cri("FK_NEXT_SCHEMA_PRODUCT", "nextSchemaProductList", this, NextSchemaProductDbm.getInstance(), map, false, "nextSchemaProductStatus");
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnProductStatusCode(), NextSchemaProductDbm.getInstance().columnProductStatusCode());
+        return cri("FK_NEXT_SCHEMA_PRODUCT", "nextSchemaProductList", this, NextSchemaProductDbm.getInstance(), mp, false, "nextSchemaProductStatus");
     }
 
     // ===================================================================================
@@ -136,10 +136,10 @@ public class NextSchemaProductStatusDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((NextSchemaProductStatus)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((NextSchemaProductStatus)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((NextSchemaProductStatus)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((NextSchemaProductStatus)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

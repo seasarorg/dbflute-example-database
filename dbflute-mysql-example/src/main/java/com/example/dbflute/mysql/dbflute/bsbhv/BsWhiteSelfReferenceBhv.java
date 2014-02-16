@@ -154,10 +154,10 @@ public abstract class BsWhiteSelfReferenceBhv extends AbstractBehaviorWritable {
         return doSelectEntity(cb, WhiteSelfReference.class);
     }
 
-    protected <ENTITY extends WhiteSelfReference> ENTITY doSelectEntity(final WhiteSelfReferenceCB cb, Class<ENTITY> entityType) {
+    protected <ENTITY extends WhiteSelfReference> ENTITY doSelectEntity(final WhiteSelfReferenceCB cb, Class<ENTITY> tp) {
         assertCBStateValid(cb);
-        return helpSelectEntityInternally(cb, entityType, new InternalSelectEntityCallback<ENTITY, WhiteSelfReferenceCB>() {
-            public List<ENTITY> callbackSelectList(WhiteSelfReferenceCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); } });
+        return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, WhiteSelfReferenceCB>() {
+            public List<ENTITY> callbackSelectList(WhiteSelfReferenceCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
     }
 
     @Override
@@ -183,10 +183,10 @@ public abstract class BsWhiteSelfReferenceBhv extends AbstractBehaviorWritable {
         return doSelectEntityWithDeletedCheck(cb, WhiteSelfReference.class);
     }
 
-    protected <ENTITY extends WhiteSelfReference> ENTITY doSelectEntityWithDeletedCheck(final WhiteSelfReferenceCB cb, Class<ENTITY> entityType) {
+    protected <ENTITY extends WhiteSelfReference> ENTITY doSelectEntityWithDeletedCheck(final WhiteSelfReferenceCB cb, Class<ENTITY> tp) {
         assertCBStateValid(cb);
-        return helpSelectEntityWithDeletedCheckInternally(cb, entityType, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, WhiteSelfReferenceCB>() {
-            public List<ENTITY> callbackSelectList(WhiteSelfReferenceCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); } });
+        return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, WhiteSelfReferenceCB>() {
+            public List<ENTITY> callbackSelectList(WhiteSelfReferenceCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
     }
 
     @Override
@@ -254,11 +254,11 @@ public abstract class BsWhiteSelfReferenceBhv extends AbstractBehaviorWritable {
         return doSelectList(cb, WhiteSelfReference.class);
     }
 
-    protected <ENTITY extends WhiteSelfReference> ListResultBean<ENTITY> doSelectList(WhiteSelfReferenceCB cb, Class<ENTITY> entityType) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", entityType);
-        assertSpecifyDerivedReferrerEntityProperty(cb, entityType);
-        return helpSelectListInternally(cb, entityType, new InternalSelectListCallback<ENTITY, WhiteSelfReferenceCB>() {
-            public List<ENTITY> callbackSelectList(WhiteSelfReferenceCB cb, Class<ENTITY> entityType) { return delegateSelectList(cb, entityType); } });
+    protected <ENTITY extends WhiteSelfReference> ListResultBean<ENTITY> doSelectList(WhiteSelfReferenceCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
+        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
+        return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, WhiteSelfReferenceCB>() {
+            public List<ENTITY> callbackSelectList(WhiteSelfReferenceCB cb, Class<ENTITY> tp) { return delegateSelectList(cb, tp); } });
     }
 
     @Override
@@ -295,11 +295,11 @@ public abstract class BsWhiteSelfReferenceBhv extends AbstractBehaviorWritable {
         return doSelectPage(cb, WhiteSelfReference.class);
     }
 
-    protected <ENTITY extends WhiteSelfReference> PagingResultBean<ENTITY> doSelectPage(WhiteSelfReferenceCB cb, Class<ENTITY> entityType) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", entityType);
-        return helpSelectPageInternally(cb, entityType, new InternalSelectPageCallback<ENTITY, WhiteSelfReferenceCB>() {
+    protected <ENTITY extends WhiteSelfReference> PagingResultBean<ENTITY> doSelectPage(WhiteSelfReferenceCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
+        return helpSelectPageInternally(cb, tp, new InternalSelectPageCallback<ENTITY, WhiteSelfReferenceCB>() {
             public int callbackSelectCount(WhiteSelfReferenceCB cb) { return doSelectCountPlainly(cb); }
-            public List<ENTITY> callbackSelectList(WhiteSelfReferenceCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); }
+            public List<ENTITY> callbackSelectList(WhiteSelfReferenceCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
         });
     }
 
@@ -329,12 +329,12 @@ public abstract class BsWhiteSelfReferenceBhv extends AbstractBehaviorWritable {
         doSelectCursor(cb, entityRowHandler, WhiteSelfReference.class);
     }
 
-    protected <ENTITY extends WhiteSelfReference> void doSelectCursor(WhiteSelfReferenceCB cb, EntityRowHandler<ENTITY> entityRowHandler, Class<ENTITY> entityType) {
-        assertCBStateValid(cb); assertObjectNotNull("entityRowHandler<WhiteSelfReference>", entityRowHandler); assertObjectNotNull("entityType", entityType);
-        assertSpecifyDerivedReferrerEntityProperty(cb, entityType);
-        helpSelectCursorInternally(cb, entityRowHandler, entityType, new InternalSelectCursorCallback<ENTITY, WhiteSelfReferenceCB>() {
-            public void callbackSelectCursor(WhiteSelfReferenceCB cb, EntityRowHandler<ENTITY> entityRowHandler, Class<ENTITY> entityType) { delegateSelectCursor(cb, entityRowHandler, entityType); }
-            public List<ENTITY> callbackSelectList(WhiteSelfReferenceCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); }
+    protected <ENTITY extends WhiteSelfReference> void doSelectCursor(WhiteSelfReferenceCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
+        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
+        helpSelectCursorInternally(cb, handler, tp, new InternalSelectCursorCallback<ENTITY, WhiteSelfReferenceCB>() {
+            public void callbackSelectCursor(WhiteSelfReferenceCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) { delegateSelectCursor(cb, handler, tp); }
+            public List<ENTITY> callbackSelectList(WhiteSelfReferenceCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
         });
     }
 
@@ -360,18 +360,18 @@ public abstract class BsWhiteSelfReferenceBhv extends AbstractBehaviorWritable {
         return doScalarSelect(resultType, newMyConditionBean());
     }
 
-    protected <RESULT, CB extends WhiteSelfReferenceCB> SLFunction<CB, RESULT> doScalarSelect(Class<RESULT> resultType, CB cb) {
-        assertObjectNotNull("resultType", resultType); assertCBStateValid(cb);
+    protected <RESULT, CB extends WhiteSelfReferenceCB> SLFunction<CB, RESULT> doScalarSelect(Class<RESULT> tp, CB cb) {
+        assertObjectNotNull("resultType", tp); assertCBStateValid(cb);
         cb.xsetupForScalarSelect(); cb.getSqlClause().disableSelectIndex(); // for when you use union
-        return createSLFunction(cb, resultType);
+        return createSLFunction(cb, tp);
     }
 
-    protected <RESULT, CB extends WhiteSelfReferenceCB> SLFunction<CB, RESULT> createSLFunction(CB cb, Class<RESULT> resultType) {
-        return new SLFunction<CB, RESULT>(cb, resultType);
+    protected <RESULT, CB extends WhiteSelfReferenceCB> SLFunction<CB, RESULT> createSLFunction(CB cb, Class<RESULT> tp) {
+        return new SLFunction<CB, RESULT>(cb, tp);
     }
 
-    protected <RESULT> SLFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> resultType) {
-        return doScalarSelect(resultType, newMyConditionBean());
+    protected <RESULT> SLFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) {
+        return doScalarSelect(tp, newMyConditionBean());
     }
 
     // ===================================================================================
@@ -442,17 +442,17 @@ public abstract class BsWhiteSelfReferenceBhv extends AbstractBehaviorWritable {
         if (whiteSelfReferenceList.isEmpty()) { return; }
         final WhiteSelfReferenceBhv referrerBhv = xgetBSFLR().select(WhiteSelfReferenceBhv.class);
         helpLoadReferrerInternally(whiteSelfReferenceList, loadReferrerOption, new InternalLoadReferrerCallback<WhiteSelfReference, Long, WhiteSelfReferenceCB, WhiteSelfReference>() {
-            public Long getPKVal(WhiteSelfReference e)
-            { return e.getSelfReferenceId(); }
-            public void setRfLs(WhiteSelfReference e, List<WhiteSelfReference> ls)
-            { e.setWhiteSelfReferenceSelfList(ls); }
+            public Long getPKVal(WhiteSelfReference et)
+            { return et.getSelfReferenceId(); }
+            public void setRfLs(WhiteSelfReference et, List<WhiteSelfReference> ls)
+            { et.setWhiteSelfReferenceSelfList(ls); }
             public WhiteSelfReferenceCB newMyCB() { return referrerBhv.newMyConditionBean(); }
             public void qyFKIn(WhiteSelfReferenceCB cb, List<Long> ls)
             { cb.query().setParentId_InScope(ls); }
             public void qyOdFKAsc(WhiteSelfReferenceCB cb) { cb.query().addOrderBy_ParentId_Asc(); }
             public void spFKCol(WhiteSelfReferenceCB cb) { cb.specify().columnParentId(); }
             public List<WhiteSelfReference> selRfLs(WhiteSelfReferenceCB cb) { return referrerBhv.selectList(cb); }
-            public Long getFKVal(WhiteSelfReference e) { return e.getParentId(); }
+            public Long getFKVal(WhiteSelfReference re) { return re.getParentId(); }
             public void setlcEt(WhiteSelfReference re, WhiteSelfReference le)
             { re.setWhiteSelfReferenceSelf(le); }
             public String getRfPrNm() { return "whiteSelfReferenceSelfList"; }
@@ -469,10 +469,10 @@ public abstract class BsWhiteSelfReferenceBhv extends AbstractBehaviorWritable {
      */
     public List<WhiteSelfReference> pulloutWhiteSelfReferenceSelf(List<WhiteSelfReference> whiteSelfReferenceList) {
         return helpPulloutInternally(whiteSelfReferenceList, new InternalPulloutCallback<WhiteSelfReference, WhiteSelfReference>() {
-            public WhiteSelfReference getFr(WhiteSelfReference e) { return e.getWhiteSelfReferenceSelf(); }
+            public WhiteSelfReference getFr(WhiteSelfReference et) { return et.getWhiteSelfReferenceSelf(); }
             public boolean hasRf() { return true; }
-            public void setRfLs(WhiteSelfReference e, List<WhiteSelfReference> ls)
-            { e.setWhiteSelfReferenceSelfList(ls); }
+            public void setRfLs(WhiteSelfReference et, List<WhiteSelfReference> ls)
+            { et.setWhiteSelfReferenceSelfList(ls); }
         });
     }
     /**
@@ -482,10 +482,10 @@ public abstract class BsWhiteSelfReferenceBhv extends AbstractBehaviorWritable {
      */
     public List<WhiteSelfReferenceRefOne> pulloutWhiteSelfReferenceRefOneByParentId(List<WhiteSelfReference> whiteSelfReferenceList) {
         return helpPulloutInternally(whiteSelfReferenceList, new InternalPulloutCallback<WhiteSelfReference, WhiteSelfReferenceRefOne>() {
-            public WhiteSelfReferenceRefOne getFr(WhiteSelfReference e) { return e.getWhiteSelfReferenceRefOneByParentId(); }
+            public WhiteSelfReferenceRefOne getFr(WhiteSelfReference et) { return et.getWhiteSelfReferenceRefOneByParentId(); }
             public boolean hasRf() { return true; }
-            public void setRfLs(WhiteSelfReferenceRefOne e, List<WhiteSelfReference> ls)
-            { e.setWhiteSelfReferenceByParentIdList(ls); }
+            public void setRfLs(WhiteSelfReferenceRefOne et, List<WhiteSelfReference> ls)
+            { et.setWhiteSelfReferenceByParentIdList(ls); }
         });
     }
     /**
@@ -495,10 +495,10 @@ public abstract class BsWhiteSelfReferenceBhv extends AbstractBehaviorWritable {
      */
     public List<WhiteSelfReferenceRefOne> pulloutWhiteSelfReferenceRefOneAsOne(List<WhiteSelfReference> whiteSelfReferenceList) {
         return helpPulloutInternally(whiteSelfReferenceList, new InternalPulloutCallback<WhiteSelfReference, WhiteSelfReferenceRefOne>() {
-            public WhiteSelfReferenceRefOne getFr(WhiteSelfReference e) { return e.getWhiteSelfReferenceRefOneAsOne(); }
+            public WhiteSelfReferenceRefOne getFr(WhiteSelfReference et) { return et.getWhiteSelfReferenceRefOneAsOne(); }
             public boolean hasRf() { return true; }
-            public void setRfLs(WhiteSelfReferenceRefOne e, List<WhiteSelfReference> ls)
-            { if (!ls.isEmpty()) { e.setWhiteSelfReference(ls.get(0)); } }
+            public void setRfLs(WhiteSelfReferenceRefOne et, List<WhiteSelfReference> ls)
+            { if (!ls.isEmpty()) { et.setWhiteSelfReference(ls.get(0)); } }
         });
     }
 
@@ -512,7 +512,7 @@ public abstract class BsWhiteSelfReferenceBhv extends AbstractBehaviorWritable {
      */
     public List<Long> extractSelfReferenceIdList(List<WhiteSelfReference> whiteSelfReferenceList) {
         return helpExtractListInternally(whiteSelfReferenceList, new InternalExtractCallback<WhiteSelfReference, Long>() {
-            public Long getCV(WhiteSelfReference e) { return e.getSelfReferenceId(); }
+            public Long getCV(WhiteSelfReference et) { return et.getSelfReferenceId(); }
         });
     }
 
@@ -540,24 +540,24 @@ public abstract class BsWhiteSelfReferenceBhv extends AbstractBehaviorWritable {
         doInsert(whiteSelfReference, null);
     }
 
-    protected void doInsert(WhiteSelfReference whiteSelfReference, InsertOption<WhiteSelfReferenceCB> option) {
+    protected void doInsert(WhiteSelfReference whiteSelfReference, InsertOption<WhiteSelfReferenceCB> op) {
         assertObjectNotNull("whiteSelfReference", whiteSelfReference);
-        prepareInsertOption(option);
-        delegateInsert(whiteSelfReference, option);
+        prepareInsertOption(op);
+        delegateInsert(whiteSelfReference, op);
     }
 
-    protected void prepareInsertOption(InsertOption<WhiteSelfReferenceCB> option) {
-        if (option == null) { return; }
-        assertInsertOptionStatus(option);
-        if (option.hasSpecifiedInsertColumn()) {
-            option.resolveInsertColumnSpecification(createCBForSpecifiedUpdate());
+    protected void prepareInsertOption(InsertOption<WhiteSelfReferenceCB> op) {
+        if (op == null) { return; }
+        assertInsertOptionStatus(op);
+        if (op.hasSpecifiedInsertColumn()) {
+            op.resolveInsertColumnSpecification(createCBForSpecifiedUpdate());
         }
     }
 
     @Override
-    protected void doCreate(Entity entity, InsertOption<? extends ConditionBean> option) {
-        if (option == null) { insert(downcast(entity)); }
-        else { varyingInsert(downcast(entity), downcast(option)); }
+    protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) {
+        if (op == null) { insert(downcast(et)); }
+        else { varyingInsert(downcast(et), downcast(op)); }
     }
 
     /**
@@ -586,21 +586,21 @@ public abstract class BsWhiteSelfReferenceBhv extends AbstractBehaviorWritable {
         doUpdate(whiteSelfReference, null);
     }
 
-    protected void doUpdate(WhiteSelfReference whiteSelfReference, final UpdateOption<WhiteSelfReferenceCB> option) {
+    protected void doUpdate(WhiteSelfReference whiteSelfReference, final UpdateOption<WhiteSelfReferenceCB> op) {
         assertObjectNotNull("whiteSelfReference", whiteSelfReference);
-        prepareUpdateOption(option);
+        prepareUpdateOption(op);
         helpUpdateInternally(whiteSelfReference, new InternalUpdateCallback<WhiteSelfReference>() {
-            public int callbackDelegateUpdate(WhiteSelfReference entity) { return delegateUpdate(entity, option); } });
+            public int callbackDelegateUpdate(WhiteSelfReference et) { return delegateUpdate(et, op); } });
     }
 
-    protected void prepareUpdateOption(UpdateOption<WhiteSelfReferenceCB> option) {
-        if (option == null) { return; }
-        assertUpdateOptionStatus(option);
-        if (option.hasSelfSpecification()) {
-            option.resolveSelfSpecification(createCBForVaryingUpdate());
+    protected void prepareUpdateOption(UpdateOption<WhiteSelfReferenceCB> op) {
+        if (op == null) { return; }
+        assertUpdateOptionStatus(op);
+        if (op.hasSelfSpecification()) {
+            op.resolveSelfSpecification(createCBForVaryingUpdate());
         }
-        if (option.hasSpecifiedUpdateColumn()) {
-            option.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate());
+        if (op.hasSpecifiedUpdateColumn()) {
+            op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate());
         }
     }
 
@@ -617,14 +617,14 @@ public abstract class BsWhiteSelfReferenceBhv extends AbstractBehaviorWritable {
     }
 
     @Override
-    protected void doModify(Entity entity, UpdateOption<? extends ConditionBean> option) {
-        if (option == null) { update(downcast(entity)); }
-        else { varyingUpdate(downcast(entity), downcast(option)); }
+    protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) {
+        if (op == null) { update(downcast(et)); }
+        else { varyingUpdate(downcast(et), downcast(op)); }
     }
 
     @Override
-    protected void doModifyNonstrict(Entity entity, UpdateOption<? extends ConditionBean> option) {
-        doModify(entity, option);
+    protected void doModifyNonstrict(Entity et, UpdateOption<? extends ConditionBean> op) {
+        doModify(et, op);
     }
 
     /**
@@ -640,30 +640,28 @@ public abstract class BsWhiteSelfReferenceBhv extends AbstractBehaviorWritable {
         doInesrtOrUpdate(whiteSelfReference, null, null);
     }
 
-    protected void doInesrtOrUpdate(WhiteSelfReference whiteSelfReference, final InsertOption<WhiteSelfReferenceCB> insertOption, final UpdateOption<WhiteSelfReferenceCB> updateOption) {
+    protected void doInesrtOrUpdate(WhiteSelfReference whiteSelfReference, final InsertOption<WhiteSelfReferenceCB> iop, final UpdateOption<WhiteSelfReferenceCB> uop) {
         helpInsertOrUpdateInternally(whiteSelfReference, new InternalInsertOrUpdateCallback<WhiteSelfReference, WhiteSelfReferenceCB>() {
-            public void callbackInsert(WhiteSelfReference entity) { doInsert(entity, insertOption); }
-            public void callbackUpdate(WhiteSelfReference entity) { doUpdate(entity, updateOption); }
+            public void callbackInsert(WhiteSelfReference et) { doInsert(et, iop); }
+            public void callbackUpdate(WhiteSelfReference et) { doUpdate(et, uop); }
             public WhiteSelfReferenceCB callbackNewMyConditionBean() { return newMyConditionBean(); }
             public int callbackSelectCount(WhiteSelfReferenceCB cb) { return selectCount(cb); }
         });
     }
 
     @Override
-    protected void doCreateOrModify(Entity entity, InsertOption<? extends ConditionBean> insertOption,
-            UpdateOption<? extends ConditionBean> updateOption) {
-        if (insertOption == null && updateOption == null) { insertOrUpdate(downcast(entity)); }
+    protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
+        if (iop == null && uop == null) { insertOrUpdate(downcast(et)); }
         else {
-            insertOption = insertOption == null ? new InsertOption<WhiteSelfReferenceCB>() : insertOption;
-            updateOption = updateOption == null ? new UpdateOption<WhiteSelfReferenceCB>() : updateOption;
-            varyingInsertOrUpdate(downcast(entity), downcast(insertOption), downcast(updateOption));
+            iop = iop != null ? iop : new InsertOption<WhiteSelfReferenceCB>();
+            uop = uop != null ? uop : new UpdateOption<WhiteSelfReferenceCB>();
+            varyingInsertOrUpdate(downcast(et), downcast(iop), downcast(uop));
         }
     }
 
     @Override
-    protected void doCreateOrModifyNonstrict(Entity entity, InsertOption<? extends ConditionBean> insertOption,
-            UpdateOption<? extends ConditionBean> updateOption) {
-        doCreateOrModify(entity, insertOption, updateOption);
+    protected void doCreateOrModifyNonstrict(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
+        doCreateOrModify(et, iop, uop);
     }
 
     /**
@@ -687,27 +685,27 @@ public abstract class BsWhiteSelfReferenceBhv extends AbstractBehaviorWritable {
         doDelete(whiteSelfReference, null);
     }
 
-    protected void doDelete(WhiteSelfReference whiteSelfReference, final DeleteOption<WhiteSelfReferenceCB> option) {
+    protected void doDelete(WhiteSelfReference whiteSelfReference, final DeleteOption<WhiteSelfReferenceCB> op) {
         assertObjectNotNull("whiteSelfReference", whiteSelfReference);
-        prepareDeleteOption(option);
+        prepareDeleteOption(op);
         helpDeleteInternally(whiteSelfReference, new InternalDeleteCallback<WhiteSelfReference>() {
-            public int callbackDelegateDelete(WhiteSelfReference entity) { return delegateDelete(entity, option); } });
+            public int callbackDelegateDelete(WhiteSelfReference et) { return delegateDelete(et, op); } });
     }
 
-    protected void prepareDeleteOption(DeleteOption<WhiteSelfReferenceCB> option) {
-        if (option == null) { return; }
-        assertDeleteOptionStatus(option);
-    }
-
-    @Override
-    protected void doRemove(Entity entity, DeleteOption<? extends ConditionBean> option) {
-        if (option == null) { delete(downcast(entity)); }
-        else { varyingDelete(downcast(entity), downcast(option)); }
+    protected void prepareDeleteOption(DeleteOption<WhiteSelfReferenceCB> op) {
+        if (op == null) { return; }
+        assertDeleteOptionStatus(op);
     }
 
     @Override
-    protected void doRemoveNonstrict(Entity entity, DeleteOption<? extends ConditionBean> option) {
-        doRemove(entity, option);
+    protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) {
+        if (op == null) { delete(downcast(et)); }
+        else { varyingDelete(downcast(et), downcast(op)); }
+    }
+
+    @Override
+    protected void doRemoveNonstrict(Entity et, DeleteOption<? extends ConditionBean> op) {
+        doRemove(et, op);
     }
 
     // ===================================================================================
@@ -738,26 +736,26 @@ public abstract class BsWhiteSelfReferenceBhv extends AbstractBehaviorWritable {
      * @return The array of inserted count. (NotNull, EmptyAllowed)
      */
     public int[] batchInsert(List<WhiteSelfReference> whiteSelfReferenceList) {
-        InsertOption<WhiteSelfReferenceCB> option = createInsertUpdateOption();
-        return doBatchInsert(whiteSelfReferenceList, option);
+        InsertOption<WhiteSelfReferenceCB> op = createInsertUpdateOption();
+        return doBatchInsert(whiteSelfReferenceList, op);
     }
 
-    protected int[] doBatchInsert(List<WhiteSelfReference> whiteSelfReferenceList, InsertOption<WhiteSelfReferenceCB> option) {
+    protected int[] doBatchInsert(List<WhiteSelfReference> whiteSelfReferenceList, InsertOption<WhiteSelfReferenceCB> op) {
         assertObjectNotNull("whiteSelfReferenceList", whiteSelfReferenceList);
-        prepareBatchInsertOption(whiteSelfReferenceList, option);
-        return delegateBatchInsert(whiteSelfReferenceList, option);
+        prepareBatchInsertOption(whiteSelfReferenceList, op);
+        return delegateBatchInsert(whiteSelfReferenceList, op);
     }
 
-    protected void prepareBatchInsertOption(List<WhiteSelfReference> whiteSelfReferenceList, InsertOption<WhiteSelfReferenceCB> option) {
-        option.xallowInsertColumnModifiedPropertiesFragmented();
-        option.xacceptInsertColumnModifiedPropertiesIfNeeds(whiteSelfReferenceList);
-        prepareInsertOption(option);
+    protected void prepareBatchInsertOption(List<WhiteSelfReference> whiteSelfReferenceList, InsertOption<WhiteSelfReferenceCB> op) {
+        op.xallowInsertColumnModifiedPropertiesFragmented();
+        op.xacceptInsertColumnModifiedPropertiesIfNeeds(whiteSelfReferenceList);
+        prepareInsertOption(op);
     }
 
     @Override
-    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> option) {
-        if (option == null) { return batchInsert(downcast(ls)); }
-        else { return varyingBatchInsert(downcast(ls), downcast(option)); }
+    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) {
+        if (op == null) { return batchInsert(downcast(ls)); }
+        else { return varyingBatchInsert(downcast(ls), downcast(op)); }
     }
 
     /**
@@ -785,25 +783,25 @@ public abstract class BsWhiteSelfReferenceBhv extends AbstractBehaviorWritable {
      * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<WhiteSelfReference> whiteSelfReferenceList) {
-        UpdateOption<WhiteSelfReferenceCB> option = createPlainUpdateOption();
-        return doBatchUpdate(whiteSelfReferenceList, option);
+        UpdateOption<WhiteSelfReferenceCB> op = createPlainUpdateOption();
+        return doBatchUpdate(whiteSelfReferenceList, op);
     }
 
-    protected int[] doBatchUpdate(List<WhiteSelfReference> whiteSelfReferenceList, UpdateOption<WhiteSelfReferenceCB> option) {
+    protected int[] doBatchUpdate(List<WhiteSelfReference> whiteSelfReferenceList, UpdateOption<WhiteSelfReferenceCB> op) {
         assertObjectNotNull("whiteSelfReferenceList", whiteSelfReferenceList);
-        prepareBatchUpdateOption(whiteSelfReferenceList, option);
-        return delegateBatchUpdate(whiteSelfReferenceList, option);
+        prepareBatchUpdateOption(whiteSelfReferenceList, op);
+        return delegateBatchUpdate(whiteSelfReferenceList, op);
     }
 
-    protected void prepareBatchUpdateOption(List<WhiteSelfReference> whiteSelfReferenceList, UpdateOption<WhiteSelfReferenceCB> option) {
-        option.xacceptUpdateColumnModifiedPropertiesIfNeeds(whiteSelfReferenceList);
-        prepareUpdateOption(option);
+    protected void prepareBatchUpdateOption(List<WhiteSelfReference> whiteSelfReferenceList, UpdateOption<WhiteSelfReferenceCB> op) {
+        op.xacceptUpdateColumnModifiedPropertiesIfNeeds(whiteSelfReferenceList);
+        prepareUpdateOption(op);
     }
 
     @Override
-    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> option) {
-        if (option == null) { return batchUpdate(downcast(ls)); }
-        else { return varyingBatchUpdate(downcast(ls), downcast(option)); }
+    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) {
+        if (op == null) { return batchUpdate(downcast(ls)); }
+        else { return varyingBatchUpdate(downcast(ls), downcast(op)); }
     }
 
     /**
@@ -839,8 +837,8 @@ public abstract class BsWhiteSelfReferenceBhv extends AbstractBehaviorWritable {
     }
 
     @Override
-    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> option) {
-        return doLumpModify(ls, option);
+    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> op) {
+        return doLumpModify(ls, op);
     }
 
     /**
@@ -854,21 +852,21 @@ public abstract class BsWhiteSelfReferenceBhv extends AbstractBehaviorWritable {
         return doBatchDelete(whiteSelfReferenceList, null);
     }
 
-    protected int[] doBatchDelete(List<WhiteSelfReference> whiteSelfReferenceList, DeleteOption<WhiteSelfReferenceCB> option) {
+    protected int[] doBatchDelete(List<WhiteSelfReference> whiteSelfReferenceList, DeleteOption<WhiteSelfReferenceCB> op) {
         assertObjectNotNull("whiteSelfReferenceList", whiteSelfReferenceList);
-        prepareDeleteOption(option);
-        return delegateBatchDelete(whiteSelfReferenceList, option);
+        prepareDeleteOption(op);
+        return delegateBatchDelete(whiteSelfReferenceList, op);
     }
 
     @Override
-    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> option) {
-        if (option == null) { return batchDelete(downcast(ls)); }
-        else { return varyingBatchDelete(downcast(ls), downcast(option)); }
+    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) {
+        if (op == null) { return batchDelete(downcast(ls)); }
+        else { return varyingBatchDelete(downcast(ls), downcast(op)); }
     }
 
     @Override
-    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> option) {
-        return doLumpRemove(ls, option);
+    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> op) {
+        return doLumpRemove(ls, op);
     }
 
     // ===================================================================================
@@ -904,13 +902,12 @@ public abstract class BsWhiteSelfReferenceBhv extends AbstractBehaviorWritable {
         return doQueryInsert(setupper, null);
     }
 
-    protected int doQueryInsert(QueryInsertSetupper<WhiteSelfReference, WhiteSelfReferenceCB> setupper, InsertOption<WhiteSelfReferenceCB> option) {
-        assertObjectNotNull("setupper", setupper);
-        prepareInsertOption(option);
-        WhiteSelfReference entity = new WhiteSelfReference();
-        WhiteSelfReferenceCB intoCB = createCBForQueryInsert();
-        ConditionBean resourceCB = setupper.setup(entity, intoCB);
-        return delegateQueryInsert(entity, intoCB, resourceCB, option);
+    protected int doQueryInsert(QueryInsertSetupper<WhiteSelfReference, WhiteSelfReferenceCB> sp, InsertOption<WhiteSelfReferenceCB> op) {
+        assertObjectNotNull("setupper", sp);
+        prepareInsertOption(op);
+        WhiteSelfReference e = new WhiteSelfReference();
+        WhiteSelfReferenceCB cb = createCBForQueryInsert();
+        return delegateQueryInsert(e, cb, sp.setup(e, cb), op);
     }
 
     protected WhiteSelfReferenceCB createCBForQueryInsert() {
@@ -951,16 +948,16 @@ public abstract class BsWhiteSelfReferenceBhv extends AbstractBehaviorWritable {
         return doQueryUpdate(whiteSelfReference, cb, null);
     }
 
-    protected int doQueryUpdate(WhiteSelfReference whiteSelfReference, WhiteSelfReferenceCB cb, UpdateOption<WhiteSelfReferenceCB> option) {
+    protected int doQueryUpdate(WhiteSelfReference whiteSelfReference, WhiteSelfReferenceCB cb, UpdateOption<WhiteSelfReferenceCB> op) {
         assertObjectNotNull("whiteSelfReference", whiteSelfReference); assertCBStateValid(cb);
-        prepareUpdateOption(option);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(whiteSelfReference, cb, option) : 0;
+        prepareUpdateOption(op);
+        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(whiteSelfReference, cb, op) : 0;
     }
 
     @Override
-    protected int doRangeModify(Entity entity, ConditionBean cb, UpdateOption<? extends ConditionBean> option) {
-        if (option == null) { return queryUpdate(downcast(entity), (WhiteSelfReferenceCB)cb); }
-        else { return varyingQueryUpdate(downcast(entity), (WhiteSelfReferenceCB)cb, downcast(option)); }
+    protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op) {
+        if (op == null) { return queryUpdate(downcast(et), (WhiteSelfReferenceCB)cb); }
+        else { return varyingQueryUpdate(downcast(et), (WhiteSelfReferenceCB)cb, downcast(op)); }
     }
 
     /**
@@ -978,16 +975,16 @@ public abstract class BsWhiteSelfReferenceBhv extends AbstractBehaviorWritable {
         return doQueryDelete(cb, null);
     }
 
-    protected int doQueryDelete(WhiteSelfReferenceCB cb, DeleteOption<WhiteSelfReferenceCB> option) {
+    protected int doQueryDelete(WhiteSelfReferenceCB cb, DeleteOption<WhiteSelfReferenceCB> op) {
         assertCBStateValid(cb);
-        prepareDeleteOption(option);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryDelete(cb, option) : 0;
+        prepareDeleteOption(op);
+        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryDelete(cb, op) : 0;
     }
 
     @Override
-    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> option) {
-        if (option == null) { return queryDelete((WhiteSelfReferenceCB)cb); }
-        else { return varyingQueryDelete((WhiteSelfReferenceCB)cb, downcast(option)); }
+    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) {
+        if (op == null) { return queryDelete((WhiteSelfReferenceCB)cb); }
+        else { return varyingQueryDelete((WhiteSelfReferenceCB)cb, downcast(op)); }
     }
 
     // ===================================================================================
@@ -1239,29 +1236,29 @@ public abstract class BsWhiteSelfReferenceBhv extends AbstractBehaviorWritable {
     //                                                ------
     protected int delegateSelectCountUniquely(WhiteSelfReferenceCB cb) { return invoke(createSelectCountCBCommand(cb, true)); }
     protected int delegateSelectCountPlainly(WhiteSelfReferenceCB cb) { return invoke(createSelectCountCBCommand(cb, false)); }
-    protected <ENTITY extends WhiteSelfReference> void delegateSelectCursor(WhiteSelfReferenceCB cb, EntityRowHandler<ENTITY> erh, Class<ENTITY> et)
-    { invoke(createSelectCursorCBCommand(cb, erh, et)); }
-    protected <ENTITY extends WhiteSelfReference> List<ENTITY> delegateSelectList(WhiteSelfReferenceCB cb, Class<ENTITY> et)
-    { return invoke(createSelectListCBCommand(cb, et)); }
+    protected <ENTITY extends WhiteSelfReference> void delegateSelectCursor(WhiteSelfReferenceCB cb, EntityRowHandler<ENTITY> rh, Class<ENTITY> tp)
+    { invoke(createSelectCursorCBCommand(cb, rh, tp)); }
+    protected <ENTITY extends WhiteSelfReference> List<ENTITY> delegateSelectList(WhiteSelfReferenceCB cb, Class<ENTITY> tp)
+    { return invoke(createSelectListCBCommand(cb, tp)); }
 
     // -----------------------------------------------------
     //                                                Update
     //                                                ------
-    protected int delegateInsert(WhiteSelfReference e, InsertOption<WhiteSelfReferenceCB> op)
-    { if (!processBeforeInsert(e, op)) { return 0; }
-      return invoke(createInsertEntityCommand(e, op)); }
-    protected int delegateUpdate(WhiteSelfReference e, UpdateOption<WhiteSelfReferenceCB> op)
-    { if (!processBeforeUpdate(e, op)) { return 0; }
-      return delegateUpdateNonstrict(e, op); }
-    protected int delegateUpdateNonstrict(WhiteSelfReference e, UpdateOption<WhiteSelfReferenceCB> op)
-    { if (!processBeforeUpdate(e, op)) { return 0; }
-      return invoke(createUpdateNonstrictEntityCommand(e, op)); }
-    protected int delegateDelete(WhiteSelfReference e, DeleteOption<WhiteSelfReferenceCB> op)
-    { if (!processBeforeDelete(e, op)) { return 0; }
-      return delegateDeleteNonstrict(e, op); }
-    protected int delegateDeleteNonstrict(WhiteSelfReference e, DeleteOption<WhiteSelfReferenceCB> op)
-    { if (!processBeforeDelete(e, op)) { return 0; }
-      return invoke(createDeleteNonstrictEntityCommand(e, op)); }
+    protected int delegateInsert(WhiteSelfReference et, InsertOption<WhiteSelfReferenceCB> op)
+    { if (!processBeforeInsert(et, op)) { return 0; }
+      return invoke(createInsertEntityCommand(et, op)); }
+    protected int delegateUpdate(WhiteSelfReference et, UpdateOption<WhiteSelfReferenceCB> op)
+    { if (!processBeforeUpdate(et, op)) { return 0; }
+      return delegateUpdateNonstrict(et, op); }
+    protected int delegateUpdateNonstrict(WhiteSelfReference et, UpdateOption<WhiteSelfReferenceCB> op)
+    { if (!processBeforeUpdate(et, op)) { return 0; }
+      return invoke(createUpdateNonstrictEntityCommand(et, op)); }
+    protected int delegateDelete(WhiteSelfReference et, DeleteOption<WhiteSelfReferenceCB> op)
+    { if (!processBeforeDelete(et, op)) { return 0; }
+      return delegateDeleteNonstrict(et, op); }
+    protected int delegateDeleteNonstrict(WhiteSelfReference et, DeleteOption<WhiteSelfReferenceCB> op)
+    { if (!processBeforeDelete(et, op)) { return 0; }
+      return invoke(createDeleteNonstrictEntityCommand(et, op)); }
 
     protected int[] delegateBatchInsert(List<WhiteSelfReference> ls, InsertOption<WhiteSelfReferenceCB> op)
     { if (ls.isEmpty()) { return new int[]{}; }
@@ -1279,10 +1276,10 @@ public abstract class BsWhiteSelfReferenceBhv extends AbstractBehaviorWritable {
     { if (ls.isEmpty()) { return new int[]{}; }
       return invoke(createBatchDeleteNonstrictCommand(processBatchInternally(ls, op, true), op)); }
 
-    protected int delegateQueryInsert(WhiteSelfReference e, WhiteSelfReferenceCB inCB, ConditionBean resCB, InsertOption<WhiteSelfReferenceCB> op)
-    { if (!processBeforeQueryInsert(e, inCB, resCB, op)) { return 0; } return invoke(createQueryInsertCBCommand(e, inCB, resCB, op));  }
-    protected int delegateQueryUpdate(WhiteSelfReference e, WhiteSelfReferenceCB cb, UpdateOption<WhiteSelfReferenceCB> op)
-    { if (!processBeforeQueryUpdate(e, cb, op)) { return 0; } return invoke(createQueryUpdateCBCommand(e, cb, op));  }
+    protected int delegateQueryInsert(WhiteSelfReference et, WhiteSelfReferenceCB inCB, ConditionBean resCB, InsertOption<WhiteSelfReferenceCB> op)
+    { if (!processBeforeQueryInsert(et, inCB, resCB, op)) { return 0; } return invoke(createQueryInsertCBCommand(et, inCB, resCB, op));  }
+    protected int delegateQueryUpdate(WhiteSelfReference et, WhiteSelfReferenceCB cb, UpdateOption<WhiteSelfReferenceCB> op)
+    { if (!processBeforeQueryUpdate(et, cb, op)) { return 0; } return invoke(createQueryUpdateCBCommand(et, cb, op));  }
     protected int delegateQueryDelete(WhiteSelfReferenceCB cb, DeleteOption<WhiteSelfReferenceCB> op)
     { if (!processBeforeQueryDelete(cb, op)) { return 0; } return invoke(createQueryDeleteCBCommand(cb, op));  }
 
@@ -1293,7 +1290,7 @@ public abstract class BsWhiteSelfReferenceBhv extends AbstractBehaviorWritable {
      * {@inheritDoc}
      */
     @Override
-    protected boolean hasVersionNoValue(Entity entity) {
+    protected boolean hasVersionNoValue(Entity et) {
         return false;
     }
 
@@ -1301,15 +1298,15 @@ public abstract class BsWhiteSelfReferenceBhv extends AbstractBehaviorWritable {
      * {@inheritDoc}
      */
     @Override
-    protected boolean hasUpdateDateValue(Entity entity) {
+    protected boolean hasUpdateDateValue(Entity et) {
         return false;
     }
 
     // ===================================================================================
     //                                                                     Downcast Helper
     //                                                                     ===============
-    protected WhiteSelfReference downcast(Entity entity) {
-        return helpEntityDowncastInternally(entity, WhiteSelfReference.class);
+    protected WhiteSelfReference downcast(Entity et) {
+        return helpEntityDowncastInternally(et, WhiteSelfReference.class);
     }
 
     protected WhiteSelfReferenceCB downcast(ConditionBean cb) {
@@ -1317,27 +1314,27 @@ public abstract class BsWhiteSelfReferenceBhv extends AbstractBehaviorWritable {
     }
 
     @SuppressWarnings("unchecked")
-    protected List<WhiteSelfReference> downcast(List<? extends Entity> entityList) {
-        return (List<WhiteSelfReference>)entityList;
+    protected List<WhiteSelfReference> downcast(List<? extends Entity> ls) {
+        return (List<WhiteSelfReference>)ls;
     }
 
     @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteSelfReferenceCB> downcast(InsertOption<? extends ConditionBean> option) {
-        return (InsertOption<WhiteSelfReferenceCB>)option;
+    protected InsertOption<WhiteSelfReferenceCB> downcast(InsertOption<? extends ConditionBean> op) {
+        return (InsertOption<WhiteSelfReferenceCB>)op;
     }
 
     @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteSelfReferenceCB> downcast(UpdateOption<? extends ConditionBean> option) {
-        return (UpdateOption<WhiteSelfReferenceCB>)option;
+    protected UpdateOption<WhiteSelfReferenceCB> downcast(UpdateOption<? extends ConditionBean> op) {
+        return (UpdateOption<WhiteSelfReferenceCB>)op;
     }
 
     @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteSelfReferenceCB> downcast(DeleteOption<? extends ConditionBean> option) {
-        return (DeleteOption<WhiteSelfReferenceCB>)option;
+    protected DeleteOption<WhiteSelfReferenceCB> downcast(DeleteOption<? extends ConditionBean> op) {
+        return (DeleteOption<WhiteSelfReferenceCB>)op;
     }
 
     @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhiteSelfReference, WhiteSelfReferenceCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> option) {
-        return (QueryInsertSetupper<WhiteSelfReference, WhiteSelfReferenceCB>)option;
+    protected QueryInsertSetupper<WhiteSelfReference, WhiteSelfReferenceCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp) {
+        return (QueryInsertSetupper<WhiteSelfReference, WhiteSelfReferenceCB>)sp;
     }
 }

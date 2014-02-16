@@ -58,20 +58,20 @@ public class WhiteImplicitReverseFkRefDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgWhiteImplicitReverseFkRefId implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteImplicitReverseFkRef)e).getWhiteImplicitReverseFkRefId(); }
-        public void write(Entity e, Object v) { ((WhiteImplicitReverseFkRef)e).setWhiteImplicitReverseFkRefId(cti(v)); }
+        public Object read(Entity et) { return ((WhiteImplicitReverseFkRef)et).getWhiteImplicitReverseFkRefId(); }
+        public void write(Entity et, Object vl) { ((WhiteImplicitReverseFkRef)et).setWhiteImplicitReverseFkRefId(cti(vl)); }
     }
     public static class EpgWhiteImplicitReverseFkId implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteImplicitReverseFkRef)e).getWhiteImplicitReverseFkId(); }
-        public void write(Entity e, Object v) { ((WhiteImplicitReverseFkRef)e).setWhiteImplicitReverseFkId(cti(v)); }
+        public Object read(Entity et) { return ((WhiteImplicitReverseFkRef)et).getWhiteImplicitReverseFkId(); }
+        public void write(Entity et, Object vl) { ((WhiteImplicitReverseFkRef)et).setWhiteImplicitReverseFkId(cti(vl)); }
     }
     public static class EpgValidBeginDate implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteImplicitReverseFkRef)e).getValidBeginDate(); }
-        public void write(Entity e, Object v) { ((WhiteImplicitReverseFkRef)e).setValidBeginDate((java.util.Date)v); }
+        public Object read(Entity et) { return ((WhiteImplicitReverseFkRef)et).getValidBeginDate(); }
+        public void write(Entity et, Object vl) { ((WhiteImplicitReverseFkRef)et).setValidBeginDate((java.util.Date)vl); }
     }
     public static class EpgValidEndDate implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteImplicitReverseFkRef)e).getValidEndDate(); }
-        public void write(Entity e, Object v) { ((WhiteImplicitReverseFkRef)e).setValidEndDate((java.util.Date)v); }
+        public Object read(Entity et) { return ((WhiteImplicitReverseFkRef)et).getValidEndDate(); }
+        public void write(Entity et, Object vl) { ((WhiteImplicitReverseFkRef)et).setValidEndDate((java.util.Date)vl); }
     }
 
     // ===================================================================================
@@ -126,8 +126,8 @@ public class WhiteImplicitReverseFkRefDbm extends AbstractDBMeta {
     //                                      Foreign Property
     //                                      ----------------
     public ForeignInfo foreignWhiteImplicitReverseFk() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnWhiteImplicitReverseFkId(), WhiteImplicitReverseFkDbm.getInstance().columnWhiteImplicitReverseFkId());
-        return cfi("FK_white_implicit_reverse_fk_ref_white_implicit_reverse_fk_IMPLICIT", "whiteImplicitReverseFk", this, WhiteImplicitReverseFkDbm.getInstance(), map, 0, false, false, false, true, null, null, false, "whiteImplicitReverseFkRefList");
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnWhiteImplicitReverseFkId(), WhiteImplicitReverseFkDbm.getInstance().columnWhiteImplicitReverseFkId());
+        return cfi("FK_white_implicit_reverse_fk_ref_white_implicit_reverse_fk_IMPLICIT", "whiteImplicitReverseFk", this, WhiteImplicitReverseFkDbm.getInstance(), mp, 0, false, false, false, true, null, null, false, "whiteImplicitReverseFkRefList");
     }
 
     // -----------------------------------------------------
@@ -160,10 +160,10 @@ public class WhiteImplicitReverseFkRefDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((WhiteImplicitReverseFkRef)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((WhiteImplicitReverseFkRef)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((WhiteImplicitReverseFkRef)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((WhiteImplicitReverseFkRef)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

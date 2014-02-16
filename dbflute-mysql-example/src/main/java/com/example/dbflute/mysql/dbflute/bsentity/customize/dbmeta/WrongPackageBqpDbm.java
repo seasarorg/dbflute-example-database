@@ -58,20 +58,20 @@ public class WrongPackageBqpDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgMemberId implements PropertyGateway {
-        public Object read(Entity e) { return ((WrongPackageBqp)e).getMemberId(); }
-        public void write(Entity e, Object v) { ((WrongPackageBqp)e).setMemberId(cti(v)); }
+        public Object read(Entity et) { return ((WrongPackageBqp)et).getMemberId(); }
+        public void write(Entity et, Object vl) { ((WrongPackageBqp)et).setMemberId(cti(vl)); }
     }
     public static class EpgMemberName implements PropertyGateway {
-        public Object read(Entity e) { return ((WrongPackageBqp)e).getMemberName(); }
-        public void write(Entity e, Object v) { ((WrongPackageBqp)e).setMemberName((String)v); }
+        public Object read(Entity et) { return ((WrongPackageBqp)et).getMemberName(); }
+        public void write(Entity et, Object vl) { ((WrongPackageBqp)et).setMemberName((String)vl); }
     }
     public static class EpgBirthdate implements PropertyGateway {
-        public Object read(Entity e) { return ((WrongPackageBqp)e).getBirthdate(); }
-        public void write(Entity e, Object v) { ((WrongPackageBqp)e).setBirthdate((java.util.Date)v); }
+        public Object read(Entity et) { return ((WrongPackageBqp)et).getBirthdate(); }
+        public void write(Entity et, Object vl) { ((WrongPackageBqp)et).setBirthdate((java.util.Date)vl); }
     }
     public static class EpgMemberStatusName implements PropertyGateway {
-        public Object read(Entity e) { return ((WrongPackageBqp)e).getMemberStatusName(); }
-        public void write(Entity e, Object v) { ((WrongPackageBqp)e).setMemberStatusName((String)v); }
+        public Object read(Entity et) { return ((WrongPackageBqp)et).getMemberStatusName(); }
+        public void write(Entity et, Object vl) { ((WrongPackageBqp)et).setMemberStatusName((String)vl); }
     }
 
     // ===================================================================================
@@ -157,10 +157,10 @@ public class WrongPackageBqpDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((WrongPackageBqp)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((WrongPackageBqp)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((WrongPackageBqp)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((WrongPackageBqp)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

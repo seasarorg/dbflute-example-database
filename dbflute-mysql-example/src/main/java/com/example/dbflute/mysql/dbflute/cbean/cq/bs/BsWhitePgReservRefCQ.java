@@ -117,18 +117,18 @@ public class BsWhitePgReservRefCQ extends AbstractBsWhitePgReservRefCQ {
 
     protected Map<String, WhitePgReservCQ> _classSynonym_InScopeRelation_WhitePgReservMap;
     public Map<String, WhitePgReservCQ> getClassSynonym_InScopeRelation_WhitePgReserv() { return _classSynonym_InScopeRelation_WhitePgReservMap; }
-    public String keepClassSynonym_InScopeRelation_WhitePgReserv(WhitePgReservCQ subQuery) {
+    public String keepClassSynonym_InScopeRelation_WhitePgReserv(WhitePgReservCQ sq) {
         if (_classSynonym_InScopeRelation_WhitePgReservMap == null) { _classSynonym_InScopeRelation_WhitePgReservMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_classSynonym_InScopeRelation_WhitePgReservMap.size() + 1);
-        _classSynonym_InScopeRelation_WhitePgReservMap.put(key, subQuery); return "classSynonym_InScopeRelation_WhitePgReserv." + key;
+        String ky = "subQueryMapKey" + (_classSynonym_InScopeRelation_WhitePgReservMap.size() + 1);
+        _classSynonym_InScopeRelation_WhitePgReservMap.put(ky, sq); return "classSynonym_InScopeRelation_WhitePgReserv." + ky;
     }
 
     protected Map<String, WhitePgReservCQ> _classSynonym_NotInScopeRelation_WhitePgReservMap;
     public Map<String, WhitePgReservCQ> getClassSynonym_NotInScopeRelation_WhitePgReserv() { return _classSynonym_NotInScopeRelation_WhitePgReservMap; }
-    public String keepClassSynonym_NotInScopeRelation_WhitePgReserv(WhitePgReservCQ subQuery) {
+    public String keepClassSynonym_NotInScopeRelation_WhitePgReserv(WhitePgReservCQ sq) {
         if (_classSynonym_NotInScopeRelation_WhitePgReservMap == null) { _classSynonym_NotInScopeRelation_WhitePgReservMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_classSynonym_NotInScopeRelation_WhitePgReservMap.size() + 1);
-        _classSynonym_NotInScopeRelation_WhitePgReservMap.put(key, subQuery); return "classSynonym_NotInScopeRelation_WhitePgReserv." + key;
+        String ky = "subQueryMapKey" + (_classSynonym_NotInScopeRelation_WhitePgReservMap.size() + 1);
+        _classSynonym_NotInScopeRelation_WhitePgReservMap.put(ky, sq); return "classSynonym_NotInScopeRelation_WhitePgReserv." + ky;
     }
 
     /** 
@@ -185,11 +185,11 @@ public class BsWhitePgReservRefCQ extends AbstractBsWhitePgReservRefCQ {
     // ===================================================================================
     //                                                                         Union Query
     //                                                                         ===========
-    protected void reflectRelationOnUnionQuery(ConditionQuery baseQueryAsSuper, ConditionQuery unionQueryAsSuper) {
-        WhitePgReservRefCQ baseQuery = (WhitePgReservRefCQ)baseQueryAsSuper;
-        WhitePgReservRefCQ unionQuery = (WhitePgReservRefCQ)unionQueryAsSuper;
-        if (baseQuery.hasConditionQueryWhitePgReserv()) {
-            unionQuery.queryWhitePgReserv().reflectRelationOnUnionQuery(baseQuery.queryWhitePgReserv(), unionQuery.queryWhitePgReserv());
+    protected void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
+        WhitePgReservRefCQ bq = (WhitePgReservRefCQ)bqs;
+        WhitePgReservRefCQ uq = (WhitePgReservRefCQ)uqs;
+        if (bq.hasConditionQueryWhitePgReserv()) {
+            uq.queryWhitePgReserv().reflectRelationOnUnionQuery(bq.queryWhitePgReserv(), uq.queryWhitePgReserv());
         }
     }
 
@@ -239,10 +239,10 @@ public class BsWhitePgReservRefCQ extends AbstractBsWhitePgReservRefCQ {
     //                                                                     ===============
     protected Map<String, WhitePgReservRefCQ> _scalarConditionMap;
     public Map<String, WhitePgReservRefCQ> getScalarCondition() { return _scalarConditionMap; }
-    public String keepScalarCondition(WhitePgReservRefCQ subQuery) {
+    public String keepScalarCondition(WhitePgReservRefCQ sq) {
         if (_scalarConditionMap == null) { _scalarConditionMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
-        _scalarConditionMap.put(key, subQuery); return "scalarCondition." + key;
+        String ky = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
+        _scalarConditionMap.put(ky, sq); return "scalarCondition." + ky;
     }
 
     // ===================================================================================
@@ -250,25 +250,25 @@ public class BsWhitePgReservRefCQ extends AbstractBsWhitePgReservRefCQ {
     //                                                                       =============
     protected Map<String, WhitePgReservRefCQ> _specifyMyselfDerivedMap;
     public Map<String, WhitePgReservRefCQ> getSpecifyMyselfDerived() { return _specifyMyselfDerivedMap; }
-    public String keepSpecifyMyselfDerived(WhitePgReservRefCQ subQuery) {
+    public String keepSpecifyMyselfDerived(WhitePgReservRefCQ sq) {
         if (_specifyMyselfDerivedMap == null) { _specifyMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
-        _specifyMyselfDerivedMap.put(key, subQuery); return "specifyMyselfDerived." + key;
+        String ky = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
+        _specifyMyselfDerivedMap.put(ky, sq); return "specifyMyselfDerived." + ky;
     }
 
     protected Map<String, WhitePgReservRefCQ> _queryMyselfDerivedMap;
     public Map<String, WhitePgReservRefCQ> getQueryMyselfDerived() { return _queryMyselfDerivedMap; }
-    public String keepQueryMyselfDerived(WhitePgReservRefCQ subQuery) {
+    public String keepQueryMyselfDerived(WhitePgReservRefCQ sq) {
         if (_queryMyselfDerivedMap == null) { _queryMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
-        _queryMyselfDerivedMap.put(key, subQuery); return "queryMyselfDerived." + key;
+        String ky = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
+        _queryMyselfDerivedMap.put(ky, sq); return "queryMyselfDerived." + ky;
     }
     protected Map<String, Object> _qyeryMyselfDerivedParameterMap;
     public Map<String, Object> getQueryMyselfDerivedParameter() { return _qyeryMyselfDerivedParameterMap; }
-    public String keepQueryMyselfDerivedParameter(Object parameterValue) {
+    public String keepQueryMyselfDerivedParameter(Object vl) {
         if (_qyeryMyselfDerivedParameterMap == null) { _qyeryMyselfDerivedParameterMap = newLinkedHashMapSized(4); }
-        String key = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
-        _qyeryMyselfDerivedParameterMap.put(key, parameterValue); return "queryMyselfDerivedParameter." + key;
+        String ky = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
+        _qyeryMyselfDerivedParameterMap.put(ky, vl); return "queryMyselfDerivedParameter." + ky;
     }
 
     // ===================================================================================
@@ -276,10 +276,10 @@ public class BsWhitePgReservRefCQ extends AbstractBsWhitePgReservRefCQ {
     //                                                                        ============
     protected Map<String, WhitePgReservRefCQ> _myselfExistsMap;
     public Map<String, WhitePgReservRefCQ> getMyselfExists() { return _myselfExistsMap; }
-    public String keepMyselfExists(WhitePgReservRefCQ subQuery) {
+    public String keepMyselfExists(WhitePgReservRefCQ sq) {
         if (_myselfExistsMap == null) { _myselfExistsMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
-        _myselfExistsMap.put(key, subQuery); return "myselfExists." + key;
+        String ky = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
+        _myselfExistsMap.put(ky, sq); return "myselfExists." + ky;
     }
 
     // ===================================================================================
@@ -287,10 +287,10 @@ public class BsWhitePgReservRefCQ extends AbstractBsWhitePgReservRefCQ {
     //                                                                       =============
     protected Map<String, WhitePgReservRefCQ> _myselfInScopeMap;
     public Map<String, WhitePgReservRefCQ> getMyselfInScope() { return _myselfInScopeMap; }
-    public String keepMyselfInScope(WhitePgReservRefCQ subQuery) {
+    public String keepMyselfInScope(WhitePgReservRefCQ sq) {
         if (_myselfInScopeMap == null) { _myselfInScopeMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
-        _myselfInScopeMap.put(key, subQuery); return "myselfInScope." + key;
+        String ky = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
+        _myselfInScopeMap.put(ky, sq); return "myselfInScope." + ky;
     }
 
     // ===================================================================================

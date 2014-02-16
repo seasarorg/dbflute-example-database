@@ -45,28 +45,28 @@ public class BarBeanDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgBarId implements PropertyGateway {
-        public Object read(Entity e) { return ((BarBean)e).getBarId(); }
-        public void write(Entity e, Object v) { ((BarBean)e).setBarId(cti(v)); }
+        public Object read(Entity et) { return ((BarBean)et).getBarId(); }
+        public void write(Entity et, Object vl) { ((BarBean)et).setBarId(cti(vl)); }
     }
     public static class EpgBarName implements PropertyGateway {
-        public Object read(Entity e) { return ((BarBean)e).getBarName(); }
-        public void write(Entity e, Object v) { ((BarBean)e).setBarName((String)v); }
+        public Object read(Entity et) { return ((BarBean)et).getBarName(); }
+        public void write(Entity et, Object vl) { ((BarBean)et).setBarName((String)vl); }
     }
     public static class EpgBarDecimal implements PropertyGateway {
-        public Object read(Entity e) { return ((BarBean)e).getBarDecimal(); }
-        public void write(Entity e, Object v) { ((BarBean)e).setBarDecimal(ctb(v)); }
+        public Object read(Entity et) { return ((BarBean)et).getBarDecimal(); }
+        public void write(Entity et, Object vl) { ((BarBean)et).setBarDecimal(ctb(vl)); }
     }
     public static class EpgBarDate implements PropertyGateway {
-        public Object read(Entity e) { return ((BarBean)e).getBarDate(); }
-        public void write(Entity e, Object v) { ((BarBean)e).setBarDate((java.util.Date)v); }
+        public Object read(Entity et) { return ((BarBean)et).getBarDate(); }
+        public void write(Entity et, Object vl) { ((BarBean)et).setBarDate((java.util.Date)vl); }
     }
     public static class EpgBarTimestamp implements PropertyGateway {
-        public Object read(Entity e) { return ((BarBean)e).getBarTimestamp(); }
-        public void write(Entity e, Object v) { ((BarBean)e).setBarTimestamp((java.sql.Timestamp)v); }
+        public Object read(Entity et) { return ((BarBean)et).getBarTimestamp(); }
+        public void write(Entity et, Object vl) { ((BarBean)et).setBarTimestamp((java.sql.Timestamp)vl); }
     }
     public static class EpgBarClob implements PropertyGateway {
-        public Object read(Entity e) { return ((BarBean)e).getBarClob(); }
-        public void write(Entity e, Object v) { ((BarBean)e).setBarClob((String)v); }
+        public Object read(Entity et) { return ((BarBean)et).getBarClob(); }
+        public void write(Entity et, Object vl) { ((BarBean)et).setBarClob((String)vl); }
     }
 
     // ===================================================================================
@@ -158,10 +158,10 @@ public class BarBeanDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((BarBean)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((BarBean)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((BarBean)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((BarBean)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

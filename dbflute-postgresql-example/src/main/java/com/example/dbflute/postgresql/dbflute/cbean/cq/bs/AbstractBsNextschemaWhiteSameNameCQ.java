@@ -147,12 +147,12 @@ public abstract class AbstractBsNextschemaWhiteSameNameCQ extends AbstractCondit
      * @param subQuery The sub-query of WhiteSameNameRefList for 'exists'. (NotNull)
      */
     public void existsWhiteSameNameRefList(SubQuery<NextschemaWhiteSameNameRefCB> subQuery) {
-        assertObjectNotNull("subQuery<NextschemaWhiteSameNameRefCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         NextschemaWhiteSameNameRefCB cb = new NextschemaWhiteSameNameRefCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepSameNameId_ExistsReferrer_WhiteSameNameRefList(cb.query()); // for saving query-value.
-        registerExistsReferrer(cb.query(), "same_name_id", "same_name_id", subQueryPropertyName, "whiteSameNameRefList");
+        String pp = keepSameNameId_ExistsReferrer_WhiteSameNameRefList(cb.query()); // for saving query-value.
+        registerExistsReferrer(cb.query(), "same_name_id", "same_name_id", pp, "whiteSameNameRefList");
     }
-    public abstract String keepSameNameId_ExistsReferrer_WhiteSameNameRefList(NextschemaWhiteSameNameRefCQ subQuery);
+    public abstract String keepSameNameId_ExistsReferrer_WhiteSameNameRefList(NextschemaWhiteSameNameRefCQ sq);
 
     /**
      * Set up NotExistsReferrer (co-related sub-query). <br />
@@ -168,12 +168,12 @@ public abstract class AbstractBsNextschemaWhiteSameNameCQ extends AbstractCondit
      * @param subQuery The sub-query of SameNameId_NotExistsReferrer_WhiteSameNameRefList for 'not exists'. (NotNull)
      */
     public void notExistsWhiteSameNameRefList(SubQuery<NextschemaWhiteSameNameRefCB> subQuery) {
-        assertObjectNotNull("subQuery<NextschemaWhiteSameNameRefCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         NextschemaWhiteSameNameRefCB cb = new NextschemaWhiteSameNameRefCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepSameNameId_NotExistsReferrer_WhiteSameNameRefList(cb.query()); // for saving query-value.
-        registerNotExistsReferrer(cb.query(), "same_name_id", "same_name_id", subQueryPropertyName, "whiteSameNameRefList");
+        String pp = keepSameNameId_NotExistsReferrer_WhiteSameNameRefList(cb.query()); // for saving query-value.
+        registerNotExistsReferrer(cb.query(), "same_name_id", "same_name_id", pp, "whiteSameNameRefList");
     }
-    public abstract String keepSameNameId_NotExistsReferrer_WhiteSameNameRefList(NextschemaWhiteSameNameRefCQ subQuery);
+    public abstract String keepSameNameId_NotExistsReferrer_WhiteSameNameRefList(NextschemaWhiteSameNameRefCQ sq);
 
     /**
      * Set up InScopeRelation (sub-query). <br />
@@ -182,12 +182,12 @@ public abstract class AbstractBsNextschemaWhiteSameNameCQ extends AbstractCondit
      * @param subQuery The sub-query of WhiteSameNameRefList for 'in-scope'. (NotNull)
      */
     public void inScopeWhiteSameNameRefList(SubQuery<NextschemaWhiteSameNameRefCB> subQuery) {
-        assertObjectNotNull("subQuery<NextschemaWhiteSameNameRefCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         NextschemaWhiteSameNameRefCB cb = new NextschemaWhiteSameNameRefCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String subQueryPropertyName = keepSameNameId_InScopeRelation_WhiteSameNameRefList(cb.query()); // for saving query-value.
-        registerInScopeRelation(cb.query(), "same_name_id", "same_name_id", subQueryPropertyName, "whiteSameNameRefList");
+        String pp = keepSameNameId_InScopeRelation_WhiteSameNameRefList(cb.query()); // for saving query-value.
+        registerInScopeRelation(cb.query(), "same_name_id", "same_name_id", pp, "whiteSameNameRefList");
     }
-    public abstract String keepSameNameId_InScopeRelation_WhiteSameNameRefList(NextschemaWhiteSameNameRefCQ subQuery);
+    public abstract String keepSameNameId_InScopeRelation_WhiteSameNameRefList(NextschemaWhiteSameNameRefCQ sq);
 
     /**
      * Set up NotInScopeRelation (sub-query). <br />
@@ -196,20 +196,20 @@ public abstract class AbstractBsNextschemaWhiteSameNameCQ extends AbstractCondit
      * @param subQuery The sub-query of WhiteSameNameRefList for 'not in-scope'. (NotNull)
      */
     public void notInScopeWhiteSameNameRefList(SubQuery<NextschemaWhiteSameNameRefCB> subQuery) {
-        assertObjectNotNull("subQuery<NextschemaWhiteSameNameRefCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         NextschemaWhiteSameNameRefCB cb = new NextschemaWhiteSameNameRefCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String subQueryPropertyName = keepSameNameId_NotInScopeRelation_WhiteSameNameRefList(cb.query()); // for saving query-value.
-        registerNotInScopeRelation(cb.query(), "same_name_id", "same_name_id", subQueryPropertyName, "whiteSameNameRefList");
+        String pp = keepSameNameId_NotInScopeRelation_WhiteSameNameRefList(cb.query()); // for saving query-value.
+        registerNotInScopeRelation(cb.query(), "same_name_id", "same_name_id", pp, "whiteSameNameRefList");
     }
-    public abstract String keepSameNameId_NotInScopeRelation_WhiteSameNameRefList(NextschemaWhiteSameNameRefCQ subQuery);
+    public abstract String keepSameNameId_NotInScopeRelation_WhiteSameNameRefList(NextschemaWhiteSameNameRefCQ sq);
 
-    public void xsderiveWhiteSameNameRefList(String function, SubQuery<NextschemaWhiteSameNameRefCB> subQuery, String aliasName, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<NextschemaWhiteSameNameRefCB>", subQuery);
-        NextschemaWhiteSameNameRefCB cb = new NextschemaWhiteSameNameRefCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepSameNameId_SpecifyDerivedReferrer_WhiteSameNameRefList(cb.query()); // for saving query-value.
-        registerSpecifyDerivedReferrer(function, cb.query(), "same_name_id", "same_name_id", subQueryPropertyName, "whiteSameNameRefList", aliasName, option);
+    public void xsderiveWhiteSameNameRefList(String fn, SubQuery<NextschemaWhiteSameNameRefCB> sq, String al, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        NextschemaWhiteSameNameRefCB cb = new NextschemaWhiteSameNameRefCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pp = keepSameNameId_SpecifyDerivedReferrer_WhiteSameNameRefList(cb.query()); // for saving query-value.
+        registerSpecifyDerivedReferrer(fn, cb.query(), "same_name_id", "same_name_id", pp, "whiteSameNameRefList", al, op);
     }
-    public abstract String keepSameNameId_SpecifyDerivedReferrer_WhiteSameNameRefList(NextschemaWhiteSameNameRefCQ subQuery);
+    public abstract String keepSameNameId_SpecifyDerivedReferrer_WhiteSameNameRefList(NextschemaWhiteSameNameRefCQ sq);
 
     /**
      * Prepare for (Query)DerivedReferrer. <br />
@@ -230,20 +230,20 @@ public abstract class AbstractBsNextschemaWhiteSameNameCQ extends AbstractCondit
     }
     protected HpQDRFunction<NextschemaWhiteSameNameRefCB> xcreateQDRFunctionWhiteSameNameRefList() {
         return new HpQDRFunction<NextschemaWhiteSameNameRefCB>(new HpQDRSetupper<NextschemaWhiteSameNameRefCB>() {
-            public void setup(String function, SubQuery<NextschemaWhiteSameNameRefCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-                xqderiveWhiteSameNameRefList(function, subQuery, operand, value, option);
+            public void setup(String fn, SubQuery<NextschemaWhiteSameNameRefCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+                xqderiveWhiteSameNameRefList(fn, sq, rd, vl, op);
             }
         });
     }
-    public void xqderiveWhiteSameNameRefList(String function, SubQuery<NextschemaWhiteSameNameRefCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<NextschemaWhiteSameNameRefCB>", subQuery);
-        NextschemaWhiteSameNameRefCB cb = new NextschemaWhiteSameNameRefCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepSameNameId_QueryDerivedReferrer_WhiteSameNameRefList(cb.query()); // for saving query-value.
-        String parameterPropertyName = keepSameNameId_QueryDerivedReferrer_WhiteSameNameRefListParameter(value);
-        registerQueryDerivedReferrer(function, cb.query(), "same_name_id", "same_name_id", subQueryPropertyName, "whiteSameNameRefList", operand, value, parameterPropertyName, option);
+    public void xqderiveWhiteSameNameRefList(String fn, SubQuery<NextschemaWhiteSameNameRefCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        NextschemaWhiteSameNameRefCB cb = new NextschemaWhiteSameNameRefCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String sqpp = keepSameNameId_QueryDerivedReferrer_WhiteSameNameRefList(cb.query()); // for saving query-value.
+        String prpp = keepSameNameId_QueryDerivedReferrer_WhiteSameNameRefListParameter(vl);
+        registerQueryDerivedReferrer(fn, cb.query(), "same_name_id", "same_name_id", sqpp, "whiteSameNameRefList", rd, vl, prpp, op);
     }
-    public abstract String keepSameNameId_QueryDerivedReferrer_WhiteSameNameRefList(NextschemaWhiteSameNameRefCQ subQuery);
-    public abstract String keepSameNameId_QueryDerivedReferrer_WhiteSameNameRefListParameter(Object parameterValue);
+    public abstract String keepSameNameId_QueryDerivedReferrer_WhiteSameNameRefList(NextschemaWhiteSameNameRefCQ sq);
+    public abstract String keepSameNameId_QueryDerivedReferrer_WhiteSameNameRefListParameter(Object vl);
 
     /**
      * IsNull {is null}. And OnlyOnceRegistered. <br />
@@ -257,8 +257,8 @@ public abstract class AbstractBsNextschemaWhiteSameNameCQ extends AbstractCondit
      */
     public void setSameNameId_IsNotNull() { regSameNameId(CK_ISNN, DOBJ); }
 
-    protected void regSameNameId(ConditionKey k, Object v) { regQ(k, v, getCValueSameNameId(), "same_name_id"); }
-    abstract protected ConditionValue getCValueSameNameId();
+    protected void regSameNameId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueSameNameId(), "same_name_id"); }
+    protected abstract ConditionValue getCValueSameNameId();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -361,8 +361,8 @@ public abstract class AbstractBsNextschemaWhiteSameNameCQ extends AbstractCondit
      */
     public void setSameNameName_IsNotNull() { regSameNameName(CK_ISNN, DOBJ); }
 
-    protected void regSameNameName(ConditionKey k, Object v) { regQ(k, v, getCValueSameNameName(), "same_name_name"); }
-    abstract protected ConditionValue getCValueSameNameName();
+    protected void regSameNameName(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueSameNameName(), "same_name_name"); }
+    protected abstract ConditionValue getCValueSameNameName();
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -464,8 +464,8 @@ public abstract class AbstractBsNextschemaWhiteSameNameCQ extends AbstractCondit
      */
     public void setSameNameLong_IsNotNull() { regSameNameLong(CK_ISNN, DOBJ); }
 
-    protected void regSameNameLong(ConditionKey k, Object v) { regQ(k, v, getCValueSameNameLong(), "same_name_long"); }
-    abstract protected ConditionValue getCValueSameNameLong();
+    protected void regSameNameLong(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueSameNameLong(), "same_name_long"); }
+    protected abstract ConditionValue getCValueSameNameLong();
 
     // ===================================================================================
     //                                                                     ScalarCondition
@@ -572,22 +572,22 @@ public abstract class AbstractBsNextschemaWhiteSameNameCQ extends AbstractCondit
         return xcreateSSQFunction(CK_LE.getOperand());
     }
 
-    protected HpSSQFunction<NextschemaWhiteSameNameCB> xcreateSSQFunction(final String operand) {
+    protected HpSSQFunction<NextschemaWhiteSameNameCB> xcreateSSQFunction(final String rd) {
         return new HpSSQFunction<NextschemaWhiteSameNameCB>(new HpSSQSetupper<NextschemaWhiteSameNameCB>() {
-            public void setup(String function, SubQuery<NextschemaWhiteSameNameCB> subQuery, HpSSQOption<NextschemaWhiteSameNameCB> option) {
-                xscalarCondition(function, subQuery, operand, option);
+            public void setup(String fn, SubQuery<NextschemaWhiteSameNameCB> sq, HpSSQOption<NextschemaWhiteSameNameCB> op) {
+                xscalarCondition(fn, sq, rd, op);
             }
         });
     }
 
-    protected void xscalarCondition(String function, SubQuery<NextschemaWhiteSameNameCB> subQuery, String operand, HpSSQOption<NextschemaWhiteSameNameCB> option) {
-        assertObjectNotNull("subQuery<NextschemaWhiteSameNameCB>", subQuery);
-        NextschemaWhiteSameNameCB cb = xcreateScalarConditionCB(); subQuery.query(cb);
-        String subQueryPropertyName = keepScalarCondition(cb.query()); // for saving query-value
-        option.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
-        registerScalarCondition(function, cb.query(), subQueryPropertyName, operand, option);
+    protected void xscalarCondition(String fn, SubQuery<NextschemaWhiteSameNameCB> sq, String rd, HpSSQOption<NextschemaWhiteSameNameCB> op) {
+        assertObjectNotNull("subQuery", sq);
+        NextschemaWhiteSameNameCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        String pp = keepScalarCondition(cb.query()); // for saving query-value
+        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
-    public abstract String keepScalarCondition(NextschemaWhiteSameNameCQ subQuery);
+    public abstract String keepScalarCondition(NextschemaWhiteSameNameCQ sq);
 
     protected NextschemaWhiteSameNameCB xcreateScalarConditionCB() {
         NextschemaWhiteSameNameCB cb = new NextschemaWhiteSameNameCB();
@@ -604,13 +604,14 @@ public abstract class AbstractBsNextschemaWhiteSameNameCQ extends AbstractCondit
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    public void xsmyselfDerive(String function, SubQuery<NextschemaWhiteSameNameCB> subQuery, String aliasName, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<NextschemaWhiteSameNameCB>", subQuery);
-        NextschemaWhiteSameNameCB cb = new NextschemaWhiteSameNameCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
-        registerSpecifyMyselfDerived(function, cb.query(), "same_name_id", "same_name_id", subQueryPropertyName, "myselfDerived", aliasName, option);
+    public void xsmyselfDerive(String fn, SubQuery<NextschemaWhiteSameNameCB> sq, String al, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        NextschemaWhiteSameNameCB cb = new NextschemaWhiteSameNameCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "same_name_id";
+        String pp = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
+        registerSpecifyMyselfDerived(fn, cb.query(), pk, pk, pp, "myselfDerived", al, op);
     }
-    public abstract String keepSpecifyMyselfDerived(NextschemaWhiteSameNameCQ subQuery);
+    public abstract String keepSpecifyMyselfDerived(NextschemaWhiteSameNameCQ sq);
 
     /**
      * Prepare for (Query)MyselfDerived (SubQuery).
@@ -621,20 +622,21 @@ public abstract class AbstractBsNextschemaWhiteSameNameCQ extends AbstractCondit
     }
     protected HpQDRFunction<NextschemaWhiteSameNameCB> xcreateQDRFunctionMyselfDerived() {
         return new HpQDRFunction<NextschemaWhiteSameNameCB>(new HpQDRSetupper<NextschemaWhiteSameNameCB>() {
-            public void setup(String function, SubQuery<NextschemaWhiteSameNameCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-                xqderiveMyselfDerived(function, subQuery, operand, value, option);
+            public void setup(String fn, SubQuery<NextschemaWhiteSameNameCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+                xqderiveMyselfDerived(fn, sq, rd, vl, op);
             }
         });
     }
-    public void xqderiveMyselfDerived(String function, SubQuery<NextschemaWhiteSameNameCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<NextschemaWhiteSameNameCB>", subQuery);
-        NextschemaWhiteSameNameCB cb = new NextschemaWhiteSameNameCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepQueryMyselfDerived(cb.query()); // for saving query-value.
-        String parameterPropertyName = keepQueryMyselfDerivedParameter(value);
-        registerQueryMyselfDerived(function, cb.query(), "same_name_id", "same_name_id", subQueryPropertyName, "myselfDerived", operand, value, parameterPropertyName, option);
+    public void xqderiveMyselfDerived(String fn, SubQuery<NextschemaWhiteSameNameCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        NextschemaWhiteSameNameCB cb = new NextschemaWhiteSameNameCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "same_name_id";
+        String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
+        String prpp = keepQueryMyselfDerivedParameter(vl);
+        registerQueryMyselfDerived(fn, cb.query(), pk, pk, sqpp, "myselfDerived", rd, vl, prpp, op);
     }
-    public abstract String keepQueryMyselfDerived(NextschemaWhiteSameNameCQ subQuery);
-    public abstract String keepQueryMyselfDerivedParameter(Object parameterValue);
+    public abstract String keepQueryMyselfDerived(NextschemaWhiteSameNameCQ sq);
+    public abstract String keepQueryMyselfDerivedParameter(Object vl);
 
     // ===================================================================================
     //                                                                        MyselfExists
@@ -644,12 +646,12 @@ public abstract class AbstractBsNextschemaWhiteSameNameCQ extends AbstractCondit
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfExists(SubQuery<NextschemaWhiteSameNameCB> subQuery) {
-        assertObjectNotNull("subQuery<NextschemaWhiteSameNameCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         NextschemaWhiteSameNameCB cb = new NextschemaWhiteSameNameCB(); cb.xsetupForMyselfExists(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfExists(cb.query()); // for saving query-value.
-        registerMyselfExists(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfExists(cb.query()); // for saving query-value.
+        registerMyselfExists(cb.query(), pp);
     }
-    public abstract String keepMyselfExists(NextschemaWhiteSameNameCQ subQuery);
+    public abstract String keepMyselfExists(NextschemaWhiteSameNameCQ sq);
 
     // ===================================================================================
     //                                                                       MyselfInScope
@@ -659,12 +661,12 @@ public abstract class AbstractBsNextschemaWhiteSameNameCQ extends AbstractCondit
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfInScope(SubQuery<NextschemaWhiteSameNameCB> subQuery) {
-        assertObjectNotNull("subQuery<NextschemaWhiteSameNameCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         NextschemaWhiteSameNameCB cb = new NextschemaWhiteSameNameCB(); cb.xsetupForMyselfInScope(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfInScope(cb.query()); // for saving query-value.
-        registerMyselfInScope(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfInScope(cb.query()); // for saving query-value.
+        registerMyselfInScope(cb.query(), pp);
     }
-    public abstract String keepMyselfInScope(NextschemaWhiteSameNameCQ subQuery);
+    public abstract String keepMyselfInScope(NextschemaWhiteSameNameCQ sq);
 
     // ===================================================================================
     //                                                                    Full Text Search
@@ -684,7 +686,7 @@ public abstract class AbstractBsNextschemaWhiteSameNameCQ extends AbstractCondit
      * @param textColumnList The list of text column. (NotNull, NotEmpty, StringColumn, TargetTableColumn)
      * @param conditionValue The condition value. (NullAllowed: if null or empty, no condition)
      */
-    public void match(java.util.List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList, String conditionValue) {
+    public void match(List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList, String conditionValue) {
         xdoMatchByLikeSearch(textColumnList, conditionValue);
     }
 

@@ -90,18 +90,18 @@ public class WhiteQuotedRefCIQ extends AbstractBsWhiteQuotedRefCQ {
     { return _myCQ.keepOrder_InScopeRelation_WhiteQuoted(sq); }
     public String keepOrder_NotInScopeRelation_WhiteQuoted(WhiteQuotedCQ sq)
     { return _myCQ.keepOrder_NotInScopeRelation_WhiteQuoted(sq); }
-    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) { return null; }
-    public String keepScalarCondition(WhiteQuotedRefCQ subQuery)
+    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
+    public String keepScalarCondition(WhiteQuotedRefCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }
-    public String keepSpecifyMyselfDerived(WhiteQuotedRefCQ subQuery)
+    public String keepSpecifyMyselfDerived(WhiteQuotedRefCQ sq)
     { throwIICBOE("(Specify)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerived(WhiteQuotedRefCQ subQuery)
+    public String keepQueryMyselfDerived(WhiteQuotedRefCQ sq)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerivedParameter(Object parameterValue)
+    public String keepQueryMyselfDerivedParameter(Object vl)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepMyselfExists(WhiteQuotedRefCQ subQuery)
+    public String keepMyselfExists(WhiteQuotedRefCQ sq)
     { throwIICBOE("MyselfExists"); return null;}
-    public String keepMyselfInScope(WhiteQuotedRefCQ subQuery)
+    public String keepMyselfInScope(WhiteQuotedRefCQ sq)
     { throwIICBOE("MyselfInScope"); return null;}
 
     protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()

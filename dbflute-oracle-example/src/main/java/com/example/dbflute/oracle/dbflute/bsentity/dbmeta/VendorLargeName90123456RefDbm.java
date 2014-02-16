@@ -42,16 +42,16 @@ public class VendorLargeName90123456RefDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgVendorLargeName90123RefId implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorLargeName90123456Ref)e).getVendorLargeName90123RefId(); }
-        public void write(Entity e, Object v) { ((VendorLargeName90123456Ref)e).setVendorLargeName90123RefId(ctl(v)); }
+        public Object read(Entity et) { return ((VendorLargeName90123456Ref)et).getVendorLargeName90123RefId(); }
+        public void write(Entity et, Object vl) { ((VendorLargeName90123456Ref)et).setVendorLargeName90123RefId(ctl(vl)); }
     }
     public static class EpgVendorLargeName901RefName implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorLargeName90123456Ref)e).getVendorLargeName901RefName(); }
-        public void write(Entity e, Object v) { ((VendorLargeName90123456Ref)e).setVendorLargeName901RefName((String)v); }
+        public Object read(Entity et) { return ((VendorLargeName90123456Ref)et).getVendorLargeName901RefName(); }
+        public void write(Entity et, Object vl) { ((VendorLargeName90123456Ref)et).setVendorLargeName901RefName((String)vl); }
     }
     public static class EpgVendorLargeName901234567Id implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorLargeName90123456Ref)e).getVendorLargeName901234567Id(); }
-        public void write(Entity e, Object v) { ((VendorLargeName90123456Ref)e).setVendorLargeName901234567Id(ctl(v)); }
+        public Object read(Entity et) { return ((VendorLargeName90123456Ref)et).getVendorLargeName901234567Id(); }
+        public void write(Entity et, Object vl) { ((VendorLargeName90123456Ref)et).setVendorLargeName901234567Id(ctl(vl)); }
     }
 
     // ===================================================================================
@@ -103,8 +103,8 @@ public class VendorLargeName90123456RefDbm extends AbstractDBMeta {
     //                                      Foreign Property
     //                                      ----------------
     public ForeignInfo foreignVendorLargeName901234567890() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnVendorLargeName901234567Id(), VendorLargeName901234567890Dbm.getInstance().columnVendorLargeName901234567Id());
-        return cfi("FK_VENDOR_LARGE_NAME_$$$_REF", "vendorLargeName901234567890", this, VendorLargeName901234567890Dbm.getInstance(), map, 0, false, false, false, false, null, null, false, "vendorLargeName90123456RefList");
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnVendorLargeName901234567Id(), VendorLargeName901234567890Dbm.getInstance().columnVendorLargeName901234567Id());
+        return cfi("FK_VENDOR_LARGE_NAME_$$$_REF", "vendorLargeName901234567890", this, VendorLargeName901234567890Dbm.getInstance(), mp, 0, false, false, false, false, null, null, false, "vendorLargeName90123456RefList");
     }
 
     // -----------------------------------------------------
@@ -136,10 +136,10 @@ public class VendorLargeName90123456RefDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((VendorLargeName90123456Ref)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((VendorLargeName90123456Ref)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((VendorLargeName90123456Ref)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((VendorLargeName90123456Ref)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

@@ -154,11 +154,11 @@ public class BsVendorDateFkCQ extends AbstractBsVendorDateFkCQ {
     // ===================================================================================
     //                                                                         Union Query
     //                                                                         ===========
-    protected void reflectRelationOnUnionQuery(ConditionQuery baseQueryAsSuper, ConditionQuery unionQueryAsSuper) {
-        VendorDateFkCQ baseQuery = (VendorDateFkCQ)baseQueryAsSuper;
-        VendorDateFkCQ unionQuery = (VendorDateFkCQ)unionQueryAsSuper;
-        if (baseQuery.hasConditionQueryVendorDatePk()) {
-            unionQuery.queryVendorDatePk().reflectRelationOnUnionQuery(baseQuery.queryVendorDatePk(), unionQuery.queryVendorDatePk());
+    protected void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
+        VendorDateFkCQ bq = (VendorDateFkCQ)bqs;
+        VendorDateFkCQ uq = (VendorDateFkCQ)uqs;
+        if (bq.hasConditionQueryVendorDatePk()) {
+            uq.queryVendorDatePk().reflectRelationOnUnionQuery(bq.queryVendorDatePk(), uq.queryVendorDatePk());
         }
     }
 
@@ -208,10 +208,10 @@ public class BsVendorDateFkCQ extends AbstractBsVendorDateFkCQ {
     //                                                                     ===============
     protected Map<String, VendorDateFkCQ> _scalarConditionMap;
     public Map<String, VendorDateFkCQ> getScalarCondition() { return _scalarConditionMap; }
-    public String keepScalarCondition(VendorDateFkCQ subQuery) {
+    public String keepScalarCondition(VendorDateFkCQ sq) {
         if (_scalarConditionMap == null) { _scalarConditionMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
-        _scalarConditionMap.put(key, subQuery); return "scalarCondition." + key;
+        String ky = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
+        _scalarConditionMap.put(ky, sq); return "scalarCondition." + ky;
     }
 
     // ===================================================================================
@@ -219,25 +219,25 @@ public class BsVendorDateFkCQ extends AbstractBsVendorDateFkCQ {
     //                                                                       =============
     protected Map<String, VendorDateFkCQ> _specifyMyselfDerivedMap;
     public Map<String, VendorDateFkCQ> getSpecifyMyselfDerived() { return _specifyMyselfDerivedMap; }
-    public String keepSpecifyMyselfDerived(VendorDateFkCQ subQuery) {
+    public String keepSpecifyMyselfDerived(VendorDateFkCQ sq) {
         if (_specifyMyselfDerivedMap == null) { _specifyMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
-        _specifyMyselfDerivedMap.put(key, subQuery); return "specifyMyselfDerived." + key;
+        String ky = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
+        _specifyMyselfDerivedMap.put(ky, sq); return "specifyMyselfDerived." + ky;
     }
 
     protected Map<String, VendorDateFkCQ> _queryMyselfDerivedMap;
     public Map<String, VendorDateFkCQ> getQueryMyselfDerived() { return _queryMyselfDerivedMap; }
-    public String keepQueryMyselfDerived(VendorDateFkCQ subQuery) {
+    public String keepQueryMyselfDerived(VendorDateFkCQ sq) {
         if (_queryMyselfDerivedMap == null) { _queryMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
-        _queryMyselfDerivedMap.put(key, subQuery); return "queryMyselfDerived." + key;
+        String ky = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
+        _queryMyselfDerivedMap.put(ky, sq); return "queryMyselfDerived." + ky;
     }
     protected Map<String, Object> _qyeryMyselfDerivedParameterMap;
     public Map<String, Object> getQueryMyselfDerivedParameter() { return _qyeryMyselfDerivedParameterMap; }
-    public String keepQueryMyselfDerivedParameter(Object parameterValue) {
+    public String keepQueryMyselfDerivedParameter(Object vl) {
         if (_qyeryMyselfDerivedParameterMap == null) { _qyeryMyselfDerivedParameterMap = newLinkedHashMapSized(4); }
-        String key = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
-        _qyeryMyselfDerivedParameterMap.put(key, parameterValue); return "queryMyselfDerivedParameter." + key;
+        String ky = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
+        _qyeryMyselfDerivedParameterMap.put(ky, vl); return "queryMyselfDerivedParameter." + ky;
     }
 
     // ===================================================================================
@@ -245,10 +245,10 @@ public class BsVendorDateFkCQ extends AbstractBsVendorDateFkCQ {
     //                                                                        ============
     protected Map<String, VendorDateFkCQ> _myselfExistsMap;
     public Map<String, VendorDateFkCQ> getMyselfExists() { return _myselfExistsMap; }
-    public String keepMyselfExists(VendorDateFkCQ subQuery) {
+    public String keepMyselfExists(VendorDateFkCQ sq) {
         if (_myselfExistsMap == null) { _myselfExistsMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
-        _myselfExistsMap.put(key, subQuery); return "myselfExists." + key;
+        String ky = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
+        _myselfExistsMap.put(ky, sq); return "myselfExists." + ky;
     }
 
     // ===================================================================================
@@ -256,10 +256,10 @@ public class BsVendorDateFkCQ extends AbstractBsVendorDateFkCQ {
     //                                                                       =============
     protected Map<String, VendorDateFkCQ> _myselfInScopeMap;
     public Map<String, VendorDateFkCQ> getMyselfInScope() { return _myselfInScopeMap; }
-    public String keepMyselfInScope(VendorDateFkCQ subQuery) {
+    public String keepMyselfInScope(VendorDateFkCQ sq) {
         if (_myselfInScopeMap == null) { _myselfInScopeMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
-        _myselfInScopeMap.put(key, subQuery); return "myselfInScope." + key;
+        String ky = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
+        _myselfInScopeMap.put(ky, sq); return "myselfInScope." + ky;
     }
 
     // ===================================================================================

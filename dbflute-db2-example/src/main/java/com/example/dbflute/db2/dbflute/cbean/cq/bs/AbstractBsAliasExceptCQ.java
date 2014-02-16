@@ -160,12 +160,12 @@ public abstract class AbstractBsAliasExceptCQ extends AbstractConditionQuery {
      * @param subQuery The sub-query of AliasRefExceptList for 'exists'. (NotNull)
      */
     public void existsAliasRefExceptList(SubQuery<AliasRefExceptCB> subQuery) {
-        assertObjectNotNull("subQuery<AliasRefExceptCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         AliasRefExceptCB cb = new AliasRefExceptCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepExceptId_ExistsReferrer_AliasRefExceptList(cb.query()); // for saving query-value.
-        registerExistsReferrer(cb.query(), "EXCEPT_ID", "EXCEPT_ID", subQueryPropertyName, "aliasRefExceptList");
+        String pp = keepExceptId_ExistsReferrer_AliasRefExceptList(cb.query()); // for saving query-value.
+        registerExistsReferrer(cb.query(), "EXCEPT_ID", "EXCEPT_ID", pp, "aliasRefExceptList");
     }
-    public abstract String keepExceptId_ExistsReferrer_AliasRefExceptList(AliasRefExceptCQ subQuery);
+    public abstract String keepExceptId_ExistsReferrer_AliasRefExceptList(AliasRefExceptCQ sq);
 
     /**
      * Set up NotExistsReferrer (co-related sub-query). <br />
@@ -181,12 +181,12 @@ public abstract class AbstractBsAliasExceptCQ extends AbstractConditionQuery {
      * @param subQuery The sub-query of ExceptId_NotExistsReferrer_AliasRefExceptList for 'not exists'. (NotNull)
      */
     public void notExistsAliasRefExceptList(SubQuery<AliasRefExceptCB> subQuery) {
-        assertObjectNotNull("subQuery<AliasRefExceptCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         AliasRefExceptCB cb = new AliasRefExceptCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepExceptId_NotExistsReferrer_AliasRefExceptList(cb.query()); // for saving query-value.
-        registerNotExistsReferrer(cb.query(), "EXCEPT_ID", "EXCEPT_ID", subQueryPropertyName, "aliasRefExceptList");
+        String pp = keepExceptId_NotExistsReferrer_AliasRefExceptList(cb.query()); // for saving query-value.
+        registerNotExistsReferrer(cb.query(), "EXCEPT_ID", "EXCEPT_ID", pp, "aliasRefExceptList");
     }
-    public abstract String keepExceptId_NotExistsReferrer_AliasRefExceptList(AliasRefExceptCQ subQuery);
+    public abstract String keepExceptId_NotExistsReferrer_AliasRefExceptList(AliasRefExceptCQ sq);
 
     /**
      * Set up InScopeRelation (sub-query). <br />
@@ -195,12 +195,12 @@ public abstract class AbstractBsAliasExceptCQ extends AbstractConditionQuery {
      * @param subQuery The sub-query of AliasRefExceptList for 'in-scope'. (NotNull)
      */
     public void inScopeAliasRefExceptList(SubQuery<AliasRefExceptCB> subQuery) {
-        assertObjectNotNull("subQuery<AliasRefExceptCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         AliasRefExceptCB cb = new AliasRefExceptCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String subQueryPropertyName = keepExceptId_InScopeRelation_AliasRefExceptList(cb.query()); // for saving query-value.
-        registerInScopeRelation(cb.query(), "EXCEPT_ID", "EXCEPT_ID", subQueryPropertyName, "aliasRefExceptList");
+        String pp = keepExceptId_InScopeRelation_AliasRefExceptList(cb.query()); // for saving query-value.
+        registerInScopeRelation(cb.query(), "EXCEPT_ID", "EXCEPT_ID", pp, "aliasRefExceptList");
     }
-    public abstract String keepExceptId_InScopeRelation_AliasRefExceptList(AliasRefExceptCQ subQuery);
+    public abstract String keepExceptId_InScopeRelation_AliasRefExceptList(AliasRefExceptCQ sq);
 
     /**
      * Set up NotInScopeRelation (sub-query). <br />
@@ -209,20 +209,20 @@ public abstract class AbstractBsAliasExceptCQ extends AbstractConditionQuery {
      * @param subQuery The sub-query of AliasRefExceptList for 'not in-scope'. (NotNull)
      */
     public void notInScopeAliasRefExceptList(SubQuery<AliasRefExceptCB> subQuery) {
-        assertObjectNotNull("subQuery<AliasRefExceptCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         AliasRefExceptCB cb = new AliasRefExceptCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String subQueryPropertyName = keepExceptId_NotInScopeRelation_AliasRefExceptList(cb.query()); // for saving query-value.
-        registerNotInScopeRelation(cb.query(), "EXCEPT_ID", "EXCEPT_ID", subQueryPropertyName, "aliasRefExceptList");
+        String pp = keepExceptId_NotInScopeRelation_AliasRefExceptList(cb.query()); // for saving query-value.
+        registerNotInScopeRelation(cb.query(), "EXCEPT_ID", "EXCEPT_ID", pp, "aliasRefExceptList");
     }
-    public abstract String keepExceptId_NotInScopeRelation_AliasRefExceptList(AliasRefExceptCQ subQuery);
+    public abstract String keepExceptId_NotInScopeRelation_AliasRefExceptList(AliasRefExceptCQ sq);
 
-    public void xsderiveAliasRefExceptList(String function, SubQuery<AliasRefExceptCB> subQuery, String aliasName, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<AliasRefExceptCB>", subQuery);
-        AliasRefExceptCB cb = new AliasRefExceptCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepExceptId_SpecifyDerivedReferrer_AliasRefExceptList(cb.query()); // for saving query-value.
-        registerSpecifyDerivedReferrer(function, cb.query(), "EXCEPT_ID", "EXCEPT_ID", subQueryPropertyName, "aliasRefExceptList", aliasName, option);
+    public void xsderiveAliasRefExceptList(String fn, SubQuery<AliasRefExceptCB> sq, String al, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        AliasRefExceptCB cb = new AliasRefExceptCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pp = keepExceptId_SpecifyDerivedReferrer_AliasRefExceptList(cb.query()); // for saving query-value.
+        registerSpecifyDerivedReferrer(fn, cb.query(), "EXCEPT_ID", "EXCEPT_ID", pp, "aliasRefExceptList", al, op);
     }
-    public abstract String keepExceptId_SpecifyDerivedReferrer_AliasRefExceptList(AliasRefExceptCQ subQuery);
+    public abstract String keepExceptId_SpecifyDerivedReferrer_AliasRefExceptList(AliasRefExceptCQ sq);
 
     /**
      * Prepare for (Query)DerivedReferrer. <br />
@@ -243,20 +243,20 @@ public abstract class AbstractBsAliasExceptCQ extends AbstractConditionQuery {
     }
     protected HpQDRFunction<AliasRefExceptCB> xcreateQDRFunctionAliasRefExceptList() {
         return new HpQDRFunction<AliasRefExceptCB>(new HpQDRSetupper<AliasRefExceptCB>() {
-            public void setup(String function, SubQuery<AliasRefExceptCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-                xqderiveAliasRefExceptList(function, subQuery, operand, value, option);
+            public void setup(String fn, SubQuery<AliasRefExceptCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+                xqderiveAliasRefExceptList(fn, sq, rd, vl, op);
             }
         });
     }
-    public void xqderiveAliasRefExceptList(String function, SubQuery<AliasRefExceptCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<AliasRefExceptCB>", subQuery);
-        AliasRefExceptCB cb = new AliasRefExceptCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepExceptId_QueryDerivedReferrer_AliasRefExceptList(cb.query()); // for saving query-value.
-        String parameterPropertyName = keepExceptId_QueryDerivedReferrer_AliasRefExceptListParameter(value);
-        registerQueryDerivedReferrer(function, cb.query(), "EXCEPT_ID", "EXCEPT_ID", subQueryPropertyName, "aliasRefExceptList", operand, value, parameterPropertyName, option);
+    public void xqderiveAliasRefExceptList(String fn, SubQuery<AliasRefExceptCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        AliasRefExceptCB cb = new AliasRefExceptCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String sqpp = keepExceptId_QueryDerivedReferrer_AliasRefExceptList(cb.query()); // for saving query-value.
+        String prpp = keepExceptId_QueryDerivedReferrer_AliasRefExceptListParameter(vl);
+        registerQueryDerivedReferrer(fn, cb.query(), "EXCEPT_ID", "EXCEPT_ID", sqpp, "aliasRefExceptList", rd, vl, prpp, op);
     }
-    public abstract String keepExceptId_QueryDerivedReferrer_AliasRefExceptList(AliasRefExceptCQ subQuery);
-    public abstract String keepExceptId_QueryDerivedReferrer_AliasRefExceptListParameter(Object parameterValue);
+    public abstract String keepExceptId_QueryDerivedReferrer_AliasRefExceptList(AliasRefExceptCQ sq);
+    public abstract String keepExceptId_QueryDerivedReferrer_AliasRefExceptListParameter(Object vl);
 
     /**
      * IsNull {is null}. And OnlyOnceRegistered. <br />
@@ -270,8 +270,8 @@ public abstract class AbstractBsAliasExceptCQ extends AbstractConditionQuery {
      */
     public void setExceptId_IsNotNull() { regExceptId(CK_ISNN, DOBJ); }
 
-    protected void regExceptId(ConditionKey k, Object v) { regQ(k, v, getCValueExceptId(), "EXCEPT_ID"); }
-    abstract protected ConditionValue getCValueExceptId();
+    protected void regExceptId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueExceptId(), "EXCEPT_ID"); }
+    protected abstract ConditionValue getCValueExceptId();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -374,8 +374,8 @@ public abstract class AbstractBsAliasExceptCQ extends AbstractConditionQuery {
      */
     public void setExceptName_IsNotNull() { regExceptName(CK_ISNN, DOBJ); }
 
-    protected void regExceptName(ConditionKey k, Object v) { regQ(k, v, getCValueExceptName(), "EXCEPT_NAME"); }
-    abstract protected ConditionValue getCValueExceptName();
+    protected void regExceptName(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueExceptName(), "EXCEPT_NAME"); }
+    protected abstract ConditionValue getCValueExceptName();
 
     // ===================================================================================
     //                                                                     ScalarCondition
@@ -482,22 +482,22 @@ public abstract class AbstractBsAliasExceptCQ extends AbstractConditionQuery {
         return xcreateSSQFunction(CK_LE.getOperand());
     }
 
-    protected HpSSQFunction<AliasExceptCB> xcreateSSQFunction(final String operand) {
+    protected HpSSQFunction<AliasExceptCB> xcreateSSQFunction(final String rd) {
         return new HpSSQFunction<AliasExceptCB>(new HpSSQSetupper<AliasExceptCB>() {
-            public void setup(String function, SubQuery<AliasExceptCB> subQuery, HpSSQOption<AliasExceptCB> option) {
-                xscalarCondition(function, subQuery, operand, option);
+            public void setup(String fn, SubQuery<AliasExceptCB> sq, HpSSQOption<AliasExceptCB> op) {
+                xscalarCondition(fn, sq, rd, op);
             }
         });
     }
 
-    protected void xscalarCondition(String function, SubQuery<AliasExceptCB> subQuery, String operand, HpSSQOption<AliasExceptCB> option) {
-        assertObjectNotNull("subQuery<AliasExceptCB>", subQuery);
-        AliasExceptCB cb = xcreateScalarConditionCB(); subQuery.query(cb);
-        String subQueryPropertyName = keepScalarCondition(cb.query()); // for saving query-value
-        option.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
-        registerScalarCondition(function, cb.query(), subQueryPropertyName, operand, option);
+    protected void xscalarCondition(String fn, SubQuery<AliasExceptCB> sq, String rd, HpSSQOption<AliasExceptCB> op) {
+        assertObjectNotNull("subQuery", sq);
+        AliasExceptCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        String pp = keepScalarCondition(cb.query()); // for saving query-value
+        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
-    public abstract String keepScalarCondition(AliasExceptCQ subQuery);
+    public abstract String keepScalarCondition(AliasExceptCQ sq);
 
     protected AliasExceptCB xcreateScalarConditionCB() {
         AliasExceptCB cb = new AliasExceptCB();
@@ -514,13 +514,14 @@ public abstract class AbstractBsAliasExceptCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    public void xsmyselfDerive(String function, SubQuery<AliasExceptCB> subQuery, String aliasName, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<AliasExceptCB>", subQuery);
-        AliasExceptCB cb = new AliasExceptCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
-        registerSpecifyMyselfDerived(function, cb.query(), "EXCEPT_ID", "EXCEPT_ID", subQueryPropertyName, "myselfDerived", aliasName, option);
+    public void xsmyselfDerive(String fn, SubQuery<AliasExceptCB> sq, String al, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        AliasExceptCB cb = new AliasExceptCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "EXCEPT_ID";
+        String pp = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
+        registerSpecifyMyselfDerived(fn, cb.query(), pk, pk, pp, "myselfDerived", al, op);
     }
-    public abstract String keepSpecifyMyselfDerived(AliasExceptCQ subQuery);
+    public abstract String keepSpecifyMyselfDerived(AliasExceptCQ sq);
 
     /**
      * Prepare for (Query)MyselfDerived (SubQuery).
@@ -531,20 +532,21 @@ public abstract class AbstractBsAliasExceptCQ extends AbstractConditionQuery {
     }
     protected HpQDRFunction<AliasExceptCB> xcreateQDRFunctionMyselfDerived() {
         return new HpQDRFunction<AliasExceptCB>(new HpQDRSetupper<AliasExceptCB>() {
-            public void setup(String function, SubQuery<AliasExceptCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-                xqderiveMyselfDerived(function, subQuery, operand, value, option);
+            public void setup(String fn, SubQuery<AliasExceptCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+                xqderiveMyselfDerived(fn, sq, rd, vl, op);
             }
         });
     }
-    public void xqderiveMyselfDerived(String function, SubQuery<AliasExceptCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<AliasExceptCB>", subQuery);
-        AliasExceptCB cb = new AliasExceptCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepQueryMyselfDerived(cb.query()); // for saving query-value.
-        String parameterPropertyName = keepQueryMyselfDerivedParameter(value);
-        registerQueryMyselfDerived(function, cb.query(), "EXCEPT_ID", "EXCEPT_ID", subQueryPropertyName, "myselfDerived", operand, value, parameterPropertyName, option);
+    public void xqderiveMyselfDerived(String fn, SubQuery<AliasExceptCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        AliasExceptCB cb = new AliasExceptCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "EXCEPT_ID";
+        String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
+        String prpp = keepQueryMyselfDerivedParameter(vl);
+        registerQueryMyselfDerived(fn, cb.query(), pk, pk, sqpp, "myselfDerived", rd, vl, prpp, op);
     }
-    public abstract String keepQueryMyselfDerived(AliasExceptCQ subQuery);
-    public abstract String keepQueryMyselfDerivedParameter(Object parameterValue);
+    public abstract String keepQueryMyselfDerived(AliasExceptCQ sq);
+    public abstract String keepQueryMyselfDerivedParameter(Object vl);
 
     // ===================================================================================
     //                                                                        MyselfExists
@@ -554,12 +556,12 @@ public abstract class AbstractBsAliasExceptCQ extends AbstractConditionQuery {
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfExists(SubQuery<AliasExceptCB> subQuery) {
-        assertObjectNotNull("subQuery<AliasExceptCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         AliasExceptCB cb = new AliasExceptCB(); cb.xsetupForMyselfExists(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfExists(cb.query()); // for saving query-value.
-        registerMyselfExists(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfExists(cb.query()); // for saving query-value.
+        registerMyselfExists(cb.query(), pp);
     }
-    public abstract String keepMyselfExists(AliasExceptCQ subQuery);
+    public abstract String keepMyselfExists(AliasExceptCQ sq);
 
     // ===================================================================================
     //                                                                       MyselfInScope
@@ -569,12 +571,12 @@ public abstract class AbstractBsAliasExceptCQ extends AbstractConditionQuery {
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfInScope(SubQuery<AliasExceptCB> subQuery) {
-        assertObjectNotNull("subQuery<AliasExceptCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         AliasExceptCB cb = new AliasExceptCB(); cb.xsetupForMyselfInScope(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfInScope(cb.query()); // for saving query-value.
-        registerMyselfInScope(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfInScope(cb.query()); // for saving query-value.
+        registerMyselfInScope(cb.query(), pp);
     }
-    public abstract String keepMyselfInScope(AliasExceptCQ subQuery);
+    public abstract String keepMyselfInScope(AliasExceptCQ sq);
 
     // ===================================================================================
     //                                                                       Very Internal

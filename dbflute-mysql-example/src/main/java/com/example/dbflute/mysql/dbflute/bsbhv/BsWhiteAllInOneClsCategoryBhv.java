@@ -154,10 +154,10 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
         return doSelectEntity(cb, WhiteAllInOneClsCategory.class);
     }
 
-    protected <ENTITY extends WhiteAllInOneClsCategory> ENTITY doSelectEntity(final WhiteAllInOneClsCategoryCB cb, Class<ENTITY> entityType) {
+    protected <ENTITY extends WhiteAllInOneClsCategory> ENTITY doSelectEntity(final WhiteAllInOneClsCategoryCB cb, Class<ENTITY> tp) {
         assertCBStateValid(cb);
-        return helpSelectEntityInternally(cb, entityType, new InternalSelectEntityCallback<ENTITY, WhiteAllInOneClsCategoryCB>() {
-            public List<ENTITY> callbackSelectList(WhiteAllInOneClsCategoryCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); } });
+        return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, WhiteAllInOneClsCategoryCB>() {
+            public List<ENTITY> callbackSelectList(WhiteAllInOneClsCategoryCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
     }
 
     @Override
@@ -183,10 +183,10 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
         return doSelectEntityWithDeletedCheck(cb, WhiteAllInOneClsCategory.class);
     }
 
-    protected <ENTITY extends WhiteAllInOneClsCategory> ENTITY doSelectEntityWithDeletedCheck(final WhiteAllInOneClsCategoryCB cb, Class<ENTITY> entityType) {
+    protected <ENTITY extends WhiteAllInOneClsCategory> ENTITY doSelectEntityWithDeletedCheck(final WhiteAllInOneClsCategoryCB cb, Class<ENTITY> tp) {
         assertCBStateValid(cb);
-        return helpSelectEntityWithDeletedCheckInternally(cb, entityType, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, WhiteAllInOneClsCategoryCB>() {
-            public List<ENTITY> callbackSelectList(WhiteAllInOneClsCategoryCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); } });
+        return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, WhiteAllInOneClsCategoryCB>() {
+            public List<ENTITY> callbackSelectList(WhiteAllInOneClsCategoryCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
     }
 
     @Override
@@ -254,11 +254,11 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
         return doSelectList(cb, WhiteAllInOneClsCategory.class);
     }
 
-    protected <ENTITY extends WhiteAllInOneClsCategory> ListResultBean<ENTITY> doSelectList(WhiteAllInOneClsCategoryCB cb, Class<ENTITY> entityType) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", entityType);
-        assertSpecifyDerivedReferrerEntityProperty(cb, entityType);
-        return helpSelectListInternally(cb, entityType, new InternalSelectListCallback<ENTITY, WhiteAllInOneClsCategoryCB>() {
-            public List<ENTITY> callbackSelectList(WhiteAllInOneClsCategoryCB cb, Class<ENTITY> entityType) { return delegateSelectList(cb, entityType); } });
+    protected <ENTITY extends WhiteAllInOneClsCategory> ListResultBean<ENTITY> doSelectList(WhiteAllInOneClsCategoryCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
+        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
+        return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, WhiteAllInOneClsCategoryCB>() {
+            public List<ENTITY> callbackSelectList(WhiteAllInOneClsCategoryCB cb, Class<ENTITY> tp) { return delegateSelectList(cb, tp); } });
     }
 
     @Override
@@ -295,11 +295,11 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
         return doSelectPage(cb, WhiteAllInOneClsCategory.class);
     }
 
-    protected <ENTITY extends WhiteAllInOneClsCategory> PagingResultBean<ENTITY> doSelectPage(WhiteAllInOneClsCategoryCB cb, Class<ENTITY> entityType) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", entityType);
-        return helpSelectPageInternally(cb, entityType, new InternalSelectPageCallback<ENTITY, WhiteAllInOneClsCategoryCB>() {
+    protected <ENTITY extends WhiteAllInOneClsCategory> PagingResultBean<ENTITY> doSelectPage(WhiteAllInOneClsCategoryCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
+        return helpSelectPageInternally(cb, tp, new InternalSelectPageCallback<ENTITY, WhiteAllInOneClsCategoryCB>() {
             public int callbackSelectCount(WhiteAllInOneClsCategoryCB cb) { return doSelectCountPlainly(cb); }
-            public List<ENTITY> callbackSelectList(WhiteAllInOneClsCategoryCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); }
+            public List<ENTITY> callbackSelectList(WhiteAllInOneClsCategoryCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
         });
     }
 
@@ -329,12 +329,12 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
         doSelectCursor(cb, entityRowHandler, WhiteAllInOneClsCategory.class);
     }
 
-    protected <ENTITY extends WhiteAllInOneClsCategory> void doSelectCursor(WhiteAllInOneClsCategoryCB cb, EntityRowHandler<ENTITY> entityRowHandler, Class<ENTITY> entityType) {
-        assertCBStateValid(cb); assertObjectNotNull("entityRowHandler<WhiteAllInOneClsCategory>", entityRowHandler); assertObjectNotNull("entityType", entityType);
-        assertSpecifyDerivedReferrerEntityProperty(cb, entityType);
-        helpSelectCursorInternally(cb, entityRowHandler, entityType, new InternalSelectCursorCallback<ENTITY, WhiteAllInOneClsCategoryCB>() {
-            public void callbackSelectCursor(WhiteAllInOneClsCategoryCB cb, EntityRowHandler<ENTITY> entityRowHandler, Class<ENTITY> entityType) { delegateSelectCursor(cb, entityRowHandler, entityType); }
-            public List<ENTITY> callbackSelectList(WhiteAllInOneClsCategoryCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); }
+    protected <ENTITY extends WhiteAllInOneClsCategory> void doSelectCursor(WhiteAllInOneClsCategoryCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
+        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
+        helpSelectCursorInternally(cb, handler, tp, new InternalSelectCursorCallback<ENTITY, WhiteAllInOneClsCategoryCB>() {
+            public void callbackSelectCursor(WhiteAllInOneClsCategoryCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) { delegateSelectCursor(cb, handler, tp); }
+            public List<ENTITY> callbackSelectList(WhiteAllInOneClsCategoryCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
         });
     }
 
@@ -360,18 +360,18 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
         return doScalarSelect(resultType, newMyConditionBean());
     }
 
-    protected <RESULT, CB extends WhiteAllInOneClsCategoryCB> SLFunction<CB, RESULT> doScalarSelect(Class<RESULT> resultType, CB cb) {
-        assertObjectNotNull("resultType", resultType); assertCBStateValid(cb);
+    protected <RESULT, CB extends WhiteAllInOneClsCategoryCB> SLFunction<CB, RESULT> doScalarSelect(Class<RESULT> tp, CB cb) {
+        assertObjectNotNull("resultType", tp); assertCBStateValid(cb);
         cb.xsetupForScalarSelect(); cb.getSqlClause().disableSelectIndex(); // for when you use union
-        return createSLFunction(cb, resultType);
+        return createSLFunction(cb, tp);
     }
 
-    protected <RESULT, CB extends WhiteAllInOneClsCategoryCB> SLFunction<CB, RESULT> createSLFunction(CB cb, Class<RESULT> resultType) {
-        return new SLFunction<CB, RESULT>(cb, resultType);
+    protected <RESULT, CB extends WhiteAllInOneClsCategoryCB> SLFunction<CB, RESULT> createSLFunction(CB cb, Class<RESULT> tp) {
+        return new SLFunction<CB, RESULT>(cb, tp);
     }
 
-    protected <RESULT> SLFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> resultType) {
-        return doScalarSelect(resultType, newMyConditionBean());
+    protected <RESULT> SLFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) {
+        return doScalarSelect(tp, newMyConditionBean());
     }
 
     // ===================================================================================
@@ -442,17 +442,17 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
         if (whiteAllInOneClsCategoryList.isEmpty()) { return; }
         final WhiteAllInOneClsElementBhv referrerBhv = xgetBSFLR().select(WhiteAllInOneClsElementBhv.class);
         helpLoadReferrerInternally(whiteAllInOneClsCategoryList, loadReferrerOption, new InternalLoadReferrerCallback<WhiteAllInOneClsCategory, String, WhiteAllInOneClsElementCB, WhiteAllInOneClsElement>() {
-            public String getPKVal(WhiteAllInOneClsCategory e)
-            { return e.getClsCategoryCode(); }
-            public void setRfLs(WhiteAllInOneClsCategory e, List<WhiteAllInOneClsElement> ls)
-            { e.setWhiteAllInOneClsElementList(ls); }
+            public String getPKVal(WhiteAllInOneClsCategory et)
+            { return et.getClsCategoryCode(); }
+            public void setRfLs(WhiteAllInOneClsCategory et, List<WhiteAllInOneClsElement> ls)
+            { et.setWhiteAllInOneClsElementList(ls); }
             public WhiteAllInOneClsElementCB newMyCB() { return referrerBhv.newMyConditionBean(); }
             public void qyFKIn(WhiteAllInOneClsElementCB cb, List<String> ls)
             { cb.query().setClsCategoryCode_InScope(ls); }
             public void qyOdFKAsc(WhiteAllInOneClsElementCB cb) { cb.query().addOrderBy_ClsCategoryCode_Asc(); }
             public void spFKCol(WhiteAllInOneClsElementCB cb) { cb.specify().columnClsCategoryCode(); }
             public List<WhiteAllInOneClsElement> selRfLs(WhiteAllInOneClsElementCB cb) { return referrerBhv.selectList(cb); }
-            public String getFKVal(WhiteAllInOneClsElement e) { return e.getClsCategoryCode(); }
+            public String getFKVal(WhiteAllInOneClsElement re) { return re.getClsCategoryCode(); }
             public void setlcEt(WhiteAllInOneClsElement re, WhiteAllInOneClsCategory le)
             { re.setWhiteAllInOneClsCategory(le); }
             public String getRfPrNm() { return "whiteAllInOneClsElementList"; }
@@ -473,7 +473,7 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
      */
     public List<String> extractClsCategoryCodeList(List<WhiteAllInOneClsCategory> whiteAllInOneClsCategoryList) {
         return helpExtractListInternally(whiteAllInOneClsCategoryList, new InternalExtractCallback<WhiteAllInOneClsCategory, String>() {
-            public String getCV(WhiteAllInOneClsCategory e) { return e.getClsCategoryCode(); }
+            public String getCV(WhiteAllInOneClsCategory et) { return et.getClsCategoryCode(); }
         });
     }
 
@@ -501,24 +501,24 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
         doInsert(whiteAllInOneClsCategory, null);
     }
 
-    protected void doInsert(WhiteAllInOneClsCategory whiteAllInOneClsCategory, InsertOption<WhiteAllInOneClsCategoryCB> option) {
+    protected void doInsert(WhiteAllInOneClsCategory whiteAllInOneClsCategory, InsertOption<WhiteAllInOneClsCategoryCB> op) {
         assertObjectNotNull("whiteAllInOneClsCategory", whiteAllInOneClsCategory);
-        prepareInsertOption(option);
-        delegateInsert(whiteAllInOneClsCategory, option);
+        prepareInsertOption(op);
+        delegateInsert(whiteAllInOneClsCategory, op);
     }
 
-    protected void prepareInsertOption(InsertOption<WhiteAllInOneClsCategoryCB> option) {
-        if (option == null) { return; }
-        assertInsertOptionStatus(option);
-        if (option.hasSpecifiedInsertColumn()) {
-            option.resolveInsertColumnSpecification(createCBForSpecifiedUpdate());
+    protected void prepareInsertOption(InsertOption<WhiteAllInOneClsCategoryCB> op) {
+        if (op == null) { return; }
+        assertInsertOptionStatus(op);
+        if (op.hasSpecifiedInsertColumn()) {
+            op.resolveInsertColumnSpecification(createCBForSpecifiedUpdate());
         }
     }
 
     @Override
-    protected void doCreate(Entity entity, InsertOption<? extends ConditionBean> option) {
-        if (option == null) { insert(downcast(entity)); }
-        else { varyingInsert(downcast(entity), downcast(option)); }
+    protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) {
+        if (op == null) { insert(downcast(et)); }
+        else { varyingInsert(downcast(et), downcast(op)); }
     }
 
     /**
@@ -547,21 +547,21 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
         doUpdate(whiteAllInOneClsCategory, null);
     }
 
-    protected void doUpdate(WhiteAllInOneClsCategory whiteAllInOneClsCategory, final UpdateOption<WhiteAllInOneClsCategoryCB> option) {
+    protected void doUpdate(WhiteAllInOneClsCategory whiteAllInOneClsCategory, final UpdateOption<WhiteAllInOneClsCategoryCB> op) {
         assertObjectNotNull("whiteAllInOneClsCategory", whiteAllInOneClsCategory);
-        prepareUpdateOption(option);
+        prepareUpdateOption(op);
         helpUpdateInternally(whiteAllInOneClsCategory, new InternalUpdateCallback<WhiteAllInOneClsCategory>() {
-            public int callbackDelegateUpdate(WhiteAllInOneClsCategory entity) { return delegateUpdate(entity, option); } });
+            public int callbackDelegateUpdate(WhiteAllInOneClsCategory et) { return delegateUpdate(et, op); } });
     }
 
-    protected void prepareUpdateOption(UpdateOption<WhiteAllInOneClsCategoryCB> option) {
-        if (option == null) { return; }
-        assertUpdateOptionStatus(option);
-        if (option.hasSelfSpecification()) {
-            option.resolveSelfSpecification(createCBForVaryingUpdate());
+    protected void prepareUpdateOption(UpdateOption<WhiteAllInOneClsCategoryCB> op) {
+        if (op == null) { return; }
+        assertUpdateOptionStatus(op);
+        if (op.hasSelfSpecification()) {
+            op.resolveSelfSpecification(createCBForVaryingUpdate());
         }
-        if (option.hasSpecifiedUpdateColumn()) {
-            option.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate());
+        if (op.hasSpecifiedUpdateColumn()) {
+            op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate());
         }
     }
 
@@ -578,14 +578,14 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
     }
 
     @Override
-    protected void doModify(Entity entity, UpdateOption<? extends ConditionBean> option) {
-        if (option == null) { update(downcast(entity)); }
-        else { varyingUpdate(downcast(entity), downcast(option)); }
+    protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) {
+        if (op == null) { update(downcast(et)); }
+        else { varyingUpdate(downcast(et), downcast(op)); }
     }
 
     @Override
-    protected void doModifyNonstrict(Entity entity, UpdateOption<? extends ConditionBean> option) {
-        doModify(entity, option);
+    protected void doModifyNonstrict(Entity et, UpdateOption<? extends ConditionBean> op) {
+        doModify(et, op);
     }
 
     /**
@@ -601,30 +601,28 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
         doInesrtOrUpdate(whiteAllInOneClsCategory, null, null);
     }
 
-    protected void doInesrtOrUpdate(WhiteAllInOneClsCategory whiteAllInOneClsCategory, final InsertOption<WhiteAllInOneClsCategoryCB> insertOption, final UpdateOption<WhiteAllInOneClsCategoryCB> updateOption) {
+    protected void doInesrtOrUpdate(WhiteAllInOneClsCategory whiteAllInOneClsCategory, final InsertOption<WhiteAllInOneClsCategoryCB> iop, final UpdateOption<WhiteAllInOneClsCategoryCB> uop) {
         helpInsertOrUpdateInternally(whiteAllInOneClsCategory, new InternalInsertOrUpdateCallback<WhiteAllInOneClsCategory, WhiteAllInOneClsCategoryCB>() {
-            public void callbackInsert(WhiteAllInOneClsCategory entity) { doInsert(entity, insertOption); }
-            public void callbackUpdate(WhiteAllInOneClsCategory entity) { doUpdate(entity, updateOption); }
+            public void callbackInsert(WhiteAllInOneClsCategory et) { doInsert(et, iop); }
+            public void callbackUpdate(WhiteAllInOneClsCategory et) { doUpdate(et, uop); }
             public WhiteAllInOneClsCategoryCB callbackNewMyConditionBean() { return newMyConditionBean(); }
             public int callbackSelectCount(WhiteAllInOneClsCategoryCB cb) { return selectCount(cb); }
         });
     }
 
     @Override
-    protected void doCreateOrModify(Entity entity, InsertOption<? extends ConditionBean> insertOption,
-            UpdateOption<? extends ConditionBean> updateOption) {
-        if (insertOption == null && updateOption == null) { insertOrUpdate(downcast(entity)); }
+    protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
+        if (iop == null && uop == null) { insertOrUpdate(downcast(et)); }
         else {
-            insertOption = insertOption == null ? new InsertOption<WhiteAllInOneClsCategoryCB>() : insertOption;
-            updateOption = updateOption == null ? new UpdateOption<WhiteAllInOneClsCategoryCB>() : updateOption;
-            varyingInsertOrUpdate(downcast(entity), downcast(insertOption), downcast(updateOption));
+            iop = iop != null ? iop : new InsertOption<WhiteAllInOneClsCategoryCB>();
+            uop = uop != null ? uop : new UpdateOption<WhiteAllInOneClsCategoryCB>();
+            varyingInsertOrUpdate(downcast(et), downcast(iop), downcast(uop));
         }
     }
 
     @Override
-    protected void doCreateOrModifyNonstrict(Entity entity, InsertOption<? extends ConditionBean> insertOption,
-            UpdateOption<? extends ConditionBean> updateOption) {
-        doCreateOrModify(entity, insertOption, updateOption);
+    protected void doCreateOrModifyNonstrict(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
+        doCreateOrModify(et, iop, uop);
     }
 
     /**
@@ -648,27 +646,27 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
         doDelete(whiteAllInOneClsCategory, null);
     }
 
-    protected void doDelete(WhiteAllInOneClsCategory whiteAllInOneClsCategory, final DeleteOption<WhiteAllInOneClsCategoryCB> option) {
+    protected void doDelete(WhiteAllInOneClsCategory whiteAllInOneClsCategory, final DeleteOption<WhiteAllInOneClsCategoryCB> op) {
         assertObjectNotNull("whiteAllInOneClsCategory", whiteAllInOneClsCategory);
-        prepareDeleteOption(option);
+        prepareDeleteOption(op);
         helpDeleteInternally(whiteAllInOneClsCategory, new InternalDeleteCallback<WhiteAllInOneClsCategory>() {
-            public int callbackDelegateDelete(WhiteAllInOneClsCategory entity) { return delegateDelete(entity, option); } });
+            public int callbackDelegateDelete(WhiteAllInOneClsCategory et) { return delegateDelete(et, op); } });
     }
 
-    protected void prepareDeleteOption(DeleteOption<WhiteAllInOneClsCategoryCB> option) {
-        if (option == null) { return; }
-        assertDeleteOptionStatus(option);
-    }
-
-    @Override
-    protected void doRemove(Entity entity, DeleteOption<? extends ConditionBean> option) {
-        if (option == null) { delete(downcast(entity)); }
-        else { varyingDelete(downcast(entity), downcast(option)); }
+    protected void prepareDeleteOption(DeleteOption<WhiteAllInOneClsCategoryCB> op) {
+        if (op == null) { return; }
+        assertDeleteOptionStatus(op);
     }
 
     @Override
-    protected void doRemoveNonstrict(Entity entity, DeleteOption<? extends ConditionBean> option) {
-        doRemove(entity, option);
+    protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) {
+        if (op == null) { delete(downcast(et)); }
+        else { varyingDelete(downcast(et), downcast(op)); }
+    }
+
+    @Override
+    protected void doRemoveNonstrict(Entity et, DeleteOption<? extends ConditionBean> op) {
+        doRemove(et, op);
     }
 
     // ===================================================================================
@@ -699,26 +697,26 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
      * @return The array of inserted count. (NotNull, EmptyAllowed)
      */
     public int[] batchInsert(List<WhiteAllInOneClsCategory> whiteAllInOneClsCategoryList) {
-        InsertOption<WhiteAllInOneClsCategoryCB> option = createInsertUpdateOption();
-        return doBatchInsert(whiteAllInOneClsCategoryList, option);
+        InsertOption<WhiteAllInOneClsCategoryCB> op = createInsertUpdateOption();
+        return doBatchInsert(whiteAllInOneClsCategoryList, op);
     }
 
-    protected int[] doBatchInsert(List<WhiteAllInOneClsCategory> whiteAllInOneClsCategoryList, InsertOption<WhiteAllInOneClsCategoryCB> option) {
+    protected int[] doBatchInsert(List<WhiteAllInOneClsCategory> whiteAllInOneClsCategoryList, InsertOption<WhiteAllInOneClsCategoryCB> op) {
         assertObjectNotNull("whiteAllInOneClsCategoryList", whiteAllInOneClsCategoryList);
-        prepareBatchInsertOption(whiteAllInOneClsCategoryList, option);
-        return delegateBatchInsert(whiteAllInOneClsCategoryList, option);
+        prepareBatchInsertOption(whiteAllInOneClsCategoryList, op);
+        return delegateBatchInsert(whiteAllInOneClsCategoryList, op);
     }
 
-    protected void prepareBatchInsertOption(List<WhiteAllInOneClsCategory> whiteAllInOneClsCategoryList, InsertOption<WhiteAllInOneClsCategoryCB> option) {
-        option.xallowInsertColumnModifiedPropertiesFragmented();
-        option.xacceptInsertColumnModifiedPropertiesIfNeeds(whiteAllInOneClsCategoryList);
-        prepareInsertOption(option);
+    protected void prepareBatchInsertOption(List<WhiteAllInOneClsCategory> whiteAllInOneClsCategoryList, InsertOption<WhiteAllInOneClsCategoryCB> op) {
+        op.xallowInsertColumnModifiedPropertiesFragmented();
+        op.xacceptInsertColumnModifiedPropertiesIfNeeds(whiteAllInOneClsCategoryList);
+        prepareInsertOption(op);
     }
 
     @Override
-    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> option) {
-        if (option == null) { return batchInsert(downcast(ls)); }
-        else { return varyingBatchInsert(downcast(ls), downcast(option)); }
+    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) {
+        if (op == null) { return batchInsert(downcast(ls)); }
+        else { return varyingBatchInsert(downcast(ls), downcast(op)); }
     }
 
     /**
@@ -746,25 +744,25 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
      * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<WhiteAllInOneClsCategory> whiteAllInOneClsCategoryList) {
-        UpdateOption<WhiteAllInOneClsCategoryCB> option = createPlainUpdateOption();
-        return doBatchUpdate(whiteAllInOneClsCategoryList, option);
+        UpdateOption<WhiteAllInOneClsCategoryCB> op = createPlainUpdateOption();
+        return doBatchUpdate(whiteAllInOneClsCategoryList, op);
     }
 
-    protected int[] doBatchUpdate(List<WhiteAllInOneClsCategory> whiteAllInOneClsCategoryList, UpdateOption<WhiteAllInOneClsCategoryCB> option) {
+    protected int[] doBatchUpdate(List<WhiteAllInOneClsCategory> whiteAllInOneClsCategoryList, UpdateOption<WhiteAllInOneClsCategoryCB> op) {
         assertObjectNotNull("whiteAllInOneClsCategoryList", whiteAllInOneClsCategoryList);
-        prepareBatchUpdateOption(whiteAllInOneClsCategoryList, option);
-        return delegateBatchUpdate(whiteAllInOneClsCategoryList, option);
+        prepareBatchUpdateOption(whiteAllInOneClsCategoryList, op);
+        return delegateBatchUpdate(whiteAllInOneClsCategoryList, op);
     }
 
-    protected void prepareBatchUpdateOption(List<WhiteAllInOneClsCategory> whiteAllInOneClsCategoryList, UpdateOption<WhiteAllInOneClsCategoryCB> option) {
-        option.xacceptUpdateColumnModifiedPropertiesIfNeeds(whiteAllInOneClsCategoryList);
-        prepareUpdateOption(option);
+    protected void prepareBatchUpdateOption(List<WhiteAllInOneClsCategory> whiteAllInOneClsCategoryList, UpdateOption<WhiteAllInOneClsCategoryCB> op) {
+        op.xacceptUpdateColumnModifiedPropertiesIfNeeds(whiteAllInOneClsCategoryList);
+        prepareUpdateOption(op);
     }
 
     @Override
-    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> option) {
-        if (option == null) { return batchUpdate(downcast(ls)); }
-        else { return varyingBatchUpdate(downcast(ls), downcast(option)); }
+    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) {
+        if (op == null) { return batchUpdate(downcast(ls)); }
+        else { return varyingBatchUpdate(downcast(ls), downcast(op)); }
     }
 
     /**
@@ -800,8 +798,8 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
     }
 
     @Override
-    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> option) {
-        return doLumpModify(ls, option);
+    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> op) {
+        return doLumpModify(ls, op);
     }
 
     /**
@@ -815,21 +813,21 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
         return doBatchDelete(whiteAllInOneClsCategoryList, null);
     }
 
-    protected int[] doBatchDelete(List<WhiteAllInOneClsCategory> whiteAllInOneClsCategoryList, DeleteOption<WhiteAllInOneClsCategoryCB> option) {
+    protected int[] doBatchDelete(List<WhiteAllInOneClsCategory> whiteAllInOneClsCategoryList, DeleteOption<WhiteAllInOneClsCategoryCB> op) {
         assertObjectNotNull("whiteAllInOneClsCategoryList", whiteAllInOneClsCategoryList);
-        prepareDeleteOption(option);
-        return delegateBatchDelete(whiteAllInOneClsCategoryList, option);
+        prepareDeleteOption(op);
+        return delegateBatchDelete(whiteAllInOneClsCategoryList, op);
     }
 
     @Override
-    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> option) {
-        if (option == null) { return batchDelete(downcast(ls)); }
-        else { return varyingBatchDelete(downcast(ls), downcast(option)); }
+    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) {
+        if (op == null) { return batchDelete(downcast(ls)); }
+        else { return varyingBatchDelete(downcast(ls), downcast(op)); }
     }
 
     @Override
-    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> option) {
-        return doLumpRemove(ls, option);
+    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> op) {
+        return doLumpRemove(ls, op);
     }
 
     // ===================================================================================
@@ -865,13 +863,12 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
         return doQueryInsert(setupper, null);
     }
 
-    protected int doQueryInsert(QueryInsertSetupper<WhiteAllInOneClsCategory, WhiteAllInOneClsCategoryCB> setupper, InsertOption<WhiteAllInOneClsCategoryCB> option) {
-        assertObjectNotNull("setupper", setupper);
-        prepareInsertOption(option);
-        WhiteAllInOneClsCategory entity = new WhiteAllInOneClsCategory();
-        WhiteAllInOneClsCategoryCB intoCB = createCBForQueryInsert();
-        ConditionBean resourceCB = setupper.setup(entity, intoCB);
-        return delegateQueryInsert(entity, intoCB, resourceCB, option);
+    protected int doQueryInsert(QueryInsertSetupper<WhiteAllInOneClsCategory, WhiteAllInOneClsCategoryCB> sp, InsertOption<WhiteAllInOneClsCategoryCB> op) {
+        assertObjectNotNull("setupper", sp);
+        prepareInsertOption(op);
+        WhiteAllInOneClsCategory e = new WhiteAllInOneClsCategory();
+        WhiteAllInOneClsCategoryCB cb = createCBForQueryInsert();
+        return delegateQueryInsert(e, cb, sp.setup(e, cb), op);
     }
 
     protected WhiteAllInOneClsCategoryCB createCBForQueryInsert() {
@@ -912,16 +909,16 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
         return doQueryUpdate(whiteAllInOneClsCategory, cb, null);
     }
 
-    protected int doQueryUpdate(WhiteAllInOneClsCategory whiteAllInOneClsCategory, WhiteAllInOneClsCategoryCB cb, UpdateOption<WhiteAllInOneClsCategoryCB> option) {
+    protected int doQueryUpdate(WhiteAllInOneClsCategory whiteAllInOneClsCategory, WhiteAllInOneClsCategoryCB cb, UpdateOption<WhiteAllInOneClsCategoryCB> op) {
         assertObjectNotNull("whiteAllInOneClsCategory", whiteAllInOneClsCategory); assertCBStateValid(cb);
-        prepareUpdateOption(option);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(whiteAllInOneClsCategory, cb, option) : 0;
+        prepareUpdateOption(op);
+        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(whiteAllInOneClsCategory, cb, op) : 0;
     }
 
     @Override
-    protected int doRangeModify(Entity entity, ConditionBean cb, UpdateOption<? extends ConditionBean> option) {
-        if (option == null) { return queryUpdate(downcast(entity), (WhiteAllInOneClsCategoryCB)cb); }
-        else { return varyingQueryUpdate(downcast(entity), (WhiteAllInOneClsCategoryCB)cb, downcast(option)); }
+    protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op) {
+        if (op == null) { return queryUpdate(downcast(et), (WhiteAllInOneClsCategoryCB)cb); }
+        else { return varyingQueryUpdate(downcast(et), (WhiteAllInOneClsCategoryCB)cb, downcast(op)); }
     }
 
     /**
@@ -939,16 +936,16 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
         return doQueryDelete(cb, null);
     }
 
-    protected int doQueryDelete(WhiteAllInOneClsCategoryCB cb, DeleteOption<WhiteAllInOneClsCategoryCB> option) {
+    protected int doQueryDelete(WhiteAllInOneClsCategoryCB cb, DeleteOption<WhiteAllInOneClsCategoryCB> op) {
         assertCBStateValid(cb);
-        prepareDeleteOption(option);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryDelete(cb, option) : 0;
+        prepareDeleteOption(op);
+        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryDelete(cb, op) : 0;
     }
 
     @Override
-    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> option) {
-        if (option == null) { return queryDelete((WhiteAllInOneClsCategoryCB)cb); }
-        else { return varyingQueryDelete((WhiteAllInOneClsCategoryCB)cb, downcast(option)); }
+    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) {
+        if (op == null) { return queryDelete((WhiteAllInOneClsCategoryCB)cb); }
+        else { return varyingQueryDelete((WhiteAllInOneClsCategoryCB)cb, downcast(op)); }
     }
 
     // ===================================================================================
@@ -1200,29 +1197,29 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
     //                                                ------
     protected int delegateSelectCountUniquely(WhiteAllInOneClsCategoryCB cb) { return invoke(createSelectCountCBCommand(cb, true)); }
     protected int delegateSelectCountPlainly(WhiteAllInOneClsCategoryCB cb) { return invoke(createSelectCountCBCommand(cb, false)); }
-    protected <ENTITY extends WhiteAllInOneClsCategory> void delegateSelectCursor(WhiteAllInOneClsCategoryCB cb, EntityRowHandler<ENTITY> erh, Class<ENTITY> et)
-    { invoke(createSelectCursorCBCommand(cb, erh, et)); }
-    protected <ENTITY extends WhiteAllInOneClsCategory> List<ENTITY> delegateSelectList(WhiteAllInOneClsCategoryCB cb, Class<ENTITY> et)
-    { return invoke(createSelectListCBCommand(cb, et)); }
+    protected <ENTITY extends WhiteAllInOneClsCategory> void delegateSelectCursor(WhiteAllInOneClsCategoryCB cb, EntityRowHandler<ENTITY> rh, Class<ENTITY> tp)
+    { invoke(createSelectCursorCBCommand(cb, rh, tp)); }
+    protected <ENTITY extends WhiteAllInOneClsCategory> List<ENTITY> delegateSelectList(WhiteAllInOneClsCategoryCB cb, Class<ENTITY> tp)
+    { return invoke(createSelectListCBCommand(cb, tp)); }
 
     // -----------------------------------------------------
     //                                                Update
     //                                                ------
-    protected int delegateInsert(WhiteAllInOneClsCategory e, InsertOption<WhiteAllInOneClsCategoryCB> op)
-    { if (!processBeforeInsert(e, op)) { return 0; }
-      return invoke(createInsertEntityCommand(e, op)); }
-    protected int delegateUpdate(WhiteAllInOneClsCategory e, UpdateOption<WhiteAllInOneClsCategoryCB> op)
-    { if (!processBeforeUpdate(e, op)) { return 0; }
-      return delegateUpdateNonstrict(e, op); }
-    protected int delegateUpdateNonstrict(WhiteAllInOneClsCategory e, UpdateOption<WhiteAllInOneClsCategoryCB> op)
-    { if (!processBeforeUpdate(e, op)) { return 0; }
-      return invoke(createUpdateNonstrictEntityCommand(e, op)); }
-    protected int delegateDelete(WhiteAllInOneClsCategory e, DeleteOption<WhiteAllInOneClsCategoryCB> op)
-    { if (!processBeforeDelete(e, op)) { return 0; }
-      return delegateDeleteNonstrict(e, op); }
-    protected int delegateDeleteNonstrict(WhiteAllInOneClsCategory e, DeleteOption<WhiteAllInOneClsCategoryCB> op)
-    { if (!processBeforeDelete(e, op)) { return 0; }
-      return invoke(createDeleteNonstrictEntityCommand(e, op)); }
+    protected int delegateInsert(WhiteAllInOneClsCategory et, InsertOption<WhiteAllInOneClsCategoryCB> op)
+    { if (!processBeforeInsert(et, op)) { return 0; }
+      return invoke(createInsertEntityCommand(et, op)); }
+    protected int delegateUpdate(WhiteAllInOneClsCategory et, UpdateOption<WhiteAllInOneClsCategoryCB> op)
+    { if (!processBeforeUpdate(et, op)) { return 0; }
+      return delegateUpdateNonstrict(et, op); }
+    protected int delegateUpdateNonstrict(WhiteAllInOneClsCategory et, UpdateOption<WhiteAllInOneClsCategoryCB> op)
+    { if (!processBeforeUpdate(et, op)) { return 0; }
+      return invoke(createUpdateNonstrictEntityCommand(et, op)); }
+    protected int delegateDelete(WhiteAllInOneClsCategory et, DeleteOption<WhiteAllInOneClsCategoryCB> op)
+    { if (!processBeforeDelete(et, op)) { return 0; }
+      return delegateDeleteNonstrict(et, op); }
+    protected int delegateDeleteNonstrict(WhiteAllInOneClsCategory et, DeleteOption<WhiteAllInOneClsCategoryCB> op)
+    { if (!processBeforeDelete(et, op)) { return 0; }
+      return invoke(createDeleteNonstrictEntityCommand(et, op)); }
 
     protected int[] delegateBatchInsert(List<WhiteAllInOneClsCategory> ls, InsertOption<WhiteAllInOneClsCategoryCB> op)
     { if (ls.isEmpty()) { return new int[]{}; }
@@ -1240,10 +1237,10 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
     { if (ls.isEmpty()) { return new int[]{}; }
       return invoke(createBatchDeleteNonstrictCommand(processBatchInternally(ls, op, true), op)); }
 
-    protected int delegateQueryInsert(WhiteAllInOneClsCategory e, WhiteAllInOneClsCategoryCB inCB, ConditionBean resCB, InsertOption<WhiteAllInOneClsCategoryCB> op)
-    { if (!processBeforeQueryInsert(e, inCB, resCB, op)) { return 0; } return invoke(createQueryInsertCBCommand(e, inCB, resCB, op));  }
-    protected int delegateQueryUpdate(WhiteAllInOneClsCategory e, WhiteAllInOneClsCategoryCB cb, UpdateOption<WhiteAllInOneClsCategoryCB> op)
-    { if (!processBeforeQueryUpdate(e, cb, op)) { return 0; } return invoke(createQueryUpdateCBCommand(e, cb, op));  }
+    protected int delegateQueryInsert(WhiteAllInOneClsCategory et, WhiteAllInOneClsCategoryCB inCB, ConditionBean resCB, InsertOption<WhiteAllInOneClsCategoryCB> op)
+    { if (!processBeforeQueryInsert(et, inCB, resCB, op)) { return 0; } return invoke(createQueryInsertCBCommand(et, inCB, resCB, op));  }
+    protected int delegateQueryUpdate(WhiteAllInOneClsCategory et, WhiteAllInOneClsCategoryCB cb, UpdateOption<WhiteAllInOneClsCategoryCB> op)
+    { if (!processBeforeQueryUpdate(et, cb, op)) { return 0; } return invoke(createQueryUpdateCBCommand(et, cb, op));  }
     protected int delegateQueryDelete(WhiteAllInOneClsCategoryCB cb, DeleteOption<WhiteAllInOneClsCategoryCB> op)
     { if (!processBeforeQueryDelete(cb, op)) { return 0; } return invoke(createQueryDeleteCBCommand(cb, op));  }
 
@@ -1254,7 +1251,7 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
      * {@inheritDoc}
      */
     @Override
-    protected boolean hasVersionNoValue(Entity entity) {
+    protected boolean hasVersionNoValue(Entity et) {
         return false;
     }
 
@@ -1262,15 +1259,15 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
      * {@inheritDoc}
      */
     @Override
-    protected boolean hasUpdateDateValue(Entity entity) {
+    protected boolean hasUpdateDateValue(Entity et) {
         return false;
     }
 
     // ===================================================================================
     //                                                                     Downcast Helper
     //                                                                     ===============
-    protected WhiteAllInOneClsCategory downcast(Entity entity) {
-        return helpEntityDowncastInternally(entity, WhiteAllInOneClsCategory.class);
+    protected WhiteAllInOneClsCategory downcast(Entity et) {
+        return helpEntityDowncastInternally(et, WhiteAllInOneClsCategory.class);
     }
 
     protected WhiteAllInOneClsCategoryCB downcast(ConditionBean cb) {
@@ -1278,27 +1275,27 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
     }
 
     @SuppressWarnings("unchecked")
-    protected List<WhiteAllInOneClsCategory> downcast(List<? extends Entity> entityList) {
-        return (List<WhiteAllInOneClsCategory>)entityList;
+    protected List<WhiteAllInOneClsCategory> downcast(List<? extends Entity> ls) {
+        return (List<WhiteAllInOneClsCategory>)ls;
     }
 
     @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteAllInOneClsCategoryCB> downcast(InsertOption<? extends ConditionBean> option) {
-        return (InsertOption<WhiteAllInOneClsCategoryCB>)option;
+    protected InsertOption<WhiteAllInOneClsCategoryCB> downcast(InsertOption<? extends ConditionBean> op) {
+        return (InsertOption<WhiteAllInOneClsCategoryCB>)op;
     }
 
     @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteAllInOneClsCategoryCB> downcast(UpdateOption<? extends ConditionBean> option) {
-        return (UpdateOption<WhiteAllInOneClsCategoryCB>)option;
+    protected UpdateOption<WhiteAllInOneClsCategoryCB> downcast(UpdateOption<? extends ConditionBean> op) {
+        return (UpdateOption<WhiteAllInOneClsCategoryCB>)op;
     }
 
     @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteAllInOneClsCategoryCB> downcast(DeleteOption<? extends ConditionBean> option) {
-        return (DeleteOption<WhiteAllInOneClsCategoryCB>)option;
+    protected DeleteOption<WhiteAllInOneClsCategoryCB> downcast(DeleteOption<? extends ConditionBean> op) {
+        return (DeleteOption<WhiteAllInOneClsCategoryCB>)op;
     }
 
     @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhiteAllInOneClsCategory, WhiteAllInOneClsCategoryCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> option) {
-        return (QueryInsertSetupper<WhiteAllInOneClsCategory, WhiteAllInOneClsCategoryCB>)option;
+    protected QueryInsertSetupper<WhiteAllInOneClsCategory, WhiteAllInOneClsCategoryCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp) {
+        return (QueryInsertSetupper<WhiteAllInOneClsCategory, WhiteAllInOneClsCategoryCB>)sp;
     }
 }

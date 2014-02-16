@@ -45,28 +45,28 @@ public class NextFooBeanDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgFooId implements PropertyGateway {
-        public Object read(Entity e) { return ((NextFooBean)e).getFooId(); }
-        public void write(Entity e, Object v) { ((NextFooBean)e).setFooId(cti(v)); }
+        public Object read(Entity et) { return ((NextFooBean)et).getFooId(); }
+        public void write(Entity et, Object vl) { ((NextFooBean)et).setFooId(cti(vl)); }
     }
     public static class EpgFooName implements PropertyGateway {
-        public Object read(Entity e) { return ((NextFooBean)e).getFooName(); }
-        public void write(Entity e, Object v) { ((NextFooBean)e).setFooName((String)v); }
+        public Object read(Entity et) { return ((NextFooBean)et).getFooName(); }
+        public void write(Entity et, Object vl) { ((NextFooBean)et).setFooName((String)vl); }
     }
     public static class EpgFooDecimal implements PropertyGateway {
-        public Object read(Entity e) { return ((NextFooBean)e).getFooDecimal(); }
-        public void write(Entity e, Object v) { ((NextFooBean)e).setFooDecimal(ctb(v)); }
+        public Object read(Entity et) { return ((NextFooBean)et).getFooDecimal(); }
+        public void write(Entity et, Object vl) { ((NextFooBean)et).setFooDecimal(ctb(vl)); }
     }
     public static class EpgFooDate implements PropertyGateway {
-        public Object read(Entity e) { return ((NextFooBean)e).getFooDate(); }
-        public void write(Entity e, Object v) { ((NextFooBean)e).setFooDate((java.util.Date)v); }
+        public Object read(Entity et) { return ((NextFooBean)et).getFooDate(); }
+        public void write(Entity et, Object vl) { ((NextFooBean)et).setFooDate((java.util.Date)vl); }
     }
     public static class EpgFooTimestamp implements PropertyGateway {
-        public Object read(Entity e) { return ((NextFooBean)e).getFooTimestamp(); }
-        public void write(Entity e, Object v) { ((NextFooBean)e).setFooTimestamp((java.sql.Timestamp)v); }
+        public Object read(Entity et) { return ((NextFooBean)et).getFooTimestamp(); }
+        public void write(Entity et, Object vl) { ((NextFooBean)et).setFooTimestamp((java.sql.Timestamp)vl); }
     }
     public static class EpgFooClob implements PropertyGateway {
-        public Object read(Entity e) { return ((NextFooBean)e).getFooClob(); }
-        public void write(Entity e, Object v) { ((NextFooBean)e).setFooClob((String)v); }
+        public Object read(Entity et) { return ((NextFooBean)et).getFooClob(); }
+        public void write(Entity et, Object vl) { ((NextFooBean)et).setFooClob((String)vl); }
     }
 
     // ===================================================================================
@@ -158,10 +158,10 @@ public class NextFooBeanDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((NextFooBean)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((NextFooBean)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((NextFooBean)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((NextFooBean)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

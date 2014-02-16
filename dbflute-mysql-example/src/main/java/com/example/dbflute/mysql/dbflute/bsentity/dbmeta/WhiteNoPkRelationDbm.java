@@ -59,28 +59,28 @@ public class WhiteNoPkRelationDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgProductId implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteNoPkRelation)e).getProductId(); }
-        public void write(Entity e, Object v) { ((WhiteNoPkRelation)e).setProductId(cti(v)); }
+        public Object read(Entity et) { return ((WhiteNoPkRelation)et).getProductId(); }
+        public void write(Entity et, Object vl) { ((WhiteNoPkRelation)et).setProductId(cti(vl)); }
     }
     public static class EpgProductName implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteNoPkRelation)e).getProductName(); }
-        public void write(Entity e, Object v) { ((WhiteNoPkRelation)e).setProductName((String)v); }
+        public Object read(Entity et) { return ((WhiteNoPkRelation)et).getProductName(); }
+        public void write(Entity et, Object vl) { ((WhiteNoPkRelation)et).setProductName((String)vl); }
     }
     public static class EpgProductHandleCode implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteNoPkRelation)e).getProductHandleCode(); }
-        public void write(Entity e, Object v) { ((WhiteNoPkRelation)e).setProductHandleCode((String)v); }
+        public Object read(Entity et) { return ((WhiteNoPkRelation)et).getProductHandleCode(); }
+        public void write(Entity et, Object vl) { ((WhiteNoPkRelation)et).setProductHandleCode((String)vl); }
     }
     public class EpgProductStatusCode implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteNoPkRelation)e).getProductStatusCode(); }
-        public void write(Entity e, Object v) {
+        public Object read(Entity et) { return ((WhiteNoPkRelation)et).getProductStatusCode(); }
+        public void write(Entity et, Object vl) {
             ColumnInfo col = columnProductStatusCode();
-            ccls(col, v);
-            ((WhiteNoPkRelation)e).setProductStatusCodeAsProductStatus((CDef.ProductStatus)gcls(col, v));
+            ccls(col, vl);
+            ((WhiteNoPkRelation)et).setProductStatusCodeAsProductStatus((CDef.ProductStatus)gcls(col, vl));
         }
     }
     public static class EpgLatestPurchaseDatetime implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteNoPkRelation)e).getLatestPurchaseDatetime(); }
-        public void write(Entity e, Object v) { ((WhiteNoPkRelation)e).setLatestPurchaseDatetime((java.sql.Timestamp)v); }
+        public Object read(Entity et) { return ((WhiteNoPkRelation)et).getLatestPurchaseDatetime(); }
+        public void write(Entity et, Object vl) { ((WhiteNoPkRelation)et).setLatestPurchaseDatetime((java.sql.Timestamp)vl); }
     }
 
     // ===================================================================================
@@ -171,10 +171,10 @@ public class WhiteNoPkRelationDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((WhiteNoPkRelation)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((WhiteNoPkRelation)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((WhiteNoPkRelation)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((WhiteNoPkRelation)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

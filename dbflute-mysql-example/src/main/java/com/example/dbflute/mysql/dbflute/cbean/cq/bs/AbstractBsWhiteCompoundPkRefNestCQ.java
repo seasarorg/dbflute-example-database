@@ -160,8 +160,8 @@ public abstract class AbstractBsWhiteCompoundPkRefNestCQ extends AbstractConditi
      */
     public void setCompoundPkRefNestId_IsNotNull() { regCompoundPkRefNestId(CK_ISNN, DOBJ); }
 
-    protected void regCompoundPkRefNestId(ConditionKey k, Object v) { regQ(k, v, getCValueCompoundPkRefNestId(), "COMPOUND_PK_REF_NEST_ID"); }
-    abstract protected ConditionValue getCValueCompoundPkRefNestId();
+    protected void regCompoundPkRefNestId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueCompoundPkRefNestId(), "COMPOUND_PK_REF_NEST_ID"); }
+    protected abstract ConditionValue getCValueCompoundPkRefNestId();
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -251,8 +251,8 @@ public abstract class AbstractBsWhiteCompoundPkRefNestCQ extends AbstractConditi
         regINS(CK_NINS, cTL(fooMultipleIdList), getCValueFooMultipleId(), "FOO_MULTIPLE_ID");
     }
 
-    protected void regFooMultipleId(ConditionKey k, Object v) { regQ(k, v, getCValueFooMultipleId(), "FOO_MULTIPLE_ID"); }
-    abstract protected ConditionValue getCValueFooMultipleId();
+    protected void regFooMultipleId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueFooMultipleId(), "FOO_MULTIPLE_ID"); }
+    protected abstract ConditionValue getCValueFooMultipleId();
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -342,8 +342,8 @@ public abstract class AbstractBsWhiteCompoundPkRefNestCQ extends AbstractConditi
         regINS(CK_NINS, cTL(barMultipleIdList), getCValueBarMultipleId(), "BAR_MULTIPLE_ID");
     }
 
-    protected void regBarMultipleId(ConditionKey k, Object v) { regQ(k, v, getCValueBarMultipleId(), "BAR_MULTIPLE_ID"); }
-    abstract protected ConditionValue getCValueBarMultipleId();
+    protected void regBarMultipleId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueBarMultipleId(), "BAR_MULTIPLE_ID"); }
+    protected abstract ConditionValue getCValueBarMultipleId();
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -433,8 +433,8 @@ public abstract class AbstractBsWhiteCompoundPkRefNestCQ extends AbstractConditi
         regINS(CK_NINS, cTL(quxMultipleIdList), getCValueQuxMultipleId(), "QUX_MULTIPLE_ID");
     }
 
-    protected void regQuxMultipleId(ConditionKey k, Object v) { regQ(k, v, getCValueQuxMultipleId(), "QUX_MULTIPLE_ID"); }
-    abstract protected ConditionValue getCValueQuxMultipleId();
+    protected void regQuxMultipleId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueQuxMultipleId(), "QUX_MULTIPLE_ID"); }
+    protected abstract ConditionValue getCValueQuxMultipleId();
 
     // ===================================================================================
     //                                                                     ScalarCondition
@@ -541,22 +541,22 @@ public abstract class AbstractBsWhiteCompoundPkRefNestCQ extends AbstractConditi
         return xcreateSSQFunction(CK_LE.getOperand());
     }
 
-    protected HpSSQFunction<WhiteCompoundPkRefNestCB> xcreateSSQFunction(final String operand) {
+    protected HpSSQFunction<WhiteCompoundPkRefNestCB> xcreateSSQFunction(final String rd) {
         return new HpSSQFunction<WhiteCompoundPkRefNestCB>(new HpSSQSetupper<WhiteCompoundPkRefNestCB>() {
-            public void setup(String function, SubQuery<WhiteCompoundPkRefNestCB> subQuery, HpSSQOption<WhiteCompoundPkRefNestCB> option) {
-                xscalarCondition(function, subQuery, operand, option);
+            public void setup(String fn, SubQuery<WhiteCompoundPkRefNestCB> sq, HpSSQOption<WhiteCompoundPkRefNestCB> op) {
+                xscalarCondition(fn, sq, rd, op);
             }
         });
     }
 
-    protected void xscalarCondition(String function, SubQuery<WhiteCompoundPkRefNestCB> subQuery, String operand, HpSSQOption<WhiteCompoundPkRefNestCB> option) {
-        assertObjectNotNull("subQuery<WhiteCompoundPkRefNestCB>", subQuery);
-        WhiteCompoundPkRefNestCB cb = xcreateScalarConditionCB(); subQuery.query(cb);
-        String subQueryPropertyName = keepScalarCondition(cb.query()); // for saving query-value
-        option.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
-        registerScalarCondition(function, cb.query(), subQueryPropertyName, operand, option);
+    protected void xscalarCondition(String fn, SubQuery<WhiteCompoundPkRefNestCB> sq, String rd, HpSSQOption<WhiteCompoundPkRefNestCB> op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteCompoundPkRefNestCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        String pp = keepScalarCondition(cb.query()); // for saving query-value
+        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
-    public abstract String keepScalarCondition(WhiteCompoundPkRefNestCQ subQuery);
+    public abstract String keepScalarCondition(WhiteCompoundPkRefNestCQ sq);
 
     protected WhiteCompoundPkRefNestCB xcreateScalarConditionCB() {
         WhiteCompoundPkRefNestCB cb = new WhiteCompoundPkRefNestCB();
@@ -573,13 +573,14 @@ public abstract class AbstractBsWhiteCompoundPkRefNestCQ extends AbstractConditi
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    public void xsmyselfDerive(String function, SubQuery<WhiteCompoundPkRefNestCB> subQuery, String aliasName, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<WhiteCompoundPkRefNestCB>", subQuery);
-        WhiteCompoundPkRefNestCB cb = new WhiteCompoundPkRefNestCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
-        registerSpecifyMyselfDerived(function, cb.query(), "COMPOUND_PK_REF_NEST_ID", "COMPOUND_PK_REF_NEST_ID", subQueryPropertyName, "myselfDerived", aliasName, option);
+    public void xsmyselfDerive(String fn, SubQuery<WhiteCompoundPkRefNestCB> sq, String al, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteCompoundPkRefNestCB cb = new WhiteCompoundPkRefNestCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "COMPOUND_PK_REF_NEST_ID";
+        String pp = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
+        registerSpecifyMyselfDerived(fn, cb.query(), pk, pk, pp, "myselfDerived", al, op);
     }
-    public abstract String keepSpecifyMyselfDerived(WhiteCompoundPkRefNestCQ subQuery);
+    public abstract String keepSpecifyMyselfDerived(WhiteCompoundPkRefNestCQ sq);
 
     /**
      * Prepare for (Query)MyselfDerived (SubQuery).
@@ -590,20 +591,21 @@ public abstract class AbstractBsWhiteCompoundPkRefNestCQ extends AbstractConditi
     }
     protected HpQDRFunction<WhiteCompoundPkRefNestCB> xcreateQDRFunctionMyselfDerived() {
         return new HpQDRFunction<WhiteCompoundPkRefNestCB>(new HpQDRSetupper<WhiteCompoundPkRefNestCB>() {
-            public void setup(String function, SubQuery<WhiteCompoundPkRefNestCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-                xqderiveMyselfDerived(function, subQuery, operand, value, option);
+            public void setup(String fn, SubQuery<WhiteCompoundPkRefNestCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+                xqderiveMyselfDerived(fn, sq, rd, vl, op);
             }
         });
     }
-    public void xqderiveMyselfDerived(String function, SubQuery<WhiteCompoundPkRefNestCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<WhiteCompoundPkRefNestCB>", subQuery);
-        WhiteCompoundPkRefNestCB cb = new WhiteCompoundPkRefNestCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepQueryMyselfDerived(cb.query()); // for saving query-value.
-        String parameterPropertyName = keepQueryMyselfDerivedParameter(value);
-        registerQueryMyselfDerived(function, cb.query(), "COMPOUND_PK_REF_NEST_ID", "COMPOUND_PK_REF_NEST_ID", subQueryPropertyName, "myselfDerived", operand, value, parameterPropertyName, option);
+    public void xqderiveMyselfDerived(String fn, SubQuery<WhiteCompoundPkRefNestCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteCompoundPkRefNestCB cb = new WhiteCompoundPkRefNestCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "COMPOUND_PK_REF_NEST_ID";
+        String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
+        String prpp = keepQueryMyselfDerivedParameter(vl);
+        registerQueryMyselfDerived(fn, cb.query(), pk, pk, sqpp, "myselfDerived", rd, vl, prpp, op);
     }
-    public abstract String keepQueryMyselfDerived(WhiteCompoundPkRefNestCQ subQuery);
-    public abstract String keepQueryMyselfDerivedParameter(Object parameterValue);
+    public abstract String keepQueryMyselfDerived(WhiteCompoundPkRefNestCQ sq);
+    public abstract String keepQueryMyselfDerivedParameter(Object vl);
 
     // ===================================================================================
     //                                                                        MyselfExists
@@ -613,12 +615,12 @@ public abstract class AbstractBsWhiteCompoundPkRefNestCQ extends AbstractConditi
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfExists(SubQuery<WhiteCompoundPkRefNestCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteCompoundPkRefNestCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteCompoundPkRefNestCB cb = new WhiteCompoundPkRefNestCB(); cb.xsetupForMyselfExists(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfExists(cb.query()); // for saving query-value.
-        registerMyselfExists(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfExists(cb.query()); // for saving query-value.
+        registerMyselfExists(cb.query(), pp);
     }
-    public abstract String keepMyselfExists(WhiteCompoundPkRefNestCQ subQuery);
+    public abstract String keepMyselfExists(WhiteCompoundPkRefNestCQ sq);
 
     // ===================================================================================
     //                                                                       MyselfInScope
@@ -628,12 +630,12 @@ public abstract class AbstractBsWhiteCompoundPkRefNestCQ extends AbstractConditi
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfInScope(SubQuery<WhiteCompoundPkRefNestCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteCompoundPkRefNestCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteCompoundPkRefNestCB cb = new WhiteCompoundPkRefNestCB(); cb.xsetupForMyselfInScope(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfInScope(cb.query()); // for saving query-value.
-        registerMyselfInScope(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfInScope(cb.query()); // for saving query-value.
+        registerMyselfInScope(cb.query(), pp);
     }
-    public abstract String keepMyselfInScope(WhiteCompoundPkRefNestCQ subQuery);
+    public abstract String keepMyselfInScope(WhiteCompoundPkRefNestCQ sq);
 
     // ===================================================================================
     //                                                                    Full Text Search
@@ -659,7 +661,7 @@ public abstract class AbstractBsWhiteCompoundPkRefNestCQ extends AbstractConditi
      * @param conditionValue The condition value embedded without binding (by MySQL restriction) but escaped. (NullAllowed: if null or empty, no condition)
      * @param modifier The modifier of full-text search. (NullAllowed: If the value is null, no modifier specified)
      */
-    public void match(java.util.List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList
+    public void match(List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList
                     , String conditionValue
                     , org.seasar.dbflute.dbway.WayOfMySQL.FullTextSearchModifier modifier) {
         xdoMatchForMySQL(textColumnList, conditionValue, modifier);

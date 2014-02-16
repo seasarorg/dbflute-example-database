@@ -87,18 +87,18 @@ public class WhiteTableExceptGenHeadCIQ extends AbstractBsWhiteTableExceptGenHea
     protected ConditionValue getCValueGenHeadId() { return _myCQ.getGenHeadId(); }
     protected ConditionValue getCValueGenHeadName() { return _myCQ.getGenHeadName(); }
     protected ConditionValue getCValueNometaId() { return _myCQ.getNometaId(); }
-    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) { return null; }
-    public String keepScalarCondition(WhiteTableExceptGenHeadCQ subQuery)
+    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
+    public String keepScalarCondition(WhiteTableExceptGenHeadCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }
-    public String keepSpecifyMyselfDerived(WhiteTableExceptGenHeadCQ subQuery)
+    public String keepSpecifyMyselfDerived(WhiteTableExceptGenHeadCQ sq)
     { throwIICBOE("(Specify)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerived(WhiteTableExceptGenHeadCQ subQuery)
+    public String keepQueryMyselfDerived(WhiteTableExceptGenHeadCQ sq)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerivedParameter(Object parameterValue)
+    public String keepQueryMyselfDerivedParameter(Object vl)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepMyselfExists(WhiteTableExceptGenHeadCQ subQuery)
+    public String keepMyselfExists(WhiteTableExceptGenHeadCQ sq)
     { throwIICBOE("MyselfExists"); return null;}
-    public String keepMyselfInScope(WhiteTableExceptGenHeadCQ subQuery)
+    public String keepMyselfInScope(WhiteTableExceptGenHeadCQ sq)
     { throwIICBOE("MyselfInScope"); return null;}
 
     protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()

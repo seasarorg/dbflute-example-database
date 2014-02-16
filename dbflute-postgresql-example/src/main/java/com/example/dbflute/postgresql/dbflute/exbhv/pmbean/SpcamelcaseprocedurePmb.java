@@ -5,7 +5,7 @@ import com.example.dbflute.postgresql.dbflute.bsbhv.pmbean.BsSpcamelcaseprocedur
 /**
  * <!-- df:beginClassDescription -->
  * The typed parameter-bean of Spcamelcaseprocedure. <br />
- * This is related to "<span style="color: #AD4747">spcamelcaseprocedure</span>".
+ * This is related to "<span style="color: #AD4747">spcamelcaseprocedure</span>". <br />
  * <!-- df:endClassDescription -->
  * <p>
  * You can implement your original methods here.

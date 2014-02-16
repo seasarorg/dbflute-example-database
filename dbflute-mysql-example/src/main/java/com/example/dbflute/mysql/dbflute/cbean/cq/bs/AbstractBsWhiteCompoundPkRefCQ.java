@@ -160,8 +160,8 @@ public abstract class AbstractBsWhiteCompoundPkRefCQ extends AbstractConditionQu
      */
     public void setMultipleFirstId_IsNotNull() { regMultipleFirstId(CK_ISNN, DOBJ); }
 
-    protected void regMultipleFirstId(ConditionKey k, Object v) { regQ(k, v, getCValueMultipleFirstId(), "MULTIPLE_FIRST_ID"); }
-    abstract protected ConditionValue getCValueMultipleFirstId();
+    protected void regMultipleFirstId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueMultipleFirstId(), "MULTIPLE_FIRST_ID"); }
+    protected abstract ConditionValue getCValueMultipleFirstId();
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -263,8 +263,8 @@ public abstract class AbstractBsWhiteCompoundPkRefCQ extends AbstractConditionQu
      */
     public void setMultipleSecondId_IsNotNull() { regMultipleSecondId(CK_ISNN, DOBJ); }
 
-    protected void regMultipleSecondId(ConditionKey k, Object v) { regQ(k, v, getCValueMultipleSecondId(), "MULTIPLE_SECOND_ID"); }
-    abstract protected ConditionValue getCValueMultipleSecondId();
+    protected void regMultipleSecondId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueMultipleSecondId(), "MULTIPLE_SECOND_ID"); }
+    protected abstract ConditionValue getCValueMultipleSecondId();
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -354,8 +354,8 @@ public abstract class AbstractBsWhiteCompoundPkRefCQ extends AbstractConditionQu
         regINS(CK_NINS, cTL(refFirstIdList), getCValueRefFirstId(), "REF_FIRST_ID");
     }
 
-    protected void regRefFirstId(ConditionKey k, Object v) { regQ(k, v, getCValueRefFirstId(), "REF_FIRST_ID"); }
-    abstract protected ConditionValue getCValueRefFirstId();
+    protected void regRefFirstId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueRefFirstId(), "REF_FIRST_ID"); }
+    protected abstract ConditionValue getCValueRefFirstId();
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -445,8 +445,8 @@ public abstract class AbstractBsWhiteCompoundPkRefCQ extends AbstractConditionQu
         regINS(CK_NINS, cTL(refSecondIdList), getCValueRefSecondId(), "REF_SECOND_ID");
     }
 
-    protected void regRefSecondId(ConditionKey k, Object v) { regQ(k, v, getCValueRefSecondId(), "REF_SECOND_ID"); }
-    abstract protected ConditionValue getCValueRefSecondId();
+    protected void regRefSecondId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueRefSecondId(), "REF_SECOND_ID"); }
+    protected abstract ConditionValue getCValueRefSecondId();
 
     // ===================================================================================
     //                                                                    Full Text Search
@@ -472,7 +472,7 @@ public abstract class AbstractBsWhiteCompoundPkRefCQ extends AbstractConditionQu
      * @param conditionValue The condition value embedded without binding (by MySQL restriction) but escaped. (NullAllowed: if null or empty, no condition)
      * @param modifier The modifier of full-text search. (NullAllowed: If the value is null, no modifier specified)
      */
-    public void match(java.util.List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList
+    public void match(List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList
                     , String conditionValue
                     , org.seasar.dbflute.dbway.WayOfMySQL.FullTextSearchModifier modifier) {
         xdoMatchForMySQL(textColumnList, conditionValue, modifier);

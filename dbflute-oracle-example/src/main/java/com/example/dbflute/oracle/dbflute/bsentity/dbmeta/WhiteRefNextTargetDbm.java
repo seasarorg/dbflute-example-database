@@ -41,12 +41,12 @@ public class WhiteRefNextTargetDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgRefNextTargetId implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteRefNextTarget)e).getRefNextTargetId(); }
-        public void write(Entity e, Object v) { ((WhiteRefNextTarget)e).setRefNextTargetId(ctl(v)); }
+        public Object read(Entity et) { return ((WhiteRefNextTarget)et).getRefNextTargetId(); }
+        public void write(Entity et, Object vl) { ((WhiteRefNextTarget)et).setRefNextTargetId(ctl(vl)); }
     }
     public static class EpgNextTargetCode implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteRefNextTarget)e).getNextTargetCode(); }
-        public void write(Entity e, Object v) { ((WhiteRefNextTarget)e).setNextTargetCode((String)v); }
+        public Object read(Entity et) { return ((WhiteRefNextTarget)et).getNextTargetCode(); }
+        public void write(Entity et, Object vl) { ((WhiteRefNextTarget)et).setNextTargetCode((String)vl); }
     }
 
     // ===================================================================================
@@ -95,8 +95,8 @@ public class WhiteRefNextTargetDbm extends AbstractDBMeta {
     //                                      Foreign Property
     //                                      ----------------
     public ForeignInfo foreignNextSchemaProductStatus() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnNextTargetCode(), NextSchemaProductStatusDbm.getInstance().columnProductStatusCode());
-        return cfi("FK_WHITE_REF_NEXT_TARGET", "nextSchemaProductStatus", this, NextSchemaProductStatusDbm.getInstance(), map, 0, false, false, false, false, null, null, false, "whiteRefNextTargetList");
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnNextTargetCode(), NextSchemaProductStatusDbm.getInstance().columnProductStatusCode());
+        return cfi("FK_WHITE_REF_NEXT_TARGET", "nextSchemaProductStatus", this, NextSchemaProductStatusDbm.getInstance(), mp, 0, false, false, false, false, null, null, false, "whiteRefNextTargetList");
     }
 
     // -----------------------------------------------------
@@ -128,10 +128,10 @@ public class WhiteRefNextTargetDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((WhiteRefNextTarget)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((WhiteRefNextTarget)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((WhiteRefNextTarget)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((WhiteRefNextTarget)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

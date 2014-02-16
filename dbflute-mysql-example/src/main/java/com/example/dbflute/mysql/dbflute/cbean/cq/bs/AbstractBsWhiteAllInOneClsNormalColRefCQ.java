@@ -148,8 +148,8 @@ public abstract class AbstractBsWhiteAllInOneClsNormalColRefCQ extends AbstractC
         regINS(CK_NINS, cTL(clsRefIdList), getCValueClsRefId(), "CLS_REF_ID");
     }
 
-    protected void regClsRefId(ConditionKey k, Object v) { regQ(k, v, getCValueClsRefId(), "CLS_REF_ID"); }
-    abstract protected ConditionValue getCValueClsRefId();
+    protected void regClsRefId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueClsRefId(), "CLS_REF_ID"); }
+    protected abstract ConditionValue getCValueClsRefId();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -246,8 +246,8 @@ public abstract class AbstractBsWhiteAllInOneClsNormalColRefCQ extends AbstractC
      */
     public void setFooCode_IsNotNull() { regFooCode(CK_ISNN, DOBJ); }
 
-    protected void regFooCode(ConditionKey k, Object v) { regQ(k, v, getCValueFooCode(), "FOO_CODE"); }
-    abstract protected ConditionValue getCValueFooCode();
+    protected void regFooCode(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueFooCode(), "FOO_CODE"); }
+    protected abstract ConditionValue getCValueFooCode();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -344,8 +344,8 @@ public abstract class AbstractBsWhiteAllInOneClsNormalColRefCQ extends AbstractC
      */
     public void setBarCode_IsNotNull() { regBarCode(CK_ISNN, DOBJ); }
 
-    protected void regBarCode(ConditionKey k, Object v) { regQ(k, v, getCValueBarCode(), "BAR_CODE"); }
-    abstract protected ConditionValue getCValueBarCode();
+    protected void regBarCode(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueBarCode(), "BAR_CODE"); }
+    protected abstract ConditionValue getCValueBarCode();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -442,8 +442,8 @@ public abstract class AbstractBsWhiteAllInOneClsNormalColRefCQ extends AbstractC
      */
     public void setQuxCode_IsNotNull() { regQuxCode(CK_ISNN, DOBJ); }
 
-    protected void regQuxCode(ConditionKey k, Object v) { regQ(k, v, getCValueQuxCode(), "QUX_CODE"); }
-    abstract protected ConditionValue getCValueQuxCode();
+    protected void regQuxCode(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueQuxCode(), "QUX_CODE"); }
+    protected abstract ConditionValue getCValueQuxCode();
 
     // ===================================================================================
     //                                                                    Full Text Search
@@ -469,7 +469,7 @@ public abstract class AbstractBsWhiteAllInOneClsNormalColRefCQ extends AbstractC
      * @param conditionValue The condition value embedded without binding (by MySQL restriction) but escaped. (NullAllowed: if null or empty, no condition)
      * @param modifier The modifier of full-text search. (NullAllowed: If the value is null, no modifier specified)
      */
-    public void match(java.util.List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList
+    public void match(List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList
                     , String conditionValue
                     , org.seasar.dbflute.dbway.WayOfMySQL.FullTextSearchModifier modifier) {
         xdoMatchForMySQL(textColumnList, conditionValue, modifier);

@@ -88,18 +88,18 @@ public class WhiteCompoundPkRefNestCIQ extends AbstractBsWhiteCompoundPkRefNestC
     protected ConditionValue getCValueFooMultipleId() { return _myCQ.getFooMultipleId(); }
     protected ConditionValue getCValueBarMultipleId() { return _myCQ.getBarMultipleId(); }
     protected ConditionValue getCValueQuxMultipleId() { return _myCQ.getQuxMultipleId(); }
-    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) { return null; }
-    public String keepScalarCondition(WhiteCompoundPkRefNestCQ subQuery)
+    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
+    public String keepScalarCondition(WhiteCompoundPkRefNestCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }
-    public String keepSpecifyMyselfDerived(WhiteCompoundPkRefNestCQ subQuery)
+    public String keepSpecifyMyselfDerived(WhiteCompoundPkRefNestCQ sq)
     { throwIICBOE("(Specify)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerived(WhiteCompoundPkRefNestCQ subQuery)
+    public String keepQueryMyselfDerived(WhiteCompoundPkRefNestCQ sq)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerivedParameter(Object parameterValue)
+    public String keepQueryMyselfDerivedParameter(Object vl)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepMyselfExists(WhiteCompoundPkRefNestCQ subQuery)
+    public String keepMyselfExists(WhiteCompoundPkRefNestCQ sq)
     { throwIICBOE("MyselfExists"); return null;}
-    public String keepMyselfInScope(WhiteCompoundPkRefNestCQ subQuery)
+    public String keepMyselfInScope(WhiteCompoundPkRefNestCQ sq)
     { throwIICBOE("MyselfInScope"); return null;}
 
     protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()

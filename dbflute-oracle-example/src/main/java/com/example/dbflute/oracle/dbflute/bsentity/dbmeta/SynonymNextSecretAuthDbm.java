@@ -41,12 +41,12 @@ public class SynonymNextSecretAuthDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgSecretAuthCode implements PropertyGateway {
-        public Object read(Entity e) { return ((SynonymNextSecretAuth)e).getSecretAuthCode(); }
-        public void write(Entity e, Object v) { ((SynonymNextSecretAuth)e).setSecretAuthCode((String)v); }
+        public Object read(Entity et) { return ((SynonymNextSecretAuth)et).getSecretAuthCode(); }
+        public void write(Entity et, Object vl) { ((SynonymNextSecretAuth)et).setSecretAuthCode((String)vl); }
     }
     public static class EpgSecretAuthName implements PropertyGateway {
-        public Object read(Entity e) { return ((SynonymNextSecretAuth)e).getSecretAuthName(); }
-        public void write(Entity e, Object v) { ((SynonymNextSecretAuth)e).setSecretAuthName((String)v); }
+        public Object read(Entity et) { return ((SynonymNextSecretAuth)et).getSecretAuthName(); }
+        public void write(Entity et, Object vl) { ((SynonymNextSecretAuth)et).setSecretAuthName((String)vl); }
     }
 
     // ===================================================================================
@@ -128,10 +128,10 @@ public class SynonymNextSecretAuthDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((SynonymNextSecretAuth)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((SynonymNextSecretAuth)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((SynonymNextSecretAuth)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((SynonymNextSecretAuth)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

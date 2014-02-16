@@ -71,18 +71,18 @@ public class WhiteRefNextExceptCIQ extends AbstractBsWhiteRefNextExceptCQ {
     //                                                                ====================
     protected ConditionValue getCValueRefNextExceptId() { return _myCQ.getRefNextExceptId(); }
     protected ConditionValue getCValueNextExceptCode() { return _myCQ.getNextExceptCode(); }
-    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) { return null; }
-    public String keepScalarCondition(WhiteRefNextExceptCQ subQuery)
+    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
+    public String keepScalarCondition(WhiteRefNextExceptCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }
-    public String keepSpecifyMyselfDerived(WhiteRefNextExceptCQ subQuery)
+    public String keepSpecifyMyselfDerived(WhiteRefNextExceptCQ sq)
     { throwIICBOE("(Specify)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerived(WhiteRefNextExceptCQ subQuery)
+    public String keepQueryMyselfDerived(WhiteRefNextExceptCQ sq)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerivedParameter(Object parameterValue)
+    public String keepQueryMyselfDerivedParameter(Object vl)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepMyselfExists(WhiteRefNextExceptCQ subQuery)
+    public String keepMyselfExists(WhiteRefNextExceptCQ sq)
     { throwIICBOE("MyselfExists"); return null;}
-    public String keepMyselfInScope(WhiteRefNextExceptCQ subQuery)
+    public String keepMyselfInScope(WhiteRefNextExceptCQ sq)
     { throwIICBOE("MyselfInScope"); return null;}
 
     protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()

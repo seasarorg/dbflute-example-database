@@ -96,57 +96,57 @@ public class BsWhiteAllInOneClsCategoryCQ extends AbstractBsWhiteAllInOneClsCate
 
     protected Map<String, WhiteAllInOneClsElementCQ> _clsCategoryCode_ExistsReferrer_WhiteAllInOneClsElementListMap;
     public Map<String, WhiteAllInOneClsElementCQ> getClsCategoryCode_ExistsReferrer_WhiteAllInOneClsElementList() { return _clsCategoryCode_ExistsReferrer_WhiteAllInOneClsElementListMap; }
-    public String keepClsCategoryCode_ExistsReferrer_WhiteAllInOneClsElementList(WhiteAllInOneClsElementCQ subQuery) {
+    public String keepClsCategoryCode_ExistsReferrer_WhiteAllInOneClsElementList(WhiteAllInOneClsElementCQ sq) {
         if (_clsCategoryCode_ExistsReferrer_WhiteAllInOneClsElementListMap == null) { _clsCategoryCode_ExistsReferrer_WhiteAllInOneClsElementListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_clsCategoryCode_ExistsReferrer_WhiteAllInOneClsElementListMap.size() + 1);
-        _clsCategoryCode_ExistsReferrer_WhiteAllInOneClsElementListMap.put(key, subQuery); return "clsCategoryCode_ExistsReferrer_WhiteAllInOneClsElementList." + key;
+        String ky = "subQueryMapKey" + (_clsCategoryCode_ExistsReferrer_WhiteAllInOneClsElementListMap.size() + 1);
+        _clsCategoryCode_ExistsReferrer_WhiteAllInOneClsElementListMap.put(ky, sq); return "clsCategoryCode_ExistsReferrer_WhiteAllInOneClsElementList." + ky;
     }
 
     protected Map<String, WhiteAllInOneClsElementCQ> _clsCategoryCode_NotExistsReferrer_WhiteAllInOneClsElementListMap;
     public Map<String, WhiteAllInOneClsElementCQ> getClsCategoryCode_NotExistsReferrer_WhiteAllInOneClsElementList() { return _clsCategoryCode_NotExistsReferrer_WhiteAllInOneClsElementListMap; }
-    public String keepClsCategoryCode_NotExistsReferrer_WhiteAllInOneClsElementList(WhiteAllInOneClsElementCQ subQuery) {
+    public String keepClsCategoryCode_NotExistsReferrer_WhiteAllInOneClsElementList(WhiteAllInOneClsElementCQ sq) {
         if (_clsCategoryCode_NotExistsReferrer_WhiteAllInOneClsElementListMap == null) { _clsCategoryCode_NotExistsReferrer_WhiteAllInOneClsElementListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_clsCategoryCode_NotExistsReferrer_WhiteAllInOneClsElementListMap.size() + 1);
-        _clsCategoryCode_NotExistsReferrer_WhiteAllInOneClsElementListMap.put(key, subQuery); return "clsCategoryCode_NotExistsReferrer_WhiteAllInOneClsElementList." + key;
+        String ky = "subQueryMapKey" + (_clsCategoryCode_NotExistsReferrer_WhiteAllInOneClsElementListMap.size() + 1);
+        _clsCategoryCode_NotExistsReferrer_WhiteAllInOneClsElementListMap.put(ky, sq); return "clsCategoryCode_NotExistsReferrer_WhiteAllInOneClsElementList." + ky;
     }
 
     protected Map<String, WhiteAllInOneClsElementCQ> _clsCategoryCode_InScopeRelation_WhiteAllInOneClsElementListMap;
     public Map<String, WhiteAllInOneClsElementCQ> getClsCategoryCode_InScopeRelation_WhiteAllInOneClsElementList() { return _clsCategoryCode_InScopeRelation_WhiteAllInOneClsElementListMap; }
-    public String keepClsCategoryCode_InScopeRelation_WhiteAllInOneClsElementList(WhiteAllInOneClsElementCQ subQuery) {
+    public String keepClsCategoryCode_InScopeRelation_WhiteAllInOneClsElementList(WhiteAllInOneClsElementCQ sq) {
         if (_clsCategoryCode_InScopeRelation_WhiteAllInOneClsElementListMap == null) { _clsCategoryCode_InScopeRelation_WhiteAllInOneClsElementListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_clsCategoryCode_InScopeRelation_WhiteAllInOneClsElementListMap.size() + 1);
-        _clsCategoryCode_InScopeRelation_WhiteAllInOneClsElementListMap.put(key, subQuery); return "clsCategoryCode_InScopeRelation_WhiteAllInOneClsElementList." + key;
+        String ky = "subQueryMapKey" + (_clsCategoryCode_InScopeRelation_WhiteAllInOneClsElementListMap.size() + 1);
+        _clsCategoryCode_InScopeRelation_WhiteAllInOneClsElementListMap.put(ky, sq); return "clsCategoryCode_InScopeRelation_WhiteAllInOneClsElementList." + ky;
     }
 
     protected Map<String, WhiteAllInOneClsElementCQ> _clsCategoryCode_NotInScopeRelation_WhiteAllInOneClsElementListMap;
     public Map<String, WhiteAllInOneClsElementCQ> getClsCategoryCode_NotInScopeRelation_WhiteAllInOneClsElementList() { return _clsCategoryCode_NotInScopeRelation_WhiteAllInOneClsElementListMap; }
-    public String keepClsCategoryCode_NotInScopeRelation_WhiteAllInOneClsElementList(WhiteAllInOneClsElementCQ subQuery) {
+    public String keepClsCategoryCode_NotInScopeRelation_WhiteAllInOneClsElementList(WhiteAllInOneClsElementCQ sq) {
         if (_clsCategoryCode_NotInScopeRelation_WhiteAllInOneClsElementListMap == null) { _clsCategoryCode_NotInScopeRelation_WhiteAllInOneClsElementListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_clsCategoryCode_NotInScopeRelation_WhiteAllInOneClsElementListMap.size() + 1);
-        _clsCategoryCode_NotInScopeRelation_WhiteAllInOneClsElementListMap.put(key, subQuery); return "clsCategoryCode_NotInScopeRelation_WhiteAllInOneClsElementList." + key;
+        String ky = "subQueryMapKey" + (_clsCategoryCode_NotInScopeRelation_WhiteAllInOneClsElementListMap.size() + 1);
+        _clsCategoryCode_NotInScopeRelation_WhiteAllInOneClsElementListMap.put(ky, sq); return "clsCategoryCode_NotInScopeRelation_WhiteAllInOneClsElementList." + ky;
     }
 
     protected Map<String, WhiteAllInOneClsElementCQ> _clsCategoryCode_SpecifyDerivedReferrer_WhiteAllInOneClsElementListMap;
     public Map<String, WhiteAllInOneClsElementCQ> getClsCategoryCode_SpecifyDerivedReferrer_WhiteAllInOneClsElementList() { return _clsCategoryCode_SpecifyDerivedReferrer_WhiteAllInOneClsElementListMap; }
-    public String keepClsCategoryCode_SpecifyDerivedReferrer_WhiteAllInOneClsElementList(WhiteAllInOneClsElementCQ subQuery) {
+    public String keepClsCategoryCode_SpecifyDerivedReferrer_WhiteAllInOneClsElementList(WhiteAllInOneClsElementCQ sq) {
         if (_clsCategoryCode_SpecifyDerivedReferrer_WhiteAllInOneClsElementListMap == null) { _clsCategoryCode_SpecifyDerivedReferrer_WhiteAllInOneClsElementListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_clsCategoryCode_SpecifyDerivedReferrer_WhiteAllInOneClsElementListMap.size() + 1);
-        _clsCategoryCode_SpecifyDerivedReferrer_WhiteAllInOneClsElementListMap.put(key, subQuery); return "clsCategoryCode_SpecifyDerivedReferrer_WhiteAllInOneClsElementList." + key;
+        String ky = "subQueryMapKey" + (_clsCategoryCode_SpecifyDerivedReferrer_WhiteAllInOneClsElementListMap.size() + 1);
+        _clsCategoryCode_SpecifyDerivedReferrer_WhiteAllInOneClsElementListMap.put(ky, sq); return "clsCategoryCode_SpecifyDerivedReferrer_WhiteAllInOneClsElementList." + ky;
     }
 
     protected Map<String, WhiteAllInOneClsElementCQ> _clsCategoryCode_QueryDerivedReferrer_WhiteAllInOneClsElementListMap;
     public Map<String, WhiteAllInOneClsElementCQ> getClsCategoryCode_QueryDerivedReferrer_WhiteAllInOneClsElementList() { return _clsCategoryCode_QueryDerivedReferrer_WhiteAllInOneClsElementListMap; }
-    public String keepClsCategoryCode_QueryDerivedReferrer_WhiteAllInOneClsElementList(WhiteAllInOneClsElementCQ subQuery) {
+    public String keepClsCategoryCode_QueryDerivedReferrer_WhiteAllInOneClsElementList(WhiteAllInOneClsElementCQ sq) {
         if (_clsCategoryCode_QueryDerivedReferrer_WhiteAllInOneClsElementListMap == null) { _clsCategoryCode_QueryDerivedReferrer_WhiteAllInOneClsElementListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_clsCategoryCode_QueryDerivedReferrer_WhiteAllInOneClsElementListMap.size() + 1);
-        _clsCategoryCode_QueryDerivedReferrer_WhiteAllInOneClsElementListMap.put(key, subQuery); return "clsCategoryCode_QueryDerivedReferrer_WhiteAllInOneClsElementList." + key;
+        String ky = "subQueryMapKey" + (_clsCategoryCode_QueryDerivedReferrer_WhiteAllInOneClsElementListMap.size() + 1);
+        _clsCategoryCode_QueryDerivedReferrer_WhiteAllInOneClsElementListMap.put(ky, sq); return "clsCategoryCode_QueryDerivedReferrer_WhiteAllInOneClsElementList." + ky;
     }
     protected Map<String, Object> _clsCategoryCode_QueryDerivedReferrer_WhiteAllInOneClsElementListParameterMap;
     public Map<String, Object> getClsCategoryCode_QueryDerivedReferrer_WhiteAllInOneClsElementListParameter() { return _clsCategoryCode_QueryDerivedReferrer_WhiteAllInOneClsElementListParameterMap; }
-    public String keepClsCategoryCode_QueryDerivedReferrer_WhiteAllInOneClsElementListParameter(Object parameterValue) {
+    public String keepClsCategoryCode_QueryDerivedReferrer_WhiteAllInOneClsElementListParameter(Object vl) {
         if (_clsCategoryCode_QueryDerivedReferrer_WhiteAllInOneClsElementListParameterMap == null) { _clsCategoryCode_QueryDerivedReferrer_WhiteAllInOneClsElementListParameterMap = newLinkedHashMapSized(4); }
-        String key = "subQueryParameterKey" + (_clsCategoryCode_QueryDerivedReferrer_WhiteAllInOneClsElementListParameterMap.size() + 1);
-        _clsCategoryCode_QueryDerivedReferrer_WhiteAllInOneClsElementListParameterMap.put(key, parameterValue); return "clsCategoryCode_QueryDerivedReferrer_WhiteAllInOneClsElementListParameter." + key;
+        String ky = "subQueryParameterKey" + (_clsCategoryCode_QueryDerivedReferrer_WhiteAllInOneClsElementListParameterMap.size() + 1);
+        _clsCategoryCode_QueryDerivedReferrer_WhiteAllInOneClsElementListParameterMap.put(ky, vl); return "clsCategoryCode_QueryDerivedReferrer_WhiteAllInOneClsElementListParameter." + ky;
     }
 
     /** 
@@ -245,7 +245,7 @@ public class BsWhiteAllInOneClsCategoryCQ extends AbstractBsWhiteAllInOneClsCate
     // ===================================================================================
     //                                                                         Union Query
     //                                                                         ===========
-    protected void reflectRelationOnUnionQuery(ConditionQuery baseQueryAsSuper, ConditionQuery unionQueryAsSuper) {
+    protected void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
     }
 
     // ===================================================================================
@@ -260,10 +260,10 @@ public class BsWhiteAllInOneClsCategoryCQ extends AbstractBsWhiteAllInOneClsCate
     //                                                                     ===============
     protected Map<String, WhiteAllInOneClsCategoryCQ> _scalarConditionMap;
     public Map<String, WhiteAllInOneClsCategoryCQ> getScalarCondition() { return _scalarConditionMap; }
-    public String keepScalarCondition(WhiteAllInOneClsCategoryCQ subQuery) {
+    public String keepScalarCondition(WhiteAllInOneClsCategoryCQ sq) {
         if (_scalarConditionMap == null) { _scalarConditionMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
-        _scalarConditionMap.put(key, subQuery); return "scalarCondition." + key;
+        String ky = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
+        _scalarConditionMap.put(ky, sq); return "scalarCondition." + ky;
     }
 
     // ===================================================================================
@@ -271,25 +271,25 @@ public class BsWhiteAllInOneClsCategoryCQ extends AbstractBsWhiteAllInOneClsCate
     //                                                                       =============
     protected Map<String, WhiteAllInOneClsCategoryCQ> _specifyMyselfDerivedMap;
     public Map<String, WhiteAllInOneClsCategoryCQ> getSpecifyMyselfDerived() { return _specifyMyselfDerivedMap; }
-    public String keepSpecifyMyselfDerived(WhiteAllInOneClsCategoryCQ subQuery) {
+    public String keepSpecifyMyselfDerived(WhiteAllInOneClsCategoryCQ sq) {
         if (_specifyMyselfDerivedMap == null) { _specifyMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
-        _specifyMyselfDerivedMap.put(key, subQuery); return "specifyMyselfDerived." + key;
+        String ky = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
+        _specifyMyselfDerivedMap.put(ky, sq); return "specifyMyselfDerived." + ky;
     }
 
     protected Map<String, WhiteAllInOneClsCategoryCQ> _queryMyselfDerivedMap;
     public Map<String, WhiteAllInOneClsCategoryCQ> getQueryMyselfDerived() { return _queryMyselfDerivedMap; }
-    public String keepQueryMyselfDerived(WhiteAllInOneClsCategoryCQ subQuery) {
+    public String keepQueryMyselfDerived(WhiteAllInOneClsCategoryCQ sq) {
         if (_queryMyselfDerivedMap == null) { _queryMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
-        _queryMyselfDerivedMap.put(key, subQuery); return "queryMyselfDerived." + key;
+        String ky = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
+        _queryMyselfDerivedMap.put(ky, sq); return "queryMyselfDerived." + ky;
     }
     protected Map<String, Object> _qyeryMyselfDerivedParameterMap;
     public Map<String, Object> getQueryMyselfDerivedParameter() { return _qyeryMyselfDerivedParameterMap; }
-    public String keepQueryMyselfDerivedParameter(Object parameterValue) {
+    public String keepQueryMyselfDerivedParameter(Object vl) {
         if (_qyeryMyselfDerivedParameterMap == null) { _qyeryMyselfDerivedParameterMap = newLinkedHashMapSized(4); }
-        String key = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
-        _qyeryMyselfDerivedParameterMap.put(key, parameterValue); return "queryMyselfDerivedParameter." + key;
+        String ky = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
+        _qyeryMyselfDerivedParameterMap.put(ky, vl); return "queryMyselfDerivedParameter." + ky;
     }
 
     // ===================================================================================
@@ -297,10 +297,10 @@ public class BsWhiteAllInOneClsCategoryCQ extends AbstractBsWhiteAllInOneClsCate
     //                                                                        ============
     protected Map<String, WhiteAllInOneClsCategoryCQ> _myselfExistsMap;
     public Map<String, WhiteAllInOneClsCategoryCQ> getMyselfExists() { return _myselfExistsMap; }
-    public String keepMyselfExists(WhiteAllInOneClsCategoryCQ subQuery) {
+    public String keepMyselfExists(WhiteAllInOneClsCategoryCQ sq) {
         if (_myselfExistsMap == null) { _myselfExistsMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
-        _myselfExistsMap.put(key, subQuery); return "myselfExists." + key;
+        String ky = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
+        _myselfExistsMap.put(ky, sq); return "myselfExists." + ky;
     }
 
     // ===================================================================================
@@ -308,10 +308,10 @@ public class BsWhiteAllInOneClsCategoryCQ extends AbstractBsWhiteAllInOneClsCate
     //                                                                       =============
     protected Map<String, WhiteAllInOneClsCategoryCQ> _myselfInScopeMap;
     public Map<String, WhiteAllInOneClsCategoryCQ> getMyselfInScope() { return _myselfInScopeMap; }
-    public String keepMyselfInScope(WhiteAllInOneClsCategoryCQ subQuery) {
+    public String keepMyselfInScope(WhiteAllInOneClsCategoryCQ sq) {
         if (_myselfInScopeMap == null) { _myselfInScopeMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
-        _myselfInScopeMap.put(key, subQuery); return "myselfInScope." + key;
+        String ky = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
+        _myselfInScopeMap.put(ky, sq); return "myselfInScope." + ky;
     }
 
     // ===================================================================================

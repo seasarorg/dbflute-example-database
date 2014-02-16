@@ -81,57 +81,57 @@ public class BsNextSchemaProductCQ extends AbstractBsNextSchemaProductCQ {
 
     protected Map<String, WhiteSameNameCQ> _productId_ExistsReferrer_WhiteSameNameListMap;
     public Map<String, WhiteSameNameCQ> getProductId_ExistsReferrer_WhiteSameNameList() { return _productId_ExistsReferrer_WhiteSameNameListMap; }
-    public String keepProductId_ExistsReferrer_WhiteSameNameList(WhiteSameNameCQ subQuery) {
+    public String keepProductId_ExistsReferrer_WhiteSameNameList(WhiteSameNameCQ sq) {
         if (_productId_ExistsReferrer_WhiteSameNameListMap == null) { _productId_ExistsReferrer_WhiteSameNameListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_productId_ExistsReferrer_WhiteSameNameListMap.size() + 1);
-        _productId_ExistsReferrer_WhiteSameNameListMap.put(key, subQuery); return "productId_ExistsReferrer_WhiteSameNameList." + key;
+        String ky = "subQueryMapKey" + (_productId_ExistsReferrer_WhiteSameNameListMap.size() + 1);
+        _productId_ExistsReferrer_WhiteSameNameListMap.put(ky, sq); return "productId_ExistsReferrer_WhiteSameNameList." + ky;
     }
 
     protected Map<String, WhiteSameNameCQ> _productId_NotExistsReferrer_WhiteSameNameListMap;
     public Map<String, WhiteSameNameCQ> getProductId_NotExistsReferrer_WhiteSameNameList() { return _productId_NotExistsReferrer_WhiteSameNameListMap; }
-    public String keepProductId_NotExistsReferrer_WhiteSameNameList(WhiteSameNameCQ subQuery) {
+    public String keepProductId_NotExistsReferrer_WhiteSameNameList(WhiteSameNameCQ sq) {
         if (_productId_NotExistsReferrer_WhiteSameNameListMap == null) { _productId_NotExistsReferrer_WhiteSameNameListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_productId_NotExistsReferrer_WhiteSameNameListMap.size() + 1);
-        _productId_NotExistsReferrer_WhiteSameNameListMap.put(key, subQuery); return "productId_NotExistsReferrer_WhiteSameNameList." + key;
+        String ky = "subQueryMapKey" + (_productId_NotExistsReferrer_WhiteSameNameListMap.size() + 1);
+        _productId_NotExistsReferrer_WhiteSameNameListMap.put(ky, sq); return "productId_NotExistsReferrer_WhiteSameNameList." + ky;
     }
 
     protected Map<String, WhiteSameNameCQ> _productId_SpecifyDerivedReferrer_WhiteSameNameListMap;
     public Map<String, WhiteSameNameCQ> getProductId_SpecifyDerivedReferrer_WhiteSameNameList() { return _productId_SpecifyDerivedReferrer_WhiteSameNameListMap; }
-    public String keepProductId_SpecifyDerivedReferrer_WhiteSameNameList(WhiteSameNameCQ subQuery) {
+    public String keepProductId_SpecifyDerivedReferrer_WhiteSameNameList(WhiteSameNameCQ sq) {
         if (_productId_SpecifyDerivedReferrer_WhiteSameNameListMap == null) { _productId_SpecifyDerivedReferrer_WhiteSameNameListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_productId_SpecifyDerivedReferrer_WhiteSameNameListMap.size() + 1);
-        _productId_SpecifyDerivedReferrer_WhiteSameNameListMap.put(key, subQuery); return "productId_SpecifyDerivedReferrer_WhiteSameNameList." + key;
+        String ky = "subQueryMapKey" + (_productId_SpecifyDerivedReferrer_WhiteSameNameListMap.size() + 1);
+        _productId_SpecifyDerivedReferrer_WhiteSameNameListMap.put(ky, sq); return "productId_SpecifyDerivedReferrer_WhiteSameNameList." + ky;
     }
 
     protected Map<String, WhiteSameNameCQ> _productId_InScopeRelation_WhiteSameNameListMap;
     public Map<String, WhiteSameNameCQ> getProductId_InScopeRelation_WhiteSameNameList() { return _productId_InScopeRelation_WhiteSameNameListMap; }
-    public String keepProductId_InScopeRelation_WhiteSameNameList(WhiteSameNameCQ subQuery) {
+    public String keepProductId_InScopeRelation_WhiteSameNameList(WhiteSameNameCQ sq) {
         if (_productId_InScopeRelation_WhiteSameNameListMap == null) { _productId_InScopeRelation_WhiteSameNameListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_productId_InScopeRelation_WhiteSameNameListMap.size() + 1);
-        _productId_InScopeRelation_WhiteSameNameListMap.put(key, subQuery); return "productId_InScopeRelation_WhiteSameNameList." + key;
+        String ky = "subQueryMapKey" + (_productId_InScopeRelation_WhiteSameNameListMap.size() + 1);
+        _productId_InScopeRelation_WhiteSameNameListMap.put(ky, sq); return "productId_InScopeRelation_WhiteSameNameList." + ky;
     }
 
     protected Map<String, WhiteSameNameCQ> _productId_NotInScopeRelation_WhiteSameNameListMap;
     public Map<String, WhiteSameNameCQ> getProductId_NotInScopeRelation_WhiteSameNameList() { return _productId_NotInScopeRelation_WhiteSameNameListMap; }
-    public String keepProductId_NotInScopeRelation_WhiteSameNameList(WhiteSameNameCQ subQuery) {
+    public String keepProductId_NotInScopeRelation_WhiteSameNameList(WhiteSameNameCQ sq) {
         if (_productId_NotInScopeRelation_WhiteSameNameListMap == null) { _productId_NotInScopeRelation_WhiteSameNameListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_productId_NotInScopeRelation_WhiteSameNameListMap.size() + 1);
-        _productId_NotInScopeRelation_WhiteSameNameListMap.put(key, subQuery); return "productId_NotInScopeRelation_WhiteSameNameList." + key;
+        String ky = "subQueryMapKey" + (_productId_NotInScopeRelation_WhiteSameNameListMap.size() + 1);
+        _productId_NotInScopeRelation_WhiteSameNameListMap.put(ky, sq); return "productId_NotInScopeRelation_WhiteSameNameList." + ky;
     }
 
     protected Map<String, WhiteSameNameCQ> _productId_QueryDerivedReferrer_WhiteSameNameListMap;
     public Map<String, WhiteSameNameCQ> getProductId_QueryDerivedReferrer_WhiteSameNameList() { return _productId_QueryDerivedReferrer_WhiteSameNameListMap; }
-    public String keepProductId_QueryDerivedReferrer_WhiteSameNameList(WhiteSameNameCQ subQuery) {
+    public String keepProductId_QueryDerivedReferrer_WhiteSameNameList(WhiteSameNameCQ sq) {
         if (_productId_QueryDerivedReferrer_WhiteSameNameListMap == null) { _productId_QueryDerivedReferrer_WhiteSameNameListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_productId_QueryDerivedReferrer_WhiteSameNameListMap.size() + 1);
-        _productId_QueryDerivedReferrer_WhiteSameNameListMap.put(key, subQuery); return "productId_QueryDerivedReferrer_WhiteSameNameList." + key;
+        String ky = "subQueryMapKey" + (_productId_QueryDerivedReferrer_WhiteSameNameListMap.size() + 1);
+        _productId_QueryDerivedReferrer_WhiteSameNameListMap.put(ky, sq); return "productId_QueryDerivedReferrer_WhiteSameNameList." + ky;
     }
     protected Map<String, Object> _productId_QueryDerivedReferrer_WhiteSameNameListParameterMap;
     public Map<String, Object> getProductId_QueryDerivedReferrer_WhiteSameNameListParameter() { return _productId_QueryDerivedReferrer_WhiteSameNameListParameterMap; }
-    public String keepProductId_QueryDerivedReferrer_WhiteSameNameListParameter(Object parameterValue) {
+    public String keepProductId_QueryDerivedReferrer_WhiteSameNameListParameter(Object vl) {
         if (_productId_QueryDerivedReferrer_WhiteSameNameListParameterMap == null) { _productId_QueryDerivedReferrer_WhiteSameNameListParameterMap = newLinkedHashMapSized(4); }
-        String key = "subQueryParameterKey" + (_productId_QueryDerivedReferrer_WhiteSameNameListParameterMap.size() + 1);
-        _productId_QueryDerivedReferrer_WhiteSameNameListParameterMap.put(key, parameterValue); return "productId_QueryDerivedReferrer_WhiteSameNameListParameter." + key;
+        String ky = "subQueryParameterKey" + (_productId_QueryDerivedReferrer_WhiteSameNameListParameterMap.size() + 1);
+        _productId_QueryDerivedReferrer_WhiteSameNameListParameterMap.put(ky, vl); return "productId_QueryDerivedReferrer_WhiteSameNameListParameter." + ky;
     }
 
     /** 
@@ -209,7 +209,7 @@ public class BsNextSchemaProductCQ extends AbstractBsNextSchemaProductCQ {
     // ===================================================================================
     //                                                                         Union Query
     //                                                                         ===========
-    protected void reflectRelationOnUnionQuery(ConditionQuery baseQueryAsSuper, ConditionQuery unionQueryAsSuper) {
+    protected void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
     }
 
     // ===================================================================================
@@ -224,10 +224,10 @@ public class BsNextSchemaProductCQ extends AbstractBsNextSchemaProductCQ {
     //                                                                     ===============
     protected Map<String, NextSchemaProductCQ> _scalarConditionMap;
     public Map<String, NextSchemaProductCQ> getScalarCondition() { return _scalarConditionMap; }
-    public String keepScalarCondition(NextSchemaProductCQ subQuery) {
+    public String keepScalarCondition(NextSchemaProductCQ sq) {
         if (_scalarConditionMap == null) { _scalarConditionMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
-        _scalarConditionMap.put(key, subQuery); return "scalarCondition." + key;
+        String ky = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
+        _scalarConditionMap.put(ky, sq); return "scalarCondition." + ky;
     }
 
     // ===================================================================================
@@ -235,25 +235,25 @@ public class BsNextSchemaProductCQ extends AbstractBsNextSchemaProductCQ {
     //                                                                       =============
     protected Map<String, NextSchemaProductCQ> _specifyMyselfDerivedMap;
     public Map<String, NextSchemaProductCQ> getSpecifyMyselfDerived() { return _specifyMyselfDerivedMap; }
-    public String keepSpecifyMyselfDerived(NextSchemaProductCQ subQuery) {
+    public String keepSpecifyMyselfDerived(NextSchemaProductCQ sq) {
         if (_specifyMyselfDerivedMap == null) { _specifyMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
-        _specifyMyselfDerivedMap.put(key, subQuery); return "specifyMyselfDerived." + key;
+        String ky = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
+        _specifyMyselfDerivedMap.put(ky, sq); return "specifyMyselfDerived." + ky;
     }
 
     protected Map<String, NextSchemaProductCQ> _queryMyselfDerivedMap;
     public Map<String, NextSchemaProductCQ> getQueryMyselfDerived() { return _queryMyselfDerivedMap; }
-    public String keepQueryMyselfDerived(NextSchemaProductCQ subQuery) {
+    public String keepQueryMyselfDerived(NextSchemaProductCQ sq) {
         if (_queryMyselfDerivedMap == null) { _queryMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
-        _queryMyselfDerivedMap.put(key, subQuery); return "queryMyselfDerived." + key;
+        String ky = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
+        _queryMyselfDerivedMap.put(ky, sq); return "queryMyselfDerived." + ky;
     }
     protected Map<String, Object> _qyeryMyselfDerivedParameterMap;
     public Map<String, Object> getQueryMyselfDerivedParameter() { return _qyeryMyselfDerivedParameterMap; }
-    public String keepQueryMyselfDerivedParameter(Object parameterValue) {
+    public String keepQueryMyselfDerivedParameter(Object vl) {
         if (_qyeryMyselfDerivedParameterMap == null) { _qyeryMyselfDerivedParameterMap = newLinkedHashMapSized(4); }
-        String key = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
-        _qyeryMyselfDerivedParameterMap.put(key, parameterValue); return "queryMyselfDerivedParameter." + key;
+        String ky = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
+        _qyeryMyselfDerivedParameterMap.put(ky, vl); return "queryMyselfDerivedParameter." + ky;
     }
 
     // ===================================================================================
@@ -261,10 +261,10 @@ public class BsNextSchemaProductCQ extends AbstractBsNextSchemaProductCQ {
     //                                                                        ============
     protected Map<String, NextSchemaProductCQ> _myselfExistsMap;
     public Map<String, NextSchemaProductCQ> getMyselfExists() { return _myselfExistsMap; }
-    public String keepMyselfExists(NextSchemaProductCQ subQuery) {
+    public String keepMyselfExists(NextSchemaProductCQ sq) {
         if (_myselfExistsMap == null) { _myselfExistsMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
-        _myselfExistsMap.put(key, subQuery); return "myselfExists." + key;
+        String ky = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
+        _myselfExistsMap.put(ky, sq); return "myselfExists." + ky;
     }
 
     // ===================================================================================
@@ -272,10 +272,10 @@ public class BsNextSchemaProductCQ extends AbstractBsNextSchemaProductCQ {
     //                                                                       =============
     protected Map<String, NextSchemaProductCQ> _myselfInScopeMap;
     public Map<String, NextSchemaProductCQ> getMyselfInScope() { return _myselfInScopeMap; }
-    public String keepMyselfInScope(NextSchemaProductCQ subQuery) {
+    public String keepMyselfInScope(NextSchemaProductCQ sq) {
         if (_myselfInScopeMap == null) { _myselfInScopeMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
-        _myselfInScopeMap.put(key, subQuery); return "myselfInScope." + key;
+        String ky = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
+        _myselfInScopeMap.put(ky, sq); return "myselfInScope." + ky;
     }
 
     // ===================================================================================

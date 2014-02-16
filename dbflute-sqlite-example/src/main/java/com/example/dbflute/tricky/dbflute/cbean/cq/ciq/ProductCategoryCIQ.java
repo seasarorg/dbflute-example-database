@@ -72,18 +72,18 @@ public class ProductCategoryCIQ extends AbstractBsProductCategoryCQ {
     protected ConditionValue getCValueProductCategoryCode() { return _myCQ.getProductCategoryCode(); }
     protected ConditionValue getCValueProductCategoryName() { return _myCQ.getProductCategoryName(); }
     protected ConditionValue getCValueParentCategoryCode() { return _myCQ.getParentCategoryCode(); }
-    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) { return null; }
-    public String keepScalarCondition(ProductCategoryCQ subQuery)
+    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
+    public String keepScalarCondition(ProductCategoryCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }
-    public String keepSpecifyMyselfDerived(ProductCategoryCQ subQuery)
+    public String keepSpecifyMyselfDerived(ProductCategoryCQ sq)
     { throwIICBOE("(Specify)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerived(ProductCategoryCQ subQuery)
+    public String keepQueryMyselfDerived(ProductCategoryCQ sq)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerivedParameter(Object parameterValue)
+    public String keepQueryMyselfDerivedParameter(Object vl)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepMyselfExists(ProductCategoryCQ subQuery)
+    public String keepMyselfExists(ProductCategoryCQ sq)
     { throwIICBOE("MyselfExists"); return null;}
-    public String keepMyselfInScope(ProductCategoryCQ subQuery)
+    public String keepMyselfInScope(ProductCategoryCQ sq)
     { throwIICBOE("MyselfInScope"); return null;}
 
     protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()

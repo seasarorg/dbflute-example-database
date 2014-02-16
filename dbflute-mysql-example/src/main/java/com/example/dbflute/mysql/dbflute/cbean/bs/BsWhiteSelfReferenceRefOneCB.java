@@ -432,8 +432,8 @@ public class BsWhiteSelfReferenceRefOneCB extends AbstractConditionBean {
         public HpSDRFunction<WhiteSelfReferenceCB, WhiteSelfReferenceRefOneCQ> derivedWhiteSelfReferenceByParentIdList() {
             assertDerived("whiteSelfReferenceByParentIdList"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<WhiteSelfReferenceCB, WhiteSelfReferenceRefOneCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<WhiteSelfReferenceCB, WhiteSelfReferenceRefOneCQ>() {
-                public void setup(String function, SubQuery<WhiteSelfReferenceCB> subQuery, WhiteSelfReferenceRefOneCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsderiveWhiteSelfReferenceByParentIdList(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<WhiteSelfReferenceCB> sq, WhiteSelfReferenceRefOneCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsderiveWhiteSelfReferenceByParentIdList(fn, sq, al, op); } }, _dbmetaProvider);
         }
         /**
          * Prepare for (Specify)MyselfDerived (SubQuery).
@@ -442,8 +442,8 @@ public class BsWhiteSelfReferenceRefOneCB extends AbstractConditionBean {
         public HpSDRFunction<WhiteSelfReferenceRefOneCB, WhiteSelfReferenceRefOneCQ> myselfDerived() {
             assertDerived("myselfDerived"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<WhiteSelfReferenceRefOneCB, WhiteSelfReferenceRefOneCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<WhiteSelfReferenceRefOneCB, WhiteSelfReferenceRefOneCQ>() {
-                public void setup(String function, SubQuery<WhiteSelfReferenceRefOneCB> subQuery, WhiteSelfReferenceRefOneCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsmyselfDerive(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<WhiteSelfReferenceRefOneCB> sq, WhiteSelfReferenceRefOneCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsmyselfDerive(fn, sq, al, op); } }, _dbmetaProvider);
         }
     }
 

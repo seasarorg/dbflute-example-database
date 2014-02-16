@@ -147,12 +147,12 @@ public abstract class AbstractBsVendor_non_compilableCQ extends AbstractConditio
      * @param subQuery The sub-query of Vendor_non_compilableSelfList for 'exists'. (NotNull)
      */
     public void existsVendor_non_compilableSelfList(SubQuery<Vendor_non_compilableCB> subQuery) {
-        assertObjectNotNull("subQuery<Vendor_non_compilableCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         Vendor_non_compilableCB cb = new Vendor_non_compilableCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepNon_compilable_id_ExistsReferrer_Vendor_non_compilableSelfList(cb.query()); // for saving query-value.
-        registerExistsReferrer(cb.query(), "NON-COMPILABLE ID", "PARENT-ID", subQueryPropertyName, "vendor_non_compilableSelfList");
+        String pp = keepNon_compilable_id_ExistsReferrer_Vendor_non_compilableSelfList(cb.query()); // for saving query-value.
+        registerExistsReferrer(cb.query(), "NON-COMPILABLE ID", "PARENT-ID", pp, "vendor_non_compilableSelfList");
     }
-    public abstract String keepNon_compilable_id_ExistsReferrer_Vendor_non_compilableSelfList(Vendor_non_compilableCQ subQuery);
+    public abstract String keepNon_compilable_id_ExistsReferrer_Vendor_non_compilableSelfList(Vendor_non_compilableCQ sq);
 
     /**
      * Set up NotExistsReferrer (co-related sub-query). <br />
@@ -168,12 +168,12 @@ public abstract class AbstractBsVendor_non_compilableCQ extends AbstractConditio
      * @param subQuery The sub-query of Non_compilable_id_NotExistsReferrer_Vendor_non_compilableSelfList for 'not exists'. (NotNull)
      */
     public void notExistsVendor_non_compilableSelfList(SubQuery<Vendor_non_compilableCB> subQuery) {
-        assertObjectNotNull("subQuery<Vendor_non_compilableCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         Vendor_non_compilableCB cb = new Vendor_non_compilableCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepNon_compilable_id_NotExistsReferrer_Vendor_non_compilableSelfList(cb.query()); // for saving query-value.
-        registerNotExistsReferrer(cb.query(), "NON-COMPILABLE ID", "PARENT-ID", subQueryPropertyName, "vendor_non_compilableSelfList");
+        String pp = keepNon_compilable_id_NotExistsReferrer_Vendor_non_compilableSelfList(cb.query()); // for saving query-value.
+        registerNotExistsReferrer(cb.query(), "NON-COMPILABLE ID", "PARENT-ID", pp, "vendor_non_compilableSelfList");
     }
-    public abstract String keepNon_compilable_id_NotExistsReferrer_Vendor_non_compilableSelfList(Vendor_non_compilableCQ subQuery);
+    public abstract String keepNon_compilable_id_NotExistsReferrer_Vendor_non_compilableSelfList(Vendor_non_compilableCQ sq);
 
     /**
      * Set up InScopeRelation (sub-query). <br />
@@ -182,12 +182,12 @@ public abstract class AbstractBsVendor_non_compilableCQ extends AbstractConditio
      * @param subQuery The sub-query of Vendor_non_compilableSelfList for 'in-scope'. (NotNull)
      */
     public void inScopeVendor_non_compilableSelfList(SubQuery<Vendor_non_compilableCB> subQuery) {
-        assertObjectNotNull("subQuery<Vendor_non_compilableCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         Vendor_non_compilableCB cb = new Vendor_non_compilableCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String subQueryPropertyName = keepNon_compilable_id_InScopeRelation_Vendor_non_compilableSelfList(cb.query()); // for saving query-value.
-        registerInScopeRelation(cb.query(), "NON-COMPILABLE ID", "PARENT-ID", subQueryPropertyName, "vendor_non_compilableSelfList");
+        String pp = keepNon_compilable_id_InScopeRelation_Vendor_non_compilableSelfList(cb.query()); // for saving query-value.
+        registerInScopeRelation(cb.query(), "NON-COMPILABLE ID", "PARENT-ID", pp, "vendor_non_compilableSelfList");
     }
-    public abstract String keepNon_compilable_id_InScopeRelation_Vendor_non_compilableSelfList(Vendor_non_compilableCQ subQuery);
+    public abstract String keepNon_compilable_id_InScopeRelation_Vendor_non_compilableSelfList(Vendor_non_compilableCQ sq);
 
     /**
      * Set up NotInScopeRelation (sub-query). <br />
@@ -196,20 +196,20 @@ public abstract class AbstractBsVendor_non_compilableCQ extends AbstractConditio
      * @param subQuery The sub-query of Vendor_non_compilableSelfList for 'not in-scope'. (NotNull)
      */
     public void notInScopeVendor_non_compilableSelfList(SubQuery<Vendor_non_compilableCB> subQuery) {
-        assertObjectNotNull("subQuery<Vendor_non_compilableCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         Vendor_non_compilableCB cb = new Vendor_non_compilableCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String subQueryPropertyName = keepNon_compilable_id_NotInScopeRelation_Vendor_non_compilableSelfList(cb.query()); // for saving query-value.
-        registerNotInScopeRelation(cb.query(), "NON-COMPILABLE ID", "PARENT-ID", subQueryPropertyName, "vendor_non_compilableSelfList");
+        String pp = keepNon_compilable_id_NotInScopeRelation_Vendor_non_compilableSelfList(cb.query()); // for saving query-value.
+        registerNotInScopeRelation(cb.query(), "NON-COMPILABLE ID", "PARENT-ID", pp, "vendor_non_compilableSelfList");
     }
-    public abstract String keepNon_compilable_id_NotInScopeRelation_Vendor_non_compilableSelfList(Vendor_non_compilableCQ subQuery);
+    public abstract String keepNon_compilable_id_NotInScopeRelation_Vendor_non_compilableSelfList(Vendor_non_compilableCQ sq);
 
-    public void xsderiveVendor_non_compilableSelfList(String function, SubQuery<Vendor_non_compilableCB> subQuery, String aliasName, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<Vendor_non_compilableCB>", subQuery);
-        Vendor_non_compilableCB cb = new Vendor_non_compilableCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepNon_compilable_id_SpecifyDerivedReferrer_Vendor_non_compilableSelfList(cb.query()); // for saving query-value.
-        registerSpecifyDerivedReferrer(function, cb.query(), "NON-COMPILABLE ID", "PARENT-ID", subQueryPropertyName, "vendor_non_compilableSelfList", aliasName, option);
+    public void xsderiveVendor_non_compilableSelfList(String fn, SubQuery<Vendor_non_compilableCB> sq, String al, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        Vendor_non_compilableCB cb = new Vendor_non_compilableCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pp = keepNon_compilable_id_SpecifyDerivedReferrer_Vendor_non_compilableSelfList(cb.query()); // for saving query-value.
+        registerSpecifyDerivedReferrer(fn, cb.query(), "NON-COMPILABLE ID", "PARENT-ID", pp, "vendor_non_compilableSelfList", al, op);
     }
-    public abstract String keepNon_compilable_id_SpecifyDerivedReferrer_Vendor_non_compilableSelfList(Vendor_non_compilableCQ subQuery);
+    public abstract String keepNon_compilable_id_SpecifyDerivedReferrer_Vendor_non_compilableSelfList(Vendor_non_compilableCQ sq);
 
     /**
      * Prepare for (Query)DerivedReferrer. <br />
@@ -230,20 +230,20 @@ public abstract class AbstractBsVendor_non_compilableCQ extends AbstractConditio
     }
     protected HpQDRFunction<Vendor_non_compilableCB> xcreateQDRFunctionVendor_non_compilableSelfList() {
         return new HpQDRFunction<Vendor_non_compilableCB>(new HpQDRSetupper<Vendor_non_compilableCB>() {
-            public void setup(String function, SubQuery<Vendor_non_compilableCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-                xqderiveVendor_non_compilableSelfList(function, subQuery, operand, value, option);
+            public void setup(String fn, SubQuery<Vendor_non_compilableCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+                xqderiveVendor_non_compilableSelfList(fn, sq, rd, vl, op);
             }
         });
     }
-    public void xqderiveVendor_non_compilableSelfList(String function, SubQuery<Vendor_non_compilableCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<Vendor_non_compilableCB>", subQuery);
-        Vendor_non_compilableCB cb = new Vendor_non_compilableCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepNon_compilable_id_QueryDerivedReferrer_Vendor_non_compilableSelfList(cb.query()); // for saving query-value.
-        String parameterPropertyName = keepNon_compilable_id_QueryDerivedReferrer_Vendor_non_compilableSelfListParameter(value);
-        registerQueryDerivedReferrer(function, cb.query(), "NON-COMPILABLE ID", "PARENT-ID", subQueryPropertyName, "vendor_non_compilableSelfList", operand, value, parameterPropertyName, option);
+    public void xqderiveVendor_non_compilableSelfList(String fn, SubQuery<Vendor_non_compilableCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        Vendor_non_compilableCB cb = new Vendor_non_compilableCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String sqpp = keepNon_compilable_id_QueryDerivedReferrer_Vendor_non_compilableSelfList(cb.query()); // for saving query-value.
+        String prpp = keepNon_compilable_id_QueryDerivedReferrer_Vendor_non_compilableSelfListParameter(vl);
+        registerQueryDerivedReferrer(fn, cb.query(), "NON-COMPILABLE ID", "PARENT-ID", sqpp, "vendor_non_compilableSelfList", rd, vl, prpp, op);
     }
-    public abstract String keepNon_compilable_id_QueryDerivedReferrer_Vendor_non_compilableSelfList(Vendor_non_compilableCQ subQuery);
-    public abstract String keepNon_compilable_id_QueryDerivedReferrer_Vendor_non_compilableSelfListParameter(Object parameterValue);
+    public abstract String keepNon_compilable_id_QueryDerivedReferrer_Vendor_non_compilableSelfList(Vendor_non_compilableCQ sq);
+    public abstract String keepNon_compilable_id_QueryDerivedReferrer_Vendor_non_compilableSelfListParameter(Object vl);
 
     /**
      * IsNull {is null}. And OnlyOnceRegistered. <br />
@@ -257,8 +257,8 @@ public abstract class AbstractBsVendor_non_compilableCQ extends AbstractConditio
      */
     public void setNon_compilable_id_IsNotNull() { regNon_compilable_id(CK_ISNN, DOBJ); }
 
-    protected void regNon_compilable_id(ConditionKey k, Object v) { regQ(k, v, getCValueNon_compilable_id(), "NON-COMPILABLE ID"); }
-    abstract protected ConditionValue getCValueNon_compilable_id();
+    protected void regNon_compilable_id(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueNon_compilable_id(), "NON-COMPILABLE ID"); }
+    protected abstract ConditionValue getCValueNon_compilable_id();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -361,8 +361,8 @@ public abstract class AbstractBsVendor_non_compilableCQ extends AbstractConditio
      */
     public void setNon_compilable_name_IsNotNull() { regNon_compilable_name(CK_ISNN, DOBJ); }
 
-    protected void regNon_compilable_name(ConditionKey k, Object v) { regQ(k, v, getCValueNon_compilable_name(), "NON COMPILABLE-NAME"); }
-    abstract protected ConditionValue getCValueNon_compilable_name();
+    protected void regNon_compilable_name(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueNon_compilable_name(), "NON COMPILABLE-NAME"); }
+    protected abstract ConditionValue getCValueNon_compilable_name();
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -459,12 +459,12 @@ public abstract class AbstractBsVendor_non_compilableCQ extends AbstractConditio
      * @param subQuery The sub-query of Vendor_non_compilableSelf for 'in-scope'. (NotNull)
      */
     public void inScopeVendor_non_compilableSelf(SubQuery<Vendor_non_compilableCB> subQuery) {
-        assertObjectNotNull("subQuery<Vendor_non_compilableCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         Vendor_non_compilableCB cb = new Vendor_non_compilableCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String subQueryPropertyName = keepParent_id_InScopeRelation_Vendor_non_compilableSelf(cb.query()); // for saving query-value.
-        registerInScopeRelation(cb.query(), "PARENT-ID", "NON-COMPILABLE ID", subQueryPropertyName, "vendor_non_compilableSelf");
+        String pp = keepParent_id_InScopeRelation_Vendor_non_compilableSelf(cb.query()); // for saving query-value.
+        registerInScopeRelation(cb.query(), "PARENT-ID", "NON-COMPILABLE ID", pp, "vendor_non_compilableSelf");
     }
-    public abstract String keepParent_id_InScopeRelation_Vendor_non_compilableSelf(Vendor_non_compilableCQ subQuery);
+    public abstract String keepParent_id_InScopeRelation_Vendor_non_compilableSelf(Vendor_non_compilableCQ sq);
 
     /**
      * Set up NotInScopeRelation (sub-query). <br />
@@ -473,12 +473,12 @@ public abstract class AbstractBsVendor_non_compilableCQ extends AbstractConditio
      * @param subQuery The sub-query of Vendor_non_compilableSelf for 'not in-scope'. (NotNull)
      */
     public void notInScopeVendor_non_compilableSelf(SubQuery<Vendor_non_compilableCB> subQuery) {
-        assertObjectNotNull("subQuery<Vendor_non_compilableCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         Vendor_non_compilableCB cb = new Vendor_non_compilableCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String subQueryPropertyName = keepParent_id_NotInScopeRelation_Vendor_non_compilableSelf(cb.query()); // for saving query-value.
-        registerNotInScopeRelation(cb.query(), "PARENT-ID", "NON-COMPILABLE ID", subQueryPropertyName, "vendor_non_compilableSelf");
+        String pp = keepParent_id_NotInScopeRelation_Vendor_non_compilableSelf(cb.query()); // for saving query-value.
+        registerNotInScopeRelation(cb.query(), "PARENT-ID", "NON-COMPILABLE ID", pp, "vendor_non_compilableSelf");
     }
-    public abstract String keepParent_id_NotInScopeRelation_Vendor_non_compilableSelf(Vendor_non_compilableCQ subQuery);
+    public abstract String keepParent_id_NotInScopeRelation_Vendor_non_compilableSelf(Vendor_non_compilableCQ sq);
 
     /**
      * IsNull {is null}. And OnlyOnceRegistered. <br />
@@ -492,8 +492,8 @@ public abstract class AbstractBsVendor_non_compilableCQ extends AbstractConditio
      */
     public void setParent_id_IsNotNull() { regParent_id(CK_ISNN, DOBJ); }
 
-    protected void regParent_id(ConditionKey k, Object v) { regQ(k, v, getCValueParent_id(), "PARENT-ID"); }
-    abstract protected ConditionValue getCValueParent_id();
+    protected void regParent_id(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueParent_id(), "PARENT-ID"); }
+    protected abstract ConditionValue getCValueParent_id();
 
     // ===================================================================================
     //                                                                     ScalarCondition
@@ -600,22 +600,22 @@ public abstract class AbstractBsVendor_non_compilableCQ extends AbstractConditio
         return xcreateSSQFunction(CK_LE.getOperand());
     }
 
-    protected HpSSQFunction<Vendor_non_compilableCB> xcreateSSQFunction(final String operand) {
+    protected HpSSQFunction<Vendor_non_compilableCB> xcreateSSQFunction(final String rd) {
         return new HpSSQFunction<Vendor_non_compilableCB>(new HpSSQSetupper<Vendor_non_compilableCB>() {
-            public void setup(String function, SubQuery<Vendor_non_compilableCB> subQuery, HpSSQOption<Vendor_non_compilableCB> option) {
-                xscalarCondition(function, subQuery, operand, option);
+            public void setup(String fn, SubQuery<Vendor_non_compilableCB> sq, HpSSQOption<Vendor_non_compilableCB> op) {
+                xscalarCondition(fn, sq, rd, op);
             }
         });
     }
 
-    protected void xscalarCondition(String function, SubQuery<Vendor_non_compilableCB> subQuery, String operand, HpSSQOption<Vendor_non_compilableCB> option) {
-        assertObjectNotNull("subQuery<Vendor_non_compilableCB>", subQuery);
-        Vendor_non_compilableCB cb = xcreateScalarConditionCB(); subQuery.query(cb);
-        String subQueryPropertyName = keepScalarCondition(cb.query()); // for saving query-value
-        option.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
-        registerScalarCondition(function, cb.query(), subQueryPropertyName, operand, option);
+    protected void xscalarCondition(String fn, SubQuery<Vendor_non_compilableCB> sq, String rd, HpSSQOption<Vendor_non_compilableCB> op) {
+        assertObjectNotNull("subQuery", sq);
+        Vendor_non_compilableCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        String pp = keepScalarCondition(cb.query()); // for saving query-value
+        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
-    public abstract String keepScalarCondition(Vendor_non_compilableCQ subQuery);
+    public abstract String keepScalarCondition(Vendor_non_compilableCQ sq);
 
     protected Vendor_non_compilableCB xcreateScalarConditionCB() {
         Vendor_non_compilableCB cb = new Vendor_non_compilableCB();
@@ -632,13 +632,14 @@ public abstract class AbstractBsVendor_non_compilableCQ extends AbstractConditio
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    public void xsmyselfDerive(String function, SubQuery<Vendor_non_compilableCB> subQuery, String aliasName, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<Vendor_non_compilableCB>", subQuery);
-        Vendor_non_compilableCB cb = new Vendor_non_compilableCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
-        registerSpecifyMyselfDerived(function, cb.query(), "NON-COMPILABLE ID", "NON-COMPILABLE ID", subQueryPropertyName, "myselfDerived", aliasName, option);
+    public void xsmyselfDerive(String fn, SubQuery<Vendor_non_compilableCB> sq, String al, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        Vendor_non_compilableCB cb = new Vendor_non_compilableCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "NON-COMPILABLE ID";
+        String pp = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
+        registerSpecifyMyselfDerived(fn, cb.query(), pk, pk, pp, "myselfDerived", al, op);
     }
-    public abstract String keepSpecifyMyselfDerived(Vendor_non_compilableCQ subQuery);
+    public abstract String keepSpecifyMyselfDerived(Vendor_non_compilableCQ sq);
 
     /**
      * Prepare for (Query)MyselfDerived (SubQuery).
@@ -649,20 +650,21 @@ public abstract class AbstractBsVendor_non_compilableCQ extends AbstractConditio
     }
     protected HpQDRFunction<Vendor_non_compilableCB> xcreateQDRFunctionMyselfDerived() {
         return new HpQDRFunction<Vendor_non_compilableCB>(new HpQDRSetupper<Vendor_non_compilableCB>() {
-            public void setup(String function, SubQuery<Vendor_non_compilableCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-                xqderiveMyselfDerived(function, subQuery, operand, value, option);
+            public void setup(String fn, SubQuery<Vendor_non_compilableCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+                xqderiveMyselfDerived(fn, sq, rd, vl, op);
             }
         });
     }
-    public void xqderiveMyselfDerived(String function, SubQuery<Vendor_non_compilableCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<Vendor_non_compilableCB>", subQuery);
-        Vendor_non_compilableCB cb = new Vendor_non_compilableCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepQueryMyselfDerived(cb.query()); // for saving query-value.
-        String parameterPropertyName = keepQueryMyselfDerivedParameter(value);
-        registerQueryMyselfDerived(function, cb.query(), "NON-COMPILABLE ID", "NON-COMPILABLE ID", subQueryPropertyName, "myselfDerived", operand, value, parameterPropertyName, option);
+    public void xqderiveMyselfDerived(String fn, SubQuery<Vendor_non_compilableCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        Vendor_non_compilableCB cb = new Vendor_non_compilableCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "NON-COMPILABLE ID";
+        String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
+        String prpp = keepQueryMyselfDerivedParameter(vl);
+        registerQueryMyselfDerived(fn, cb.query(), pk, pk, sqpp, "myselfDerived", rd, vl, prpp, op);
     }
-    public abstract String keepQueryMyselfDerived(Vendor_non_compilableCQ subQuery);
-    public abstract String keepQueryMyselfDerivedParameter(Object parameterValue);
+    public abstract String keepQueryMyselfDerived(Vendor_non_compilableCQ sq);
+    public abstract String keepQueryMyselfDerivedParameter(Object vl);
 
     // ===================================================================================
     //                                                                        MyselfExists
@@ -672,12 +674,12 @@ public abstract class AbstractBsVendor_non_compilableCQ extends AbstractConditio
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfExists(SubQuery<Vendor_non_compilableCB> subQuery) {
-        assertObjectNotNull("subQuery<Vendor_non_compilableCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         Vendor_non_compilableCB cb = new Vendor_non_compilableCB(); cb.xsetupForMyselfExists(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfExists(cb.query()); // for saving query-value.
-        registerMyselfExists(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfExists(cb.query()); // for saving query-value.
+        registerMyselfExists(cb.query(), pp);
     }
-    public abstract String keepMyselfExists(Vendor_non_compilableCQ subQuery);
+    public abstract String keepMyselfExists(Vendor_non_compilableCQ sq);
 
     // ===================================================================================
     //                                                                       MyselfInScope
@@ -687,12 +689,12 @@ public abstract class AbstractBsVendor_non_compilableCQ extends AbstractConditio
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfInScope(SubQuery<Vendor_non_compilableCB> subQuery) {
-        assertObjectNotNull("subQuery<Vendor_non_compilableCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         Vendor_non_compilableCB cb = new Vendor_non_compilableCB(); cb.xsetupForMyselfInScope(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfInScope(cb.query()); // for saving query-value.
-        registerMyselfInScope(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfInScope(cb.query()); // for saving query-value.
+        registerMyselfInScope(cb.query(), pp);
     }
-    public abstract String keepMyselfInScope(Vendor_non_compilableCQ subQuery);
+    public abstract String keepMyselfInScope(Vendor_non_compilableCQ sq);
 
     // ===================================================================================
     //                                                                    Full Text Search
@@ -712,7 +714,7 @@ public abstract class AbstractBsVendor_non_compilableCQ extends AbstractConditio
      * @param textColumnList The list of text column. (NotNull, NotEmpty, StringColumn, TargetTableColumn)
      * @param conditionValue The condition value. (NullAllowed: if null or empty, no condition)
      */
-    public void match(java.util.List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList, String conditionValue) {
+    public void match(List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList, String conditionValue) {
         xdoMatchByLikeSearch(textColumnList, conditionValue);
     }
 

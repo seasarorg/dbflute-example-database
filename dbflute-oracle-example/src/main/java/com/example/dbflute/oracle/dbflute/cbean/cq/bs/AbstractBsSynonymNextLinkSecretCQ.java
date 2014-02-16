@@ -140,8 +140,8 @@ public abstract class AbstractBsSynonymNextLinkSecretCQ extends AbstractConditio
      */
     public void setSecretCode_IsNotNull() { regSecretCode(CK_ISNN, DOBJ); }
 
-    protected void regSecretCode(ConditionKey k, Object v) { regQ(k, v, getCValueSecretCode(), "SECRET_CODE"); }
-    abstract protected ConditionValue getCValueSecretCode();
+    protected void regSecretCode(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueSecretCode(), "SECRET_CODE"); }
+    protected abstract ConditionValue getCValueSecretCode();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -226,8 +226,8 @@ public abstract class AbstractBsSynonymNextLinkSecretCQ extends AbstractConditio
         regLSQ(CK_NLS, fRES(secretName), getCValueSecretName(), "SECRET_NAME", likeSearchOption);
     }
 
-    protected void regSecretName(ConditionKey k, Object v) { regQ(k, v, getCValueSecretName(), "SECRET_NAME"); }
-    abstract protected ConditionValue getCValueSecretName();
+    protected void regSecretName(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueSecretName(), "SECRET_NAME"); }
+    protected abstract ConditionValue getCValueSecretName();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -330,8 +330,8 @@ public abstract class AbstractBsSynonymNextLinkSecretCQ extends AbstractConditio
      */
     public void setSecretAuthCode_IsNotNull() { regSecretAuthCode(CK_ISNN, DOBJ); }
 
-    protected void regSecretAuthCode(ConditionKey k, Object v) { regQ(k, v, getCValueSecretAuthCode(), "SECRET_AUTH_CODE"); }
-    abstract protected ConditionValue getCValueSecretAuthCode();
+    protected void regSecretAuthCode(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueSecretAuthCode(), "SECRET_AUTH_CODE"); }
+    protected abstract ConditionValue getCValueSecretAuthCode();
 
     // ===================================================================================
     //                                                                     ScalarCondition
@@ -438,22 +438,22 @@ public abstract class AbstractBsSynonymNextLinkSecretCQ extends AbstractConditio
         return xcreateSSQFunction(CK_LE.getOperand());
     }
 
-    protected HpSSQFunction<SynonymNextLinkSecretCB> xcreateSSQFunction(final String operand) {
+    protected HpSSQFunction<SynonymNextLinkSecretCB> xcreateSSQFunction(final String rd) {
         return new HpSSQFunction<SynonymNextLinkSecretCB>(new HpSSQSetupper<SynonymNextLinkSecretCB>() {
-            public void setup(String function, SubQuery<SynonymNextLinkSecretCB> subQuery, HpSSQOption<SynonymNextLinkSecretCB> option) {
-                xscalarCondition(function, subQuery, operand, option);
+            public void setup(String fn, SubQuery<SynonymNextLinkSecretCB> sq, HpSSQOption<SynonymNextLinkSecretCB> op) {
+                xscalarCondition(fn, sq, rd, op);
             }
         });
     }
 
-    protected void xscalarCondition(String function, SubQuery<SynonymNextLinkSecretCB> subQuery, String operand, HpSSQOption<SynonymNextLinkSecretCB> option) {
-        assertObjectNotNull("subQuery<SynonymNextLinkSecretCB>", subQuery);
-        SynonymNextLinkSecretCB cb = xcreateScalarConditionCB(); subQuery.query(cb);
-        String subQueryPropertyName = keepScalarCondition(cb.query()); // for saving query-value
-        option.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
-        registerScalarCondition(function, cb.query(), subQueryPropertyName, operand, option);
+    protected void xscalarCondition(String fn, SubQuery<SynonymNextLinkSecretCB> sq, String rd, HpSSQOption<SynonymNextLinkSecretCB> op) {
+        assertObjectNotNull("subQuery", sq);
+        SynonymNextLinkSecretCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        String pp = keepScalarCondition(cb.query()); // for saving query-value
+        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
-    public abstract String keepScalarCondition(SynonymNextLinkSecretCQ subQuery);
+    public abstract String keepScalarCondition(SynonymNextLinkSecretCQ sq);
 
     protected SynonymNextLinkSecretCB xcreateScalarConditionCB() {
         SynonymNextLinkSecretCB cb = new SynonymNextLinkSecretCB();
@@ -470,13 +470,14 @@ public abstract class AbstractBsSynonymNextLinkSecretCQ extends AbstractConditio
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    public void xsmyselfDerive(String function, SubQuery<SynonymNextLinkSecretCB> subQuery, String aliasName, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<SynonymNextLinkSecretCB>", subQuery);
-        SynonymNextLinkSecretCB cb = new SynonymNextLinkSecretCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
-        registerSpecifyMyselfDerived(function, cb.query(), "SECRET_CODE", "SECRET_CODE", subQueryPropertyName, "myselfDerived", aliasName, option);
+    public void xsmyselfDerive(String fn, SubQuery<SynonymNextLinkSecretCB> sq, String al, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        SynonymNextLinkSecretCB cb = new SynonymNextLinkSecretCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "SECRET_CODE";
+        String pp = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
+        registerSpecifyMyselfDerived(fn, cb.query(), pk, pk, pp, "myselfDerived", al, op);
     }
-    public abstract String keepSpecifyMyselfDerived(SynonymNextLinkSecretCQ subQuery);
+    public abstract String keepSpecifyMyselfDerived(SynonymNextLinkSecretCQ sq);
 
     /**
      * Prepare for (Query)MyselfDerived (SubQuery).
@@ -487,20 +488,21 @@ public abstract class AbstractBsSynonymNextLinkSecretCQ extends AbstractConditio
     }
     protected HpQDRFunction<SynonymNextLinkSecretCB> xcreateQDRFunctionMyselfDerived() {
         return new HpQDRFunction<SynonymNextLinkSecretCB>(new HpQDRSetupper<SynonymNextLinkSecretCB>() {
-            public void setup(String function, SubQuery<SynonymNextLinkSecretCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-                xqderiveMyselfDerived(function, subQuery, operand, value, option);
+            public void setup(String fn, SubQuery<SynonymNextLinkSecretCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+                xqderiveMyselfDerived(fn, sq, rd, vl, op);
             }
         });
     }
-    public void xqderiveMyselfDerived(String function, SubQuery<SynonymNextLinkSecretCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<SynonymNextLinkSecretCB>", subQuery);
-        SynonymNextLinkSecretCB cb = new SynonymNextLinkSecretCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepQueryMyselfDerived(cb.query()); // for saving query-value.
-        String parameterPropertyName = keepQueryMyselfDerivedParameter(value);
-        registerQueryMyselfDerived(function, cb.query(), "SECRET_CODE", "SECRET_CODE", subQueryPropertyName, "myselfDerived", operand, value, parameterPropertyName, option);
+    public void xqderiveMyselfDerived(String fn, SubQuery<SynonymNextLinkSecretCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        SynonymNextLinkSecretCB cb = new SynonymNextLinkSecretCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "SECRET_CODE";
+        String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
+        String prpp = keepQueryMyselfDerivedParameter(vl);
+        registerQueryMyselfDerived(fn, cb.query(), pk, pk, sqpp, "myselfDerived", rd, vl, prpp, op);
     }
-    public abstract String keepQueryMyselfDerived(SynonymNextLinkSecretCQ subQuery);
-    public abstract String keepQueryMyselfDerivedParameter(Object parameterValue);
+    public abstract String keepQueryMyselfDerived(SynonymNextLinkSecretCQ sq);
+    public abstract String keepQueryMyselfDerivedParameter(Object vl);
 
     // ===================================================================================
     //                                                                        MyselfExists
@@ -510,12 +512,12 @@ public abstract class AbstractBsSynonymNextLinkSecretCQ extends AbstractConditio
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfExists(SubQuery<SynonymNextLinkSecretCB> subQuery) {
-        assertObjectNotNull("subQuery<SynonymNextLinkSecretCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         SynonymNextLinkSecretCB cb = new SynonymNextLinkSecretCB(); cb.xsetupForMyselfExists(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfExists(cb.query()); // for saving query-value.
-        registerMyselfExists(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfExists(cb.query()); // for saving query-value.
+        registerMyselfExists(cb.query(), pp);
     }
-    public abstract String keepMyselfExists(SynonymNextLinkSecretCQ subQuery);
+    public abstract String keepMyselfExists(SynonymNextLinkSecretCQ sq);
 
     // ===================================================================================
     //                                                                       MyselfInScope
@@ -525,12 +527,12 @@ public abstract class AbstractBsSynonymNextLinkSecretCQ extends AbstractConditio
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfInScope(SubQuery<SynonymNextLinkSecretCB> subQuery) {
-        assertObjectNotNull("subQuery<SynonymNextLinkSecretCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         SynonymNextLinkSecretCB cb = new SynonymNextLinkSecretCB(); cb.xsetupForMyselfInScope(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfInScope(cb.query()); // for saving query-value.
-        registerMyselfInScope(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfInScope(cb.query()); // for saving query-value.
+        registerMyselfInScope(cb.query(), pp);
     }
-    public abstract String keepMyselfInScope(SynonymNextLinkSecretCQ subQuery);
+    public abstract String keepMyselfInScope(SynonymNextLinkSecretCQ sq);
 
     // ===================================================================================
     //                                                                    Full Text Search
@@ -551,7 +553,7 @@ public abstract class AbstractBsSynonymNextLinkSecretCQ extends AbstractConditio
      * @param textColumnList The list of text column. (NotNull, NotEmpty, StringColumn, TargetTableColumn)
      * @param conditionValue The condition value. (NullAllowed: if null or empty, no condition)
      */
-    public void match(java.util.List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList, String conditionValue) {
+    public void match(List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList, String conditionValue) {
         xdoMatchByLikeSearch(textColumnList, conditionValue);
     }
 

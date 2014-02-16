@@ -42,16 +42,16 @@ public class SimpleTableFunctionDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgMemberId implements PropertyGateway {
-        public Object read(Entity e) { return ((SimpleTableFunction)e).getMemberId(); }
-        public void write(Entity e, Object v) { ((SimpleTableFunction)e).setMemberId(cti(v)); }
+        public Object read(Entity et) { return ((SimpleTableFunction)et).getMemberId(); }
+        public void write(Entity et, Object vl) { ((SimpleTableFunction)et).setMemberId(cti(vl)); }
     }
     public static class EpgMemberName implements PropertyGateway {
-        public Object read(Entity e) { return ((SimpleTableFunction)e).getMemberName(); }
-        public void write(Entity e, Object v) { ((SimpleTableFunction)e).setMemberName((String)v); }
+        public Object read(Entity et) { return ((SimpleTableFunction)et).getMemberName(); }
+        public void write(Entity et, Object vl) { ((SimpleTableFunction)et).setMemberName((String)vl); }
     }
     public static class EpgMemberStatusCode implements PropertyGateway {
-        public Object read(Entity e) { return ((SimpleTableFunction)e).getMemberStatusCode(); }
-        public void write(Entity e, Object v) { ((SimpleTableFunction)e).setMemberStatusCode((String)v); }
+        public Object read(Entity et) { return ((SimpleTableFunction)et).getMemberStatusCode(); }
+        public void write(Entity et, Object vl) { ((SimpleTableFunction)et).setMemberStatusCode((String)vl); }
     }
 
     // ===================================================================================
@@ -134,10 +134,10 @@ public class SimpleTableFunctionDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((SimpleTableFunction)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((SimpleTableFunction)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((SimpleTableFunction)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((SimpleTableFunction)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

@@ -5,7 +5,7 @@ import com.example.dbflute.oracle.dbflute.bsbhv.pmbean.BsSynonymNextPkgProcedure
 /**
  * <!-- df:beginClassDescription -->
  * The typed parameter-bean of SynonymNextPkgProcedureNop. <br />
- * This is related to "<span style="color: #AD4747">SYNONYM_NEXT_PKG_PROCEDURE_NOP</span>".
+ * This is related to "<span style="color: #AD4747">SYNONYM_NEXT_PKG_PROCEDURE_NOP</span>". <br />
  * <!-- df:endClassDescription -->
  * <p>
  * You can implement your original methods here.

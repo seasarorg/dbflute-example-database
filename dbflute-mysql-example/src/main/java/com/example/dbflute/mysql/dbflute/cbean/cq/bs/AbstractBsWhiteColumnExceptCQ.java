@@ -160,8 +160,8 @@ public abstract class AbstractBsWhiteColumnExceptCQ extends AbstractConditionQue
      */
     public void setExceptColumnId_IsNotNull() { regExceptColumnId(CK_ISNN, DOBJ); }
 
-    protected void regExceptColumnId(ConditionKey k, Object v) { regQ(k, v, getCValueExceptColumnId(), "EXCEPT_COLUMN_ID"); }
-    abstract protected ConditionValue getCValueExceptColumnId();
+    protected void regExceptColumnId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueExceptColumnId(), "EXCEPT_COLUMN_ID"); }
+    protected abstract ConditionValue getCValueExceptColumnId();
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -263,8 +263,8 @@ public abstract class AbstractBsWhiteColumnExceptCQ extends AbstractConditionQue
      */
     public void setColumnExceptTest_IsNotNull() { regColumnExceptTest(CK_ISNN, DOBJ); }
 
-    protected void regColumnExceptTest(ConditionKey k, Object v) { regQ(k, v, getCValueColumnExceptTest(), "COLUMN_EXCEPT_TEST"); }
-    abstract protected ConditionValue getCValueColumnExceptTest();
+    protected void regColumnExceptTest(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueColumnExceptTest(), "COLUMN_EXCEPT_TEST"); }
+    protected abstract ConditionValue getCValueColumnExceptTest();
 
     // ===================================================================================
     //                                                                     ScalarCondition
@@ -371,22 +371,22 @@ public abstract class AbstractBsWhiteColumnExceptCQ extends AbstractConditionQue
         return xcreateSSQFunction(CK_LE.getOperand());
     }
 
-    protected HpSSQFunction<WhiteColumnExceptCB> xcreateSSQFunction(final String operand) {
+    protected HpSSQFunction<WhiteColumnExceptCB> xcreateSSQFunction(final String rd) {
         return new HpSSQFunction<WhiteColumnExceptCB>(new HpSSQSetupper<WhiteColumnExceptCB>() {
-            public void setup(String function, SubQuery<WhiteColumnExceptCB> subQuery, HpSSQOption<WhiteColumnExceptCB> option) {
-                xscalarCondition(function, subQuery, operand, option);
+            public void setup(String fn, SubQuery<WhiteColumnExceptCB> sq, HpSSQOption<WhiteColumnExceptCB> op) {
+                xscalarCondition(fn, sq, rd, op);
             }
         });
     }
 
-    protected void xscalarCondition(String function, SubQuery<WhiteColumnExceptCB> subQuery, String operand, HpSSQOption<WhiteColumnExceptCB> option) {
-        assertObjectNotNull("subQuery<WhiteColumnExceptCB>", subQuery);
-        WhiteColumnExceptCB cb = xcreateScalarConditionCB(); subQuery.query(cb);
-        String subQueryPropertyName = keepScalarCondition(cb.query()); // for saving query-value
-        option.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
-        registerScalarCondition(function, cb.query(), subQueryPropertyName, operand, option);
+    protected void xscalarCondition(String fn, SubQuery<WhiteColumnExceptCB> sq, String rd, HpSSQOption<WhiteColumnExceptCB> op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteColumnExceptCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        String pp = keepScalarCondition(cb.query()); // for saving query-value
+        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
-    public abstract String keepScalarCondition(WhiteColumnExceptCQ subQuery);
+    public abstract String keepScalarCondition(WhiteColumnExceptCQ sq);
 
     protected WhiteColumnExceptCB xcreateScalarConditionCB() {
         WhiteColumnExceptCB cb = new WhiteColumnExceptCB();
@@ -403,13 +403,14 @@ public abstract class AbstractBsWhiteColumnExceptCQ extends AbstractConditionQue
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    public void xsmyselfDerive(String function, SubQuery<WhiteColumnExceptCB> subQuery, String aliasName, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<WhiteColumnExceptCB>", subQuery);
-        WhiteColumnExceptCB cb = new WhiteColumnExceptCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
-        registerSpecifyMyselfDerived(function, cb.query(), "EXCEPT_COLUMN_ID", "EXCEPT_COLUMN_ID", subQueryPropertyName, "myselfDerived", aliasName, option);
+    public void xsmyselfDerive(String fn, SubQuery<WhiteColumnExceptCB> sq, String al, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteColumnExceptCB cb = new WhiteColumnExceptCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "EXCEPT_COLUMN_ID";
+        String pp = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
+        registerSpecifyMyselfDerived(fn, cb.query(), pk, pk, pp, "myselfDerived", al, op);
     }
-    public abstract String keepSpecifyMyselfDerived(WhiteColumnExceptCQ subQuery);
+    public abstract String keepSpecifyMyselfDerived(WhiteColumnExceptCQ sq);
 
     /**
      * Prepare for (Query)MyselfDerived (SubQuery).
@@ -420,20 +421,21 @@ public abstract class AbstractBsWhiteColumnExceptCQ extends AbstractConditionQue
     }
     protected HpQDRFunction<WhiteColumnExceptCB> xcreateQDRFunctionMyselfDerived() {
         return new HpQDRFunction<WhiteColumnExceptCB>(new HpQDRSetupper<WhiteColumnExceptCB>() {
-            public void setup(String function, SubQuery<WhiteColumnExceptCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-                xqderiveMyselfDerived(function, subQuery, operand, value, option);
+            public void setup(String fn, SubQuery<WhiteColumnExceptCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+                xqderiveMyselfDerived(fn, sq, rd, vl, op);
             }
         });
     }
-    public void xqderiveMyselfDerived(String function, SubQuery<WhiteColumnExceptCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<WhiteColumnExceptCB>", subQuery);
-        WhiteColumnExceptCB cb = new WhiteColumnExceptCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepQueryMyselfDerived(cb.query()); // for saving query-value.
-        String parameterPropertyName = keepQueryMyselfDerivedParameter(value);
-        registerQueryMyselfDerived(function, cb.query(), "EXCEPT_COLUMN_ID", "EXCEPT_COLUMN_ID", subQueryPropertyName, "myselfDerived", operand, value, parameterPropertyName, option);
+    public void xqderiveMyselfDerived(String fn, SubQuery<WhiteColumnExceptCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteColumnExceptCB cb = new WhiteColumnExceptCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "EXCEPT_COLUMN_ID";
+        String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
+        String prpp = keepQueryMyselfDerivedParameter(vl);
+        registerQueryMyselfDerived(fn, cb.query(), pk, pk, sqpp, "myselfDerived", rd, vl, prpp, op);
     }
-    public abstract String keepQueryMyselfDerived(WhiteColumnExceptCQ subQuery);
-    public abstract String keepQueryMyselfDerivedParameter(Object parameterValue);
+    public abstract String keepQueryMyselfDerived(WhiteColumnExceptCQ sq);
+    public abstract String keepQueryMyselfDerivedParameter(Object vl);
 
     // ===================================================================================
     //                                                                        MyselfExists
@@ -443,12 +445,12 @@ public abstract class AbstractBsWhiteColumnExceptCQ extends AbstractConditionQue
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfExists(SubQuery<WhiteColumnExceptCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteColumnExceptCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteColumnExceptCB cb = new WhiteColumnExceptCB(); cb.xsetupForMyselfExists(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfExists(cb.query()); // for saving query-value.
-        registerMyselfExists(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfExists(cb.query()); // for saving query-value.
+        registerMyselfExists(cb.query(), pp);
     }
-    public abstract String keepMyselfExists(WhiteColumnExceptCQ subQuery);
+    public abstract String keepMyselfExists(WhiteColumnExceptCQ sq);
 
     // ===================================================================================
     //                                                                       MyselfInScope
@@ -458,12 +460,12 @@ public abstract class AbstractBsWhiteColumnExceptCQ extends AbstractConditionQue
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfInScope(SubQuery<WhiteColumnExceptCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteColumnExceptCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteColumnExceptCB cb = new WhiteColumnExceptCB(); cb.xsetupForMyselfInScope(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfInScope(cb.query()); // for saving query-value.
-        registerMyselfInScope(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfInScope(cb.query()); // for saving query-value.
+        registerMyselfInScope(cb.query(), pp);
     }
-    public abstract String keepMyselfInScope(WhiteColumnExceptCQ subQuery);
+    public abstract String keepMyselfInScope(WhiteColumnExceptCQ sq);
 
     // ===================================================================================
     //                                                                    Full Text Search
@@ -489,7 +491,7 @@ public abstract class AbstractBsWhiteColumnExceptCQ extends AbstractConditionQue
      * @param conditionValue The condition value embedded without binding (by MySQL restriction) but escaped. (NullAllowed: if null or empty, no condition)
      * @param modifier The modifier of full-text search. (NullAllowed: If the value is null, no modifier specified)
      */
-    public void match(java.util.List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList
+    public void match(List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList
                     , String conditionValue
                     , org.seasar.dbflute.dbway.WayOfMySQL.FullTextSearchModifier modifier) {
         xdoMatchForMySQL(textColumnList, conditionValue, modifier);

@@ -160,8 +160,8 @@ public abstract class AbstractBsWhiteVariantRelationMasterCorgeCQ extends Abstra
      */
     public void setMasterCorgeId_IsNotNull() { regMasterCorgeId(CK_ISNN, DOBJ); }
 
-    protected void regMasterCorgeId(ConditionKey k, Object v) { regQ(k, v, getCValueMasterCorgeId(), "MASTER_CORGE_ID"); }
-    abstract protected ConditionValue getCValueMasterCorgeId();
+    protected void regMasterCorgeId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueMasterCorgeId(), "MASTER_CORGE_ID"); }
+    protected abstract ConditionValue getCValueMasterCorgeId();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -246,8 +246,8 @@ public abstract class AbstractBsWhiteVariantRelationMasterCorgeCQ extends Abstra
         regLSQ(CK_NLS, fRES(masterCorgeName), getCValueMasterCorgeName(), "MASTER_CORGE_NAME", likeSearchOption);
     }
 
-    protected void regMasterCorgeName(ConditionKey k, Object v) { regQ(k, v, getCValueMasterCorgeName(), "MASTER_CORGE_NAME"); }
-    abstract protected ConditionValue getCValueMasterCorgeName();
+    protected void regMasterCorgeName(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueMasterCorgeName(), "MASTER_CORGE_NAME"); }
+    protected abstract ConditionValue getCValueMasterCorgeName();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -389,8 +389,8 @@ public abstract class AbstractBsWhiteVariantRelationMasterCorgeCQ extends Abstra
         regINS(CK_NINS, cTL(corgeTypeCodeList), getCValueCorgeTypeCode(), "CORGE_TYPE_CODE");
     }
 
-    protected void regCorgeTypeCode(ConditionKey k, Object v) { regQ(k, v, getCValueCorgeTypeCode(), "CORGE_TYPE_CODE"); }
-    abstract protected ConditionValue getCValueCorgeTypeCode();
+    protected void regCorgeTypeCode(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueCorgeTypeCode(), "CORGE_TYPE_CODE"); }
+    protected abstract ConditionValue getCValueCorgeTypeCode();
 
     // ===================================================================================
     //                                                                     ScalarCondition
@@ -497,22 +497,22 @@ public abstract class AbstractBsWhiteVariantRelationMasterCorgeCQ extends Abstra
         return xcreateSSQFunction(CK_LE.getOperand());
     }
 
-    protected HpSSQFunction<WhiteVariantRelationMasterCorgeCB> xcreateSSQFunction(final String operand) {
+    protected HpSSQFunction<WhiteVariantRelationMasterCorgeCB> xcreateSSQFunction(final String rd) {
         return new HpSSQFunction<WhiteVariantRelationMasterCorgeCB>(new HpSSQSetupper<WhiteVariantRelationMasterCorgeCB>() {
-            public void setup(String function, SubQuery<WhiteVariantRelationMasterCorgeCB> subQuery, HpSSQOption<WhiteVariantRelationMasterCorgeCB> option) {
-                xscalarCondition(function, subQuery, operand, option);
+            public void setup(String fn, SubQuery<WhiteVariantRelationMasterCorgeCB> sq, HpSSQOption<WhiteVariantRelationMasterCorgeCB> op) {
+                xscalarCondition(fn, sq, rd, op);
             }
         });
     }
 
-    protected void xscalarCondition(String function, SubQuery<WhiteVariantRelationMasterCorgeCB> subQuery, String operand, HpSSQOption<WhiteVariantRelationMasterCorgeCB> option) {
-        assertObjectNotNull("subQuery<WhiteVariantRelationMasterCorgeCB>", subQuery);
-        WhiteVariantRelationMasterCorgeCB cb = xcreateScalarConditionCB(); subQuery.query(cb);
-        String subQueryPropertyName = keepScalarCondition(cb.query()); // for saving query-value
-        option.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
-        registerScalarCondition(function, cb.query(), subQueryPropertyName, operand, option);
+    protected void xscalarCondition(String fn, SubQuery<WhiteVariantRelationMasterCorgeCB> sq, String rd, HpSSQOption<WhiteVariantRelationMasterCorgeCB> op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteVariantRelationMasterCorgeCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        String pp = keepScalarCondition(cb.query()); // for saving query-value
+        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
-    public abstract String keepScalarCondition(WhiteVariantRelationMasterCorgeCQ subQuery);
+    public abstract String keepScalarCondition(WhiteVariantRelationMasterCorgeCQ sq);
 
     protected WhiteVariantRelationMasterCorgeCB xcreateScalarConditionCB() {
         WhiteVariantRelationMasterCorgeCB cb = new WhiteVariantRelationMasterCorgeCB();
@@ -529,13 +529,14 @@ public abstract class AbstractBsWhiteVariantRelationMasterCorgeCQ extends Abstra
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    public void xsmyselfDerive(String function, SubQuery<WhiteVariantRelationMasterCorgeCB> subQuery, String aliasName, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<WhiteVariantRelationMasterCorgeCB>", subQuery);
-        WhiteVariantRelationMasterCorgeCB cb = new WhiteVariantRelationMasterCorgeCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
-        registerSpecifyMyselfDerived(function, cb.query(), "MASTER_CORGE_ID", "MASTER_CORGE_ID", subQueryPropertyName, "myselfDerived", aliasName, option);
+    public void xsmyselfDerive(String fn, SubQuery<WhiteVariantRelationMasterCorgeCB> sq, String al, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteVariantRelationMasterCorgeCB cb = new WhiteVariantRelationMasterCorgeCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "MASTER_CORGE_ID";
+        String pp = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
+        registerSpecifyMyselfDerived(fn, cb.query(), pk, pk, pp, "myselfDerived", al, op);
     }
-    public abstract String keepSpecifyMyselfDerived(WhiteVariantRelationMasterCorgeCQ subQuery);
+    public abstract String keepSpecifyMyselfDerived(WhiteVariantRelationMasterCorgeCQ sq);
 
     /**
      * Prepare for (Query)MyselfDerived (SubQuery).
@@ -546,20 +547,21 @@ public abstract class AbstractBsWhiteVariantRelationMasterCorgeCQ extends Abstra
     }
     protected HpQDRFunction<WhiteVariantRelationMasterCorgeCB> xcreateQDRFunctionMyselfDerived() {
         return new HpQDRFunction<WhiteVariantRelationMasterCorgeCB>(new HpQDRSetupper<WhiteVariantRelationMasterCorgeCB>() {
-            public void setup(String function, SubQuery<WhiteVariantRelationMasterCorgeCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-                xqderiveMyselfDerived(function, subQuery, operand, value, option);
+            public void setup(String fn, SubQuery<WhiteVariantRelationMasterCorgeCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+                xqderiveMyselfDerived(fn, sq, rd, vl, op);
             }
         });
     }
-    public void xqderiveMyselfDerived(String function, SubQuery<WhiteVariantRelationMasterCorgeCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<WhiteVariantRelationMasterCorgeCB>", subQuery);
-        WhiteVariantRelationMasterCorgeCB cb = new WhiteVariantRelationMasterCorgeCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepQueryMyselfDerived(cb.query()); // for saving query-value.
-        String parameterPropertyName = keepQueryMyselfDerivedParameter(value);
-        registerQueryMyselfDerived(function, cb.query(), "MASTER_CORGE_ID", "MASTER_CORGE_ID", subQueryPropertyName, "myselfDerived", operand, value, parameterPropertyName, option);
+    public void xqderiveMyselfDerived(String fn, SubQuery<WhiteVariantRelationMasterCorgeCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteVariantRelationMasterCorgeCB cb = new WhiteVariantRelationMasterCorgeCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "MASTER_CORGE_ID";
+        String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
+        String prpp = keepQueryMyselfDerivedParameter(vl);
+        registerQueryMyselfDerived(fn, cb.query(), pk, pk, sqpp, "myselfDerived", rd, vl, prpp, op);
     }
-    public abstract String keepQueryMyselfDerived(WhiteVariantRelationMasterCorgeCQ subQuery);
-    public abstract String keepQueryMyselfDerivedParameter(Object parameterValue);
+    public abstract String keepQueryMyselfDerived(WhiteVariantRelationMasterCorgeCQ sq);
+    public abstract String keepQueryMyselfDerivedParameter(Object vl);
 
     // ===================================================================================
     //                                                                        MyselfExists
@@ -569,12 +571,12 @@ public abstract class AbstractBsWhiteVariantRelationMasterCorgeCQ extends Abstra
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfExists(SubQuery<WhiteVariantRelationMasterCorgeCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteVariantRelationMasterCorgeCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteVariantRelationMasterCorgeCB cb = new WhiteVariantRelationMasterCorgeCB(); cb.xsetupForMyselfExists(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfExists(cb.query()); // for saving query-value.
-        registerMyselfExists(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfExists(cb.query()); // for saving query-value.
+        registerMyselfExists(cb.query(), pp);
     }
-    public abstract String keepMyselfExists(WhiteVariantRelationMasterCorgeCQ subQuery);
+    public abstract String keepMyselfExists(WhiteVariantRelationMasterCorgeCQ sq);
 
     // ===================================================================================
     //                                                                       MyselfInScope
@@ -584,12 +586,12 @@ public abstract class AbstractBsWhiteVariantRelationMasterCorgeCQ extends Abstra
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfInScope(SubQuery<WhiteVariantRelationMasterCorgeCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteVariantRelationMasterCorgeCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteVariantRelationMasterCorgeCB cb = new WhiteVariantRelationMasterCorgeCB(); cb.xsetupForMyselfInScope(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfInScope(cb.query()); // for saving query-value.
-        registerMyselfInScope(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfInScope(cb.query()); // for saving query-value.
+        registerMyselfInScope(cb.query(), pp);
     }
-    public abstract String keepMyselfInScope(WhiteVariantRelationMasterCorgeCQ subQuery);
+    public abstract String keepMyselfInScope(WhiteVariantRelationMasterCorgeCQ sq);
 
     // ===================================================================================
     //                                                                    Full Text Search
@@ -615,7 +617,7 @@ public abstract class AbstractBsWhiteVariantRelationMasterCorgeCQ extends Abstra
      * @param conditionValue The condition value embedded without binding (by MySQL restriction) but escaped. (NullAllowed: if null or empty, no condition)
      * @param modifier The modifier of full-text search. (NullAllowed: If the value is null, no modifier specified)
      */
-    public void match(java.util.List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList
+    public void match(List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList
                     , String conditionValue
                     , org.seasar.dbflute.dbway.WayOfMySQL.FullTextSearchModifier modifier) {
         xdoMatchForMySQL(textColumnList, conditionValue, modifier);

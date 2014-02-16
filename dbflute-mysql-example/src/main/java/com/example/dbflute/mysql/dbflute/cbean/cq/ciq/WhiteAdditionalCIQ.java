@@ -88,18 +88,18 @@ public class WhiteAdditionalCIQ extends AbstractBsWhiteAdditionalCQ {
     protected ConditionValue getCValueFooName() { return _myCQ.getFooName(); }
     protected ConditionValue getCValueFooDate() { return _myCQ.getFooDate(); }
     protected ConditionValue getCValueRegisterDatetime() { return _myCQ.getRegisterDatetime(); }
-    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) { return null; }
-    public String keepScalarCondition(WhiteAdditionalCQ subQuery)
+    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
+    public String keepScalarCondition(WhiteAdditionalCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }
-    public String keepSpecifyMyselfDerived(WhiteAdditionalCQ subQuery)
+    public String keepSpecifyMyselfDerived(WhiteAdditionalCQ sq)
     { throwIICBOE("(Specify)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerived(WhiteAdditionalCQ subQuery)
+    public String keepQueryMyselfDerived(WhiteAdditionalCQ sq)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerivedParameter(Object parameterValue)
+    public String keepQueryMyselfDerivedParameter(Object vl)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepMyselfExists(WhiteAdditionalCQ subQuery)
+    public String keepMyselfExists(WhiteAdditionalCQ sq)
     { throwIICBOE("MyselfExists"); return null;}
-    public String keepMyselfInScope(WhiteAdditionalCQ subQuery)
+    public String keepMyselfInScope(WhiteAdditionalCQ sq)
     { throwIICBOE("MyselfInScope"); return null;}
 
     protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()

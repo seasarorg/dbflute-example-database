@@ -57,16 +57,16 @@ public class WhiteBinaryDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgBinaryId implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteBinary)e).getBinaryId(); }
-        public void write(Entity e, Object v) { ((WhiteBinary)e).setBinaryId(ctl(v)); }
+        public Object read(Entity et) { return ((WhiteBinary)et).getBinaryId(); }
+        public void write(Entity et, Object vl) { ((WhiteBinary)et).setBinaryId(ctl(vl)); }
     }
     public static class EpgBinaryData implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteBinary)e).getBinaryData(); }
-        public void write(Entity e, Object v) { ((WhiteBinary)e).setBinaryData((byte[])v); }
+        public Object read(Entity et) { return ((WhiteBinary)et).getBinaryData(); }
+        public void write(Entity et, Object vl) { ((WhiteBinary)et).setBinaryData((byte[])vl); }
     }
     public static class EpgBlobData implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteBinary)e).getBlobData(); }
-        public void write(Entity e, Object v) { ((WhiteBinary)e).setBlobData((byte[])v); }
+        public Object read(Entity et) { return ((WhiteBinary)et).getBlobData(); }
+        public void write(Entity et, Object vl) { ((WhiteBinary)et).setBlobData((byte[])vl); }
     }
 
     // ===================================================================================
@@ -148,10 +148,10 @@ public class WhiteBinaryDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((WhiteBinary)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((WhiteBinary)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((WhiteBinary)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((WhiteBinary)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

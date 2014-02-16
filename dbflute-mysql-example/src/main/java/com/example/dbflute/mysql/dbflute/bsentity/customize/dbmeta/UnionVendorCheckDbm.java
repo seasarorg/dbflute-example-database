@@ -61,36 +61,36 @@ public class UnionVendorCheckDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgVendorCheckId implements PropertyGateway {
-        public Object read(Entity e) { return ((UnionVendorCheck)e).getVendorCheckId(); }
-        public void write(Entity e, Object v) { ((UnionVendorCheck)e).setVendorCheckId(ctl(v)); }
+        public Object read(Entity et) { return ((UnionVendorCheck)et).getVendorCheckId(); }
+        public void write(Entity et, Object vl) { ((UnionVendorCheck)et).setVendorCheckId(ctl(vl)); }
     }
     public static class EpgTypeOfText implements PropertyGateway {
-        public Object read(Entity e) { return ((UnionVendorCheck)e).getTypeOfText(); }
-        public void write(Entity e, Object v) { ((UnionVendorCheck)e).setTypeOfText((String)v); }
+        public Object read(Entity et) { return ((UnionVendorCheck)et).getTypeOfText(); }
+        public void write(Entity et, Object vl) { ((UnionVendorCheck)et).setTypeOfText((String)vl); }
     }
     public static class EpgTypeOfNumericDecimal implements PropertyGateway {
-        public Object read(Entity e) { return ((UnionVendorCheck)e).getTypeOfNumericDecimal(); }
-        public void write(Entity e, Object v) { ((UnionVendorCheck)e).setTypeOfNumericDecimal(ctb(v)); }
+        public Object read(Entity et) { return ((UnionVendorCheck)et).getTypeOfNumericDecimal(); }
+        public void write(Entity et, Object vl) { ((UnionVendorCheck)et).setTypeOfNumericDecimal(ctb(vl)); }
     }
     public static class EpgTypeOfNumericInteger implements PropertyGateway {
-        public Object read(Entity e) { return ((UnionVendorCheck)e).getTypeOfNumericInteger(); }
-        public void write(Entity e, Object v) { ((UnionVendorCheck)e).setTypeOfNumericInteger(cti(v)); }
+        public Object read(Entity et) { return ((UnionVendorCheck)et).getTypeOfNumericInteger(); }
+        public void write(Entity et, Object vl) { ((UnionVendorCheck)et).setTypeOfNumericInteger(cti(vl)); }
     }
     public static class EpgTypeOfNumericBigint implements PropertyGateway {
-        public Object read(Entity e) { return ((UnionVendorCheck)e).getTypeOfNumericBigint(); }
-        public void write(Entity e, Object v) { ((UnionVendorCheck)e).setTypeOfNumericBigint(ctl(v)); }
+        public Object read(Entity et) { return ((UnionVendorCheck)et).getTypeOfNumericBigint(); }
+        public void write(Entity et, Object vl) { ((UnionVendorCheck)et).setTypeOfNumericBigint(ctl(vl)); }
     }
     public class EpgTypeOfBoolean implements PropertyGateway {
-        public Object read(Entity e) { return ((UnionVendorCheck)e).getTypeOfBoolean(); }
-        public void write(Entity e, Object v) {
+        public Object read(Entity et) { return ((UnionVendorCheck)et).getTypeOfBoolean(); }
+        public void write(Entity et, Object vl) {
             ColumnInfo col = columnTypeOfBoolean();
-            ccls(col, v);
-            ((UnionVendorCheck)e).setTypeOfBooleanAsBooleanFlg((CDef.BooleanFlg)gcls(col, v));
+            ccls(col, vl);
+            ((UnionVendorCheck)et).setTypeOfBooleanAsBooleanFlg((CDef.BooleanFlg)gcls(col, vl));
         }
     }
     public static class EpgTypeOfBlob implements PropertyGateway {
-        public Object read(Entity e) { return ((UnionVendorCheck)e).getTypeOfBlob(); }
-        public void write(Entity e, Object v) { ((UnionVendorCheck)e).setTypeOfBlob((byte[])v); }
+        public Object read(Entity et) { return ((UnionVendorCheck)et).getTypeOfBlob(); }
+        public void write(Entity et, Object vl) { ((UnionVendorCheck)et).setTypeOfBlob((byte[])vl); }
     }
 
     // ===================================================================================
@@ -185,10 +185,10 @@ public class UnionVendorCheckDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((UnionVendorCheck)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((UnionVendorCheck)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((UnionVendorCheck)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((UnionVendorCheck)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

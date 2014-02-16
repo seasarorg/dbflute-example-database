@@ -87,7 +87,7 @@ public class WhiteNoPkCIQ extends AbstractBsWhiteNoPkCQ {
     protected ConditionValue getCValueNoPkId() { return _myCQ.getNoPkId(); }
     protected ConditionValue getCValueNoPkName() { return _myCQ.getNoPkName(); }
     protected ConditionValue getCValueNoPkInteger() { return _myCQ.getNoPkInteger(); }
-    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) { return null; }
+    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
 
     protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()
         throw new IllegalConditionBeanOperationException(name + " at InlineView is unsupported.");

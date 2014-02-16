@@ -88,7 +88,7 @@ public class WhiteAllInOneClsNormalColRefCIQ extends AbstractBsWhiteAllInOneClsN
     protected ConditionValue getCValueFooCode() { return _myCQ.getFooCode(); }
     protected ConditionValue getCValueBarCode() { return _myCQ.getBarCode(); }
     protected ConditionValue getCValueQuxCode() { return _myCQ.getQuxCode(); }
-    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) { return null; }
+    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
 
     protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()
         throw new IllegalConditionBeanOperationException(name + " at InlineView is unsupported.");

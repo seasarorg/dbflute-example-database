@@ -101,21 +101,21 @@ public class WhiteSelfReferenceRefOneCIQ extends AbstractBsWhiteSelfReferenceRef
     { throwIICBOE("(Specify)DerivedReferrer"); return null; }
     public String keepSelfReferenceId_QueryDerivedReferrer_WhiteSelfReferenceByParentIdList(WhiteSelfReferenceCQ sq)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
-    public String keepSelfReferenceId_QueryDerivedReferrer_WhiteSelfReferenceByParentIdListParameter(Object pv)
+    public String keepSelfReferenceId_QueryDerivedReferrer_WhiteSelfReferenceByParentIdListParameter(Object vl)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
     protected ConditionValue getCValueSelfReferenceRefOneName() { return _myCQ.getSelfReferenceRefOneName(); }
-    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) { return null; }
-    public String keepScalarCondition(WhiteSelfReferenceRefOneCQ subQuery)
+    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
+    public String keepScalarCondition(WhiteSelfReferenceRefOneCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }
-    public String keepSpecifyMyselfDerived(WhiteSelfReferenceRefOneCQ subQuery)
+    public String keepSpecifyMyselfDerived(WhiteSelfReferenceRefOneCQ sq)
     { throwIICBOE("(Specify)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerived(WhiteSelfReferenceRefOneCQ subQuery)
+    public String keepQueryMyselfDerived(WhiteSelfReferenceRefOneCQ sq)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerivedParameter(Object parameterValue)
+    public String keepQueryMyselfDerivedParameter(Object vl)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepMyselfExists(WhiteSelfReferenceRefOneCQ subQuery)
+    public String keepMyselfExists(WhiteSelfReferenceRefOneCQ sq)
     { throwIICBOE("MyselfExists"); return null;}
-    public String keepMyselfInScope(WhiteSelfReferenceRefOneCQ subQuery)
+    public String keepMyselfInScope(WhiteSelfReferenceRefOneCQ sq)
     { throwIICBOE("MyselfInScope"); return null;}
 
     protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()

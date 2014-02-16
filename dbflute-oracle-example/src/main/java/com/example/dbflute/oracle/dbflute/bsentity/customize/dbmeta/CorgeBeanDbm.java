@@ -45,28 +45,28 @@ public class CorgeBeanDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgCorgeId implements PropertyGateway {
-        public Object read(Entity e) { return ((CorgeBean)e).getCorgeId(); }
-        public void write(Entity e, Object v) { ((CorgeBean)e).setCorgeId(cti(v)); }
+        public Object read(Entity et) { return ((CorgeBean)et).getCorgeId(); }
+        public void write(Entity et, Object vl) { ((CorgeBean)et).setCorgeId(cti(vl)); }
     }
     public static class EpgCorgeName implements PropertyGateway {
-        public Object read(Entity e) { return ((CorgeBean)e).getCorgeName(); }
-        public void write(Entity e, Object v) { ((CorgeBean)e).setCorgeName((String)v); }
+        public Object read(Entity et) { return ((CorgeBean)et).getCorgeName(); }
+        public void write(Entity et, Object vl) { ((CorgeBean)et).setCorgeName((String)vl); }
     }
     public static class EpgCorgeDecimal implements PropertyGateway {
-        public Object read(Entity e) { return ((CorgeBean)e).getCorgeDecimal(); }
-        public void write(Entity e, Object v) { ((CorgeBean)e).setCorgeDecimal(ctb(v)); }
+        public Object read(Entity et) { return ((CorgeBean)et).getCorgeDecimal(); }
+        public void write(Entity et, Object vl) { ((CorgeBean)et).setCorgeDecimal(ctb(vl)); }
     }
     public static class EpgCorgeDate implements PropertyGateway {
-        public Object read(Entity e) { return ((CorgeBean)e).getCorgeDate(); }
-        public void write(Entity e, Object v) { ((CorgeBean)e).setCorgeDate((java.util.Date)v); }
+        public Object read(Entity et) { return ((CorgeBean)et).getCorgeDate(); }
+        public void write(Entity et, Object vl) { ((CorgeBean)et).setCorgeDate((java.util.Date)vl); }
     }
     public static class EpgCorgeTimestamp implements PropertyGateway {
-        public Object read(Entity e) { return ((CorgeBean)e).getCorgeTimestamp(); }
-        public void write(Entity e, Object v) { ((CorgeBean)e).setCorgeTimestamp((java.sql.Timestamp)v); }
+        public Object read(Entity et) { return ((CorgeBean)et).getCorgeTimestamp(); }
+        public void write(Entity et, Object vl) { ((CorgeBean)et).setCorgeTimestamp((java.sql.Timestamp)vl); }
     }
     public static class EpgCorgeClob implements PropertyGateway {
-        public Object read(Entity e) { return ((CorgeBean)e).getCorgeClob(); }
-        public void write(Entity e, Object v) { ((CorgeBean)e).setCorgeClob((String)v); }
+        public Object read(Entity et) { return ((CorgeBean)et).getCorgeClob(); }
+        public void write(Entity et, Object vl) { ((CorgeBean)et).setCorgeClob((String)vl); }
     }
 
     // ===================================================================================
@@ -158,10 +158,10 @@ public class CorgeBeanDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((CorgeBean)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((CorgeBean)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((CorgeBean)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((CorgeBean)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

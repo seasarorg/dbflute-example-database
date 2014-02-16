@@ -160,8 +160,8 @@ public abstract class AbstractBsWhiteLoadDataCQ extends AbstractConditionQuery {
      */
     public void setLoadDataId_IsNotNull() { regLoadDataId(CK_ISNN, DOBJ); }
 
-    protected void regLoadDataId(ConditionKey k, Object v) { regQ(k, v, getCValueLoadDataId(), "LOAD_DATA_ID"); }
-    abstract protected ConditionValue getCValueLoadDataId();
+    protected void regLoadDataId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueLoadDataId(), "LOAD_DATA_ID"); }
+    protected abstract ConditionValue getCValueLoadDataId();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -246,8 +246,8 @@ public abstract class AbstractBsWhiteLoadDataCQ extends AbstractConditionQuery {
         regLSQ(CK_NLS, fRES(loadDataName), getCValueLoadDataName(), "LOAD_DATA_NAME", likeSearchOption);
     }
 
-    protected void regLoadDataName(ConditionKey k, Object v) { regQ(k, v, getCValueLoadDataName(), "LOAD_DATA_NAME"); }
-    abstract protected ConditionValue getCValueLoadDataName();
+    protected void regLoadDataName(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueLoadDataName(), "LOAD_DATA_NAME"); }
+    protected abstract ConditionValue getCValueLoadDataName();
 
     // ===================================================================================
     //                                                                     ScalarCondition
@@ -354,22 +354,22 @@ public abstract class AbstractBsWhiteLoadDataCQ extends AbstractConditionQuery {
         return xcreateSSQFunction(CK_LE.getOperand());
     }
 
-    protected HpSSQFunction<WhiteLoadDataCB> xcreateSSQFunction(final String operand) {
+    protected HpSSQFunction<WhiteLoadDataCB> xcreateSSQFunction(final String rd) {
         return new HpSSQFunction<WhiteLoadDataCB>(new HpSSQSetupper<WhiteLoadDataCB>() {
-            public void setup(String function, SubQuery<WhiteLoadDataCB> subQuery, HpSSQOption<WhiteLoadDataCB> option) {
-                xscalarCondition(function, subQuery, operand, option);
+            public void setup(String fn, SubQuery<WhiteLoadDataCB> sq, HpSSQOption<WhiteLoadDataCB> op) {
+                xscalarCondition(fn, sq, rd, op);
             }
         });
     }
 
-    protected void xscalarCondition(String function, SubQuery<WhiteLoadDataCB> subQuery, String operand, HpSSQOption<WhiteLoadDataCB> option) {
-        assertObjectNotNull("subQuery<WhiteLoadDataCB>", subQuery);
-        WhiteLoadDataCB cb = xcreateScalarConditionCB(); subQuery.query(cb);
-        String subQueryPropertyName = keepScalarCondition(cb.query()); // for saving query-value
-        option.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
-        registerScalarCondition(function, cb.query(), subQueryPropertyName, operand, option);
+    protected void xscalarCondition(String fn, SubQuery<WhiteLoadDataCB> sq, String rd, HpSSQOption<WhiteLoadDataCB> op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteLoadDataCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        String pp = keepScalarCondition(cb.query()); // for saving query-value
+        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
-    public abstract String keepScalarCondition(WhiteLoadDataCQ subQuery);
+    public abstract String keepScalarCondition(WhiteLoadDataCQ sq);
 
     protected WhiteLoadDataCB xcreateScalarConditionCB() {
         WhiteLoadDataCB cb = new WhiteLoadDataCB();
@@ -386,13 +386,14 @@ public abstract class AbstractBsWhiteLoadDataCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    public void xsmyselfDerive(String function, SubQuery<WhiteLoadDataCB> subQuery, String aliasName, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<WhiteLoadDataCB>", subQuery);
-        WhiteLoadDataCB cb = new WhiteLoadDataCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
-        registerSpecifyMyselfDerived(function, cb.query(), "LOAD_DATA_ID", "LOAD_DATA_ID", subQueryPropertyName, "myselfDerived", aliasName, option);
+    public void xsmyselfDerive(String fn, SubQuery<WhiteLoadDataCB> sq, String al, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteLoadDataCB cb = new WhiteLoadDataCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "LOAD_DATA_ID";
+        String pp = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
+        registerSpecifyMyselfDerived(fn, cb.query(), pk, pk, pp, "myselfDerived", al, op);
     }
-    public abstract String keepSpecifyMyselfDerived(WhiteLoadDataCQ subQuery);
+    public abstract String keepSpecifyMyselfDerived(WhiteLoadDataCQ sq);
 
     /**
      * Prepare for (Query)MyselfDerived (SubQuery).
@@ -403,20 +404,21 @@ public abstract class AbstractBsWhiteLoadDataCQ extends AbstractConditionQuery {
     }
     protected HpQDRFunction<WhiteLoadDataCB> xcreateQDRFunctionMyselfDerived() {
         return new HpQDRFunction<WhiteLoadDataCB>(new HpQDRSetupper<WhiteLoadDataCB>() {
-            public void setup(String function, SubQuery<WhiteLoadDataCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-                xqderiveMyselfDerived(function, subQuery, operand, value, option);
+            public void setup(String fn, SubQuery<WhiteLoadDataCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+                xqderiveMyselfDerived(fn, sq, rd, vl, op);
             }
         });
     }
-    public void xqderiveMyselfDerived(String function, SubQuery<WhiteLoadDataCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<WhiteLoadDataCB>", subQuery);
-        WhiteLoadDataCB cb = new WhiteLoadDataCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepQueryMyselfDerived(cb.query()); // for saving query-value.
-        String parameterPropertyName = keepQueryMyselfDerivedParameter(value);
-        registerQueryMyselfDerived(function, cb.query(), "LOAD_DATA_ID", "LOAD_DATA_ID", subQueryPropertyName, "myselfDerived", operand, value, parameterPropertyName, option);
+    public void xqderiveMyselfDerived(String fn, SubQuery<WhiteLoadDataCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteLoadDataCB cb = new WhiteLoadDataCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "LOAD_DATA_ID";
+        String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
+        String prpp = keepQueryMyselfDerivedParameter(vl);
+        registerQueryMyselfDerived(fn, cb.query(), pk, pk, sqpp, "myselfDerived", rd, vl, prpp, op);
     }
-    public abstract String keepQueryMyselfDerived(WhiteLoadDataCQ subQuery);
-    public abstract String keepQueryMyselfDerivedParameter(Object parameterValue);
+    public abstract String keepQueryMyselfDerived(WhiteLoadDataCQ sq);
+    public abstract String keepQueryMyselfDerivedParameter(Object vl);
 
     // ===================================================================================
     //                                                                        MyselfExists
@@ -426,12 +428,12 @@ public abstract class AbstractBsWhiteLoadDataCQ extends AbstractConditionQuery {
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfExists(SubQuery<WhiteLoadDataCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteLoadDataCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteLoadDataCB cb = new WhiteLoadDataCB(); cb.xsetupForMyselfExists(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfExists(cb.query()); // for saving query-value.
-        registerMyselfExists(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfExists(cb.query()); // for saving query-value.
+        registerMyselfExists(cb.query(), pp);
     }
-    public abstract String keepMyselfExists(WhiteLoadDataCQ subQuery);
+    public abstract String keepMyselfExists(WhiteLoadDataCQ sq);
 
     // ===================================================================================
     //                                                                       MyselfInScope
@@ -441,12 +443,12 @@ public abstract class AbstractBsWhiteLoadDataCQ extends AbstractConditionQuery {
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfInScope(SubQuery<WhiteLoadDataCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteLoadDataCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteLoadDataCB cb = new WhiteLoadDataCB(); cb.xsetupForMyselfInScope(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfInScope(cb.query()); // for saving query-value.
-        registerMyselfInScope(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfInScope(cb.query()); // for saving query-value.
+        registerMyselfInScope(cb.query(), pp);
     }
-    public abstract String keepMyselfInScope(WhiteLoadDataCQ subQuery);
+    public abstract String keepMyselfInScope(WhiteLoadDataCQ sq);
 
     // ===================================================================================
     //                                                                    Full Text Search
@@ -472,7 +474,7 @@ public abstract class AbstractBsWhiteLoadDataCQ extends AbstractConditionQuery {
      * @param conditionValue The condition value embedded without binding (by MySQL restriction) but escaped. (NullAllowed: if null or empty, no condition)
      * @param modifier The modifier of full-text search. (NullAllowed: If the value is null, no modifier specified)
      */
-    public void match(java.util.List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList
+    public void match(List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList
                     , String conditionValue
                     , org.seasar.dbflute.dbway.WayOfMySQL.FullTextSearchModifier modifier) {
         xdoMatchForMySQL(textColumnList, conditionValue, modifier);

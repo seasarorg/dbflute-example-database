@@ -87,18 +87,18 @@ public class WhiteVariantRelationReferrerCIQ extends AbstractBsWhiteVariantRelat
     protected ConditionValue getCValueReferrerId() { return _myCQ.getReferrerId(); }
     protected ConditionValue getCValueVariantMasterId() { return _myCQ.getVariantMasterId(); }
     protected ConditionValue getCValueMasterTypeCode() { return _myCQ.getMasterTypeCode(); }
-    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) { return null; }
-    public String keepScalarCondition(WhiteVariantRelationReferrerCQ subQuery)
+    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
+    public String keepScalarCondition(WhiteVariantRelationReferrerCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }
-    public String keepSpecifyMyselfDerived(WhiteVariantRelationReferrerCQ subQuery)
+    public String keepSpecifyMyselfDerived(WhiteVariantRelationReferrerCQ sq)
     { throwIICBOE("(Specify)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerived(WhiteVariantRelationReferrerCQ subQuery)
+    public String keepQueryMyselfDerived(WhiteVariantRelationReferrerCQ sq)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerivedParameter(Object parameterValue)
+    public String keepQueryMyselfDerivedParameter(Object vl)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepMyselfExists(WhiteVariantRelationReferrerCQ subQuery)
+    public String keepMyselfExists(WhiteVariantRelationReferrerCQ sq)
     { throwIICBOE("MyselfExists"); return null;}
-    public String keepMyselfInScope(WhiteVariantRelationReferrerCQ subQuery)
+    public String keepMyselfInScope(WhiteVariantRelationReferrerCQ sq)
     { throwIICBOE("MyselfInScope"); return null;}
 
     protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()

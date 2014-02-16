@@ -133,8 +133,8 @@ public abstract class AbstractBsWhiteNotPkCQ extends AbstractConditionQuery {
         regINS(CK_NINS, cTL(notPkIdList), getCValueNotPkId(), "not_pk_id");
     }
 
-    protected void regNotPkId(ConditionKey k, Object v) { regQ(k, v, getCValueNotPkId(), "not_pk_id"); }
-    abstract protected ConditionValue getCValueNotPkId();
+    protected void regNotPkId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueNotPkId(), "not_pk_id"); }
+    protected abstract ConditionValue getCValueNotPkId();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -237,8 +237,8 @@ public abstract class AbstractBsWhiteNotPkCQ extends AbstractConditionQuery {
      */
     public void setNotPkName_IsNotNull() { regNotPkName(CK_ISNN, DOBJ); }
 
-    protected void regNotPkName(ConditionKey k, Object v) { regQ(k, v, getCValueNotPkName(), "not_pk_name"); }
-    abstract protected ConditionValue getCValueNotPkName();
+    protected void regNotPkName(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueNotPkName(), "not_pk_name"); }
+    protected abstract ConditionValue getCValueNotPkName();
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -340,8 +340,8 @@ public abstract class AbstractBsWhiteNotPkCQ extends AbstractConditionQuery {
      */
     public void setNotPkInteger_IsNotNull() { regNotPkInteger(CK_ISNN, DOBJ); }
 
-    protected void regNotPkInteger(ConditionKey k, Object v) { regQ(k, v, getCValueNotPkInteger(), "not_pk_integer"); }
-    abstract protected ConditionValue getCValueNotPkInteger();
+    protected void regNotPkInteger(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueNotPkInteger(), "not_pk_integer"); }
+    protected abstract ConditionValue getCValueNotPkInteger();
 
     // ===================================================================================
     //                                                                    Full Text Search
@@ -361,7 +361,7 @@ public abstract class AbstractBsWhiteNotPkCQ extends AbstractConditionQuery {
      * @param textColumnList The list of text column. (NotNull, NotEmpty, StringColumn, TargetTableColumn)
      * @param conditionValue The condition value. (NullAllowed: if null or empty, no condition)
      */
-    public void match(java.util.List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList, String conditionValue) {
+    public void match(List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList, String conditionValue) {
         xdoMatchByLikeSearch(textColumnList, conditionValue);
     }
 

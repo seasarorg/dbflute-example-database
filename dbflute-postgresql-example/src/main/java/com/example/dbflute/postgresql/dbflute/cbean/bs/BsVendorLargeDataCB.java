@@ -364,8 +364,8 @@ public class BsVendorLargeDataCB extends AbstractConditionBean {
         public HpSDRFunction<VendorLargeDataRefCB, VendorLargeDataCQ> derivedVendorLargeDataRefList() {
             assertDerived("vendorLargeDataRefList"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<VendorLargeDataRefCB, VendorLargeDataCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<VendorLargeDataRefCB, VendorLargeDataCQ>() {
-                public void setup(String function, SubQuery<VendorLargeDataRefCB> subQuery, VendorLargeDataCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsderiveVendorLargeDataRefList(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<VendorLargeDataRefCB> sq, VendorLargeDataCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsderiveVendorLargeDataRefList(fn, sq, al, op); } }, _dbmetaProvider);
         }
         /**
          * Prepare for (Specify)MyselfDerived (SubQuery).
@@ -374,8 +374,8 @@ public class BsVendorLargeDataCB extends AbstractConditionBean {
         public HpSDRFunction<VendorLargeDataCB, VendorLargeDataCQ> myselfDerived() {
             assertDerived("myselfDerived"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<VendorLargeDataCB, VendorLargeDataCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<VendorLargeDataCB, VendorLargeDataCQ>() {
-                public void setup(String function, SubQuery<VendorLargeDataCB> subQuery, VendorLargeDataCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsmyselfDerive(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<VendorLargeDataCB> sq, VendorLargeDataCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsmyselfDerive(fn, sq, al, op); } }, _dbmetaProvider);
         }
     }
 

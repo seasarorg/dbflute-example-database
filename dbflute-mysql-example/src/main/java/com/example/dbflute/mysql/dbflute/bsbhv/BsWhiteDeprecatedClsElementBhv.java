@@ -154,10 +154,10 @@ public abstract class BsWhiteDeprecatedClsElementBhv extends AbstractBehaviorWri
         return doSelectEntity(cb, WhiteDeprecatedClsElement.class);
     }
 
-    protected <ENTITY extends WhiteDeprecatedClsElement> ENTITY doSelectEntity(final WhiteDeprecatedClsElementCB cb, Class<ENTITY> entityType) {
+    protected <ENTITY extends WhiteDeprecatedClsElement> ENTITY doSelectEntity(final WhiteDeprecatedClsElementCB cb, Class<ENTITY> tp) {
         assertCBStateValid(cb);
-        return helpSelectEntityInternally(cb, entityType, new InternalSelectEntityCallback<ENTITY, WhiteDeprecatedClsElementCB>() {
-            public List<ENTITY> callbackSelectList(WhiteDeprecatedClsElementCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); } });
+        return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, WhiteDeprecatedClsElementCB>() {
+            public List<ENTITY> callbackSelectList(WhiteDeprecatedClsElementCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
     }
 
     @Override
@@ -183,10 +183,10 @@ public abstract class BsWhiteDeprecatedClsElementBhv extends AbstractBehaviorWri
         return doSelectEntityWithDeletedCheck(cb, WhiteDeprecatedClsElement.class);
     }
 
-    protected <ENTITY extends WhiteDeprecatedClsElement> ENTITY doSelectEntityWithDeletedCheck(final WhiteDeprecatedClsElementCB cb, Class<ENTITY> entityType) {
+    protected <ENTITY extends WhiteDeprecatedClsElement> ENTITY doSelectEntityWithDeletedCheck(final WhiteDeprecatedClsElementCB cb, Class<ENTITY> tp) {
         assertCBStateValid(cb);
-        return helpSelectEntityWithDeletedCheckInternally(cb, entityType, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, WhiteDeprecatedClsElementCB>() {
-            public List<ENTITY> callbackSelectList(WhiteDeprecatedClsElementCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); } });
+        return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, WhiteDeprecatedClsElementCB>() {
+            public List<ENTITY> callbackSelectList(WhiteDeprecatedClsElementCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
     }
 
     @Override
@@ -254,11 +254,11 @@ public abstract class BsWhiteDeprecatedClsElementBhv extends AbstractBehaviorWri
         return doSelectList(cb, WhiteDeprecatedClsElement.class);
     }
 
-    protected <ENTITY extends WhiteDeprecatedClsElement> ListResultBean<ENTITY> doSelectList(WhiteDeprecatedClsElementCB cb, Class<ENTITY> entityType) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", entityType);
-        assertSpecifyDerivedReferrerEntityProperty(cb, entityType);
-        return helpSelectListInternally(cb, entityType, new InternalSelectListCallback<ENTITY, WhiteDeprecatedClsElementCB>() {
-            public List<ENTITY> callbackSelectList(WhiteDeprecatedClsElementCB cb, Class<ENTITY> entityType) { return delegateSelectList(cb, entityType); } });
+    protected <ENTITY extends WhiteDeprecatedClsElement> ListResultBean<ENTITY> doSelectList(WhiteDeprecatedClsElementCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
+        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
+        return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, WhiteDeprecatedClsElementCB>() {
+            public List<ENTITY> callbackSelectList(WhiteDeprecatedClsElementCB cb, Class<ENTITY> tp) { return delegateSelectList(cb, tp); } });
     }
 
     @Override
@@ -295,11 +295,11 @@ public abstract class BsWhiteDeprecatedClsElementBhv extends AbstractBehaviorWri
         return doSelectPage(cb, WhiteDeprecatedClsElement.class);
     }
 
-    protected <ENTITY extends WhiteDeprecatedClsElement> PagingResultBean<ENTITY> doSelectPage(WhiteDeprecatedClsElementCB cb, Class<ENTITY> entityType) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", entityType);
-        return helpSelectPageInternally(cb, entityType, new InternalSelectPageCallback<ENTITY, WhiteDeprecatedClsElementCB>() {
+    protected <ENTITY extends WhiteDeprecatedClsElement> PagingResultBean<ENTITY> doSelectPage(WhiteDeprecatedClsElementCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
+        return helpSelectPageInternally(cb, tp, new InternalSelectPageCallback<ENTITY, WhiteDeprecatedClsElementCB>() {
             public int callbackSelectCount(WhiteDeprecatedClsElementCB cb) { return doSelectCountPlainly(cb); }
-            public List<ENTITY> callbackSelectList(WhiteDeprecatedClsElementCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); }
+            public List<ENTITY> callbackSelectList(WhiteDeprecatedClsElementCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
         });
     }
 
@@ -329,12 +329,12 @@ public abstract class BsWhiteDeprecatedClsElementBhv extends AbstractBehaviorWri
         doSelectCursor(cb, entityRowHandler, WhiteDeprecatedClsElement.class);
     }
 
-    protected <ENTITY extends WhiteDeprecatedClsElement> void doSelectCursor(WhiteDeprecatedClsElementCB cb, EntityRowHandler<ENTITY> entityRowHandler, Class<ENTITY> entityType) {
-        assertCBStateValid(cb); assertObjectNotNull("entityRowHandler<WhiteDeprecatedClsElement>", entityRowHandler); assertObjectNotNull("entityType", entityType);
-        assertSpecifyDerivedReferrerEntityProperty(cb, entityType);
-        helpSelectCursorInternally(cb, entityRowHandler, entityType, new InternalSelectCursorCallback<ENTITY, WhiteDeprecatedClsElementCB>() {
-            public void callbackSelectCursor(WhiteDeprecatedClsElementCB cb, EntityRowHandler<ENTITY> entityRowHandler, Class<ENTITY> entityType) { delegateSelectCursor(cb, entityRowHandler, entityType); }
-            public List<ENTITY> callbackSelectList(WhiteDeprecatedClsElementCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); }
+    protected <ENTITY extends WhiteDeprecatedClsElement> void doSelectCursor(WhiteDeprecatedClsElementCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
+        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
+        helpSelectCursorInternally(cb, handler, tp, new InternalSelectCursorCallback<ENTITY, WhiteDeprecatedClsElementCB>() {
+            public void callbackSelectCursor(WhiteDeprecatedClsElementCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) { delegateSelectCursor(cb, handler, tp); }
+            public List<ENTITY> callbackSelectList(WhiteDeprecatedClsElementCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
         });
     }
 
@@ -360,18 +360,18 @@ public abstract class BsWhiteDeprecatedClsElementBhv extends AbstractBehaviorWri
         return doScalarSelect(resultType, newMyConditionBean());
     }
 
-    protected <RESULT, CB extends WhiteDeprecatedClsElementCB> SLFunction<CB, RESULT> doScalarSelect(Class<RESULT> resultType, CB cb) {
-        assertObjectNotNull("resultType", resultType); assertCBStateValid(cb);
+    protected <RESULT, CB extends WhiteDeprecatedClsElementCB> SLFunction<CB, RESULT> doScalarSelect(Class<RESULT> tp, CB cb) {
+        assertObjectNotNull("resultType", tp); assertCBStateValid(cb);
         cb.xsetupForScalarSelect(); cb.getSqlClause().disableSelectIndex(); // for when you use union
-        return createSLFunction(cb, resultType);
+        return createSLFunction(cb, tp);
     }
 
-    protected <RESULT, CB extends WhiteDeprecatedClsElementCB> SLFunction<CB, RESULT> createSLFunction(CB cb, Class<RESULT> resultType) {
-        return new SLFunction<CB, RESULT>(cb, resultType);
+    protected <RESULT, CB extends WhiteDeprecatedClsElementCB> SLFunction<CB, RESULT> createSLFunction(CB cb, Class<RESULT> tp) {
+        return new SLFunction<CB, RESULT>(cb, tp);
     }
 
-    protected <RESULT> SLFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> resultType) {
-        return doScalarSelect(resultType, newMyConditionBean());
+    protected <RESULT> SLFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) {
+        return doScalarSelect(tp, newMyConditionBean());
     }
 
     // ===================================================================================
@@ -397,7 +397,7 @@ public abstract class BsWhiteDeprecatedClsElementBhv extends AbstractBehaviorWri
      */
     public List<String> extractDeprecatedClsElementCodeList(List<WhiteDeprecatedClsElement> whiteDeprecatedClsElementList) {
         return helpExtractListInternally(whiteDeprecatedClsElementList, new InternalExtractCallback<WhiteDeprecatedClsElement, String>() {
-            public String getCV(WhiteDeprecatedClsElement e) { return e.getDeprecatedClsElementCode(); }
+            public String getCV(WhiteDeprecatedClsElement et) { return et.getDeprecatedClsElementCode(); }
         });
     }
 
@@ -425,24 +425,24 @@ public abstract class BsWhiteDeprecatedClsElementBhv extends AbstractBehaviorWri
         doInsert(whiteDeprecatedClsElement, null);
     }
 
-    protected void doInsert(WhiteDeprecatedClsElement whiteDeprecatedClsElement, InsertOption<WhiteDeprecatedClsElementCB> option) {
+    protected void doInsert(WhiteDeprecatedClsElement whiteDeprecatedClsElement, InsertOption<WhiteDeprecatedClsElementCB> op) {
         assertObjectNotNull("whiteDeprecatedClsElement", whiteDeprecatedClsElement);
-        prepareInsertOption(option);
-        delegateInsert(whiteDeprecatedClsElement, option);
+        prepareInsertOption(op);
+        delegateInsert(whiteDeprecatedClsElement, op);
     }
 
-    protected void prepareInsertOption(InsertOption<WhiteDeprecatedClsElementCB> option) {
-        if (option == null) { return; }
-        assertInsertOptionStatus(option);
-        if (option.hasSpecifiedInsertColumn()) {
-            option.resolveInsertColumnSpecification(createCBForSpecifiedUpdate());
+    protected void prepareInsertOption(InsertOption<WhiteDeprecatedClsElementCB> op) {
+        if (op == null) { return; }
+        assertInsertOptionStatus(op);
+        if (op.hasSpecifiedInsertColumn()) {
+            op.resolveInsertColumnSpecification(createCBForSpecifiedUpdate());
         }
     }
 
     @Override
-    protected void doCreate(Entity entity, InsertOption<? extends ConditionBean> option) {
-        if (option == null) { insert(downcast(entity)); }
-        else { varyingInsert(downcast(entity), downcast(option)); }
+    protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) {
+        if (op == null) { insert(downcast(et)); }
+        else { varyingInsert(downcast(et), downcast(op)); }
     }
 
     /**
@@ -471,21 +471,21 @@ public abstract class BsWhiteDeprecatedClsElementBhv extends AbstractBehaviorWri
         doUpdate(whiteDeprecatedClsElement, null);
     }
 
-    protected void doUpdate(WhiteDeprecatedClsElement whiteDeprecatedClsElement, final UpdateOption<WhiteDeprecatedClsElementCB> option) {
+    protected void doUpdate(WhiteDeprecatedClsElement whiteDeprecatedClsElement, final UpdateOption<WhiteDeprecatedClsElementCB> op) {
         assertObjectNotNull("whiteDeprecatedClsElement", whiteDeprecatedClsElement);
-        prepareUpdateOption(option);
+        prepareUpdateOption(op);
         helpUpdateInternally(whiteDeprecatedClsElement, new InternalUpdateCallback<WhiteDeprecatedClsElement>() {
-            public int callbackDelegateUpdate(WhiteDeprecatedClsElement entity) { return delegateUpdate(entity, option); } });
+            public int callbackDelegateUpdate(WhiteDeprecatedClsElement et) { return delegateUpdate(et, op); } });
     }
 
-    protected void prepareUpdateOption(UpdateOption<WhiteDeprecatedClsElementCB> option) {
-        if (option == null) { return; }
-        assertUpdateOptionStatus(option);
-        if (option.hasSelfSpecification()) {
-            option.resolveSelfSpecification(createCBForVaryingUpdate());
+    protected void prepareUpdateOption(UpdateOption<WhiteDeprecatedClsElementCB> op) {
+        if (op == null) { return; }
+        assertUpdateOptionStatus(op);
+        if (op.hasSelfSpecification()) {
+            op.resolveSelfSpecification(createCBForVaryingUpdate());
         }
-        if (option.hasSpecifiedUpdateColumn()) {
-            option.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate());
+        if (op.hasSpecifiedUpdateColumn()) {
+            op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate());
         }
     }
 
@@ -502,14 +502,14 @@ public abstract class BsWhiteDeprecatedClsElementBhv extends AbstractBehaviorWri
     }
 
     @Override
-    protected void doModify(Entity entity, UpdateOption<? extends ConditionBean> option) {
-        if (option == null) { update(downcast(entity)); }
-        else { varyingUpdate(downcast(entity), downcast(option)); }
+    protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) {
+        if (op == null) { update(downcast(et)); }
+        else { varyingUpdate(downcast(et), downcast(op)); }
     }
 
     @Override
-    protected void doModifyNonstrict(Entity entity, UpdateOption<? extends ConditionBean> option) {
-        doModify(entity, option);
+    protected void doModifyNonstrict(Entity et, UpdateOption<? extends ConditionBean> op) {
+        doModify(et, op);
     }
 
     /**
@@ -525,30 +525,28 @@ public abstract class BsWhiteDeprecatedClsElementBhv extends AbstractBehaviorWri
         doInesrtOrUpdate(whiteDeprecatedClsElement, null, null);
     }
 
-    protected void doInesrtOrUpdate(WhiteDeprecatedClsElement whiteDeprecatedClsElement, final InsertOption<WhiteDeprecatedClsElementCB> insertOption, final UpdateOption<WhiteDeprecatedClsElementCB> updateOption) {
+    protected void doInesrtOrUpdate(WhiteDeprecatedClsElement whiteDeprecatedClsElement, final InsertOption<WhiteDeprecatedClsElementCB> iop, final UpdateOption<WhiteDeprecatedClsElementCB> uop) {
         helpInsertOrUpdateInternally(whiteDeprecatedClsElement, new InternalInsertOrUpdateCallback<WhiteDeprecatedClsElement, WhiteDeprecatedClsElementCB>() {
-            public void callbackInsert(WhiteDeprecatedClsElement entity) { doInsert(entity, insertOption); }
-            public void callbackUpdate(WhiteDeprecatedClsElement entity) { doUpdate(entity, updateOption); }
+            public void callbackInsert(WhiteDeprecatedClsElement et) { doInsert(et, iop); }
+            public void callbackUpdate(WhiteDeprecatedClsElement et) { doUpdate(et, uop); }
             public WhiteDeprecatedClsElementCB callbackNewMyConditionBean() { return newMyConditionBean(); }
             public int callbackSelectCount(WhiteDeprecatedClsElementCB cb) { return selectCount(cb); }
         });
     }
 
     @Override
-    protected void doCreateOrModify(Entity entity, InsertOption<? extends ConditionBean> insertOption,
-            UpdateOption<? extends ConditionBean> updateOption) {
-        if (insertOption == null && updateOption == null) { insertOrUpdate(downcast(entity)); }
+    protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
+        if (iop == null && uop == null) { insertOrUpdate(downcast(et)); }
         else {
-            insertOption = insertOption == null ? new InsertOption<WhiteDeprecatedClsElementCB>() : insertOption;
-            updateOption = updateOption == null ? new UpdateOption<WhiteDeprecatedClsElementCB>() : updateOption;
-            varyingInsertOrUpdate(downcast(entity), downcast(insertOption), downcast(updateOption));
+            iop = iop != null ? iop : new InsertOption<WhiteDeprecatedClsElementCB>();
+            uop = uop != null ? uop : new UpdateOption<WhiteDeprecatedClsElementCB>();
+            varyingInsertOrUpdate(downcast(et), downcast(iop), downcast(uop));
         }
     }
 
     @Override
-    protected void doCreateOrModifyNonstrict(Entity entity, InsertOption<? extends ConditionBean> insertOption,
-            UpdateOption<? extends ConditionBean> updateOption) {
-        doCreateOrModify(entity, insertOption, updateOption);
+    protected void doCreateOrModifyNonstrict(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
+        doCreateOrModify(et, iop, uop);
     }
 
     /**
@@ -572,27 +570,27 @@ public abstract class BsWhiteDeprecatedClsElementBhv extends AbstractBehaviorWri
         doDelete(whiteDeprecatedClsElement, null);
     }
 
-    protected void doDelete(WhiteDeprecatedClsElement whiteDeprecatedClsElement, final DeleteOption<WhiteDeprecatedClsElementCB> option) {
+    protected void doDelete(WhiteDeprecatedClsElement whiteDeprecatedClsElement, final DeleteOption<WhiteDeprecatedClsElementCB> op) {
         assertObjectNotNull("whiteDeprecatedClsElement", whiteDeprecatedClsElement);
-        prepareDeleteOption(option);
+        prepareDeleteOption(op);
         helpDeleteInternally(whiteDeprecatedClsElement, new InternalDeleteCallback<WhiteDeprecatedClsElement>() {
-            public int callbackDelegateDelete(WhiteDeprecatedClsElement entity) { return delegateDelete(entity, option); } });
+            public int callbackDelegateDelete(WhiteDeprecatedClsElement et) { return delegateDelete(et, op); } });
     }
 
-    protected void prepareDeleteOption(DeleteOption<WhiteDeprecatedClsElementCB> option) {
-        if (option == null) { return; }
-        assertDeleteOptionStatus(option);
-    }
-
-    @Override
-    protected void doRemove(Entity entity, DeleteOption<? extends ConditionBean> option) {
-        if (option == null) { delete(downcast(entity)); }
-        else { varyingDelete(downcast(entity), downcast(option)); }
+    protected void prepareDeleteOption(DeleteOption<WhiteDeprecatedClsElementCB> op) {
+        if (op == null) { return; }
+        assertDeleteOptionStatus(op);
     }
 
     @Override
-    protected void doRemoveNonstrict(Entity entity, DeleteOption<? extends ConditionBean> option) {
-        doRemove(entity, option);
+    protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) {
+        if (op == null) { delete(downcast(et)); }
+        else { varyingDelete(downcast(et), downcast(op)); }
+    }
+
+    @Override
+    protected void doRemoveNonstrict(Entity et, DeleteOption<? extends ConditionBean> op) {
+        doRemove(et, op);
     }
 
     // ===================================================================================
@@ -623,26 +621,26 @@ public abstract class BsWhiteDeprecatedClsElementBhv extends AbstractBehaviorWri
      * @return The array of inserted count. (NotNull, EmptyAllowed)
      */
     public int[] batchInsert(List<WhiteDeprecatedClsElement> whiteDeprecatedClsElementList) {
-        InsertOption<WhiteDeprecatedClsElementCB> option = createInsertUpdateOption();
-        return doBatchInsert(whiteDeprecatedClsElementList, option);
+        InsertOption<WhiteDeprecatedClsElementCB> op = createInsertUpdateOption();
+        return doBatchInsert(whiteDeprecatedClsElementList, op);
     }
 
-    protected int[] doBatchInsert(List<WhiteDeprecatedClsElement> whiteDeprecatedClsElementList, InsertOption<WhiteDeprecatedClsElementCB> option) {
+    protected int[] doBatchInsert(List<WhiteDeprecatedClsElement> whiteDeprecatedClsElementList, InsertOption<WhiteDeprecatedClsElementCB> op) {
         assertObjectNotNull("whiteDeprecatedClsElementList", whiteDeprecatedClsElementList);
-        prepareBatchInsertOption(whiteDeprecatedClsElementList, option);
-        return delegateBatchInsert(whiteDeprecatedClsElementList, option);
+        prepareBatchInsertOption(whiteDeprecatedClsElementList, op);
+        return delegateBatchInsert(whiteDeprecatedClsElementList, op);
     }
 
-    protected void prepareBatchInsertOption(List<WhiteDeprecatedClsElement> whiteDeprecatedClsElementList, InsertOption<WhiteDeprecatedClsElementCB> option) {
-        option.xallowInsertColumnModifiedPropertiesFragmented();
-        option.xacceptInsertColumnModifiedPropertiesIfNeeds(whiteDeprecatedClsElementList);
-        prepareInsertOption(option);
+    protected void prepareBatchInsertOption(List<WhiteDeprecatedClsElement> whiteDeprecatedClsElementList, InsertOption<WhiteDeprecatedClsElementCB> op) {
+        op.xallowInsertColumnModifiedPropertiesFragmented();
+        op.xacceptInsertColumnModifiedPropertiesIfNeeds(whiteDeprecatedClsElementList);
+        prepareInsertOption(op);
     }
 
     @Override
-    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> option) {
-        if (option == null) { return batchInsert(downcast(ls)); }
-        else { return varyingBatchInsert(downcast(ls), downcast(option)); }
+    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) {
+        if (op == null) { return batchInsert(downcast(ls)); }
+        else { return varyingBatchInsert(downcast(ls), downcast(op)); }
     }
 
     /**
@@ -670,25 +668,25 @@ public abstract class BsWhiteDeprecatedClsElementBhv extends AbstractBehaviorWri
      * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<WhiteDeprecatedClsElement> whiteDeprecatedClsElementList) {
-        UpdateOption<WhiteDeprecatedClsElementCB> option = createPlainUpdateOption();
-        return doBatchUpdate(whiteDeprecatedClsElementList, option);
+        UpdateOption<WhiteDeprecatedClsElementCB> op = createPlainUpdateOption();
+        return doBatchUpdate(whiteDeprecatedClsElementList, op);
     }
 
-    protected int[] doBatchUpdate(List<WhiteDeprecatedClsElement> whiteDeprecatedClsElementList, UpdateOption<WhiteDeprecatedClsElementCB> option) {
+    protected int[] doBatchUpdate(List<WhiteDeprecatedClsElement> whiteDeprecatedClsElementList, UpdateOption<WhiteDeprecatedClsElementCB> op) {
         assertObjectNotNull("whiteDeprecatedClsElementList", whiteDeprecatedClsElementList);
-        prepareBatchUpdateOption(whiteDeprecatedClsElementList, option);
-        return delegateBatchUpdate(whiteDeprecatedClsElementList, option);
+        prepareBatchUpdateOption(whiteDeprecatedClsElementList, op);
+        return delegateBatchUpdate(whiteDeprecatedClsElementList, op);
     }
 
-    protected void prepareBatchUpdateOption(List<WhiteDeprecatedClsElement> whiteDeprecatedClsElementList, UpdateOption<WhiteDeprecatedClsElementCB> option) {
-        option.xacceptUpdateColumnModifiedPropertiesIfNeeds(whiteDeprecatedClsElementList);
-        prepareUpdateOption(option);
+    protected void prepareBatchUpdateOption(List<WhiteDeprecatedClsElement> whiteDeprecatedClsElementList, UpdateOption<WhiteDeprecatedClsElementCB> op) {
+        op.xacceptUpdateColumnModifiedPropertiesIfNeeds(whiteDeprecatedClsElementList);
+        prepareUpdateOption(op);
     }
 
     @Override
-    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> option) {
-        if (option == null) { return batchUpdate(downcast(ls)); }
-        else { return varyingBatchUpdate(downcast(ls), downcast(option)); }
+    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) {
+        if (op == null) { return batchUpdate(downcast(ls)); }
+        else { return varyingBatchUpdate(downcast(ls), downcast(op)); }
     }
 
     /**
@@ -724,8 +722,8 @@ public abstract class BsWhiteDeprecatedClsElementBhv extends AbstractBehaviorWri
     }
 
     @Override
-    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> option) {
-        return doLumpModify(ls, option);
+    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> op) {
+        return doLumpModify(ls, op);
     }
 
     /**
@@ -739,21 +737,21 @@ public abstract class BsWhiteDeprecatedClsElementBhv extends AbstractBehaviorWri
         return doBatchDelete(whiteDeprecatedClsElementList, null);
     }
 
-    protected int[] doBatchDelete(List<WhiteDeprecatedClsElement> whiteDeprecatedClsElementList, DeleteOption<WhiteDeprecatedClsElementCB> option) {
+    protected int[] doBatchDelete(List<WhiteDeprecatedClsElement> whiteDeprecatedClsElementList, DeleteOption<WhiteDeprecatedClsElementCB> op) {
         assertObjectNotNull("whiteDeprecatedClsElementList", whiteDeprecatedClsElementList);
-        prepareDeleteOption(option);
-        return delegateBatchDelete(whiteDeprecatedClsElementList, option);
+        prepareDeleteOption(op);
+        return delegateBatchDelete(whiteDeprecatedClsElementList, op);
     }
 
     @Override
-    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> option) {
-        if (option == null) { return batchDelete(downcast(ls)); }
-        else { return varyingBatchDelete(downcast(ls), downcast(option)); }
+    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) {
+        if (op == null) { return batchDelete(downcast(ls)); }
+        else { return varyingBatchDelete(downcast(ls), downcast(op)); }
     }
 
     @Override
-    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> option) {
-        return doLumpRemove(ls, option);
+    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> op) {
+        return doLumpRemove(ls, op);
     }
 
     // ===================================================================================
@@ -789,13 +787,12 @@ public abstract class BsWhiteDeprecatedClsElementBhv extends AbstractBehaviorWri
         return doQueryInsert(setupper, null);
     }
 
-    protected int doQueryInsert(QueryInsertSetupper<WhiteDeprecatedClsElement, WhiteDeprecatedClsElementCB> setupper, InsertOption<WhiteDeprecatedClsElementCB> option) {
-        assertObjectNotNull("setupper", setupper);
-        prepareInsertOption(option);
-        WhiteDeprecatedClsElement entity = new WhiteDeprecatedClsElement();
-        WhiteDeprecatedClsElementCB intoCB = createCBForQueryInsert();
-        ConditionBean resourceCB = setupper.setup(entity, intoCB);
-        return delegateQueryInsert(entity, intoCB, resourceCB, option);
+    protected int doQueryInsert(QueryInsertSetupper<WhiteDeprecatedClsElement, WhiteDeprecatedClsElementCB> sp, InsertOption<WhiteDeprecatedClsElementCB> op) {
+        assertObjectNotNull("setupper", sp);
+        prepareInsertOption(op);
+        WhiteDeprecatedClsElement e = new WhiteDeprecatedClsElement();
+        WhiteDeprecatedClsElementCB cb = createCBForQueryInsert();
+        return delegateQueryInsert(e, cb, sp.setup(e, cb), op);
     }
 
     protected WhiteDeprecatedClsElementCB createCBForQueryInsert() {
@@ -836,16 +833,16 @@ public abstract class BsWhiteDeprecatedClsElementBhv extends AbstractBehaviorWri
         return doQueryUpdate(whiteDeprecatedClsElement, cb, null);
     }
 
-    protected int doQueryUpdate(WhiteDeprecatedClsElement whiteDeprecatedClsElement, WhiteDeprecatedClsElementCB cb, UpdateOption<WhiteDeprecatedClsElementCB> option) {
+    protected int doQueryUpdate(WhiteDeprecatedClsElement whiteDeprecatedClsElement, WhiteDeprecatedClsElementCB cb, UpdateOption<WhiteDeprecatedClsElementCB> op) {
         assertObjectNotNull("whiteDeprecatedClsElement", whiteDeprecatedClsElement); assertCBStateValid(cb);
-        prepareUpdateOption(option);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(whiteDeprecatedClsElement, cb, option) : 0;
+        prepareUpdateOption(op);
+        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(whiteDeprecatedClsElement, cb, op) : 0;
     }
 
     @Override
-    protected int doRangeModify(Entity entity, ConditionBean cb, UpdateOption<? extends ConditionBean> option) {
-        if (option == null) { return queryUpdate(downcast(entity), (WhiteDeprecatedClsElementCB)cb); }
-        else { return varyingQueryUpdate(downcast(entity), (WhiteDeprecatedClsElementCB)cb, downcast(option)); }
+    protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op) {
+        if (op == null) { return queryUpdate(downcast(et), (WhiteDeprecatedClsElementCB)cb); }
+        else { return varyingQueryUpdate(downcast(et), (WhiteDeprecatedClsElementCB)cb, downcast(op)); }
     }
 
     /**
@@ -863,16 +860,16 @@ public abstract class BsWhiteDeprecatedClsElementBhv extends AbstractBehaviorWri
         return doQueryDelete(cb, null);
     }
 
-    protected int doQueryDelete(WhiteDeprecatedClsElementCB cb, DeleteOption<WhiteDeprecatedClsElementCB> option) {
+    protected int doQueryDelete(WhiteDeprecatedClsElementCB cb, DeleteOption<WhiteDeprecatedClsElementCB> op) {
         assertCBStateValid(cb);
-        prepareDeleteOption(option);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryDelete(cb, option) : 0;
+        prepareDeleteOption(op);
+        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryDelete(cb, op) : 0;
     }
 
     @Override
-    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> option) {
-        if (option == null) { return queryDelete((WhiteDeprecatedClsElementCB)cb); }
-        else { return varyingQueryDelete((WhiteDeprecatedClsElementCB)cb, downcast(option)); }
+    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) {
+        if (op == null) { return queryDelete((WhiteDeprecatedClsElementCB)cb); }
+        else { return varyingQueryDelete((WhiteDeprecatedClsElementCB)cb, downcast(op)); }
     }
 
     // ===================================================================================
@@ -1124,29 +1121,29 @@ public abstract class BsWhiteDeprecatedClsElementBhv extends AbstractBehaviorWri
     //                                                ------
     protected int delegateSelectCountUniquely(WhiteDeprecatedClsElementCB cb) { return invoke(createSelectCountCBCommand(cb, true)); }
     protected int delegateSelectCountPlainly(WhiteDeprecatedClsElementCB cb) { return invoke(createSelectCountCBCommand(cb, false)); }
-    protected <ENTITY extends WhiteDeprecatedClsElement> void delegateSelectCursor(WhiteDeprecatedClsElementCB cb, EntityRowHandler<ENTITY> erh, Class<ENTITY> et)
-    { invoke(createSelectCursorCBCommand(cb, erh, et)); }
-    protected <ENTITY extends WhiteDeprecatedClsElement> List<ENTITY> delegateSelectList(WhiteDeprecatedClsElementCB cb, Class<ENTITY> et)
-    { return invoke(createSelectListCBCommand(cb, et)); }
+    protected <ENTITY extends WhiteDeprecatedClsElement> void delegateSelectCursor(WhiteDeprecatedClsElementCB cb, EntityRowHandler<ENTITY> rh, Class<ENTITY> tp)
+    { invoke(createSelectCursorCBCommand(cb, rh, tp)); }
+    protected <ENTITY extends WhiteDeprecatedClsElement> List<ENTITY> delegateSelectList(WhiteDeprecatedClsElementCB cb, Class<ENTITY> tp)
+    { return invoke(createSelectListCBCommand(cb, tp)); }
 
     // -----------------------------------------------------
     //                                                Update
     //                                                ------
-    protected int delegateInsert(WhiteDeprecatedClsElement e, InsertOption<WhiteDeprecatedClsElementCB> op)
-    { if (!processBeforeInsert(e, op)) { return 0; }
-      return invoke(createInsertEntityCommand(e, op)); }
-    protected int delegateUpdate(WhiteDeprecatedClsElement e, UpdateOption<WhiteDeprecatedClsElementCB> op)
-    { if (!processBeforeUpdate(e, op)) { return 0; }
-      return delegateUpdateNonstrict(e, op); }
-    protected int delegateUpdateNonstrict(WhiteDeprecatedClsElement e, UpdateOption<WhiteDeprecatedClsElementCB> op)
-    { if (!processBeforeUpdate(e, op)) { return 0; }
-      return invoke(createUpdateNonstrictEntityCommand(e, op)); }
-    protected int delegateDelete(WhiteDeprecatedClsElement e, DeleteOption<WhiteDeprecatedClsElementCB> op)
-    { if (!processBeforeDelete(e, op)) { return 0; }
-      return delegateDeleteNonstrict(e, op); }
-    protected int delegateDeleteNonstrict(WhiteDeprecatedClsElement e, DeleteOption<WhiteDeprecatedClsElementCB> op)
-    { if (!processBeforeDelete(e, op)) { return 0; }
-      return invoke(createDeleteNonstrictEntityCommand(e, op)); }
+    protected int delegateInsert(WhiteDeprecatedClsElement et, InsertOption<WhiteDeprecatedClsElementCB> op)
+    { if (!processBeforeInsert(et, op)) { return 0; }
+      return invoke(createInsertEntityCommand(et, op)); }
+    protected int delegateUpdate(WhiteDeprecatedClsElement et, UpdateOption<WhiteDeprecatedClsElementCB> op)
+    { if (!processBeforeUpdate(et, op)) { return 0; }
+      return delegateUpdateNonstrict(et, op); }
+    protected int delegateUpdateNonstrict(WhiteDeprecatedClsElement et, UpdateOption<WhiteDeprecatedClsElementCB> op)
+    { if (!processBeforeUpdate(et, op)) { return 0; }
+      return invoke(createUpdateNonstrictEntityCommand(et, op)); }
+    protected int delegateDelete(WhiteDeprecatedClsElement et, DeleteOption<WhiteDeprecatedClsElementCB> op)
+    { if (!processBeforeDelete(et, op)) { return 0; }
+      return delegateDeleteNonstrict(et, op); }
+    protected int delegateDeleteNonstrict(WhiteDeprecatedClsElement et, DeleteOption<WhiteDeprecatedClsElementCB> op)
+    { if (!processBeforeDelete(et, op)) { return 0; }
+      return invoke(createDeleteNonstrictEntityCommand(et, op)); }
 
     protected int[] delegateBatchInsert(List<WhiteDeprecatedClsElement> ls, InsertOption<WhiteDeprecatedClsElementCB> op)
     { if (ls.isEmpty()) { return new int[]{}; }
@@ -1164,10 +1161,10 @@ public abstract class BsWhiteDeprecatedClsElementBhv extends AbstractBehaviorWri
     { if (ls.isEmpty()) { return new int[]{}; }
       return invoke(createBatchDeleteNonstrictCommand(processBatchInternally(ls, op, true), op)); }
 
-    protected int delegateQueryInsert(WhiteDeprecatedClsElement e, WhiteDeprecatedClsElementCB inCB, ConditionBean resCB, InsertOption<WhiteDeprecatedClsElementCB> op)
-    { if (!processBeforeQueryInsert(e, inCB, resCB, op)) { return 0; } return invoke(createQueryInsertCBCommand(e, inCB, resCB, op));  }
-    protected int delegateQueryUpdate(WhiteDeprecatedClsElement e, WhiteDeprecatedClsElementCB cb, UpdateOption<WhiteDeprecatedClsElementCB> op)
-    { if (!processBeforeQueryUpdate(e, cb, op)) { return 0; } return invoke(createQueryUpdateCBCommand(e, cb, op));  }
+    protected int delegateQueryInsert(WhiteDeprecatedClsElement et, WhiteDeprecatedClsElementCB inCB, ConditionBean resCB, InsertOption<WhiteDeprecatedClsElementCB> op)
+    { if (!processBeforeQueryInsert(et, inCB, resCB, op)) { return 0; } return invoke(createQueryInsertCBCommand(et, inCB, resCB, op));  }
+    protected int delegateQueryUpdate(WhiteDeprecatedClsElement et, WhiteDeprecatedClsElementCB cb, UpdateOption<WhiteDeprecatedClsElementCB> op)
+    { if (!processBeforeQueryUpdate(et, cb, op)) { return 0; } return invoke(createQueryUpdateCBCommand(et, cb, op));  }
     protected int delegateQueryDelete(WhiteDeprecatedClsElementCB cb, DeleteOption<WhiteDeprecatedClsElementCB> op)
     { if (!processBeforeQueryDelete(cb, op)) { return 0; } return invoke(createQueryDeleteCBCommand(cb, op));  }
 
@@ -1178,7 +1175,7 @@ public abstract class BsWhiteDeprecatedClsElementBhv extends AbstractBehaviorWri
      * {@inheritDoc}
      */
     @Override
-    protected boolean hasVersionNoValue(Entity entity) {
+    protected boolean hasVersionNoValue(Entity et) {
         return false;
     }
 
@@ -1186,15 +1183,15 @@ public abstract class BsWhiteDeprecatedClsElementBhv extends AbstractBehaviorWri
      * {@inheritDoc}
      */
     @Override
-    protected boolean hasUpdateDateValue(Entity entity) {
+    protected boolean hasUpdateDateValue(Entity et) {
         return false;
     }
 
     // ===================================================================================
     //                                                                     Downcast Helper
     //                                                                     ===============
-    protected WhiteDeprecatedClsElement downcast(Entity entity) {
-        return helpEntityDowncastInternally(entity, WhiteDeprecatedClsElement.class);
+    protected WhiteDeprecatedClsElement downcast(Entity et) {
+        return helpEntityDowncastInternally(et, WhiteDeprecatedClsElement.class);
     }
 
     protected WhiteDeprecatedClsElementCB downcast(ConditionBean cb) {
@@ -1202,27 +1199,27 @@ public abstract class BsWhiteDeprecatedClsElementBhv extends AbstractBehaviorWri
     }
 
     @SuppressWarnings("unchecked")
-    protected List<WhiteDeprecatedClsElement> downcast(List<? extends Entity> entityList) {
-        return (List<WhiteDeprecatedClsElement>)entityList;
+    protected List<WhiteDeprecatedClsElement> downcast(List<? extends Entity> ls) {
+        return (List<WhiteDeprecatedClsElement>)ls;
     }
 
     @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteDeprecatedClsElementCB> downcast(InsertOption<? extends ConditionBean> option) {
-        return (InsertOption<WhiteDeprecatedClsElementCB>)option;
+    protected InsertOption<WhiteDeprecatedClsElementCB> downcast(InsertOption<? extends ConditionBean> op) {
+        return (InsertOption<WhiteDeprecatedClsElementCB>)op;
     }
 
     @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteDeprecatedClsElementCB> downcast(UpdateOption<? extends ConditionBean> option) {
-        return (UpdateOption<WhiteDeprecatedClsElementCB>)option;
+    protected UpdateOption<WhiteDeprecatedClsElementCB> downcast(UpdateOption<? extends ConditionBean> op) {
+        return (UpdateOption<WhiteDeprecatedClsElementCB>)op;
     }
 
     @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteDeprecatedClsElementCB> downcast(DeleteOption<? extends ConditionBean> option) {
-        return (DeleteOption<WhiteDeprecatedClsElementCB>)option;
+    protected DeleteOption<WhiteDeprecatedClsElementCB> downcast(DeleteOption<? extends ConditionBean> op) {
+        return (DeleteOption<WhiteDeprecatedClsElementCB>)op;
     }
 
     @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhiteDeprecatedClsElement, WhiteDeprecatedClsElementCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> option) {
-        return (QueryInsertSetupper<WhiteDeprecatedClsElement, WhiteDeprecatedClsElementCB>)option;
+    protected QueryInsertSetupper<WhiteDeprecatedClsElement, WhiteDeprecatedClsElementCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp) {
+        return (QueryInsertSetupper<WhiteDeprecatedClsElement, WhiteDeprecatedClsElementCB>)sp;
     }
 }

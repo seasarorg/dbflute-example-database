@@ -86,18 +86,18 @@ public class WhiteLineSepCommentCIQ extends AbstractBsWhiteLineSepCommentCQ {
     //                                                                ====================
     protected ConditionValue getCValueLineSepCommentCode() { return _myCQ.getLineSepCommentCode(); }
     protected ConditionValue getCValueLineSepCommentName() { return _myCQ.getLineSepCommentName(); }
-    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) { return null; }
-    public String keepScalarCondition(WhiteLineSepCommentCQ subQuery)
+    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
+    public String keepScalarCondition(WhiteLineSepCommentCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }
-    public String keepSpecifyMyselfDerived(WhiteLineSepCommentCQ subQuery)
+    public String keepSpecifyMyselfDerived(WhiteLineSepCommentCQ sq)
     { throwIICBOE("(Specify)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerived(WhiteLineSepCommentCQ subQuery)
+    public String keepQueryMyselfDerived(WhiteLineSepCommentCQ sq)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerivedParameter(Object parameterValue)
+    public String keepQueryMyselfDerivedParameter(Object vl)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepMyselfExists(WhiteLineSepCommentCQ subQuery)
+    public String keepMyselfExists(WhiteLineSepCommentCQ sq)
     { throwIICBOE("MyselfExists"); return null;}
-    public String keepMyselfInScope(WhiteLineSepCommentCQ subQuery)
+    public String keepMyselfInScope(WhiteLineSepCommentCQ sq)
     { throwIICBOE("MyselfInScope"); return null;}
 
     protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()

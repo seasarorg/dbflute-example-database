@@ -41,12 +41,12 @@ public class AliasRefExceptDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgRefExceptId implements PropertyGateway {
-        public Object read(Entity e) { return ((AliasRefExcept)e).getRefExceptId(); }
-        public void write(Entity e, Object v) { ((AliasRefExcept)e).setRefExceptId(ctl(v)); }
+        public Object read(Entity et) { return ((AliasRefExcept)et).getRefExceptId(); }
+        public void write(Entity et, Object vl) { ((AliasRefExcept)et).setRefExceptId(ctl(vl)); }
     }
     public static class EpgExceptId implements PropertyGateway {
-        public Object read(Entity e) { return ((AliasRefExcept)e).getExceptId(); }
-        public void write(Entity e, Object v) { ((AliasRefExcept)e).setExceptId(ctl(v)); }
+        public Object read(Entity et) { return ((AliasRefExcept)et).getExceptId(); }
+        public void write(Entity et, Object vl) { ((AliasRefExcept)et).setExceptId(ctl(vl)); }
     }
 
     // ===================================================================================
@@ -95,8 +95,8 @@ public class AliasRefExceptDbm extends AbstractDBMeta {
     //                                      Foreign Property
     //                                      ----------------
     public ForeignInfo foreignAliasExcept() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnExceptId(), AliasExceptDbm.getInstance().columnExceptId());
-        return cfi("FK_WHITE_REF_EXCEPT", "aliasExcept", this, AliasExceptDbm.getInstance(), map, 0, false, false, false, false, null, null, false, "aliasRefExceptList");
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnExceptId(), AliasExceptDbm.getInstance().columnExceptId());
+        return cfi("FK_WHITE_REF_EXCEPT", "aliasExcept", this, AliasExceptDbm.getInstance(), mp, 0, false, false, false, false, null, null, false, "aliasRefExceptList");
     }
 
     // -----------------------------------------------------
@@ -128,10 +128,10 @@ public class AliasRefExceptDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((AliasRefExcept)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((AliasRefExcept)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((AliasRefExcept)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((AliasRefExcept)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

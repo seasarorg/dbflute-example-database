@@ -82,7 +82,7 @@ public class VendorLargeDataRefCIQ extends AbstractBsVendorLargeDataRefCQ {
     { throwIICBOE("(Specify)DerivedReferrer"); return null; }
     public String keepLargeDataRefId_QueryDerivedReferrer_VendorLargeDataRefSelfList(VendorLargeDataRefCQ sq)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
-    public String keepLargeDataRefId_QueryDerivedReferrer_VendorLargeDataRefSelfListParameter(Object pv)
+    public String keepLargeDataRefId_QueryDerivedReferrer_VendorLargeDataRefSelfListParameter(Object vl)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
     protected ConditionValue getCValueLargeDataId() { return _myCQ.getLargeDataId(); }
     public String keepLargeDataId_InScopeRelation_VendorLargeData(VendorLargeDataCQ sq)
@@ -100,18 +100,18 @@ public class VendorLargeDataRefCIQ extends AbstractBsVendorLargeDataRefCQ {
     { return _myCQ.keepSelfParentId_InScopeRelation_VendorLargeDataRefSelf(sq); }
     public String keepSelfParentId_NotInScopeRelation_VendorLargeDataRefSelf(VendorLargeDataRefCQ sq)
     { return _myCQ.keepSelfParentId_NotInScopeRelation_VendorLargeDataRefSelf(sq); }
-    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) { return null; }
-    public String keepScalarCondition(VendorLargeDataRefCQ subQuery)
+    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
+    public String keepScalarCondition(VendorLargeDataRefCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }
-    public String keepSpecifyMyselfDerived(VendorLargeDataRefCQ subQuery)
+    public String keepSpecifyMyselfDerived(VendorLargeDataRefCQ sq)
     { throwIICBOE("(Specify)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerived(VendorLargeDataRefCQ subQuery)
+    public String keepQueryMyselfDerived(VendorLargeDataRefCQ sq)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerivedParameter(Object parameterValue)
+    public String keepQueryMyselfDerivedParameter(Object vl)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepMyselfExists(VendorLargeDataRefCQ subQuery)
+    public String keepMyselfExists(VendorLargeDataRefCQ sq)
     { throwIICBOE("MyselfExists"); return null;}
-    public String keepMyselfInScope(VendorLargeDataRefCQ subQuery)
+    public String keepMyselfInScope(VendorLargeDataRefCQ sq)
     { throwIICBOE("MyselfInScope"); return null;}
 
     protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()

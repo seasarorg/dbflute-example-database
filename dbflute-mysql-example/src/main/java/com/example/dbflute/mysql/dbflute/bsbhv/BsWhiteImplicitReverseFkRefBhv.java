@@ -154,10 +154,10 @@ public abstract class BsWhiteImplicitReverseFkRefBhv extends AbstractBehaviorWri
         return doSelectEntity(cb, WhiteImplicitReverseFkRef.class);
     }
 
-    protected <ENTITY extends WhiteImplicitReverseFkRef> ENTITY doSelectEntity(final WhiteImplicitReverseFkRefCB cb, Class<ENTITY> entityType) {
+    protected <ENTITY extends WhiteImplicitReverseFkRef> ENTITY doSelectEntity(final WhiteImplicitReverseFkRefCB cb, Class<ENTITY> tp) {
         assertCBStateValid(cb);
-        return helpSelectEntityInternally(cb, entityType, new InternalSelectEntityCallback<ENTITY, WhiteImplicitReverseFkRefCB>() {
-            public List<ENTITY> callbackSelectList(WhiteImplicitReverseFkRefCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); } });
+        return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, WhiteImplicitReverseFkRefCB>() {
+            public List<ENTITY> callbackSelectList(WhiteImplicitReverseFkRefCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
     }
 
     @Override
@@ -183,10 +183,10 @@ public abstract class BsWhiteImplicitReverseFkRefBhv extends AbstractBehaviorWri
         return doSelectEntityWithDeletedCheck(cb, WhiteImplicitReverseFkRef.class);
     }
 
-    protected <ENTITY extends WhiteImplicitReverseFkRef> ENTITY doSelectEntityWithDeletedCheck(final WhiteImplicitReverseFkRefCB cb, Class<ENTITY> entityType) {
+    protected <ENTITY extends WhiteImplicitReverseFkRef> ENTITY doSelectEntityWithDeletedCheck(final WhiteImplicitReverseFkRefCB cb, Class<ENTITY> tp) {
         assertCBStateValid(cb);
-        return helpSelectEntityWithDeletedCheckInternally(cb, entityType, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, WhiteImplicitReverseFkRefCB>() {
-            public List<ENTITY> callbackSelectList(WhiteImplicitReverseFkRefCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); } });
+        return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, WhiteImplicitReverseFkRefCB>() {
+            public List<ENTITY> callbackSelectList(WhiteImplicitReverseFkRefCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
     }
 
     @Override
@@ -254,11 +254,11 @@ public abstract class BsWhiteImplicitReverseFkRefBhv extends AbstractBehaviorWri
         return doSelectList(cb, WhiteImplicitReverseFkRef.class);
     }
 
-    protected <ENTITY extends WhiteImplicitReverseFkRef> ListResultBean<ENTITY> doSelectList(WhiteImplicitReverseFkRefCB cb, Class<ENTITY> entityType) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", entityType);
-        assertSpecifyDerivedReferrerEntityProperty(cb, entityType);
-        return helpSelectListInternally(cb, entityType, new InternalSelectListCallback<ENTITY, WhiteImplicitReverseFkRefCB>() {
-            public List<ENTITY> callbackSelectList(WhiteImplicitReverseFkRefCB cb, Class<ENTITY> entityType) { return delegateSelectList(cb, entityType); } });
+    protected <ENTITY extends WhiteImplicitReverseFkRef> ListResultBean<ENTITY> doSelectList(WhiteImplicitReverseFkRefCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
+        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
+        return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, WhiteImplicitReverseFkRefCB>() {
+            public List<ENTITY> callbackSelectList(WhiteImplicitReverseFkRefCB cb, Class<ENTITY> tp) { return delegateSelectList(cb, tp); } });
     }
 
     @Override
@@ -295,11 +295,11 @@ public abstract class BsWhiteImplicitReverseFkRefBhv extends AbstractBehaviorWri
         return doSelectPage(cb, WhiteImplicitReverseFkRef.class);
     }
 
-    protected <ENTITY extends WhiteImplicitReverseFkRef> PagingResultBean<ENTITY> doSelectPage(WhiteImplicitReverseFkRefCB cb, Class<ENTITY> entityType) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", entityType);
-        return helpSelectPageInternally(cb, entityType, new InternalSelectPageCallback<ENTITY, WhiteImplicitReverseFkRefCB>() {
+    protected <ENTITY extends WhiteImplicitReverseFkRef> PagingResultBean<ENTITY> doSelectPage(WhiteImplicitReverseFkRefCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
+        return helpSelectPageInternally(cb, tp, new InternalSelectPageCallback<ENTITY, WhiteImplicitReverseFkRefCB>() {
             public int callbackSelectCount(WhiteImplicitReverseFkRefCB cb) { return doSelectCountPlainly(cb); }
-            public List<ENTITY> callbackSelectList(WhiteImplicitReverseFkRefCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); }
+            public List<ENTITY> callbackSelectList(WhiteImplicitReverseFkRefCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
         });
     }
 
@@ -329,12 +329,12 @@ public abstract class BsWhiteImplicitReverseFkRefBhv extends AbstractBehaviorWri
         doSelectCursor(cb, entityRowHandler, WhiteImplicitReverseFkRef.class);
     }
 
-    protected <ENTITY extends WhiteImplicitReverseFkRef> void doSelectCursor(WhiteImplicitReverseFkRefCB cb, EntityRowHandler<ENTITY> entityRowHandler, Class<ENTITY> entityType) {
-        assertCBStateValid(cb); assertObjectNotNull("entityRowHandler<WhiteImplicitReverseFkRef>", entityRowHandler); assertObjectNotNull("entityType", entityType);
-        assertSpecifyDerivedReferrerEntityProperty(cb, entityType);
-        helpSelectCursorInternally(cb, entityRowHandler, entityType, new InternalSelectCursorCallback<ENTITY, WhiteImplicitReverseFkRefCB>() {
-            public void callbackSelectCursor(WhiteImplicitReverseFkRefCB cb, EntityRowHandler<ENTITY> entityRowHandler, Class<ENTITY> entityType) { delegateSelectCursor(cb, entityRowHandler, entityType); }
-            public List<ENTITY> callbackSelectList(WhiteImplicitReverseFkRefCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); }
+    protected <ENTITY extends WhiteImplicitReverseFkRef> void doSelectCursor(WhiteImplicitReverseFkRefCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
+        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
+        helpSelectCursorInternally(cb, handler, tp, new InternalSelectCursorCallback<ENTITY, WhiteImplicitReverseFkRefCB>() {
+            public void callbackSelectCursor(WhiteImplicitReverseFkRefCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) { delegateSelectCursor(cb, handler, tp); }
+            public List<ENTITY> callbackSelectList(WhiteImplicitReverseFkRefCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
         });
     }
 
@@ -360,18 +360,18 @@ public abstract class BsWhiteImplicitReverseFkRefBhv extends AbstractBehaviorWri
         return doScalarSelect(resultType, newMyConditionBean());
     }
 
-    protected <RESULT, CB extends WhiteImplicitReverseFkRefCB> SLFunction<CB, RESULT> doScalarSelect(Class<RESULT> resultType, CB cb) {
-        assertObjectNotNull("resultType", resultType); assertCBStateValid(cb);
+    protected <RESULT, CB extends WhiteImplicitReverseFkRefCB> SLFunction<CB, RESULT> doScalarSelect(Class<RESULT> tp, CB cb) {
+        assertObjectNotNull("resultType", tp); assertCBStateValid(cb);
         cb.xsetupForScalarSelect(); cb.getSqlClause().disableSelectIndex(); // for when you use union
-        return createSLFunction(cb, resultType);
+        return createSLFunction(cb, tp);
     }
 
-    protected <RESULT, CB extends WhiteImplicitReverseFkRefCB> SLFunction<CB, RESULT> createSLFunction(CB cb, Class<RESULT> resultType) {
-        return new SLFunction<CB, RESULT>(cb, resultType);
+    protected <RESULT, CB extends WhiteImplicitReverseFkRefCB> SLFunction<CB, RESULT> createSLFunction(CB cb, Class<RESULT> tp) {
+        return new SLFunction<CB, RESULT>(cb, tp);
     }
 
-    protected <RESULT> SLFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> resultType) {
-        return doScalarSelect(resultType, newMyConditionBean());
+    protected <RESULT> SLFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) {
+        return doScalarSelect(tp, newMyConditionBean());
     }
 
     // ===================================================================================
@@ -393,10 +393,10 @@ public abstract class BsWhiteImplicitReverseFkRefBhv extends AbstractBehaviorWri
      */
     public List<WhiteImplicitReverseFk> pulloutWhiteImplicitReverseFk(List<WhiteImplicitReverseFkRef> whiteImplicitReverseFkRefList) {
         return helpPulloutInternally(whiteImplicitReverseFkRefList, new InternalPulloutCallback<WhiteImplicitReverseFkRef, WhiteImplicitReverseFk>() {
-            public WhiteImplicitReverseFk getFr(WhiteImplicitReverseFkRef e) { return e.getWhiteImplicitReverseFk(); }
+            public WhiteImplicitReverseFk getFr(WhiteImplicitReverseFkRef et) { return et.getWhiteImplicitReverseFk(); }
             public boolean hasRf() { return true; }
-            public void setRfLs(WhiteImplicitReverseFk e, List<WhiteImplicitReverseFkRef> ls)
-            { e.setWhiteImplicitReverseFkRefList(ls); }
+            public void setRfLs(WhiteImplicitReverseFk et, List<WhiteImplicitReverseFkRef> ls)
+            { et.setWhiteImplicitReverseFkRefList(ls); }
         });
     }
 
@@ -410,7 +410,7 @@ public abstract class BsWhiteImplicitReverseFkRefBhv extends AbstractBehaviorWri
      */
     public List<Integer> extractWhiteImplicitReverseFkRefIdList(List<WhiteImplicitReverseFkRef> whiteImplicitReverseFkRefList) {
         return helpExtractListInternally(whiteImplicitReverseFkRefList, new InternalExtractCallback<WhiteImplicitReverseFkRef, Integer>() {
-            public Integer getCV(WhiteImplicitReverseFkRef e) { return e.getWhiteImplicitReverseFkRefId(); }
+            public Integer getCV(WhiteImplicitReverseFkRef et) { return et.getWhiteImplicitReverseFkRefId(); }
         });
     }
 
@@ -438,24 +438,24 @@ public abstract class BsWhiteImplicitReverseFkRefBhv extends AbstractBehaviorWri
         doInsert(whiteImplicitReverseFkRef, null);
     }
 
-    protected void doInsert(WhiteImplicitReverseFkRef whiteImplicitReverseFkRef, InsertOption<WhiteImplicitReverseFkRefCB> option) {
+    protected void doInsert(WhiteImplicitReverseFkRef whiteImplicitReverseFkRef, InsertOption<WhiteImplicitReverseFkRefCB> op) {
         assertObjectNotNull("whiteImplicitReverseFkRef", whiteImplicitReverseFkRef);
-        prepareInsertOption(option);
-        delegateInsert(whiteImplicitReverseFkRef, option);
+        prepareInsertOption(op);
+        delegateInsert(whiteImplicitReverseFkRef, op);
     }
 
-    protected void prepareInsertOption(InsertOption<WhiteImplicitReverseFkRefCB> option) {
-        if (option == null) { return; }
-        assertInsertOptionStatus(option);
-        if (option.hasSpecifiedInsertColumn()) {
-            option.resolveInsertColumnSpecification(createCBForSpecifiedUpdate());
+    protected void prepareInsertOption(InsertOption<WhiteImplicitReverseFkRefCB> op) {
+        if (op == null) { return; }
+        assertInsertOptionStatus(op);
+        if (op.hasSpecifiedInsertColumn()) {
+            op.resolveInsertColumnSpecification(createCBForSpecifiedUpdate());
         }
     }
 
     @Override
-    protected void doCreate(Entity entity, InsertOption<? extends ConditionBean> option) {
-        if (option == null) { insert(downcast(entity)); }
-        else { varyingInsert(downcast(entity), downcast(option)); }
+    protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) {
+        if (op == null) { insert(downcast(et)); }
+        else { varyingInsert(downcast(et), downcast(op)); }
     }
 
     /**
@@ -484,21 +484,21 @@ public abstract class BsWhiteImplicitReverseFkRefBhv extends AbstractBehaviorWri
         doUpdate(whiteImplicitReverseFkRef, null);
     }
 
-    protected void doUpdate(WhiteImplicitReverseFkRef whiteImplicitReverseFkRef, final UpdateOption<WhiteImplicitReverseFkRefCB> option) {
+    protected void doUpdate(WhiteImplicitReverseFkRef whiteImplicitReverseFkRef, final UpdateOption<WhiteImplicitReverseFkRefCB> op) {
         assertObjectNotNull("whiteImplicitReverseFkRef", whiteImplicitReverseFkRef);
-        prepareUpdateOption(option);
+        prepareUpdateOption(op);
         helpUpdateInternally(whiteImplicitReverseFkRef, new InternalUpdateCallback<WhiteImplicitReverseFkRef>() {
-            public int callbackDelegateUpdate(WhiteImplicitReverseFkRef entity) { return delegateUpdate(entity, option); } });
+            public int callbackDelegateUpdate(WhiteImplicitReverseFkRef et) { return delegateUpdate(et, op); } });
     }
 
-    protected void prepareUpdateOption(UpdateOption<WhiteImplicitReverseFkRefCB> option) {
-        if (option == null) { return; }
-        assertUpdateOptionStatus(option);
-        if (option.hasSelfSpecification()) {
-            option.resolveSelfSpecification(createCBForVaryingUpdate());
+    protected void prepareUpdateOption(UpdateOption<WhiteImplicitReverseFkRefCB> op) {
+        if (op == null) { return; }
+        assertUpdateOptionStatus(op);
+        if (op.hasSelfSpecification()) {
+            op.resolveSelfSpecification(createCBForVaryingUpdate());
         }
-        if (option.hasSpecifiedUpdateColumn()) {
-            option.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate());
+        if (op.hasSpecifiedUpdateColumn()) {
+            op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate());
         }
     }
 
@@ -515,14 +515,14 @@ public abstract class BsWhiteImplicitReverseFkRefBhv extends AbstractBehaviorWri
     }
 
     @Override
-    protected void doModify(Entity entity, UpdateOption<? extends ConditionBean> option) {
-        if (option == null) { update(downcast(entity)); }
-        else { varyingUpdate(downcast(entity), downcast(option)); }
+    protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) {
+        if (op == null) { update(downcast(et)); }
+        else { varyingUpdate(downcast(et), downcast(op)); }
     }
 
     @Override
-    protected void doModifyNonstrict(Entity entity, UpdateOption<? extends ConditionBean> option) {
-        doModify(entity, option);
+    protected void doModifyNonstrict(Entity et, UpdateOption<? extends ConditionBean> op) {
+        doModify(et, op);
     }
 
     /**
@@ -538,30 +538,28 @@ public abstract class BsWhiteImplicitReverseFkRefBhv extends AbstractBehaviorWri
         doInesrtOrUpdate(whiteImplicitReverseFkRef, null, null);
     }
 
-    protected void doInesrtOrUpdate(WhiteImplicitReverseFkRef whiteImplicitReverseFkRef, final InsertOption<WhiteImplicitReverseFkRefCB> insertOption, final UpdateOption<WhiteImplicitReverseFkRefCB> updateOption) {
+    protected void doInesrtOrUpdate(WhiteImplicitReverseFkRef whiteImplicitReverseFkRef, final InsertOption<WhiteImplicitReverseFkRefCB> iop, final UpdateOption<WhiteImplicitReverseFkRefCB> uop) {
         helpInsertOrUpdateInternally(whiteImplicitReverseFkRef, new InternalInsertOrUpdateCallback<WhiteImplicitReverseFkRef, WhiteImplicitReverseFkRefCB>() {
-            public void callbackInsert(WhiteImplicitReverseFkRef entity) { doInsert(entity, insertOption); }
-            public void callbackUpdate(WhiteImplicitReverseFkRef entity) { doUpdate(entity, updateOption); }
+            public void callbackInsert(WhiteImplicitReverseFkRef et) { doInsert(et, iop); }
+            public void callbackUpdate(WhiteImplicitReverseFkRef et) { doUpdate(et, uop); }
             public WhiteImplicitReverseFkRefCB callbackNewMyConditionBean() { return newMyConditionBean(); }
             public int callbackSelectCount(WhiteImplicitReverseFkRefCB cb) { return selectCount(cb); }
         });
     }
 
     @Override
-    protected void doCreateOrModify(Entity entity, InsertOption<? extends ConditionBean> insertOption,
-            UpdateOption<? extends ConditionBean> updateOption) {
-        if (insertOption == null && updateOption == null) { insertOrUpdate(downcast(entity)); }
+    protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
+        if (iop == null && uop == null) { insertOrUpdate(downcast(et)); }
         else {
-            insertOption = insertOption == null ? new InsertOption<WhiteImplicitReverseFkRefCB>() : insertOption;
-            updateOption = updateOption == null ? new UpdateOption<WhiteImplicitReverseFkRefCB>() : updateOption;
-            varyingInsertOrUpdate(downcast(entity), downcast(insertOption), downcast(updateOption));
+            iop = iop != null ? iop : new InsertOption<WhiteImplicitReverseFkRefCB>();
+            uop = uop != null ? uop : new UpdateOption<WhiteImplicitReverseFkRefCB>();
+            varyingInsertOrUpdate(downcast(et), downcast(iop), downcast(uop));
         }
     }
 
     @Override
-    protected void doCreateOrModifyNonstrict(Entity entity, InsertOption<? extends ConditionBean> insertOption,
-            UpdateOption<? extends ConditionBean> updateOption) {
-        doCreateOrModify(entity, insertOption, updateOption);
+    protected void doCreateOrModifyNonstrict(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
+        doCreateOrModify(et, iop, uop);
     }
 
     /**
@@ -585,27 +583,27 @@ public abstract class BsWhiteImplicitReverseFkRefBhv extends AbstractBehaviorWri
         doDelete(whiteImplicitReverseFkRef, null);
     }
 
-    protected void doDelete(WhiteImplicitReverseFkRef whiteImplicitReverseFkRef, final DeleteOption<WhiteImplicitReverseFkRefCB> option) {
+    protected void doDelete(WhiteImplicitReverseFkRef whiteImplicitReverseFkRef, final DeleteOption<WhiteImplicitReverseFkRefCB> op) {
         assertObjectNotNull("whiteImplicitReverseFkRef", whiteImplicitReverseFkRef);
-        prepareDeleteOption(option);
+        prepareDeleteOption(op);
         helpDeleteInternally(whiteImplicitReverseFkRef, new InternalDeleteCallback<WhiteImplicitReverseFkRef>() {
-            public int callbackDelegateDelete(WhiteImplicitReverseFkRef entity) { return delegateDelete(entity, option); } });
+            public int callbackDelegateDelete(WhiteImplicitReverseFkRef et) { return delegateDelete(et, op); } });
     }
 
-    protected void prepareDeleteOption(DeleteOption<WhiteImplicitReverseFkRefCB> option) {
-        if (option == null) { return; }
-        assertDeleteOptionStatus(option);
-    }
-
-    @Override
-    protected void doRemove(Entity entity, DeleteOption<? extends ConditionBean> option) {
-        if (option == null) { delete(downcast(entity)); }
-        else { varyingDelete(downcast(entity), downcast(option)); }
+    protected void prepareDeleteOption(DeleteOption<WhiteImplicitReverseFkRefCB> op) {
+        if (op == null) { return; }
+        assertDeleteOptionStatus(op);
     }
 
     @Override
-    protected void doRemoveNonstrict(Entity entity, DeleteOption<? extends ConditionBean> option) {
-        doRemove(entity, option);
+    protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) {
+        if (op == null) { delete(downcast(et)); }
+        else { varyingDelete(downcast(et), downcast(op)); }
+    }
+
+    @Override
+    protected void doRemoveNonstrict(Entity et, DeleteOption<? extends ConditionBean> op) {
+        doRemove(et, op);
     }
 
     // ===================================================================================
@@ -636,26 +634,26 @@ public abstract class BsWhiteImplicitReverseFkRefBhv extends AbstractBehaviorWri
      * @return The array of inserted count. (NotNull, EmptyAllowed)
      */
     public int[] batchInsert(List<WhiteImplicitReverseFkRef> whiteImplicitReverseFkRefList) {
-        InsertOption<WhiteImplicitReverseFkRefCB> option = createInsertUpdateOption();
-        return doBatchInsert(whiteImplicitReverseFkRefList, option);
+        InsertOption<WhiteImplicitReverseFkRefCB> op = createInsertUpdateOption();
+        return doBatchInsert(whiteImplicitReverseFkRefList, op);
     }
 
-    protected int[] doBatchInsert(List<WhiteImplicitReverseFkRef> whiteImplicitReverseFkRefList, InsertOption<WhiteImplicitReverseFkRefCB> option) {
+    protected int[] doBatchInsert(List<WhiteImplicitReverseFkRef> whiteImplicitReverseFkRefList, InsertOption<WhiteImplicitReverseFkRefCB> op) {
         assertObjectNotNull("whiteImplicitReverseFkRefList", whiteImplicitReverseFkRefList);
-        prepareBatchInsertOption(whiteImplicitReverseFkRefList, option);
-        return delegateBatchInsert(whiteImplicitReverseFkRefList, option);
+        prepareBatchInsertOption(whiteImplicitReverseFkRefList, op);
+        return delegateBatchInsert(whiteImplicitReverseFkRefList, op);
     }
 
-    protected void prepareBatchInsertOption(List<WhiteImplicitReverseFkRef> whiteImplicitReverseFkRefList, InsertOption<WhiteImplicitReverseFkRefCB> option) {
-        option.xallowInsertColumnModifiedPropertiesFragmented();
-        option.xacceptInsertColumnModifiedPropertiesIfNeeds(whiteImplicitReverseFkRefList);
-        prepareInsertOption(option);
+    protected void prepareBatchInsertOption(List<WhiteImplicitReverseFkRef> whiteImplicitReverseFkRefList, InsertOption<WhiteImplicitReverseFkRefCB> op) {
+        op.xallowInsertColumnModifiedPropertiesFragmented();
+        op.xacceptInsertColumnModifiedPropertiesIfNeeds(whiteImplicitReverseFkRefList);
+        prepareInsertOption(op);
     }
 
     @Override
-    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> option) {
-        if (option == null) { return batchInsert(downcast(ls)); }
-        else { return varyingBatchInsert(downcast(ls), downcast(option)); }
+    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) {
+        if (op == null) { return batchInsert(downcast(ls)); }
+        else { return varyingBatchInsert(downcast(ls), downcast(op)); }
     }
 
     /**
@@ -683,25 +681,25 @@ public abstract class BsWhiteImplicitReverseFkRefBhv extends AbstractBehaviorWri
      * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<WhiteImplicitReverseFkRef> whiteImplicitReverseFkRefList) {
-        UpdateOption<WhiteImplicitReverseFkRefCB> option = createPlainUpdateOption();
-        return doBatchUpdate(whiteImplicitReverseFkRefList, option);
+        UpdateOption<WhiteImplicitReverseFkRefCB> op = createPlainUpdateOption();
+        return doBatchUpdate(whiteImplicitReverseFkRefList, op);
     }
 
-    protected int[] doBatchUpdate(List<WhiteImplicitReverseFkRef> whiteImplicitReverseFkRefList, UpdateOption<WhiteImplicitReverseFkRefCB> option) {
+    protected int[] doBatchUpdate(List<WhiteImplicitReverseFkRef> whiteImplicitReverseFkRefList, UpdateOption<WhiteImplicitReverseFkRefCB> op) {
         assertObjectNotNull("whiteImplicitReverseFkRefList", whiteImplicitReverseFkRefList);
-        prepareBatchUpdateOption(whiteImplicitReverseFkRefList, option);
-        return delegateBatchUpdate(whiteImplicitReverseFkRefList, option);
+        prepareBatchUpdateOption(whiteImplicitReverseFkRefList, op);
+        return delegateBatchUpdate(whiteImplicitReverseFkRefList, op);
     }
 
-    protected void prepareBatchUpdateOption(List<WhiteImplicitReverseFkRef> whiteImplicitReverseFkRefList, UpdateOption<WhiteImplicitReverseFkRefCB> option) {
-        option.xacceptUpdateColumnModifiedPropertiesIfNeeds(whiteImplicitReverseFkRefList);
-        prepareUpdateOption(option);
+    protected void prepareBatchUpdateOption(List<WhiteImplicitReverseFkRef> whiteImplicitReverseFkRefList, UpdateOption<WhiteImplicitReverseFkRefCB> op) {
+        op.xacceptUpdateColumnModifiedPropertiesIfNeeds(whiteImplicitReverseFkRefList);
+        prepareUpdateOption(op);
     }
 
     @Override
-    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> option) {
-        if (option == null) { return batchUpdate(downcast(ls)); }
-        else { return varyingBatchUpdate(downcast(ls), downcast(option)); }
+    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) {
+        if (op == null) { return batchUpdate(downcast(ls)); }
+        else { return varyingBatchUpdate(downcast(ls), downcast(op)); }
     }
 
     /**
@@ -737,8 +735,8 @@ public abstract class BsWhiteImplicitReverseFkRefBhv extends AbstractBehaviorWri
     }
 
     @Override
-    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> option) {
-        return doLumpModify(ls, option);
+    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> op) {
+        return doLumpModify(ls, op);
     }
 
     /**
@@ -752,21 +750,21 @@ public abstract class BsWhiteImplicitReverseFkRefBhv extends AbstractBehaviorWri
         return doBatchDelete(whiteImplicitReverseFkRefList, null);
     }
 
-    protected int[] doBatchDelete(List<WhiteImplicitReverseFkRef> whiteImplicitReverseFkRefList, DeleteOption<WhiteImplicitReverseFkRefCB> option) {
+    protected int[] doBatchDelete(List<WhiteImplicitReverseFkRef> whiteImplicitReverseFkRefList, DeleteOption<WhiteImplicitReverseFkRefCB> op) {
         assertObjectNotNull("whiteImplicitReverseFkRefList", whiteImplicitReverseFkRefList);
-        prepareDeleteOption(option);
-        return delegateBatchDelete(whiteImplicitReverseFkRefList, option);
+        prepareDeleteOption(op);
+        return delegateBatchDelete(whiteImplicitReverseFkRefList, op);
     }
 
     @Override
-    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> option) {
-        if (option == null) { return batchDelete(downcast(ls)); }
-        else { return varyingBatchDelete(downcast(ls), downcast(option)); }
+    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) {
+        if (op == null) { return batchDelete(downcast(ls)); }
+        else { return varyingBatchDelete(downcast(ls), downcast(op)); }
     }
 
     @Override
-    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> option) {
-        return doLumpRemove(ls, option);
+    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> op) {
+        return doLumpRemove(ls, op);
     }
 
     // ===================================================================================
@@ -802,13 +800,12 @@ public abstract class BsWhiteImplicitReverseFkRefBhv extends AbstractBehaviorWri
         return doQueryInsert(setupper, null);
     }
 
-    protected int doQueryInsert(QueryInsertSetupper<WhiteImplicitReverseFkRef, WhiteImplicitReverseFkRefCB> setupper, InsertOption<WhiteImplicitReverseFkRefCB> option) {
-        assertObjectNotNull("setupper", setupper);
-        prepareInsertOption(option);
-        WhiteImplicitReverseFkRef entity = new WhiteImplicitReverseFkRef();
-        WhiteImplicitReverseFkRefCB intoCB = createCBForQueryInsert();
-        ConditionBean resourceCB = setupper.setup(entity, intoCB);
-        return delegateQueryInsert(entity, intoCB, resourceCB, option);
+    protected int doQueryInsert(QueryInsertSetupper<WhiteImplicitReverseFkRef, WhiteImplicitReverseFkRefCB> sp, InsertOption<WhiteImplicitReverseFkRefCB> op) {
+        assertObjectNotNull("setupper", sp);
+        prepareInsertOption(op);
+        WhiteImplicitReverseFkRef e = new WhiteImplicitReverseFkRef();
+        WhiteImplicitReverseFkRefCB cb = createCBForQueryInsert();
+        return delegateQueryInsert(e, cb, sp.setup(e, cb), op);
     }
 
     protected WhiteImplicitReverseFkRefCB createCBForQueryInsert() {
@@ -849,16 +846,16 @@ public abstract class BsWhiteImplicitReverseFkRefBhv extends AbstractBehaviorWri
         return doQueryUpdate(whiteImplicitReverseFkRef, cb, null);
     }
 
-    protected int doQueryUpdate(WhiteImplicitReverseFkRef whiteImplicitReverseFkRef, WhiteImplicitReverseFkRefCB cb, UpdateOption<WhiteImplicitReverseFkRefCB> option) {
+    protected int doQueryUpdate(WhiteImplicitReverseFkRef whiteImplicitReverseFkRef, WhiteImplicitReverseFkRefCB cb, UpdateOption<WhiteImplicitReverseFkRefCB> op) {
         assertObjectNotNull("whiteImplicitReverseFkRef", whiteImplicitReverseFkRef); assertCBStateValid(cb);
-        prepareUpdateOption(option);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(whiteImplicitReverseFkRef, cb, option) : 0;
+        prepareUpdateOption(op);
+        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(whiteImplicitReverseFkRef, cb, op) : 0;
     }
 
     @Override
-    protected int doRangeModify(Entity entity, ConditionBean cb, UpdateOption<? extends ConditionBean> option) {
-        if (option == null) { return queryUpdate(downcast(entity), (WhiteImplicitReverseFkRefCB)cb); }
-        else { return varyingQueryUpdate(downcast(entity), (WhiteImplicitReverseFkRefCB)cb, downcast(option)); }
+    protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op) {
+        if (op == null) { return queryUpdate(downcast(et), (WhiteImplicitReverseFkRefCB)cb); }
+        else { return varyingQueryUpdate(downcast(et), (WhiteImplicitReverseFkRefCB)cb, downcast(op)); }
     }
 
     /**
@@ -876,16 +873,16 @@ public abstract class BsWhiteImplicitReverseFkRefBhv extends AbstractBehaviorWri
         return doQueryDelete(cb, null);
     }
 
-    protected int doQueryDelete(WhiteImplicitReverseFkRefCB cb, DeleteOption<WhiteImplicitReverseFkRefCB> option) {
+    protected int doQueryDelete(WhiteImplicitReverseFkRefCB cb, DeleteOption<WhiteImplicitReverseFkRefCB> op) {
         assertCBStateValid(cb);
-        prepareDeleteOption(option);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryDelete(cb, option) : 0;
+        prepareDeleteOption(op);
+        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryDelete(cb, op) : 0;
     }
 
     @Override
-    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> option) {
-        if (option == null) { return queryDelete((WhiteImplicitReverseFkRefCB)cb); }
-        else { return varyingQueryDelete((WhiteImplicitReverseFkRefCB)cb, downcast(option)); }
+    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) {
+        if (op == null) { return queryDelete((WhiteImplicitReverseFkRefCB)cb); }
+        else { return varyingQueryDelete((WhiteImplicitReverseFkRefCB)cb, downcast(op)); }
     }
 
     // ===================================================================================
@@ -1137,29 +1134,29 @@ public abstract class BsWhiteImplicitReverseFkRefBhv extends AbstractBehaviorWri
     //                                                ------
     protected int delegateSelectCountUniquely(WhiteImplicitReverseFkRefCB cb) { return invoke(createSelectCountCBCommand(cb, true)); }
     protected int delegateSelectCountPlainly(WhiteImplicitReverseFkRefCB cb) { return invoke(createSelectCountCBCommand(cb, false)); }
-    protected <ENTITY extends WhiteImplicitReverseFkRef> void delegateSelectCursor(WhiteImplicitReverseFkRefCB cb, EntityRowHandler<ENTITY> erh, Class<ENTITY> et)
-    { invoke(createSelectCursorCBCommand(cb, erh, et)); }
-    protected <ENTITY extends WhiteImplicitReverseFkRef> List<ENTITY> delegateSelectList(WhiteImplicitReverseFkRefCB cb, Class<ENTITY> et)
-    { return invoke(createSelectListCBCommand(cb, et)); }
+    protected <ENTITY extends WhiteImplicitReverseFkRef> void delegateSelectCursor(WhiteImplicitReverseFkRefCB cb, EntityRowHandler<ENTITY> rh, Class<ENTITY> tp)
+    { invoke(createSelectCursorCBCommand(cb, rh, tp)); }
+    protected <ENTITY extends WhiteImplicitReverseFkRef> List<ENTITY> delegateSelectList(WhiteImplicitReverseFkRefCB cb, Class<ENTITY> tp)
+    { return invoke(createSelectListCBCommand(cb, tp)); }
 
     // -----------------------------------------------------
     //                                                Update
     //                                                ------
-    protected int delegateInsert(WhiteImplicitReverseFkRef e, InsertOption<WhiteImplicitReverseFkRefCB> op)
-    { if (!processBeforeInsert(e, op)) { return 0; }
-      return invoke(createInsertEntityCommand(e, op)); }
-    protected int delegateUpdate(WhiteImplicitReverseFkRef e, UpdateOption<WhiteImplicitReverseFkRefCB> op)
-    { if (!processBeforeUpdate(e, op)) { return 0; }
-      return delegateUpdateNonstrict(e, op); }
-    protected int delegateUpdateNonstrict(WhiteImplicitReverseFkRef e, UpdateOption<WhiteImplicitReverseFkRefCB> op)
-    { if (!processBeforeUpdate(e, op)) { return 0; }
-      return invoke(createUpdateNonstrictEntityCommand(e, op)); }
-    protected int delegateDelete(WhiteImplicitReverseFkRef e, DeleteOption<WhiteImplicitReverseFkRefCB> op)
-    { if (!processBeforeDelete(e, op)) { return 0; }
-      return delegateDeleteNonstrict(e, op); }
-    protected int delegateDeleteNonstrict(WhiteImplicitReverseFkRef e, DeleteOption<WhiteImplicitReverseFkRefCB> op)
-    { if (!processBeforeDelete(e, op)) { return 0; }
-      return invoke(createDeleteNonstrictEntityCommand(e, op)); }
+    protected int delegateInsert(WhiteImplicitReverseFkRef et, InsertOption<WhiteImplicitReverseFkRefCB> op)
+    { if (!processBeforeInsert(et, op)) { return 0; }
+      return invoke(createInsertEntityCommand(et, op)); }
+    protected int delegateUpdate(WhiteImplicitReverseFkRef et, UpdateOption<WhiteImplicitReverseFkRefCB> op)
+    { if (!processBeforeUpdate(et, op)) { return 0; }
+      return delegateUpdateNonstrict(et, op); }
+    protected int delegateUpdateNonstrict(WhiteImplicitReverseFkRef et, UpdateOption<WhiteImplicitReverseFkRefCB> op)
+    { if (!processBeforeUpdate(et, op)) { return 0; }
+      return invoke(createUpdateNonstrictEntityCommand(et, op)); }
+    protected int delegateDelete(WhiteImplicitReverseFkRef et, DeleteOption<WhiteImplicitReverseFkRefCB> op)
+    { if (!processBeforeDelete(et, op)) { return 0; }
+      return delegateDeleteNonstrict(et, op); }
+    protected int delegateDeleteNonstrict(WhiteImplicitReverseFkRef et, DeleteOption<WhiteImplicitReverseFkRefCB> op)
+    { if (!processBeforeDelete(et, op)) { return 0; }
+      return invoke(createDeleteNonstrictEntityCommand(et, op)); }
 
     protected int[] delegateBatchInsert(List<WhiteImplicitReverseFkRef> ls, InsertOption<WhiteImplicitReverseFkRefCB> op)
     { if (ls.isEmpty()) { return new int[]{}; }
@@ -1177,10 +1174,10 @@ public abstract class BsWhiteImplicitReverseFkRefBhv extends AbstractBehaviorWri
     { if (ls.isEmpty()) { return new int[]{}; }
       return invoke(createBatchDeleteNonstrictCommand(processBatchInternally(ls, op, true), op)); }
 
-    protected int delegateQueryInsert(WhiteImplicitReverseFkRef e, WhiteImplicitReverseFkRefCB inCB, ConditionBean resCB, InsertOption<WhiteImplicitReverseFkRefCB> op)
-    { if (!processBeforeQueryInsert(e, inCB, resCB, op)) { return 0; } return invoke(createQueryInsertCBCommand(e, inCB, resCB, op));  }
-    protected int delegateQueryUpdate(WhiteImplicitReverseFkRef e, WhiteImplicitReverseFkRefCB cb, UpdateOption<WhiteImplicitReverseFkRefCB> op)
-    { if (!processBeforeQueryUpdate(e, cb, op)) { return 0; } return invoke(createQueryUpdateCBCommand(e, cb, op));  }
+    protected int delegateQueryInsert(WhiteImplicitReverseFkRef et, WhiteImplicitReverseFkRefCB inCB, ConditionBean resCB, InsertOption<WhiteImplicitReverseFkRefCB> op)
+    { if (!processBeforeQueryInsert(et, inCB, resCB, op)) { return 0; } return invoke(createQueryInsertCBCommand(et, inCB, resCB, op));  }
+    protected int delegateQueryUpdate(WhiteImplicitReverseFkRef et, WhiteImplicitReverseFkRefCB cb, UpdateOption<WhiteImplicitReverseFkRefCB> op)
+    { if (!processBeforeQueryUpdate(et, cb, op)) { return 0; } return invoke(createQueryUpdateCBCommand(et, cb, op));  }
     protected int delegateQueryDelete(WhiteImplicitReverseFkRefCB cb, DeleteOption<WhiteImplicitReverseFkRefCB> op)
     { if (!processBeforeQueryDelete(cb, op)) { return 0; } return invoke(createQueryDeleteCBCommand(cb, op));  }
 
@@ -1191,7 +1188,7 @@ public abstract class BsWhiteImplicitReverseFkRefBhv extends AbstractBehaviorWri
      * {@inheritDoc}
      */
     @Override
-    protected boolean hasVersionNoValue(Entity entity) {
+    protected boolean hasVersionNoValue(Entity et) {
         return false;
     }
 
@@ -1199,15 +1196,15 @@ public abstract class BsWhiteImplicitReverseFkRefBhv extends AbstractBehaviorWri
      * {@inheritDoc}
      */
     @Override
-    protected boolean hasUpdateDateValue(Entity entity) {
+    protected boolean hasUpdateDateValue(Entity et) {
         return false;
     }
 
     // ===================================================================================
     //                                                                     Downcast Helper
     //                                                                     ===============
-    protected WhiteImplicitReverseFkRef downcast(Entity entity) {
-        return helpEntityDowncastInternally(entity, WhiteImplicitReverseFkRef.class);
+    protected WhiteImplicitReverseFkRef downcast(Entity et) {
+        return helpEntityDowncastInternally(et, WhiteImplicitReverseFkRef.class);
     }
 
     protected WhiteImplicitReverseFkRefCB downcast(ConditionBean cb) {
@@ -1215,27 +1212,27 @@ public abstract class BsWhiteImplicitReverseFkRefBhv extends AbstractBehaviorWri
     }
 
     @SuppressWarnings("unchecked")
-    protected List<WhiteImplicitReverseFkRef> downcast(List<? extends Entity> entityList) {
-        return (List<WhiteImplicitReverseFkRef>)entityList;
+    protected List<WhiteImplicitReverseFkRef> downcast(List<? extends Entity> ls) {
+        return (List<WhiteImplicitReverseFkRef>)ls;
     }
 
     @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteImplicitReverseFkRefCB> downcast(InsertOption<? extends ConditionBean> option) {
-        return (InsertOption<WhiteImplicitReverseFkRefCB>)option;
+    protected InsertOption<WhiteImplicitReverseFkRefCB> downcast(InsertOption<? extends ConditionBean> op) {
+        return (InsertOption<WhiteImplicitReverseFkRefCB>)op;
     }
 
     @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteImplicitReverseFkRefCB> downcast(UpdateOption<? extends ConditionBean> option) {
-        return (UpdateOption<WhiteImplicitReverseFkRefCB>)option;
+    protected UpdateOption<WhiteImplicitReverseFkRefCB> downcast(UpdateOption<? extends ConditionBean> op) {
+        return (UpdateOption<WhiteImplicitReverseFkRefCB>)op;
     }
 
     @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteImplicitReverseFkRefCB> downcast(DeleteOption<? extends ConditionBean> option) {
-        return (DeleteOption<WhiteImplicitReverseFkRefCB>)option;
+    protected DeleteOption<WhiteImplicitReverseFkRefCB> downcast(DeleteOption<? extends ConditionBean> op) {
+        return (DeleteOption<WhiteImplicitReverseFkRefCB>)op;
     }
 
     @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhiteImplicitReverseFkRef, WhiteImplicitReverseFkRefCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> option) {
-        return (QueryInsertSetupper<WhiteImplicitReverseFkRef, WhiteImplicitReverseFkRefCB>)option;
+    protected QueryInsertSetupper<WhiteImplicitReverseFkRef, WhiteImplicitReverseFkRefCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp) {
+        return (QueryInsertSetupper<WhiteImplicitReverseFkRef, WhiteImplicitReverseFkRefCB>)sp;
     }
 }

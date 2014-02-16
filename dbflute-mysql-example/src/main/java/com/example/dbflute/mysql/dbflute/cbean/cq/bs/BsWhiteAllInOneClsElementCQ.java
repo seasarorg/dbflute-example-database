@@ -96,18 +96,18 @@ public class BsWhiteAllInOneClsElementCQ extends AbstractBsWhiteAllInOneClsEleme
 
     protected Map<String, WhiteAllInOneClsCategoryCQ> _clsCategoryCode_InScopeRelation_WhiteAllInOneClsCategoryMap;
     public Map<String, WhiteAllInOneClsCategoryCQ> getClsCategoryCode_InScopeRelation_WhiteAllInOneClsCategory() { return _clsCategoryCode_InScopeRelation_WhiteAllInOneClsCategoryMap; }
-    public String keepClsCategoryCode_InScopeRelation_WhiteAllInOneClsCategory(WhiteAllInOneClsCategoryCQ subQuery) {
+    public String keepClsCategoryCode_InScopeRelation_WhiteAllInOneClsCategory(WhiteAllInOneClsCategoryCQ sq) {
         if (_clsCategoryCode_InScopeRelation_WhiteAllInOneClsCategoryMap == null) { _clsCategoryCode_InScopeRelation_WhiteAllInOneClsCategoryMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_clsCategoryCode_InScopeRelation_WhiteAllInOneClsCategoryMap.size() + 1);
-        _clsCategoryCode_InScopeRelation_WhiteAllInOneClsCategoryMap.put(key, subQuery); return "clsCategoryCode_InScopeRelation_WhiteAllInOneClsCategory." + key;
+        String ky = "subQueryMapKey" + (_clsCategoryCode_InScopeRelation_WhiteAllInOneClsCategoryMap.size() + 1);
+        _clsCategoryCode_InScopeRelation_WhiteAllInOneClsCategoryMap.put(ky, sq); return "clsCategoryCode_InScopeRelation_WhiteAllInOneClsCategory." + ky;
     }
 
     protected Map<String, WhiteAllInOneClsCategoryCQ> _clsCategoryCode_NotInScopeRelation_WhiteAllInOneClsCategoryMap;
     public Map<String, WhiteAllInOneClsCategoryCQ> getClsCategoryCode_NotInScopeRelation_WhiteAllInOneClsCategory() { return _clsCategoryCode_NotInScopeRelation_WhiteAllInOneClsCategoryMap; }
-    public String keepClsCategoryCode_NotInScopeRelation_WhiteAllInOneClsCategory(WhiteAllInOneClsCategoryCQ subQuery) {
+    public String keepClsCategoryCode_NotInScopeRelation_WhiteAllInOneClsCategory(WhiteAllInOneClsCategoryCQ sq) {
         if (_clsCategoryCode_NotInScopeRelation_WhiteAllInOneClsCategoryMap == null) { _clsCategoryCode_NotInScopeRelation_WhiteAllInOneClsCategoryMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_clsCategoryCode_NotInScopeRelation_WhiteAllInOneClsCategoryMap.size() + 1);
-        _clsCategoryCode_NotInScopeRelation_WhiteAllInOneClsCategoryMap.put(key, subQuery); return "clsCategoryCode_NotInScopeRelation_WhiteAllInOneClsCategory." + key;
+        String ky = "subQueryMapKey" + (_clsCategoryCode_NotInScopeRelation_WhiteAllInOneClsCategoryMap.size() + 1);
+        _clsCategoryCode_NotInScopeRelation_WhiteAllInOneClsCategoryMap.put(ky, sq); return "clsCategoryCode_NotInScopeRelation_WhiteAllInOneClsCategory." + ky;
     }
 
     /** 
@@ -227,11 +227,11 @@ public class BsWhiteAllInOneClsElementCQ extends AbstractBsWhiteAllInOneClsEleme
     // ===================================================================================
     //                                                                         Union Query
     //                                                                         ===========
-    protected void reflectRelationOnUnionQuery(ConditionQuery baseQueryAsSuper, ConditionQuery unionQueryAsSuper) {
-        WhiteAllInOneClsElementCQ baseQuery = (WhiteAllInOneClsElementCQ)baseQueryAsSuper;
-        WhiteAllInOneClsElementCQ unionQuery = (WhiteAllInOneClsElementCQ)unionQueryAsSuper;
-        if (baseQuery.hasConditionQueryWhiteAllInOneClsCategory()) {
-            unionQuery.queryWhiteAllInOneClsCategory().reflectRelationOnUnionQuery(baseQuery.queryWhiteAllInOneClsCategory(), unionQuery.queryWhiteAllInOneClsCategory());
+    protected void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
+        WhiteAllInOneClsElementCQ bq = (WhiteAllInOneClsElementCQ)bqs;
+        WhiteAllInOneClsElementCQ uq = (WhiteAllInOneClsElementCQ)uqs;
+        if (bq.hasConditionQueryWhiteAllInOneClsCategory()) {
+            uq.queryWhiteAllInOneClsCategory().reflectRelationOnUnionQuery(bq.queryWhiteAllInOneClsCategory(), uq.queryWhiteAllInOneClsCategory());
         }
     }
 

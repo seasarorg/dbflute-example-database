@@ -41,12 +41,12 @@ public class WhiteDiffWorldDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgDiffWorldId implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteDiffWorld)e).getDiffWorldId(); }
-        public void write(Entity e, Object v) { ((WhiteDiffWorld)e).setDiffWorldId(ctl(v)); }
+        public Object read(Entity et) { return ((WhiteDiffWorld)et).getDiffWorldId(); }
+        public void write(Entity et, Object vl) { ((WhiteDiffWorld)et).setDiffWorldId(ctl(vl)); }
     }
     public static class EpgDiffWorldName implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteDiffWorld)e).getDiffWorldName(); }
-        public void write(Entity e, Object v) { ((WhiteDiffWorld)e).setDiffWorldName((String)v); }
+        public Object read(Entity et) { return ((WhiteDiffWorld)et).getDiffWorldName(); }
+        public void write(Entity et, Object vl) { ((WhiteDiffWorld)et).setDiffWorldName((String)vl); }
     }
 
     // ===================================================================================
@@ -124,10 +124,10 @@ public class WhiteDiffWorldDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((WhiteDiffWorld)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((WhiteDiffWorld)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((WhiteDiffWorld)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((WhiteDiffWorld)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

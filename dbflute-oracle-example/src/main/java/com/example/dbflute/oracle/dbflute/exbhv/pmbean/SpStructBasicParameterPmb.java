@@ -5,7 +5,7 @@ import com.example.dbflute.oracle.dbflute.bsbhv.pmbean.BsSpStructBasicParameterP
 /**
  * <!-- df:beginClassDescription -->
  * The typed parameter-bean of SpStructBasicParameter. <br />
- * This is related to "<span style="color: #AD4747">SP_STRUCT_BASIC_PARAMETER</span>".
+ * This is related to "<span style="color: #AD4747">SP_STRUCT_BASIC_PARAMETER</span>". <br />
  * <!-- df:endClassDescription -->
  * <p>
  * You can implement your original methods here.

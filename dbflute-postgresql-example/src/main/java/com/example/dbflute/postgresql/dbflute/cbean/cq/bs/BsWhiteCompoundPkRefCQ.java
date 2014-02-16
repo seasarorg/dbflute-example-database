@@ -196,11 +196,11 @@ public class BsWhiteCompoundPkRefCQ extends AbstractBsWhiteCompoundPkRefCQ {
     // ===================================================================================
     //                                                                         Union Query
     //                                                                         ===========
-    protected void reflectRelationOnUnionQuery(ConditionQuery baseQueryAsSuper, ConditionQuery unionQueryAsSuper) {
-        WhiteCompoundPkRefCQ baseQuery = (WhiteCompoundPkRefCQ)baseQueryAsSuper;
-        WhiteCompoundPkRefCQ unionQuery = (WhiteCompoundPkRefCQ)unionQueryAsSuper;
-        if (baseQuery.hasConditionQueryWhiteCompoundPk()) {
-            unionQuery.queryWhiteCompoundPk().reflectRelationOnUnionQuery(baseQuery.queryWhiteCompoundPk(), unionQuery.queryWhiteCompoundPk());
+    protected void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
+        WhiteCompoundPkRefCQ bq = (WhiteCompoundPkRefCQ)bqs;
+        WhiteCompoundPkRefCQ uq = (WhiteCompoundPkRefCQ)uqs;
+        if (bq.hasConditionQueryWhiteCompoundPk()) {
+            uq.queryWhiteCompoundPk().reflectRelationOnUnionQuery(bq.queryWhiteCompoundPk(), uq.queryWhiteCompoundPk());
         }
     }
 

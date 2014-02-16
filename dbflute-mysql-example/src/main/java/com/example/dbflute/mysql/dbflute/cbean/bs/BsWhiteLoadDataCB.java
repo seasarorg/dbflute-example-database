@@ -330,8 +330,8 @@ public class BsWhiteLoadDataCB extends AbstractConditionBean {
         public HpSDRFunction<WhiteLoadDataCB, WhiteLoadDataCQ> myselfDerived() {
             assertDerived("myselfDerived"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<WhiteLoadDataCB, WhiteLoadDataCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<WhiteLoadDataCB, WhiteLoadDataCQ>() {
-                public void setup(String function, SubQuery<WhiteLoadDataCB> subQuery, WhiteLoadDataCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsmyselfDerive(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<WhiteLoadDataCB> sq, WhiteLoadDataCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsmyselfDerive(fn, sq, al, op); } }, _dbmetaProvider);
         }
     }
 

@@ -41,12 +41,12 @@ public class VendorLargeName901234567890Dbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgVendorLargeName901234567Id implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorLargeName901234567890)e).getVendorLargeName901234567Id(); }
-        public void write(Entity e, Object v) { ((VendorLargeName901234567890)e).setVendorLargeName901234567Id(ctl(v)); }
+        public Object read(Entity et) { return ((VendorLargeName901234567890)et).getVendorLargeName901234567Id(); }
+        public void write(Entity et, Object vl) { ((VendorLargeName901234567890)et).setVendorLargeName901234567Id(ctl(vl)); }
     }
     public static class EpgVendorLargeName9012345Name implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorLargeName901234567890)e).getVendorLargeName9012345Name(); }
-        public void write(Entity e, Object v) { ((VendorLargeName901234567890)e).setVendorLargeName9012345Name((String)v); }
+        public Object read(Entity et) { return ((VendorLargeName901234567890)et).getVendorLargeName9012345Name(); }
+        public void write(Entity et, Object vl) { ((VendorLargeName901234567890)et).setVendorLargeName9012345Name((String)vl); }
     }
 
     // ===================================================================================
@@ -99,8 +99,8 @@ public class VendorLargeName901234567890Dbm extends AbstractDBMeta {
     //                                     Referrer Property
     //                                     -----------------
     public ReferrerInfo referrerVendorLargeName90123456RefList() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnVendorLargeName901234567Id(), VendorLargeName90123456RefDbm.getInstance().columnVendorLargeName901234567Id());
-        return cri("FK_VENDOR_LARGE_NAME_$$$_REF", "vendorLargeName90123456RefList", this, VendorLargeName90123456RefDbm.getInstance(), map, false, "vendorLargeName901234567890");
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnVendorLargeName901234567Id(), VendorLargeName90123456RefDbm.getInstance().columnVendorLargeName901234567Id());
+        return cri("FK_VENDOR_LARGE_NAME_$$$_REF", "vendorLargeName90123456RefList", this, VendorLargeName90123456RefDbm.getInstance(), mp, false, "vendorLargeName901234567890");
     }
 
     // ===================================================================================
@@ -128,10 +128,10 @@ public class VendorLargeName901234567890Dbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((VendorLargeName901234567890)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((VendorLargeName901234567890)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((VendorLargeName901234567890)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((VendorLargeName901234567890)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

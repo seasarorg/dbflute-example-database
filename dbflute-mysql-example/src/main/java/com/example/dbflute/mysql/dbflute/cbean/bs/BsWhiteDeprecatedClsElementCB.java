@@ -330,8 +330,8 @@ public class BsWhiteDeprecatedClsElementCB extends AbstractConditionBean {
         public HpSDRFunction<WhiteDeprecatedClsElementCB, WhiteDeprecatedClsElementCQ> myselfDerived() {
             assertDerived("myselfDerived"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<WhiteDeprecatedClsElementCB, WhiteDeprecatedClsElementCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<WhiteDeprecatedClsElementCB, WhiteDeprecatedClsElementCQ>() {
-                public void setup(String function, SubQuery<WhiteDeprecatedClsElementCB> subQuery, WhiteDeprecatedClsElementCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsmyselfDerive(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<WhiteDeprecatedClsElementCB> sq, WhiteDeprecatedClsElementCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsmyselfDerive(fn, sq, al, op); } }, _dbmetaProvider);
         }
     }
 

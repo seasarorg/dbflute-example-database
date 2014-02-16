@@ -97,22 +97,22 @@ public class WhiteAllInOneClsCategoryCIQ extends AbstractBsWhiteAllInOneClsCateg
     { throwIICBOE("(Specify)DerivedReferrer"); return null; }
     public String keepClsCategoryCode_QueryDerivedReferrer_WhiteAllInOneClsElementList(WhiteAllInOneClsElementCQ sq)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
-    public String keepClsCategoryCode_QueryDerivedReferrer_WhiteAllInOneClsElementListParameter(Object pv)
+    public String keepClsCategoryCode_QueryDerivedReferrer_WhiteAllInOneClsElementListParameter(Object vl)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
     protected ConditionValue getCValueClsCategoryName() { return _myCQ.getClsCategoryName(); }
     protected ConditionValue getCValueDescription() { return _myCQ.getDescription(); }
-    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) { return null; }
-    public String keepScalarCondition(WhiteAllInOneClsCategoryCQ subQuery)
+    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
+    public String keepScalarCondition(WhiteAllInOneClsCategoryCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }
-    public String keepSpecifyMyselfDerived(WhiteAllInOneClsCategoryCQ subQuery)
+    public String keepSpecifyMyselfDerived(WhiteAllInOneClsCategoryCQ sq)
     { throwIICBOE("(Specify)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerived(WhiteAllInOneClsCategoryCQ subQuery)
+    public String keepQueryMyselfDerived(WhiteAllInOneClsCategoryCQ sq)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerivedParameter(Object parameterValue)
+    public String keepQueryMyselfDerivedParameter(Object vl)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepMyselfExists(WhiteAllInOneClsCategoryCQ subQuery)
+    public String keepMyselfExists(WhiteAllInOneClsCategoryCQ sq)
     { throwIICBOE("MyselfExists"); return null;}
-    public String keepMyselfInScope(WhiteAllInOneClsCategoryCQ subQuery)
+    public String keepMyselfInScope(WhiteAllInOneClsCategoryCQ sq)
     { throwIICBOE("MyselfInScope"); return null;}
 
     protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()

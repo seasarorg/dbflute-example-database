@@ -150,12 +150,12 @@ public abstract class AbstractBsWhiteAllInOneClsElementCQ extends AbstractCondit
      * @param subQuery The sub-query of WhiteAllInOneClsCategory for 'in-scope'. (NotNull)
      */
     public void inScopeWhiteAllInOneClsCategory(SubQuery<WhiteAllInOneClsCategoryCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteAllInOneClsCategoryCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteAllInOneClsCategoryCB cb = new WhiteAllInOneClsCategoryCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String subQueryPropertyName = keepClsCategoryCode_InScopeRelation_WhiteAllInOneClsCategory(cb.query()); // for saving query-value.
-        registerInScopeRelation(cb.query(), "CLS_CATEGORY_CODE", "CLS_CATEGORY_CODE", subQueryPropertyName, "whiteAllInOneClsCategory");
+        String pp = keepClsCategoryCode_InScopeRelation_WhiteAllInOneClsCategory(cb.query()); // for saving query-value.
+        registerInScopeRelation(cb.query(), "CLS_CATEGORY_CODE", "CLS_CATEGORY_CODE", pp, "whiteAllInOneClsCategory");
     }
-    public abstract String keepClsCategoryCode_InScopeRelation_WhiteAllInOneClsCategory(WhiteAllInOneClsCategoryCQ subQuery);
+    public abstract String keepClsCategoryCode_InScopeRelation_WhiteAllInOneClsCategory(WhiteAllInOneClsCategoryCQ sq);
 
     /**
      * Set up NotInScopeRelation (sub-query). <br />
@@ -164,12 +164,12 @@ public abstract class AbstractBsWhiteAllInOneClsElementCQ extends AbstractCondit
      * @param subQuery The sub-query of WhiteAllInOneClsCategory for 'not in-scope'. (NotNull)
      */
     public void notInScopeWhiteAllInOneClsCategory(SubQuery<WhiteAllInOneClsCategoryCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteAllInOneClsCategoryCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteAllInOneClsCategoryCB cb = new WhiteAllInOneClsCategoryCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String subQueryPropertyName = keepClsCategoryCode_NotInScopeRelation_WhiteAllInOneClsCategory(cb.query()); // for saving query-value.
-        registerNotInScopeRelation(cb.query(), "CLS_CATEGORY_CODE", "CLS_CATEGORY_CODE", subQueryPropertyName, "whiteAllInOneClsCategory");
+        String pp = keepClsCategoryCode_NotInScopeRelation_WhiteAllInOneClsCategory(cb.query()); // for saving query-value.
+        registerNotInScopeRelation(cb.query(), "CLS_CATEGORY_CODE", "CLS_CATEGORY_CODE", pp, "whiteAllInOneClsCategory");
     }
-    public abstract String keepClsCategoryCode_NotInScopeRelation_WhiteAllInOneClsCategory(WhiteAllInOneClsCategoryCQ subQuery);
+    public abstract String keepClsCategoryCode_NotInScopeRelation_WhiteAllInOneClsCategory(WhiteAllInOneClsCategoryCQ sq);
 
     /**
      * IsNull {is null}. And OnlyOnceRegistered. <br />
@@ -183,8 +183,8 @@ public abstract class AbstractBsWhiteAllInOneClsElementCQ extends AbstractCondit
      */
     public void setClsCategoryCode_IsNotNull() { regClsCategoryCode(CK_ISNN, DOBJ); }
 
-    protected void regClsCategoryCode(ConditionKey k, Object v) { regQ(k, v, getCValueClsCategoryCode(), "CLS_CATEGORY_CODE"); }
-    abstract protected ConditionValue getCValueClsCategoryCode();
+    protected void regClsCategoryCode(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueClsCategoryCode(), "CLS_CATEGORY_CODE"); }
+    protected abstract ConditionValue getCValueClsCategoryCode();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -281,8 +281,8 @@ public abstract class AbstractBsWhiteAllInOneClsElementCQ extends AbstractCondit
      */
     public void setClsElementCode_IsNotNull() { regClsElementCode(CK_ISNN, DOBJ); }
 
-    protected void regClsElementCode(ConditionKey k, Object v) { regQ(k, v, getCValueClsElementCode(), "CLS_ELEMENT_CODE"); }
-    abstract protected ConditionValue getCValueClsElementCode();
+    protected void regClsElementCode(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueClsElementCode(), "CLS_ELEMENT_CODE"); }
+    protected abstract ConditionValue getCValueClsElementCode();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -367,8 +367,8 @@ public abstract class AbstractBsWhiteAllInOneClsElementCQ extends AbstractCondit
         regLSQ(CK_NLS, fRES(clsElementName), getCValueClsElementName(), "CLS_ELEMENT_NAME", likeSearchOption);
     }
 
-    protected void regClsElementName(ConditionKey k, Object v) { regQ(k, v, getCValueClsElementName(), "CLS_ELEMENT_NAME"); }
-    abstract protected ConditionValue getCValueClsElementName();
+    protected void regClsElementName(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueClsElementName(), "CLS_ELEMENT_NAME"); }
+    protected abstract ConditionValue getCValueClsElementName();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -453,8 +453,8 @@ public abstract class AbstractBsWhiteAllInOneClsElementCQ extends AbstractCondit
         regLSQ(CK_NLS, fRES(attributeExp), getCValueAttributeExp(), "ATTRIBUTE_EXP", likeSearchOption);
     }
 
-    protected void regAttributeExp(ConditionKey k, Object v) { regQ(k, v, getCValueAttributeExp(), "ATTRIBUTE_EXP"); }
-    abstract protected ConditionValue getCValueAttributeExp();
+    protected void regAttributeExp(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueAttributeExp(), "ATTRIBUTE_EXP"); }
+    protected abstract ConditionValue getCValueAttributeExp();
 
     // ===================================================================================
     //                                                                    Full Text Search
@@ -480,7 +480,7 @@ public abstract class AbstractBsWhiteAllInOneClsElementCQ extends AbstractCondit
      * @param conditionValue The condition value embedded without binding (by MySQL restriction) but escaped. (NullAllowed: if null or empty, no condition)
      * @param modifier The modifier of full-text search. (NullAllowed: If the value is null, no modifier specified)
      */
-    public void match(java.util.List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList
+    public void match(List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList
                     , String conditionValue
                     , org.seasar.dbflute.dbway.WayOfMySQL.FullTextSearchModifier modifier) {
         xdoMatchForMySQL(textColumnList, conditionValue, modifier);

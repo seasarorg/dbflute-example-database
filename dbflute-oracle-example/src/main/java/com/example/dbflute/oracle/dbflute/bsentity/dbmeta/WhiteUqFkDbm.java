@@ -41,12 +41,12 @@ public class WhiteUqFkDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgUqFkId implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteUqFk)e).getUqFkId(); }
-        public void write(Entity e, Object v) { ((WhiteUqFk)e).setUqFkId(ctl(v)); }
+        public Object read(Entity et) { return ((WhiteUqFk)et).getUqFkId(); }
+        public void write(Entity et, Object vl) { ((WhiteUqFk)et).setUqFkId(ctl(vl)); }
     }
     public static class EpgUqFkCode implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteUqFk)e).getUqFkCode(); }
-        public void write(Entity e, Object v) { ((WhiteUqFk)e).setUqFkCode((String)v); }
+        public Object read(Entity et) { return ((WhiteUqFk)et).getUqFkCode(); }
+        public void write(Entity et, Object vl) { ((WhiteUqFk)et).setUqFkCode((String)vl); }
     }
 
     // ===================================================================================
@@ -99,12 +99,12 @@ public class WhiteUqFkDbm extends AbstractDBMeta {
     //                                     Referrer Property
     //                                     -----------------
     public ReferrerInfo referrerWhiteUqFkRefByFkToPkIdList() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnUqFkId(), WhiteUqFkRefDbm.getInstance().columnFkToPkId());
-        return cri("FK_WHITE_UQ_FK_REF_PK", "whiteUqFkRefByFkToPkIdList", this, WhiteUqFkRefDbm.getInstance(), map, false, "whiteUqFkByFkToPkId");
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnUqFkId(), WhiteUqFkRefDbm.getInstance().columnFkToPkId());
+        return cri("FK_WHITE_UQ_FK_REF_PK", "whiteUqFkRefByFkToPkIdList", this, WhiteUqFkRefDbm.getInstance(), mp, false, "whiteUqFkByFkToPkId");
     }
     public ReferrerInfo referrerWhiteUqFkRefByFkToUqCodeList() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnUqFkCode(), WhiteUqFkRefDbm.getInstance().columnFkToUqCode());
-        return cri("FK_WHITE_UQ_FK_REF_UQ", "whiteUqFkRefByFkToUqCodeList", this, WhiteUqFkRefDbm.getInstance(), map, false, "whiteUqFkByFkToUqCode");
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnUqFkCode(), WhiteUqFkRefDbm.getInstance().columnFkToUqCode());
+        return cri("FK_WHITE_UQ_FK_REF_UQ", "whiteUqFkRefByFkToUqCodeList", this, WhiteUqFkRefDbm.getInstance(), mp, false, "whiteUqFkByFkToUqCode");
     }
 
     // ===================================================================================
@@ -132,10 +132,10 @@ public class WhiteUqFkDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((WhiteUqFk)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((WhiteUqFk)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((WhiteUqFk)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((WhiteUqFk)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

@@ -88,18 +88,18 @@ public class SynonymMemberWithdrawalCIQ extends AbstractBsSynonymMemberWithdrawa
     protected ConditionValue getCValueUpdateProcess() { return _myCQ.getUpdateProcess(); }
     protected ConditionValue getCValueUpdateUser() { return _myCQ.getUpdateUser(); }
     protected ConditionValue getCValueVersionNo() { return _myCQ.getVersionNo(); }
-    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) { return null; }
-    public String keepScalarCondition(SynonymMemberWithdrawalCQ subQuery)
+    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
+    public String keepScalarCondition(SynonymMemberWithdrawalCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }
-    public String keepSpecifyMyselfDerived(SynonymMemberWithdrawalCQ subQuery)
+    public String keepSpecifyMyselfDerived(SynonymMemberWithdrawalCQ sq)
     { throwIICBOE("(Specify)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerived(SynonymMemberWithdrawalCQ subQuery)
+    public String keepQueryMyselfDerived(SynonymMemberWithdrawalCQ sq)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerivedParameter(Object parameterValue)
+    public String keepQueryMyselfDerivedParameter(Object vl)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepMyselfExists(SynonymMemberWithdrawalCQ subQuery)
+    public String keepMyselfExists(SynonymMemberWithdrawalCQ sq)
     { throwIICBOE("MyselfExists"); return null;}
-    public String keepMyselfInScope(SynonymMemberWithdrawalCQ subQuery)
+    public String keepMyselfInScope(SynonymMemberWithdrawalCQ sq)
     { throwIICBOE("MyselfInScope"); return null;}
 
     protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()

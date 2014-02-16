@@ -56,12 +56,12 @@ public class WhiteDbCommentDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgDbCommentCode implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteDbComment)e).getDbCommentCode(); }
-        public void write(Entity e, Object v) { ((WhiteDbComment)e).setDbCommentCode((String)v); }
+        public Object read(Entity et) { return ((WhiteDbComment)et).getDbCommentCode(); }
+        public void write(Entity et, Object vl) { ((WhiteDbComment)et).setDbCommentCode((String)vl); }
     }
     public static class EpgDbCommentName implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteDbComment)e).getDbCommentName(); }
-        public void write(Entity e, Object v) { ((WhiteDbComment)e).setDbCommentName((String)v); }
+        public Object read(Entity et) { return ((WhiteDbComment)et).getDbCommentName(); }
+        public void write(Entity et, Object vl) { ((WhiteDbComment)et).setDbCommentName((String)vl); }
     }
 
     // ===================================================================================
@@ -139,10 +139,10 @@ public class WhiteDbCommentDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((WhiteDbComment)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((WhiteDbComment)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((WhiteDbComment)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((WhiteDbComment)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

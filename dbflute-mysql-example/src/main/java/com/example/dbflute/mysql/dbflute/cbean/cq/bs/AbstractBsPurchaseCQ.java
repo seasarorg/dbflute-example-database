@@ -162,12 +162,12 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
      * @param subQuery The sub-query of WhitePurchaseReferrerAsOne for 'exists'. (NotNull)
      */
     public void existsWhitePurchaseReferrerAsOne(SubQuery<WhitePurchaseReferrerCB> subQuery) {
-        assertObjectNotNull("subQuery<WhitePurchaseReferrerCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhitePurchaseReferrerCB cb = new WhitePurchaseReferrerCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepPurchaseId_ExistsReferrer_WhitePurchaseReferrerAsOne(cb.query()); // for saving query-value.
-        registerExistsReferrer(cb.query(), "PURCHASE_ID", "PURCHASE_REFERRER_ID", subQueryPropertyName, "whitePurchaseReferrerAsOne");
+        String pp = keepPurchaseId_ExistsReferrer_WhitePurchaseReferrerAsOne(cb.query()); // for saving query-value.
+        registerExistsReferrer(cb.query(), "PURCHASE_ID", "PURCHASE_REFERRER_ID", pp, "whitePurchaseReferrerAsOne");
     }
-    public abstract String keepPurchaseId_ExistsReferrer_WhitePurchaseReferrerAsOne(WhitePurchaseReferrerCQ subQuery);
+    public abstract String keepPurchaseId_ExistsReferrer_WhitePurchaseReferrerAsOne(WhitePurchaseReferrerCQ sq);
 
     /**
      * Set up ExistsReferrer (co-related sub-query). <br />
@@ -183,12 +183,12 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
      * @param subQuery The sub-query of PurchaseSelfAsOne for 'exists'. (NotNull)
      */
     public void existsPurchaseSelfAsOne(SubQuery<PurchaseCB> subQuery) {
-        assertObjectNotNull("subQuery<PurchaseCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         PurchaseCB cb = new PurchaseCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepPurchaseId_ExistsReferrer_PurchaseSelfAsOne(cb.query()); // for saving query-value.
-        registerExistsReferrer(cb.query(), "PURCHASE_ID", "PURCHASE_ID", subQueryPropertyName, "purchaseSelfAsOne");
+        String pp = keepPurchaseId_ExistsReferrer_PurchaseSelfAsOne(cb.query()); // for saving query-value.
+        registerExistsReferrer(cb.query(), "PURCHASE_ID", "PURCHASE_ID", pp, "purchaseSelfAsOne");
     }
-    public abstract String keepPurchaseId_ExistsReferrer_PurchaseSelfAsOne(PurchaseCQ subQuery);
+    public abstract String keepPurchaseId_ExistsReferrer_PurchaseSelfAsOne(PurchaseCQ sq);
 
     /**
      * Set up NotExistsReferrer (co-related sub-query). <br />
@@ -204,12 +204,12 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
      * @param subQuery The sub-query of PurchaseId_NotExistsReferrer_WhitePurchaseReferrerAsOne for 'not exists'. (NotNull)
      */
     public void notExistsWhitePurchaseReferrerAsOne(SubQuery<WhitePurchaseReferrerCB> subQuery) {
-        assertObjectNotNull("subQuery<WhitePurchaseReferrerCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhitePurchaseReferrerCB cb = new WhitePurchaseReferrerCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepPurchaseId_NotExistsReferrer_WhitePurchaseReferrerAsOne(cb.query()); // for saving query-value.
-        registerNotExistsReferrer(cb.query(), "PURCHASE_ID", "PURCHASE_REFERRER_ID", subQueryPropertyName, "whitePurchaseReferrerAsOne");
+        String pp = keepPurchaseId_NotExistsReferrer_WhitePurchaseReferrerAsOne(cb.query()); // for saving query-value.
+        registerNotExistsReferrer(cb.query(), "PURCHASE_ID", "PURCHASE_REFERRER_ID", pp, "whitePurchaseReferrerAsOne");
     }
-    public abstract String keepPurchaseId_NotExistsReferrer_WhitePurchaseReferrerAsOne(WhitePurchaseReferrerCQ subQuery);
+    public abstract String keepPurchaseId_NotExistsReferrer_WhitePurchaseReferrerAsOne(WhitePurchaseReferrerCQ sq);
 
     /**
      * Set up NotExistsReferrer (co-related sub-query). <br />
@@ -225,12 +225,12 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
      * @param subQuery The sub-query of PurchaseId_NotExistsReferrer_PurchaseSelfAsOne for 'not exists'. (NotNull)
      */
     public void notExistsPurchaseSelfAsOne(SubQuery<PurchaseCB> subQuery) {
-        assertObjectNotNull("subQuery<PurchaseCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         PurchaseCB cb = new PurchaseCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepPurchaseId_NotExistsReferrer_PurchaseSelfAsOne(cb.query()); // for saving query-value.
-        registerNotExistsReferrer(cb.query(), "PURCHASE_ID", "PURCHASE_ID", subQueryPropertyName, "purchaseSelfAsOne");
+        String pp = keepPurchaseId_NotExistsReferrer_PurchaseSelfAsOne(cb.query()); // for saving query-value.
+        registerNotExistsReferrer(cb.query(), "PURCHASE_ID", "PURCHASE_ID", pp, "purchaseSelfAsOne");
     }
-    public abstract String keepPurchaseId_NotExistsReferrer_PurchaseSelfAsOne(PurchaseCQ subQuery);
+    public abstract String keepPurchaseId_NotExistsReferrer_PurchaseSelfAsOne(PurchaseCQ sq);
 
     /**
      * Set up InScopeRelation (sub-query). <br />
@@ -239,12 +239,12 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
      * @param subQuery The sub-query of PurchaseSelf for 'in-scope'. (NotNull)
      */
     public void inScopePurchaseSelf(SubQuery<PurchaseCB> subQuery) {
-        assertObjectNotNull("subQuery<PurchaseCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         PurchaseCB cb = new PurchaseCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String subQueryPropertyName = keepPurchaseId_InScopeRelation_PurchaseSelf(cb.query()); // for saving query-value.
-        registerInScopeRelation(cb.query(), "PURCHASE_ID", "PURCHASE_ID", subQueryPropertyName, "purchaseSelf");
+        String pp = keepPurchaseId_InScopeRelation_PurchaseSelf(cb.query()); // for saving query-value.
+        registerInScopeRelation(cb.query(), "PURCHASE_ID", "PURCHASE_ID", pp, "purchaseSelf");
     }
-    public abstract String keepPurchaseId_InScopeRelation_PurchaseSelf(PurchaseCQ subQuery);
+    public abstract String keepPurchaseId_InScopeRelation_PurchaseSelf(PurchaseCQ sq);
 
     /**
      * Set up InScopeRelation (sub-query). <br />
@@ -253,12 +253,12 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
      * @param subQuery The sub-query of WhitePurchaseReferrerAsOne for 'in-scope'. (NotNull)
      */
     public void inScopeWhitePurchaseReferrerAsOne(SubQuery<WhitePurchaseReferrerCB> subQuery) {
-        assertObjectNotNull("subQuery<WhitePurchaseReferrerCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhitePurchaseReferrerCB cb = new WhitePurchaseReferrerCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String subQueryPropertyName = keepPurchaseId_InScopeRelation_WhitePurchaseReferrerAsOne(cb.query()); // for saving query-value.
-        registerInScopeRelation(cb.query(), "PURCHASE_ID", "PURCHASE_REFERRER_ID", subQueryPropertyName, "whitePurchaseReferrerAsOne");
+        String pp = keepPurchaseId_InScopeRelation_WhitePurchaseReferrerAsOne(cb.query()); // for saving query-value.
+        registerInScopeRelation(cb.query(), "PURCHASE_ID", "PURCHASE_REFERRER_ID", pp, "whitePurchaseReferrerAsOne");
     }
-    public abstract String keepPurchaseId_InScopeRelation_WhitePurchaseReferrerAsOne(WhitePurchaseReferrerCQ subQuery);
+    public abstract String keepPurchaseId_InScopeRelation_WhitePurchaseReferrerAsOne(WhitePurchaseReferrerCQ sq);
 
     /**
      * Set up InScopeRelation (sub-query). <br />
@@ -267,12 +267,12 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
      * @param subQuery The sub-query of PurchaseSelfAsOne for 'in-scope'. (NotNull)
      */
     public void inScopePurchaseSelfAsOne(SubQuery<PurchaseCB> subQuery) {
-        assertObjectNotNull("subQuery<PurchaseCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         PurchaseCB cb = new PurchaseCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String subQueryPropertyName = keepPurchaseId_InScopeRelation_PurchaseSelfAsOne(cb.query()); // for saving query-value.
-        registerInScopeRelation(cb.query(), "PURCHASE_ID", "PURCHASE_ID", subQueryPropertyName, "purchaseSelfAsOne");
+        String pp = keepPurchaseId_InScopeRelation_PurchaseSelfAsOne(cb.query()); // for saving query-value.
+        registerInScopeRelation(cb.query(), "PURCHASE_ID", "PURCHASE_ID", pp, "purchaseSelfAsOne");
     }
-    public abstract String keepPurchaseId_InScopeRelation_PurchaseSelfAsOne(PurchaseCQ subQuery);
+    public abstract String keepPurchaseId_InScopeRelation_PurchaseSelfAsOne(PurchaseCQ sq);
 
     /**
      * Set up NotInScopeRelation (sub-query). <br />
@@ -281,12 +281,12 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
      * @param subQuery The sub-query of PurchaseSelf for 'not in-scope'. (NotNull)
      */
     public void notInScopePurchaseSelf(SubQuery<PurchaseCB> subQuery) {
-        assertObjectNotNull("subQuery<PurchaseCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         PurchaseCB cb = new PurchaseCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String subQueryPropertyName = keepPurchaseId_NotInScopeRelation_PurchaseSelf(cb.query()); // for saving query-value.
-        registerNotInScopeRelation(cb.query(), "PURCHASE_ID", "PURCHASE_ID", subQueryPropertyName, "purchaseSelf");
+        String pp = keepPurchaseId_NotInScopeRelation_PurchaseSelf(cb.query()); // for saving query-value.
+        registerNotInScopeRelation(cb.query(), "PURCHASE_ID", "PURCHASE_ID", pp, "purchaseSelf");
     }
-    public abstract String keepPurchaseId_NotInScopeRelation_PurchaseSelf(PurchaseCQ subQuery);
+    public abstract String keepPurchaseId_NotInScopeRelation_PurchaseSelf(PurchaseCQ sq);
 
     /**
      * Set up NotInScopeRelation (sub-query). <br />
@@ -295,12 +295,12 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
      * @param subQuery The sub-query of WhitePurchaseReferrerAsOne for 'not in-scope'. (NotNull)
      */
     public void notInScopeWhitePurchaseReferrerAsOne(SubQuery<WhitePurchaseReferrerCB> subQuery) {
-        assertObjectNotNull("subQuery<WhitePurchaseReferrerCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhitePurchaseReferrerCB cb = new WhitePurchaseReferrerCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String subQueryPropertyName = keepPurchaseId_NotInScopeRelation_WhitePurchaseReferrerAsOne(cb.query()); // for saving query-value.
-        registerNotInScopeRelation(cb.query(), "PURCHASE_ID", "PURCHASE_REFERRER_ID", subQueryPropertyName, "whitePurchaseReferrerAsOne");
+        String pp = keepPurchaseId_NotInScopeRelation_WhitePurchaseReferrerAsOne(cb.query()); // for saving query-value.
+        registerNotInScopeRelation(cb.query(), "PURCHASE_ID", "PURCHASE_REFERRER_ID", pp, "whitePurchaseReferrerAsOne");
     }
-    public abstract String keepPurchaseId_NotInScopeRelation_WhitePurchaseReferrerAsOne(WhitePurchaseReferrerCQ subQuery);
+    public abstract String keepPurchaseId_NotInScopeRelation_WhitePurchaseReferrerAsOne(WhitePurchaseReferrerCQ sq);
 
     /**
      * Set up NotInScopeRelation (sub-query). <br />
@@ -309,12 +309,12 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
      * @param subQuery The sub-query of PurchaseSelfAsOne for 'not in-scope'. (NotNull)
      */
     public void notInScopePurchaseSelfAsOne(SubQuery<PurchaseCB> subQuery) {
-        assertObjectNotNull("subQuery<PurchaseCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         PurchaseCB cb = new PurchaseCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String subQueryPropertyName = keepPurchaseId_NotInScopeRelation_PurchaseSelfAsOne(cb.query()); // for saving query-value.
-        registerNotInScopeRelation(cb.query(), "PURCHASE_ID", "PURCHASE_ID", subQueryPropertyName, "purchaseSelfAsOne");
+        String pp = keepPurchaseId_NotInScopeRelation_PurchaseSelfAsOne(cb.query()); // for saving query-value.
+        registerNotInScopeRelation(cb.query(), "PURCHASE_ID", "PURCHASE_ID", pp, "purchaseSelfAsOne");
     }
-    public abstract String keepPurchaseId_NotInScopeRelation_PurchaseSelfAsOne(PurchaseCQ subQuery);
+    public abstract String keepPurchaseId_NotInScopeRelation_PurchaseSelfAsOne(PurchaseCQ sq);
 
     /**
      * IsNull {is null}. And OnlyOnceRegistered. <br />
@@ -328,8 +328,8 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
      */
     public void setPurchaseId_IsNotNull() { regPurchaseId(CK_ISNN, DOBJ); }
 
-    protected void regPurchaseId(ConditionKey k, Object v) { regQ(k, v, getCValuePurchaseId(), "PURCHASE_ID"); }
-    abstract protected ConditionValue getCValuePurchaseId();
+    protected void regPurchaseId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValuePurchaseId(), "PURCHASE_ID"); }
+    protected abstract ConditionValue getCValuePurchaseId();
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -426,12 +426,12 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
      * @param subQuery The sub-query of Member for 'in-scope'. (NotNull)
      */
     public void inScopeMember(SubQuery<MemberCB> subQuery) {
-        assertObjectNotNull("subQuery<MemberCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         MemberCB cb = new MemberCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMemberId_InScopeRelation_Member(cb.query()); // for saving query-value.
-        registerInScopeRelation(cb.query(), "MEMBER_ID", "MEMBER_ID", subQueryPropertyName, "member");
+        String pp = keepMemberId_InScopeRelation_Member(cb.query()); // for saving query-value.
+        registerInScopeRelation(cb.query(), "MEMBER_ID", "MEMBER_ID", pp, "member");
     }
-    public abstract String keepMemberId_InScopeRelation_Member(MemberCQ subQuery);
+    public abstract String keepMemberId_InScopeRelation_Member(MemberCQ sq);
 
     /**
      * Set up NotInScopeRelation (sub-query). <br />
@@ -440,15 +440,15 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
      * @param subQuery The sub-query of Member for 'not in-scope'. (NotNull)
      */
     public void notInScopeMember(SubQuery<MemberCB> subQuery) {
-        assertObjectNotNull("subQuery<MemberCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         MemberCB cb = new MemberCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMemberId_NotInScopeRelation_Member(cb.query()); // for saving query-value.
-        registerNotInScopeRelation(cb.query(), "MEMBER_ID", "MEMBER_ID", subQueryPropertyName, "member");
+        String pp = keepMemberId_NotInScopeRelation_Member(cb.query()); // for saving query-value.
+        registerNotInScopeRelation(cb.query(), "MEMBER_ID", "MEMBER_ID", pp, "member");
     }
-    public abstract String keepMemberId_NotInScopeRelation_Member(MemberCQ subQuery);
+    public abstract String keepMemberId_NotInScopeRelation_Member(MemberCQ sq);
 
-    protected void regMemberId(ConditionKey k, Object v) { regQ(k, v, getCValueMemberId(), "MEMBER_ID"); }
-    abstract protected ConditionValue getCValueMemberId();
+    protected void regMemberId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueMemberId(), "MEMBER_ID"); }
+    protected abstract ConditionValue getCValueMemberId();
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -545,12 +545,12 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
      * @param subQuery The sub-query of Product for 'in-scope'. (NotNull)
      */
     public void inScopeProduct(SubQuery<ProductCB> subQuery) {
-        assertObjectNotNull("subQuery<ProductCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         ProductCB cb = new ProductCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String subQueryPropertyName = keepProductId_InScopeRelation_Product(cb.query()); // for saving query-value.
-        registerInScopeRelation(cb.query(), "PRODUCT_ID", "PRODUCT_ID", subQueryPropertyName, "product");
+        String pp = keepProductId_InScopeRelation_Product(cb.query()); // for saving query-value.
+        registerInScopeRelation(cb.query(), "PRODUCT_ID", "PRODUCT_ID", pp, "product");
     }
-    public abstract String keepProductId_InScopeRelation_Product(ProductCQ subQuery);
+    public abstract String keepProductId_InScopeRelation_Product(ProductCQ sq);
 
     /**
      * Set up NotInScopeRelation (sub-query). <br />
@@ -559,15 +559,15 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
      * @param subQuery The sub-query of Product for 'not in-scope'. (NotNull)
      */
     public void notInScopeProduct(SubQuery<ProductCB> subQuery) {
-        assertObjectNotNull("subQuery<ProductCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         ProductCB cb = new ProductCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String subQueryPropertyName = keepProductId_NotInScopeRelation_Product(cb.query()); // for saving query-value.
-        registerNotInScopeRelation(cb.query(), "PRODUCT_ID", "PRODUCT_ID", subQueryPropertyName, "product");
+        String pp = keepProductId_NotInScopeRelation_Product(cb.query()); // for saving query-value.
+        registerNotInScopeRelation(cb.query(), "PRODUCT_ID", "PRODUCT_ID", pp, "product");
     }
-    public abstract String keepProductId_NotInScopeRelation_Product(ProductCQ subQuery);
+    public abstract String keepProductId_NotInScopeRelation_Product(ProductCQ sq);
 
-    protected void regProductId(ConditionKey k, Object v) { regQ(k, v, getCValueProductId(), "PRODUCT_ID"); }
-    abstract protected ConditionValue getCValueProductId();
+    protected void regProductId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueProductId(), "PRODUCT_ID"); }
+    protected abstract ConditionValue getCValueProductId();
 
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -623,7 +623,7 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
      * @param toDatetime The to-datetime(yyyy/MM/dd HH:mm:ss.SSS) of purchaseDatetime. (NullAllowed: if null, no to-condition)
      * @param fromToOption The option of from-to. (NotNull)
      */
-    public void setPurchaseDatetime_FromTo(java.util.Date fromDatetime, java.util.Date toDatetime, FromToOption fromToOption) {
+    public void setPurchaseDatetime_FromTo(Date fromDatetime, Date toDatetime, FromToOption fromToOption) {
         regFTQ((fromDatetime != null ? new java.sql.Timestamp(fromDatetime.getTime()) : null), (toDatetime != null ? new java.sql.Timestamp(toDatetime.getTime()) : null), getCValuePurchaseDatetime(), "PURCHASE_DATETIME", fromToOption);
     }
 
@@ -638,12 +638,12 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
      * @param fromDate The from-date(yyyy/MM/dd) of purchaseDatetime. (NullAllowed: if null, no from-condition)
      * @param toDate The to-date(yyyy/MM/dd) of purchaseDatetime. (NullAllowed: if null, no to-condition)
      */
-    public void setPurchaseDatetime_DateFromTo(java.util.Date fromDate, java.util.Date toDate) {
+    public void setPurchaseDatetime_DateFromTo(Date fromDate, Date toDate) {
         setPurchaseDatetime_FromTo(fromDate, toDate, new FromToOption().compareAsDate());
     }
 
-    protected void regPurchaseDatetime(ConditionKey k, Object v) { regQ(k, v, getCValuePurchaseDatetime(), "PURCHASE_DATETIME"); }
-    abstract protected ConditionValue getCValuePurchaseDatetime();
+    protected void regPurchaseDatetime(ConditionKey ky, Object vl) { regQ(ky, vl, getCValuePurchaseDatetime(), "PURCHASE_DATETIME"); }
+    protected abstract ConditionValue getCValuePurchaseDatetime();
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -733,8 +733,8 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
         regINS(CK_NINS, cTL(purchaseCountList), getCValuePurchaseCount(), "PURCHASE_COUNT");
     }
 
-    protected void regPurchaseCount(ConditionKey k, Object v) { regQ(k, v, getCValuePurchaseCount(), "PURCHASE_COUNT"); }
-    abstract protected ConditionValue getCValuePurchaseCount();
+    protected void regPurchaseCount(ConditionKey ky, Object vl) { regQ(ky, vl, getCValuePurchaseCount(), "PURCHASE_COUNT"); }
+    protected abstract ConditionValue getCValuePurchaseCount();
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -824,8 +824,8 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
         regINS(CK_NINS, cTL(purchasePriceList), getCValuePurchasePrice(), "PURCHASE_PRICE");
     }
 
-    protected void regPurchasePrice(ConditionKey k, Object v) { regQ(k, v, getCValuePurchasePrice(), "PURCHASE_PRICE"); }
-    abstract protected ConditionValue getCValuePurchasePrice();
+    protected void regPurchasePrice(ConditionKey ky, Object vl) { regQ(ky, vl, getCValuePurchasePrice(), "PURCHASE_PRICE"); }
+    protected abstract ConditionValue getCValuePurchasePrice();
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -912,8 +912,8 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
         regINS(CK_NINS, cTL(paymentCompleteFlgList), getCValuePaymentCompleteFlg(), "PAYMENT_COMPLETE_FLG");
     }
 
-    protected void regPaymentCompleteFlg(ConditionKey k, Object v) { regQ(k, v, getCValuePaymentCompleteFlg(), "PAYMENT_COMPLETE_FLG"); }
-    abstract protected ConditionValue getCValuePaymentCompleteFlg();
+    protected void regPaymentCompleteFlg(ConditionKey ky, Object vl) { regQ(ky, vl, getCValuePaymentCompleteFlg(), "PAYMENT_COMPLETE_FLG"); }
+    protected abstract ConditionValue getCValuePaymentCompleteFlg();
 
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -924,8 +924,8 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
         regRegisterDatetime(CK_EQ,  registerDatetime);
     }
 
-    protected void regRegisterDatetime(ConditionKey k, Object v) { regQ(k, v, getCValueRegisterDatetime(), "REGISTER_DATETIME"); }
-    abstract protected ConditionValue getCValueRegisterDatetime();
+    protected void regRegisterDatetime(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueRegisterDatetime(), "REGISTER_DATETIME"); }
+    protected abstract ConditionValue getCValueRegisterDatetime();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -951,8 +951,8 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
         regLSQ(CK_LS, fRES(registerUser), getCValueRegisterUser(), "REGISTER_USER", likeSearchOption);
     }
 
-    protected void regRegisterUser(ConditionKey k, Object v) { regQ(k, v, getCValueRegisterUser(), "REGISTER_USER"); }
-    abstract protected ConditionValue getCValueRegisterUser();
+    protected void regRegisterUser(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueRegisterUser(), "REGISTER_USER"); }
+    protected abstract ConditionValue getCValueRegisterUser();
 
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -963,8 +963,8 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
         regUpdateDatetime(CK_EQ,  updateDatetime);
     }
 
-    protected void regUpdateDatetime(ConditionKey k, Object v) { regQ(k, v, getCValueUpdateDatetime(), "UPDATE_DATETIME"); }
-    abstract protected ConditionValue getCValueUpdateDatetime();
+    protected void regUpdateDatetime(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueUpdateDatetime(), "UPDATE_DATETIME"); }
+    protected abstract ConditionValue getCValueUpdateDatetime();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -990,8 +990,8 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
         regLSQ(CK_LS, fRES(updateUser), getCValueUpdateUser(), "UPDATE_USER", likeSearchOption);
     }
 
-    protected void regUpdateUser(ConditionKey k, Object v) { regQ(k, v, getCValueUpdateUser(), "UPDATE_USER"); }
-    abstract protected ConditionValue getCValueUpdateUser();
+    protected void regUpdateUser(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueUpdateUser(), "UPDATE_USER"); }
+    protected abstract ConditionValue getCValueUpdateUser();
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -1019,8 +1019,8 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
         regROO(minNumber, maxNumber, getCValueVersionNo(), "VERSION_NO", rangeOfOption);
     }
 
-    protected void regVersionNo(ConditionKey k, Object v) { regQ(k, v, getCValueVersionNo(), "VERSION_NO"); }
-    abstract protected ConditionValue getCValueVersionNo();
+    protected void regVersionNo(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueVersionNo(), "VERSION_NO"); }
+    protected abstract ConditionValue getCValueVersionNo();
 
     // ===================================================================================
     //                                                                     ScalarCondition
@@ -1127,22 +1127,22 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
         return xcreateSSQFunction(CK_LE.getOperand());
     }
 
-    protected HpSSQFunction<PurchaseCB> xcreateSSQFunction(final String operand) {
+    protected HpSSQFunction<PurchaseCB> xcreateSSQFunction(final String rd) {
         return new HpSSQFunction<PurchaseCB>(new HpSSQSetupper<PurchaseCB>() {
-            public void setup(String function, SubQuery<PurchaseCB> subQuery, HpSSQOption<PurchaseCB> option) {
-                xscalarCondition(function, subQuery, operand, option);
+            public void setup(String fn, SubQuery<PurchaseCB> sq, HpSSQOption<PurchaseCB> op) {
+                xscalarCondition(fn, sq, rd, op);
             }
         });
     }
 
-    protected void xscalarCondition(String function, SubQuery<PurchaseCB> subQuery, String operand, HpSSQOption<PurchaseCB> option) {
-        assertObjectNotNull("subQuery<PurchaseCB>", subQuery);
-        PurchaseCB cb = xcreateScalarConditionCB(); subQuery.query(cb);
-        String subQueryPropertyName = keepScalarCondition(cb.query()); // for saving query-value
-        option.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
-        registerScalarCondition(function, cb.query(), subQueryPropertyName, operand, option);
+    protected void xscalarCondition(String fn, SubQuery<PurchaseCB> sq, String rd, HpSSQOption<PurchaseCB> op) {
+        assertObjectNotNull("subQuery", sq);
+        PurchaseCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        String pp = keepScalarCondition(cb.query()); // for saving query-value
+        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
-    public abstract String keepScalarCondition(PurchaseCQ subQuery);
+    public abstract String keepScalarCondition(PurchaseCQ sq);
 
     protected PurchaseCB xcreateScalarConditionCB() {
         PurchaseCB cb = new PurchaseCB();
@@ -1159,13 +1159,14 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    public void xsmyselfDerive(String function, SubQuery<PurchaseCB> subQuery, String aliasName, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<PurchaseCB>", subQuery);
-        PurchaseCB cb = new PurchaseCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
-        registerSpecifyMyselfDerived(function, cb.query(), "PURCHASE_ID", "PURCHASE_ID", subQueryPropertyName, "myselfDerived", aliasName, option);
+    public void xsmyselfDerive(String fn, SubQuery<PurchaseCB> sq, String al, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        PurchaseCB cb = new PurchaseCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "PURCHASE_ID";
+        String pp = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
+        registerSpecifyMyselfDerived(fn, cb.query(), pk, pk, pp, "myselfDerived", al, op);
     }
-    public abstract String keepSpecifyMyselfDerived(PurchaseCQ subQuery);
+    public abstract String keepSpecifyMyselfDerived(PurchaseCQ sq);
 
     /**
      * Prepare for (Query)MyselfDerived (SubQuery).
@@ -1176,20 +1177,21 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
     }
     protected HpQDRFunction<PurchaseCB> xcreateQDRFunctionMyselfDerived() {
         return new HpQDRFunction<PurchaseCB>(new HpQDRSetupper<PurchaseCB>() {
-            public void setup(String function, SubQuery<PurchaseCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-                xqderiveMyselfDerived(function, subQuery, operand, value, option);
+            public void setup(String fn, SubQuery<PurchaseCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+                xqderiveMyselfDerived(fn, sq, rd, vl, op);
             }
         });
     }
-    public void xqderiveMyselfDerived(String function, SubQuery<PurchaseCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<PurchaseCB>", subQuery);
-        PurchaseCB cb = new PurchaseCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepQueryMyselfDerived(cb.query()); // for saving query-value.
-        String parameterPropertyName = keepQueryMyselfDerivedParameter(value);
-        registerQueryMyselfDerived(function, cb.query(), "PURCHASE_ID", "PURCHASE_ID", subQueryPropertyName, "myselfDerived", operand, value, parameterPropertyName, option);
+    public void xqderiveMyselfDerived(String fn, SubQuery<PurchaseCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        PurchaseCB cb = new PurchaseCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "PURCHASE_ID";
+        String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
+        String prpp = keepQueryMyselfDerivedParameter(vl);
+        registerQueryMyselfDerived(fn, cb.query(), pk, pk, sqpp, "myselfDerived", rd, vl, prpp, op);
     }
-    public abstract String keepQueryMyselfDerived(PurchaseCQ subQuery);
-    public abstract String keepQueryMyselfDerivedParameter(Object parameterValue);
+    public abstract String keepQueryMyselfDerived(PurchaseCQ sq);
+    public abstract String keepQueryMyselfDerivedParameter(Object vl);
 
     // ===================================================================================
     //                                                                        MyselfExists
@@ -1199,12 +1201,12 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfExists(SubQuery<PurchaseCB> subQuery) {
-        assertObjectNotNull("subQuery<PurchaseCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         PurchaseCB cb = new PurchaseCB(); cb.xsetupForMyselfExists(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfExists(cb.query()); // for saving query-value.
-        registerMyselfExists(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfExists(cb.query()); // for saving query-value.
+        registerMyselfExists(cb.query(), pp);
     }
-    public abstract String keepMyselfExists(PurchaseCQ subQuery);
+    public abstract String keepMyselfExists(PurchaseCQ sq);
 
     // ===================================================================================
     //                                                                       MyselfInScope
@@ -1214,12 +1216,12 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfInScope(SubQuery<PurchaseCB> subQuery) {
-        assertObjectNotNull("subQuery<PurchaseCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         PurchaseCB cb = new PurchaseCB(); cb.xsetupForMyselfInScope(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfInScope(cb.query()); // for saving query-value.
-        registerMyselfInScope(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfInScope(cb.query()); // for saving query-value.
+        registerMyselfInScope(cb.query(), pp);
     }
-    public abstract String keepMyselfInScope(PurchaseCQ subQuery);
+    public abstract String keepMyselfInScope(PurchaseCQ sq);
 
     // ===================================================================================
     //                                                                    Full Text Search
@@ -1245,7 +1247,7 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
      * @param conditionValue The condition value embedded without binding (by MySQL restriction) but escaped. (NullAllowed: if null or empty, no condition)
      * @param modifier The modifier of full-text search. (NullAllowed: If the value is null, no modifier specified)
      */
-    public void match(java.util.List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList
+    public void match(List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList
                     , String conditionValue
                     , org.seasar.dbflute.dbway.WayOfMySQL.FullTextSearchModifier modifier) {
         xdoMatchForMySQL(textColumnList, conditionValue, modifier);

@@ -88,18 +88,18 @@ public class WhiteImplicitReverseFkSuppressCIQ extends AbstractBsWhiteImplicitRe
     protected ConditionValue getCValueWhiteImplicitReverseFkId() { return _myCQ.getWhiteImplicitReverseFkId(); }
     protected ConditionValue getCValueValidBeginDate() { return _myCQ.getValidBeginDate(); }
     protected ConditionValue getCValueValidEndDate() { return _myCQ.getValidEndDate(); }
-    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) { return null; }
-    public String keepScalarCondition(WhiteImplicitReverseFkSuppressCQ subQuery)
+    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
+    public String keepScalarCondition(WhiteImplicitReverseFkSuppressCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }
-    public String keepSpecifyMyselfDerived(WhiteImplicitReverseFkSuppressCQ subQuery)
+    public String keepSpecifyMyselfDerived(WhiteImplicitReverseFkSuppressCQ sq)
     { throwIICBOE("(Specify)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerived(WhiteImplicitReverseFkSuppressCQ subQuery)
+    public String keepQueryMyselfDerived(WhiteImplicitReverseFkSuppressCQ sq)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerivedParameter(Object parameterValue)
+    public String keepQueryMyselfDerivedParameter(Object vl)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepMyselfExists(WhiteImplicitReverseFkSuppressCQ subQuery)
+    public String keepMyselfExists(WhiteImplicitReverseFkSuppressCQ sq)
     { throwIICBOE("MyselfExists"); return null;}
-    public String keepMyselfInScope(WhiteImplicitReverseFkSuppressCQ subQuery)
+    public String keepMyselfInScope(WhiteImplicitReverseFkSuppressCQ sq)
     { throwIICBOE("MyselfInScope"); return null;}
 
     protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()

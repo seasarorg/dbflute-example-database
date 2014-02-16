@@ -399,8 +399,8 @@ public class BsProductCategoryCB extends AbstractConditionBean {
         public HpSDRFunction<ProductCategoryCB, ProductCategoryCQ> derivedProductCategorySelfList() {
             assertDerived("productCategorySelfList"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<ProductCategoryCB, ProductCategoryCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<ProductCategoryCB, ProductCategoryCQ>() {
-                public void setup(String function, SubQuery<ProductCategoryCB> subQuery, ProductCategoryCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsderiveProductCategorySelfList(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<ProductCategoryCB> sq, ProductCategoryCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsderiveProductCategorySelfList(fn, sq, al, op); } }, _dbmetaProvider);
         }
         /**
          * Prepare for (Specify)MyselfDerived (SubQuery).
@@ -409,8 +409,8 @@ public class BsProductCategoryCB extends AbstractConditionBean {
         public HpSDRFunction<ProductCategoryCB, ProductCategoryCQ> myselfDerived() {
             assertDerived("myselfDerived"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<ProductCategoryCB, ProductCategoryCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<ProductCategoryCB, ProductCategoryCQ>() {
-                public void setup(String function, SubQuery<ProductCategoryCB> subQuery, ProductCategoryCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsmyselfDerive(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<ProductCategoryCB> sq, ProductCategoryCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsmyselfDerive(fn, sq, al, op); } }, _dbmetaProvider);
         }
     }
 

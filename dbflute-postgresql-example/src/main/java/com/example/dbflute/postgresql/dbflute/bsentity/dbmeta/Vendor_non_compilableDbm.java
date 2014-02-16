@@ -42,16 +42,16 @@ public class Vendor_non_compilableDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgNon_compilable_id implements PropertyGateway {
-        public Object read(Entity e) { return ((Vendor_non_compilable)e).getNon_compilable_id(); }
-        public void write(Entity e, Object v) { ((Vendor_non_compilable)e).setNon_compilable_id(cti(v)); }
+        public Object read(Entity et) { return ((Vendor_non_compilable)et).getNon_compilable_id(); }
+        public void write(Entity et, Object vl) { ((Vendor_non_compilable)et).setNon_compilable_id(cti(vl)); }
     }
     public static class EpgNon_compilable_name implements PropertyGateway {
-        public Object read(Entity e) { return ((Vendor_non_compilable)e).getNon_compilable_name(); }
-        public void write(Entity e, Object v) { ((Vendor_non_compilable)e).setNon_compilable_name((String)v); }
+        public Object read(Entity et) { return ((Vendor_non_compilable)et).getNon_compilable_name(); }
+        public void write(Entity et, Object vl) { ((Vendor_non_compilable)et).setNon_compilable_name((String)vl); }
     }
     public static class EpgParent_id implements PropertyGateway {
-        public Object read(Entity e) { return ((Vendor_non_compilable)e).getParent_id(); }
-        public void write(Entity e, Object v) { ((Vendor_non_compilable)e).setParent_id(cti(v)); }
+        public Object read(Entity et) { return ((Vendor_non_compilable)et).getParent_id(); }
+        public void write(Entity et, Object vl) { ((Vendor_non_compilable)et).setParent_id(cti(vl)); }
     }
 
     // ===================================================================================
@@ -103,16 +103,16 @@ public class Vendor_non_compilableDbm extends AbstractDBMeta {
     //                                      Foreign Property
     //                                      ----------------
     public ForeignInfo foreignVendor_non_compilableSelf() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnParent_id(), Vendor_non_compilableDbm.getInstance().columnNon_compilable_id());
-        return cfi("fk_vendor_non_comppilable_self", "vendor_non_compilableSelf", this, Vendor_non_compilableDbm.getInstance(), map, 0, false, false, false, false, null, null, false, "vendor_non_compilableSelfList");
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnParent_id(), Vendor_non_compilableDbm.getInstance().columnNon_compilable_id());
+        return cfi("fk_vendor_non_comppilable_self", "vendor_non_compilableSelf", this, Vendor_non_compilableDbm.getInstance(), mp, 0, false, false, false, false, null, null, false, "vendor_non_compilableSelfList");
     }
 
     // -----------------------------------------------------
     //                                     Referrer Property
     //                                     -----------------
     public ReferrerInfo referrerVendor_non_compilableSelfList() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnNon_compilable_id(), Vendor_non_compilableDbm.getInstance().columnParent_id());
-        return cri("fk_vendor_non_comppilable_self", "vendor_non_compilableSelfList", this, Vendor_non_compilableDbm.getInstance(), map, false, "vendor_non_compilableSelf");
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnNon_compilable_id(), Vendor_non_compilableDbm.getInstance().columnParent_id());
+        return cri("fk_vendor_non_comppilable_self", "vendor_non_compilableSelfList", this, Vendor_non_compilableDbm.getInstance(), mp, false, "vendor_non_compilableSelf");
     }
 
     // ===================================================================================
@@ -140,10 +140,10 @@ public class Vendor_non_compilableDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((Vendor_non_compilable)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((Vendor_non_compilable)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((Vendor_non_compilable)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((Vendor_non_compilable)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

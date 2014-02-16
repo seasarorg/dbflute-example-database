@@ -96,57 +96,57 @@ public class BsWhiteSplitMultipleFkBaseCQ extends AbstractBsWhiteSplitMultipleFk
 
     protected Map<String, WhiteSplitMultipleFkChildCQ> _baseId_ExistsReferrer_WhiteSplitMultipleFkChildListMap;
     public Map<String, WhiteSplitMultipleFkChildCQ> getBaseId_ExistsReferrer_WhiteSplitMultipleFkChildList() { return _baseId_ExistsReferrer_WhiteSplitMultipleFkChildListMap; }
-    public String keepBaseId_ExistsReferrer_WhiteSplitMultipleFkChildList(WhiteSplitMultipleFkChildCQ subQuery) {
+    public String keepBaseId_ExistsReferrer_WhiteSplitMultipleFkChildList(WhiteSplitMultipleFkChildCQ sq) {
         if (_baseId_ExistsReferrer_WhiteSplitMultipleFkChildListMap == null) { _baseId_ExistsReferrer_WhiteSplitMultipleFkChildListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_baseId_ExistsReferrer_WhiteSplitMultipleFkChildListMap.size() + 1);
-        _baseId_ExistsReferrer_WhiteSplitMultipleFkChildListMap.put(key, subQuery); return "baseId_ExistsReferrer_WhiteSplitMultipleFkChildList." + key;
+        String ky = "subQueryMapKey" + (_baseId_ExistsReferrer_WhiteSplitMultipleFkChildListMap.size() + 1);
+        _baseId_ExistsReferrer_WhiteSplitMultipleFkChildListMap.put(ky, sq); return "baseId_ExistsReferrer_WhiteSplitMultipleFkChildList." + ky;
     }
 
     protected Map<String, WhiteSplitMultipleFkChildCQ> _baseId_NotExistsReferrer_WhiteSplitMultipleFkChildListMap;
     public Map<String, WhiteSplitMultipleFkChildCQ> getBaseId_NotExistsReferrer_WhiteSplitMultipleFkChildList() { return _baseId_NotExistsReferrer_WhiteSplitMultipleFkChildListMap; }
-    public String keepBaseId_NotExistsReferrer_WhiteSplitMultipleFkChildList(WhiteSplitMultipleFkChildCQ subQuery) {
+    public String keepBaseId_NotExistsReferrer_WhiteSplitMultipleFkChildList(WhiteSplitMultipleFkChildCQ sq) {
         if (_baseId_NotExistsReferrer_WhiteSplitMultipleFkChildListMap == null) { _baseId_NotExistsReferrer_WhiteSplitMultipleFkChildListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_baseId_NotExistsReferrer_WhiteSplitMultipleFkChildListMap.size() + 1);
-        _baseId_NotExistsReferrer_WhiteSplitMultipleFkChildListMap.put(key, subQuery); return "baseId_NotExistsReferrer_WhiteSplitMultipleFkChildList." + key;
+        String ky = "subQueryMapKey" + (_baseId_NotExistsReferrer_WhiteSplitMultipleFkChildListMap.size() + 1);
+        _baseId_NotExistsReferrer_WhiteSplitMultipleFkChildListMap.put(ky, sq); return "baseId_NotExistsReferrer_WhiteSplitMultipleFkChildList." + ky;
     }
 
     protected Map<String, WhiteSplitMultipleFkChildCQ> _baseId_SpecifyDerivedReferrer_WhiteSplitMultipleFkChildListMap;
     public Map<String, WhiteSplitMultipleFkChildCQ> getBaseId_SpecifyDerivedReferrer_WhiteSplitMultipleFkChildList() { return _baseId_SpecifyDerivedReferrer_WhiteSplitMultipleFkChildListMap; }
-    public String keepBaseId_SpecifyDerivedReferrer_WhiteSplitMultipleFkChildList(WhiteSplitMultipleFkChildCQ subQuery) {
+    public String keepBaseId_SpecifyDerivedReferrer_WhiteSplitMultipleFkChildList(WhiteSplitMultipleFkChildCQ sq) {
         if (_baseId_SpecifyDerivedReferrer_WhiteSplitMultipleFkChildListMap == null) { _baseId_SpecifyDerivedReferrer_WhiteSplitMultipleFkChildListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_baseId_SpecifyDerivedReferrer_WhiteSplitMultipleFkChildListMap.size() + 1);
-        _baseId_SpecifyDerivedReferrer_WhiteSplitMultipleFkChildListMap.put(key, subQuery); return "baseId_SpecifyDerivedReferrer_WhiteSplitMultipleFkChildList." + key;
+        String ky = "subQueryMapKey" + (_baseId_SpecifyDerivedReferrer_WhiteSplitMultipleFkChildListMap.size() + 1);
+        _baseId_SpecifyDerivedReferrer_WhiteSplitMultipleFkChildListMap.put(ky, sq); return "baseId_SpecifyDerivedReferrer_WhiteSplitMultipleFkChildList." + ky;
     }
 
     protected Map<String, WhiteSplitMultipleFkChildCQ> _baseId_InScopeRelation_WhiteSplitMultipleFkChildListMap;
     public Map<String, WhiteSplitMultipleFkChildCQ> getBaseId_InScopeRelation_WhiteSplitMultipleFkChildList() { return _baseId_InScopeRelation_WhiteSplitMultipleFkChildListMap; }
-    public String keepBaseId_InScopeRelation_WhiteSplitMultipleFkChildList(WhiteSplitMultipleFkChildCQ subQuery) {
+    public String keepBaseId_InScopeRelation_WhiteSplitMultipleFkChildList(WhiteSplitMultipleFkChildCQ sq) {
         if (_baseId_InScopeRelation_WhiteSplitMultipleFkChildListMap == null) { _baseId_InScopeRelation_WhiteSplitMultipleFkChildListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_baseId_InScopeRelation_WhiteSplitMultipleFkChildListMap.size() + 1);
-        _baseId_InScopeRelation_WhiteSplitMultipleFkChildListMap.put(key, subQuery); return "baseId_InScopeRelation_WhiteSplitMultipleFkChildList." + key;
+        String ky = "subQueryMapKey" + (_baseId_InScopeRelation_WhiteSplitMultipleFkChildListMap.size() + 1);
+        _baseId_InScopeRelation_WhiteSplitMultipleFkChildListMap.put(ky, sq); return "baseId_InScopeRelation_WhiteSplitMultipleFkChildList." + ky;
     }
 
     protected Map<String, WhiteSplitMultipleFkChildCQ> _baseId_NotInScopeRelation_WhiteSplitMultipleFkChildListMap;
     public Map<String, WhiteSplitMultipleFkChildCQ> getBaseId_NotInScopeRelation_WhiteSplitMultipleFkChildList() { return _baseId_NotInScopeRelation_WhiteSplitMultipleFkChildListMap; }
-    public String keepBaseId_NotInScopeRelation_WhiteSplitMultipleFkChildList(WhiteSplitMultipleFkChildCQ subQuery) {
+    public String keepBaseId_NotInScopeRelation_WhiteSplitMultipleFkChildList(WhiteSplitMultipleFkChildCQ sq) {
         if (_baseId_NotInScopeRelation_WhiteSplitMultipleFkChildListMap == null) { _baseId_NotInScopeRelation_WhiteSplitMultipleFkChildListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_baseId_NotInScopeRelation_WhiteSplitMultipleFkChildListMap.size() + 1);
-        _baseId_NotInScopeRelation_WhiteSplitMultipleFkChildListMap.put(key, subQuery); return "baseId_NotInScopeRelation_WhiteSplitMultipleFkChildList." + key;
+        String ky = "subQueryMapKey" + (_baseId_NotInScopeRelation_WhiteSplitMultipleFkChildListMap.size() + 1);
+        _baseId_NotInScopeRelation_WhiteSplitMultipleFkChildListMap.put(ky, sq); return "baseId_NotInScopeRelation_WhiteSplitMultipleFkChildList." + ky;
     }
 
     protected Map<String, WhiteSplitMultipleFkChildCQ> _baseId_QueryDerivedReferrer_WhiteSplitMultipleFkChildListMap;
     public Map<String, WhiteSplitMultipleFkChildCQ> getBaseId_QueryDerivedReferrer_WhiteSplitMultipleFkChildList() { return _baseId_QueryDerivedReferrer_WhiteSplitMultipleFkChildListMap; }
-    public String keepBaseId_QueryDerivedReferrer_WhiteSplitMultipleFkChildList(WhiteSplitMultipleFkChildCQ subQuery) {
+    public String keepBaseId_QueryDerivedReferrer_WhiteSplitMultipleFkChildList(WhiteSplitMultipleFkChildCQ sq) {
         if (_baseId_QueryDerivedReferrer_WhiteSplitMultipleFkChildListMap == null) { _baseId_QueryDerivedReferrer_WhiteSplitMultipleFkChildListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_baseId_QueryDerivedReferrer_WhiteSplitMultipleFkChildListMap.size() + 1);
-        _baseId_QueryDerivedReferrer_WhiteSplitMultipleFkChildListMap.put(key, subQuery); return "baseId_QueryDerivedReferrer_WhiteSplitMultipleFkChildList." + key;
+        String ky = "subQueryMapKey" + (_baseId_QueryDerivedReferrer_WhiteSplitMultipleFkChildListMap.size() + 1);
+        _baseId_QueryDerivedReferrer_WhiteSplitMultipleFkChildListMap.put(ky, sq); return "baseId_QueryDerivedReferrer_WhiteSplitMultipleFkChildList." + ky;
     }
     protected Map<String, Object> _baseId_QueryDerivedReferrer_WhiteSplitMultipleFkChildListParameterMap;
     public Map<String, Object> getBaseId_QueryDerivedReferrer_WhiteSplitMultipleFkChildListParameter() { return _baseId_QueryDerivedReferrer_WhiteSplitMultipleFkChildListParameterMap; }
-    public String keepBaseId_QueryDerivedReferrer_WhiteSplitMultipleFkChildListParameter(Object parameterValue) {
+    public String keepBaseId_QueryDerivedReferrer_WhiteSplitMultipleFkChildListParameter(Object vl) {
         if (_baseId_QueryDerivedReferrer_WhiteSplitMultipleFkChildListParameterMap == null) { _baseId_QueryDerivedReferrer_WhiteSplitMultipleFkChildListParameterMap = newLinkedHashMapSized(4); }
-        String key = "subQueryParameterKey" + (_baseId_QueryDerivedReferrer_WhiteSplitMultipleFkChildListParameterMap.size() + 1);
-        _baseId_QueryDerivedReferrer_WhiteSplitMultipleFkChildListParameterMap.put(key, parameterValue); return "baseId_QueryDerivedReferrer_WhiteSplitMultipleFkChildListParameter." + key;
+        String ky = "subQueryParameterKey" + (_baseId_QueryDerivedReferrer_WhiteSplitMultipleFkChildListParameterMap.size() + 1);
+        _baseId_QueryDerivedReferrer_WhiteSplitMultipleFkChildListParameterMap.put(ky, vl); return "baseId_QueryDerivedReferrer_WhiteSplitMultipleFkChildListParameter." + ky;
     }
 
     /** 
@@ -193,18 +193,18 @@ public class BsWhiteSplitMultipleFkBaseCQ extends AbstractBsWhiteSplitMultipleFk
 
     protected Map<String, WhiteSplitMultipleFkNextCQ> _nextId_InScopeRelation_WhiteSplitMultipleFkNextMap;
     public Map<String, WhiteSplitMultipleFkNextCQ> getNextId_InScopeRelation_WhiteSplitMultipleFkNext() { return _nextId_InScopeRelation_WhiteSplitMultipleFkNextMap; }
-    public String keepNextId_InScopeRelation_WhiteSplitMultipleFkNext(WhiteSplitMultipleFkNextCQ subQuery) {
+    public String keepNextId_InScopeRelation_WhiteSplitMultipleFkNext(WhiteSplitMultipleFkNextCQ sq) {
         if (_nextId_InScopeRelation_WhiteSplitMultipleFkNextMap == null) { _nextId_InScopeRelation_WhiteSplitMultipleFkNextMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_nextId_InScopeRelation_WhiteSplitMultipleFkNextMap.size() + 1);
-        _nextId_InScopeRelation_WhiteSplitMultipleFkNextMap.put(key, subQuery); return "nextId_InScopeRelation_WhiteSplitMultipleFkNext." + key;
+        String ky = "subQueryMapKey" + (_nextId_InScopeRelation_WhiteSplitMultipleFkNextMap.size() + 1);
+        _nextId_InScopeRelation_WhiteSplitMultipleFkNextMap.put(ky, sq); return "nextId_InScopeRelation_WhiteSplitMultipleFkNext." + ky;
     }
 
     protected Map<String, WhiteSplitMultipleFkNextCQ> _nextId_NotInScopeRelation_WhiteSplitMultipleFkNextMap;
     public Map<String, WhiteSplitMultipleFkNextCQ> getNextId_NotInScopeRelation_WhiteSplitMultipleFkNext() { return _nextId_NotInScopeRelation_WhiteSplitMultipleFkNextMap; }
-    public String keepNextId_NotInScopeRelation_WhiteSplitMultipleFkNext(WhiteSplitMultipleFkNextCQ subQuery) {
+    public String keepNextId_NotInScopeRelation_WhiteSplitMultipleFkNext(WhiteSplitMultipleFkNextCQ sq) {
         if (_nextId_NotInScopeRelation_WhiteSplitMultipleFkNextMap == null) { _nextId_NotInScopeRelation_WhiteSplitMultipleFkNextMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_nextId_NotInScopeRelation_WhiteSplitMultipleFkNextMap.size() + 1);
-        _nextId_NotInScopeRelation_WhiteSplitMultipleFkNextMap.put(key, subQuery); return "nextId_NotInScopeRelation_WhiteSplitMultipleFkNext." + key;
+        String ky = "subQueryMapKey" + (_nextId_NotInScopeRelation_WhiteSplitMultipleFkNextMap.size() + 1);
+        _nextId_NotInScopeRelation_WhiteSplitMultipleFkNextMap.put(ky, sq); return "nextId_NotInScopeRelation_WhiteSplitMultipleFkNext." + ky;
     }
 
     /** 
@@ -282,14 +282,14 @@ public class BsWhiteSplitMultipleFkBaseCQ extends AbstractBsWhiteSplitMultipleFk
     // ===================================================================================
     //                                                                         Union Query
     //                                                                         ===========
-    protected void reflectRelationOnUnionQuery(ConditionQuery baseQueryAsSuper, ConditionQuery unionQueryAsSuper) {
-        WhiteSplitMultipleFkBaseCQ baseQuery = (WhiteSplitMultipleFkBaseCQ)baseQueryAsSuper;
-        WhiteSplitMultipleFkBaseCQ unionQuery = (WhiteSplitMultipleFkBaseCQ)unionQueryAsSuper;
-        if (baseQuery.hasConditionQueryWhiteSplitMultipleFkNext()) {
-            unionQuery.queryWhiteSplitMultipleFkNext().reflectRelationOnUnionQuery(baseQuery.queryWhiteSplitMultipleFkNext(), unionQuery.queryWhiteSplitMultipleFkNext());
+    protected void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
+        WhiteSplitMultipleFkBaseCQ bq = (WhiteSplitMultipleFkBaseCQ)bqs;
+        WhiteSplitMultipleFkBaseCQ uq = (WhiteSplitMultipleFkBaseCQ)uqs;
+        if (bq.hasConditionQueryWhiteSplitMultipleFkNext()) {
+            uq.queryWhiteSplitMultipleFkNext().reflectRelationOnUnionQuery(bq.queryWhiteSplitMultipleFkNext(), uq.queryWhiteSplitMultipleFkNext());
         }
-        if (baseQuery.hasConditionQueryWhiteSplitMultipleFkRefAsSplitMultipleFkTest()) {
-            unionQuery.queryWhiteSplitMultipleFkRefAsSplitMultipleFkTest().reflectRelationOnUnionQuery(baseQuery.queryWhiteSplitMultipleFkRefAsSplitMultipleFkTest(), unionQuery.queryWhiteSplitMultipleFkRefAsSplitMultipleFkTest());
+        if (bq.hasConditionQueryWhiteSplitMultipleFkRefAsSplitMultipleFkTest()) {
+            uq.queryWhiteSplitMultipleFkRefAsSplitMultipleFkTest().reflectRelationOnUnionQuery(bq.queryWhiteSplitMultipleFkRefAsSplitMultipleFkTest(), uq.queryWhiteSplitMultipleFkRefAsSplitMultipleFkTest());
         }
     }
 
@@ -373,10 +373,10 @@ public class BsWhiteSplitMultipleFkBaseCQ extends AbstractBsWhiteSplitMultipleFk
     //                                                                     ===============
     protected Map<String, WhiteSplitMultipleFkBaseCQ> _scalarConditionMap;
     public Map<String, WhiteSplitMultipleFkBaseCQ> getScalarCondition() { return _scalarConditionMap; }
-    public String keepScalarCondition(WhiteSplitMultipleFkBaseCQ subQuery) {
+    public String keepScalarCondition(WhiteSplitMultipleFkBaseCQ sq) {
         if (_scalarConditionMap == null) { _scalarConditionMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
-        _scalarConditionMap.put(key, subQuery); return "scalarCondition." + key;
+        String ky = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
+        _scalarConditionMap.put(ky, sq); return "scalarCondition." + ky;
     }
 
     // ===================================================================================
@@ -384,25 +384,25 @@ public class BsWhiteSplitMultipleFkBaseCQ extends AbstractBsWhiteSplitMultipleFk
     //                                                                       =============
     protected Map<String, WhiteSplitMultipleFkBaseCQ> _specifyMyselfDerivedMap;
     public Map<String, WhiteSplitMultipleFkBaseCQ> getSpecifyMyselfDerived() { return _specifyMyselfDerivedMap; }
-    public String keepSpecifyMyselfDerived(WhiteSplitMultipleFkBaseCQ subQuery) {
+    public String keepSpecifyMyselfDerived(WhiteSplitMultipleFkBaseCQ sq) {
         if (_specifyMyselfDerivedMap == null) { _specifyMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
-        _specifyMyselfDerivedMap.put(key, subQuery); return "specifyMyselfDerived." + key;
+        String ky = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
+        _specifyMyselfDerivedMap.put(ky, sq); return "specifyMyselfDerived." + ky;
     }
 
     protected Map<String, WhiteSplitMultipleFkBaseCQ> _queryMyselfDerivedMap;
     public Map<String, WhiteSplitMultipleFkBaseCQ> getQueryMyselfDerived() { return _queryMyselfDerivedMap; }
-    public String keepQueryMyselfDerived(WhiteSplitMultipleFkBaseCQ subQuery) {
+    public String keepQueryMyselfDerived(WhiteSplitMultipleFkBaseCQ sq) {
         if (_queryMyselfDerivedMap == null) { _queryMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
-        _queryMyselfDerivedMap.put(key, subQuery); return "queryMyselfDerived." + key;
+        String ky = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
+        _queryMyselfDerivedMap.put(ky, sq); return "queryMyselfDerived." + ky;
     }
     protected Map<String, Object> _qyeryMyselfDerivedParameterMap;
     public Map<String, Object> getQueryMyselfDerivedParameter() { return _qyeryMyselfDerivedParameterMap; }
-    public String keepQueryMyselfDerivedParameter(Object parameterValue) {
+    public String keepQueryMyselfDerivedParameter(Object vl) {
         if (_qyeryMyselfDerivedParameterMap == null) { _qyeryMyselfDerivedParameterMap = newLinkedHashMapSized(4); }
-        String key = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
-        _qyeryMyselfDerivedParameterMap.put(key, parameterValue); return "queryMyselfDerivedParameter." + key;
+        String ky = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
+        _qyeryMyselfDerivedParameterMap.put(ky, vl); return "queryMyselfDerivedParameter." + ky;
     }
 
     // ===================================================================================
@@ -410,10 +410,10 @@ public class BsWhiteSplitMultipleFkBaseCQ extends AbstractBsWhiteSplitMultipleFk
     //                                                                        ============
     protected Map<String, WhiteSplitMultipleFkBaseCQ> _myselfExistsMap;
     public Map<String, WhiteSplitMultipleFkBaseCQ> getMyselfExists() { return _myselfExistsMap; }
-    public String keepMyselfExists(WhiteSplitMultipleFkBaseCQ subQuery) {
+    public String keepMyselfExists(WhiteSplitMultipleFkBaseCQ sq) {
         if (_myselfExistsMap == null) { _myselfExistsMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
-        _myselfExistsMap.put(key, subQuery); return "myselfExists." + key;
+        String ky = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
+        _myselfExistsMap.put(ky, sq); return "myselfExists." + ky;
     }
 
     // ===================================================================================
@@ -421,10 +421,10 @@ public class BsWhiteSplitMultipleFkBaseCQ extends AbstractBsWhiteSplitMultipleFk
     //                                                                       =============
     protected Map<String, WhiteSplitMultipleFkBaseCQ> _myselfInScopeMap;
     public Map<String, WhiteSplitMultipleFkBaseCQ> getMyselfInScope() { return _myselfInScopeMap; }
-    public String keepMyselfInScope(WhiteSplitMultipleFkBaseCQ subQuery) {
+    public String keepMyselfInScope(WhiteSplitMultipleFkBaseCQ sq) {
         if (_myselfInScopeMap == null) { _myselfInScopeMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
-        _myselfInScopeMap.put(key, subQuery); return "myselfInScope." + key;
+        String ky = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
+        _myselfInScopeMap.put(ky, sq); return "myselfInScope." + ky;
     }
 
     // ===================================================================================

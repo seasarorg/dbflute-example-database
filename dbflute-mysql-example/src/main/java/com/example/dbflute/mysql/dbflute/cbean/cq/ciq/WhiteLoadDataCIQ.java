@@ -86,18 +86,18 @@ public class WhiteLoadDataCIQ extends AbstractBsWhiteLoadDataCQ {
     //                                                                ====================
     protected ConditionValue getCValueLoadDataId() { return _myCQ.getLoadDataId(); }
     protected ConditionValue getCValueLoadDataName() { return _myCQ.getLoadDataName(); }
-    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) { return null; }
-    public String keepScalarCondition(WhiteLoadDataCQ subQuery)
+    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
+    public String keepScalarCondition(WhiteLoadDataCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }
-    public String keepSpecifyMyselfDerived(WhiteLoadDataCQ subQuery)
+    public String keepSpecifyMyselfDerived(WhiteLoadDataCQ sq)
     { throwIICBOE("(Specify)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerived(WhiteLoadDataCQ subQuery)
+    public String keepQueryMyselfDerived(WhiteLoadDataCQ sq)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerivedParameter(Object parameterValue)
+    public String keepQueryMyselfDerivedParameter(Object vl)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepMyselfExists(WhiteLoadDataCQ subQuery)
+    public String keepMyselfExists(WhiteLoadDataCQ sq)
     { throwIICBOE("MyselfExists"); return null;}
-    public String keepMyselfInScope(WhiteLoadDataCQ subQuery)
+    public String keepMyselfInScope(WhiteLoadDataCQ sq)
     { throwIICBOE("MyselfInScope"); return null;}
 
     protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()

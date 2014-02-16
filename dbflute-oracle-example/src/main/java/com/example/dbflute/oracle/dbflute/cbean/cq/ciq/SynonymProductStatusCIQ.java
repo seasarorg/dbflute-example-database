@@ -82,22 +82,22 @@ public class SynonymProductStatusCIQ extends AbstractBsSynonymProductStatusCQ {
     { throwIICBOE("(Specify)DerivedReferrer"); return null; }
     public String keepProductStatusCode_QueryDerivedReferrer_SynonymProductList(SynonymProductCQ sq)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
-    public String keepProductStatusCode_QueryDerivedReferrer_SynonymProductListParameter(Object pv)
+    public String keepProductStatusCode_QueryDerivedReferrer_SynonymProductListParameter(Object vl)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
     protected ConditionValue getCValueProductStatusName() { return _myCQ.getProductStatusName(); }
     protected ConditionValue getCValueDisplayOrder() { return _myCQ.getDisplayOrder(); }
-    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) { return null; }
-    public String keepScalarCondition(SynonymProductStatusCQ subQuery)
+    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
+    public String keepScalarCondition(SynonymProductStatusCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }
-    public String keepSpecifyMyselfDerived(SynonymProductStatusCQ subQuery)
+    public String keepSpecifyMyselfDerived(SynonymProductStatusCQ sq)
     { throwIICBOE("(Specify)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerived(SynonymProductStatusCQ subQuery)
+    public String keepQueryMyselfDerived(SynonymProductStatusCQ sq)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerivedParameter(Object parameterValue)
+    public String keepQueryMyselfDerivedParameter(Object vl)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepMyselfExists(SynonymProductStatusCQ subQuery)
+    public String keepMyselfExists(SynonymProductStatusCQ sq)
     { throwIICBOE("MyselfExists"); return null;}
-    public String keepMyselfInScope(SynonymProductStatusCQ subQuery)
+    public String keepMyselfInScope(SynonymProductStatusCQ sq)
     { throwIICBOE("MyselfInScope"); return null;}
 
     protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()

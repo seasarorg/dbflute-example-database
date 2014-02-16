@@ -82,21 +82,21 @@ public class SynonymExceptCIQ extends AbstractBsSynonymExceptCQ {
     { throwIICBOE("(Specify)DerivedReferrer"); return null; }
     public String keepExceptId_QueryDerivedReferrer_SynonymRefExceptList(SynonymRefExceptCQ sq)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
-    public String keepExceptId_QueryDerivedReferrer_SynonymRefExceptListParameter(Object pv)
+    public String keepExceptId_QueryDerivedReferrer_SynonymRefExceptListParameter(Object vl)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
     protected ConditionValue getCValueExceptName() { return _myCQ.getExceptName(); }
-    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) { return null; }
-    public String keepScalarCondition(SynonymExceptCQ subQuery)
+    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
+    public String keepScalarCondition(SynonymExceptCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }
-    public String keepSpecifyMyselfDerived(SynonymExceptCQ subQuery)
+    public String keepSpecifyMyselfDerived(SynonymExceptCQ sq)
     { throwIICBOE("(Specify)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerived(SynonymExceptCQ subQuery)
+    public String keepQueryMyselfDerived(SynonymExceptCQ sq)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerivedParameter(Object parameterValue)
+    public String keepQueryMyselfDerivedParameter(Object vl)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepMyselfExists(SynonymExceptCQ subQuery)
+    public String keepMyselfExists(SynonymExceptCQ sq)
     { throwIICBOE("MyselfExists"); return null;}
-    public String keepMyselfInScope(SynonymExceptCQ subQuery)
+    public String keepMyselfInScope(SynonymExceptCQ sq)
     { throwIICBOE("MyselfInScope"); return null;}
 
     protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()

@@ -50,48 +50,48 @@ public class AliasMemberDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgMemberId implements PropertyGateway {
-        public Object read(Entity e) { return ((AliasMember)e).getMemberId(); }
-        public void write(Entity e, Object v) { ((AliasMember)e).setMemberId(cti(v)); }
+        public Object read(Entity et) { return ((AliasMember)et).getMemberId(); }
+        public void write(Entity et, Object vl) { ((AliasMember)et).setMemberId(cti(vl)); }
     }
     public static class EpgMemberName implements PropertyGateway {
-        public Object read(Entity e) { return ((AliasMember)e).getMemberName(); }
-        public void write(Entity e, Object v) { ((AliasMember)e).setMemberName((String)v); }
+        public Object read(Entity et) { return ((AliasMember)et).getMemberName(); }
+        public void write(Entity et, Object vl) { ((AliasMember)et).setMemberName((String)vl); }
     }
     public static class EpgMemberAccount implements PropertyGateway {
-        public Object read(Entity e) { return ((AliasMember)e).getMemberAccount(); }
-        public void write(Entity e, Object v) { ((AliasMember)e).setMemberAccount((String)v); }
+        public Object read(Entity et) { return ((AliasMember)et).getMemberAccount(); }
+        public void write(Entity et, Object vl) { ((AliasMember)et).setMemberAccount((String)vl); }
     }
     public static class EpgMemberStatusCode implements PropertyGateway {
-        public Object read(Entity e) { return ((AliasMember)e).getMemberStatusCode(); }
-        public void write(Entity e, Object v) { ((AliasMember)e).setMemberStatusCode((String)v); }
+        public Object read(Entity et) { return ((AliasMember)et).getMemberStatusCode(); }
+        public void write(Entity et, Object vl) { ((AliasMember)et).setMemberStatusCode((String)vl); }
     }
     public static class EpgFormalizedDatetime implements PropertyGateway {
-        public Object read(Entity e) { return ((AliasMember)e).getFormalizedDatetime(); }
-        public void write(Entity e, Object v) { ((AliasMember)e).setFormalizedDatetime((java.sql.Timestamp)v); }
+        public Object read(Entity et) { return ((AliasMember)et).getFormalizedDatetime(); }
+        public void write(Entity et, Object vl) { ((AliasMember)et).setFormalizedDatetime((java.sql.Timestamp)vl); }
     }
     public static class EpgBirthdate implements PropertyGateway {
-        public Object read(Entity e) { return ((AliasMember)e).getBirthdate(); }
-        public void write(Entity e, Object v) { ((AliasMember)e).setBirthdate((java.util.Date)v); }
+        public Object read(Entity et) { return ((AliasMember)et).getBirthdate(); }
+        public void write(Entity et, Object vl) { ((AliasMember)et).setBirthdate((java.util.Date)vl); }
     }
     public static class EpgRegisterDatetime implements PropertyGateway {
-        public Object read(Entity e) { return ((AliasMember)e).getRegisterDatetime(); }
-        public void write(Entity e, Object v) { ((AliasMember)e).setRegisterDatetime((java.sql.Timestamp)v); }
+        public Object read(Entity et) { return ((AliasMember)et).getRegisterDatetime(); }
+        public void write(Entity et, Object vl) { ((AliasMember)et).setRegisterDatetime((java.sql.Timestamp)vl); }
     }
     public static class EpgRegisterUser implements PropertyGateway {
-        public Object read(Entity e) { return ((AliasMember)e).getRegisterUser(); }
-        public void write(Entity e, Object v) { ((AliasMember)e).setRegisterUser((String)v); }
+        public Object read(Entity et) { return ((AliasMember)et).getRegisterUser(); }
+        public void write(Entity et, Object vl) { ((AliasMember)et).setRegisterUser((String)vl); }
     }
     public static class EpgUpdateDatetime implements PropertyGateway {
-        public Object read(Entity e) { return ((AliasMember)e).getUpdateDatetime(); }
-        public void write(Entity e, Object v) { ((AliasMember)e).setUpdateDatetime((java.sql.Timestamp)v); }
+        public Object read(Entity et) { return ((AliasMember)et).getUpdateDatetime(); }
+        public void write(Entity et, Object vl) { ((AliasMember)et).setUpdateDatetime((java.sql.Timestamp)vl); }
     }
     public static class EpgUpdateUser implements PropertyGateway {
-        public Object read(Entity e) { return ((AliasMember)e).getUpdateUser(); }
-        public void write(Entity e, Object v) { ((AliasMember)e).setUpdateUser((String)v); }
+        public Object read(Entity et) { return ((AliasMember)et).getUpdateUser(); }
+        public void write(Entity et, Object vl) { ((AliasMember)et).setUpdateUser((String)vl); }
     }
     public static class EpgVersionNo implements PropertyGateway {
-        public Object read(Entity e) { return ((AliasMember)e).getVersionNo(); }
-        public void write(Entity e, Object v) { ((AliasMember)e).setVersionNo(ctl(v)); }
+        public Object read(Entity et) { return ((AliasMember)et).getVersionNo(); }
+        public void write(Entity et, Object vl) { ((AliasMember)et).setVersionNo(ctl(vl)); }
     }
 
     // ===================================================================================
@@ -167,16 +167,16 @@ public class AliasMemberDbm extends AbstractDBMeta {
     //                                      Foreign Property
     //                                      ----------------
     public ForeignInfo foreignMemberStatus() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnMemberStatusCode(), MemberStatusDbm.getInstance().columnMemberStatusCode());
-        return cfi("FK_MEMBER_MEMBER_STATUS", "memberStatus", this, MemberStatusDbm.getInstance(), map, 0, false, false, false, false, null, null, false, "aliasMemberList");
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnMemberStatusCode(), MemberStatusDbm.getInstance().columnMemberStatusCode());
+        return cfi("FK_MEMBER_MEMBER_STATUS", "memberStatus", this, MemberStatusDbm.getInstance(), mp, 0, false, false, false, false, null, null, false, "aliasMemberList");
     }
 
     // -----------------------------------------------------
     //                                     Referrer Property
     //                                     -----------------
     public ReferrerInfo referrerAliasMemberLoginList() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnMemberId(), AliasMemberLoginDbm.getInstance().columnMemberId());
-        return cri("FK_MEMBER_LOGIN_MEMBER", "aliasMemberLoginList", this, AliasMemberLoginDbm.getInstance(), map, false, "aliasMember");
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnMemberId(), AliasMemberLoginDbm.getInstance().columnMemberId());
+        return cri("FK_MEMBER_LOGIN_MEMBER", "aliasMemberLoginList", this, AliasMemberLoginDbm.getInstance(), mp, false, "aliasMember");
     }
 
     // ===================================================================================
@@ -213,10 +213,10 @@ public class AliasMemberDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((AliasMember)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((AliasMember)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((AliasMember)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((AliasMember)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

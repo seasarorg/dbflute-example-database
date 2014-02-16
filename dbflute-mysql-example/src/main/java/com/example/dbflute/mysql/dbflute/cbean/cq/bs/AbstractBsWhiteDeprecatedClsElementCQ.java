@@ -225,8 +225,8 @@ public abstract class AbstractBsWhiteDeprecatedClsElementCQ extends AbstractCond
      */
     public void setDeprecatedClsElementCode_IsNotNull() { regDeprecatedClsElementCode(CK_ISNN, DOBJ); }
 
-    protected void regDeprecatedClsElementCode(ConditionKey k, Object v) { regQ(k, v, getCValueDeprecatedClsElementCode(), "DEPRECATED_CLS_ELEMENT_CODE"); }
-    abstract protected ConditionValue getCValueDeprecatedClsElementCode();
+    protected void regDeprecatedClsElementCode(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueDeprecatedClsElementCode(), "DEPRECATED_CLS_ELEMENT_CODE"); }
+    protected abstract ConditionValue getCValueDeprecatedClsElementCode();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -329,8 +329,8 @@ public abstract class AbstractBsWhiteDeprecatedClsElementCQ extends AbstractCond
      */
     public void setDeprecatedClsElementName_IsNotNull() { regDeprecatedClsElementName(CK_ISNN, DOBJ); }
 
-    protected void regDeprecatedClsElementName(ConditionKey k, Object v) { regQ(k, v, getCValueDeprecatedClsElementName(), "DEPRECATED_CLS_ELEMENT_NAME"); }
-    abstract protected ConditionValue getCValueDeprecatedClsElementName();
+    protected void regDeprecatedClsElementName(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueDeprecatedClsElementName(), "DEPRECATED_CLS_ELEMENT_NAME"); }
+    protected abstract ConditionValue getCValueDeprecatedClsElementName();
 
     // ===================================================================================
     //                                                                     ScalarCondition
@@ -437,22 +437,22 @@ public abstract class AbstractBsWhiteDeprecatedClsElementCQ extends AbstractCond
         return xcreateSSQFunction(CK_LE.getOperand());
     }
 
-    protected HpSSQFunction<WhiteDeprecatedClsElementCB> xcreateSSQFunction(final String operand) {
+    protected HpSSQFunction<WhiteDeprecatedClsElementCB> xcreateSSQFunction(final String rd) {
         return new HpSSQFunction<WhiteDeprecatedClsElementCB>(new HpSSQSetupper<WhiteDeprecatedClsElementCB>() {
-            public void setup(String function, SubQuery<WhiteDeprecatedClsElementCB> subQuery, HpSSQOption<WhiteDeprecatedClsElementCB> option) {
-                xscalarCondition(function, subQuery, operand, option);
+            public void setup(String fn, SubQuery<WhiteDeprecatedClsElementCB> sq, HpSSQOption<WhiteDeprecatedClsElementCB> op) {
+                xscalarCondition(fn, sq, rd, op);
             }
         });
     }
 
-    protected void xscalarCondition(String function, SubQuery<WhiteDeprecatedClsElementCB> subQuery, String operand, HpSSQOption<WhiteDeprecatedClsElementCB> option) {
-        assertObjectNotNull("subQuery<WhiteDeprecatedClsElementCB>", subQuery);
-        WhiteDeprecatedClsElementCB cb = xcreateScalarConditionCB(); subQuery.query(cb);
-        String subQueryPropertyName = keepScalarCondition(cb.query()); // for saving query-value
-        option.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
-        registerScalarCondition(function, cb.query(), subQueryPropertyName, operand, option);
+    protected void xscalarCondition(String fn, SubQuery<WhiteDeprecatedClsElementCB> sq, String rd, HpSSQOption<WhiteDeprecatedClsElementCB> op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteDeprecatedClsElementCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        String pp = keepScalarCondition(cb.query()); // for saving query-value
+        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
-    public abstract String keepScalarCondition(WhiteDeprecatedClsElementCQ subQuery);
+    public abstract String keepScalarCondition(WhiteDeprecatedClsElementCQ sq);
 
     protected WhiteDeprecatedClsElementCB xcreateScalarConditionCB() {
         WhiteDeprecatedClsElementCB cb = new WhiteDeprecatedClsElementCB();
@@ -469,13 +469,14 @@ public abstract class AbstractBsWhiteDeprecatedClsElementCQ extends AbstractCond
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    public void xsmyselfDerive(String function, SubQuery<WhiteDeprecatedClsElementCB> subQuery, String aliasName, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<WhiteDeprecatedClsElementCB>", subQuery);
-        WhiteDeprecatedClsElementCB cb = new WhiteDeprecatedClsElementCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
-        registerSpecifyMyselfDerived(function, cb.query(), "DEPRECATED_CLS_ELEMENT_CODE", "DEPRECATED_CLS_ELEMENT_CODE", subQueryPropertyName, "myselfDerived", aliasName, option);
+    public void xsmyselfDerive(String fn, SubQuery<WhiteDeprecatedClsElementCB> sq, String al, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteDeprecatedClsElementCB cb = new WhiteDeprecatedClsElementCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "DEPRECATED_CLS_ELEMENT_CODE";
+        String pp = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
+        registerSpecifyMyselfDerived(fn, cb.query(), pk, pk, pp, "myselfDerived", al, op);
     }
-    public abstract String keepSpecifyMyselfDerived(WhiteDeprecatedClsElementCQ subQuery);
+    public abstract String keepSpecifyMyselfDerived(WhiteDeprecatedClsElementCQ sq);
 
     /**
      * Prepare for (Query)MyselfDerived (SubQuery).
@@ -486,20 +487,21 @@ public abstract class AbstractBsWhiteDeprecatedClsElementCQ extends AbstractCond
     }
     protected HpQDRFunction<WhiteDeprecatedClsElementCB> xcreateQDRFunctionMyselfDerived() {
         return new HpQDRFunction<WhiteDeprecatedClsElementCB>(new HpQDRSetupper<WhiteDeprecatedClsElementCB>() {
-            public void setup(String function, SubQuery<WhiteDeprecatedClsElementCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-                xqderiveMyselfDerived(function, subQuery, operand, value, option);
+            public void setup(String fn, SubQuery<WhiteDeprecatedClsElementCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+                xqderiveMyselfDerived(fn, sq, rd, vl, op);
             }
         });
     }
-    public void xqderiveMyselfDerived(String function, SubQuery<WhiteDeprecatedClsElementCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<WhiteDeprecatedClsElementCB>", subQuery);
-        WhiteDeprecatedClsElementCB cb = new WhiteDeprecatedClsElementCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepQueryMyselfDerived(cb.query()); // for saving query-value.
-        String parameterPropertyName = keepQueryMyselfDerivedParameter(value);
-        registerQueryMyselfDerived(function, cb.query(), "DEPRECATED_CLS_ELEMENT_CODE", "DEPRECATED_CLS_ELEMENT_CODE", subQueryPropertyName, "myselfDerived", operand, value, parameterPropertyName, option);
+    public void xqderiveMyselfDerived(String fn, SubQuery<WhiteDeprecatedClsElementCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteDeprecatedClsElementCB cb = new WhiteDeprecatedClsElementCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "DEPRECATED_CLS_ELEMENT_CODE";
+        String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
+        String prpp = keepQueryMyselfDerivedParameter(vl);
+        registerQueryMyselfDerived(fn, cb.query(), pk, pk, sqpp, "myselfDerived", rd, vl, prpp, op);
     }
-    public abstract String keepQueryMyselfDerived(WhiteDeprecatedClsElementCQ subQuery);
-    public abstract String keepQueryMyselfDerivedParameter(Object parameterValue);
+    public abstract String keepQueryMyselfDerived(WhiteDeprecatedClsElementCQ sq);
+    public abstract String keepQueryMyselfDerivedParameter(Object vl);
 
     // ===================================================================================
     //                                                                        MyselfExists
@@ -509,12 +511,12 @@ public abstract class AbstractBsWhiteDeprecatedClsElementCQ extends AbstractCond
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfExists(SubQuery<WhiteDeprecatedClsElementCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteDeprecatedClsElementCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteDeprecatedClsElementCB cb = new WhiteDeprecatedClsElementCB(); cb.xsetupForMyselfExists(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfExists(cb.query()); // for saving query-value.
-        registerMyselfExists(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfExists(cb.query()); // for saving query-value.
+        registerMyselfExists(cb.query(), pp);
     }
-    public abstract String keepMyselfExists(WhiteDeprecatedClsElementCQ subQuery);
+    public abstract String keepMyselfExists(WhiteDeprecatedClsElementCQ sq);
 
     // ===================================================================================
     //                                                                       MyselfInScope
@@ -524,12 +526,12 @@ public abstract class AbstractBsWhiteDeprecatedClsElementCQ extends AbstractCond
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfInScope(SubQuery<WhiteDeprecatedClsElementCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteDeprecatedClsElementCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteDeprecatedClsElementCB cb = new WhiteDeprecatedClsElementCB(); cb.xsetupForMyselfInScope(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfInScope(cb.query()); // for saving query-value.
-        registerMyselfInScope(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfInScope(cb.query()); // for saving query-value.
+        registerMyselfInScope(cb.query(), pp);
     }
-    public abstract String keepMyselfInScope(WhiteDeprecatedClsElementCQ subQuery);
+    public abstract String keepMyselfInScope(WhiteDeprecatedClsElementCQ sq);
 
     // ===================================================================================
     //                                                                    Full Text Search
@@ -555,7 +557,7 @@ public abstract class AbstractBsWhiteDeprecatedClsElementCQ extends AbstractCond
      * @param conditionValue The condition value embedded without binding (by MySQL restriction) but escaped. (NullAllowed: if null or empty, no condition)
      * @param modifier The modifier of full-text search. (NullAllowed: If the value is null, no modifier specified)
      */
-    public void match(java.util.List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList
+    public void match(List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList
                     , String conditionValue
                     , org.seasar.dbflute.dbway.WayOfMySQL.FullTextSearchModifier modifier) {
         xdoMatchForMySQL(textColumnList, conditionValue, modifier);

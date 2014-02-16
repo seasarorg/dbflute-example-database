@@ -90,7 +90,7 @@ public class MemberVendorSynonymCIQ extends AbstractBsMemberVendorSynonymCQ {
     { throwIICBOE("(Specify)DerivedReferrer"); return null; }
     public String keepMemberId_QueryDerivedReferrer_SynonymMemberLoginList(SynonymMemberLoginCQ sq)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
-    public String keepMemberId_QueryDerivedReferrer_SynonymMemberLoginListParameter(Object pv)
+    public String keepMemberId_QueryDerivedReferrer_SynonymMemberLoginListParameter(Object vl)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
     protected ConditionValue getCValueMemberName() { return _myCQ.getMemberName(); }
     protected ConditionValue getCValueMemberAccount() { return _myCQ.getMemberAccount(); }
@@ -108,18 +108,18 @@ public class MemberVendorSynonymCIQ extends AbstractBsMemberVendorSynonymCQ {
     protected ConditionValue getCValueUpdateUser() { return _myCQ.getUpdateUser(); }
     protected ConditionValue getCValueUpdateProcess() { return _myCQ.getUpdateProcess(); }
     protected ConditionValue getCValueVersionNo() { return _myCQ.getVersionNo(); }
-    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) { return null; }
-    public String keepScalarCondition(MemberVendorSynonymCQ subQuery)
+    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
+    public String keepScalarCondition(MemberVendorSynonymCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }
-    public String keepSpecifyMyselfDerived(MemberVendorSynonymCQ subQuery)
+    public String keepSpecifyMyselfDerived(MemberVendorSynonymCQ sq)
     { throwIICBOE("(Specify)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerived(MemberVendorSynonymCQ subQuery)
+    public String keepQueryMyselfDerived(MemberVendorSynonymCQ sq)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerivedParameter(Object parameterValue)
+    public String keepQueryMyselfDerivedParameter(Object vl)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepMyselfExists(MemberVendorSynonymCQ subQuery)
+    public String keepMyselfExists(MemberVendorSynonymCQ sq)
     { throwIICBOE("MyselfExists"); return null;}
-    public String keepMyselfInScope(MemberVendorSynonymCQ subQuery)
+    public String keepMyselfInScope(MemberVendorSynonymCQ sq)
     { throwIICBOE("MyselfInScope"); return null;}
 
     protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()

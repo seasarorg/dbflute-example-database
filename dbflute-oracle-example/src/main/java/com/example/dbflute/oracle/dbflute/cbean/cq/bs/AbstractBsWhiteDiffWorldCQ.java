@@ -145,8 +145,8 @@ public abstract class AbstractBsWhiteDiffWorldCQ extends AbstractConditionQuery 
      */
     public void setDiffWorldId_IsNotNull() { regDiffWorldId(CK_ISNN, DOBJ); }
 
-    protected void regDiffWorldId(ConditionKey k, Object v) { regQ(k, v, getCValueDiffWorldId(), "DIFF_WORLD_ID"); }
-    abstract protected ConditionValue getCValueDiffWorldId();
+    protected void regDiffWorldId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueDiffWorldId(), "DIFF_WORLD_ID"); }
+    protected abstract ConditionValue getCValueDiffWorldId();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -231,8 +231,8 @@ public abstract class AbstractBsWhiteDiffWorldCQ extends AbstractConditionQuery 
         regLSQ(CK_NLS, fRES(diffWorldName), getCValueDiffWorldName(), "DIFF_WORLD_NAME", likeSearchOption);
     }
 
-    protected void regDiffWorldName(ConditionKey k, Object v) { regQ(k, v, getCValueDiffWorldName(), "DIFF_WORLD_NAME"); }
-    abstract protected ConditionValue getCValueDiffWorldName();
+    protected void regDiffWorldName(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueDiffWorldName(), "DIFF_WORLD_NAME"); }
+    protected abstract ConditionValue getCValueDiffWorldName();
 
     // ===================================================================================
     //                                                                     ScalarCondition
@@ -339,22 +339,22 @@ public abstract class AbstractBsWhiteDiffWorldCQ extends AbstractConditionQuery 
         return xcreateSSQFunction(CK_LE.getOperand());
     }
 
-    protected HpSSQFunction<WhiteDiffWorldCB> xcreateSSQFunction(final String operand) {
+    protected HpSSQFunction<WhiteDiffWorldCB> xcreateSSQFunction(final String rd) {
         return new HpSSQFunction<WhiteDiffWorldCB>(new HpSSQSetupper<WhiteDiffWorldCB>() {
-            public void setup(String function, SubQuery<WhiteDiffWorldCB> subQuery, HpSSQOption<WhiteDiffWorldCB> option) {
-                xscalarCondition(function, subQuery, operand, option);
+            public void setup(String fn, SubQuery<WhiteDiffWorldCB> sq, HpSSQOption<WhiteDiffWorldCB> op) {
+                xscalarCondition(fn, sq, rd, op);
             }
         });
     }
 
-    protected void xscalarCondition(String function, SubQuery<WhiteDiffWorldCB> subQuery, String operand, HpSSQOption<WhiteDiffWorldCB> option) {
-        assertObjectNotNull("subQuery<WhiteDiffWorldCB>", subQuery);
-        WhiteDiffWorldCB cb = xcreateScalarConditionCB(); subQuery.query(cb);
-        String subQueryPropertyName = keepScalarCondition(cb.query()); // for saving query-value
-        option.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
-        registerScalarCondition(function, cb.query(), subQueryPropertyName, operand, option);
+    protected void xscalarCondition(String fn, SubQuery<WhiteDiffWorldCB> sq, String rd, HpSSQOption<WhiteDiffWorldCB> op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteDiffWorldCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        String pp = keepScalarCondition(cb.query()); // for saving query-value
+        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
-    public abstract String keepScalarCondition(WhiteDiffWorldCQ subQuery);
+    public abstract String keepScalarCondition(WhiteDiffWorldCQ sq);
 
     protected WhiteDiffWorldCB xcreateScalarConditionCB() {
         WhiteDiffWorldCB cb = new WhiteDiffWorldCB();
@@ -371,13 +371,14 @@ public abstract class AbstractBsWhiteDiffWorldCQ extends AbstractConditionQuery 
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    public void xsmyselfDerive(String function, SubQuery<WhiteDiffWorldCB> subQuery, String aliasName, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<WhiteDiffWorldCB>", subQuery);
-        WhiteDiffWorldCB cb = new WhiteDiffWorldCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
-        registerSpecifyMyselfDerived(function, cb.query(), "DIFF_WORLD_ID", "DIFF_WORLD_ID", subQueryPropertyName, "myselfDerived", aliasName, option);
+    public void xsmyselfDerive(String fn, SubQuery<WhiteDiffWorldCB> sq, String al, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteDiffWorldCB cb = new WhiteDiffWorldCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "DIFF_WORLD_ID";
+        String pp = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
+        registerSpecifyMyselfDerived(fn, cb.query(), pk, pk, pp, "myselfDerived", al, op);
     }
-    public abstract String keepSpecifyMyselfDerived(WhiteDiffWorldCQ subQuery);
+    public abstract String keepSpecifyMyselfDerived(WhiteDiffWorldCQ sq);
 
     /**
      * Prepare for (Query)MyselfDerived (SubQuery).
@@ -388,20 +389,21 @@ public abstract class AbstractBsWhiteDiffWorldCQ extends AbstractConditionQuery 
     }
     protected HpQDRFunction<WhiteDiffWorldCB> xcreateQDRFunctionMyselfDerived() {
         return new HpQDRFunction<WhiteDiffWorldCB>(new HpQDRSetupper<WhiteDiffWorldCB>() {
-            public void setup(String function, SubQuery<WhiteDiffWorldCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-                xqderiveMyselfDerived(function, subQuery, operand, value, option);
+            public void setup(String fn, SubQuery<WhiteDiffWorldCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+                xqderiveMyselfDerived(fn, sq, rd, vl, op);
             }
         });
     }
-    public void xqderiveMyselfDerived(String function, SubQuery<WhiteDiffWorldCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<WhiteDiffWorldCB>", subQuery);
-        WhiteDiffWorldCB cb = new WhiteDiffWorldCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepQueryMyselfDerived(cb.query()); // for saving query-value.
-        String parameterPropertyName = keepQueryMyselfDerivedParameter(value);
-        registerQueryMyselfDerived(function, cb.query(), "DIFF_WORLD_ID", "DIFF_WORLD_ID", subQueryPropertyName, "myselfDerived", operand, value, parameterPropertyName, option);
+    public void xqderiveMyselfDerived(String fn, SubQuery<WhiteDiffWorldCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteDiffWorldCB cb = new WhiteDiffWorldCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "DIFF_WORLD_ID";
+        String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
+        String prpp = keepQueryMyselfDerivedParameter(vl);
+        registerQueryMyselfDerived(fn, cb.query(), pk, pk, sqpp, "myselfDerived", rd, vl, prpp, op);
     }
-    public abstract String keepQueryMyselfDerived(WhiteDiffWorldCQ subQuery);
-    public abstract String keepQueryMyselfDerivedParameter(Object parameterValue);
+    public abstract String keepQueryMyselfDerived(WhiteDiffWorldCQ sq);
+    public abstract String keepQueryMyselfDerivedParameter(Object vl);
 
     // ===================================================================================
     //                                                                        MyselfExists
@@ -411,12 +413,12 @@ public abstract class AbstractBsWhiteDiffWorldCQ extends AbstractConditionQuery 
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfExists(SubQuery<WhiteDiffWorldCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteDiffWorldCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteDiffWorldCB cb = new WhiteDiffWorldCB(); cb.xsetupForMyselfExists(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfExists(cb.query()); // for saving query-value.
-        registerMyselfExists(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfExists(cb.query()); // for saving query-value.
+        registerMyselfExists(cb.query(), pp);
     }
-    public abstract String keepMyselfExists(WhiteDiffWorldCQ subQuery);
+    public abstract String keepMyselfExists(WhiteDiffWorldCQ sq);
 
     // ===================================================================================
     //                                                                       MyselfInScope
@@ -426,12 +428,12 @@ public abstract class AbstractBsWhiteDiffWorldCQ extends AbstractConditionQuery 
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfInScope(SubQuery<WhiteDiffWorldCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteDiffWorldCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteDiffWorldCB cb = new WhiteDiffWorldCB(); cb.xsetupForMyselfInScope(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfInScope(cb.query()); // for saving query-value.
-        registerMyselfInScope(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfInScope(cb.query()); // for saving query-value.
+        registerMyselfInScope(cb.query(), pp);
     }
-    public abstract String keepMyselfInScope(WhiteDiffWorldCQ subQuery);
+    public abstract String keepMyselfInScope(WhiteDiffWorldCQ sq);
 
     // ===================================================================================
     //                                                                    Full Text Search
@@ -452,7 +454,7 @@ public abstract class AbstractBsWhiteDiffWorldCQ extends AbstractConditionQuery 
      * @param textColumnList The list of text column. (NotNull, NotEmpty, StringColumn, TargetTableColumn)
      * @param conditionValue The condition value. (NullAllowed: if null or empty, no condition)
      */
-    public void match(java.util.List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList, String conditionValue) {
+    public void match(List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList, String conditionValue) {
         xdoMatchByLikeSearch(textColumnList, conditionValue);
     }
 

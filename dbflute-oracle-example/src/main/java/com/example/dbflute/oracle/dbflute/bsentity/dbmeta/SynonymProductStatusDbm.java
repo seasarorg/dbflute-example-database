@@ -42,16 +42,16 @@ public class SynonymProductStatusDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgProductStatusCode implements PropertyGateway {
-        public Object read(Entity e) { return ((SynonymProductStatus)e).getProductStatusCode(); }
-        public void write(Entity e, Object v) { ((SynonymProductStatus)e).setProductStatusCode((String)v); }
+        public Object read(Entity et) { return ((SynonymProductStatus)et).getProductStatusCode(); }
+        public void write(Entity et, Object vl) { ((SynonymProductStatus)et).setProductStatusCode((String)vl); }
     }
     public static class EpgProductStatusName implements PropertyGateway {
-        public Object read(Entity e) { return ((SynonymProductStatus)e).getProductStatusName(); }
-        public void write(Entity e, Object v) { ((SynonymProductStatus)e).setProductStatusName((String)v); }
+        public Object read(Entity et) { return ((SynonymProductStatus)et).getProductStatusName(); }
+        public void write(Entity et, Object vl) { ((SynonymProductStatus)et).setProductStatusName((String)vl); }
     }
     public static class EpgDisplayOrder implements PropertyGateway {
-        public Object read(Entity e) { return ((SynonymProductStatus)e).getDisplayOrder(); }
-        public void write(Entity e, Object v) { ((SynonymProductStatus)e).setDisplayOrder(ctb(v)); }
+        public Object read(Entity et) { return ((SynonymProductStatus)et).getDisplayOrder(); }
+        public void write(Entity et, Object vl) { ((SynonymProductStatus)et).setDisplayOrder(ctb(vl)); }
     }
 
     // ===================================================================================
@@ -109,8 +109,8 @@ public class SynonymProductStatusDbm extends AbstractDBMeta {
     //                                     Referrer Property
     //                                     -----------------
     public ReferrerInfo referrerSynonymProductList() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnProductStatusCode(), SynonymProductDbm.getInstance().columnProductStatusCode());
-        return cri("FK_PRODUCT_PRODUCT_STATUS_SYNONYM1", "synonymProductList", this, SynonymProductDbm.getInstance(), map, false, "synonymProductStatus");
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnProductStatusCode(), SynonymProductDbm.getInstance().columnProductStatusCode());
+        return cri("FK_PRODUCT_PRODUCT_STATUS_SYNONYM1", "synonymProductList", this, SynonymProductDbm.getInstance(), mp, false, "synonymProductStatus");
     }
 
     // ===================================================================================
@@ -138,10 +138,10 @@ public class SynonymProductStatusDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((SynonymProductStatus)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((SynonymProductStatus)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((SynonymProductStatus)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((SynonymProductStatus)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

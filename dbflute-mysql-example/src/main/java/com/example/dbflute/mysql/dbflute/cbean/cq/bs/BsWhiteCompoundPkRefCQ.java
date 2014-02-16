@@ -211,11 +211,11 @@ public class BsWhiteCompoundPkRefCQ extends AbstractBsWhiteCompoundPkRefCQ {
     // ===================================================================================
     //                                                                         Union Query
     //                                                                         ===========
-    protected void reflectRelationOnUnionQuery(ConditionQuery baseQueryAsSuper, ConditionQuery unionQueryAsSuper) {
-        WhiteCompoundPkRefCQ baseQuery = (WhiteCompoundPkRefCQ)baseQueryAsSuper;
-        WhiteCompoundPkRefCQ unionQuery = (WhiteCompoundPkRefCQ)unionQueryAsSuper;
-        if (baseQuery.hasConditionQueryWhiteCompoundPk()) {
-            unionQuery.queryWhiteCompoundPk().reflectRelationOnUnionQuery(baseQuery.queryWhiteCompoundPk(), unionQuery.queryWhiteCompoundPk());
+    protected void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
+        WhiteCompoundPkRefCQ bq = (WhiteCompoundPkRefCQ)bqs;
+        WhiteCompoundPkRefCQ uq = (WhiteCompoundPkRefCQ)uqs;
+        if (bq.hasConditionQueryWhiteCompoundPk()) {
+            uq.queryWhiteCompoundPk().reflectRelationOnUnionQuery(bq.queryWhiteCompoundPk(), uq.queryWhiteCompoundPk());
         }
     }
 
@@ -272,15 +272,15 @@ public class BsWhiteCompoundPkRefCQ extends AbstractBsWhiteCompoundPkRefCQ {
     public void existsWhiteCompoundPkRefNestByQuxMultipleIdList(SubQuery<WhiteCompoundPkRefNestCB> subQuery) {
         assertObjectNotNull("subQuery<WhiteCompoundPkRefNestCB>", subQuery);
         WhiteCompoundPkRefNestCB cb = new WhiteCompoundPkRefNestCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepTwoOrMorePk_ExistsReferrer_WhiteCompoundPkRefNestByQuxMultipleIdList(cb.query()); // for saving query-value.
-        registerExistsReferrer(cb.query(), "MULTIPLE_FIRST_ID, MULTIPLE_SECOND_ID", "BAR_MULTIPLE_ID, QUX_MULTIPLE_ID", subQueryPropertyName, "whiteCompoundPkRefNestByQuxMultipleIdList");
+        String pp = keepTwoOrMorePk_ExistsReferrer_WhiteCompoundPkRefNestByQuxMultipleIdList(cb.query()); // for saving query-value.
+        registerExistsReferrer(cb.query(), "MULTIPLE_FIRST_ID, MULTIPLE_SECOND_ID", "BAR_MULTIPLE_ID, QUX_MULTIPLE_ID", pp, "whiteCompoundPkRefNestByQuxMultipleIdList");
     }
     protected Map<String, WhiteCompoundPkRefNestCQ> _twoOrMorePk_ExistsReferrer_WhiteCompoundPkRefNestByQuxMultipleIdListMap;
     public Map<String, WhiteCompoundPkRefNestCQ> getTwoOrMorePk_ExistsReferrer_WhiteCompoundPkRefNestByQuxMultipleIdList() { return _twoOrMorePk_ExistsReferrer_WhiteCompoundPkRefNestByQuxMultipleIdListMap; }
-    public String keepTwoOrMorePk_ExistsReferrer_WhiteCompoundPkRefNestByQuxMultipleIdList(WhiteCompoundPkRefNestCQ subQuery) {
+    public String keepTwoOrMorePk_ExistsReferrer_WhiteCompoundPkRefNestByQuxMultipleIdList(WhiteCompoundPkRefNestCQ sq) {
         if (_twoOrMorePk_ExistsReferrer_WhiteCompoundPkRefNestByQuxMultipleIdListMap == null) { _twoOrMorePk_ExistsReferrer_WhiteCompoundPkRefNestByQuxMultipleIdListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_twoOrMorePk_ExistsReferrer_WhiteCompoundPkRefNestByQuxMultipleIdListMap.size() + 1);
-        _twoOrMorePk_ExistsReferrer_WhiteCompoundPkRefNestByQuxMultipleIdListMap.put(key, subQuery); return "twoOrMorePk_ExistsReferrer_WhiteCompoundPkRefNestByQuxMultipleIdList." + key;
+        String ky = "subQueryMapKey" + (_twoOrMorePk_ExistsReferrer_WhiteCompoundPkRefNestByQuxMultipleIdListMap.size() + 1);
+        _twoOrMorePk_ExistsReferrer_WhiteCompoundPkRefNestByQuxMultipleIdListMap.put(ky, sq); return "twoOrMorePk_ExistsReferrer_WhiteCompoundPkRefNestByQuxMultipleIdList." + ky;
     }
 
     /**
@@ -291,15 +291,15 @@ public class BsWhiteCompoundPkRefCQ extends AbstractBsWhiteCompoundPkRefCQ {
     public void existsWhiteCompoundPkRefNestByFooMultipleIdList(SubQuery<WhiteCompoundPkRefNestCB> subQuery) {
         assertObjectNotNull("subQuery<WhiteCompoundPkRefNestCB>", subQuery);
         WhiteCompoundPkRefNestCB cb = new WhiteCompoundPkRefNestCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepTwoOrMorePk_ExistsReferrer_WhiteCompoundPkRefNestByFooMultipleIdList(cb.query()); // for saving query-value.
-        registerExistsReferrer(cb.query(), "MULTIPLE_FIRST_ID, MULTIPLE_SECOND_ID", "FOO_MULTIPLE_ID, BAR_MULTIPLE_ID", subQueryPropertyName, "whiteCompoundPkRefNestByFooMultipleIdList");
+        String pp = keepTwoOrMorePk_ExistsReferrer_WhiteCompoundPkRefNestByFooMultipleIdList(cb.query()); // for saving query-value.
+        registerExistsReferrer(cb.query(), "MULTIPLE_FIRST_ID, MULTIPLE_SECOND_ID", "FOO_MULTIPLE_ID, BAR_MULTIPLE_ID", pp, "whiteCompoundPkRefNestByFooMultipleIdList");
     }
     protected Map<String, WhiteCompoundPkRefNestCQ> _twoOrMorePk_ExistsReferrer_WhiteCompoundPkRefNestByFooMultipleIdListMap;
     public Map<String, WhiteCompoundPkRefNestCQ> getTwoOrMorePk_ExistsReferrer_WhiteCompoundPkRefNestByFooMultipleIdList() { return _twoOrMorePk_ExistsReferrer_WhiteCompoundPkRefNestByFooMultipleIdListMap; }
-    public String keepTwoOrMorePk_ExistsReferrer_WhiteCompoundPkRefNestByFooMultipleIdList(WhiteCompoundPkRefNestCQ subQuery) {
+    public String keepTwoOrMorePk_ExistsReferrer_WhiteCompoundPkRefNestByFooMultipleIdList(WhiteCompoundPkRefNestCQ sq) {
         if (_twoOrMorePk_ExistsReferrer_WhiteCompoundPkRefNestByFooMultipleIdListMap == null) { _twoOrMorePk_ExistsReferrer_WhiteCompoundPkRefNestByFooMultipleIdListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_twoOrMorePk_ExistsReferrer_WhiteCompoundPkRefNestByFooMultipleIdListMap.size() + 1);
-        _twoOrMorePk_ExistsReferrer_WhiteCompoundPkRefNestByFooMultipleIdListMap.put(key, subQuery); return "twoOrMorePk_ExistsReferrer_WhiteCompoundPkRefNestByFooMultipleIdList." + key;
+        String ky = "subQueryMapKey" + (_twoOrMorePk_ExistsReferrer_WhiteCompoundPkRefNestByFooMultipleIdListMap.size() + 1);
+        _twoOrMorePk_ExistsReferrer_WhiteCompoundPkRefNestByFooMultipleIdListMap.put(ky, sq); return "twoOrMorePk_ExistsReferrer_WhiteCompoundPkRefNestByFooMultipleIdList." + ky;
     }
 
     // ===================================================================================

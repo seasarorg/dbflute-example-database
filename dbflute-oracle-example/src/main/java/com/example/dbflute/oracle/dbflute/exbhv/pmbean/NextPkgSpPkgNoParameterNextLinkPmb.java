@@ -5,7 +5,7 @@ import com.example.dbflute.oracle.dbflute.bsbhv.pmbean.BsNextPkgSpPkgNoParameter
 /**
  * <!-- df:beginClassDescription -->
  * The typed parameter-bean of NextPkgSpPkgNoParameterNextLink. <br />
- * This is related to "<span style="color: #AD4747">NEXT_PKG.SP_PKG_NO_PARAMETER@NEXT_LINK</span>".
+ * This is related to "<span style="color: #AD4747">NEXT_PKG.SP_PKG_NO_PARAMETER@NEXT_LINK</span>". <br />
  * <!-- df:endClassDescription -->
  * <p>
  * You can implement your original methods here.

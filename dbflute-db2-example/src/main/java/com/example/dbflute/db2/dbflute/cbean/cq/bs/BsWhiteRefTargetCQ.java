@@ -102,18 +102,18 @@ public class BsWhiteRefTargetCQ extends AbstractBsWhiteRefTargetCQ {
 
     protected Map<String, WhiteTargetCQ> _targetId_InScopeRelation_WhiteTargetMap;
     public Map<String, WhiteTargetCQ> getTargetId_InScopeRelation_WhiteTarget() { return _targetId_InScopeRelation_WhiteTargetMap; }
-    public String keepTargetId_InScopeRelation_WhiteTarget(WhiteTargetCQ subQuery) {
+    public String keepTargetId_InScopeRelation_WhiteTarget(WhiteTargetCQ sq) {
         if (_targetId_InScopeRelation_WhiteTargetMap == null) { _targetId_InScopeRelation_WhiteTargetMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_targetId_InScopeRelation_WhiteTargetMap.size() + 1);
-        _targetId_InScopeRelation_WhiteTargetMap.put(key, subQuery); return "targetId_InScopeRelation_WhiteTarget." + key;
+        String ky = "subQueryMapKey" + (_targetId_InScopeRelation_WhiteTargetMap.size() + 1);
+        _targetId_InScopeRelation_WhiteTargetMap.put(ky, sq); return "targetId_InScopeRelation_WhiteTarget." + ky;
     }
 
     protected Map<String, WhiteTargetCQ> _targetId_NotInScopeRelation_WhiteTargetMap;
     public Map<String, WhiteTargetCQ> getTargetId_NotInScopeRelation_WhiteTarget() { return _targetId_NotInScopeRelation_WhiteTargetMap; }
-    public String keepTargetId_NotInScopeRelation_WhiteTarget(WhiteTargetCQ subQuery) {
+    public String keepTargetId_NotInScopeRelation_WhiteTarget(WhiteTargetCQ sq) {
         if (_targetId_NotInScopeRelation_WhiteTargetMap == null) { _targetId_NotInScopeRelation_WhiteTargetMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_targetId_NotInScopeRelation_WhiteTargetMap.size() + 1);
-        _targetId_NotInScopeRelation_WhiteTargetMap.put(key, subQuery); return "targetId_NotInScopeRelation_WhiteTarget." + key;
+        String ky = "subQueryMapKey" + (_targetId_NotInScopeRelation_WhiteTargetMap.size() + 1);
+        _targetId_NotInScopeRelation_WhiteTargetMap.put(ky, sq); return "targetId_NotInScopeRelation_WhiteTarget." + ky;
     }
 
     /** 
@@ -170,11 +170,11 @@ public class BsWhiteRefTargetCQ extends AbstractBsWhiteRefTargetCQ {
     // ===================================================================================
     //                                                                         Union Query
     //                                                                         ===========
-    protected void reflectRelationOnUnionQuery(ConditionQuery baseQueryAsSuper, ConditionQuery unionQueryAsSuper) {
-        WhiteRefTargetCQ baseQuery = (WhiteRefTargetCQ)baseQueryAsSuper;
-        WhiteRefTargetCQ unionQuery = (WhiteRefTargetCQ)unionQueryAsSuper;
-        if (baseQuery.hasConditionQueryWhiteTarget()) {
-            unionQuery.queryWhiteTarget().reflectRelationOnUnionQuery(baseQuery.queryWhiteTarget(), unionQuery.queryWhiteTarget());
+    protected void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
+        WhiteRefTargetCQ bq = (WhiteRefTargetCQ)bqs;
+        WhiteRefTargetCQ uq = (WhiteRefTargetCQ)uqs;
+        if (bq.hasConditionQueryWhiteTarget()) {
+            uq.queryWhiteTarget().reflectRelationOnUnionQuery(bq.queryWhiteTarget(), uq.queryWhiteTarget());
         }
     }
 
@@ -224,10 +224,10 @@ public class BsWhiteRefTargetCQ extends AbstractBsWhiteRefTargetCQ {
     //                                                                     ===============
     protected Map<String, WhiteRefTargetCQ> _scalarConditionMap;
     public Map<String, WhiteRefTargetCQ> getScalarCondition() { return _scalarConditionMap; }
-    public String keepScalarCondition(WhiteRefTargetCQ subQuery) {
+    public String keepScalarCondition(WhiteRefTargetCQ sq) {
         if (_scalarConditionMap == null) { _scalarConditionMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
-        _scalarConditionMap.put(key, subQuery); return "scalarCondition." + key;
+        String ky = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
+        _scalarConditionMap.put(ky, sq); return "scalarCondition." + ky;
     }
 
     // ===================================================================================
@@ -235,25 +235,25 @@ public class BsWhiteRefTargetCQ extends AbstractBsWhiteRefTargetCQ {
     //                                                                       =============
     protected Map<String, WhiteRefTargetCQ> _specifyMyselfDerivedMap;
     public Map<String, WhiteRefTargetCQ> getSpecifyMyselfDerived() { return _specifyMyselfDerivedMap; }
-    public String keepSpecifyMyselfDerived(WhiteRefTargetCQ subQuery) {
+    public String keepSpecifyMyselfDerived(WhiteRefTargetCQ sq) {
         if (_specifyMyselfDerivedMap == null) { _specifyMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
-        _specifyMyselfDerivedMap.put(key, subQuery); return "specifyMyselfDerived." + key;
+        String ky = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
+        _specifyMyselfDerivedMap.put(ky, sq); return "specifyMyselfDerived." + ky;
     }
 
     protected Map<String, WhiteRefTargetCQ> _queryMyselfDerivedMap;
     public Map<String, WhiteRefTargetCQ> getQueryMyselfDerived() { return _queryMyselfDerivedMap; }
-    public String keepQueryMyselfDerived(WhiteRefTargetCQ subQuery) {
+    public String keepQueryMyselfDerived(WhiteRefTargetCQ sq) {
         if (_queryMyselfDerivedMap == null) { _queryMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
-        _queryMyselfDerivedMap.put(key, subQuery); return "queryMyselfDerived." + key;
+        String ky = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
+        _queryMyselfDerivedMap.put(ky, sq); return "queryMyselfDerived." + ky;
     }
     protected Map<String, Object> _qyeryMyselfDerivedParameterMap;
     public Map<String, Object> getQueryMyselfDerivedParameter() { return _qyeryMyselfDerivedParameterMap; }
-    public String keepQueryMyselfDerivedParameter(Object parameterValue) {
+    public String keepQueryMyselfDerivedParameter(Object vl) {
         if (_qyeryMyselfDerivedParameterMap == null) { _qyeryMyselfDerivedParameterMap = newLinkedHashMapSized(4); }
-        String key = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
-        _qyeryMyselfDerivedParameterMap.put(key, parameterValue); return "queryMyselfDerivedParameter." + key;
+        String ky = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
+        _qyeryMyselfDerivedParameterMap.put(ky, vl); return "queryMyselfDerivedParameter." + ky;
     }
 
     // ===================================================================================
@@ -261,10 +261,10 @@ public class BsWhiteRefTargetCQ extends AbstractBsWhiteRefTargetCQ {
     //                                                                        ============
     protected Map<String, WhiteRefTargetCQ> _myselfExistsMap;
     public Map<String, WhiteRefTargetCQ> getMyselfExists() { return _myselfExistsMap; }
-    public String keepMyselfExists(WhiteRefTargetCQ subQuery) {
+    public String keepMyselfExists(WhiteRefTargetCQ sq) {
         if (_myselfExistsMap == null) { _myselfExistsMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
-        _myselfExistsMap.put(key, subQuery); return "myselfExists." + key;
+        String ky = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
+        _myselfExistsMap.put(ky, sq); return "myselfExists." + ky;
     }
 
     // ===================================================================================
@@ -272,10 +272,10 @@ public class BsWhiteRefTargetCQ extends AbstractBsWhiteRefTargetCQ {
     //                                                                       =============
     protected Map<String, WhiteRefTargetCQ> _myselfInScopeMap;
     public Map<String, WhiteRefTargetCQ> getMyselfInScope() { return _myselfInScopeMap; }
-    public String keepMyselfInScope(WhiteRefTargetCQ subQuery) {
+    public String keepMyselfInScope(WhiteRefTargetCQ sq) {
         if (_myselfInScopeMap == null) { _myselfInScopeMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
-        _myselfInScopeMap.put(key, subQuery); return "myselfInScope." + key;
+        String ky = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
+        _myselfInScopeMap.put(ky, sq); return "myselfInScope." + ky;
     }
 
     // ===================================================================================

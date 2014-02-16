@@ -72,18 +72,18 @@ public class SynonymNextLinkSecretCIQ extends AbstractBsSynonymNextLinkSecretCQ 
     protected ConditionValue getCValueSecretCode() { return _myCQ.getSecretCode(); }
     protected ConditionValue getCValueSecretName() { return _myCQ.getSecretName(); }
     protected ConditionValue getCValueSecretAuthCode() { return _myCQ.getSecretAuthCode(); }
-    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) { return null; }
-    public String keepScalarCondition(SynonymNextLinkSecretCQ subQuery)
+    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
+    public String keepScalarCondition(SynonymNextLinkSecretCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }
-    public String keepSpecifyMyselfDerived(SynonymNextLinkSecretCQ subQuery)
+    public String keepSpecifyMyselfDerived(SynonymNextLinkSecretCQ sq)
     { throwIICBOE("(Specify)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerived(SynonymNextLinkSecretCQ subQuery)
+    public String keepQueryMyselfDerived(SynonymNextLinkSecretCQ sq)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerivedParameter(Object parameterValue)
+    public String keepQueryMyselfDerivedParameter(Object vl)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepMyselfExists(SynonymNextLinkSecretCQ subQuery)
+    public String keepMyselfExists(SynonymNextLinkSecretCQ sq)
     { throwIICBOE("MyselfExists"); return null;}
-    public String keepMyselfInScope(SynonymNextLinkSecretCQ subQuery)
+    public String keepMyselfInScope(SynonymNextLinkSecretCQ sq)
     { throwIICBOE("MyselfInScope"); return null;}
 
     protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()

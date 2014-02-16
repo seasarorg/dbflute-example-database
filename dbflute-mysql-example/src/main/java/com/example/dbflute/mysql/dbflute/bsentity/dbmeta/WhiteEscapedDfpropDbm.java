@@ -56,16 +56,16 @@ public class WhiteEscapedDfpropDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public class EpgEscapedDfpropCode implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteEscapedDfprop)e).getEscapedDfpropCode(); }
-        public void write(Entity e, Object v) {
+        public Object read(Entity et) { return ((WhiteEscapedDfprop)et).getEscapedDfpropCode(); }
+        public void write(Entity et, Object vl) {
             ColumnInfo col = columnEscapedDfpropCode();
-            ccls(col, v);
-            ((WhiteEscapedDfprop)e).setEscapedDfpropCodeAsEscapedDfpropCls((CDef.EscapedDfpropCls)gcls(col, v));
+            ccls(col, vl);
+            ((WhiteEscapedDfprop)et).setEscapedDfpropCodeAsEscapedDfpropCls((CDef.EscapedDfpropCls)gcls(col, vl));
         }
     }
     public static class EpgEscapedDfpropName implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteEscapedDfprop)e).getEscapedDfpropName(); }
-        public void write(Entity e, Object v) { ((WhiteEscapedDfprop)e).setEscapedDfpropName((String)v); }
+        public Object read(Entity et) { return ((WhiteEscapedDfprop)et).getEscapedDfpropName(); }
+        public void write(Entity et, Object vl) { ((WhiteEscapedDfprop)et).setEscapedDfpropName((String)vl); }
     }
 
     // ===================================================================================
@@ -143,10 +143,10 @@ public class WhiteEscapedDfpropDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((WhiteEscapedDfprop)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((WhiteEscapedDfprop)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((WhiteEscapedDfprop)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((WhiteEscapedDfprop)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

@@ -162,12 +162,12 @@ public abstract class AbstractBsWhiteMyselfCQ extends AbstractConditionQuery {
      * @param subQuery The sub-query of WhiteMyselfCheckList for 'exists'. (NotNull)
      */
     public void existsWhiteMyselfCheckList(SubQuery<WhiteMyselfCheckCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteMyselfCheckCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteMyselfCheckCB cb = new WhiteMyselfCheckCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfId_ExistsReferrer_WhiteMyselfCheckList(cb.query()); // for saving query-value.
-        registerExistsReferrer(cb.query(), "MYSELF_ID", "MYSELF_ID", subQueryPropertyName, "whiteMyselfCheckList");
+        String pp = keepMyselfId_ExistsReferrer_WhiteMyselfCheckList(cb.query()); // for saving query-value.
+        registerExistsReferrer(cb.query(), "MYSELF_ID", "MYSELF_ID", pp, "whiteMyselfCheckList");
     }
-    public abstract String keepMyselfId_ExistsReferrer_WhiteMyselfCheckList(WhiteMyselfCheckCQ subQuery);
+    public abstract String keepMyselfId_ExistsReferrer_WhiteMyselfCheckList(WhiteMyselfCheckCQ sq);
 
     /**
      * Set up NotExistsReferrer (co-related sub-query). <br />
@@ -183,12 +183,12 @@ public abstract class AbstractBsWhiteMyselfCQ extends AbstractConditionQuery {
      * @param subQuery The sub-query of MyselfId_NotExistsReferrer_WhiteMyselfCheckList for 'not exists'. (NotNull)
      */
     public void notExistsWhiteMyselfCheckList(SubQuery<WhiteMyselfCheckCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteMyselfCheckCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteMyselfCheckCB cb = new WhiteMyselfCheckCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfId_NotExistsReferrer_WhiteMyselfCheckList(cb.query()); // for saving query-value.
-        registerNotExistsReferrer(cb.query(), "MYSELF_ID", "MYSELF_ID", subQueryPropertyName, "whiteMyselfCheckList");
+        String pp = keepMyselfId_NotExistsReferrer_WhiteMyselfCheckList(cb.query()); // for saving query-value.
+        registerNotExistsReferrer(cb.query(), "MYSELF_ID", "MYSELF_ID", pp, "whiteMyselfCheckList");
     }
-    public abstract String keepMyselfId_NotExistsReferrer_WhiteMyselfCheckList(WhiteMyselfCheckCQ subQuery);
+    public abstract String keepMyselfId_NotExistsReferrer_WhiteMyselfCheckList(WhiteMyselfCheckCQ sq);
 
     /**
      * Set up InScopeRelation (sub-query). <br />
@@ -197,12 +197,12 @@ public abstract class AbstractBsWhiteMyselfCQ extends AbstractConditionQuery {
      * @param subQuery The sub-query of WhiteMyselfCheckList for 'in-scope'. (NotNull)
      */
     public void inScopeWhiteMyselfCheckList(SubQuery<WhiteMyselfCheckCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteMyselfCheckCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteMyselfCheckCB cb = new WhiteMyselfCheckCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfId_InScopeRelation_WhiteMyselfCheckList(cb.query()); // for saving query-value.
-        registerInScopeRelation(cb.query(), "MYSELF_ID", "MYSELF_ID", subQueryPropertyName, "whiteMyselfCheckList");
+        String pp = keepMyselfId_InScopeRelation_WhiteMyselfCheckList(cb.query()); // for saving query-value.
+        registerInScopeRelation(cb.query(), "MYSELF_ID", "MYSELF_ID", pp, "whiteMyselfCheckList");
     }
-    public abstract String keepMyselfId_InScopeRelation_WhiteMyselfCheckList(WhiteMyselfCheckCQ subQuery);
+    public abstract String keepMyselfId_InScopeRelation_WhiteMyselfCheckList(WhiteMyselfCheckCQ sq);
 
     /**
      * Set up NotInScopeRelation (sub-query). <br />
@@ -211,20 +211,20 @@ public abstract class AbstractBsWhiteMyselfCQ extends AbstractConditionQuery {
      * @param subQuery The sub-query of WhiteMyselfCheckList for 'not in-scope'. (NotNull)
      */
     public void notInScopeWhiteMyselfCheckList(SubQuery<WhiteMyselfCheckCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteMyselfCheckCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteMyselfCheckCB cb = new WhiteMyselfCheckCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfId_NotInScopeRelation_WhiteMyselfCheckList(cb.query()); // for saving query-value.
-        registerNotInScopeRelation(cb.query(), "MYSELF_ID", "MYSELF_ID", subQueryPropertyName, "whiteMyselfCheckList");
+        String pp = keepMyselfId_NotInScopeRelation_WhiteMyselfCheckList(cb.query()); // for saving query-value.
+        registerNotInScopeRelation(cb.query(), "MYSELF_ID", "MYSELF_ID", pp, "whiteMyselfCheckList");
     }
-    public abstract String keepMyselfId_NotInScopeRelation_WhiteMyselfCheckList(WhiteMyselfCheckCQ subQuery);
+    public abstract String keepMyselfId_NotInScopeRelation_WhiteMyselfCheckList(WhiteMyselfCheckCQ sq);
 
-    public void xsderiveWhiteMyselfCheckList(String function, SubQuery<WhiteMyselfCheckCB> subQuery, String aliasName, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<WhiteMyselfCheckCB>", subQuery);
-        WhiteMyselfCheckCB cb = new WhiteMyselfCheckCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfId_SpecifyDerivedReferrer_WhiteMyselfCheckList(cb.query()); // for saving query-value.
-        registerSpecifyDerivedReferrer(function, cb.query(), "MYSELF_ID", "MYSELF_ID", subQueryPropertyName, "whiteMyselfCheckList", aliasName, option);
+    public void xsderiveWhiteMyselfCheckList(String fn, SubQuery<WhiteMyselfCheckCB> sq, String al, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteMyselfCheckCB cb = new WhiteMyselfCheckCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pp = keepMyselfId_SpecifyDerivedReferrer_WhiteMyselfCheckList(cb.query()); // for saving query-value.
+        registerSpecifyDerivedReferrer(fn, cb.query(), "MYSELF_ID", "MYSELF_ID", pp, "whiteMyselfCheckList", al, op);
     }
-    public abstract String keepMyselfId_SpecifyDerivedReferrer_WhiteMyselfCheckList(WhiteMyselfCheckCQ subQuery);
+    public abstract String keepMyselfId_SpecifyDerivedReferrer_WhiteMyselfCheckList(WhiteMyselfCheckCQ sq);
 
     /**
      * Prepare for (Query)DerivedReferrer. <br />
@@ -245,20 +245,20 @@ public abstract class AbstractBsWhiteMyselfCQ extends AbstractConditionQuery {
     }
     protected HpQDRFunction<WhiteMyselfCheckCB> xcreateQDRFunctionWhiteMyselfCheckList() {
         return new HpQDRFunction<WhiteMyselfCheckCB>(new HpQDRSetupper<WhiteMyselfCheckCB>() {
-            public void setup(String function, SubQuery<WhiteMyselfCheckCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-                xqderiveWhiteMyselfCheckList(function, subQuery, operand, value, option);
+            public void setup(String fn, SubQuery<WhiteMyselfCheckCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+                xqderiveWhiteMyselfCheckList(fn, sq, rd, vl, op);
             }
         });
     }
-    public void xqderiveWhiteMyselfCheckList(String function, SubQuery<WhiteMyselfCheckCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<WhiteMyselfCheckCB>", subQuery);
-        WhiteMyselfCheckCB cb = new WhiteMyselfCheckCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfId_QueryDerivedReferrer_WhiteMyselfCheckList(cb.query()); // for saving query-value.
-        String parameterPropertyName = keepMyselfId_QueryDerivedReferrer_WhiteMyselfCheckListParameter(value);
-        registerQueryDerivedReferrer(function, cb.query(), "MYSELF_ID", "MYSELF_ID", subQueryPropertyName, "whiteMyselfCheckList", operand, value, parameterPropertyName, option);
+    public void xqderiveWhiteMyselfCheckList(String fn, SubQuery<WhiteMyselfCheckCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteMyselfCheckCB cb = new WhiteMyselfCheckCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String sqpp = keepMyselfId_QueryDerivedReferrer_WhiteMyselfCheckList(cb.query()); // for saving query-value.
+        String prpp = keepMyselfId_QueryDerivedReferrer_WhiteMyselfCheckListParameter(vl);
+        registerQueryDerivedReferrer(fn, cb.query(), "MYSELF_ID", "MYSELF_ID", sqpp, "whiteMyselfCheckList", rd, vl, prpp, op);
     }
-    public abstract String keepMyselfId_QueryDerivedReferrer_WhiteMyselfCheckList(WhiteMyselfCheckCQ subQuery);
-    public abstract String keepMyselfId_QueryDerivedReferrer_WhiteMyselfCheckListParameter(Object parameterValue);
+    public abstract String keepMyselfId_QueryDerivedReferrer_WhiteMyselfCheckList(WhiteMyselfCheckCQ sq);
+    public abstract String keepMyselfId_QueryDerivedReferrer_WhiteMyselfCheckListParameter(Object vl);
 
     /**
      * IsNull {is null}. And OnlyOnceRegistered. <br />
@@ -272,8 +272,8 @@ public abstract class AbstractBsWhiteMyselfCQ extends AbstractConditionQuery {
      */
     public void setMyselfId_IsNotNull() { regMyselfId(CK_ISNN, DOBJ); }
 
-    protected void regMyselfId(ConditionKey k, Object v) { regQ(k, v, getCValueMyselfId(), "MYSELF_ID"); }
-    abstract protected ConditionValue getCValueMyselfId();
+    protected void regMyselfId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueMyselfId(), "MYSELF_ID"); }
+    protected abstract ConditionValue getCValueMyselfId();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -358,8 +358,8 @@ public abstract class AbstractBsWhiteMyselfCQ extends AbstractConditionQuery {
         regLSQ(CK_NLS, fRES(myselfName), getCValueMyselfName(), "MYSELF_NAME", likeSearchOption);
     }
 
-    protected void regMyselfName(ConditionKey k, Object v) { regQ(k, v, getCValueMyselfName(), "MYSELF_NAME"); }
-    abstract protected ConditionValue getCValueMyselfName();
+    protected void regMyselfName(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueMyselfName(), "MYSELF_NAME"); }
+    protected abstract ConditionValue getCValueMyselfName();
 
     // ===================================================================================
     //                                                                     ScalarCondition
@@ -466,22 +466,22 @@ public abstract class AbstractBsWhiteMyselfCQ extends AbstractConditionQuery {
         return xcreateSSQFunction(CK_LE.getOperand());
     }
 
-    protected HpSSQFunction<WhiteMyselfCB> xcreateSSQFunction(final String operand) {
+    protected HpSSQFunction<WhiteMyselfCB> xcreateSSQFunction(final String rd) {
         return new HpSSQFunction<WhiteMyselfCB>(new HpSSQSetupper<WhiteMyselfCB>() {
-            public void setup(String function, SubQuery<WhiteMyselfCB> subQuery, HpSSQOption<WhiteMyselfCB> option) {
-                xscalarCondition(function, subQuery, operand, option);
+            public void setup(String fn, SubQuery<WhiteMyselfCB> sq, HpSSQOption<WhiteMyselfCB> op) {
+                xscalarCondition(fn, sq, rd, op);
             }
         });
     }
 
-    protected void xscalarCondition(String function, SubQuery<WhiteMyselfCB> subQuery, String operand, HpSSQOption<WhiteMyselfCB> option) {
-        assertObjectNotNull("subQuery<WhiteMyselfCB>", subQuery);
-        WhiteMyselfCB cb = xcreateScalarConditionCB(); subQuery.query(cb);
-        String subQueryPropertyName = keepScalarCondition(cb.query()); // for saving query-value
-        option.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
-        registerScalarCondition(function, cb.query(), subQueryPropertyName, operand, option);
+    protected void xscalarCondition(String fn, SubQuery<WhiteMyselfCB> sq, String rd, HpSSQOption<WhiteMyselfCB> op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteMyselfCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        String pp = keepScalarCondition(cb.query()); // for saving query-value
+        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
-    public abstract String keepScalarCondition(WhiteMyselfCQ subQuery);
+    public abstract String keepScalarCondition(WhiteMyselfCQ sq);
 
     protected WhiteMyselfCB xcreateScalarConditionCB() {
         WhiteMyselfCB cb = new WhiteMyselfCB();
@@ -498,13 +498,14 @@ public abstract class AbstractBsWhiteMyselfCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    public void xsmyselfDerive(String function, SubQuery<WhiteMyselfCB> subQuery, String aliasName, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<WhiteMyselfCB>", subQuery);
-        WhiteMyselfCB cb = new WhiteMyselfCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
-        registerSpecifyMyselfDerived(function, cb.query(), "MYSELF_ID", "MYSELF_ID", subQueryPropertyName, "myselfDerived", aliasName, option);
+    public void xsmyselfDerive(String fn, SubQuery<WhiteMyselfCB> sq, String al, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteMyselfCB cb = new WhiteMyselfCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "MYSELF_ID";
+        String pp = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
+        registerSpecifyMyselfDerived(fn, cb.query(), pk, pk, pp, "myselfDerived", al, op);
     }
-    public abstract String keepSpecifyMyselfDerived(WhiteMyselfCQ subQuery);
+    public abstract String keepSpecifyMyselfDerived(WhiteMyselfCQ sq);
 
     /**
      * Prepare for (Query)MyselfDerived (SubQuery).
@@ -515,20 +516,21 @@ public abstract class AbstractBsWhiteMyselfCQ extends AbstractConditionQuery {
     }
     protected HpQDRFunction<WhiteMyselfCB> xcreateQDRFunctionMyselfDerived() {
         return new HpQDRFunction<WhiteMyselfCB>(new HpQDRSetupper<WhiteMyselfCB>() {
-            public void setup(String function, SubQuery<WhiteMyselfCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-                xqderiveMyselfDerived(function, subQuery, operand, value, option);
+            public void setup(String fn, SubQuery<WhiteMyselfCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+                xqderiveMyselfDerived(fn, sq, rd, vl, op);
             }
         });
     }
-    public void xqderiveMyselfDerived(String function, SubQuery<WhiteMyselfCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<WhiteMyselfCB>", subQuery);
-        WhiteMyselfCB cb = new WhiteMyselfCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepQueryMyselfDerived(cb.query()); // for saving query-value.
-        String parameterPropertyName = keepQueryMyselfDerivedParameter(value);
-        registerQueryMyselfDerived(function, cb.query(), "MYSELF_ID", "MYSELF_ID", subQueryPropertyName, "myselfDerived", operand, value, parameterPropertyName, option);
+    public void xqderiveMyselfDerived(String fn, SubQuery<WhiteMyselfCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteMyselfCB cb = new WhiteMyselfCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "MYSELF_ID";
+        String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
+        String prpp = keepQueryMyselfDerivedParameter(vl);
+        registerQueryMyselfDerived(fn, cb.query(), pk, pk, sqpp, "myselfDerived", rd, vl, prpp, op);
     }
-    public abstract String keepQueryMyselfDerived(WhiteMyselfCQ subQuery);
-    public abstract String keepQueryMyselfDerivedParameter(Object parameterValue);
+    public abstract String keepQueryMyselfDerived(WhiteMyselfCQ sq);
+    public abstract String keepQueryMyselfDerivedParameter(Object vl);
 
     // ===================================================================================
     //                                                                        MyselfExists
@@ -538,12 +540,12 @@ public abstract class AbstractBsWhiteMyselfCQ extends AbstractConditionQuery {
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfExists(SubQuery<WhiteMyselfCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteMyselfCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteMyselfCB cb = new WhiteMyselfCB(); cb.xsetupForMyselfExists(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfExists(cb.query()); // for saving query-value.
-        registerMyselfExists(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfExists(cb.query()); // for saving query-value.
+        registerMyselfExists(cb.query(), pp);
     }
-    public abstract String keepMyselfExists(WhiteMyselfCQ subQuery);
+    public abstract String keepMyselfExists(WhiteMyselfCQ sq);
 
     // ===================================================================================
     //                                                                       MyselfInScope
@@ -553,12 +555,12 @@ public abstract class AbstractBsWhiteMyselfCQ extends AbstractConditionQuery {
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfInScope(SubQuery<WhiteMyselfCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteMyselfCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteMyselfCB cb = new WhiteMyselfCB(); cb.xsetupForMyselfInScope(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfInScope(cb.query()); // for saving query-value.
-        registerMyselfInScope(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfInScope(cb.query()); // for saving query-value.
+        registerMyselfInScope(cb.query(), pp);
     }
-    public abstract String keepMyselfInScope(WhiteMyselfCQ subQuery);
+    public abstract String keepMyselfInScope(WhiteMyselfCQ sq);
 
     // ===================================================================================
     //                                                                    Full Text Search
@@ -584,7 +586,7 @@ public abstract class AbstractBsWhiteMyselfCQ extends AbstractConditionQuery {
      * @param conditionValue The condition value embedded without binding (by MySQL restriction) but escaped. (NullAllowed: if null or empty, no condition)
      * @param modifier The modifier of full-text search. (NullAllowed: If the value is null, no modifier specified)
      */
-    public void match(java.util.List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList
+    public void match(List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList
                     , String conditionValue
                     , org.seasar.dbflute.dbway.WayOfMySQL.FullTextSearchModifier modifier) {
         xdoMatchForMySQL(textColumnList, conditionValue, modifier);

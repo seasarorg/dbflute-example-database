@@ -41,12 +41,12 @@ public class WhiteRefTargetDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgRefTargetId implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteRefTarget)e).getRefTargetId(); }
-        public void write(Entity e, Object v) { ((WhiteRefTarget)e).setRefTargetId(ctl(v)); }
+        public Object read(Entity et) { return ((WhiteRefTarget)et).getRefTargetId(); }
+        public void write(Entity et, Object vl) { ((WhiteRefTarget)et).setRefTargetId(ctl(vl)); }
     }
     public static class EpgTargetId implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteRefTarget)e).getTargetId(); }
-        public void write(Entity e, Object v) { ((WhiteRefTarget)e).setTargetId(ctl(v)); }
+        public Object read(Entity et) { return ((WhiteRefTarget)et).getTargetId(); }
+        public void write(Entity et, Object vl) { ((WhiteRefTarget)et).setTargetId(ctl(vl)); }
     }
 
     // ===================================================================================
@@ -95,8 +95,8 @@ public class WhiteRefTargetDbm extends AbstractDBMeta {
     //                                      Foreign Property
     //                                      ----------------
     public ForeignInfo foreignWhiteTarget() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnTargetId(), WhiteTargetDbm.getInstance().columnTargetId());
-        return cfi("FK_WHITE_REF_TARGET", "whiteTarget", this, WhiteTargetDbm.getInstance(), map, 0, false, false, false, false, null, null, false, "whiteRefTargetList");
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnTargetId(), WhiteTargetDbm.getInstance().columnTargetId());
+        return cfi("FK_WHITE_REF_TARGET", "whiteTarget", this, WhiteTargetDbm.getInstance(), mp, 0, false, false, false, false, null, null, false, "whiteRefTargetList");
     }
 
     // -----------------------------------------------------
@@ -128,10 +128,10 @@ public class WhiteRefTargetDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((WhiteRefTarget)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((WhiteRefTarget)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((WhiteRefTarget)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((WhiteRefTarget)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

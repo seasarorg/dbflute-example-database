@@ -160,8 +160,8 @@ public abstract class AbstractBsWhiteBinaryCQ extends AbstractConditionQuery {
      */
     public void setBinaryId_IsNotNull() { regBinaryId(CK_ISNN, DOBJ); }
 
-    protected void regBinaryId(ConditionKey k, Object v) { regQ(k, v, getCValueBinaryId(), "BINARY_ID"); }
-    abstract protected ConditionValue getCValueBinaryId();
+    protected void regBinaryId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueBinaryId(), "BINARY_ID"); }
+    protected abstract ConditionValue getCValueBinaryId();
 
     /**
      * IsNull {is null}. And OnlyOnceRegistered. <br />
@@ -175,8 +175,8 @@ public abstract class AbstractBsWhiteBinaryCQ extends AbstractConditionQuery {
      */
     public void setBinaryData_IsNotNull() { regBinaryData(CK_ISNN, DOBJ); }
 
-    protected void regBinaryData(ConditionKey k, Object v) { regQ(k, v, getCValueBinaryData(), "BINARY_DATA"); }
-    abstract protected ConditionValue getCValueBinaryData();
+    protected void regBinaryData(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueBinaryData(), "BINARY_DATA"); }
+    protected abstract ConditionValue getCValueBinaryData();
 
     /**
      * IsNull {is null}. And OnlyOnceRegistered. <br />
@@ -190,8 +190,8 @@ public abstract class AbstractBsWhiteBinaryCQ extends AbstractConditionQuery {
      */
     public void setBlobData_IsNotNull() { regBlobData(CK_ISNN, DOBJ); }
 
-    protected void regBlobData(ConditionKey k, Object v) { regQ(k, v, getCValueBlobData(), "BLOB_DATA"); }
-    abstract protected ConditionValue getCValueBlobData();
+    protected void regBlobData(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueBlobData(), "BLOB_DATA"); }
+    protected abstract ConditionValue getCValueBlobData();
 
     // ===================================================================================
     //                                                                     ScalarCondition
@@ -298,22 +298,22 @@ public abstract class AbstractBsWhiteBinaryCQ extends AbstractConditionQuery {
         return xcreateSSQFunction(CK_LE.getOperand());
     }
 
-    protected HpSSQFunction<WhiteBinaryCB> xcreateSSQFunction(final String operand) {
+    protected HpSSQFunction<WhiteBinaryCB> xcreateSSQFunction(final String rd) {
         return new HpSSQFunction<WhiteBinaryCB>(new HpSSQSetupper<WhiteBinaryCB>() {
-            public void setup(String function, SubQuery<WhiteBinaryCB> subQuery, HpSSQOption<WhiteBinaryCB> option) {
-                xscalarCondition(function, subQuery, operand, option);
+            public void setup(String fn, SubQuery<WhiteBinaryCB> sq, HpSSQOption<WhiteBinaryCB> op) {
+                xscalarCondition(fn, sq, rd, op);
             }
         });
     }
 
-    protected void xscalarCondition(String function, SubQuery<WhiteBinaryCB> subQuery, String operand, HpSSQOption<WhiteBinaryCB> option) {
-        assertObjectNotNull("subQuery<WhiteBinaryCB>", subQuery);
-        WhiteBinaryCB cb = xcreateScalarConditionCB(); subQuery.query(cb);
-        String subQueryPropertyName = keepScalarCondition(cb.query()); // for saving query-value
-        option.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
-        registerScalarCondition(function, cb.query(), subQueryPropertyName, operand, option);
+    protected void xscalarCondition(String fn, SubQuery<WhiteBinaryCB> sq, String rd, HpSSQOption<WhiteBinaryCB> op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteBinaryCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        String pp = keepScalarCondition(cb.query()); // for saving query-value
+        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
-    public abstract String keepScalarCondition(WhiteBinaryCQ subQuery);
+    public abstract String keepScalarCondition(WhiteBinaryCQ sq);
 
     protected WhiteBinaryCB xcreateScalarConditionCB() {
         WhiteBinaryCB cb = new WhiteBinaryCB();
@@ -330,13 +330,14 @@ public abstract class AbstractBsWhiteBinaryCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    public void xsmyselfDerive(String function, SubQuery<WhiteBinaryCB> subQuery, String aliasName, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<WhiteBinaryCB>", subQuery);
-        WhiteBinaryCB cb = new WhiteBinaryCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
-        registerSpecifyMyselfDerived(function, cb.query(), "BINARY_ID", "BINARY_ID", subQueryPropertyName, "myselfDerived", aliasName, option);
+    public void xsmyselfDerive(String fn, SubQuery<WhiteBinaryCB> sq, String al, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteBinaryCB cb = new WhiteBinaryCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "BINARY_ID";
+        String pp = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
+        registerSpecifyMyselfDerived(fn, cb.query(), pk, pk, pp, "myselfDerived", al, op);
     }
-    public abstract String keepSpecifyMyselfDerived(WhiteBinaryCQ subQuery);
+    public abstract String keepSpecifyMyselfDerived(WhiteBinaryCQ sq);
 
     /**
      * Prepare for (Query)MyselfDerived (SubQuery).
@@ -347,20 +348,21 @@ public abstract class AbstractBsWhiteBinaryCQ extends AbstractConditionQuery {
     }
     protected HpQDRFunction<WhiteBinaryCB> xcreateQDRFunctionMyselfDerived() {
         return new HpQDRFunction<WhiteBinaryCB>(new HpQDRSetupper<WhiteBinaryCB>() {
-            public void setup(String function, SubQuery<WhiteBinaryCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-                xqderiveMyselfDerived(function, subQuery, operand, value, option);
+            public void setup(String fn, SubQuery<WhiteBinaryCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+                xqderiveMyselfDerived(fn, sq, rd, vl, op);
             }
         });
     }
-    public void xqderiveMyselfDerived(String function, SubQuery<WhiteBinaryCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<WhiteBinaryCB>", subQuery);
-        WhiteBinaryCB cb = new WhiteBinaryCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepQueryMyselfDerived(cb.query()); // for saving query-value.
-        String parameterPropertyName = keepQueryMyselfDerivedParameter(value);
-        registerQueryMyselfDerived(function, cb.query(), "BINARY_ID", "BINARY_ID", subQueryPropertyName, "myselfDerived", operand, value, parameterPropertyName, option);
+    public void xqderiveMyselfDerived(String fn, SubQuery<WhiteBinaryCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteBinaryCB cb = new WhiteBinaryCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "BINARY_ID";
+        String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
+        String prpp = keepQueryMyselfDerivedParameter(vl);
+        registerQueryMyselfDerived(fn, cb.query(), pk, pk, sqpp, "myselfDerived", rd, vl, prpp, op);
     }
-    public abstract String keepQueryMyselfDerived(WhiteBinaryCQ subQuery);
-    public abstract String keepQueryMyselfDerivedParameter(Object parameterValue);
+    public abstract String keepQueryMyselfDerived(WhiteBinaryCQ sq);
+    public abstract String keepQueryMyselfDerivedParameter(Object vl);
 
     // ===================================================================================
     //                                                                        MyselfExists
@@ -370,12 +372,12 @@ public abstract class AbstractBsWhiteBinaryCQ extends AbstractConditionQuery {
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfExists(SubQuery<WhiteBinaryCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteBinaryCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteBinaryCB cb = new WhiteBinaryCB(); cb.xsetupForMyselfExists(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfExists(cb.query()); // for saving query-value.
-        registerMyselfExists(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfExists(cb.query()); // for saving query-value.
+        registerMyselfExists(cb.query(), pp);
     }
-    public abstract String keepMyselfExists(WhiteBinaryCQ subQuery);
+    public abstract String keepMyselfExists(WhiteBinaryCQ sq);
 
     // ===================================================================================
     //                                                                       MyselfInScope
@@ -385,12 +387,12 @@ public abstract class AbstractBsWhiteBinaryCQ extends AbstractConditionQuery {
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfInScope(SubQuery<WhiteBinaryCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteBinaryCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteBinaryCB cb = new WhiteBinaryCB(); cb.xsetupForMyselfInScope(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfInScope(cb.query()); // for saving query-value.
-        registerMyselfInScope(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfInScope(cb.query()); // for saving query-value.
+        registerMyselfInScope(cb.query(), pp);
     }
-    public abstract String keepMyselfInScope(WhiteBinaryCQ subQuery);
+    public abstract String keepMyselfInScope(WhiteBinaryCQ sq);
 
     // ===================================================================================
     //                                                                    Full Text Search
@@ -416,7 +418,7 @@ public abstract class AbstractBsWhiteBinaryCQ extends AbstractConditionQuery {
      * @param conditionValue The condition value embedded without binding (by MySQL restriction) but escaped. (NullAllowed: if null or empty, no condition)
      * @param modifier The modifier of full-text search. (NullAllowed: If the value is null, no modifier specified)
      */
-    public void match(java.util.List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList
+    public void match(List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList
                     , String conditionValue
                     , org.seasar.dbflute.dbway.WayOfMySQL.FullTextSearchModifier modifier) {
         xdoMatchForMySQL(textColumnList, conditionValue, modifier);

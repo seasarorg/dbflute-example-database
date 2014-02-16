@@ -71,18 +71,18 @@ public class WhiteDiffWorldCIQ extends AbstractBsWhiteDiffWorldCQ {
     //                                                                ====================
     protected ConditionValue getCValueDiffWorldId() { return _myCQ.getDiffWorldId(); }
     protected ConditionValue getCValueDiffWorldName() { return _myCQ.getDiffWorldName(); }
-    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) { return null; }
-    public String keepScalarCondition(WhiteDiffWorldCQ subQuery)
+    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
+    public String keepScalarCondition(WhiteDiffWorldCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }
-    public String keepSpecifyMyselfDerived(WhiteDiffWorldCQ subQuery)
+    public String keepSpecifyMyselfDerived(WhiteDiffWorldCQ sq)
     { throwIICBOE("(Specify)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerived(WhiteDiffWorldCQ subQuery)
+    public String keepQueryMyselfDerived(WhiteDiffWorldCQ sq)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerivedParameter(Object parameterValue)
+    public String keepQueryMyselfDerivedParameter(Object vl)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepMyselfExists(WhiteDiffWorldCQ subQuery)
+    public String keepMyselfExists(WhiteDiffWorldCQ sq)
     { throwIICBOE("MyselfExists"); return null;}
-    public String keepMyselfInScope(WhiteDiffWorldCQ subQuery)
+    public String keepMyselfInScope(WhiteDiffWorldCQ sq)
     { throwIICBOE("MyselfInScope"); return null;}
 
     protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()

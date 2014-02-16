@@ -87,18 +87,18 @@ public class WhiteTableExceptGenRefCIQ extends AbstractBsWhiteTableExceptGenRefC
     protected ConditionValue getCValueGenRefId() { return _myCQ.getGenRefId(); }
     protected ConditionValue getCValueGenRefName() { return _myCQ.getGenRefName(); }
     protected ConditionValue getCValueGenOnlyId() { return _myCQ.getGenOnlyId(); }
-    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) { return null; }
-    public String keepScalarCondition(WhiteTableExceptGenRefCQ subQuery)
+    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
+    public String keepScalarCondition(WhiteTableExceptGenRefCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }
-    public String keepSpecifyMyselfDerived(WhiteTableExceptGenRefCQ subQuery)
+    public String keepSpecifyMyselfDerived(WhiteTableExceptGenRefCQ sq)
     { throwIICBOE("(Specify)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerived(WhiteTableExceptGenRefCQ subQuery)
+    public String keepQueryMyselfDerived(WhiteTableExceptGenRefCQ sq)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerivedParameter(Object parameterValue)
+    public String keepQueryMyselfDerivedParameter(Object vl)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepMyselfExists(WhiteTableExceptGenRefCQ subQuery)
+    public String keepMyselfExists(WhiteTableExceptGenRefCQ sq)
     { throwIICBOE("MyselfExists"); return null;}
-    public String keepMyselfInScope(WhiteTableExceptGenRefCQ subQuery)
+    public String keepMyselfInScope(WhiteTableExceptGenRefCQ sq)
     { throwIICBOE("MyselfInScope"); return null;}
 
     protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()

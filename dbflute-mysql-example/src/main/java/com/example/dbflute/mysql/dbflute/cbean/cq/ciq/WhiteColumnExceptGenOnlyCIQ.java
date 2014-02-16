@@ -86,18 +86,18 @@ public class WhiteColumnExceptGenOnlyCIQ extends AbstractBsWhiteColumnExceptGenO
     //                                                                ====================
     protected ConditionValue getCValueGenOnlyId() { return _myCQ.getGenOnlyId(); }
     protected ConditionValue getCValueGenOnlyName() { return _myCQ.getGenOnlyName(); }
-    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) { return null; }
-    public String keepScalarCondition(WhiteColumnExceptGenOnlyCQ subQuery)
+    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
+    public String keepScalarCondition(WhiteColumnExceptGenOnlyCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }
-    public String keepSpecifyMyselfDerived(WhiteColumnExceptGenOnlyCQ subQuery)
+    public String keepSpecifyMyselfDerived(WhiteColumnExceptGenOnlyCQ sq)
     { throwIICBOE("(Specify)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerived(WhiteColumnExceptGenOnlyCQ subQuery)
+    public String keepQueryMyselfDerived(WhiteColumnExceptGenOnlyCQ sq)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerivedParameter(Object parameterValue)
+    public String keepQueryMyselfDerivedParameter(Object vl)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepMyselfExists(WhiteColumnExceptGenOnlyCQ subQuery)
+    public String keepMyselfExists(WhiteColumnExceptGenOnlyCQ sq)
     { throwIICBOE("MyselfExists"); return null;}
-    public String keepMyselfInScope(WhiteColumnExceptGenOnlyCQ subQuery)
+    public String keepMyselfInScope(WhiteColumnExceptGenOnlyCQ sq)
     { throwIICBOE("MyselfInScope"); return null;}
 
     protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()

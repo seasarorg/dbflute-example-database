@@ -388,8 +388,8 @@ public class BsWhiteSplitMultipleFkChildCB extends AbstractConditionBean {
         public HpSDRFunction<WhiteSplitMultipleFkChildCB, WhiteSplitMultipleFkChildCQ> myselfDerived() {
             assertDerived("myselfDerived"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<WhiteSplitMultipleFkChildCB, WhiteSplitMultipleFkChildCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<WhiteSplitMultipleFkChildCB, WhiteSplitMultipleFkChildCQ>() {
-                public void setup(String function, SubQuery<WhiteSplitMultipleFkChildCB> subQuery, WhiteSplitMultipleFkChildCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsmyselfDerive(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<WhiteSplitMultipleFkChildCB> sq, WhiteSplitMultipleFkChildCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsmyselfDerive(fn, sq, al, op); } }, _dbmetaProvider);
         }
     }
 

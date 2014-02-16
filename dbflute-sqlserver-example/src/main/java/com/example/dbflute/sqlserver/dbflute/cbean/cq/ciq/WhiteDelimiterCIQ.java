@@ -74,18 +74,18 @@ public class WhiteDelimiterCIQ extends AbstractBsWhiteDelimiterCQ {
     protected ConditionValue getCValueStringConverted() { return _myCQ.getStringConverted(); }
     protected ConditionValue getCValueStringNonConverted() { return _myCQ.getStringNonConverted(); }
     protected ConditionValue getCValueDateDefault() { return _myCQ.getDateDefault(); }
-    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) { return null; }
-    public String keepScalarCondition(WhiteDelimiterCQ subQuery)
+    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
+    public String keepScalarCondition(WhiteDelimiterCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }
-    public String keepSpecifyMyselfDerived(WhiteDelimiterCQ subQuery)
+    public String keepSpecifyMyselfDerived(WhiteDelimiterCQ sq)
     { throwIICBOE("(Specify)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerived(WhiteDelimiterCQ subQuery)
+    public String keepQueryMyselfDerived(WhiteDelimiterCQ sq)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerivedParameter(Object parameterValue)
+    public String keepQueryMyselfDerivedParameter(Object vl)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepMyselfExists(WhiteDelimiterCQ subQuery)
+    public String keepMyselfExists(WhiteDelimiterCQ sq)
     { throwIICBOE("MyselfExists"); return null;}
-    public String keepMyselfInScope(WhiteDelimiterCQ subQuery)
+    public String keepMyselfInScope(WhiteDelimiterCQ sq)
     { throwIICBOE("MyselfInScope"); return null;}
 
     protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()

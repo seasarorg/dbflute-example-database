@@ -57,19 +57,19 @@ public class WhiteVariantRelationMasterQuxDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgMasterQuxId implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteVariantRelationMasterQux)e).getMasterQuxId(); }
-        public void write(Entity e, Object v) { ((WhiteVariantRelationMasterQux)e).setMasterQuxId(ctl(v)); }
+        public Object read(Entity et) { return ((WhiteVariantRelationMasterQux)et).getMasterQuxId(); }
+        public void write(Entity et, Object vl) { ((WhiteVariantRelationMasterQux)et).setMasterQuxId(ctl(vl)); }
     }
     public static class EpgMasterQuxName implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteVariantRelationMasterQux)e).getMasterQuxName(); }
-        public void write(Entity e, Object v) { ((WhiteVariantRelationMasterQux)e).setMasterQuxName((String)v); }
+        public Object read(Entity et) { return ((WhiteVariantRelationMasterQux)et).getMasterQuxName(); }
+        public void write(Entity et, Object vl) { ((WhiteVariantRelationMasterQux)et).setMasterQuxName((String)vl); }
     }
     public class EpgQuxTypeCode implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteVariantRelationMasterQux)e).getQuxTypeCode(); }
-        public void write(Entity e, Object v) {
+        public Object read(Entity et) { return ((WhiteVariantRelationMasterQux)et).getQuxTypeCode(); }
+        public void write(Entity et, Object vl) {
             ColumnInfo col = columnQuxTypeCode();
-            ccls(col, v);
-            ((WhiteVariantRelationMasterQux)e).setQuxTypeCodeAsVariantRelationQuxType((CDef.VariantRelationQuxType)gcls(col, v));
+            ccls(col, vl);
+            ((WhiteVariantRelationMasterQux)et).setQuxTypeCodeAsVariantRelationQuxType((CDef.VariantRelationQuxType)gcls(col, vl));
         }
     }
 
@@ -151,10 +151,10 @@ public class WhiteVariantRelationMasterQuxDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((WhiteVariantRelationMasterQux)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((WhiteVariantRelationMasterQux)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((WhiteVariantRelationMasterQux)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((WhiteVariantRelationMasterQux)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

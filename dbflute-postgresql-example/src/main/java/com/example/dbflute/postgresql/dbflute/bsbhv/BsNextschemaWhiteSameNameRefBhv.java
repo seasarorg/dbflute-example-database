@@ -139,10 +139,10 @@ public abstract class BsNextschemaWhiteSameNameRefBhv extends AbstractBehaviorWr
         return doSelectEntity(cb, NextschemaWhiteSameNameRef.class);
     }
 
-    protected <ENTITY extends NextschemaWhiteSameNameRef> ENTITY doSelectEntity(final NextschemaWhiteSameNameRefCB cb, Class<ENTITY> entityType) {
+    protected <ENTITY extends NextschemaWhiteSameNameRef> ENTITY doSelectEntity(final NextschemaWhiteSameNameRefCB cb, Class<ENTITY> tp) {
         assertCBStateValid(cb);
-        return helpSelectEntityInternally(cb, entityType, new InternalSelectEntityCallback<ENTITY, NextschemaWhiteSameNameRefCB>() {
-            public List<ENTITY> callbackSelectList(NextschemaWhiteSameNameRefCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); } });
+        return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, NextschemaWhiteSameNameRefCB>() {
+            public List<ENTITY> callbackSelectList(NextschemaWhiteSameNameRefCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
     }
 
     @Override
@@ -168,10 +168,10 @@ public abstract class BsNextschemaWhiteSameNameRefBhv extends AbstractBehaviorWr
         return doSelectEntityWithDeletedCheck(cb, NextschemaWhiteSameNameRef.class);
     }
 
-    protected <ENTITY extends NextschemaWhiteSameNameRef> ENTITY doSelectEntityWithDeletedCheck(final NextschemaWhiteSameNameRefCB cb, Class<ENTITY> entityType) {
+    protected <ENTITY extends NextschemaWhiteSameNameRef> ENTITY doSelectEntityWithDeletedCheck(final NextschemaWhiteSameNameRefCB cb, Class<ENTITY> tp) {
         assertCBStateValid(cb);
-        return helpSelectEntityWithDeletedCheckInternally(cb, entityType, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, NextschemaWhiteSameNameRefCB>() {
-            public List<ENTITY> callbackSelectList(NextschemaWhiteSameNameRefCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); } });
+        return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, NextschemaWhiteSameNameRefCB>() {
+            public List<ENTITY> callbackSelectList(NextschemaWhiteSameNameRefCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
     }
 
     @Override
@@ -239,11 +239,11 @@ public abstract class BsNextschemaWhiteSameNameRefBhv extends AbstractBehaviorWr
         return doSelectList(cb, NextschemaWhiteSameNameRef.class);
     }
 
-    protected <ENTITY extends NextschemaWhiteSameNameRef> ListResultBean<ENTITY> doSelectList(NextschemaWhiteSameNameRefCB cb, Class<ENTITY> entityType) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", entityType);
-        assertSpecifyDerivedReferrerEntityProperty(cb, entityType);
-        return helpSelectListInternally(cb, entityType, new InternalSelectListCallback<ENTITY, NextschemaWhiteSameNameRefCB>() {
-            public List<ENTITY> callbackSelectList(NextschemaWhiteSameNameRefCB cb, Class<ENTITY> entityType) { return delegateSelectList(cb, entityType); } });
+    protected <ENTITY extends NextschemaWhiteSameNameRef> ListResultBean<ENTITY> doSelectList(NextschemaWhiteSameNameRefCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
+        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
+        return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, NextschemaWhiteSameNameRefCB>() {
+            public List<ENTITY> callbackSelectList(NextschemaWhiteSameNameRefCB cb, Class<ENTITY> tp) { return delegateSelectList(cb, tp); } });
     }
 
     @Override
@@ -280,11 +280,11 @@ public abstract class BsNextschemaWhiteSameNameRefBhv extends AbstractBehaviorWr
         return doSelectPage(cb, NextschemaWhiteSameNameRef.class);
     }
 
-    protected <ENTITY extends NextschemaWhiteSameNameRef> PagingResultBean<ENTITY> doSelectPage(NextschemaWhiteSameNameRefCB cb, Class<ENTITY> entityType) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", entityType);
-        return helpSelectPageInternally(cb, entityType, new InternalSelectPageCallback<ENTITY, NextschemaWhiteSameNameRefCB>() {
+    protected <ENTITY extends NextschemaWhiteSameNameRef> PagingResultBean<ENTITY> doSelectPage(NextschemaWhiteSameNameRefCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
+        return helpSelectPageInternally(cb, tp, new InternalSelectPageCallback<ENTITY, NextschemaWhiteSameNameRefCB>() {
             public int callbackSelectCount(NextschemaWhiteSameNameRefCB cb) { return doSelectCountPlainly(cb); }
-            public List<ENTITY> callbackSelectList(NextschemaWhiteSameNameRefCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); }
+            public List<ENTITY> callbackSelectList(NextschemaWhiteSameNameRefCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
         });
     }
 
@@ -314,12 +314,12 @@ public abstract class BsNextschemaWhiteSameNameRefBhv extends AbstractBehaviorWr
         doSelectCursor(cb, entityRowHandler, NextschemaWhiteSameNameRef.class);
     }
 
-    protected <ENTITY extends NextschemaWhiteSameNameRef> void doSelectCursor(NextschemaWhiteSameNameRefCB cb, EntityRowHandler<ENTITY> entityRowHandler, Class<ENTITY> entityType) {
-        assertCBStateValid(cb); assertObjectNotNull("entityRowHandler<NextschemaWhiteSameNameRef>", entityRowHandler); assertObjectNotNull("entityType", entityType);
-        assertSpecifyDerivedReferrerEntityProperty(cb, entityType);
-        helpSelectCursorInternally(cb, entityRowHandler, entityType, new InternalSelectCursorCallback<ENTITY, NextschemaWhiteSameNameRefCB>() {
-            public void callbackSelectCursor(NextschemaWhiteSameNameRefCB cb, EntityRowHandler<ENTITY> entityRowHandler, Class<ENTITY> entityType) { delegateSelectCursor(cb, entityRowHandler, entityType); }
-            public List<ENTITY> callbackSelectList(NextschemaWhiteSameNameRefCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); }
+    protected <ENTITY extends NextschemaWhiteSameNameRef> void doSelectCursor(NextschemaWhiteSameNameRefCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
+        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
+        helpSelectCursorInternally(cb, handler, tp, new InternalSelectCursorCallback<ENTITY, NextschemaWhiteSameNameRefCB>() {
+            public void callbackSelectCursor(NextschemaWhiteSameNameRefCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) { delegateSelectCursor(cb, handler, tp); }
+            public List<ENTITY> callbackSelectList(NextschemaWhiteSameNameRefCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
         });
     }
 
@@ -345,18 +345,18 @@ public abstract class BsNextschemaWhiteSameNameRefBhv extends AbstractBehaviorWr
         return doScalarSelect(resultType, newMyConditionBean());
     }
 
-    protected <RESULT, CB extends NextschemaWhiteSameNameRefCB> SLFunction<CB, RESULT> doScalarSelect(Class<RESULT> resultType, CB cb) {
-        assertObjectNotNull("resultType", resultType); assertCBStateValid(cb);
+    protected <RESULT, CB extends NextschemaWhiteSameNameRefCB> SLFunction<CB, RESULT> doScalarSelect(Class<RESULT> tp, CB cb) {
+        assertObjectNotNull("resultType", tp); assertCBStateValid(cb);
         cb.xsetupForScalarSelect(); cb.getSqlClause().disableSelectIndex(); // for when you use union
-        return createSLFunction(cb, resultType);
+        return createSLFunction(cb, tp);
     }
 
-    protected <RESULT, CB extends NextschemaWhiteSameNameRefCB> SLFunction<CB, RESULT> createSLFunction(CB cb, Class<RESULT> resultType) {
-        return new SLFunction<CB, RESULT>(cb, resultType);
+    protected <RESULT, CB extends NextschemaWhiteSameNameRefCB> SLFunction<CB, RESULT> createSLFunction(CB cb, Class<RESULT> tp) {
+        return new SLFunction<CB, RESULT>(cb, tp);
     }
 
-    protected <RESULT> SLFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> resultType) {
-        return doScalarSelect(resultType, newMyConditionBean());
+    protected <RESULT> SLFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) {
+        return doScalarSelect(tp, newMyConditionBean());
     }
 
     // ===================================================================================
@@ -378,10 +378,10 @@ public abstract class BsNextschemaWhiteSameNameRefBhv extends AbstractBehaviorWr
      */
     public List<NextschemaWhiteSameName> pulloutWhiteSameName(List<NextschemaWhiteSameNameRef> whiteSameNameRefList) {
         return helpPulloutInternally(whiteSameNameRefList, new InternalPulloutCallback<NextschemaWhiteSameNameRef, NextschemaWhiteSameName>() {
-            public NextschemaWhiteSameName getFr(NextschemaWhiteSameNameRef e) { return e.getWhiteSameName(); }
+            public NextschemaWhiteSameName getFr(NextschemaWhiteSameNameRef et) { return et.getWhiteSameName(); }
             public boolean hasRf() { return true; }
-            public void setRfLs(NextschemaWhiteSameName e, List<NextschemaWhiteSameNameRef> ls)
-            { e.setWhiteSameNameRefList(ls); }
+            public void setRfLs(NextschemaWhiteSameName et, List<NextschemaWhiteSameNameRef> ls)
+            { et.setWhiteSameNameRefList(ls); }
         });
     }
 
@@ -395,7 +395,7 @@ public abstract class BsNextschemaWhiteSameNameRefBhv extends AbstractBehaviorWr
      */
     public List<Long> extractSameNameRefIdList(List<NextschemaWhiteSameNameRef> whiteSameNameRefList) {
         return helpExtractListInternally(whiteSameNameRefList, new InternalExtractCallback<NextschemaWhiteSameNameRef, Long>() {
-            public Long getCV(NextschemaWhiteSameNameRef e) { return e.getSameNameRefId(); }
+            public Long getCV(NextschemaWhiteSameNameRef et) { return et.getSameNameRefId(); }
         });
     }
 
@@ -423,24 +423,24 @@ public abstract class BsNextschemaWhiteSameNameRefBhv extends AbstractBehaviorWr
         doInsert(whiteSameNameRef, null);
     }
 
-    protected void doInsert(NextschemaWhiteSameNameRef whiteSameNameRef, InsertOption<NextschemaWhiteSameNameRefCB> option) {
+    protected void doInsert(NextschemaWhiteSameNameRef whiteSameNameRef, InsertOption<NextschemaWhiteSameNameRefCB> op) {
         assertObjectNotNull("whiteSameNameRef", whiteSameNameRef);
-        prepareInsertOption(option);
-        delegateInsert(whiteSameNameRef, option);
+        prepareInsertOption(op);
+        delegateInsert(whiteSameNameRef, op);
     }
 
-    protected void prepareInsertOption(InsertOption<NextschemaWhiteSameNameRefCB> option) {
-        if (option == null) { return; }
-        assertInsertOptionStatus(option);
-        if (option.hasSpecifiedInsertColumn()) {
-            option.resolveInsertColumnSpecification(createCBForSpecifiedUpdate());
+    protected void prepareInsertOption(InsertOption<NextschemaWhiteSameNameRefCB> op) {
+        if (op == null) { return; }
+        assertInsertOptionStatus(op);
+        if (op.hasSpecifiedInsertColumn()) {
+            op.resolveInsertColumnSpecification(createCBForSpecifiedUpdate());
         }
     }
 
     @Override
-    protected void doCreate(Entity entity, InsertOption<? extends ConditionBean> option) {
-        if (option == null) { insert(downcast(entity)); }
-        else { varyingInsert(downcast(entity), downcast(option)); }
+    protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) {
+        if (op == null) { insert(downcast(et)); }
+        else { varyingInsert(downcast(et), downcast(op)); }
     }
 
     /**
@@ -469,21 +469,21 @@ public abstract class BsNextschemaWhiteSameNameRefBhv extends AbstractBehaviorWr
         doUpdate(whiteSameNameRef, null);
     }
 
-    protected void doUpdate(NextschemaWhiteSameNameRef whiteSameNameRef, final UpdateOption<NextschemaWhiteSameNameRefCB> option) {
+    protected void doUpdate(NextschemaWhiteSameNameRef whiteSameNameRef, final UpdateOption<NextschemaWhiteSameNameRefCB> op) {
         assertObjectNotNull("whiteSameNameRef", whiteSameNameRef);
-        prepareUpdateOption(option);
+        prepareUpdateOption(op);
         helpUpdateInternally(whiteSameNameRef, new InternalUpdateCallback<NextschemaWhiteSameNameRef>() {
-            public int callbackDelegateUpdate(NextschemaWhiteSameNameRef entity) { return delegateUpdate(entity, option); } });
+            public int callbackDelegateUpdate(NextschemaWhiteSameNameRef et) { return delegateUpdate(et, op); } });
     }
 
-    protected void prepareUpdateOption(UpdateOption<NextschemaWhiteSameNameRefCB> option) {
-        if (option == null) { return; }
-        assertUpdateOptionStatus(option);
-        if (option.hasSelfSpecification()) {
-            option.resolveSelfSpecification(createCBForVaryingUpdate());
+    protected void prepareUpdateOption(UpdateOption<NextschemaWhiteSameNameRefCB> op) {
+        if (op == null) { return; }
+        assertUpdateOptionStatus(op);
+        if (op.hasSelfSpecification()) {
+            op.resolveSelfSpecification(createCBForVaryingUpdate());
         }
-        if (option.hasSpecifiedUpdateColumn()) {
-            option.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate());
+        if (op.hasSpecifiedUpdateColumn()) {
+            op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate());
         }
     }
 
@@ -500,14 +500,14 @@ public abstract class BsNextschemaWhiteSameNameRefBhv extends AbstractBehaviorWr
     }
 
     @Override
-    protected void doModify(Entity entity, UpdateOption<? extends ConditionBean> option) {
-        if (option == null) { update(downcast(entity)); }
-        else { varyingUpdate(downcast(entity), downcast(option)); }
+    protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) {
+        if (op == null) { update(downcast(et)); }
+        else { varyingUpdate(downcast(et), downcast(op)); }
     }
 
     @Override
-    protected void doModifyNonstrict(Entity entity, UpdateOption<? extends ConditionBean> option) {
-        doModify(entity, option);
+    protected void doModifyNonstrict(Entity et, UpdateOption<? extends ConditionBean> op) {
+        doModify(et, op);
     }
 
     /**
@@ -523,30 +523,28 @@ public abstract class BsNextschemaWhiteSameNameRefBhv extends AbstractBehaviorWr
         doInesrtOrUpdate(whiteSameNameRef, null, null);
     }
 
-    protected void doInesrtOrUpdate(NextschemaWhiteSameNameRef whiteSameNameRef, final InsertOption<NextschemaWhiteSameNameRefCB> insertOption, final UpdateOption<NextschemaWhiteSameNameRefCB> updateOption) {
+    protected void doInesrtOrUpdate(NextschemaWhiteSameNameRef whiteSameNameRef, final InsertOption<NextschemaWhiteSameNameRefCB> iop, final UpdateOption<NextschemaWhiteSameNameRefCB> uop) {
         helpInsertOrUpdateInternally(whiteSameNameRef, new InternalInsertOrUpdateCallback<NextschemaWhiteSameNameRef, NextschemaWhiteSameNameRefCB>() {
-            public void callbackInsert(NextschemaWhiteSameNameRef entity) { doInsert(entity, insertOption); }
-            public void callbackUpdate(NextschemaWhiteSameNameRef entity) { doUpdate(entity, updateOption); }
+            public void callbackInsert(NextschemaWhiteSameNameRef et) { doInsert(et, iop); }
+            public void callbackUpdate(NextschemaWhiteSameNameRef et) { doUpdate(et, uop); }
             public NextschemaWhiteSameNameRefCB callbackNewMyConditionBean() { return newMyConditionBean(); }
             public int callbackSelectCount(NextschemaWhiteSameNameRefCB cb) { return selectCount(cb); }
         });
     }
 
     @Override
-    protected void doCreateOrModify(Entity entity, InsertOption<? extends ConditionBean> insertOption,
-            UpdateOption<? extends ConditionBean> updateOption) {
-        if (insertOption == null && updateOption == null) { insertOrUpdate(downcast(entity)); }
+    protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
+        if (iop == null && uop == null) { insertOrUpdate(downcast(et)); }
         else {
-            insertOption = insertOption == null ? new InsertOption<NextschemaWhiteSameNameRefCB>() : insertOption;
-            updateOption = updateOption == null ? new UpdateOption<NextschemaWhiteSameNameRefCB>() : updateOption;
-            varyingInsertOrUpdate(downcast(entity), downcast(insertOption), downcast(updateOption));
+            iop = iop != null ? iop : new InsertOption<NextschemaWhiteSameNameRefCB>();
+            uop = uop != null ? uop : new UpdateOption<NextschemaWhiteSameNameRefCB>();
+            varyingInsertOrUpdate(downcast(et), downcast(iop), downcast(uop));
         }
     }
 
     @Override
-    protected void doCreateOrModifyNonstrict(Entity entity, InsertOption<? extends ConditionBean> insertOption,
-            UpdateOption<? extends ConditionBean> updateOption) {
-        doCreateOrModify(entity, insertOption, updateOption);
+    protected void doCreateOrModifyNonstrict(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
+        doCreateOrModify(et, iop, uop);
     }
 
     /**
@@ -570,27 +568,27 @@ public abstract class BsNextschemaWhiteSameNameRefBhv extends AbstractBehaviorWr
         doDelete(whiteSameNameRef, null);
     }
 
-    protected void doDelete(NextschemaWhiteSameNameRef whiteSameNameRef, final DeleteOption<NextschemaWhiteSameNameRefCB> option) {
+    protected void doDelete(NextschemaWhiteSameNameRef whiteSameNameRef, final DeleteOption<NextschemaWhiteSameNameRefCB> op) {
         assertObjectNotNull("whiteSameNameRef", whiteSameNameRef);
-        prepareDeleteOption(option);
+        prepareDeleteOption(op);
         helpDeleteInternally(whiteSameNameRef, new InternalDeleteCallback<NextschemaWhiteSameNameRef>() {
-            public int callbackDelegateDelete(NextschemaWhiteSameNameRef entity) { return delegateDelete(entity, option); } });
+            public int callbackDelegateDelete(NextschemaWhiteSameNameRef et) { return delegateDelete(et, op); } });
     }
 
-    protected void prepareDeleteOption(DeleteOption<NextschemaWhiteSameNameRefCB> option) {
-        if (option == null) { return; }
-        assertDeleteOptionStatus(option);
-    }
-
-    @Override
-    protected void doRemove(Entity entity, DeleteOption<? extends ConditionBean> option) {
-        if (option == null) { delete(downcast(entity)); }
-        else { varyingDelete(downcast(entity), downcast(option)); }
+    protected void prepareDeleteOption(DeleteOption<NextschemaWhiteSameNameRefCB> op) {
+        if (op == null) { return; }
+        assertDeleteOptionStatus(op);
     }
 
     @Override
-    protected void doRemoveNonstrict(Entity entity, DeleteOption<? extends ConditionBean> option) {
-        doRemove(entity, option);
+    protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) {
+        if (op == null) { delete(downcast(et)); }
+        else { varyingDelete(downcast(et), downcast(op)); }
+    }
+
+    @Override
+    protected void doRemoveNonstrict(Entity et, DeleteOption<? extends ConditionBean> op) {
+        doRemove(et, op);
     }
 
     // ===================================================================================
@@ -621,26 +619,26 @@ public abstract class BsNextschemaWhiteSameNameRefBhv extends AbstractBehaviorWr
      * @return The array of inserted count. (NotNull, EmptyAllowed)
      */
     public int[] batchInsert(List<NextschemaWhiteSameNameRef> whiteSameNameRefList) {
-        InsertOption<NextschemaWhiteSameNameRefCB> option = createInsertUpdateOption();
-        return doBatchInsert(whiteSameNameRefList, option);
+        InsertOption<NextschemaWhiteSameNameRefCB> op = createInsertUpdateOption();
+        return doBatchInsert(whiteSameNameRefList, op);
     }
 
-    protected int[] doBatchInsert(List<NextschemaWhiteSameNameRef> whiteSameNameRefList, InsertOption<NextschemaWhiteSameNameRefCB> option) {
+    protected int[] doBatchInsert(List<NextschemaWhiteSameNameRef> whiteSameNameRefList, InsertOption<NextschemaWhiteSameNameRefCB> op) {
         assertObjectNotNull("whiteSameNameRefList", whiteSameNameRefList);
-        prepareBatchInsertOption(whiteSameNameRefList, option);
-        return delegateBatchInsert(whiteSameNameRefList, option);
+        prepareBatchInsertOption(whiteSameNameRefList, op);
+        return delegateBatchInsert(whiteSameNameRefList, op);
     }
 
-    protected void prepareBatchInsertOption(List<NextschemaWhiteSameNameRef> whiteSameNameRefList, InsertOption<NextschemaWhiteSameNameRefCB> option) {
-        option.xallowInsertColumnModifiedPropertiesFragmented();
-        option.xacceptInsertColumnModifiedPropertiesIfNeeds(whiteSameNameRefList);
-        prepareInsertOption(option);
+    protected void prepareBatchInsertOption(List<NextschemaWhiteSameNameRef> whiteSameNameRefList, InsertOption<NextschemaWhiteSameNameRefCB> op) {
+        op.xallowInsertColumnModifiedPropertiesFragmented();
+        op.xacceptInsertColumnModifiedPropertiesIfNeeds(whiteSameNameRefList);
+        prepareInsertOption(op);
     }
 
     @Override
-    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> option) {
-        if (option == null) { return batchInsert(downcast(ls)); }
-        else { return varyingBatchInsert(downcast(ls), downcast(option)); }
+    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) {
+        if (op == null) { return batchInsert(downcast(ls)); }
+        else { return varyingBatchInsert(downcast(ls), downcast(op)); }
     }
 
     /**
@@ -668,25 +666,25 @@ public abstract class BsNextschemaWhiteSameNameRefBhv extends AbstractBehaviorWr
      * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<NextschemaWhiteSameNameRef> whiteSameNameRefList) {
-        UpdateOption<NextschemaWhiteSameNameRefCB> option = createPlainUpdateOption();
-        return doBatchUpdate(whiteSameNameRefList, option);
+        UpdateOption<NextschemaWhiteSameNameRefCB> op = createPlainUpdateOption();
+        return doBatchUpdate(whiteSameNameRefList, op);
     }
 
-    protected int[] doBatchUpdate(List<NextschemaWhiteSameNameRef> whiteSameNameRefList, UpdateOption<NextschemaWhiteSameNameRefCB> option) {
+    protected int[] doBatchUpdate(List<NextschemaWhiteSameNameRef> whiteSameNameRefList, UpdateOption<NextschemaWhiteSameNameRefCB> op) {
         assertObjectNotNull("whiteSameNameRefList", whiteSameNameRefList);
-        prepareBatchUpdateOption(whiteSameNameRefList, option);
-        return delegateBatchUpdate(whiteSameNameRefList, option);
+        prepareBatchUpdateOption(whiteSameNameRefList, op);
+        return delegateBatchUpdate(whiteSameNameRefList, op);
     }
 
-    protected void prepareBatchUpdateOption(List<NextschemaWhiteSameNameRef> whiteSameNameRefList, UpdateOption<NextschemaWhiteSameNameRefCB> option) {
-        option.xacceptUpdateColumnModifiedPropertiesIfNeeds(whiteSameNameRefList);
-        prepareUpdateOption(option);
+    protected void prepareBatchUpdateOption(List<NextschemaWhiteSameNameRef> whiteSameNameRefList, UpdateOption<NextschemaWhiteSameNameRefCB> op) {
+        op.xacceptUpdateColumnModifiedPropertiesIfNeeds(whiteSameNameRefList);
+        prepareUpdateOption(op);
     }
 
     @Override
-    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> option) {
-        if (option == null) { return batchUpdate(downcast(ls)); }
-        else { return varyingBatchUpdate(downcast(ls), downcast(option)); }
+    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) {
+        if (op == null) { return batchUpdate(downcast(ls)); }
+        else { return varyingBatchUpdate(downcast(ls), downcast(op)); }
     }
 
     /**
@@ -722,8 +720,8 @@ public abstract class BsNextschemaWhiteSameNameRefBhv extends AbstractBehaviorWr
     }
 
     @Override
-    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> option) {
-        return doLumpModify(ls, option);
+    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> op) {
+        return doLumpModify(ls, op);
     }
 
     /**
@@ -737,21 +735,21 @@ public abstract class BsNextschemaWhiteSameNameRefBhv extends AbstractBehaviorWr
         return doBatchDelete(whiteSameNameRefList, null);
     }
 
-    protected int[] doBatchDelete(List<NextschemaWhiteSameNameRef> whiteSameNameRefList, DeleteOption<NextschemaWhiteSameNameRefCB> option) {
+    protected int[] doBatchDelete(List<NextschemaWhiteSameNameRef> whiteSameNameRefList, DeleteOption<NextschemaWhiteSameNameRefCB> op) {
         assertObjectNotNull("whiteSameNameRefList", whiteSameNameRefList);
-        prepareDeleteOption(option);
-        return delegateBatchDelete(whiteSameNameRefList, option);
+        prepareDeleteOption(op);
+        return delegateBatchDelete(whiteSameNameRefList, op);
     }
 
     @Override
-    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> option) {
-        if (option == null) { return batchDelete(downcast(ls)); }
-        else { return varyingBatchDelete(downcast(ls), downcast(option)); }
+    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) {
+        if (op == null) { return batchDelete(downcast(ls)); }
+        else { return varyingBatchDelete(downcast(ls), downcast(op)); }
     }
 
     @Override
-    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> option) {
-        return doLumpRemove(ls, option);
+    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> op) {
+        return doLumpRemove(ls, op);
     }
 
     // ===================================================================================
@@ -787,13 +785,12 @@ public abstract class BsNextschemaWhiteSameNameRefBhv extends AbstractBehaviorWr
         return doQueryInsert(setupper, null);
     }
 
-    protected int doQueryInsert(QueryInsertSetupper<NextschemaWhiteSameNameRef, NextschemaWhiteSameNameRefCB> setupper, InsertOption<NextschemaWhiteSameNameRefCB> option) {
-        assertObjectNotNull("setupper", setupper);
-        prepareInsertOption(option);
-        NextschemaWhiteSameNameRef entity = new NextschemaWhiteSameNameRef();
-        NextschemaWhiteSameNameRefCB intoCB = createCBForQueryInsert();
-        ConditionBean resourceCB = setupper.setup(entity, intoCB);
-        return delegateQueryInsert(entity, intoCB, resourceCB, option);
+    protected int doQueryInsert(QueryInsertSetupper<NextschemaWhiteSameNameRef, NextschemaWhiteSameNameRefCB> sp, InsertOption<NextschemaWhiteSameNameRefCB> op) {
+        assertObjectNotNull("setupper", sp);
+        prepareInsertOption(op);
+        NextschemaWhiteSameNameRef e = new NextschemaWhiteSameNameRef();
+        NextschemaWhiteSameNameRefCB cb = createCBForQueryInsert();
+        return delegateQueryInsert(e, cb, sp.setup(e, cb), op);
     }
 
     protected NextschemaWhiteSameNameRefCB createCBForQueryInsert() {
@@ -834,16 +831,16 @@ public abstract class BsNextschemaWhiteSameNameRefBhv extends AbstractBehaviorWr
         return doQueryUpdate(whiteSameNameRef, cb, null);
     }
 
-    protected int doQueryUpdate(NextschemaWhiteSameNameRef whiteSameNameRef, NextschemaWhiteSameNameRefCB cb, UpdateOption<NextschemaWhiteSameNameRefCB> option) {
+    protected int doQueryUpdate(NextschemaWhiteSameNameRef whiteSameNameRef, NextschemaWhiteSameNameRefCB cb, UpdateOption<NextschemaWhiteSameNameRefCB> op) {
         assertObjectNotNull("whiteSameNameRef", whiteSameNameRef); assertCBStateValid(cb);
-        prepareUpdateOption(option);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(whiteSameNameRef, cb, option) : 0;
+        prepareUpdateOption(op);
+        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(whiteSameNameRef, cb, op) : 0;
     }
 
     @Override
-    protected int doRangeModify(Entity entity, ConditionBean cb, UpdateOption<? extends ConditionBean> option) {
-        if (option == null) { return queryUpdate(downcast(entity), (NextschemaWhiteSameNameRefCB)cb); }
-        else { return varyingQueryUpdate(downcast(entity), (NextschemaWhiteSameNameRefCB)cb, downcast(option)); }
+    protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op) {
+        if (op == null) { return queryUpdate(downcast(et), (NextschemaWhiteSameNameRefCB)cb); }
+        else { return varyingQueryUpdate(downcast(et), (NextschemaWhiteSameNameRefCB)cb, downcast(op)); }
     }
 
     /**
@@ -861,16 +858,16 @@ public abstract class BsNextschemaWhiteSameNameRefBhv extends AbstractBehaviorWr
         return doQueryDelete(cb, null);
     }
 
-    protected int doQueryDelete(NextschemaWhiteSameNameRefCB cb, DeleteOption<NextschemaWhiteSameNameRefCB> option) {
+    protected int doQueryDelete(NextschemaWhiteSameNameRefCB cb, DeleteOption<NextschemaWhiteSameNameRefCB> op) {
         assertCBStateValid(cb);
-        prepareDeleteOption(option);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryDelete(cb, option) : 0;
+        prepareDeleteOption(op);
+        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryDelete(cb, op) : 0;
     }
 
     @Override
-    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> option) {
-        if (option == null) { return queryDelete((NextschemaWhiteSameNameRefCB)cb); }
-        else { return varyingQueryDelete((NextschemaWhiteSameNameRefCB)cb, downcast(option)); }
+    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) {
+        if (op == null) { return queryDelete((NextschemaWhiteSameNameRefCB)cb); }
+        else { return varyingQueryDelete((NextschemaWhiteSameNameRefCB)cb, downcast(op)); }
     }
 
     // ===================================================================================
@@ -1122,29 +1119,29 @@ public abstract class BsNextschemaWhiteSameNameRefBhv extends AbstractBehaviorWr
     //                                                ------
     protected int delegateSelectCountUniquely(NextschemaWhiteSameNameRefCB cb) { return invoke(createSelectCountCBCommand(cb, true)); }
     protected int delegateSelectCountPlainly(NextschemaWhiteSameNameRefCB cb) { return invoke(createSelectCountCBCommand(cb, false)); }
-    protected <ENTITY extends NextschemaWhiteSameNameRef> void delegateSelectCursor(NextschemaWhiteSameNameRefCB cb, EntityRowHandler<ENTITY> erh, Class<ENTITY> et)
-    { invoke(createSelectCursorCBCommand(cb, erh, et)); }
-    protected <ENTITY extends NextschemaWhiteSameNameRef> List<ENTITY> delegateSelectList(NextschemaWhiteSameNameRefCB cb, Class<ENTITY> et)
-    { return invoke(createSelectListCBCommand(cb, et)); }
+    protected <ENTITY extends NextschemaWhiteSameNameRef> void delegateSelectCursor(NextschemaWhiteSameNameRefCB cb, EntityRowHandler<ENTITY> rh, Class<ENTITY> tp)
+    { invoke(createSelectCursorCBCommand(cb, rh, tp)); }
+    protected <ENTITY extends NextschemaWhiteSameNameRef> List<ENTITY> delegateSelectList(NextschemaWhiteSameNameRefCB cb, Class<ENTITY> tp)
+    { return invoke(createSelectListCBCommand(cb, tp)); }
 
     // -----------------------------------------------------
     //                                                Update
     //                                                ------
-    protected int delegateInsert(NextschemaWhiteSameNameRef e, InsertOption<NextschemaWhiteSameNameRefCB> op)
-    { if (!processBeforeInsert(e, op)) { return 0; }
-      return invoke(createInsertEntityCommand(e, op)); }
-    protected int delegateUpdate(NextschemaWhiteSameNameRef e, UpdateOption<NextschemaWhiteSameNameRefCB> op)
-    { if (!processBeforeUpdate(e, op)) { return 0; }
-      return delegateUpdateNonstrict(e, op); }
-    protected int delegateUpdateNonstrict(NextschemaWhiteSameNameRef e, UpdateOption<NextschemaWhiteSameNameRefCB> op)
-    { if (!processBeforeUpdate(e, op)) { return 0; }
-      return invoke(createUpdateNonstrictEntityCommand(e, op)); }
-    protected int delegateDelete(NextschemaWhiteSameNameRef e, DeleteOption<NextschemaWhiteSameNameRefCB> op)
-    { if (!processBeforeDelete(e, op)) { return 0; }
-      return delegateDeleteNonstrict(e, op); }
-    protected int delegateDeleteNonstrict(NextschemaWhiteSameNameRef e, DeleteOption<NextschemaWhiteSameNameRefCB> op)
-    { if (!processBeforeDelete(e, op)) { return 0; }
-      return invoke(createDeleteNonstrictEntityCommand(e, op)); }
+    protected int delegateInsert(NextschemaWhiteSameNameRef et, InsertOption<NextschemaWhiteSameNameRefCB> op)
+    { if (!processBeforeInsert(et, op)) { return 0; }
+      return invoke(createInsertEntityCommand(et, op)); }
+    protected int delegateUpdate(NextschemaWhiteSameNameRef et, UpdateOption<NextschemaWhiteSameNameRefCB> op)
+    { if (!processBeforeUpdate(et, op)) { return 0; }
+      return delegateUpdateNonstrict(et, op); }
+    protected int delegateUpdateNonstrict(NextschemaWhiteSameNameRef et, UpdateOption<NextschemaWhiteSameNameRefCB> op)
+    { if (!processBeforeUpdate(et, op)) { return 0; }
+      return invoke(createUpdateNonstrictEntityCommand(et, op)); }
+    protected int delegateDelete(NextschemaWhiteSameNameRef et, DeleteOption<NextschemaWhiteSameNameRefCB> op)
+    { if (!processBeforeDelete(et, op)) { return 0; }
+      return delegateDeleteNonstrict(et, op); }
+    protected int delegateDeleteNonstrict(NextschemaWhiteSameNameRef et, DeleteOption<NextschemaWhiteSameNameRefCB> op)
+    { if (!processBeforeDelete(et, op)) { return 0; }
+      return invoke(createDeleteNonstrictEntityCommand(et, op)); }
 
     protected int[] delegateBatchInsert(List<NextschemaWhiteSameNameRef> ls, InsertOption<NextschemaWhiteSameNameRefCB> op)
     { if (ls.isEmpty()) { return new int[]{}; }
@@ -1162,10 +1159,10 @@ public abstract class BsNextschemaWhiteSameNameRefBhv extends AbstractBehaviorWr
     { if (ls.isEmpty()) { return new int[]{}; }
       return invoke(createBatchDeleteNonstrictCommand(processBatchInternally(ls, op, true), op)); }
 
-    protected int delegateQueryInsert(NextschemaWhiteSameNameRef e, NextschemaWhiteSameNameRefCB inCB, ConditionBean resCB, InsertOption<NextschemaWhiteSameNameRefCB> op)
-    { if (!processBeforeQueryInsert(e, inCB, resCB, op)) { return 0; } return invoke(createQueryInsertCBCommand(e, inCB, resCB, op));  }
-    protected int delegateQueryUpdate(NextschemaWhiteSameNameRef e, NextschemaWhiteSameNameRefCB cb, UpdateOption<NextschemaWhiteSameNameRefCB> op)
-    { if (!processBeforeQueryUpdate(e, cb, op)) { return 0; } return invoke(createQueryUpdateCBCommand(e, cb, op));  }
+    protected int delegateQueryInsert(NextschemaWhiteSameNameRef et, NextschemaWhiteSameNameRefCB inCB, ConditionBean resCB, InsertOption<NextschemaWhiteSameNameRefCB> op)
+    { if (!processBeforeQueryInsert(et, inCB, resCB, op)) { return 0; } return invoke(createQueryInsertCBCommand(et, inCB, resCB, op));  }
+    protected int delegateQueryUpdate(NextschemaWhiteSameNameRef et, NextschemaWhiteSameNameRefCB cb, UpdateOption<NextschemaWhiteSameNameRefCB> op)
+    { if (!processBeforeQueryUpdate(et, cb, op)) { return 0; } return invoke(createQueryUpdateCBCommand(et, cb, op));  }
     protected int delegateQueryDelete(NextschemaWhiteSameNameRefCB cb, DeleteOption<NextschemaWhiteSameNameRefCB> op)
     { if (!processBeforeQueryDelete(cb, op)) { return 0; } return invoke(createQueryDeleteCBCommand(cb, op));  }
 
@@ -1176,7 +1173,7 @@ public abstract class BsNextschemaWhiteSameNameRefBhv extends AbstractBehaviorWr
      * {@inheritDoc}
      */
     @Override
-    protected boolean hasVersionNoValue(Entity entity) {
+    protected boolean hasVersionNoValue(Entity et) {
         return false;
     }
 
@@ -1184,15 +1181,15 @@ public abstract class BsNextschemaWhiteSameNameRefBhv extends AbstractBehaviorWr
      * {@inheritDoc}
      */
     @Override
-    protected boolean hasUpdateDateValue(Entity entity) {
+    protected boolean hasUpdateDateValue(Entity et) {
         return false;
     }
 
     // ===================================================================================
     //                                                                     Downcast Helper
     //                                                                     ===============
-    protected NextschemaWhiteSameNameRef downcast(Entity entity) {
-        return helpEntityDowncastInternally(entity, NextschemaWhiteSameNameRef.class);
+    protected NextschemaWhiteSameNameRef downcast(Entity et) {
+        return helpEntityDowncastInternally(et, NextschemaWhiteSameNameRef.class);
     }
 
     protected NextschemaWhiteSameNameRefCB downcast(ConditionBean cb) {
@@ -1200,27 +1197,27 @@ public abstract class BsNextschemaWhiteSameNameRefBhv extends AbstractBehaviorWr
     }
 
     @SuppressWarnings("unchecked")
-    protected List<NextschemaWhiteSameNameRef> downcast(List<? extends Entity> entityList) {
-        return (List<NextschemaWhiteSameNameRef>)entityList;
+    protected List<NextschemaWhiteSameNameRef> downcast(List<? extends Entity> ls) {
+        return (List<NextschemaWhiteSameNameRef>)ls;
     }
 
     @SuppressWarnings("unchecked")
-    protected InsertOption<NextschemaWhiteSameNameRefCB> downcast(InsertOption<? extends ConditionBean> option) {
-        return (InsertOption<NextschemaWhiteSameNameRefCB>)option;
+    protected InsertOption<NextschemaWhiteSameNameRefCB> downcast(InsertOption<? extends ConditionBean> op) {
+        return (InsertOption<NextschemaWhiteSameNameRefCB>)op;
     }
 
     @SuppressWarnings("unchecked")
-    protected UpdateOption<NextschemaWhiteSameNameRefCB> downcast(UpdateOption<? extends ConditionBean> option) {
-        return (UpdateOption<NextschemaWhiteSameNameRefCB>)option;
+    protected UpdateOption<NextschemaWhiteSameNameRefCB> downcast(UpdateOption<? extends ConditionBean> op) {
+        return (UpdateOption<NextschemaWhiteSameNameRefCB>)op;
     }
 
     @SuppressWarnings("unchecked")
-    protected DeleteOption<NextschemaWhiteSameNameRefCB> downcast(DeleteOption<? extends ConditionBean> option) {
-        return (DeleteOption<NextschemaWhiteSameNameRefCB>)option;
+    protected DeleteOption<NextschemaWhiteSameNameRefCB> downcast(DeleteOption<? extends ConditionBean> op) {
+        return (DeleteOption<NextschemaWhiteSameNameRefCB>)op;
     }
 
     @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<NextschemaWhiteSameNameRef, NextschemaWhiteSameNameRefCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> option) {
-        return (QueryInsertSetupper<NextschemaWhiteSameNameRef, NextschemaWhiteSameNameRefCB>)option;
+    protected QueryInsertSetupper<NextschemaWhiteSameNameRef, NextschemaWhiteSameNameRefCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp) {
+        return (QueryInsertSetupper<NextschemaWhiteSameNameRef, NextschemaWhiteSameNameRefCB>)sp;
     }
 }

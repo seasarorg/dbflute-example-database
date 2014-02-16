@@ -340,8 +340,8 @@ public class BsWhiteSplitMultipleFkNextCB extends AbstractConditionBean {
         public HpSDRFunction<WhiteSplitMultipleFkBaseCB, WhiteSplitMultipleFkNextCQ> derivedWhiteSplitMultipleFkBaseList() {
             assertDerived("whiteSplitMultipleFkBaseList"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<WhiteSplitMultipleFkBaseCB, WhiteSplitMultipleFkNextCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<WhiteSplitMultipleFkBaseCB, WhiteSplitMultipleFkNextCQ>() {
-                public void setup(String function, SubQuery<WhiteSplitMultipleFkBaseCB> subQuery, WhiteSplitMultipleFkNextCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsderiveWhiteSplitMultipleFkBaseList(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<WhiteSplitMultipleFkBaseCB> sq, WhiteSplitMultipleFkNextCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsderiveWhiteSplitMultipleFkBaseList(fn, sq, al, op); } }, _dbmetaProvider);
         }
         /**
          * Prepare for (Specify)MyselfDerived (SubQuery).
@@ -350,8 +350,8 @@ public class BsWhiteSplitMultipleFkNextCB extends AbstractConditionBean {
         public HpSDRFunction<WhiteSplitMultipleFkNextCB, WhiteSplitMultipleFkNextCQ> myselfDerived() {
             assertDerived("myselfDerived"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<WhiteSplitMultipleFkNextCB, WhiteSplitMultipleFkNextCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<WhiteSplitMultipleFkNextCB, WhiteSplitMultipleFkNextCQ>() {
-                public void setup(String function, SubQuery<WhiteSplitMultipleFkNextCB> subQuery, WhiteSplitMultipleFkNextCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsmyselfDerive(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<WhiteSplitMultipleFkNextCB> sq, WhiteSplitMultipleFkNextCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsmyselfDerive(fn, sq, al, op); } }, _dbmetaProvider);
         }
     }
 

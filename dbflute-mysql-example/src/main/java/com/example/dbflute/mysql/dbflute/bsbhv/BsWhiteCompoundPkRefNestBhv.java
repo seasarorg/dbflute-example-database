@@ -154,10 +154,10 @@ public abstract class BsWhiteCompoundPkRefNestBhv extends AbstractBehaviorWritab
         return doSelectEntity(cb, WhiteCompoundPkRefNest.class);
     }
 
-    protected <ENTITY extends WhiteCompoundPkRefNest> ENTITY doSelectEntity(final WhiteCompoundPkRefNestCB cb, Class<ENTITY> entityType) {
+    protected <ENTITY extends WhiteCompoundPkRefNest> ENTITY doSelectEntity(final WhiteCompoundPkRefNestCB cb, Class<ENTITY> tp) {
         assertCBStateValid(cb);
-        return helpSelectEntityInternally(cb, entityType, new InternalSelectEntityCallback<ENTITY, WhiteCompoundPkRefNestCB>() {
-            public List<ENTITY> callbackSelectList(WhiteCompoundPkRefNestCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); } });
+        return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, WhiteCompoundPkRefNestCB>() {
+            public List<ENTITY> callbackSelectList(WhiteCompoundPkRefNestCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
     }
 
     @Override
@@ -183,10 +183,10 @@ public abstract class BsWhiteCompoundPkRefNestBhv extends AbstractBehaviorWritab
         return doSelectEntityWithDeletedCheck(cb, WhiteCompoundPkRefNest.class);
     }
 
-    protected <ENTITY extends WhiteCompoundPkRefNest> ENTITY doSelectEntityWithDeletedCheck(final WhiteCompoundPkRefNestCB cb, Class<ENTITY> entityType) {
+    protected <ENTITY extends WhiteCompoundPkRefNest> ENTITY doSelectEntityWithDeletedCheck(final WhiteCompoundPkRefNestCB cb, Class<ENTITY> tp) {
         assertCBStateValid(cb);
-        return helpSelectEntityWithDeletedCheckInternally(cb, entityType, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, WhiteCompoundPkRefNestCB>() {
-            public List<ENTITY> callbackSelectList(WhiteCompoundPkRefNestCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); } });
+        return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, WhiteCompoundPkRefNestCB>() {
+            public List<ENTITY> callbackSelectList(WhiteCompoundPkRefNestCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
     }
 
     @Override
@@ -254,11 +254,11 @@ public abstract class BsWhiteCompoundPkRefNestBhv extends AbstractBehaviorWritab
         return doSelectList(cb, WhiteCompoundPkRefNest.class);
     }
 
-    protected <ENTITY extends WhiteCompoundPkRefNest> ListResultBean<ENTITY> doSelectList(WhiteCompoundPkRefNestCB cb, Class<ENTITY> entityType) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", entityType);
-        assertSpecifyDerivedReferrerEntityProperty(cb, entityType);
-        return helpSelectListInternally(cb, entityType, new InternalSelectListCallback<ENTITY, WhiteCompoundPkRefNestCB>() {
-            public List<ENTITY> callbackSelectList(WhiteCompoundPkRefNestCB cb, Class<ENTITY> entityType) { return delegateSelectList(cb, entityType); } });
+    protected <ENTITY extends WhiteCompoundPkRefNest> ListResultBean<ENTITY> doSelectList(WhiteCompoundPkRefNestCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
+        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
+        return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, WhiteCompoundPkRefNestCB>() {
+            public List<ENTITY> callbackSelectList(WhiteCompoundPkRefNestCB cb, Class<ENTITY> tp) { return delegateSelectList(cb, tp); } });
     }
 
     @Override
@@ -295,11 +295,11 @@ public abstract class BsWhiteCompoundPkRefNestBhv extends AbstractBehaviorWritab
         return doSelectPage(cb, WhiteCompoundPkRefNest.class);
     }
 
-    protected <ENTITY extends WhiteCompoundPkRefNest> PagingResultBean<ENTITY> doSelectPage(WhiteCompoundPkRefNestCB cb, Class<ENTITY> entityType) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", entityType);
-        return helpSelectPageInternally(cb, entityType, new InternalSelectPageCallback<ENTITY, WhiteCompoundPkRefNestCB>() {
+    protected <ENTITY extends WhiteCompoundPkRefNest> PagingResultBean<ENTITY> doSelectPage(WhiteCompoundPkRefNestCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
+        return helpSelectPageInternally(cb, tp, new InternalSelectPageCallback<ENTITY, WhiteCompoundPkRefNestCB>() {
             public int callbackSelectCount(WhiteCompoundPkRefNestCB cb) { return doSelectCountPlainly(cb); }
-            public List<ENTITY> callbackSelectList(WhiteCompoundPkRefNestCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); }
+            public List<ENTITY> callbackSelectList(WhiteCompoundPkRefNestCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
         });
     }
 
@@ -329,12 +329,12 @@ public abstract class BsWhiteCompoundPkRefNestBhv extends AbstractBehaviorWritab
         doSelectCursor(cb, entityRowHandler, WhiteCompoundPkRefNest.class);
     }
 
-    protected <ENTITY extends WhiteCompoundPkRefNest> void doSelectCursor(WhiteCompoundPkRefNestCB cb, EntityRowHandler<ENTITY> entityRowHandler, Class<ENTITY> entityType) {
-        assertCBStateValid(cb); assertObjectNotNull("entityRowHandler<WhiteCompoundPkRefNest>", entityRowHandler); assertObjectNotNull("entityType", entityType);
-        assertSpecifyDerivedReferrerEntityProperty(cb, entityType);
-        helpSelectCursorInternally(cb, entityRowHandler, entityType, new InternalSelectCursorCallback<ENTITY, WhiteCompoundPkRefNestCB>() {
-            public void callbackSelectCursor(WhiteCompoundPkRefNestCB cb, EntityRowHandler<ENTITY> entityRowHandler, Class<ENTITY> entityType) { delegateSelectCursor(cb, entityRowHandler, entityType); }
-            public List<ENTITY> callbackSelectList(WhiteCompoundPkRefNestCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); }
+    protected <ENTITY extends WhiteCompoundPkRefNest> void doSelectCursor(WhiteCompoundPkRefNestCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
+        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
+        helpSelectCursorInternally(cb, handler, tp, new InternalSelectCursorCallback<ENTITY, WhiteCompoundPkRefNestCB>() {
+            public void callbackSelectCursor(WhiteCompoundPkRefNestCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) { delegateSelectCursor(cb, handler, tp); }
+            public List<ENTITY> callbackSelectList(WhiteCompoundPkRefNestCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
         });
     }
 
@@ -360,18 +360,18 @@ public abstract class BsWhiteCompoundPkRefNestBhv extends AbstractBehaviorWritab
         return doScalarSelect(resultType, newMyConditionBean());
     }
 
-    protected <RESULT, CB extends WhiteCompoundPkRefNestCB> SLFunction<CB, RESULT> doScalarSelect(Class<RESULT> resultType, CB cb) {
-        assertObjectNotNull("resultType", resultType); assertCBStateValid(cb);
+    protected <RESULT, CB extends WhiteCompoundPkRefNestCB> SLFunction<CB, RESULT> doScalarSelect(Class<RESULT> tp, CB cb) {
+        assertObjectNotNull("resultType", tp); assertCBStateValid(cb);
         cb.xsetupForScalarSelect(); cb.getSqlClause().disableSelectIndex(); // for when you use union
-        return createSLFunction(cb, resultType);
+        return createSLFunction(cb, tp);
     }
 
-    protected <RESULT, CB extends WhiteCompoundPkRefNestCB> SLFunction<CB, RESULT> createSLFunction(CB cb, Class<RESULT> resultType) {
-        return new SLFunction<CB, RESULT>(cb, resultType);
+    protected <RESULT, CB extends WhiteCompoundPkRefNestCB> SLFunction<CB, RESULT> createSLFunction(CB cb, Class<RESULT> tp) {
+        return new SLFunction<CB, RESULT>(cb, tp);
     }
 
-    protected <RESULT> SLFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> resultType) {
-        return doScalarSelect(resultType, newMyConditionBean());
+    protected <RESULT> SLFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) {
+        return doScalarSelect(tp, newMyConditionBean());
     }
 
     // ===================================================================================
@@ -393,10 +393,10 @@ public abstract class BsWhiteCompoundPkRefNestBhv extends AbstractBehaviorWritab
      */
     public List<WhiteCompoundPkRef> pulloutWhiteCompoundPkRefByQuxMultipleId(List<WhiteCompoundPkRefNest> whiteCompoundPkRefNestList) {
         return helpPulloutInternally(whiteCompoundPkRefNestList, new InternalPulloutCallback<WhiteCompoundPkRefNest, WhiteCompoundPkRef>() {
-            public WhiteCompoundPkRef getFr(WhiteCompoundPkRefNest e) { return e.getWhiteCompoundPkRefByQuxMultipleId(); }
+            public WhiteCompoundPkRef getFr(WhiteCompoundPkRefNest et) { return et.getWhiteCompoundPkRefByQuxMultipleId(); }
             public boolean hasRf() { return true; }
-            public void setRfLs(WhiteCompoundPkRef e, List<WhiteCompoundPkRefNest> ls)
-            { e.setWhiteCompoundPkRefNestByQuxMultipleIdList(ls); }
+            public void setRfLs(WhiteCompoundPkRef et, List<WhiteCompoundPkRefNest> ls)
+            { et.setWhiteCompoundPkRefNestByQuxMultipleIdList(ls); }
         });
     }
     /**
@@ -406,10 +406,10 @@ public abstract class BsWhiteCompoundPkRefNestBhv extends AbstractBehaviorWritab
      */
     public List<WhiteCompoundPkRef> pulloutWhiteCompoundPkRefByFooMultipleId(List<WhiteCompoundPkRefNest> whiteCompoundPkRefNestList) {
         return helpPulloutInternally(whiteCompoundPkRefNestList, new InternalPulloutCallback<WhiteCompoundPkRefNest, WhiteCompoundPkRef>() {
-            public WhiteCompoundPkRef getFr(WhiteCompoundPkRefNest e) { return e.getWhiteCompoundPkRefByFooMultipleId(); }
+            public WhiteCompoundPkRef getFr(WhiteCompoundPkRefNest et) { return et.getWhiteCompoundPkRefByFooMultipleId(); }
             public boolean hasRf() { return true; }
-            public void setRfLs(WhiteCompoundPkRef e, List<WhiteCompoundPkRefNest> ls)
-            { e.setWhiteCompoundPkRefNestByFooMultipleIdList(ls); }
+            public void setRfLs(WhiteCompoundPkRef et, List<WhiteCompoundPkRefNest> ls)
+            { et.setWhiteCompoundPkRefNestByFooMultipleIdList(ls); }
         });
     }
 
@@ -423,7 +423,7 @@ public abstract class BsWhiteCompoundPkRefNestBhv extends AbstractBehaviorWritab
      */
     public List<Integer> extractCompoundPkRefNestIdList(List<WhiteCompoundPkRefNest> whiteCompoundPkRefNestList) {
         return helpExtractListInternally(whiteCompoundPkRefNestList, new InternalExtractCallback<WhiteCompoundPkRefNest, Integer>() {
-            public Integer getCV(WhiteCompoundPkRefNest e) { return e.getCompoundPkRefNestId(); }
+            public Integer getCV(WhiteCompoundPkRefNest et) { return et.getCompoundPkRefNestId(); }
         });
     }
 
@@ -451,24 +451,24 @@ public abstract class BsWhiteCompoundPkRefNestBhv extends AbstractBehaviorWritab
         doInsert(whiteCompoundPkRefNest, null);
     }
 
-    protected void doInsert(WhiteCompoundPkRefNest whiteCompoundPkRefNest, InsertOption<WhiteCompoundPkRefNestCB> option) {
+    protected void doInsert(WhiteCompoundPkRefNest whiteCompoundPkRefNest, InsertOption<WhiteCompoundPkRefNestCB> op) {
         assertObjectNotNull("whiteCompoundPkRefNest", whiteCompoundPkRefNest);
-        prepareInsertOption(option);
-        delegateInsert(whiteCompoundPkRefNest, option);
+        prepareInsertOption(op);
+        delegateInsert(whiteCompoundPkRefNest, op);
     }
 
-    protected void prepareInsertOption(InsertOption<WhiteCompoundPkRefNestCB> option) {
-        if (option == null) { return; }
-        assertInsertOptionStatus(option);
-        if (option.hasSpecifiedInsertColumn()) {
-            option.resolveInsertColumnSpecification(createCBForSpecifiedUpdate());
+    protected void prepareInsertOption(InsertOption<WhiteCompoundPkRefNestCB> op) {
+        if (op == null) { return; }
+        assertInsertOptionStatus(op);
+        if (op.hasSpecifiedInsertColumn()) {
+            op.resolveInsertColumnSpecification(createCBForSpecifiedUpdate());
         }
     }
 
     @Override
-    protected void doCreate(Entity entity, InsertOption<? extends ConditionBean> option) {
-        if (option == null) { insert(downcast(entity)); }
-        else { varyingInsert(downcast(entity), downcast(option)); }
+    protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) {
+        if (op == null) { insert(downcast(et)); }
+        else { varyingInsert(downcast(et), downcast(op)); }
     }
 
     /**
@@ -497,21 +497,21 @@ public abstract class BsWhiteCompoundPkRefNestBhv extends AbstractBehaviorWritab
         doUpdate(whiteCompoundPkRefNest, null);
     }
 
-    protected void doUpdate(WhiteCompoundPkRefNest whiteCompoundPkRefNest, final UpdateOption<WhiteCompoundPkRefNestCB> option) {
+    protected void doUpdate(WhiteCompoundPkRefNest whiteCompoundPkRefNest, final UpdateOption<WhiteCompoundPkRefNestCB> op) {
         assertObjectNotNull("whiteCompoundPkRefNest", whiteCompoundPkRefNest);
-        prepareUpdateOption(option);
+        prepareUpdateOption(op);
         helpUpdateInternally(whiteCompoundPkRefNest, new InternalUpdateCallback<WhiteCompoundPkRefNest>() {
-            public int callbackDelegateUpdate(WhiteCompoundPkRefNest entity) { return delegateUpdate(entity, option); } });
+            public int callbackDelegateUpdate(WhiteCompoundPkRefNest et) { return delegateUpdate(et, op); } });
     }
 
-    protected void prepareUpdateOption(UpdateOption<WhiteCompoundPkRefNestCB> option) {
-        if (option == null) { return; }
-        assertUpdateOptionStatus(option);
-        if (option.hasSelfSpecification()) {
-            option.resolveSelfSpecification(createCBForVaryingUpdate());
+    protected void prepareUpdateOption(UpdateOption<WhiteCompoundPkRefNestCB> op) {
+        if (op == null) { return; }
+        assertUpdateOptionStatus(op);
+        if (op.hasSelfSpecification()) {
+            op.resolveSelfSpecification(createCBForVaryingUpdate());
         }
-        if (option.hasSpecifiedUpdateColumn()) {
-            option.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate());
+        if (op.hasSpecifiedUpdateColumn()) {
+            op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate());
         }
     }
 
@@ -528,14 +528,14 @@ public abstract class BsWhiteCompoundPkRefNestBhv extends AbstractBehaviorWritab
     }
 
     @Override
-    protected void doModify(Entity entity, UpdateOption<? extends ConditionBean> option) {
-        if (option == null) { update(downcast(entity)); }
-        else { varyingUpdate(downcast(entity), downcast(option)); }
+    protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) {
+        if (op == null) { update(downcast(et)); }
+        else { varyingUpdate(downcast(et), downcast(op)); }
     }
 
     @Override
-    protected void doModifyNonstrict(Entity entity, UpdateOption<? extends ConditionBean> option) {
-        doModify(entity, option);
+    protected void doModifyNonstrict(Entity et, UpdateOption<? extends ConditionBean> op) {
+        doModify(et, op);
     }
 
     /**
@@ -551,30 +551,28 @@ public abstract class BsWhiteCompoundPkRefNestBhv extends AbstractBehaviorWritab
         doInesrtOrUpdate(whiteCompoundPkRefNest, null, null);
     }
 
-    protected void doInesrtOrUpdate(WhiteCompoundPkRefNest whiteCompoundPkRefNest, final InsertOption<WhiteCompoundPkRefNestCB> insertOption, final UpdateOption<WhiteCompoundPkRefNestCB> updateOption) {
+    protected void doInesrtOrUpdate(WhiteCompoundPkRefNest whiteCompoundPkRefNest, final InsertOption<WhiteCompoundPkRefNestCB> iop, final UpdateOption<WhiteCompoundPkRefNestCB> uop) {
         helpInsertOrUpdateInternally(whiteCompoundPkRefNest, new InternalInsertOrUpdateCallback<WhiteCompoundPkRefNest, WhiteCompoundPkRefNestCB>() {
-            public void callbackInsert(WhiteCompoundPkRefNest entity) { doInsert(entity, insertOption); }
-            public void callbackUpdate(WhiteCompoundPkRefNest entity) { doUpdate(entity, updateOption); }
+            public void callbackInsert(WhiteCompoundPkRefNest et) { doInsert(et, iop); }
+            public void callbackUpdate(WhiteCompoundPkRefNest et) { doUpdate(et, uop); }
             public WhiteCompoundPkRefNestCB callbackNewMyConditionBean() { return newMyConditionBean(); }
             public int callbackSelectCount(WhiteCompoundPkRefNestCB cb) { return selectCount(cb); }
         });
     }
 
     @Override
-    protected void doCreateOrModify(Entity entity, InsertOption<? extends ConditionBean> insertOption,
-            UpdateOption<? extends ConditionBean> updateOption) {
-        if (insertOption == null && updateOption == null) { insertOrUpdate(downcast(entity)); }
+    protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
+        if (iop == null && uop == null) { insertOrUpdate(downcast(et)); }
         else {
-            insertOption = insertOption == null ? new InsertOption<WhiteCompoundPkRefNestCB>() : insertOption;
-            updateOption = updateOption == null ? new UpdateOption<WhiteCompoundPkRefNestCB>() : updateOption;
-            varyingInsertOrUpdate(downcast(entity), downcast(insertOption), downcast(updateOption));
+            iop = iop != null ? iop : new InsertOption<WhiteCompoundPkRefNestCB>();
+            uop = uop != null ? uop : new UpdateOption<WhiteCompoundPkRefNestCB>();
+            varyingInsertOrUpdate(downcast(et), downcast(iop), downcast(uop));
         }
     }
 
     @Override
-    protected void doCreateOrModifyNonstrict(Entity entity, InsertOption<? extends ConditionBean> insertOption,
-            UpdateOption<? extends ConditionBean> updateOption) {
-        doCreateOrModify(entity, insertOption, updateOption);
+    protected void doCreateOrModifyNonstrict(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
+        doCreateOrModify(et, iop, uop);
     }
 
     /**
@@ -598,27 +596,27 @@ public abstract class BsWhiteCompoundPkRefNestBhv extends AbstractBehaviorWritab
         doDelete(whiteCompoundPkRefNest, null);
     }
 
-    protected void doDelete(WhiteCompoundPkRefNest whiteCompoundPkRefNest, final DeleteOption<WhiteCompoundPkRefNestCB> option) {
+    protected void doDelete(WhiteCompoundPkRefNest whiteCompoundPkRefNest, final DeleteOption<WhiteCompoundPkRefNestCB> op) {
         assertObjectNotNull("whiteCompoundPkRefNest", whiteCompoundPkRefNest);
-        prepareDeleteOption(option);
+        prepareDeleteOption(op);
         helpDeleteInternally(whiteCompoundPkRefNest, new InternalDeleteCallback<WhiteCompoundPkRefNest>() {
-            public int callbackDelegateDelete(WhiteCompoundPkRefNest entity) { return delegateDelete(entity, option); } });
+            public int callbackDelegateDelete(WhiteCompoundPkRefNest et) { return delegateDelete(et, op); } });
     }
 
-    protected void prepareDeleteOption(DeleteOption<WhiteCompoundPkRefNestCB> option) {
-        if (option == null) { return; }
-        assertDeleteOptionStatus(option);
-    }
-
-    @Override
-    protected void doRemove(Entity entity, DeleteOption<? extends ConditionBean> option) {
-        if (option == null) { delete(downcast(entity)); }
-        else { varyingDelete(downcast(entity), downcast(option)); }
+    protected void prepareDeleteOption(DeleteOption<WhiteCompoundPkRefNestCB> op) {
+        if (op == null) { return; }
+        assertDeleteOptionStatus(op);
     }
 
     @Override
-    protected void doRemoveNonstrict(Entity entity, DeleteOption<? extends ConditionBean> option) {
-        doRemove(entity, option);
+    protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) {
+        if (op == null) { delete(downcast(et)); }
+        else { varyingDelete(downcast(et), downcast(op)); }
+    }
+
+    @Override
+    protected void doRemoveNonstrict(Entity et, DeleteOption<? extends ConditionBean> op) {
+        doRemove(et, op);
     }
 
     // ===================================================================================
@@ -649,26 +647,26 @@ public abstract class BsWhiteCompoundPkRefNestBhv extends AbstractBehaviorWritab
      * @return The array of inserted count. (NotNull, EmptyAllowed)
      */
     public int[] batchInsert(List<WhiteCompoundPkRefNest> whiteCompoundPkRefNestList) {
-        InsertOption<WhiteCompoundPkRefNestCB> option = createInsertUpdateOption();
-        return doBatchInsert(whiteCompoundPkRefNestList, option);
+        InsertOption<WhiteCompoundPkRefNestCB> op = createInsertUpdateOption();
+        return doBatchInsert(whiteCompoundPkRefNestList, op);
     }
 
-    protected int[] doBatchInsert(List<WhiteCompoundPkRefNest> whiteCompoundPkRefNestList, InsertOption<WhiteCompoundPkRefNestCB> option) {
+    protected int[] doBatchInsert(List<WhiteCompoundPkRefNest> whiteCompoundPkRefNestList, InsertOption<WhiteCompoundPkRefNestCB> op) {
         assertObjectNotNull("whiteCompoundPkRefNestList", whiteCompoundPkRefNestList);
-        prepareBatchInsertOption(whiteCompoundPkRefNestList, option);
-        return delegateBatchInsert(whiteCompoundPkRefNestList, option);
+        prepareBatchInsertOption(whiteCompoundPkRefNestList, op);
+        return delegateBatchInsert(whiteCompoundPkRefNestList, op);
     }
 
-    protected void prepareBatchInsertOption(List<WhiteCompoundPkRefNest> whiteCompoundPkRefNestList, InsertOption<WhiteCompoundPkRefNestCB> option) {
-        option.xallowInsertColumnModifiedPropertiesFragmented();
-        option.xacceptInsertColumnModifiedPropertiesIfNeeds(whiteCompoundPkRefNestList);
-        prepareInsertOption(option);
+    protected void prepareBatchInsertOption(List<WhiteCompoundPkRefNest> whiteCompoundPkRefNestList, InsertOption<WhiteCompoundPkRefNestCB> op) {
+        op.xallowInsertColumnModifiedPropertiesFragmented();
+        op.xacceptInsertColumnModifiedPropertiesIfNeeds(whiteCompoundPkRefNestList);
+        prepareInsertOption(op);
     }
 
     @Override
-    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> option) {
-        if (option == null) { return batchInsert(downcast(ls)); }
-        else { return varyingBatchInsert(downcast(ls), downcast(option)); }
+    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) {
+        if (op == null) { return batchInsert(downcast(ls)); }
+        else { return varyingBatchInsert(downcast(ls), downcast(op)); }
     }
 
     /**
@@ -696,25 +694,25 @@ public abstract class BsWhiteCompoundPkRefNestBhv extends AbstractBehaviorWritab
      * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<WhiteCompoundPkRefNest> whiteCompoundPkRefNestList) {
-        UpdateOption<WhiteCompoundPkRefNestCB> option = createPlainUpdateOption();
-        return doBatchUpdate(whiteCompoundPkRefNestList, option);
+        UpdateOption<WhiteCompoundPkRefNestCB> op = createPlainUpdateOption();
+        return doBatchUpdate(whiteCompoundPkRefNestList, op);
     }
 
-    protected int[] doBatchUpdate(List<WhiteCompoundPkRefNest> whiteCompoundPkRefNestList, UpdateOption<WhiteCompoundPkRefNestCB> option) {
+    protected int[] doBatchUpdate(List<WhiteCompoundPkRefNest> whiteCompoundPkRefNestList, UpdateOption<WhiteCompoundPkRefNestCB> op) {
         assertObjectNotNull("whiteCompoundPkRefNestList", whiteCompoundPkRefNestList);
-        prepareBatchUpdateOption(whiteCompoundPkRefNestList, option);
-        return delegateBatchUpdate(whiteCompoundPkRefNestList, option);
+        prepareBatchUpdateOption(whiteCompoundPkRefNestList, op);
+        return delegateBatchUpdate(whiteCompoundPkRefNestList, op);
     }
 
-    protected void prepareBatchUpdateOption(List<WhiteCompoundPkRefNest> whiteCompoundPkRefNestList, UpdateOption<WhiteCompoundPkRefNestCB> option) {
-        option.xacceptUpdateColumnModifiedPropertiesIfNeeds(whiteCompoundPkRefNestList);
-        prepareUpdateOption(option);
+    protected void prepareBatchUpdateOption(List<WhiteCompoundPkRefNest> whiteCompoundPkRefNestList, UpdateOption<WhiteCompoundPkRefNestCB> op) {
+        op.xacceptUpdateColumnModifiedPropertiesIfNeeds(whiteCompoundPkRefNestList);
+        prepareUpdateOption(op);
     }
 
     @Override
-    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> option) {
-        if (option == null) { return batchUpdate(downcast(ls)); }
-        else { return varyingBatchUpdate(downcast(ls), downcast(option)); }
+    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) {
+        if (op == null) { return batchUpdate(downcast(ls)); }
+        else { return varyingBatchUpdate(downcast(ls), downcast(op)); }
     }
 
     /**
@@ -750,8 +748,8 @@ public abstract class BsWhiteCompoundPkRefNestBhv extends AbstractBehaviorWritab
     }
 
     @Override
-    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> option) {
-        return doLumpModify(ls, option);
+    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> op) {
+        return doLumpModify(ls, op);
     }
 
     /**
@@ -765,21 +763,21 @@ public abstract class BsWhiteCompoundPkRefNestBhv extends AbstractBehaviorWritab
         return doBatchDelete(whiteCompoundPkRefNestList, null);
     }
 
-    protected int[] doBatchDelete(List<WhiteCompoundPkRefNest> whiteCompoundPkRefNestList, DeleteOption<WhiteCompoundPkRefNestCB> option) {
+    protected int[] doBatchDelete(List<WhiteCompoundPkRefNest> whiteCompoundPkRefNestList, DeleteOption<WhiteCompoundPkRefNestCB> op) {
         assertObjectNotNull("whiteCompoundPkRefNestList", whiteCompoundPkRefNestList);
-        prepareDeleteOption(option);
-        return delegateBatchDelete(whiteCompoundPkRefNestList, option);
+        prepareDeleteOption(op);
+        return delegateBatchDelete(whiteCompoundPkRefNestList, op);
     }
 
     @Override
-    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> option) {
-        if (option == null) { return batchDelete(downcast(ls)); }
-        else { return varyingBatchDelete(downcast(ls), downcast(option)); }
+    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) {
+        if (op == null) { return batchDelete(downcast(ls)); }
+        else { return varyingBatchDelete(downcast(ls), downcast(op)); }
     }
 
     @Override
-    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> option) {
-        return doLumpRemove(ls, option);
+    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> op) {
+        return doLumpRemove(ls, op);
     }
 
     // ===================================================================================
@@ -815,13 +813,12 @@ public abstract class BsWhiteCompoundPkRefNestBhv extends AbstractBehaviorWritab
         return doQueryInsert(setupper, null);
     }
 
-    protected int doQueryInsert(QueryInsertSetupper<WhiteCompoundPkRefNest, WhiteCompoundPkRefNestCB> setupper, InsertOption<WhiteCompoundPkRefNestCB> option) {
-        assertObjectNotNull("setupper", setupper);
-        prepareInsertOption(option);
-        WhiteCompoundPkRefNest entity = new WhiteCompoundPkRefNest();
-        WhiteCompoundPkRefNestCB intoCB = createCBForQueryInsert();
-        ConditionBean resourceCB = setupper.setup(entity, intoCB);
-        return delegateQueryInsert(entity, intoCB, resourceCB, option);
+    protected int doQueryInsert(QueryInsertSetupper<WhiteCompoundPkRefNest, WhiteCompoundPkRefNestCB> sp, InsertOption<WhiteCompoundPkRefNestCB> op) {
+        assertObjectNotNull("setupper", sp);
+        prepareInsertOption(op);
+        WhiteCompoundPkRefNest e = new WhiteCompoundPkRefNest();
+        WhiteCompoundPkRefNestCB cb = createCBForQueryInsert();
+        return delegateQueryInsert(e, cb, sp.setup(e, cb), op);
     }
 
     protected WhiteCompoundPkRefNestCB createCBForQueryInsert() {
@@ -862,16 +859,16 @@ public abstract class BsWhiteCompoundPkRefNestBhv extends AbstractBehaviorWritab
         return doQueryUpdate(whiteCompoundPkRefNest, cb, null);
     }
 
-    protected int doQueryUpdate(WhiteCompoundPkRefNest whiteCompoundPkRefNest, WhiteCompoundPkRefNestCB cb, UpdateOption<WhiteCompoundPkRefNestCB> option) {
+    protected int doQueryUpdate(WhiteCompoundPkRefNest whiteCompoundPkRefNest, WhiteCompoundPkRefNestCB cb, UpdateOption<WhiteCompoundPkRefNestCB> op) {
         assertObjectNotNull("whiteCompoundPkRefNest", whiteCompoundPkRefNest); assertCBStateValid(cb);
-        prepareUpdateOption(option);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(whiteCompoundPkRefNest, cb, option) : 0;
+        prepareUpdateOption(op);
+        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(whiteCompoundPkRefNest, cb, op) : 0;
     }
 
     @Override
-    protected int doRangeModify(Entity entity, ConditionBean cb, UpdateOption<? extends ConditionBean> option) {
-        if (option == null) { return queryUpdate(downcast(entity), (WhiteCompoundPkRefNestCB)cb); }
-        else { return varyingQueryUpdate(downcast(entity), (WhiteCompoundPkRefNestCB)cb, downcast(option)); }
+    protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op) {
+        if (op == null) { return queryUpdate(downcast(et), (WhiteCompoundPkRefNestCB)cb); }
+        else { return varyingQueryUpdate(downcast(et), (WhiteCompoundPkRefNestCB)cb, downcast(op)); }
     }
 
     /**
@@ -889,16 +886,16 @@ public abstract class BsWhiteCompoundPkRefNestBhv extends AbstractBehaviorWritab
         return doQueryDelete(cb, null);
     }
 
-    protected int doQueryDelete(WhiteCompoundPkRefNestCB cb, DeleteOption<WhiteCompoundPkRefNestCB> option) {
+    protected int doQueryDelete(WhiteCompoundPkRefNestCB cb, DeleteOption<WhiteCompoundPkRefNestCB> op) {
         assertCBStateValid(cb);
-        prepareDeleteOption(option);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryDelete(cb, option) : 0;
+        prepareDeleteOption(op);
+        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryDelete(cb, op) : 0;
     }
 
     @Override
-    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> option) {
-        if (option == null) { return queryDelete((WhiteCompoundPkRefNestCB)cb); }
-        else { return varyingQueryDelete((WhiteCompoundPkRefNestCB)cb, downcast(option)); }
+    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) {
+        if (op == null) { return queryDelete((WhiteCompoundPkRefNestCB)cb); }
+        else { return varyingQueryDelete((WhiteCompoundPkRefNestCB)cb, downcast(op)); }
     }
 
     // ===================================================================================
@@ -1150,29 +1147,29 @@ public abstract class BsWhiteCompoundPkRefNestBhv extends AbstractBehaviorWritab
     //                                                ------
     protected int delegateSelectCountUniquely(WhiteCompoundPkRefNestCB cb) { return invoke(createSelectCountCBCommand(cb, true)); }
     protected int delegateSelectCountPlainly(WhiteCompoundPkRefNestCB cb) { return invoke(createSelectCountCBCommand(cb, false)); }
-    protected <ENTITY extends WhiteCompoundPkRefNest> void delegateSelectCursor(WhiteCompoundPkRefNestCB cb, EntityRowHandler<ENTITY> erh, Class<ENTITY> et)
-    { invoke(createSelectCursorCBCommand(cb, erh, et)); }
-    protected <ENTITY extends WhiteCompoundPkRefNest> List<ENTITY> delegateSelectList(WhiteCompoundPkRefNestCB cb, Class<ENTITY> et)
-    { return invoke(createSelectListCBCommand(cb, et)); }
+    protected <ENTITY extends WhiteCompoundPkRefNest> void delegateSelectCursor(WhiteCompoundPkRefNestCB cb, EntityRowHandler<ENTITY> rh, Class<ENTITY> tp)
+    { invoke(createSelectCursorCBCommand(cb, rh, tp)); }
+    protected <ENTITY extends WhiteCompoundPkRefNest> List<ENTITY> delegateSelectList(WhiteCompoundPkRefNestCB cb, Class<ENTITY> tp)
+    { return invoke(createSelectListCBCommand(cb, tp)); }
 
     // -----------------------------------------------------
     //                                                Update
     //                                                ------
-    protected int delegateInsert(WhiteCompoundPkRefNest e, InsertOption<WhiteCompoundPkRefNestCB> op)
-    { if (!processBeforeInsert(e, op)) { return 0; }
-      return invoke(createInsertEntityCommand(e, op)); }
-    protected int delegateUpdate(WhiteCompoundPkRefNest e, UpdateOption<WhiteCompoundPkRefNestCB> op)
-    { if (!processBeforeUpdate(e, op)) { return 0; }
-      return delegateUpdateNonstrict(e, op); }
-    protected int delegateUpdateNonstrict(WhiteCompoundPkRefNest e, UpdateOption<WhiteCompoundPkRefNestCB> op)
-    { if (!processBeforeUpdate(e, op)) { return 0; }
-      return invoke(createUpdateNonstrictEntityCommand(e, op)); }
-    protected int delegateDelete(WhiteCompoundPkRefNest e, DeleteOption<WhiteCompoundPkRefNestCB> op)
-    { if (!processBeforeDelete(e, op)) { return 0; }
-      return delegateDeleteNonstrict(e, op); }
-    protected int delegateDeleteNonstrict(WhiteCompoundPkRefNest e, DeleteOption<WhiteCompoundPkRefNestCB> op)
-    { if (!processBeforeDelete(e, op)) { return 0; }
-      return invoke(createDeleteNonstrictEntityCommand(e, op)); }
+    protected int delegateInsert(WhiteCompoundPkRefNest et, InsertOption<WhiteCompoundPkRefNestCB> op)
+    { if (!processBeforeInsert(et, op)) { return 0; }
+      return invoke(createInsertEntityCommand(et, op)); }
+    protected int delegateUpdate(WhiteCompoundPkRefNest et, UpdateOption<WhiteCompoundPkRefNestCB> op)
+    { if (!processBeforeUpdate(et, op)) { return 0; }
+      return delegateUpdateNonstrict(et, op); }
+    protected int delegateUpdateNonstrict(WhiteCompoundPkRefNest et, UpdateOption<WhiteCompoundPkRefNestCB> op)
+    { if (!processBeforeUpdate(et, op)) { return 0; }
+      return invoke(createUpdateNonstrictEntityCommand(et, op)); }
+    protected int delegateDelete(WhiteCompoundPkRefNest et, DeleteOption<WhiteCompoundPkRefNestCB> op)
+    { if (!processBeforeDelete(et, op)) { return 0; }
+      return delegateDeleteNonstrict(et, op); }
+    protected int delegateDeleteNonstrict(WhiteCompoundPkRefNest et, DeleteOption<WhiteCompoundPkRefNestCB> op)
+    { if (!processBeforeDelete(et, op)) { return 0; }
+      return invoke(createDeleteNonstrictEntityCommand(et, op)); }
 
     protected int[] delegateBatchInsert(List<WhiteCompoundPkRefNest> ls, InsertOption<WhiteCompoundPkRefNestCB> op)
     { if (ls.isEmpty()) { return new int[]{}; }
@@ -1190,10 +1187,10 @@ public abstract class BsWhiteCompoundPkRefNestBhv extends AbstractBehaviorWritab
     { if (ls.isEmpty()) { return new int[]{}; }
       return invoke(createBatchDeleteNonstrictCommand(processBatchInternally(ls, op, true), op)); }
 
-    protected int delegateQueryInsert(WhiteCompoundPkRefNest e, WhiteCompoundPkRefNestCB inCB, ConditionBean resCB, InsertOption<WhiteCompoundPkRefNestCB> op)
-    { if (!processBeforeQueryInsert(e, inCB, resCB, op)) { return 0; } return invoke(createQueryInsertCBCommand(e, inCB, resCB, op));  }
-    protected int delegateQueryUpdate(WhiteCompoundPkRefNest e, WhiteCompoundPkRefNestCB cb, UpdateOption<WhiteCompoundPkRefNestCB> op)
-    { if (!processBeforeQueryUpdate(e, cb, op)) { return 0; } return invoke(createQueryUpdateCBCommand(e, cb, op));  }
+    protected int delegateQueryInsert(WhiteCompoundPkRefNest et, WhiteCompoundPkRefNestCB inCB, ConditionBean resCB, InsertOption<WhiteCompoundPkRefNestCB> op)
+    { if (!processBeforeQueryInsert(et, inCB, resCB, op)) { return 0; } return invoke(createQueryInsertCBCommand(et, inCB, resCB, op));  }
+    protected int delegateQueryUpdate(WhiteCompoundPkRefNest et, WhiteCompoundPkRefNestCB cb, UpdateOption<WhiteCompoundPkRefNestCB> op)
+    { if (!processBeforeQueryUpdate(et, cb, op)) { return 0; } return invoke(createQueryUpdateCBCommand(et, cb, op));  }
     protected int delegateQueryDelete(WhiteCompoundPkRefNestCB cb, DeleteOption<WhiteCompoundPkRefNestCB> op)
     { if (!processBeforeQueryDelete(cb, op)) { return 0; } return invoke(createQueryDeleteCBCommand(cb, op));  }
 
@@ -1204,7 +1201,7 @@ public abstract class BsWhiteCompoundPkRefNestBhv extends AbstractBehaviorWritab
      * {@inheritDoc}
      */
     @Override
-    protected boolean hasVersionNoValue(Entity entity) {
+    protected boolean hasVersionNoValue(Entity et) {
         return false;
     }
 
@@ -1212,15 +1209,15 @@ public abstract class BsWhiteCompoundPkRefNestBhv extends AbstractBehaviorWritab
      * {@inheritDoc}
      */
     @Override
-    protected boolean hasUpdateDateValue(Entity entity) {
+    protected boolean hasUpdateDateValue(Entity et) {
         return false;
     }
 
     // ===================================================================================
     //                                                                     Downcast Helper
     //                                                                     ===============
-    protected WhiteCompoundPkRefNest downcast(Entity entity) {
-        return helpEntityDowncastInternally(entity, WhiteCompoundPkRefNest.class);
+    protected WhiteCompoundPkRefNest downcast(Entity et) {
+        return helpEntityDowncastInternally(et, WhiteCompoundPkRefNest.class);
     }
 
     protected WhiteCompoundPkRefNestCB downcast(ConditionBean cb) {
@@ -1228,27 +1225,27 @@ public abstract class BsWhiteCompoundPkRefNestBhv extends AbstractBehaviorWritab
     }
 
     @SuppressWarnings("unchecked")
-    protected List<WhiteCompoundPkRefNest> downcast(List<? extends Entity> entityList) {
-        return (List<WhiteCompoundPkRefNest>)entityList;
+    protected List<WhiteCompoundPkRefNest> downcast(List<? extends Entity> ls) {
+        return (List<WhiteCompoundPkRefNest>)ls;
     }
 
     @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteCompoundPkRefNestCB> downcast(InsertOption<? extends ConditionBean> option) {
-        return (InsertOption<WhiteCompoundPkRefNestCB>)option;
+    protected InsertOption<WhiteCompoundPkRefNestCB> downcast(InsertOption<? extends ConditionBean> op) {
+        return (InsertOption<WhiteCompoundPkRefNestCB>)op;
     }
 
     @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteCompoundPkRefNestCB> downcast(UpdateOption<? extends ConditionBean> option) {
-        return (UpdateOption<WhiteCompoundPkRefNestCB>)option;
+    protected UpdateOption<WhiteCompoundPkRefNestCB> downcast(UpdateOption<? extends ConditionBean> op) {
+        return (UpdateOption<WhiteCompoundPkRefNestCB>)op;
     }
 
     @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteCompoundPkRefNestCB> downcast(DeleteOption<? extends ConditionBean> option) {
-        return (DeleteOption<WhiteCompoundPkRefNestCB>)option;
+    protected DeleteOption<WhiteCompoundPkRefNestCB> downcast(DeleteOption<? extends ConditionBean> op) {
+        return (DeleteOption<WhiteCompoundPkRefNestCB>)op;
     }
 
     @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhiteCompoundPkRefNest, WhiteCompoundPkRefNestCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> option) {
-        return (QueryInsertSetupper<WhiteCompoundPkRefNest, WhiteCompoundPkRefNestCB>)option;
+    protected QueryInsertSetupper<WhiteCompoundPkRefNest, WhiteCompoundPkRefNestCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp) {
+        return (QueryInsertSetupper<WhiteCompoundPkRefNest, WhiteCompoundPkRefNestCB>)sp;
     }
 }

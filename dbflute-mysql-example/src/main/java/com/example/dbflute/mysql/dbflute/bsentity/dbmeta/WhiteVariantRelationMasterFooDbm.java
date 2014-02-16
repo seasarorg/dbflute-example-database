@@ -56,12 +56,12 @@ public class WhiteVariantRelationMasterFooDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgMasterFooId implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteVariantRelationMasterFoo)e).getMasterFooId(); }
-        public void write(Entity e, Object v) { ((WhiteVariantRelationMasterFoo)e).setMasterFooId(ctl(v)); }
+        public Object read(Entity et) { return ((WhiteVariantRelationMasterFoo)et).getMasterFooId(); }
+        public void write(Entity et, Object vl) { ((WhiteVariantRelationMasterFoo)et).setMasterFooId(ctl(vl)); }
     }
     public static class EpgMasterFooName implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteVariantRelationMasterFoo)e).getMasterFooName(); }
-        public void write(Entity e, Object v) { ((WhiteVariantRelationMasterFoo)e).setMasterFooName((String)v); }
+        public Object read(Entity et) { return ((WhiteVariantRelationMasterFoo)et).getMasterFooName(); }
+        public void write(Entity et, Object vl) { ((WhiteVariantRelationMasterFoo)et).setMasterFooName((String)vl); }
     }
 
     // ===================================================================================
@@ -114,8 +114,8 @@ public class WhiteVariantRelationMasterFooDbm extends AbstractDBMeta {
     //                                     Referrer Property
     //                                     -----------------
     public ReferrerInfo referrerWhiteVariantRelationReferrerAsVariantList() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnMasterFooId(), WhiteVariantRelationReferrerDbm.getInstance().columnVariantMasterId());
-        return cri("FK_WHITE_VARIANT_RELATION_FOO", "whiteVariantRelationReferrerAsVariantList", this, WhiteVariantRelationReferrerDbm.getInstance(), map, false, "whiteVariantRelationMasterFooAsVariant");
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnMasterFooId(), WhiteVariantRelationReferrerDbm.getInstance().columnVariantMasterId());
+        return cri("FK_WHITE_VARIANT_RELATION_FOO", "whiteVariantRelationReferrerAsVariantList", this, WhiteVariantRelationReferrerDbm.getInstance(), mp, false, "whiteVariantRelationMasterFooAsVariant");
     }
 
     // ===================================================================================
@@ -143,10 +143,10 @@ public class WhiteVariantRelationMasterFooDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((WhiteVariantRelationMasterFoo)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((WhiteVariantRelationMasterFoo)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((WhiteVariantRelationMasterFoo)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((WhiteVariantRelationMasterFoo)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

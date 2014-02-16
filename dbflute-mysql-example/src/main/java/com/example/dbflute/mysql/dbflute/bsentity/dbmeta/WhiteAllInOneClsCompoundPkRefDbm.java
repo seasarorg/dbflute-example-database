@@ -57,16 +57,16 @@ public class WhiteAllInOneClsCompoundPkRefDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgFooCode implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteAllInOneClsCompoundPkRef)e).getFooCode(); }
-        public void write(Entity e, Object v) { ((WhiteAllInOneClsCompoundPkRef)e).setFooCode((String)v); }
+        public Object read(Entity et) { return ((WhiteAllInOneClsCompoundPkRef)et).getFooCode(); }
+        public void write(Entity et, Object vl) { ((WhiteAllInOneClsCompoundPkRef)et).setFooCode((String)vl); }
     }
     public static class EpgBarCode implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteAllInOneClsCompoundPkRef)e).getBarCode(); }
-        public void write(Entity e, Object v) { ((WhiteAllInOneClsCompoundPkRef)e).setBarCode((String)v); }
+        public Object read(Entity et) { return ((WhiteAllInOneClsCompoundPkRef)et).getBarCode(); }
+        public void write(Entity et, Object vl) { ((WhiteAllInOneClsCompoundPkRef)et).setBarCode((String)vl); }
     }
     public static class EpgQuxCode implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteAllInOneClsCompoundPkRef)e).getQuxCode(); }
-        public void write(Entity e, Object v) { ((WhiteAllInOneClsCompoundPkRef)e).setQuxCode((String)v); }
+        public Object read(Entity et) { return ((WhiteAllInOneClsCompoundPkRef)et).getQuxCode(); }
+        public void write(Entity et, Object vl) { ((WhiteAllInOneClsCompoundPkRef)et).setQuxCode((String)vl); }
     }
 
     // ===================================================================================
@@ -124,12 +124,12 @@ public class WhiteAllInOneClsCompoundPkRefDbm extends AbstractDBMeta {
     //                                      Foreign Property
     //                                      ----------------
     public ForeignInfo foreignWhiteAllInOneClsElementAsFoo() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnFooCode(), WhiteAllInOneClsElementDbm.getInstance().columnClsElementCode());
-        return cfi("FK_WHITE_ALL_IN_ONE_CLS_COMPOUND_PK_REF_FOO_TEST", "whiteAllInOneClsElementAsFoo", this, WhiteAllInOneClsElementDbm.getInstance(), map, 0, false, false, false, true, "$$foreignAlias$$.CLS_CATEGORY_CODE = 'FOO'", null, false, null);
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnFooCode(), WhiteAllInOneClsElementDbm.getInstance().columnClsElementCode());
+        return cfi("FK_WHITE_ALL_IN_ONE_CLS_COMPOUND_PK_REF_FOO_TEST", "whiteAllInOneClsElementAsFoo", this, WhiteAllInOneClsElementDbm.getInstance(), mp, 0, false, false, false, true, "$$foreignAlias$$.CLS_CATEGORY_CODE = 'FOO'", null, false, null);
     }
     public ForeignInfo foreignWhiteAllInOneClsElementAsBar() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnBarCode(), WhiteAllInOneClsElementDbm.getInstance().columnClsElementCode());
-        return cfi("FK_WHITE_ALL_IN_ONE_CLS_COMPOUND_PK_REF_BAR_TEST", "whiteAllInOneClsElementAsBar", this, WhiteAllInOneClsElementDbm.getInstance(), map, 1, false, false, false, true, "$$foreignAlias$$.CLS_CATEGORY_CODE = 'BAR'", null, false, null);
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnBarCode(), WhiteAllInOneClsElementDbm.getInstance().columnClsElementCode());
+        return cfi("FK_WHITE_ALL_IN_ONE_CLS_COMPOUND_PK_REF_BAR_TEST", "whiteAllInOneClsElementAsBar", this, WhiteAllInOneClsElementDbm.getInstance(), mp, 1, false, false, false, true, "$$foreignAlias$$.CLS_CATEGORY_CODE = 'BAR'", null, false, null);
     }
 
     // -----------------------------------------------------
@@ -161,10 +161,10 @@ public class WhiteAllInOneClsCompoundPkRefDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((WhiteAllInOneClsCompoundPkRef)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((WhiteAllInOneClsCompoundPkRef)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((WhiteAllInOneClsCompoundPkRef)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((WhiteAllInOneClsCompoundPkRef)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

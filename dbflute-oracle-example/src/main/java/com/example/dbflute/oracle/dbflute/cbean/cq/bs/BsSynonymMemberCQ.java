@@ -81,89 +81,89 @@ public class BsSynonymMemberCQ extends AbstractBsSynonymMemberCQ {
 
     protected Map<String, SynonymMemberLoginCQ> _memberId_ExistsReferrer_SynonymMemberLoginListMap;
     public Map<String, SynonymMemberLoginCQ> getMemberId_ExistsReferrer_SynonymMemberLoginList() { return _memberId_ExistsReferrer_SynonymMemberLoginListMap; }
-    public String keepMemberId_ExistsReferrer_SynonymMemberLoginList(SynonymMemberLoginCQ subQuery) {
+    public String keepMemberId_ExistsReferrer_SynonymMemberLoginList(SynonymMemberLoginCQ sq) {
         if (_memberId_ExistsReferrer_SynonymMemberLoginListMap == null) { _memberId_ExistsReferrer_SynonymMemberLoginListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_memberId_ExistsReferrer_SynonymMemberLoginListMap.size() + 1);
-        _memberId_ExistsReferrer_SynonymMemberLoginListMap.put(key, subQuery); return "memberId_ExistsReferrer_SynonymMemberLoginList." + key;
+        String ky = "subQueryMapKey" + (_memberId_ExistsReferrer_SynonymMemberLoginListMap.size() + 1);
+        _memberId_ExistsReferrer_SynonymMemberLoginListMap.put(ky, sq); return "memberId_ExistsReferrer_SynonymMemberLoginList." + ky;
     }
 
     protected Map<String, SynonymMemberWithdrawalCQ> _memberId_ExistsReferrer_SynonymMemberWithdrawalAsOneMap;
     public Map<String, SynonymMemberWithdrawalCQ> getMemberId_ExistsReferrer_SynonymMemberWithdrawalAsOne() { return _memberId_ExistsReferrer_SynonymMemberWithdrawalAsOneMap; }
-    public String keepMemberId_ExistsReferrer_SynonymMemberWithdrawalAsOne(SynonymMemberWithdrawalCQ subQuery) {
+    public String keepMemberId_ExistsReferrer_SynonymMemberWithdrawalAsOne(SynonymMemberWithdrawalCQ sq) {
         if (_memberId_ExistsReferrer_SynonymMemberWithdrawalAsOneMap == null) { _memberId_ExistsReferrer_SynonymMemberWithdrawalAsOneMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_memberId_ExistsReferrer_SynonymMemberWithdrawalAsOneMap.size() + 1);
-        _memberId_ExistsReferrer_SynonymMemberWithdrawalAsOneMap.put(key, subQuery); return "memberId_ExistsReferrer_SynonymMemberWithdrawalAsOne." + key;
+        String ky = "subQueryMapKey" + (_memberId_ExistsReferrer_SynonymMemberWithdrawalAsOneMap.size() + 1);
+        _memberId_ExistsReferrer_SynonymMemberWithdrawalAsOneMap.put(ky, sq); return "memberId_ExistsReferrer_SynonymMemberWithdrawalAsOne." + ky;
     }
 
     protected Map<String, SynonymMemberLoginCQ> _memberId_NotExistsReferrer_SynonymMemberLoginListMap;
     public Map<String, SynonymMemberLoginCQ> getMemberId_NotExistsReferrer_SynonymMemberLoginList() { return _memberId_NotExistsReferrer_SynonymMemberLoginListMap; }
-    public String keepMemberId_NotExistsReferrer_SynonymMemberLoginList(SynonymMemberLoginCQ subQuery) {
+    public String keepMemberId_NotExistsReferrer_SynonymMemberLoginList(SynonymMemberLoginCQ sq) {
         if (_memberId_NotExistsReferrer_SynonymMemberLoginListMap == null) { _memberId_NotExistsReferrer_SynonymMemberLoginListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_memberId_NotExistsReferrer_SynonymMemberLoginListMap.size() + 1);
-        _memberId_NotExistsReferrer_SynonymMemberLoginListMap.put(key, subQuery); return "memberId_NotExistsReferrer_SynonymMemberLoginList." + key;
+        String ky = "subQueryMapKey" + (_memberId_NotExistsReferrer_SynonymMemberLoginListMap.size() + 1);
+        _memberId_NotExistsReferrer_SynonymMemberLoginListMap.put(ky, sq); return "memberId_NotExistsReferrer_SynonymMemberLoginList." + ky;
     }
 
     protected Map<String, SynonymMemberWithdrawalCQ> _memberId_NotExistsReferrer_SynonymMemberWithdrawalAsOneMap;
     public Map<String, SynonymMemberWithdrawalCQ> getMemberId_NotExistsReferrer_SynonymMemberWithdrawalAsOne() { return _memberId_NotExistsReferrer_SynonymMemberWithdrawalAsOneMap; }
-    public String keepMemberId_NotExistsReferrer_SynonymMemberWithdrawalAsOne(SynonymMemberWithdrawalCQ subQuery) {
+    public String keepMemberId_NotExistsReferrer_SynonymMemberWithdrawalAsOne(SynonymMemberWithdrawalCQ sq) {
         if (_memberId_NotExistsReferrer_SynonymMemberWithdrawalAsOneMap == null) { _memberId_NotExistsReferrer_SynonymMemberWithdrawalAsOneMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_memberId_NotExistsReferrer_SynonymMemberWithdrawalAsOneMap.size() + 1);
-        _memberId_NotExistsReferrer_SynonymMemberWithdrawalAsOneMap.put(key, subQuery); return "memberId_NotExistsReferrer_SynonymMemberWithdrawalAsOne." + key;
+        String ky = "subQueryMapKey" + (_memberId_NotExistsReferrer_SynonymMemberWithdrawalAsOneMap.size() + 1);
+        _memberId_NotExistsReferrer_SynonymMemberWithdrawalAsOneMap.put(ky, sq); return "memberId_NotExistsReferrer_SynonymMemberWithdrawalAsOne." + ky;
     }
 
     protected Map<String, SynonymMemberLoginCQ> _memberId_SpecifyDerivedReferrer_SynonymMemberLoginListMap;
     public Map<String, SynonymMemberLoginCQ> getMemberId_SpecifyDerivedReferrer_SynonymMemberLoginList() { return _memberId_SpecifyDerivedReferrer_SynonymMemberLoginListMap; }
-    public String keepMemberId_SpecifyDerivedReferrer_SynonymMemberLoginList(SynonymMemberLoginCQ subQuery) {
+    public String keepMemberId_SpecifyDerivedReferrer_SynonymMemberLoginList(SynonymMemberLoginCQ sq) {
         if (_memberId_SpecifyDerivedReferrer_SynonymMemberLoginListMap == null) { _memberId_SpecifyDerivedReferrer_SynonymMemberLoginListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_memberId_SpecifyDerivedReferrer_SynonymMemberLoginListMap.size() + 1);
-        _memberId_SpecifyDerivedReferrer_SynonymMemberLoginListMap.put(key, subQuery); return "memberId_SpecifyDerivedReferrer_SynonymMemberLoginList." + key;
+        String ky = "subQueryMapKey" + (_memberId_SpecifyDerivedReferrer_SynonymMemberLoginListMap.size() + 1);
+        _memberId_SpecifyDerivedReferrer_SynonymMemberLoginListMap.put(ky, sq); return "memberId_SpecifyDerivedReferrer_SynonymMemberLoginList." + ky;
     }
 
     protected Map<String, SynonymMemberLoginCQ> _memberId_InScopeRelation_SynonymMemberLoginListMap;
     public Map<String, SynonymMemberLoginCQ> getMemberId_InScopeRelation_SynonymMemberLoginList() { return _memberId_InScopeRelation_SynonymMemberLoginListMap; }
-    public String keepMemberId_InScopeRelation_SynonymMemberLoginList(SynonymMemberLoginCQ subQuery) {
+    public String keepMemberId_InScopeRelation_SynonymMemberLoginList(SynonymMemberLoginCQ sq) {
         if (_memberId_InScopeRelation_SynonymMemberLoginListMap == null) { _memberId_InScopeRelation_SynonymMemberLoginListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_memberId_InScopeRelation_SynonymMemberLoginListMap.size() + 1);
-        _memberId_InScopeRelation_SynonymMemberLoginListMap.put(key, subQuery); return "memberId_InScopeRelation_SynonymMemberLoginList." + key;
+        String ky = "subQueryMapKey" + (_memberId_InScopeRelation_SynonymMemberLoginListMap.size() + 1);
+        _memberId_InScopeRelation_SynonymMemberLoginListMap.put(ky, sq); return "memberId_InScopeRelation_SynonymMemberLoginList." + ky;
     }
 
     protected Map<String, SynonymMemberWithdrawalCQ> _memberId_InScopeRelation_SynonymMemberWithdrawalAsOneMap;
     public Map<String, SynonymMemberWithdrawalCQ> getMemberId_InScopeRelation_SynonymMemberWithdrawalAsOne() { return _memberId_InScopeRelation_SynonymMemberWithdrawalAsOneMap; }
-    public String keepMemberId_InScopeRelation_SynonymMemberWithdrawalAsOne(SynonymMemberWithdrawalCQ subQuery) {
+    public String keepMemberId_InScopeRelation_SynonymMemberWithdrawalAsOne(SynonymMemberWithdrawalCQ sq) {
         if (_memberId_InScopeRelation_SynonymMemberWithdrawalAsOneMap == null) { _memberId_InScopeRelation_SynonymMemberWithdrawalAsOneMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_memberId_InScopeRelation_SynonymMemberWithdrawalAsOneMap.size() + 1);
-        _memberId_InScopeRelation_SynonymMemberWithdrawalAsOneMap.put(key, subQuery); return "memberId_InScopeRelation_SynonymMemberWithdrawalAsOne." + key;
+        String ky = "subQueryMapKey" + (_memberId_InScopeRelation_SynonymMemberWithdrawalAsOneMap.size() + 1);
+        _memberId_InScopeRelation_SynonymMemberWithdrawalAsOneMap.put(ky, sq); return "memberId_InScopeRelation_SynonymMemberWithdrawalAsOne." + ky;
     }
 
     protected Map<String, SynonymMemberLoginCQ> _memberId_NotInScopeRelation_SynonymMemberLoginListMap;
     public Map<String, SynonymMemberLoginCQ> getMemberId_NotInScopeRelation_SynonymMemberLoginList() { return _memberId_NotInScopeRelation_SynonymMemberLoginListMap; }
-    public String keepMemberId_NotInScopeRelation_SynonymMemberLoginList(SynonymMemberLoginCQ subQuery) {
+    public String keepMemberId_NotInScopeRelation_SynonymMemberLoginList(SynonymMemberLoginCQ sq) {
         if (_memberId_NotInScopeRelation_SynonymMemberLoginListMap == null) { _memberId_NotInScopeRelation_SynonymMemberLoginListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_memberId_NotInScopeRelation_SynonymMemberLoginListMap.size() + 1);
-        _memberId_NotInScopeRelation_SynonymMemberLoginListMap.put(key, subQuery); return "memberId_NotInScopeRelation_SynonymMemberLoginList." + key;
+        String ky = "subQueryMapKey" + (_memberId_NotInScopeRelation_SynonymMemberLoginListMap.size() + 1);
+        _memberId_NotInScopeRelation_SynonymMemberLoginListMap.put(ky, sq); return "memberId_NotInScopeRelation_SynonymMemberLoginList." + ky;
     }
 
     protected Map<String, SynonymMemberWithdrawalCQ> _memberId_NotInScopeRelation_SynonymMemberWithdrawalAsOneMap;
     public Map<String, SynonymMemberWithdrawalCQ> getMemberId_NotInScopeRelation_SynonymMemberWithdrawalAsOne() { return _memberId_NotInScopeRelation_SynonymMemberWithdrawalAsOneMap; }
-    public String keepMemberId_NotInScopeRelation_SynonymMemberWithdrawalAsOne(SynonymMemberWithdrawalCQ subQuery) {
+    public String keepMemberId_NotInScopeRelation_SynonymMemberWithdrawalAsOne(SynonymMemberWithdrawalCQ sq) {
         if (_memberId_NotInScopeRelation_SynonymMemberWithdrawalAsOneMap == null) { _memberId_NotInScopeRelation_SynonymMemberWithdrawalAsOneMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_memberId_NotInScopeRelation_SynonymMemberWithdrawalAsOneMap.size() + 1);
-        _memberId_NotInScopeRelation_SynonymMemberWithdrawalAsOneMap.put(key, subQuery); return "memberId_NotInScopeRelation_SynonymMemberWithdrawalAsOne." + key;
+        String ky = "subQueryMapKey" + (_memberId_NotInScopeRelation_SynonymMemberWithdrawalAsOneMap.size() + 1);
+        _memberId_NotInScopeRelation_SynonymMemberWithdrawalAsOneMap.put(ky, sq); return "memberId_NotInScopeRelation_SynonymMemberWithdrawalAsOne." + ky;
     }
 
     protected Map<String, SynonymMemberLoginCQ> _memberId_QueryDerivedReferrer_SynonymMemberLoginListMap;
     public Map<String, SynonymMemberLoginCQ> getMemberId_QueryDerivedReferrer_SynonymMemberLoginList() { return _memberId_QueryDerivedReferrer_SynonymMemberLoginListMap; }
-    public String keepMemberId_QueryDerivedReferrer_SynonymMemberLoginList(SynonymMemberLoginCQ subQuery) {
+    public String keepMemberId_QueryDerivedReferrer_SynonymMemberLoginList(SynonymMemberLoginCQ sq) {
         if (_memberId_QueryDerivedReferrer_SynonymMemberLoginListMap == null) { _memberId_QueryDerivedReferrer_SynonymMemberLoginListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_memberId_QueryDerivedReferrer_SynonymMemberLoginListMap.size() + 1);
-        _memberId_QueryDerivedReferrer_SynonymMemberLoginListMap.put(key, subQuery); return "memberId_QueryDerivedReferrer_SynonymMemberLoginList." + key;
+        String ky = "subQueryMapKey" + (_memberId_QueryDerivedReferrer_SynonymMemberLoginListMap.size() + 1);
+        _memberId_QueryDerivedReferrer_SynonymMemberLoginListMap.put(ky, sq); return "memberId_QueryDerivedReferrer_SynonymMemberLoginList." + ky;
     }
     protected Map<String, Object> _memberId_QueryDerivedReferrer_SynonymMemberLoginListParameterMap;
     public Map<String, Object> getMemberId_QueryDerivedReferrer_SynonymMemberLoginListParameter() { return _memberId_QueryDerivedReferrer_SynonymMemberLoginListParameterMap; }
-    public String keepMemberId_QueryDerivedReferrer_SynonymMemberLoginListParameter(Object parameterValue) {
+    public String keepMemberId_QueryDerivedReferrer_SynonymMemberLoginListParameter(Object vl) {
         if (_memberId_QueryDerivedReferrer_SynonymMemberLoginListParameterMap == null) { _memberId_QueryDerivedReferrer_SynonymMemberLoginListParameterMap = newLinkedHashMapSized(4); }
-        String key = "subQueryParameterKey" + (_memberId_QueryDerivedReferrer_SynonymMemberLoginListParameterMap.size() + 1);
-        _memberId_QueryDerivedReferrer_SynonymMemberLoginListParameterMap.put(key, parameterValue); return "memberId_QueryDerivedReferrer_SynonymMemberLoginListParameter." + key;
+        String ky = "subQueryParameterKey" + (_memberId_QueryDerivedReferrer_SynonymMemberLoginListParameterMap.size() + 1);
+        _memberId_QueryDerivedReferrer_SynonymMemberLoginListParameterMap.put(ky, vl); return "memberId_QueryDerivedReferrer_SynonymMemberLoginListParameter." + ky;
     }
 
     /** 
@@ -231,18 +231,18 @@ public class BsSynonymMemberCQ extends AbstractBsSynonymMemberCQ {
 
     protected Map<String, MemberStatusCQ> _memberStatusCode_InScopeRelation_MemberStatusMap;
     public Map<String, MemberStatusCQ> getMemberStatusCode_InScopeRelation_MemberStatus() { return _memberStatusCode_InScopeRelation_MemberStatusMap; }
-    public String keepMemberStatusCode_InScopeRelation_MemberStatus(MemberStatusCQ subQuery) {
+    public String keepMemberStatusCode_InScopeRelation_MemberStatus(MemberStatusCQ sq) {
         if (_memberStatusCode_InScopeRelation_MemberStatusMap == null) { _memberStatusCode_InScopeRelation_MemberStatusMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_memberStatusCode_InScopeRelation_MemberStatusMap.size() + 1);
-        _memberStatusCode_InScopeRelation_MemberStatusMap.put(key, subQuery); return "memberStatusCode_InScopeRelation_MemberStatus." + key;
+        String ky = "subQueryMapKey" + (_memberStatusCode_InScopeRelation_MemberStatusMap.size() + 1);
+        _memberStatusCode_InScopeRelation_MemberStatusMap.put(ky, sq); return "memberStatusCode_InScopeRelation_MemberStatus." + ky;
     }
 
     protected Map<String, MemberStatusCQ> _memberStatusCode_NotInScopeRelation_MemberStatusMap;
     public Map<String, MemberStatusCQ> getMemberStatusCode_NotInScopeRelation_MemberStatus() { return _memberStatusCode_NotInScopeRelation_MemberStatusMap; }
-    public String keepMemberStatusCode_NotInScopeRelation_MemberStatus(MemberStatusCQ subQuery) {
+    public String keepMemberStatusCode_NotInScopeRelation_MemberStatus(MemberStatusCQ sq) {
         if (_memberStatusCode_NotInScopeRelation_MemberStatusMap == null) { _memberStatusCode_NotInScopeRelation_MemberStatusMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_memberStatusCode_NotInScopeRelation_MemberStatusMap.size() + 1);
-        _memberStatusCode_NotInScopeRelation_MemberStatusMap.put(key, subQuery); return "memberStatusCode_NotInScopeRelation_MemberStatus." + key;
+        String ky = "subQueryMapKey" + (_memberStatusCode_NotInScopeRelation_MemberStatusMap.size() + 1);
+        _memberStatusCode_NotInScopeRelation_MemberStatusMap.put(ky, sq); return "memberStatusCode_NotInScopeRelation_MemberStatus." + ky;
     }
 
     /** 
@@ -488,14 +488,14 @@ public class BsSynonymMemberCQ extends AbstractBsSynonymMemberCQ {
     // ===================================================================================
     //                                                                         Union Query
     //                                                                         ===========
-    protected void reflectRelationOnUnionQuery(ConditionQuery baseQueryAsSuper, ConditionQuery unionQueryAsSuper) {
-        SynonymMemberCQ baseQuery = (SynonymMemberCQ)baseQueryAsSuper;
-        SynonymMemberCQ unionQuery = (SynonymMemberCQ)unionQueryAsSuper;
-        if (baseQuery.hasConditionQueryMemberStatus()) {
-            unionQuery.queryMemberStatus().reflectRelationOnUnionQuery(baseQuery.queryMemberStatus(), unionQuery.queryMemberStatus());
+    protected void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
+        SynonymMemberCQ bq = (SynonymMemberCQ)bqs;
+        SynonymMemberCQ uq = (SynonymMemberCQ)uqs;
+        if (bq.hasConditionQueryMemberStatus()) {
+            uq.queryMemberStatus().reflectRelationOnUnionQuery(bq.queryMemberStatus(), uq.queryMemberStatus());
         }
-        if (baseQuery.hasConditionQuerySynonymMemberWithdrawalAsOne()) {
-            unionQuery.querySynonymMemberWithdrawalAsOne().reflectRelationOnUnionQuery(baseQuery.querySynonymMemberWithdrawalAsOne(), unionQuery.querySynonymMemberWithdrawalAsOne());
+        if (bq.hasConditionQuerySynonymMemberWithdrawalAsOne()) {
+            uq.querySynonymMemberWithdrawalAsOne().reflectRelationOnUnionQuery(bq.querySynonymMemberWithdrawalAsOne(), uq.querySynonymMemberWithdrawalAsOne());
         }
     }
 
@@ -579,10 +579,10 @@ public class BsSynonymMemberCQ extends AbstractBsSynonymMemberCQ {
     //                                                                     ===============
     protected Map<String, SynonymMemberCQ> _scalarConditionMap;
     public Map<String, SynonymMemberCQ> getScalarCondition() { return _scalarConditionMap; }
-    public String keepScalarCondition(SynonymMemberCQ subQuery) {
+    public String keepScalarCondition(SynonymMemberCQ sq) {
         if (_scalarConditionMap == null) { _scalarConditionMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
-        _scalarConditionMap.put(key, subQuery); return "scalarCondition." + key;
+        String ky = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
+        _scalarConditionMap.put(ky, sq); return "scalarCondition." + ky;
     }
 
     // ===================================================================================
@@ -590,25 +590,25 @@ public class BsSynonymMemberCQ extends AbstractBsSynonymMemberCQ {
     //                                                                       =============
     protected Map<String, SynonymMemberCQ> _specifyMyselfDerivedMap;
     public Map<String, SynonymMemberCQ> getSpecifyMyselfDerived() { return _specifyMyselfDerivedMap; }
-    public String keepSpecifyMyselfDerived(SynonymMemberCQ subQuery) {
+    public String keepSpecifyMyselfDerived(SynonymMemberCQ sq) {
         if (_specifyMyselfDerivedMap == null) { _specifyMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
-        _specifyMyselfDerivedMap.put(key, subQuery); return "specifyMyselfDerived." + key;
+        String ky = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
+        _specifyMyselfDerivedMap.put(ky, sq); return "specifyMyselfDerived." + ky;
     }
 
     protected Map<String, SynonymMemberCQ> _queryMyselfDerivedMap;
     public Map<String, SynonymMemberCQ> getQueryMyselfDerived() { return _queryMyselfDerivedMap; }
-    public String keepQueryMyselfDerived(SynonymMemberCQ subQuery) {
+    public String keepQueryMyselfDerived(SynonymMemberCQ sq) {
         if (_queryMyselfDerivedMap == null) { _queryMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
-        _queryMyselfDerivedMap.put(key, subQuery); return "queryMyselfDerived." + key;
+        String ky = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
+        _queryMyselfDerivedMap.put(ky, sq); return "queryMyselfDerived." + ky;
     }
     protected Map<String, Object> _qyeryMyselfDerivedParameterMap;
     public Map<String, Object> getQueryMyselfDerivedParameter() { return _qyeryMyselfDerivedParameterMap; }
-    public String keepQueryMyselfDerivedParameter(Object parameterValue) {
+    public String keepQueryMyselfDerivedParameter(Object vl) {
         if (_qyeryMyselfDerivedParameterMap == null) { _qyeryMyselfDerivedParameterMap = newLinkedHashMapSized(4); }
-        String key = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
-        _qyeryMyselfDerivedParameterMap.put(key, parameterValue); return "queryMyselfDerivedParameter." + key;
+        String ky = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
+        _qyeryMyselfDerivedParameterMap.put(ky, vl); return "queryMyselfDerivedParameter." + ky;
     }
 
     // ===================================================================================
@@ -616,10 +616,10 @@ public class BsSynonymMemberCQ extends AbstractBsSynonymMemberCQ {
     //                                                                        ============
     protected Map<String, SynonymMemberCQ> _myselfExistsMap;
     public Map<String, SynonymMemberCQ> getMyselfExists() { return _myselfExistsMap; }
-    public String keepMyselfExists(SynonymMemberCQ subQuery) {
+    public String keepMyselfExists(SynonymMemberCQ sq) {
         if (_myselfExistsMap == null) { _myselfExistsMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
-        _myselfExistsMap.put(key, subQuery); return "myselfExists." + key;
+        String ky = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
+        _myselfExistsMap.put(ky, sq); return "myselfExists." + ky;
     }
 
     // ===================================================================================
@@ -627,10 +627,10 @@ public class BsSynonymMemberCQ extends AbstractBsSynonymMemberCQ {
     //                                                                       =============
     protected Map<String, SynonymMemberCQ> _myselfInScopeMap;
     public Map<String, SynonymMemberCQ> getMyselfInScope() { return _myselfInScopeMap; }
-    public String keepMyselfInScope(SynonymMemberCQ subQuery) {
+    public String keepMyselfInScope(SynonymMemberCQ sq) {
         if (_myselfInScopeMap == null) { _myselfInScopeMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
-        _myselfInScopeMap.put(key, subQuery); return "myselfInScope." + key;
+        String ky = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
+        _myselfInScopeMap.put(ky, sq); return "myselfInScope." + ky;
     }
 
     // ===================================================================================

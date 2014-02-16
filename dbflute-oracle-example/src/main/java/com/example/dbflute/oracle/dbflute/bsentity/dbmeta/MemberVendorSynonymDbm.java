@@ -52,56 +52,56 @@ public class MemberVendorSynonymDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgMemberId implements PropertyGateway {
-        public Object read(Entity e) { return ((MemberVendorSynonym)e).getMemberId(); }
-        public void write(Entity e, Object v) { ((MemberVendorSynonym)e).setMemberId(ctl(v)); }
+        public Object read(Entity et) { return ((MemberVendorSynonym)et).getMemberId(); }
+        public void write(Entity et, Object vl) { ((MemberVendorSynonym)et).setMemberId(ctl(vl)); }
     }
     public static class EpgMemberName implements PropertyGateway {
-        public Object read(Entity e) { return ((MemberVendorSynonym)e).getMemberName(); }
-        public void write(Entity e, Object v) { ((MemberVendorSynonym)e).setMemberName((String)v); }
+        public Object read(Entity et) { return ((MemberVendorSynonym)et).getMemberName(); }
+        public void write(Entity et, Object vl) { ((MemberVendorSynonym)et).setMemberName((String)vl); }
     }
     public static class EpgMemberAccount implements PropertyGateway {
-        public Object read(Entity e) { return ((MemberVendorSynonym)e).getMemberAccount(); }
-        public void write(Entity e, Object v) { ((MemberVendorSynonym)e).setMemberAccount((String)v); }
+        public Object read(Entity et) { return ((MemberVendorSynonym)et).getMemberAccount(); }
+        public void write(Entity et, Object vl) { ((MemberVendorSynonym)et).setMemberAccount((String)vl); }
     }
     public static class EpgMemberStatusCode implements PropertyGateway {
-        public Object read(Entity e) { return ((MemberVendorSynonym)e).getMemberStatusCode(); }
-        public void write(Entity e, Object v) { ((MemberVendorSynonym)e).setMemberStatusCode((String)v); }
+        public Object read(Entity et) { return ((MemberVendorSynonym)et).getMemberStatusCode(); }
+        public void write(Entity et, Object vl) { ((MemberVendorSynonym)et).setMemberStatusCode((String)vl); }
     }
     public static class EpgFormalizedDatetime implements PropertyGateway {
-        public Object read(Entity e) { return ((MemberVendorSynonym)e).getFormalizedDatetime(); }
-        public void write(Entity e, Object v) { ((MemberVendorSynonym)e).setFormalizedDatetime((java.sql.Timestamp)v); }
+        public Object read(Entity et) { return ((MemberVendorSynonym)et).getFormalizedDatetime(); }
+        public void write(Entity et, Object vl) { ((MemberVendorSynonym)et).setFormalizedDatetime((java.sql.Timestamp)vl); }
     }
     public static class EpgBirthdate implements PropertyGateway {
-        public Object read(Entity e) { return ((MemberVendorSynonym)e).getBirthdate(); }
-        public void write(Entity e, Object v) { ((MemberVendorSynonym)e).setBirthdate((java.util.Date)v); }
+        public Object read(Entity et) { return ((MemberVendorSynonym)et).getBirthdate(); }
+        public void write(Entity et, Object vl) { ((MemberVendorSynonym)et).setBirthdate((java.util.Date)vl); }
     }
     public static class EpgRegisterDatetime implements PropertyGateway {
-        public Object read(Entity e) { return ((MemberVendorSynonym)e).getRegisterDatetime(); }
-        public void write(Entity e, Object v) { ((MemberVendorSynonym)e).setRegisterDatetime((java.util.Date)v); }
+        public Object read(Entity et) { return ((MemberVendorSynonym)et).getRegisterDatetime(); }
+        public void write(Entity et, Object vl) { ((MemberVendorSynonym)et).setRegisterDatetime((java.util.Date)vl); }
     }
     public static class EpgRegisterUser implements PropertyGateway {
-        public Object read(Entity e) { return ((MemberVendorSynonym)e).getRegisterUser(); }
-        public void write(Entity e, Object v) { ((MemberVendorSynonym)e).setRegisterUser((String)v); }
+        public Object read(Entity et) { return ((MemberVendorSynonym)et).getRegisterUser(); }
+        public void write(Entity et, Object vl) { ((MemberVendorSynonym)et).setRegisterUser((String)vl); }
     }
     public static class EpgRegisterProcess implements PropertyGateway {
-        public Object read(Entity e) { return ((MemberVendorSynonym)e).getRegisterProcess(); }
-        public void write(Entity e, Object v) { ((MemberVendorSynonym)e).setRegisterProcess((String)v); }
+        public Object read(Entity et) { return ((MemberVendorSynonym)et).getRegisterProcess(); }
+        public void write(Entity et, Object vl) { ((MemberVendorSynonym)et).setRegisterProcess((String)vl); }
     }
     public static class EpgUpdateDatetime implements PropertyGateway {
-        public Object read(Entity e) { return ((MemberVendorSynonym)e).getUpdateDatetime(); }
-        public void write(Entity e, Object v) { ((MemberVendorSynonym)e).setUpdateDatetime((java.util.Date)v); }
+        public Object read(Entity et) { return ((MemberVendorSynonym)et).getUpdateDatetime(); }
+        public void write(Entity et, Object vl) { ((MemberVendorSynonym)et).setUpdateDatetime((java.util.Date)vl); }
     }
     public static class EpgUpdateUser implements PropertyGateway {
-        public Object read(Entity e) { return ((MemberVendorSynonym)e).getUpdateUser(); }
-        public void write(Entity e, Object v) { ((MemberVendorSynonym)e).setUpdateUser((String)v); }
+        public Object read(Entity et) { return ((MemberVendorSynonym)et).getUpdateUser(); }
+        public void write(Entity et, Object vl) { ((MemberVendorSynonym)et).setUpdateUser((String)vl); }
     }
     public static class EpgUpdateProcess implements PropertyGateway {
-        public Object read(Entity e) { return ((MemberVendorSynonym)e).getUpdateProcess(); }
-        public void write(Entity e, Object v) { ((MemberVendorSynonym)e).setUpdateProcess((String)v); }
+        public Object read(Entity et) { return ((MemberVendorSynonym)et).getUpdateProcess(); }
+        public void write(Entity et, Object vl) { ((MemberVendorSynonym)et).setUpdateProcess((String)vl); }
     }
     public static class EpgVersionNo implements PropertyGateway {
-        public Object read(Entity e) { return ((MemberVendorSynonym)e).getVersionNo(); }
-        public void write(Entity e, Object v) { ((MemberVendorSynonym)e).setVersionNo(ctl(v)); }
+        public Object read(Entity et) { return ((MemberVendorSynonym)et).getVersionNo(); }
+        public void write(Entity et, Object vl) { ((MemberVendorSynonym)et).setVersionNo(ctl(vl)); }
     }
 
     // ===================================================================================
@@ -187,20 +187,20 @@ public class MemberVendorSynonymDbm extends AbstractDBMeta {
     //                                      Foreign Property
     //                                      ----------------
     public ForeignInfo foreignMemberStatus() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnMemberStatusCode(), MemberStatusDbm.getInstance().columnMemberStatusCode());
-        return cfi("FK_MEMBER_MEMBER_STATUS", "memberStatus", this, MemberStatusDbm.getInstance(), map, 0, false, false, false, false, null, null, false, "memberVendorSynonymList");
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnMemberStatusCode(), MemberStatusDbm.getInstance().columnMemberStatusCode());
+        return cfi("FK_MEMBER_MEMBER_STATUS", "memberStatus", this, MemberStatusDbm.getInstance(), mp, 0, false, false, false, false, null, null, false, "memberVendorSynonymList");
     }
     public ForeignInfo foreignSynonymMemberWithdrawalAsOne() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnMemberId(), SynonymMemberWithdrawalDbm.getInstance().columnMemberId());
-        return cfi("FK_MEMBER_WITHDRAWAL_MEMBER_SYNONYM1", "synonymMemberWithdrawalAsOne", this, SynonymMemberWithdrawalDbm.getInstance(), map, 1, true, false, true, false, null, null, false, "memberVendorSynonym");
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnMemberId(), SynonymMemberWithdrawalDbm.getInstance().columnMemberId());
+        return cfi("FK_MEMBER_WITHDRAWAL_MEMBER_SYNONYM1", "synonymMemberWithdrawalAsOne", this, SynonymMemberWithdrawalDbm.getInstance(), mp, 1, true, false, true, false, null, null, false, "memberVendorSynonym");
     }
 
     // -----------------------------------------------------
     //                                     Referrer Property
     //                                     -----------------
     public ReferrerInfo referrerSynonymMemberLoginList() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnMemberId(), SynonymMemberLoginDbm.getInstance().columnMemberId());
-        return cri("FK_MEMBER_LOGIN_MEMBER_SYNONYM1", "synonymMemberLoginList", this, SynonymMemberLoginDbm.getInstance(), map, false, "memberVendorSynonym");
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnMemberId(), SynonymMemberLoginDbm.getInstance().columnMemberId());
+        return cri("FK_MEMBER_LOGIN_MEMBER_SYNONYM1", "synonymMemberLoginList", this, SynonymMemberLoginDbm.getInstance(), mp, false, "memberVendorSynonym");
     }
 
     // ===================================================================================
@@ -237,10 +237,10 @@ public class MemberVendorSynonymDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((MemberVendorSynonym)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((MemberVendorSynonym)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((MemberVendorSynonym)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((MemberVendorSynonym)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

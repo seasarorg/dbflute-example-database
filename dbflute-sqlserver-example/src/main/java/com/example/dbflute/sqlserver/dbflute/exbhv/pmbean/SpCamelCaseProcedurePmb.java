@@ -5,7 +5,7 @@ import com.example.dbflute.sqlserver.dbflute.bsbhv.pmbean.BsSpCamelCaseProcedure
 /**
  * <!-- df:beginClassDescription -->
  * The typed parameter-bean of SpCamelCaseProcedure. <br />
- * This is related to "<span style="color: #AD4747">SpCamelCaseProcedure</span>".
+ * This is related to "<span style="color: #AD4747">SpCamelCaseProcedure</span>". <br />
  * <!-- df:endClassDescription -->
  * <p>
  * You can implement your original methods here.

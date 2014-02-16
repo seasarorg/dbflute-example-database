@@ -44,24 +44,24 @@ public class SpReturnResultSetReturnValueDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgMemberId implements PropertyGateway {
-        public Object read(Entity e) { return ((SpReturnResultSetReturnValue)e).getMemberId(); }
-        public void write(Entity e, Object v) { ((SpReturnResultSetReturnValue)e).setMemberId(cti(v)); }
+        public Object read(Entity et) { return ((SpReturnResultSetReturnValue)et).getMemberId(); }
+        public void write(Entity et, Object vl) { ((SpReturnResultSetReturnValue)et).setMemberId(cti(vl)); }
     }
     public static class EpgMemberName implements PropertyGateway {
-        public Object read(Entity e) { return ((SpReturnResultSetReturnValue)e).getMemberName(); }
-        public void write(Entity e, Object v) { ((SpReturnResultSetReturnValue)e).setMemberName((String)v); }
+        public Object read(Entity et) { return ((SpReturnResultSetReturnValue)et).getMemberName(); }
+        public void write(Entity et, Object vl) { ((SpReturnResultSetReturnValue)et).setMemberName((String)vl); }
     }
     public static class EpgBirthdate implements PropertyGateway {
-        public Object read(Entity e) { return ((SpReturnResultSetReturnValue)e).getBirthdate(); }
-        public void write(Entity e, Object v) { ((SpReturnResultSetReturnValue)e).setBirthdate((java.util.Date)v); }
+        public Object read(Entity et) { return ((SpReturnResultSetReturnValue)et).getBirthdate(); }
+        public void write(Entity et, Object vl) { ((SpReturnResultSetReturnValue)et).setBirthdate((java.util.Date)vl); }
     }
     public static class EpgFormalizedDatetime implements PropertyGateway {
-        public Object read(Entity e) { return ((SpReturnResultSetReturnValue)e).getFormalizedDatetime(); }
-        public void write(Entity e, Object v) { ((SpReturnResultSetReturnValue)e).setFormalizedDatetime((java.sql.Timestamp)v); }
+        public Object read(Entity et) { return ((SpReturnResultSetReturnValue)et).getFormalizedDatetime(); }
+        public void write(Entity et, Object vl) { ((SpReturnResultSetReturnValue)et).setFormalizedDatetime((java.sql.Timestamp)vl); }
     }
     public static class EpgMemberStatusCode implements PropertyGateway {
-        public Object read(Entity e) { return ((SpReturnResultSetReturnValue)e).getMemberStatusCode(); }
-        public void write(Entity e, Object v) { ((SpReturnResultSetReturnValue)e).setMemberStatusCode((String)v); }
+        public Object read(Entity et) { return ((SpReturnResultSetReturnValue)et).getMemberStatusCode(); }
+        public void write(Entity et, Object vl) { ((SpReturnResultSetReturnValue)et).setMemberStatusCode((String)vl); }
     }
 
     // ===================================================================================
@@ -150,10 +150,10 @@ public class SpReturnResultSetReturnValueDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((SpReturnResultSetReturnValue)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((SpReturnResultSetReturnValue)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((SpReturnResultSetReturnValue)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((SpReturnResultSetReturnValue)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

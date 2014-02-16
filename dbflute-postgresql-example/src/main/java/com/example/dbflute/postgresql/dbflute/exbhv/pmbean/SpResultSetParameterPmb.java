@@ -5,7 +5,7 @@ import com.example.dbflute.postgresql.dbflute.bsbhv.pmbean.BsSpResultSetParamete
 /**
  * <!-- df:beginClassDescription -->
  * The typed parameter-bean of SpResultSetParameter. <br />
- * This is related to "<span style="color: #AD4747">sp_result_set_parameter</span>".
+ * This is related to "<span style="color: #AD4747">sp_result_set_parameter</span>". <br />
  * <!-- df:endClassDescription -->
  * <p>
  * You can implement your original methods here.

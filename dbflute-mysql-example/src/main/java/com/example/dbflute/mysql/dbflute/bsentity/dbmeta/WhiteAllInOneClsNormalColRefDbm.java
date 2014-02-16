@@ -58,20 +58,20 @@ public class WhiteAllInOneClsNormalColRefDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgClsRefId implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteAllInOneClsNormalColRef)e).getClsRefId(); }
-        public void write(Entity e, Object v) { ((WhiteAllInOneClsNormalColRef)e).setClsRefId(cti(v)); }
+        public Object read(Entity et) { return ((WhiteAllInOneClsNormalColRef)et).getClsRefId(); }
+        public void write(Entity et, Object vl) { ((WhiteAllInOneClsNormalColRef)et).setClsRefId(cti(vl)); }
     }
     public static class EpgFooCode implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteAllInOneClsNormalColRef)e).getFooCode(); }
-        public void write(Entity e, Object v) { ((WhiteAllInOneClsNormalColRef)e).setFooCode((String)v); }
+        public Object read(Entity et) { return ((WhiteAllInOneClsNormalColRef)et).getFooCode(); }
+        public void write(Entity et, Object vl) { ((WhiteAllInOneClsNormalColRef)et).setFooCode((String)vl); }
     }
     public static class EpgBarCode implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteAllInOneClsNormalColRef)e).getBarCode(); }
-        public void write(Entity e, Object v) { ((WhiteAllInOneClsNormalColRef)e).setBarCode((String)v); }
+        public Object read(Entity et) { return ((WhiteAllInOneClsNormalColRef)et).getBarCode(); }
+        public void write(Entity et, Object vl) { ((WhiteAllInOneClsNormalColRef)et).setBarCode((String)vl); }
     }
     public static class EpgQuxCode implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteAllInOneClsNormalColRef)e).getQuxCode(); }
-        public void write(Entity e, Object v) { ((WhiteAllInOneClsNormalColRef)e).setQuxCode((String)v); }
+        public Object read(Entity et) { return ((WhiteAllInOneClsNormalColRef)et).getQuxCode(); }
+        public void write(Entity et, Object vl) { ((WhiteAllInOneClsNormalColRef)et).setQuxCode((String)vl); }
     }
 
     // ===================================================================================
@@ -132,12 +132,12 @@ public class WhiteAllInOneClsNormalColRefDbm extends AbstractDBMeta {
     //                                      Foreign Property
     //                                      ----------------
     public ForeignInfo foreignWhiteAllInOneClsElementAsFoo() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnFooCode(), WhiteAllInOneClsElementDbm.getInstance().columnClsElementCode());
-        return cfi("FK_WHITE_ALL_IN_ONE_CLS_NORMAL_COL_REF_FOO_TEST", "whiteAllInOneClsElementAsFoo", this, WhiteAllInOneClsElementDbm.getInstance(), map, 0, false, false, false, true, "$$foreignAlias$$.CLS_CATEGORY_CODE = 'FOO'", null, false, null);
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnFooCode(), WhiteAllInOneClsElementDbm.getInstance().columnClsElementCode());
+        return cfi("FK_WHITE_ALL_IN_ONE_CLS_NORMAL_COL_REF_FOO_TEST", "whiteAllInOneClsElementAsFoo", this, WhiteAllInOneClsElementDbm.getInstance(), mp, 0, false, false, false, true, "$$foreignAlias$$.CLS_CATEGORY_CODE = 'FOO'", null, false, null);
     }
     public ForeignInfo foreignWhiteAllInOneClsElementAsBar() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnBarCode(), WhiteAllInOneClsElementDbm.getInstance().columnClsElementCode());
-        return cfi("FK_WHITE_ALL_IN_ONE_CLS_NORMAL_COL_REF_BAR_TEST", "whiteAllInOneClsElementAsBar", this, WhiteAllInOneClsElementDbm.getInstance(), map, 1, false, false, false, true, "$$foreignAlias$$.CLS_CATEGORY_CODE = 'BAR'", null, false, null);
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnBarCode(), WhiteAllInOneClsElementDbm.getInstance().columnClsElementCode());
+        return cfi("FK_WHITE_ALL_IN_ONE_CLS_NORMAL_COL_REF_BAR_TEST", "whiteAllInOneClsElementAsBar", this, WhiteAllInOneClsElementDbm.getInstance(), mp, 1, false, false, false, true, "$$foreignAlias$$.CLS_CATEGORY_CODE = 'BAR'", null, false, null);
     }
 
     // -----------------------------------------------------
@@ -169,10 +169,10 @@ public class WhiteAllInOneClsNormalColRefDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((WhiteAllInOneClsNormalColRef)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((WhiteAllInOneClsNormalColRef)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((WhiteAllInOneClsNormalColRef)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((WhiteAllInOneClsNormalColRef)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

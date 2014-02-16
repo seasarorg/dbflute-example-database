@@ -5,7 +5,7 @@ import com.example.dbflute.oracle.dbflute.bsbhv.pmbean.BsMainPkgSpPkgNoParameter
 /**
  * <!-- df:beginClassDescription -->
  * The typed parameter-bean of MainPkgSpPkgNoParameter. <br />
- * This is related to "<span style="color: #AD4747">MAIN_PKG.SP_PKG_NO_PARAMETER</span>".
+ * This is related to "<span style="color: #AD4747">MAIN_PKG.SP_PKG_NO_PARAMETER</span>". <br />
  * <!-- df:endClassDescription -->
  * <p>
  * You can implement your original methods here.

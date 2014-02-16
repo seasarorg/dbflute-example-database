@@ -430,8 +430,8 @@ public class BsWhitePgReservCB extends AbstractConditionBean {
         public HpSDRFunction<WhitePgReservRefCB, WhitePgReservCQ> derivedWhitePgReservRefList() {
             assertDerived("whitePgReservRefList"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<WhitePgReservRefCB, WhitePgReservCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<WhitePgReservRefCB, WhitePgReservCQ>() {
-                public void setup(String function, SubQuery<WhitePgReservRefCB> subQuery, WhitePgReservCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsderiveWhitePgReservRefList(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<WhitePgReservRefCB> sq, WhitePgReservCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsderiveWhitePgReservRefList(fn, sq, al, op); } }, _dbmetaProvider);
         }
         /**
          * Prepare for (Specify)MyselfDerived (SubQuery).
@@ -440,8 +440,8 @@ public class BsWhitePgReservCB extends AbstractConditionBean {
         public HpSDRFunction<WhitePgReservCB, WhitePgReservCQ> myselfDerived() {
             assertDerived("myselfDerived"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<WhitePgReservCB, WhitePgReservCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<WhitePgReservCB, WhitePgReservCQ>() {
-                public void setup(String function, SubQuery<WhitePgReservCB> subQuery, WhitePgReservCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsmyselfDerive(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<WhitePgReservCB> sq, WhitePgReservCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsmyselfDerive(fn, sq, al, op); } }, _dbmetaProvider);
         }
     }
 

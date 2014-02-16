@@ -160,8 +160,8 @@ public abstract class AbstractBsWhiteSuppressDefCheckCQ extends AbstractConditio
      */
     public void setDefCheckId_IsNotNull() { regDefCheckId(CK_ISNN, DOBJ); }
 
-    protected void regDefCheckId(ConditionKey k, Object v) { regQ(k, v, getCValueDefCheckId(), "DEF_CHECK_ID"); }
-    abstract protected ConditionValue getCValueDefCheckId();
+    protected void regDefCheckId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueDefCheckId(), "DEF_CHECK_ID"); }
+    protected abstract ConditionValue getCValueDefCheckId();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -246,8 +246,8 @@ public abstract class AbstractBsWhiteSuppressDefCheckCQ extends AbstractConditio
         regLSQ(CK_NLS, fRES(defCheckName), getCValueDefCheckName(), "DEF_CHECK_NAME", likeSearchOption);
     }
 
-    protected void regDefCheckName(ConditionKey k, Object v) { regQ(k, v, getCValueDefCheckName(), "DEF_CHECK_NAME"); }
-    abstract protected ConditionValue getCValueDefCheckName();
+    protected void regDefCheckName(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueDefCheckName(), "DEF_CHECK_NAME"); }
+    protected abstract ConditionValue getCValueDefCheckName();
 
     // ===================================================================================
     //                                                                     ScalarCondition
@@ -354,22 +354,22 @@ public abstract class AbstractBsWhiteSuppressDefCheckCQ extends AbstractConditio
         return xcreateSSQFunction(CK_LE.getOperand());
     }
 
-    protected HpSSQFunction<WhiteSuppressDefCheckCB> xcreateSSQFunction(final String operand) {
+    protected HpSSQFunction<WhiteSuppressDefCheckCB> xcreateSSQFunction(final String rd) {
         return new HpSSQFunction<WhiteSuppressDefCheckCB>(new HpSSQSetupper<WhiteSuppressDefCheckCB>() {
-            public void setup(String function, SubQuery<WhiteSuppressDefCheckCB> subQuery, HpSSQOption<WhiteSuppressDefCheckCB> option) {
-                xscalarCondition(function, subQuery, operand, option);
+            public void setup(String fn, SubQuery<WhiteSuppressDefCheckCB> sq, HpSSQOption<WhiteSuppressDefCheckCB> op) {
+                xscalarCondition(fn, sq, rd, op);
             }
         });
     }
 
-    protected void xscalarCondition(String function, SubQuery<WhiteSuppressDefCheckCB> subQuery, String operand, HpSSQOption<WhiteSuppressDefCheckCB> option) {
-        assertObjectNotNull("subQuery<WhiteSuppressDefCheckCB>", subQuery);
-        WhiteSuppressDefCheckCB cb = xcreateScalarConditionCB(); subQuery.query(cb);
-        String subQueryPropertyName = keepScalarCondition(cb.query()); // for saving query-value
-        option.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
-        registerScalarCondition(function, cb.query(), subQueryPropertyName, operand, option);
+    protected void xscalarCondition(String fn, SubQuery<WhiteSuppressDefCheckCB> sq, String rd, HpSSQOption<WhiteSuppressDefCheckCB> op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteSuppressDefCheckCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        String pp = keepScalarCondition(cb.query()); // for saving query-value
+        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
-    public abstract String keepScalarCondition(WhiteSuppressDefCheckCQ subQuery);
+    public abstract String keepScalarCondition(WhiteSuppressDefCheckCQ sq);
 
     protected WhiteSuppressDefCheckCB xcreateScalarConditionCB() {
         WhiteSuppressDefCheckCB cb = new WhiteSuppressDefCheckCB();
@@ -386,13 +386,14 @@ public abstract class AbstractBsWhiteSuppressDefCheckCQ extends AbstractConditio
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    public void xsmyselfDerive(String function, SubQuery<WhiteSuppressDefCheckCB> subQuery, String aliasName, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<WhiteSuppressDefCheckCB>", subQuery);
-        WhiteSuppressDefCheckCB cb = new WhiteSuppressDefCheckCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
-        registerSpecifyMyselfDerived(function, cb.query(), "DEF_CHECK_ID", "DEF_CHECK_ID", subQueryPropertyName, "myselfDerived", aliasName, option);
+    public void xsmyselfDerive(String fn, SubQuery<WhiteSuppressDefCheckCB> sq, String al, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteSuppressDefCheckCB cb = new WhiteSuppressDefCheckCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "DEF_CHECK_ID";
+        String pp = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
+        registerSpecifyMyselfDerived(fn, cb.query(), pk, pk, pp, "myselfDerived", al, op);
     }
-    public abstract String keepSpecifyMyselfDerived(WhiteSuppressDefCheckCQ subQuery);
+    public abstract String keepSpecifyMyselfDerived(WhiteSuppressDefCheckCQ sq);
 
     /**
      * Prepare for (Query)MyselfDerived (SubQuery).
@@ -403,20 +404,21 @@ public abstract class AbstractBsWhiteSuppressDefCheckCQ extends AbstractConditio
     }
     protected HpQDRFunction<WhiteSuppressDefCheckCB> xcreateQDRFunctionMyselfDerived() {
         return new HpQDRFunction<WhiteSuppressDefCheckCB>(new HpQDRSetupper<WhiteSuppressDefCheckCB>() {
-            public void setup(String function, SubQuery<WhiteSuppressDefCheckCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-                xqderiveMyselfDerived(function, subQuery, operand, value, option);
+            public void setup(String fn, SubQuery<WhiteSuppressDefCheckCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+                xqderiveMyselfDerived(fn, sq, rd, vl, op);
             }
         });
     }
-    public void xqderiveMyselfDerived(String function, SubQuery<WhiteSuppressDefCheckCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<WhiteSuppressDefCheckCB>", subQuery);
-        WhiteSuppressDefCheckCB cb = new WhiteSuppressDefCheckCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepQueryMyselfDerived(cb.query()); // for saving query-value.
-        String parameterPropertyName = keepQueryMyselfDerivedParameter(value);
-        registerQueryMyselfDerived(function, cb.query(), "DEF_CHECK_ID", "DEF_CHECK_ID", subQueryPropertyName, "myselfDerived", operand, value, parameterPropertyName, option);
+    public void xqderiveMyselfDerived(String fn, SubQuery<WhiteSuppressDefCheckCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteSuppressDefCheckCB cb = new WhiteSuppressDefCheckCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "DEF_CHECK_ID";
+        String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
+        String prpp = keepQueryMyselfDerivedParameter(vl);
+        registerQueryMyselfDerived(fn, cb.query(), pk, pk, sqpp, "myselfDerived", rd, vl, prpp, op);
     }
-    public abstract String keepQueryMyselfDerived(WhiteSuppressDefCheckCQ subQuery);
-    public abstract String keepQueryMyselfDerivedParameter(Object parameterValue);
+    public abstract String keepQueryMyselfDerived(WhiteSuppressDefCheckCQ sq);
+    public abstract String keepQueryMyselfDerivedParameter(Object vl);
 
     // ===================================================================================
     //                                                                        MyselfExists
@@ -426,12 +428,12 @@ public abstract class AbstractBsWhiteSuppressDefCheckCQ extends AbstractConditio
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfExists(SubQuery<WhiteSuppressDefCheckCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteSuppressDefCheckCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteSuppressDefCheckCB cb = new WhiteSuppressDefCheckCB(); cb.xsetupForMyselfExists(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfExists(cb.query()); // for saving query-value.
-        registerMyselfExists(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfExists(cb.query()); // for saving query-value.
+        registerMyselfExists(cb.query(), pp);
     }
-    public abstract String keepMyselfExists(WhiteSuppressDefCheckCQ subQuery);
+    public abstract String keepMyselfExists(WhiteSuppressDefCheckCQ sq);
 
     // ===================================================================================
     //                                                                       MyselfInScope
@@ -441,12 +443,12 @@ public abstract class AbstractBsWhiteSuppressDefCheckCQ extends AbstractConditio
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfInScope(SubQuery<WhiteSuppressDefCheckCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteSuppressDefCheckCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteSuppressDefCheckCB cb = new WhiteSuppressDefCheckCB(); cb.xsetupForMyselfInScope(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfInScope(cb.query()); // for saving query-value.
-        registerMyselfInScope(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfInScope(cb.query()); // for saving query-value.
+        registerMyselfInScope(cb.query(), pp);
     }
-    public abstract String keepMyselfInScope(WhiteSuppressDefCheckCQ subQuery);
+    public abstract String keepMyselfInScope(WhiteSuppressDefCheckCQ sq);
 
     // ===================================================================================
     //                                                                    Full Text Search
@@ -472,7 +474,7 @@ public abstract class AbstractBsWhiteSuppressDefCheckCQ extends AbstractConditio
      * @param conditionValue The condition value embedded without binding (by MySQL restriction) but escaped. (NullAllowed: if null or empty, no condition)
      * @param modifier The modifier of full-text search. (NullAllowed: If the value is null, no modifier specified)
      */
-    public void match(java.util.List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList
+    public void match(List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList
                     , String conditionValue
                     , org.seasar.dbflute.dbway.WayOfMySQL.FullTextSearchModifier modifier) {
         xdoMatchForMySQL(textColumnList, conditionValue, modifier);

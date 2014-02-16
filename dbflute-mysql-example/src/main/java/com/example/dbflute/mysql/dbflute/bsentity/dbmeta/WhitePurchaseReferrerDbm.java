@@ -56,12 +56,12 @@ public class WhitePurchaseReferrerDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgPurchaseReferrerId implements PropertyGateway {
-        public Object read(Entity e) { return ((WhitePurchaseReferrer)e).getPurchaseReferrerId(); }
-        public void write(Entity e, Object v) { ((WhitePurchaseReferrer)e).setPurchaseReferrerId(ctl(v)); }
+        public Object read(Entity et) { return ((WhitePurchaseReferrer)et).getPurchaseReferrerId(); }
+        public void write(Entity et, Object vl) { ((WhitePurchaseReferrer)et).setPurchaseReferrerId(ctl(vl)); }
     }
     public static class EpgPurchaseReferrerName implements PropertyGateway {
-        public Object read(Entity e) { return ((WhitePurchaseReferrer)e).getPurchaseReferrerName(); }
-        public void write(Entity e, Object v) { ((WhitePurchaseReferrer)e).setPurchaseReferrerName((String)v); }
+        public Object read(Entity et) { return ((WhitePurchaseReferrer)et).getPurchaseReferrerName(); }
+        public void write(Entity et, Object vl) { ((WhitePurchaseReferrer)et).setPurchaseReferrerName((String)vl); }
     }
 
     // ===================================================================================
@@ -110,8 +110,8 @@ public class WhitePurchaseReferrerDbm extends AbstractDBMeta {
     //                                      Foreign Property
     //                                      ----------------
     public ForeignInfo foreignPurchase() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnPurchaseReferrerId(), PurchaseDbm.getInstance().columnPurchaseId());
-        return cfi("FK_WHITE_PURCHASE_REFERRER", "purchase", this, PurchaseDbm.getInstance(), map, 0, true, false, false, false, null, null, false, "whitePurchaseReferrerAsOne");
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnPurchaseReferrerId(), PurchaseDbm.getInstance().columnPurchaseId());
+        return cfi("FK_WHITE_PURCHASE_REFERRER", "purchase", this, PurchaseDbm.getInstance(), mp, 0, true, false, false, false, null, null, false, "whitePurchaseReferrerAsOne");
     }
 
     // -----------------------------------------------------
@@ -144,10 +144,10 @@ public class WhitePurchaseReferrerDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((WhitePurchaseReferrer)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((WhitePurchaseReferrer)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((WhitePurchaseReferrer)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((WhitePurchaseReferrer)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

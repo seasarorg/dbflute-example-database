@@ -96,112 +96,112 @@ public class BsWhiteImplicitConvIntegerCQ extends AbstractBsWhiteImplicitConvInt
 
     protected Map<String, WhiteImplicitConvNumericCQ> _implicitConvIntegerId_ExistsReferrer_WhiteImplicitConvNumericListMap;
     public Map<String, WhiteImplicitConvNumericCQ> getImplicitConvIntegerId_ExistsReferrer_WhiteImplicitConvNumericList() { return _implicitConvIntegerId_ExistsReferrer_WhiteImplicitConvNumericListMap; }
-    public String keepImplicitConvIntegerId_ExistsReferrer_WhiteImplicitConvNumericList(WhiteImplicitConvNumericCQ subQuery) {
+    public String keepImplicitConvIntegerId_ExistsReferrer_WhiteImplicitConvNumericList(WhiteImplicitConvNumericCQ sq) {
         if (_implicitConvIntegerId_ExistsReferrer_WhiteImplicitConvNumericListMap == null) { _implicitConvIntegerId_ExistsReferrer_WhiteImplicitConvNumericListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_implicitConvIntegerId_ExistsReferrer_WhiteImplicitConvNumericListMap.size() + 1);
-        _implicitConvIntegerId_ExistsReferrer_WhiteImplicitConvNumericListMap.put(key, subQuery); return "implicitConvIntegerId_ExistsReferrer_WhiteImplicitConvNumericList." + key;
+        String ky = "subQueryMapKey" + (_implicitConvIntegerId_ExistsReferrer_WhiteImplicitConvNumericListMap.size() + 1);
+        _implicitConvIntegerId_ExistsReferrer_WhiteImplicitConvNumericListMap.put(ky, sq); return "implicitConvIntegerId_ExistsReferrer_WhiteImplicitConvNumericList." + ky;
     }
 
     protected Map<String, WhiteImplicitConvStringCQ> _implicitConvIntegerId_ExistsReferrer_WhiteImplicitConvStringListMap;
     public Map<String, WhiteImplicitConvStringCQ> getImplicitConvIntegerId_ExistsReferrer_WhiteImplicitConvStringList() { return _implicitConvIntegerId_ExistsReferrer_WhiteImplicitConvStringListMap; }
-    public String keepImplicitConvIntegerId_ExistsReferrer_WhiteImplicitConvStringList(WhiteImplicitConvStringCQ subQuery) {
+    public String keepImplicitConvIntegerId_ExistsReferrer_WhiteImplicitConvStringList(WhiteImplicitConvStringCQ sq) {
         if (_implicitConvIntegerId_ExistsReferrer_WhiteImplicitConvStringListMap == null) { _implicitConvIntegerId_ExistsReferrer_WhiteImplicitConvStringListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_implicitConvIntegerId_ExistsReferrer_WhiteImplicitConvStringListMap.size() + 1);
-        _implicitConvIntegerId_ExistsReferrer_WhiteImplicitConvStringListMap.put(key, subQuery); return "implicitConvIntegerId_ExistsReferrer_WhiteImplicitConvStringList." + key;
+        String ky = "subQueryMapKey" + (_implicitConvIntegerId_ExistsReferrer_WhiteImplicitConvStringListMap.size() + 1);
+        _implicitConvIntegerId_ExistsReferrer_WhiteImplicitConvStringListMap.put(ky, sq); return "implicitConvIntegerId_ExistsReferrer_WhiteImplicitConvStringList." + ky;
     }
 
     protected Map<String, WhiteImplicitConvNumericCQ> _implicitConvIntegerId_NotExistsReferrer_WhiteImplicitConvNumericListMap;
     public Map<String, WhiteImplicitConvNumericCQ> getImplicitConvIntegerId_NotExistsReferrer_WhiteImplicitConvNumericList() { return _implicitConvIntegerId_NotExistsReferrer_WhiteImplicitConvNumericListMap; }
-    public String keepImplicitConvIntegerId_NotExistsReferrer_WhiteImplicitConvNumericList(WhiteImplicitConvNumericCQ subQuery) {
+    public String keepImplicitConvIntegerId_NotExistsReferrer_WhiteImplicitConvNumericList(WhiteImplicitConvNumericCQ sq) {
         if (_implicitConvIntegerId_NotExistsReferrer_WhiteImplicitConvNumericListMap == null) { _implicitConvIntegerId_NotExistsReferrer_WhiteImplicitConvNumericListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_implicitConvIntegerId_NotExistsReferrer_WhiteImplicitConvNumericListMap.size() + 1);
-        _implicitConvIntegerId_NotExistsReferrer_WhiteImplicitConvNumericListMap.put(key, subQuery); return "implicitConvIntegerId_NotExistsReferrer_WhiteImplicitConvNumericList." + key;
+        String ky = "subQueryMapKey" + (_implicitConvIntegerId_NotExistsReferrer_WhiteImplicitConvNumericListMap.size() + 1);
+        _implicitConvIntegerId_NotExistsReferrer_WhiteImplicitConvNumericListMap.put(ky, sq); return "implicitConvIntegerId_NotExistsReferrer_WhiteImplicitConvNumericList." + ky;
     }
 
     protected Map<String, WhiteImplicitConvStringCQ> _implicitConvIntegerId_NotExistsReferrer_WhiteImplicitConvStringListMap;
     public Map<String, WhiteImplicitConvStringCQ> getImplicitConvIntegerId_NotExistsReferrer_WhiteImplicitConvStringList() { return _implicitConvIntegerId_NotExistsReferrer_WhiteImplicitConvStringListMap; }
-    public String keepImplicitConvIntegerId_NotExistsReferrer_WhiteImplicitConvStringList(WhiteImplicitConvStringCQ subQuery) {
+    public String keepImplicitConvIntegerId_NotExistsReferrer_WhiteImplicitConvStringList(WhiteImplicitConvStringCQ sq) {
         if (_implicitConvIntegerId_NotExistsReferrer_WhiteImplicitConvStringListMap == null) { _implicitConvIntegerId_NotExistsReferrer_WhiteImplicitConvStringListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_implicitConvIntegerId_NotExistsReferrer_WhiteImplicitConvStringListMap.size() + 1);
-        _implicitConvIntegerId_NotExistsReferrer_WhiteImplicitConvStringListMap.put(key, subQuery); return "implicitConvIntegerId_NotExistsReferrer_WhiteImplicitConvStringList." + key;
+        String ky = "subQueryMapKey" + (_implicitConvIntegerId_NotExistsReferrer_WhiteImplicitConvStringListMap.size() + 1);
+        _implicitConvIntegerId_NotExistsReferrer_WhiteImplicitConvStringListMap.put(ky, sq); return "implicitConvIntegerId_NotExistsReferrer_WhiteImplicitConvStringList." + ky;
     }
 
     protected Map<String, WhiteImplicitConvNumericCQ> _implicitConvIntegerId_SpecifyDerivedReferrer_WhiteImplicitConvNumericListMap;
     public Map<String, WhiteImplicitConvNumericCQ> getImplicitConvIntegerId_SpecifyDerivedReferrer_WhiteImplicitConvNumericList() { return _implicitConvIntegerId_SpecifyDerivedReferrer_WhiteImplicitConvNumericListMap; }
-    public String keepImplicitConvIntegerId_SpecifyDerivedReferrer_WhiteImplicitConvNumericList(WhiteImplicitConvNumericCQ subQuery) {
+    public String keepImplicitConvIntegerId_SpecifyDerivedReferrer_WhiteImplicitConvNumericList(WhiteImplicitConvNumericCQ sq) {
         if (_implicitConvIntegerId_SpecifyDerivedReferrer_WhiteImplicitConvNumericListMap == null) { _implicitConvIntegerId_SpecifyDerivedReferrer_WhiteImplicitConvNumericListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_implicitConvIntegerId_SpecifyDerivedReferrer_WhiteImplicitConvNumericListMap.size() + 1);
-        _implicitConvIntegerId_SpecifyDerivedReferrer_WhiteImplicitConvNumericListMap.put(key, subQuery); return "implicitConvIntegerId_SpecifyDerivedReferrer_WhiteImplicitConvNumericList." + key;
+        String ky = "subQueryMapKey" + (_implicitConvIntegerId_SpecifyDerivedReferrer_WhiteImplicitConvNumericListMap.size() + 1);
+        _implicitConvIntegerId_SpecifyDerivedReferrer_WhiteImplicitConvNumericListMap.put(ky, sq); return "implicitConvIntegerId_SpecifyDerivedReferrer_WhiteImplicitConvNumericList." + ky;
     }
 
     protected Map<String, WhiteImplicitConvStringCQ> _implicitConvIntegerId_SpecifyDerivedReferrer_WhiteImplicitConvStringListMap;
     public Map<String, WhiteImplicitConvStringCQ> getImplicitConvIntegerId_SpecifyDerivedReferrer_WhiteImplicitConvStringList() { return _implicitConvIntegerId_SpecifyDerivedReferrer_WhiteImplicitConvStringListMap; }
-    public String keepImplicitConvIntegerId_SpecifyDerivedReferrer_WhiteImplicitConvStringList(WhiteImplicitConvStringCQ subQuery) {
+    public String keepImplicitConvIntegerId_SpecifyDerivedReferrer_WhiteImplicitConvStringList(WhiteImplicitConvStringCQ sq) {
         if (_implicitConvIntegerId_SpecifyDerivedReferrer_WhiteImplicitConvStringListMap == null) { _implicitConvIntegerId_SpecifyDerivedReferrer_WhiteImplicitConvStringListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_implicitConvIntegerId_SpecifyDerivedReferrer_WhiteImplicitConvStringListMap.size() + 1);
-        _implicitConvIntegerId_SpecifyDerivedReferrer_WhiteImplicitConvStringListMap.put(key, subQuery); return "implicitConvIntegerId_SpecifyDerivedReferrer_WhiteImplicitConvStringList." + key;
+        String ky = "subQueryMapKey" + (_implicitConvIntegerId_SpecifyDerivedReferrer_WhiteImplicitConvStringListMap.size() + 1);
+        _implicitConvIntegerId_SpecifyDerivedReferrer_WhiteImplicitConvStringListMap.put(ky, sq); return "implicitConvIntegerId_SpecifyDerivedReferrer_WhiteImplicitConvStringList." + ky;
     }
 
     protected Map<String, WhiteImplicitConvNumericCQ> _implicitConvIntegerId_InScopeRelation_WhiteImplicitConvNumericListMap;
     public Map<String, WhiteImplicitConvNumericCQ> getImplicitConvIntegerId_InScopeRelation_WhiteImplicitConvNumericList() { return _implicitConvIntegerId_InScopeRelation_WhiteImplicitConvNumericListMap; }
-    public String keepImplicitConvIntegerId_InScopeRelation_WhiteImplicitConvNumericList(WhiteImplicitConvNumericCQ subQuery) {
+    public String keepImplicitConvIntegerId_InScopeRelation_WhiteImplicitConvNumericList(WhiteImplicitConvNumericCQ sq) {
         if (_implicitConvIntegerId_InScopeRelation_WhiteImplicitConvNumericListMap == null) { _implicitConvIntegerId_InScopeRelation_WhiteImplicitConvNumericListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_implicitConvIntegerId_InScopeRelation_WhiteImplicitConvNumericListMap.size() + 1);
-        _implicitConvIntegerId_InScopeRelation_WhiteImplicitConvNumericListMap.put(key, subQuery); return "implicitConvIntegerId_InScopeRelation_WhiteImplicitConvNumericList." + key;
+        String ky = "subQueryMapKey" + (_implicitConvIntegerId_InScopeRelation_WhiteImplicitConvNumericListMap.size() + 1);
+        _implicitConvIntegerId_InScopeRelation_WhiteImplicitConvNumericListMap.put(ky, sq); return "implicitConvIntegerId_InScopeRelation_WhiteImplicitConvNumericList." + ky;
     }
 
     protected Map<String, WhiteImplicitConvStringCQ> _implicitConvIntegerId_InScopeRelation_WhiteImplicitConvStringListMap;
     public Map<String, WhiteImplicitConvStringCQ> getImplicitConvIntegerId_InScopeRelation_WhiteImplicitConvStringList() { return _implicitConvIntegerId_InScopeRelation_WhiteImplicitConvStringListMap; }
-    public String keepImplicitConvIntegerId_InScopeRelation_WhiteImplicitConvStringList(WhiteImplicitConvStringCQ subQuery) {
+    public String keepImplicitConvIntegerId_InScopeRelation_WhiteImplicitConvStringList(WhiteImplicitConvStringCQ sq) {
         if (_implicitConvIntegerId_InScopeRelation_WhiteImplicitConvStringListMap == null) { _implicitConvIntegerId_InScopeRelation_WhiteImplicitConvStringListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_implicitConvIntegerId_InScopeRelation_WhiteImplicitConvStringListMap.size() + 1);
-        _implicitConvIntegerId_InScopeRelation_WhiteImplicitConvStringListMap.put(key, subQuery); return "implicitConvIntegerId_InScopeRelation_WhiteImplicitConvStringList." + key;
+        String ky = "subQueryMapKey" + (_implicitConvIntegerId_InScopeRelation_WhiteImplicitConvStringListMap.size() + 1);
+        _implicitConvIntegerId_InScopeRelation_WhiteImplicitConvStringListMap.put(ky, sq); return "implicitConvIntegerId_InScopeRelation_WhiteImplicitConvStringList." + ky;
     }
 
     protected Map<String, WhiteImplicitConvNumericCQ> _implicitConvIntegerId_NotInScopeRelation_WhiteImplicitConvNumericListMap;
     public Map<String, WhiteImplicitConvNumericCQ> getImplicitConvIntegerId_NotInScopeRelation_WhiteImplicitConvNumericList() { return _implicitConvIntegerId_NotInScopeRelation_WhiteImplicitConvNumericListMap; }
-    public String keepImplicitConvIntegerId_NotInScopeRelation_WhiteImplicitConvNumericList(WhiteImplicitConvNumericCQ subQuery) {
+    public String keepImplicitConvIntegerId_NotInScopeRelation_WhiteImplicitConvNumericList(WhiteImplicitConvNumericCQ sq) {
         if (_implicitConvIntegerId_NotInScopeRelation_WhiteImplicitConvNumericListMap == null) { _implicitConvIntegerId_NotInScopeRelation_WhiteImplicitConvNumericListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_implicitConvIntegerId_NotInScopeRelation_WhiteImplicitConvNumericListMap.size() + 1);
-        _implicitConvIntegerId_NotInScopeRelation_WhiteImplicitConvNumericListMap.put(key, subQuery); return "implicitConvIntegerId_NotInScopeRelation_WhiteImplicitConvNumericList." + key;
+        String ky = "subQueryMapKey" + (_implicitConvIntegerId_NotInScopeRelation_WhiteImplicitConvNumericListMap.size() + 1);
+        _implicitConvIntegerId_NotInScopeRelation_WhiteImplicitConvNumericListMap.put(ky, sq); return "implicitConvIntegerId_NotInScopeRelation_WhiteImplicitConvNumericList." + ky;
     }
 
     protected Map<String, WhiteImplicitConvStringCQ> _implicitConvIntegerId_NotInScopeRelation_WhiteImplicitConvStringListMap;
     public Map<String, WhiteImplicitConvStringCQ> getImplicitConvIntegerId_NotInScopeRelation_WhiteImplicitConvStringList() { return _implicitConvIntegerId_NotInScopeRelation_WhiteImplicitConvStringListMap; }
-    public String keepImplicitConvIntegerId_NotInScopeRelation_WhiteImplicitConvStringList(WhiteImplicitConvStringCQ subQuery) {
+    public String keepImplicitConvIntegerId_NotInScopeRelation_WhiteImplicitConvStringList(WhiteImplicitConvStringCQ sq) {
         if (_implicitConvIntegerId_NotInScopeRelation_WhiteImplicitConvStringListMap == null) { _implicitConvIntegerId_NotInScopeRelation_WhiteImplicitConvStringListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_implicitConvIntegerId_NotInScopeRelation_WhiteImplicitConvStringListMap.size() + 1);
-        _implicitConvIntegerId_NotInScopeRelation_WhiteImplicitConvStringListMap.put(key, subQuery); return "implicitConvIntegerId_NotInScopeRelation_WhiteImplicitConvStringList." + key;
+        String ky = "subQueryMapKey" + (_implicitConvIntegerId_NotInScopeRelation_WhiteImplicitConvStringListMap.size() + 1);
+        _implicitConvIntegerId_NotInScopeRelation_WhiteImplicitConvStringListMap.put(ky, sq); return "implicitConvIntegerId_NotInScopeRelation_WhiteImplicitConvStringList." + ky;
     }
 
     protected Map<String, WhiteImplicitConvNumericCQ> _implicitConvIntegerId_QueryDerivedReferrer_WhiteImplicitConvNumericListMap;
     public Map<String, WhiteImplicitConvNumericCQ> getImplicitConvIntegerId_QueryDerivedReferrer_WhiteImplicitConvNumericList() { return _implicitConvIntegerId_QueryDerivedReferrer_WhiteImplicitConvNumericListMap; }
-    public String keepImplicitConvIntegerId_QueryDerivedReferrer_WhiteImplicitConvNumericList(WhiteImplicitConvNumericCQ subQuery) {
+    public String keepImplicitConvIntegerId_QueryDerivedReferrer_WhiteImplicitConvNumericList(WhiteImplicitConvNumericCQ sq) {
         if (_implicitConvIntegerId_QueryDerivedReferrer_WhiteImplicitConvNumericListMap == null) { _implicitConvIntegerId_QueryDerivedReferrer_WhiteImplicitConvNumericListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_implicitConvIntegerId_QueryDerivedReferrer_WhiteImplicitConvNumericListMap.size() + 1);
-        _implicitConvIntegerId_QueryDerivedReferrer_WhiteImplicitConvNumericListMap.put(key, subQuery); return "implicitConvIntegerId_QueryDerivedReferrer_WhiteImplicitConvNumericList." + key;
+        String ky = "subQueryMapKey" + (_implicitConvIntegerId_QueryDerivedReferrer_WhiteImplicitConvNumericListMap.size() + 1);
+        _implicitConvIntegerId_QueryDerivedReferrer_WhiteImplicitConvNumericListMap.put(ky, sq); return "implicitConvIntegerId_QueryDerivedReferrer_WhiteImplicitConvNumericList." + ky;
     }
     protected Map<String, Object> _implicitConvIntegerId_QueryDerivedReferrer_WhiteImplicitConvNumericListParameterMap;
     public Map<String, Object> getImplicitConvIntegerId_QueryDerivedReferrer_WhiteImplicitConvNumericListParameter() { return _implicitConvIntegerId_QueryDerivedReferrer_WhiteImplicitConvNumericListParameterMap; }
-    public String keepImplicitConvIntegerId_QueryDerivedReferrer_WhiteImplicitConvNumericListParameter(Object parameterValue) {
+    public String keepImplicitConvIntegerId_QueryDerivedReferrer_WhiteImplicitConvNumericListParameter(Object vl) {
         if (_implicitConvIntegerId_QueryDerivedReferrer_WhiteImplicitConvNumericListParameterMap == null) { _implicitConvIntegerId_QueryDerivedReferrer_WhiteImplicitConvNumericListParameterMap = newLinkedHashMapSized(4); }
-        String key = "subQueryParameterKey" + (_implicitConvIntegerId_QueryDerivedReferrer_WhiteImplicitConvNumericListParameterMap.size() + 1);
-        _implicitConvIntegerId_QueryDerivedReferrer_WhiteImplicitConvNumericListParameterMap.put(key, parameterValue); return "implicitConvIntegerId_QueryDerivedReferrer_WhiteImplicitConvNumericListParameter." + key;
+        String ky = "subQueryParameterKey" + (_implicitConvIntegerId_QueryDerivedReferrer_WhiteImplicitConvNumericListParameterMap.size() + 1);
+        _implicitConvIntegerId_QueryDerivedReferrer_WhiteImplicitConvNumericListParameterMap.put(ky, vl); return "implicitConvIntegerId_QueryDerivedReferrer_WhiteImplicitConvNumericListParameter." + ky;
     }
 
     protected Map<String, WhiteImplicitConvStringCQ> _implicitConvIntegerId_QueryDerivedReferrer_WhiteImplicitConvStringListMap;
     public Map<String, WhiteImplicitConvStringCQ> getImplicitConvIntegerId_QueryDerivedReferrer_WhiteImplicitConvStringList() { return _implicitConvIntegerId_QueryDerivedReferrer_WhiteImplicitConvStringListMap; }
-    public String keepImplicitConvIntegerId_QueryDerivedReferrer_WhiteImplicitConvStringList(WhiteImplicitConvStringCQ subQuery) {
+    public String keepImplicitConvIntegerId_QueryDerivedReferrer_WhiteImplicitConvStringList(WhiteImplicitConvStringCQ sq) {
         if (_implicitConvIntegerId_QueryDerivedReferrer_WhiteImplicitConvStringListMap == null) { _implicitConvIntegerId_QueryDerivedReferrer_WhiteImplicitConvStringListMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_implicitConvIntegerId_QueryDerivedReferrer_WhiteImplicitConvStringListMap.size() + 1);
-        _implicitConvIntegerId_QueryDerivedReferrer_WhiteImplicitConvStringListMap.put(key, subQuery); return "implicitConvIntegerId_QueryDerivedReferrer_WhiteImplicitConvStringList." + key;
+        String ky = "subQueryMapKey" + (_implicitConvIntegerId_QueryDerivedReferrer_WhiteImplicitConvStringListMap.size() + 1);
+        _implicitConvIntegerId_QueryDerivedReferrer_WhiteImplicitConvStringListMap.put(ky, sq); return "implicitConvIntegerId_QueryDerivedReferrer_WhiteImplicitConvStringList." + ky;
     }
     protected Map<String, Object> _implicitConvIntegerId_QueryDerivedReferrer_WhiteImplicitConvStringListParameterMap;
     public Map<String, Object> getImplicitConvIntegerId_QueryDerivedReferrer_WhiteImplicitConvStringListParameter() { return _implicitConvIntegerId_QueryDerivedReferrer_WhiteImplicitConvStringListParameterMap; }
-    public String keepImplicitConvIntegerId_QueryDerivedReferrer_WhiteImplicitConvStringListParameter(Object parameterValue) {
+    public String keepImplicitConvIntegerId_QueryDerivedReferrer_WhiteImplicitConvStringListParameter(Object vl) {
         if (_implicitConvIntegerId_QueryDerivedReferrer_WhiteImplicitConvStringListParameterMap == null) { _implicitConvIntegerId_QueryDerivedReferrer_WhiteImplicitConvStringListParameterMap = newLinkedHashMapSized(4); }
-        String key = "subQueryParameterKey" + (_implicitConvIntegerId_QueryDerivedReferrer_WhiteImplicitConvStringListParameterMap.size() + 1);
-        _implicitConvIntegerId_QueryDerivedReferrer_WhiteImplicitConvStringListParameterMap.put(key, parameterValue); return "implicitConvIntegerId_QueryDerivedReferrer_WhiteImplicitConvStringListParameter." + key;
+        String ky = "subQueryParameterKey" + (_implicitConvIntegerId_QueryDerivedReferrer_WhiteImplicitConvStringListParameterMap.size() + 1);
+        _implicitConvIntegerId_QueryDerivedReferrer_WhiteImplicitConvStringListParameterMap.put(ky, vl); return "implicitConvIntegerId_QueryDerivedReferrer_WhiteImplicitConvStringListParameter." + ky;
     }
 
     /** 
@@ -227,18 +227,18 @@ public class BsWhiteImplicitConvIntegerCQ extends AbstractBsWhiteImplicitConvInt
 
     protected Map<String, WhiteImplicitConvNumericCQ> _implicitConvNumericId_InScopeRelation_WhiteImplicitConvNumericMap;
     public Map<String, WhiteImplicitConvNumericCQ> getImplicitConvNumericId_InScopeRelation_WhiteImplicitConvNumeric() { return _implicitConvNumericId_InScopeRelation_WhiteImplicitConvNumericMap; }
-    public String keepImplicitConvNumericId_InScopeRelation_WhiteImplicitConvNumeric(WhiteImplicitConvNumericCQ subQuery) {
+    public String keepImplicitConvNumericId_InScopeRelation_WhiteImplicitConvNumeric(WhiteImplicitConvNumericCQ sq) {
         if (_implicitConvNumericId_InScopeRelation_WhiteImplicitConvNumericMap == null) { _implicitConvNumericId_InScopeRelation_WhiteImplicitConvNumericMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_implicitConvNumericId_InScopeRelation_WhiteImplicitConvNumericMap.size() + 1);
-        _implicitConvNumericId_InScopeRelation_WhiteImplicitConvNumericMap.put(key, subQuery); return "implicitConvNumericId_InScopeRelation_WhiteImplicitConvNumeric." + key;
+        String ky = "subQueryMapKey" + (_implicitConvNumericId_InScopeRelation_WhiteImplicitConvNumericMap.size() + 1);
+        _implicitConvNumericId_InScopeRelation_WhiteImplicitConvNumericMap.put(ky, sq); return "implicitConvNumericId_InScopeRelation_WhiteImplicitConvNumeric." + ky;
     }
 
     protected Map<String, WhiteImplicitConvNumericCQ> _implicitConvNumericId_NotInScopeRelation_WhiteImplicitConvNumericMap;
     public Map<String, WhiteImplicitConvNumericCQ> getImplicitConvNumericId_NotInScopeRelation_WhiteImplicitConvNumeric() { return _implicitConvNumericId_NotInScopeRelation_WhiteImplicitConvNumericMap; }
-    public String keepImplicitConvNumericId_NotInScopeRelation_WhiteImplicitConvNumeric(WhiteImplicitConvNumericCQ subQuery) {
+    public String keepImplicitConvNumericId_NotInScopeRelation_WhiteImplicitConvNumeric(WhiteImplicitConvNumericCQ sq) {
         if (_implicitConvNumericId_NotInScopeRelation_WhiteImplicitConvNumericMap == null) { _implicitConvNumericId_NotInScopeRelation_WhiteImplicitConvNumericMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_implicitConvNumericId_NotInScopeRelation_WhiteImplicitConvNumericMap.size() + 1);
-        _implicitConvNumericId_NotInScopeRelation_WhiteImplicitConvNumericMap.put(key, subQuery); return "implicitConvNumericId_NotInScopeRelation_WhiteImplicitConvNumeric." + key;
+        String ky = "subQueryMapKey" + (_implicitConvNumericId_NotInScopeRelation_WhiteImplicitConvNumericMap.size() + 1);
+        _implicitConvNumericId_NotInScopeRelation_WhiteImplicitConvNumericMap.put(ky, sq); return "implicitConvNumericId_NotInScopeRelation_WhiteImplicitConvNumeric." + ky;
     }
 
     /** 
@@ -264,18 +264,18 @@ public class BsWhiteImplicitConvIntegerCQ extends AbstractBsWhiteImplicitConvInt
 
     protected Map<String, WhiteImplicitConvStringCQ> _implicitConvStringId_InScopeRelation_WhiteImplicitConvStringMap;
     public Map<String, WhiteImplicitConvStringCQ> getImplicitConvStringId_InScopeRelation_WhiteImplicitConvString() { return _implicitConvStringId_InScopeRelation_WhiteImplicitConvStringMap; }
-    public String keepImplicitConvStringId_InScopeRelation_WhiteImplicitConvString(WhiteImplicitConvStringCQ subQuery) {
+    public String keepImplicitConvStringId_InScopeRelation_WhiteImplicitConvString(WhiteImplicitConvStringCQ sq) {
         if (_implicitConvStringId_InScopeRelation_WhiteImplicitConvStringMap == null) { _implicitConvStringId_InScopeRelation_WhiteImplicitConvStringMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_implicitConvStringId_InScopeRelation_WhiteImplicitConvStringMap.size() + 1);
-        _implicitConvStringId_InScopeRelation_WhiteImplicitConvStringMap.put(key, subQuery); return "implicitConvStringId_InScopeRelation_WhiteImplicitConvString." + key;
+        String ky = "subQueryMapKey" + (_implicitConvStringId_InScopeRelation_WhiteImplicitConvStringMap.size() + 1);
+        _implicitConvStringId_InScopeRelation_WhiteImplicitConvStringMap.put(ky, sq); return "implicitConvStringId_InScopeRelation_WhiteImplicitConvString." + ky;
     }
 
     protected Map<String, WhiteImplicitConvStringCQ> _implicitConvStringId_NotInScopeRelation_WhiteImplicitConvStringMap;
     public Map<String, WhiteImplicitConvStringCQ> getImplicitConvStringId_NotInScopeRelation_WhiteImplicitConvString() { return _implicitConvStringId_NotInScopeRelation_WhiteImplicitConvStringMap; }
-    public String keepImplicitConvStringId_NotInScopeRelation_WhiteImplicitConvString(WhiteImplicitConvStringCQ subQuery) {
+    public String keepImplicitConvStringId_NotInScopeRelation_WhiteImplicitConvString(WhiteImplicitConvStringCQ sq) {
         if (_implicitConvStringId_NotInScopeRelation_WhiteImplicitConvStringMap == null) { _implicitConvStringId_NotInScopeRelation_WhiteImplicitConvStringMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_implicitConvStringId_NotInScopeRelation_WhiteImplicitConvStringMap.size() + 1);
-        _implicitConvStringId_NotInScopeRelation_WhiteImplicitConvStringMap.put(key, subQuery); return "implicitConvStringId_NotInScopeRelation_WhiteImplicitConvString." + key;
+        String ky = "subQueryMapKey" + (_implicitConvStringId_NotInScopeRelation_WhiteImplicitConvStringMap.size() + 1);
+        _implicitConvStringId_NotInScopeRelation_WhiteImplicitConvStringMap.put(ky, sq); return "implicitConvStringId_NotInScopeRelation_WhiteImplicitConvString." + ky;
     }
 
     /** 
@@ -353,14 +353,14 @@ public class BsWhiteImplicitConvIntegerCQ extends AbstractBsWhiteImplicitConvInt
     // ===================================================================================
     //                                                                         Union Query
     //                                                                         ===========
-    protected void reflectRelationOnUnionQuery(ConditionQuery baseQueryAsSuper, ConditionQuery unionQueryAsSuper) {
-        WhiteImplicitConvIntegerCQ baseQuery = (WhiteImplicitConvIntegerCQ)baseQueryAsSuper;
-        WhiteImplicitConvIntegerCQ unionQuery = (WhiteImplicitConvIntegerCQ)unionQueryAsSuper;
-        if (baseQuery.hasConditionQueryWhiteImplicitConvNumeric()) {
-            unionQuery.queryWhiteImplicitConvNumeric().reflectRelationOnUnionQuery(baseQuery.queryWhiteImplicitConvNumeric(), unionQuery.queryWhiteImplicitConvNumeric());
+    protected void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
+        WhiteImplicitConvIntegerCQ bq = (WhiteImplicitConvIntegerCQ)bqs;
+        WhiteImplicitConvIntegerCQ uq = (WhiteImplicitConvIntegerCQ)uqs;
+        if (bq.hasConditionQueryWhiteImplicitConvNumeric()) {
+            uq.queryWhiteImplicitConvNumeric().reflectRelationOnUnionQuery(bq.queryWhiteImplicitConvNumeric(), uq.queryWhiteImplicitConvNumeric());
         }
-        if (baseQuery.hasConditionQueryWhiteImplicitConvString()) {
-            unionQuery.queryWhiteImplicitConvString().reflectRelationOnUnionQuery(baseQuery.queryWhiteImplicitConvString(), unionQuery.queryWhiteImplicitConvString());
+        if (bq.hasConditionQueryWhiteImplicitConvString()) {
+            uq.queryWhiteImplicitConvString().reflectRelationOnUnionQuery(bq.queryWhiteImplicitConvString(), uq.queryWhiteImplicitConvString());
         }
     }
 
@@ -444,10 +444,10 @@ public class BsWhiteImplicitConvIntegerCQ extends AbstractBsWhiteImplicitConvInt
     //                                                                     ===============
     protected Map<String, WhiteImplicitConvIntegerCQ> _scalarConditionMap;
     public Map<String, WhiteImplicitConvIntegerCQ> getScalarCondition() { return _scalarConditionMap; }
-    public String keepScalarCondition(WhiteImplicitConvIntegerCQ subQuery) {
+    public String keepScalarCondition(WhiteImplicitConvIntegerCQ sq) {
         if (_scalarConditionMap == null) { _scalarConditionMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
-        _scalarConditionMap.put(key, subQuery); return "scalarCondition." + key;
+        String ky = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
+        _scalarConditionMap.put(ky, sq); return "scalarCondition." + ky;
     }
 
     // ===================================================================================
@@ -455,25 +455,25 @@ public class BsWhiteImplicitConvIntegerCQ extends AbstractBsWhiteImplicitConvInt
     //                                                                       =============
     protected Map<String, WhiteImplicitConvIntegerCQ> _specifyMyselfDerivedMap;
     public Map<String, WhiteImplicitConvIntegerCQ> getSpecifyMyselfDerived() { return _specifyMyselfDerivedMap; }
-    public String keepSpecifyMyselfDerived(WhiteImplicitConvIntegerCQ subQuery) {
+    public String keepSpecifyMyselfDerived(WhiteImplicitConvIntegerCQ sq) {
         if (_specifyMyselfDerivedMap == null) { _specifyMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
-        _specifyMyselfDerivedMap.put(key, subQuery); return "specifyMyselfDerived." + key;
+        String ky = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
+        _specifyMyselfDerivedMap.put(ky, sq); return "specifyMyselfDerived." + ky;
     }
 
     protected Map<String, WhiteImplicitConvIntegerCQ> _queryMyselfDerivedMap;
     public Map<String, WhiteImplicitConvIntegerCQ> getQueryMyselfDerived() { return _queryMyselfDerivedMap; }
-    public String keepQueryMyselfDerived(WhiteImplicitConvIntegerCQ subQuery) {
+    public String keepQueryMyselfDerived(WhiteImplicitConvIntegerCQ sq) {
         if (_queryMyselfDerivedMap == null) { _queryMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
-        _queryMyselfDerivedMap.put(key, subQuery); return "queryMyselfDerived." + key;
+        String ky = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
+        _queryMyselfDerivedMap.put(ky, sq); return "queryMyselfDerived." + ky;
     }
     protected Map<String, Object> _qyeryMyselfDerivedParameterMap;
     public Map<String, Object> getQueryMyselfDerivedParameter() { return _qyeryMyselfDerivedParameterMap; }
-    public String keepQueryMyselfDerivedParameter(Object parameterValue) {
+    public String keepQueryMyselfDerivedParameter(Object vl) {
         if (_qyeryMyselfDerivedParameterMap == null) { _qyeryMyselfDerivedParameterMap = newLinkedHashMapSized(4); }
-        String key = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
-        _qyeryMyselfDerivedParameterMap.put(key, parameterValue); return "queryMyselfDerivedParameter." + key;
+        String ky = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
+        _qyeryMyselfDerivedParameterMap.put(ky, vl); return "queryMyselfDerivedParameter." + ky;
     }
 
     // ===================================================================================
@@ -481,10 +481,10 @@ public class BsWhiteImplicitConvIntegerCQ extends AbstractBsWhiteImplicitConvInt
     //                                                                        ============
     protected Map<String, WhiteImplicitConvIntegerCQ> _myselfExistsMap;
     public Map<String, WhiteImplicitConvIntegerCQ> getMyselfExists() { return _myselfExistsMap; }
-    public String keepMyselfExists(WhiteImplicitConvIntegerCQ subQuery) {
+    public String keepMyselfExists(WhiteImplicitConvIntegerCQ sq) {
         if (_myselfExistsMap == null) { _myselfExistsMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
-        _myselfExistsMap.put(key, subQuery); return "myselfExists." + key;
+        String ky = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
+        _myselfExistsMap.put(ky, sq); return "myselfExists." + ky;
     }
 
     // ===================================================================================
@@ -492,10 +492,10 @@ public class BsWhiteImplicitConvIntegerCQ extends AbstractBsWhiteImplicitConvInt
     //                                                                       =============
     protected Map<String, WhiteImplicitConvIntegerCQ> _myselfInScopeMap;
     public Map<String, WhiteImplicitConvIntegerCQ> getMyselfInScope() { return _myselfInScopeMap; }
-    public String keepMyselfInScope(WhiteImplicitConvIntegerCQ subQuery) {
+    public String keepMyselfInScope(WhiteImplicitConvIntegerCQ sq) {
         if (_myselfInScopeMap == null) { _myselfInScopeMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
-        _myselfInScopeMap.put(key, subQuery); return "myselfInScope." + key;
+        String ky = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
+        _myselfInScopeMap.put(ky, sq); return "myselfInScope." + ky;
     }
 
     // ===================================================================================

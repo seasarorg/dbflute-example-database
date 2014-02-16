@@ -42,16 +42,16 @@ public class SynonymNextSameNameFkDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgRefId implements PropertyGateway {
-        public Object read(Entity e) { return ((SynonymNextSameNameFk)e).getRefId(); }
-        public void write(Entity e, Object v) { ((SynonymNextSameNameFk)e).setRefId(ctl(v)); }
+        public Object read(Entity et) { return ((SynonymNextSameNameFk)et).getRefId(); }
+        public void write(Entity et, Object vl) { ((SynonymNextSameNameFk)et).setRefId(ctl(vl)); }
     }
     public static class EpgRefName implements PropertyGateway {
-        public Object read(Entity e) { return ((SynonymNextSameNameFk)e).getRefName(); }
-        public void write(Entity e, Object v) { ((SynonymNextSameNameFk)e).setRefName((String)v); }
+        public Object read(Entity et) { return ((SynonymNextSameNameFk)et).getRefName(); }
+        public void write(Entity et, Object vl) { ((SynonymNextSameNameFk)et).setRefName((String)vl); }
     }
     public static class EpgSameNameId implements PropertyGateway {
-        public Object read(Entity e) { return ((SynonymNextSameNameFk)e).getSameNameId(); }
-        public void write(Entity e, Object v) { ((SynonymNextSameNameFk)e).setSameNameId(ctl(v)); }
+        public Object read(Entity et) { return ((SynonymNextSameNameFk)et).getSameNameId(); }
+        public void write(Entity et, Object vl) { ((SynonymNextSameNameFk)et).setSameNameId(ctl(vl)); }
     }
 
     // ===================================================================================
@@ -132,10 +132,10 @@ public class SynonymNextSameNameFkDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((SynonymNextSameNameFk)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((SynonymNextSameNameFk)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((SynonymNextSameNameFk)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((SynonymNextSameNameFk)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

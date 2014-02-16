@@ -145,8 +145,8 @@ public abstract class AbstractBsWhiteSameNameRefRefCQ extends AbstractConditionQ
      */
     public void setRefRefId_IsNotNull() { regRefRefId(CK_ISNN, DOBJ); }
 
-    protected void regRefRefId(ConditionKey k, Object v) { regQ(k, v, getCValueRefRefId(), "REF_REF_ID"); }
-    abstract protected ConditionValue getCValueRefRefId();
+    protected void regRefRefId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueRefRefId(), "REF_REF_ID"); }
+    protected abstract ConditionValue getCValueRefRefId();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -231,8 +231,8 @@ public abstract class AbstractBsWhiteSameNameRefRefCQ extends AbstractConditionQ
         regLSQ(CK_NLS, fRES(refRefName), getCValueRefRefName(), "REF_REF_NAME", likeSearchOption);
     }
 
-    protected void regRefRefName(ConditionKey k, Object v) { regQ(k, v, getCValueRefRefName(), "REF_REF_NAME"); }
-    abstract protected ConditionValue getCValueRefRefName();
+    protected void regRefRefName(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueRefRefName(), "REF_REF_NAME"); }
+    protected abstract ConditionValue getCValueRefRefName();
 
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -288,7 +288,7 @@ public abstract class AbstractBsWhiteSameNameRefRefCQ extends AbstractConditionQ
      * @param toDatetime The to-datetime(yyyy/MM/dd HH:mm:ss.SSS) of refRefDate. (NullAllowed: if null, no to-condition)
      * @param fromToOption The option of from-to. (NotNull)
      */
-    public void setRefRefDate_FromTo(java.util.Date fromDatetime, java.util.Date toDatetime, FromToOption fromToOption) {
+    public void setRefRefDate_FromTo(Date fromDatetime, Date toDatetime, FromToOption fromToOption) {
         regFTQ(fCTPD(fromDatetime), fCTPD(toDatetime), getCValueRefRefDate(), "REF_REF_DATE", fromToOption);
     }
 
@@ -303,12 +303,12 @@ public abstract class AbstractBsWhiteSameNameRefRefCQ extends AbstractConditionQ
      * @param fromDate The from-date(yyyy/MM/dd) of refRefDate. (NullAllowed: if null, no from-condition)
      * @param toDate The to-date(yyyy/MM/dd) of refRefDate. (NullAllowed: if null, no to-condition)
      */
-    public void setRefRefDate_DateFromTo(java.util.Date fromDate, java.util.Date toDate) {
+    public void setRefRefDate_DateFromTo(Date fromDate, Date toDate) {
         setRefRefDate_FromTo(fromDate, toDate, new FromToOption().compareAsDate());
     }
 
-    protected void regRefRefDate(ConditionKey k, Object v) { regQ(k, v, getCValueRefRefDate(), "REF_REF_DATE"); }
-    abstract protected ConditionValue getCValueRefRefDate();
+    protected void regRefRefDate(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueRefRefDate(), "REF_REF_DATE"); }
+    protected abstract ConditionValue getCValueRefRefDate();
 
     // ===================================================================================
     //                                                                     ScalarCondition
@@ -415,22 +415,22 @@ public abstract class AbstractBsWhiteSameNameRefRefCQ extends AbstractConditionQ
         return xcreateSSQFunction(CK_LE.getOperand());
     }
 
-    protected HpSSQFunction<WhiteSameNameRefRefCB> xcreateSSQFunction(final String operand) {
+    protected HpSSQFunction<WhiteSameNameRefRefCB> xcreateSSQFunction(final String rd) {
         return new HpSSQFunction<WhiteSameNameRefRefCB>(new HpSSQSetupper<WhiteSameNameRefRefCB>() {
-            public void setup(String function, SubQuery<WhiteSameNameRefRefCB> subQuery, HpSSQOption<WhiteSameNameRefRefCB> option) {
-                xscalarCondition(function, subQuery, operand, option);
+            public void setup(String fn, SubQuery<WhiteSameNameRefRefCB> sq, HpSSQOption<WhiteSameNameRefRefCB> op) {
+                xscalarCondition(fn, sq, rd, op);
             }
         });
     }
 
-    protected void xscalarCondition(String function, SubQuery<WhiteSameNameRefRefCB> subQuery, String operand, HpSSQOption<WhiteSameNameRefRefCB> option) {
-        assertObjectNotNull("subQuery<WhiteSameNameRefRefCB>", subQuery);
-        WhiteSameNameRefRefCB cb = xcreateScalarConditionCB(); subQuery.query(cb);
-        String subQueryPropertyName = keepScalarCondition(cb.query()); // for saving query-value
-        option.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
-        registerScalarCondition(function, cb.query(), subQueryPropertyName, operand, option);
+    protected void xscalarCondition(String fn, SubQuery<WhiteSameNameRefRefCB> sq, String rd, HpSSQOption<WhiteSameNameRefRefCB> op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteSameNameRefRefCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        String pp = keepScalarCondition(cb.query()); // for saving query-value
+        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
-    public abstract String keepScalarCondition(WhiteSameNameRefRefCQ subQuery);
+    public abstract String keepScalarCondition(WhiteSameNameRefRefCQ sq);
 
     protected WhiteSameNameRefRefCB xcreateScalarConditionCB() {
         WhiteSameNameRefRefCB cb = new WhiteSameNameRefRefCB();
@@ -447,13 +447,14 @@ public abstract class AbstractBsWhiteSameNameRefRefCQ extends AbstractConditionQ
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    public void xsmyselfDerive(String function, SubQuery<WhiteSameNameRefRefCB> subQuery, String aliasName, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<WhiteSameNameRefRefCB>", subQuery);
-        WhiteSameNameRefRefCB cb = new WhiteSameNameRefRefCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
-        registerSpecifyMyselfDerived(function, cb.query(), "REF_REF_ID", "REF_REF_ID", subQueryPropertyName, "myselfDerived", aliasName, option);
+    public void xsmyselfDerive(String fn, SubQuery<WhiteSameNameRefRefCB> sq, String al, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteSameNameRefRefCB cb = new WhiteSameNameRefRefCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "REF_REF_ID";
+        String pp = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
+        registerSpecifyMyselfDerived(fn, cb.query(), pk, pk, pp, "myselfDerived", al, op);
     }
-    public abstract String keepSpecifyMyselfDerived(WhiteSameNameRefRefCQ subQuery);
+    public abstract String keepSpecifyMyselfDerived(WhiteSameNameRefRefCQ sq);
 
     /**
      * Prepare for (Query)MyselfDerived (SubQuery).
@@ -464,20 +465,21 @@ public abstract class AbstractBsWhiteSameNameRefRefCQ extends AbstractConditionQ
     }
     protected HpQDRFunction<WhiteSameNameRefRefCB> xcreateQDRFunctionMyselfDerived() {
         return new HpQDRFunction<WhiteSameNameRefRefCB>(new HpQDRSetupper<WhiteSameNameRefRefCB>() {
-            public void setup(String function, SubQuery<WhiteSameNameRefRefCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-                xqderiveMyselfDerived(function, subQuery, operand, value, option);
+            public void setup(String fn, SubQuery<WhiteSameNameRefRefCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+                xqderiveMyselfDerived(fn, sq, rd, vl, op);
             }
         });
     }
-    public void xqderiveMyselfDerived(String function, SubQuery<WhiteSameNameRefRefCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<WhiteSameNameRefRefCB>", subQuery);
-        WhiteSameNameRefRefCB cb = new WhiteSameNameRefRefCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepQueryMyselfDerived(cb.query()); // for saving query-value.
-        String parameterPropertyName = keepQueryMyselfDerivedParameter(value);
-        registerQueryMyselfDerived(function, cb.query(), "REF_REF_ID", "REF_REF_ID", subQueryPropertyName, "myselfDerived", operand, value, parameterPropertyName, option);
+    public void xqderiveMyselfDerived(String fn, SubQuery<WhiteSameNameRefRefCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteSameNameRefRefCB cb = new WhiteSameNameRefRefCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "REF_REF_ID";
+        String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
+        String prpp = keepQueryMyselfDerivedParameter(vl);
+        registerQueryMyselfDerived(fn, cb.query(), pk, pk, sqpp, "myselfDerived", rd, vl, prpp, op);
     }
-    public abstract String keepQueryMyselfDerived(WhiteSameNameRefRefCQ subQuery);
-    public abstract String keepQueryMyselfDerivedParameter(Object parameterValue);
+    public abstract String keepQueryMyselfDerived(WhiteSameNameRefRefCQ sq);
+    public abstract String keepQueryMyselfDerivedParameter(Object vl);
 
     // ===================================================================================
     //                                                                        MyselfExists
@@ -487,12 +489,12 @@ public abstract class AbstractBsWhiteSameNameRefRefCQ extends AbstractConditionQ
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfExists(SubQuery<WhiteSameNameRefRefCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteSameNameRefRefCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteSameNameRefRefCB cb = new WhiteSameNameRefRefCB(); cb.xsetupForMyselfExists(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfExists(cb.query()); // for saving query-value.
-        registerMyselfExists(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfExists(cb.query()); // for saving query-value.
+        registerMyselfExists(cb.query(), pp);
     }
-    public abstract String keepMyselfExists(WhiteSameNameRefRefCQ subQuery);
+    public abstract String keepMyselfExists(WhiteSameNameRefRefCQ sq);
 
     // ===================================================================================
     //                                                                       MyselfInScope
@@ -502,12 +504,12 @@ public abstract class AbstractBsWhiteSameNameRefRefCQ extends AbstractConditionQ
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfInScope(SubQuery<WhiteSameNameRefRefCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteSameNameRefRefCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteSameNameRefRefCB cb = new WhiteSameNameRefRefCB(); cb.xsetupForMyselfInScope(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfInScope(cb.query()); // for saving query-value.
-        registerMyselfInScope(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfInScope(cb.query()); // for saving query-value.
+        registerMyselfInScope(cb.query(), pp);
     }
-    public abstract String keepMyselfInScope(WhiteSameNameRefRefCQ subQuery);
+    public abstract String keepMyselfInScope(WhiteSameNameRefRefCQ sq);
 
     // ===================================================================================
     //                                                                    Full Text Search
@@ -528,7 +530,7 @@ public abstract class AbstractBsWhiteSameNameRefRefCQ extends AbstractConditionQ
      * @param textColumnList The list of text column. (NotNull, NotEmpty, StringColumn, TargetTableColumn)
      * @param conditionValue The condition value. (NullAllowed: if null or empty, no condition)
      */
-    public void match(java.util.List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList, String conditionValue) {
+    public void match(List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList, String conditionValue) {
         xdoMatchByLikeSearch(textColumnList, conditionValue);
     }
 

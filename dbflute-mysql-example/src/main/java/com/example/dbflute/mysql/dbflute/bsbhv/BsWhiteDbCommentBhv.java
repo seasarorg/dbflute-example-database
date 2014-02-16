@@ -154,10 +154,10 @@ public abstract class BsWhiteDbCommentBhv extends AbstractBehaviorWritable {
         return doSelectEntity(cb, WhiteDbComment.class);
     }
 
-    protected <ENTITY extends WhiteDbComment> ENTITY doSelectEntity(final WhiteDbCommentCB cb, Class<ENTITY> entityType) {
+    protected <ENTITY extends WhiteDbComment> ENTITY doSelectEntity(final WhiteDbCommentCB cb, Class<ENTITY> tp) {
         assertCBStateValid(cb);
-        return helpSelectEntityInternally(cb, entityType, new InternalSelectEntityCallback<ENTITY, WhiteDbCommentCB>() {
-            public List<ENTITY> callbackSelectList(WhiteDbCommentCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); } });
+        return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, WhiteDbCommentCB>() {
+            public List<ENTITY> callbackSelectList(WhiteDbCommentCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
     }
 
     @Override
@@ -183,10 +183,10 @@ public abstract class BsWhiteDbCommentBhv extends AbstractBehaviorWritable {
         return doSelectEntityWithDeletedCheck(cb, WhiteDbComment.class);
     }
 
-    protected <ENTITY extends WhiteDbComment> ENTITY doSelectEntityWithDeletedCheck(final WhiteDbCommentCB cb, Class<ENTITY> entityType) {
+    protected <ENTITY extends WhiteDbComment> ENTITY doSelectEntityWithDeletedCheck(final WhiteDbCommentCB cb, Class<ENTITY> tp) {
         assertCBStateValid(cb);
-        return helpSelectEntityWithDeletedCheckInternally(cb, entityType, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, WhiteDbCommentCB>() {
-            public List<ENTITY> callbackSelectList(WhiteDbCommentCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); } });
+        return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, WhiteDbCommentCB>() {
+            public List<ENTITY> callbackSelectList(WhiteDbCommentCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
     }
 
     @Override
@@ -254,11 +254,11 @@ public abstract class BsWhiteDbCommentBhv extends AbstractBehaviorWritable {
         return doSelectList(cb, WhiteDbComment.class);
     }
 
-    protected <ENTITY extends WhiteDbComment> ListResultBean<ENTITY> doSelectList(WhiteDbCommentCB cb, Class<ENTITY> entityType) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", entityType);
-        assertSpecifyDerivedReferrerEntityProperty(cb, entityType);
-        return helpSelectListInternally(cb, entityType, new InternalSelectListCallback<ENTITY, WhiteDbCommentCB>() {
-            public List<ENTITY> callbackSelectList(WhiteDbCommentCB cb, Class<ENTITY> entityType) { return delegateSelectList(cb, entityType); } });
+    protected <ENTITY extends WhiteDbComment> ListResultBean<ENTITY> doSelectList(WhiteDbCommentCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
+        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
+        return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, WhiteDbCommentCB>() {
+            public List<ENTITY> callbackSelectList(WhiteDbCommentCB cb, Class<ENTITY> tp) { return delegateSelectList(cb, tp); } });
     }
 
     @Override
@@ -295,11 +295,11 @@ public abstract class BsWhiteDbCommentBhv extends AbstractBehaviorWritable {
         return doSelectPage(cb, WhiteDbComment.class);
     }
 
-    protected <ENTITY extends WhiteDbComment> PagingResultBean<ENTITY> doSelectPage(WhiteDbCommentCB cb, Class<ENTITY> entityType) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", entityType);
-        return helpSelectPageInternally(cb, entityType, new InternalSelectPageCallback<ENTITY, WhiteDbCommentCB>() {
+    protected <ENTITY extends WhiteDbComment> PagingResultBean<ENTITY> doSelectPage(WhiteDbCommentCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
+        return helpSelectPageInternally(cb, tp, new InternalSelectPageCallback<ENTITY, WhiteDbCommentCB>() {
             public int callbackSelectCount(WhiteDbCommentCB cb) { return doSelectCountPlainly(cb); }
-            public List<ENTITY> callbackSelectList(WhiteDbCommentCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); }
+            public List<ENTITY> callbackSelectList(WhiteDbCommentCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
         });
     }
 
@@ -329,12 +329,12 @@ public abstract class BsWhiteDbCommentBhv extends AbstractBehaviorWritable {
         doSelectCursor(cb, entityRowHandler, WhiteDbComment.class);
     }
 
-    protected <ENTITY extends WhiteDbComment> void doSelectCursor(WhiteDbCommentCB cb, EntityRowHandler<ENTITY> entityRowHandler, Class<ENTITY> entityType) {
-        assertCBStateValid(cb); assertObjectNotNull("entityRowHandler<WhiteDbComment>", entityRowHandler); assertObjectNotNull("entityType", entityType);
-        assertSpecifyDerivedReferrerEntityProperty(cb, entityType);
-        helpSelectCursorInternally(cb, entityRowHandler, entityType, new InternalSelectCursorCallback<ENTITY, WhiteDbCommentCB>() {
-            public void callbackSelectCursor(WhiteDbCommentCB cb, EntityRowHandler<ENTITY> entityRowHandler, Class<ENTITY> entityType) { delegateSelectCursor(cb, entityRowHandler, entityType); }
-            public List<ENTITY> callbackSelectList(WhiteDbCommentCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); }
+    protected <ENTITY extends WhiteDbComment> void doSelectCursor(WhiteDbCommentCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
+        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
+        helpSelectCursorInternally(cb, handler, tp, new InternalSelectCursorCallback<ENTITY, WhiteDbCommentCB>() {
+            public void callbackSelectCursor(WhiteDbCommentCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) { delegateSelectCursor(cb, handler, tp); }
+            public List<ENTITY> callbackSelectList(WhiteDbCommentCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
         });
     }
 
@@ -360,18 +360,18 @@ public abstract class BsWhiteDbCommentBhv extends AbstractBehaviorWritable {
         return doScalarSelect(resultType, newMyConditionBean());
     }
 
-    protected <RESULT, CB extends WhiteDbCommentCB> SLFunction<CB, RESULT> doScalarSelect(Class<RESULT> resultType, CB cb) {
-        assertObjectNotNull("resultType", resultType); assertCBStateValid(cb);
+    protected <RESULT, CB extends WhiteDbCommentCB> SLFunction<CB, RESULT> doScalarSelect(Class<RESULT> tp, CB cb) {
+        assertObjectNotNull("resultType", tp); assertCBStateValid(cb);
         cb.xsetupForScalarSelect(); cb.getSqlClause().disableSelectIndex(); // for when you use union
-        return createSLFunction(cb, resultType);
+        return createSLFunction(cb, tp);
     }
 
-    protected <RESULT, CB extends WhiteDbCommentCB> SLFunction<CB, RESULT> createSLFunction(CB cb, Class<RESULT> resultType) {
-        return new SLFunction<CB, RESULT>(cb, resultType);
+    protected <RESULT, CB extends WhiteDbCommentCB> SLFunction<CB, RESULT> createSLFunction(CB cb, Class<RESULT> tp) {
+        return new SLFunction<CB, RESULT>(cb, tp);
     }
 
-    protected <RESULT> SLFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> resultType) {
-        return doScalarSelect(resultType, newMyConditionBean());
+    protected <RESULT> SLFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) {
+        return doScalarSelect(tp, newMyConditionBean());
     }
 
     // ===================================================================================
@@ -397,7 +397,7 @@ public abstract class BsWhiteDbCommentBhv extends AbstractBehaviorWritable {
      */
     public List<String> extractDbCommentCodeList(List<WhiteDbComment> whiteDbCommentList) {
         return helpExtractListInternally(whiteDbCommentList, new InternalExtractCallback<WhiteDbComment, String>() {
-            public String getCV(WhiteDbComment e) { return e.getDbCommentCode(); }
+            public String getCV(WhiteDbComment et) { return et.getDbCommentCode(); }
         });
     }
 
@@ -425,24 +425,24 @@ public abstract class BsWhiteDbCommentBhv extends AbstractBehaviorWritable {
         doInsert(whiteDbComment, null);
     }
 
-    protected void doInsert(WhiteDbComment whiteDbComment, InsertOption<WhiteDbCommentCB> option) {
+    protected void doInsert(WhiteDbComment whiteDbComment, InsertOption<WhiteDbCommentCB> op) {
         assertObjectNotNull("whiteDbComment", whiteDbComment);
-        prepareInsertOption(option);
-        delegateInsert(whiteDbComment, option);
+        prepareInsertOption(op);
+        delegateInsert(whiteDbComment, op);
     }
 
-    protected void prepareInsertOption(InsertOption<WhiteDbCommentCB> option) {
-        if (option == null) { return; }
-        assertInsertOptionStatus(option);
-        if (option.hasSpecifiedInsertColumn()) {
-            option.resolveInsertColumnSpecification(createCBForSpecifiedUpdate());
+    protected void prepareInsertOption(InsertOption<WhiteDbCommentCB> op) {
+        if (op == null) { return; }
+        assertInsertOptionStatus(op);
+        if (op.hasSpecifiedInsertColumn()) {
+            op.resolveInsertColumnSpecification(createCBForSpecifiedUpdate());
         }
     }
 
     @Override
-    protected void doCreate(Entity entity, InsertOption<? extends ConditionBean> option) {
-        if (option == null) { insert(downcast(entity)); }
-        else { varyingInsert(downcast(entity), downcast(option)); }
+    protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) {
+        if (op == null) { insert(downcast(et)); }
+        else { varyingInsert(downcast(et), downcast(op)); }
     }
 
     /**
@@ -471,21 +471,21 @@ public abstract class BsWhiteDbCommentBhv extends AbstractBehaviorWritable {
         doUpdate(whiteDbComment, null);
     }
 
-    protected void doUpdate(WhiteDbComment whiteDbComment, final UpdateOption<WhiteDbCommentCB> option) {
+    protected void doUpdate(WhiteDbComment whiteDbComment, final UpdateOption<WhiteDbCommentCB> op) {
         assertObjectNotNull("whiteDbComment", whiteDbComment);
-        prepareUpdateOption(option);
+        prepareUpdateOption(op);
         helpUpdateInternally(whiteDbComment, new InternalUpdateCallback<WhiteDbComment>() {
-            public int callbackDelegateUpdate(WhiteDbComment entity) { return delegateUpdate(entity, option); } });
+            public int callbackDelegateUpdate(WhiteDbComment et) { return delegateUpdate(et, op); } });
     }
 
-    protected void prepareUpdateOption(UpdateOption<WhiteDbCommentCB> option) {
-        if (option == null) { return; }
-        assertUpdateOptionStatus(option);
-        if (option.hasSelfSpecification()) {
-            option.resolveSelfSpecification(createCBForVaryingUpdate());
+    protected void prepareUpdateOption(UpdateOption<WhiteDbCommentCB> op) {
+        if (op == null) { return; }
+        assertUpdateOptionStatus(op);
+        if (op.hasSelfSpecification()) {
+            op.resolveSelfSpecification(createCBForVaryingUpdate());
         }
-        if (option.hasSpecifiedUpdateColumn()) {
-            option.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate());
+        if (op.hasSpecifiedUpdateColumn()) {
+            op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate());
         }
     }
 
@@ -502,14 +502,14 @@ public abstract class BsWhiteDbCommentBhv extends AbstractBehaviorWritable {
     }
 
     @Override
-    protected void doModify(Entity entity, UpdateOption<? extends ConditionBean> option) {
-        if (option == null) { update(downcast(entity)); }
-        else { varyingUpdate(downcast(entity), downcast(option)); }
+    protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) {
+        if (op == null) { update(downcast(et)); }
+        else { varyingUpdate(downcast(et), downcast(op)); }
     }
 
     @Override
-    protected void doModifyNonstrict(Entity entity, UpdateOption<? extends ConditionBean> option) {
-        doModify(entity, option);
+    protected void doModifyNonstrict(Entity et, UpdateOption<? extends ConditionBean> op) {
+        doModify(et, op);
     }
 
     /**
@@ -525,30 +525,28 @@ public abstract class BsWhiteDbCommentBhv extends AbstractBehaviorWritable {
         doInesrtOrUpdate(whiteDbComment, null, null);
     }
 
-    protected void doInesrtOrUpdate(WhiteDbComment whiteDbComment, final InsertOption<WhiteDbCommentCB> insertOption, final UpdateOption<WhiteDbCommentCB> updateOption) {
+    protected void doInesrtOrUpdate(WhiteDbComment whiteDbComment, final InsertOption<WhiteDbCommentCB> iop, final UpdateOption<WhiteDbCommentCB> uop) {
         helpInsertOrUpdateInternally(whiteDbComment, new InternalInsertOrUpdateCallback<WhiteDbComment, WhiteDbCommentCB>() {
-            public void callbackInsert(WhiteDbComment entity) { doInsert(entity, insertOption); }
-            public void callbackUpdate(WhiteDbComment entity) { doUpdate(entity, updateOption); }
+            public void callbackInsert(WhiteDbComment et) { doInsert(et, iop); }
+            public void callbackUpdate(WhiteDbComment et) { doUpdate(et, uop); }
             public WhiteDbCommentCB callbackNewMyConditionBean() { return newMyConditionBean(); }
             public int callbackSelectCount(WhiteDbCommentCB cb) { return selectCount(cb); }
         });
     }
 
     @Override
-    protected void doCreateOrModify(Entity entity, InsertOption<? extends ConditionBean> insertOption,
-            UpdateOption<? extends ConditionBean> updateOption) {
-        if (insertOption == null && updateOption == null) { insertOrUpdate(downcast(entity)); }
+    protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
+        if (iop == null && uop == null) { insertOrUpdate(downcast(et)); }
         else {
-            insertOption = insertOption == null ? new InsertOption<WhiteDbCommentCB>() : insertOption;
-            updateOption = updateOption == null ? new UpdateOption<WhiteDbCommentCB>() : updateOption;
-            varyingInsertOrUpdate(downcast(entity), downcast(insertOption), downcast(updateOption));
+            iop = iop != null ? iop : new InsertOption<WhiteDbCommentCB>();
+            uop = uop != null ? uop : new UpdateOption<WhiteDbCommentCB>();
+            varyingInsertOrUpdate(downcast(et), downcast(iop), downcast(uop));
         }
     }
 
     @Override
-    protected void doCreateOrModifyNonstrict(Entity entity, InsertOption<? extends ConditionBean> insertOption,
-            UpdateOption<? extends ConditionBean> updateOption) {
-        doCreateOrModify(entity, insertOption, updateOption);
+    protected void doCreateOrModifyNonstrict(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
+        doCreateOrModify(et, iop, uop);
     }
 
     /**
@@ -572,27 +570,27 @@ public abstract class BsWhiteDbCommentBhv extends AbstractBehaviorWritable {
         doDelete(whiteDbComment, null);
     }
 
-    protected void doDelete(WhiteDbComment whiteDbComment, final DeleteOption<WhiteDbCommentCB> option) {
+    protected void doDelete(WhiteDbComment whiteDbComment, final DeleteOption<WhiteDbCommentCB> op) {
         assertObjectNotNull("whiteDbComment", whiteDbComment);
-        prepareDeleteOption(option);
+        prepareDeleteOption(op);
         helpDeleteInternally(whiteDbComment, new InternalDeleteCallback<WhiteDbComment>() {
-            public int callbackDelegateDelete(WhiteDbComment entity) { return delegateDelete(entity, option); } });
+            public int callbackDelegateDelete(WhiteDbComment et) { return delegateDelete(et, op); } });
     }
 
-    protected void prepareDeleteOption(DeleteOption<WhiteDbCommentCB> option) {
-        if (option == null) { return; }
-        assertDeleteOptionStatus(option);
-    }
-
-    @Override
-    protected void doRemove(Entity entity, DeleteOption<? extends ConditionBean> option) {
-        if (option == null) { delete(downcast(entity)); }
-        else { varyingDelete(downcast(entity), downcast(option)); }
+    protected void prepareDeleteOption(DeleteOption<WhiteDbCommentCB> op) {
+        if (op == null) { return; }
+        assertDeleteOptionStatus(op);
     }
 
     @Override
-    protected void doRemoveNonstrict(Entity entity, DeleteOption<? extends ConditionBean> option) {
-        doRemove(entity, option);
+    protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) {
+        if (op == null) { delete(downcast(et)); }
+        else { varyingDelete(downcast(et), downcast(op)); }
+    }
+
+    @Override
+    protected void doRemoveNonstrict(Entity et, DeleteOption<? extends ConditionBean> op) {
+        doRemove(et, op);
     }
 
     // ===================================================================================
@@ -623,26 +621,26 @@ public abstract class BsWhiteDbCommentBhv extends AbstractBehaviorWritable {
      * @return The array of inserted count. (NotNull, EmptyAllowed)
      */
     public int[] batchInsert(List<WhiteDbComment> whiteDbCommentList) {
-        InsertOption<WhiteDbCommentCB> option = createInsertUpdateOption();
-        return doBatchInsert(whiteDbCommentList, option);
+        InsertOption<WhiteDbCommentCB> op = createInsertUpdateOption();
+        return doBatchInsert(whiteDbCommentList, op);
     }
 
-    protected int[] doBatchInsert(List<WhiteDbComment> whiteDbCommentList, InsertOption<WhiteDbCommentCB> option) {
+    protected int[] doBatchInsert(List<WhiteDbComment> whiteDbCommentList, InsertOption<WhiteDbCommentCB> op) {
         assertObjectNotNull("whiteDbCommentList", whiteDbCommentList);
-        prepareBatchInsertOption(whiteDbCommentList, option);
-        return delegateBatchInsert(whiteDbCommentList, option);
+        prepareBatchInsertOption(whiteDbCommentList, op);
+        return delegateBatchInsert(whiteDbCommentList, op);
     }
 
-    protected void prepareBatchInsertOption(List<WhiteDbComment> whiteDbCommentList, InsertOption<WhiteDbCommentCB> option) {
-        option.xallowInsertColumnModifiedPropertiesFragmented();
-        option.xacceptInsertColumnModifiedPropertiesIfNeeds(whiteDbCommentList);
-        prepareInsertOption(option);
+    protected void prepareBatchInsertOption(List<WhiteDbComment> whiteDbCommentList, InsertOption<WhiteDbCommentCB> op) {
+        op.xallowInsertColumnModifiedPropertiesFragmented();
+        op.xacceptInsertColumnModifiedPropertiesIfNeeds(whiteDbCommentList);
+        prepareInsertOption(op);
     }
 
     @Override
-    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> option) {
-        if (option == null) { return batchInsert(downcast(ls)); }
-        else { return varyingBatchInsert(downcast(ls), downcast(option)); }
+    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) {
+        if (op == null) { return batchInsert(downcast(ls)); }
+        else { return varyingBatchInsert(downcast(ls), downcast(op)); }
     }
 
     /**
@@ -670,25 +668,25 @@ public abstract class BsWhiteDbCommentBhv extends AbstractBehaviorWritable {
      * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<WhiteDbComment> whiteDbCommentList) {
-        UpdateOption<WhiteDbCommentCB> option = createPlainUpdateOption();
-        return doBatchUpdate(whiteDbCommentList, option);
+        UpdateOption<WhiteDbCommentCB> op = createPlainUpdateOption();
+        return doBatchUpdate(whiteDbCommentList, op);
     }
 
-    protected int[] doBatchUpdate(List<WhiteDbComment> whiteDbCommentList, UpdateOption<WhiteDbCommentCB> option) {
+    protected int[] doBatchUpdate(List<WhiteDbComment> whiteDbCommentList, UpdateOption<WhiteDbCommentCB> op) {
         assertObjectNotNull("whiteDbCommentList", whiteDbCommentList);
-        prepareBatchUpdateOption(whiteDbCommentList, option);
-        return delegateBatchUpdate(whiteDbCommentList, option);
+        prepareBatchUpdateOption(whiteDbCommentList, op);
+        return delegateBatchUpdate(whiteDbCommentList, op);
     }
 
-    protected void prepareBatchUpdateOption(List<WhiteDbComment> whiteDbCommentList, UpdateOption<WhiteDbCommentCB> option) {
-        option.xacceptUpdateColumnModifiedPropertiesIfNeeds(whiteDbCommentList);
-        prepareUpdateOption(option);
+    protected void prepareBatchUpdateOption(List<WhiteDbComment> whiteDbCommentList, UpdateOption<WhiteDbCommentCB> op) {
+        op.xacceptUpdateColumnModifiedPropertiesIfNeeds(whiteDbCommentList);
+        prepareUpdateOption(op);
     }
 
     @Override
-    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> option) {
-        if (option == null) { return batchUpdate(downcast(ls)); }
-        else { return varyingBatchUpdate(downcast(ls), downcast(option)); }
+    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) {
+        if (op == null) { return batchUpdate(downcast(ls)); }
+        else { return varyingBatchUpdate(downcast(ls), downcast(op)); }
     }
 
     /**
@@ -724,8 +722,8 @@ public abstract class BsWhiteDbCommentBhv extends AbstractBehaviorWritable {
     }
 
     @Override
-    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> option) {
-        return doLumpModify(ls, option);
+    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> op) {
+        return doLumpModify(ls, op);
     }
 
     /**
@@ -739,21 +737,21 @@ public abstract class BsWhiteDbCommentBhv extends AbstractBehaviorWritable {
         return doBatchDelete(whiteDbCommentList, null);
     }
 
-    protected int[] doBatchDelete(List<WhiteDbComment> whiteDbCommentList, DeleteOption<WhiteDbCommentCB> option) {
+    protected int[] doBatchDelete(List<WhiteDbComment> whiteDbCommentList, DeleteOption<WhiteDbCommentCB> op) {
         assertObjectNotNull("whiteDbCommentList", whiteDbCommentList);
-        prepareDeleteOption(option);
-        return delegateBatchDelete(whiteDbCommentList, option);
+        prepareDeleteOption(op);
+        return delegateBatchDelete(whiteDbCommentList, op);
     }
 
     @Override
-    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> option) {
-        if (option == null) { return batchDelete(downcast(ls)); }
-        else { return varyingBatchDelete(downcast(ls), downcast(option)); }
+    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) {
+        if (op == null) { return batchDelete(downcast(ls)); }
+        else { return varyingBatchDelete(downcast(ls), downcast(op)); }
     }
 
     @Override
-    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> option) {
-        return doLumpRemove(ls, option);
+    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> op) {
+        return doLumpRemove(ls, op);
     }
 
     // ===================================================================================
@@ -789,13 +787,12 @@ public abstract class BsWhiteDbCommentBhv extends AbstractBehaviorWritable {
         return doQueryInsert(setupper, null);
     }
 
-    protected int doQueryInsert(QueryInsertSetupper<WhiteDbComment, WhiteDbCommentCB> setupper, InsertOption<WhiteDbCommentCB> option) {
-        assertObjectNotNull("setupper", setupper);
-        prepareInsertOption(option);
-        WhiteDbComment entity = new WhiteDbComment();
-        WhiteDbCommentCB intoCB = createCBForQueryInsert();
-        ConditionBean resourceCB = setupper.setup(entity, intoCB);
-        return delegateQueryInsert(entity, intoCB, resourceCB, option);
+    protected int doQueryInsert(QueryInsertSetupper<WhiteDbComment, WhiteDbCommentCB> sp, InsertOption<WhiteDbCommentCB> op) {
+        assertObjectNotNull("setupper", sp);
+        prepareInsertOption(op);
+        WhiteDbComment e = new WhiteDbComment();
+        WhiteDbCommentCB cb = createCBForQueryInsert();
+        return delegateQueryInsert(e, cb, sp.setup(e, cb), op);
     }
 
     protected WhiteDbCommentCB createCBForQueryInsert() {
@@ -836,16 +833,16 @@ public abstract class BsWhiteDbCommentBhv extends AbstractBehaviorWritable {
         return doQueryUpdate(whiteDbComment, cb, null);
     }
 
-    protected int doQueryUpdate(WhiteDbComment whiteDbComment, WhiteDbCommentCB cb, UpdateOption<WhiteDbCommentCB> option) {
+    protected int doQueryUpdate(WhiteDbComment whiteDbComment, WhiteDbCommentCB cb, UpdateOption<WhiteDbCommentCB> op) {
         assertObjectNotNull("whiteDbComment", whiteDbComment); assertCBStateValid(cb);
-        prepareUpdateOption(option);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(whiteDbComment, cb, option) : 0;
+        prepareUpdateOption(op);
+        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(whiteDbComment, cb, op) : 0;
     }
 
     @Override
-    protected int doRangeModify(Entity entity, ConditionBean cb, UpdateOption<? extends ConditionBean> option) {
-        if (option == null) { return queryUpdate(downcast(entity), (WhiteDbCommentCB)cb); }
-        else { return varyingQueryUpdate(downcast(entity), (WhiteDbCommentCB)cb, downcast(option)); }
+    protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op) {
+        if (op == null) { return queryUpdate(downcast(et), (WhiteDbCommentCB)cb); }
+        else { return varyingQueryUpdate(downcast(et), (WhiteDbCommentCB)cb, downcast(op)); }
     }
 
     /**
@@ -863,16 +860,16 @@ public abstract class BsWhiteDbCommentBhv extends AbstractBehaviorWritable {
         return doQueryDelete(cb, null);
     }
 
-    protected int doQueryDelete(WhiteDbCommentCB cb, DeleteOption<WhiteDbCommentCB> option) {
+    protected int doQueryDelete(WhiteDbCommentCB cb, DeleteOption<WhiteDbCommentCB> op) {
         assertCBStateValid(cb);
-        prepareDeleteOption(option);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryDelete(cb, option) : 0;
+        prepareDeleteOption(op);
+        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryDelete(cb, op) : 0;
     }
 
     @Override
-    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> option) {
-        if (option == null) { return queryDelete((WhiteDbCommentCB)cb); }
-        else { return varyingQueryDelete((WhiteDbCommentCB)cb, downcast(option)); }
+    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) {
+        if (op == null) { return queryDelete((WhiteDbCommentCB)cb); }
+        else { return varyingQueryDelete((WhiteDbCommentCB)cb, downcast(op)); }
     }
 
     // ===================================================================================
@@ -1124,29 +1121,29 @@ public abstract class BsWhiteDbCommentBhv extends AbstractBehaviorWritable {
     //                                                ------
     protected int delegateSelectCountUniquely(WhiteDbCommentCB cb) { return invoke(createSelectCountCBCommand(cb, true)); }
     protected int delegateSelectCountPlainly(WhiteDbCommentCB cb) { return invoke(createSelectCountCBCommand(cb, false)); }
-    protected <ENTITY extends WhiteDbComment> void delegateSelectCursor(WhiteDbCommentCB cb, EntityRowHandler<ENTITY> erh, Class<ENTITY> et)
-    { invoke(createSelectCursorCBCommand(cb, erh, et)); }
-    protected <ENTITY extends WhiteDbComment> List<ENTITY> delegateSelectList(WhiteDbCommentCB cb, Class<ENTITY> et)
-    { return invoke(createSelectListCBCommand(cb, et)); }
+    protected <ENTITY extends WhiteDbComment> void delegateSelectCursor(WhiteDbCommentCB cb, EntityRowHandler<ENTITY> rh, Class<ENTITY> tp)
+    { invoke(createSelectCursorCBCommand(cb, rh, tp)); }
+    protected <ENTITY extends WhiteDbComment> List<ENTITY> delegateSelectList(WhiteDbCommentCB cb, Class<ENTITY> tp)
+    { return invoke(createSelectListCBCommand(cb, tp)); }
 
     // -----------------------------------------------------
     //                                                Update
     //                                                ------
-    protected int delegateInsert(WhiteDbComment e, InsertOption<WhiteDbCommentCB> op)
-    { if (!processBeforeInsert(e, op)) { return 0; }
-      return invoke(createInsertEntityCommand(e, op)); }
-    protected int delegateUpdate(WhiteDbComment e, UpdateOption<WhiteDbCommentCB> op)
-    { if (!processBeforeUpdate(e, op)) { return 0; }
-      return delegateUpdateNonstrict(e, op); }
-    protected int delegateUpdateNonstrict(WhiteDbComment e, UpdateOption<WhiteDbCommentCB> op)
-    { if (!processBeforeUpdate(e, op)) { return 0; }
-      return invoke(createUpdateNonstrictEntityCommand(e, op)); }
-    protected int delegateDelete(WhiteDbComment e, DeleteOption<WhiteDbCommentCB> op)
-    { if (!processBeforeDelete(e, op)) { return 0; }
-      return delegateDeleteNonstrict(e, op); }
-    protected int delegateDeleteNonstrict(WhiteDbComment e, DeleteOption<WhiteDbCommentCB> op)
-    { if (!processBeforeDelete(e, op)) { return 0; }
-      return invoke(createDeleteNonstrictEntityCommand(e, op)); }
+    protected int delegateInsert(WhiteDbComment et, InsertOption<WhiteDbCommentCB> op)
+    { if (!processBeforeInsert(et, op)) { return 0; }
+      return invoke(createInsertEntityCommand(et, op)); }
+    protected int delegateUpdate(WhiteDbComment et, UpdateOption<WhiteDbCommentCB> op)
+    { if (!processBeforeUpdate(et, op)) { return 0; }
+      return delegateUpdateNonstrict(et, op); }
+    protected int delegateUpdateNonstrict(WhiteDbComment et, UpdateOption<WhiteDbCommentCB> op)
+    { if (!processBeforeUpdate(et, op)) { return 0; }
+      return invoke(createUpdateNonstrictEntityCommand(et, op)); }
+    protected int delegateDelete(WhiteDbComment et, DeleteOption<WhiteDbCommentCB> op)
+    { if (!processBeforeDelete(et, op)) { return 0; }
+      return delegateDeleteNonstrict(et, op); }
+    protected int delegateDeleteNonstrict(WhiteDbComment et, DeleteOption<WhiteDbCommentCB> op)
+    { if (!processBeforeDelete(et, op)) { return 0; }
+      return invoke(createDeleteNonstrictEntityCommand(et, op)); }
 
     protected int[] delegateBatchInsert(List<WhiteDbComment> ls, InsertOption<WhiteDbCommentCB> op)
     { if (ls.isEmpty()) { return new int[]{}; }
@@ -1164,10 +1161,10 @@ public abstract class BsWhiteDbCommentBhv extends AbstractBehaviorWritable {
     { if (ls.isEmpty()) { return new int[]{}; }
       return invoke(createBatchDeleteNonstrictCommand(processBatchInternally(ls, op, true), op)); }
 
-    protected int delegateQueryInsert(WhiteDbComment e, WhiteDbCommentCB inCB, ConditionBean resCB, InsertOption<WhiteDbCommentCB> op)
-    { if (!processBeforeQueryInsert(e, inCB, resCB, op)) { return 0; } return invoke(createQueryInsertCBCommand(e, inCB, resCB, op));  }
-    protected int delegateQueryUpdate(WhiteDbComment e, WhiteDbCommentCB cb, UpdateOption<WhiteDbCommentCB> op)
-    { if (!processBeforeQueryUpdate(e, cb, op)) { return 0; } return invoke(createQueryUpdateCBCommand(e, cb, op));  }
+    protected int delegateQueryInsert(WhiteDbComment et, WhiteDbCommentCB inCB, ConditionBean resCB, InsertOption<WhiteDbCommentCB> op)
+    { if (!processBeforeQueryInsert(et, inCB, resCB, op)) { return 0; } return invoke(createQueryInsertCBCommand(et, inCB, resCB, op));  }
+    protected int delegateQueryUpdate(WhiteDbComment et, WhiteDbCommentCB cb, UpdateOption<WhiteDbCommentCB> op)
+    { if (!processBeforeQueryUpdate(et, cb, op)) { return 0; } return invoke(createQueryUpdateCBCommand(et, cb, op));  }
     protected int delegateQueryDelete(WhiteDbCommentCB cb, DeleteOption<WhiteDbCommentCB> op)
     { if (!processBeforeQueryDelete(cb, op)) { return 0; } return invoke(createQueryDeleteCBCommand(cb, op));  }
 
@@ -1178,7 +1175,7 @@ public abstract class BsWhiteDbCommentBhv extends AbstractBehaviorWritable {
      * {@inheritDoc}
      */
     @Override
-    protected boolean hasVersionNoValue(Entity entity) {
+    protected boolean hasVersionNoValue(Entity et) {
         return false;
     }
 
@@ -1186,15 +1183,15 @@ public abstract class BsWhiteDbCommentBhv extends AbstractBehaviorWritable {
      * {@inheritDoc}
      */
     @Override
-    protected boolean hasUpdateDateValue(Entity entity) {
+    protected boolean hasUpdateDateValue(Entity et) {
         return false;
     }
 
     // ===================================================================================
     //                                                                     Downcast Helper
     //                                                                     ===============
-    protected WhiteDbComment downcast(Entity entity) {
-        return helpEntityDowncastInternally(entity, WhiteDbComment.class);
+    protected WhiteDbComment downcast(Entity et) {
+        return helpEntityDowncastInternally(et, WhiteDbComment.class);
     }
 
     protected WhiteDbCommentCB downcast(ConditionBean cb) {
@@ -1202,27 +1199,27 @@ public abstract class BsWhiteDbCommentBhv extends AbstractBehaviorWritable {
     }
 
     @SuppressWarnings("unchecked")
-    protected List<WhiteDbComment> downcast(List<? extends Entity> entityList) {
-        return (List<WhiteDbComment>)entityList;
+    protected List<WhiteDbComment> downcast(List<? extends Entity> ls) {
+        return (List<WhiteDbComment>)ls;
     }
 
     @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteDbCommentCB> downcast(InsertOption<? extends ConditionBean> option) {
-        return (InsertOption<WhiteDbCommentCB>)option;
+    protected InsertOption<WhiteDbCommentCB> downcast(InsertOption<? extends ConditionBean> op) {
+        return (InsertOption<WhiteDbCommentCB>)op;
     }
 
     @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteDbCommentCB> downcast(UpdateOption<? extends ConditionBean> option) {
-        return (UpdateOption<WhiteDbCommentCB>)option;
+    protected UpdateOption<WhiteDbCommentCB> downcast(UpdateOption<? extends ConditionBean> op) {
+        return (UpdateOption<WhiteDbCommentCB>)op;
     }
 
     @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteDbCommentCB> downcast(DeleteOption<? extends ConditionBean> option) {
-        return (DeleteOption<WhiteDbCommentCB>)option;
+    protected DeleteOption<WhiteDbCommentCB> downcast(DeleteOption<? extends ConditionBean> op) {
+        return (DeleteOption<WhiteDbCommentCB>)op;
     }
 
     @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhiteDbComment, WhiteDbCommentCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> option) {
-        return (QueryInsertSetupper<WhiteDbComment, WhiteDbCommentCB>)option;
+    protected QueryInsertSetupper<WhiteDbComment, WhiteDbCommentCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp) {
+        return (QueryInsertSetupper<WhiteDbComment, WhiteDbCommentCB>)sp;
     }
 }

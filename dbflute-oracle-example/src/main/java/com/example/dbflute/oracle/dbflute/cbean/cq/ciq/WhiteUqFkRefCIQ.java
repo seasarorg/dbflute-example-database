@@ -82,18 +82,18 @@ public class WhiteUqFkRefCIQ extends AbstractBsWhiteUqFkRefCQ {
     { return _myCQ.keepFkToUqCode_NotInScopeRelation_WhiteUqFkByFkToUqCode(sq); }
     protected ConditionValue getCValueCompoundUqFirstCode() { return _myCQ.getCompoundUqFirstCode(); }
     protected ConditionValue getCValueCompoundUqSecondCode() { return _myCQ.getCompoundUqSecondCode(); }
-    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) { return null; }
-    public String keepScalarCondition(WhiteUqFkRefCQ subQuery)
+    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
+    public String keepScalarCondition(WhiteUqFkRefCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }
-    public String keepSpecifyMyselfDerived(WhiteUqFkRefCQ subQuery)
+    public String keepSpecifyMyselfDerived(WhiteUqFkRefCQ sq)
     { throwIICBOE("(Specify)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerived(WhiteUqFkRefCQ subQuery)
+    public String keepQueryMyselfDerived(WhiteUqFkRefCQ sq)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerivedParameter(Object parameterValue)
+    public String keepQueryMyselfDerivedParameter(Object vl)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepMyselfExists(WhiteUqFkRefCQ subQuery)
+    public String keepMyselfExists(WhiteUqFkRefCQ sq)
     { throwIICBOE("MyselfExists"); return null;}
-    public String keepMyselfInScope(WhiteUqFkRefCQ subQuery)
+    public String keepMyselfInScope(WhiteUqFkRefCQ sq)
     { throwIICBOE("MyselfInScope"); return null;}
 
     protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()

@@ -58,20 +58,20 @@ public class WhiteImplicitConvStringDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgImplicitConvStringId implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteImplicitConvString)e).getImplicitConvStringId(); }
-        public void write(Entity e, Object v) { ((WhiteImplicitConvString)e).setImplicitConvStringId((String)v); }
+        public Object read(Entity et) { return ((WhiteImplicitConvString)et).getImplicitConvStringId(); }
+        public void write(Entity et, Object vl) { ((WhiteImplicitConvString)et).setImplicitConvStringId((String)vl); }
     }
     public static class EpgImplicitConvIntegerId implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteImplicitConvString)e).getImplicitConvIntegerId(); }
-        public void write(Entity e, Object v) { ((WhiteImplicitConvString)e).setImplicitConvIntegerId((String)v); }
+        public Object read(Entity et) { return ((WhiteImplicitConvString)et).getImplicitConvIntegerId(); }
+        public void write(Entity et, Object vl) { ((WhiteImplicitConvString)et).setImplicitConvIntegerId((String)vl); }
     }
     public static class EpgImplicitConvNumericId implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteImplicitConvString)e).getImplicitConvNumericId(); }
-        public void write(Entity e, Object v) { ((WhiteImplicitConvString)e).setImplicitConvNumericId((String)v); }
+        public Object read(Entity et) { return ((WhiteImplicitConvString)et).getImplicitConvNumericId(); }
+        public void write(Entity et, Object vl) { ((WhiteImplicitConvString)et).setImplicitConvNumericId((String)vl); }
     }
     public static class EpgImplicitConvName implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteImplicitConvString)e).getImplicitConvName(); }
-        public void write(Entity e, Object v) { ((WhiteImplicitConvString)e).setImplicitConvName((String)v); }
+        public Object read(Entity et) { return ((WhiteImplicitConvString)et).getImplicitConvName(); }
+        public void write(Entity et, Object vl) { ((WhiteImplicitConvString)et).setImplicitConvName((String)vl); }
     }
 
     // ===================================================================================
@@ -126,24 +126,24 @@ public class WhiteImplicitConvStringDbm extends AbstractDBMeta {
     //                                      Foreign Property
     //                                      ----------------
     public ForeignInfo foreignWhiteImplicitConvInteger() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnImplicitConvIntegerId(), WhiteImplicitConvIntegerDbm.getInstance().columnImplicitConvIntegerId());
-        return cfi("FK_WHITE_IMPLICIT_CONV_STRING_INTEGER", "whiteImplicitConvInteger", this, WhiteImplicitConvIntegerDbm.getInstance(), map, 0, false, false, false, true, null, null, false, "whiteImplicitConvStringList");
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnImplicitConvIntegerId(), WhiteImplicitConvIntegerDbm.getInstance().columnImplicitConvIntegerId());
+        return cfi("FK_WHITE_IMPLICIT_CONV_STRING_INTEGER", "whiteImplicitConvInteger", this, WhiteImplicitConvIntegerDbm.getInstance(), mp, 0, false, false, false, true, null, null, false, "whiteImplicitConvStringList");
     }
     public ForeignInfo foreignWhiteImplicitConvNumeric() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnImplicitConvNumericId(), WhiteImplicitConvNumericDbm.getInstance().columnImplicitConvNumericId());
-        return cfi("FK_WHITE_IMPLICIT_CONV_STRING_NUMERIC", "whiteImplicitConvNumeric", this, WhiteImplicitConvNumericDbm.getInstance(), map, 1, false, false, false, true, null, null, false, "whiteImplicitConvStringList");
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnImplicitConvNumericId(), WhiteImplicitConvNumericDbm.getInstance().columnImplicitConvNumericId());
+        return cfi("FK_WHITE_IMPLICIT_CONV_STRING_NUMERIC", "whiteImplicitConvNumeric", this, WhiteImplicitConvNumericDbm.getInstance(), mp, 1, false, false, false, true, null, null, false, "whiteImplicitConvStringList");
     }
 
     // -----------------------------------------------------
     //                                     Referrer Property
     //                                     -----------------
     public ReferrerInfo referrerWhiteImplicitConvIntegerList() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnImplicitConvStringId(), WhiteImplicitConvIntegerDbm.getInstance().columnImplicitConvStringId());
-        return cri("FK_WHITE_IMPLICIT_CONV_INTEGER_STRING", "whiteImplicitConvIntegerList", this, WhiteImplicitConvIntegerDbm.getInstance(), map, false, "whiteImplicitConvString");
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnImplicitConvStringId(), WhiteImplicitConvIntegerDbm.getInstance().columnImplicitConvStringId());
+        return cri("FK_WHITE_IMPLICIT_CONV_INTEGER_STRING", "whiteImplicitConvIntegerList", this, WhiteImplicitConvIntegerDbm.getInstance(), mp, false, "whiteImplicitConvString");
     }
     public ReferrerInfo referrerWhiteImplicitConvNumericList() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnImplicitConvStringId(), WhiteImplicitConvNumericDbm.getInstance().columnImplicitConvStringId());
-        return cri("FK_WHITE_IMPLICIT_CONV_NUMERIC_STRING", "whiteImplicitConvNumericList", this, WhiteImplicitConvNumericDbm.getInstance(), map, false, "whiteImplicitConvString");
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnImplicitConvStringId(), WhiteImplicitConvNumericDbm.getInstance().columnImplicitConvStringId());
+        return cri("FK_WHITE_IMPLICIT_CONV_NUMERIC_STRING", "whiteImplicitConvNumericList", this, WhiteImplicitConvNumericDbm.getInstance(), mp, false, "whiteImplicitConvString");
     }
 
     // ===================================================================================
@@ -171,10 +171,10 @@ public class WhiteImplicitConvStringDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((WhiteImplicitConvString)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((WhiteImplicitConvString)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((WhiteImplicitConvString)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((WhiteImplicitConvString)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

@@ -5,7 +5,7 @@ import com.example.dbflute.oracle.dbflute.bsbhv.pmbean.BsFnNextSynonymSameNamePm
 /**
  * <!-- df:beginClassDescription -->
  * The typed parameter-bean of FnNextSynonymSameName. <br />
- * This is related to "<span style="color: #AD4747">FN_NEXT_SYNONYM_SAME_NAME</span>".
+ * This is related to "<span style="color: #AD4747">FN_NEXT_SYNONYM_SAME_NAME</span>". <br />
  * <!-- df:endClassDescription -->
  * <p>
  * You can implement your original methods here.

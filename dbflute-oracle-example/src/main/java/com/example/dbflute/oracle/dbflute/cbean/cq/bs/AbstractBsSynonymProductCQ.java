@@ -145,8 +145,8 @@ public abstract class AbstractBsSynonymProductCQ extends AbstractConditionQuery 
      */
     public void setProductId_IsNotNull() { regProductId(CK_ISNN, DOBJ); }
 
-    protected void regProductId(ConditionKey k, Object v) { regQ(k, v, getCValueProductId(), "PRODUCT_ID"); }
-    abstract protected ConditionValue getCValueProductId();
+    protected void regProductId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueProductId(), "PRODUCT_ID"); }
+    protected abstract ConditionValue getCValueProductId();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -231,8 +231,8 @@ public abstract class AbstractBsSynonymProductCQ extends AbstractConditionQuery 
         regLSQ(CK_NLS, fRES(productName), getCValueProductName(), "PRODUCT_NAME", likeSearchOption);
     }
 
-    protected void regProductName(ConditionKey k, Object v) { regQ(k, v, getCValueProductName(), "PRODUCT_NAME"); }
-    abstract protected ConditionValue getCValueProductName();
+    protected void regProductName(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueProductName(), "PRODUCT_NAME"); }
+    protected abstract ConditionValue getCValueProductName();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -317,8 +317,8 @@ public abstract class AbstractBsSynonymProductCQ extends AbstractConditionQuery 
         regLSQ(CK_NLS, fRES(productHandleCode), getCValueProductHandleCode(), "PRODUCT_HANDLE_CODE", likeSearchOption);
     }
 
-    protected void regProductHandleCode(ConditionKey k, Object v) { regQ(k, v, getCValueProductHandleCode(), "PRODUCT_HANDLE_CODE"); }
-    abstract protected ConditionValue getCValueProductHandleCode();
+    protected void regProductHandleCode(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueProductHandleCode(), "PRODUCT_HANDLE_CODE"); }
+    protected abstract ConditionValue getCValueProductHandleCode();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -403,8 +403,8 @@ public abstract class AbstractBsSynonymProductCQ extends AbstractConditionQuery 
         regLSQ(CK_NLS, fRES(productCategoryCode), getCValueProductCategoryCode(), "PRODUCT_CATEGORY_CODE", likeSearchOption);
     }
 
-    protected void regProductCategoryCode(ConditionKey k, Object v) { regQ(k, v, getCValueProductCategoryCode(), "PRODUCT_CATEGORY_CODE"); }
-    abstract protected ConditionValue getCValueProductCategoryCode();
+    protected void regProductCategoryCode(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueProductCategoryCode(), "PRODUCT_CATEGORY_CODE"); }
+    protected abstract ConditionValue getCValueProductCategoryCode();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -496,12 +496,12 @@ public abstract class AbstractBsSynonymProductCQ extends AbstractConditionQuery 
      * @param subQuery The sub-query of SynonymProductStatus for 'in-scope'. (NotNull)
      */
     public void inScopeSynonymProductStatus(SubQuery<SynonymProductStatusCB> subQuery) {
-        assertObjectNotNull("subQuery<SynonymProductStatusCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         SynonymProductStatusCB cb = new SynonymProductStatusCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String subQueryPropertyName = keepProductStatusCode_InScopeRelation_SynonymProductStatus(cb.query()); // for saving query-value.
-        registerInScopeRelation(cb.query(), "PRODUCT_STATUS_CODE", "PRODUCT_STATUS_CODE", subQueryPropertyName, "synonymProductStatus");
+        String pp = keepProductStatusCode_InScopeRelation_SynonymProductStatus(cb.query()); // for saving query-value.
+        registerInScopeRelation(cb.query(), "PRODUCT_STATUS_CODE", "PRODUCT_STATUS_CODE", pp, "synonymProductStatus");
     }
-    public abstract String keepProductStatusCode_InScopeRelation_SynonymProductStatus(SynonymProductStatusCQ subQuery);
+    public abstract String keepProductStatusCode_InScopeRelation_SynonymProductStatus(SynonymProductStatusCQ sq);
 
     /**
      * Set up NotInScopeRelation (sub-query). <br />
@@ -510,15 +510,15 @@ public abstract class AbstractBsSynonymProductCQ extends AbstractConditionQuery 
      * @param subQuery The sub-query of SynonymProductStatus for 'not in-scope'. (NotNull)
      */
     public void notInScopeSynonymProductStatus(SubQuery<SynonymProductStatusCB> subQuery) {
-        assertObjectNotNull("subQuery<SynonymProductStatusCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         SynonymProductStatusCB cb = new SynonymProductStatusCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String subQueryPropertyName = keepProductStatusCode_NotInScopeRelation_SynonymProductStatus(cb.query()); // for saving query-value.
-        registerNotInScopeRelation(cb.query(), "PRODUCT_STATUS_CODE", "PRODUCT_STATUS_CODE", subQueryPropertyName, "synonymProductStatus");
+        String pp = keepProductStatusCode_NotInScopeRelation_SynonymProductStatus(cb.query()); // for saving query-value.
+        registerNotInScopeRelation(cb.query(), "PRODUCT_STATUS_CODE", "PRODUCT_STATUS_CODE", pp, "synonymProductStatus");
     }
-    public abstract String keepProductStatusCode_NotInScopeRelation_SynonymProductStatus(SynonymProductStatusCQ subQuery);
+    public abstract String keepProductStatusCode_NotInScopeRelation_SynonymProductStatus(SynonymProductStatusCQ sq);
 
-    protected void regProductStatusCode(ConditionKey k, Object v) { regQ(k, v, getCValueProductStatusCode(), "PRODUCT_STATUS_CODE"); }
-    abstract protected ConditionValue getCValueProductStatusCode();
+    protected void regProductStatusCode(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueProductStatusCode(), "PRODUCT_STATUS_CODE"); }
+    protected abstract ConditionValue getCValueProductStatusCode();
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -608,8 +608,8 @@ public abstract class AbstractBsSynonymProductCQ extends AbstractConditionQuery 
         regINS(CK_NINS, cTL(regularPriceList), getCValueRegularPrice(), "REGULAR_PRICE");
     }
 
-    protected void regRegularPrice(ConditionKey k, Object v) { regQ(k, v, getCValueRegularPrice(), "REGULAR_PRICE"); }
-    abstract protected ConditionValue getCValueRegularPrice();
+    protected void regRegularPrice(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueRegularPrice(), "REGULAR_PRICE"); }
+    protected abstract ConditionValue getCValueRegularPrice();
 
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -620,8 +620,8 @@ public abstract class AbstractBsSynonymProductCQ extends AbstractConditionQuery 
         regRegisterDatetime(CK_EQ,  fCTPD(registerDatetime));
     }
 
-    protected void regRegisterDatetime(ConditionKey k, Object v) { regQ(k, v, getCValueRegisterDatetime(), "REGISTER_DATETIME"); }
-    abstract protected ConditionValue getCValueRegisterDatetime();
+    protected void regRegisterDatetime(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueRegisterDatetime(), "REGISTER_DATETIME"); }
+    protected abstract ConditionValue getCValueRegisterDatetime();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -636,8 +636,8 @@ public abstract class AbstractBsSynonymProductCQ extends AbstractConditionQuery 
         regRegisterUser(CK_EQ, registerUser);
     }
 
-    protected void regRegisterUser(ConditionKey k, Object v) { regQ(k, v, getCValueRegisterUser(), "REGISTER_USER"); }
-    abstract protected ConditionValue getCValueRegisterUser();
+    protected void regRegisterUser(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueRegisterUser(), "REGISTER_USER"); }
+    protected abstract ConditionValue getCValueRegisterUser();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -652,8 +652,8 @@ public abstract class AbstractBsSynonymProductCQ extends AbstractConditionQuery 
         regRegisterProcess(CK_EQ, registerProcess);
     }
 
-    protected void regRegisterProcess(ConditionKey k, Object v) { regQ(k, v, getCValueRegisterProcess(), "REGISTER_PROCESS"); }
-    abstract protected ConditionValue getCValueRegisterProcess();
+    protected void regRegisterProcess(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueRegisterProcess(), "REGISTER_PROCESS"); }
+    protected abstract ConditionValue getCValueRegisterProcess();
 
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -664,8 +664,8 @@ public abstract class AbstractBsSynonymProductCQ extends AbstractConditionQuery 
         regUpdateDatetime(CK_EQ,  fCTPD(updateDatetime));
     }
 
-    protected void regUpdateDatetime(ConditionKey k, Object v) { regQ(k, v, getCValueUpdateDatetime(), "UPDATE_DATETIME"); }
-    abstract protected ConditionValue getCValueUpdateDatetime();
+    protected void regUpdateDatetime(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueUpdateDatetime(), "UPDATE_DATETIME"); }
+    protected abstract ConditionValue getCValueUpdateDatetime();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -680,8 +680,8 @@ public abstract class AbstractBsSynonymProductCQ extends AbstractConditionQuery 
         regUpdateUser(CK_EQ, updateUser);
     }
 
-    protected void regUpdateUser(ConditionKey k, Object v) { regQ(k, v, getCValueUpdateUser(), "UPDATE_USER"); }
-    abstract protected ConditionValue getCValueUpdateUser();
+    protected void regUpdateUser(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueUpdateUser(), "UPDATE_USER"); }
+    protected abstract ConditionValue getCValueUpdateUser();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -696,8 +696,8 @@ public abstract class AbstractBsSynonymProductCQ extends AbstractConditionQuery 
         regUpdateProcess(CK_EQ, updateProcess);
     }
 
-    protected void regUpdateProcess(ConditionKey k, Object v) { regQ(k, v, getCValueUpdateProcess(), "UPDATE_PROCESS"); }
-    abstract protected ConditionValue getCValueUpdateProcess();
+    protected void regUpdateProcess(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueUpdateProcess(), "UPDATE_PROCESS"); }
+    protected abstract ConditionValue getCValueUpdateProcess();
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -725,8 +725,8 @@ public abstract class AbstractBsSynonymProductCQ extends AbstractConditionQuery 
         regROO(minNumber, maxNumber, getCValueVersionNo(), "VERSION_NO", rangeOfOption);
     }
 
-    protected void regVersionNo(ConditionKey k, Object v) { regQ(k, v, getCValueVersionNo(), "VERSION_NO"); }
-    abstract protected ConditionValue getCValueVersionNo();
+    protected void regVersionNo(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueVersionNo(), "VERSION_NO"); }
+    protected abstract ConditionValue getCValueVersionNo();
 
     // ===================================================================================
     //                                                                     ScalarCondition
@@ -833,22 +833,22 @@ public abstract class AbstractBsSynonymProductCQ extends AbstractConditionQuery 
         return xcreateSSQFunction(CK_LE.getOperand());
     }
 
-    protected HpSSQFunction<SynonymProductCB> xcreateSSQFunction(final String operand) {
+    protected HpSSQFunction<SynonymProductCB> xcreateSSQFunction(final String rd) {
         return new HpSSQFunction<SynonymProductCB>(new HpSSQSetupper<SynonymProductCB>() {
-            public void setup(String function, SubQuery<SynonymProductCB> subQuery, HpSSQOption<SynonymProductCB> option) {
-                xscalarCondition(function, subQuery, operand, option);
+            public void setup(String fn, SubQuery<SynonymProductCB> sq, HpSSQOption<SynonymProductCB> op) {
+                xscalarCondition(fn, sq, rd, op);
             }
         });
     }
 
-    protected void xscalarCondition(String function, SubQuery<SynonymProductCB> subQuery, String operand, HpSSQOption<SynonymProductCB> option) {
-        assertObjectNotNull("subQuery<SynonymProductCB>", subQuery);
-        SynonymProductCB cb = xcreateScalarConditionCB(); subQuery.query(cb);
-        String subQueryPropertyName = keepScalarCondition(cb.query()); // for saving query-value
-        option.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
-        registerScalarCondition(function, cb.query(), subQueryPropertyName, operand, option);
+    protected void xscalarCondition(String fn, SubQuery<SynonymProductCB> sq, String rd, HpSSQOption<SynonymProductCB> op) {
+        assertObjectNotNull("subQuery", sq);
+        SynonymProductCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        String pp = keepScalarCondition(cb.query()); // for saving query-value
+        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
-    public abstract String keepScalarCondition(SynonymProductCQ subQuery);
+    public abstract String keepScalarCondition(SynonymProductCQ sq);
 
     protected SynonymProductCB xcreateScalarConditionCB() {
         SynonymProductCB cb = new SynonymProductCB();
@@ -865,13 +865,14 @@ public abstract class AbstractBsSynonymProductCQ extends AbstractConditionQuery 
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    public void xsmyselfDerive(String function, SubQuery<SynonymProductCB> subQuery, String aliasName, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<SynonymProductCB>", subQuery);
-        SynonymProductCB cb = new SynonymProductCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
-        registerSpecifyMyselfDerived(function, cb.query(), "PRODUCT_ID", "PRODUCT_ID", subQueryPropertyName, "myselfDerived", aliasName, option);
+    public void xsmyselfDerive(String fn, SubQuery<SynonymProductCB> sq, String al, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        SynonymProductCB cb = new SynonymProductCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "PRODUCT_ID";
+        String pp = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
+        registerSpecifyMyselfDerived(fn, cb.query(), pk, pk, pp, "myselfDerived", al, op);
     }
-    public abstract String keepSpecifyMyselfDerived(SynonymProductCQ subQuery);
+    public abstract String keepSpecifyMyselfDerived(SynonymProductCQ sq);
 
     /**
      * Prepare for (Query)MyselfDerived (SubQuery).
@@ -882,20 +883,21 @@ public abstract class AbstractBsSynonymProductCQ extends AbstractConditionQuery 
     }
     protected HpQDRFunction<SynonymProductCB> xcreateQDRFunctionMyselfDerived() {
         return new HpQDRFunction<SynonymProductCB>(new HpQDRSetupper<SynonymProductCB>() {
-            public void setup(String function, SubQuery<SynonymProductCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-                xqderiveMyselfDerived(function, subQuery, operand, value, option);
+            public void setup(String fn, SubQuery<SynonymProductCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+                xqderiveMyselfDerived(fn, sq, rd, vl, op);
             }
         });
     }
-    public void xqderiveMyselfDerived(String function, SubQuery<SynonymProductCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<SynonymProductCB>", subQuery);
-        SynonymProductCB cb = new SynonymProductCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepQueryMyselfDerived(cb.query()); // for saving query-value.
-        String parameterPropertyName = keepQueryMyselfDerivedParameter(value);
-        registerQueryMyselfDerived(function, cb.query(), "PRODUCT_ID", "PRODUCT_ID", subQueryPropertyName, "myselfDerived", operand, value, parameterPropertyName, option);
+    public void xqderiveMyselfDerived(String fn, SubQuery<SynonymProductCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        SynonymProductCB cb = new SynonymProductCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "PRODUCT_ID";
+        String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
+        String prpp = keepQueryMyselfDerivedParameter(vl);
+        registerQueryMyselfDerived(fn, cb.query(), pk, pk, sqpp, "myselfDerived", rd, vl, prpp, op);
     }
-    public abstract String keepQueryMyselfDerived(SynonymProductCQ subQuery);
-    public abstract String keepQueryMyselfDerivedParameter(Object parameterValue);
+    public abstract String keepQueryMyselfDerived(SynonymProductCQ sq);
+    public abstract String keepQueryMyselfDerivedParameter(Object vl);
 
     // ===================================================================================
     //                                                                        MyselfExists
@@ -905,12 +907,12 @@ public abstract class AbstractBsSynonymProductCQ extends AbstractConditionQuery 
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfExists(SubQuery<SynonymProductCB> subQuery) {
-        assertObjectNotNull("subQuery<SynonymProductCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         SynonymProductCB cb = new SynonymProductCB(); cb.xsetupForMyselfExists(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfExists(cb.query()); // for saving query-value.
-        registerMyselfExists(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfExists(cb.query()); // for saving query-value.
+        registerMyselfExists(cb.query(), pp);
     }
-    public abstract String keepMyselfExists(SynonymProductCQ subQuery);
+    public abstract String keepMyselfExists(SynonymProductCQ sq);
 
     // ===================================================================================
     //                                                                       MyselfInScope
@@ -920,12 +922,12 @@ public abstract class AbstractBsSynonymProductCQ extends AbstractConditionQuery 
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfInScope(SubQuery<SynonymProductCB> subQuery) {
-        assertObjectNotNull("subQuery<SynonymProductCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         SynonymProductCB cb = new SynonymProductCB(); cb.xsetupForMyselfInScope(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfInScope(cb.query()); // for saving query-value.
-        registerMyselfInScope(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfInScope(cb.query()); // for saving query-value.
+        registerMyselfInScope(cb.query(), pp);
     }
-    public abstract String keepMyselfInScope(SynonymProductCQ subQuery);
+    public abstract String keepMyselfInScope(SynonymProductCQ sq);
 
     // ===================================================================================
     //                                                                    Full Text Search
@@ -946,7 +948,7 @@ public abstract class AbstractBsSynonymProductCQ extends AbstractConditionQuery 
      * @param textColumnList The list of text column. (NotNull, NotEmpty, StringColumn, TargetTableColumn)
      * @param conditionValue The condition value. (NullAllowed: if null or empty, no condition)
      */
-    public void match(java.util.List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList, String conditionValue) {
+    public void match(List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList, String conditionValue) {
         xdoMatchByLikeSearch(textColumnList, conditionValue);
     }
 

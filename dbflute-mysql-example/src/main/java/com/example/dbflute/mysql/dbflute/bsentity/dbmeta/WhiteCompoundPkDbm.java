@@ -57,16 +57,16 @@ public class WhiteCompoundPkDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgPkFirstId implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteCompoundPk)e).getPkFirstId(); }
-        public void write(Entity e, Object v) { ((WhiteCompoundPk)e).setPkFirstId(cti(v)); }
+        public Object read(Entity et) { return ((WhiteCompoundPk)et).getPkFirstId(); }
+        public void write(Entity et, Object vl) { ((WhiteCompoundPk)et).setPkFirstId(cti(vl)); }
     }
     public static class EpgPkSecondId implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteCompoundPk)e).getPkSecondId(); }
-        public void write(Entity e, Object v) { ((WhiteCompoundPk)e).setPkSecondId(cti(v)); }
+        public Object read(Entity et) { return ((WhiteCompoundPk)et).getPkSecondId(); }
+        public void write(Entity et, Object vl) { ((WhiteCompoundPk)et).setPkSecondId(cti(vl)); }
     }
     public static class EpgPkName implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteCompoundPk)e).getPkName(); }
-        public void write(Entity e, Object v) { ((WhiteCompoundPk)e).setPkName((String)v); }
+        public Object read(Entity et) { return ((WhiteCompoundPk)et).getPkName(); }
+        public void write(Entity et, Object vl) { ((WhiteCompoundPk)et).setPkName((String)vl); }
     }
 
     // ===================================================================================
@@ -127,10 +127,10 @@ public class WhiteCompoundPkDbm extends AbstractDBMeta {
     //                                     Referrer Property
     //                                     -----------------
     public ReferrerInfo referrerWhiteCompoundPkRefList() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMapSized(4);
-        map.put(columnPkFirstId(), WhiteCompoundPkRefDbm.getInstance().columnRefFirstId());
-        map.put(columnPkSecondId(), WhiteCompoundPkRefDbm.getInstance().columnRefSecondId());
-        return cri("FK_WHITE_COMPOUND_PK_REF", "whiteCompoundPkRefList", this, WhiteCompoundPkRefDbm.getInstance(), map, false, "whiteCompoundPk");
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMapSized(4);
+        mp.put(columnPkFirstId(), WhiteCompoundPkRefDbm.getInstance().columnRefFirstId());
+        mp.put(columnPkSecondId(), WhiteCompoundPkRefDbm.getInstance().columnRefSecondId());
+        return cri("FK_WHITE_COMPOUND_PK_REF", "whiteCompoundPkRefList", this, WhiteCompoundPkRefDbm.getInstance(), mp, false, "whiteCompoundPk");
     }
 
     // ===================================================================================
@@ -158,10 +158,10 @@ public class WhiteCompoundPkDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((WhiteCompoundPk)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((WhiteCompoundPk)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((WhiteCompoundPk)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((WhiteCompoundPk)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

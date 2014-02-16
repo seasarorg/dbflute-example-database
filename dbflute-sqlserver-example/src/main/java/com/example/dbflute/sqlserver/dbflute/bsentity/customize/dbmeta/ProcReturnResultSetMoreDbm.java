@@ -52,56 +52,56 @@ public class ProcReturnResultSetMoreDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgMemberId implements PropertyGateway {
-        public Object read(Entity e) { return ((ProcReturnResultSetMore)e).getMemberId(); }
-        public void write(Entity e, Object v) { ((ProcReturnResultSetMore)e).setMemberId(cti(v)); }
+        public Object read(Entity et) { return ((ProcReturnResultSetMore)et).getMemberId(); }
+        public void write(Entity et, Object vl) { ((ProcReturnResultSetMore)et).setMemberId(cti(vl)); }
     }
     public static class EpgMemberName implements PropertyGateway {
-        public Object read(Entity e) { return ((ProcReturnResultSetMore)e).getMemberName(); }
-        public void write(Entity e, Object v) { ((ProcReturnResultSetMore)e).setMemberName((String)v); }
+        public Object read(Entity et) { return ((ProcReturnResultSetMore)et).getMemberName(); }
+        public void write(Entity et, Object vl) { ((ProcReturnResultSetMore)et).setMemberName((String)vl); }
     }
     public static class EpgMemberAccount implements PropertyGateway {
-        public Object read(Entity e) { return ((ProcReturnResultSetMore)e).getMemberAccount(); }
-        public void write(Entity e, Object v) { ((ProcReturnResultSetMore)e).setMemberAccount((String)v); }
+        public Object read(Entity et) { return ((ProcReturnResultSetMore)et).getMemberAccount(); }
+        public void write(Entity et, Object vl) { ((ProcReturnResultSetMore)et).setMemberAccount((String)vl); }
     }
     public static class EpgMemberStatusCode implements PropertyGateway {
-        public Object read(Entity e) { return ((ProcReturnResultSetMore)e).getMemberStatusCode(); }
-        public void write(Entity e, Object v) { ((ProcReturnResultSetMore)e).setMemberStatusCode((String)v); }
+        public Object read(Entity et) { return ((ProcReturnResultSetMore)et).getMemberStatusCode(); }
+        public void write(Entity et, Object vl) { ((ProcReturnResultSetMore)et).setMemberStatusCode((String)vl); }
     }
     public static class EpgFormalizedDatetime implements PropertyGateway {
-        public Object read(Entity e) { return ((ProcReturnResultSetMore)e).getFormalizedDatetime(); }
-        public void write(Entity e, Object v) { ((ProcReturnResultSetMore)e).setFormalizedDatetime((java.sql.Timestamp)v); }
+        public Object read(Entity et) { return ((ProcReturnResultSetMore)et).getFormalizedDatetime(); }
+        public void write(Entity et, Object vl) { ((ProcReturnResultSetMore)et).setFormalizedDatetime((java.sql.Timestamp)vl); }
     }
     public static class EpgBirthdate implements PropertyGateway {
-        public Object read(Entity e) { return ((ProcReturnResultSetMore)e).getBirthdate(); }
-        public void write(Entity e, Object v) { ((ProcReturnResultSetMore)e).setBirthdate((java.sql.Timestamp)v); }
+        public Object read(Entity et) { return ((ProcReturnResultSetMore)et).getBirthdate(); }
+        public void write(Entity et, Object vl) { ((ProcReturnResultSetMore)et).setBirthdate((java.sql.Timestamp)vl); }
     }
     public static class EpgRegisterDatetime implements PropertyGateway {
-        public Object read(Entity e) { return ((ProcReturnResultSetMore)e).getRegisterDatetime(); }
-        public void write(Entity e, Object v) { ((ProcReturnResultSetMore)e).setRegisterDatetime((java.sql.Timestamp)v); }
+        public Object read(Entity et) { return ((ProcReturnResultSetMore)et).getRegisterDatetime(); }
+        public void write(Entity et, Object vl) { ((ProcReturnResultSetMore)et).setRegisterDatetime((java.sql.Timestamp)vl); }
     }
     public static class EpgRegisterUser implements PropertyGateway {
-        public Object read(Entity e) { return ((ProcReturnResultSetMore)e).getRegisterUser(); }
-        public void write(Entity e, Object v) { ((ProcReturnResultSetMore)e).setRegisterUser((String)v); }
+        public Object read(Entity et) { return ((ProcReturnResultSetMore)et).getRegisterUser(); }
+        public void write(Entity et, Object vl) { ((ProcReturnResultSetMore)et).setRegisterUser((String)vl); }
     }
     public static class EpgRegisterProcess implements PropertyGateway {
-        public Object read(Entity e) { return ((ProcReturnResultSetMore)e).getRegisterProcess(); }
-        public void write(Entity e, Object v) { ((ProcReturnResultSetMore)e).setRegisterProcess((String)v); }
+        public Object read(Entity et) { return ((ProcReturnResultSetMore)et).getRegisterProcess(); }
+        public void write(Entity et, Object vl) { ((ProcReturnResultSetMore)et).setRegisterProcess((String)vl); }
     }
     public static class EpgUpdateDatetime implements PropertyGateway {
-        public Object read(Entity e) { return ((ProcReturnResultSetMore)e).getUpdateDatetime(); }
-        public void write(Entity e, Object v) { ((ProcReturnResultSetMore)e).setUpdateDatetime((java.sql.Timestamp)v); }
+        public Object read(Entity et) { return ((ProcReturnResultSetMore)et).getUpdateDatetime(); }
+        public void write(Entity et, Object vl) { ((ProcReturnResultSetMore)et).setUpdateDatetime((java.sql.Timestamp)vl); }
     }
     public static class EpgUpdateUser implements PropertyGateway {
-        public Object read(Entity e) { return ((ProcReturnResultSetMore)e).getUpdateUser(); }
-        public void write(Entity e, Object v) { ((ProcReturnResultSetMore)e).setUpdateUser((String)v); }
+        public Object read(Entity et) { return ((ProcReturnResultSetMore)et).getUpdateUser(); }
+        public void write(Entity et, Object vl) { ((ProcReturnResultSetMore)et).setUpdateUser((String)vl); }
     }
     public static class EpgUpdateProcess implements PropertyGateway {
-        public Object read(Entity e) { return ((ProcReturnResultSetMore)e).getUpdateProcess(); }
-        public void write(Entity e, Object v) { ((ProcReturnResultSetMore)e).setUpdateProcess((String)v); }
+        public Object read(Entity et) { return ((ProcReturnResultSetMore)et).getUpdateProcess(); }
+        public void write(Entity et, Object vl) { ((ProcReturnResultSetMore)et).setUpdateProcess((String)vl); }
     }
     public static class EpgVersionNo implements PropertyGateway {
-        public Object read(Entity e) { return ((ProcReturnResultSetMore)e).getVersionNo(); }
-        public void write(Entity e, Object v) { ((ProcReturnResultSetMore)e).setVersionNo(ctl(v)); }
+        public Object read(Entity et) { return ((ProcReturnResultSetMore)et).getVersionNo(); }
+        public void write(Entity et, Object vl) { ((ProcReturnResultSetMore)et).setVersionNo(ctl(vl)); }
     }
 
     // ===================================================================================
@@ -216,10 +216,10 @@ public class ProcReturnResultSetMoreDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((ProcReturnResultSetMore)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((ProcReturnResultSetMore)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((ProcReturnResultSetMore)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((ProcReturnResultSetMore)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

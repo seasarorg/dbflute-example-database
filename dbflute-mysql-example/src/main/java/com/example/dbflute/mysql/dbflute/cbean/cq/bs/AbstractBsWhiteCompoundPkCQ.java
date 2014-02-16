@@ -160,8 +160,8 @@ public abstract class AbstractBsWhiteCompoundPkCQ extends AbstractConditionQuery
      */
     public void setPkFirstId_IsNotNull() { regPkFirstId(CK_ISNN, DOBJ); }
 
-    protected void regPkFirstId(ConditionKey k, Object v) { regQ(k, v, getCValuePkFirstId(), "PK_FIRST_ID"); }
-    abstract protected ConditionValue getCValuePkFirstId();
+    protected void regPkFirstId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValuePkFirstId(), "PK_FIRST_ID"); }
+    protected abstract ConditionValue getCValuePkFirstId();
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -263,8 +263,8 @@ public abstract class AbstractBsWhiteCompoundPkCQ extends AbstractConditionQuery
      */
     public void setPkSecondId_IsNotNull() { regPkSecondId(CK_ISNN, DOBJ); }
 
-    protected void regPkSecondId(ConditionKey k, Object v) { regQ(k, v, getCValuePkSecondId(), "PK_SECOND_ID"); }
-    abstract protected ConditionValue getCValuePkSecondId();
+    protected void regPkSecondId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValuePkSecondId(), "PK_SECOND_ID"); }
+    protected abstract ConditionValue getCValuePkSecondId();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -349,8 +349,8 @@ public abstract class AbstractBsWhiteCompoundPkCQ extends AbstractConditionQuery
         regLSQ(CK_NLS, fRES(pkName), getCValuePkName(), "PK_NAME", likeSearchOption);
     }
 
-    protected void regPkName(ConditionKey k, Object v) { regQ(k, v, getCValuePkName(), "PK_NAME"); }
-    abstract protected ConditionValue getCValuePkName();
+    protected void regPkName(ConditionKey ky, Object vl) { regQ(ky, vl, getCValuePkName(), "PK_NAME"); }
+    protected abstract ConditionValue getCValuePkName();
 
     // ===================================================================================
     //                                                                    Full Text Search
@@ -376,7 +376,7 @@ public abstract class AbstractBsWhiteCompoundPkCQ extends AbstractConditionQuery
      * @param conditionValue The condition value embedded without binding (by MySQL restriction) but escaped. (NullAllowed: if null or empty, no condition)
      * @param modifier The modifier of full-text search. (NullAllowed: If the value is null, no modifier specified)
      */
-    public void match(java.util.List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList
+    public void match(List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList
                     , String conditionValue
                     , org.seasar.dbflute.dbway.WayOfMySQL.FullTextSearchModifier modifier) {
         xdoMatchForMySQL(textColumnList, conditionValue, modifier);

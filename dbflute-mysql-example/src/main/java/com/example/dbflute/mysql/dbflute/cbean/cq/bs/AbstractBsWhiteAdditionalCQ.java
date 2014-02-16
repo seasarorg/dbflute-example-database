@@ -160,8 +160,8 @@ public abstract class AbstractBsWhiteAdditionalCQ extends AbstractConditionQuery
      */
     public void setFooId_IsNotNull() { regFooId(CK_ISNN, DOBJ); }
 
-    protected void regFooId(ConditionKey k, Object v) { regQ(k, v, getCValueFooId(), "foo_id"); }
-    abstract protected ConditionValue getCValueFooId();
+    protected void regFooId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueFooId(), "foo_id"); }
+    protected abstract ConditionValue getCValueFooId();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -246,8 +246,8 @@ public abstract class AbstractBsWhiteAdditionalCQ extends AbstractConditionQuery
         regLSQ(CK_NLS, fRES(fooName), getCValueFooName(), "foo_name", likeSearchOption);
     }
 
-    protected void regFooName(ConditionKey k, Object v) { regQ(k, v, getCValueFooName(), "foo_name"); }
-    abstract protected ConditionValue getCValueFooName();
+    protected void regFooName(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueFooName(), "foo_name"); }
+    protected abstract ConditionValue getCValueFooName();
 
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -303,7 +303,7 @@ public abstract class AbstractBsWhiteAdditionalCQ extends AbstractConditionQuery
      * @param toDatetime The to-datetime(yyyy/MM/dd HH:mm:ss.SSS) of fooDate. (NullAllowed: if null, no to-condition)
      * @param fromToOption The option of from-to. (NotNull)
      */
-    public void setFooDate_FromTo(java.util.Date fromDatetime, java.util.Date toDatetime, FromToOption fromToOption) {
+    public void setFooDate_FromTo(Date fromDatetime, Date toDatetime, FromToOption fromToOption) {
         regFTQ(fCTPD(fromDatetime), fCTPD(toDatetime), getCValueFooDate(), "foo_date", fromToOption);
     }
 
@@ -318,7 +318,7 @@ public abstract class AbstractBsWhiteAdditionalCQ extends AbstractConditionQuery
      * @param fromDate The from-date(yyyy/MM/dd) of fooDate. (NullAllowed: if null, no from-condition)
      * @param toDate The to-date(yyyy/MM/dd) of fooDate. (NullAllowed: if null, no to-condition)
      */
-    public void setFooDate_DateFromTo(java.util.Date fromDate, java.util.Date toDate) {
+    public void setFooDate_DateFromTo(Date fromDate, Date toDate) {
         setFooDate_FromTo(fromDate, toDate, new FromToOption().compareAsDate());
     }
 
@@ -334,8 +334,8 @@ public abstract class AbstractBsWhiteAdditionalCQ extends AbstractConditionQuery
      */
     public void setFooDate_IsNotNull() { regFooDate(CK_ISNN, DOBJ); }
 
-    protected void regFooDate(ConditionKey k, Object v) { regQ(k, v, getCValueFooDate(), "foo_date"); }
-    abstract protected ConditionValue getCValueFooDate();
+    protected void regFooDate(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueFooDate(), "foo_date"); }
+    protected abstract ConditionValue getCValueFooDate();
 
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -382,7 +382,7 @@ public abstract class AbstractBsWhiteAdditionalCQ extends AbstractConditionQuery
      * @param toDatetime The to-datetime(yyyy/MM/dd HH:mm:ss.SSS) of registerDatetime. (NullAllowed: if null, no to-condition)
      * @param fromToOption The option of from-to. (NotNull)
      */
-    public void setRegisterDatetime_FromTo(java.util.Date fromDatetime, java.util.Date toDatetime, FromToOption fromToOption) {
+    public void setRegisterDatetime_FromTo(Date fromDatetime, Date toDatetime, FromToOption fromToOption) {
         regFTQ((fromDatetime != null ? new java.sql.Timestamp(fromDatetime.getTime()) : null), (toDatetime != null ? new java.sql.Timestamp(toDatetime.getTime()) : null), getCValueRegisterDatetime(), "register_datetime", fromToOption);
     }
 
@@ -397,7 +397,7 @@ public abstract class AbstractBsWhiteAdditionalCQ extends AbstractConditionQuery
      * @param fromDate The from-date(yyyy/MM/dd) of registerDatetime. (NullAllowed: if null, no from-condition)
      * @param toDate The to-date(yyyy/MM/dd) of registerDatetime. (NullAllowed: if null, no to-condition)
      */
-    public void setRegisterDatetime_DateFromTo(java.util.Date fromDate, java.util.Date toDate) {
+    public void setRegisterDatetime_DateFromTo(Date fromDate, Date toDate) {
         setRegisterDatetime_FromTo(fromDate, toDate, new FromToOption().compareAsDate());
     }
 
@@ -413,8 +413,8 @@ public abstract class AbstractBsWhiteAdditionalCQ extends AbstractConditionQuery
      */
     public void setRegisterDatetime_IsNotNull() { regRegisterDatetime(CK_ISNN, DOBJ); }
 
-    protected void regRegisterDatetime(ConditionKey k, Object v) { regQ(k, v, getCValueRegisterDatetime(), "register_datetime"); }
-    abstract protected ConditionValue getCValueRegisterDatetime();
+    protected void regRegisterDatetime(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueRegisterDatetime(), "register_datetime"); }
+    protected abstract ConditionValue getCValueRegisterDatetime();
 
     // ===================================================================================
     //                                                                     ScalarCondition
@@ -521,22 +521,22 @@ public abstract class AbstractBsWhiteAdditionalCQ extends AbstractConditionQuery
         return xcreateSSQFunction(CK_LE.getOperand());
     }
 
-    protected HpSSQFunction<WhiteAdditionalCB> xcreateSSQFunction(final String operand) {
+    protected HpSSQFunction<WhiteAdditionalCB> xcreateSSQFunction(final String rd) {
         return new HpSSQFunction<WhiteAdditionalCB>(new HpSSQSetupper<WhiteAdditionalCB>() {
-            public void setup(String function, SubQuery<WhiteAdditionalCB> subQuery, HpSSQOption<WhiteAdditionalCB> option) {
-                xscalarCondition(function, subQuery, operand, option);
+            public void setup(String fn, SubQuery<WhiteAdditionalCB> sq, HpSSQOption<WhiteAdditionalCB> op) {
+                xscalarCondition(fn, sq, rd, op);
             }
         });
     }
 
-    protected void xscalarCondition(String function, SubQuery<WhiteAdditionalCB> subQuery, String operand, HpSSQOption<WhiteAdditionalCB> option) {
-        assertObjectNotNull("subQuery<WhiteAdditionalCB>", subQuery);
-        WhiteAdditionalCB cb = xcreateScalarConditionCB(); subQuery.query(cb);
-        String subQueryPropertyName = keepScalarCondition(cb.query()); // for saving query-value
-        option.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
-        registerScalarCondition(function, cb.query(), subQueryPropertyName, operand, option);
+    protected void xscalarCondition(String fn, SubQuery<WhiteAdditionalCB> sq, String rd, HpSSQOption<WhiteAdditionalCB> op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteAdditionalCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        String pp = keepScalarCondition(cb.query()); // for saving query-value
+        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
-    public abstract String keepScalarCondition(WhiteAdditionalCQ subQuery);
+    public abstract String keepScalarCondition(WhiteAdditionalCQ sq);
 
     protected WhiteAdditionalCB xcreateScalarConditionCB() {
         WhiteAdditionalCB cb = new WhiteAdditionalCB();
@@ -553,13 +553,14 @@ public abstract class AbstractBsWhiteAdditionalCQ extends AbstractConditionQuery
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    public void xsmyselfDerive(String function, SubQuery<WhiteAdditionalCB> subQuery, String aliasName, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<WhiteAdditionalCB>", subQuery);
-        WhiteAdditionalCB cb = new WhiteAdditionalCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
-        registerSpecifyMyselfDerived(function, cb.query(), "foo_id", "foo_id", subQueryPropertyName, "myselfDerived", aliasName, option);
+    public void xsmyselfDerive(String fn, SubQuery<WhiteAdditionalCB> sq, String al, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteAdditionalCB cb = new WhiteAdditionalCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "foo_id";
+        String pp = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
+        registerSpecifyMyselfDerived(fn, cb.query(), pk, pk, pp, "myselfDerived", al, op);
     }
-    public abstract String keepSpecifyMyselfDerived(WhiteAdditionalCQ subQuery);
+    public abstract String keepSpecifyMyselfDerived(WhiteAdditionalCQ sq);
 
     /**
      * Prepare for (Query)MyselfDerived (SubQuery).
@@ -570,20 +571,21 @@ public abstract class AbstractBsWhiteAdditionalCQ extends AbstractConditionQuery
     }
     protected HpQDRFunction<WhiteAdditionalCB> xcreateQDRFunctionMyselfDerived() {
         return new HpQDRFunction<WhiteAdditionalCB>(new HpQDRSetupper<WhiteAdditionalCB>() {
-            public void setup(String function, SubQuery<WhiteAdditionalCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-                xqderiveMyselfDerived(function, subQuery, operand, value, option);
+            public void setup(String fn, SubQuery<WhiteAdditionalCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+                xqderiveMyselfDerived(fn, sq, rd, vl, op);
             }
         });
     }
-    public void xqderiveMyselfDerived(String function, SubQuery<WhiteAdditionalCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<WhiteAdditionalCB>", subQuery);
-        WhiteAdditionalCB cb = new WhiteAdditionalCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepQueryMyselfDerived(cb.query()); // for saving query-value.
-        String parameterPropertyName = keepQueryMyselfDerivedParameter(value);
-        registerQueryMyselfDerived(function, cb.query(), "foo_id", "foo_id", subQueryPropertyName, "myselfDerived", operand, value, parameterPropertyName, option);
+    public void xqderiveMyselfDerived(String fn, SubQuery<WhiteAdditionalCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteAdditionalCB cb = new WhiteAdditionalCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "foo_id";
+        String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
+        String prpp = keepQueryMyselfDerivedParameter(vl);
+        registerQueryMyselfDerived(fn, cb.query(), pk, pk, sqpp, "myselfDerived", rd, vl, prpp, op);
     }
-    public abstract String keepQueryMyselfDerived(WhiteAdditionalCQ subQuery);
-    public abstract String keepQueryMyselfDerivedParameter(Object parameterValue);
+    public abstract String keepQueryMyselfDerived(WhiteAdditionalCQ sq);
+    public abstract String keepQueryMyselfDerivedParameter(Object vl);
 
     // ===================================================================================
     //                                                                        MyselfExists
@@ -593,12 +595,12 @@ public abstract class AbstractBsWhiteAdditionalCQ extends AbstractConditionQuery
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfExists(SubQuery<WhiteAdditionalCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteAdditionalCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteAdditionalCB cb = new WhiteAdditionalCB(); cb.xsetupForMyselfExists(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfExists(cb.query()); // for saving query-value.
-        registerMyselfExists(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfExists(cb.query()); // for saving query-value.
+        registerMyselfExists(cb.query(), pp);
     }
-    public abstract String keepMyselfExists(WhiteAdditionalCQ subQuery);
+    public abstract String keepMyselfExists(WhiteAdditionalCQ sq);
 
     // ===================================================================================
     //                                                                       MyselfInScope
@@ -608,12 +610,12 @@ public abstract class AbstractBsWhiteAdditionalCQ extends AbstractConditionQuery
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfInScope(SubQuery<WhiteAdditionalCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteAdditionalCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteAdditionalCB cb = new WhiteAdditionalCB(); cb.xsetupForMyselfInScope(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfInScope(cb.query()); // for saving query-value.
-        registerMyselfInScope(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfInScope(cb.query()); // for saving query-value.
+        registerMyselfInScope(cb.query(), pp);
     }
-    public abstract String keepMyselfInScope(WhiteAdditionalCQ subQuery);
+    public abstract String keepMyselfInScope(WhiteAdditionalCQ sq);
 
     // ===================================================================================
     //                                                                    Full Text Search
@@ -639,7 +641,7 @@ public abstract class AbstractBsWhiteAdditionalCQ extends AbstractConditionQuery
      * @param conditionValue The condition value embedded without binding (by MySQL restriction) but escaped. (NullAllowed: if null or empty, no condition)
      * @param modifier The modifier of full-text search. (NullAllowed: If the value is null, no modifier specified)
      */
-    public void match(java.util.List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList
+    public void match(List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList
                     , String conditionValue
                     , org.seasar.dbflute.dbway.WayOfMySQL.FullTextSearchModifier modifier) {
         xdoMatchForMySQL(textColumnList, conditionValue, modifier);

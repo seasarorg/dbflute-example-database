@@ -133,8 +133,8 @@ public abstract class AbstractBsWhiteUqFkWithoutPkRefCQ extends AbstractConditio
         regINS(CK_NINS, cTL(uqFkRefIdList), getCValueUqFkRefId(), "UQ_FK_REF_ID");
     }
 
-    protected void regUqFkRefId(ConditionKey k, Object v) { regQ(k, v, getCValueUqFkRefId(), "UQ_FK_REF_ID"); }
-    abstract protected ConditionValue getCValueUqFkRefId();
+    protected void regUqFkRefId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueUqFkRefId(), "UQ_FK_REF_ID"); }
+    protected abstract ConditionValue getCValueUqFkRefId();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -226,12 +226,12 @@ public abstract class AbstractBsWhiteUqFkWithoutPkRefCQ extends AbstractConditio
      * @param subQuery The sub-query of WhiteUqFkWithoutPk for 'in-scope'. (NotNull)
      */
     public void inScopeWhiteUqFkWithoutPk(SubQuery<WhiteUqFkWithoutPkCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteUqFkWithoutPkCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteUqFkWithoutPkCB cb = new WhiteUqFkWithoutPkCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String subQueryPropertyName = keepFkToUqCode_InScopeRelation_WhiteUqFkWithoutPk(cb.query()); // for saving query-value.
-        registerInScopeRelation(cb.query(), "FK_TO_UQ_CODE", "UQ_FK_CODE", subQueryPropertyName, "whiteUqFkWithoutPk");
+        String pp = keepFkToUqCode_InScopeRelation_WhiteUqFkWithoutPk(cb.query()); // for saving query-value.
+        registerInScopeRelation(cb.query(), "FK_TO_UQ_CODE", "UQ_FK_CODE", pp, "whiteUqFkWithoutPk");
     }
-    public abstract String keepFkToUqCode_InScopeRelation_WhiteUqFkWithoutPk(WhiteUqFkWithoutPkCQ subQuery);
+    public abstract String keepFkToUqCode_InScopeRelation_WhiteUqFkWithoutPk(WhiteUqFkWithoutPkCQ sq);
 
     /**
      * Set up NotInScopeRelation (sub-query). <br />
@@ -240,15 +240,15 @@ public abstract class AbstractBsWhiteUqFkWithoutPkRefCQ extends AbstractConditio
      * @param subQuery The sub-query of WhiteUqFkWithoutPk for 'not in-scope'. (NotNull)
      */
     public void notInScopeWhiteUqFkWithoutPk(SubQuery<WhiteUqFkWithoutPkCB> subQuery) {
-        assertObjectNotNull("subQuery<WhiteUqFkWithoutPkCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         WhiteUqFkWithoutPkCB cb = new WhiteUqFkWithoutPkCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String subQueryPropertyName = keepFkToUqCode_NotInScopeRelation_WhiteUqFkWithoutPk(cb.query()); // for saving query-value.
-        registerNotInScopeRelation(cb.query(), "FK_TO_UQ_CODE", "UQ_FK_CODE", subQueryPropertyName, "whiteUqFkWithoutPk");
+        String pp = keepFkToUqCode_NotInScopeRelation_WhiteUqFkWithoutPk(cb.query()); // for saving query-value.
+        registerNotInScopeRelation(cb.query(), "FK_TO_UQ_CODE", "UQ_FK_CODE", pp, "whiteUqFkWithoutPk");
     }
-    public abstract String keepFkToUqCode_NotInScopeRelation_WhiteUqFkWithoutPk(WhiteUqFkWithoutPkCQ subQuery);
+    public abstract String keepFkToUqCode_NotInScopeRelation_WhiteUqFkWithoutPk(WhiteUqFkWithoutPkCQ sq);
 
-    protected void regFkToUqCode(ConditionKey k, Object v) { regQ(k, v, getCValueFkToUqCode(), "FK_TO_UQ_CODE"); }
-    abstract protected ConditionValue getCValueFkToUqCode();
+    protected void regFkToUqCode(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueFkToUqCode(), "FK_TO_UQ_CODE"); }
+    protected abstract ConditionValue getCValueFkToUqCode();
 
     // ===================================================================================
     //                                                                    Full Text Search
@@ -269,7 +269,7 @@ public abstract class AbstractBsWhiteUqFkWithoutPkRefCQ extends AbstractConditio
      * @param textColumnList The list of text column. (NotNull, NotEmpty, StringColumn, TargetTableColumn)
      * @param conditionValue The condition value. (NullAllowed: if null or empty, no condition)
      */
-    public void match(java.util.List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList, String conditionValue) {
+    public void match(List<org.seasar.dbflute.dbmeta.info.ColumnInfo> textColumnList, String conditionValue) {
         xdoMatchByLikeSearch(textColumnList, conditionValue);
     }
 

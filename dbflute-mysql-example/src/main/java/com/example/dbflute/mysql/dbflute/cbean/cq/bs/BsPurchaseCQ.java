@@ -96,82 +96,82 @@ public class BsPurchaseCQ extends AbstractBsPurchaseCQ {
 
     protected Map<String, WhitePurchaseReferrerCQ> _purchaseId_ExistsReferrer_WhitePurchaseReferrerAsOneMap;
     public Map<String, WhitePurchaseReferrerCQ> getPurchaseId_ExistsReferrer_WhitePurchaseReferrerAsOne() { return _purchaseId_ExistsReferrer_WhitePurchaseReferrerAsOneMap; }
-    public String keepPurchaseId_ExistsReferrer_WhitePurchaseReferrerAsOne(WhitePurchaseReferrerCQ subQuery) {
+    public String keepPurchaseId_ExistsReferrer_WhitePurchaseReferrerAsOne(WhitePurchaseReferrerCQ sq) {
         if (_purchaseId_ExistsReferrer_WhitePurchaseReferrerAsOneMap == null) { _purchaseId_ExistsReferrer_WhitePurchaseReferrerAsOneMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_purchaseId_ExistsReferrer_WhitePurchaseReferrerAsOneMap.size() + 1);
-        _purchaseId_ExistsReferrer_WhitePurchaseReferrerAsOneMap.put(key, subQuery); return "purchaseId_ExistsReferrer_WhitePurchaseReferrerAsOne." + key;
+        String ky = "subQueryMapKey" + (_purchaseId_ExistsReferrer_WhitePurchaseReferrerAsOneMap.size() + 1);
+        _purchaseId_ExistsReferrer_WhitePurchaseReferrerAsOneMap.put(ky, sq); return "purchaseId_ExistsReferrer_WhitePurchaseReferrerAsOne." + ky;
     }
 
     protected Map<String, PurchaseCQ> _purchaseId_ExistsReferrer_PurchaseSelfAsOneMap;
     public Map<String, PurchaseCQ> getPurchaseId_ExistsReferrer_PurchaseSelfAsOne() { return _purchaseId_ExistsReferrer_PurchaseSelfAsOneMap; }
-    public String keepPurchaseId_ExistsReferrer_PurchaseSelfAsOne(PurchaseCQ subQuery) {
+    public String keepPurchaseId_ExistsReferrer_PurchaseSelfAsOne(PurchaseCQ sq) {
         if (_purchaseId_ExistsReferrer_PurchaseSelfAsOneMap == null) { _purchaseId_ExistsReferrer_PurchaseSelfAsOneMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_purchaseId_ExistsReferrer_PurchaseSelfAsOneMap.size() + 1);
-        _purchaseId_ExistsReferrer_PurchaseSelfAsOneMap.put(key, subQuery); return "purchaseId_ExistsReferrer_PurchaseSelfAsOne." + key;
+        String ky = "subQueryMapKey" + (_purchaseId_ExistsReferrer_PurchaseSelfAsOneMap.size() + 1);
+        _purchaseId_ExistsReferrer_PurchaseSelfAsOneMap.put(ky, sq); return "purchaseId_ExistsReferrer_PurchaseSelfAsOne." + ky;
     }
 
     protected Map<String, WhitePurchaseReferrerCQ> _purchaseId_NotExistsReferrer_WhitePurchaseReferrerAsOneMap;
     public Map<String, WhitePurchaseReferrerCQ> getPurchaseId_NotExistsReferrer_WhitePurchaseReferrerAsOne() { return _purchaseId_NotExistsReferrer_WhitePurchaseReferrerAsOneMap; }
-    public String keepPurchaseId_NotExistsReferrer_WhitePurchaseReferrerAsOne(WhitePurchaseReferrerCQ subQuery) {
+    public String keepPurchaseId_NotExistsReferrer_WhitePurchaseReferrerAsOne(WhitePurchaseReferrerCQ sq) {
         if (_purchaseId_NotExistsReferrer_WhitePurchaseReferrerAsOneMap == null) { _purchaseId_NotExistsReferrer_WhitePurchaseReferrerAsOneMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_purchaseId_NotExistsReferrer_WhitePurchaseReferrerAsOneMap.size() + 1);
-        _purchaseId_NotExistsReferrer_WhitePurchaseReferrerAsOneMap.put(key, subQuery); return "purchaseId_NotExistsReferrer_WhitePurchaseReferrerAsOne." + key;
+        String ky = "subQueryMapKey" + (_purchaseId_NotExistsReferrer_WhitePurchaseReferrerAsOneMap.size() + 1);
+        _purchaseId_NotExistsReferrer_WhitePurchaseReferrerAsOneMap.put(ky, sq); return "purchaseId_NotExistsReferrer_WhitePurchaseReferrerAsOne." + ky;
     }
 
     protected Map<String, PurchaseCQ> _purchaseId_NotExistsReferrer_PurchaseSelfAsOneMap;
     public Map<String, PurchaseCQ> getPurchaseId_NotExistsReferrer_PurchaseSelfAsOne() { return _purchaseId_NotExistsReferrer_PurchaseSelfAsOneMap; }
-    public String keepPurchaseId_NotExistsReferrer_PurchaseSelfAsOne(PurchaseCQ subQuery) {
+    public String keepPurchaseId_NotExistsReferrer_PurchaseSelfAsOne(PurchaseCQ sq) {
         if (_purchaseId_NotExistsReferrer_PurchaseSelfAsOneMap == null) { _purchaseId_NotExistsReferrer_PurchaseSelfAsOneMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_purchaseId_NotExistsReferrer_PurchaseSelfAsOneMap.size() + 1);
-        _purchaseId_NotExistsReferrer_PurchaseSelfAsOneMap.put(key, subQuery); return "purchaseId_NotExistsReferrer_PurchaseSelfAsOne." + key;
+        String ky = "subQueryMapKey" + (_purchaseId_NotExistsReferrer_PurchaseSelfAsOneMap.size() + 1);
+        _purchaseId_NotExistsReferrer_PurchaseSelfAsOneMap.put(ky, sq); return "purchaseId_NotExistsReferrer_PurchaseSelfAsOne." + ky;
     }
 
     protected Map<String, PurchaseCQ> _purchaseId_InScopeRelation_PurchaseSelfMap;
     public Map<String, PurchaseCQ> getPurchaseId_InScopeRelation_PurchaseSelf() { return _purchaseId_InScopeRelation_PurchaseSelfMap; }
-    public String keepPurchaseId_InScopeRelation_PurchaseSelf(PurchaseCQ subQuery) {
+    public String keepPurchaseId_InScopeRelation_PurchaseSelf(PurchaseCQ sq) {
         if (_purchaseId_InScopeRelation_PurchaseSelfMap == null) { _purchaseId_InScopeRelation_PurchaseSelfMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_purchaseId_InScopeRelation_PurchaseSelfMap.size() + 1);
-        _purchaseId_InScopeRelation_PurchaseSelfMap.put(key, subQuery); return "purchaseId_InScopeRelation_PurchaseSelf." + key;
+        String ky = "subQueryMapKey" + (_purchaseId_InScopeRelation_PurchaseSelfMap.size() + 1);
+        _purchaseId_InScopeRelation_PurchaseSelfMap.put(ky, sq); return "purchaseId_InScopeRelation_PurchaseSelf." + ky;
     }
 
     protected Map<String, WhitePurchaseReferrerCQ> _purchaseId_InScopeRelation_WhitePurchaseReferrerAsOneMap;
     public Map<String, WhitePurchaseReferrerCQ> getPurchaseId_InScopeRelation_WhitePurchaseReferrerAsOne() { return _purchaseId_InScopeRelation_WhitePurchaseReferrerAsOneMap; }
-    public String keepPurchaseId_InScopeRelation_WhitePurchaseReferrerAsOne(WhitePurchaseReferrerCQ subQuery) {
+    public String keepPurchaseId_InScopeRelation_WhitePurchaseReferrerAsOne(WhitePurchaseReferrerCQ sq) {
         if (_purchaseId_InScopeRelation_WhitePurchaseReferrerAsOneMap == null) { _purchaseId_InScopeRelation_WhitePurchaseReferrerAsOneMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_purchaseId_InScopeRelation_WhitePurchaseReferrerAsOneMap.size() + 1);
-        _purchaseId_InScopeRelation_WhitePurchaseReferrerAsOneMap.put(key, subQuery); return "purchaseId_InScopeRelation_WhitePurchaseReferrerAsOne." + key;
+        String ky = "subQueryMapKey" + (_purchaseId_InScopeRelation_WhitePurchaseReferrerAsOneMap.size() + 1);
+        _purchaseId_InScopeRelation_WhitePurchaseReferrerAsOneMap.put(ky, sq); return "purchaseId_InScopeRelation_WhitePurchaseReferrerAsOne." + ky;
     }
 
     protected Map<String, PurchaseCQ> _purchaseId_InScopeRelation_PurchaseSelfAsOneMap;
     public Map<String, PurchaseCQ> getPurchaseId_InScopeRelation_PurchaseSelfAsOne() { return _purchaseId_InScopeRelation_PurchaseSelfAsOneMap; }
-    public String keepPurchaseId_InScopeRelation_PurchaseSelfAsOne(PurchaseCQ subQuery) {
+    public String keepPurchaseId_InScopeRelation_PurchaseSelfAsOne(PurchaseCQ sq) {
         if (_purchaseId_InScopeRelation_PurchaseSelfAsOneMap == null) { _purchaseId_InScopeRelation_PurchaseSelfAsOneMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_purchaseId_InScopeRelation_PurchaseSelfAsOneMap.size() + 1);
-        _purchaseId_InScopeRelation_PurchaseSelfAsOneMap.put(key, subQuery); return "purchaseId_InScopeRelation_PurchaseSelfAsOne." + key;
+        String ky = "subQueryMapKey" + (_purchaseId_InScopeRelation_PurchaseSelfAsOneMap.size() + 1);
+        _purchaseId_InScopeRelation_PurchaseSelfAsOneMap.put(ky, sq); return "purchaseId_InScopeRelation_PurchaseSelfAsOne." + ky;
     }
 
     protected Map<String, PurchaseCQ> _purchaseId_NotInScopeRelation_PurchaseSelfMap;
     public Map<String, PurchaseCQ> getPurchaseId_NotInScopeRelation_PurchaseSelf() { return _purchaseId_NotInScopeRelation_PurchaseSelfMap; }
-    public String keepPurchaseId_NotInScopeRelation_PurchaseSelf(PurchaseCQ subQuery) {
+    public String keepPurchaseId_NotInScopeRelation_PurchaseSelf(PurchaseCQ sq) {
         if (_purchaseId_NotInScopeRelation_PurchaseSelfMap == null) { _purchaseId_NotInScopeRelation_PurchaseSelfMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_purchaseId_NotInScopeRelation_PurchaseSelfMap.size() + 1);
-        _purchaseId_NotInScopeRelation_PurchaseSelfMap.put(key, subQuery); return "purchaseId_NotInScopeRelation_PurchaseSelf." + key;
+        String ky = "subQueryMapKey" + (_purchaseId_NotInScopeRelation_PurchaseSelfMap.size() + 1);
+        _purchaseId_NotInScopeRelation_PurchaseSelfMap.put(ky, sq); return "purchaseId_NotInScopeRelation_PurchaseSelf." + ky;
     }
 
     protected Map<String, WhitePurchaseReferrerCQ> _purchaseId_NotInScopeRelation_WhitePurchaseReferrerAsOneMap;
     public Map<String, WhitePurchaseReferrerCQ> getPurchaseId_NotInScopeRelation_WhitePurchaseReferrerAsOne() { return _purchaseId_NotInScopeRelation_WhitePurchaseReferrerAsOneMap; }
-    public String keepPurchaseId_NotInScopeRelation_WhitePurchaseReferrerAsOne(WhitePurchaseReferrerCQ subQuery) {
+    public String keepPurchaseId_NotInScopeRelation_WhitePurchaseReferrerAsOne(WhitePurchaseReferrerCQ sq) {
         if (_purchaseId_NotInScopeRelation_WhitePurchaseReferrerAsOneMap == null) { _purchaseId_NotInScopeRelation_WhitePurchaseReferrerAsOneMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_purchaseId_NotInScopeRelation_WhitePurchaseReferrerAsOneMap.size() + 1);
-        _purchaseId_NotInScopeRelation_WhitePurchaseReferrerAsOneMap.put(key, subQuery); return "purchaseId_NotInScopeRelation_WhitePurchaseReferrerAsOne." + key;
+        String ky = "subQueryMapKey" + (_purchaseId_NotInScopeRelation_WhitePurchaseReferrerAsOneMap.size() + 1);
+        _purchaseId_NotInScopeRelation_WhitePurchaseReferrerAsOneMap.put(ky, sq); return "purchaseId_NotInScopeRelation_WhitePurchaseReferrerAsOne." + ky;
     }
 
     protected Map<String, PurchaseCQ> _purchaseId_NotInScopeRelation_PurchaseSelfAsOneMap;
     public Map<String, PurchaseCQ> getPurchaseId_NotInScopeRelation_PurchaseSelfAsOne() { return _purchaseId_NotInScopeRelation_PurchaseSelfAsOneMap; }
-    public String keepPurchaseId_NotInScopeRelation_PurchaseSelfAsOne(PurchaseCQ subQuery) {
+    public String keepPurchaseId_NotInScopeRelation_PurchaseSelfAsOne(PurchaseCQ sq) {
         if (_purchaseId_NotInScopeRelation_PurchaseSelfAsOneMap == null) { _purchaseId_NotInScopeRelation_PurchaseSelfAsOneMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_purchaseId_NotInScopeRelation_PurchaseSelfAsOneMap.size() + 1);
-        _purchaseId_NotInScopeRelation_PurchaseSelfAsOneMap.put(key, subQuery); return "purchaseId_NotInScopeRelation_PurchaseSelfAsOne." + key;
+        String ky = "subQueryMapKey" + (_purchaseId_NotInScopeRelation_PurchaseSelfAsOneMap.size() + 1);
+        _purchaseId_NotInScopeRelation_PurchaseSelfAsOneMap.put(ky, sq); return "purchaseId_NotInScopeRelation_PurchaseSelfAsOne." + ky;
     }
 
     /** 
@@ -197,18 +197,18 @@ public class BsPurchaseCQ extends AbstractBsPurchaseCQ {
 
     protected Map<String, MemberCQ> _memberId_InScopeRelation_MemberMap;
     public Map<String, MemberCQ> getMemberId_InScopeRelation_Member() { return _memberId_InScopeRelation_MemberMap; }
-    public String keepMemberId_InScopeRelation_Member(MemberCQ subQuery) {
+    public String keepMemberId_InScopeRelation_Member(MemberCQ sq) {
         if (_memberId_InScopeRelation_MemberMap == null) { _memberId_InScopeRelation_MemberMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_memberId_InScopeRelation_MemberMap.size() + 1);
-        _memberId_InScopeRelation_MemberMap.put(key, subQuery); return "memberId_InScopeRelation_Member." + key;
+        String ky = "subQueryMapKey" + (_memberId_InScopeRelation_MemberMap.size() + 1);
+        _memberId_InScopeRelation_MemberMap.put(ky, sq); return "memberId_InScopeRelation_Member." + ky;
     }
 
     protected Map<String, MemberCQ> _memberId_NotInScopeRelation_MemberMap;
     public Map<String, MemberCQ> getMemberId_NotInScopeRelation_Member() { return _memberId_NotInScopeRelation_MemberMap; }
-    public String keepMemberId_NotInScopeRelation_Member(MemberCQ subQuery) {
+    public String keepMemberId_NotInScopeRelation_Member(MemberCQ sq) {
         if (_memberId_NotInScopeRelation_MemberMap == null) { _memberId_NotInScopeRelation_MemberMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_memberId_NotInScopeRelation_MemberMap.size() + 1);
-        _memberId_NotInScopeRelation_MemberMap.put(key, subQuery); return "memberId_NotInScopeRelation_Member." + key;
+        String ky = "subQueryMapKey" + (_memberId_NotInScopeRelation_MemberMap.size() + 1);
+        _memberId_NotInScopeRelation_MemberMap.put(ky, sq); return "memberId_NotInScopeRelation_Member." + ky;
     }
 
     /** 
@@ -234,18 +234,18 @@ public class BsPurchaseCQ extends AbstractBsPurchaseCQ {
 
     protected Map<String, ProductCQ> _productId_InScopeRelation_ProductMap;
     public Map<String, ProductCQ> getProductId_InScopeRelation_Product() { return _productId_InScopeRelation_ProductMap; }
-    public String keepProductId_InScopeRelation_Product(ProductCQ subQuery) {
+    public String keepProductId_InScopeRelation_Product(ProductCQ sq) {
         if (_productId_InScopeRelation_ProductMap == null) { _productId_InScopeRelation_ProductMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_productId_InScopeRelation_ProductMap.size() + 1);
-        _productId_InScopeRelation_ProductMap.put(key, subQuery); return "productId_InScopeRelation_Product." + key;
+        String ky = "subQueryMapKey" + (_productId_InScopeRelation_ProductMap.size() + 1);
+        _productId_InScopeRelation_ProductMap.put(ky, sq); return "productId_InScopeRelation_Product." + ky;
     }
 
     protected Map<String, ProductCQ> _productId_NotInScopeRelation_ProductMap;
     public Map<String, ProductCQ> getProductId_NotInScopeRelation_Product() { return _productId_NotInScopeRelation_ProductMap; }
-    public String keepProductId_NotInScopeRelation_Product(ProductCQ subQuery) {
+    public String keepProductId_NotInScopeRelation_Product(ProductCQ sq) {
         if (_productId_NotInScopeRelation_ProductMap == null) { _productId_NotInScopeRelation_ProductMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_productId_NotInScopeRelation_ProductMap.size() + 1);
-        _productId_NotInScopeRelation_ProductMap.put(key, subQuery); return "productId_NotInScopeRelation_Product." + key;
+        String ky = "subQueryMapKey" + (_productId_NotInScopeRelation_ProductMap.size() + 1);
+        _productId_NotInScopeRelation_ProductMap.put(ky, sq); return "productId_NotInScopeRelation_Product." + ky;
     }
 
     /** 
@@ -491,36 +491,36 @@ public class BsPurchaseCQ extends AbstractBsPurchaseCQ {
     // ===================================================================================
     //                                                                         Union Query
     //                                                                         ===========
-    protected void reflectRelationOnUnionQuery(ConditionQuery baseQueryAsSuper, ConditionQuery unionQueryAsSuper) {
-        PurchaseCQ baseQuery = (PurchaseCQ)baseQueryAsSuper;
-        PurchaseCQ unionQuery = (PurchaseCQ)unionQueryAsSuper;
-        if (baseQuery.hasConditionQueryMember()) {
-            unionQuery.queryMember().reflectRelationOnUnionQuery(baseQuery.queryMember(), unionQuery.queryMember());
+    protected void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
+        PurchaseCQ bq = (PurchaseCQ)bqs;
+        PurchaseCQ uq = (PurchaseCQ)uqs;
+        if (bq.hasConditionQueryMember()) {
+            uq.queryMember().reflectRelationOnUnionQuery(bq.queryMember(), uq.queryMember());
         }
-        if (baseQuery.hasConditionQueryProduct()) {
-            unionQuery.queryProduct().reflectRelationOnUnionQuery(baseQuery.queryProduct(), unionQuery.queryProduct());
+        if (bq.hasConditionQueryProduct()) {
+            uq.queryProduct().reflectRelationOnUnionQuery(bq.queryProduct(), uq.queryProduct());
         }
-        if (baseQuery.hasConditionQuerySummaryProduct()) {
-            unionQuery.querySummaryProduct().reflectRelationOnUnionQuery(baseQuery.querySummaryProduct(), unionQuery.querySummaryProduct());
+        if (bq.hasConditionQuerySummaryProduct()) {
+            uq.querySummaryProduct().reflectRelationOnUnionQuery(bq.querySummaryProduct(), uq.querySummaryProduct());
         }
-        if (baseQuery.hasConditionQuerySummaryWithdrawal()) {
-            unionQuery.querySummaryWithdrawal().reflectRelationOnUnionQuery(baseQuery.querySummaryWithdrawal(), unionQuery.querySummaryWithdrawal());
+        if (bq.hasConditionQuerySummaryWithdrawal()) {
+            uq.querySummaryWithdrawal().reflectRelationOnUnionQuery(bq.querySummaryWithdrawal(), uq.querySummaryWithdrawal());
         }
-        if (baseQuery.hasConditionQueryWhiteNoPkRelation()) {
-            unionQuery.queryWhiteNoPkRelation().reflectRelationOnUnionQuery(baseQuery.queryWhiteNoPkRelation(), unionQuery.queryWhiteNoPkRelation());
+        if (bq.hasConditionQueryWhiteNoPkRelation()) {
+            uq.queryWhiteNoPkRelation().reflectRelationOnUnionQuery(bq.queryWhiteNoPkRelation(), uq.queryWhiteNoPkRelation());
         }
-        if (baseQuery.hasConditionQueryPurchaseSelf()) {
-            unionQuery.queryPurchaseSelf().reflectRelationOnUnionQuery(baseQuery.queryPurchaseSelf(), unionQuery.queryPurchaseSelf());
+        if (bq.hasConditionQueryPurchaseSelf()) {
+            uq.queryPurchaseSelf().reflectRelationOnUnionQuery(bq.queryPurchaseSelf(), uq.queryPurchaseSelf());
         }
-        if (baseQuery.hasConditionQueryMemberAddressAsSkipRelation()) {
-            unionQuery.xsetParameterMapMemberAddressAsSkipRelation(baseQuery.getParameterMapMemberAddressAsSkipRelation());
-            unionQuery.getConditionQueryMemberAddressAsSkipRelation().reflectRelationOnUnionQuery(baseQuery.getConditionQueryMemberAddressAsSkipRelation(), unionQuery.getConditionQueryMemberAddressAsSkipRelation());
+        if (bq.hasConditionQueryMemberAddressAsSkipRelation()) {
+            uq.xsetParameterMapMemberAddressAsSkipRelation(bq.getParameterMapMemberAddressAsSkipRelation());
+            uq.getConditionQueryMemberAddressAsSkipRelation().reflectRelationOnUnionQuery(bq.getConditionQueryMemberAddressAsSkipRelation(), uq.getConditionQueryMemberAddressAsSkipRelation());
         }
-        if (baseQuery.hasConditionQueryWhitePurchaseReferrerAsOne()) {
-            unionQuery.queryWhitePurchaseReferrerAsOne().reflectRelationOnUnionQuery(baseQuery.queryWhitePurchaseReferrerAsOne(), unionQuery.queryWhitePurchaseReferrerAsOne());
+        if (bq.hasConditionQueryWhitePurchaseReferrerAsOne()) {
+            uq.queryWhitePurchaseReferrerAsOne().reflectRelationOnUnionQuery(bq.queryWhitePurchaseReferrerAsOne(), uq.queryWhitePurchaseReferrerAsOne());
         }
-        if (baseQuery.hasConditionQueryPurchaseSelfAsOne()) {
-            unionQuery.queryPurchaseSelfAsOne().reflectRelationOnUnionQuery(baseQuery.queryPurchaseSelfAsOne(), unionQuery.queryPurchaseSelfAsOne());
+        if (bq.hasConditionQueryPurchaseSelfAsOne()) {
+            uq.queryPurchaseSelfAsOne().reflectRelationOnUnionQuery(bq.queryPurchaseSelfAsOne(), uq.queryPurchaseSelfAsOne());
         }
     }
 
@@ -859,10 +859,10 @@ public class BsPurchaseCQ extends AbstractBsPurchaseCQ {
     //                                                                     ===============
     protected Map<String, PurchaseCQ> _scalarConditionMap;
     public Map<String, PurchaseCQ> getScalarCondition() { return _scalarConditionMap; }
-    public String keepScalarCondition(PurchaseCQ subQuery) {
+    public String keepScalarCondition(PurchaseCQ sq) {
         if (_scalarConditionMap == null) { _scalarConditionMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
-        _scalarConditionMap.put(key, subQuery); return "scalarCondition." + key;
+        String ky = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
+        _scalarConditionMap.put(ky, sq); return "scalarCondition." + ky;
     }
 
     // ===================================================================================
@@ -870,25 +870,25 @@ public class BsPurchaseCQ extends AbstractBsPurchaseCQ {
     //                                                                       =============
     protected Map<String, PurchaseCQ> _specifyMyselfDerivedMap;
     public Map<String, PurchaseCQ> getSpecifyMyselfDerived() { return _specifyMyselfDerivedMap; }
-    public String keepSpecifyMyselfDerived(PurchaseCQ subQuery) {
+    public String keepSpecifyMyselfDerived(PurchaseCQ sq) {
         if (_specifyMyselfDerivedMap == null) { _specifyMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
-        _specifyMyselfDerivedMap.put(key, subQuery); return "specifyMyselfDerived." + key;
+        String ky = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
+        _specifyMyselfDerivedMap.put(ky, sq); return "specifyMyselfDerived." + ky;
     }
 
     protected Map<String, PurchaseCQ> _queryMyselfDerivedMap;
     public Map<String, PurchaseCQ> getQueryMyselfDerived() { return _queryMyselfDerivedMap; }
-    public String keepQueryMyselfDerived(PurchaseCQ subQuery) {
+    public String keepQueryMyselfDerived(PurchaseCQ sq) {
         if (_queryMyselfDerivedMap == null) { _queryMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
-        _queryMyselfDerivedMap.put(key, subQuery); return "queryMyselfDerived." + key;
+        String ky = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
+        _queryMyselfDerivedMap.put(ky, sq); return "queryMyselfDerived." + ky;
     }
     protected Map<String, Object> _qyeryMyselfDerivedParameterMap;
     public Map<String, Object> getQueryMyselfDerivedParameter() { return _qyeryMyselfDerivedParameterMap; }
-    public String keepQueryMyselfDerivedParameter(Object parameterValue) {
+    public String keepQueryMyselfDerivedParameter(Object vl) {
         if (_qyeryMyselfDerivedParameterMap == null) { _qyeryMyselfDerivedParameterMap = newLinkedHashMapSized(4); }
-        String key = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
-        _qyeryMyselfDerivedParameterMap.put(key, parameterValue); return "queryMyselfDerivedParameter." + key;
+        String ky = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
+        _qyeryMyselfDerivedParameterMap.put(ky, vl); return "queryMyselfDerivedParameter." + ky;
     }
 
     // ===================================================================================
@@ -896,10 +896,10 @@ public class BsPurchaseCQ extends AbstractBsPurchaseCQ {
     //                                                                        ============
     protected Map<String, PurchaseCQ> _myselfExistsMap;
     public Map<String, PurchaseCQ> getMyselfExists() { return _myselfExistsMap; }
-    public String keepMyselfExists(PurchaseCQ subQuery) {
+    public String keepMyselfExists(PurchaseCQ sq) {
         if (_myselfExistsMap == null) { _myselfExistsMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
-        _myselfExistsMap.put(key, subQuery); return "myselfExists." + key;
+        String ky = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
+        _myselfExistsMap.put(ky, sq); return "myselfExists." + ky;
     }
 
     // ===================================================================================
@@ -907,10 +907,10 @@ public class BsPurchaseCQ extends AbstractBsPurchaseCQ {
     //                                                                       =============
     protected Map<String, PurchaseCQ> _myselfInScopeMap;
     public Map<String, PurchaseCQ> getMyselfInScope() { return _myselfInScopeMap; }
-    public String keepMyselfInScope(PurchaseCQ subQuery) {
+    public String keepMyselfInScope(PurchaseCQ sq) {
         if (_myselfInScopeMap == null) { _myselfInScopeMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
-        _myselfInScopeMap.put(key, subQuery); return "myselfInScope." + key;
+        String ky = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
+        _myselfInScopeMap.put(ky, sq); return "myselfInScope." + ky;
     }
 
     // ===================================================================================

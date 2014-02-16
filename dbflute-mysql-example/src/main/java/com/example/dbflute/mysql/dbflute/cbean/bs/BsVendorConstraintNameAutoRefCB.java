@@ -507,8 +507,8 @@ public class BsVendorConstraintNameAutoRefCB extends AbstractConditionBean {
         public HpSDRFunction<VendorConstraintNameAutoRefCB, VendorConstraintNameAutoRefCQ> myselfDerived() {
             assertDerived("myselfDerived"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<VendorConstraintNameAutoRefCB, VendorConstraintNameAutoRefCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<VendorConstraintNameAutoRefCB, VendorConstraintNameAutoRefCQ>() {
-                public void setup(String function, SubQuery<VendorConstraintNameAutoRefCB> subQuery, VendorConstraintNameAutoRefCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsmyselfDerive(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<VendorConstraintNameAutoRefCB> sq, VendorConstraintNameAutoRefCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsmyselfDerive(fn, sq, al, op); } }, _dbmetaProvider);
         }
     }
 

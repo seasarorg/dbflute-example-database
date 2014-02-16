@@ -82,21 +82,21 @@ public class VendorLargeName901234567890CIQ extends AbstractBsVendorLargeName901
     { throwIICBOE("(Specify)DerivedReferrer"); return null; }
     public String keepVendorLargeName901234567Id_QueryDerivedReferrer_VendorLargeName90123456RefList(VendorLargeName90123456RefCQ sq)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
-    public String keepVendorLargeName901234567Id_QueryDerivedReferrer_VendorLargeName90123456RefListParameter(Object pv)
+    public String keepVendorLargeName901234567Id_QueryDerivedReferrer_VendorLargeName90123456RefListParameter(Object vl)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
     protected ConditionValue getCValueVendorLargeName9012345Name() { return _myCQ.getVendorLargeName9012345Name(); }
-    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) { return null; }
-    public String keepScalarCondition(VendorLargeName901234567890CQ subQuery)
+    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
+    public String keepScalarCondition(VendorLargeName901234567890CQ sq)
     { throwIICBOE("ScalarCondition"); return null; }
-    public String keepSpecifyMyselfDerived(VendorLargeName901234567890CQ subQuery)
+    public String keepSpecifyMyselfDerived(VendorLargeName901234567890CQ sq)
     { throwIICBOE("(Specify)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerived(VendorLargeName901234567890CQ subQuery)
+    public String keepQueryMyselfDerived(VendorLargeName901234567890CQ sq)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerivedParameter(Object parameterValue)
+    public String keepQueryMyselfDerivedParameter(Object vl)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepMyselfExists(VendorLargeName901234567890CQ subQuery)
+    public String keepMyselfExists(VendorLargeName901234567890CQ sq)
     { throwIICBOE("MyselfExists"); return null;}
-    public String keepMyselfInScope(VendorLargeName901234567890CQ subQuery)
+    public String keepMyselfInScope(VendorLargeName901234567890CQ sq)
     { throwIICBOE("MyselfInScope"); return null;}
 
     protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()

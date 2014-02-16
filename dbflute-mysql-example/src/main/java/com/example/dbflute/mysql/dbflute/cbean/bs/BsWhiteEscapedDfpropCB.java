@@ -330,8 +330,8 @@ public class BsWhiteEscapedDfpropCB extends AbstractConditionBean {
         public HpSDRFunction<WhiteEscapedDfpropCB, WhiteEscapedDfpropCQ> myselfDerived() {
             assertDerived("myselfDerived"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<WhiteEscapedDfpropCB, WhiteEscapedDfpropCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<WhiteEscapedDfpropCB, WhiteEscapedDfpropCQ>() {
-                public void setup(String function, SubQuery<WhiteEscapedDfpropCB> subQuery, WhiteEscapedDfpropCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsmyselfDerive(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<WhiteEscapedDfpropCB> sq, WhiteEscapedDfpropCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsmyselfDerive(fn, sq, al, op); } }, _dbmetaProvider);
         }
     }
 

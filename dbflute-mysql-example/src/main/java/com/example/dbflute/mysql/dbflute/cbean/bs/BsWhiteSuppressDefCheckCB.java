@@ -330,8 +330,8 @@ public class BsWhiteSuppressDefCheckCB extends AbstractConditionBean {
         public HpSDRFunction<WhiteSuppressDefCheckCB, WhiteSuppressDefCheckCQ> myselfDerived() {
             assertDerived("myselfDerived"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<WhiteSuppressDefCheckCB, WhiteSuppressDefCheckCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<WhiteSuppressDefCheckCB, WhiteSuppressDefCheckCQ>() {
-                public void setup(String function, SubQuery<WhiteSuppressDefCheckCB> subQuery, WhiteSuppressDefCheckCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsmyselfDerive(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<WhiteSuppressDefCheckCB> sq, WhiteSuppressDefCheckCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsmyselfDerive(fn, sq, al, op); } }, _dbmetaProvider);
         }
     }
 

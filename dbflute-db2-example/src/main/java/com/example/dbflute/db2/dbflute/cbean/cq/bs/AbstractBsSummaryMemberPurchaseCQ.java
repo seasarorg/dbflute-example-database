@@ -158,8 +158,8 @@ public abstract class AbstractBsSummaryMemberPurchaseCQ extends AbstractConditio
      */
     public void setMemberId_IsNotNull() { regMemberId(CK_ISNN, DOBJ); }
 
-    protected void regMemberId(ConditionKey k, Object v) { regQ(k, v, getCValueMemberId(), "MEMBER_ID"); }
-    abstract protected ConditionValue getCValueMemberId();
+    protected void regMemberId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueMemberId(), "MEMBER_ID"); }
+    protected abstract ConditionValue getCValueMemberId();
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -274,8 +274,8 @@ public abstract class AbstractBsSummaryMemberPurchaseCQ extends AbstractConditio
      */
     public void setAllsumPurchasePrice_IsNotNull() { regAllsumPurchasePrice(CK_ISNN, DOBJ); }
 
-    protected void regAllsumPurchasePrice(ConditionKey k, Object v) { regQ(k, v, getCValueAllsumPurchasePrice(), "ALLSUM_PURCHASE_PRICE"); }
-    abstract protected ConditionValue getCValueAllsumPurchasePrice();
+    protected void regAllsumPurchasePrice(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueAllsumPurchasePrice(), "ALLSUM_PURCHASE_PRICE"); }
+    protected abstract ConditionValue getCValueAllsumPurchasePrice();
 
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -331,7 +331,7 @@ public abstract class AbstractBsSummaryMemberPurchaseCQ extends AbstractConditio
      * @param toDatetime The to-datetime(yyyy/MM/dd HH:mm:ss.SSS) of latestPurchaseDatetime. (NullAllowed: if null, no to-condition)
      * @param fromToOption The option of from-to. (NotNull)
      */
-    public void setLatestPurchaseDatetime_FromTo(java.util.Date fromDatetime, java.util.Date toDatetime, FromToOption fromToOption) {
+    public void setLatestPurchaseDatetime_FromTo(Date fromDatetime, Date toDatetime, FromToOption fromToOption) {
         regFTQ(fCTPD(fromDatetime), fCTPD(toDatetime), getCValueLatestPurchaseDatetime(), "LATEST_PURCHASE_DATETIME", fromToOption);
     }
 
@@ -346,7 +346,7 @@ public abstract class AbstractBsSummaryMemberPurchaseCQ extends AbstractConditio
      * @param fromDate The from-date(yyyy/MM/dd) of latestPurchaseDatetime. (NullAllowed: if null, no from-condition)
      * @param toDate The to-date(yyyy/MM/dd) of latestPurchaseDatetime. (NullAllowed: if null, no to-condition)
      */
-    public void setLatestPurchaseDatetime_DateFromTo(java.util.Date fromDate, java.util.Date toDate) {
+    public void setLatestPurchaseDatetime_DateFromTo(Date fromDate, Date toDate) {
         setLatestPurchaseDatetime_FromTo(fromDate, toDate, new FromToOption().compareAsDate());
     }
 
@@ -362,8 +362,8 @@ public abstract class AbstractBsSummaryMemberPurchaseCQ extends AbstractConditio
      */
     public void setLatestPurchaseDatetime_IsNotNull() { regLatestPurchaseDatetime(CK_ISNN, DOBJ); }
 
-    protected void regLatestPurchaseDatetime(ConditionKey k, Object v) { regQ(k, v, getCValueLatestPurchaseDatetime(), "LATEST_PURCHASE_DATETIME"); }
-    abstract protected ConditionValue getCValueLatestPurchaseDatetime();
+    protected void regLatestPurchaseDatetime(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueLatestPurchaseDatetime(), "LATEST_PURCHASE_DATETIME"); }
+    protected abstract ConditionValue getCValueLatestPurchaseDatetime();
 
     // ===================================================================================
     //                                                                     ScalarCondition
@@ -470,22 +470,22 @@ public abstract class AbstractBsSummaryMemberPurchaseCQ extends AbstractConditio
         return xcreateSSQFunction(CK_LE.getOperand());
     }
 
-    protected HpSSQFunction<SummaryMemberPurchaseCB> xcreateSSQFunction(final String operand) {
+    protected HpSSQFunction<SummaryMemberPurchaseCB> xcreateSSQFunction(final String rd) {
         return new HpSSQFunction<SummaryMemberPurchaseCB>(new HpSSQSetupper<SummaryMemberPurchaseCB>() {
-            public void setup(String function, SubQuery<SummaryMemberPurchaseCB> subQuery, HpSSQOption<SummaryMemberPurchaseCB> option) {
-                xscalarCondition(function, subQuery, operand, option);
+            public void setup(String fn, SubQuery<SummaryMemberPurchaseCB> sq, HpSSQOption<SummaryMemberPurchaseCB> op) {
+                xscalarCondition(fn, sq, rd, op);
             }
         });
     }
 
-    protected void xscalarCondition(String function, SubQuery<SummaryMemberPurchaseCB> subQuery, String operand, HpSSQOption<SummaryMemberPurchaseCB> option) {
-        assertObjectNotNull("subQuery<SummaryMemberPurchaseCB>", subQuery);
-        SummaryMemberPurchaseCB cb = xcreateScalarConditionCB(); subQuery.query(cb);
-        String subQueryPropertyName = keepScalarCondition(cb.query()); // for saving query-value
-        option.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
-        registerScalarCondition(function, cb.query(), subQueryPropertyName, operand, option);
+    protected void xscalarCondition(String fn, SubQuery<SummaryMemberPurchaseCB> sq, String rd, HpSSQOption<SummaryMemberPurchaseCB> op) {
+        assertObjectNotNull("subQuery", sq);
+        SummaryMemberPurchaseCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        String pp = keepScalarCondition(cb.query()); // for saving query-value
+        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
-    public abstract String keepScalarCondition(SummaryMemberPurchaseCQ subQuery);
+    public abstract String keepScalarCondition(SummaryMemberPurchaseCQ sq);
 
     protected SummaryMemberPurchaseCB xcreateScalarConditionCB() {
         SummaryMemberPurchaseCB cb = new SummaryMemberPurchaseCB();
@@ -502,13 +502,14 @@ public abstract class AbstractBsSummaryMemberPurchaseCQ extends AbstractConditio
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    public void xsmyselfDerive(String function, SubQuery<SummaryMemberPurchaseCB> subQuery, String aliasName, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<SummaryMemberPurchaseCB>", subQuery);
-        SummaryMemberPurchaseCB cb = new SummaryMemberPurchaseCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
-        registerSpecifyMyselfDerived(function, cb.query(), "MEMBER_ID", "MEMBER_ID", subQueryPropertyName, "myselfDerived", aliasName, option);
+    public void xsmyselfDerive(String fn, SubQuery<SummaryMemberPurchaseCB> sq, String al, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        SummaryMemberPurchaseCB cb = new SummaryMemberPurchaseCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "MEMBER_ID";
+        String pp = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
+        registerSpecifyMyselfDerived(fn, cb.query(), pk, pk, pp, "myselfDerived", al, op);
     }
-    public abstract String keepSpecifyMyselfDerived(SummaryMemberPurchaseCQ subQuery);
+    public abstract String keepSpecifyMyselfDerived(SummaryMemberPurchaseCQ sq);
 
     /**
      * Prepare for (Query)MyselfDerived (SubQuery).
@@ -519,20 +520,21 @@ public abstract class AbstractBsSummaryMemberPurchaseCQ extends AbstractConditio
     }
     protected HpQDRFunction<SummaryMemberPurchaseCB> xcreateQDRFunctionMyselfDerived() {
         return new HpQDRFunction<SummaryMemberPurchaseCB>(new HpQDRSetupper<SummaryMemberPurchaseCB>() {
-            public void setup(String function, SubQuery<SummaryMemberPurchaseCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-                xqderiveMyselfDerived(function, subQuery, operand, value, option);
+            public void setup(String fn, SubQuery<SummaryMemberPurchaseCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+                xqderiveMyselfDerived(fn, sq, rd, vl, op);
             }
         });
     }
-    public void xqderiveMyselfDerived(String function, SubQuery<SummaryMemberPurchaseCB> subQuery, String operand, Object value, DerivedReferrerOption option) {
-        assertObjectNotNull("subQuery<SummaryMemberPurchaseCB>", subQuery);
-        SummaryMemberPurchaseCB cb = new SummaryMemberPurchaseCB(); cb.xsetupForDerivedReferrer(this); subQuery.query(cb);
-        String subQueryPropertyName = keepQueryMyselfDerived(cb.query()); // for saving query-value.
-        String parameterPropertyName = keepQueryMyselfDerivedParameter(value);
-        registerQueryMyselfDerived(function, cb.query(), "MEMBER_ID", "MEMBER_ID", subQueryPropertyName, "myselfDerived", operand, value, parameterPropertyName, option);
+    public void xqderiveMyselfDerived(String fn, SubQuery<SummaryMemberPurchaseCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        SummaryMemberPurchaseCB cb = new SummaryMemberPurchaseCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pk = "MEMBER_ID";
+        String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
+        String prpp = keepQueryMyselfDerivedParameter(vl);
+        registerQueryMyselfDerived(fn, cb.query(), pk, pk, sqpp, "myselfDerived", rd, vl, prpp, op);
     }
-    public abstract String keepQueryMyselfDerived(SummaryMemberPurchaseCQ subQuery);
-    public abstract String keepQueryMyselfDerivedParameter(Object parameterValue);
+    public abstract String keepQueryMyselfDerived(SummaryMemberPurchaseCQ sq);
+    public abstract String keepQueryMyselfDerivedParameter(Object vl);
 
     // ===================================================================================
     //                                                                        MyselfExists
@@ -542,12 +544,12 @@ public abstract class AbstractBsSummaryMemberPurchaseCQ extends AbstractConditio
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfExists(SubQuery<SummaryMemberPurchaseCB> subQuery) {
-        assertObjectNotNull("subQuery<SummaryMemberPurchaseCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         SummaryMemberPurchaseCB cb = new SummaryMemberPurchaseCB(); cb.xsetupForMyselfExists(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfExists(cb.query()); // for saving query-value.
-        registerMyselfExists(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfExists(cb.query()); // for saving query-value.
+        registerMyselfExists(cb.query(), pp);
     }
-    public abstract String keepMyselfExists(SummaryMemberPurchaseCQ subQuery);
+    public abstract String keepMyselfExists(SummaryMemberPurchaseCQ sq);
 
     // ===================================================================================
     //                                                                       MyselfInScope
@@ -557,12 +559,12 @@ public abstract class AbstractBsSummaryMemberPurchaseCQ extends AbstractConditio
      * @param subQuery The implementation of sub query. (NotNull)
      */
     public void myselfInScope(SubQuery<SummaryMemberPurchaseCB> subQuery) {
-        assertObjectNotNull("subQuery<SummaryMemberPurchaseCB>", subQuery);
+        assertObjectNotNull("subQuery", subQuery);
         SummaryMemberPurchaseCB cb = new SummaryMemberPurchaseCB(); cb.xsetupForMyselfInScope(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMyselfInScope(cb.query()); // for saving query-value.
-        registerMyselfInScope(cb.query(), subQueryPropertyName);
+        String pp = keepMyselfInScope(cb.query()); // for saving query-value.
+        registerMyselfInScope(cb.query(), pp);
     }
-    public abstract String keepMyselfInScope(SummaryMemberPurchaseCQ subQuery);
+    public abstract String keepMyselfInScope(SummaryMemberPurchaseCQ sq);
 
     // ===================================================================================
     //                                                                       Very Internal

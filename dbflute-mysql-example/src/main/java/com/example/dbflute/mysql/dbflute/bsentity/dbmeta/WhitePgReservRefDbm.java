@@ -56,12 +56,12 @@ public class WhitePgReservRefDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgRefId implements PropertyGateway {
-        public Object read(Entity e) { return ((WhitePgReservRef)e).getRefId(); }
-        public void write(Entity e, Object v) { ((WhitePgReservRef)e).setRefId(cti(v)); }
+        public Object read(Entity et) { return ((WhitePgReservRef)et).getRefId(); }
+        public void write(Entity et, Object vl) { ((WhitePgReservRef)et).setRefId(cti(vl)); }
     }
     public static class EpgClassSynonym implements PropertyGateway {
-        public Object read(Entity e) { return ((WhitePgReservRef)e).getClassSynonym(); }
-        public void write(Entity e, Object v) { ((WhitePgReservRef)e).setClassSynonym(cti(v)); }
+        public Object read(Entity et) { return ((WhitePgReservRef)et).getClassSynonym(); }
+        public void write(Entity et, Object vl) { ((WhitePgReservRef)et).setClassSynonym(cti(vl)); }
     }
 
     // ===================================================================================
@@ -110,8 +110,8 @@ public class WhitePgReservRefDbm extends AbstractDBMeta {
     //                                      Foreign Property
     //                                      ----------------
     public ForeignInfo foreignWhitePgReserv() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnClassSynonym(), WhitePgReservDbm.getInstance().columnClassSynonym());
-        return cfi("FK_WHITE_PG_RESERV_REF_CLASS", "whitePgReserv", this, WhitePgReservDbm.getInstance(), map, 0, false, false, false, false, null, null, false, "whitePgReservRefList");
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnClassSynonym(), WhitePgReservDbm.getInstance().columnClassSynonym());
+        return cfi("FK_WHITE_PG_RESERV_REF_CLASS", "whitePgReserv", this, WhitePgReservDbm.getInstance(), mp, 0, false, false, false, false, null, null, false, "whitePgReservRefList");
     }
 
     // -----------------------------------------------------
@@ -143,10 +143,10 @@ public class WhitePgReservRefDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((WhitePgReservRef)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((WhitePgReservRef)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((WhitePgReservRef)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((WhitePgReservRef)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

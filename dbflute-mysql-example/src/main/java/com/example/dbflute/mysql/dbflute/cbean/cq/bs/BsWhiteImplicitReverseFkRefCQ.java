@@ -117,18 +117,18 @@ public class BsWhiteImplicitReverseFkRefCQ extends AbstractBsWhiteImplicitRevers
 
     protected Map<String, WhiteImplicitReverseFkCQ> _whiteImplicitReverseFkId_InScopeRelation_WhiteImplicitReverseFkMap;
     public Map<String, WhiteImplicitReverseFkCQ> getWhiteImplicitReverseFkId_InScopeRelation_WhiteImplicitReverseFk() { return _whiteImplicitReverseFkId_InScopeRelation_WhiteImplicitReverseFkMap; }
-    public String keepWhiteImplicitReverseFkId_InScopeRelation_WhiteImplicitReverseFk(WhiteImplicitReverseFkCQ subQuery) {
+    public String keepWhiteImplicitReverseFkId_InScopeRelation_WhiteImplicitReverseFk(WhiteImplicitReverseFkCQ sq) {
         if (_whiteImplicitReverseFkId_InScopeRelation_WhiteImplicitReverseFkMap == null) { _whiteImplicitReverseFkId_InScopeRelation_WhiteImplicitReverseFkMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_whiteImplicitReverseFkId_InScopeRelation_WhiteImplicitReverseFkMap.size() + 1);
-        _whiteImplicitReverseFkId_InScopeRelation_WhiteImplicitReverseFkMap.put(key, subQuery); return "whiteImplicitReverseFkId_InScopeRelation_WhiteImplicitReverseFk." + key;
+        String ky = "subQueryMapKey" + (_whiteImplicitReverseFkId_InScopeRelation_WhiteImplicitReverseFkMap.size() + 1);
+        _whiteImplicitReverseFkId_InScopeRelation_WhiteImplicitReverseFkMap.put(ky, sq); return "whiteImplicitReverseFkId_InScopeRelation_WhiteImplicitReverseFk." + ky;
     }
 
     protected Map<String, WhiteImplicitReverseFkCQ> _whiteImplicitReverseFkId_NotInScopeRelation_WhiteImplicitReverseFkMap;
     public Map<String, WhiteImplicitReverseFkCQ> getWhiteImplicitReverseFkId_NotInScopeRelation_WhiteImplicitReverseFk() { return _whiteImplicitReverseFkId_NotInScopeRelation_WhiteImplicitReverseFkMap; }
-    public String keepWhiteImplicitReverseFkId_NotInScopeRelation_WhiteImplicitReverseFk(WhiteImplicitReverseFkCQ subQuery) {
+    public String keepWhiteImplicitReverseFkId_NotInScopeRelation_WhiteImplicitReverseFk(WhiteImplicitReverseFkCQ sq) {
         if (_whiteImplicitReverseFkId_NotInScopeRelation_WhiteImplicitReverseFkMap == null) { _whiteImplicitReverseFkId_NotInScopeRelation_WhiteImplicitReverseFkMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_whiteImplicitReverseFkId_NotInScopeRelation_WhiteImplicitReverseFkMap.size() + 1);
-        _whiteImplicitReverseFkId_NotInScopeRelation_WhiteImplicitReverseFkMap.put(key, subQuery); return "whiteImplicitReverseFkId_NotInScopeRelation_WhiteImplicitReverseFk." + key;
+        String ky = "subQueryMapKey" + (_whiteImplicitReverseFkId_NotInScopeRelation_WhiteImplicitReverseFkMap.size() + 1);
+        _whiteImplicitReverseFkId_NotInScopeRelation_WhiteImplicitReverseFkMap.put(ky, sq); return "whiteImplicitReverseFkId_NotInScopeRelation_WhiteImplicitReverseFk." + ky;
     }
 
     /** 
@@ -227,11 +227,11 @@ public class BsWhiteImplicitReverseFkRefCQ extends AbstractBsWhiteImplicitRevers
     // ===================================================================================
     //                                                                         Union Query
     //                                                                         ===========
-    protected void reflectRelationOnUnionQuery(ConditionQuery baseQueryAsSuper, ConditionQuery unionQueryAsSuper) {
-        WhiteImplicitReverseFkRefCQ baseQuery = (WhiteImplicitReverseFkRefCQ)baseQueryAsSuper;
-        WhiteImplicitReverseFkRefCQ unionQuery = (WhiteImplicitReverseFkRefCQ)unionQueryAsSuper;
-        if (baseQuery.hasConditionQueryWhiteImplicitReverseFk()) {
-            unionQuery.queryWhiteImplicitReverseFk().reflectRelationOnUnionQuery(baseQuery.queryWhiteImplicitReverseFk(), unionQuery.queryWhiteImplicitReverseFk());
+    protected void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
+        WhiteImplicitReverseFkRefCQ bq = (WhiteImplicitReverseFkRefCQ)bqs;
+        WhiteImplicitReverseFkRefCQ uq = (WhiteImplicitReverseFkRefCQ)uqs;
+        if (bq.hasConditionQueryWhiteImplicitReverseFk()) {
+            uq.queryWhiteImplicitReverseFk().reflectRelationOnUnionQuery(bq.queryWhiteImplicitReverseFk(), uq.queryWhiteImplicitReverseFk());
         }
     }
 
@@ -282,10 +282,10 @@ public class BsWhiteImplicitReverseFkRefCQ extends AbstractBsWhiteImplicitRevers
     //                                                                     ===============
     protected Map<String, WhiteImplicitReverseFkRefCQ> _scalarConditionMap;
     public Map<String, WhiteImplicitReverseFkRefCQ> getScalarCondition() { return _scalarConditionMap; }
-    public String keepScalarCondition(WhiteImplicitReverseFkRefCQ subQuery) {
+    public String keepScalarCondition(WhiteImplicitReverseFkRefCQ sq) {
         if (_scalarConditionMap == null) { _scalarConditionMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
-        _scalarConditionMap.put(key, subQuery); return "scalarCondition." + key;
+        String ky = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
+        _scalarConditionMap.put(ky, sq); return "scalarCondition." + ky;
     }
 
     // ===================================================================================
@@ -293,25 +293,25 @@ public class BsWhiteImplicitReverseFkRefCQ extends AbstractBsWhiteImplicitRevers
     //                                                                       =============
     protected Map<String, WhiteImplicitReverseFkRefCQ> _specifyMyselfDerivedMap;
     public Map<String, WhiteImplicitReverseFkRefCQ> getSpecifyMyselfDerived() { return _specifyMyselfDerivedMap; }
-    public String keepSpecifyMyselfDerived(WhiteImplicitReverseFkRefCQ subQuery) {
+    public String keepSpecifyMyselfDerived(WhiteImplicitReverseFkRefCQ sq) {
         if (_specifyMyselfDerivedMap == null) { _specifyMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
-        _specifyMyselfDerivedMap.put(key, subQuery); return "specifyMyselfDerived." + key;
+        String ky = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
+        _specifyMyselfDerivedMap.put(ky, sq); return "specifyMyselfDerived." + ky;
     }
 
     protected Map<String, WhiteImplicitReverseFkRefCQ> _queryMyselfDerivedMap;
     public Map<String, WhiteImplicitReverseFkRefCQ> getQueryMyselfDerived() { return _queryMyselfDerivedMap; }
-    public String keepQueryMyselfDerived(WhiteImplicitReverseFkRefCQ subQuery) {
+    public String keepQueryMyselfDerived(WhiteImplicitReverseFkRefCQ sq) {
         if (_queryMyselfDerivedMap == null) { _queryMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
-        _queryMyselfDerivedMap.put(key, subQuery); return "queryMyselfDerived." + key;
+        String ky = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
+        _queryMyselfDerivedMap.put(ky, sq); return "queryMyselfDerived." + ky;
     }
     protected Map<String, Object> _qyeryMyselfDerivedParameterMap;
     public Map<String, Object> getQueryMyselfDerivedParameter() { return _qyeryMyselfDerivedParameterMap; }
-    public String keepQueryMyselfDerivedParameter(Object parameterValue) {
+    public String keepQueryMyselfDerivedParameter(Object vl) {
         if (_qyeryMyselfDerivedParameterMap == null) { _qyeryMyselfDerivedParameterMap = newLinkedHashMapSized(4); }
-        String key = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
-        _qyeryMyselfDerivedParameterMap.put(key, parameterValue); return "queryMyselfDerivedParameter." + key;
+        String ky = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
+        _qyeryMyselfDerivedParameterMap.put(ky, vl); return "queryMyselfDerivedParameter." + ky;
     }
 
     // ===================================================================================
@@ -319,10 +319,10 @@ public class BsWhiteImplicitReverseFkRefCQ extends AbstractBsWhiteImplicitRevers
     //                                                                        ============
     protected Map<String, WhiteImplicitReverseFkRefCQ> _myselfExistsMap;
     public Map<String, WhiteImplicitReverseFkRefCQ> getMyselfExists() { return _myselfExistsMap; }
-    public String keepMyselfExists(WhiteImplicitReverseFkRefCQ subQuery) {
+    public String keepMyselfExists(WhiteImplicitReverseFkRefCQ sq) {
         if (_myselfExistsMap == null) { _myselfExistsMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
-        _myselfExistsMap.put(key, subQuery); return "myselfExists." + key;
+        String ky = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
+        _myselfExistsMap.put(ky, sq); return "myselfExists." + ky;
     }
 
     // ===================================================================================
@@ -330,10 +330,10 @@ public class BsWhiteImplicitReverseFkRefCQ extends AbstractBsWhiteImplicitRevers
     //                                                                       =============
     protected Map<String, WhiteImplicitReverseFkRefCQ> _myselfInScopeMap;
     public Map<String, WhiteImplicitReverseFkRefCQ> getMyselfInScope() { return _myselfInScopeMap; }
-    public String keepMyselfInScope(WhiteImplicitReverseFkRefCQ subQuery) {
+    public String keepMyselfInScope(WhiteImplicitReverseFkRefCQ sq) {
         if (_myselfInScopeMap == null) { _myselfInScopeMap = newLinkedHashMapSized(4); }
-        String key = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
-        _myselfInScopeMap.put(key, subQuery); return "myselfInScope." + key;
+        String ky = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
+        _myselfInScopeMap.put(ky, sq); return "myselfInScope." + ky;
     }
 
     // ===================================================================================

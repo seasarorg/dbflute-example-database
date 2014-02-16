@@ -42,16 +42,16 @@ public class SummaryMemberPurchaseDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgMemberId implements PropertyGateway {
-        public Object read(Entity e) { return ((SummaryMemberPurchase)e).getMemberId(); }
-        public void write(Entity e, Object v) { ((SummaryMemberPurchase)e).setMemberId(ctl(v)); }
+        public Object read(Entity et) { return ((SummaryMemberPurchase)et).getMemberId(); }
+        public void write(Entity et, Object vl) { ((SummaryMemberPurchase)et).setMemberId(ctl(vl)); }
     }
     public static class EpgAllsumPurchasePrice implements PropertyGateway {
-        public Object read(Entity e) { return ((SummaryMemberPurchase)e).getAllsumPurchasePrice(); }
-        public void write(Entity e, Object v) { ((SummaryMemberPurchase)e).setAllsumPurchasePrice(ctb(v)); }
+        public Object read(Entity et) { return ((SummaryMemberPurchase)et).getAllsumPurchasePrice(); }
+        public void write(Entity et, Object vl) { ((SummaryMemberPurchase)et).setAllsumPurchasePrice(ctb(vl)); }
     }
     public static class EpgLatestPurchaseDatetime implements PropertyGateway {
-        public Object read(Entity e) { return ((SummaryMemberPurchase)e).getLatestPurchaseDatetime(); }
-        public void write(Entity e, Object v) { ((SummaryMemberPurchase)e).setLatestPurchaseDatetime((java.sql.Timestamp)v); }
+        public Object read(Entity et) { return ((SummaryMemberPurchase)et).getLatestPurchaseDatetime(); }
+        public void write(Entity et, Object vl) { ((SummaryMemberPurchase)et).setLatestPurchaseDatetime((java.sql.Timestamp)vl); }
     }
 
     // ===================================================================================
@@ -138,10 +138,10 @@ public class SummaryMemberPurchaseDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((SummaryMemberPurchase)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((SummaryMemberPurchase)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((SummaryMemberPurchase)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((SummaryMemberPurchase)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

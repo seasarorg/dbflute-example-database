@@ -139,10 +139,10 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
         return doSelectEntity(cb, VendorUuidFoo.class);
     }
 
-    protected <ENTITY extends VendorUuidFoo> ENTITY doSelectEntity(final VendorUuidFooCB cb, Class<ENTITY> entityType) {
+    protected <ENTITY extends VendorUuidFoo> ENTITY doSelectEntity(final VendorUuidFooCB cb, Class<ENTITY> tp) {
         assertCBStateValid(cb);
-        return helpSelectEntityInternally(cb, entityType, new InternalSelectEntityCallback<ENTITY, VendorUuidFooCB>() {
-            public List<ENTITY> callbackSelectList(VendorUuidFooCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); } });
+        return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, VendorUuidFooCB>() {
+            public List<ENTITY> callbackSelectList(VendorUuidFooCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
     }
 
     @Override
@@ -168,10 +168,10 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
         return doSelectEntityWithDeletedCheck(cb, VendorUuidFoo.class);
     }
 
-    protected <ENTITY extends VendorUuidFoo> ENTITY doSelectEntityWithDeletedCheck(final VendorUuidFooCB cb, Class<ENTITY> entityType) {
+    protected <ENTITY extends VendorUuidFoo> ENTITY doSelectEntityWithDeletedCheck(final VendorUuidFooCB cb, Class<ENTITY> tp) {
         assertCBStateValid(cb);
-        return helpSelectEntityWithDeletedCheckInternally(cb, entityType, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, VendorUuidFooCB>() {
-            public List<ENTITY> callbackSelectList(VendorUuidFooCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); } });
+        return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, VendorUuidFooCB>() {
+            public List<ENTITY> callbackSelectList(VendorUuidFooCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
     }
 
     @Override
@@ -239,11 +239,11 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
         return doSelectList(cb, VendorUuidFoo.class);
     }
 
-    protected <ENTITY extends VendorUuidFoo> ListResultBean<ENTITY> doSelectList(VendorUuidFooCB cb, Class<ENTITY> entityType) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", entityType);
-        assertSpecifyDerivedReferrerEntityProperty(cb, entityType);
-        return helpSelectListInternally(cb, entityType, new InternalSelectListCallback<ENTITY, VendorUuidFooCB>() {
-            public List<ENTITY> callbackSelectList(VendorUuidFooCB cb, Class<ENTITY> entityType) { return delegateSelectList(cb, entityType); } });
+    protected <ENTITY extends VendorUuidFoo> ListResultBean<ENTITY> doSelectList(VendorUuidFooCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
+        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
+        return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, VendorUuidFooCB>() {
+            public List<ENTITY> callbackSelectList(VendorUuidFooCB cb, Class<ENTITY> tp) { return delegateSelectList(cb, tp); } });
     }
 
     @Override
@@ -280,11 +280,11 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
         return doSelectPage(cb, VendorUuidFoo.class);
     }
 
-    protected <ENTITY extends VendorUuidFoo> PagingResultBean<ENTITY> doSelectPage(VendorUuidFooCB cb, Class<ENTITY> entityType) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", entityType);
-        return helpSelectPageInternally(cb, entityType, new InternalSelectPageCallback<ENTITY, VendorUuidFooCB>() {
+    protected <ENTITY extends VendorUuidFoo> PagingResultBean<ENTITY> doSelectPage(VendorUuidFooCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
+        return helpSelectPageInternally(cb, tp, new InternalSelectPageCallback<ENTITY, VendorUuidFooCB>() {
             public int callbackSelectCount(VendorUuidFooCB cb) { return doSelectCountPlainly(cb); }
-            public List<ENTITY> callbackSelectList(VendorUuidFooCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); }
+            public List<ENTITY> callbackSelectList(VendorUuidFooCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
         });
     }
 
@@ -314,12 +314,12 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
         doSelectCursor(cb, entityRowHandler, VendorUuidFoo.class);
     }
 
-    protected <ENTITY extends VendorUuidFoo> void doSelectCursor(VendorUuidFooCB cb, EntityRowHandler<ENTITY> entityRowHandler, Class<ENTITY> entityType) {
-        assertCBStateValid(cb); assertObjectNotNull("entityRowHandler<VendorUuidFoo>", entityRowHandler); assertObjectNotNull("entityType", entityType);
-        assertSpecifyDerivedReferrerEntityProperty(cb, entityType);
-        helpSelectCursorInternally(cb, entityRowHandler, entityType, new InternalSelectCursorCallback<ENTITY, VendorUuidFooCB>() {
-            public void callbackSelectCursor(VendorUuidFooCB cb, EntityRowHandler<ENTITY> entityRowHandler, Class<ENTITY> entityType) { delegateSelectCursor(cb, entityRowHandler, entityType); }
-            public List<ENTITY> callbackSelectList(VendorUuidFooCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); }
+    protected <ENTITY extends VendorUuidFoo> void doSelectCursor(VendorUuidFooCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
+        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
+        helpSelectCursorInternally(cb, handler, tp, new InternalSelectCursorCallback<ENTITY, VendorUuidFooCB>() {
+            public void callbackSelectCursor(VendorUuidFooCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) { delegateSelectCursor(cb, handler, tp); }
+            public List<ENTITY> callbackSelectList(VendorUuidFooCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
         });
     }
 
@@ -345,18 +345,18 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
         return doScalarSelect(resultType, newMyConditionBean());
     }
 
-    protected <RESULT, CB extends VendorUuidFooCB> SLFunction<CB, RESULT> doScalarSelect(Class<RESULT> resultType, CB cb) {
-        assertObjectNotNull("resultType", resultType); assertCBStateValid(cb);
+    protected <RESULT, CB extends VendorUuidFooCB> SLFunction<CB, RESULT> doScalarSelect(Class<RESULT> tp, CB cb) {
+        assertObjectNotNull("resultType", tp); assertCBStateValid(cb);
         cb.xsetupForScalarSelect(); cb.getSqlClause().disableSelectIndex(); // for when you use union
-        return createSLFunction(cb, resultType);
+        return createSLFunction(cb, tp);
     }
 
-    protected <RESULT, CB extends VendorUuidFooCB> SLFunction<CB, RESULT> createSLFunction(CB cb, Class<RESULT> resultType) {
-        return new SLFunction<CB, RESULT>(cb, resultType);
+    protected <RESULT, CB extends VendorUuidFooCB> SLFunction<CB, RESULT> createSLFunction(CB cb, Class<RESULT> tp) {
+        return new SLFunction<CB, RESULT>(cb, tp);
     }
 
-    protected <RESULT> SLFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> resultType) {
-        return doScalarSelect(resultType, newMyConditionBean());
+    protected <RESULT> SLFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) {
+        return doScalarSelect(tp, newMyConditionBean());
     }
 
     // ===================================================================================
@@ -378,10 +378,10 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
      */
     public List<VendorUuidBar> pulloutVendorUuidBar(List<VendorUuidFoo> vendorUuidFooList) {
         return helpPulloutInternally(vendorUuidFooList, new InternalPulloutCallback<VendorUuidFoo, VendorUuidBar>() {
-            public VendorUuidBar getFr(VendorUuidFoo e) { return e.getVendorUuidBar(); }
+            public VendorUuidBar getFr(VendorUuidFoo et) { return et.getVendorUuidBar(); }
             public boolean hasRf() { return true; }
-            public void setRfLs(VendorUuidBar e, List<VendorUuidFoo> ls)
-            { e.setVendorUuidFooList(ls); }
+            public void setRfLs(VendorUuidBar et, List<VendorUuidFoo> ls)
+            { et.setVendorUuidFooList(ls); }
         });
     }
 
@@ -395,7 +395,7 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
      */
     public List<java.util.UUID> extractFooIdList(List<VendorUuidFoo> vendorUuidFooList) {
         return helpExtractListInternally(vendorUuidFooList, new InternalExtractCallback<VendorUuidFoo, java.util.UUID>() {
-            public java.util.UUID getCV(VendorUuidFoo e) { return e.getFooId(); }
+            public java.util.UUID getCV(VendorUuidFoo et) { return et.getFooId(); }
         });
     }
 
@@ -423,24 +423,24 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
         doInsert(vendorUuidFoo, null);
     }
 
-    protected void doInsert(VendorUuidFoo vendorUuidFoo, InsertOption<VendorUuidFooCB> option) {
+    protected void doInsert(VendorUuidFoo vendorUuidFoo, InsertOption<VendorUuidFooCB> op) {
         assertObjectNotNull("vendorUuidFoo", vendorUuidFoo);
-        prepareInsertOption(option);
-        delegateInsert(vendorUuidFoo, option);
+        prepareInsertOption(op);
+        delegateInsert(vendorUuidFoo, op);
     }
 
-    protected void prepareInsertOption(InsertOption<VendorUuidFooCB> option) {
-        if (option == null) { return; }
-        assertInsertOptionStatus(option);
-        if (option.hasSpecifiedInsertColumn()) {
-            option.resolveInsertColumnSpecification(createCBForSpecifiedUpdate());
+    protected void prepareInsertOption(InsertOption<VendorUuidFooCB> op) {
+        if (op == null) { return; }
+        assertInsertOptionStatus(op);
+        if (op.hasSpecifiedInsertColumn()) {
+            op.resolveInsertColumnSpecification(createCBForSpecifiedUpdate());
         }
     }
 
     @Override
-    protected void doCreate(Entity entity, InsertOption<? extends ConditionBean> option) {
-        if (option == null) { insert(downcast(entity)); }
-        else { varyingInsert(downcast(entity), downcast(option)); }
+    protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) {
+        if (op == null) { insert(downcast(et)); }
+        else { varyingInsert(downcast(et), downcast(op)); }
     }
 
     /**
@@ -469,21 +469,21 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
         doUpdate(vendorUuidFoo, null);
     }
 
-    protected void doUpdate(VendorUuidFoo vendorUuidFoo, final UpdateOption<VendorUuidFooCB> option) {
+    protected void doUpdate(VendorUuidFoo vendorUuidFoo, final UpdateOption<VendorUuidFooCB> op) {
         assertObjectNotNull("vendorUuidFoo", vendorUuidFoo);
-        prepareUpdateOption(option);
+        prepareUpdateOption(op);
         helpUpdateInternally(vendorUuidFoo, new InternalUpdateCallback<VendorUuidFoo>() {
-            public int callbackDelegateUpdate(VendorUuidFoo entity) { return delegateUpdate(entity, option); } });
+            public int callbackDelegateUpdate(VendorUuidFoo et) { return delegateUpdate(et, op); } });
     }
 
-    protected void prepareUpdateOption(UpdateOption<VendorUuidFooCB> option) {
-        if (option == null) { return; }
-        assertUpdateOptionStatus(option);
-        if (option.hasSelfSpecification()) {
-            option.resolveSelfSpecification(createCBForVaryingUpdate());
+    protected void prepareUpdateOption(UpdateOption<VendorUuidFooCB> op) {
+        if (op == null) { return; }
+        assertUpdateOptionStatus(op);
+        if (op.hasSelfSpecification()) {
+            op.resolveSelfSpecification(createCBForVaryingUpdate());
         }
-        if (option.hasSpecifiedUpdateColumn()) {
-            option.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate());
+        if (op.hasSpecifiedUpdateColumn()) {
+            op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate());
         }
     }
 
@@ -500,14 +500,14 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
     }
 
     @Override
-    protected void doModify(Entity entity, UpdateOption<? extends ConditionBean> option) {
-        if (option == null) { update(downcast(entity)); }
-        else { varyingUpdate(downcast(entity), downcast(option)); }
+    protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) {
+        if (op == null) { update(downcast(et)); }
+        else { varyingUpdate(downcast(et), downcast(op)); }
     }
 
     @Override
-    protected void doModifyNonstrict(Entity entity, UpdateOption<? extends ConditionBean> option) {
-        doModify(entity, option);
+    protected void doModifyNonstrict(Entity et, UpdateOption<? extends ConditionBean> op) {
+        doModify(et, op);
     }
 
     /**
@@ -523,30 +523,28 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
         doInesrtOrUpdate(vendorUuidFoo, null, null);
     }
 
-    protected void doInesrtOrUpdate(VendorUuidFoo vendorUuidFoo, final InsertOption<VendorUuidFooCB> insertOption, final UpdateOption<VendorUuidFooCB> updateOption) {
+    protected void doInesrtOrUpdate(VendorUuidFoo vendorUuidFoo, final InsertOption<VendorUuidFooCB> iop, final UpdateOption<VendorUuidFooCB> uop) {
         helpInsertOrUpdateInternally(vendorUuidFoo, new InternalInsertOrUpdateCallback<VendorUuidFoo, VendorUuidFooCB>() {
-            public void callbackInsert(VendorUuidFoo entity) { doInsert(entity, insertOption); }
-            public void callbackUpdate(VendorUuidFoo entity) { doUpdate(entity, updateOption); }
+            public void callbackInsert(VendorUuidFoo et) { doInsert(et, iop); }
+            public void callbackUpdate(VendorUuidFoo et) { doUpdate(et, uop); }
             public VendorUuidFooCB callbackNewMyConditionBean() { return newMyConditionBean(); }
             public int callbackSelectCount(VendorUuidFooCB cb) { return selectCount(cb); }
         });
     }
 
     @Override
-    protected void doCreateOrModify(Entity entity, InsertOption<? extends ConditionBean> insertOption,
-            UpdateOption<? extends ConditionBean> updateOption) {
-        if (insertOption == null && updateOption == null) { insertOrUpdate(downcast(entity)); }
+    protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
+        if (iop == null && uop == null) { insertOrUpdate(downcast(et)); }
         else {
-            insertOption = insertOption == null ? new InsertOption<VendorUuidFooCB>() : insertOption;
-            updateOption = updateOption == null ? new UpdateOption<VendorUuidFooCB>() : updateOption;
-            varyingInsertOrUpdate(downcast(entity), downcast(insertOption), downcast(updateOption));
+            iop = iop != null ? iop : new InsertOption<VendorUuidFooCB>();
+            uop = uop != null ? uop : new UpdateOption<VendorUuidFooCB>();
+            varyingInsertOrUpdate(downcast(et), downcast(iop), downcast(uop));
         }
     }
 
     @Override
-    protected void doCreateOrModifyNonstrict(Entity entity, InsertOption<? extends ConditionBean> insertOption,
-            UpdateOption<? extends ConditionBean> updateOption) {
-        doCreateOrModify(entity, insertOption, updateOption);
+    protected void doCreateOrModifyNonstrict(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
+        doCreateOrModify(et, iop, uop);
     }
 
     /**
@@ -570,27 +568,27 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
         doDelete(vendorUuidFoo, null);
     }
 
-    protected void doDelete(VendorUuidFoo vendorUuidFoo, final DeleteOption<VendorUuidFooCB> option) {
+    protected void doDelete(VendorUuidFoo vendorUuidFoo, final DeleteOption<VendorUuidFooCB> op) {
         assertObjectNotNull("vendorUuidFoo", vendorUuidFoo);
-        prepareDeleteOption(option);
+        prepareDeleteOption(op);
         helpDeleteInternally(vendorUuidFoo, new InternalDeleteCallback<VendorUuidFoo>() {
-            public int callbackDelegateDelete(VendorUuidFoo entity) { return delegateDelete(entity, option); } });
+            public int callbackDelegateDelete(VendorUuidFoo et) { return delegateDelete(et, op); } });
     }
 
-    protected void prepareDeleteOption(DeleteOption<VendorUuidFooCB> option) {
-        if (option == null) { return; }
-        assertDeleteOptionStatus(option);
-    }
-
-    @Override
-    protected void doRemove(Entity entity, DeleteOption<? extends ConditionBean> option) {
-        if (option == null) { delete(downcast(entity)); }
-        else { varyingDelete(downcast(entity), downcast(option)); }
+    protected void prepareDeleteOption(DeleteOption<VendorUuidFooCB> op) {
+        if (op == null) { return; }
+        assertDeleteOptionStatus(op);
     }
 
     @Override
-    protected void doRemoveNonstrict(Entity entity, DeleteOption<? extends ConditionBean> option) {
-        doRemove(entity, option);
+    protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) {
+        if (op == null) { delete(downcast(et)); }
+        else { varyingDelete(downcast(et), downcast(op)); }
+    }
+
+    @Override
+    protected void doRemoveNonstrict(Entity et, DeleteOption<? extends ConditionBean> op) {
+        doRemove(et, op);
     }
 
     // ===================================================================================
@@ -621,26 +619,26 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
      * @return The array of inserted count. (NotNull, EmptyAllowed)
      */
     public int[] batchInsert(List<VendorUuidFoo> vendorUuidFooList) {
-        InsertOption<VendorUuidFooCB> option = createInsertUpdateOption();
-        return doBatchInsert(vendorUuidFooList, option);
+        InsertOption<VendorUuidFooCB> op = createInsertUpdateOption();
+        return doBatchInsert(vendorUuidFooList, op);
     }
 
-    protected int[] doBatchInsert(List<VendorUuidFoo> vendorUuidFooList, InsertOption<VendorUuidFooCB> option) {
+    protected int[] doBatchInsert(List<VendorUuidFoo> vendorUuidFooList, InsertOption<VendorUuidFooCB> op) {
         assertObjectNotNull("vendorUuidFooList", vendorUuidFooList);
-        prepareBatchInsertOption(vendorUuidFooList, option);
-        return delegateBatchInsert(vendorUuidFooList, option);
+        prepareBatchInsertOption(vendorUuidFooList, op);
+        return delegateBatchInsert(vendorUuidFooList, op);
     }
 
-    protected void prepareBatchInsertOption(List<VendorUuidFoo> vendorUuidFooList, InsertOption<VendorUuidFooCB> option) {
-        option.xallowInsertColumnModifiedPropertiesFragmented();
-        option.xacceptInsertColumnModifiedPropertiesIfNeeds(vendorUuidFooList);
-        prepareInsertOption(option);
+    protected void prepareBatchInsertOption(List<VendorUuidFoo> vendorUuidFooList, InsertOption<VendorUuidFooCB> op) {
+        op.xallowInsertColumnModifiedPropertiesFragmented();
+        op.xacceptInsertColumnModifiedPropertiesIfNeeds(vendorUuidFooList);
+        prepareInsertOption(op);
     }
 
     @Override
-    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> option) {
-        if (option == null) { return batchInsert(downcast(ls)); }
-        else { return varyingBatchInsert(downcast(ls), downcast(option)); }
+    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) {
+        if (op == null) { return batchInsert(downcast(ls)); }
+        else { return varyingBatchInsert(downcast(ls), downcast(op)); }
     }
 
     /**
@@ -668,25 +666,25 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
      * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<VendorUuidFoo> vendorUuidFooList) {
-        UpdateOption<VendorUuidFooCB> option = createPlainUpdateOption();
-        return doBatchUpdate(vendorUuidFooList, option);
+        UpdateOption<VendorUuidFooCB> op = createPlainUpdateOption();
+        return doBatchUpdate(vendorUuidFooList, op);
     }
 
-    protected int[] doBatchUpdate(List<VendorUuidFoo> vendorUuidFooList, UpdateOption<VendorUuidFooCB> option) {
+    protected int[] doBatchUpdate(List<VendorUuidFoo> vendorUuidFooList, UpdateOption<VendorUuidFooCB> op) {
         assertObjectNotNull("vendorUuidFooList", vendorUuidFooList);
-        prepareBatchUpdateOption(vendorUuidFooList, option);
-        return delegateBatchUpdate(vendorUuidFooList, option);
+        prepareBatchUpdateOption(vendorUuidFooList, op);
+        return delegateBatchUpdate(vendorUuidFooList, op);
     }
 
-    protected void prepareBatchUpdateOption(List<VendorUuidFoo> vendorUuidFooList, UpdateOption<VendorUuidFooCB> option) {
-        option.xacceptUpdateColumnModifiedPropertiesIfNeeds(vendorUuidFooList);
-        prepareUpdateOption(option);
+    protected void prepareBatchUpdateOption(List<VendorUuidFoo> vendorUuidFooList, UpdateOption<VendorUuidFooCB> op) {
+        op.xacceptUpdateColumnModifiedPropertiesIfNeeds(vendorUuidFooList);
+        prepareUpdateOption(op);
     }
 
     @Override
-    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> option) {
-        if (option == null) { return batchUpdate(downcast(ls)); }
-        else { return varyingBatchUpdate(downcast(ls), downcast(option)); }
+    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) {
+        if (op == null) { return batchUpdate(downcast(ls)); }
+        else { return varyingBatchUpdate(downcast(ls), downcast(op)); }
     }
 
     /**
@@ -722,8 +720,8 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
     }
 
     @Override
-    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> option) {
-        return doLumpModify(ls, option);
+    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> op) {
+        return doLumpModify(ls, op);
     }
 
     /**
@@ -737,21 +735,21 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
         return doBatchDelete(vendorUuidFooList, null);
     }
 
-    protected int[] doBatchDelete(List<VendorUuidFoo> vendorUuidFooList, DeleteOption<VendorUuidFooCB> option) {
+    protected int[] doBatchDelete(List<VendorUuidFoo> vendorUuidFooList, DeleteOption<VendorUuidFooCB> op) {
         assertObjectNotNull("vendorUuidFooList", vendorUuidFooList);
-        prepareDeleteOption(option);
-        return delegateBatchDelete(vendorUuidFooList, option);
+        prepareDeleteOption(op);
+        return delegateBatchDelete(vendorUuidFooList, op);
     }
 
     @Override
-    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> option) {
-        if (option == null) { return batchDelete(downcast(ls)); }
-        else { return varyingBatchDelete(downcast(ls), downcast(option)); }
+    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) {
+        if (op == null) { return batchDelete(downcast(ls)); }
+        else { return varyingBatchDelete(downcast(ls), downcast(op)); }
     }
 
     @Override
-    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> option) {
-        return doLumpRemove(ls, option);
+    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> op) {
+        return doLumpRemove(ls, op);
     }
 
     // ===================================================================================
@@ -787,13 +785,12 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
         return doQueryInsert(setupper, null);
     }
 
-    protected int doQueryInsert(QueryInsertSetupper<VendorUuidFoo, VendorUuidFooCB> setupper, InsertOption<VendorUuidFooCB> option) {
-        assertObjectNotNull("setupper", setupper);
-        prepareInsertOption(option);
-        VendorUuidFoo entity = new VendorUuidFoo();
-        VendorUuidFooCB intoCB = createCBForQueryInsert();
-        ConditionBean resourceCB = setupper.setup(entity, intoCB);
-        return delegateQueryInsert(entity, intoCB, resourceCB, option);
+    protected int doQueryInsert(QueryInsertSetupper<VendorUuidFoo, VendorUuidFooCB> sp, InsertOption<VendorUuidFooCB> op) {
+        assertObjectNotNull("setupper", sp);
+        prepareInsertOption(op);
+        VendorUuidFoo e = new VendorUuidFoo();
+        VendorUuidFooCB cb = createCBForQueryInsert();
+        return delegateQueryInsert(e, cb, sp.setup(e, cb), op);
     }
 
     protected VendorUuidFooCB createCBForQueryInsert() {
@@ -834,16 +831,16 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
         return doQueryUpdate(vendorUuidFoo, cb, null);
     }
 
-    protected int doQueryUpdate(VendorUuidFoo vendorUuidFoo, VendorUuidFooCB cb, UpdateOption<VendorUuidFooCB> option) {
+    protected int doQueryUpdate(VendorUuidFoo vendorUuidFoo, VendorUuidFooCB cb, UpdateOption<VendorUuidFooCB> op) {
         assertObjectNotNull("vendorUuidFoo", vendorUuidFoo); assertCBStateValid(cb);
-        prepareUpdateOption(option);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(vendorUuidFoo, cb, option) : 0;
+        prepareUpdateOption(op);
+        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(vendorUuidFoo, cb, op) : 0;
     }
 
     @Override
-    protected int doRangeModify(Entity entity, ConditionBean cb, UpdateOption<? extends ConditionBean> option) {
-        if (option == null) { return queryUpdate(downcast(entity), (VendorUuidFooCB)cb); }
-        else { return varyingQueryUpdate(downcast(entity), (VendorUuidFooCB)cb, downcast(option)); }
+    protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op) {
+        if (op == null) { return queryUpdate(downcast(et), (VendorUuidFooCB)cb); }
+        else { return varyingQueryUpdate(downcast(et), (VendorUuidFooCB)cb, downcast(op)); }
     }
 
     /**
@@ -861,16 +858,16 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
         return doQueryDelete(cb, null);
     }
 
-    protected int doQueryDelete(VendorUuidFooCB cb, DeleteOption<VendorUuidFooCB> option) {
+    protected int doQueryDelete(VendorUuidFooCB cb, DeleteOption<VendorUuidFooCB> op) {
         assertCBStateValid(cb);
-        prepareDeleteOption(option);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryDelete(cb, option) : 0;
+        prepareDeleteOption(op);
+        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryDelete(cb, op) : 0;
     }
 
     @Override
-    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> option) {
-        if (option == null) { return queryDelete((VendorUuidFooCB)cb); }
-        else { return varyingQueryDelete((VendorUuidFooCB)cb, downcast(option)); }
+    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) {
+        if (op == null) { return queryDelete((VendorUuidFooCB)cb); }
+        else { return varyingQueryDelete((VendorUuidFooCB)cb, downcast(op)); }
     }
 
     // ===================================================================================
@@ -1122,29 +1119,29 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
     //                                                ------
     protected int delegateSelectCountUniquely(VendorUuidFooCB cb) { return invoke(createSelectCountCBCommand(cb, true)); }
     protected int delegateSelectCountPlainly(VendorUuidFooCB cb) { return invoke(createSelectCountCBCommand(cb, false)); }
-    protected <ENTITY extends VendorUuidFoo> void delegateSelectCursor(VendorUuidFooCB cb, EntityRowHandler<ENTITY> erh, Class<ENTITY> et)
-    { invoke(createSelectCursorCBCommand(cb, erh, et)); }
-    protected <ENTITY extends VendorUuidFoo> List<ENTITY> delegateSelectList(VendorUuidFooCB cb, Class<ENTITY> et)
-    { return invoke(createSelectListCBCommand(cb, et)); }
+    protected <ENTITY extends VendorUuidFoo> void delegateSelectCursor(VendorUuidFooCB cb, EntityRowHandler<ENTITY> rh, Class<ENTITY> tp)
+    { invoke(createSelectCursorCBCommand(cb, rh, tp)); }
+    protected <ENTITY extends VendorUuidFoo> List<ENTITY> delegateSelectList(VendorUuidFooCB cb, Class<ENTITY> tp)
+    { return invoke(createSelectListCBCommand(cb, tp)); }
 
     // -----------------------------------------------------
     //                                                Update
     //                                                ------
-    protected int delegateInsert(VendorUuidFoo e, InsertOption<VendorUuidFooCB> op)
-    { if (!processBeforeInsert(e, op)) { return 0; }
-      return invoke(createInsertEntityCommand(e, op)); }
-    protected int delegateUpdate(VendorUuidFoo e, UpdateOption<VendorUuidFooCB> op)
-    { if (!processBeforeUpdate(e, op)) { return 0; }
-      return delegateUpdateNonstrict(e, op); }
-    protected int delegateUpdateNonstrict(VendorUuidFoo e, UpdateOption<VendorUuidFooCB> op)
-    { if (!processBeforeUpdate(e, op)) { return 0; }
-      return invoke(createUpdateNonstrictEntityCommand(e, op)); }
-    protected int delegateDelete(VendorUuidFoo e, DeleteOption<VendorUuidFooCB> op)
-    { if (!processBeforeDelete(e, op)) { return 0; }
-      return delegateDeleteNonstrict(e, op); }
-    protected int delegateDeleteNonstrict(VendorUuidFoo e, DeleteOption<VendorUuidFooCB> op)
-    { if (!processBeforeDelete(e, op)) { return 0; }
-      return invoke(createDeleteNonstrictEntityCommand(e, op)); }
+    protected int delegateInsert(VendorUuidFoo et, InsertOption<VendorUuidFooCB> op)
+    { if (!processBeforeInsert(et, op)) { return 0; }
+      return invoke(createInsertEntityCommand(et, op)); }
+    protected int delegateUpdate(VendorUuidFoo et, UpdateOption<VendorUuidFooCB> op)
+    { if (!processBeforeUpdate(et, op)) { return 0; }
+      return delegateUpdateNonstrict(et, op); }
+    protected int delegateUpdateNonstrict(VendorUuidFoo et, UpdateOption<VendorUuidFooCB> op)
+    { if (!processBeforeUpdate(et, op)) { return 0; }
+      return invoke(createUpdateNonstrictEntityCommand(et, op)); }
+    protected int delegateDelete(VendorUuidFoo et, DeleteOption<VendorUuidFooCB> op)
+    { if (!processBeforeDelete(et, op)) { return 0; }
+      return delegateDeleteNonstrict(et, op); }
+    protected int delegateDeleteNonstrict(VendorUuidFoo et, DeleteOption<VendorUuidFooCB> op)
+    { if (!processBeforeDelete(et, op)) { return 0; }
+      return invoke(createDeleteNonstrictEntityCommand(et, op)); }
 
     protected int[] delegateBatchInsert(List<VendorUuidFoo> ls, InsertOption<VendorUuidFooCB> op)
     { if (ls.isEmpty()) { return new int[]{}; }
@@ -1162,10 +1159,10 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
     { if (ls.isEmpty()) { return new int[]{}; }
       return invoke(createBatchDeleteNonstrictCommand(processBatchInternally(ls, op, true), op)); }
 
-    protected int delegateQueryInsert(VendorUuidFoo e, VendorUuidFooCB inCB, ConditionBean resCB, InsertOption<VendorUuidFooCB> op)
-    { if (!processBeforeQueryInsert(e, inCB, resCB, op)) { return 0; } return invoke(createQueryInsertCBCommand(e, inCB, resCB, op));  }
-    protected int delegateQueryUpdate(VendorUuidFoo e, VendorUuidFooCB cb, UpdateOption<VendorUuidFooCB> op)
-    { if (!processBeforeQueryUpdate(e, cb, op)) { return 0; } return invoke(createQueryUpdateCBCommand(e, cb, op));  }
+    protected int delegateQueryInsert(VendorUuidFoo et, VendorUuidFooCB inCB, ConditionBean resCB, InsertOption<VendorUuidFooCB> op)
+    { if (!processBeforeQueryInsert(et, inCB, resCB, op)) { return 0; } return invoke(createQueryInsertCBCommand(et, inCB, resCB, op));  }
+    protected int delegateQueryUpdate(VendorUuidFoo et, VendorUuidFooCB cb, UpdateOption<VendorUuidFooCB> op)
+    { if (!processBeforeQueryUpdate(et, cb, op)) { return 0; } return invoke(createQueryUpdateCBCommand(et, cb, op));  }
     protected int delegateQueryDelete(VendorUuidFooCB cb, DeleteOption<VendorUuidFooCB> op)
     { if (!processBeforeQueryDelete(cb, op)) { return 0; } return invoke(createQueryDeleteCBCommand(cb, op));  }
 
@@ -1176,7 +1173,7 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
      * {@inheritDoc}
      */
     @Override
-    protected boolean hasVersionNoValue(Entity entity) {
+    protected boolean hasVersionNoValue(Entity et) {
         return false;
     }
 
@@ -1184,15 +1181,15 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
      * {@inheritDoc}
      */
     @Override
-    protected boolean hasUpdateDateValue(Entity entity) {
+    protected boolean hasUpdateDateValue(Entity et) {
         return false;
     }
 
     // ===================================================================================
     //                                                                     Downcast Helper
     //                                                                     ===============
-    protected VendorUuidFoo downcast(Entity entity) {
-        return helpEntityDowncastInternally(entity, VendorUuidFoo.class);
+    protected VendorUuidFoo downcast(Entity et) {
+        return helpEntityDowncastInternally(et, VendorUuidFoo.class);
     }
 
     protected VendorUuidFooCB downcast(ConditionBean cb) {
@@ -1200,27 +1197,27 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
     }
 
     @SuppressWarnings("unchecked")
-    protected List<VendorUuidFoo> downcast(List<? extends Entity> entityList) {
-        return (List<VendorUuidFoo>)entityList;
+    protected List<VendorUuidFoo> downcast(List<? extends Entity> ls) {
+        return (List<VendorUuidFoo>)ls;
     }
 
     @SuppressWarnings("unchecked")
-    protected InsertOption<VendorUuidFooCB> downcast(InsertOption<? extends ConditionBean> option) {
-        return (InsertOption<VendorUuidFooCB>)option;
+    protected InsertOption<VendorUuidFooCB> downcast(InsertOption<? extends ConditionBean> op) {
+        return (InsertOption<VendorUuidFooCB>)op;
     }
 
     @SuppressWarnings("unchecked")
-    protected UpdateOption<VendorUuidFooCB> downcast(UpdateOption<? extends ConditionBean> option) {
-        return (UpdateOption<VendorUuidFooCB>)option;
+    protected UpdateOption<VendorUuidFooCB> downcast(UpdateOption<? extends ConditionBean> op) {
+        return (UpdateOption<VendorUuidFooCB>)op;
     }
 
     @SuppressWarnings("unchecked")
-    protected DeleteOption<VendorUuidFooCB> downcast(DeleteOption<? extends ConditionBean> option) {
-        return (DeleteOption<VendorUuidFooCB>)option;
+    protected DeleteOption<VendorUuidFooCB> downcast(DeleteOption<? extends ConditionBean> op) {
+        return (DeleteOption<VendorUuidFooCB>)op;
     }
 
     @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<VendorUuidFoo, VendorUuidFooCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> option) {
-        return (QueryInsertSetupper<VendorUuidFoo, VendorUuidFooCB>)option;
+    protected QueryInsertSetupper<VendorUuidFoo, VendorUuidFooCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp) {
+        return (QueryInsertSetupper<VendorUuidFoo, VendorUuidFooCB>)sp;
     }
 }

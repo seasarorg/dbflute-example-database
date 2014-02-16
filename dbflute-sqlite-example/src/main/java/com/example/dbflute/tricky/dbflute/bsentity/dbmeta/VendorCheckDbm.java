@@ -43,20 +43,20 @@ public class VendorCheckDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgVendorCheckId implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorCheck)e).getVendorCheckId(); }
-        public void write(Entity e, Object v) { ((VendorCheck)e).setVendorCheckId(cti(v)); }
+        public Object read(Entity et) { return ((VendorCheck)et).getVendorCheckId(); }
+        public void write(Entity et, Object vl) { ((VendorCheck)et).setVendorCheckId(cti(vl)); }
     }
     public static class EpgTypeOfText implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorCheck)e).getTypeOfText(); }
-        public void write(Entity e, Object v) { ((VendorCheck)e).setTypeOfText((String)v); }
+        public Object read(Entity et) { return ((VendorCheck)et).getTypeOfText(); }
+        public void write(Entity et, Object vl) { ((VendorCheck)et).setTypeOfText((String)vl); }
     }
     public static class EpgTypeOfInteger implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorCheck)e).getTypeOfInteger(); }
-        public void write(Entity e, Object v) { ((VendorCheck)e).setTypeOfInteger(cti(v)); }
+        public Object read(Entity et) { return ((VendorCheck)et).getTypeOfInteger(); }
+        public void write(Entity et, Object vl) { ((VendorCheck)et).setTypeOfInteger(cti(vl)); }
     }
     public static class EpgTypeOfReal implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorCheck)e).getTypeOfReal(); }
-        public void write(Entity e, Object v) { ((VendorCheck)e).setTypeOfReal((String)v); }
+        public Object read(Entity et) { return ((VendorCheck)et).getTypeOfReal(); }
+        public void write(Entity et, Object vl) { ((VendorCheck)et).setTypeOfReal((String)vl); }
     }
 
     // ===================================================================================
@@ -140,10 +140,10 @@ public class VendorCheckDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((VendorCheck)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((VendorCheck)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((VendorCheck)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((VendorCheck)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

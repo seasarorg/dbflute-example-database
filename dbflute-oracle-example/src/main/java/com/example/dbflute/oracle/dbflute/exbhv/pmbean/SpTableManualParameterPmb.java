@@ -5,7 +5,7 @@ import com.example.dbflute.oracle.dbflute.bsbhv.pmbean.BsSpTableManualParameterP
 /**
  * <!-- df:beginClassDescription -->
  * The typed parameter-bean of SpTableManualParameter. <br />
- * This is related to "<span style="color: #AD4747">SP_TABLE_MANUAL_PARAMETER</span>".
+ * This is related to "<span style="color: #AD4747">SP_TABLE_MANUAL_PARAMETER</span>". <br />
  * <!-- df:endClassDescription -->
  * <p>
  * You can implement your original methods here.

@@ -343,8 +343,8 @@ public class BsAliasExceptCB extends AbstractConditionBean {
         public HpSDRFunction<AliasRefExceptCB, AliasExceptCQ> derivedAliasRefExceptList() {
             assertDerived("aliasRefExceptList"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<AliasRefExceptCB, AliasExceptCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<AliasRefExceptCB, AliasExceptCQ>() {
-                public void setup(String function, SubQuery<AliasRefExceptCB> subQuery, AliasExceptCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsderiveAliasRefExceptList(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<AliasRefExceptCB> sq, AliasExceptCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsderiveAliasRefExceptList(fn, sq, al, op); } }, _dbmetaProvider);
         }
         /**
          * Prepare for (Specify)MyselfDerived (SubQuery).
@@ -353,8 +353,8 @@ public class BsAliasExceptCB extends AbstractConditionBean {
         public HpSDRFunction<AliasExceptCB, AliasExceptCQ> myselfDerived() {
             assertDerived("myselfDerived"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<AliasExceptCB, AliasExceptCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<AliasExceptCB, AliasExceptCQ>() {
-                public void setup(String function, SubQuery<AliasExceptCB> subQuery, AliasExceptCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsmyselfDerive(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<AliasExceptCB> sq, AliasExceptCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsmyselfDerive(fn, sq, al, op); } }, _dbmetaProvider);
         }
     }
 

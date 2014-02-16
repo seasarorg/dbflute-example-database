@@ -56,12 +56,12 @@ public class WhiteQuotedRefDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgWhere implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteQuotedRef)e).getWhere(); }
-        public void write(Entity e, Object v) { ((WhiteQuotedRef)e).setWhere(cti(v)); }
+        public Object read(Entity et) { return ((WhiteQuotedRef)et).getWhere(); }
+        public void write(Entity et, Object vl) { ((WhiteQuotedRef)et).setWhere(cti(vl)); }
     }
     public static class EpgOrder implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteQuotedRef)e).getOrder(); }
-        public void write(Entity e, Object v) { ((WhiteQuotedRef)e).setOrder(cti(v)); }
+        public Object read(Entity et) { return ((WhiteQuotedRef)et).getOrder(); }
+        public void write(Entity et, Object vl) { ((WhiteQuotedRef)et).setOrder(cti(vl)); }
     }
 
     // ===================================================================================
@@ -110,8 +110,8 @@ public class WhiteQuotedRefDbm extends AbstractDBMeta {
     //                                      Foreign Property
     //                                      ----------------
     public ForeignInfo foreignWhiteQuoted() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnOrder(), WhiteQuotedDbm.getInstance().columnSelect());
-        return cfi("FK_WHITE_QUOTED_REF", "whiteQuoted", this, WhiteQuotedDbm.getInstance(), map, 0, false, false, false, false, null, null, false, "whiteQuotedRefList");
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnOrder(), WhiteQuotedDbm.getInstance().columnSelect());
+        return cfi("FK_WHITE_QUOTED_REF", "whiteQuoted", this, WhiteQuotedDbm.getInstance(), mp, 0, false, false, false, false, null, null, false, "whiteQuotedRefList");
     }
 
     // -----------------------------------------------------
@@ -143,10 +143,10 @@ public class WhiteQuotedRefDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((WhiteQuotedRef)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((WhiteQuotedRef)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((WhiteQuotedRef)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((WhiteQuotedRef)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

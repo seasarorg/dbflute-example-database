@@ -57,16 +57,16 @@ public class WhiteAllInOneClsCategoryDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgClsCategoryCode implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteAllInOneClsCategory)e).getClsCategoryCode(); }
-        public void write(Entity e, Object v) { ((WhiteAllInOneClsCategory)e).setClsCategoryCode((String)v); }
+        public Object read(Entity et) { return ((WhiteAllInOneClsCategory)et).getClsCategoryCode(); }
+        public void write(Entity et, Object vl) { ((WhiteAllInOneClsCategory)et).setClsCategoryCode((String)vl); }
     }
     public static class EpgClsCategoryName implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteAllInOneClsCategory)e).getClsCategoryName(); }
-        public void write(Entity e, Object v) { ((WhiteAllInOneClsCategory)e).setClsCategoryName((String)v); }
+        public Object read(Entity et) { return ((WhiteAllInOneClsCategory)et).getClsCategoryName(); }
+        public void write(Entity et, Object vl) { ((WhiteAllInOneClsCategory)et).setClsCategoryName((String)vl); }
     }
     public static class EpgDescription implements PropertyGateway {
-        public Object read(Entity e) { return ((WhiteAllInOneClsCategory)e).getDescription(); }
-        public void write(Entity e, Object v) { ((WhiteAllInOneClsCategory)e).setDescription((String)v); }
+        public Object read(Entity et) { return ((WhiteAllInOneClsCategory)et).getDescription(); }
+        public void write(Entity et, Object vl) { ((WhiteAllInOneClsCategory)et).setDescription((String)vl); }
     }
 
     // ===================================================================================
@@ -122,8 +122,8 @@ public class WhiteAllInOneClsCategoryDbm extends AbstractDBMeta {
     //                                     Referrer Property
     //                                     -----------------
     public ReferrerInfo referrerWhiteAllInOneClsElementList() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnClsCategoryCode(), WhiteAllInOneClsElementDbm.getInstance().columnClsCategoryCode());
-        return cri("FK_WHITE_ALL_IN_ONE_CLS_ELEMENT_CATEGORY", "whiteAllInOneClsElementList", this, WhiteAllInOneClsElementDbm.getInstance(), map, false, "whiteAllInOneClsCategory");
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnClsCategoryCode(), WhiteAllInOneClsElementDbm.getInstance().columnClsCategoryCode());
+        return cri("FK_WHITE_ALL_IN_ONE_CLS_ELEMENT_CATEGORY", "whiteAllInOneClsElementList", this, WhiteAllInOneClsElementDbm.getInstance(), mp, false, "whiteAllInOneClsCategory");
     }
 
     // ===================================================================================
@@ -151,10 +151,10 @@ public class WhiteAllInOneClsCategoryDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((WhiteAllInOneClsCategory)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((WhiteAllInOneClsCategory)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((WhiteAllInOneClsCategory)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((WhiteAllInOneClsCategory)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

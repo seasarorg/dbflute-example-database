@@ -86,18 +86,18 @@ public class WhiteEscapedDfpropCIQ extends AbstractBsWhiteEscapedDfpropCQ {
     //                                                                ====================
     protected ConditionValue getCValueEscapedDfpropCode() { return _myCQ.getEscapedDfpropCode(); }
     protected ConditionValue getCValueEscapedDfpropName() { return _myCQ.getEscapedDfpropName(); }
-    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) { return null; }
-    public String keepScalarCondition(WhiteEscapedDfpropCQ subQuery)
+    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
+    public String keepScalarCondition(WhiteEscapedDfpropCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }
-    public String keepSpecifyMyselfDerived(WhiteEscapedDfpropCQ subQuery)
+    public String keepSpecifyMyselfDerived(WhiteEscapedDfpropCQ sq)
     { throwIICBOE("(Specify)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerived(WhiteEscapedDfpropCQ subQuery)
+    public String keepQueryMyselfDerived(WhiteEscapedDfpropCQ sq)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerivedParameter(Object parameterValue)
+    public String keepQueryMyselfDerivedParameter(Object vl)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepMyselfExists(WhiteEscapedDfpropCQ subQuery)
+    public String keepMyselfExists(WhiteEscapedDfpropCQ sq)
     { throwIICBOE("MyselfExists"); return null;}
-    public String keepMyselfInScope(WhiteEscapedDfpropCQ subQuery)
+    public String keepMyselfInScope(WhiteEscapedDfpropCQ sq)
     { throwIICBOE("MyselfInScope"); return null;}
 
     protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()

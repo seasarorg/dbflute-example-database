@@ -82,22 +82,22 @@ public class NextschemaWhiteSameNameCIQ extends AbstractBsNextschemaWhiteSameNam
     { throwIICBOE("(Specify)DerivedReferrer"); return null; }
     public String keepSameNameId_QueryDerivedReferrer_WhiteSameNameRefList(NextschemaWhiteSameNameRefCQ sq)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
-    public String keepSameNameId_QueryDerivedReferrer_WhiteSameNameRefListParameter(Object pv)
+    public String keepSameNameId_QueryDerivedReferrer_WhiteSameNameRefListParameter(Object vl)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
     protected ConditionValue getCValueSameNameName() { return _myCQ.getSameNameName(); }
     protected ConditionValue getCValueSameNameLong() { return _myCQ.getSameNameLong(); }
-    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) { return null; }
-    public String keepScalarCondition(NextschemaWhiteSameNameCQ subQuery)
+    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
+    public String keepScalarCondition(NextschemaWhiteSameNameCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }
-    public String keepSpecifyMyselfDerived(NextschemaWhiteSameNameCQ subQuery)
+    public String keepSpecifyMyselfDerived(NextschemaWhiteSameNameCQ sq)
     { throwIICBOE("(Specify)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerived(NextschemaWhiteSameNameCQ subQuery)
+    public String keepQueryMyselfDerived(NextschemaWhiteSameNameCQ sq)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerivedParameter(Object parameterValue)
+    public String keepQueryMyselfDerivedParameter(Object vl)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepMyselfExists(NextschemaWhiteSameNameCQ subQuery)
+    public String keepMyselfExists(NextschemaWhiteSameNameCQ sq)
     { throwIICBOE("MyselfExists"); return null;}
-    public String keepMyselfInScope(NextschemaWhiteSameNameCQ subQuery)
+    public String keepMyselfInScope(NextschemaWhiteSameNameCQ sq)
     { throwIICBOE("MyselfInScope"); return null;}
 
     protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()

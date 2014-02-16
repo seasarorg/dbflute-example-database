@@ -50,48 +50,48 @@ public class SynonymNextLinkSynonymDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgProductId implements PropertyGateway {
-        public Object read(Entity e) { return ((SynonymNextLinkSynonym)e).getProductId(); }
-        public void write(Entity e, Object v) { ((SynonymNextLinkSynonym)e).setProductId(ctl(v)); }
+        public Object read(Entity et) { return ((SynonymNextLinkSynonym)et).getProductId(); }
+        public void write(Entity et, Object vl) { ((SynonymNextLinkSynonym)et).setProductId(ctl(vl)); }
     }
     public static class EpgProductName implements PropertyGateway {
-        public Object read(Entity e) { return ((SynonymNextLinkSynonym)e).getProductName(); }
-        public void write(Entity e, Object v) { ((SynonymNextLinkSynonym)e).setProductName((String)v); }
+        public Object read(Entity et) { return ((SynonymNextLinkSynonym)et).getProductName(); }
+        public void write(Entity et, Object vl) { ((SynonymNextLinkSynonym)et).setProductName((String)vl); }
     }
     public static class EpgProductHandleCode implements PropertyGateway {
-        public Object read(Entity e) { return ((SynonymNextLinkSynonym)e).getProductHandleCode(); }
-        public void write(Entity e, Object v) { ((SynonymNextLinkSynonym)e).setProductHandleCode((String)v); }
+        public Object read(Entity et) { return ((SynonymNextLinkSynonym)et).getProductHandleCode(); }
+        public void write(Entity et, Object vl) { ((SynonymNextLinkSynonym)et).setProductHandleCode((String)vl); }
     }
     public static class EpgProductStatusCode implements PropertyGateway {
-        public Object read(Entity e) { return ((SynonymNextLinkSynonym)e).getProductStatusCode(); }
-        public void write(Entity e, Object v) { ((SynonymNextLinkSynonym)e).setProductStatusCode((String)v); }
+        public Object read(Entity et) { return ((SynonymNextLinkSynonym)et).getProductStatusCode(); }
+        public void write(Entity et, Object vl) { ((SynonymNextLinkSynonym)et).setProductStatusCode((String)vl); }
     }
     public static class EpgRegisterDatetime implements PropertyGateway {
-        public Object read(Entity e) { return ((SynonymNextLinkSynonym)e).getRegisterDatetime(); }
-        public void write(Entity e, Object v) { ((SynonymNextLinkSynonym)e).setRegisterDatetime((java.util.Date)v); }
+        public Object read(Entity et) { return ((SynonymNextLinkSynonym)et).getRegisterDatetime(); }
+        public void write(Entity et, Object vl) { ((SynonymNextLinkSynonym)et).setRegisterDatetime((java.util.Date)vl); }
     }
     public static class EpgRegisterUser implements PropertyGateway {
-        public Object read(Entity e) { return ((SynonymNextLinkSynonym)e).getRegisterUser(); }
-        public void write(Entity e, Object v) { ((SynonymNextLinkSynonym)e).setRegisterUser((String)v); }
+        public Object read(Entity et) { return ((SynonymNextLinkSynonym)et).getRegisterUser(); }
+        public void write(Entity et, Object vl) { ((SynonymNextLinkSynonym)et).setRegisterUser((String)vl); }
     }
     public static class EpgRegisterProcess implements PropertyGateway {
-        public Object read(Entity e) { return ((SynonymNextLinkSynonym)e).getRegisterProcess(); }
-        public void write(Entity e, Object v) { ((SynonymNextLinkSynonym)e).setRegisterProcess((String)v); }
+        public Object read(Entity et) { return ((SynonymNextLinkSynonym)et).getRegisterProcess(); }
+        public void write(Entity et, Object vl) { ((SynonymNextLinkSynonym)et).setRegisterProcess((String)vl); }
     }
     public static class EpgUpdateDatetime implements PropertyGateway {
-        public Object read(Entity e) { return ((SynonymNextLinkSynonym)e).getUpdateDatetime(); }
-        public void write(Entity e, Object v) { ((SynonymNextLinkSynonym)e).setUpdateDatetime((java.util.Date)v); }
+        public Object read(Entity et) { return ((SynonymNextLinkSynonym)et).getUpdateDatetime(); }
+        public void write(Entity et, Object vl) { ((SynonymNextLinkSynonym)et).setUpdateDatetime((java.util.Date)vl); }
     }
     public static class EpgUpdateUser implements PropertyGateway {
-        public Object read(Entity e) { return ((SynonymNextLinkSynonym)e).getUpdateUser(); }
-        public void write(Entity e, Object v) { ((SynonymNextLinkSynonym)e).setUpdateUser((String)v); }
+        public Object read(Entity et) { return ((SynonymNextLinkSynonym)et).getUpdateUser(); }
+        public void write(Entity et, Object vl) { ((SynonymNextLinkSynonym)et).setUpdateUser((String)vl); }
     }
     public static class EpgUpdateProcess implements PropertyGateway {
-        public Object read(Entity e) { return ((SynonymNextLinkSynonym)e).getUpdateProcess(); }
-        public void write(Entity e, Object v) { ((SynonymNextLinkSynonym)e).setUpdateProcess((String)v); }
+        public Object read(Entity et) { return ((SynonymNextLinkSynonym)et).getUpdateProcess(); }
+        public void write(Entity et, Object vl) { ((SynonymNextLinkSynonym)et).setUpdateProcess((String)vl); }
     }
     public static class EpgVersionNo implements PropertyGateway {
-        public Object read(Entity e) { return ((SynonymNextLinkSynonym)e).getVersionNo(); }
-        public void write(Entity e, Object v) { ((SynonymNextLinkSynonym)e).setVersionNo(ctb(v)); }
+        public Object read(Entity et) { return ((SynonymNextLinkSynonym)et).getVersionNo(); }
+        public void write(Entity et, Object vl) { ((SynonymNextLinkSynonym)et).setVersionNo(ctb(vl)); }
     }
 
     // ===================================================================================
@@ -205,10 +205,10 @@ public class SynonymNextLinkSynonymDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((SynonymNextLinkSynonym)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((SynonymNextLinkSynonym)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((SynonymNextLinkSynonym)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((SynonymNextLinkSynonym)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

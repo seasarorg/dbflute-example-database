@@ -190,14 +190,14 @@ public class BsWhiteAllInOneClsCompoundPkRefCQ extends AbstractBsWhiteAllInOneCl
     // ===================================================================================
     //                                                                         Union Query
     //                                                                         ===========
-    protected void reflectRelationOnUnionQuery(ConditionQuery baseQueryAsSuper, ConditionQuery unionQueryAsSuper) {
-        WhiteAllInOneClsCompoundPkRefCQ baseQuery = (WhiteAllInOneClsCompoundPkRefCQ)baseQueryAsSuper;
-        WhiteAllInOneClsCompoundPkRefCQ unionQuery = (WhiteAllInOneClsCompoundPkRefCQ)unionQueryAsSuper;
-        if (baseQuery.hasConditionQueryWhiteAllInOneClsElementAsFoo()) {
-            unionQuery.queryWhiteAllInOneClsElementAsFoo().reflectRelationOnUnionQuery(baseQuery.queryWhiteAllInOneClsElementAsFoo(), unionQuery.queryWhiteAllInOneClsElementAsFoo());
+    protected void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
+        WhiteAllInOneClsCompoundPkRefCQ bq = (WhiteAllInOneClsCompoundPkRefCQ)bqs;
+        WhiteAllInOneClsCompoundPkRefCQ uq = (WhiteAllInOneClsCompoundPkRefCQ)uqs;
+        if (bq.hasConditionQueryWhiteAllInOneClsElementAsFoo()) {
+            uq.queryWhiteAllInOneClsElementAsFoo().reflectRelationOnUnionQuery(bq.queryWhiteAllInOneClsElementAsFoo(), uq.queryWhiteAllInOneClsElementAsFoo());
         }
-        if (baseQuery.hasConditionQueryWhiteAllInOneClsElementAsBar()) {
-            unionQuery.queryWhiteAllInOneClsElementAsBar().reflectRelationOnUnionQuery(baseQuery.queryWhiteAllInOneClsElementAsBar(), unionQuery.queryWhiteAllInOneClsElementAsBar());
+        if (bq.hasConditionQueryWhiteAllInOneClsElementAsBar()) {
+            uq.queryWhiteAllInOneClsElementAsBar().reflectRelationOnUnionQuery(bq.queryWhiteAllInOneClsElementAsBar(), uq.queryWhiteAllInOneClsElementAsBar());
         }
     }
 

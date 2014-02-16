@@ -5,7 +5,7 @@ import com.example.dbflute.db2.dbflute.bsbhv.pmbean.BsSpReturnResultSetWithPmb;
 /**
  * <!-- df:beginClassDescription -->
  * The typed parameter-bean of SpReturnResultSetWith. <br />
- * This is related to "<span style="color: #AD4747">DFEXDB.SP_RETURN_RESULT_SET_WITH</span>".
+ * This is related to "<span style="color: #AD4747">DFEXDB.SP_RETURN_RESULT_SET_WITH</span>". <br />
  * <!-- df:endClassDescription -->
  * <p>
  * You can implement your original methods here.

@@ -5,7 +5,7 @@ import com.example.dbflute.oracle.dbflute.bsbhv.pmbean.BsSamePkgSpPkgInOutParame
 /**
  * <!-- df:beginClassDescription -->
  * The typed parameter-bean of SamePkgSpPkgInOutParameter. <br />
- * This is related to "<span style="color: #AD4747">SAME_PKG.SP_PKG_IN_OUT_PARAMETER</span>".
+ * This is related to "<span style="color: #AD4747">SAME_PKG.SP_PKG_IN_OUT_PARAMETER</span>". <br />
  * <!-- df:endClassDescription -->
  * <p>
  * You can implement your original methods here.

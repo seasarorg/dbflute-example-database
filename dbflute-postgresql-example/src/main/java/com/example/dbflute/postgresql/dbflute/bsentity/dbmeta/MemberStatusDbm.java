@@ -43,23 +43,23 @@ public class MemberStatusDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public class EpgMemberStatusCode implements PropertyGateway {
-        public Object read(Entity e) { return ((MemberStatus)e).getMemberStatusCode(); }
-        public void write(Entity e, Object v) {
+        public Object read(Entity et) { return ((MemberStatus)et).getMemberStatusCode(); }
+        public void write(Entity et, Object vl) {
             ColumnInfo col = columnMemberStatusCode();
-            ((MemberStatus)e).setMemberStatusCodeAsMemberStatus((CDef.MemberStatus)gcls(col, v));
+            ((MemberStatus)et).setMemberStatusCodeAsMemberStatus((CDef.MemberStatus)gcls(col, vl));
         }
     }
     public static class EpgMemberStatusName implements PropertyGateway {
-        public Object read(Entity e) { return ((MemberStatus)e).getMemberStatusName(); }
-        public void write(Entity e, Object v) { ((MemberStatus)e).setMemberStatusName((String)v); }
+        public Object read(Entity et) { return ((MemberStatus)et).getMemberStatusName(); }
+        public void write(Entity et, Object vl) { ((MemberStatus)et).setMemberStatusName((String)vl); }
     }
     public static class EpgDescription implements PropertyGateway {
-        public Object read(Entity e) { return ((MemberStatus)e).getDescription(); }
-        public void write(Entity e, Object v) { ((MemberStatus)e).setDescription((String)v); }
+        public Object read(Entity et) { return ((MemberStatus)et).getDescription(); }
+        public void write(Entity et, Object vl) { ((MemberStatus)et).setDescription((String)vl); }
     }
     public static class EpgDisplayOrder implements PropertyGateway {
-        public Object read(Entity e) { return ((MemberStatus)e).getDisplayOrder(); }
-        public void write(Entity e, Object v) { ((MemberStatus)e).setDisplayOrder(cti(v)); }
+        public Object read(Entity et) { return ((MemberStatus)et).getDisplayOrder(); }
+        public void write(Entity et, Object vl) { ((MemberStatus)et).setDisplayOrder(cti(vl)); }
     }
 
     // ===================================================================================
@@ -122,12 +122,12 @@ public class MemberStatusDbm extends AbstractDBMeta {
     //                                     Referrer Property
     //                                     -----------------
     public ReferrerInfo referrerMemberList() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnMemberStatusCode(), MemberDbm.getInstance().columnMemberStatusCode());
-        return cri("fk_member_member_status", "memberList", this, MemberDbm.getInstance(), map, false, "memberStatus");
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnMemberStatusCode(), MemberDbm.getInstance().columnMemberStatusCode());
+        return cri("fk_member_member_status", "memberList", this, MemberDbm.getInstance(), mp, false, "memberStatus");
     }
     public ReferrerInfo referrerMemberLoginList() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnMemberStatusCode(), MemberLoginDbm.getInstance().columnLoginMemberStatusCode());
-        return cri("fk_member_login_member_status", "memberLoginList", this, MemberLoginDbm.getInstance(), map, false, "memberStatus");
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnMemberStatusCode(), MemberLoginDbm.getInstance().columnLoginMemberStatusCode());
+        return cri("fk_member_login_member_status", "memberLoginList", this, MemberLoginDbm.getInstance(), mp, false, "memberStatus");
     }
 
     // ===================================================================================
@@ -155,10 +155,10 @@ public class MemberStatusDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((MemberStatus)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((MemberStatus)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((MemberStatus)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((MemberStatus)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

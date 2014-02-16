@@ -43,21 +43,21 @@ public class NestedBazBeanDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgBazId implements PropertyGateway {
-        public Object read(Entity e) { return ((NestedBazBean)e).getBazId(); }
-        public void write(Entity e, Object v) { ((NestedBazBean)e).setBazId(cti(v)); }
+        public Object read(Entity et) { return ((NestedBazBean)et).getBazId(); }
+        public void write(Entity et, Object vl) { ((NestedBazBean)et).setBazId(cti(vl)); }
     }
     public static class EpgBazName implements PropertyGateway {
-        public Object read(Entity e) { return ((NestedBazBean)e).getBazName(); }
-        public void write(Entity e, Object v) { ((NestedBazBean)e).setBazName((String)v); }
+        public Object read(Entity et) { return ((NestedBazBean)et).getBazName(); }
+        public void write(Entity et, Object vl) { ((NestedBazBean)et).setBazName((String)vl); }
     }
     public static class EpgBazDate implements PropertyGateway {
-        public Object read(Entity e) { return ((NestedBazBean)e).getBazDate(); }
-        public void write(Entity e, Object v) { ((NestedBazBean)e).setBazDate((java.util.Date)v); }
+        public Object read(Entity et) { return ((NestedBazBean)et).getBazDate(); }
+        public void write(Entity et, Object vl) { ((NestedBazBean)et).setBazDate((java.util.Date)vl); }
     }
     public static class EpgBazList implements PropertyGateway {
-        public Object read(Entity e) { return ((NestedBazBean)e).getBazList(); }
+        public Object read(Entity et) { return ((NestedBazBean)et).getBazList(); }
         @SuppressWarnings("unchecked")
-        public void write(Entity e, Object v) { ((NestedBazBean)e).setBazList((List<List<BarBean>>)v); }
+        public void write(Entity et, Object vl) { ((NestedBazBean)et).setBazList((List<List<BarBean>>)vl); }
     }
 
     // ===================================================================================
@@ -143,10 +143,10 @@ public class NestedBazBeanDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((NestedBazBean)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((NestedBazBean)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((NestedBazBean)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((NestedBazBean)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

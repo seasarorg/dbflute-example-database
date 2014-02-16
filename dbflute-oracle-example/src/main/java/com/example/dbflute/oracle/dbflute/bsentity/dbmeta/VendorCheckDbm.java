@@ -70,128 +70,128 @@ public class VendorCheckDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
     public static class EpgVendorCheckId implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorCheck)e).getVendorCheckId(); }
-        public void write(Entity e, Object v) { ((VendorCheck)e).setVendorCheckId(ctl(v)); }
+        public Object read(Entity et) { return ((VendorCheck)et).getVendorCheckId(); }
+        public void write(Entity et, Object vl) { ((VendorCheck)et).setVendorCheckId(ctl(vl)); }
     }
     public static class EpgTypeOfChar implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorCheck)e).getTypeOfChar(); }
-        public void write(Entity e, Object v) { ((VendorCheck)e).setTypeOfChar((String)v); }
+        public Object read(Entity et) { return ((VendorCheck)et).getTypeOfChar(); }
+        public void write(Entity et, Object vl) { ((VendorCheck)et).setTypeOfChar((String)vl); }
     }
     public static class EpgTypeOfNchar implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorCheck)e).getTypeOfNchar(); }
-        public void write(Entity e, Object v) { ((VendorCheck)e).setTypeOfNchar((String)v); }
+        public Object read(Entity et) { return ((VendorCheck)et).getTypeOfNchar(); }
+        public void write(Entity et, Object vl) { ((VendorCheck)et).setTypeOfNchar((String)vl); }
     }
     public static class EpgTypeOfVarchar2 implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorCheck)e).getTypeOfVarchar2(); }
-        public void write(Entity e, Object v) { ((VendorCheck)e).setTypeOfVarchar2((String)v); }
+        public Object read(Entity et) { return ((VendorCheck)et).getTypeOfVarchar2(); }
+        public void write(Entity et, Object vl) { ((VendorCheck)et).setTypeOfVarchar2((String)vl); }
     }
     public static class EpgTypeOfVarchar2Max implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorCheck)e).getTypeOfVarchar2Max(); }
-        public void write(Entity e, Object v) { ((VendorCheck)e).setTypeOfVarchar2Max((String)v); }
+        public Object read(Entity et) { return ((VendorCheck)et).getTypeOfVarchar2Max(); }
+        public void write(Entity et, Object vl) { ((VendorCheck)et).setTypeOfVarchar2Max((String)vl); }
     }
     public static class EpgTypeOfNvarchar2 implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorCheck)e).getTypeOfNvarchar2(); }
-        public void write(Entity e, Object v) { ((VendorCheck)e).setTypeOfNvarchar2((String)v); }
+        public Object read(Entity et) { return ((VendorCheck)et).getTypeOfNvarchar2(); }
+        public void write(Entity et, Object vl) { ((VendorCheck)et).setTypeOfNvarchar2((String)vl); }
     }
     public static class EpgTypeOfClob implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorCheck)e).getTypeOfClob(); }
-        public void write(Entity e, Object v) { ((VendorCheck)e).setTypeOfClob((String)v); }
+        public Object read(Entity et) { return ((VendorCheck)et).getTypeOfClob(); }
+        public void write(Entity et, Object vl) { ((VendorCheck)et).setTypeOfClob((String)vl); }
     }
     public static class EpgTypeOfNclob implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorCheck)e).getTypeOfNclob(); }
-        public void write(Entity e, Object v) { ((VendorCheck)e).setTypeOfNclob((String)v); }
+        public Object read(Entity et) { return ((VendorCheck)et).getTypeOfNclob(); }
+        public void write(Entity et, Object vl) { ((VendorCheck)et).setTypeOfNclob((String)vl); }
     }
     public static class EpgTypeOfLong implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorCheck)e).getTypeOfLong(); }
-        public void write(Entity e, Object v) { ((VendorCheck)e).setTypeOfLong((String)v); }
+        public Object read(Entity et) { return ((VendorCheck)et).getTypeOfLong(); }
+        public void write(Entity et, Object vl) { ((VendorCheck)et).setTypeOfLong((String)vl); }
     }
     public static class EpgTypeOfXmltype implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorCheck)e).getTypeOfXmltype(); }
-        public void write(Entity e, Object v) { ((VendorCheck)e).setTypeOfXmltype((String)v); }
+        public Object read(Entity et) { return ((VendorCheck)et).getTypeOfXmltype(); }
+        public void write(Entity et, Object vl) { ((VendorCheck)et).setTypeOfXmltype((String)vl); }
     }
     public static class EpgTypeOfNumberInteger implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorCheck)e).getTypeOfNumberInteger(); }
-        public void write(Entity e, Object v) { ((VendorCheck)e).setTypeOfNumberInteger(cti(v)); }
+        public Object read(Entity et) { return ((VendorCheck)et).getTypeOfNumberInteger(); }
+        public void write(Entity et, Object vl) { ((VendorCheck)et).setTypeOfNumberInteger(cti(vl)); }
     }
     public static class EpgTypeOfNumberBigint implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorCheck)e).getTypeOfNumberBigint(); }
-        public void write(Entity e, Object v) { ((VendorCheck)e).setTypeOfNumberBigint(ctl(v)); }
+        public Object read(Entity et) { return ((VendorCheck)et).getTypeOfNumberBigint(); }
+        public void write(Entity et, Object vl) { ((VendorCheck)et).setTypeOfNumberBigint(ctl(vl)); }
     }
     public static class EpgTypeOfNumberDecimal implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorCheck)e).getTypeOfNumberDecimal(); }
-        public void write(Entity e, Object v) { ((VendorCheck)e).setTypeOfNumberDecimal(ctb(v)); }
+        public Object read(Entity et) { return ((VendorCheck)et).getTypeOfNumberDecimal(); }
+        public void write(Entity et, Object vl) { ((VendorCheck)et).setTypeOfNumberDecimal(ctb(vl)); }
     }
     public static class EpgTypeOfNumberIntegerMin implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorCheck)e).getTypeOfNumberIntegerMin(); }
-        public void write(Entity e, Object v) { ((VendorCheck)e).setTypeOfNumberIntegerMin(cti(v)); }
+        public Object read(Entity et) { return ((VendorCheck)et).getTypeOfNumberIntegerMin(); }
+        public void write(Entity et, Object vl) { ((VendorCheck)et).setTypeOfNumberIntegerMin(cti(vl)); }
     }
     public static class EpgTypeOfNumberIntegerMax implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorCheck)e).getTypeOfNumberIntegerMax(); }
-        public void write(Entity e, Object v) { ((VendorCheck)e).setTypeOfNumberIntegerMax(cti(v)); }
+        public Object read(Entity et) { return ((VendorCheck)et).getTypeOfNumberIntegerMax(); }
+        public void write(Entity et, Object vl) { ((VendorCheck)et).setTypeOfNumberIntegerMax(cti(vl)); }
     }
     public static class EpgTypeOfNumberBigintMin implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorCheck)e).getTypeOfNumberBigintMin(); }
-        public void write(Entity e, Object v) { ((VendorCheck)e).setTypeOfNumberBigintMin(ctl(v)); }
+        public Object read(Entity et) { return ((VendorCheck)et).getTypeOfNumberBigintMin(); }
+        public void write(Entity et, Object vl) { ((VendorCheck)et).setTypeOfNumberBigintMin(ctl(vl)); }
     }
     public static class EpgTypeOfNumberBigintMax implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorCheck)e).getTypeOfNumberBigintMax(); }
-        public void write(Entity e, Object v) { ((VendorCheck)e).setTypeOfNumberBigintMax(ctl(v)); }
+        public Object read(Entity et) { return ((VendorCheck)et).getTypeOfNumberBigintMax(); }
+        public void write(Entity et, Object vl) { ((VendorCheck)et).setTypeOfNumberBigintMax(ctl(vl)); }
     }
     public static class EpgTypeOfNumberSuperintMin implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorCheck)e).getTypeOfNumberSuperintMin(); }
-        public void write(Entity e, Object v) { ((VendorCheck)e).setTypeOfNumberSuperintMin(ctb(v)); }
+        public Object read(Entity et) { return ((VendorCheck)et).getTypeOfNumberSuperintMin(); }
+        public void write(Entity et, Object vl) { ((VendorCheck)et).setTypeOfNumberSuperintMin(ctb(vl)); }
     }
     public static class EpgTypeOfNumberSuperintMax implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorCheck)e).getTypeOfNumberSuperintMax(); }
-        public void write(Entity e, Object v) { ((VendorCheck)e).setTypeOfNumberSuperintMax(ctb(v)); }
+        public Object read(Entity et) { return ((VendorCheck)et).getTypeOfNumberSuperintMax(); }
+        public void write(Entity et, Object vl) { ((VendorCheck)et).setTypeOfNumberSuperintMax(ctb(vl)); }
     }
     public static class EpgTypeOfNumberMaxdecimal implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorCheck)e).getTypeOfNumberMaxdecimal(); }
-        public void write(Entity e, Object v) { ((VendorCheck)e).setTypeOfNumberMaxdecimal(ctb(v)); }
+        public Object read(Entity et) { return ((VendorCheck)et).getTypeOfNumberMaxdecimal(); }
+        public void write(Entity et, Object vl) { ((VendorCheck)et).setTypeOfNumberMaxdecimal(ctb(vl)); }
     }
     public static class EpgTypeOfInteger implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorCheck)e).getTypeOfInteger(); }
-        public void write(Entity e, Object v) { ((VendorCheck)e).setTypeOfInteger(ctb(v)); }
+        public Object read(Entity et) { return ((VendorCheck)et).getTypeOfInteger(); }
+        public void write(Entity et, Object vl) { ((VendorCheck)et).setTypeOfInteger(ctb(vl)); }
     }
     public static class EpgTypeOfBinaryFloat implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorCheck)e).getTypeOfBinaryFloat(); }
-        public void write(Entity e, Object v) { ((VendorCheck)e).setTypeOfBinaryFloat((String)v); }
+        public Object read(Entity et) { return ((VendorCheck)et).getTypeOfBinaryFloat(); }
+        public void write(Entity et, Object vl) { ((VendorCheck)et).setTypeOfBinaryFloat((String)vl); }
     }
     public static class EpgTypeOfBinaryDouble implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorCheck)e).getTypeOfBinaryDouble(); }
-        public void write(Entity e, Object v) { ((VendorCheck)e).setTypeOfBinaryDouble((String)v); }
+        public Object read(Entity et) { return ((VendorCheck)et).getTypeOfBinaryDouble(); }
+        public void write(Entity et, Object vl) { ((VendorCheck)et).setTypeOfBinaryDouble((String)vl); }
     }
     public static class EpgTypeOfDate implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorCheck)e).getTypeOfDate(); }
-        public void write(Entity e, Object v) { ((VendorCheck)e).setTypeOfDate((java.util.Date)v); }
+        public Object read(Entity et) { return ((VendorCheck)et).getTypeOfDate(); }
+        public void write(Entity et, Object vl) { ((VendorCheck)et).setTypeOfDate((java.util.Date)vl); }
     }
     public static class EpgTypeOfTimestamp implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorCheck)e).getTypeOfTimestamp(); }
-        public void write(Entity e, Object v) { ((VendorCheck)e).setTypeOfTimestamp((java.sql.Timestamp)v); }
+        public Object read(Entity et) { return ((VendorCheck)et).getTypeOfTimestamp(); }
+        public void write(Entity et, Object vl) { ((VendorCheck)et).setTypeOfTimestamp((java.sql.Timestamp)vl); }
     }
     public static class EpgTypeOfIntervalYearToMonth implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorCheck)e).getTypeOfIntervalYearToMonth(); }
-        public void write(Entity e, Object v) { ((VendorCheck)e).setTypeOfIntervalYearToMonth((String)v); }
+        public Object read(Entity et) { return ((VendorCheck)et).getTypeOfIntervalYearToMonth(); }
+        public void write(Entity et, Object vl) { ((VendorCheck)et).setTypeOfIntervalYearToMonth((String)vl); }
     }
     public static class EpgTypeOfIntervalDayToSecond implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorCheck)e).getTypeOfIntervalDayToSecond(); }
-        public void write(Entity e, Object v) { ((VendorCheck)e).setTypeOfIntervalDayToSecond((String)v); }
+        public Object read(Entity et) { return ((VendorCheck)et).getTypeOfIntervalDayToSecond(); }
+        public void write(Entity et, Object vl) { ((VendorCheck)et).setTypeOfIntervalDayToSecond((String)vl); }
     }
     public static class EpgTypeOfBlob implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorCheck)e).getTypeOfBlob(); }
-        public void write(Entity e, Object v) { ((VendorCheck)e).setTypeOfBlob((byte[])v); }
+        public Object read(Entity et) { return ((VendorCheck)et).getTypeOfBlob(); }
+        public void write(Entity et, Object vl) { ((VendorCheck)et).setTypeOfBlob((byte[])vl); }
     }
     public static class EpgTypeOfRaw implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorCheck)e).getTypeOfRaw(); }
-        public void write(Entity e, Object v) { ((VendorCheck)e).setTypeOfRaw((byte[])v); }
+        public Object read(Entity et) { return ((VendorCheck)et).getTypeOfRaw(); }
+        public void write(Entity et, Object vl) { ((VendorCheck)et).setTypeOfRaw((byte[])vl); }
     }
     public static class EpgTypeOfBfile implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorCheck)e).getTypeOfBfile(); }
-        public void write(Entity e, Object v) { ((VendorCheck)e).setTypeOfBfile((String)v); }
+        public Object read(Entity et) { return ((VendorCheck)et).getTypeOfBfile(); }
+        public void write(Entity et, Object vl) { ((VendorCheck)et).setTypeOfBfile((String)vl); }
     }
     public static class EpgTypeOfRowid implements PropertyGateway {
-        public Object read(Entity e) { return ((VendorCheck)e).getTypeOfRowid(); }
-        public void write(Entity e, Object v) { ((VendorCheck)e).setTypeOfRowid((String)v); }
+        public Object read(Entity et) { return ((VendorCheck)et).getTypeOfRowid(); }
+        public void write(Entity et, Object vl) { ((VendorCheck)et).setTypeOfRowid((String)vl); }
     }
 
     // ===================================================================================
@@ -356,10 +356,10 @@ public class VendorCheckDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((VendorCheck)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((VendorCheck)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((VendorCheck)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((VendorCheck)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

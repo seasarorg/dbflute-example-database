@@ -139,10 +139,10 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
         return doSelectEntity(cb, VendorDateFk.class);
     }
 
-    protected <ENTITY extends VendorDateFk> ENTITY doSelectEntity(final VendorDateFkCB cb, Class<ENTITY> entityType) {
+    protected <ENTITY extends VendorDateFk> ENTITY doSelectEntity(final VendorDateFkCB cb, Class<ENTITY> tp) {
         assertCBStateValid(cb);
-        return helpSelectEntityInternally(cb, entityType, new InternalSelectEntityCallback<ENTITY, VendorDateFkCB>() {
-            public List<ENTITY> callbackSelectList(VendorDateFkCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); } });
+        return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, VendorDateFkCB>() {
+            public List<ENTITY> callbackSelectList(VendorDateFkCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
     }
 
     @Override
@@ -168,10 +168,10 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
         return doSelectEntityWithDeletedCheck(cb, VendorDateFk.class);
     }
 
-    protected <ENTITY extends VendorDateFk> ENTITY doSelectEntityWithDeletedCheck(final VendorDateFkCB cb, Class<ENTITY> entityType) {
+    protected <ENTITY extends VendorDateFk> ENTITY doSelectEntityWithDeletedCheck(final VendorDateFkCB cb, Class<ENTITY> tp) {
         assertCBStateValid(cb);
-        return helpSelectEntityWithDeletedCheckInternally(cb, entityType, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, VendorDateFkCB>() {
-            public List<ENTITY> callbackSelectList(VendorDateFkCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); } });
+        return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, VendorDateFkCB>() {
+            public List<ENTITY> callbackSelectList(VendorDateFkCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
     }
 
     @Override
@@ -239,11 +239,11 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
         return doSelectList(cb, VendorDateFk.class);
     }
 
-    protected <ENTITY extends VendorDateFk> ListResultBean<ENTITY> doSelectList(VendorDateFkCB cb, Class<ENTITY> entityType) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", entityType);
-        assertSpecifyDerivedReferrerEntityProperty(cb, entityType);
-        return helpSelectListInternally(cb, entityType, new InternalSelectListCallback<ENTITY, VendorDateFkCB>() {
-            public List<ENTITY> callbackSelectList(VendorDateFkCB cb, Class<ENTITY> entityType) { return delegateSelectList(cb, entityType); } });
+    protected <ENTITY extends VendorDateFk> ListResultBean<ENTITY> doSelectList(VendorDateFkCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
+        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
+        return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, VendorDateFkCB>() {
+            public List<ENTITY> callbackSelectList(VendorDateFkCB cb, Class<ENTITY> tp) { return delegateSelectList(cb, tp); } });
     }
 
     @Override
@@ -280,11 +280,11 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
         return doSelectPage(cb, VendorDateFk.class);
     }
 
-    protected <ENTITY extends VendorDateFk> PagingResultBean<ENTITY> doSelectPage(VendorDateFkCB cb, Class<ENTITY> entityType) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", entityType);
-        return helpSelectPageInternally(cb, entityType, new InternalSelectPageCallback<ENTITY, VendorDateFkCB>() {
+    protected <ENTITY extends VendorDateFk> PagingResultBean<ENTITY> doSelectPage(VendorDateFkCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
+        return helpSelectPageInternally(cb, tp, new InternalSelectPageCallback<ENTITY, VendorDateFkCB>() {
             public int callbackSelectCount(VendorDateFkCB cb) { return doSelectCountPlainly(cb); }
-            public List<ENTITY> callbackSelectList(VendorDateFkCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); }
+            public List<ENTITY> callbackSelectList(VendorDateFkCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
         });
     }
 
@@ -314,12 +314,12 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
         doSelectCursor(cb, entityRowHandler, VendorDateFk.class);
     }
 
-    protected <ENTITY extends VendorDateFk> void doSelectCursor(VendorDateFkCB cb, EntityRowHandler<ENTITY> entityRowHandler, Class<ENTITY> entityType) {
-        assertCBStateValid(cb); assertObjectNotNull("entityRowHandler<VendorDateFk>", entityRowHandler); assertObjectNotNull("entityType", entityType);
-        assertSpecifyDerivedReferrerEntityProperty(cb, entityType);
-        helpSelectCursorInternally(cb, entityRowHandler, entityType, new InternalSelectCursorCallback<ENTITY, VendorDateFkCB>() {
-            public void callbackSelectCursor(VendorDateFkCB cb, EntityRowHandler<ENTITY> entityRowHandler, Class<ENTITY> entityType) { delegateSelectCursor(cb, entityRowHandler, entityType); }
-            public List<ENTITY> callbackSelectList(VendorDateFkCB cb, Class<ENTITY> entityType) { return doSelectList(cb, entityType); }
+    protected <ENTITY extends VendorDateFk> void doSelectCursor(VendorDateFkCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
+        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
+        helpSelectCursorInternally(cb, handler, tp, new InternalSelectCursorCallback<ENTITY, VendorDateFkCB>() {
+            public void callbackSelectCursor(VendorDateFkCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) { delegateSelectCursor(cb, handler, tp); }
+            public List<ENTITY> callbackSelectList(VendorDateFkCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
         });
     }
 
@@ -345,18 +345,18 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
         return doScalarSelect(resultType, newMyConditionBean());
     }
 
-    protected <RESULT, CB extends VendorDateFkCB> SLFunction<CB, RESULT> doScalarSelect(Class<RESULT> resultType, CB cb) {
-        assertObjectNotNull("resultType", resultType); assertCBStateValid(cb);
+    protected <RESULT, CB extends VendorDateFkCB> SLFunction<CB, RESULT> doScalarSelect(Class<RESULT> tp, CB cb) {
+        assertObjectNotNull("resultType", tp); assertCBStateValid(cb);
         cb.xsetupForScalarSelect(); cb.getSqlClause().disableSelectIndex(); // for when you use union
-        return createSLFunction(cb, resultType);
+        return createSLFunction(cb, tp);
     }
 
-    protected <RESULT, CB extends VendorDateFkCB> SLFunction<CB, RESULT> createSLFunction(CB cb, Class<RESULT> resultType) {
-        return new SLFunction<CB, RESULT>(cb, resultType);
+    protected <RESULT, CB extends VendorDateFkCB> SLFunction<CB, RESULT> createSLFunction(CB cb, Class<RESULT> tp) {
+        return new SLFunction<CB, RESULT>(cb, tp);
     }
 
-    protected <RESULT> SLFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> resultType) {
-        return doScalarSelect(resultType, newMyConditionBean());
+    protected <RESULT> SLFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) {
+        return doScalarSelect(tp, newMyConditionBean());
     }
 
     // ===================================================================================
@@ -378,10 +378,10 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
      */
     public List<VendorDatePk> pulloutVendorDatePk(List<VendorDateFk> vendorDateFkList) {
         return helpPulloutInternally(vendorDateFkList, new InternalPulloutCallback<VendorDateFk, VendorDatePk>() {
-            public VendorDatePk getFr(VendorDateFk e) { return e.getVendorDatePk(); }
+            public VendorDatePk getFr(VendorDateFk et) { return et.getVendorDatePk(); }
             public boolean hasRf() { return true; }
-            public void setRfLs(VendorDatePk e, List<VendorDateFk> ls)
-            { e.setVendorDateFkList(ls); }
+            public void setRfLs(VendorDatePk et, List<VendorDateFk> ls)
+            { et.setVendorDateFkList(ls); }
         });
     }
 
@@ -395,7 +395,7 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
      */
     public List<Integer> extractBarIdList(List<VendorDateFk> vendorDateFkList) {
         return helpExtractListInternally(vendorDateFkList, new InternalExtractCallback<VendorDateFk, Integer>() {
-            public Integer getCV(VendorDateFk e) { return e.getBarId(); }
+            public Integer getCV(VendorDateFk et) { return et.getBarId(); }
         });
     }
 
@@ -423,24 +423,24 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
         doInsert(vendorDateFk, null);
     }
 
-    protected void doInsert(VendorDateFk vendorDateFk, InsertOption<VendorDateFkCB> option) {
+    protected void doInsert(VendorDateFk vendorDateFk, InsertOption<VendorDateFkCB> op) {
         assertObjectNotNull("vendorDateFk", vendorDateFk);
-        prepareInsertOption(option);
-        delegateInsert(vendorDateFk, option);
+        prepareInsertOption(op);
+        delegateInsert(vendorDateFk, op);
     }
 
-    protected void prepareInsertOption(InsertOption<VendorDateFkCB> option) {
-        if (option == null) { return; }
-        assertInsertOptionStatus(option);
-        if (option.hasSpecifiedInsertColumn()) {
-            option.resolveInsertColumnSpecification(createCBForSpecifiedUpdate());
+    protected void prepareInsertOption(InsertOption<VendorDateFkCB> op) {
+        if (op == null) { return; }
+        assertInsertOptionStatus(op);
+        if (op.hasSpecifiedInsertColumn()) {
+            op.resolveInsertColumnSpecification(createCBForSpecifiedUpdate());
         }
     }
 
     @Override
-    protected void doCreate(Entity entity, InsertOption<? extends ConditionBean> option) {
-        if (option == null) { insert(downcast(entity)); }
-        else { varyingInsert(downcast(entity), downcast(option)); }
+    protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) {
+        if (op == null) { insert(downcast(et)); }
+        else { varyingInsert(downcast(et), downcast(op)); }
     }
 
     /**
@@ -469,21 +469,21 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
         doUpdate(vendorDateFk, null);
     }
 
-    protected void doUpdate(VendorDateFk vendorDateFk, final UpdateOption<VendorDateFkCB> option) {
+    protected void doUpdate(VendorDateFk vendorDateFk, final UpdateOption<VendorDateFkCB> op) {
         assertObjectNotNull("vendorDateFk", vendorDateFk);
-        prepareUpdateOption(option);
+        prepareUpdateOption(op);
         helpUpdateInternally(vendorDateFk, new InternalUpdateCallback<VendorDateFk>() {
-            public int callbackDelegateUpdate(VendorDateFk entity) { return delegateUpdate(entity, option); } });
+            public int callbackDelegateUpdate(VendorDateFk et) { return delegateUpdate(et, op); } });
     }
 
-    protected void prepareUpdateOption(UpdateOption<VendorDateFkCB> option) {
-        if (option == null) { return; }
-        assertUpdateOptionStatus(option);
-        if (option.hasSelfSpecification()) {
-            option.resolveSelfSpecification(createCBForVaryingUpdate());
+    protected void prepareUpdateOption(UpdateOption<VendorDateFkCB> op) {
+        if (op == null) { return; }
+        assertUpdateOptionStatus(op);
+        if (op.hasSelfSpecification()) {
+            op.resolveSelfSpecification(createCBForVaryingUpdate());
         }
-        if (option.hasSpecifiedUpdateColumn()) {
-            option.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate());
+        if (op.hasSpecifiedUpdateColumn()) {
+            op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate());
         }
     }
 
@@ -500,14 +500,14 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
     }
 
     @Override
-    protected void doModify(Entity entity, UpdateOption<? extends ConditionBean> option) {
-        if (option == null) { update(downcast(entity)); }
-        else { varyingUpdate(downcast(entity), downcast(option)); }
+    protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) {
+        if (op == null) { update(downcast(et)); }
+        else { varyingUpdate(downcast(et), downcast(op)); }
     }
 
     @Override
-    protected void doModifyNonstrict(Entity entity, UpdateOption<? extends ConditionBean> option) {
-        doModify(entity, option);
+    protected void doModifyNonstrict(Entity et, UpdateOption<? extends ConditionBean> op) {
+        doModify(et, op);
     }
 
     /**
@@ -523,30 +523,28 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
         doInesrtOrUpdate(vendorDateFk, null, null);
     }
 
-    protected void doInesrtOrUpdate(VendorDateFk vendorDateFk, final InsertOption<VendorDateFkCB> insertOption, final UpdateOption<VendorDateFkCB> updateOption) {
+    protected void doInesrtOrUpdate(VendorDateFk vendorDateFk, final InsertOption<VendorDateFkCB> iop, final UpdateOption<VendorDateFkCB> uop) {
         helpInsertOrUpdateInternally(vendorDateFk, new InternalInsertOrUpdateCallback<VendorDateFk, VendorDateFkCB>() {
-            public void callbackInsert(VendorDateFk entity) { doInsert(entity, insertOption); }
-            public void callbackUpdate(VendorDateFk entity) { doUpdate(entity, updateOption); }
+            public void callbackInsert(VendorDateFk et) { doInsert(et, iop); }
+            public void callbackUpdate(VendorDateFk et) { doUpdate(et, uop); }
             public VendorDateFkCB callbackNewMyConditionBean() { return newMyConditionBean(); }
             public int callbackSelectCount(VendorDateFkCB cb) { return selectCount(cb); }
         });
     }
 
     @Override
-    protected void doCreateOrModify(Entity entity, InsertOption<? extends ConditionBean> insertOption,
-            UpdateOption<? extends ConditionBean> updateOption) {
-        if (insertOption == null && updateOption == null) { insertOrUpdate(downcast(entity)); }
+    protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
+        if (iop == null && uop == null) { insertOrUpdate(downcast(et)); }
         else {
-            insertOption = insertOption == null ? new InsertOption<VendorDateFkCB>() : insertOption;
-            updateOption = updateOption == null ? new UpdateOption<VendorDateFkCB>() : updateOption;
-            varyingInsertOrUpdate(downcast(entity), downcast(insertOption), downcast(updateOption));
+            iop = iop != null ? iop : new InsertOption<VendorDateFkCB>();
+            uop = uop != null ? uop : new UpdateOption<VendorDateFkCB>();
+            varyingInsertOrUpdate(downcast(et), downcast(iop), downcast(uop));
         }
     }
 
     @Override
-    protected void doCreateOrModifyNonstrict(Entity entity, InsertOption<? extends ConditionBean> insertOption,
-            UpdateOption<? extends ConditionBean> updateOption) {
-        doCreateOrModify(entity, insertOption, updateOption);
+    protected void doCreateOrModifyNonstrict(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
+        doCreateOrModify(et, iop, uop);
     }
 
     /**
@@ -570,27 +568,27 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
         doDelete(vendorDateFk, null);
     }
 
-    protected void doDelete(VendorDateFk vendorDateFk, final DeleteOption<VendorDateFkCB> option) {
+    protected void doDelete(VendorDateFk vendorDateFk, final DeleteOption<VendorDateFkCB> op) {
         assertObjectNotNull("vendorDateFk", vendorDateFk);
-        prepareDeleteOption(option);
+        prepareDeleteOption(op);
         helpDeleteInternally(vendorDateFk, new InternalDeleteCallback<VendorDateFk>() {
-            public int callbackDelegateDelete(VendorDateFk entity) { return delegateDelete(entity, option); } });
+            public int callbackDelegateDelete(VendorDateFk et) { return delegateDelete(et, op); } });
     }
 
-    protected void prepareDeleteOption(DeleteOption<VendorDateFkCB> option) {
-        if (option == null) { return; }
-        assertDeleteOptionStatus(option);
-    }
-
-    @Override
-    protected void doRemove(Entity entity, DeleteOption<? extends ConditionBean> option) {
-        if (option == null) { delete(downcast(entity)); }
-        else { varyingDelete(downcast(entity), downcast(option)); }
+    protected void prepareDeleteOption(DeleteOption<VendorDateFkCB> op) {
+        if (op == null) { return; }
+        assertDeleteOptionStatus(op);
     }
 
     @Override
-    protected void doRemoveNonstrict(Entity entity, DeleteOption<? extends ConditionBean> option) {
-        doRemove(entity, option);
+    protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) {
+        if (op == null) { delete(downcast(et)); }
+        else { varyingDelete(downcast(et), downcast(op)); }
+    }
+
+    @Override
+    protected void doRemoveNonstrict(Entity et, DeleteOption<? extends ConditionBean> op) {
+        doRemove(et, op);
     }
 
     // ===================================================================================
@@ -621,26 +619,26 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
      * @return The array of inserted count. (NotNull, EmptyAllowed)
      */
     public int[] batchInsert(List<VendorDateFk> vendorDateFkList) {
-        InsertOption<VendorDateFkCB> option = createInsertUpdateOption();
-        return doBatchInsert(vendorDateFkList, option);
+        InsertOption<VendorDateFkCB> op = createInsertUpdateOption();
+        return doBatchInsert(vendorDateFkList, op);
     }
 
-    protected int[] doBatchInsert(List<VendorDateFk> vendorDateFkList, InsertOption<VendorDateFkCB> option) {
+    protected int[] doBatchInsert(List<VendorDateFk> vendorDateFkList, InsertOption<VendorDateFkCB> op) {
         assertObjectNotNull("vendorDateFkList", vendorDateFkList);
-        prepareBatchInsertOption(vendorDateFkList, option);
-        return delegateBatchInsert(vendorDateFkList, option);
+        prepareBatchInsertOption(vendorDateFkList, op);
+        return delegateBatchInsert(vendorDateFkList, op);
     }
 
-    protected void prepareBatchInsertOption(List<VendorDateFk> vendorDateFkList, InsertOption<VendorDateFkCB> option) {
-        option.xallowInsertColumnModifiedPropertiesFragmented();
-        option.xacceptInsertColumnModifiedPropertiesIfNeeds(vendorDateFkList);
-        prepareInsertOption(option);
+    protected void prepareBatchInsertOption(List<VendorDateFk> vendorDateFkList, InsertOption<VendorDateFkCB> op) {
+        op.xallowInsertColumnModifiedPropertiesFragmented();
+        op.xacceptInsertColumnModifiedPropertiesIfNeeds(vendorDateFkList);
+        prepareInsertOption(op);
     }
 
     @Override
-    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> option) {
-        if (option == null) { return batchInsert(downcast(ls)); }
-        else { return varyingBatchInsert(downcast(ls), downcast(option)); }
+    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) {
+        if (op == null) { return batchInsert(downcast(ls)); }
+        else { return varyingBatchInsert(downcast(ls), downcast(op)); }
     }
 
     /**
@@ -668,25 +666,25 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
      * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<VendorDateFk> vendorDateFkList) {
-        UpdateOption<VendorDateFkCB> option = createPlainUpdateOption();
-        return doBatchUpdate(vendorDateFkList, option);
+        UpdateOption<VendorDateFkCB> op = createPlainUpdateOption();
+        return doBatchUpdate(vendorDateFkList, op);
     }
 
-    protected int[] doBatchUpdate(List<VendorDateFk> vendorDateFkList, UpdateOption<VendorDateFkCB> option) {
+    protected int[] doBatchUpdate(List<VendorDateFk> vendorDateFkList, UpdateOption<VendorDateFkCB> op) {
         assertObjectNotNull("vendorDateFkList", vendorDateFkList);
-        prepareBatchUpdateOption(vendorDateFkList, option);
-        return delegateBatchUpdate(vendorDateFkList, option);
+        prepareBatchUpdateOption(vendorDateFkList, op);
+        return delegateBatchUpdate(vendorDateFkList, op);
     }
 
-    protected void prepareBatchUpdateOption(List<VendorDateFk> vendorDateFkList, UpdateOption<VendorDateFkCB> option) {
-        option.xacceptUpdateColumnModifiedPropertiesIfNeeds(vendorDateFkList);
-        prepareUpdateOption(option);
+    protected void prepareBatchUpdateOption(List<VendorDateFk> vendorDateFkList, UpdateOption<VendorDateFkCB> op) {
+        op.xacceptUpdateColumnModifiedPropertiesIfNeeds(vendorDateFkList);
+        prepareUpdateOption(op);
     }
 
     @Override
-    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> option) {
-        if (option == null) { return batchUpdate(downcast(ls)); }
-        else { return varyingBatchUpdate(downcast(ls), downcast(option)); }
+    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) {
+        if (op == null) { return batchUpdate(downcast(ls)); }
+        else { return varyingBatchUpdate(downcast(ls), downcast(op)); }
     }
 
     /**
@@ -722,8 +720,8 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
     }
 
     @Override
-    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> option) {
-        return doLumpModify(ls, option);
+    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> op) {
+        return doLumpModify(ls, op);
     }
 
     /**
@@ -737,21 +735,21 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
         return doBatchDelete(vendorDateFkList, null);
     }
 
-    protected int[] doBatchDelete(List<VendorDateFk> vendorDateFkList, DeleteOption<VendorDateFkCB> option) {
+    protected int[] doBatchDelete(List<VendorDateFk> vendorDateFkList, DeleteOption<VendorDateFkCB> op) {
         assertObjectNotNull("vendorDateFkList", vendorDateFkList);
-        prepareDeleteOption(option);
-        return delegateBatchDelete(vendorDateFkList, option);
+        prepareDeleteOption(op);
+        return delegateBatchDelete(vendorDateFkList, op);
     }
 
     @Override
-    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> option) {
-        if (option == null) { return batchDelete(downcast(ls)); }
-        else { return varyingBatchDelete(downcast(ls), downcast(option)); }
+    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) {
+        if (op == null) { return batchDelete(downcast(ls)); }
+        else { return varyingBatchDelete(downcast(ls), downcast(op)); }
     }
 
     @Override
-    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> option) {
-        return doLumpRemove(ls, option);
+    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> op) {
+        return doLumpRemove(ls, op);
     }
 
     // ===================================================================================
@@ -787,13 +785,12 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
         return doQueryInsert(setupper, null);
     }
 
-    protected int doQueryInsert(QueryInsertSetupper<VendorDateFk, VendorDateFkCB> setupper, InsertOption<VendorDateFkCB> option) {
-        assertObjectNotNull("setupper", setupper);
-        prepareInsertOption(option);
-        VendorDateFk entity = new VendorDateFk();
-        VendorDateFkCB intoCB = createCBForQueryInsert();
-        ConditionBean resourceCB = setupper.setup(entity, intoCB);
-        return delegateQueryInsert(entity, intoCB, resourceCB, option);
+    protected int doQueryInsert(QueryInsertSetupper<VendorDateFk, VendorDateFkCB> sp, InsertOption<VendorDateFkCB> op) {
+        assertObjectNotNull("setupper", sp);
+        prepareInsertOption(op);
+        VendorDateFk e = new VendorDateFk();
+        VendorDateFkCB cb = createCBForQueryInsert();
+        return delegateQueryInsert(e, cb, sp.setup(e, cb), op);
     }
 
     protected VendorDateFkCB createCBForQueryInsert() {
@@ -834,16 +831,16 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
         return doQueryUpdate(vendorDateFk, cb, null);
     }
 
-    protected int doQueryUpdate(VendorDateFk vendorDateFk, VendorDateFkCB cb, UpdateOption<VendorDateFkCB> option) {
+    protected int doQueryUpdate(VendorDateFk vendorDateFk, VendorDateFkCB cb, UpdateOption<VendorDateFkCB> op) {
         assertObjectNotNull("vendorDateFk", vendorDateFk); assertCBStateValid(cb);
-        prepareUpdateOption(option);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(vendorDateFk, cb, option) : 0;
+        prepareUpdateOption(op);
+        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(vendorDateFk, cb, op) : 0;
     }
 
     @Override
-    protected int doRangeModify(Entity entity, ConditionBean cb, UpdateOption<? extends ConditionBean> option) {
-        if (option == null) { return queryUpdate(downcast(entity), (VendorDateFkCB)cb); }
-        else { return varyingQueryUpdate(downcast(entity), (VendorDateFkCB)cb, downcast(option)); }
+    protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op) {
+        if (op == null) { return queryUpdate(downcast(et), (VendorDateFkCB)cb); }
+        else { return varyingQueryUpdate(downcast(et), (VendorDateFkCB)cb, downcast(op)); }
     }
 
     /**
@@ -861,16 +858,16 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
         return doQueryDelete(cb, null);
     }
 
-    protected int doQueryDelete(VendorDateFkCB cb, DeleteOption<VendorDateFkCB> option) {
+    protected int doQueryDelete(VendorDateFkCB cb, DeleteOption<VendorDateFkCB> op) {
         assertCBStateValid(cb);
-        prepareDeleteOption(option);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryDelete(cb, option) : 0;
+        prepareDeleteOption(op);
+        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryDelete(cb, op) : 0;
     }
 
     @Override
-    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> option) {
-        if (option == null) { return queryDelete((VendorDateFkCB)cb); }
-        else { return varyingQueryDelete((VendorDateFkCB)cb, downcast(option)); }
+    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) {
+        if (op == null) { return queryDelete((VendorDateFkCB)cb); }
+        else { return varyingQueryDelete((VendorDateFkCB)cb, downcast(op)); }
     }
 
     // ===================================================================================
@@ -1122,29 +1119,29 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
     //                                                ------
     protected int delegateSelectCountUniquely(VendorDateFkCB cb) { return invoke(createSelectCountCBCommand(cb, true)); }
     protected int delegateSelectCountPlainly(VendorDateFkCB cb) { return invoke(createSelectCountCBCommand(cb, false)); }
-    protected <ENTITY extends VendorDateFk> void delegateSelectCursor(VendorDateFkCB cb, EntityRowHandler<ENTITY> erh, Class<ENTITY> et)
-    { invoke(createSelectCursorCBCommand(cb, erh, et)); }
-    protected <ENTITY extends VendorDateFk> List<ENTITY> delegateSelectList(VendorDateFkCB cb, Class<ENTITY> et)
-    { return invoke(createSelectListCBCommand(cb, et)); }
+    protected <ENTITY extends VendorDateFk> void delegateSelectCursor(VendorDateFkCB cb, EntityRowHandler<ENTITY> rh, Class<ENTITY> tp)
+    { invoke(createSelectCursorCBCommand(cb, rh, tp)); }
+    protected <ENTITY extends VendorDateFk> List<ENTITY> delegateSelectList(VendorDateFkCB cb, Class<ENTITY> tp)
+    { return invoke(createSelectListCBCommand(cb, tp)); }
 
     // -----------------------------------------------------
     //                                                Update
     //                                                ------
-    protected int delegateInsert(VendorDateFk e, InsertOption<VendorDateFkCB> op)
-    { if (!processBeforeInsert(e, op)) { return 0; }
-      return invoke(createInsertEntityCommand(e, op)); }
-    protected int delegateUpdate(VendorDateFk e, UpdateOption<VendorDateFkCB> op)
-    { if (!processBeforeUpdate(e, op)) { return 0; }
-      return delegateUpdateNonstrict(e, op); }
-    protected int delegateUpdateNonstrict(VendorDateFk e, UpdateOption<VendorDateFkCB> op)
-    { if (!processBeforeUpdate(e, op)) { return 0; }
-      return invoke(createUpdateNonstrictEntityCommand(e, op)); }
-    protected int delegateDelete(VendorDateFk e, DeleteOption<VendorDateFkCB> op)
-    { if (!processBeforeDelete(e, op)) { return 0; }
-      return delegateDeleteNonstrict(e, op); }
-    protected int delegateDeleteNonstrict(VendorDateFk e, DeleteOption<VendorDateFkCB> op)
-    { if (!processBeforeDelete(e, op)) { return 0; }
-      return invoke(createDeleteNonstrictEntityCommand(e, op)); }
+    protected int delegateInsert(VendorDateFk et, InsertOption<VendorDateFkCB> op)
+    { if (!processBeforeInsert(et, op)) { return 0; }
+      return invoke(createInsertEntityCommand(et, op)); }
+    protected int delegateUpdate(VendorDateFk et, UpdateOption<VendorDateFkCB> op)
+    { if (!processBeforeUpdate(et, op)) { return 0; }
+      return delegateUpdateNonstrict(et, op); }
+    protected int delegateUpdateNonstrict(VendorDateFk et, UpdateOption<VendorDateFkCB> op)
+    { if (!processBeforeUpdate(et, op)) { return 0; }
+      return invoke(createUpdateNonstrictEntityCommand(et, op)); }
+    protected int delegateDelete(VendorDateFk et, DeleteOption<VendorDateFkCB> op)
+    { if (!processBeforeDelete(et, op)) { return 0; }
+      return delegateDeleteNonstrict(et, op); }
+    protected int delegateDeleteNonstrict(VendorDateFk et, DeleteOption<VendorDateFkCB> op)
+    { if (!processBeforeDelete(et, op)) { return 0; }
+      return invoke(createDeleteNonstrictEntityCommand(et, op)); }
 
     protected int[] delegateBatchInsert(List<VendorDateFk> ls, InsertOption<VendorDateFkCB> op)
     { if (ls.isEmpty()) { return new int[]{}; }
@@ -1162,10 +1159,10 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
     { if (ls.isEmpty()) { return new int[]{}; }
       return invoke(createBatchDeleteNonstrictCommand(processBatchInternally(ls, op, true), op)); }
 
-    protected int delegateQueryInsert(VendorDateFk e, VendorDateFkCB inCB, ConditionBean resCB, InsertOption<VendorDateFkCB> op)
-    { if (!processBeforeQueryInsert(e, inCB, resCB, op)) { return 0; } return invoke(createQueryInsertCBCommand(e, inCB, resCB, op));  }
-    protected int delegateQueryUpdate(VendorDateFk e, VendorDateFkCB cb, UpdateOption<VendorDateFkCB> op)
-    { if (!processBeforeQueryUpdate(e, cb, op)) { return 0; } return invoke(createQueryUpdateCBCommand(e, cb, op));  }
+    protected int delegateQueryInsert(VendorDateFk et, VendorDateFkCB inCB, ConditionBean resCB, InsertOption<VendorDateFkCB> op)
+    { if (!processBeforeQueryInsert(et, inCB, resCB, op)) { return 0; } return invoke(createQueryInsertCBCommand(et, inCB, resCB, op));  }
+    protected int delegateQueryUpdate(VendorDateFk et, VendorDateFkCB cb, UpdateOption<VendorDateFkCB> op)
+    { if (!processBeforeQueryUpdate(et, cb, op)) { return 0; } return invoke(createQueryUpdateCBCommand(et, cb, op));  }
     protected int delegateQueryDelete(VendorDateFkCB cb, DeleteOption<VendorDateFkCB> op)
     { if (!processBeforeQueryDelete(cb, op)) { return 0; } return invoke(createQueryDeleteCBCommand(cb, op));  }
 
@@ -1176,7 +1173,7 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
      * {@inheritDoc}
      */
     @Override
-    protected boolean hasVersionNoValue(Entity entity) {
+    protected boolean hasVersionNoValue(Entity et) {
         return false;
     }
 
@@ -1184,15 +1181,15 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
      * {@inheritDoc}
      */
     @Override
-    protected boolean hasUpdateDateValue(Entity entity) {
+    protected boolean hasUpdateDateValue(Entity et) {
         return false;
     }
 
     // ===================================================================================
     //                                                                     Downcast Helper
     //                                                                     ===============
-    protected VendorDateFk downcast(Entity entity) {
-        return helpEntityDowncastInternally(entity, VendorDateFk.class);
+    protected VendorDateFk downcast(Entity et) {
+        return helpEntityDowncastInternally(et, VendorDateFk.class);
     }
 
     protected VendorDateFkCB downcast(ConditionBean cb) {
@@ -1200,27 +1197,27 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
     }
 
     @SuppressWarnings("unchecked")
-    protected List<VendorDateFk> downcast(List<? extends Entity> entityList) {
-        return (List<VendorDateFk>)entityList;
+    protected List<VendorDateFk> downcast(List<? extends Entity> ls) {
+        return (List<VendorDateFk>)ls;
     }
 
     @SuppressWarnings("unchecked")
-    protected InsertOption<VendorDateFkCB> downcast(InsertOption<? extends ConditionBean> option) {
-        return (InsertOption<VendorDateFkCB>)option;
+    protected InsertOption<VendorDateFkCB> downcast(InsertOption<? extends ConditionBean> op) {
+        return (InsertOption<VendorDateFkCB>)op;
     }
 
     @SuppressWarnings("unchecked")
-    protected UpdateOption<VendorDateFkCB> downcast(UpdateOption<? extends ConditionBean> option) {
-        return (UpdateOption<VendorDateFkCB>)option;
+    protected UpdateOption<VendorDateFkCB> downcast(UpdateOption<? extends ConditionBean> op) {
+        return (UpdateOption<VendorDateFkCB>)op;
     }
 
     @SuppressWarnings("unchecked")
-    protected DeleteOption<VendorDateFkCB> downcast(DeleteOption<? extends ConditionBean> option) {
-        return (DeleteOption<VendorDateFkCB>)option;
+    protected DeleteOption<VendorDateFkCB> downcast(DeleteOption<? extends ConditionBean> op) {
+        return (DeleteOption<VendorDateFkCB>)op;
     }
 
     @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<VendorDateFk, VendorDateFkCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> option) {
-        return (QueryInsertSetupper<VendorDateFk, VendorDateFkCB>)option;
+    protected QueryInsertSetupper<VendorDateFk, VendorDateFkCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp) {
+        return (QueryInsertSetupper<VendorDateFk, VendorDateFkCB>)sp;
     }
 }

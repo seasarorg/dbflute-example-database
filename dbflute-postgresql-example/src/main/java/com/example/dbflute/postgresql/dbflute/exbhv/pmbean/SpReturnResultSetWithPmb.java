@@ -5,7 +5,7 @@ import com.example.dbflute.postgresql.dbflute.bsbhv.pmbean.BsSpReturnResultSetWi
 /**
  * <!-- df:beginClassDescription -->
  * The typed parameter-bean of SpReturnResultSetWith. <br />
- * This is related to "<span style="color: #AD4747">sp_return_result_set_with</span>".
+ * This is related to "<span style="color: #AD4747">sp_return_result_set_with</span>". <br />
  * <!-- df:endClassDescription -->
  * <p>
  * You can implement your original methods here.

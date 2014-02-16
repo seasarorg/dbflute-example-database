@@ -5,7 +5,7 @@ import com.example.dbflute.oracle.dbflute.bsbhv.pmbean.BsSynonymProcedureInOutPm
 /**
  * <!-- df:beginClassDescription -->
  * The typed parameter-bean of SynonymProcedureInOut. <br />
- * This is related to "<span style="color: #AD4747">SYNONYM_PROCEDURE_IN_OUT</span>".
+ * This is related to "<span style="color: #AD4747">SYNONYM_PROCEDURE_IN_OUT</span>". <br />
  * <!-- df:endClassDescription -->
  * <p>
  * You can implement your original methods here.

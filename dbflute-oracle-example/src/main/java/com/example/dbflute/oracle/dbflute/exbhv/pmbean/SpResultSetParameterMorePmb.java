@@ -5,7 +5,7 @@ import com.example.dbflute.oracle.dbflute.bsbhv.pmbean.BsSpResultSetParameterMor
 /**
  * <!-- df:beginClassDescription -->
  * The typed parameter-bean of SpResultSetParameterMore. <br />
- * This is related to "<span style="color: #AD4747">SP_RESULT_SET_PARAMETER_MORE</span>".
+ * This is related to "<span style="color: #AD4747">SP_RESULT_SET_PARAMETER_MORE</span>". <br />
  * <!-- df:endClassDescription -->
  * <p>
  * You can implement your original methods here.

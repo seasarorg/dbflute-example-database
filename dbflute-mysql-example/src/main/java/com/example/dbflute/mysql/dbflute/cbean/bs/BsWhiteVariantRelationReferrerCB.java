@@ -567,8 +567,8 @@ public class BsWhiteVariantRelationReferrerCB extends AbstractConditionBean {
         public HpSDRFunction<WhiteVariantRelationReferrerCB, WhiteVariantRelationReferrerCQ> myselfDerived() {
             assertDerived("myselfDerived"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<WhiteVariantRelationReferrerCB, WhiteVariantRelationReferrerCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<WhiteVariantRelationReferrerCB, WhiteVariantRelationReferrerCQ>() {
-                public void setup(String function, SubQuery<WhiteVariantRelationReferrerCB> subQuery, WhiteVariantRelationReferrerCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsmyselfDerive(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<WhiteVariantRelationReferrerCB> sq, WhiteVariantRelationReferrerCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsmyselfDerive(fn, sq, al, op); } }, _dbmetaProvider);
         }
     }
 

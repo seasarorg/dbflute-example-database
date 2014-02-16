@@ -5,7 +5,7 @@ import com.example.dbflute.oracle.dbflute.bsbhv.pmbean.BsSynonymNextLinkProcedur
 /**
  * <!-- df:beginClassDescription -->
  * The typed parameter-bean of SynonymNextLinkProcedure. <br />
- * This is related to "<span style="color: #AD4747">SYNONYM_NEXT_LINK_PROCEDURE</span>".
+ * This is related to "<span style="color: #AD4747">SYNONYM_NEXT_LINK_PROCEDURE</span>". <br />
  * <!-- df:endClassDescription -->
  * <p>
  * You can implement your original methods here.
