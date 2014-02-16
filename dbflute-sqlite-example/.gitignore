@@ -1,2 +1,5 @@
 /target
 /bin
+/*.tm.epoch
+/tm.out
+/*.log
