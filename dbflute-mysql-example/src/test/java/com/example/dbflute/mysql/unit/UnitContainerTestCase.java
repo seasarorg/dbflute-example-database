@@ -1,5 +1,11 @@
 package com.example.dbflute.mysql.unit;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import javax.sql.DataSource;
+
 import org.seasar.dbflute.BehaviorSelector;
 import org.seasar.dbflute.bhv.BehaviorWritable;
 import org.seasar.dbflute.bhv.DeleteOption;
@@ -40,5 +46,31 @@ public abstract class UnitContainerTestCase extends ContainerTestCase {
         deleteAll(MemberSecurityBhv.class);
         deleteAll(MemberWithdrawalBhv.class);
         deleteAll(PurchaseBhv.class);
+    }
+
+    // ===================================================================================
+    //                                                                     Isolation Level
+    //                                                                     ===============
+    /**
+     * Adjust transaction isolation level to READ COMMITTED on this session. <br />
+     * This method depends on the MySQL. (you cannot use for other DBMSs)
+     * @throws SQLException
+     */
+    protected void adjustTransactionIsolationLevel_ReadCommitted() throws SQLException {
+        DataSource dataSource = getDataSource();
+        Connection conn = null;
+        Statement st = null;
+        try {
+            conn = dataSource.getConnection();
+            st = conn.createStatement();
+            st.execute("set SESSION transaction isolation level READ COMMITTED");
+        } finally {
+            if (st != null) {
+                st.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
     }
 }
