@@ -54,22 +54,30 @@ public abstract class UnitContainerTestCase extends ContainerTestCase {
     /**
      * Adjust transaction isolation level to READ COMMITTED on this session. <br />
      * This method depends on the MySQL. (you cannot use for other DBMSs)
-     * @throws SQLException
      */
-    protected void adjustTransactionIsolationLevel_ReadCommitted() throws SQLException {
-        DataSource dataSource = getDataSource();
+    protected void adjustTransactionIsolationLevel_ReadCommitted() {
+        final DataSource dataSource = getDataSource();
         Connection conn = null;
         Statement st = null;
+        final String sql = "set SESSION transaction isolation level READ COMMITTED";
         try {
             conn = dataSource.getConnection();
             st = conn.createStatement();
-            st.execute("set SESSION transaction isolation level READ COMMITTED");
+            st.execute(sql);
+        } catch (SQLException e) {
+            throw new IllegalStateException("Failed to set isolation level: " + sql, e);
         } finally {
             if (st != null) {
-                st.close();
+                try {
+                    st.close();
+                } catch (SQLException ignored) {
+                }
             }
             if (conn != null) {
-                conn.close();
+                try {
+                    conn.close();
+                } catch (SQLException ignored) {
+                }
             }
         }
     }

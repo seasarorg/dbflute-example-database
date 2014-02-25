@@ -3,6 +3,7 @@ package com.example.dbflute.mysql.dbflute.vendor;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Set;
+import java.util.Stack;
 
 import org.seasar.dbflute.bhv.InsertOption;
 import org.seasar.dbflute.cbean.ListResultBean;
@@ -115,7 +116,7 @@ public class VendorLockTest extends UnitContainerTestCase {
         }, new ThreadFireOption().threadCount(2).repeatCount(1).expectExceptionAny("timeout"));
     }
 
-    public void test_insert_Deadlock_NextKeyLock_for_FK() { // uses original transactions
+    public void test_insert_Deadlock_NextKeyLock_for_FK() {
         // {3, 6, 7} no deadlock (if no data since first, deadlock)
         // if unique index removed, {3, 6, 9} no deadlock but {3, 3} deadlock
         final Object[] parameters = new Object[] { 3, 7, 9 };
@@ -174,7 +175,7 @@ public class VendorLockTest extends UnitContainerTestCase {
         }
     }
 
-    public void test_insert_Deadlock_NextKeyLock_for_PK() { // uses original transactions
+    public void test_insert_Deadlock_NextKeyLock_for_PK() {
         final Set<String> markSet = DfCollectionUtil.newHashSet();
         final Set<Integer> insertedIdSet = DfCollectionUtil.newHashSet();
         final Member source = memberBhv.selectByPKValueWithDeletedCheck(3);
@@ -211,7 +212,7 @@ public class VendorLockTest extends UnitContainerTestCase {
     // ===================================================================================
     //                                                                              Update
     //                                                                              ======
-    public void test_update_Deadlock() { // uses original transactions
+    public void test_update_Deadlock_basic() {
         final int memberId = 3;
         final Member before = memberBhv.selectByPKValue(memberId);
         final Long versionNo = before.getVersionNo();
@@ -230,6 +231,7 @@ public class VendorLockTest extends UnitContainerTestCase {
                 purchase.setPaymentCompleteFlg_True();
                 purchase.setProductId(3);
                 purchaseBhv.insert(purchase);
+
                 // deadlock if update is executed after insert
                 // (updateNonstrict() too)
                 // ShareLock and ExclusiveLock are points
@@ -242,5 +244,73 @@ public class VendorLockTest extends UnitContainerTestCase {
             }
         }, new ThreadFireOption().commitTx().expectExceptionAny("Deadlock found"));
         log(markSet);
+    }
+
+    public void test_update_Deadlock_simply() throws Exception {
+        threadFire(new ThreadFireExecution<Void>() {
+            public Void execute(ThreadFireResource resource) {
+                Purchase purchase = purchaseBhv.selectByPKValue(3L);
+                purchase.setMemberId(1);
+                purchase.setProductId(1);
+                long threadId = resource.getThreadId();
+                long currentMillis = currentTimestamp().getTime();
+                long keyMillis = currentMillis - (threadId * 10000000);
+                purchase.setPurchaseDatetime(new Timestamp(keyMillis));
+                purchaseBhv.insert(purchase);
+
+                Member member = new Member();
+                member.setMemberId(1);
+                member.setBirthdate(currentDate());
+                memberBhv.updateNonstrict(member);
+                return null;
+            }
+        }, new ThreadFireOption().threadCount(3).repeatCount(1).expectExceptionAny("Deadlock found"));
+    }
+
+    public void test_update_NonDeadlock_reverse() throws Exception {
+        threadFire(new ThreadFireExecution<Void>() {
+            public Void execute(ThreadFireResource resource) {
+                Member member = new Member();
+                member.setMemberId(1);
+                member.setBirthdate(currentDate());
+                memberBhv.updateNonstrict(member);
+
+                Purchase purchase = purchaseBhv.selectByPKValue(3L);
+                purchase.setMemberId(1);
+                purchase.setProductId(1);
+                long threadId = resource.getThreadId();
+                long currentMillis = currentTimestamp().getTime();
+                long keyMillis = currentMillis - (threadId * 10000000);
+                purchase.setPurchaseDatetime(new Timestamp(keyMillis));
+                purchaseBhv.insert(purchase);
+                return null;
+            }
+        }, new ThreadFireOption().threadCount(3).repeatCount(1)); // no deadlock
+    }
+
+    // ===================================================================================
+    //                                                                              Delete
+    //                                                                              ======
+    public void test_delete_NonDeadlock() throws Exception {
+        PurchaseCB cb = new PurchaseCB();
+        cb.query().setMemberId_Equal(3);
+        ListResultBean<Purchase> purchaseList = purchaseBhv.selectList(cb);
+        List<Long> purchaseIdList = purchaseBhv.extractPurchaseIdList(purchaseList);
+        assertTrue(purchaseIdList.size() > 2);
+        final Stack<Long> stack = new Stack<Long>();
+        stack.addAll(purchaseIdList);
+        threadFire(new ThreadFireExecution<Void>() {
+            public Void execute(ThreadFireResource resource) {
+                Purchase purchase = new Purchase();
+                purchase.setPurchaseId(stack.pop());
+                purchaseBhv.deleteNonstrict(purchase);
+
+                Member member = new Member();
+                member.setMemberId(3);
+                member.setBirthdate(currentDate());
+                memberBhv.updateNonstrict(member);
+                return null;
+            }
+        }, new ThreadFireOption().threadCount(3).repeatCount(1)); // no deadlock
     }
 }
