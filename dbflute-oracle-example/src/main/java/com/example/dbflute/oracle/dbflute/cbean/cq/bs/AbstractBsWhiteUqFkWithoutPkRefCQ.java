@@ -286,8 +286,10 @@ public abstract class AbstractBsWhiteUqFkWithoutPkRefCQ extends AbstractConditio
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
+    protected WhiteUqFkWithoutPkRefCB newMyCB() {
+        return new WhiteUqFkWithoutPkRefCB();
+    }
     // very internal (for suppressing warn about 'Not Use Import')
-    protected String xabCB() { return WhiteUqFkWithoutPkRefCB.class.getName(); }
     protected String xabCQ() { return WhiteUqFkWithoutPkRefCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

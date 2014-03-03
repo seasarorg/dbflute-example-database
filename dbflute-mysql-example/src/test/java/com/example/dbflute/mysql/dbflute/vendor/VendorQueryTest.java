@@ -8,9 +8,8 @@ import java.util.List;
 import org.seasar.dbflute.cbean.ListResultBean;
 import org.seasar.dbflute.cbean.SubQuery;
 import org.seasar.dbflute.cbean.coption.LikeSearchOption;
-import org.seasar.dbflute.cbean.sqlclause.SqlClauseMySql.CollateUTF8UnicodeArranger;
+import org.seasar.dbflute.cbean.sqlclause.SqlClauseMySql.CollateUTF8MB4UnicodeArranger;
 import org.seasar.dbflute.cbean.sqlclause.query.QueryClauseArranger;
-import org.seasar.dbflute.dbmeta.name.ColumnRealName;
 import org.seasar.dbflute.dbway.DBWay;
 import org.seasar.dbflute.helper.HandyDate;
 
@@ -180,15 +179,7 @@ public class VendorQueryTest extends UnitContainerTestCase {
         LikeSearchOption option = new LikeSearchOption() {
             @Override
             public QueryClauseArranger getWhereClauseArranger() {
-                // utf8_unicode_ci is not valid for utf8mb4
-                return new CollateUTF8UnicodeArranger() {
-                    @Override
-                    public String arrange(ColumnRealName columnRealName, String operand, String bindExpression,
-                            String rearOption) {
-                        return columnRealName + " collate utf8mb4_unicode_ci " + operand + " " + bindExpression
-                                + rearOption;
-                    }
-                };
+                return new CollateUTF8MB4UnicodeArranger();
             }
         };
         cb.query().setMemberId_Equal(3);
@@ -200,7 +191,7 @@ public class VendorQueryTest extends UnitContainerTestCase {
         // ## Assert ##
         assertEquals("あ", actual.getMemberName());
         String sql = cb.toDisplaySql();
-        assertTrue(sql.contains("utf8mb4_unicode_ci"));
+        assertTrue(sql.contains("utf8mb4_unicode_520_ci"));
     }
 
     // ===================================================================================

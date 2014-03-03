@@ -540,7 +540,7 @@ public abstract class AbstractBsSynonymNextLinkTableCQ extends AbstractCondition
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<SynonymNextLinkTableCB> scalar_Equal() {
-        return xcreateSSQFunction(CK_EQ.getOperand());
+        return xcreateSSQFunction(CK_EQ.getOperand(), SynonymNextLinkTableCB.class);
     }
 
     /**
@@ -557,7 +557,7 @@ public abstract class AbstractBsSynonymNextLinkTableCQ extends AbstractCondition
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<SynonymNextLinkTableCB> scalar_NotEqual() {
-        return xcreateSSQFunction(CK_NES.getOperand());
+        return xcreateSSQFunction(CK_NES.getOperand(), SynonymNextLinkTableCB.class);
     }
 
     /**
@@ -574,7 +574,7 @@ public abstract class AbstractBsSynonymNextLinkTableCQ extends AbstractCondition
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<SynonymNextLinkTableCB> scalar_GreaterThan() {
-        return xcreateSSQFunction(CK_GT.getOperand());
+        return xcreateSSQFunction(CK_GT.getOperand(), SynonymNextLinkTableCB.class);
     }
 
     /**
@@ -591,7 +591,7 @@ public abstract class AbstractBsSynonymNextLinkTableCQ extends AbstractCondition
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<SynonymNextLinkTableCB> scalar_LessThan() {
-        return xcreateSSQFunction(CK_LT.getOperand());
+        return xcreateSSQFunction(CK_LT.getOperand(), SynonymNextLinkTableCB.class);
     }
 
     /**
@@ -608,7 +608,7 @@ public abstract class AbstractBsSynonymNextLinkTableCQ extends AbstractCondition
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<SynonymNextLinkTableCB> scalar_GreaterEqual() {
-        return xcreateSSQFunction(CK_GE.getOperand());
+        return xcreateSSQFunction(CK_GE.getOperand(), SynonymNextLinkTableCB.class);
     }
 
     /**
@@ -625,36 +625,25 @@ public abstract class AbstractBsSynonymNextLinkTableCQ extends AbstractCondition
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<SynonymNextLinkTableCB> scalar_LessEqual() {
-        return xcreateSSQFunction(CK_LE.getOperand());
+        return xcreateSSQFunction(CK_LE.getOperand(), SynonymNextLinkTableCB.class);
     }
 
-    protected HpSSQFunction<SynonymNextLinkTableCB> xcreateSSQFunction(final String rd) {
-        return new HpSSQFunction<SynonymNextLinkTableCB>(new HpSSQSetupper<SynonymNextLinkTableCB>() {
-            public void setup(String fn, SubQuery<SynonymNextLinkTableCB> sq, HpSSQOption<SynonymNextLinkTableCB> op) {
-                xscalarCondition(fn, sq, rd, op);
-            }
-        });
-    }
-
-    protected void xscalarCondition(String fn, SubQuery<SynonymNextLinkTableCB> sq, String rd, HpSSQOption<SynonymNextLinkTableCB> op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xscalarCondition(String fn, SubQuery<CB> sq, String rd, HpSSQOption<CB> op) {
         assertObjectNotNull("subQuery", sq);
-        SynonymNextLinkTableCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        SynonymNextLinkTableCB cb = xcreateScalarConditionCB(); sq.query((CB)cb);
         String pp = keepScalarCondition(cb.query()); // for saving query-value
-        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        op.setPartitionByCBean((CB)xcreateScalarConditionPartitionByCB()); // for using partition-by
         registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
     public abstract String keepScalarCondition(SynonymNextLinkTableCQ sq);
 
     protected SynonymNextLinkTableCB xcreateScalarConditionCB() {
-        SynonymNextLinkTableCB cb = new SynonymNextLinkTableCB();
-        cb.xsetupForScalarCondition(this);
-        return cb;
+        SynonymNextLinkTableCB cb = newMyCB(); cb.xsetupForScalarCondition(this); return cb;
     }
 
     protected SynonymNextLinkTableCB xcreateScalarConditionPartitionByCB() {
-        SynonymNextLinkTableCB cb = new SynonymNextLinkTableCB();
-        cb.xsetupForScalarConditionPartitionBy(this);
-        return cb;
+        SynonymNextLinkTableCB cb = newMyCB(); cb.xsetupForScalarConditionPartitionBy(this); return cb;
     }
 
     // ===================================================================================
@@ -674,18 +663,12 @@ public abstract class AbstractBsSynonymNextLinkTableCQ extends AbstractCondition
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<SynonymNextLinkTableCB> myselfDerived() {
-        return xcreateQDRFunctionMyselfDerived();
+        return xcreateQDRFunctionMyselfDerived(SynonymNextLinkTableCB.class);
     }
-    protected HpQDRFunction<SynonymNextLinkTableCB> xcreateQDRFunctionMyselfDerived() {
-        return new HpQDRFunction<SynonymNextLinkTableCB>(new HpQDRSetupper<SynonymNextLinkTableCB>() {
-            public void setup(String fn, SubQuery<SynonymNextLinkTableCB> sq, String rd, Object vl, DerivedReferrerOption op) {
-                xqderiveMyselfDerived(fn, sq, rd, vl, op);
-            }
-        });
-    }
-    public void xqderiveMyselfDerived(String fn, SubQuery<SynonymNextLinkTableCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xqderiveMyselfDerived(String fn, SubQuery<CB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        SynonymNextLinkTableCB cb = new SynonymNextLinkTableCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        SynonymNextLinkTableCB cb = new SynonymNextLinkTableCB(); cb.xsetupForDerivedReferrer(this); sq.query((CB)cb);
         String pk = "PRODUCT_ID";
         String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
         String prpp = keepQueryMyselfDerivedParameter(vl);
@@ -760,8 +743,10 @@ public abstract class AbstractBsSynonymNextLinkTableCQ extends AbstractCondition
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
+    protected SynonymNextLinkTableCB newMyCB() {
+        return new SynonymNextLinkTableCB();
+    }
     // very internal (for suppressing warn about 'Not Use Import')
-    protected String xabCB() { return SynonymNextLinkTableCB.class.getName(); }
     protected String xabCQ() { return SynonymNextLinkTableCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

@@ -363,8 +363,10 @@ public abstract class AbstractBsSummaryMemberPurchaseCQ extends AbstractConditio
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
+    protected SummaryMemberPurchaseCB newMyCB() {
+        return new SummaryMemberPurchaseCB();
+    }
     // very internal (for suppressing warn about 'Not Use Import')
-    protected String xabCB() { return SummaryMemberPurchaseCB.class.getName(); }
     protected String xabCQ() { return SummaryMemberPurchaseCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

@@ -453,7 +453,7 @@ public abstract class AbstractBsWhiteCompoundPkRefNestCQ extends AbstractConditi
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteCompoundPkRefNestCB> scalar_Equal() {
-        return xcreateSSQFunction(CK_EQ.getOperand());
+        return xcreateSSQFunction(CK_EQ.getOperand(), WhiteCompoundPkRefNestCB.class);
     }
 
     /**
@@ -470,7 +470,7 @@ public abstract class AbstractBsWhiteCompoundPkRefNestCQ extends AbstractConditi
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteCompoundPkRefNestCB> scalar_NotEqual() {
-        return xcreateSSQFunction(CK_NES.getOperand());
+        return xcreateSSQFunction(CK_NES.getOperand(), WhiteCompoundPkRefNestCB.class);
     }
 
     /**
@@ -487,7 +487,7 @@ public abstract class AbstractBsWhiteCompoundPkRefNestCQ extends AbstractConditi
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteCompoundPkRefNestCB> scalar_GreaterThan() {
-        return xcreateSSQFunction(CK_GT.getOperand());
+        return xcreateSSQFunction(CK_GT.getOperand(), WhiteCompoundPkRefNestCB.class);
     }
 
     /**
@@ -504,7 +504,7 @@ public abstract class AbstractBsWhiteCompoundPkRefNestCQ extends AbstractConditi
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteCompoundPkRefNestCB> scalar_LessThan() {
-        return xcreateSSQFunction(CK_LT.getOperand());
+        return xcreateSSQFunction(CK_LT.getOperand(), WhiteCompoundPkRefNestCB.class);
     }
 
     /**
@@ -521,7 +521,7 @@ public abstract class AbstractBsWhiteCompoundPkRefNestCQ extends AbstractConditi
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteCompoundPkRefNestCB> scalar_GreaterEqual() {
-        return xcreateSSQFunction(CK_GE.getOperand());
+        return xcreateSSQFunction(CK_GE.getOperand(), WhiteCompoundPkRefNestCB.class);
     }
 
     /**
@@ -538,36 +538,25 @@ public abstract class AbstractBsWhiteCompoundPkRefNestCQ extends AbstractConditi
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteCompoundPkRefNestCB> scalar_LessEqual() {
-        return xcreateSSQFunction(CK_LE.getOperand());
+        return xcreateSSQFunction(CK_LE.getOperand(), WhiteCompoundPkRefNestCB.class);
     }
 
-    protected HpSSQFunction<WhiteCompoundPkRefNestCB> xcreateSSQFunction(final String rd) {
-        return new HpSSQFunction<WhiteCompoundPkRefNestCB>(new HpSSQSetupper<WhiteCompoundPkRefNestCB>() {
-            public void setup(String fn, SubQuery<WhiteCompoundPkRefNestCB> sq, HpSSQOption<WhiteCompoundPkRefNestCB> op) {
-                xscalarCondition(fn, sq, rd, op);
-            }
-        });
-    }
-
-    protected void xscalarCondition(String fn, SubQuery<WhiteCompoundPkRefNestCB> sq, String rd, HpSSQOption<WhiteCompoundPkRefNestCB> op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xscalarCondition(String fn, SubQuery<CB> sq, String rd, HpSSQOption<CB> op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteCompoundPkRefNestCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        WhiteCompoundPkRefNestCB cb = xcreateScalarConditionCB(); sq.query((CB)cb);
         String pp = keepScalarCondition(cb.query()); // for saving query-value
-        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        op.setPartitionByCBean((CB)xcreateScalarConditionPartitionByCB()); // for using partition-by
         registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
     public abstract String keepScalarCondition(WhiteCompoundPkRefNestCQ sq);
 
     protected WhiteCompoundPkRefNestCB xcreateScalarConditionCB() {
-        WhiteCompoundPkRefNestCB cb = new WhiteCompoundPkRefNestCB();
-        cb.xsetupForScalarCondition(this);
-        return cb;
+        WhiteCompoundPkRefNestCB cb = newMyCB(); cb.xsetupForScalarCondition(this); return cb;
     }
 
     protected WhiteCompoundPkRefNestCB xcreateScalarConditionPartitionByCB() {
-        WhiteCompoundPkRefNestCB cb = new WhiteCompoundPkRefNestCB();
-        cb.xsetupForScalarConditionPartitionBy(this);
-        return cb;
+        WhiteCompoundPkRefNestCB cb = newMyCB(); cb.xsetupForScalarConditionPartitionBy(this); return cb;
     }
 
     // ===================================================================================
@@ -587,18 +576,12 @@ public abstract class AbstractBsWhiteCompoundPkRefNestCQ extends AbstractConditi
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<WhiteCompoundPkRefNestCB> myselfDerived() {
-        return xcreateQDRFunctionMyselfDerived();
+        return xcreateQDRFunctionMyselfDerived(WhiteCompoundPkRefNestCB.class);
     }
-    protected HpQDRFunction<WhiteCompoundPkRefNestCB> xcreateQDRFunctionMyselfDerived() {
-        return new HpQDRFunction<WhiteCompoundPkRefNestCB>(new HpQDRSetupper<WhiteCompoundPkRefNestCB>() {
-            public void setup(String fn, SubQuery<WhiteCompoundPkRefNestCB> sq, String rd, Object vl, DerivedReferrerOption op) {
-                xqderiveMyselfDerived(fn, sq, rd, vl, op);
-            }
-        });
-    }
-    public void xqderiveMyselfDerived(String fn, SubQuery<WhiteCompoundPkRefNestCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xqderiveMyselfDerived(String fn, SubQuery<CB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteCompoundPkRefNestCB cb = new WhiteCompoundPkRefNestCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        WhiteCompoundPkRefNestCB cb = new WhiteCompoundPkRefNestCB(); cb.xsetupForDerivedReferrer(this); sq.query((CB)cb);
         String pk = "COMPOUND_PK_REF_NEST_ID";
         String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
         String prpp = keepQueryMyselfDerivedParameter(vl);
@@ -670,8 +653,10 @@ public abstract class AbstractBsWhiteCompoundPkRefNestCQ extends AbstractConditi
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
+    protected WhiteCompoundPkRefNestCB newMyCB() {
+        return new WhiteCompoundPkRefNestCB();
+    }
     // very internal (for suppressing warn about 'Not Use Import')
-    protected String xabCB() { return WhiteCompoundPkRefNestCB.class.getName(); }
     protected String xabCQ() { return WhiteCompoundPkRefNestCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

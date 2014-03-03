@@ -728,7 +728,7 @@ public abstract class AbstractBsWhiteImplicitConvNumericCQ extends AbstractCondi
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteImplicitConvNumericCB> scalar_Equal() {
-        return xcreateSSQFunction(CK_EQ.getOperand());
+        return xcreateSSQFunction(CK_EQ.getOperand(), WhiteImplicitConvNumericCB.class);
     }
 
     /**
@@ -745,7 +745,7 @@ public abstract class AbstractBsWhiteImplicitConvNumericCQ extends AbstractCondi
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteImplicitConvNumericCB> scalar_NotEqual() {
-        return xcreateSSQFunction(CK_NES.getOperand());
+        return xcreateSSQFunction(CK_NES.getOperand(), WhiteImplicitConvNumericCB.class);
     }
 
     /**
@@ -762,7 +762,7 @@ public abstract class AbstractBsWhiteImplicitConvNumericCQ extends AbstractCondi
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteImplicitConvNumericCB> scalar_GreaterThan() {
-        return xcreateSSQFunction(CK_GT.getOperand());
+        return xcreateSSQFunction(CK_GT.getOperand(), WhiteImplicitConvNumericCB.class);
     }
 
     /**
@@ -779,7 +779,7 @@ public abstract class AbstractBsWhiteImplicitConvNumericCQ extends AbstractCondi
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteImplicitConvNumericCB> scalar_LessThan() {
-        return xcreateSSQFunction(CK_LT.getOperand());
+        return xcreateSSQFunction(CK_LT.getOperand(), WhiteImplicitConvNumericCB.class);
     }
 
     /**
@@ -796,7 +796,7 @@ public abstract class AbstractBsWhiteImplicitConvNumericCQ extends AbstractCondi
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteImplicitConvNumericCB> scalar_GreaterEqual() {
-        return xcreateSSQFunction(CK_GE.getOperand());
+        return xcreateSSQFunction(CK_GE.getOperand(), WhiteImplicitConvNumericCB.class);
     }
 
     /**
@@ -813,36 +813,25 @@ public abstract class AbstractBsWhiteImplicitConvNumericCQ extends AbstractCondi
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteImplicitConvNumericCB> scalar_LessEqual() {
-        return xcreateSSQFunction(CK_LE.getOperand());
+        return xcreateSSQFunction(CK_LE.getOperand(), WhiteImplicitConvNumericCB.class);
     }
 
-    protected HpSSQFunction<WhiteImplicitConvNumericCB> xcreateSSQFunction(final String rd) {
-        return new HpSSQFunction<WhiteImplicitConvNumericCB>(new HpSSQSetupper<WhiteImplicitConvNumericCB>() {
-            public void setup(String fn, SubQuery<WhiteImplicitConvNumericCB> sq, HpSSQOption<WhiteImplicitConvNumericCB> op) {
-                xscalarCondition(fn, sq, rd, op);
-            }
-        });
-    }
-
-    protected void xscalarCondition(String fn, SubQuery<WhiteImplicitConvNumericCB> sq, String rd, HpSSQOption<WhiteImplicitConvNumericCB> op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xscalarCondition(String fn, SubQuery<CB> sq, String rd, HpSSQOption<CB> op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteImplicitConvNumericCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        WhiteImplicitConvNumericCB cb = xcreateScalarConditionCB(); sq.query((CB)cb);
         String pp = keepScalarCondition(cb.query()); // for saving query-value
-        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        op.setPartitionByCBean((CB)xcreateScalarConditionPartitionByCB()); // for using partition-by
         registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
     public abstract String keepScalarCondition(WhiteImplicitConvNumericCQ sq);
 
     protected WhiteImplicitConvNumericCB xcreateScalarConditionCB() {
-        WhiteImplicitConvNumericCB cb = new WhiteImplicitConvNumericCB();
-        cb.xsetupForScalarCondition(this);
-        return cb;
+        WhiteImplicitConvNumericCB cb = newMyCB(); cb.xsetupForScalarCondition(this); return cb;
     }
 
     protected WhiteImplicitConvNumericCB xcreateScalarConditionPartitionByCB() {
-        WhiteImplicitConvNumericCB cb = new WhiteImplicitConvNumericCB();
-        cb.xsetupForScalarConditionPartitionBy(this);
-        return cb;
+        WhiteImplicitConvNumericCB cb = newMyCB(); cb.xsetupForScalarConditionPartitionBy(this); return cb;
     }
 
     // ===================================================================================
@@ -862,18 +851,12 @@ public abstract class AbstractBsWhiteImplicitConvNumericCQ extends AbstractCondi
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<WhiteImplicitConvNumericCB> myselfDerived() {
-        return xcreateQDRFunctionMyselfDerived();
+        return xcreateQDRFunctionMyselfDerived(WhiteImplicitConvNumericCB.class);
     }
-    protected HpQDRFunction<WhiteImplicitConvNumericCB> xcreateQDRFunctionMyselfDerived() {
-        return new HpQDRFunction<WhiteImplicitConvNumericCB>(new HpQDRSetupper<WhiteImplicitConvNumericCB>() {
-            public void setup(String fn, SubQuery<WhiteImplicitConvNumericCB> sq, String rd, Object vl, DerivedReferrerOption op) {
-                xqderiveMyselfDerived(fn, sq, rd, vl, op);
-            }
-        });
-    }
-    public void xqderiveMyselfDerived(String fn, SubQuery<WhiteImplicitConvNumericCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xqderiveMyselfDerived(String fn, SubQuery<CB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteImplicitConvNumericCB cb = new WhiteImplicitConvNumericCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        WhiteImplicitConvNumericCB cb = new WhiteImplicitConvNumericCB(); cb.xsetupForDerivedReferrer(this); sq.query((CB)cb);
         String pk = "IMPLICIT_CONV_NUMERIC_ID";
         String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
         String prpp = keepQueryMyselfDerivedParameter(vl);
@@ -945,8 +928,10 @@ public abstract class AbstractBsWhiteImplicitConvNumericCQ extends AbstractCondi
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
+    protected WhiteImplicitConvNumericCB newMyCB() {
+        return new WhiteImplicitConvNumericCB();
+    }
     // very internal (for suppressing warn about 'Not Use Import')
-    protected String xabCB() { return WhiteImplicitConvNumericCB.class.getName(); }
     protected String xabCQ() { return WhiteImplicitConvNumericCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

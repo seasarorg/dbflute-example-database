@@ -383,7 +383,7 @@ public abstract class AbstractBsWhiteImplicitReverseFkCQ extends AbstractConditi
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteImplicitReverseFkCB> scalar_Equal() {
-        return xcreateSSQFunction(CK_EQ.getOperand());
+        return xcreateSSQFunction(CK_EQ.getOperand(), WhiteImplicitReverseFkCB.class);
     }
 
     /**
@@ -400,7 +400,7 @@ public abstract class AbstractBsWhiteImplicitReverseFkCQ extends AbstractConditi
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteImplicitReverseFkCB> scalar_NotEqual() {
-        return xcreateSSQFunction(CK_NES.getOperand());
+        return xcreateSSQFunction(CK_NES.getOperand(), WhiteImplicitReverseFkCB.class);
     }
 
     /**
@@ -417,7 +417,7 @@ public abstract class AbstractBsWhiteImplicitReverseFkCQ extends AbstractConditi
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteImplicitReverseFkCB> scalar_GreaterThan() {
-        return xcreateSSQFunction(CK_GT.getOperand());
+        return xcreateSSQFunction(CK_GT.getOperand(), WhiteImplicitReverseFkCB.class);
     }
 
     /**
@@ -434,7 +434,7 @@ public abstract class AbstractBsWhiteImplicitReverseFkCQ extends AbstractConditi
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteImplicitReverseFkCB> scalar_LessThan() {
-        return xcreateSSQFunction(CK_LT.getOperand());
+        return xcreateSSQFunction(CK_LT.getOperand(), WhiteImplicitReverseFkCB.class);
     }
 
     /**
@@ -451,7 +451,7 @@ public abstract class AbstractBsWhiteImplicitReverseFkCQ extends AbstractConditi
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteImplicitReverseFkCB> scalar_GreaterEqual() {
-        return xcreateSSQFunction(CK_GE.getOperand());
+        return xcreateSSQFunction(CK_GE.getOperand(), WhiteImplicitReverseFkCB.class);
     }
 
     /**
@@ -468,36 +468,25 @@ public abstract class AbstractBsWhiteImplicitReverseFkCQ extends AbstractConditi
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteImplicitReverseFkCB> scalar_LessEqual() {
-        return xcreateSSQFunction(CK_LE.getOperand());
+        return xcreateSSQFunction(CK_LE.getOperand(), WhiteImplicitReverseFkCB.class);
     }
 
-    protected HpSSQFunction<WhiteImplicitReverseFkCB> xcreateSSQFunction(final String rd) {
-        return new HpSSQFunction<WhiteImplicitReverseFkCB>(new HpSSQSetupper<WhiteImplicitReverseFkCB>() {
-            public void setup(String fn, SubQuery<WhiteImplicitReverseFkCB> sq, HpSSQOption<WhiteImplicitReverseFkCB> op) {
-                xscalarCondition(fn, sq, rd, op);
-            }
-        });
-    }
-
-    protected void xscalarCondition(String fn, SubQuery<WhiteImplicitReverseFkCB> sq, String rd, HpSSQOption<WhiteImplicitReverseFkCB> op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xscalarCondition(String fn, SubQuery<CB> sq, String rd, HpSSQOption<CB> op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteImplicitReverseFkCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        WhiteImplicitReverseFkCB cb = xcreateScalarConditionCB(); sq.query((CB)cb);
         String pp = keepScalarCondition(cb.query()); // for saving query-value
-        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        op.setPartitionByCBean((CB)xcreateScalarConditionPartitionByCB()); // for using partition-by
         registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
     public abstract String keepScalarCondition(WhiteImplicitReverseFkCQ sq);
 
     protected WhiteImplicitReverseFkCB xcreateScalarConditionCB() {
-        WhiteImplicitReverseFkCB cb = new WhiteImplicitReverseFkCB();
-        cb.xsetupForScalarCondition(this);
-        return cb;
+        WhiteImplicitReverseFkCB cb = newMyCB(); cb.xsetupForScalarCondition(this); return cb;
     }
 
     protected WhiteImplicitReverseFkCB xcreateScalarConditionPartitionByCB() {
-        WhiteImplicitReverseFkCB cb = new WhiteImplicitReverseFkCB();
-        cb.xsetupForScalarConditionPartitionBy(this);
-        return cb;
+        WhiteImplicitReverseFkCB cb = newMyCB(); cb.xsetupForScalarConditionPartitionBy(this); return cb;
     }
 
     // ===================================================================================
@@ -517,18 +506,12 @@ public abstract class AbstractBsWhiteImplicitReverseFkCQ extends AbstractConditi
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<WhiteImplicitReverseFkCB> myselfDerived() {
-        return xcreateQDRFunctionMyselfDerived();
+        return xcreateQDRFunctionMyselfDerived(WhiteImplicitReverseFkCB.class);
     }
-    protected HpQDRFunction<WhiteImplicitReverseFkCB> xcreateQDRFunctionMyselfDerived() {
-        return new HpQDRFunction<WhiteImplicitReverseFkCB>(new HpQDRSetupper<WhiteImplicitReverseFkCB>() {
-            public void setup(String fn, SubQuery<WhiteImplicitReverseFkCB> sq, String rd, Object vl, DerivedReferrerOption op) {
-                xqderiveMyselfDerived(fn, sq, rd, vl, op);
-            }
-        });
-    }
-    public void xqderiveMyselfDerived(String fn, SubQuery<WhiteImplicitReverseFkCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xqderiveMyselfDerived(String fn, SubQuery<CB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteImplicitReverseFkCB cb = new WhiteImplicitReverseFkCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        WhiteImplicitReverseFkCB cb = new WhiteImplicitReverseFkCB(); cb.xsetupForDerivedReferrer(this); sq.query((CB)cb);
         String pk = "WHITE_IMPLICIT_REVERSE_FK_ID";
         String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
         String prpp = keepQueryMyselfDerivedParameter(vl);
@@ -600,8 +583,10 @@ public abstract class AbstractBsWhiteImplicitReverseFkCQ extends AbstractConditi
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
+    protected WhiteImplicitReverseFkCB newMyCB() {
+        return new WhiteImplicitReverseFkCB();
+    }
     // very internal (for suppressing warn about 'Not Use Import')
-    protected String xabCB() { return WhiteImplicitReverseFkCB.class.getName(); }
     protected String xabCQ() { return WhiteImplicitReverseFkCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

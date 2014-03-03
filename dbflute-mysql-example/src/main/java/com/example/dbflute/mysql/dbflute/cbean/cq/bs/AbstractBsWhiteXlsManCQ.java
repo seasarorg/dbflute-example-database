@@ -372,7 +372,7 @@ public abstract class AbstractBsWhiteXlsManCQ extends AbstractConditionQuery {
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteXlsManCB> scalar_Equal() {
-        return xcreateSSQFunction(CK_EQ.getOperand());
+        return xcreateSSQFunction(CK_EQ.getOperand(), WhiteXlsManCB.class);
     }
 
     /**
@@ -389,7 +389,7 @@ public abstract class AbstractBsWhiteXlsManCQ extends AbstractConditionQuery {
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteXlsManCB> scalar_NotEqual() {
-        return xcreateSSQFunction(CK_NES.getOperand());
+        return xcreateSSQFunction(CK_NES.getOperand(), WhiteXlsManCB.class);
     }
 
     /**
@@ -406,7 +406,7 @@ public abstract class AbstractBsWhiteXlsManCQ extends AbstractConditionQuery {
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteXlsManCB> scalar_GreaterThan() {
-        return xcreateSSQFunction(CK_GT.getOperand());
+        return xcreateSSQFunction(CK_GT.getOperand(), WhiteXlsManCB.class);
     }
 
     /**
@@ -423,7 +423,7 @@ public abstract class AbstractBsWhiteXlsManCQ extends AbstractConditionQuery {
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteXlsManCB> scalar_LessThan() {
-        return xcreateSSQFunction(CK_LT.getOperand());
+        return xcreateSSQFunction(CK_LT.getOperand(), WhiteXlsManCB.class);
     }
 
     /**
@@ -440,7 +440,7 @@ public abstract class AbstractBsWhiteXlsManCQ extends AbstractConditionQuery {
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteXlsManCB> scalar_GreaterEqual() {
-        return xcreateSSQFunction(CK_GE.getOperand());
+        return xcreateSSQFunction(CK_GE.getOperand(), WhiteXlsManCB.class);
     }
 
     /**
@@ -457,36 +457,25 @@ public abstract class AbstractBsWhiteXlsManCQ extends AbstractConditionQuery {
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteXlsManCB> scalar_LessEqual() {
-        return xcreateSSQFunction(CK_LE.getOperand());
+        return xcreateSSQFunction(CK_LE.getOperand(), WhiteXlsManCB.class);
     }
 
-    protected HpSSQFunction<WhiteXlsManCB> xcreateSSQFunction(final String rd) {
-        return new HpSSQFunction<WhiteXlsManCB>(new HpSSQSetupper<WhiteXlsManCB>() {
-            public void setup(String fn, SubQuery<WhiteXlsManCB> sq, HpSSQOption<WhiteXlsManCB> op) {
-                xscalarCondition(fn, sq, rd, op);
-            }
-        });
-    }
-
-    protected void xscalarCondition(String fn, SubQuery<WhiteXlsManCB> sq, String rd, HpSSQOption<WhiteXlsManCB> op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xscalarCondition(String fn, SubQuery<CB> sq, String rd, HpSSQOption<CB> op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteXlsManCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        WhiteXlsManCB cb = xcreateScalarConditionCB(); sq.query((CB)cb);
         String pp = keepScalarCondition(cb.query()); // for saving query-value
-        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        op.setPartitionByCBean((CB)xcreateScalarConditionPartitionByCB()); // for using partition-by
         registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
     public abstract String keepScalarCondition(WhiteXlsManCQ sq);
 
     protected WhiteXlsManCB xcreateScalarConditionCB() {
-        WhiteXlsManCB cb = new WhiteXlsManCB();
-        cb.xsetupForScalarCondition(this);
-        return cb;
+        WhiteXlsManCB cb = newMyCB(); cb.xsetupForScalarCondition(this); return cb;
     }
 
     protected WhiteXlsManCB xcreateScalarConditionPartitionByCB() {
-        WhiteXlsManCB cb = new WhiteXlsManCB();
-        cb.xsetupForScalarConditionPartitionBy(this);
-        return cb;
+        WhiteXlsManCB cb = newMyCB(); cb.xsetupForScalarConditionPartitionBy(this); return cb;
     }
 
     // ===================================================================================
@@ -506,18 +495,12 @@ public abstract class AbstractBsWhiteXlsManCQ extends AbstractConditionQuery {
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<WhiteXlsManCB> myselfDerived() {
-        return xcreateQDRFunctionMyselfDerived();
+        return xcreateQDRFunctionMyselfDerived(WhiteXlsManCB.class);
     }
-    protected HpQDRFunction<WhiteXlsManCB> xcreateQDRFunctionMyselfDerived() {
-        return new HpQDRFunction<WhiteXlsManCB>(new HpQDRSetupper<WhiteXlsManCB>() {
-            public void setup(String fn, SubQuery<WhiteXlsManCB> sq, String rd, Object vl, DerivedReferrerOption op) {
-                xqderiveMyselfDerived(fn, sq, rd, vl, op);
-            }
-        });
-    }
-    public void xqderiveMyselfDerived(String fn, SubQuery<WhiteXlsManCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xqderiveMyselfDerived(String fn, SubQuery<CB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteXlsManCB cb = new WhiteXlsManCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        WhiteXlsManCB cb = new WhiteXlsManCB(); cb.xsetupForDerivedReferrer(this); sq.query((CB)cb);
         String pk = "XLS_MAN_ID";
         String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
         String prpp = keepQueryMyselfDerivedParameter(vl);
@@ -589,8 +572,10 @@ public abstract class AbstractBsWhiteXlsManCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
+    protected WhiteXlsManCB newMyCB() {
+        return new WhiteXlsManCB();
+    }
     // very internal (for suppressing warn about 'Not Use Import')
-    protected String xabCB() { return WhiteXlsManCB.class.getName(); }
     protected String xabCQ() { return WhiteXlsManCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

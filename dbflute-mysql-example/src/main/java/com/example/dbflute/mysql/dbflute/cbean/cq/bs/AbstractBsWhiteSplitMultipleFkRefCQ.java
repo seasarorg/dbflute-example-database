@@ -380,8 +380,10 @@ public abstract class AbstractBsWhiteSplitMultipleFkRefCQ extends AbstractCondit
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
+    protected WhiteSplitMultipleFkRefCB newMyCB() {
+        return new WhiteSplitMultipleFkRefCB();
+    }
     // very internal (for suppressing warn about 'Not Use Import')
-    protected String xabCB() { return WhiteSplitMultipleFkRefCB.class.getName(); }
     protected String xabCQ() { return WhiteSplitMultipleFkRefCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

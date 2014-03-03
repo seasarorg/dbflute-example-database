@@ -294,7 +294,7 @@ public abstract class AbstractBsWhitePurchaseReferrerCQ extends AbstractConditio
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhitePurchaseReferrerCB> scalar_Equal() {
-        return xcreateSSQFunction(CK_EQ.getOperand());
+        return xcreateSSQFunction(CK_EQ.getOperand(), WhitePurchaseReferrerCB.class);
     }
 
     /**
@@ -311,7 +311,7 @@ public abstract class AbstractBsWhitePurchaseReferrerCQ extends AbstractConditio
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhitePurchaseReferrerCB> scalar_NotEqual() {
-        return xcreateSSQFunction(CK_NES.getOperand());
+        return xcreateSSQFunction(CK_NES.getOperand(), WhitePurchaseReferrerCB.class);
     }
 
     /**
@@ -328,7 +328,7 @@ public abstract class AbstractBsWhitePurchaseReferrerCQ extends AbstractConditio
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhitePurchaseReferrerCB> scalar_GreaterThan() {
-        return xcreateSSQFunction(CK_GT.getOperand());
+        return xcreateSSQFunction(CK_GT.getOperand(), WhitePurchaseReferrerCB.class);
     }
 
     /**
@@ -345,7 +345,7 @@ public abstract class AbstractBsWhitePurchaseReferrerCQ extends AbstractConditio
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhitePurchaseReferrerCB> scalar_LessThan() {
-        return xcreateSSQFunction(CK_LT.getOperand());
+        return xcreateSSQFunction(CK_LT.getOperand(), WhitePurchaseReferrerCB.class);
     }
 
     /**
@@ -362,7 +362,7 @@ public abstract class AbstractBsWhitePurchaseReferrerCQ extends AbstractConditio
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhitePurchaseReferrerCB> scalar_GreaterEqual() {
-        return xcreateSSQFunction(CK_GE.getOperand());
+        return xcreateSSQFunction(CK_GE.getOperand(), WhitePurchaseReferrerCB.class);
     }
 
     /**
@@ -379,36 +379,25 @@ public abstract class AbstractBsWhitePurchaseReferrerCQ extends AbstractConditio
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhitePurchaseReferrerCB> scalar_LessEqual() {
-        return xcreateSSQFunction(CK_LE.getOperand());
+        return xcreateSSQFunction(CK_LE.getOperand(), WhitePurchaseReferrerCB.class);
     }
 
-    protected HpSSQFunction<WhitePurchaseReferrerCB> xcreateSSQFunction(final String rd) {
-        return new HpSSQFunction<WhitePurchaseReferrerCB>(new HpSSQSetupper<WhitePurchaseReferrerCB>() {
-            public void setup(String fn, SubQuery<WhitePurchaseReferrerCB> sq, HpSSQOption<WhitePurchaseReferrerCB> op) {
-                xscalarCondition(fn, sq, rd, op);
-            }
-        });
-    }
-
-    protected void xscalarCondition(String fn, SubQuery<WhitePurchaseReferrerCB> sq, String rd, HpSSQOption<WhitePurchaseReferrerCB> op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xscalarCondition(String fn, SubQuery<CB> sq, String rd, HpSSQOption<CB> op) {
         assertObjectNotNull("subQuery", sq);
-        WhitePurchaseReferrerCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        WhitePurchaseReferrerCB cb = xcreateScalarConditionCB(); sq.query((CB)cb);
         String pp = keepScalarCondition(cb.query()); // for saving query-value
-        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        op.setPartitionByCBean((CB)xcreateScalarConditionPartitionByCB()); // for using partition-by
         registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
     public abstract String keepScalarCondition(WhitePurchaseReferrerCQ sq);
 
     protected WhitePurchaseReferrerCB xcreateScalarConditionCB() {
-        WhitePurchaseReferrerCB cb = new WhitePurchaseReferrerCB();
-        cb.xsetupForScalarCondition(this);
-        return cb;
+        WhitePurchaseReferrerCB cb = newMyCB(); cb.xsetupForScalarCondition(this); return cb;
     }
 
     protected WhitePurchaseReferrerCB xcreateScalarConditionPartitionByCB() {
-        WhitePurchaseReferrerCB cb = new WhitePurchaseReferrerCB();
-        cb.xsetupForScalarConditionPartitionBy(this);
-        return cb;
+        WhitePurchaseReferrerCB cb = newMyCB(); cb.xsetupForScalarConditionPartitionBy(this); return cb;
     }
 
     // ===================================================================================
@@ -428,18 +417,12 @@ public abstract class AbstractBsWhitePurchaseReferrerCQ extends AbstractConditio
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<WhitePurchaseReferrerCB> myselfDerived() {
-        return xcreateQDRFunctionMyselfDerived();
+        return xcreateQDRFunctionMyselfDerived(WhitePurchaseReferrerCB.class);
     }
-    protected HpQDRFunction<WhitePurchaseReferrerCB> xcreateQDRFunctionMyselfDerived() {
-        return new HpQDRFunction<WhitePurchaseReferrerCB>(new HpQDRSetupper<WhitePurchaseReferrerCB>() {
-            public void setup(String fn, SubQuery<WhitePurchaseReferrerCB> sq, String rd, Object vl, DerivedReferrerOption op) {
-                xqderiveMyselfDerived(fn, sq, rd, vl, op);
-            }
-        });
-    }
-    public void xqderiveMyselfDerived(String fn, SubQuery<WhitePurchaseReferrerCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xqderiveMyselfDerived(String fn, SubQuery<CB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        WhitePurchaseReferrerCB cb = new WhitePurchaseReferrerCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        WhitePurchaseReferrerCB cb = new WhitePurchaseReferrerCB(); cb.xsetupForDerivedReferrer(this); sq.query((CB)cb);
         String pk = "PURCHASE_REFERRER_ID";
         String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
         String prpp = keepQueryMyselfDerivedParameter(vl);
@@ -511,8 +494,10 @@ public abstract class AbstractBsWhitePurchaseReferrerCQ extends AbstractConditio
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
+    protected WhitePurchaseReferrerCB newMyCB() {
+        return new WhitePurchaseReferrerCB();
+    }
     // very internal (for suppressing warn about 'Not Use Import')
-    protected String xabCB() { return WhitePurchaseReferrerCB.class.getName(); }
     protected String xabCQ() { return WhitePurchaseReferrerCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

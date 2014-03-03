@@ -369,7 +369,7 @@ public abstract class AbstractBsWhiteTableExceptGenHeadCQ extends AbstractCondit
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteTableExceptGenHeadCB> scalar_Equal() {
-        return xcreateSSQFunction(CK_EQ.getOperand());
+        return xcreateSSQFunction(CK_EQ.getOperand(), WhiteTableExceptGenHeadCB.class);
     }
 
     /**
@@ -386,7 +386,7 @@ public abstract class AbstractBsWhiteTableExceptGenHeadCQ extends AbstractCondit
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteTableExceptGenHeadCB> scalar_NotEqual() {
-        return xcreateSSQFunction(CK_NES.getOperand());
+        return xcreateSSQFunction(CK_NES.getOperand(), WhiteTableExceptGenHeadCB.class);
     }
 
     /**
@@ -403,7 +403,7 @@ public abstract class AbstractBsWhiteTableExceptGenHeadCQ extends AbstractCondit
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteTableExceptGenHeadCB> scalar_GreaterThan() {
-        return xcreateSSQFunction(CK_GT.getOperand());
+        return xcreateSSQFunction(CK_GT.getOperand(), WhiteTableExceptGenHeadCB.class);
     }
 
     /**
@@ -420,7 +420,7 @@ public abstract class AbstractBsWhiteTableExceptGenHeadCQ extends AbstractCondit
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteTableExceptGenHeadCB> scalar_LessThan() {
-        return xcreateSSQFunction(CK_LT.getOperand());
+        return xcreateSSQFunction(CK_LT.getOperand(), WhiteTableExceptGenHeadCB.class);
     }
 
     /**
@@ -437,7 +437,7 @@ public abstract class AbstractBsWhiteTableExceptGenHeadCQ extends AbstractCondit
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteTableExceptGenHeadCB> scalar_GreaterEqual() {
-        return xcreateSSQFunction(CK_GE.getOperand());
+        return xcreateSSQFunction(CK_GE.getOperand(), WhiteTableExceptGenHeadCB.class);
     }
 
     /**
@@ -454,36 +454,25 @@ public abstract class AbstractBsWhiteTableExceptGenHeadCQ extends AbstractCondit
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteTableExceptGenHeadCB> scalar_LessEqual() {
-        return xcreateSSQFunction(CK_LE.getOperand());
+        return xcreateSSQFunction(CK_LE.getOperand(), WhiteTableExceptGenHeadCB.class);
     }
 
-    protected HpSSQFunction<WhiteTableExceptGenHeadCB> xcreateSSQFunction(final String rd) {
-        return new HpSSQFunction<WhiteTableExceptGenHeadCB>(new HpSSQSetupper<WhiteTableExceptGenHeadCB>() {
-            public void setup(String fn, SubQuery<WhiteTableExceptGenHeadCB> sq, HpSSQOption<WhiteTableExceptGenHeadCB> op) {
-                xscalarCondition(fn, sq, rd, op);
-            }
-        });
-    }
-
-    protected void xscalarCondition(String fn, SubQuery<WhiteTableExceptGenHeadCB> sq, String rd, HpSSQOption<WhiteTableExceptGenHeadCB> op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xscalarCondition(String fn, SubQuery<CB> sq, String rd, HpSSQOption<CB> op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteTableExceptGenHeadCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        WhiteTableExceptGenHeadCB cb = xcreateScalarConditionCB(); sq.query((CB)cb);
         String pp = keepScalarCondition(cb.query()); // for saving query-value
-        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        op.setPartitionByCBean((CB)xcreateScalarConditionPartitionByCB()); // for using partition-by
         registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
     public abstract String keepScalarCondition(WhiteTableExceptGenHeadCQ sq);
 
     protected WhiteTableExceptGenHeadCB xcreateScalarConditionCB() {
-        WhiteTableExceptGenHeadCB cb = new WhiteTableExceptGenHeadCB();
-        cb.xsetupForScalarCondition(this);
-        return cb;
+        WhiteTableExceptGenHeadCB cb = newMyCB(); cb.xsetupForScalarCondition(this); return cb;
     }
 
     protected WhiteTableExceptGenHeadCB xcreateScalarConditionPartitionByCB() {
-        WhiteTableExceptGenHeadCB cb = new WhiteTableExceptGenHeadCB();
-        cb.xsetupForScalarConditionPartitionBy(this);
-        return cb;
+        WhiteTableExceptGenHeadCB cb = newMyCB(); cb.xsetupForScalarConditionPartitionBy(this); return cb;
     }
 
     // ===================================================================================
@@ -503,18 +492,12 @@ public abstract class AbstractBsWhiteTableExceptGenHeadCQ extends AbstractCondit
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<WhiteTableExceptGenHeadCB> myselfDerived() {
-        return xcreateQDRFunctionMyselfDerived();
+        return xcreateQDRFunctionMyselfDerived(WhiteTableExceptGenHeadCB.class);
     }
-    protected HpQDRFunction<WhiteTableExceptGenHeadCB> xcreateQDRFunctionMyselfDerived() {
-        return new HpQDRFunction<WhiteTableExceptGenHeadCB>(new HpQDRSetupper<WhiteTableExceptGenHeadCB>() {
-            public void setup(String fn, SubQuery<WhiteTableExceptGenHeadCB> sq, String rd, Object vl, DerivedReferrerOption op) {
-                xqderiveMyselfDerived(fn, sq, rd, vl, op);
-            }
-        });
-    }
-    public void xqderiveMyselfDerived(String fn, SubQuery<WhiteTableExceptGenHeadCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xqderiveMyselfDerived(String fn, SubQuery<CB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteTableExceptGenHeadCB cb = new WhiteTableExceptGenHeadCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        WhiteTableExceptGenHeadCB cb = new WhiteTableExceptGenHeadCB(); cb.xsetupForDerivedReferrer(this); sq.query((CB)cb);
         String pk = "GEN_HEAD_ID";
         String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
         String prpp = keepQueryMyselfDerivedParameter(vl);
@@ -586,8 +569,10 @@ public abstract class AbstractBsWhiteTableExceptGenHeadCQ extends AbstractCondit
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
+    protected WhiteTableExceptGenHeadCB newMyCB() {
+        return new WhiteTableExceptGenHeadCB();
+    }
     // very internal (for suppressing warn about 'Not Use Import')
-    protected String xabCB() { return WhiteTableExceptGenHeadCB.class.getName(); }
     protected String xabCQ() { return WhiteTableExceptGenHeadCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

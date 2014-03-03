@@ -489,8 +489,10 @@ public abstract class AbstractBsWhiteAllInOneClsElementCQ extends AbstractCondit
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
+    protected WhiteAllInOneClsElementCB newMyCB() {
+        return new WhiteAllInOneClsElementCB();
+    }
     // very internal (for suppressing warn about 'Not Use Import')
-    protected String xabCB() { return WhiteAllInOneClsElementCB.class.getName(); }
     protected String xabCQ() { return WhiteAllInOneClsElementCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

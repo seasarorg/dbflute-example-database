@@ -567,7 +567,7 @@ public abstract class AbstractBsWhiteDelimiterCQ extends AbstractConditionQuery 
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteDelimiterCB> scalar_Equal() {
-        return xcreateSSQFunction(CK_EQ.getOperand());
+        return xcreateSSQFunction(CK_EQ.getOperand(), WhiteDelimiterCB.class);
     }
 
     /**
@@ -584,7 +584,7 @@ public abstract class AbstractBsWhiteDelimiterCQ extends AbstractConditionQuery 
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteDelimiterCB> scalar_NotEqual() {
-        return xcreateSSQFunction(CK_NES.getOperand());
+        return xcreateSSQFunction(CK_NES.getOperand(), WhiteDelimiterCB.class);
     }
 
     /**
@@ -601,7 +601,7 @@ public abstract class AbstractBsWhiteDelimiterCQ extends AbstractConditionQuery 
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteDelimiterCB> scalar_GreaterThan() {
-        return xcreateSSQFunction(CK_GT.getOperand());
+        return xcreateSSQFunction(CK_GT.getOperand(), WhiteDelimiterCB.class);
     }
 
     /**
@@ -618,7 +618,7 @@ public abstract class AbstractBsWhiteDelimiterCQ extends AbstractConditionQuery 
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteDelimiterCB> scalar_LessThan() {
-        return xcreateSSQFunction(CK_LT.getOperand());
+        return xcreateSSQFunction(CK_LT.getOperand(), WhiteDelimiterCB.class);
     }
 
     /**
@@ -635,7 +635,7 @@ public abstract class AbstractBsWhiteDelimiterCQ extends AbstractConditionQuery 
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteDelimiterCB> scalar_GreaterEqual() {
-        return xcreateSSQFunction(CK_GE.getOperand());
+        return xcreateSSQFunction(CK_GE.getOperand(), WhiteDelimiterCB.class);
     }
 
     /**
@@ -652,36 +652,25 @@ public abstract class AbstractBsWhiteDelimiterCQ extends AbstractConditionQuery 
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteDelimiterCB> scalar_LessEqual() {
-        return xcreateSSQFunction(CK_LE.getOperand());
+        return xcreateSSQFunction(CK_LE.getOperand(), WhiteDelimiterCB.class);
     }
 
-    protected HpSSQFunction<WhiteDelimiterCB> xcreateSSQFunction(final String rd) {
-        return new HpSSQFunction<WhiteDelimiterCB>(new HpSSQSetupper<WhiteDelimiterCB>() {
-            public void setup(String fn, SubQuery<WhiteDelimiterCB> sq, HpSSQOption<WhiteDelimiterCB> op) {
-                xscalarCondition(fn, sq, rd, op);
-            }
-        });
-    }
-
-    protected void xscalarCondition(String fn, SubQuery<WhiteDelimiterCB> sq, String rd, HpSSQOption<WhiteDelimiterCB> op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xscalarCondition(String fn, SubQuery<CB> sq, String rd, HpSSQOption<CB> op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteDelimiterCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        WhiteDelimiterCB cb = xcreateScalarConditionCB(); sq.query((CB)cb);
         String pp = keepScalarCondition(cb.query()); // for saving query-value
-        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        op.setPartitionByCBean((CB)xcreateScalarConditionPartitionByCB()); // for using partition-by
         registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
     public abstract String keepScalarCondition(WhiteDelimiterCQ sq);
 
     protected WhiteDelimiterCB xcreateScalarConditionCB() {
-        WhiteDelimiterCB cb = new WhiteDelimiterCB();
-        cb.xsetupForScalarCondition(this);
-        return cb;
+        WhiteDelimiterCB cb = newMyCB(); cb.xsetupForScalarCondition(this); return cb;
     }
 
     protected WhiteDelimiterCB xcreateScalarConditionPartitionByCB() {
-        WhiteDelimiterCB cb = new WhiteDelimiterCB();
-        cb.xsetupForScalarConditionPartitionBy(this);
-        return cb;
+        WhiteDelimiterCB cb = newMyCB(); cb.xsetupForScalarConditionPartitionBy(this); return cb;
     }
 
     // ===================================================================================
@@ -701,18 +690,12 @@ public abstract class AbstractBsWhiteDelimiterCQ extends AbstractConditionQuery 
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<WhiteDelimiterCB> myselfDerived() {
-        return xcreateQDRFunctionMyselfDerived();
+        return xcreateQDRFunctionMyselfDerived(WhiteDelimiterCB.class);
     }
-    protected HpQDRFunction<WhiteDelimiterCB> xcreateQDRFunctionMyselfDerived() {
-        return new HpQDRFunction<WhiteDelimiterCB>(new HpQDRSetupper<WhiteDelimiterCB>() {
-            public void setup(String fn, SubQuery<WhiteDelimiterCB> sq, String rd, Object vl, DerivedReferrerOption op) {
-                xqderiveMyselfDerived(fn, sq, rd, vl, op);
-            }
-        });
-    }
-    public void xqderiveMyselfDerived(String fn, SubQuery<WhiteDelimiterCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xqderiveMyselfDerived(String fn, SubQuery<CB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteDelimiterCB cb = new WhiteDelimiterCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        WhiteDelimiterCB cb = new WhiteDelimiterCB(); cb.xsetupForDerivedReferrer(this); sq.query((CB)cb);
         String pk = "DELIMITER_ID";
         String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
         String prpp = keepQueryMyselfDerivedParameter(vl);
@@ -784,8 +767,10 @@ public abstract class AbstractBsWhiteDelimiterCQ extends AbstractConditionQuery 
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
+    protected WhiteDelimiterCB newMyCB() {
+        return new WhiteDelimiterCB();
+    }
     // very internal (for suppressing warn about 'Not Use Import')
-    protected String xabCB() { return WhiteDelimiterCB.class.getName(); }
     protected String xabCQ() { return WhiteDelimiterCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

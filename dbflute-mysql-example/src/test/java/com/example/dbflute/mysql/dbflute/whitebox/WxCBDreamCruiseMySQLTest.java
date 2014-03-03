@@ -234,6 +234,70 @@ public class WxCBDreamCruiseMySQLTest extends UnitContainerTestCase {
         }
     }
 
+    public void test_DreamCruise_ManualOrder_derivedColumn_basic() throws Exception {
+        // ## Arrange ##
+        ListResultBean<MemberService> serviceList = memberServiceBhv.selectList(new MemberServiceCB());
+        Map<Integer, MemberService> serviceMap = new HashMap<Integer, MemberService>();
+        for (MemberService service : serviceList) {
+            serviceMap.put(service.getMemberId(), service);
+        }
+        MemberCB cb = new MemberCB();
+        cb.specify().derivedPurchaseList().max(new SubQuery<PurchaseCB>() {
+            public void query(PurchaseCB subCB) {
+                subCB.specify().columnPurchasePrice();
+            }
+        }, Member.ALIAS_highestPurchasePrice);
+        MemberCB dreamCruiseCB = cb.dreamCruiseCB();
+        ManualOrderBean mob = new ManualOrderBean();
+        mob.multiply(dreamCruiseCB.inviteDerivedToDreamCruise(Member.ALIAS_highestPurchasePrice));
+        cb.query().addOrderBy_MemberId_Asc().withManualOrder(mob);
+
+        // ## Act ##
+        ListResultBean<Member> memberList = memberBhv.selectList(cb);
+
+        // ## Assert ##
+        assertHasAnyElement(memberList);
+        String sql = cb.toDisplaySql();
+        log(ln() + sql);
+        String exp = "dfloc.MEMBER_ID * HIGHEST_PURCHASE_PRICE";
+        assertTrue(sql.contains("order by " + exp + " asc"));
+    }
+
+    public void test_DreamCruise_ManualOrder_derivedColumn_twice() throws Exception {
+        // ## Arrange ##
+        ListResultBean<MemberService> serviceList = memberServiceBhv.selectList(new MemberServiceCB());
+        Map<Integer, MemberService> serviceMap = new HashMap<Integer, MemberService>();
+        for (MemberService service : serviceList) {
+            serviceMap.put(service.getMemberId(), service);
+        }
+        MemberCB cb = new MemberCB();
+        cb.specify().derivedPurchaseList().max(new SubQuery<PurchaseCB>() {
+            public void query(PurchaseCB subCB) {
+                subCB.specify().columnPurchasePrice();
+            }
+        }, Member.ALIAS_highestPurchasePrice);
+        cb.specify().derivedPurchaseList().max(new SubQuery<PurchaseCB>() {
+            public void query(PurchaseCB subCB) {
+                subCB.specify().columnPurchaseCount();
+            }
+        }, Member.ALIAS_loginCount);
+        MemberCB dreamCruiseCB = cb.dreamCruiseCB();
+        ManualOrderBean mob = new ManualOrderBean();
+        mob.multiply(dreamCruiseCB.inviteDerivedToDreamCruise(Member.ALIAS_highestPurchasePrice));
+        mob.plus(dreamCruiseCB.inviteDerivedToDreamCruise(Member.ALIAS_loginCount));
+        cb.query().addOrderBy_MemberId_Asc().withManualOrder(mob);
+
+        // ## Act ##
+        ListResultBean<Member> memberList = memberBhv.selectList(cb);
+
+        // ## Assert ##
+        assertHasAnyElement(memberList);
+        String sql = cb.toDisplaySql();
+        log(ln() + sql);
+        String exp = "(dfloc.MEMBER_ID * HIGHEST_PURCHASE_PRICE) + LOGIN_COUNT";
+        assertTrue(sql.contains("order by " + exp + " asc"));
+    }
+
     public void test_DreamCruise_ManualOrder_union() throws Exception {
         // ## Arrange ##
         ListResultBean<MemberSecurity> securityList = memberSecurityBhv.selectList(new MemberSecurityCB());

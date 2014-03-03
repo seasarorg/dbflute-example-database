@@ -1,5 +1,5 @@
 map:{
-    ; generateOutputDirectory = ../../dbflute-bhvap-guice-example/src/main/java
+    ; generateOutputDirectory = ../../../dbflute-example-referrerpj/dbflute-bhvap-guice-example/src/main/java
     ; packageBase = com.example.dbflute.bhvap.dbflute
 
     # /- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

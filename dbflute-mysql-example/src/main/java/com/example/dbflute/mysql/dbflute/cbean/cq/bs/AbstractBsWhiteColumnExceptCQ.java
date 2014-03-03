@@ -283,7 +283,7 @@ public abstract class AbstractBsWhiteColumnExceptCQ extends AbstractConditionQue
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteColumnExceptCB> scalar_Equal() {
-        return xcreateSSQFunction(CK_EQ.getOperand());
+        return xcreateSSQFunction(CK_EQ.getOperand(), WhiteColumnExceptCB.class);
     }
 
     /**
@@ -300,7 +300,7 @@ public abstract class AbstractBsWhiteColumnExceptCQ extends AbstractConditionQue
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteColumnExceptCB> scalar_NotEqual() {
-        return xcreateSSQFunction(CK_NES.getOperand());
+        return xcreateSSQFunction(CK_NES.getOperand(), WhiteColumnExceptCB.class);
     }
 
     /**
@@ -317,7 +317,7 @@ public abstract class AbstractBsWhiteColumnExceptCQ extends AbstractConditionQue
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteColumnExceptCB> scalar_GreaterThan() {
-        return xcreateSSQFunction(CK_GT.getOperand());
+        return xcreateSSQFunction(CK_GT.getOperand(), WhiteColumnExceptCB.class);
     }
 
     /**
@@ -334,7 +334,7 @@ public abstract class AbstractBsWhiteColumnExceptCQ extends AbstractConditionQue
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteColumnExceptCB> scalar_LessThan() {
-        return xcreateSSQFunction(CK_LT.getOperand());
+        return xcreateSSQFunction(CK_LT.getOperand(), WhiteColumnExceptCB.class);
     }
 
     /**
@@ -351,7 +351,7 @@ public abstract class AbstractBsWhiteColumnExceptCQ extends AbstractConditionQue
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteColumnExceptCB> scalar_GreaterEqual() {
-        return xcreateSSQFunction(CK_GE.getOperand());
+        return xcreateSSQFunction(CK_GE.getOperand(), WhiteColumnExceptCB.class);
     }
 
     /**
@@ -368,36 +368,25 @@ public abstract class AbstractBsWhiteColumnExceptCQ extends AbstractConditionQue
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteColumnExceptCB> scalar_LessEqual() {
-        return xcreateSSQFunction(CK_LE.getOperand());
+        return xcreateSSQFunction(CK_LE.getOperand(), WhiteColumnExceptCB.class);
     }
 
-    protected HpSSQFunction<WhiteColumnExceptCB> xcreateSSQFunction(final String rd) {
-        return new HpSSQFunction<WhiteColumnExceptCB>(new HpSSQSetupper<WhiteColumnExceptCB>() {
-            public void setup(String fn, SubQuery<WhiteColumnExceptCB> sq, HpSSQOption<WhiteColumnExceptCB> op) {
-                xscalarCondition(fn, sq, rd, op);
-            }
-        });
-    }
-
-    protected void xscalarCondition(String fn, SubQuery<WhiteColumnExceptCB> sq, String rd, HpSSQOption<WhiteColumnExceptCB> op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xscalarCondition(String fn, SubQuery<CB> sq, String rd, HpSSQOption<CB> op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteColumnExceptCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        WhiteColumnExceptCB cb = xcreateScalarConditionCB(); sq.query((CB)cb);
         String pp = keepScalarCondition(cb.query()); // for saving query-value
-        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        op.setPartitionByCBean((CB)xcreateScalarConditionPartitionByCB()); // for using partition-by
         registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
     public abstract String keepScalarCondition(WhiteColumnExceptCQ sq);
 
     protected WhiteColumnExceptCB xcreateScalarConditionCB() {
-        WhiteColumnExceptCB cb = new WhiteColumnExceptCB();
-        cb.xsetupForScalarCondition(this);
-        return cb;
+        WhiteColumnExceptCB cb = newMyCB(); cb.xsetupForScalarCondition(this); return cb;
     }
 
     protected WhiteColumnExceptCB xcreateScalarConditionPartitionByCB() {
-        WhiteColumnExceptCB cb = new WhiteColumnExceptCB();
-        cb.xsetupForScalarConditionPartitionBy(this);
-        return cb;
+        WhiteColumnExceptCB cb = newMyCB(); cb.xsetupForScalarConditionPartitionBy(this); return cb;
     }
 
     // ===================================================================================
@@ -417,18 +406,12 @@ public abstract class AbstractBsWhiteColumnExceptCQ extends AbstractConditionQue
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<WhiteColumnExceptCB> myselfDerived() {
-        return xcreateQDRFunctionMyselfDerived();
+        return xcreateQDRFunctionMyselfDerived(WhiteColumnExceptCB.class);
     }
-    protected HpQDRFunction<WhiteColumnExceptCB> xcreateQDRFunctionMyselfDerived() {
-        return new HpQDRFunction<WhiteColumnExceptCB>(new HpQDRSetupper<WhiteColumnExceptCB>() {
-            public void setup(String fn, SubQuery<WhiteColumnExceptCB> sq, String rd, Object vl, DerivedReferrerOption op) {
-                xqderiveMyselfDerived(fn, sq, rd, vl, op);
-            }
-        });
-    }
-    public void xqderiveMyselfDerived(String fn, SubQuery<WhiteColumnExceptCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xqderiveMyselfDerived(String fn, SubQuery<CB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteColumnExceptCB cb = new WhiteColumnExceptCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        WhiteColumnExceptCB cb = new WhiteColumnExceptCB(); cb.xsetupForDerivedReferrer(this); sq.query((CB)cb);
         String pk = "EXCEPT_COLUMN_ID";
         String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
         String prpp = keepQueryMyselfDerivedParameter(vl);
@@ -500,8 +483,10 @@ public abstract class AbstractBsWhiteColumnExceptCQ extends AbstractConditionQue
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
+    protected WhiteColumnExceptCB newMyCB() {
+        return new WhiteColumnExceptCB();
+    }
     // very internal (for suppressing warn about 'Not Use Import')
-    protected String xabCB() { return WhiteColumnExceptCB.class.getName(); }
     protected String xabCQ() { return WhiteColumnExceptCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

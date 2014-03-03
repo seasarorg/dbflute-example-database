@@ -352,7 +352,7 @@ public abstract class AbstractBsWhiteUqFkRefNestCQ extends AbstractConditionQuer
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteUqFkRefNestCB> scalar_Equal() {
-        return xcreateSSQFunction(CK_EQ.getOperand());
+        return xcreateSSQFunction(CK_EQ.getOperand(), WhiteUqFkRefNestCB.class);
     }
 
     /**
@@ -369,7 +369,7 @@ public abstract class AbstractBsWhiteUqFkRefNestCQ extends AbstractConditionQuer
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteUqFkRefNestCB> scalar_NotEqual() {
-        return xcreateSSQFunction(CK_NES.getOperand());
+        return xcreateSSQFunction(CK_NES.getOperand(), WhiteUqFkRefNestCB.class);
     }
 
     /**
@@ -386,7 +386,7 @@ public abstract class AbstractBsWhiteUqFkRefNestCQ extends AbstractConditionQuer
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteUqFkRefNestCB> scalar_GreaterThan() {
-        return xcreateSSQFunction(CK_GT.getOperand());
+        return xcreateSSQFunction(CK_GT.getOperand(), WhiteUqFkRefNestCB.class);
     }
 
     /**
@@ -403,7 +403,7 @@ public abstract class AbstractBsWhiteUqFkRefNestCQ extends AbstractConditionQuer
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteUqFkRefNestCB> scalar_LessThan() {
-        return xcreateSSQFunction(CK_LT.getOperand());
+        return xcreateSSQFunction(CK_LT.getOperand(), WhiteUqFkRefNestCB.class);
     }
 
     /**
@@ -420,7 +420,7 @@ public abstract class AbstractBsWhiteUqFkRefNestCQ extends AbstractConditionQuer
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteUqFkRefNestCB> scalar_GreaterEqual() {
-        return xcreateSSQFunction(CK_GE.getOperand());
+        return xcreateSSQFunction(CK_GE.getOperand(), WhiteUqFkRefNestCB.class);
     }
 
     /**
@@ -437,36 +437,25 @@ public abstract class AbstractBsWhiteUqFkRefNestCQ extends AbstractConditionQuer
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteUqFkRefNestCB> scalar_LessEqual() {
-        return xcreateSSQFunction(CK_LE.getOperand());
+        return xcreateSSQFunction(CK_LE.getOperand(), WhiteUqFkRefNestCB.class);
     }
 
-    protected HpSSQFunction<WhiteUqFkRefNestCB> xcreateSSQFunction(final String rd) {
-        return new HpSSQFunction<WhiteUqFkRefNestCB>(new HpSSQSetupper<WhiteUqFkRefNestCB>() {
-            public void setup(String fn, SubQuery<WhiteUqFkRefNestCB> sq, HpSSQOption<WhiteUqFkRefNestCB> op) {
-                xscalarCondition(fn, sq, rd, op);
-            }
-        });
-    }
-
-    protected void xscalarCondition(String fn, SubQuery<WhiteUqFkRefNestCB> sq, String rd, HpSSQOption<WhiteUqFkRefNestCB> op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xscalarCondition(String fn, SubQuery<CB> sq, String rd, HpSSQOption<CB> op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteUqFkRefNestCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        WhiteUqFkRefNestCB cb = xcreateScalarConditionCB(); sq.query((CB)cb);
         String pp = keepScalarCondition(cb.query()); // for saving query-value
-        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        op.setPartitionByCBean((CB)xcreateScalarConditionPartitionByCB()); // for using partition-by
         registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
     public abstract String keepScalarCondition(WhiteUqFkRefNestCQ sq);
 
     protected WhiteUqFkRefNestCB xcreateScalarConditionCB() {
-        WhiteUqFkRefNestCB cb = new WhiteUqFkRefNestCB();
-        cb.xsetupForScalarCondition(this);
-        return cb;
+        WhiteUqFkRefNestCB cb = newMyCB(); cb.xsetupForScalarCondition(this); return cb;
     }
 
     protected WhiteUqFkRefNestCB xcreateScalarConditionPartitionByCB() {
-        WhiteUqFkRefNestCB cb = new WhiteUqFkRefNestCB();
-        cb.xsetupForScalarConditionPartitionBy(this);
-        return cb;
+        WhiteUqFkRefNestCB cb = newMyCB(); cb.xsetupForScalarConditionPartitionBy(this); return cb;
     }
 
     // ===================================================================================
@@ -486,18 +475,12 @@ public abstract class AbstractBsWhiteUqFkRefNestCQ extends AbstractConditionQuer
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<WhiteUqFkRefNestCB> myselfDerived() {
-        return xcreateQDRFunctionMyselfDerived();
+        return xcreateQDRFunctionMyselfDerived(WhiteUqFkRefNestCB.class);
     }
-    protected HpQDRFunction<WhiteUqFkRefNestCB> xcreateQDRFunctionMyselfDerived() {
-        return new HpQDRFunction<WhiteUqFkRefNestCB>(new HpQDRSetupper<WhiteUqFkRefNestCB>() {
-            public void setup(String fn, SubQuery<WhiteUqFkRefNestCB> sq, String rd, Object vl, DerivedReferrerOption op) {
-                xqderiveMyselfDerived(fn, sq, rd, vl, op);
-            }
-        });
-    }
-    public void xqderiveMyselfDerived(String fn, SubQuery<WhiteUqFkRefNestCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xqderiveMyselfDerived(String fn, SubQuery<CB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteUqFkRefNestCB cb = new WhiteUqFkRefNestCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        WhiteUqFkRefNestCB cb = new WhiteUqFkRefNestCB(); cb.xsetupForDerivedReferrer(this); sq.query((CB)cb);
         String pk = "UQ_FK_REF_NEST_ID";
         String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
         String prpp = keepQueryMyselfDerivedParameter(vl);
@@ -569,8 +552,10 @@ public abstract class AbstractBsWhiteUqFkRefNestCQ extends AbstractConditionQuer
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
+    protected WhiteUqFkRefNestCB newMyCB() {
+        return new WhiteUqFkRefNestCB();
+    }
     // very internal (for suppressing warn about 'Not Use Import')
-    protected String xabCB() { return WhiteUqFkRefNestCB.class.getName(); }
     protected String xabCQ() { return WhiteUqFkRefNestCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

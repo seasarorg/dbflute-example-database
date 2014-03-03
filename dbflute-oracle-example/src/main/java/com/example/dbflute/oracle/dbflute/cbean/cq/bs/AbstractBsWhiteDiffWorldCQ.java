@@ -251,7 +251,7 @@ public abstract class AbstractBsWhiteDiffWorldCQ extends AbstractConditionQuery 
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteDiffWorldCB> scalar_Equal() {
-        return xcreateSSQFunction(CK_EQ.getOperand());
+        return xcreateSSQFunction(CK_EQ.getOperand(), WhiteDiffWorldCB.class);
     }
 
     /**
@@ -268,7 +268,7 @@ public abstract class AbstractBsWhiteDiffWorldCQ extends AbstractConditionQuery 
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteDiffWorldCB> scalar_NotEqual() {
-        return xcreateSSQFunction(CK_NES.getOperand());
+        return xcreateSSQFunction(CK_NES.getOperand(), WhiteDiffWorldCB.class);
     }
 
     /**
@@ -285,7 +285,7 @@ public abstract class AbstractBsWhiteDiffWorldCQ extends AbstractConditionQuery 
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteDiffWorldCB> scalar_GreaterThan() {
-        return xcreateSSQFunction(CK_GT.getOperand());
+        return xcreateSSQFunction(CK_GT.getOperand(), WhiteDiffWorldCB.class);
     }
 
     /**
@@ -302,7 +302,7 @@ public abstract class AbstractBsWhiteDiffWorldCQ extends AbstractConditionQuery 
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteDiffWorldCB> scalar_LessThan() {
-        return xcreateSSQFunction(CK_LT.getOperand());
+        return xcreateSSQFunction(CK_LT.getOperand(), WhiteDiffWorldCB.class);
     }
 
     /**
@@ -319,7 +319,7 @@ public abstract class AbstractBsWhiteDiffWorldCQ extends AbstractConditionQuery 
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteDiffWorldCB> scalar_GreaterEqual() {
-        return xcreateSSQFunction(CK_GE.getOperand());
+        return xcreateSSQFunction(CK_GE.getOperand(), WhiteDiffWorldCB.class);
     }
 
     /**
@@ -336,36 +336,25 @@ public abstract class AbstractBsWhiteDiffWorldCQ extends AbstractConditionQuery 
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteDiffWorldCB> scalar_LessEqual() {
-        return xcreateSSQFunction(CK_LE.getOperand());
+        return xcreateSSQFunction(CK_LE.getOperand(), WhiteDiffWorldCB.class);
     }
 
-    protected HpSSQFunction<WhiteDiffWorldCB> xcreateSSQFunction(final String rd) {
-        return new HpSSQFunction<WhiteDiffWorldCB>(new HpSSQSetupper<WhiteDiffWorldCB>() {
-            public void setup(String fn, SubQuery<WhiteDiffWorldCB> sq, HpSSQOption<WhiteDiffWorldCB> op) {
-                xscalarCondition(fn, sq, rd, op);
-            }
-        });
-    }
-
-    protected void xscalarCondition(String fn, SubQuery<WhiteDiffWorldCB> sq, String rd, HpSSQOption<WhiteDiffWorldCB> op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xscalarCondition(String fn, SubQuery<CB> sq, String rd, HpSSQOption<CB> op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteDiffWorldCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        WhiteDiffWorldCB cb = xcreateScalarConditionCB(); sq.query((CB)cb);
         String pp = keepScalarCondition(cb.query()); // for saving query-value
-        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        op.setPartitionByCBean((CB)xcreateScalarConditionPartitionByCB()); // for using partition-by
         registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
     public abstract String keepScalarCondition(WhiteDiffWorldCQ sq);
 
     protected WhiteDiffWorldCB xcreateScalarConditionCB() {
-        WhiteDiffWorldCB cb = new WhiteDiffWorldCB();
-        cb.xsetupForScalarCondition(this);
-        return cb;
+        WhiteDiffWorldCB cb = newMyCB(); cb.xsetupForScalarCondition(this); return cb;
     }
 
     protected WhiteDiffWorldCB xcreateScalarConditionPartitionByCB() {
-        WhiteDiffWorldCB cb = new WhiteDiffWorldCB();
-        cb.xsetupForScalarConditionPartitionBy(this);
-        return cb;
+        WhiteDiffWorldCB cb = newMyCB(); cb.xsetupForScalarConditionPartitionBy(this); return cb;
     }
 
     // ===================================================================================
@@ -385,18 +374,12 @@ public abstract class AbstractBsWhiteDiffWorldCQ extends AbstractConditionQuery 
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<WhiteDiffWorldCB> myselfDerived() {
-        return xcreateQDRFunctionMyselfDerived();
+        return xcreateQDRFunctionMyselfDerived(WhiteDiffWorldCB.class);
     }
-    protected HpQDRFunction<WhiteDiffWorldCB> xcreateQDRFunctionMyselfDerived() {
-        return new HpQDRFunction<WhiteDiffWorldCB>(new HpQDRSetupper<WhiteDiffWorldCB>() {
-            public void setup(String fn, SubQuery<WhiteDiffWorldCB> sq, String rd, Object vl, DerivedReferrerOption op) {
-                xqderiveMyselfDerived(fn, sq, rd, vl, op);
-            }
-        });
-    }
-    public void xqderiveMyselfDerived(String fn, SubQuery<WhiteDiffWorldCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xqderiveMyselfDerived(String fn, SubQuery<CB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteDiffWorldCB cb = new WhiteDiffWorldCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        WhiteDiffWorldCB cb = new WhiteDiffWorldCB(); cb.xsetupForDerivedReferrer(this); sq.query((CB)cb);
         String pk = "DIFF_WORLD_ID";
         String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
         String prpp = keepQueryMyselfDerivedParameter(vl);
@@ -471,8 +454,10 @@ public abstract class AbstractBsWhiteDiffWorldCQ extends AbstractConditionQuery 
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
+    protected WhiteDiffWorldCB newMyCB() {
+        return new WhiteDiffWorldCB();
+    }
     // very internal (for suppressing warn about 'Not Use Import')
-    protected String xabCB() { return WhiteDiffWorldCB.class.getName(); }
     protected String xabCQ() { return WhiteDiffWorldCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

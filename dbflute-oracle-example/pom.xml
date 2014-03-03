@@ -12,9 +12,9 @@
 
 	<properties>
 		<seasar.version>2.4.46</seasar.version>
-		<dbflute.version>1.0.5B</dbflute.version>
+		<dbflute.version>1.0.5C</dbflute.version>
 		<oracle.jdbc.version>11.1.0.6.0-Production+</oracle.jdbc.version>
-		<utflute.version>0.3.6</utflute.version>
+		<utflute.version>0.3.9</utflute.version>
 	</properties>
 
 	<url>http://dbflute.sandbox.seasar.org/</url>

@@ -459,7 +459,7 @@ public abstract class AbstractBsWhiteAllInOneClsCategoryCQ extends AbstractCondi
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteAllInOneClsCategoryCB> scalar_Equal() {
-        return xcreateSSQFunction(CK_EQ.getOperand());
+        return xcreateSSQFunction(CK_EQ.getOperand(), WhiteAllInOneClsCategoryCB.class);
     }
 
     /**
@@ -476,7 +476,7 @@ public abstract class AbstractBsWhiteAllInOneClsCategoryCQ extends AbstractCondi
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteAllInOneClsCategoryCB> scalar_NotEqual() {
-        return xcreateSSQFunction(CK_NES.getOperand());
+        return xcreateSSQFunction(CK_NES.getOperand(), WhiteAllInOneClsCategoryCB.class);
     }
 
     /**
@@ -493,7 +493,7 @@ public abstract class AbstractBsWhiteAllInOneClsCategoryCQ extends AbstractCondi
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteAllInOneClsCategoryCB> scalar_GreaterThan() {
-        return xcreateSSQFunction(CK_GT.getOperand());
+        return xcreateSSQFunction(CK_GT.getOperand(), WhiteAllInOneClsCategoryCB.class);
     }
 
     /**
@@ -510,7 +510,7 @@ public abstract class AbstractBsWhiteAllInOneClsCategoryCQ extends AbstractCondi
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteAllInOneClsCategoryCB> scalar_LessThan() {
-        return xcreateSSQFunction(CK_LT.getOperand());
+        return xcreateSSQFunction(CK_LT.getOperand(), WhiteAllInOneClsCategoryCB.class);
     }
 
     /**
@@ -527,7 +527,7 @@ public abstract class AbstractBsWhiteAllInOneClsCategoryCQ extends AbstractCondi
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteAllInOneClsCategoryCB> scalar_GreaterEqual() {
-        return xcreateSSQFunction(CK_GE.getOperand());
+        return xcreateSSQFunction(CK_GE.getOperand(), WhiteAllInOneClsCategoryCB.class);
     }
 
     /**
@@ -544,36 +544,25 @@ public abstract class AbstractBsWhiteAllInOneClsCategoryCQ extends AbstractCondi
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteAllInOneClsCategoryCB> scalar_LessEqual() {
-        return xcreateSSQFunction(CK_LE.getOperand());
+        return xcreateSSQFunction(CK_LE.getOperand(), WhiteAllInOneClsCategoryCB.class);
     }
 
-    protected HpSSQFunction<WhiteAllInOneClsCategoryCB> xcreateSSQFunction(final String rd) {
-        return new HpSSQFunction<WhiteAllInOneClsCategoryCB>(new HpSSQSetupper<WhiteAllInOneClsCategoryCB>() {
-            public void setup(String fn, SubQuery<WhiteAllInOneClsCategoryCB> sq, HpSSQOption<WhiteAllInOneClsCategoryCB> op) {
-                xscalarCondition(fn, sq, rd, op);
-            }
-        });
-    }
-
-    protected void xscalarCondition(String fn, SubQuery<WhiteAllInOneClsCategoryCB> sq, String rd, HpSSQOption<WhiteAllInOneClsCategoryCB> op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xscalarCondition(String fn, SubQuery<CB> sq, String rd, HpSSQOption<CB> op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteAllInOneClsCategoryCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        WhiteAllInOneClsCategoryCB cb = xcreateScalarConditionCB(); sq.query((CB)cb);
         String pp = keepScalarCondition(cb.query()); // for saving query-value
-        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        op.setPartitionByCBean((CB)xcreateScalarConditionPartitionByCB()); // for using partition-by
         registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
     public abstract String keepScalarCondition(WhiteAllInOneClsCategoryCQ sq);
 
     protected WhiteAllInOneClsCategoryCB xcreateScalarConditionCB() {
-        WhiteAllInOneClsCategoryCB cb = new WhiteAllInOneClsCategoryCB();
-        cb.xsetupForScalarCondition(this);
-        return cb;
+        WhiteAllInOneClsCategoryCB cb = newMyCB(); cb.xsetupForScalarCondition(this); return cb;
     }
 
     protected WhiteAllInOneClsCategoryCB xcreateScalarConditionPartitionByCB() {
-        WhiteAllInOneClsCategoryCB cb = new WhiteAllInOneClsCategoryCB();
-        cb.xsetupForScalarConditionPartitionBy(this);
-        return cb;
+        WhiteAllInOneClsCategoryCB cb = newMyCB(); cb.xsetupForScalarConditionPartitionBy(this); return cb;
     }
 
     // ===================================================================================
@@ -593,18 +582,12 @@ public abstract class AbstractBsWhiteAllInOneClsCategoryCQ extends AbstractCondi
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<WhiteAllInOneClsCategoryCB> myselfDerived() {
-        return xcreateQDRFunctionMyselfDerived();
+        return xcreateQDRFunctionMyselfDerived(WhiteAllInOneClsCategoryCB.class);
     }
-    protected HpQDRFunction<WhiteAllInOneClsCategoryCB> xcreateQDRFunctionMyselfDerived() {
-        return new HpQDRFunction<WhiteAllInOneClsCategoryCB>(new HpQDRSetupper<WhiteAllInOneClsCategoryCB>() {
-            public void setup(String fn, SubQuery<WhiteAllInOneClsCategoryCB> sq, String rd, Object vl, DerivedReferrerOption op) {
-                xqderiveMyselfDerived(fn, sq, rd, vl, op);
-            }
-        });
-    }
-    public void xqderiveMyselfDerived(String fn, SubQuery<WhiteAllInOneClsCategoryCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xqderiveMyselfDerived(String fn, SubQuery<CB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteAllInOneClsCategoryCB cb = new WhiteAllInOneClsCategoryCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        WhiteAllInOneClsCategoryCB cb = new WhiteAllInOneClsCategoryCB(); cb.xsetupForDerivedReferrer(this); sq.query((CB)cb);
         String pk = "CLS_CATEGORY_CODE";
         String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
         String prpp = keepQueryMyselfDerivedParameter(vl);
@@ -676,8 +659,10 @@ public abstract class AbstractBsWhiteAllInOneClsCategoryCQ extends AbstractCondi
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
+    protected WhiteAllInOneClsCategoryCB newMyCB() {
+        return new WhiteAllInOneClsCategoryCB();
+    }
     // very internal (for suppressing warn about 'Not Use Import')
-    protected String xabCB() { return WhiteAllInOneClsCategoryCB.class.getName(); }
     protected String xabCQ() { return WhiteAllInOneClsCategoryCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

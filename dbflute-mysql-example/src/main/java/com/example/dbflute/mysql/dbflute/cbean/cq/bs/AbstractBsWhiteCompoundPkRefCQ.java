@@ -481,8 +481,10 @@ public abstract class AbstractBsWhiteCompoundPkRefCQ extends AbstractConditionQu
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
+    protected WhiteCompoundPkRefCB newMyCB() {
+        return new WhiteCompoundPkRefCB();
+    }
     // very internal (for suppressing warn about 'Not Use Import')
-    protected String xabCB() { return WhiteCompoundPkRefCB.class.getName(); }
     protected String xabCQ() { return WhiteCompoundPkRefCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

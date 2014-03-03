@@ -1052,7 +1052,7 @@ public abstract class AbstractBsVendorLargeDataRefCQ extends AbstractConditionQu
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<VendorLargeDataRefCB> scalar_Equal() {
-        return xcreateSSQFunction(CK_EQ.getOperand());
+        return xcreateSSQFunction(CK_EQ.getOperand(), VendorLargeDataRefCB.class);
     }
 
     /**
@@ -1069,7 +1069,7 @@ public abstract class AbstractBsVendorLargeDataRefCQ extends AbstractConditionQu
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<VendorLargeDataRefCB> scalar_NotEqual() {
-        return xcreateSSQFunction(CK_NES.getOperand());
+        return xcreateSSQFunction(CK_NES.getOperand(), VendorLargeDataRefCB.class);
     }
 
     /**
@@ -1086,7 +1086,7 @@ public abstract class AbstractBsVendorLargeDataRefCQ extends AbstractConditionQu
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<VendorLargeDataRefCB> scalar_GreaterThan() {
-        return xcreateSSQFunction(CK_GT.getOperand());
+        return xcreateSSQFunction(CK_GT.getOperand(), VendorLargeDataRefCB.class);
     }
 
     /**
@@ -1103,7 +1103,7 @@ public abstract class AbstractBsVendorLargeDataRefCQ extends AbstractConditionQu
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<VendorLargeDataRefCB> scalar_LessThan() {
-        return xcreateSSQFunction(CK_LT.getOperand());
+        return xcreateSSQFunction(CK_LT.getOperand(), VendorLargeDataRefCB.class);
     }
 
     /**
@@ -1120,7 +1120,7 @@ public abstract class AbstractBsVendorLargeDataRefCQ extends AbstractConditionQu
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<VendorLargeDataRefCB> scalar_GreaterEqual() {
-        return xcreateSSQFunction(CK_GE.getOperand());
+        return xcreateSSQFunction(CK_GE.getOperand(), VendorLargeDataRefCB.class);
     }
 
     /**
@@ -1137,36 +1137,25 @@ public abstract class AbstractBsVendorLargeDataRefCQ extends AbstractConditionQu
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<VendorLargeDataRefCB> scalar_LessEqual() {
-        return xcreateSSQFunction(CK_LE.getOperand());
+        return xcreateSSQFunction(CK_LE.getOperand(), VendorLargeDataRefCB.class);
     }
 
-    protected HpSSQFunction<VendorLargeDataRefCB> xcreateSSQFunction(final String rd) {
-        return new HpSSQFunction<VendorLargeDataRefCB>(new HpSSQSetupper<VendorLargeDataRefCB>() {
-            public void setup(String fn, SubQuery<VendorLargeDataRefCB> sq, HpSSQOption<VendorLargeDataRefCB> op) {
-                xscalarCondition(fn, sq, rd, op);
-            }
-        });
-    }
-
-    protected void xscalarCondition(String fn, SubQuery<VendorLargeDataRefCB> sq, String rd, HpSSQOption<VendorLargeDataRefCB> op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xscalarCondition(String fn, SubQuery<CB> sq, String rd, HpSSQOption<CB> op) {
         assertObjectNotNull("subQuery", sq);
-        VendorLargeDataRefCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        VendorLargeDataRefCB cb = xcreateScalarConditionCB(); sq.query((CB)cb);
         String pp = keepScalarCondition(cb.query()); // for saving query-value
-        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        op.setPartitionByCBean((CB)xcreateScalarConditionPartitionByCB()); // for using partition-by
         registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
     public abstract String keepScalarCondition(VendorLargeDataRefCQ sq);
 
     protected VendorLargeDataRefCB xcreateScalarConditionCB() {
-        VendorLargeDataRefCB cb = new VendorLargeDataRefCB();
-        cb.xsetupForScalarCondition(this);
-        return cb;
+        VendorLargeDataRefCB cb = newMyCB(); cb.xsetupForScalarCondition(this); return cb;
     }
 
     protected VendorLargeDataRefCB xcreateScalarConditionPartitionByCB() {
-        VendorLargeDataRefCB cb = new VendorLargeDataRefCB();
-        cb.xsetupForScalarConditionPartitionBy(this);
-        return cb;
+        VendorLargeDataRefCB cb = newMyCB(); cb.xsetupForScalarConditionPartitionBy(this); return cb;
     }
 
     // ===================================================================================
@@ -1186,18 +1175,12 @@ public abstract class AbstractBsVendorLargeDataRefCQ extends AbstractConditionQu
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<VendorLargeDataRefCB> myselfDerived() {
-        return xcreateQDRFunctionMyselfDerived();
+        return xcreateQDRFunctionMyselfDerived(VendorLargeDataRefCB.class);
     }
-    protected HpQDRFunction<VendorLargeDataRefCB> xcreateQDRFunctionMyselfDerived() {
-        return new HpQDRFunction<VendorLargeDataRefCB>(new HpQDRSetupper<VendorLargeDataRefCB>() {
-            public void setup(String fn, SubQuery<VendorLargeDataRefCB> sq, String rd, Object vl, DerivedReferrerOption op) {
-                xqderiveMyselfDerived(fn, sq, rd, vl, op);
-            }
-        });
-    }
-    public void xqderiveMyselfDerived(String fn, SubQuery<VendorLargeDataRefCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xqderiveMyselfDerived(String fn, SubQuery<CB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        VendorLargeDataRefCB cb = new VendorLargeDataRefCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        VendorLargeDataRefCB cb = new VendorLargeDataRefCB(); cb.xsetupForDerivedReferrer(this); sq.query((CB)cb);
         String pk = "LARGE_DATA_REF_ID";
         String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
         String prpp = keepQueryMyselfDerivedParameter(vl);
@@ -1269,8 +1252,10 @@ public abstract class AbstractBsVendorLargeDataRefCQ extends AbstractConditionQu
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
+    protected VendorLargeDataRefCB newMyCB() {
+        return new VendorLargeDataRefCB();
+    }
     // very internal (for suppressing warn about 'Not Use Import')
-    protected String xabCB() { return VendorLargeDataRefCB.class.getName(); }
     protected String xabCQ() { return VendorLargeDataRefCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

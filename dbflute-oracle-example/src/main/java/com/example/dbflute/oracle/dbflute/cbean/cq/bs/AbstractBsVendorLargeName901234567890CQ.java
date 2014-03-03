@@ -363,7 +363,7 @@ public abstract class AbstractBsVendorLargeName901234567890CQ extends AbstractCo
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<VendorLargeName901234567890CB> scalar_Equal() {
-        return xcreateSSQFunction(CK_EQ.getOperand());
+        return xcreateSSQFunction(CK_EQ.getOperand(), VendorLargeName901234567890CB.class);
     }
 
     /**
@@ -380,7 +380,7 @@ public abstract class AbstractBsVendorLargeName901234567890CQ extends AbstractCo
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<VendorLargeName901234567890CB> scalar_NotEqual() {
-        return xcreateSSQFunction(CK_NES.getOperand());
+        return xcreateSSQFunction(CK_NES.getOperand(), VendorLargeName901234567890CB.class);
     }
 
     /**
@@ -397,7 +397,7 @@ public abstract class AbstractBsVendorLargeName901234567890CQ extends AbstractCo
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<VendorLargeName901234567890CB> scalar_GreaterThan() {
-        return xcreateSSQFunction(CK_GT.getOperand());
+        return xcreateSSQFunction(CK_GT.getOperand(), VendorLargeName901234567890CB.class);
     }
 
     /**
@@ -414,7 +414,7 @@ public abstract class AbstractBsVendorLargeName901234567890CQ extends AbstractCo
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<VendorLargeName901234567890CB> scalar_LessThan() {
-        return xcreateSSQFunction(CK_LT.getOperand());
+        return xcreateSSQFunction(CK_LT.getOperand(), VendorLargeName901234567890CB.class);
     }
 
     /**
@@ -431,7 +431,7 @@ public abstract class AbstractBsVendorLargeName901234567890CQ extends AbstractCo
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<VendorLargeName901234567890CB> scalar_GreaterEqual() {
-        return xcreateSSQFunction(CK_GE.getOperand());
+        return xcreateSSQFunction(CK_GE.getOperand(), VendorLargeName901234567890CB.class);
     }
 
     /**
@@ -448,36 +448,25 @@ public abstract class AbstractBsVendorLargeName901234567890CQ extends AbstractCo
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<VendorLargeName901234567890CB> scalar_LessEqual() {
-        return xcreateSSQFunction(CK_LE.getOperand());
+        return xcreateSSQFunction(CK_LE.getOperand(), VendorLargeName901234567890CB.class);
     }
 
-    protected HpSSQFunction<VendorLargeName901234567890CB> xcreateSSQFunction(final String rd) {
-        return new HpSSQFunction<VendorLargeName901234567890CB>(new HpSSQSetupper<VendorLargeName901234567890CB>() {
-            public void setup(String fn, SubQuery<VendorLargeName901234567890CB> sq, HpSSQOption<VendorLargeName901234567890CB> op) {
-                xscalarCondition(fn, sq, rd, op);
-            }
-        });
-    }
-
-    protected void xscalarCondition(String fn, SubQuery<VendorLargeName901234567890CB> sq, String rd, HpSSQOption<VendorLargeName901234567890CB> op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xscalarCondition(String fn, SubQuery<CB> sq, String rd, HpSSQOption<CB> op) {
         assertObjectNotNull("subQuery", sq);
-        VendorLargeName901234567890CB cb = xcreateScalarConditionCB(); sq.query(cb);
+        VendorLargeName901234567890CB cb = xcreateScalarConditionCB(); sq.query((CB)cb);
         String pp = keepScalarCondition(cb.query()); // for saving query-value
-        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        op.setPartitionByCBean((CB)xcreateScalarConditionPartitionByCB()); // for using partition-by
         registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
     public abstract String keepScalarCondition(VendorLargeName901234567890CQ sq);
 
     protected VendorLargeName901234567890CB xcreateScalarConditionCB() {
-        VendorLargeName901234567890CB cb = new VendorLargeName901234567890CB();
-        cb.xsetupForScalarCondition(this);
-        return cb;
+        VendorLargeName901234567890CB cb = newMyCB(); cb.xsetupForScalarCondition(this); return cb;
     }
 
     protected VendorLargeName901234567890CB xcreateScalarConditionPartitionByCB() {
-        VendorLargeName901234567890CB cb = new VendorLargeName901234567890CB();
-        cb.xsetupForScalarConditionPartitionBy(this);
-        return cb;
+        VendorLargeName901234567890CB cb = newMyCB(); cb.xsetupForScalarConditionPartitionBy(this); return cb;
     }
 
     // ===================================================================================
@@ -497,18 +486,12 @@ public abstract class AbstractBsVendorLargeName901234567890CQ extends AbstractCo
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<VendorLargeName901234567890CB> myselfDerived() {
-        return xcreateQDRFunctionMyselfDerived();
+        return xcreateQDRFunctionMyselfDerived(VendorLargeName901234567890CB.class);
     }
-    protected HpQDRFunction<VendorLargeName901234567890CB> xcreateQDRFunctionMyselfDerived() {
-        return new HpQDRFunction<VendorLargeName901234567890CB>(new HpQDRSetupper<VendorLargeName901234567890CB>() {
-            public void setup(String fn, SubQuery<VendorLargeName901234567890CB> sq, String rd, Object vl, DerivedReferrerOption op) {
-                xqderiveMyselfDerived(fn, sq, rd, vl, op);
-            }
-        });
-    }
-    public void xqderiveMyselfDerived(String fn, SubQuery<VendorLargeName901234567890CB> sq, String rd, Object vl, DerivedReferrerOption op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xqderiveMyselfDerived(String fn, SubQuery<CB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        VendorLargeName901234567890CB cb = new VendorLargeName901234567890CB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        VendorLargeName901234567890CB cb = new VendorLargeName901234567890CB(); cb.xsetupForDerivedReferrer(this); sq.query((CB)cb);
         String pk = "VENDOR_LARGE_NAME_901234567_ID";
         String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
         String prpp = keepQueryMyselfDerivedParameter(vl);
@@ -583,8 +566,10 @@ public abstract class AbstractBsVendorLargeName901234567890CQ extends AbstractCo
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
+    protected VendorLargeName901234567890CB newMyCB() {
+        return new VendorLargeName901234567890CB();
+    }
     // very internal (for suppressing warn about 'Not Use Import')
-    protected String xabCB() { return VendorLargeName901234567890CB.class.getName(); }
     protected String xabCQ() { return VendorLargeName901234567890CQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

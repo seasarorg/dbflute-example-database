@@ -329,7 +329,7 @@ public abstract class AbstractBsWhiteEscapedJavaDocCQ extends AbstractConditionQ
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteEscapedJavaDocCB> scalar_Equal() {
-        return xcreateSSQFunction(CK_EQ.getOperand());
+        return xcreateSSQFunction(CK_EQ.getOperand(), WhiteEscapedJavaDocCB.class);
     }
 
     /**
@@ -346,7 +346,7 @@ public abstract class AbstractBsWhiteEscapedJavaDocCQ extends AbstractConditionQ
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteEscapedJavaDocCB> scalar_NotEqual() {
-        return xcreateSSQFunction(CK_NES.getOperand());
+        return xcreateSSQFunction(CK_NES.getOperand(), WhiteEscapedJavaDocCB.class);
     }
 
     /**
@@ -363,7 +363,7 @@ public abstract class AbstractBsWhiteEscapedJavaDocCQ extends AbstractConditionQ
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteEscapedJavaDocCB> scalar_GreaterThan() {
-        return xcreateSSQFunction(CK_GT.getOperand());
+        return xcreateSSQFunction(CK_GT.getOperand(), WhiteEscapedJavaDocCB.class);
     }
 
     /**
@@ -380,7 +380,7 @@ public abstract class AbstractBsWhiteEscapedJavaDocCQ extends AbstractConditionQ
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteEscapedJavaDocCB> scalar_LessThan() {
-        return xcreateSSQFunction(CK_LT.getOperand());
+        return xcreateSSQFunction(CK_LT.getOperand(), WhiteEscapedJavaDocCB.class);
     }
 
     /**
@@ -397,7 +397,7 @@ public abstract class AbstractBsWhiteEscapedJavaDocCQ extends AbstractConditionQ
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteEscapedJavaDocCB> scalar_GreaterEqual() {
-        return xcreateSSQFunction(CK_GE.getOperand());
+        return xcreateSSQFunction(CK_GE.getOperand(), WhiteEscapedJavaDocCB.class);
     }
 
     /**
@@ -414,36 +414,25 @@ public abstract class AbstractBsWhiteEscapedJavaDocCQ extends AbstractConditionQ
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteEscapedJavaDocCB> scalar_LessEqual() {
-        return xcreateSSQFunction(CK_LE.getOperand());
+        return xcreateSSQFunction(CK_LE.getOperand(), WhiteEscapedJavaDocCB.class);
     }
 
-    protected HpSSQFunction<WhiteEscapedJavaDocCB> xcreateSSQFunction(final String rd) {
-        return new HpSSQFunction<WhiteEscapedJavaDocCB>(new HpSSQSetupper<WhiteEscapedJavaDocCB>() {
-            public void setup(String fn, SubQuery<WhiteEscapedJavaDocCB> sq, HpSSQOption<WhiteEscapedJavaDocCB> op) {
-                xscalarCondition(fn, sq, rd, op);
-            }
-        });
-    }
-
-    protected void xscalarCondition(String fn, SubQuery<WhiteEscapedJavaDocCB> sq, String rd, HpSSQOption<WhiteEscapedJavaDocCB> op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xscalarCondition(String fn, SubQuery<CB> sq, String rd, HpSSQOption<CB> op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteEscapedJavaDocCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        WhiteEscapedJavaDocCB cb = xcreateScalarConditionCB(); sq.query((CB)cb);
         String pp = keepScalarCondition(cb.query()); // for saving query-value
-        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        op.setPartitionByCBean((CB)xcreateScalarConditionPartitionByCB()); // for using partition-by
         registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
     public abstract String keepScalarCondition(WhiteEscapedJavaDocCQ sq);
 
     protected WhiteEscapedJavaDocCB xcreateScalarConditionCB() {
-        WhiteEscapedJavaDocCB cb = new WhiteEscapedJavaDocCB();
-        cb.xsetupForScalarCondition(this);
-        return cb;
+        WhiteEscapedJavaDocCB cb = newMyCB(); cb.xsetupForScalarCondition(this); return cb;
     }
 
     protected WhiteEscapedJavaDocCB xcreateScalarConditionPartitionByCB() {
-        WhiteEscapedJavaDocCB cb = new WhiteEscapedJavaDocCB();
-        cb.xsetupForScalarConditionPartitionBy(this);
-        return cb;
+        WhiteEscapedJavaDocCB cb = newMyCB(); cb.xsetupForScalarConditionPartitionBy(this); return cb;
     }
 
     // ===================================================================================
@@ -463,18 +452,12 @@ public abstract class AbstractBsWhiteEscapedJavaDocCQ extends AbstractConditionQ
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<WhiteEscapedJavaDocCB> myselfDerived() {
-        return xcreateQDRFunctionMyselfDerived();
+        return xcreateQDRFunctionMyselfDerived(WhiteEscapedJavaDocCB.class);
     }
-    protected HpQDRFunction<WhiteEscapedJavaDocCB> xcreateQDRFunctionMyselfDerived() {
-        return new HpQDRFunction<WhiteEscapedJavaDocCB>(new HpQDRSetupper<WhiteEscapedJavaDocCB>() {
-            public void setup(String fn, SubQuery<WhiteEscapedJavaDocCB> sq, String rd, Object vl, DerivedReferrerOption op) {
-                xqderiveMyselfDerived(fn, sq, rd, vl, op);
-            }
-        });
-    }
-    public void xqderiveMyselfDerived(String fn, SubQuery<WhiteEscapedJavaDocCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xqderiveMyselfDerived(String fn, SubQuery<CB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteEscapedJavaDocCB cb = new WhiteEscapedJavaDocCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        WhiteEscapedJavaDocCB cb = new WhiteEscapedJavaDocCB(); cb.xsetupForDerivedReferrer(this); sq.query((CB)cb);
         String pk = "ESCAPED_JAVA_DOC_CODE";
         String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
         String prpp = keepQueryMyselfDerivedParameter(vl);
@@ -546,8 +529,10 @@ public abstract class AbstractBsWhiteEscapedJavaDocCQ extends AbstractConditionQ
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
+    protected WhiteEscapedJavaDocCB newMyCB() {
+        return new WhiteEscapedJavaDocCB();
+    }
     // very internal (for suppressing warn about 'Not Use Import')
-    protected String xabCB() { return WhiteEscapedJavaDocCB.class.getName(); }
     protected String xabCQ() { return WhiteEscapedJavaDocCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

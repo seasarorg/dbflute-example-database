@@ -246,7 +246,7 @@ public abstract class AbstractBsSynonymNextSecretAuthCQ extends AbstractConditio
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<SynonymNextSecretAuthCB> scalar_Equal() {
-        return xcreateSSQFunction(CK_EQ.getOperand());
+        return xcreateSSQFunction(CK_EQ.getOperand(), SynonymNextSecretAuthCB.class);
     }
 
     /**
@@ -263,7 +263,7 @@ public abstract class AbstractBsSynonymNextSecretAuthCQ extends AbstractConditio
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<SynonymNextSecretAuthCB> scalar_NotEqual() {
-        return xcreateSSQFunction(CK_NES.getOperand());
+        return xcreateSSQFunction(CK_NES.getOperand(), SynonymNextSecretAuthCB.class);
     }
 
     /**
@@ -280,7 +280,7 @@ public abstract class AbstractBsSynonymNextSecretAuthCQ extends AbstractConditio
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<SynonymNextSecretAuthCB> scalar_GreaterThan() {
-        return xcreateSSQFunction(CK_GT.getOperand());
+        return xcreateSSQFunction(CK_GT.getOperand(), SynonymNextSecretAuthCB.class);
     }
 
     /**
@@ -297,7 +297,7 @@ public abstract class AbstractBsSynonymNextSecretAuthCQ extends AbstractConditio
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<SynonymNextSecretAuthCB> scalar_LessThan() {
-        return xcreateSSQFunction(CK_LT.getOperand());
+        return xcreateSSQFunction(CK_LT.getOperand(), SynonymNextSecretAuthCB.class);
     }
 
     /**
@@ -314,7 +314,7 @@ public abstract class AbstractBsSynonymNextSecretAuthCQ extends AbstractConditio
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<SynonymNextSecretAuthCB> scalar_GreaterEqual() {
-        return xcreateSSQFunction(CK_GE.getOperand());
+        return xcreateSSQFunction(CK_GE.getOperand(), SynonymNextSecretAuthCB.class);
     }
 
     /**
@@ -331,36 +331,25 @@ public abstract class AbstractBsSynonymNextSecretAuthCQ extends AbstractConditio
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<SynonymNextSecretAuthCB> scalar_LessEqual() {
-        return xcreateSSQFunction(CK_LE.getOperand());
+        return xcreateSSQFunction(CK_LE.getOperand(), SynonymNextSecretAuthCB.class);
     }
 
-    protected HpSSQFunction<SynonymNextSecretAuthCB> xcreateSSQFunction(final String rd) {
-        return new HpSSQFunction<SynonymNextSecretAuthCB>(new HpSSQSetupper<SynonymNextSecretAuthCB>() {
-            public void setup(String fn, SubQuery<SynonymNextSecretAuthCB> sq, HpSSQOption<SynonymNextSecretAuthCB> op) {
-                xscalarCondition(fn, sq, rd, op);
-            }
-        });
-    }
-
-    protected void xscalarCondition(String fn, SubQuery<SynonymNextSecretAuthCB> sq, String rd, HpSSQOption<SynonymNextSecretAuthCB> op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xscalarCondition(String fn, SubQuery<CB> sq, String rd, HpSSQOption<CB> op) {
         assertObjectNotNull("subQuery", sq);
-        SynonymNextSecretAuthCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        SynonymNextSecretAuthCB cb = xcreateScalarConditionCB(); sq.query((CB)cb);
         String pp = keepScalarCondition(cb.query()); // for saving query-value
-        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        op.setPartitionByCBean((CB)xcreateScalarConditionPartitionByCB()); // for using partition-by
         registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
     public abstract String keepScalarCondition(SynonymNextSecretAuthCQ sq);
 
     protected SynonymNextSecretAuthCB xcreateScalarConditionCB() {
-        SynonymNextSecretAuthCB cb = new SynonymNextSecretAuthCB();
-        cb.xsetupForScalarCondition(this);
-        return cb;
+        SynonymNextSecretAuthCB cb = newMyCB(); cb.xsetupForScalarCondition(this); return cb;
     }
 
     protected SynonymNextSecretAuthCB xcreateScalarConditionPartitionByCB() {
-        SynonymNextSecretAuthCB cb = new SynonymNextSecretAuthCB();
-        cb.xsetupForScalarConditionPartitionBy(this);
-        return cb;
+        SynonymNextSecretAuthCB cb = newMyCB(); cb.xsetupForScalarConditionPartitionBy(this); return cb;
     }
 
     // ===================================================================================
@@ -380,18 +369,12 @@ public abstract class AbstractBsSynonymNextSecretAuthCQ extends AbstractConditio
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<SynonymNextSecretAuthCB> myselfDerived() {
-        return xcreateQDRFunctionMyselfDerived();
+        return xcreateQDRFunctionMyselfDerived(SynonymNextSecretAuthCB.class);
     }
-    protected HpQDRFunction<SynonymNextSecretAuthCB> xcreateQDRFunctionMyselfDerived() {
-        return new HpQDRFunction<SynonymNextSecretAuthCB>(new HpQDRSetupper<SynonymNextSecretAuthCB>() {
-            public void setup(String fn, SubQuery<SynonymNextSecretAuthCB> sq, String rd, Object vl, DerivedReferrerOption op) {
-                xqderiveMyselfDerived(fn, sq, rd, vl, op);
-            }
-        });
-    }
-    public void xqderiveMyselfDerived(String fn, SubQuery<SynonymNextSecretAuthCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xqderiveMyselfDerived(String fn, SubQuery<CB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        SynonymNextSecretAuthCB cb = new SynonymNextSecretAuthCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        SynonymNextSecretAuthCB cb = new SynonymNextSecretAuthCB(); cb.xsetupForDerivedReferrer(this); sq.query((CB)cb);
         String pk = "SECRET_AUTH_CODE";
         String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
         String prpp = keepQueryMyselfDerivedParameter(vl);
@@ -466,8 +449,10 @@ public abstract class AbstractBsSynonymNextSecretAuthCQ extends AbstractConditio
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
+    protected SynonymNextSecretAuthCB newMyCB() {
+        return new SynonymNextSecretAuthCB();
+    }
     // very internal (for suppressing warn about 'Not Use Import')
-    protected String xabCB() { return SynonymNextSecretAuthCB.class.getName(); }
     protected String xabCQ() { return SynonymNextSecretAuthCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

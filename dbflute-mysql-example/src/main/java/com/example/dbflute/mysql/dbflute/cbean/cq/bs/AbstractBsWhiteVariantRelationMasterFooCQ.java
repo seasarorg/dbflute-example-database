@@ -378,7 +378,7 @@ public abstract class AbstractBsWhiteVariantRelationMasterFooCQ extends Abstract
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteVariantRelationMasterFooCB> scalar_Equal() {
-        return xcreateSSQFunction(CK_EQ.getOperand());
+        return xcreateSSQFunction(CK_EQ.getOperand(), WhiteVariantRelationMasterFooCB.class);
     }
 
     /**
@@ -395,7 +395,7 @@ public abstract class AbstractBsWhiteVariantRelationMasterFooCQ extends Abstract
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteVariantRelationMasterFooCB> scalar_NotEqual() {
-        return xcreateSSQFunction(CK_NES.getOperand());
+        return xcreateSSQFunction(CK_NES.getOperand(), WhiteVariantRelationMasterFooCB.class);
     }
 
     /**
@@ -412,7 +412,7 @@ public abstract class AbstractBsWhiteVariantRelationMasterFooCQ extends Abstract
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteVariantRelationMasterFooCB> scalar_GreaterThan() {
-        return xcreateSSQFunction(CK_GT.getOperand());
+        return xcreateSSQFunction(CK_GT.getOperand(), WhiteVariantRelationMasterFooCB.class);
     }
 
     /**
@@ -429,7 +429,7 @@ public abstract class AbstractBsWhiteVariantRelationMasterFooCQ extends Abstract
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteVariantRelationMasterFooCB> scalar_LessThan() {
-        return xcreateSSQFunction(CK_LT.getOperand());
+        return xcreateSSQFunction(CK_LT.getOperand(), WhiteVariantRelationMasterFooCB.class);
     }
 
     /**
@@ -446,7 +446,7 @@ public abstract class AbstractBsWhiteVariantRelationMasterFooCQ extends Abstract
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteVariantRelationMasterFooCB> scalar_GreaterEqual() {
-        return xcreateSSQFunction(CK_GE.getOperand());
+        return xcreateSSQFunction(CK_GE.getOperand(), WhiteVariantRelationMasterFooCB.class);
     }
 
     /**
@@ -463,36 +463,25 @@ public abstract class AbstractBsWhiteVariantRelationMasterFooCQ extends Abstract
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteVariantRelationMasterFooCB> scalar_LessEqual() {
-        return xcreateSSQFunction(CK_LE.getOperand());
+        return xcreateSSQFunction(CK_LE.getOperand(), WhiteVariantRelationMasterFooCB.class);
     }
 
-    protected HpSSQFunction<WhiteVariantRelationMasterFooCB> xcreateSSQFunction(final String rd) {
-        return new HpSSQFunction<WhiteVariantRelationMasterFooCB>(new HpSSQSetupper<WhiteVariantRelationMasterFooCB>() {
-            public void setup(String fn, SubQuery<WhiteVariantRelationMasterFooCB> sq, HpSSQOption<WhiteVariantRelationMasterFooCB> op) {
-                xscalarCondition(fn, sq, rd, op);
-            }
-        });
-    }
-
-    protected void xscalarCondition(String fn, SubQuery<WhiteVariantRelationMasterFooCB> sq, String rd, HpSSQOption<WhiteVariantRelationMasterFooCB> op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xscalarCondition(String fn, SubQuery<CB> sq, String rd, HpSSQOption<CB> op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteVariantRelationMasterFooCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        WhiteVariantRelationMasterFooCB cb = xcreateScalarConditionCB(); sq.query((CB)cb);
         String pp = keepScalarCondition(cb.query()); // for saving query-value
-        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        op.setPartitionByCBean((CB)xcreateScalarConditionPartitionByCB()); // for using partition-by
         registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
     public abstract String keepScalarCondition(WhiteVariantRelationMasterFooCQ sq);
 
     protected WhiteVariantRelationMasterFooCB xcreateScalarConditionCB() {
-        WhiteVariantRelationMasterFooCB cb = new WhiteVariantRelationMasterFooCB();
-        cb.xsetupForScalarCondition(this);
-        return cb;
+        WhiteVariantRelationMasterFooCB cb = newMyCB(); cb.xsetupForScalarCondition(this); return cb;
     }
 
     protected WhiteVariantRelationMasterFooCB xcreateScalarConditionPartitionByCB() {
-        WhiteVariantRelationMasterFooCB cb = new WhiteVariantRelationMasterFooCB();
-        cb.xsetupForScalarConditionPartitionBy(this);
-        return cb;
+        WhiteVariantRelationMasterFooCB cb = newMyCB(); cb.xsetupForScalarConditionPartitionBy(this); return cb;
     }
 
     // ===================================================================================
@@ -512,18 +501,12 @@ public abstract class AbstractBsWhiteVariantRelationMasterFooCQ extends Abstract
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<WhiteVariantRelationMasterFooCB> myselfDerived() {
-        return xcreateQDRFunctionMyselfDerived();
+        return xcreateQDRFunctionMyselfDerived(WhiteVariantRelationMasterFooCB.class);
     }
-    protected HpQDRFunction<WhiteVariantRelationMasterFooCB> xcreateQDRFunctionMyselfDerived() {
-        return new HpQDRFunction<WhiteVariantRelationMasterFooCB>(new HpQDRSetupper<WhiteVariantRelationMasterFooCB>() {
-            public void setup(String fn, SubQuery<WhiteVariantRelationMasterFooCB> sq, String rd, Object vl, DerivedReferrerOption op) {
-                xqderiveMyselfDerived(fn, sq, rd, vl, op);
-            }
-        });
-    }
-    public void xqderiveMyselfDerived(String fn, SubQuery<WhiteVariantRelationMasterFooCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xqderiveMyselfDerived(String fn, SubQuery<CB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteVariantRelationMasterFooCB cb = new WhiteVariantRelationMasterFooCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        WhiteVariantRelationMasterFooCB cb = new WhiteVariantRelationMasterFooCB(); cb.xsetupForDerivedReferrer(this); sq.query((CB)cb);
         String pk = "MASTER_FOO_ID";
         String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
         String prpp = keepQueryMyselfDerivedParameter(vl);
@@ -595,8 +578,10 @@ public abstract class AbstractBsWhiteVariantRelationMasterFooCQ extends Abstract
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
+    protected WhiteVariantRelationMasterFooCB newMyCB() {
+        return new WhiteVariantRelationMasterFooCB();
+    }
     // very internal (for suppressing warn about 'Not Use Import')
-    protected String xabCB() { return WhiteVariantRelationMasterFooCB.class.getName(); }
     protected String xabCQ() { return WhiteVariantRelationMasterFooCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

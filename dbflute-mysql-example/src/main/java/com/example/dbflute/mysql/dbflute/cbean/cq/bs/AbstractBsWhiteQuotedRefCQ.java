@@ -311,7 +311,7 @@ public abstract class AbstractBsWhiteQuotedRefCQ extends AbstractConditionQuery 
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteQuotedRefCB> scalar_Equal() {
-        return xcreateSSQFunction(CK_EQ.getOperand());
+        return xcreateSSQFunction(CK_EQ.getOperand(), WhiteQuotedRefCB.class);
     }
 
     /**
@@ -328,7 +328,7 @@ public abstract class AbstractBsWhiteQuotedRefCQ extends AbstractConditionQuery 
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteQuotedRefCB> scalar_NotEqual() {
-        return xcreateSSQFunction(CK_NES.getOperand());
+        return xcreateSSQFunction(CK_NES.getOperand(), WhiteQuotedRefCB.class);
     }
 
     /**
@@ -345,7 +345,7 @@ public abstract class AbstractBsWhiteQuotedRefCQ extends AbstractConditionQuery 
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteQuotedRefCB> scalar_GreaterThan() {
-        return xcreateSSQFunction(CK_GT.getOperand());
+        return xcreateSSQFunction(CK_GT.getOperand(), WhiteQuotedRefCB.class);
     }
 
     /**
@@ -362,7 +362,7 @@ public abstract class AbstractBsWhiteQuotedRefCQ extends AbstractConditionQuery 
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteQuotedRefCB> scalar_LessThan() {
-        return xcreateSSQFunction(CK_LT.getOperand());
+        return xcreateSSQFunction(CK_LT.getOperand(), WhiteQuotedRefCB.class);
     }
 
     /**
@@ -379,7 +379,7 @@ public abstract class AbstractBsWhiteQuotedRefCQ extends AbstractConditionQuery 
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteQuotedRefCB> scalar_GreaterEqual() {
-        return xcreateSSQFunction(CK_GE.getOperand());
+        return xcreateSSQFunction(CK_GE.getOperand(), WhiteQuotedRefCB.class);
     }
 
     /**
@@ -396,36 +396,25 @@ public abstract class AbstractBsWhiteQuotedRefCQ extends AbstractConditionQuery 
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteQuotedRefCB> scalar_LessEqual() {
-        return xcreateSSQFunction(CK_LE.getOperand());
+        return xcreateSSQFunction(CK_LE.getOperand(), WhiteQuotedRefCB.class);
     }
 
-    protected HpSSQFunction<WhiteQuotedRefCB> xcreateSSQFunction(final String rd) {
-        return new HpSSQFunction<WhiteQuotedRefCB>(new HpSSQSetupper<WhiteQuotedRefCB>() {
-            public void setup(String fn, SubQuery<WhiteQuotedRefCB> sq, HpSSQOption<WhiteQuotedRefCB> op) {
-                xscalarCondition(fn, sq, rd, op);
-            }
-        });
-    }
-
-    protected void xscalarCondition(String fn, SubQuery<WhiteQuotedRefCB> sq, String rd, HpSSQOption<WhiteQuotedRefCB> op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xscalarCondition(String fn, SubQuery<CB> sq, String rd, HpSSQOption<CB> op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteQuotedRefCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        WhiteQuotedRefCB cb = xcreateScalarConditionCB(); sq.query((CB)cb);
         String pp = keepScalarCondition(cb.query()); // for saving query-value
-        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        op.setPartitionByCBean((CB)xcreateScalarConditionPartitionByCB()); // for using partition-by
         registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
     public abstract String keepScalarCondition(WhiteQuotedRefCQ sq);
 
     protected WhiteQuotedRefCB xcreateScalarConditionCB() {
-        WhiteQuotedRefCB cb = new WhiteQuotedRefCB();
-        cb.xsetupForScalarCondition(this);
-        return cb;
+        WhiteQuotedRefCB cb = newMyCB(); cb.xsetupForScalarCondition(this); return cb;
     }
 
     protected WhiteQuotedRefCB xcreateScalarConditionPartitionByCB() {
-        WhiteQuotedRefCB cb = new WhiteQuotedRefCB();
-        cb.xsetupForScalarConditionPartitionBy(this);
-        return cb;
+        WhiteQuotedRefCB cb = newMyCB(); cb.xsetupForScalarConditionPartitionBy(this); return cb;
     }
 
     // ===================================================================================
@@ -445,18 +434,12 @@ public abstract class AbstractBsWhiteQuotedRefCQ extends AbstractConditionQuery 
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<WhiteQuotedRefCB> myselfDerived() {
-        return xcreateQDRFunctionMyselfDerived();
+        return xcreateQDRFunctionMyselfDerived(WhiteQuotedRefCB.class);
     }
-    protected HpQDRFunction<WhiteQuotedRefCB> xcreateQDRFunctionMyselfDerived() {
-        return new HpQDRFunction<WhiteQuotedRefCB>(new HpQDRSetupper<WhiteQuotedRefCB>() {
-            public void setup(String fn, SubQuery<WhiteQuotedRefCB> sq, String rd, Object vl, DerivedReferrerOption op) {
-                xqderiveMyselfDerived(fn, sq, rd, vl, op);
-            }
-        });
-    }
-    public void xqderiveMyselfDerived(String fn, SubQuery<WhiteQuotedRefCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xqderiveMyselfDerived(String fn, SubQuery<CB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteQuotedRefCB cb = new WhiteQuotedRefCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        WhiteQuotedRefCB cb = new WhiteQuotedRefCB(); cb.xsetupForDerivedReferrer(this); sq.query((CB)cb);
         String pk = "WHERE";
         String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
         String prpp = keepQueryMyselfDerivedParameter(vl);
@@ -528,8 +511,10 @@ public abstract class AbstractBsWhiteQuotedRefCQ extends AbstractConditionQuery 
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
+    protected WhiteQuotedRefCB newMyCB() {
+        return new WhiteQuotedRefCB();
+    }
     // very internal (for suppressing warn about 'Not Use Import')
-    protected String xabCB() { return WhiteQuotedRefCB.class.getName(); }
     protected String xabCQ() { return WhiteQuotedRefCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

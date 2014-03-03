@@ -983,7 +983,7 @@ public abstract class AbstractBsMemberVendorSynonymCQ extends AbstractConditionQ
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<MemberVendorSynonymCB> scalar_Equal() {
-        return xcreateSSQFunction(CK_EQ.getOperand());
+        return xcreateSSQFunction(CK_EQ.getOperand(), MemberVendorSynonymCB.class);
     }
 
     /**
@@ -1000,7 +1000,7 @@ public abstract class AbstractBsMemberVendorSynonymCQ extends AbstractConditionQ
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<MemberVendorSynonymCB> scalar_NotEqual() {
-        return xcreateSSQFunction(CK_NES.getOperand());
+        return xcreateSSQFunction(CK_NES.getOperand(), MemberVendorSynonymCB.class);
     }
 
     /**
@@ -1017,7 +1017,7 @@ public abstract class AbstractBsMemberVendorSynonymCQ extends AbstractConditionQ
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<MemberVendorSynonymCB> scalar_GreaterThan() {
-        return xcreateSSQFunction(CK_GT.getOperand());
+        return xcreateSSQFunction(CK_GT.getOperand(), MemberVendorSynonymCB.class);
     }
 
     /**
@@ -1034,7 +1034,7 @@ public abstract class AbstractBsMemberVendorSynonymCQ extends AbstractConditionQ
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<MemberVendorSynonymCB> scalar_LessThan() {
-        return xcreateSSQFunction(CK_LT.getOperand());
+        return xcreateSSQFunction(CK_LT.getOperand(), MemberVendorSynonymCB.class);
     }
 
     /**
@@ -1051,7 +1051,7 @@ public abstract class AbstractBsMemberVendorSynonymCQ extends AbstractConditionQ
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<MemberVendorSynonymCB> scalar_GreaterEqual() {
-        return xcreateSSQFunction(CK_GE.getOperand());
+        return xcreateSSQFunction(CK_GE.getOperand(), MemberVendorSynonymCB.class);
     }
 
     /**
@@ -1068,36 +1068,25 @@ public abstract class AbstractBsMemberVendorSynonymCQ extends AbstractConditionQ
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<MemberVendorSynonymCB> scalar_LessEqual() {
-        return xcreateSSQFunction(CK_LE.getOperand());
+        return xcreateSSQFunction(CK_LE.getOperand(), MemberVendorSynonymCB.class);
     }
 
-    protected HpSSQFunction<MemberVendorSynonymCB> xcreateSSQFunction(final String rd) {
-        return new HpSSQFunction<MemberVendorSynonymCB>(new HpSSQSetupper<MemberVendorSynonymCB>() {
-            public void setup(String fn, SubQuery<MemberVendorSynonymCB> sq, HpSSQOption<MemberVendorSynonymCB> op) {
-                xscalarCondition(fn, sq, rd, op);
-            }
-        });
-    }
-
-    protected void xscalarCondition(String fn, SubQuery<MemberVendorSynonymCB> sq, String rd, HpSSQOption<MemberVendorSynonymCB> op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xscalarCondition(String fn, SubQuery<CB> sq, String rd, HpSSQOption<CB> op) {
         assertObjectNotNull("subQuery", sq);
-        MemberVendorSynonymCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        MemberVendorSynonymCB cb = xcreateScalarConditionCB(); sq.query((CB)cb);
         String pp = keepScalarCondition(cb.query()); // for saving query-value
-        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        op.setPartitionByCBean((CB)xcreateScalarConditionPartitionByCB()); // for using partition-by
         registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
     public abstract String keepScalarCondition(MemberVendorSynonymCQ sq);
 
     protected MemberVendorSynonymCB xcreateScalarConditionCB() {
-        MemberVendorSynonymCB cb = new MemberVendorSynonymCB();
-        cb.xsetupForScalarCondition(this);
-        return cb;
+        MemberVendorSynonymCB cb = newMyCB(); cb.xsetupForScalarCondition(this); return cb;
     }
 
     protected MemberVendorSynonymCB xcreateScalarConditionPartitionByCB() {
-        MemberVendorSynonymCB cb = new MemberVendorSynonymCB();
-        cb.xsetupForScalarConditionPartitionBy(this);
-        return cb;
+        MemberVendorSynonymCB cb = newMyCB(); cb.xsetupForScalarConditionPartitionBy(this); return cb;
     }
 
     // ===================================================================================
@@ -1117,18 +1106,12 @@ public abstract class AbstractBsMemberVendorSynonymCQ extends AbstractConditionQ
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<MemberVendorSynonymCB> myselfDerived() {
-        return xcreateQDRFunctionMyselfDerived();
+        return xcreateQDRFunctionMyselfDerived(MemberVendorSynonymCB.class);
     }
-    protected HpQDRFunction<MemberVendorSynonymCB> xcreateQDRFunctionMyselfDerived() {
-        return new HpQDRFunction<MemberVendorSynonymCB>(new HpQDRSetupper<MemberVendorSynonymCB>() {
-            public void setup(String fn, SubQuery<MemberVendorSynonymCB> sq, String rd, Object vl, DerivedReferrerOption op) {
-                xqderiveMyselfDerived(fn, sq, rd, vl, op);
-            }
-        });
-    }
-    public void xqderiveMyselfDerived(String fn, SubQuery<MemberVendorSynonymCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xqderiveMyselfDerived(String fn, SubQuery<CB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        MemberVendorSynonymCB cb = new MemberVendorSynonymCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        MemberVendorSynonymCB cb = new MemberVendorSynonymCB(); cb.xsetupForDerivedReferrer(this); sq.query((CB)cb);
         String pk = "MEMBER_ID";
         String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
         String prpp = keepQueryMyselfDerivedParameter(vl);
@@ -1203,8 +1186,10 @@ public abstract class AbstractBsMemberVendorSynonymCQ extends AbstractConditionQ
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
+    protected MemberVendorSynonymCB newMyCB() {
+        return new MemberVendorSynonymCB();
+    }
     // very internal (for suppressing warn about 'Not Use Import')
-    protected String xabCB() { return MemberVendorSynonymCB.class.getName(); }
     protected String xabCQ() { return MemberVendorSynonymCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

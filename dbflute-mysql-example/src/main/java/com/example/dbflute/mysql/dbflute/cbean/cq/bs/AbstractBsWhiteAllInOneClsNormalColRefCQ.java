@@ -478,8 +478,10 @@ public abstract class AbstractBsWhiteAllInOneClsNormalColRefCQ extends AbstractC
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
+    protected WhiteAllInOneClsNormalColRefCB newMyCB() {
+        return new WhiteAllInOneClsNormalColRefCB();
+    }
     // very internal (for suppressing warn about 'Not Use Import')
-    protected String xabCB() { return WhiteAllInOneClsNormalColRefCB.class.getName(); }
     protected String xabCQ() { return WhiteAllInOneClsNormalColRefCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

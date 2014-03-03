@@ -310,7 +310,7 @@ public abstract class AbstractBsAliasRefExceptCQ extends AbstractConditionQuery 
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<AliasRefExceptCB> scalar_Equal() {
-        return xcreateSSQFunction(CK_EQ.getOperand());
+        return xcreateSSQFunction(CK_EQ.getOperand(), AliasRefExceptCB.class);
     }
 
     /**
@@ -327,7 +327,7 @@ public abstract class AbstractBsAliasRefExceptCQ extends AbstractConditionQuery 
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<AliasRefExceptCB> scalar_NotEqual() {
-        return xcreateSSQFunction(CK_NES.getOperand());
+        return xcreateSSQFunction(CK_NES.getOperand(), AliasRefExceptCB.class);
     }
 
     /**
@@ -344,7 +344,7 @@ public abstract class AbstractBsAliasRefExceptCQ extends AbstractConditionQuery 
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<AliasRefExceptCB> scalar_GreaterThan() {
-        return xcreateSSQFunction(CK_GT.getOperand());
+        return xcreateSSQFunction(CK_GT.getOperand(), AliasRefExceptCB.class);
     }
 
     /**
@@ -361,7 +361,7 @@ public abstract class AbstractBsAliasRefExceptCQ extends AbstractConditionQuery 
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<AliasRefExceptCB> scalar_LessThan() {
-        return xcreateSSQFunction(CK_LT.getOperand());
+        return xcreateSSQFunction(CK_LT.getOperand(), AliasRefExceptCB.class);
     }
 
     /**
@@ -378,7 +378,7 @@ public abstract class AbstractBsAliasRefExceptCQ extends AbstractConditionQuery 
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<AliasRefExceptCB> scalar_GreaterEqual() {
-        return xcreateSSQFunction(CK_GE.getOperand());
+        return xcreateSSQFunction(CK_GE.getOperand(), AliasRefExceptCB.class);
     }
 
     /**
@@ -395,36 +395,25 @@ public abstract class AbstractBsAliasRefExceptCQ extends AbstractConditionQuery 
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<AliasRefExceptCB> scalar_LessEqual() {
-        return xcreateSSQFunction(CK_LE.getOperand());
+        return xcreateSSQFunction(CK_LE.getOperand(), AliasRefExceptCB.class);
     }
 
-    protected HpSSQFunction<AliasRefExceptCB> xcreateSSQFunction(final String rd) {
-        return new HpSSQFunction<AliasRefExceptCB>(new HpSSQSetupper<AliasRefExceptCB>() {
-            public void setup(String fn, SubQuery<AliasRefExceptCB> sq, HpSSQOption<AliasRefExceptCB> op) {
-                xscalarCondition(fn, sq, rd, op);
-            }
-        });
-    }
-
-    protected void xscalarCondition(String fn, SubQuery<AliasRefExceptCB> sq, String rd, HpSSQOption<AliasRefExceptCB> op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xscalarCondition(String fn, SubQuery<CB> sq, String rd, HpSSQOption<CB> op) {
         assertObjectNotNull("subQuery", sq);
-        AliasRefExceptCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        AliasRefExceptCB cb = xcreateScalarConditionCB(); sq.query((CB)cb);
         String pp = keepScalarCondition(cb.query()); // for saving query-value
-        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        op.setPartitionByCBean((CB)xcreateScalarConditionPartitionByCB()); // for using partition-by
         registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
     public abstract String keepScalarCondition(AliasRefExceptCQ sq);
 
     protected AliasRefExceptCB xcreateScalarConditionCB() {
-        AliasRefExceptCB cb = new AliasRefExceptCB();
-        cb.xsetupForScalarCondition(this);
-        return cb;
+        AliasRefExceptCB cb = newMyCB(); cb.xsetupForScalarCondition(this); return cb;
     }
 
     protected AliasRefExceptCB xcreateScalarConditionPartitionByCB() {
-        AliasRefExceptCB cb = new AliasRefExceptCB();
-        cb.xsetupForScalarConditionPartitionBy(this);
-        return cb;
+        AliasRefExceptCB cb = newMyCB(); cb.xsetupForScalarConditionPartitionBy(this); return cb;
     }
 
     // ===================================================================================
@@ -444,18 +433,12 @@ public abstract class AbstractBsAliasRefExceptCQ extends AbstractConditionQuery 
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<AliasRefExceptCB> myselfDerived() {
-        return xcreateQDRFunctionMyselfDerived();
+        return xcreateQDRFunctionMyselfDerived(AliasRefExceptCB.class);
     }
-    protected HpQDRFunction<AliasRefExceptCB> xcreateQDRFunctionMyselfDerived() {
-        return new HpQDRFunction<AliasRefExceptCB>(new HpQDRSetupper<AliasRefExceptCB>() {
-            public void setup(String fn, SubQuery<AliasRefExceptCB> sq, String rd, Object vl, DerivedReferrerOption op) {
-                xqderiveMyselfDerived(fn, sq, rd, vl, op);
-            }
-        });
-    }
-    public void xqderiveMyselfDerived(String fn, SubQuery<AliasRefExceptCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xqderiveMyselfDerived(String fn, SubQuery<CB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        AliasRefExceptCB cb = new AliasRefExceptCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        AliasRefExceptCB cb = new AliasRefExceptCB(); cb.xsetupForDerivedReferrer(this); sq.query((CB)cb);
         String pk = "REF_EXCEPT_ID";
         String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
         String prpp = keepQueryMyselfDerivedParameter(vl);
@@ -497,8 +480,10 @@ public abstract class AbstractBsAliasRefExceptCQ extends AbstractConditionQuery 
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
+    protected AliasRefExceptCB newMyCB() {
+        return new AliasRefExceptCB();
+    }
     // very internal (for suppressing warn about 'Not Use Import')
-    protected String xabCB() { return AliasRefExceptCB.class.getName(); }
     protected String xabCQ() { return AliasRefExceptCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

@@ -387,8 +387,10 @@ public abstract class AbstractBsWhiteAllInOneClsCompoundPkRefCQ extends Abstract
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
+    protected WhiteAllInOneClsCompoundPkRefCB newMyCB() {
+        return new WhiteAllInOneClsCompoundPkRefCB();
+    }
     // very internal (for suppressing warn about 'Not Use Import')
-    protected String xabCB() { return WhiteAllInOneClsCompoundPkRefCB.class.getName(); }
     protected String xabCQ() { return WhiteAllInOneClsCompoundPkRefCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

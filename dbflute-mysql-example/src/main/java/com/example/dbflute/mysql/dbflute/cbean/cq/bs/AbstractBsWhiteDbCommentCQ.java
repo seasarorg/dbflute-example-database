@@ -279,7 +279,7 @@ public abstract class AbstractBsWhiteDbCommentCQ extends AbstractConditionQuery 
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteDbCommentCB> scalar_Equal() {
-        return xcreateSSQFunction(CK_EQ.getOperand());
+        return xcreateSSQFunction(CK_EQ.getOperand(), WhiteDbCommentCB.class);
     }
 
     /**
@@ -296,7 +296,7 @@ public abstract class AbstractBsWhiteDbCommentCQ extends AbstractConditionQuery 
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteDbCommentCB> scalar_NotEqual() {
-        return xcreateSSQFunction(CK_NES.getOperand());
+        return xcreateSSQFunction(CK_NES.getOperand(), WhiteDbCommentCB.class);
     }
 
     /**
@@ -313,7 +313,7 @@ public abstract class AbstractBsWhiteDbCommentCQ extends AbstractConditionQuery 
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteDbCommentCB> scalar_GreaterThan() {
-        return xcreateSSQFunction(CK_GT.getOperand());
+        return xcreateSSQFunction(CK_GT.getOperand(), WhiteDbCommentCB.class);
     }
 
     /**
@@ -330,7 +330,7 @@ public abstract class AbstractBsWhiteDbCommentCQ extends AbstractConditionQuery 
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteDbCommentCB> scalar_LessThan() {
-        return xcreateSSQFunction(CK_LT.getOperand());
+        return xcreateSSQFunction(CK_LT.getOperand(), WhiteDbCommentCB.class);
     }
 
     /**
@@ -347,7 +347,7 @@ public abstract class AbstractBsWhiteDbCommentCQ extends AbstractConditionQuery 
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteDbCommentCB> scalar_GreaterEqual() {
-        return xcreateSSQFunction(CK_GE.getOperand());
+        return xcreateSSQFunction(CK_GE.getOperand(), WhiteDbCommentCB.class);
     }
 
     /**
@@ -364,36 +364,25 @@ public abstract class AbstractBsWhiteDbCommentCQ extends AbstractConditionQuery 
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteDbCommentCB> scalar_LessEqual() {
-        return xcreateSSQFunction(CK_LE.getOperand());
+        return xcreateSSQFunction(CK_LE.getOperand(), WhiteDbCommentCB.class);
     }
 
-    protected HpSSQFunction<WhiteDbCommentCB> xcreateSSQFunction(final String rd) {
-        return new HpSSQFunction<WhiteDbCommentCB>(new HpSSQSetupper<WhiteDbCommentCB>() {
-            public void setup(String fn, SubQuery<WhiteDbCommentCB> sq, HpSSQOption<WhiteDbCommentCB> op) {
-                xscalarCondition(fn, sq, rd, op);
-            }
-        });
-    }
-
-    protected void xscalarCondition(String fn, SubQuery<WhiteDbCommentCB> sq, String rd, HpSSQOption<WhiteDbCommentCB> op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xscalarCondition(String fn, SubQuery<CB> sq, String rd, HpSSQOption<CB> op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteDbCommentCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        WhiteDbCommentCB cb = xcreateScalarConditionCB(); sq.query((CB)cb);
         String pp = keepScalarCondition(cb.query()); // for saving query-value
-        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        op.setPartitionByCBean((CB)xcreateScalarConditionPartitionByCB()); // for using partition-by
         registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
     public abstract String keepScalarCondition(WhiteDbCommentCQ sq);
 
     protected WhiteDbCommentCB xcreateScalarConditionCB() {
-        WhiteDbCommentCB cb = new WhiteDbCommentCB();
-        cb.xsetupForScalarCondition(this);
-        return cb;
+        WhiteDbCommentCB cb = newMyCB(); cb.xsetupForScalarCondition(this); return cb;
     }
 
     protected WhiteDbCommentCB xcreateScalarConditionPartitionByCB() {
-        WhiteDbCommentCB cb = new WhiteDbCommentCB();
-        cb.xsetupForScalarConditionPartitionBy(this);
-        return cb;
+        WhiteDbCommentCB cb = newMyCB(); cb.xsetupForScalarConditionPartitionBy(this); return cb;
     }
 
     // ===================================================================================
@@ -413,18 +402,12 @@ public abstract class AbstractBsWhiteDbCommentCQ extends AbstractConditionQuery 
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<WhiteDbCommentCB> myselfDerived() {
-        return xcreateQDRFunctionMyselfDerived();
+        return xcreateQDRFunctionMyselfDerived(WhiteDbCommentCB.class);
     }
-    protected HpQDRFunction<WhiteDbCommentCB> xcreateQDRFunctionMyselfDerived() {
-        return new HpQDRFunction<WhiteDbCommentCB>(new HpQDRSetupper<WhiteDbCommentCB>() {
-            public void setup(String fn, SubQuery<WhiteDbCommentCB> sq, String rd, Object vl, DerivedReferrerOption op) {
-                xqderiveMyselfDerived(fn, sq, rd, vl, op);
-            }
-        });
-    }
-    public void xqderiveMyselfDerived(String fn, SubQuery<WhiteDbCommentCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xqderiveMyselfDerived(String fn, SubQuery<CB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteDbCommentCB cb = new WhiteDbCommentCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        WhiteDbCommentCB cb = new WhiteDbCommentCB(); cb.xsetupForDerivedReferrer(this); sq.query((CB)cb);
         String pk = "DB_COMMENT_CODE";
         String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
         String prpp = keepQueryMyselfDerivedParameter(vl);
@@ -496,8 +479,10 @@ public abstract class AbstractBsWhiteDbCommentCQ extends AbstractConditionQuery 
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
+    protected WhiteDbCommentCB newMyCB() {
+        return new WhiteDbCommentCB();
+    }
     // very internal (for suppressing warn about 'Not Use Import')
-    protected String xabCB() { return WhiteDbCommentCB.class.getName(); }
     protected String xabCQ() { return WhiteDbCommentCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

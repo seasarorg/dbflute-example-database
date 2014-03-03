@@ -350,7 +350,7 @@ public abstract class AbstractBsSynonymNextLinkSecretCQ extends AbstractConditio
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<SynonymNextLinkSecretCB> scalar_Equal() {
-        return xcreateSSQFunction(CK_EQ.getOperand());
+        return xcreateSSQFunction(CK_EQ.getOperand(), SynonymNextLinkSecretCB.class);
     }
 
     /**
@@ -367,7 +367,7 @@ public abstract class AbstractBsSynonymNextLinkSecretCQ extends AbstractConditio
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<SynonymNextLinkSecretCB> scalar_NotEqual() {
-        return xcreateSSQFunction(CK_NES.getOperand());
+        return xcreateSSQFunction(CK_NES.getOperand(), SynonymNextLinkSecretCB.class);
     }
 
     /**
@@ -384,7 +384,7 @@ public abstract class AbstractBsSynonymNextLinkSecretCQ extends AbstractConditio
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<SynonymNextLinkSecretCB> scalar_GreaterThan() {
-        return xcreateSSQFunction(CK_GT.getOperand());
+        return xcreateSSQFunction(CK_GT.getOperand(), SynonymNextLinkSecretCB.class);
     }
 
     /**
@@ -401,7 +401,7 @@ public abstract class AbstractBsSynonymNextLinkSecretCQ extends AbstractConditio
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<SynonymNextLinkSecretCB> scalar_LessThan() {
-        return xcreateSSQFunction(CK_LT.getOperand());
+        return xcreateSSQFunction(CK_LT.getOperand(), SynonymNextLinkSecretCB.class);
     }
 
     /**
@@ -418,7 +418,7 @@ public abstract class AbstractBsSynonymNextLinkSecretCQ extends AbstractConditio
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<SynonymNextLinkSecretCB> scalar_GreaterEqual() {
-        return xcreateSSQFunction(CK_GE.getOperand());
+        return xcreateSSQFunction(CK_GE.getOperand(), SynonymNextLinkSecretCB.class);
     }
 
     /**
@@ -435,36 +435,25 @@ public abstract class AbstractBsSynonymNextLinkSecretCQ extends AbstractConditio
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<SynonymNextLinkSecretCB> scalar_LessEqual() {
-        return xcreateSSQFunction(CK_LE.getOperand());
+        return xcreateSSQFunction(CK_LE.getOperand(), SynonymNextLinkSecretCB.class);
     }
 
-    protected HpSSQFunction<SynonymNextLinkSecretCB> xcreateSSQFunction(final String rd) {
-        return new HpSSQFunction<SynonymNextLinkSecretCB>(new HpSSQSetupper<SynonymNextLinkSecretCB>() {
-            public void setup(String fn, SubQuery<SynonymNextLinkSecretCB> sq, HpSSQOption<SynonymNextLinkSecretCB> op) {
-                xscalarCondition(fn, sq, rd, op);
-            }
-        });
-    }
-
-    protected void xscalarCondition(String fn, SubQuery<SynonymNextLinkSecretCB> sq, String rd, HpSSQOption<SynonymNextLinkSecretCB> op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xscalarCondition(String fn, SubQuery<CB> sq, String rd, HpSSQOption<CB> op) {
         assertObjectNotNull("subQuery", sq);
-        SynonymNextLinkSecretCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        SynonymNextLinkSecretCB cb = xcreateScalarConditionCB(); sq.query((CB)cb);
         String pp = keepScalarCondition(cb.query()); // for saving query-value
-        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        op.setPartitionByCBean((CB)xcreateScalarConditionPartitionByCB()); // for using partition-by
         registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
     public abstract String keepScalarCondition(SynonymNextLinkSecretCQ sq);
 
     protected SynonymNextLinkSecretCB xcreateScalarConditionCB() {
-        SynonymNextLinkSecretCB cb = new SynonymNextLinkSecretCB();
-        cb.xsetupForScalarCondition(this);
-        return cb;
+        SynonymNextLinkSecretCB cb = newMyCB(); cb.xsetupForScalarCondition(this); return cb;
     }
 
     protected SynonymNextLinkSecretCB xcreateScalarConditionPartitionByCB() {
-        SynonymNextLinkSecretCB cb = new SynonymNextLinkSecretCB();
-        cb.xsetupForScalarConditionPartitionBy(this);
-        return cb;
+        SynonymNextLinkSecretCB cb = newMyCB(); cb.xsetupForScalarConditionPartitionBy(this); return cb;
     }
 
     // ===================================================================================
@@ -484,18 +473,12 @@ public abstract class AbstractBsSynonymNextLinkSecretCQ extends AbstractConditio
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<SynonymNextLinkSecretCB> myselfDerived() {
-        return xcreateQDRFunctionMyselfDerived();
+        return xcreateQDRFunctionMyselfDerived(SynonymNextLinkSecretCB.class);
     }
-    protected HpQDRFunction<SynonymNextLinkSecretCB> xcreateQDRFunctionMyselfDerived() {
-        return new HpQDRFunction<SynonymNextLinkSecretCB>(new HpQDRSetupper<SynonymNextLinkSecretCB>() {
-            public void setup(String fn, SubQuery<SynonymNextLinkSecretCB> sq, String rd, Object vl, DerivedReferrerOption op) {
-                xqderiveMyselfDerived(fn, sq, rd, vl, op);
-            }
-        });
-    }
-    public void xqderiveMyselfDerived(String fn, SubQuery<SynonymNextLinkSecretCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xqderiveMyselfDerived(String fn, SubQuery<CB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        SynonymNextLinkSecretCB cb = new SynonymNextLinkSecretCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        SynonymNextLinkSecretCB cb = new SynonymNextLinkSecretCB(); cb.xsetupForDerivedReferrer(this); sq.query((CB)cb);
         String pk = "SECRET_CODE";
         String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
         String prpp = keepQueryMyselfDerivedParameter(vl);
@@ -570,8 +553,10 @@ public abstract class AbstractBsSynonymNextLinkSecretCQ extends AbstractConditio
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
+    protected SynonymNextLinkSecretCB newMyCB() {
+        return new SynonymNextLinkSecretCB();
+    }
     // very internal (for suppressing warn about 'Not Use Import')
-    protected String xabCB() { return SynonymNextLinkSecretCB.class.getName(); }
     protected String xabCQ() { return SynonymNextLinkSecretCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

@@ -411,7 +411,7 @@ public abstract class AbstractBsWhiteSelfReferenceRefOneCQ extends AbstractCondi
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteSelfReferenceRefOneCB> scalar_Equal() {
-        return xcreateSSQFunction(CK_EQ.getOperand());
+        return xcreateSSQFunction(CK_EQ.getOperand(), WhiteSelfReferenceRefOneCB.class);
     }
 
     /**
@@ -428,7 +428,7 @@ public abstract class AbstractBsWhiteSelfReferenceRefOneCQ extends AbstractCondi
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteSelfReferenceRefOneCB> scalar_NotEqual() {
-        return xcreateSSQFunction(CK_NES.getOperand());
+        return xcreateSSQFunction(CK_NES.getOperand(), WhiteSelfReferenceRefOneCB.class);
     }
 
     /**
@@ -445,7 +445,7 @@ public abstract class AbstractBsWhiteSelfReferenceRefOneCQ extends AbstractCondi
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteSelfReferenceRefOneCB> scalar_GreaterThan() {
-        return xcreateSSQFunction(CK_GT.getOperand());
+        return xcreateSSQFunction(CK_GT.getOperand(), WhiteSelfReferenceRefOneCB.class);
     }
 
     /**
@@ -462,7 +462,7 @@ public abstract class AbstractBsWhiteSelfReferenceRefOneCQ extends AbstractCondi
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteSelfReferenceRefOneCB> scalar_LessThan() {
-        return xcreateSSQFunction(CK_LT.getOperand());
+        return xcreateSSQFunction(CK_LT.getOperand(), WhiteSelfReferenceRefOneCB.class);
     }
 
     /**
@@ -479,7 +479,7 @@ public abstract class AbstractBsWhiteSelfReferenceRefOneCQ extends AbstractCondi
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteSelfReferenceRefOneCB> scalar_GreaterEqual() {
-        return xcreateSSQFunction(CK_GE.getOperand());
+        return xcreateSSQFunction(CK_GE.getOperand(), WhiteSelfReferenceRefOneCB.class);
     }
 
     /**
@@ -496,36 +496,25 @@ public abstract class AbstractBsWhiteSelfReferenceRefOneCQ extends AbstractCondi
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteSelfReferenceRefOneCB> scalar_LessEqual() {
-        return xcreateSSQFunction(CK_LE.getOperand());
+        return xcreateSSQFunction(CK_LE.getOperand(), WhiteSelfReferenceRefOneCB.class);
     }
 
-    protected HpSSQFunction<WhiteSelfReferenceRefOneCB> xcreateSSQFunction(final String rd) {
-        return new HpSSQFunction<WhiteSelfReferenceRefOneCB>(new HpSSQSetupper<WhiteSelfReferenceRefOneCB>() {
-            public void setup(String fn, SubQuery<WhiteSelfReferenceRefOneCB> sq, HpSSQOption<WhiteSelfReferenceRefOneCB> op) {
-                xscalarCondition(fn, sq, rd, op);
-            }
-        });
-    }
-
-    protected void xscalarCondition(String fn, SubQuery<WhiteSelfReferenceRefOneCB> sq, String rd, HpSSQOption<WhiteSelfReferenceRefOneCB> op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xscalarCondition(String fn, SubQuery<CB> sq, String rd, HpSSQOption<CB> op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteSelfReferenceRefOneCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        WhiteSelfReferenceRefOneCB cb = xcreateScalarConditionCB(); sq.query((CB)cb);
         String pp = keepScalarCondition(cb.query()); // for saving query-value
-        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        op.setPartitionByCBean((CB)xcreateScalarConditionPartitionByCB()); // for using partition-by
         registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
     public abstract String keepScalarCondition(WhiteSelfReferenceRefOneCQ sq);
 
     protected WhiteSelfReferenceRefOneCB xcreateScalarConditionCB() {
-        WhiteSelfReferenceRefOneCB cb = new WhiteSelfReferenceRefOneCB();
-        cb.xsetupForScalarCondition(this);
-        return cb;
+        WhiteSelfReferenceRefOneCB cb = newMyCB(); cb.xsetupForScalarCondition(this); return cb;
     }
 
     protected WhiteSelfReferenceRefOneCB xcreateScalarConditionPartitionByCB() {
-        WhiteSelfReferenceRefOneCB cb = new WhiteSelfReferenceRefOneCB();
-        cb.xsetupForScalarConditionPartitionBy(this);
-        return cb;
+        WhiteSelfReferenceRefOneCB cb = newMyCB(); cb.xsetupForScalarConditionPartitionBy(this); return cb;
     }
 
     // ===================================================================================
@@ -545,18 +534,12 @@ public abstract class AbstractBsWhiteSelfReferenceRefOneCQ extends AbstractCondi
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<WhiteSelfReferenceRefOneCB> myselfDerived() {
-        return xcreateQDRFunctionMyselfDerived();
+        return xcreateQDRFunctionMyselfDerived(WhiteSelfReferenceRefOneCB.class);
     }
-    protected HpQDRFunction<WhiteSelfReferenceRefOneCB> xcreateQDRFunctionMyselfDerived() {
-        return new HpQDRFunction<WhiteSelfReferenceRefOneCB>(new HpQDRSetupper<WhiteSelfReferenceRefOneCB>() {
-            public void setup(String fn, SubQuery<WhiteSelfReferenceRefOneCB> sq, String rd, Object vl, DerivedReferrerOption op) {
-                xqderiveMyselfDerived(fn, sq, rd, vl, op);
-            }
-        });
-    }
-    public void xqderiveMyselfDerived(String fn, SubQuery<WhiteSelfReferenceRefOneCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xqderiveMyselfDerived(String fn, SubQuery<CB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteSelfReferenceRefOneCB cb = new WhiteSelfReferenceRefOneCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        WhiteSelfReferenceRefOneCB cb = new WhiteSelfReferenceRefOneCB(); cb.xsetupForDerivedReferrer(this); sq.query((CB)cb);
         String pk = "SELF_REFERENCE_ID";
         String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
         String prpp = keepQueryMyselfDerivedParameter(vl);
@@ -628,8 +611,10 @@ public abstract class AbstractBsWhiteSelfReferenceRefOneCQ extends AbstractCondi
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
+    protected WhiteSelfReferenceRefOneCB newMyCB() {
+        return new WhiteSelfReferenceRefOneCB();
+    }
     // very internal (for suppressing warn about 'Not Use Import')
-    protected String xabCB() { return WhiteSelfReferenceRefOneCB.class.getName(); }
     protected String xabCQ() { return WhiteSelfReferenceRefOneCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

@@ -266,7 +266,7 @@ public abstract class AbstractBsWhiteLoadDataCQ extends AbstractConditionQuery {
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteLoadDataCB> scalar_Equal() {
-        return xcreateSSQFunction(CK_EQ.getOperand());
+        return xcreateSSQFunction(CK_EQ.getOperand(), WhiteLoadDataCB.class);
     }
 
     /**
@@ -283,7 +283,7 @@ public abstract class AbstractBsWhiteLoadDataCQ extends AbstractConditionQuery {
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteLoadDataCB> scalar_NotEqual() {
-        return xcreateSSQFunction(CK_NES.getOperand());
+        return xcreateSSQFunction(CK_NES.getOperand(), WhiteLoadDataCB.class);
     }
 
     /**
@@ -300,7 +300,7 @@ public abstract class AbstractBsWhiteLoadDataCQ extends AbstractConditionQuery {
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteLoadDataCB> scalar_GreaterThan() {
-        return xcreateSSQFunction(CK_GT.getOperand());
+        return xcreateSSQFunction(CK_GT.getOperand(), WhiteLoadDataCB.class);
     }
 
     /**
@@ -317,7 +317,7 @@ public abstract class AbstractBsWhiteLoadDataCQ extends AbstractConditionQuery {
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteLoadDataCB> scalar_LessThan() {
-        return xcreateSSQFunction(CK_LT.getOperand());
+        return xcreateSSQFunction(CK_LT.getOperand(), WhiteLoadDataCB.class);
     }
 
     /**
@@ -334,7 +334,7 @@ public abstract class AbstractBsWhiteLoadDataCQ extends AbstractConditionQuery {
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteLoadDataCB> scalar_GreaterEqual() {
-        return xcreateSSQFunction(CK_GE.getOperand());
+        return xcreateSSQFunction(CK_GE.getOperand(), WhiteLoadDataCB.class);
     }
 
     /**
@@ -351,36 +351,25 @@ public abstract class AbstractBsWhiteLoadDataCQ extends AbstractConditionQuery {
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteLoadDataCB> scalar_LessEqual() {
-        return xcreateSSQFunction(CK_LE.getOperand());
+        return xcreateSSQFunction(CK_LE.getOperand(), WhiteLoadDataCB.class);
     }
 
-    protected HpSSQFunction<WhiteLoadDataCB> xcreateSSQFunction(final String rd) {
-        return new HpSSQFunction<WhiteLoadDataCB>(new HpSSQSetupper<WhiteLoadDataCB>() {
-            public void setup(String fn, SubQuery<WhiteLoadDataCB> sq, HpSSQOption<WhiteLoadDataCB> op) {
-                xscalarCondition(fn, sq, rd, op);
-            }
-        });
-    }
-
-    protected void xscalarCondition(String fn, SubQuery<WhiteLoadDataCB> sq, String rd, HpSSQOption<WhiteLoadDataCB> op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xscalarCondition(String fn, SubQuery<CB> sq, String rd, HpSSQOption<CB> op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteLoadDataCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        WhiteLoadDataCB cb = xcreateScalarConditionCB(); sq.query((CB)cb);
         String pp = keepScalarCondition(cb.query()); // for saving query-value
-        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        op.setPartitionByCBean((CB)xcreateScalarConditionPartitionByCB()); // for using partition-by
         registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
     public abstract String keepScalarCondition(WhiteLoadDataCQ sq);
 
     protected WhiteLoadDataCB xcreateScalarConditionCB() {
-        WhiteLoadDataCB cb = new WhiteLoadDataCB();
-        cb.xsetupForScalarCondition(this);
-        return cb;
+        WhiteLoadDataCB cb = newMyCB(); cb.xsetupForScalarCondition(this); return cb;
     }
 
     protected WhiteLoadDataCB xcreateScalarConditionPartitionByCB() {
-        WhiteLoadDataCB cb = new WhiteLoadDataCB();
-        cb.xsetupForScalarConditionPartitionBy(this);
-        return cb;
+        WhiteLoadDataCB cb = newMyCB(); cb.xsetupForScalarConditionPartitionBy(this); return cb;
     }
 
     // ===================================================================================
@@ -400,18 +389,12 @@ public abstract class AbstractBsWhiteLoadDataCQ extends AbstractConditionQuery {
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<WhiteLoadDataCB> myselfDerived() {
-        return xcreateQDRFunctionMyselfDerived();
+        return xcreateQDRFunctionMyselfDerived(WhiteLoadDataCB.class);
     }
-    protected HpQDRFunction<WhiteLoadDataCB> xcreateQDRFunctionMyselfDerived() {
-        return new HpQDRFunction<WhiteLoadDataCB>(new HpQDRSetupper<WhiteLoadDataCB>() {
-            public void setup(String fn, SubQuery<WhiteLoadDataCB> sq, String rd, Object vl, DerivedReferrerOption op) {
-                xqderiveMyselfDerived(fn, sq, rd, vl, op);
-            }
-        });
-    }
-    public void xqderiveMyselfDerived(String fn, SubQuery<WhiteLoadDataCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xqderiveMyselfDerived(String fn, SubQuery<CB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteLoadDataCB cb = new WhiteLoadDataCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        WhiteLoadDataCB cb = new WhiteLoadDataCB(); cb.xsetupForDerivedReferrer(this); sq.query((CB)cb);
         String pk = "LOAD_DATA_ID";
         String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
         String prpp = keepQueryMyselfDerivedParameter(vl);
@@ -483,8 +466,10 @@ public abstract class AbstractBsWhiteLoadDataCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
+    protected WhiteLoadDataCB newMyCB() {
+        return new WhiteLoadDataCB();
+    }
     // very internal (for suppressing warn about 'Not Use Import')
-    protected String xabCB() { return WhiteLoadDataCB.class.getName(); }
     protected String xabCQ() { return WhiteLoadDataCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

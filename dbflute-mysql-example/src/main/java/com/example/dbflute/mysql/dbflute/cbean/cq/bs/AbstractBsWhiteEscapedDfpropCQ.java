@@ -336,7 +336,7 @@ public abstract class AbstractBsWhiteEscapedDfpropCQ extends AbstractConditionQu
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteEscapedDfpropCB> scalar_Equal() {
-        return xcreateSSQFunction(CK_EQ.getOperand());
+        return xcreateSSQFunction(CK_EQ.getOperand(), WhiteEscapedDfpropCB.class);
     }
 
     /**
@@ -353,7 +353,7 @@ public abstract class AbstractBsWhiteEscapedDfpropCQ extends AbstractConditionQu
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteEscapedDfpropCB> scalar_NotEqual() {
-        return xcreateSSQFunction(CK_NES.getOperand());
+        return xcreateSSQFunction(CK_NES.getOperand(), WhiteEscapedDfpropCB.class);
     }
 
     /**
@@ -370,7 +370,7 @@ public abstract class AbstractBsWhiteEscapedDfpropCQ extends AbstractConditionQu
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteEscapedDfpropCB> scalar_GreaterThan() {
-        return xcreateSSQFunction(CK_GT.getOperand());
+        return xcreateSSQFunction(CK_GT.getOperand(), WhiteEscapedDfpropCB.class);
     }
 
     /**
@@ -387,7 +387,7 @@ public abstract class AbstractBsWhiteEscapedDfpropCQ extends AbstractConditionQu
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteEscapedDfpropCB> scalar_LessThan() {
-        return xcreateSSQFunction(CK_LT.getOperand());
+        return xcreateSSQFunction(CK_LT.getOperand(), WhiteEscapedDfpropCB.class);
     }
 
     /**
@@ -404,7 +404,7 @@ public abstract class AbstractBsWhiteEscapedDfpropCQ extends AbstractConditionQu
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteEscapedDfpropCB> scalar_GreaterEqual() {
-        return xcreateSSQFunction(CK_GE.getOperand());
+        return xcreateSSQFunction(CK_GE.getOperand(), WhiteEscapedDfpropCB.class);
     }
 
     /**
@@ -421,36 +421,25 @@ public abstract class AbstractBsWhiteEscapedDfpropCQ extends AbstractConditionQu
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteEscapedDfpropCB> scalar_LessEqual() {
-        return xcreateSSQFunction(CK_LE.getOperand());
+        return xcreateSSQFunction(CK_LE.getOperand(), WhiteEscapedDfpropCB.class);
     }
 
-    protected HpSSQFunction<WhiteEscapedDfpropCB> xcreateSSQFunction(final String rd) {
-        return new HpSSQFunction<WhiteEscapedDfpropCB>(new HpSSQSetupper<WhiteEscapedDfpropCB>() {
-            public void setup(String fn, SubQuery<WhiteEscapedDfpropCB> sq, HpSSQOption<WhiteEscapedDfpropCB> op) {
-                xscalarCondition(fn, sq, rd, op);
-            }
-        });
-    }
-
-    protected void xscalarCondition(String fn, SubQuery<WhiteEscapedDfpropCB> sq, String rd, HpSSQOption<WhiteEscapedDfpropCB> op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xscalarCondition(String fn, SubQuery<CB> sq, String rd, HpSSQOption<CB> op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteEscapedDfpropCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        WhiteEscapedDfpropCB cb = xcreateScalarConditionCB(); sq.query((CB)cb);
         String pp = keepScalarCondition(cb.query()); // for saving query-value
-        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        op.setPartitionByCBean((CB)xcreateScalarConditionPartitionByCB()); // for using partition-by
         registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
     public abstract String keepScalarCondition(WhiteEscapedDfpropCQ sq);
 
     protected WhiteEscapedDfpropCB xcreateScalarConditionCB() {
-        WhiteEscapedDfpropCB cb = new WhiteEscapedDfpropCB();
-        cb.xsetupForScalarCondition(this);
-        return cb;
+        WhiteEscapedDfpropCB cb = newMyCB(); cb.xsetupForScalarCondition(this); return cb;
     }
 
     protected WhiteEscapedDfpropCB xcreateScalarConditionPartitionByCB() {
-        WhiteEscapedDfpropCB cb = new WhiteEscapedDfpropCB();
-        cb.xsetupForScalarConditionPartitionBy(this);
-        return cb;
+        WhiteEscapedDfpropCB cb = newMyCB(); cb.xsetupForScalarConditionPartitionBy(this); return cb;
     }
 
     // ===================================================================================
@@ -470,18 +459,12 @@ public abstract class AbstractBsWhiteEscapedDfpropCQ extends AbstractConditionQu
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<WhiteEscapedDfpropCB> myselfDerived() {
-        return xcreateQDRFunctionMyselfDerived();
+        return xcreateQDRFunctionMyselfDerived(WhiteEscapedDfpropCB.class);
     }
-    protected HpQDRFunction<WhiteEscapedDfpropCB> xcreateQDRFunctionMyselfDerived() {
-        return new HpQDRFunction<WhiteEscapedDfpropCB>(new HpQDRSetupper<WhiteEscapedDfpropCB>() {
-            public void setup(String fn, SubQuery<WhiteEscapedDfpropCB> sq, String rd, Object vl, DerivedReferrerOption op) {
-                xqderiveMyselfDerived(fn, sq, rd, vl, op);
-            }
-        });
-    }
-    public void xqderiveMyselfDerived(String fn, SubQuery<WhiteEscapedDfpropCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xqderiveMyselfDerived(String fn, SubQuery<CB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteEscapedDfpropCB cb = new WhiteEscapedDfpropCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        WhiteEscapedDfpropCB cb = new WhiteEscapedDfpropCB(); cb.xsetupForDerivedReferrer(this); sq.query((CB)cb);
         String pk = "ESCAPED_DFPROP_CODE";
         String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
         String prpp = keepQueryMyselfDerivedParameter(vl);
@@ -553,8 +536,10 @@ public abstract class AbstractBsWhiteEscapedDfpropCQ extends AbstractConditionQu
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
+    protected WhiteEscapedDfpropCB newMyCB() {
+        return new WhiteEscapedDfpropCB();
+    }
     // very internal (for suppressing warn about 'Not Use Import')
-    protected String xabCB() { return WhiteEscapedDfpropCB.class.getName(); }
     protected String xabCQ() { return WhiteEscapedDfpropCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

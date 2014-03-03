@@ -327,7 +327,7 @@ public abstract class AbstractBsWhiteSameNameRefRefCQ extends AbstractConditionQ
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteSameNameRefRefCB> scalar_Equal() {
-        return xcreateSSQFunction(CK_EQ.getOperand());
+        return xcreateSSQFunction(CK_EQ.getOperand(), WhiteSameNameRefRefCB.class);
     }
 
     /**
@@ -344,7 +344,7 @@ public abstract class AbstractBsWhiteSameNameRefRefCQ extends AbstractConditionQ
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteSameNameRefRefCB> scalar_NotEqual() {
-        return xcreateSSQFunction(CK_NES.getOperand());
+        return xcreateSSQFunction(CK_NES.getOperand(), WhiteSameNameRefRefCB.class);
     }
 
     /**
@@ -361,7 +361,7 @@ public abstract class AbstractBsWhiteSameNameRefRefCQ extends AbstractConditionQ
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteSameNameRefRefCB> scalar_GreaterThan() {
-        return xcreateSSQFunction(CK_GT.getOperand());
+        return xcreateSSQFunction(CK_GT.getOperand(), WhiteSameNameRefRefCB.class);
     }
 
     /**
@@ -378,7 +378,7 @@ public abstract class AbstractBsWhiteSameNameRefRefCQ extends AbstractConditionQ
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteSameNameRefRefCB> scalar_LessThan() {
-        return xcreateSSQFunction(CK_LT.getOperand());
+        return xcreateSSQFunction(CK_LT.getOperand(), WhiteSameNameRefRefCB.class);
     }
 
     /**
@@ -395,7 +395,7 @@ public abstract class AbstractBsWhiteSameNameRefRefCQ extends AbstractConditionQ
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteSameNameRefRefCB> scalar_GreaterEqual() {
-        return xcreateSSQFunction(CK_GE.getOperand());
+        return xcreateSSQFunction(CK_GE.getOperand(), WhiteSameNameRefRefCB.class);
     }
 
     /**
@@ -412,36 +412,25 @@ public abstract class AbstractBsWhiteSameNameRefRefCQ extends AbstractConditionQ
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteSameNameRefRefCB> scalar_LessEqual() {
-        return xcreateSSQFunction(CK_LE.getOperand());
+        return xcreateSSQFunction(CK_LE.getOperand(), WhiteSameNameRefRefCB.class);
     }
 
-    protected HpSSQFunction<WhiteSameNameRefRefCB> xcreateSSQFunction(final String rd) {
-        return new HpSSQFunction<WhiteSameNameRefRefCB>(new HpSSQSetupper<WhiteSameNameRefRefCB>() {
-            public void setup(String fn, SubQuery<WhiteSameNameRefRefCB> sq, HpSSQOption<WhiteSameNameRefRefCB> op) {
-                xscalarCondition(fn, sq, rd, op);
-            }
-        });
-    }
-
-    protected void xscalarCondition(String fn, SubQuery<WhiteSameNameRefRefCB> sq, String rd, HpSSQOption<WhiteSameNameRefRefCB> op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xscalarCondition(String fn, SubQuery<CB> sq, String rd, HpSSQOption<CB> op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteSameNameRefRefCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        WhiteSameNameRefRefCB cb = xcreateScalarConditionCB(); sq.query((CB)cb);
         String pp = keepScalarCondition(cb.query()); // for saving query-value
-        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        op.setPartitionByCBean((CB)xcreateScalarConditionPartitionByCB()); // for using partition-by
         registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
     public abstract String keepScalarCondition(WhiteSameNameRefRefCQ sq);
 
     protected WhiteSameNameRefRefCB xcreateScalarConditionCB() {
-        WhiteSameNameRefRefCB cb = new WhiteSameNameRefRefCB();
-        cb.xsetupForScalarCondition(this);
-        return cb;
+        WhiteSameNameRefRefCB cb = newMyCB(); cb.xsetupForScalarCondition(this); return cb;
     }
 
     protected WhiteSameNameRefRefCB xcreateScalarConditionPartitionByCB() {
-        WhiteSameNameRefRefCB cb = new WhiteSameNameRefRefCB();
-        cb.xsetupForScalarConditionPartitionBy(this);
-        return cb;
+        WhiteSameNameRefRefCB cb = newMyCB(); cb.xsetupForScalarConditionPartitionBy(this); return cb;
     }
 
     // ===================================================================================
@@ -461,18 +450,12 @@ public abstract class AbstractBsWhiteSameNameRefRefCQ extends AbstractConditionQ
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<WhiteSameNameRefRefCB> myselfDerived() {
-        return xcreateQDRFunctionMyselfDerived();
+        return xcreateQDRFunctionMyselfDerived(WhiteSameNameRefRefCB.class);
     }
-    protected HpQDRFunction<WhiteSameNameRefRefCB> xcreateQDRFunctionMyselfDerived() {
-        return new HpQDRFunction<WhiteSameNameRefRefCB>(new HpQDRSetupper<WhiteSameNameRefRefCB>() {
-            public void setup(String fn, SubQuery<WhiteSameNameRefRefCB> sq, String rd, Object vl, DerivedReferrerOption op) {
-                xqderiveMyselfDerived(fn, sq, rd, vl, op);
-            }
-        });
-    }
-    public void xqderiveMyselfDerived(String fn, SubQuery<WhiteSameNameRefRefCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xqderiveMyselfDerived(String fn, SubQuery<CB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteSameNameRefRefCB cb = new WhiteSameNameRefRefCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        WhiteSameNameRefRefCB cb = new WhiteSameNameRefRefCB(); cb.xsetupForDerivedReferrer(this); sq.query((CB)cb);
         String pk = "REF_REF_ID";
         String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
         String prpp = keepQueryMyselfDerivedParameter(vl);
@@ -547,8 +530,10 @@ public abstract class AbstractBsWhiteSameNameRefRefCQ extends AbstractConditionQ
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
+    protected WhiteSameNameRefRefCB newMyCB() {
+        return new WhiteSameNameRefRefCB();
+    }
     // very internal (for suppressing warn about 'Not Use Import')
-    protected String xabCB() { return WhiteSameNameRefRefCB.class.getName(); }
     protected String xabCQ() { return WhiteSameNameRefRefCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

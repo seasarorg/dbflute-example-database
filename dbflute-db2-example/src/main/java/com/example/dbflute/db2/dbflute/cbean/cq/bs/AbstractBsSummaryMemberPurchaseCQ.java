@@ -382,7 +382,7 @@ public abstract class AbstractBsSummaryMemberPurchaseCQ extends AbstractConditio
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<SummaryMemberPurchaseCB> scalar_Equal() {
-        return xcreateSSQFunction(CK_EQ.getOperand());
+        return xcreateSSQFunction(CK_EQ.getOperand(), SummaryMemberPurchaseCB.class);
     }
 
     /**
@@ -399,7 +399,7 @@ public abstract class AbstractBsSummaryMemberPurchaseCQ extends AbstractConditio
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<SummaryMemberPurchaseCB> scalar_NotEqual() {
-        return xcreateSSQFunction(CK_NES.getOperand());
+        return xcreateSSQFunction(CK_NES.getOperand(), SummaryMemberPurchaseCB.class);
     }
 
     /**
@@ -416,7 +416,7 @@ public abstract class AbstractBsSummaryMemberPurchaseCQ extends AbstractConditio
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<SummaryMemberPurchaseCB> scalar_GreaterThan() {
-        return xcreateSSQFunction(CK_GT.getOperand());
+        return xcreateSSQFunction(CK_GT.getOperand(), SummaryMemberPurchaseCB.class);
     }
 
     /**
@@ -433,7 +433,7 @@ public abstract class AbstractBsSummaryMemberPurchaseCQ extends AbstractConditio
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<SummaryMemberPurchaseCB> scalar_LessThan() {
-        return xcreateSSQFunction(CK_LT.getOperand());
+        return xcreateSSQFunction(CK_LT.getOperand(), SummaryMemberPurchaseCB.class);
     }
 
     /**
@@ -450,7 +450,7 @@ public abstract class AbstractBsSummaryMemberPurchaseCQ extends AbstractConditio
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<SummaryMemberPurchaseCB> scalar_GreaterEqual() {
-        return xcreateSSQFunction(CK_GE.getOperand());
+        return xcreateSSQFunction(CK_GE.getOperand(), SummaryMemberPurchaseCB.class);
     }
 
     /**
@@ -467,36 +467,25 @@ public abstract class AbstractBsSummaryMemberPurchaseCQ extends AbstractConditio
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<SummaryMemberPurchaseCB> scalar_LessEqual() {
-        return xcreateSSQFunction(CK_LE.getOperand());
+        return xcreateSSQFunction(CK_LE.getOperand(), SummaryMemberPurchaseCB.class);
     }
 
-    protected HpSSQFunction<SummaryMemberPurchaseCB> xcreateSSQFunction(final String rd) {
-        return new HpSSQFunction<SummaryMemberPurchaseCB>(new HpSSQSetupper<SummaryMemberPurchaseCB>() {
-            public void setup(String fn, SubQuery<SummaryMemberPurchaseCB> sq, HpSSQOption<SummaryMemberPurchaseCB> op) {
-                xscalarCondition(fn, sq, rd, op);
-            }
-        });
-    }
-
-    protected void xscalarCondition(String fn, SubQuery<SummaryMemberPurchaseCB> sq, String rd, HpSSQOption<SummaryMemberPurchaseCB> op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xscalarCondition(String fn, SubQuery<CB> sq, String rd, HpSSQOption<CB> op) {
         assertObjectNotNull("subQuery", sq);
-        SummaryMemberPurchaseCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        SummaryMemberPurchaseCB cb = xcreateScalarConditionCB(); sq.query((CB)cb);
         String pp = keepScalarCondition(cb.query()); // for saving query-value
-        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        op.setPartitionByCBean((CB)xcreateScalarConditionPartitionByCB()); // for using partition-by
         registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
     public abstract String keepScalarCondition(SummaryMemberPurchaseCQ sq);
 
     protected SummaryMemberPurchaseCB xcreateScalarConditionCB() {
-        SummaryMemberPurchaseCB cb = new SummaryMemberPurchaseCB();
-        cb.xsetupForScalarCondition(this);
-        return cb;
+        SummaryMemberPurchaseCB cb = newMyCB(); cb.xsetupForScalarCondition(this); return cb;
     }
 
     protected SummaryMemberPurchaseCB xcreateScalarConditionPartitionByCB() {
-        SummaryMemberPurchaseCB cb = new SummaryMemberPurchaseCB();
-        cb.xsetupForScalarConditionPartitionBy(this);
-        return cb;
+        SummaryMemberPurchaseCB cb = newMyCB(); cb.xsetupForScalarConditionPartitionBy(this); return cb;
     }
 
     // ===================================================================================
@@ -516,18 +505,12 @@ public abstract class AbstractBsSummaryMemberPurchaseCQ extends AbstractConditio
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<SummaryMemberPurchaseCB> myselfDerived() {
-        return xcreateQDRFunctionMyselfDerived();
+        return xcreateQDRFunctionMyselfDerived(SummaryMemberPurchaseCB.class);
     }
-    protected HpQDRFunction<SummaryMemberPurchaseCB> xcreateQDRFunctionMyselfDerived() {
-        return new HpQDRFunction<SummaryMemberPurchaseCB>(new HpQDRSetupper<SummaryMemberPurchaseCB>() {
-            public void setup(String fn, SubQuery<SummaryMemberPurchaseCB> sq, String rd, Object vl, DerivedReferrerOption op) {
-                xqderiveMyselfDerived(fn, sq, rd, vl, op);
-            }
-        });
-    }
-    public void xqderiveMyselfDerived(String fn, SubQuery<SummaryMemberPurchaseCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xqderiveMyselfDerived(String fn, SubQuery<CB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        SummaryMemberPurchaseCB cb = new SummaryMemberPurchaseCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        SummaryMemberPurchaseCB cb = new SummaryMemberPurchaseCB(); cb.xsetupForDerivedReferrer(this); sq.query((CB)cb);
         String pk = "MEMBER_ID";
         String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
         String prpp = keepQueryMyselfDerivedParameter(vl);
@@ -569,8 +552,10 @@ public abstract class AbstractBsSummaryMemberPurchaseCQ extends AbstractConditio
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
+    protected SummaryMemberPurchaseCB newMyCB() {
+        return new SummaryMemberPurchaseCB();
+    }
     // very internal (for suppressing warn about 'Not Use Import')
-    protected String xabCB() { return SummaryMemberPurchaseCB.class.getName(); }
     protected String xabCQ() { return SummaryMemberPurchaseCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

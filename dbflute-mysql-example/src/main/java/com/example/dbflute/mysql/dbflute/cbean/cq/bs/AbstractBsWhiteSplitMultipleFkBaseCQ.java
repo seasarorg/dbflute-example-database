@@ -588,7 +588,7 @@ public abstract class AbstractBsWhiteSplitMultipleFkBaseCQ extends AbstractCondi
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteSplitMultipleFkBaseCB> scalar_Equal() {
-        return xcreateSSQFunction(CK_EQ.getOperand());
+        return xcreateSSQFunction(CK_EQ.getOperand(), WhiteSplitMultipleFkBaseCB.class);
     }
 
     /**
@@ -605,7 +605,7 @@ public abstract class AbstractBsWhiteSplitMultipleFkBaseCQ extends AbstractCondi
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteSplitMultipleFkBaseCB> scalar_NotEqual() {
-        return xcreateSSQFunction(CK_NES.getOperand());
+        return xcreateSSQFunction(CK_NES.getOperand(), WhiteSplitMultipleFkBaseCB.class);
     }
 
     /**
@@ -622,7 +622,7 @@ public abstract class AbstractBsWhiteSplitMultipleFkBaseCQ extends AbstractCondi
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteSplitMultipleFkBaseCB> scalar_GreaterThan() {
-        return xcreateSSQFunction(CK_GT.getOperand());
+        return xcreateSSQFunction(CK_GT.getOperand(), WhiteSplitMultipleFkBaseCB.class);
     }
 
     /**
@@ -639,7 +639,7 @@ public abstract class AbstractBsWhiteSplitMultipleFkBaseCQ extends AbstractCondi
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteSplitMultipleFkBaseCB> scalar_LessThan() {
-        return xcreateSSQFunction(CK_LT.getOperand());
+        return xcreateSSQFunction(CK_LT.getOperand(), WhiteSplitMultipleFkBaseCB.class);
     }
 
     /**
@@ -656,7 +656,7 @@ public abstract class AbstractBsWhiteSplitMultipleFkBaseCQ extends AbstractCondi
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteSplitMultipleFkBaseCB> scalar_GreaterEqual() {
-        return xcreateSSQFunction(CK_GE.getOperand());
+        return xcreateSSQFunction(CK_GE.getOperand(), WhiteSplitMultipleFkBaseCB.class);
     }
 
     /**
@@ -673,36 +673,25 @@ public abstract class AbstractBsWhiteSplitMultipleFkBaseCQ extends AbstractCondi
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteSplitMultipleFkBaseCB> scalar_LessEqual() {
-        return xcreateSSQFunction(CK_LE.getOperand());
+        return xcreateSSQFunction(CK_LE.getOperand(), WhiteSplitMultipleFkBaseCB.class);
     }
 
-    protected HpSSQFunction<WhiteSplitMultipleFkBaseCB> xcreateSSQFunction(final String rd) {
-        return new HpSSQFunction<WhiteSplitMultipleFkBaseCB>(new HpSSQSetupper<WhiteSplitMultipleFkBaseCB>() {
-            public void setup(String fn, SubQuery<WhiteSplitMultipleFkBaseCB> sq, HpSSQOption<WhiteSplitMultipleFkBaseCB> op) {
-                xscalarCondition(fn, sq, rd, op);
-            }
-        });
-    }
-
-    protected void xscalarCondition(String fn, SubQuery<WhiteSplitMultipleFkBaseCB> sq, String rd, HpSSQOption<WhiteSplitMultipleFkBaseCB> op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xscalarCondition(String fn, SubQuery<CB> sq, String rd, HpSSQOption<CB> op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteSplitMultipleFkBaseCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        WhiteSplitMultipleFkBaseCB cb = xcreateScalarConditionCB(); sq.query((CB)cb);
         String pp = keepScalarCondition(cb.query()); // for saving query-value
-        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        op.setPartitionByCBean((CB)xcreateScalarConditionPartitionByCB()); // for using partition-by
         registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
     public abstract String keepScalarCondition(WhiteSplitMultipleFkBaseCQ sq);
 
     protected WhiteSplitMultipleFkBaseCB xcreateScalarConditionCB() {
-        WhiteSplitMultipleFkBaseCB cb = new WhiteSplitMultipleFkBaseCB();
-        cb.xsetupForScalarCondition(this);
-        return cb;
+        WhiteSplitMultipleFkBaseCB cb = newMyCB(); cb.xsetupForScalarCondition(this); return cb;
     }
 
     protected WhiteSplitMultipleFkBaseCB xcreateScalarConditionPartitionByCB() {
-        WhiteSplitMultipleFkBaseCB cb = new WhiteSplitMultipleFkBaseCB();
-        cb.xsetupForScalarConditionPartitionBy(this);
-        return cb;
+        WhiteSplitMultipleFkBaseCB cb = newMyCB(); cb.xsetupForScalarConditionPartitionBy(this); return cb;
     }
 
     // ===================================================================================
@@ -722,18 +711,12 @@ public abstract class AbstractBsWhiteSplitMultipleFkBaseCQ extends AbstractCondi
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<WhiteSplitMultipleFkBaseCB> myselfDerived() {
-        return xcreateQDRFunctionMyselfDerived();
+        return xcreateQDRFunctionMyselfDerived(WhiteSplitMultipleFkBaseCB.class);
     }
-    protected HpQDRFunction<WhiteSplitMultipleFkBaseCB> xcreateQDRFunctionMyselfDerived() {
-        return new HpQDRFunction<WhiteSplitMultipleFkBaseCB>(new HpQDRSetupper<WhiteSplitMultipleFkBaseCB>() {
-            public void setup(String fn, SubQuery<WhiteSplitMultipleFkBaseCB> sq, String rd, Object vl, DerivedReferrerOption op) {
-                xqderiveMyselfDerived(fn, sq, rd, vl, op);
-            }
-        });
-    }
-    public void xqderiveMyselfDerived(String fn, SubQuery<WhiteSplitMultipleFkBaseCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xqderiveMyselfDerived(String fn, SubQuery<CB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteSplitMultipleFkBaseCB cb = new WhiteSplitMultipleFkBaseCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        WhiteSplitMultipleFkBaseCB cb = new WhiteSplitMultipleFkBaseCB(); cb.xsetupForDerivedReferrer(this); sq.query((CB)cb);
         String pk = "BASE_ID";
         String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
         String prpp = keepQueryMyselfDerivedParameter(vl);
@@ -805,8 +788,10 @@ public abstract class AbstractBsWhiteSplitMultipleFkBaseCQ extends AbstractCondi
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
+    protected WhiteSplitMultipleFkBaseCB newMyCB() {
+        return new WhiteSplitMultipleFkBaseCB();
+    }
     // very internal (for suppressing warn about 'Not Use Import')
-    protected String xabCB() { return WhiteSplitMultipleFkBaseCB.class.getName(); }
     protected String xabCQ() { return WhiteSplitMultipleFkBaseCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

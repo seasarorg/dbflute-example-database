@@ -329,7 +329,7 @@ public abstract class AbstractBsWhiteLineSepCommentCQ extends AbstractConditionQ
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteLineSepCommentCB> scalar_Equal() {
-        return xcreateSSQFunction(CK_EQ.getOperand());
+        return xcreateSSQFunction(CK_EQ.getOperand(), WhiteLineSepCommentCB.class);
     }
 
     /**
@@ -346,7 +346,7 @@ public abstract class AbstractBsWhiteLineSepCommentCQ extends AbstractConditionQ
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteLineSepCommentCB> scalar_NotEqual() {
-        return xcreateSSQFunction(CK_NES.getOperand());
+        return xcreateSSQFunction(CK_NES.getOperand(), WhiteLineSepCommentCB.class);
     }
 
     /**
@@ -363,7 +363,7 @@ public abstract class AbstractBsWhiteLineSepCommentCQ extends AbstractConditionQ
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteLineSepCommentCB> scalar_GreaterThan() {
-        return xcreateSSQFunction(CK_GT.getOperand());
+        return xcreateSSQFunction(CK_GT.getOperand(), WhiteLineSepCommentCB.class);
     }
 
     /**
@@ -380,7 +380,7 @@ public abstract class AbstractBsWhiteLineSepCommentCQ extends AbstractConditionQ
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteLineSepCommentCB> scalar_LessThan() {
-        return xcreateSSQFunction(CK_LT.getOperand());
+        return xcreateSSQFunction(CK_LT.getOperand(), WhiteLineSepCommentCB.class);
     }
 
     /**
@@ -397,7 +397,7 @@ public abstract class AbstractBsWhiteLineSepCommentCQ extends AbstractConditionQ
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteLineSepCommentCB> scalar_GreaterEqual() {
-        return xcreateSSQFunction(CK_GE.getOperand());
+        return xcreateSSQFunction(CK_GE.getOperand(), WhiteLineSepCommentCB.class);
     }
 
     /**
@@ -414,36 +414,25 @@ public abstract class AbstractBsWhiteLineSepCommentCQ extends AbstractConditionQ
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteLineSepCommentCB> scalar_LessEqual() {
-        return xcreateSSQFunction(CK_LE.getOperand());
+        return xcreateSSQFunction(CK_LE.getOperand(), WhiteLineSepCommentCB.class);
     }
 
-    protected HpSSQFunction<WhiteLineSepCommentCB> xcreateSSQFunction(final String rd) {
-        return new HpSSQFunction<WhiteLineSepCommentCB>(new HpSSQSetupper<WhiteLineSepCommentCB>() {
-            public void setup(String fn, SubQuery<WhiteLineSepCommentCB> sq, HpSSQOption<WhiteLineSepCommentCB> op) {
-                xscalarCondition(fn, sq, rd, op);
-            }
-        });
-    }
-
-    protected void xscalarCondition(String fn, SubQuery<WhiteLineSepCommentCB> sq, String rd, HpSSQOption<WhiteLineSepCommentCB> op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xscalarCondition(String fn, SubQuery<CB> sq, String rd, HpSSQOption<CB> op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteLineSepCommentCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        WhiteLineSepCommentCB cb = xcreateScalarConditionCB(); sq.query((CB)cb);
         String pp = keepScalarCondition(cb.query()); // for saving query-value
-        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        op.setPartitionByCBean((CB)xcreateScalarConditionPartitionByCB()); // for using partition-by
         registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
     public abstract String keepScalarCondition(WhiteLineSepCommentCQ sq);
 
     protected WhiteLineSepCommentCB xcreateScalarConditionCB() {
-        WhiteLineSepCommentCB cb = new WhiteLineSepCommentCB();
-        cb.xsetupForScalarCondition(this);
-        return cb;
+        WhiteLineSepCommentCB cb = newMyCB(); cb.xsetupForScalarCondition(this); return cb;
     }
 
     protected WhiteLineSepCommentCB xcreateScalarConditionPartitionByCB() {
-        WhiteLineSepCommentCB cb = new WhiteLineSepCommentCB();
-        cb.xsetupForScalarConditionPartitionBy(this);
-        return cb;
+        WhiteLineSepCommentCB cb = newMyCB(); cb.xsetupForScalarConditionPartitionBy(this); return cb;
     }
 
     // ===================================================================================
@@ -463,18 +452,12 @@ public abstract class AbstractBsWhiteLineSepCommentCQ extends AbstractConditionQ
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<WhiteLineSepCommentCB> myselfDerived() {
-        return xcreateQDRFunctionMyselfDerived();
+        return xcreateQDRFunctionMyselfDerived(WhiteLineSepCommentCB.class);
     }
-    protected HpQDRFunction<WhiteLineSepCommentCB> xcreateQDRFunctionMyselfDerived() {
-        return new HpQDRFunction<WhiteLineSepCommentCB>(new HpQDRSetupper<WhiteLineSepCommentCB>() {
-            public void setup(String fn, SubQuery<WhiteLineSepCommentCB> sq, String rd, Object vl, DerivedReferrerOption op) {
-                xqderiveMyselfDerived(fn, sq, rd, vl, op);
-            }
-        });
-    }
-    public void xqderiveMyselfDerived(String fn, SubQuery<WhiteLineSepCommentCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xqderiveMyselfDerived(String fn, SubQuery<CB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteLineSepCommentCB cb = new WhiteLineSepCommentCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        WhiteLineSepCommentCB cb = new WhiteLineSepCommentCB(); cb.xsetupForDerivedReferrer(this); sq.query((CB)cb);
         String pk = "LINE_SEP_COMMENT_CODE";
         String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
         String prpp = keepQueryMyselfDerivedParameter(vl);
@@ -546,8 +529,10 @@ public abstract class AbstractBsWhiteLineSepCommentCQ extends AbstractConditionQ
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
+    protected WhiteLineSepCommentCB newMyCB() {
+        return new WhiteLineSepCommentCB();
+    }
     // very internal (for suppressing warn about 'Not Use Import')
-    protected String xabCB() { return WhiteLineSepCommentCB.class.getName(); }
     protected String xabCQ() { return WhiteLineSepCommentCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

@@ -349,7 +349,7 @@ public abstract class AbstractBsWhiteDeprecatedClsElementCQ extends AbstractCond
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteDeprecatedClsElementCB> scalar_Equal() {
-        return xcreateSSQFunction(CK_EQ.getOperand());
+        return xcreateSSQFunction(CK_EQ.getOperand(), WhiteDeprecatedClsElementCB.class);
     }
 
     /**
@@ -366,7 +366,7 @@ public abstract class AbstractBsWhiteDeprecatedClsElementCQ extends AbstractCond
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteDeprecatedClsElementCB> scalar_NotEqual() {
-        return xcreateSSQFunction(CK_NES.getOperand());
+        return xcreateSSQFunction(CK_NES.getOperand(), WhiteDeprecatedClsElementCB.class);
     }
 
     /**
@@ -383,7 +383,7 @@ public abstract class AbstractBsWhiteDeprecatedClsElementCQ extends AbstractCond
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteDeprecatedClsElementCB> scalar_GreaterThan() {
-        return xcreateSSQFunction(CK_GT.getOperand());
+        return xcreateSSQFunction(CK_GT.getOperand(), WhiteDeprecatedClsElementCB.class);
     }
 
     /**
@@ -400,7 +400,7 @@ public abstract class AbstractBsWhiteDeprecatedClsElementCQ extends AbstractCond
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteDeprecatedClsElementCB> scalar_LessThan() {
-        return xcreateSSQFunction(CK_LT.getOperand());
+        return xcreateSSQFunction(CK_LT.getOperand(), WhiteDeprecatedClsElementCB.class);
     }
 
     /**
@@ -417,7 +417,7 @@ public abstract class AbstractBsWhiteDeprecatedClsElementCQ extends AbstractCond
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteDeprecatedClsElementCB> scalar_GreaterEqual() {
-        return xcreateSSQFunction(CK_GE.getOperand());
+        return xcreateSSQFunction(CK_GE.getOperand(), WhiteDeprecatedClsElementCB.class);
     }
 
     /**
@@ -434,36 +434,25 @@ public abstract class AbstractBsWhiteDeprecatedClsElementCQ extends AbstractCond
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteDeprecatedClsElementCB> scalar_LessEqual() {
-        return xcreateSSQFunction(CK_LE.getOperand());
+        return xcreateSSQFunction(CK_LE.getOperand(), WhiteDeprecatedClsElementCB.class);
     }
 
-    protected HpSSQFunction<WhiteDeprecatedClsElementCB> xcreateSSQFunction(final String rd) {
-        return new HpSSQFunction<WhiteDeprecatedClsElementCB>(new HpSSQSetupper<WhiteDeprecatedClsElementCB>() {
-            public void setup(String fn, SubQuery<WhiteDeprecatedClsElementCB> sq, HpSSQOption<WhiteDeprecatedClsElementCB> op) {
-                xscalarCondition(fn, sq, rd, op);
-            }
-        });
-    }
-
-    protected void xscalarCondition(String fn, SubQuery<WhiteDeprecatedClsElementCB> sq, String rd, HpSSQOption<WhiteDeprecatedClsElementCB> op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xscalarCondition(String fn, SubQuery<CB> sq, String rd, HpSSQOption<CB> op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteDeprecatedClsElementCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        WhiteDeprecatedClsElementCB cb = xcreateScalarConditionCB(); sq.query((CB)cb);
         String pp = keepScalarCondition(cb.query()); // for saving query-value
-        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        op.setPartitionByCBean((CB)xcreateScalarConditionPartitionByCB()); // for using partition-by
         registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
     public abstract String keepScalarCondition(WhiteDeprecatedClsElementCQ sq);
 
     protected WhiteDeprecatedClsElementCB xcreateScalarConditionCB() {
-        WhiteDeprecatedClsElementCB cb = new WhiteDeprecatedClsElementCB();
-        cb.xsetupForScalarCondition(this);
-        return cb;
+        WhiteDeprecatedClsElementCB cb = newMyCB(); cb.xsetupForScalarCondition(this); return cb;
     }
 
     protected WhiteDeprecatedClsElementCB xcreateScalarConditionPartitionByCB() {
-        WhiteDeprecatedClsElementCB cb = new WhiteDeprecatedClsElementCB();
-        cb.xsetupForScalarConditionPartitionBy(this);
-        return cb;
+        WhiteDeprecatedClsElementCB cb = newMyCB(); cb.xsetupForScalarConditionPartitionBy(this); return cb;
     }
 
     // ===================================================================================
@@ -483,18 +472,12 @@ public abstract class AbstractBsWhiteDeprecatedClsElementCQ extends AbstractCond
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<WhiteDeprecatedClsElementCB> myselfDerived() {
-        return xcreateQDRFunctionMyselfDerived();
+        return xcreateQDRFunctionMyselfDerived(WhiteDeprecatedClsElementCB.class);
     }
-    protected HpQDRFunction<WhiteDeprecatedClsElementCB> xcreateQDRFunctionMyselfDerived() {
-        return new HpQDRFunction<WhiteDeprecatedClsElementCB>(new HpQDRSetupper<WhiteDeprecatedClsElementCB>() {
-            public void setup(String fn, SubQuery<WhiteDeprecatedClsElementCB> sq, String rd, Object vl, DerivedReferrerOption op) {
-                xqderiveMyselfDerived(fn, sq, rd, vl, op);
-            }
-        });
-    }
-    public void xqderiveMyselfDerived(String fn, SubQuery<WhiteDeprecatedClsElementCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xqderiveMyselfDerived(String fn, SubQuery<CB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteDeprecatedClsElementCB cb = new WhiteDeprecatedClsElementCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        WhiteDeprecatedClsElementCB cb = new WhiteDeprecatedClsElementCB(); cb.xsetupForDerivedReferrer(this); sq.query((CB)cb);
         String pk = "DEPRECATED_CLS_ELEMENT_CODE";
         String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
         String prpp = keepQueryMyselfDerivedParameter(vl);
@@ -566,8 +549,10 @@ public abstract class AbstractBsWhiteDeprecatedClsElementCQ extends AbstractCond
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
+    protected WhiteDeprecatedClsElementCB newMyCB() {
+        return new WhiteDeprecatedClsElementCB();
+    }
     // very internal (for suppressing warn about 'Not Use Import')
-    protected String xabCB() { return WhiteDeprecatedClsElementCB.class.getName(); }
     protected String xabCQ() { return WhiteDeprecatedClsElementCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

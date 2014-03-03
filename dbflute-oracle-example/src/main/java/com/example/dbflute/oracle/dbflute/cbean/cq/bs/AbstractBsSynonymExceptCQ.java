@@ -381,7 +381,7 @@ public abstract class AbstractBsSynonymExceptCQ extends AbstractConditionQuery {
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<SynonymExceptCB> scalar_Equal() {
-        return xcreateSSQFunction(CK_EQ.getOperand());
+        return xcreateSSQFunction(CK_EQ.getOperand(), SynonymExceptCB.class);
     }
 
     /**
@@ -398,7 +398,7 @@ public abstract class AbstractBsSynonymExceptCQ extends AbstractConditionQuery {
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<SynonymExceptCB> scalar_NotEqual() {
-        return xcreateSSQFunction(CK_NES.getOperand());
+        return xcreateSSQFunction(CK_NES.getOperand(), SynonymExceptCB.class);
     }
 
     /**
@@ -415,7 +415,7 @@ public abstract class AbstractBsSynonymExceptCQ extends AbstractConditionQuery {
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<SynonymExceptCB> scalar_GreaterThan() {
-        return xcreateSSQFunction(CK_GT.getOperand());
+        return xcreateSSQFunction(CK_GT.getOperand(), SynonymExceptCB.class);
     }
 
     /**
@@ -432,7 +432,7 @@ public abstract class AbstractBsSynonymExceptCQ extends AbstractConditionQuery {
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<SynonymExceptCB> scalar_LessThan() {
-        return xcreateSSQFunction(CK_LT.getOperand());
+        return xcreateSSQFunction(CK_LT.getOperand(), SynonymExceptCB.class);
     }
 
     /**
@@ -449,7 +449,7 @@ public abstract class AbstractBsSynonymExceptCQ extends AbstractConditionQuery {
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<SynonymExceptCB> scalar_GreaterEqual() {
-        return xcreateSSQFunction(CK_GE.getOperand());
+        return xcreateSSQFunction(CK_GE.getOperand(), SynonymExceptCB.class);
     }
 
     /**
@@ -466,36 +466,25 @@ public abstract class AbstractBsSynonymExceptCQ extends AbstractConditionQuery {
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<SynonymExceptCB> scalar_LessEqual() {
-        return xcreateSSQFunction(CK_LE.getOperand());
+        return xcreateSSQFunction(CK_LE.getOperand(), SynonymExceptCB.class);
     }
 
-    protected HpSSQFunction<SynonymExceptCB> xcreateSSQFunction(final String rd) {
-        return new HpSSQFunction<SynonymExceptCB>(new HpSSQSetupper<SynonymExceptCB>() {
-            public void setup(String fn, SubQuery<SynonymExceptCB> sq, HpSSQOption<SynonymExceptCB> op) {
-                xscalarCondition(fn, sq, rd, op);
-            }
-        });
-    }
-
-    protected void xscalarCondition(String fn, SubQuery<SynonymExceptCB> sq, String rd, HpSSQOption<SynonymExceptCB> op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xscalarCondition(String fn, SubQuery<CB> sq, String rd, HpSSQOption<CB> op) {
         assertObjectNotNull("subQuery", sq);
-        SynonymExceptCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        SynonymExceptCB cb = xcreateScalarConditionCB(); sq.query((CB)cb);
         String pp = keepScalarCondition(cb.query()); // for saving query-value
-        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        op.setPartitionByCBean((CB)xcreateScalarConditionPartitionByCB()); // for using partition-by
         registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
     public abstract String keepScalarCondition(SynonymExceptCQ sq);
 
     protected SynonymExceptCB xcreateScalarConditionCB() {
-        SynonymExceptCB cb = new SynonymExceptCB();
-        cb.xsetupForScalarCondition(this);
-        return cb;
+        SynonymExceptCB cb = newMyCB(); cb.xsetupForScalarCondition(this); return cb;
     }
 
     protected SynonymExceptCB xcreateScalarConditionPartitionByCB() {
-        SynonymExceptCB cb = new SynonymExceptCB();
-        cb.xsetupForScalarConditionPartitionBy(this);
-        return cb;
+        SynonymExceptCB cb = newMyCB(); cb.xsetupForScalarConditionPartitionBy(this); return cb;
     }
 
     // ===================================================================================
@@ -515,18 +504,12 @@ public abstract class AbstractBsSynonymExceptCQ extends AbstractConditionQuery {
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<SynonymExceptCB> myselfDerived() {
-        return xcreateQDRFunctionMyselfDerived();
+        return xcreateQDRFunctionMyselfDerived(SynonymExceptCB.class);
     }
-    protected HpQDRFunction<SynonymExceptCB> xcreateQDRFunctionMyselfDerived() {
-        return new HpQDRFunction<SynonymExceptCB>(new HpQDRSetupper<SynonymExceptCB>() {
-            public void setup(String fn, SubQuery<SynonymExceptCB> sq, String rd, Object vl, DerivedReferrerOption op) {
-                xqderiveMyselfDerived(fn, sq, rd, vl, op);
-            }
-        });
-    }
-    public void xqderiveMyselfDerived(String fn, SubQuery<SynonymExceptCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xqderiveMyselfDerived(String fn, SubQuery<CB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        SynonymExceptCB cb = new SynonymExceptCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        SynonymExceptCB cb = new SynonymExceptCB(); cb.xsetupForDerivedReferrer(this); sq.query((CB)cb);
         String pk = "EXCEPT_ID";
         String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
         String prpp = keepQueryMyselfDerivedParameter(vl);
@@ -601,8 +584,10 @@ public abstract class AbstractBsSynonymExceptCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
+    protected SynonymExceptCB newMyCB() {
+        return new SynonymExceptCB();
+    }
     // very internal (for suppressing warn about 'Not Use Import')
-    protected String xabCB() { return SynonymExceptCB.class.getName(); }
     protected String xabCQ() { return SynonymExceptCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

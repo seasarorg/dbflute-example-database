@@ -490,7 +490,7 @@ public abstract class AbstractBsWhiteUqFkCQ extends AbstractConditionQuery {
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteUqFkCB> scalar_Equal() {
-        return xcreateSSQFunction(CK_EQ.getOperand());
+        return xcreateSSQFunction(CK_EQ.getOperand(), WhiteUqFkCB.class);
     }
 
     /**
@@ -507,7 +507,7 @@ public abstract class AbstractBsWhiteUqFkCQ extends AbstractConditionQuery {
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteUqFkCB> scalar_NotEqual() {
-        return xcreateSSQFunction(CK_NES.getOperand());
+        return xcreateSSQFunction(CK_NES.getOperand(), WhiteUqFkCB.class);
     }
 
     /**
@@ -524,7 +524,7 @@ public abstract class AbstractBsWhiteUqFkCQ extends AbstractConditionQuery {
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteUqFkCB> scalar_GreaterThan() {
-        return xcreateSSQFunction(CK_GT.getOperand());
+        return xcreateSSQFunction(CK_GT.getOperand(), WhiteUqFkCB.class);
     }
 
     /**
@@ -541,7 +541,7 @@ public abstract class AbstractBsWhiteUqFkCQ extends AbstractConditionQuery {
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteUqFkCB> scalar_LessThan() {
-        return xcreateSSQFunction(CK_LT.getOperand());
+        return xcreateSSQFunction(CK_LT.getOperand(), WhiteUqFkCB.class);
     }
 
     /**
@@ -558,7 +558,7 @@ public abstract class AbstractBsWhiteUqFkCQ extends AbstractConditionQuery {
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteUqFkCB> scalar_GreaterEqual() {
-        return xcreateSSQFunction(CK_GE.getOperand());
+        return xcreateSSQFunction(CK_GE.getOperand(), WhiteUqFkCB.class);
     }
 
     /**
@@ -575,36 +575,25 @@ public abstract class AbstractBsWhiteUqFkCQ extends AbstractConditionQuery {
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteUqFkCB> scalar_LessEqual() {
-        return xcreateSSQFunction(CK_LE.getOperand());
+        return xcreateSSQFunction(CK_LE.getOperand(), WhiteUqFkCB.class);
     }
 
-    protected HpSSQFunction<WhiteUqFkCB> xcreateSSQFunction(final String rd) {
-        return new HpSSQFunction<WhiteUqFkCB>(new HpSSQSetupper<WhiteUqFkCB>() {
-            public void setup(String fn, SubQuery<WhiteUqFkCB> sq, HpSSQOption<WhiteUqFkCB> op) {
-                xscalarCondition(fn, sq, rd, op);
-            }
-        });
-    }
-
-    protected void xscalarCondition(String fn, SubQuery<WhiteUqFkCB> sq, String rd, HpSSQOption<WhiteUqFkCB> op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xscalarCondition(String fn, SubQuery<CB> sq, String rd, HpSSQOption<CB> op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteUqFkCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        WhiteUqFkCB cb = xcreateScalarConditionCB(); sq.query((CB)cb);
         String pp = keepScalarCondition(cb.query()); // for saving query-value
-        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        op.setPartitionByCBean((CB)xcreateScalarConditionPartitionByCB()); // for using partition-by
         registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
     public abstract String keepScalarCondition(WhiteUqFkCQ sq);
 
     protected WhiteUqFkCB xcreateScalarConditionCB() {
-        WhiteUqFkCB cb = new WhiteUqFkCB();
-        cb.xsetupForScalarCondition(this);
-        return cb;
+        WhiteUqFkCB cb = newMyCB(); cb.xsetupForScalarCondition(this); return cb;
     }
 
     protected WhiteUqFkCB xcreateScalarConditionPartitionByCB() {
-        WhiteUqFkCB cb = new WhiteUqFkCB();
-        cb.xsetupForScalarConditionPartitionBy(this);
-        return cb;
+        WhiteUqFkCB cb = newMyCB(); cb.xsetupForScalarConditionPartitionBy(this); return cb;
     }
 
     // ===================================================================================
@@ -624,18 +613,12 @@ public abstract class AbstractBsWhiteUqFkCQ extends AbstractConditionQuery {
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<WhiteUqFkCB> myselfDerived() {
-        return xcreateQDRFunctionMyselfDerived();
+        return xcreateQDRFunctionMyselfDerived(WhiteUqFkCB.class);
     }
-    protected HpQDRFunction<WhiteUqFkCB> xcreateQDRFunctionMyselfDerived() {
-        return new HpQDRFunction<WhiteUqFkCB>(new HpQDRSetupper<WhiteUqFkCB>() {
-            public void setup(String fn, SubQuery<WhiteUqFkCB> sq, String rd, Object vl, DerivedReferrerOption op) {
-                xqderiveMyselfDerived(fn, sq, rd, vl, op);
-            }
-        });
-    }
-    public void xqderiveMyselfDerived(String fn, SubQuery<WhiteUqFkCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xqderiveMyselfDerived(String fn, SubQuery<CB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteUqFkCB cb = new WhiteUqFkCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        WhiteUqFkCB cb = new WhiteUqFkCB(); cb.xsetupForDerivedReferrer(this); sq.query((CB)cb);
         String pk = "UQ_FK_ID";
         String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
         String prpp = keepQueryMyselfDerivedParameter(vl);
@@ -707,8 +690,10 @@ public abstract class AbstractBsWhiteUqFkCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
+    protected WhiteUqFkCB newMyCB() {
+        return new WhiteUqFkCB();
+    }
     // very internal (for suppressing warn about 'Not Use Import')
-    protected String xabCB() { return WhiteUqFkCB.class.getName(); }
     protected String xabCQ() { return WhiteUqFkCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }
