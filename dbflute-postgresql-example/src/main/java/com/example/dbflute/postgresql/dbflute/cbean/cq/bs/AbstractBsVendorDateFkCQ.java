@@ -254,7 +254,7 @@ public abstract class AbstractBsVendorDateFkCQ extends AbstractConditionQuery {
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<VendorDateFkCB> scalar_Equal() {
-        return xcreateSSQFunction(CK_EQ.getOperand());
+        return xcreateSSQFunction(CK_EQ.getOperand(), VendorDateFkCB.class);
     }
 
     /**
@@ -271,7 +271,7 @@ public abstract class AbstractBsVendorDateFkCQ extends AbstractConditionQuery {
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<VendorDateFkCB> scalar_NotEqual() {
-        return xcreateSSQFunction(CK_NES.getOperand());
+        return xcreateSSQFunction(CK_NES.getOperand(), VendorDateFkCB.class);
     }
 
     /**
@@ -288,7 +288,7 @@ public abstract class AbstractBsVendorDateFkCQ extends AbstractConditionQuery {
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<VendorDateFkCB> scalar_GreaterThan() {
-        return xcreateSSQFunction(CK_GT.getOperand());
+        return xcreateSSQFunction(CK_GT.getOperand(), VendorDateFkCB.class);
     }
 
     /**
@@ -305,7 +305,7 @@ public abstract class AbstractBsVendorDateFkCQ extends AbstractConditionQuery {
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<VendorDateFkCB> scalar_LessThan() {
-        return xcreateSSQFunction(CK_LT.getOperand());
+        return xcreateSSQFunction(CK_LT.getOperand(), VendorDateFkCB.class);
     }
 
     /**
@@ -322,7 +322,7 @@ public abstract class AbstractBsVendorDateFkCQ extends AbstractConditionQuery {
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<VendorDateFkCB> scalar_GreaterEqual() {
-        return xcreateSSQFunction(CK_GE.getOperand());
+        return xcreateSSQFunction(CK_GE.getOperand(), VendorDateFkCB.class);
     }
 
     /**
@@ -339,36 +339,25 @@ public abstract class AbstractBsVendorDateFkCQ extends AbstractConditionQuery {
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<VendorDateFkCB> scalar_LessEqual() {
-        return xcreateSSQFunction(CK_LE.getOperand());
+        return xcreateSSQFunction(CK_LE.getOperand(), VendorDateFkCB.class);
     }
 
-    protected HpSSQFunction<VendorDateFkCB> xcreateSSQFunction(final String rd) {
-        return new HpSSQFunction<VendorDateFkCB>(new HpSSQSetupper<VendorDateFkCB>() {
-            public void setup(String fn, SubQuery<VendorDateFkCB> sq, HpSSQOption<VendorDateFkCB> op) {
-                xscalarCondition(fn, sq, rd, op);
-            }
-        });
-    }
-
-    protected void xscalarCondition(String fn, SubQuery<VendorDateFkCB> sq, String rd, HpSSQOption<VendorDateFkCB> op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xscalarCondition(String fn, SubQuery<CB> sq, String rd, HpSSQOption<CB> op) {
         assertObjectNotNull("subQuery", sq);
-        VendorDateFkCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        VendorDateFkCB cb = xcreateScalarConditionCB(); sq.query((CB)cb);
         String pp = keepScalarCondition(cb.query()); // for saving query-value
-        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        op.setPartitionByCBean((CB)xcreateScalarConditionPartitionByCB()); // for using partition-by
         registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
     public abstract String keepScalarCondition(VendorDateFkCQ sq);
 
     protected VendorDateFkCB xcreateScalarConditionCB() {
-        VendorDateFkCB cb = new VendorDateFkCB();
-        cb.xsetupForScalarCondition(this);
-        return cb;
+        VendorDateFkCB cb = newMyCB(); cb.xsetupForScalarCondition(this); return cb;
     }
 
     protected VendorDateFkCB xcreateScalarConditionPartitionByCB() {
-        VendorDateFkCB cb = new VendorDateFkCB();
-        cb.xsetupForScalarConditionPartitionBy(this);
-        return cb;
+        VendorDateFkCB cb = newMyCB(); cb.xsetupForScalarConditionPartitionBy(this); return cb;
     }
 
     // ===================================================================================
@@ -388,18 +377,12 @@ public abstract class AbstractBsVendorDateFkCQ extends AbstractConditionQuery {
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<VendorDateFkCB> myselfDerived() {
-        return xcreateQDRFunctionMyselfDerived();
+        return xcreateQDRFunctionMyselfDerived(VendorDateFkCB.class);
     }
-    protected HpQDRFunction<VendorDateFkCB> xcreateQDRFunctionMyselfDerived() {
-        return new HpQDRFunction<VendorDateFkCB>(new HpQDRSetupper<VendorDateFkCB>() {
-            public void setup(String fn, SubQuery<VendorDateFkCB> sq, String rd, Object vl, DerivedReferrerOption op) {
-                xqderiveMyselfDerived(fn, sq, rd, vl, op);
-            }
-        });
-    }
-    public void xqderiveMyselfDerived(String fn, SubQuery<VendorDateFkCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xqderiveMyselfDerived(String fn, SubQuery<CB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        VendorDateFkCB cb = new VendorDateFkCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        VendorDateFkCB cb = new VendorDateFkCB(); cb.xsetupForDerivedReferrer(this); sq.query((CB)cb);
         String pk = "bar_id";
         String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
         String prpp = keepQueryMyselfDerivedParameter(vl);
@@ -478,8 +461,10 @@ public abstract class AbstractBsVendorDateFkCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
+    protected VendorDateFkCB newMyCB() {
+        return new VendorDateFkCB();
+    }
     // very internal (for suppressing warn about 'Not Use Import')
-    protected String xabCB() { return VendorDateFkCB.class.getName(); }
     protected String xabCQ() { return VendorDateFkCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

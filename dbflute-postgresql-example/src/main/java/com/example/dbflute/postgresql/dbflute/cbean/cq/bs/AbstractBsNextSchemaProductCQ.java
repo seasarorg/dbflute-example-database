@@ -363,7 +363,7 @@ public abstract class AbstractBsNextSchemaProductCQ extends AbstractConditionQue
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<NextSchemaProductCB> scalar_Equal() {
-        return xcreateSSQFunction(CK_EQ.getOperand());
+        return xcreateSSQFunction(CK_EQ.getOperand(), NextSchemaProductCB.class);
     }
 
     /**
@@ -380,7 +380,7 @@ public abstract class AbstractBsNextSchemaProductCQ extends AbstractConditionQue
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<NextSchemaProductCB> scalar_NotEqual() {
-        return xcreateSSQFunction(CK_NES.getOperand());
+        return xcreateSSQFunction(CK_NES.getOperand(), NextSchemaProductCB.class);
     }
 
     /**
@@ -397,7 +397,7 @@ public abstract class AbstractBsNextSchemaProductCQ extends AbstractConditionQue
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<NextSchemaProductCB> scalar_GreaterThan() {
-        return xcreateSSQFunction(CK_GT.getOperand());
+        return xcreateSSQFunction(CK_GT.getOperand(), NextSchemaProductCB.class);
     }
 
     /**
@@ -414,7 +414,7 @@ public abstract class AbstractBsNextSchemaProductCQ extends AbstractConditionQue
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<NextSchemaProductCB> scalar_LessThan() {
-        return xcreateSSQFunction(CK_LT.getOperand());
+        return xcreateSSQFunction(CK_LT.getOperand(), NextSchemaProductCB.class);
     }
 
     /**
@@ -431,7 +431,7 @@ public abstract class AbstractBsNextSchemaProductCQ extends AbstractConditionQue
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<NextSchemaProductCB> scalar_GreaterEqual() {
-        return xcreateSSQFunction(CK_GE.getOperand());
+        return xcreateSSQFunction(CK_GE.getOperand(), NextSchemaProductCB.class);
     }
 
     /**
@@ -448,36 +448,25 @@ public abstract class AbstractBsNextSchemaProductCQ extends AbstractConditionQue
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<NextSchemaProductCB> scalar_LessEqual() {
-        return xcreateSSQFunction(CK_LE.getOperand());
+        return xcreateSSQFunction(CK_LE.getOperand(), NextSchemaProductCB.class);
     }
 
-    protected HpSSQFunction<NextSchemaProductCB> xcreateSSQFunction(final String rd) {
-        return new HpSSQFunction<NextSchemaProductCB>(new HpSSQSetupper<NextSchemaProductCB>() {
-            public void setup(String fn, SubQuery<NextSchemaProductCB> sq, HpSSQOption<NextSchemaProductCB> op) {
-                xscalarCondition(fn, sq, rd, op);
-            }
-        });
-    }
-
-    protected void xscalarCondition(String fn, SubQuery<NextSchemaProductCB> sq, String rd, HpSSQOption<NextSchemaProductCB> op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xscalarCondition(String fn, SubQuery<CB> sq, String rd, HpSSQOption<CB> op) {
         assertObjectNotNull("subQuery", sq);
-        NextSchemaProductCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        NextSchemaProductCB cb = xcreateScalarConditionCB(); sq.query((CB)cb);
         String pp = keepScalarCondition(cb.query()); // for saving query-value
-        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        op.setPartitionByCBean((CB)xcreateScalarConditionPartitionByCB()); // for using partition-by
         registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
     public abstract String keepScalarCondition(NextSchemaProductCQ sq);
 
     protected NextSchemaProductCB xcreateScalarConditionCB() {
-        NextSchemaProductCB cb = new NextSchemaProductCB();
-        cb.xsetupForScalarCondition(this);
-        return cb;
+        NextSchemaProductCB cb = newMyCB(); cb.xsetupForScalarCondition(this); return cb;
     }
 
     protected NextSchemaProductCB xcreateScalarConditionPartitionByCB() {
-        NextSchemaProductCB cb = new NextSchemaProductCB();
-        cb.xsetupForScalarConditionPartitionBy(this);
-        return cb;
+        NextSchemaProductCB cb = newMyCB(); cb.xsetupForScalarConditionPartitionBy(this); return cb;
     }
 
     // ===================================================================================
@@ -497,18 +486,12 @@ public abstract class AbstractBsNextSchemaProductCQ extends AbstractConditionQue
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<NextSchemaProductCB> myselfDerived() {
-        return xcreateQDRFunctionMyselfDerived();
+        return xcreateQDRFunctionMyselfDerived(NextSchemaProductCB.class);
     }
-    protected HpQDRFunction<NextSchemaProductCB> xcreateQDRFunctionMyselfDerived() {
-        return new HpQDRFunction<NextSchemaProductCB>(new HpQDRSetupper<NextSchemaProductCB>() {
-            public void setup(String fn, SubQuery<NextSchemaProductCB> sq, String rd, Object vl, DerivedReferrerOption op) {
-                xqderiveMyselfDerived(fn, sq, rd, vl, op);
-            }
-        });
-    }
-    public void xqderiveMyselfDerived(String fn, SubQuery<NextSchemaProductCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xqderiveMyselfDerived(String fn, SubQuery<CB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        NextSchemaProductCB cb = new NextSchemaProductCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        NextSchemaProductCB cb = new NextSchemaProductCB(); cb.xsetupForDerivedReferrer(this); sq.query((CB)cb);
         String pk = "product_id";
         String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
         String prpp = keepQueryMyselfDerivedParameter(vl);
@@ -587,8 +570,10 @@ public abstract class AbstractBsNextSchemaProductCQ extends AbstractConditionQue
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
+    protected NextSchemaProductCB newMyCB() {
+        return new NextSchemaProductCB();
+    }
     // very internal (for suppressing warn about 'Not Use Import')
-    protected String xabCB() { return NextSchemaProductCB.class.getName(); }
     protected String xabCQ() { return NextSchemaProductCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

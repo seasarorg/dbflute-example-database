@@ -484,7 +484,7 @@ public abstract class AbstractBsNextschemaWhiteSameNameCQ extends AbstractCondit
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<NextschemaWhiteSameNameCB> scalar_Equal() {
-        return xcreateSSQFunction(CK_EQ.getOperand());
+        return xcreateSSQFunction(CK_EQ.getOperand(), NextschemaWhiteSameNameCB.class);
     }
 
     /**
@@ -501,7 +501,7 @@ public abstract class AbstractBsNextschemaWhiteSameNameCQ extends AbstractCondit
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<NextschemaWhiteSameNameCB> scalar_NotEqual() {
-        return xcreateSSQFunction(CK_NES.getOperand());
+        return xcreateSSQFunction(CK_NES.getOperand(), NextschemaWhiteSameNameCB.class);
     }
 
     /**
@@ -518,7 +518,7 @@ public abstract class AbstractBsNextschemaWhiteSameNameCQ extends AbstractCondit
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<NextschemaWhiteSameNameCB> scalar_GreaterThan() {
-        return xcreateSSQFunction(CK_GT.getOperand());
+        return xcreateSSQFunction(CK_GT.getOperand(), NextschemaWhiteSameNameCB.class);
     }
 
     /**
@@ -535,7 +535,7 @@ public abstract class AbstractBsNextschemaWhiteSameNameCQ extends AbstractCondit
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<NextschemaWhiteSameNameCB> scalar_LessThan() {
-        return xcreateSSQFunction(CK_LT.getOperand());
+        return xcreateSSQFunction(CK_LT.getOperand(), NextschemaWhiteSameNameCB.class);
     }
 
     /**
@@ -552,7 +552,7 @@ public abstract class AbstractBsNextschemaWhiteSameNameCQ extends AbstractCondit
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<NextschemaWhiteSameNameCB> scalar_GreaterEqual() {
-        return xcreateSSQFunction(CK_GE.getOperand());
+        return xcreateSSQFunction(CK_GE.getOperand(), NextschemaWhiteSameNameCB.class);
     }
 
     /**
@@ -569,36 +569,25 @@ public abstract class AbstractBsNextschemaWhiteSameNameCQ extends AbstractCondit
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<NextschemaWhiteSameNameCB> scalar_LessEqual() {
-        return xcreateSSQFunction(CK_LE.getOperand());
+        return xcreateSSQFunction(CK_LE.getOperand(), NextschemaWhiteSameNameCB.class);
     }
 
-    protected HpSSQFunction<NextschemaWhiteSameNameCB> xcreateSSQFunction(final String rd) {
-        return new HpSSQFunction<NextschemaWhiteSameNameCB>(new HpSSQSetupper<NextschemaWhiteSameNameCB>() {
-            public void setup(String fn, SubQuery<NextschemaWhiteSameNameCB> sq, HpSSQOption<NextschemaWhiteSameNameCB> op) {
-                xscalarCondition(fn, sq, rd, op);
-            }
-        });
-    }
-
-    protected void xscalarCondition(String fn, SubQuery<NextschemaWhiteSameNameCB> sq, String rd, HpSSQOption<NextschemaWhiteSameNameCB> op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xscalarCondition(String fn, SubQuery<CB> sq, String rd, HpSSQOption<CB> op) {
         assertObjectNotNull("subQuery", sq);
-        NextschemaWhiteSameNameCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        NextschemaWhiteSameNameCB cb = xcreateScalarConditionCB(); sq.query((CB)cb);
         String pp = keepScalarCondition(cb.query()); // for saving query-value
-        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        op.setPartitionByCBean((CB)xcreateScalarConditionPartitionByCB()); // for using partition-by
         registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
     public abstract String keepScalarCondition(NextschemaWhiteSameNameCQ sq);
 
     protected NextschemaWhiteSameNameCB xcreateScalarConditionCB() {
-        NextschemaWhiteSameNameCB cb = new NextschemaWhiteSameNameCB();
-        cb.xsetupForScalarCondition(this);
-        return cb;
+        NextschemaWhiteSameNameCB cb = newMyCB(); cb.xsetupForScalarCondition(this); return cb;
     }
 
     protected NextschemaWhiteSameNameCB xcreateScalarConditionPartitionByCB() {
-        NextschemaWhiteSameNameCB cb = new NextschemaWhiteSameNameCB();
-        cb.xsetupForScalarConditionPartitionBy(this);
-        return cb;
+        NextschemaWhiteSameNameCB cb = newMyCB(); cb.xsetupForScalarConditionPartitionBy(this); return cb;
     }
 
     // ===================================================================================
@@ -618,18 +607,12 @@ public abstract class AbstractBsNextschemaWhiteSameNameCQ extends AbstractCondit
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<NextschemaWhiteSameNameCB> myselfDerived() {
-        return xcreateQDRFunctionMyselfDerived();
+        return xcreateQDRFunctionMyselfDerived(NextschemaWhiteSameNameCB.class);
     }
-    protected HpQDRFunction<NextschemaWhiteSameNameCB> xcreateQDRFunctionMyselfDerived() {
-        return new HpQDRFunction<NextschemaWhiteSameNameCB>(new HpQDRSetupper<NextschemaWhiteSameNameCB>() {
-            public void setup(String fn, SubQuery<NextschemaWhiteSameNameCB> sq, String rd, Object vl, DerivedReferrerOption op) {
-                xqderiveMyselfDerived(fn, sq, rd, vl, op);
-            }
-        });
-    }
-    public void xqderiveMyselfDerived(String fn, SubQuery<NextschemaWhiteSameNameCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xqderiveMyselfDerived(String fn, SubQuery<CB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        NextschemaWhiteSameNameCB cb = new NextschemaWhiteSameNameCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        NextschemaWhiteSameNameCB cb = new NextschemaWhiteSameNameCB(); cb.xsetupForDerivedReferrer(this); sq.query((CB)cb);
         String pk = "same_name_id";
         String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
         String prpp = keepQueryMyselfDerivedParameter(vl);
@@ -708,8 +691,10 @@ public abstract class AbstractBsNextschemaWhiteSameNameCQ extends AbstractCondit
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
+    protected NextschemaWhiteSameNameCB newMyCB() {
+        return new NextschemaWhiteSameNameCB();
+    }
     // very internal (for suppressing warn about 'Not Use Import')
-    protected String xabCB() { return NextschemaWhiteSameNameCB.class.getName(); }
     protected String xabCQ() { return NextschemaWhiteSameNameCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

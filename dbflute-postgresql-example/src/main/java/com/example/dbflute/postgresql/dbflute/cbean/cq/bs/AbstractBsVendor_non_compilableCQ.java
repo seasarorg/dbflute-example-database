@@ -512,7 +512,7 @@ public abstract class AbstractBsVendor_non_compilableCQ extends AbstractConditio
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<Vendor_non_compilableCB> scalar_Equal() {
-        return xcreateSSQFunction(CK_EQ.getOperand());
+        return xcreateSSQFunction(CK_EQ.getOperand(), Vendor_non_compilableCB.class);
     }
 
     /**
@@ -529,7 +529,7 @@ public abstract class AbstractBsVendor_non_compilableCQ extends AbstractConditio
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<Vendor_non_compilableCB> scalar_NotEqual() {
-        return xcreateSSQFunction(CK_NES.getOperand());
+        return xcreateSSQFunction(CK_NES.getOperand(), Vendor_non_compilableCB.class);
     }
 
     /**
@@ -546,7 +546,7 @@ public abstract class AbstractBsVendor_non_compilableCQ extends AbstractConditio
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<Vendor_non_compilableCB> scalar_GreaterThan() {
-        return xcreateSSQFunction(CK_GT.getOperand());
+        return xcreateSSQFunction(CK_GT.getOperand(), Vendor_non_compilableCB.class);
     }
 
     /**
@@ -563,7 +563,7 @@ public abstract class AbstractBsVendor_non_compilableCQ extends AbstractConditio
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<Vendor_non_compilableCB> scalar_LessThan() {
-        return xcreateSSQFunction(CK_LT.getOperand());
+        return xcreateSSQFunction(CK_LT.getOperand(), Vendor_non_compilableCB.class);
     }
 
     /**
@@ -580,7 +580,7 @@ public abstract class AbstractBsVendor_non_compilableCQ extends AbstractConditio
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<Vendor_non_compilableCB> scalar_GreaterEqual() {
-        return xcreateSSQFunction(CK_GE.getOperand());
+        return xcreateSSQFunction(CK_GE.getOperand(), Vendor_non_compilableCB.class);
     }
 
     /**
@@ -597,36 +597,25 @@ public abstract class AbstractBsVendor_non_compilableCQ extends AbstractConditio
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<Vendor_non_compilableCB> scalar_LessEqual() {
-        return xcreateSSQFunction(CK_LE.getOperand());
+        return xcreateSSQFunction(CK_LE.getOperand(), Vendor_non_compilableCB.class);
     }
 
-    protected HpSSQFunction<Vendor_non_compilableCB> xcreateSSQFunction(final String rd) {
-        return new HpSSQFunction<Vendor_non_compilableCB>(new HpSSQSetupper<Vendor_non_compilableCB>() {
-            public void setup(String fn, SubQuery<Vendor_non_compilableCB> sq, HpSSQOption<Vendor_non_compilableCB> op) {
-                xscalarCondition(fn, sq, rd, op);
-            }
-        });
-    }
-
-    protected void xscalarCondition(String fn, SubQuery<Vendor_non_compilableCB> sq, String rd, HpSSQOption<Vendor_non_compilableCB> op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xscalarCondition(String fn, SubQuery<CB> sq, String rd, HpSSQOption<CB> op) {
         assertObjectNotNull("subQuery", sq);
-        Vendor_non_compilableCB cb = xcreateScalarConditionCB(); sq.query(cb);
+        Vendor_non_compilableCB cb = xcreateScalarConditionCB(); sq.query((CB)cb);
         String pp = keepScalarCondition(cb.query()); // for saving query-value
-        op.setPartitionByCBean(xcreateScalarConditionPartitionByCB()); // for using partition-by
+        op.setPartitionByCBean((CB)xcreateScalarConditionPartitionByCB()); // for using partition-by
         registerScalarCondition(fn, cb.query(), pp, rd, op);
     }
     public abstract String keepScalarCondition(Vendor_non_compilableCQ sq);
 
     protected Vendor_non_compilableCB xcreateScalarConditionCB() {
-        Vendor_non_compilableCB cb = new Vendor_non_compilableCB();
-        cb.xsetupForScalarCondition(this);
-        return cb;
+        Vendor_non_compilableCB cb = newMyCB(); cb.xsetupForScalarCondition(this); return cb;
     }
 
     protected Vendor_non_compilableCB xcreateScalarConditionPartitionByCB() {
-        Vendor_non_compilableCB cb = new Vendor_non_compilableCB();
-        cb.xsetupForScalarConditionPartitionBy(this);
-        return cb;
+        Vendor_non_compilableCB cb = newMyCB(); cb.xsetupForScalarConditionPartitionBy(this); return cb;
     }
 
     // ===================================================================================
@@ -646,18 +635,12 @@ public abstract class AbstractBsVendor_non_compilableCQ extends AbstractConditio
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<Vendor_non_compilableCB> myselfDerived() {
-        return xcreateQDRFunctionMyselfDerived();
+        return xcreateQDRFunctionMyselfDerived(Vendor_non_compilableCB.class);
     }
-    protected HpQDRFunction<Vendor_non_compilableCB> xcreateQDRFunctionMyselfDerived() {
-        return new HpQDRFunction<Vendor_non_compilableCB>(new HpQDRSetupper<Vendor_non_compilableCB>() {
-            public void setup(String fn, SubQuery<Vendor_non_compilableCB> sq, String rd, Object vl, DerivedReferrerOption op) {
-                xqderiveMyselfDerived(fn, sq, rd, vl, op);
-            }
-        });
-    }
-    public void xqderiveMyselfDerived(String fn, SubQuery<Vendor_non_compilableCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xqderiveMyselfDerived(String fn, SubQuery<CB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        Vendor_non_compilableCB cb = new Vendor_non_compilableCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        Vendor_non_compilableCB cb = new Vendor_non_compilableCB(); cb.xsetupForDerivedReferrer(this); sq.query((CB)cb);
         String pk = "NON-COMPILABLE ID";
         String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
         String prpp = keepQueryMyselfDerivedParameter(vl);
@@ -736,8 +719,10 @@ public abstract class AbstractBsVendor_non_compilableCQ extends AbstractConditio
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
+    protected Vendor_non_compilableCB newMyCB() {
+        return new Vendor_non_compilableCB();
+    }
     // very internal (for suppressing warn about 'Not Use Import')
-    protected String xabCB() { return Vendor_non_compilableCB.class.getName(); }
     protected String xabCQ() { return Vendor_non_compilableCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

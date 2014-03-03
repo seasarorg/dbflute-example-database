@@ -383,8 +383,10 @@ public abstract class AbstractBsWhiteNotPkCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
+    protected WhiteNotPkCB newMyCB() {
+        return new WhiteNotPkCB();
+    }
     // very internal (for suppressing warn about 'Not Use Import')
-    protected String xabCB() { return WhiteNotPkCB.class.getName(); }
     protected String xabCQ() { return WhiteNotPkCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

@@ -484,8 +484,10 @@ public abstract class AbstractBsSummaryProductCQ extends AbstractConditionQuery 
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
+    protected SummaryProductCB newMyCB() {
+        return new SummaryProductCB();
+    }
     // very internal (for suppressing warn about 'Not Use Import')
-    protected String xabCB() { return SummaryProductCB.class.getName(); }
     protected String xabCQ() { return SummaryProductCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }
