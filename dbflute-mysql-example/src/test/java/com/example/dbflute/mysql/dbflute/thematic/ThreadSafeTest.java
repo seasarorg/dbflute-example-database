@@ -9,6 +9,9 @@ import org.seasar.dbflute.exception.EntityAlreadyUpdatedException;
 import org.seasar.dbflute.unit.core.cannonball.CannonballCar;
 import org.seasar.dbflute.unit.core.cannonball.CannonballOption;
 import org.seasar.dbflute.unit.core.cannonball.CannonballRun;
+import org.seasar.dbflute.unit.core.thread.ThreadFireExecution;
+import org.seasar.dbflute.unit.core.thread.ThreadFireOption;
+import org.seasar.dbflute.unit.core.thread.ThreadFireResource;
 import org.seasar.dbflute.util.DfCollectionUtil;
 
 import com.example.dbflute.mysql.dbflute.cbean.MemberCB;
@@ -43,7 +46,7 @@ public class ThreadSafeTest extends UnitContainerTestCase {
     // ===================================================================================
     //                                                                       ConditionBean
     //                                                                       =============
-    public void test_conditionBean_threadSafe_sameExecution() {
+    public void test_ThreadSafe_ConditionBean_sameExecution() {
         cannonball(new CannonballRun() {
             public void drive(CannonballCar car) {
                 // ## Arrange ##
@@ -68,7 +71,7 @@ public class ThreadSafeTest extends UnitContainerTestCase {
     // ===================================================================================
     //                                                                          OutsideSql
     //                                                                          ==========
-    public void test_outsideSql_threadSafe_sameExecution() {
+    public void test_ThreadSafe_OutsideSql_sameExecution() {
         cannonball(new CannonballRun() {
             public void drive(CannonballCar car) {
                 // ## Arrange ##
@@ -103,7 +106,7 @@ public class ThreadSafeTest extends UnitContainerTestCase {
     // ===================================================================================
     //                                                                              Update
     //                                                                              ======
-    public void test_update_OptimisticLock_basic() { // uses original transactions
+    public void test_ThreadSafe_update_sameExecution() {
         final int memberId = 3;
         final Member before = memberBhv.selectByPKValue(memberId);
         final Long versionNo = before.getVersionNo();
@@ -130,6 +133,36 @@ public class ThreadSafeTest extends UnitContainerTestCase {
                 markSet.add("success: " + threadId);
             }
         }, new CannonballOption().commitTx().expectExceptionAny(EntityAlreadyUpdatedException.class));
+        log(markSet);
+    }
+
+    public void test_ThreadSafe_update_after_insert() {
+        final int memberId = 3;
+        final Member before = memberBhv.selectByPKValue(memberId);
+        final Long versionNo = before.getVersionNo();
+        final Set<String> markSet = DfCollectionUtil.newHashSet();
+        threadFire(new ThreadFireExecution<Void>() {
+            public Void execute(ThreadFireResource resource) {
+                long threadId = resource.getThreadId();
+                Purchase purchase = new Purchase();
+                purchase.setMemberId(threadId % 2 == 1 ? 3 : 4);
+                purchase.setProductId(threadId % 3 == 1 ? 3 : (threadId % 3 == 2 ? 4 : 5));
+                long keyMillis = currentTimestamp().getTime() - (threadId * 1000);
+                purchase.setPurchaseDatetime(new Timestamp(keyMillis));
+                purchase.setPurchaseCount(1234);
+                purchase.setPurchasePrice(1234);
+                purchase.setPaymentCompleteFlg_True();
+                purchaseBhv.insert(purchase);
+
+                // H2 has no deadlock by this pattern
+                Member member = new Member();
+                member.setMemberId(memberId);
+                member.setVersionNo(versionNo);
+                memberBhv.update(member);
+                markSet.add("success: " + threadId);
+                return null;
+            }
+        }, new ThreadFireOption().commitTx().expectExceptionAny("Deadlock"));
         log(markSet);
     }
 }
