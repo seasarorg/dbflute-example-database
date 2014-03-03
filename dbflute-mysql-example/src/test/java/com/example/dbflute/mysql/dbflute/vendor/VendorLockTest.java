@@ -10,6 +10,7 @@ import java.util.Stack;
 
 import org.seasar.dbflute.bhv.InsertOption;
 import org.seasar.dbflute.cbean.ListResultBean;
+import org.seasar.dbflute.exception.EntityAlreadyUpdatedException;
 import org.seasar.dbflute.helper.HandyDate;
 import org.seasar.dbflute.jdbc.StatementConfig;
 import org.seasar.dbflute.unit.core.cannonball.CannonballCar;
@@ -290,6 +291,39 @@ public class VendorLockTest extends UnitContainerTestCase {
                 purchaseBhv.insert(purchase);
             }
         }, new CannonballOption().threadCount(3)); // no deadlock
+    }
+
+    public void test_update_RepeatableRead_but_ReadCommitted() { // uses original transactions
+        final int memberId = 3;
+        final Member before = memberBhv.selectByPKValue(memberId);
+        final Long versionNo = before.getVersionNo();
+        final Set<String> markSet = DfCollectionUtil.newHashSet();
+        cannonball(new CannonballRun() {
+            public void drive(CannonballCar car) {
+                final long threadId = Thread.currentThread().getId();
+                log(memberBhv.selectByPKValue(3).getVersionNo());
+                sleep(500);
+                car.projectA(new CannonballProjectA() {
+                    public void plan(CannonballDragon dragon) {
+                        Member member = new Member();
+                        member.setMemberId(memberId);
+                        member.setVersionNo(versionNo);
+                        memberBhv.update(member);
+                    }
+                }, 1);
+                car.projectA(new CannonballProjectA() {
+                    public void plan(CannonballDragon dragon) {
+                        assertEquals(versionNo, memberBhv.selectByPKValue(3).getVersionNo()); // repeatable read
+                        Member member = new Member();
+                        member.setMemberId(memberId);
+                        member.setVersionNo(versionNo);
+                        memberBhv.update(member); // treated as read committed
+                    }
+                }, 2);
+                markSet.add("success: " + threadId);
+            }
+        }, new CannonballOption().commitTx().threadCount(2).expectExceptionAny(EntityAlreadyUpdatedException.class));
+        log(markSet);
     }
 
     // ===================================================================================
