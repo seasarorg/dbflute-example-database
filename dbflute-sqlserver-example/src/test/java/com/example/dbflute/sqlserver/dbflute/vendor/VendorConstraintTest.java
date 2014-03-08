@@ -44,7 +44,7 @@ public class VendorConstraintTest extends UnitContainerTestCase {
         Member member = new Member();
         member.setMemberName("testName");
         member.setMemberAccount("testAccount");
-        member.setMemberStatusCode_Formalized(); // 正式会員
+        member.setMemberStatusCode_Formalized();
 
         // ## Act & Assert ##
         memberBhv.insert(member);
