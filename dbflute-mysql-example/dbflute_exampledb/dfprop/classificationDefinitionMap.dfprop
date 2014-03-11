@@ -98,7 +98,7 @@ map:{
             ; code=FOO;name=Foo;alias=Aaa;comment=means foo
             ; subItemMap=map:{
                 ; regularStringItem=value1<tag> ; regularNumberItem=123
-                ; regularVariousItem=789 ; regularVariousItem=list:{reg;var;ite}
+                ; regularVariousItem=list:{reg;var;ite}
                 ; listItem=list:{aa;bb;cc}
             }
         }
@@ -106,7 +106,7 @@ map:{
             ; code=BAR;name=Bar;alias=Bbb;comment=means bar
             ; subItemMap=map:{
                 ; regularStringItem=value2<teg> ; regularNumberItem=456
-                ; regularVariousItem=value4 ; regularVariousItem=map:{reg=var;ous=ite}
+                ; regularVariousItem=map:{reg=var;ous=ite}
                 ; mapItem=map:{key11=value11}
             }
         }

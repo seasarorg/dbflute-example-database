@@ -1170,7 +1170,7 @@ public interface CDef extends Classification {
         /** FooName */
         FooName("FOO", "FooName", EMPTY_SISTERS)
         ,
-        /** BarName: here (deprecated: test of deprecated) */
+        /** BarName: (deprecated: test of deprecated) */
         @Deprecated
         BarName("BAR", "BarName", EMPTY_SISTERS)
         ,
