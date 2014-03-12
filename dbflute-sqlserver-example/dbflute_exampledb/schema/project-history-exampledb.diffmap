@@ -1,4 +1,30 @@
 map:{
+    ; 2014/03/12 23:38:16 = map:{
+        ; diffDate = 2014/03/12 23:38:16
+        ; tableDiff = map:{
+            ; VENDOR_SYMMETRIC = map:{
+                ; tableName = VENDOR_SYMMETRIC
+                ; diffType = ADD
+            }
+            ; SYMMETRIC_CHECK = map:{
+                ; tableName = SYMMETRIC_CHECK
+                ; diffType = DELETE
+            }
+        }
+    }
+    ; 2014/03/12 23:37:31 = map:{
+        ; diffDate = 2014/03/12 23:37:31
+        ; tableCount = map:{
+            ; next = 19
+            ; previous = 18
+        }
+        ; tableDiff = map:{
+            ; SYMMETRIC_CHECK = map:{
+                ; tableName = SYMMETRIC_CHECK
+                ; diffType = ADD
+            }
+        }
+    }
     ; 2013/03/16 23:44:09 = map:{
         ; diffDate = 2013/03/16 23:44:09
         ; tableDiff = map:{

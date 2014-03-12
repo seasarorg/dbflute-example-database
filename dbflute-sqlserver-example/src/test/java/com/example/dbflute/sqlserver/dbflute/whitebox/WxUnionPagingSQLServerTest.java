@@ -29,7 +29,7 @@ import com.example.dbflute.sqlserver.unit.UnitContainerTestCase;
  * @author jflute
  * @since 0.9.7.7 (2010/12/02 Thursday)
  */
-public class WxSQLServerUnionPagingTest extends UnitContainerTestCase {
+public class WxUnionPagingSQLServerTest extends UnitContainerTestCase {
 
     private MemberBhv memberBhv;
     private MemberWithdrawalBhv memberWithdrawalBhv;

@@ -6,7 +6,7 @@
     <include path="j2ee.dicon"/>
 
     <!-- The components of DBFlute Runtime. -->
-    <component name="introduction" class="com.example.dbflute.sqlserver.dbflute.allcommon.DBFluteInitializer"/>
+    <component name="introduction" class="com.example.dbflute.sqlserver.dbflute.nogen.ExtendedDBFluteInitializer"/>
     <component name="invokerAssistant" class="com.example.dbflute.sqlserver.dbflute.allcommon.ImplementedInvokerAssistant"/>
     <component name="commonColumnAutoSetupper" class="com.example.dbflute.sqlserver.dbflute.allcommon.ImplementedCommonColumnAutoSetupper"/>
     <component name="behaviorSelector" class="com.example.dbflute.sqlserver.dbflute.allcommon.ImplementedBehaviorSelector"/>
@@ -29,6 +29,7 @@
     <component name="summaryProductBhv" class="com.example.dbflute.sqlserver.dbflute.exbhv.SummaryProductBhv"/>
     <component name="summaryWithdrawalBhv" class="com.example.dbflute.sqlserver.dbflute.exbhv.SummaryWithdrawalBhv"/>
     <component name="vendorCheckBhv" class="com.example.dbflute.sqlserver.dbflute.exbhv.VendorCheckBhv"/>
+    <component name="vendorSymmetricBhv" class="com.example.dbflute.sqlserver.dbflute.exbhv.VendorSymmetricBhv"/>
     <component name="whiteDelimiterBhv" class="com.example.dbflute.sqlserver.dbflute.exbhv.WhiteDelimiterBhv"/>
     <component name="withdrawalReasonBhv" class="com.example.dbflute.sqlserver.dbflute.exbhv.WithdrawalReasonBhv"/>
 </components>

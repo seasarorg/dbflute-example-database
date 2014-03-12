@@ -217,7 +217,7 @@ map:{
     #  *Basically for fixed DBFluteConfig settings
     #
     # @JavaOnly
-    #; extendedDBFluteInitializerClass = com.example.ExtendedDBFluteInitializer
+    ; extendedDBFluteInitializerClass = com.example.dbflute.sqlserver.dbflute.nogen.ExtendedDBFluteInitializer
     # - - - - - - - - - -/
 
     # /- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

@@ -22,7 +22,7 @@ import com.example.dbflute.sqlserver.unit.UnitContainerTestCase;
  * @author jflute
  * @since 0.9.7.8 (2010/12/16 Thursday)
  */
-public class WxSQLServerDisableIdentityTest extends UnitContainerTestCase {
+public class WxDisableIdentitySQLServerTest extends UnitContainerTestCase {
 
     private MemberBhv memberBhv;
 

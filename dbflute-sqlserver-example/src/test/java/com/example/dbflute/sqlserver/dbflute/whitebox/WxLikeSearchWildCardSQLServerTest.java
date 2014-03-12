@@ -13,7 +13,7 @@ import com.example.dbflute.sqlserver.unit.UnitContainerTestCase;
  * @author jflute
  * @since 0.9.8.4 (2011/05/30 Monday)
  */
-public class WxSQLServerLikeSearchWildCardTest extends UnitContainerTestCase {
+public class WxLikeSearchWildCardSQLServerTest extends UnitContainerTestCase {
 
     private MemberBhv memberBhv;
 

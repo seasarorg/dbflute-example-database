@@ -20,3 +20,27 @@ CREATE TABLE VENDOR_CHECK (
 	TYPE_OF_UNIQUEIDENTIFIER uniqueidentifier,
 	TYPE_OF_XML xml
 )  ;
+
+
+CREATE TABLE VENDOR_SYMMETRIC (
+	VENDOR_SYMMETRIC_ID NUMERIC(16) NOT NULL PRIMARY KEY,
+	PLAIN_TEXT nvarchar(100),
+	ENCRYPTED_DATA varbinary(max)
+);
+
+if exists (select * from sys.symmetric_keys where [name] like '%SYMMETRIC_CHECK_KEY%')
+drop symmetric key SYMMETRIC_CHECK_KEY
+;
+
+create symmetric key SYMMETRIC_CHECK_KEY
+  with algorithm = DES
+    encryption by password = 'himitsu'
+;
+
+open symmetric key SYMMETRIC_CHECK_KEY decryption by password = 'himitsu'
+;
+
+-- #df:begin##
+insert into VENDOR_SYMMETRIC(VENDOR_SYMMETRIC_ID, PLAIN_TEXT, ENCRYPTED_DATA)
+ values(1, 'foo', EncryptByKey(Key_GUID('SYMMETRIC_CHECK_KEY'), N'bar'))
+-- #df:end##
