@@ -384,7 +384,6 @@ public class BehaviorMiddleTest extends UnitContainerTestCase {
      *   o などなど
      * </pre>
      */
-    @SuppressWarnings("unchecked")
     public void test_outsideSql_autoPaging_selectPage() {
         // ## Arrange ##
         // SQLのパス
@@ -524,7 +523,6 @@ public class BehaviorMiddleTest extends UnitContainerTestCase {
      *   o などなど
      * </pre>
      */
-    @SuppressWarnings("unchecked")
     public void test_outsideSql_manualPaging_selectPage() {
         // ## Arrange ##
         // SQLのパス
