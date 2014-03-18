@@ -152,7 +152,7 @@ public class VendorMetaDataTest extends AppContainerTestCase {
             String schema = rs.getString(2); // null
             String foreignTable = rs.getString(3);
             String foreignColumn = rs.getString(4);
-            String fkName = rs.getString(12); // null
+            String fkName = rs.getString(12); // empty
 
             ++count;
             //fkSet.add(fkName);
@@ -161,7 +161,7 @@ public class VendorMetaDataTest extends AppContainerTestCase {
             log("[" + fkName + "]");
             log("  catalog=" + catalog + ", schema=" + schema);
             log("  foreignTable=" + foreignTable + ", foreignColumn=" + foreignColumn);
-            assertNull(fkName);
+            assertTrue(fkName.isEmpty());
             assertNull(catalog);
             assertNull(schema);
             assertNotNull(foreignTable);

@@ -353,7 +353,6 @@ public class BehaviorMiddleTest extends UnitContainerTestCase {
     // -----------------------------------------------------
     //                                                Paging
     //                                                ------
-    @SuppressWarnings("unchecked")
     public void test_outsideSql_manualPaging_selectPage() {
         // ## Arrange ##
         PurchaseMaxPriceMemberPmb pmb = new PurchaseMaxPriceMemberPmb();
@@ -393,7 +392,6 @@ public class BehaviorMiddleTest extends UnitContainerTestCase {
         assertFalse(lastPage.isExistNextPage());
     }
 
-    @SuppressWarnings("unchecked")
     public void test_outsideSql_autoPaging_selectPage() {
         // ## Arrange ##
         // SQLのパス

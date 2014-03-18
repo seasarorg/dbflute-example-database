@@ -11,10 +11,10 @@
 	<description>The example project for MySQL and DBFlute</description>
 
 	<properties>
-		<seasar.version>2.4.44</seasar.version>
+		<seasar.version>2.4.46</seasar.version>
 		<dbflute.version>1.0.5C</dbflute.version>
 		<mysql.jdbc.version>5.1.26</mysql.jdbc.version>
-		<utflute.version>0.3.9</utflute.version>
+		<utflute.version>0.4.0</utflute.version>
 
 		<!-- example of Mobylet (test case only) -->
 		<mobylet.charset.version>1.0.7</mobylet.charset.version>

@@ -188,7 +188,7 @@ public class BehaviorMiddleTest extends AppContainerTestCase {
         MemberCB actualCB = new MemberCB();
         actualCB.query().setMemberStatusCode_Equal_ProvisionalMember();
         actualCB.query().setFormalizedDatetime_IsNull();
-        actualCB.query().setMemberUpdateUser_Equal(accessUser); // Common Column
+        actualCB.query().setMemberUpdateUser_Equal(getAccessContext().getAccessUser()); // Common Column
         ListResultBean<Member> actualList = memberBhv.selectList(actualCB);
         assertEquals(actualList.size(), updatedCount);
     }
@@ -322,7 +322,6 @@ public class BehaviorMiddleTest extends AppContainerTestCase {
     // -----------------------------------------------------
     //                                                Paging
     //                                                ------
-    @SuppressWarnings("unchecked")
     public void test_outsideSql_manualPaging_selectPage() {
         // ## Arrange ##
         String path = MemberBhv.PATH_selectPurchaseMaxPriceMember;
@@ -367,7 +366,6 @@ public class BehaviorMiddleTest extends AppContainerTestCase {
         assertFalse(lastPage.isExistNextPage());
     }
 
-    @SuppressWarnings("unchecked")
     public void test_outsideSql_autoPaging_selectPage() {
         // ## Arrange ##
         String path = MemberBhv.PATH_selectUnpaidSummaryMember;

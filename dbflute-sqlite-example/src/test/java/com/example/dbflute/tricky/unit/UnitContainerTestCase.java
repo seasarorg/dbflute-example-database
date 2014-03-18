@@ -34,7 +34,7 @@ import com.google.inject.Module;
  * @author jflute
  * @since 0.9.2 (2009/02/18 Wednesday)
  */
-public abstract class AppContainerTestCase extends ContainerTestCase {
+public abstract class UnitContainerTestCase extends ContainerTestCase {
 
     @Override
     protected List<Module> prepareModuleList() {

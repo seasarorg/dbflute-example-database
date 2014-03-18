@@ -6,12 +6,10 @@ import java.util.Set;
 
 import org.seasar.dbflute.cbean.ListResultBean;
 import org.seasar.dbflute.exception.EntityAlreadyUpdatedException;
+import org.seasar.dbflute.helper.HandyDate;
 import org.seasar.dbflute.unit.core.cannonball.CannonballCar;
 import org.seasar.dbflute.unit.core.cannonball.CannonballOption;
 import org.seasar.dbflute.unit.core.cannonball.CannonballRun;
-import org.seasar.dbflute.unit.core.thread.ThreadFireExecution;
-import org.seasar.dbflute.unit.core.thread.ThreadFireOption;
-import org.seasar.dbflute.unit.core.thread.ThreadFireResource;
 import org.seasar.dbflute.util.DfCollectionUtil;
 
 import com.example.dbflute.mysql.dbflute.cbean.MemberCB;
@@ -120,49 +118,20 @@ public class ThreadSafeTest extends UnitContainerTestCase {
                 final long threadId = car.getThreadId();
                 for (int i = 0; i < 30; i++) {
                     Purchase purchase = new Purchase();
-                    purchase.setMemberId(3);
+                    purchase.setMemberId(memberId);
+                    purchase.setProductId((int) (threadId % 10) + 1);
                     long currentMillis = currentTimestamp().getTime();
                     long keyMillis = currentMillis - (threadId * 10000) - (i * 10000);
-                    purchase.setPurchaseDatetime(new Timestamp(keyMillis));
+                    HandyDate handyDate = new HandyDate(new Timestamp(keyMillis));
+                    purchase.setPurchaseDatetime(handyDate.addDay(car.getEntryNumber()).getTimestamp());
                     purchase.setPurchaseCount(1234 + i);
                     purchase.setPurchasePrice(1234 + i);
                     purchase.setPaymentCompleteFlg_True();
-                    purchase.setProductId(3);
                     purchaseBhv.insert(purchase);
                 }
                 markSet.add("success: " + threadId);
             }
         }, new CannonballOption().commitTx().expectExceptionAny(EntityAlreadyUpdatedException.class));
-        log(markSet);
-    }
-
-    public void test_ThreadSafe_update_after_insert() {
-        final int memberId = 3;
-        final Member before = memberBhv.selectByPKValue(memberId);
-        final Long versionNo = before.getVersionNo();
-        final Set<String> markSet = DfCollectionUtil.newHashSet();
-        threadFire(new ThreadFireExecution<Void>() {
-            public Void execute(ThreadFireResource resource) {
-                long threadId = resource.getThreadId();
-                Purchase purchase = new Purchase();
-                purchase.setMemberId(threadId % 2 == 1 ? 3 : 4);
-                purchase.setProductId(threadId % 3 == 1 ? 3 : (threadId % 3 == 2 ? 4 : 5));
-                long keyMillis = currentTimestamp().getTime() - (threadId * 1000);
-                purchase.setPurchaseDatetime(new Timestamp(keyMillis));
-                purchase.setPurchaseCount(1234);
-                purchase.setPurchasePrice(1234);
-                purchase.setPaymentCompleteFlg_True();
-                purchaseBhv.insert(purchase);
-
-                // H2 has no deadlock by this pattern
-                Member member = new Member();
-                member.setMemberId(memberId);
-                member.setVersionNo(versionNo);
-                memberBhv.update(member);
-                markSet.add("success: " + threadId);
-                return null;
-            }
-        }, new ThreadFireOption().commitTx().expectExceptionAny("Deadlock"));
         log(markSet);
     }
 }

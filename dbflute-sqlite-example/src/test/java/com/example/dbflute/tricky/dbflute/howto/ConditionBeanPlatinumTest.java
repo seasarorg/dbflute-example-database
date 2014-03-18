@@ -340,7 +340,6 @@ public class ConditionBeanPlatinumTest extends AppContainerTestCase {
         log("* * * * * * * * * */");
     }
 
-    @SuppressWarnings("unchecked")
     public void test_selectPage_union_existsSubQuery() {
         // ## Arrange ##
         int fetchSize = 3;

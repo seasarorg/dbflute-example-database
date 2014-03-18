@@ -381,7 +381,6 @@ public class BehaviorMiddleTest extends UnitContainerTestCase {
     // -----------------------------------------------------
     //                                                Paging
     //                                                ------
-    @SuppressWarnings("unchecked")
     public void test_outsideSql_autoPaging_selectPage() {
         // ## Arrange ##
         UnpaidSummaryMemberPmb pmb = new UnpaidSummaryMemberPmb();
@@ -421,7 +420,6 @@ public class BehaviorMiddleTest extends UnitContainerTestCase {
         assertFalse(lastPage.isExistNextPage());
     }
 
-    @SuppressWarnings("unchecked")
     public void test_outsideSql_manualPaging_selectPage() {
         // ## Arrange ##
         // 検索条件(絞り込み条件は特になし)

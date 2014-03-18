@@ -11,10 +11,10 @@
 	<description>The example project for SQLite and DBFlute</description>
 
 	<properties>
-		<guice.version>2.0</guice.version>
+		<guice.version>3.0</guice.version>
 		<dbflute.version>1.0.5C</dbflute.version>
 		<sqlite.jdbc.version>3.7.2</sqlite.jdbc.version>
-		<utflute.version>0.3.9</utflute.version>
+		<utflute.version>0.4.0</utflute.version>
 	</properties>
 
 	<url>http://dbflute.sandbox.seasar.org/</url>
@@ -234,14 +234,12 @@
 		<!-- ============ -->
 		<!-- |   test   | -->
 		<!-- ============ -->
-		<!-- 
         <dependency>
             <groupId>org.seasar.dbflute</groupId>
             <artifactId>utflute-guice</artifactId>
             <version>${utflute.version}</version>
             <scope>test</scope>
         </dependency>
-         -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
