@@ -8,6 +8,7 @@ import org.seasar.dbflute.cbean.ListResultBean;
 import org.seasar.dbflute.exception.EntityAlreadyUpdatedException;
 import org.seasar.dbflute.helper.HandyDate;
 import org.seasar.dbflute.unit.core.cannonball.CannonballCar;
+import org.seasar.dbflute.unit.core.cannonball.CannonballFinalizer;
 import org.seasar.dbflute.unit.core.cannonball.CannonballOption;
 import org.seasar.dbflute.unit.core.cannonball.CannonballRun;
 import org.seasar.dbflute.util.DfCollectionUtil;
@@ -102,36 +103,88 @@ public class ThreadSafeTest extends UnitContainerTestCase {
     }
 
     // ===================================================================================
+    //                                                                              Insert
+    //                                                                              ======
+    public void test_ThreadSafe_insert_sameExecution() {
+        final Set<String> markSet = DfCollectionUtil.newHashSet();
+        final Set<Integer> insertedIdSet = DfCollectionUtil.newHashSet();
+        cannonball(new CannonballRun() {
+            public void drive(CannonballCar car) {
+                int entryNumber = car.getEntryNumber();
+                Member member = new Member();
+                member.setMemberName("name" + entryNumber);
+                member.setMemberAccount("account" + entryNumber);
+                member.setMemberStatusCode_Formalized();
+                memberBhv.insert(member);
+                markSet.add("success: " + entryNumber);
+                insertedIdSet.add(member.getMemberId());
+            }
+        }, new CannonballOption().commitTx().expectSameResult().finalizer(new CannonballFinalizer() {
+            public void run() {
+                if (!insertedIdSet.isEmpty()) {
+                    MemberCB cb = new MemberCB();
+                    cb.query().setMemberId_InScope(insertedIdSet);
+                    memberBhv.queryDelete(cb);
+                }
+            }
+        }));
+        log(markSet);
+    }
+
+    // ===================================================================================
     //                                                                              Update
     //                                                                              ======
-    public void test_ThreadSafe_update_sameExecution() {
+    public void test_ThreadSafe_update_before_insert_sameExecution_alreadyUpdated() {
         final int memberId = 3;
         final Member before = memberBhv.selectByPKValue(memberId);
         final Long versionNo = before.getVersionNo();
-        final Set<String> markSet = DfCollectionUtil.newHashSet();
         cannonball(new CannonballRun() {
             public void drive(CannonballCar car) {
                 Member member = new Member();
                 member.setMemberId(memberId);
                 member.setVersionNo(versionNo);
                 memberBhv.update(member);
-                final long threadId = car.getThreadId();
+                final int entryNumber = car.getEntryNumber();
                 for (int i = 0; i < 30; i++) {
                     Purchase purchase = new Purchase();
                     purchase.setMemberId(memberId);
-                    purchase.setProductId((int) (threadId % 10) + 1);
+                    purchase.setProductId((int) (entryNumber % 10) + 1);
                     long currentMillis = currentTimestamp().getTime();
-                    long keyMillis = currentMillis - (threadId * 10000) - (i * 10000);
+                    long keyMillis = currentMillis - (entryNumber * 10000) - (i * 10000);
                     HandyDate handyDate = new HandyDate(new Timestamp(keyMillis));
-                    purchase.setPurchaseDatetime(handyDate.addDay(car.getEntryNumber()).getTimestamp());
+                    purchase.setPurchaseDatetime(handyDate.addDay(entryNumber).getTimestamp());
                     purchase.setPurchaseCount(1234 + i);
                     purchase.setPurchasePrice(1234 + i);
                     purchase.setPaymentCompleteFlg_True();
                     purchaseBhv.insert(purchase);
                 }
-                markSet.add("success: " + threadId);
+                markHere("success");
             }
         }, new CannonballOption().commitTx().expectExceptionAny(EntityAlreadyUpdatedException.class));
-        log(markSet);
+        assertMarked("success");
+    }
+
+    public void test_ThreadSafe_update_after_insert_sameExecution_mayBeDeadlock() {
+        final Purchase source = purchaseBhv.selectByPKValueWithDeletedCheck(1L);
+        source.setPurchaseId(null);
+        cannonball(new CannonballRun() {
+            public void drive(CannonballCar car) {
+                int entryNumber = car.getEntryNumber();
+                Purchase purchase = source.clone();
+                purchase.setMemberId(entryNumber % 2 == 1 ? 3 : 4);
+                purchase.setProductId(entryNumber % 3 == 1 ? 3 : (entryNumber % 3 == 2 ? 4 : 5));
+                long keyMillis = currentTimestamp().getTime() - (entryNumber * 1000);
+                purchase.setPurchaseDatetime(new Timestamp(keyMillis));
+                purchaseBhv.insert(purchase);
+
+                // deadlock if update is executed after insert including updateNonstrict()
+                // ShareLock and ExclusiveLock are points
+                Member member = new Member();
+                member.setMemberId(3);
+                memberBhv.updateNonstrict(member);
+                markHere("success");
+            }
+        }, new CannonballOption().commitTx().expectExceptionAny("Deadlock found"));
+        assertMarked("success");
     }
 }

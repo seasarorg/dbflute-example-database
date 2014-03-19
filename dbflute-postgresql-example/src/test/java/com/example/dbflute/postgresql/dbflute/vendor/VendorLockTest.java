@@ -1,14 +1,11 @@
-package com.example.dbflute.postgresql.dbflute.topic;
+package com.example.dbflute.postgresql.dbflute.vendor;
 
 import java.sql.Timestamp;
-import java.util.List;
 import java.util.Set;
 
-import org.seasar.dbflute.cbean.ListResultBean;
 import org.seasar.dbflute.exception.EntityAlreadyUpdatedException;
 import org.seasar.dbflute.helper.HandyDate;
 import org.seasar.dbflute.unit.core.cannonball.CannonballCar;
-import org.seasar.dbflute.unit.core.cannonball.CannonballFinalizer;
 import org.seasar.dbflute.unit.core.cannonball.CannonballOption;
 import org.seasar.dbflute.unit.core.cannonball.CannonballRun;
 import org.seasar.dbflute.unit.core.thread.ThreadFireExecution;
@@ -19,17 +16,15 @@ import org.seasar.dbflute.util.DfCollectionUtil;
 import com.example.dbflute.postgresql.dbflute.cbean.MemberCB;
 import com.example.dbflute.postgresql.dbflute.exbhv.MemberBhv;
 import com.example.dbflute.postgresql.dbflute.exbhv.PurchaseBhv;
-import com.example.dbflute.postgresql.dbflute.exbhv.pmbean.SimpleMemberPmb;
 import com.example.dbflute.postgresql.dbflute.exentity.Member;
 import com.example.dbflute.postgresql.dbflute.exentity.Purchase;
-import com.example.dbflute.postgresql.dbflute.exentity.customize.SimpleMember;
 import com.example.dbflute.postgresql.unit.UnitContainerTestCase;
 
 /**
  * @author jflute
  * @since 0.9.5.1 (2009/06/20 Saturday)
  */
-public class ThreadSafeTest extends UnitContainerTestCase {
+public class VendorLockTest extends UnitContainerTestCase {
 
     // ===================================================================================
     //                                                                           Attribute
@@ -46,101 +41,46 @@ public class ThreadSafeTest extends UnitContainerTestCase {
     }
 
     // ===================================================================================
-    //                                                                       ConditionBean
-    //                                                                       =============
-    public void test_ThreadSafe_conditionBean_sameExecution() {
-        threadFire(new ThreadFireExecution<List<Member>>() {
-            public List<Member> execute(ThreadFireResource resource) {
-                // ## Arrange ##
-                MemberCB cb = new MemberCB();
-                cb.setupSelect_MemberStatus();
-                cb.query().setMemberName_PrefixSearch("S");
-                cb.query().addOrderBy_Birthdate_Desc().addOrderBy_MemberId_Asc();
-
-                // ## Act ##
-                ListResultBean<Member> memberList = memberBhv.selectList(cb);
-
-                // ## Assert ##
-                assertFalse(memberList.isEmpty());
-                for (Member member : memberList) {
-                    assertTrue(member.getMemberName().startsWith("S"));
-                }
-                return memberList;
-            }
-        }, new ThreadFireOption().expectSameResult());
-    }
-
-    // ===================================================================================
-    //                                                                          OutsideSql
-    //                                                                          ==========
-    public void test_ThreadSafe_outsideSql_sameExecution() {
-        threadFire(new ThreadFireExecution<List<SimpleMember>>() {
-            public List<SimpleMember> execute(ThreadFireResource resource) {
-                // ## Arrange ##
-                String path = MemberBhv.PATH_selectSimpleMember;
-
-                SimpleMemberPmb pmb = new SimpleMemberPmb();
-                pmb.setMemberName_PrefixSearch("S");
-
-                Class<SimpleMember> entityType = SimpleMember.class;
-
-                // ## Act ##
-                List<SimpleMember> memberList = memberBhv.outsideSql().selectList(path, pmb, entityType);
-
-                // ## Assert ##
-                assertNotSame(0, memberList.size());
-                log("{SimpleMember}");
-                for (SimpleMember entity : memberList) {
-                    Integer memberId = entity.getMemberId();
-                    String memberName = entity.getMemberName();
-                    String memberStatusName = entity.getMemberStatusName();
-                    log("    " + memberId + ", " + memberName + ", " + memberStatusName);
-                    assertNotNull(memberId);
-                    assertNotNull(memberName);
-                    assertNotNull(memberStatusName);
-                    assertTrue(memberName.startsWith("S"));
-                }
-                return memberList;
-            }
-        }, new ThreadFireOption().expectSameResult());
-    }
-
-    // ===================================================================================
     //                                                                              Insert
     //                                                                              ======
-    public void test_ThreadSafe_insert_sameExecution() {
+    public void test_insert_after_empty_queryDelete_nonDeadlock() {
         final Set<String> markSet = DfCollectionUtil.newHashSet();
         final Set<Integer> insertedIdSet = DfCollectionUtil.newHashSet();
-        cannonball(new CannonballRun() {
-            public void drive(CannonballCar car) {
-                int entryNumber = car.getEntryNumber();
-                Member member = new Member();
-                member.setMemberName("name" + entryNumber);
-                member.setMemberAccount("account" + entryNumber);
-                member.setMemberStatusCode_Formalized();
-                memberBhv.insert(member);
-                markSet.add("success: " + entryNumber);
-                insertedIdSet.add(member.getMemberId());
+        threadFire(new ThreadFireExecution<Void>() {
+            public Void execute(ThreadFireResource resource) {
+                long threadId = Thread.currentThread().getId();
+
+                // empty delete (update, for update) locks new record
+                // (if it deletes existing records, second waits)
+                MemberCB cb = new MemberCB();
+                cb.query().setMemberId_Equal(99999);
+                memberBhv.queryDelete(cb);
+
+                Member inserted = memberBhv.selectByPKValueWithDeletedCheck(3);
+                inserted.setMemberAccount(threadId + ":" + inserted.getMemberId());
+                inserted.setMemberId(null);
+                memberBhv.insert(inserted);
+                markSet.add("success: " + threadId);
+                insertedIdSet.add(inserted.getMemberId());
+                return null;
             }
-        }, new CannonballOption().commitTx().expectSameResult().finalizer(new CannonballFinalizer() {
-            public void run() {
-                if (!insertedIdSet.isEmpty()) {
-                    MemberCB cb = new MemberCB();
-                    cb.query().setMemberId_InScope(insertedIdSet);
-                    memberBhv.queryDelete(cb);
-                }
-            }
-        }));
+        }, new ThreadFireOption().commitTx().expectSameResult());
         log(markSet);
+        if (!insertedIdSet.isEmpty()) {
+            MemberCB cb = new MemberCB();
+            cb.query().setMemberId_InScope(insertedIdSet);
+            memberBhv.queryDelete(cb);
+        }
     }
 
     // ===================================================================================
     //                                                                              Update
     //                                                                              ======
-    public void test_ThreadSafe_update_before_insert_sameExecution_alreadyUpdated() {
+    public void test_update_before_insert_alreadyUpdated() {
         final int memberId = 3;
         final Member before = memberBhv.selectByPKValue(memberId);
         final Long versionNo = before.getVersionNo();
+        final Set<String> markSet = DfCollectionUtil.newHashSet();
         cannonball(new CannonballRun() {
             public void drive(CannonballCar car) {
                 Member member = new Member();
@@ -161,13 +101,13 @@ public class ThreadSafeTest extends UnitContainerTestCase {
                     purchase.setPaymentCompleteFlg_True();
                     purchaseBhv.insert(purchase);
                 }
-                markHere("success");
+                markSet.add("success: " + entryNumber);
             }
         }, new CannonballOption().commitTx().expectExceptionAny(EntityAlreadyUpdatedException.class));
-        assertMarked("success");
+        log(markSet);
     }
 
-    public void test_ThreadSafe_update_after_insert_sameExecution_mayBeDeadlock() {
+    public void test_update_after_insert_mayBeDeadlock() {
         final Purchase source = purchaseBhv.selectByPKValueWithDeletedCheck(1L);
         source.setPurchaseId(null);
         cannonball(new CannonballRun() {

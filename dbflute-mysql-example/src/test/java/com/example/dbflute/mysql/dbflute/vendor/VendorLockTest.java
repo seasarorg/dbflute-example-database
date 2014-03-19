@@ -79,7 +79,7 @@ public class VendorLockTest extends UnitContainerTestCase {
 
         [SQLException]
         org.seasar.framework.exception.SSQLException
-        [ESSR0072]SQLで例外(SQL=[insert into PURCHASE (MEMBER_ID, PRODUCT_ID, PURCHASE_DATETIME, PURCHASE_COUNT, PURCHASE_PRICE, PAYMENT_COMPLETE_FLG, REGISTER_DATETIME, REGISTER_USER, UPDATE_DATETIME, UPDATE_USER, VERSION_NO)
+        [ESSR0072]SQL...(SQL=[insert into PURCHASE (MEMBER_ID, PRODUCT_ID, PURCHASE_DATETIME, PURCHASE_COUNT, PURCHASE_PRICE, PAYMENT_COMPLETE_FLG, REGISTER_DATETIME, REGISTER_USER, UPDATE_DATETIME, UPDATE_USER, VERSION_NO)
          values (?, ?, ?, ?, (? + 13), ?, ?, ?, ?, ?, ?)], Message=[1213], ErrorCode=40001, SQLState={3})...
 
         [NextException]
@@ -220,7 +220,7 @@ public class VendorLockTest extends UnitContainerTestCase {
     // ===================================================================================
     //                                                                              Update
     //                                                                              ======
-    public void test_update_Deadlock_basic() {
+    public void test_update_after_insert_Deadlock_basic() {
         final int memberId = 3;
         final Member before = memberBhv.selectByPKValue(memberId);
         final Long versionNo = before.getVersionNo();
@@ -254,7 +254,7 @@ public class VendorLockTest extends UnitContainerTestCase {
         log(markSet);
     }
 
-    public void test_update_Deadlock_simply() throws Exception {
+    public void test_update_after_insert_Deadlock_simply() throws Exception {
         cannonball(new CannonballRun() {
             public void drive(CannonballCar car) {
                 Purchase purchase = purchaseBhv.selectByPKValue(3L);
@@ -276,7 +276,7 @@ public class VendorLockTest extends UnitContainerTestCase {
         }, new CannonballOption().threadCount(3).repeatCount(1).expectExceptionAny("Deadlock found"));
     }
 
-    public void test_update_NonDeadlock_reverse() throws Exception {
+    public void test_update_before_insert_nonDeadlock_reverse() throws Exception {
         cannonball(new CannonballRun() {
             public void drive(CannonballCar car) {
                 Member member = new Member();
@@ -336,7 +336,7 @@ public class VendorLockTest extends UnitContainerTestCase {
     // ===================================================================================
     //                                                                              Delete
     //                                                                              ======
-    public void test_delete_NonDeadlock() throws Exception {
+    public void test_delete_nonDeadlock() throws Exception {
         PurchaseCB cb = new PurchaseCB();
         cb.query().setMemberId_Equal(3);
         ListResultBean<Purchase> purchaseList = purchaseBhv.selectList(cb);
