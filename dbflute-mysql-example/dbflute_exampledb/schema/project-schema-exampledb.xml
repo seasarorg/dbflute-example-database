@@ -916,6 +916,33 @@
             <index-column name="BAR_MULTIPLE_ID" position="2"/>
         </index>
     </table>
+    <table name="white_date_adjustment"
+        schema="exampledb.$$NoNameSchema$$" type="TABLE">
+        <column comment="" dbType="BIGINT" javaType="Long"
+            name="DATE_ADJUSTMENT_ID" pkName="PRIMARY" primaryKey="true"
+            required="true" size="19" type="BIGINT"/>
+        <column comment="adjusted" dbType="DATE"
+            javaType="java.util.Date" name="ADJUSTED_DATE" size="10" type="DATE"/>
+        <column comment="" dbType="DATETIME"
+            javaType="java.sql.Timestamp" name="ADJUSTED_DATETIME"
+            size="19" type="TIMESTAMP"/>
+        <column comment="" dbType="TIME" javaType="java.sql.Time"
+            name="ADJUSTED_TIME" size="8" type="TIME"/>
+        <column comment="" dbType="INT" javaType="Integer"
+            name="ADJUSTED_INTEGER" size="10" type="INTEGER"/>
+        <column comment="adjusted" dbType="BIGINT" javaType="Long"
+            name="ADJUSTED_NAMED_STRING_LONG" size="19" type="BIGINT"/>
+        <column comment="adjusted" dbType="BIGINT" javaType="Long"
+            name="ADJUSTED_NAMED_TYPED_LONG" size="19" type="BIGINT"/>
+        <column comment="adjusted" dbType="BIGINT" javaType="Long"
+            name="ADJUSTED_PINPOINT_STRING_LONG" size="19" type="BIGINT"/>
+        <column comment="adjusted" dbType="BIGINT" javaType="Long"
+            name="ADJUSTED_PINPOINT_TYPED_LONG" size="19" type="BIGINT"/>
+        <column comment="" dbType="BIGINT" javaType="Long"
+            name="ADJUSTED_PLAIN_LONG" size="19" type="BIGINT"/>
+        <column comment="" dbType="VARCHAR" javaType="String"
+            name="ADJUSTED_STRING" size="32" type="VARCHAR"/>
+    </table>
     <table name="white_db_comment" schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="Normal: this is normal comment." dbType="CHAR"
             javaType="String" name="DB_COMMENT_CODE" pkName="PRIMARY"

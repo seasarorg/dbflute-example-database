@@ -17,10 +17,17 @@ map:{
     # }
     ; dateAdjustmentMap = map:{
         ; df:originDate = 2008/01/01
+        ; df:millisColumnList = list:{
+            ; prefix:ADJUSTED_NAMED_
+            ; ADJUSTED_PINPOINT_STRING_LONG ; ADJUSTED_PINPOINT_TYPED_LONG
+        }
         ; $$ALL$$ = map:{
             ; $$ALL$$ = addDay($distance)
             ; FORMALIZED_DATETIME = addDay(0)
             ; LOGIN_DATETIME = addDay(0)
+            ; ADJUSTED_PINPOINT_STRING_LONG = addDay(30)
+            ; ADJUSTED_PINPOINT_TYPED_LONG = addDay(31)
+            ; ABC_DATETIME = addDay(0)
         }
         ; MEMBER = map:{ BIRTHDATE = addDay(0) }
         ; MEMBER_ADDRESS = map:{ $$ALL$$ = addDay(0) }

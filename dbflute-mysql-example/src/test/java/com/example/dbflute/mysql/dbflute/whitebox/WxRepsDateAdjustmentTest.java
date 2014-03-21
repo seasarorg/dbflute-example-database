@@ -1,8 +1,8 @@
 package com.example.dbflute.mysql.dbflute.whitebox;
 
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -16,10 +16,13 @@ import org.seasar.dbflute.util.DfTypeUtil;
 import com.example.dbflute.mysql.dbflute.cbean.MemberAddressCB;
 import com.example.dbflute.mysql.dbflute.cbean.MemberCB;
 import com.example.dbflute.mysql.dbflute.cbean.PurchaseCB;
+import com.example.dbflute.mysql.dbflute.cbean.WhiteDateAdjustmentCB;
 import com.example.dbflute.mysql.dbflute.exbhv.MemberBhv;
+import com.example.dbflute.mysql.dbflute.exbhv.WhiteDateAdjustmentBhv;
 import com.example.dbflute.mysql.dbflute.exbhv.pmbean.OptionMemberPmb;
 import com.example.dbflute.mysql.dbflute.exentity.Member;
 import com.example.dbflute.mysql.dbflute.exentity.MemberAddress;
+import com.example.dbflute.mysql.dbflute.exentity.WhiteDateAdjustment;
 import com.example.dbflute.mysql.dbflute.exentity.customize.OptionMember;
 import com.example.dbflute.mysql.unit.UnitContainerTestCase;
 
@@ -33,6 +36,7 @@ public class WxRepsDateAdjustmentTest extends UnitContainerTestCase {
     //                                                                           Attribute
     //                                                                           =========
     private MemberBhv memberBhv;
+    private WhiteDateAdjustmentBhv whiteDateAdjustmentBhv;
 
     // ===================================================================================
     //                                                                               Basic
@@ -79,9 +83,7 @@ public class WxRepsDateAdjustmentTest extends UnitContainerTestCase {
 
     public void test_MemberAddress_remained() {
         // ## Arrange ##
-        Calendar cal = Calendar.getInstance();
-        cal.set(2005, 11, 12); // 2005/12/12
-        final Date targetDate = cal.getTime();
+        final Date targetDate = new HandyDate("2005/12/12").getDate();
         final String targetChar = "i";
 
         MemberCB cb = new MemberCB();
@@ -149,5 +151,85 @@ public class WxRepsDateAdjustmentTest extends UnitContainerTestCase {
             assertTrue(fromDate.equals(latestDate) || fromDate.before(latestDate));
             assertTrue(toDate.equals(latestDate) || toDate.after(latestDate));
         }
+    }
+
+    // ===================================================================================
+    //                                                                              Detail
+    //                                                                              ======
+    public void test_() throws Exception {
+        // ## Arrange ##
+        WhiteDateAdjustmentCB cb = new WhiteDateAdjustmentCB();
+        cb.query().addOrderBy_DateAdjustmentId_Asc();
+
+        // ## Act ##
+        ListResultBean<WhiteDateAdjustment> adjustmentList = whiteDateAdjustmentBhv.selectList(cb);
+
+        // ## Assert ##
+        assertHasAnyElement(adjustmentList);
+        for (WhiteDateAdjustment adjustment : adjustmentList) {
+            Long id = adjustment.getDateAdjustmentId();
+            Date date = adjustment.getAdjustedDate();
+            Timestamp datetime = adjustment.getAdjustedDatetime();
+            Time time = adjustment.getAdjustedTime();
+            Integer integer = adjustment.getAdjustedInteger();
+            Long namedStringLong = adjustment.getAdjustedNamedStringLong();
+            Long namedTypedLong = adjustment.getAdjustedNamedTypedLong();
+            Long pinpointStringLong = adjustment.getAdjustedPinpointStringLong();
+            Long pinpointTypedLong = adjustment.getAdjustedPinpointTypedLong();
+            String string = adjustment.getAdjustedString();
+            if (id <= 4) {
+                Date namedStringDate = toDate(namedStringLong);
+                Date namedTypedDate = toDate(namedTypedLong);
+                Date pinpointStringDate = toDate(pinpointStringLong);
+                Date pinpointTypedDate = toDate(pinpointTypedLong);
+                String timeExp = toString(time, "HH:mm:ss");
+                log(id, date, datetime, timeExp, integer, namedStringDate, namedTypedDate, pinpointStringDate,
+                        pinpointTypedDate, string);
+                HandyDate baseHandy = new HandyDate(currentDate()).addDay(30);
+                assertTrue(baseHandy.isLessEqual(date));
+                Date expectedDatetime = new HandyDate(date).addDay(1).addHour(12).addMinute(34).addSecond(56).getDate();
+                assertEquals(expectedDatetime, datetime);
+                if (timeExp.startsWith("12")) {
+                    assertEquals("12:34:56", timeExp);
+                    markHere("timeFirst");
+                } else {
+                    assertEquals("23:59:59", timeExp);
+                    markHere("timeSecond");
+                }
+                assertEquals(id.intValue(), integer.intValue());
+                assertEquals(new HandyDate(date).addDay(2).getDate(), namedStringDate);
+                assertEquals(namedStringDate, namedTypedDate);
+                assertEquals(new HandyDate("2008/02/04").addDay(30).getDate(), pinpointStringDate);
+                assertEquals(new HandyDate(pinpointStringDate).addDay(1).getDate(), pinpointTypedDate);
+                if (string.equals("1202223600000")) {
+                    markHere("stringNoAdjusted");
+                }
+                markHere("exists");
+            } else if (id.equals(5L)) { // means all columns are null (see the excel data)
+                log(id, date, datetime, time, integer, namedStringLong, namedTypedLong, pinpointStringLong,
+                        pinpointTypedLong, string);
+                assertNull(date);
+                assertNull(datetime);
+                assertNull(time);
+                assertNull(integer);
+                assertNull(namedStringLong);
+                assertNull(pinpointStringLong);
+                assertNull(string);
+                markHere("nullRow");
+            } else if (id.equals(6L)) { // $sysdate
+                log(id, date, datetime, time, integer, namedStringLong, namedTypedLong, pinpointStringLong,
+                        pinpointTypedLong, string);
+                assertTrue(new HandyDate(currentDate()).isLessEqual(date));
+                markHere("sysdate");
+            } else {
+                fail("unknown id: " + id);
+            }
+        }
+        assertMarked("exists");
+        assertMarked("nullRow");
+        assertMarked("sysdate");
+        assertMarked("timeFirst");
+        assertMarked("timeSecond");
+        assertMarked("stringNoAdjusted");
     }
 }

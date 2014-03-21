@@ -261,6 +261,18 @@ select category.CLS_CATEGORY_NAME as classificationName
     }
 
     # the test of deprecated element
+    ; DeprecatedTopBasicType = list:{
+        ; map:{
+            ; topComment=is deprecated classification
+            ; codeType=String; isCheckImplicitSet=true
+            ; isDeprecated = true
+        }
+        ; map:{code=FOO; name=FooName}
+        ; map:{code=BAR; name=BarName}
+        ; map:{code=QUX; name=QuxName}
+    }
+
+    # the test of deprecated element
     ; DeprecatedMapBasicType = list:{
         ; map:{
             ; topComment=has deprecated element
@@ -268,7 +280,7 @@ select category.CLS_CATEGORY_NAME as classificationName
             ; deprecatedMap = map:{ BarName = test of deprecated }
         }
         ; map:{code=FOO; name=FooName}
-        ; map:{code=BAR; name=BarName; comment=here}
+        ; map:{code=BAR; name=BarName}
         ; map:{code=QUX; name=QuxName}
     }
 
@@ -286,8 +298,8 @@ select category.CLS_CATEGORY_NAME as classificationName
             ; deprecatedMap = map:{ BarName = test of deprecated ; QuxName = no original comment }
         }
         ; map:{code=FOO; name=FooName}
-        ; map:{code=BAR; name=BarName; comment=here here}
-        ; map:{code=QUX; name=QuxName}
+        ; map:{code=BAR; name=BarName; alias=BarBar; comment=here}
+        ; map:{code=QUX; name=QuxName; alias=QuxQux}
     }
 }
 # ----------------/

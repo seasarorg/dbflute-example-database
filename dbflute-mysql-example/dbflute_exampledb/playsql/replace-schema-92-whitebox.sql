@@ -433,6 +433,24 @@ CREATE TABLE WHITE_SUPPRESS_DEF_CHECK (
 ) ;
 
 -- /= = = = = = = = = = = = = = = = = = = = = = = = =
+-- for the test of date adjustment for LoadData
+-- = = = = = = = = = =/
+CREATE TABLE WHITE_DATE_ADJUSTMENT (
+	DATE_ADJUSTMENT_ID BIGINT NOT NULL,
+	ADJUSTED_DATE DATE COMMENT 'adjusted',
+	ADJUSTED_DATETIME DATETIME,
+	ADJUSTED_TIME TIME,
+	ADJUSTED_INTEGER INTEGER,
+	ADJUSTED_NAMED_STRING_LONG BIGINT COMMENT 'adjusted',
+	ADJUSTED_NAMED_TYPED_LONG BIGINT COMMENT 'adjusted',
+	ADJUSTED_PINPOINT_STRING_LONG BIGINT COMMENT 'adjusted',
+	ADJUSTED_PINPOINT_TYPED_LONG BIGINT COMMENT 'adjusted',
+	ADJUSTED_PLAIN_LONG BIGINT,
+	ADJUSTED_STRING VARCHAR(32),
+	PRIMARY KEY (DATE_ADJUSTMENT_ID)
+) ;
+
+-- /= = = = = = = = = = = = = = = = = = = = = = = = =
 -- for the test of escaped dfprop
 -- = = = = = = = = = =/
 CREATE TABLE WHITE_ESCAPED_DFPROP (

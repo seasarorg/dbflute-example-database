@@ -1,4 +1,92 @@
 map:{
+    ; 2014/03/21 18:10:26 = map:{
+        ; diffDate = 2014/03/21 18:10:26
+        ; tableDiff = map:{
+            ; white_date_adjustment = map:{
+                ; tableName = white_date_adjustment
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; ADJUSTED_NAMED_STRING_LONG = map:{
+                        ; columnName = ADJUSTED_NAMED_STRING_LONG
+                        ; diffType = ADD
+                    }
+                    ; ADJUSTED_NAMED_TYPED_LONG = map:{
+                        ; columnName = ADJUSTED_NAMED_TYPED_LONG
+                        ; diffType = ADD
+                    }
+                    ; ADJUSTED_PINPOINT_STRING_LONG = map:{
+                        ; columnName = ADJUSTED_PINPOINT_STRING_LONG
+                        ; diffType = ADD
+                    }
+                    ; ADJUSTED_PINPOINT_TYPED_LONG = map:{
+                        ; columnName = ADJUSTED_PINPOINT_TYPED_LONG
+                        ; diffType = ADD
+                    }
+                    ; ADJUSTED_DATE = map:{
+                        ; columnName = ADJUSTED_DATE
+                        ; diffType = CHANGE
+                        ; columnCommentDiff = map:{
+                            ; next = "adjusted"
+                            ; previous = ""
+                        }
+                    }
+                    ; ADJUSTED_TIME = map:{
+                        ; columnName = ADJUSTED_TIME
+                        ; diffType = CHANGE
+                        ; columnCommentDiff = map:{
+                            ; next = ""
+                            ; previous = "NonAdjusted"
+                        }
+                    }
+                    ; ADJUSTED_INTEGER = map:{
+                        ; columnName = ADJUSTED_INTEGER
+                        ; diffType = CHANGE
+                        ; columnCommentDiff = map:{
+                            ; next = ""
+                            ; previous = "NonAdjusted"
+                        }
+                    }
+                    ; ADJUSTED_PLAIN_LONG = map:{
+                        ; columnName = ADJUSTED_PLAIN_LONG
+                        ; diffType = CHANGE
+                        ; columnCommentDiff = map:{
+                            ; next = ""
+                            ; previous = "NonAdjusted"
+                        }
+                    }
+                    ; ADJUSTED_STRING = map:{
+                        ; columnName = ADJUSTED_STRING
+                        ; diffType = CHANGE
+                        ; columnCommentDiff = map:{
+                            ; next = ""
+                            ; previous = "NonAdjusted"
+                        }
+                    }
+                    ; ADJUSTED_NAMED_LONG = map:{
+                        ; columnName = ADJUSTED_NAMED_LONG
+                        ; diffType = DELETE
+                    }
+                    ; ADJUSTED_PINPOINT_LONG = map:{
+                        ; columnName = ADJUSTED_PINPOINT_LONG
+                        ; diffType = DELETE
+                    }
+                }
+            }
+        }
+    }
+    ; 2014/03/21 15:32:12 = map:{
+        ; diffDate = 2014/03/21 15:32:12
+        ; tableCount = map:{
+            ; next = 81
+            ; previous = 80
+        }
+        ; tableDiff = map:{
+            ; white_date_adjustment = map:{
+                ; tableName = white_date_adjustment
+                ; diffType = ADD
+            }
+        }
+    }
     ; 2014/01/18 22:39:01 = map:{
         ; diffDate = 2014/01/18 22:39:01
         ; tableDiff = map:{

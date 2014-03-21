@@ -47,6 +47,7 @@
     <component name="whiteCompoundPkBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteCompoundPkBhv"/>
     <component name="whiteCompoundPkRefBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteCompoundPkRefBhv"/>
     <component name="whiteCompoundPkRefNestBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteCompoundPkRefNestBhv"/>
+    <component name="whiteDateAdjustmentBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteDateAdjustmentBhv"/>
     <component name="whiteDbCommentBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteDbCommentBhv"/>
     <component name="whiteDelimiterBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteDelimiterBhv"/>
     <component name="whiteDeprecatedClsElementBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteDeprecatedClsElementBhv"/>

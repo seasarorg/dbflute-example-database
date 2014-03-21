@@ -170,7 +170,7 @@ public abstract class BsWhiteDeprecatedClsElement implements Entity, Serializabl
 
     /**
      * Set the value of deprecatedClsElementCode as BarName (BAR). <br />
-     * BarName: here here (deprecated: test of deprecated)
+     * BarBar: here (deprecated: test of deprecated)
      */
     @Deprecated
     public void setDeprecatedClsElementCode_BarName() {
@@ -179,7 +179,7 @@ public abstract class BsWhiteDeprecatedClsElement implements Entity, Serializabl
 
     /**
      * Set the value of deprecatedClsElementCode as QuxName (QUX). <br />
-     * QuxName: (deprecated: no original comment)
+     * QuxQux: (deprecated: no original comment)
      */
     @Deprecated
     public void setDeprecatedClsElementCode_QuxName() {
@@ -202,7 +202,7 @@ public abstract class BsWhiteDeprecatedClsElement implements Entity, Serializabl
 
     /**
      * Is the value of deprecatedClsElementCode BarName? <br />
-     * BarName: here here (deprecated: test of deprecated)
+     * BarBar: here (deprecated: test of deprecated)
      * <p>It's treated as case insensitive and if the code value is null, it returns false.</p>
      * @return The determination, true or false.
      */
@@ -214,7 +214,7 @@ public abstract class BsWhiteDeprecatedClsElement implements Entity, Serializabl
 
     /**
      * Is the value of deprecatedClsElementCode QuxName? <br />
-     * QuxName: (deprecated: no original comment)
+     * QuxQux: (deprecated: no original comment)
      * <p>It's treated as case insensitive and if the code value is null, it returns false.</p>
      * @return The determination, true or false.
      */
@@ -244,6 +244,15 @@ public abstract class BsWhiteDeprecatedClsElement implements Entity, Serializabl
     public String getDeprecatedClsElementCodeName() {
         CDef.DeprecatedMapCollaborationType cdef = getDeprecatedClsElementCodeAsDeprecatedMapCollaborationType();
         return cdef != null ? cdef.name() : null;
+    }
+
+    /**
+     * Get the value of the column 'deprecatedClsElementCode' as classification alias.
+     * @return The string of classification alias. (NullAllowed: when the column value is null)
+     */
+    public String getDeprecatedClsElementCodeAlias() {
+        CDef.DeprecatedMapCollaborationType cdef = getDeprecatedClsElementCodeAsDeprecatedMapCollaborationType();
+        return cdef != null ? cdef.alias() : null;
     }
 
     // ===================================================================================

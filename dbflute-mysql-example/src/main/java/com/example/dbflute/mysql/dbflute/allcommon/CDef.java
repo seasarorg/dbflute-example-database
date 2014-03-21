@@ -1164,6 +1164,80 @@ public interface CDef extends Classification {
     }
 
     /**
+     * is deprecated classification
+     */
+    @Deprecated
+    public enum DeprecatedTopBasicType implements CDef {
+        /** FooName */
+        FooName("FOO", "FooName", EMPTY_SISTERS)
+        ,
+        /** BarName */
+        BarName("BAR", "BarName", EMPTY_SISTERS)
+        ,
+        /** QuxName */
+        QuxName("QUX", "QuxName", EMPTY_SISTERS)
+        ;
+        private static final Map<String, DeprecatedTopBasicType> _codeValueMap = new HashMap<String, DeprecatedTopBasicType>();
+        static {
+            for (DeprecatedTopBasicType value : values()) {
+                _codeValueMap.put(value.code().toLowerCase(), value);
+                for (String sister : value.sisters()) { _codeValueMap.put(sister.toLowerCase(), value); }
+            }
+        }
+        private String _code; private String _alias; private String[] _sisters;
+        private DeprecatedTopBasicType(String code, String alias, String[] sisters)
+        { _code = code; _alias = alias; _sisters = sisters; }
+        public String code() { return _code; } public String alias() { return _alias; }
+        private String[] sisters() { return _sisters; }
+        public Map<String, Object> subItemMap() { return EMPTY_SUB_ITEM_MAP; }
+        public ClassificationMeta meta() { return CDef.DefMeta.DeprecatedTopBasicType; }
+
+        public boolean inGroup(String groupName) {
+            return false;
+        }
+
+        /**
+         * Get the classification by the code. (CaseInsensitive)
+         * @param code The value of code, which is case-insensitive. (NullAllowed: if null, returns null)
+         * @return The instance of the corresponding classification to the code. (NullAllowed: if not found, returns null)
+         */
+        public static DeprecatedTopBasicType codeOf(Object code) {
+            if (code == null) { return null; }
+            if (code instanceof DeprecatedTopBasicType) { return (DeprecatedTopBasicType)code; }
+            return _codeValueMap.get(code.toString().toLowerCase());
+        }
+
+        /**
+         * Get the classification by the name (also called 'value' in ENUM world).
+         * @param name The string of name, which is case-sensitive. (NullAllowed: if null, returns null)
+         * @return The instance of the corresponding classification to the name. (NullAllowed: if not found, returns null)
+         */
+        public static DeprecatedTopBasicType nameOf(String name) {
+            if (name == null) { return null; }
+            try { return valueOf(name); } catch (RuntimeException ignored) { return null; }
+        }
+
+        /**
+         * Get the list of all classification elements. (returns new copied list)
+         * @return The list of all classification elements. (NotNull)
+         */
+        public static List<DeprecatedTopBasicType> listAll() {
+            return new ArrayList<DeprecatedTopBasicType>(Arrays.asList(values()));
+        }
+
+        /**
+         * Get the list of classification elements in the specified group. (returns new copied list) <br />
+         * @param groupName The string of group name, which is case-sensitive. (NullAllowed: if null, returns empty list)
+         * @return The list of classification elements in the group. (NotNull)
+         */
+        public static List<DeprecatedTopBasicType> groupOf(String groupName) {
+            return new ArrayList<DeprecatedTopBasicType>(4);
+        }
+
+        @Override public String toString() { return code(); }
+    }
+
+    /**
      * has deprecated element
      */
     public enum DeprecatedMapBasicType implements CDef {
@@ -1244,13 +1318,13 @@ public interface CDef extends Classification {
         /** FooName */
         FooName("FOO", "FooName", EMPTY_SISTERS)
         ,
-        /** BarName: here here (deprecated: test of deprecated) */
+        /** BarBar: here (deprecated: test of deprecated) */
         @Deprecated
-        BarName("BAR", "BarName", EMPTY_SISTERS)
+        BarName("BAR", "BarBar", EMPTY_SISTERS)
         ,
-        /** QuxName: (deprecated: no original comment) */
+        /** QuxQux: (deprecated: no original comment) */
         @Deprecated
-        QuxName("QUX", "QuxName", EMPTY_SISTERS)
+        QuxName("QUX", "QuxQux", EMPTY_SISTERS)
         ;
         private static final Map<String, DeprecatedMapCollaborationType> _codeValueMap = new HashMap<String, DeprecatedMapCollaborationType>();
         static {
@@ -1745,6 +1819,9 @@ public interface CDef extends Classification {
         /** top first line            top second line            top third line */
         LineSepCommentCls
         ,
+        /** is deprecated classification */
+        DeprecatedTopBasicType
+        ,
         /** has deprecated element */
         DeprecatedMapBasicType
         ,
@@ -1780,6 +1857,7 @@ public interface CDef extends Classification {
             if ("EscapedDfpropCls".equals(name())) { return CDef.EscapedDfpropCls.codeOf(code); }
             if ("EscapedJavaDocCls".equals(name())) { return CDef.EscapedJavaDocCls.codeOf(code); }
             if ("LineSepCommentCls".equals(name())) { return CDef.LineSepCommentCls.codeOf(code); }
+            if ("DeprecatedTopBasicType".equals(name())) { return CDef.DeprecatedTopBasicType.codeOf(code); }
             if ("DeprecatedMapBasicType".equals(name())) { return CDef.DeprecatedMapBasicType.codeOf(code); }
             if ("DeprecatedMapCollaborationType".equals(name())) { return CDef.DeprecatedMapCollaborationType.codeOf(code); }
             if ("BarCls".equals(name())) { return CDef.BarCls.codeOf(code); }
@@ -1804,6 +1882,7 @@ public interface CDef extends Classification {
             if ("EscapedDfpropCls".equals(name())) { return CDef.EscapedDfpropCls.valueOf(name); }
             if ("EscapedJavaDocCls".equals(name())) { return CDef.EscapedJavaDocCls.valueOf(name); }
             if ("LineSepCommentCls".equals(name())) { return CDef.LineSepCommentCls.valueOf(name); }
+            if ("DeprecatedTopBasicType".equals(name())) { return CDef.DeprecatedTopBasicType.valueOf(name); }
             if ("DeprecatedMapBasicType".equals(name())) { return CDef.DeprecatedMapBasicType.valueOf(name); }
             if ("DeprecatedMapCollaborationType".equals(name())) { return CDef.DeprecatedMapCollaborationType.valueOf(name); }
             if ("BarCls".equals(name())) { return CDef.BarCls.valueOf(name); }
@@ -1828,6 +1907,7 @@ public interface CDef extends Classification {
             if ("EscapedDfpropCls".equals(name())) { return toClassificationList(CDef.EscapedDfpropCls.listAll()); }
             if ("EscapedJavaDocCls".equals(name())) { return toClassificationList(CDef.EscapedJavaDocCls.listAll()); }
             if ("LineSepCommentCls".equals(name())) { return toClassificationList(CDef.LineSepCommentCls.listAll()); }
+            if ("DeprecatedTopBasicType".equals(name())) { return toClassificationList(CDef.DeprecatedTopBasicType.listAll()); }
             if ("DeprecatedMapBasicType".equals(name())) { return toClassificationList(CDef.DeprecatedMapBasicType.listAll()); }
             if ("DeprecatedMapCollaborationType".equals(name())) { return toClassificationList(CDef.DeprecatedMapCollaborationType.listAll()); }
             if ("BarCls".equals(name())) { return toClassificationList(CDef.BarCls.listAll()); }
@@ -1852,6 +1932,7 @@ public interface CDef extends Classification {
             if ("EscapedDfpropCls".equals(name())) { return toClassificationList(CDef.EscapedDfpropCls.groupOf(groupName)); }
             if ("EscapedJavaDocCls".equals(name())) { return toClassificationList(CDef.EscapedJavaDocCls.groupOf(groupName)); }
             if ("LineSepCommentCls".equals(name())) { return toClassificationList(CDef.LineSepCommentCls.groupOf(groupName)); }
+            if ("DeprecatedTopBasicType".equals(name())) { return toClassificationList(CDef.DeprecatedTopBasicType.groupOf(groupName)); }
             if ("DeprecatedMapBasicType".equals(name())) { return toClassificationList(CDef.DeprecatedMapBasicType.groupOf(groupName)); }
             if ("DeprecatedMapCollaborationType".equals(name())) { return toClassificationList(CDef.DeprecatedMapCollaborationType.groupOf(groupName)); }
             if ("BarCls".equals(name())) { return toClassificationList(CDef.BarCls.groupOf(groupName)); }
@@ -1881,6 +1962,7 @@ public interface CDef extends Classification {
             if ("EscapedDfpropCls".equals(name())) { return ClassificationCodeType.String; }
             if ("EscapedJavaDocCls".equals(name())) { return ClassificationCodeType.String; }
             if ("LineSepCommentCls".equals(name())) { return ClassificationCodeType.String; }
+            if ("DeprecatedTopBasicType".equals(name())) { return ClassificationCodeType.String; }
             if ("DeprecatedMapBasicType".equals(name())) { return ClassificationCodeType.String; }
             if ("DeprecatedMapCollaborationType".equals(name())) { return ClassificationCodeType.String; }
             if ("BarCls".equals(name())) { return ClassificationCodeType.String; }

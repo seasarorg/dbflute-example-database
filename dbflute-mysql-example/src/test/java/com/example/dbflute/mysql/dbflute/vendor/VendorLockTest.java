@@ -159,8 +159,6 @@ public class VendorLockTest extends UnitContainerTestCase {
                 long randomMillis = currentTimestamp().getTime() + (threadId * 10000);
                 inserted.setPurchaseDatetime(toTimestamp(randomMillis));
 
-                car.restart();
-
                 purchaseBhv.insert(inserted);
                 purchaseBhv.delete(inserted); // to revert
             }

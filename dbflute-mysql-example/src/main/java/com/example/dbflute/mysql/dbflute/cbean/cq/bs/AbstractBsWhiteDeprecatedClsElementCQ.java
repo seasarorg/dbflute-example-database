@@ -89,7 +89,7 @@ public abstract class AbstractBsWhiteDeprecatedClsElementCQ extends AbstractCond
 
     /**
      * Equal(=). As BarName (BAR). And OnlyOnceRegistered. <br />
-     * BarName: here here (deprecated: test of deprecated)
+     * BarBar: here (deprecated: test of deprecated)
      */
     @Deprecated
     public void setDeprecatedClsElementCode_Equal_BarName() {
@@ -98,7 +98,7 @@ public abstract class AbstractBsWhiteDeprecatedClsElementCQ extends AbstractCond
 
     /**
      * Equal(=). As QuxName (QUX). And OnlyOnceRegistered. <br />
-     * QuxName: (deprecated: no original comment)
+     * QuxQux: (deprecated: no original comment)
      */
     @Deprecated
     public void setDeprecatedClsElementCode_Equal_QuxName() {
@@ -138,7 +138,7 @@ public abstract class AbstractBsWhiteDeprecatedClsElementCQ extends AbstractCond
 
     /**
      * NotEqual(&lt;&gt;). As BarName (BAR). And OnlyOnceRegistered. <br />
-     * BarName: here here (deprecated: test of deprecated)
+     * BarBar: here (deprecated: test of deprecated)
      */
     @Deprecated
     public void setDeprecatedClsElementCode_NotEqual_BarName() {
@@ -147,7 +147,7 @@ public abstract class AbstractBsWhiteDeprecatedClsElementCQ extends AbstractCond
 
     /**
      * NotEqual(&lt;&gt;). As QuxName (QUX). And OnlyOnceRegistered. <br />
-     * QuxName: (deprecated: no original comment)
+     * QuxQux: (deprecated: no original comment)
      */
     @Deprecated
     public void setDeprecatedClsElementCode_NotEqual_QuxName() {
