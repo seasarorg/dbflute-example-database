@@ -15,6 +15,12 @@ import com.example.dbflute.mysql.dbflute.allcommon.DBFluteInitializer;
 import com.example.dbflute.mysql.dbflute.bsentity.dbmeta.MemberDbm;
 import com.example.dbflute.mysql.dbflute.bsentity.dbmeta.MemberSecurityDbm;
 import com.example.dbflute.mysql.dbflute.bsentity.dbmeta.PurchaseDbm;
+import com.example.dbflute.mysql.mytype.MyMemberName;
+import com.example.dbflute.mysql.mytype.MyPriceCount;
+import com.example.dbflute.mysql.mytype.MySaleDate;
+import com.example.dbflute.mysql.mytype.valuetype.MyTypeOfMemberName;
+import com.example.dbflute.mysql.mytype.valuetype.MyTypeOfPriceCount;
+import com.example.dbflute.mysql.mytype.valuetype.MyTypeOfSaleDate;
 
 /**
  * @author jflute
@@ -78,6 +84,10 @@ public class ExtendedDBFluteInitializer extends DBFluteInitializer {
             }
         });
         config.setGearedCipherManager(manager);
+
+        config.registerBasicValueType(MyMemberName.class, new MyTypeOfMemberName());
+        config.registerBasicValueType(MyPriceCount.class, new MyTypeOfPriceCount());
+        config.registerBasicValueType(MySaleDate.class, new MyTypeOfSaleDate());
 
         config.lock();
     }

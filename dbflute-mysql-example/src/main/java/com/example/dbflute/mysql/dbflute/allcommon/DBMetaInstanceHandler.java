@@ -101,6 +101,7 @@ public class DBMetaInstanceHandler implements DBMetaProvider {
         tmpMap.put("white_no_pk_relation", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteNoPkRelationDbm");
         tmpMap.put("white_pg_reserv", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhitePgReservDbm");
         tmpMap.put("white_pg_reserv_ref", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhitePgReservRefDbm");
+        tmpMap.put("white_point_type_mapping", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhitePointTypeMappingDbm");
         tmpMap.put("white_purchase_referrer", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhitePurchaseReferrerDbm");
         tmpMap.put("white_quoted", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteQuotedDbm");
         tmpMap.put("white_quoted_ref", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteQuotedRefDbm");

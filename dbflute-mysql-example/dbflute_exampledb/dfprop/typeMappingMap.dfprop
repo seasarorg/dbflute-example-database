@@ -22,6 +22,21 @@
 map:{
     # AutoMapping for Numeric and Decimal
     ; NUMERIC = $$AutoMapping$$ ; DECIMAL = $$AutoMapping$$
+
+    # for the test of type-mapping by name 
+    ; $$df:point$$ = map:{
+        ; $$ALL$$ = map:{
+            ; suffix:PE_MAPPING_MEMBER_NAME = MEMBER_NAME
+            ; prefix:POINT_TYPE_MAPPING_PRICE_COU = PRICE_COUNT
+            ; POINT_TYPE_MAPPING_WANTED_DATETIME = DATE
+        }
+        ; WHITE_POINT_TYPE_MAPPING = map:{
+            ; POINT_TYPE_MAPPING_SALE_DATE = SALE_DATE
+        }
+    }
+    ; MEMBER_NAME = com.example.dbflute.mysql.mytype.MyMemberName
+    ; PRICE_COUNT = com.example.dbflute.mysql.mytype.MyPriceCount
+    ; SALE_DATE = com.example.dbflute.mysql.mytype.MySaleDate
 }
 # ----------------/
 #

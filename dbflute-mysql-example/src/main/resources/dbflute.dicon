@@ -67,6 +67,7 @@
     <component name="whiteNoPkRelationBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteNoPkRelationBhv"/>
     <component name="whitePgReservBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhitePgReservBhv"/>
     <component name="whitePgReservRefBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhitePgReservRefBhv"/>
+    <component name="whitePointTypeMappingBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhitePointTypeMappingBhv"/>
     <component name="whitePurchaseReferrerBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhitePurchaseReferrerBhv"/>
     <component name="whiteQuotedBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteQuotedBhv"/>
     <component name="whiteQuotedRefBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteQuotedRefBhv"/>

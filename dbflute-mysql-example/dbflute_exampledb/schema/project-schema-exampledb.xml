@@ -1190,6 +1190,23 @@
             <index-column name="CLASS" position="1"/>
         </index>
     </table>
+    <table name="white_point_type_mapping"
+        schema="exampledb.$$NoNameSchema$$" type="TABLE">
+        <column comment="" dbType="DECIMAL" javaType="Long"
+            name="POINT_TYPE_MAPPING_ID" pkName="PRIMARY"
+            primaryKey="true" required="true" size="16" type="DECIMAL"/>
+        <column comment="" dbType="VARCHAR"
+            javaType="com.example.dbflute.mysql.mytype.MyMemberName"
+            name="POINT_TYPE_MAPPING_MEMBER_NAME" size="32" type="MEMBER_NAME"/>
+        <column comment="" dbType="INT"
+            javaType="com.example.dbflute.mysql.mytype.MyPriceCount"
+            name="POINT_TYPE_MAPPING_PRICE_COUNT" size="10" type="PRICE_COUNT"/>
+        <column comment="" dbType="BIGINT"
+            javaType="com.example.dbflute.mysql.mytype.MySaleDate"
+            name="POINT_TYPE_MAPPING_SALE_DATE" size="19" type="SALE_DATE"/>
+        <column comment="" dbType="DATETIME" javaType="java.util.Date"
+            name="POINT_TYPE_MAPPING_WANTED_DATETIME" size="19" type="DATE"/>
+    </table>
     <table name="white_purchase_referrer"
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column autoIncrement="true" comment="" dbType="BIGINT"

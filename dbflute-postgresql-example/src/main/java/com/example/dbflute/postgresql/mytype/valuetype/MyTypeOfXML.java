@@ -1,4 +1,4 @@
-package com.example.dbflute.postgresql.mytype;
+package com.example.dbflute.postgresql.mytype.valuetype;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -9,34 +9,36 @@ import java.sql.Types;
 
 import org.seasar.dbflute.s2dao.valuetype.TnAbstractValueType;
 
+import com.example.dbflute.postgresql.mytype.MyXML;
+
 /**
  * Simple example of extending Array Type.
  * @author jflute
  */
-public class MyArrayType extends TnAbstractValueType {
+public class MyTypeOfXML extends TnAbstractValueType {
 
-    public MyArrayType() {
+    public MyTypeOfXML() {
         super(Types.OTHER);
     }
 
     public Object getValue(ResultSet resultSet, int index) throws SQLException {
-        String arrayString = resultSet.getString(index);
-        return arrayString != null ? new MyArray().setup(arrayString) : null;
+        String xmlString = resultSet.getString(index);
+        return xmlString != null ? new MyXML().setup(xmlString) : null;
     }
 
     public Object getValue(ResultSet resultSet, String columnName) throws SQLException {
-        String arrayString = resultSet.getString(columnName);
-        return arrayString != null ? new MyArray().setup(arrayString) : null;
+        String xmlString = resultSet.getString(columnName);
+        return xmlString != null ? new MyXML().setup(xmlString) : null;
     }
 
     public Object getValue(CallableStatement cs, int index) throws SQLException {
-        String arrayString = cs.getString(index);
-        return arrayString != null ? new MyArray().setup(arrayString) : null;
+        String xmlString = cs.getString(index);
+        return xmlString != null ? new MyXML().setup(xmlString) : null;
     }
 
     public Object getValue(CallableStatement cs, String parameterName) throws SQLException {
-        String arrayString = cs.getString(parameterName);
-        return arrayString != null ? new MyArray().setup(arrayString) : null;
+        String xmlString = cs.getString(parameterName);
+        return xmlString != null ? new MyXML().setup(xmlString) : null;
     }
 
     public void bindValue(Connection conn, PreparedStatement ps, int index, Object value) throws SQLException {

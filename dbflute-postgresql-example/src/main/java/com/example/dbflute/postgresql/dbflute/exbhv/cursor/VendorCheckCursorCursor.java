@@ -3,7 +3,7 @@ package com.example.dbflute.postgresql.dbflute.exbhv.cursor;
 import java.sql.SQLException;
 
 import com.example.dbflute.postgresql.mytype.MyArray;
-import com.example.dbflute.postgresql.mytype.MyArrayType;
+import com.example.dbflute.postgresql.mytype.valuetype.MyTypeOfArray;
 
 /**
  * The cursor of VendorCheckCursor.
@@ -15,7 +15,7 @@ import com.example.dbflute.postgresql.mytype.MyArrayType;
  */
 public class VendorCheckCursorCursor extends com.example.dbflute.postgresql.dbflute.bsbhv.cursor.BsVendorCheckCursorCursor {
     
-    protected MyArrayType _arrayType = new MyArrayType();
+    protected MyTypeOfArray _arrayType = new MyTypeOfArray();
     
     @Override
     public MyArray getTypeOfVcArray() throws SQLException {

@@ -1,4 +1,17 @@
 map:{
+    ; 2014/03/21 22:41:37 = map:{
+        ; diffDate = 2014/03/21 22:41:37
+        ; tableCount = map:{
+            ; next = 82
+            ; previous = 81
+        }
+        ; tableDiff = map:{
+            ; white_point_type_mapping = map:{
+                ; tableName = white_point_type_mapping
+                ; diffType = ADD
+            }
+        }
+    }
     ; 2014/03/21 18:10:26 = map:{
         ; diffDate = 2014/03/21 18:10:26
         ; tableDiff = map:{
