@@ -7,6 +7,7 @@ import org.seasar.dbflute.dbmeta.info.ColumnInfo;
 import com.example.dbflute.sqlserver.dbflute.allcommon.DBFluteConfig;
 import com.example.dbflute.sqlserver.dbflute.allcommon.DBFluteInitializer;
 import com.example.dbflute.sqlserver.dbflute.bsentity.dbmeta.VendorSymmetricDbm;
+import com.example.dbflute.sqlserver.mytype.valuetype.MyTypeOfBytesString;
 
 /**
  * @author jflute
@@ -37,6 +38,8 @@ public class ExtendedDBFluteInitializer extends DBFluteInitializer {
             }
         });
         config.setGearedCipherManager(manager);
+
+        config.registerPluginValueType("bytesString", new MyTypeOfBytesString());
 
         config.lock();
     }

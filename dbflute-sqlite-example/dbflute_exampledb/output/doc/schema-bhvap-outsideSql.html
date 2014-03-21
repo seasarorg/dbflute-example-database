@@ -256,6 +256,7 @@ dl.procedurelist dd.column pre {
 <body>
 <h1>Schema for exampledb (sqlite)</h1>
 <p class="sublink"><a href="#cdef">Classification Definition</a></p>
+<p class="sublink"><a href="#outsidesql">OutsideSql List</a></p>
 
 <h2>Table List</h2>
 <div class="keywordsearch">
@@ -408,6 +409,7 @@ dl.procedurelist dd.column pre {
 
   <h2 id="member" title="type=TABLE, primaryKey={MEMBER_ID}, nameLength=6, columnCount=13">
 MEMBER
+&nbsp;<span class="bqpcount"><a href="#member_sql">(outsideSql=3)</a></span>
 </h2>
 <table summary="Columns in MEMBER">
 	<thead>
@@ -2689,6 +2691,38 @@ SUMMARY_PRODUCT
 	</tbody>
 </table>
 
+<h2 id="outsidesql">OutsideSql List</h2>
+<h3 id="member_sql"><a href="#member">MEMBER</a></h3>
+<dl class="bqplist">
+	<dt>(The&nbsp;example&nbsp;for&nbsp;select&nbsp;using&nbsp;domain&nbsp;entity)selectBhvApDomainMember</dt>
+	<dd>
+		<pre class="commentdesc"> You can use a domain entity as result type
+ if a selected column is one of a domain table.</pre>
+	</dd>
+	<dd class="subinfo">
+		<span class="file">MemberBhv_selectBhvApDomainMember.sql</span>
+		<span class="ctet">(df:entity)</span>
+		<span class="pmb">(df:pmb)</span>
+	</dd>
+	<dt>(Manual&nbsp;Paging&nbsp;Example&nbsp;for&nbsp;Application&nbsp;Behavior)selectBhvApPurchaseMaxPriceMember</dt>
+	<dd>
+		<pre class="commentdesc"> Use limit, offset.</pre>
+	</dd>
+	<dd class="subinfo">
+		<span class="file">MemberBhv_selectBhvApPurchaseMaxPriceMember.sql</span>
+		<span class="ctet">(df:entity)</span>
+		<span class="pmb">(df:pmb extends SPB)</span>
+	</dd>
+	<dt>(OutsideSql&nbsp;for&nbsp;Application&nbsp;Behavior)selectBhvApSimpleMember</dt>
+	<dd>
+		<pre class="commentdesc"> This SQL is the most basic example for outsideSql of client behavior.</pre>
+	</dd>
+	<dd class="subinfo">
+		<span class="file">MemberBhv_selectBhvApSimpleMember.sql</span>
+		<span class="ctet">(df:entity)</span>
+		<span class="pmb">(df:pmb)</span>
+	</dd>
+</dl>
 <script>
 /**
  * Incremental Search contributed by makotot (Thanks!)

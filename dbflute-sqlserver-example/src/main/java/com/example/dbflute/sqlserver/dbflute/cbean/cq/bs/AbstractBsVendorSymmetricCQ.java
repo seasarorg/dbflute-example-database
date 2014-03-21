@@ -253,10 +253,99 @@ public abstract class AbstractBsVendorSymmetricCQ extends AbstractConditionQuery
     protected abstract ConditionValue getCValuePlainText();
 
     /**
+     * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
+     * ENCRYPTED_DATA: {image(2147483647)}
+     * @param encryptedData The value of encryptedData as equal. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setEncryptedData_Equal(String encryptedData) {
+        doSetEncryptedData_Equal(fRES(encryptedData));
+    }
+
+    protected void doSetEncryptedData_Equal(String encryptedData) {
+        regEncryptedData(CK_EQ, encryptedData);
+    }
+
+    /**
+     * NotEqual(&lt;&gt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
+     * ENCRYPTED_DATA: {image(2147483647)}
+     * @param encryptedData The value of encryptedData as notEqual. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setEncryptedData_NotEqual(String encryptedData) {
+        doSetEncryptedData_NotEqual(fRES(encryptedData));
+    }
+
+    protected void doSetEncryptedData_NotEqual(String encryptedData) {
+        regEncryptedData(CK_NES, encryptedData);
+    }
+
+    /**
+     * InScope {in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br />
+     * ENCRYPTED_DATA: {image(2147483647)}
+     * @param encryptedDataList The collection of encryptedData as inScope. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setEncryptedData_InScope(Collection<String> encryptedDataList) {
+        doSetEncryptedData_InScope(encryptedDataList);
+    }
+
+    public void doSetEncryptedData_InScope(Collection<String> encryptedDataList) {
+        regINS(CK_INS, cTL(encryptedDataList), getCValueEncryptedData(), "ENCRYPTED_DATA");
+    }
+
+    /**
+     * NotInScope {not in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br />
+     * ENCRYPTED_DATA: {image(2147483647)}
+     * @param encryptedDataList The collection of encryptedData as notInScope. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setEncryptedData_NotInScope(Collection<String> encryptedDataList) {
+        doSetEncryptedData_NotInScope(encryptedDataList);
+    }
+
+    public void doSetEncryptedData_NotInScope(Collection<String> encryptedDataList) {
+        regINS(CK_NINS, cTL(encryptedDataList), getCValueEncryptedData(), "ENCRYPTED_DATA");
+    }
+
+    /**
+     * PrefixSearch {like 'xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br />
+     * ENCRYPTED_DATA: {image(2147483647)}
+     * @param encryptedData The value of encryptedData as prefixSearch. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setEncryptedData_PrefixSearch(String encryptedData) {
+        setEncryptedData_LikeSearch(encryptedData, cLSOP());
+    }
+
+    /**
+     * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br />
+     * ENCRYPTED_DATA: {image(2147483647)} <br />
+     * <pre>e.g. setEncryptedData_LikeSearch("xxx", new <span style="color: #FD4747">LikeSearchOption</span>().likeContain());</pre>
+     * @param encryptedData The value of encryptedData as likeSearch. (NullAllowed: if null (or empty), no condition)
+     * @param likeSearchOption The option of like-search. (NotNull)
+     */
+    public void setEncryptedData_LikeSearch(String encryptedData, LikeSearchOption likeSearchOption) {
+        regLSQ(CK_LS, fRES(encryptedData), getCValueEncryptedData(), "ENCRYPTED_DATA", likeSearchOption);
+    }
+
+    /**
+     * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br />
+     * And NullOrEmptyIgnored, SeveralRegistered. <br />
+     * ENCRYPTED_DATA: {image(2147483647)}
+     * @param encryptedData The value of encryptedData as notLikeSearch. (NullAllowed: if null (or empty), no condition)
+     * @param likeSearchOption The option of not-like-search. (NotNull)
+     */
+    public void setEncryptedData_NotLikeSearch(String encryptedData, LikeSearchOption likeSearchOption) {
+        regLSQ(CK_NLS, fRES(encryptedData), getCValueEncryptedData(), "ENCRYPTED_DATA", likeSearchOption);
+    }
+
+    /**
      * IsNull {is null}. And OnlyOnceRegistered. <br />
      * ENCRYPTED_DATA: {image(2147483647)}
      */
     public void setEncryptedData_IsNull() { regEncryptedData(CK_ISN, DOBJ); }
+
+    /**
+     * IsNullOrEmpty {is null or empty}. And OnlyOnceRegistered. <br />
+     * ENCRYPTED_DATA: {image(2147483647)}
+     */
+    public void setEncryptedData_IsNullOrEmpty() { regEncryptedData(CK_ISNOE, DOBJ); }
 
     /**
      * IsNotNull {is not null}. And OnlyOnceRegistered. <br />

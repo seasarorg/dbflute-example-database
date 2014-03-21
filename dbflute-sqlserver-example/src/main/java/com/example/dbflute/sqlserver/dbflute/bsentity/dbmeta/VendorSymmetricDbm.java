@@ -51,7 +51,7 @@ public class VendorSymmetricDbm extends AbstractDBMeta {
     }
     public static class EpgEncryptedData implements PropertyGateway {
         public Object read(Entity et) { return ((VendorSymmetric)et).getEncryptedData(); }
-        public void write(Entity et, Object vl) { ((VendorSymmetric)et).setEncryptedData((byte[])vl); }
+        public void write(Entity et, Object vl) { ((VendorSymmetric)et).setEncryptedData((String)vl); }
     }
 
     // ===================================================================================
@@ -70,7 +70,7 @@ public class VendorSymmetricDbm extends AbstractDBMeta {
     //                                                                         ===========
     protected final ColumnInfo _columnVendorSymmetricId = cci("VENDOR_SYMMETRIC_ID", "VENDOR_SYMMETRIC_ID", null, null, true, "vendorSymmetricId", Long.class, true, false, "numeric", 16, 0, null, false, null, null, null, null, null);
     protected final ColumnInfo _columnPlainText = cci("PLAIN_TEXT", "PLAIN_TEXT", null, null, false, "plainText", String.class, false, false, "nvarchar", 100, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnEncryptedData = cci("ENCRYPTED_DATA", "ENCRYPTED_DATA", null, null, false, "encryptedData", byte[].class, false, false, "image", 2147483647, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnEncryptedData = cci("ENCRYPTED_DATA", "ENCRYPTED_DATA", null, null, false, "encryptedData", String.class, false, false, "image", 2147483647, 0, null, false, null, null, null, null, null);
 
     public ColumnInfo columnVendorSymmetricId() { return _columnVendorSymmetricId; }
     public ColumnInfo columnPlainText() { return _columnPlainText; }

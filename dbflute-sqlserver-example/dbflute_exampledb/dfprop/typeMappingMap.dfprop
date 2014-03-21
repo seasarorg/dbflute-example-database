@@ -22,6 +22,13 @@
 map:{
     # AutoMapping for Numeric and Decimal
     ; NUMERIC = $$AutoMapping$$ ; DECIMAL = $$AutoMapping$$
+
+    # GearedCipher's type
+    ; $$df:point$$ = map:{
+        ; VENDOR_SYMMETRIC = map:{
+            ; ENCRYPTED_DATA = VARCHAR
+        }
+    }
 }
 # ----------------/
 #

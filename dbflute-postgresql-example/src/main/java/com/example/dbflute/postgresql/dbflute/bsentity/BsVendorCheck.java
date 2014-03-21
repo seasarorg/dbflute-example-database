@@ -920,7 +920,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
     }
 
     /** The value type annotation. {oid(10)} */
-    public static String typeOfOid_VALUE_TYPE = "bytesOidType";
+    public static final String typeOfOid_VALUE_TYPE = "bytesOidType";
 
     /**
      * [get] type_of_oid: {oid(10)} <br />

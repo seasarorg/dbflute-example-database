@@ -44,7 +44,7 @@ import com.example.dbflute.sqlserver.dbflute.exentity.*;
  * /= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
  * Long vendorSymmetricId = entity.getVendorSymmetricId();
  * String plainText = entity.getPlainText();
- * byte[] encryptedData = entity.getEncryptedData();
+ * String encryptedData = entity.getEncryptedData();
  * entity.setVendorSymmetricId(vendorSymmetricId);
  * entity.setPlainText(plainText);
  * entity.setEncryptedData(encryptedData);
@@ -73,7 +73,7 @@ public abstract class BsVendorSymmetric implements Entity, Serializable, Cloneab
     protected String _plainText;
 
     /** ENCRYPTED_DATA: {image(2147483647)} */
-    protected byte[] _encryptedData;
+    protected String _encryptedData;
 
     // -----------------------------------------------------
     //                                              Internal
@@ -250,15 +250,12 @@ public abstract class BsVendorSymmetric implements Entity, Serializable, Cloneab
         String delimiter = ", ";
         sb.append(delimiter).append(getVendorSymmetricId());
         sb.append(delimiter).append(getPlainText());
-        sb.append(delimiter).append(xfBA(getEncryptedData()));
+        sb.append(delimiter).append(getEncryptedData());
         if (sb.length() > delimiter.length()) {
             sb.delete(0, delimiter.length());
         }
         sb.insert(0, "{").append("}");
         return sb.toString();
-    }
-    protected String xfBA(byte[] bytes) { // formatByteArray()
-        return InternalUtil.toString(bytes);
     }
     protected String buildRelationString() {
         return "";
@@ -317,7 +314,7 @@ public abstract class BsVendorSymmetric implements Entity, Serializable, Cloneab
      * [get] ENCRYPTED_DATA: {image(2147483647)} <br />
      * @return The value of the column 'ENCRYPTED_DATA'. (NullAllowed even if selected: for no constraint)
      */
-    public byte[] getEncryptedData() {
+    public String getEncryptedData() {
         return _encryptedData;
     }
 
@@ -325,7 +322,7 @@ public abstract class BsVendorSymmetric implements Entity, Serializable, Cloneab
      * [set] ENCRYPTED_DATA: {image(2147483647)} <br />
      * @param encryptedData The value of the column 'ENCRYPTED_DATA'. (NullAllowed: null update allowed for no constraint)
      */
-    public void setEncryptedData(byte[] encryptedData) {
+    public void setEncryptedData(String encryptedData) {
         __modifiedProperties.addPropertyName("encryptedData");
         this._encryptedData = encryptedData;
     }

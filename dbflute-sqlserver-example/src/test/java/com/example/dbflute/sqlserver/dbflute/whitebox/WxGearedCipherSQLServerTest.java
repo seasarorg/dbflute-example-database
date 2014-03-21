@@ -25,6 +25,14 @@ public class WxGearedCipherSQLServerTest extends UnitContainerTestCase {
     private VendorSymmetricBhv vendorSymmetricBhv;
 
     // ===================================================================================
+    //                                                                            Settings
+    //                                                                            ========
+    @Override
+    protected boolean isUseOneTimeContainer() {
+        return true; // because open status is kept in container instance
+    }
+
+    // ===================================================================================
     //                                                                              Select
     //                                                                              ======
     public void test_ConditionBean_select_decrypted_open() throws Exception {
@@ -39,13 +47,12 @@ public class WxGearedCipherSQLServerTest extends UnitContainerTestCase {
         // ## Assert ##
         log(actual);
         assertEquals("foo", actual.getPlainText());
-        byte[] encryptedData = actual.getEncryptedData();
-        assertNotNull(encryptedData);
-        String decryptedText = new String(encryptedData, "UTF-8");
+        String encryptedData = actual.getEncryptedData();
+        byte[] bytesData = encryptedData.getBytes("UTF-8");
         String decryptedByteExp;
         {
             StringBuilder sb = new StringBuilder();
-            for (byte b : encryptedData) {
+            for (byte b : bytesData) {
                 sb.append(b).append(" ");
             }
             decryptedByteExp = sb.toString().trim(); // 98 0 97 0 114 0
@@ -61,7 +68,7 @@ public class WxGearedCipherSQLServerTest extends UnitContainerTestCase {
             expectedByteExp = sb.toString().trim(); // 98 97 114
             log(expectedByteExp);
         }
-        log("decryptedText: " + decryptedText);
+        log("decryptedText: " + encryptedData);
         // why?
         // 98 97 114 v.s. 98 0 97 0 114 0
         //assertEquals(expected, decryptedText);
@@ -81,8 +88,7 @@ public class WxGearedCipherSQLServerTest extends UnitContainerTestCase {
         // ## Assert ##
         log(actual);
         assertEquals("foo", actual.getPlainText());
-        byte[] encryptedData = actual.getEncryptedData();
-        assertNull(encryptedData);
+        assertNull(actual.getEncryptedData());
     }
 
     // ===================================================================================
@@ -95,7 +101,7 @@ public class WxGearedCipherSQLServerTest extends UnitContainerTestCase {
         symmetric.setVendorSymmetricId(1001L);
         symmetric.setPlainText("maihama");
         String expected = "dockside";
-        symmetric.setEncryptedData(expected.getBytes("UTF-8"));
+        symmetric.setEncryptedData(expected);
 
         // ## Act ##
         vendorSymmetricBhv.insert(symmetric);
@@ -105,11 +111,9 @@ public class WxGearedCipherSQLServerTest extends UnitContainerTestCase {
         cb.query().setPlainText_Equal("maihama");
         VendorSymmetric actual = vendorSymmetricBhv.selectEntityWithDeletedCheck(cb);
         assertEquals("maihama", actual.getPlainText());
-        byte[] encryptedData = actual.getEncryptedData();
-        assertNotNull(encryptedData);
-        String decryptedText = new String(encryptedData, "UTF-8");
-        log("decryptedText: " + decryptedText);
-        assertEquals(expected, decryptedText);
+        String encryptedData = actual.getEncryptedData();
+        log("decryptedText: " + encryptedData);
+        assertEquals(expected, encryptedData);
     }
 
     public void test_ConditionBean_update_decrypted() throws Exception {
@@ -118,7 +122,7 @@ public class WxGearedCipherSQLServerTest extends UnitContainerTestCase {
         VendorSymmetric symmetric = new VendorSymmetric();
         symmetric.setVendorSymmetricId(1L);
         String expected = "dockside";
-        symmetric.setEncryptedData(expected.getBytes("UTF-8"));
+        symmetric.setEncryptedData(expected);
 
         // ## Act ##
         vendorSymmetricBhv.update(symmetric);
@@ -128,11 +132,9 @@ public class WxGearedCipherSQLServerTest extends UnitContainerTestCase {
         cb.query().setPlainText_Equal("foo");
         VendorSymmetric actual = vendorSymmetricBhv.selectEntityWithDeletedCheck(cb);
         assertEquals("foo", actual.getPlainText());
-        byte[] encryptedData = actual.getEncryptedData();
-        assertNotNull(encryptedData);
-        String decryptedText = new String(encryptedData, "UTF-8");
-        log("decryptedText: " + decryptedText);
-        assertEquals(expected, decryptedText);
+        String encryptedData = actual.getEncryptedData();
+        log("decryptedText: " + encryptedData);
+        assertEquals(expected, encryptedData);
     }
 
     // ===================================================================================
