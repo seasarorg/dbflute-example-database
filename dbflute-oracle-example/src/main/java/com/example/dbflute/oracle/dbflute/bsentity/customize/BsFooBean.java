@@ -395,7 +395,7 @@ public abstract class BsFooBean implements Entity, Serializable, Cloneable {
     }
 
     /** The value type annotation. {CLOB} */
-    public static String fooClob_VALUE_TYPE = "stringClobType";
+    public static final String fooClob_VALUE_TYPE = "stringClobType";
 
     /**
      * [get] FOO_CLOB: {CLOB} <br />

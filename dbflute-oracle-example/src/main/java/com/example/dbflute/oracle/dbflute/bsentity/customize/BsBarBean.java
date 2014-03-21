@@ -395,7 +395,7 @@ public abstract class BsBarBean implements Entity, Serializable, Cloneable {
     }
 
     /** The value type annotation. {CLOB} */
-    public static String barClob_VALUE_TYPE = "stringClobType";
+    public static final String barClob_VALUE_TYPE = "stringClobType";
 
     /**
      * [get] BAR_CLOB: {CLOB} <br />

@@ -607,7 +607,7 @@ public abstract class BsSimpleVendorCheck implements Entity, Serializable, Clone
     }
 
     /** The value type annotation. {CLOB(4000)} */
-    public static String typeOfClob_VALUE_TYPE = "stringClobType";
+    public static final String typeOfClob_VALUE_TYPE = "stringClobType";
 
     /**
      * [get] TYPE_OF_CLOB: {CLOB(4000)} <br />
@@ -627,7 +627,7 @@ public abstract class BsSimpleVendorCheck implements Entity, Serializable, Clone
     }
 
     /** The value type annotation. {CLOB(4000)} */
-    public static String typeOfNclob_VALUE_TYPE = "stringClobType";
+    public static final String typeOfNclob_VALUE_TYPE = "stringClobType";
 
     /**
      * [get] TYPE_OF_NCLOB: {CLOB(4000)} <br />

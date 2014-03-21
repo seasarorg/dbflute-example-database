@@ -492,7 +492,7 @@ public abstract class BsSynonymMemberWithdrawal implements EntityDefinedCommonCo
     }
 
     /** The value type annotation. {CLOB(4000)} */
-    public static String withdrawalReasonInputText_VALUE_TYPE = "stringClobType";
+    public static final String withdrawalReasonInputText_VALUE_TYPE = "stringClobType";
 
     /**
      * [get] WITHDRAWAL_REASON_INPUT_TEXT: {CLOB(4000)} <br />

@@ -351,7 +351,7 @@ public abstract class BsWithdrawalReason implements Entity, Serializable, Clonea
     }
 
     /** The value type annotation. {NotNull, CLOB(4000)} */
-    public static String withdrawalReasonText_VALUE_TYPE = "stringClobType";
+    public static final String withdrawalReasonText_VALUE_TYPE = "stringClobType";
 
     /**
      * [get] WITHDRAWAL_REASON_TEXT: {NotNull, CLOB(4000)} <br />

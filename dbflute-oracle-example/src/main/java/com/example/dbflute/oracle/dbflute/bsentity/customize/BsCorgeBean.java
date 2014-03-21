@@ -395,7 +395,7 @@ public abstract class BsCorgeBean implements Entity, Serializable, Cloneable {
     }
 
     /** The value type annotation. {CLOB} */
-    public static String corgeClob_VALUE_TYPE = "stringClobType";
+    public static final String corgeClob_VALUE_TYPE = "stringClobType";
 
     /**
      * [get] CORGE_CLOB: {CLOB} <br />
