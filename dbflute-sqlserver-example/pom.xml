@@ -11,10 +11,10 @@
 	<description>The example project for SQLServer and DBFlute</description>
 
 	<properties>
-		<seasar.version>2.4.40</seasar.version>
+		<seasar.version>2.4.46</seasar.version>
 		<dbflute.version>1.0.5C</dbflute.version>
 		<mssql.jdbc.version>1.0.0</mssql.jdbc.version>
-		<utflute.version>0.4.0</utflute.version>
+		<utflute.version>0.4.1</utflute.version>
 	</properties>
 
 	<url>http://dbflute.sandbox.seasar.org/</url>

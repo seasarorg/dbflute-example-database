@@ -6,7 +6,7 @@
         schema="exampledb.dbo" type="TABLE">
         <column autoIncrement="true" comment="会員ID: 連番"
             dbType="int identity" javaType="Integer" name="MEMBER_ID"
-            pkName="PK__MEMBER__2421696F" primaryKey="true"
+            pkName="PK__MEMBER__67D7753E" primaryKey="true"
             required="true" size="10" type="INTEGER"/>
         <column comment="会員名称: 会員検索の条件となる。" dbType="nvarchar"
             javaType="String" name="MEMBER_NAME" required="true"
@@ -43,7 +43,7 @@
     </table>
     <table name="MEMBER_ADDRESS" schema="exampledb.dbo" type="TABLE">
         <column dbType="int" javaType="Integer" name="MEMBER_ADDRESS_ID"
-            pkName="PK__MEMBER_ADDRESS__2609B1E1" primaryKey="true"
+            pkName="PK__MEMBER_ADDRESS__69BFBDB0" primaryKey="true"
             required="true" size="10" type="INTEGER"/>
         <column dbType="int" javaType="Integer" name="MEMBER_ID"
             required="true" size="10" type="INTEGER"/>
@@ -83,7 +83,7 @@
     <table name="MEMBER_LOGIN" schema="exampledb.dbo" type="TABLE">
         <column autoIncrement="true" dbType="bigint identity"
             javaType="Long" name="MEMBER_LOGIN_ID"
-            pkName="PK__MEMBER_LOGIN__27F1FA53" primaryKey="true"
+            pkName="PK__MEMBER_LOGIN__6BA80622" primaryKey="true"
             required="true" size="19" type="BIGINT"/>
         <column dbType="int" javaType="Integer" name="MEMBER_ID"
             required="true" size="10" type="INTEGER"/>
@@ -103,7 +103,7 @@
     </table>
     <table name="MEMBER_SECURITY" schema="exampledb.dbo" type="TABLE">
         <column dbType="int" javaType="Integer" name="MEMBER_ID"
-            pkName="PK__MEMBER_SECURITY__29DA42C5" primaryKey="true"
+            pkName="PK__MEMBER_SECURITY__6D904E94" primaryKey="true"
             required="true" size="10" type="INTEGER"/>
         <column dbType="nvarchar" javaType="String"
             name="LOGIN_PASSWORD" required="true" size="50" type="VARCHAR"/>
@@ -134,7 +134,7 @@
     <table name="MEMBER_SERVICE" schema="exampledb.dbo" type="TABLE">
         <column autoIncrement="true" dbType="int identity"
             javaType="Integer" name="MEMBER_SERVICE_ID"
-            pkName="PK__MEMBER_SERVICE__2BC28B37" primaryKey="true"
+            pkName="PK__MEMBER_SERVICE__6F789706" primaryKey="true"
             required="true" size="10" type="INTEGER"/>
         <column dbType="int" javaType="Integer" name="MEMBER_ID"
             required="true" size="10" type="INTEGER"/>
@@ -171,7 +171,7 @@
         schema="exampledb.dbo" type="TABLE">
         <column comment="会員ステータスコード:" dbType="char" javaType="String"
             name="MEMBER_STATUS_CODE"
-            pkName="PK__MEMBER_STATUS__3B04CEC7" primaryKey="true"
+            pkName="PK__MEMBER_STATUS__7EBADA96" primaryKey="true"
             required="true" size="3" type="CHAR"/>
         <column comment="会員ステータス名称:" dbType="nvarchar" javaType="String"
             name="MEMBER_STATUS_NAME" required="true" size="50" type="VARCHAR"/>
@@ -185,7 +185,7 @@
     </table>
     <table name="MEMBER_WITHDRAWAL" schema="exampledb.dbo" type="TABLE">
         <column dbType="int" javaType="Integer" name="MEMBER_ID"
-            pkName="PK__MEMBER_WITHDRAWA__2DAAD3A9" primaryKey="true"
+            pkName="PK__MEMBER_WITHDRAWA__7160DF78" primaryKey="true"
             required="true" size="10" type="INTEGER"/>
         <column dbType="char" javaType="String"
             name="WITHDRAWAL_REASON_CODE" size="3" type="CHAR"/>
@@ -218,7 +218,7 @@
     <table name="PRODUCT" schema="exampledb.dbo" type="TABLE">
         <column autoIncrement="true" dbType="int identity"
             javaType="Integer" name="PRODUCT_ID"
-            pkName="PK__PRODUCT__317B648D" primaryKey="true"
+            pkName="PK__PRODUCT__7531705C" primaryKey="true"
             required="true" size="10" type="INTEGER"/>
         <column dbType="nvarchar" javaType="String" name="PRODUCT_NAME"
             required="true" size="50" type="VARCHAR"/>
@@ -259,7 +259,7 @@
     <table name="PRODUCT_CATEGORY" schema="exampledb.dbo" type="TABLE">
         <column dbType="char" javaType="String"
             name="PRODUCT_CATEGORY_CODE"
-            pkName="PK__PRODUCT_CATEGORY__3363ACFF" primaryKey="true"
+            pkName="PK__PRODUCT_CATEGORY__7719B8CE" primaryKey="true"
             required="true" size="3" type="CHAR"/>
         <column dbType="nvarchar" javaType="String"
             name="PRODUCT_CATEGORY_NAME" required="true" size="50" type="VARCHAR"/>
@@ -273,7 +273,7 @@
     <table name="PRODUCT_STATUS" schema="exampledb.dbo" type="TABLE">
         <column dbType="char" javaType="String"
             name="PRODUCT_STATUS_CODE"
-            pkName="PK__PRODUCT_STATUS__354BF571" primaryKey="true"
+            pkName="PK__PRODUCT_STATUS__79020140" primaryKey="true"
             required="true" size="3" type="CHAR"/>
         <column dbType="nvarchar" javaType="String"
             name="PRODUCT_STATUS_NAME" required="true" size="50" type="VARCHAR"/>
@@ -286,7 +286,7 @@
     <table name="PURCHASE" schema="exampledb.dbo" type="TABLE">
         <column autoIncrement="true" dbType="bigint identity"
             javaType="Long" name="PURCHASE_ID"
-            pkName="PK__PURCHASE__2F931C1B" primaryKey="true"
+            pkName="PK__PURCHASE__734927EA" primaryKey="true"
             required="true" size="19" type="BIGINT"/>
         <column dbType="int" javaType="Integer" name="MEMBER_ID"
             required="true" size="10" type="INTEGER"/>
@@ -324,14 +324,14 @@
     </table>
     <table name="REGION" schema="exampledb.dbo" type="TABLE">
         <column dbType="int" javaType="Integer" name="REGION_ID"
-            pkName="PK__REGION__37343DE3" primaryKey="true"
+            pkName="PK__REGION__7AEA49B2" primaryKey="true"
             required="true" size="10" type="INTEGER"/>
         <column dbType="nvarchar" javaType="String" name="REGION_NAME"
             required="true" size="50" type="VARCHAR"/>
     </table>
     <table name="SERVICE_RANK" schema="exampledb.dbo" type="TABLE">
         <column dbType="char" javaType="String" name="SERVICE_RANK_CODE"
-            pkName="PK__SERVICE_RANK__391C8655" primaryKey="true"
+            pkName="PK__SERVICE_RANK__7CD29224" primaryKey="true"
             required="true" size="3" type="CHAR"/>
         <column dbType="nvarchar" javaType="String"
             name="SERVICE_RANK_NAME" required="true" size="50" type="VARCHAR"/>
@@ -381,7 +381,7 @@
     </table>
     <table name="VENDOR_CHECK" schema="exampledb.dbo" type="TABLE">
         <column dbType="numeric" javaType="Long" name="VENDOR_CHECK_ID"
-            pkName="PK__VENDOR_CHECK__621E9BE8" primaryKey="true"
+            pkName="PK__VENDOR_CHECK__25D4A7B7" primaryKey="true"
             required="true" size="16" type="NUMERIC"/>
         <column dbType="varchar" javaType="String"
             name="TYPE_OF_VARCHAR" size="32" type="VARCHAR"/>
@@ -423,7 +423,7 @@
     <table name="VENDOR_SYMMETRIC" schema="exampledb.dbo" type="TABLE">
         <column dbType="numeric" javaType="Long"
             name="VENDOR_SYMMETRIC_ID"
-            pkName="PK__VENDOR_SYMMETRIC__6406E45A" primaryKey="true"
+            pkName="PK__VENDOR_SYMMETRIC__27BCF029" primaryKey="true"
             required="true" size="16" type="NUMERIC"/>
         <column dbType="nvarchar" javaType="String" name="PLAIN_TEXT"
             size="100" type="VARCHAR"/>
@@ -433,7 +433,7 @@
     <table name="WHITE_DELIMITER" schema="exampledb.dbo" type="TABLE">
         <column autoIncrement="true" dbType="bigint identity"
             javaType="Long" name="DELIMITER_ID"
-            pkName="PK__WHITE_DELIMITER__65EF2CCC" primaryKey="true"
+            pkName="PK__WHITE_DELIMITER__29A5389B" primaryKey="true"
             required="true" size="19" type="BIGINT"/>
         <column dbType="int" javaType="Integer" name="NUMBER_NULLABLE"
             size="10" type="INTEGER"/>
@@ -447,7 +447,7 @@
     <table name="WITHDRAWAL_REASON" schema="exampledb.dbo" type="TABLE">
         <column dbType="char" javaType="String"
             name="WITHDRAWAL_REASON_CODE"
-            pkName="PK__WITHDRAWAL_REASO__3CED1739" primaryKey="true"
+            pkName="PK__WITHDRAWAL_REASO__00A32308" primaryKey="true"
             required="true" size="3" type="CHAR"/>
         <column dbType="text" javaType="String"
             name="WITHDRAWAL_REASON_TEXT" required="true"
