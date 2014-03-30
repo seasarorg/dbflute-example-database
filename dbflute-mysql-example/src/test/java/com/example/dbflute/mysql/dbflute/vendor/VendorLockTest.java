@@ -24,8 +24,10 @@ import org.seasar.dbflute.util.DfCollectionUtil;
 import com.example.dbflute.mysql.dbflute.cbean.MemberCB;
 import com.example.dbflute.mysql.dbflute.cbean.PurchaseCB;
 import com.example.dbflute.mysql.dbflute.exbhv.MemberBhv;
+import com.example.dbflute.mysql.dbflute.exbhv.MemberStatusBhv;
 import com.example.dbflute.mysql.dbflute.exbhv.PurchaseBhv;
 import com.example.dbflute.mysql.dbflute.exentity.Member;
+import com.example.dbflute.mysql.dbflute.exentity.MemberStatus;
 import com.example.dbflute.mysql.dbflute.exentity.Purchase;
 import com.example.dbflute.mysql.unit.UnitContainerTestCase;
 
@@ -39,6 +41,7 @@ public class VendorLockTest extends UnitContainerTestCase {
     //                                                                           Attribute
     //                                                                           =========
     private MemberBhv memberBhv;
+    private MemberStatusBhv memberStatusBhv;
     private PurchaseBhv purchaseBhv;
 
     // ===================================================================================
@@ -52,7 +55,10 @@ public class VendorLockTest extends UnitContainerTestCase {
     // ===================================================================================
     //                                                                              Insert
     //                                                                              ======
-    public void test_insert_Deadlock_uniqueKey() throws Exception {
+    // -----------------------------------------------------
+    //                                    UniqueKey DeadLock
+    //                                    ------------------
+    public void test_insert_UniqueKeyDeadlock_basic() throws Exception {
         final Timestamp purchaseDatetime = new HandyDate(currentDate()).moveToDayJust().getTimestamp();
         String expected = "Deadlock found"; // why?
         cannonball(new CannonballRun() {
@@ -95,7 +101,51 @@ public class VendorLockTest extends UnitContainerTestCase {
         * * * * * * * * * */
     }
 
-    public void test_insert_ForeignLockWait() throws Exception {
+    // -----------------------------------------------------
+    //                                        UniqueKey Wait
+    //                                        --------------
+    public void test_insert_UniqueKeyWait_basic() throws Exception {
+        cannonball(new CannonballRun() {
+            public void drive(CannonballCar car) {
+                car.projectA(new CannonballProjectA() {
+                    public void plan(CannonballDragon dragon) {
+                        Member member = new Member();
+                        member.setMemberName("lock1");
+                        member.setMemberAccount("foo");
+                        member.setMemberStatusCode_Formalized();
+                        memberBhv.insert(member);
+                    }
+                }, 1);
+                car.projectA(new CannonballProjectA() {
+                    public void plan(CannonballDragon dragon) {
+                        dragon.releaseIfOvertime(500);
+                        dragon.expectOvertime(); // insert waits for index lock
+                        Member member = new Member();
+                        member.setMemberName("lock2");
+                        member.setMemberAccount("foo");
+                        member.setMemberStatusCode_Formalized();
+                        memberBhv.insert(member);
+                    }
+                }, 2);
+                car.projectA(new CannonballProjectA() {
+                    public void plan(CannonballDragon dragon) {
+                        dragon.releaseIfOvertime(500);
+                        dragon.expectOvertime();
+                        Member member = new Member();
+                        member.setMemberName("lock3");
+                        member.setMemberAccount("foo");
+                        member.setMemberStatusCode_Formalized();
+                        memberBhv.insert(member);
+                    }
+                }, 3);
+            }
+        }, new CannonballOption().threadCount(3).expectExceptionAny("Deadlock found"));
+    }
+
+    // -----------------------------------------------------
+    //                                      ForeignLock Wait
+    //                                      ----------------
+    public void test_insert_ForeignLockWait_basic() throws Exception {
         final int memberId = 7;
         cannonball(new CannonballRun() {
             public void drive(CannonballCar car) {
@@ -124,7 +174,43 @@ public class VendorLockTest extends UnitContainerTestCase {
         }, new CannonballOption().threadCount(2));
     }
 
-    public void test_insert_Deadlock_NextKeyLock_for_FK() {
+    public void test_insert_ForeignLockWait_moreForeign() throws Exception {
+        final int memberId = 7;
+        MemberCB cb = new MemberCB();
+        cb.query().setMemberId_Equal(memberId);
+        Member member = memberBhv.selectEntityWithDeletedCheck(cb);
+        final String statusCode = member.getMemberStatusCode();
+        cannonball(new CannonballRun() {
+            public void drive(CannonballCar car) {
+                car.projectA(new CannonballProjectA() {
+                    public void plan(CannonballDragon dragon) {
+                        MemberStatus status = new MemberStatus();
+                        status.setMemberStatusCode(statusCode);
+                        status.setDisplayOrder(99999);
+                        memberStatusBhv.update(status);
+                    }
+                }, 1);
+                car.projectA(new CannonballProjectA() {
+                    public void plan(CannonballDragon dragon) {
+                        dragon.expectNormallyDone(); // no wait for parent of parent
+                        Purchase purchase = new Purchase();
+                        purchase.setMemberId(memberId);
+                        purchase.setProductId(1);
+                        purchase.setPurchaseDatetime(currentTimestamp());
+                        purchase.setPurchasePrice(123);
+                        purchase.setPurchaseCount(9);
+                        purchase.setPaymentCompleteFlg_True();
+                        purchaseBhv.insert(purchase); // wait
+                    }
+                }, 2);
+            }
+        }, new CannonballOption().threadCount(2));
+    }
+
+    // -----------------------------------------------------
+    //                                  NextKeyLock Deadlock
+    //                                  --------------------
+    public void test_insert_NextKeyLockDeadlock_for_FK() {
         // {3, 6, 7} no deadlock (if no data since first, deadlock)
         // if unique index removed, {3, 6, 9} no deadlock but {3, 3} deadlock
         final Map<Integer, Integer> parameterMap = new HashMap<Integer, Integer>();
@@ -183,7 +269,7 @@ public class VendorLockTest extends UnitContainerTestCase {
         }
     }
 
-    public void test_insert_Deadlock_NextKeyLock_for_PK() {
+    public void test_insert_NextKeyLockDeadlock_for_PK() {
         final Set<String> markSet = DfCollectionUtil.newHashSet();
         final Set<Integer> insertedIdSet = DfCollectionUtil.newHashSet();
         final Member source = memberBhv.selectByPKValueWithDeletedCheck(3);
@@ -218,7 +304,10 @@ public class VendorLockTest extends UnitContainerTestCase {
     // ===================================================================================
     //                                                                              Update
     //                                                                              ======
-    public void test_update_after_insert_Deadlock_basic() {
+    // -----------------------------------------------------
+    //                                  AfterInsert Deadlock
+    //                                  --------------------
+    public void test_update_AfterInsertDeadlock_basic() {
         final int memberId = 3;
         final Member before = memberBhv.selectByPKValue(memberId);
         final Long versionNo = before.getVersionNo();
@@ -252,7 +341,7 @@ public class VendorLockTest extends UnitContainerTestCase {
         log(markSet);
     }
 
-    public void test_update_after_insert_Deadlock_simply() throws Exception {
+    public void test_update_AfterInsertDeadlock_simply() throws Exception {
         cannonball(new CannonballRun() {
             public void drive(CannonballCar car) {
                 Purchase purchase = purchaseBhv.selectByPKValue(3L);
@@ -274,7 +363,10 @@ public class VendorLockTest extends UnitContainerTestCase {
         }, new CannonballOption().threadCount(3).repeatCount(1).expectExceptionAny("Deadlock found"));
     }
 
-    public void test_update_before_insert_nonDeadlock_reverse() throws Exception {
+    // -----------------------------------------------------
+    //                              BeforeInsert NonDeadlock
+    //                              ------------------------
+    public void test_update_BeforeInsertNonDeadlock_basic() throws Exception {
         cannonball(new CannonballRun() {
             public void drive(CannonballCar car) {
                 Member member = new Member();
@@ -297,6 +389,9 @@ public class VendorLockTest extends UnitContainerTestCase {
         }, new CannonballOption().threadCount(3)); // no deadlock
     }
 
+    // -----------------------------------------------------
+    //                      RepeatableRead but ReadCommitted
+    //                      --------------------------------
     public void test_update_RepeatableRead_but_ReadCommitted() { // uses original transactions
         final int memberId = 3;
         final Member before = memberBhv.selectByPKValueWithDeletedCheck(memberId);

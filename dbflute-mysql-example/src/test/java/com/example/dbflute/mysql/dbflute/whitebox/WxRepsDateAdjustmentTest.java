@@ -156,7 +156,7 @@ public class WxRepsDateAdjustmentTest extends UnitContainerTestCase {
     // ===================================================================================
     //                                                                              Detail
     //                                                                              ======
-    public void test_() throws Exception {
+    public void test_detail() throws Exception {
         // ## Arrange ##
         WhiteDateAdjustmentCB cb = new WhiteDateAdjustmentCB();
         cb.query().addOrderBy_DateAdjustmentId_Asc();
