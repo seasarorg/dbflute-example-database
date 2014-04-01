@@ -184,6 +184,8 @@ table.child, table.child td, table.child th {
 	<p class="requestlink"><a href="#envonlydomaintestproperties">EnvOnlyDomainTestProperties</a></p>
 	<p class="requestlink"><a href="#applicationproperties">ApplicationProperties</a></p>
 	<p class="requestlink"><a href="#log4jproperties">Log4jProperties</a></p>
+<p class="sisterlink"><a href="./schema-exampledb.html">to SchemaHTML</a></p>
+<p class="sisterlink"><a href="./history-exampledb.html">to HistoryHTML</a></p>
 </div>
 
 <h2 id="propertieslist">Properties List</h2>
@@ -545,7 +547,7 @@ table.child, table.child td, table.child th {
 			<td class="filecell"><strong>../src/main/resources/log4j.properties</strong></td>
 			<td class="envtypecell">-</td>
 			<td class="langtypecell">-</td>
-			<td class="sizecell">16</td>
+			<td class="sizecell">12</td>
 			<td>&nbsp;</td>
 			<td class="markcell">-</td>
 			<td class="markcell">-</td>
@@ -3107,13 +3109,35 @@ table.child, table.child td, table.child th {
 					<td class="langtypecell">-</td>
 					<td class="valuecell">DEBUG</td>
 					<td class="uniquenocell">1</td>
-					<td class="commentcell">ConsoleAppender</td>
+					<td class="commentcell">Log&nbsp;level&nbsp;for&nbsp;console&nbsp;log.</td>
 				</tr>
 			</table>
 		</td>
 	</tr>
 	<tr>
 		<td class="rownumcell">3</td>
+		<td class="keycell">log.file.loglevel</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+					<th>Comment</th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">DEBUG</td>
+					<td class="uniquenocell">1</td>
+					<td class="commentcell">Log&nbsp;level&nbsp;for&nbsp;file&nbsp;log.</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">4</td>
 		<td class="keycell">log4j.appender.console</td>
 		<td>
 			<table class="child">
@@ -3135,7 +3159,7 @@ table.child, table.child td, table.child th {
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">4</td>
+		<td class="rownumcell">5</td>
 		<td class="keycell">log4j.appender.console.Target</td>
 		<td>
 			<table class="child">
@@ -3155,7 +3179,7 @@ table.child, table.child td, table.child th {
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">5</td>
+		<td class="rownumcell">6</td>
 		<td class="keycell">log4j.appender.console.ImmediateFlush</td>
 		<td>
 			<table class="child">
@@ -3175,7 +3199,7 @@ table.child, table.child td, table.child th {
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">6</td>
+		<td class="rownumcell">7</td>
 		<td class="keycell">log4j.appender.console.Threshold</td>
 		<td>
 			<table class="child">
@@ -3195,7 +3219,7 @@ table.child, table.child td, table.child th {
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">7</td>
+		<td class="rownumcell">8</td>
 		<td class="keycell">log4j.appender.console.layout</td>
 		<td>
 			<table class="child">
@@ -3215,7 +3239,7 @@ table.child, table.child td, table.child th {
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">8</td>
+		<td class="rownumcell">9</td>
 		<td class="keycell">log4j.appender.console.layout.ConversionPattern</td>
 		<td>
 			<table class="child">
@@ -3235,7 +3259,7 @@ table.child, table.child td, table.child th {
 		</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">9</td>
+		<td class="rownumcell">10</td>
 		<td class="keycell">log4j.logger.com.example</td>
 		<td>
 			<table class="child">
@@ -3251,36 +3275,14 @@ table.child, table.child td, table.child th {
 					<td class="langtypecell">-</td>
 					<td class="valuecell">ALL,&nbsp;console</td>
 					<td class="uniquenocell">1</td>
-					<td class="commentcell">application&nbsp;logger</td>
-				</tr>
-			</table>
-		</td>
-	</tr>
-	<tr>
-		<td class="rownumcell">10</td>
-		<td class="keycell">log4j.logger.org.seasar</td>
-		<td>
-			<table class="child">
-				<tr>
-					<th>Env</th>
-					<th>Lang</th>
-					<th>Property</th>
-					<th><span title="Unique No (same value, same No)">uq</span></th>
-					<th>Comment</th>
-				</tr>
-				<tr>
-					<td class="envtypecell">-</td>
-					<td class="langtypecell">-</td>
-					<td class="valuecell">${log.logger.loglevel},&nbsp;console</td>
-					<td class="uniquenocell">1</td>
-					<td class="commentcell">Seasar&nbsp;logger,&nbsp;also&nbsp;contains&nbsp;SAStruts,&nbsp;DBFlute&nbsp;packages</td>
+					<td class="commentcell">You&nbsp;should&nbsp;set&nbsp;application&nbsp;specific&nbsp;package.</td>
 				</tr>
 			</table>
 		</td>
 	</tr>
 	<tr>
 		<td class="rownumcell">11</td>
-		<td class="keycell">log4j.logger.org.seasar.extension.dbcp</td>
+		<td class="keycell">log4j.logger.org.seasar.dbflute</td>
 		<td>
 			<table class="child">
 				<tr>
@@ -3293,16 +3295,16 @@ table.child, table.child td, table.child th {
 				<tr>
 					<td class="envtypecell">-</td>
 					<td class="langtypecell">-</td>
-					<td class="valuecell">ERROR,&nbsp;console</td>
+					<td class="valuecell">ALL,&nbsp;console</td>
 					<td class="uniquenocell">1</td>
-					<td class="commentcell">you&nbsp;can&nbsp;remove&nbsp;many&nbsp;many&nbsp;many&nbsp;'LogicalConnection'&nbsp;log</td>
+					<td class="commentcell">You&nbsp;should&nbsp;set&nbsp;DBFlute&nbsp;Runtime&nbsp;package.</td>
 				</tr>
 			</table>
 		</td>
 	</tr>
 	<tr>
 		<td class="rownumcell">12</td>
-		<td class="keycell">log4j.additivity.org.seasar.extension.dbcp</td>
+		<td class="keycell">log4j.logger.org.springframework.jdbc.datasource.DataSourceTransactionManager</td>
 		<td>
 			<table class="child">
 				<tr>
@@ -3314,91 +3316,7 @@ table.child, table.child td, table.child th {
 				<tr>
 					<td class="envtypecell">-</td>
 					<td class="langtypecell">-</td>
-					<td class="valuecell">false</td>
-					<td class="uniquenocell">1</td>
-				</tr>
-			</table>
-		</td>
-	</tr>
-	<tr>
-		<td class="rownumcell">13</td>
-		<td class="keycell">log4j.logger.org.seasar.framework.container.hotdeploy</td>
-		<td>
-			<table class="child">
-				<tr>
-					<th>Env</th>
-					<th>Lang</th>
-					<th>Property</th>
-					<th><span title="Unique No (same value, same No)">uq</span></th>
-					<th>Comment</th>
-				</tr>
-				<tr>
-					<td class="envtypecell">-</td>
-					<td class="langtypecell">-</td>
-					<td class="valuecell">ERROR,&nbsp;console</td>
-					<td class="uniquenocell">1</td>
-					<td class="commentcell">you&nbsp;can&nbsp;remove&nbsp;many&nbsp;many&nbsp;'HotDeploy'&nbsp;log</td>
-				</tr>
-			</table>
-		</td>
-	</tr>
-	<tr>
-		<td class="rownumcell">14</td>
-		<td class="keycell">log4j.additivity.org.seasar.framework.container.hotdeploy</td>
-		<td>
-			<table class="child">
-				<tr>
-					<th>Env</th>
-					<th>Lang</th>
-					<th>Property</th>
-					<th><span title="Unique No (same value, same No)">uq</span></th>
-				</tr>
-				<tr>
-					<td class="envtypecell">-</td>
-					<td class="langtypecell">-</td>
-					<td class="valuecell">false</td>
-					<td class="uniquenocell">1</td>
-				</tr>
-			</table>
-		</td>
-	</tr>
-	<tr>
-		<td class="rownumcell">15</td>
-		<td class="keycell">log4j.logger.org.seasar.framework.container.util.S2ContainerUtil</td>
-		<td>
-			<table class="child">
-				<tr>
-					<th>Env</th>
-					<th>Lang</th>
-					<th>Property</th>
-					<th><span title="Unique No (same value, same No)">uq</span></th>
-					<th>Comment</th>
-				</tr>
-				<tr>
-					<td class="envtypecell">-</td>
-					<td class="langtypecell">-</td>
-					<td class="valuecell">ERROR,&nbsp;console</td>
-					<td class="uniquenocell">1</td>
-					<td class="commentcell">you&nbsp;can&nbsp;remove&nbsp;many&nbsp;many&nbsp;'ComponentRegistration'&nbsp;log</td>
-				</tr>
-			</table>
-		</td>
-	</tr>
-	<tr>
-		<td class="rownumcell">16</td>
-		<td class="keycell">log4j.additivity.org.seasar.framework.container.util.S2ContainerUtil</td>
-		<td>
-			<table class="child">
-				<tr>
-					<th>Env</th>
-					<th>Lang</th>
-					<th>Property</th>
-					<th><span title="Unique No (same value, same No)">uq</span></th>
-				</tr>
-				<tr>
-					<td class="envtypecell">-</td>
-					<td class="langtypecell">-</td>
-					<td class="valuecell">false</td>
+					<td class="valuecell">ALL,&nbsp;console</td>
 					<td class="uniquenocell">1</td>
 				</tr>
 			</table>

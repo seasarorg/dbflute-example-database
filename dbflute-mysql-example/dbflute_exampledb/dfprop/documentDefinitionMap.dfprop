@@ -127,6 +127,9 @@ map:{
     #; historyHtmlFileName = xxx.html
     # - - - - - - - - - -/
 
+    # for the test of sister link suppressing
+    ; isSuppressSchemaHtmlToSisterLink = true
+
     # /- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # o isCheckColumnDefOrderDiff (NotRequired - Default false)
     #  Does it check differences of column-def order?
@@ -151,6 +154,9 @@ map:{
 
     # for the test of original style sheet as embedded
     ; historyHtmlStyleSheet = ./style-history.css
+
+    # for the test of sister link suppressing
+    ; isSuppressHistoryHtmlToSisterLink = true
 
     # /- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # o loadDataReverseMap: (NotRequired - Default map:{})
@@ -203,6 +209,10 @@ map:{
     #   o isCheckImplicitOverride: does it check implicit override? (NotRequired)
     #
     ; propertiesHtmlMap = map:{
+        ; df:header = map:{
+            # for the test of sister link suppressing
+            ; isSuppressToSisterLink = true
+        }
         ; BasicTestProperties = map:{
             ; baseDir = ../src
             ; rootFile = $$baseDir$$/main/resources/prop_basic_ja.properties
