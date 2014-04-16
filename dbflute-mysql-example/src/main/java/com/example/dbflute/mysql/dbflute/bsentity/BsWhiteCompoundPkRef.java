@@ -32,7 +32,7 @@ import com.example.dbflute.mysql.dbflute.exentity.*;
  *     MULTIPLE_FIRST_ID, MULTIPLE_SECOND_ID
  * 
  * [column]
- *     MULTIPLE_FIRST_ID, MULTIPLE_SECOND_ID, REF_FIRST_ID, REF_SECOND_ID
+ *     MULTIPLE_FIRST_ID, MULTIPLE_SECOND_ID, REF_FIRST_ID, REF_SECOND_ID, REF_NAME
  * 
  * [sequence]
  *     
@@ -61,10 +61,12 @@ import com.example.dbflute.mysql.dbflute.exentity.*;
  * Integer multipleSecondId = entity.getMultipleSecondId();
  * Integer refFirstId = entity.getRefFirstId();
  * Integer refSecondId = entity.getRefSecondId();
+ * String refName = entity.getRefName();
  * entity.setMultipleFirstId(multipleFirstId);
  * entity.setMultipleSecondId(multipleSecondId);
  * entity.setRefFirstId(refFirstId);
  * entity.setRefSecondId(refSecondId);
+ * entity.setRefName(refName);
  * = = = = = = = = = =/
  * </pre>
  * @author DBFlute(AutoGenerator)
@@ -94,6 +96,9 @@ public abstract class BsWhiteCompoundPkRef implements Entity, Serializable, Clon
 
     /** REF_SECOND_ID: {IX+, NotNull, INT(10), FK to white_compound_pk} */
     protected Integer _refSecondId;
+
+    /** REF_NAME: {NotNull, VARCHAR(50)} */
+    protected String _refName;
 
     // -----------------------------------------------------
     //                                              Internal
@@ -344,6 +349,7 @@ public abstract class BsWhiteCompoundPkRef implements Entity, Serializable, Clon
         sb.append(delimiter).append(getMultipleSecondId());
         sb.append(delimiter).append(getRefFirstId());
         sb.append(delimiter).append(getRefSecondId());
+        sb.append(delimiter).append(getRefName());
         if (sb.length() > delimiter.length()) {
             sb.delete(0, delimiter.length());
         }
@@ -445,5 +451,22 @@ public abstract class BsWhiteCompoundPkRef implements Entity, Serializable, Clon
     public void setRefSecondId(Integer refSecondId) {
         __modifiedProperties.addPropertyName("refSecondId");
         this._refSecondId = refSecondId;
+    }
+
+    /**
+     * [get] REF_NAME: {NotNull, VARCHAR(50)} <br />
+     * @return The value of the column 'REF_NAME'. (basically NotNull if selected: for the constraint)
+     */
+    public String getRefName() {
+        return _refName;
+    }
+
+    /**
+     * [set] REF_NAME: {NotNull, VARCHAR(50)} <br />
+     * @param refName The value of the column 'REF_NAME'. (basically NotNull if update: for the constraint)
+     */
+    public void setRefName(String refName) {
+        __modifiedProperties.addPropertyName("refName");
+        this._refName = refName;
     }
 }

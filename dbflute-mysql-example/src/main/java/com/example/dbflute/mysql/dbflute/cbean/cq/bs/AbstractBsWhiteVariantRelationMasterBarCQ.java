@@ -149,7 +149,7 @@ public abstract class AbstractBsWhiteVariantRelationMasterBarCQ extends Abstract
     }
 
     /**
-     * Set up ExistsReferrer (co-related sub-query). <br />
+     * Set up ExistsReferrer (correlated sub-query). <br />
      * {exists (select VARIANT_MASTER_ID from white_variant_relation_referrer where ...)} <br />
      * white_variant_relation_referrer by VARIANT_MASTER_ID, named 'whiteVariantRelationReferrerAsOne'.
      * <pre>
@@ -170,7 +170,7 @@ public abstract class AbstractBsWhiteVariantRelationMasterBarCQ extends Abstract
     public abstract String keepMasterBarId_ExistsReferrer_WhiteVariantRelationReferrerAsVariantList(WhiteVariantRelationReferrerCQ sq);
 
     /**
-     * Set up NotExistsReferrer (co-related sub-query). <br />
+     * Set up NotExistsReferrer (correlated sub-query). <br />
      * {not exists (select VARIANT_MASTER_ID from white_variant_relation_referrer where ...)} <br />
      * white_variant_relation_referrer by VARIANT_MASTER_ID, named 'whiteVariantRelationReferrerAsOne'.
      * <pre>

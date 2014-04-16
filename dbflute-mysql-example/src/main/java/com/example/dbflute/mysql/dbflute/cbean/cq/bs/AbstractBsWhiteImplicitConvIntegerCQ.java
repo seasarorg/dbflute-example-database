@@ -149,7 +149,7 @@ public abstract class AbstractBsWhiteImplicitConvIntegerCQ extends AbstractCondi
     }
 
     /**
-     * Set up ExistsReferrer (co-related sub-query). <br />
+     * Set up ExistsReferrer (correlated sub-query). <br />
      * {exists (select IMPLICIT_CONV_INTEGER_ID from white_implicit_conv_numeric where ...)} <br />
      * white_implicit_conv_numeric by IMPLICIT_CONV_INTEGER_ID, named 'whiteImplicitConvNumericAsOne'.
      * <pre>
@@ -170,7 +170,7 @@ public abstract class AbstractBsWhiteImplicitConvIntegerCQ extends AbstractCondi
     public abstract String keepImplicitConvIntegerId_ExistsReferrer_WhiteImplicitConvNumericList(WhiteImplicitConvNumericCQ sq);
 
     /**
-     * Set up ExistsReferrer (co-related sub-query). <br />
+     * Set up ExistsReferrer (correlated sub-query). <br />
      * {exists (select IMPLICIT_CONV_INTEGER_ID from white_implicit_conv_string where ...)} <br />
      * white_implicit_conv_string by IMPLICIT_CONV_INTEGER_ID, named 'whiteImplicitConvStringAsOne'.
      * <pre>
@@ -191,7 +191,7 @@ public abstract class AbstractBsWhiteImplicitConvIntegerCQ extends AbstractCondi
     public abstract String keepImplicitConvIntegerId_ExistsReferrer_WhiteImplicitConvStringList(WhiteImplicitConvStringCQ sq);
 
     /**
-     * Set up NotExistsReferrer (co-related sub-query). <br />
+     * Set up NotExistsReferrer (correlated sub-query). <br />
      * {not exists (select IMPLICIT_CONV_INTEGER_ID from white_implicit_conv_numeric where ...)} <br />
      * white_implicit_conv_numeric by IMPLICIT_CONV_INTEGER_ID, named 'whiteImplicitConvNumericAsOne'.
      * <pre>
@@ -212,7 +212,7 @@ public abstract class AbstractBsWhiteImplicitConvIntegerCQ extends AbstractCondi
     public abstract String keepImplicitConvIntegerId_NotExistsReferrer_WhiteImplicitConvNumericList(WhiteImplicitConvNumericCQ sq);
 
     /**
-     * Set up NotExistsReferrer (co-related sub-query). <br />
+     * Set up NotExistsReferrer (correlated sub-query). <br />
      * {not exists (select IMPLICIT_CONV_INTEGER_ID from white_implicit_conv_string where ...)} <br />
      * white_implicit_conv_string by IMPLICIT_CONV_INTEGER_ID, named 'whiteImplicitConvStringAsOne'.
      * <pre>

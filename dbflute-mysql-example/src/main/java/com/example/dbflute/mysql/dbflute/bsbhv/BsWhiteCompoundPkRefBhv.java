@@ -34,7 +34,7 @@ import com.example.dbflute.mysql.dbflute.cbean.*;
  *     MULTIPLE_FIRST_ID, MULTIPLE_SECOND_ID
  *
  * [column]
- *     MULTIPLE_FIRST_ID, MULTIPLE_SECOND_ID, REF_FIRST_ID, REF_SECOND_ID
+ *     MULTIPLE_FIRST_ID, MULTIPLE_SECOND_ID, REF_FIRST_ID, REF_SECOND_ID, REF_NAME
  *
  * [sequence]
  *     
@@ -154,10 +154,10 @@ public abstract class BsWhiteCompoundPkRefBhv extends AbstractBehaviorWritable {
         return doSelectEntity(cb, WhiteCompoundPkRef.class);
     }
 
-    protected <ENTITY extends WhiteCompoundPkRef> ENTITY doSelectEntity(final WhiteCompoundPkRefCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends WhiteCompoundPkRef> ENTITY doSelectEntity(WhiteCompoundPkRefCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, WhiteCompoundPkRefCB>() {
-            public List<ENTITY> callbackSelectList(WhiteCompoundPkRefCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhiteCompoundPkRefCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -183,10 +183,10 @@ public abstract class BsWhiteCompoundPkRefBhv extends AbstractBehaviorWritable {
         return doSelectEntityWithDeletedCheck(cb, WhiteCompoundPkRef.class);
     }
 
-    protected <ENTITY extends WhiteCompoundPkRef> ENTITY doSelectEntityWithDeletedCheck(final WhiteCompoundPkRefCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends WhiteCompoundPkRef> ENTITY doSelectEntityWithDeletedCheck(WhiteCompoundPkRefCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, WhiteCompoundPkRefCB>() {
-            public List<ENTITY> callbackSelectList(WhiteCompoundPkRefCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhiteCompoundPkRefCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -260,7 +260,7 @@ public abstract class BsWhiteCompoundPkRefBhv extends AbstractBehaviorWritable {
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
         return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, WhiteCompoundPkRefCB>() {
-            public List<ENTITY> callbackSelectList(WhiteCompoundPkRefCB cb, Class<ENTITY> tp) { return delegateSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhiteCompoundPkRefCB lcb, Class<ENTITY> ltp) { return delegateSelectList(lcb, ltp); } });
     }
 
     @Override

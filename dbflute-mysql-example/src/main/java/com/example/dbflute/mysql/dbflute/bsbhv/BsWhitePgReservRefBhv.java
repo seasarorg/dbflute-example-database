@@ -154,10 +154,10 @@ public abstract class BsWhitePgReservRefBhv extends AbstractBehaviorWritable {
         return doSelectEntity(cb, WhitePgReservRef.class);
     }
 
-    protected <ENTITY extends WhitePgReservRef> ENTITY doSelectEntity(final WhitePgReservRefCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends WhitePgReservRef> ENTITY doSelectEntity(WhitePgReservRefCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, WhitePgReservRefCB>() {
-            public List<ENTITY> callbackSelectList(WhitePgReservRefCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhitePgReservRefCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -183,10 +183,10 @@ public abstract class BsWhitePgReservRefBhv extends AbstractBehaviorWritable {
         return doSelectEntityWithDeletedCheck(cb, WhitePgReservRef.class);
     }
 
-    protected <ENTITY extends WhitePgReservRef> ENTITY doSelectEntityWithDeletedCheck(final WhitePgReservRefCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends WhitePgReservRef> ENTITY doSelectEntityWithDeletedCheck(WhitePgReservRefCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, WhitePgReservRefCB>() {
-            public List<ENTITY> callbackSelectList(WhitePgReservRefCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhitePgReservRefCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -258,7 +258,7 @@ public abstract class BsWhitePgReservRefBhv extends AbstractBehaviorWritable {
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
         return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, WhitePgReservRefCB>() {
-            public List<ENTITY> callbackSelectList(WhitePgReservRefCB cb, Class<ENTITY> tp) { return delegateSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhitePgReservRefCB lcb, Class<ENTITY> ltp) { return delegateSelectList(lcb, ltp); } });
     }
 
     @Override

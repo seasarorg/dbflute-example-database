@@ -154,10 +154,10 @@ public abstract class BsWhiteUqFkWithoutPkBhv extends AbstractBehaviorReadable {
         return doSelectEntity(cb, WhiteUqFkWithoutPk.class);
     }
 
-    protected <ENTITY extends WhiteUqFkWithoutPk> ENTITY doSelectEntity(final WhiteUqFkWithoutPkCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends WhiteUqFkWithoutPk> ENTITY doSelectEntity(WhiteUqFkWithoutPkCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, WhiteUqFkWithoutPkCB>() {
-            public List<ENTITY> callbackSelectList(WhiteUqFkWithoutPkCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhiteUqFkWithoutPkCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -183,10 +183,10 @@ public abstract class BsWhiteUqFkWithoutPkBhv extends AbstractBehaviorReadable {
         return doSelectEntityWithDeletedCheck(cb, WhiteUqFkWithoutPk.class);
     }
 
-    protected <ENTITY extends WhiteUqFkWithoutPk> ENTITY doSelectEntityWithDeletedCheck(final WhiteUqFkWithoutPkCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends WhiteUqFkWithoutPk> ENTITY doSelectEntityWithDeletedCheck(WhiteUqFkWithoutPkCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, WhiteUqFkWithoutPkCB>() {
-            public List<ENTITY> callbackSelectList(WhiteUqFkWithoutPkCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhiteUqFkWithoutPkCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -220,7 +220,7 @@ public abstract class BsWhiteUqFkWithoutPkBhv extends AbstractBehaviorReadable {
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
         return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, WhiteUqFkWithoutPkCB>() {
-            public List<ENTITY> callbackSelectList(WhiteUqFkWithoutPkCB cb, Class<ENTITY> tp) { return delegateSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhiteUqFkWithoutPkCB lcb, Class<ENTITY> ltp) { return delegateSelectList(lcb, ltp); } });
     }
 
     @Override

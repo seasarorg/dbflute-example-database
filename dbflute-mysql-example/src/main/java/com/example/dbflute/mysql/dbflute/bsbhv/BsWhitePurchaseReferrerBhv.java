@@ -154,10 +154,10 @@ public abstract class BsWhitePurchaseReferrerBhv extends AbstractBehaviorWritabl
         return doSelectEntity(cb, WhitePurchaseReferrer.class);
     }
 
-    protected <ENTITY extends WhitePurchaseReferrer> ENTITY doSelectEntity(final WhitePurchaseReferrerCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends WhitePurchaseReferrer> ENTITY doSelectEntity(WhitePurchaseReferrerCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, WhitePurchaseReferrerCB>() {
-            public List<ENTITY> callbackSelectList(WhitePurchaseReferrerCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhitePurchaseReferrerCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -183,10 +183,10 @@ public abstract class BsWhitePurchaseReferrerBhv extends AbstractBehaviorWritabl
         return doSelectEntityWithDeletedCheck(cb, WhitePurchaseReferrer.class);
     }
 
-    protected <ENTITY extends WhitePurchaseReferrer> ENTITY doSelectEntityWithDeletedCheck(final WhitePurchaseReferrerCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends WhitePurchaseReferrer> ENTITY doSelectEntityWithDeletedCheck(WhitePurchaseReferrerCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, WhitePurchaseReferrerCB>() {
-            public List<ENTITY> callbackSelectList(WhitePurchaseReferrerCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhitePurchaseReferrerCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -258,7 +258,7 @@ public abstract class BsWhitePurchaseReferrerBhv extends AbstractBehaviorWritabl
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
         return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, WhitePurchaseReferrerCB>() {
-            public List<ENTITY> callbackSelectList(WhitePurchaseReferrerCB cb, Class<ENTITY> tp) { return delegateSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhitePurchaseReferrerCB lcb, Class<ENTITY> ltp) { return delegateSelectList(lcb, ltp); } });
     }
 
     @Override

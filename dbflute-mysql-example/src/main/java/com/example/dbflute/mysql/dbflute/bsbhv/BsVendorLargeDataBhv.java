@@ -154,10 +154,10 @@ public abstract class BsVendorLargeDataBhv extends AbstractBehaviorWritable {
         return doSelectEntity(cb, VendorLargeData.class);
     }
 
-    protected <ENTITY extends VendorLargeData> ENTITY doSelectEntity(final VendorLargeDataCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends VendorLargeData> ENTITY doSelectEntity(VendorLargeDataCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, VendorLargeDataCB>() {
-            public List<ENTITY> callbackSelectList(VendorLargeDataCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(VendorLargeDataCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -183,10 +183,10 @@ public abstract class BsVendorLargeDataBhv extends AbstractBehaviorWritable {
         return doSelectEntityWithDeletedCheck(cb, VendorLargeData.class);
     }
 
-    protected <ENTITY extends VendorLargeData> ENTITY doSelectEntityWithDeletedCheck(final VendorLargeDataCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends VendorLargeData> ENTITY doSelectEntityWithDeletedCheck(VendorLargeDataCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, VendorLargeDataCB>() {
-            public List<ENTITY> callbackSelectList(VendorLargeDataCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(VendorLargeDataCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -258,7 +258,7 @@ public abstract class BsVendorLargeDataBhv extends AbstractBehaviorWritable {
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
         return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, VendorLargeDataCB>() {
-            public List<ENTITY> callbackSelectList(VendorLargeDataCB cb, Class<ENTITY> tp) { return delegateSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(VendorLargeDataCB lcb, Class<ENTITY> ltp) { return delegateSelectList(lcb, ltp); } });
     }
 
     @Override

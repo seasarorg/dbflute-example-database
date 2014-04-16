@@ -362,14 +362,14 @@
 		<td class="typecell">TABLE</td>
 		<td class="schemacell"> exampledb</td>
 		<td class="relcell">&nbsp;</td>
-		<td class="relcell"><a href="#white_compound_pk_ref" title="FK_WHITE_COMPOUND_PK_REF">WHITE_COMPOUND_PK_REF</a></td>
+		<td class="relcell"><a href="#white_compound_pk_ref" title="FK_WHITE_COMPOUND_PK_REF">WHITE_COMPOUND_PK_REF</a>, <a href="#white_compound_pk_ref_many" class="additionalfk" title="FK_WHITE_COMPOUND_PK_REF_MANY_TEST: fixedCondition=&quot;$$localAlias$$.REF_MANY_CODE = 'TPK'&quot;">WHITE_COMPOUND_PK_REF_MANY(ToPK)</a></td>
 		<td class="commentcell"> &nbsp;</td>
 		<td class="subcell">WhiteCompoundPk</td>
 	</tr>
 	<tr>
 		<td class="rownumcell">31</td>
 		<td class="aliascell"></td>
-		<td><a href="#white_compound_pk_ref" title="type=TABLE, primaryKey={MULTIPLE_FIRST_ID, MULTIPLE_SECOND_ID}, nameLength=21, columnCount=4">WHITE_COMPOUND_PK_REF</a></td>
+		<td><a href="#white_compound_pk_ref" title="type=TABLE, primaryKey={MULTIPLE_FIRST_ID, MULTIPLE_SECOND_ID}, nameLength=21, columnCount=5">WHITE_COMPOUND_PK_REF</a></td>
 		<td class="typecell">TABLE</td>
 		<td class="schemacell"> exampledb</td>
 		<td class="relcell"><a href="#white_compound_pk" title="FK_WHITE_COMPOUND_PK_REF">WHITE_COMPOUND_PK</a></td>
@@ -380,7 +380,18 @@
 	<tr>
 		<td class="rownumcell">32</td>
 		<td class="aliascell"></td>
-		<td><a href="#white_compound_pk_ref_nest" title="type=TABLE, primaryKey={COMPOUND_PK_REF_NEST_ID}, nameLength=26, columnCount=4">WHITE_COMPOUND_PK_REF_NEST</a></td>
+		<td><a href="#white_compound_pk_ref_many" title="type=TABLE, primaryKey={MULTIPLE_FIRST_ID, MULTIPLE_SECOND_ID}, nameLength=26, columnCount=6">WHITE_COMPOUND_PK_REF_MANY</a></td>
+		<td class="typecell">TABLE</td>
+		<td class="schemacell"> exampledb</td>
+		<td class="relcell"><a href="#white_compound_pk" class="additionalfk" title="FK_WHITE_COMPOUND_PK_REF_MANY_TEST: fixedCondition=&quot;$$localAlias$$.REF_MANY_CODE = 'TPK'&quot;">WHITE_COMPOUND_PK(ToPK)</a></td>
+		<td class="relcell">&nbsp;</td>
+		<td class="commentcell"> &nbsp;</td>
+		<td class="subcell">WhiteCompoundPkRefMany</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">33</td>
+		<td class="aliascell"></td>
+		<td><a href="#white_compound_pk_ref_nest" title="type=TABLE, primaryKey={COMPOUND_PK_REF_NEST_ID}, nameLength=26, columnCount=5">WHITE_COMPOUND_PK_REF_NEST</a></td>
 		<td class="typecell">TABLE</td>
 		<td class="schemacell"> exampledb</td>
 		<td class="relcell"><a href="#white_compound_pk_ref" title="FK_WHITE_COMPOUND_PK_REF_NEST_BAR_QUX">WHITE_COMPOUND_PK_REF</a>, <a href="#white_compound_pk_ref" title="FK_WHITE_COMPOUND_PK_REF_NEST_FOO_BAR">WHITE_COMPOUND_PK_REF</a></td>
@@ -389,7 +400,7 @@
 		<td class="subcell">WhiteCompoundPkRefNest</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">33</td>
+		<td class="rownumcell">34</td>
 		<td class="aliascell"></td>
 		<td><a href="#white_date_adjustment" title="type=TABLE, primaryKey={DATE_ADJUSTMENT_ID}, nameLength=21, columnCount=11">WHITE_DATE_ADJUSTMENT</a></td>
 		<td class="typecell">TABLE</td>
@@ -400,7 +411,7 @@
 		<td class="subcell">WhiteDateAdjustment</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">34</td>
+		<td class="rownumcell">35</td>
 		<td class="aliascell"></td>
 		<td><a href="#white_db_comment" title="type=TABLE, primaryKey={DB_COMMENT_CODE}, nameLength=16, columnCount=2">WHITE_DB_COMMENT</a></td>
 		<td class="typecell">TABLE</td>
@@ -411,7 +422,7 @@
 		<td class="subcell">WhiteDbComment</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">35</td>
+		<td class="rownumcell">36</td>
 		<td class="aliascell"></td>
 		<td><a href="#white_delimiter" title="type=TABLE, primaryKey={DELIMITER_ID}, nameLength=15, columnCount=5">WHITE_DELIMITER</a></td>
 		<td class="typecell">TABLE</td>
@@ -422,7 +433,7 @@
 		<td class="subcell">WhiteDelimiter</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">36</td>
+		<td class="rownumcell">37</td>
 		<td class="aliascell"></td>
 		<td><a href="#white_deprecated_cls_element" title="type=TABLE, primaryKey={DEPRECATED_CLS_ELEMENT_CODE}, nameLength=28, columnCount=2">WHITE_DEPRECATED_CLS_ELEMENT</a></td>
 		<td class="typecell">TABLE</td>
@@ -433,7 +444,7 @@
 		<td class="subcell">WhiteDeprecatedClsElement</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">37</td>
+		<td class="rownumcell">38</td>
 		<td class="aliascell"></td>
 		<td><a href="#white_escaped_dfprop" title="type=TABLE, primaryKey={ESCAPED_DFPROP_CODE}, nameLength=20, columnCount=2">WHITE_ESCAPED_DFPROP</a></td>
 		<td class="typecell">TABLE</td>
@@ -444,7 +455,7 @@
 		<td class="subcell">WhiteEscapedDfprop</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">38</td>
+		<td class="rownumcell">39</td>
 		<td class="aliascell"></td>
 		<td><a href="#white_escaped_java_doc" title="type=TABLE, primaryKey={ESCAPED_JAVA_DOC_CODE}, nameLength=22, columnCount=2">WHITE_ESCAPED_JAVA_DOC</a></td>
 		<td class="typecell">TABLE</td>
@@ -455,7 +466,7 @@
 		<td class="subcell">WhiteEscapedJavaDoc</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">39</td>
+		<td class="rownumcell">40</td>
 		<td class="aliascell"></td>
 		<td><a href="#white_implicit_conv_integer" title="type=TABLE, primaryKey={IMPLICIT_CONV_INTEGER_ID}, nameLength=27, columnCount=4">WHITE_IMPLICIT_CONV_INTEGER</a></td>
 		<td class="typecell">TABLE</td>
@@ -466,7 +477,7 @@
 		<td class="subcell">WhiteImplicitConvInteger</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">40</td>
+		<td class="rownumcell">41</td>
 		<td class="aliascell"></td>
 		<td><a href="#white_implicit_conv_numeric" title="type=TABLE, primaryKey={IMPLICIT_CONV_NUMERIC_ID}, nameLength=27, columnCount=4">WHITE_IMPLICIT_CONV_NUMERIC</a></td>
 		<td class="typecell">TABLE</td>
@@ -477,7 +488,7 @@
 		<td class="subcell">WhiteImplicitConvNumeric</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">41</td>
+		<td class="rownumcell">42</td>
 		<td class="aliascell"></td>
 		<td><a href="#white_implicit_conv_string" title="type=TABLE, primaryKey={IMPLICIT_CONV_STRING_ID}, nameLength=26, columnCount=4">WHITE_IMPLICIT_CONV_STRING</a></td>
 		<td class="typecell">TABLE</td>
@@ -488,7 +499,7 @@
 		<td class="subcell">WhiteImplicitConvString</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">42</td>
+		<td class="rownumcell">43</td>
 		<td class="aliascell"></td>
 		<td><a href="#white_implicit_reverse_fk" title="type=TABLE, primaryKey={WHITE_IMPLICIT_REVERSE_FK_ID}, nameLength=25, columnCount=2">WHITE_IMPLICIT_REVERSE_FK</a></td>
 		<td class="typecell">TABLE</td>
@@ -499,7 +510,7 @@
 		<td class="subcell">WhiteImplicitReverseFk</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">43</td>
+		<td class="rownumcell">44</td>
 		<td class="aliascell"></td>
 		<td><a href="#white_implicit_reverse_fk_ref" title="type=TABLE, primaryKey={WHITE_IMPLICIT_REVERSE_FK_REF_ID}, nameLength=29, columnCount=4">WHITE_IMPLICIT_REVERSE_FK_REF</a></td>
 		<td class="typecell">TABLE</td>
@@ -510,7 +521,7 @@
 		<td class="subcell">WhiteImplicitReverseFkRef</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">44</td>
+		<td class="rownumcell">45</td>
 		<td class="aliascell"></td>
 		<td><a href="#white_implicit_reverse_fk_suppress" title="type=TABLE, primaryKey={WHITE_IMPLICIT_REVERSE_FK_SUPPRESS_ID}, nameLength=34, columnCount=4">WHITE_IMPLICIT_REVERSE_FK_SUPPRESS</a></td>
 		<td class="typecell">TABLE</td>
@@ -521,7 +532,7 @@
 		<td class="subcell">WhiteImplicitReverseFkSuppress</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">45</td>
+		<td class="rownumcell">46</td>
 		<td class="aliascell"></td>
 		<td><a href="#white_line_sep_comment" title="type=TABLE, primaryKey={LINE_SEP_COMMENT_CODE}, nameLength=22, columnCount=2">WHITE_LINE_SEP_COMMENT</a></td>
 		<td class="typecell">TABLE</td>
@@ -532,7 +543,7 @@
 		<td class="subcell">WhiteLineSepComment</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">46</td>
+		<td class="rownumcell">47</td>
 		<td class="aliascell"></td>
 		<td><a href="#white_load_data" title="type=TABLE, primaryKey={LOAD_DATA_ID}, nameLength=15, columnCount=2">WHITE_LOAD_DATA</a></td>
 		<td class="typecell">TABLE</td>
@@ -543,7 +554,7 @@
 		<td class="subcell">WhiteLoadData</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">47</td>
+		<td class="rownumcell">48</td>
 		<td class="aliascell"></td>
 		<td><a href="#white_myself" title="type=TABLE, primaryKey={MYSELF_ID}, nameLength=12, columnCount=2">WHITE_MYSELF</a></td>
 		<td class="typecell">TABLE</td>
@@ -554,7 +565,7 @@
 		<td class="subcell">WhiteMyself</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">48</td>
+		<td class="rownumcell">49</td>
 		<td class="aliascell"></td>
 		<td><a href="#white_myself_check" title="type=TABLE, primaryKey={MYSELF_CHECK_ID}, nameLength=18, columnCount=3">WHITE_MYSELF_CHECK</a></td>
 		<td class="typecell">TABLE</td>
@@ -565,7 +576,7 @@
 		<td class="subcell">WhiteMyselfCheck</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">49</td>
+		<td class="rownumcell">50</td>
 		<td class="aliascell"></td>
 		<td><a href="#white_no_pk" title="type=TABLE, primaryKey={}, nameLength=11, columnCount=3">WHITE_NO_PK</a></td>
 		<td class="typecell">TABLE</td>
@@ -576,7 +587,7 @@
 		<td class="subcell">WhiteNoPk</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">50</td>
+		<td class="rownumcell">51</td>
 		<td class="aliascell"></td>
 		<td><a href="#white_pg_reserv" title="type=TABLE, primaryKey={CLASS}, nameLength=15, columnCount=20">WHITE_PG_RESERV</a></td>
 		<td class="typecell">TABLE</td>
@@ -587,7 +598,7 @@
 		<td class="subcell">WhitePgReserv</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">51</td>
+		<td class="rownumcell">52</td>
 		<td class="aliascell"></td>
 		<td><a href="#white_pg_reserv_ref" title="type=TABLE, primaryKey={REF_ID}, nameLength=19, columnCount=2">WHITE_PG_RESERV_REF</a></td>
 		<td class="typecell">TABLE</td>
@@ -598,7 +609,7 @@
 		<td class="subcell">WhitePgReservRef</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">52</td>
+		<td class="rownumcell">53</td>
 		<td class="aliascell"></td>
 		<td><a href="#white_point_type_mapping" title="type=TABLE, primaryKey={POINT_TYPE_MAPPING_ID}, nameLength=24, columnCount=5">WHITE_POINT_TYPE_MAPPING</a></td>
 		<td class="typecell">TABLE</td>
@@ -609,7 +620,7 @@
 		<td class="subcell">WhitePointTypeMapping</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">53</td>
+		<td class="rownumcell">54</td>
 		<td class="aliascell"></td>
 		<td><a href="#white_purchase_referrer" title="type=TABLE, primaryKey={PURCHASE_REFERRER_ID}, nameLength=23, columnCount=2">WHITE_PURCHASE_REFERRER</a></td>
 		<td class="typecell">TABLE</td>
@@ -620,7 +631,7 @@
 		<td class="subcell">WhitePurchaseReferrer</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">54</td>
+		<td class="rownumcell">55</td>
 		<td class="aliascell"></td>
 		<td><a href="#white_quoted" title="type=TABLE, primaryKey={SELECT}, nameLength=12, columnCount=2">WHITE_QUOTED</a></td>
 		<td class="typecell">TABLE</td>
@@ -631,7 +642,7 @@
 		<td class="subcell">WhiteQuoted</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">55</td>
+		<td class="rownumcell">56</td>
 		<td class="aliascell"></td>
 		<td><a href="#white_quoted_ref" title="type=TABLE, primaryKey={WHERE}, nameLength=16, columnCount=2">WHITE_QUOTED_REF</a></td>
 		<td class="typecell">TABLE</td>
@@ -642,7 +653,7 @@
 		<td class="subcell">WhiteQuotedRef</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">56</td>
+		<td class="rownumcell">57</td>
 		<td class="aliascell"></td>
 		<td><a href="#white_self_reference" title="type=TABLE, primaryKey={SELF_REFERENCE_ID}, nameLength=20, columnCount=3">WHITE_SELF_REFERENCE</a></td>
 		<td class="typecell">TABLE</td>
@@ -653,7 +664,7 @@
 		<td class="subcell">WhiteSelfReference</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">57</td>
+		<td class="rownumcell">58</td>
 		<td class="aliascell"></td>
 		<td><a href="#white_self_reference_ref_one" title="type=TABLE, primaryKey={SELF_REFERENCE_ID}, nameLength=28, columnCount=2">WHITE_SELF_REFERENCE_REF_ONE</a></td>
 		<td class="typecell">TABLE</td>
@@ -664,7 +675,7 @@
 		<td class="subcell">WhiteSelfReferenceRefOne</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">58</td>
+		<td class="rownumcell">59</td>
 		<td class="aliascell"></td>
 		<td><a href="#white_split_multiple_fk_base" title="type=TABLE, primaryKey={BASE_ID}, nameLength=28, columnCount=4">WHITE_SPLIT_MULTIPLE_FK_BASE</a></td>
 		<td class="typecell">TABLE</td>
@@ -675,7 +686,7 @@
 		<td class="subcell">WhiteSplitMultipleFkBase</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">59</td>
+		<td class="rownumcell">60</td>
 		<td class="aliascell"></td>
 		<td><a href="#white_split_multiple_fk_child" title="type=TABLE, primaryKey={CHILD_ID}, nameLength=29, columnCount=3">WHITE_SPLIT_MULTIPLE_FK_CHILD</a></td>
 		<td class="typecell">TABLE</td>
@@ -686,7 +697,7 @@
 		<td class="subcell">WhiteSplitMultipleFkChild</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">60</td>
+		<td class="rownumcell">61</td>
 		<td class="aliascell"></td>
 		<td><a href="#white_split_multiple_fk_next" title="type=TABLE, primaryKey={NEXT_ID}, nameLength=28, columnCount=2">WHITE_SPLIT_MULTIPLE_FK_NEXT</a></td>
 		<td class="typecell">TABLE</td>
@@ -697,7 +708,7 @@
 		<td class="subcell">WhiteSplitMultipleFkNext</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">61</td>
+		<td class="rownumcell">62</td>
 		<td class="aliascell"></td>
 		<td><a href="#white_split_multiple_fk_ref" title="type=TABLE, primaryKey={FIRST_ID, SECOND_CODE}, nameLength=27, columnCount=3">WHITE_SPLIT_MULTIPLE_FK_REF</a></td>
 		<td class="typecell">TABLE</td>
@@ -708,7 +719,7 @@
 		<td class="subcell">WhiteSplitMultipleFkRef</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">62</td>
+		<td class="rownumcell">63</td>
 		<td class="aliascell"></td>
 		<td><a href="#white_suppress_def_check" title="type=TABLE, primaryKey={DEF_CHECK_ID}, nameLength=24, columnCount=2">WHITE_SUPPRESS_DEF_CHECK</a></td>
 		<td class="typecell">TABLE</td>
@@ -719,7 +730,7 @@
 		<td class="subcell">WhiteSuppressDefCheck</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">63</td>
+		<td class="rownumcell">64</td>
 		<td class="aliascell"></td>
 		<td><a href="#white_table_except_gen_head" title="type=TABLE, primaryKey={GEN_HEAD_ID}, nameLength=27, columnCount=3">WHITE_TABLE_EXCEPT_GEN_HEAD</a></td>
 		<td class="typecell">TABLE</td>
@@ -730,7 +741,7 @@
 		<td class="subcell">WhiteTableExceptGenHead</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">64</td>
+		<td class="rownumcell">65</td>
 		<td class="aliascell"></td>
 		<td><a href="#white_table_except_gen_only" title="type=TABLE, primaryKey={GEN_ONLY_ID}, nameLength=27, columnCount=4">WHITE_TABLE_EXCEPT_GEN_ONLY</a></td>
 		<td class="typecell">TABLE</td>
@@ -741,7 +752,7 @@
 		<td class="subcell">WhiteTableExceptGenOnly</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">65</td>
+		<td class="rownumcell">66</td>
 		<td class="aliascell"></td>
 		<td><a href="#white_table_except_gen_ref" title="type=TABLE, primaryKey={GEN_REF_ID}, nameLength=26, columnCount=3">WHITE_TABLE_EXCEPT_GEN_REF</a></td>
 		<td class="typecell">TABLE</td>
@@ -752,7 +763,7 @@
 		<td class="subcell">WhiteTableExceptGenRef</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">66</td>
+		<td class="rownumcell">67</td>
 		<td class="aliascell"></td>
 		<td><a href="#white_uq_fk" title="type=TABLE, primaryKey={UQ_FK_ID}, nameLength=11, columnCount=2">WHITE_UQ_FK</a></td>
 		<td class="typecell">TABLE</td>
@@ -763,7 +774,7 @@
 		<td class="subcell">WhiteUqFk</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">67</td>
+		<td class="rownumcell">68</td>
 		<td class="aliascell"></td>
 		<td><a href="#white_uq_fk_ref" title="type=TABLE, primaryKey={UQ_FK_REF_ID}, nameLength=15, columnCount=5">WHITE_UQ_FK_REF</a></td>
 		<td class="typecell">TABLE</td>
@@ -774,7 +785,7 @@
 		<td class="subcell">WhiteUqFkRef</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">68</td>
+		<td class="rownumcell">69</td>
 		<td class="aliascell"></td>
 		<td><a href="#white_uq_fk_ref_nest" title="type=TABLE, primaryKey={UQ_FK_REF_NEST_ID}, nameLength=20, columnCount=3">WHITE_UQ_FK_REF_NEST</a></td>
 		<td class="typecell">TABLE</td>
@@ -785,7 +796,7 @@
 		<td class="subcell">WhiteUqFkRefNest</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">69</td>
+		<td class="rownumcell">70</td>
 		<td class="aliascell"></td>
 		<td><a href="#white_uq_fk_without_pk" title="type=TABLE, primaryKey={}, nameLength=22, columnCount=2">WHITE_UQ_FK_WITHOUT_PK</a></td>
 		<td class="typecell">TABLE</td>
@@ -796,7 +807,7 @@
 		<td class="subcell">WhiteUqFkWithoutPk</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">70</td>
+		<td class="rownumcell">71</td>
 		<td class="aliascell"></td>
 		<td><a href="#white_uq_fk_without_pk_ref" title="type=TABLE, primaryKey={}, nameLength=26, columnCount=2">WHITE_UQ_FK_WITHOUT_PK_REF</a></td>
 		<td class="typecell">TABLE</td>
@@ -807,7 +818,7 @@
 		<td class="subcell">WhiteUqFkWithoutPkRef</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">71</td>
+		<td class="rownumcell">72</td>
 		<td class="aliascell"></td>
 		<td><a href="#white_variant_relation_master_bar" title="type=TABLE, primaryKey={MASTER_BAR_ID}, nameLength=33, columnCount=2">WHITE_VARIANT_RELATION_MASTER_BAR</a></td>
 		<td class="typecell">TABLE</td>
@@ -818,7 +829,7 @@
 		<td class="subcell">WhiteVariantRelationMasterBar</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">72</td>
+		<td class="rownumcell">73</td>
 		<td class="aliascell"></td>
 		<td><a href="#white_variant_relation_master_corge" title="type=TABLE, primaryKey={MASTER_CORGE_ID}, nameLength=35, columnCount=3">WHITE_VARIANT_RELATION_MASTER_CORGE</a></td>
 		<td class="typecell">TABLE</td>
@@ -829,7 +840,7 @@
 		<td class="subcell">WhiteVariantRelationMasterCorge</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">73</td>
+		<td class="rownumcell">74</td>
 		<td class="aliascell"></td>
 		<td><a href="#white_variant_relation_master_foo" title="type=TABLE, primaryKey={MASTER_FOO_ID}, nameLength=33, columnCount=2">WHITE_VARIANT_RELATION_MASTER_FOO</a></td>
 		<td class="typecell">TABLE</td>
@@ -840,7 +851,7 @@
 		<td class="subcell">WhiteVariantRelationMasterFoo</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">74</td>
+		<td class="rownumcell">75</td>
 		<td class="aliascell"></td>
 		<td><a href="#white_variant_relation_master_qux" title="type=TABLE, primaryKey={MASTER_QUX_ID}, nameLength=33, columnCount=3">WHITE_VARIANT_RELATION_MASTER_QUX</a></td>
 		<td class="typecell">TABLE</td>
@@ -851,7 +862,7 @@
 		<td class="subcell">WhiteVariantRelationMasterQux</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">75</td>
+		<td class="rownumcell">76</td>
 		<td class="aliascell"></td>
 		<td><a href="#white_variant_relation_referrer" title="type=TABLE, primaryKey={REFERRER_ID}, nameLength=31, columnCount=3">WHITE_VARIANT_RELATION_REFERRER</a></td>
 		<td class="typecell">TABLE</td>
@@ -862,7 +873,7 @@
 		<td class="subcell">WhiteVariantRelationReferrer</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">76</td>
+		<td class="rownumcell">77</td>
 		<td class="aliascell"></td>
 		<td><a href="#white_xls_man" title="type=TABLE, primaryKey={XLS_MAN_ID}, nameLength=13, columnCount=3">WHITE_XLS_MAN</a></td>
 		<td class="typecell">TABLE</td>
@@ -873,7 +884,7 @@
 		<td class="subcell">WhiteXlsMan</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">77</td>
+		<td class="rownumcell">78</td>
 		<td class="aliascell">退会理由</td>
 		<td><a href="#withdrawal_reason" title="type=TABLE, primaryKey={WITHDRAWAL_REASON_CODE}, nameLength=17, columnCount=3">WITHDRAWAL_REASON</a></td>
 		<td class="typecell">TABLE</td>
@@ -884,7 +895,7 @@
 		<td class="subcell">WithdrawalReason</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">78</td>
+		<td class="rownumcell">79</td>
 		<td class="aliascell">VIEW</td>
 		<td><a href="#summary_product" title="type=VIEW, primaryKey={PRODUCT_ID}, nameLength=15, columnCount=5">SUMMARY_PRODUCT</a></td>
 		<td class="typecell">VIEW</td>
@@ -895,7 +906,7 @@
 		<td class="subcell">SummaryProduct</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">79</td>
+		<td class="rownumcell">80</td>
 		<td class="aliascell">VIEW</td>
 		<td><a href="#summary_withdrawal" title="type=VIEW, primaryKey={}, nameLength=18, columnCount=9">SUMMARY_WITHDRAWAL</a></td>
 		<td class="typecell">VIEW</td>
@@ -906,7 +917,7 @@
 		<td class="subcell">SummaryWithdrawal</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">80</td>
+		<td class="rownumcell">81</td>
 		<td class="aliascell">VIEW</td>
 		<td><a href="#white_no_pk_relation" title="type=VIEW, primaryKey={}, nameLength=20, columnCount=5">WHITE_NO_PK_RELATION</a></td>
 		<td class="typecell">VIEW</td>
@@ -917,7 +928,7 @@
 		<td class="subcell">WhiteNoPkRelation</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">81</td>
+		<td class="rownumcell">82</td>
 		<td class="aliascell">隣の商品</td>
 		<td><a href="#next_schema_product" title="type=TABLE, schema=nextexampledb, primaryKey={PRODUCT_ID}, nameLength=19, columnCount=9">NEXT_SCHEMA_PRODUCT</a></td>
 		<td class="typecell">TABLE</td>
@@ -928,7 +939,7 @@
 		<td class="subcell">NextSchemaProduct</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">82</td>
+		<td class="rownumcell">83</td>
 		<td class="aliascell">WXADD</td>
 		<td><a href="#white_additional" title="type=TABLE, primaryKey={foo_id}, nameLength=16, columnCount=4">WHITE_ADDITIONAL</a></td>
 		<td class="typecell">TABLE</td>
@@ -4977,7 +4988,7 @@ WHITE_COMPOUND_PK
 		<td class="typecell">INT</td>
 		<td class="sizecell"> 10 </td>
 		<td class="relcell">&nbsp;&nbsp;</td>
-		<td class="relcell"><a href="#white_compound_pk_ref" title="FK_WHITE_COMPOUND_PK_REF">WHITE_COMPOUND_PK_REF</a>&nbsp;</td>
+		<td class="relcell"><a href="#white_compound_pk_ref" title="FK_WHITE_COMPOUND_PK_REF">WHITE_COMPOUND_PK_REF</a>,<br /><a href="#white_compound_pk_ref_many" class="additionalfk" title="FK_WHITE_COMPOUND_PK_REF_MANY_TEST: fixedCondition=&quot;$$localAlias$$.REF_MANY_CODE = 'TPK'&quot;">WHITE_COMPOUND_PK_REF_MANY(ToPK)</a>&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
 		<td class="subcell">pkFirstId</td>
 		<td class="subcell">Integer</td>
@@ -4994,7 +5005,7 @@ WHITE_COMPOUND_PK
 		<td class="typecell">INT</td>
 		<td class="sizecell"> 10 </td>
 		<td class="relcell">&nbsp;&nbsp;</td>
-		<td class="relcell"><a href="#white_compound_pk_ref" title="FK_WHITE_COMPOUND_PK_REF">WHITE_COMPOUND_PK_REF</a>&nbsp;</td>
+		<td class="relcell"><a href="#white_compound_pk_ref" title="FK_WHITE_COMPOUND_PK_REF">WHITE_COMPOUND_PK_REF</a>,<br /><a href="#white_compound_pk_ref_many" class="additionalfk" title="FK_WHITE_COMPOUND_PK_REF_MANY_TEST: fixedCondition=&quot;$$localAlias$$.REF_MANY_CODE = 'TPK'&quot;">WHITE_COMPOUND_PK_REF_MANY(ToPK)</a>&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
 		<td class="subcell">pkSecondId</td>
 		<td class="subcell">Integer</td>
@@ -5017,7 +5028,7 @@ WHITE_COMPOUND_PK
 		<td class="subcell">String</td>
 	</tr>
 </table>
-  <h2 id="white_compound_pk_ref" title="type=TABLE, primaryKey={MULTIPLE_FIRST_ID, MULTIPLE_SECOND_ID}, nameLength=21, columnCount=4">
+  <h2 id="white_compound_pk_ref" title="type=TABLE, primaryKey={MULTIPLE_FIRST_ID, MULTIPLE_SECOND_ID}, nameLength=21, columnCount=5">
 WHITE_COMPOUND_PK_REF
 &nbsp;<span class="tableschema">on exampledb</span>
 </h2>
@@ -5109,8 +5120,152 @@ WHITE_COMPOUND_PK_REF
 		<td class="subcell">refSecondId</td>
 		<td class="subcell">Integer</td>
 	</tr>
+	<tr>
+		<td class="rownumcell">5</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class="aliascell"></td>
+		<td id="white_compound_pk_ref_ref_name">REF_NAME</td>
+		<td class="typecell">VARCHAR</td>
+		<td class="sizecell"> 50 </td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="subcell">refName</td>
+		<td class="subcell">String</td>
+	</tr>
 </table>
-  <h2 id="white_compound_pk_ref_nest" title="type=TABLE, primaryKey={COMPOUND_PK_REF_NEST_ID}, nameLength=26, columnCount=4">
+  <h2 id="white_compound_pk_ref_many" title="type=TABLE, primaryKey={MULTIPLE_FIRST_ID, MULTIPLE_SECOND_ID}, nameLength=26, columnCount=6">
+WHITE_COMPOUND_PK_REF_MANY
+&nbsp;<span class="tableschema">on exampledb</span>
+</h2>
+<table summary="Columns in WHITE_COMPOUND_PK_REF_MANY">
+	<thead>
+	<tr>
+		<th class="rownumhead">No.</th>
+		<th>PK</th>
+		<th>ID</th>
+		<th>UQ</th>
+		<th>IX</th>
+		<th>Not<br />Null</th>
+		<th>Alias</th>
+		<th>Name</th>
+		<th>Type</th>
+		<th>Size</th>
+		<th>ForeignTable</th>
+		<th>ReferrerTable</th>
+		<th>Classification</th>
+		<th>PropertyName</th>
+		<th>JavaType</th>
+	</tr>
+	</thead>
+	<tr>
+		<td class="rownumcell">1</td>
+		<td class="flgcell" title="PRIMARY">o<span class="flgplus">+</span></td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class="aliascell"></td>
+		<td id="white_compound_pk_ref_many_multiple_first_id">MULTIPLE_FIRST_ID</td>
+		<td class="typecell">INT</td>
+		<td class="sizecell"> 10 </td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="subcell">multipleFirstId</td>
+		<td class="subcell">Integer</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">2</td>
+		<td class="flgcell" title="PRIMARY">o<span class="flgplus">+</span></td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class="aliascell"></td>
+		<td id="white_compound_pk_ref_many_multiple_second_id">MULTIPLE_SECOND_ID</td>
+		<td class="typecell">INT</td>
+		<td class="sizecell"> 10 </td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="subcell">multipleSecondId</td>
+		<td class="subcell">Integer</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">3</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class="aliascell"></td>
+		<td id="white_compound_pk_ref_many_ref_many_first_id">REF_MANY_FIRST_ID</td>
+		<td class="typecell">INT</td>
+		<td class="sizecell"> 10 </td>
+		<td class="relcell"><a href="#white_compound_pk" class="additionalfk" title="FK_WHITE_COMPOUND_PK_REF_MANY_TEST: fixedCondition=&quot;$$localAlias$$.REF_MANY_CODE = 'TPK'&quot;">WHITE_COMPOUND_PK(ToPK)</a>&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="subcell">refManyFirstId</td>
+		<td class="subcell">Integer</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">4</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class="aliascell"></td>
+		<td id="white_compound_pk_ref_many_ref_many_second_id">REF_MANY_SECOND_ID</td>
+		<td class="typecell">INT</td>
+		<td class="sizecell"> 10 </td>
+		<td class="relcell"><a href="#white_compound_pk" class="additionalfk" title="FK_WHITE_COMPOUND_PK_REF_MANY_TEST: fixedCondition=&quot;$$localAlias$$.REF_MANY_CODE = 'TPK'&quot;">WHITE_COMPOUND_PK(ToPK)</a>&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="subcell">refManySecondId</td>
+		<td class="subcell">Integer</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">5</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class="aliascell"></td>
+		<td id="white_compound_pk_ref_many_ref_many_code">REF_MANY_CODE</td>
+		<td class="typecell">CHAR</td>
+		<td class="sizecell"> 3 </td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="subcell">refManyCode</td>
+		<td class="subcell">String</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">6</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class="aliascell"></td>
+		<td id="white_compound_pk_ref_many_ref_many_name">REF_MANY_NAME</td>
+		<td class="typecell">VARCHAR</td>
+		<td class="sizecell"> 50 </td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="subcell">refManyName</td>
+		<td class="subcell">String</td>
+	</tr>
+</table>
+  <h2 id="white_compound_pk_ref_nest" title="type=TABLE, primaryKey={COMPOUND_PK_REF_NEST_ID}, nameLength=26, columnCount=5">
 WHITE_COMPOUND_PK_REF_NEST
 &nbsp;<span class="tableschema">on exampledb</span>
 </h2>
@@ -5201,6 +5356,23 @@ WHITE_COMPOUND_PK_REF_NEST
 		<td class="relcell"> &nbsp;</td>
 		<td class="subcell">quxMultipleId</td>
 		<td class="subcell">Integer</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">5</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class="aliascell"></td>
+		<td id="white_compound_pk_ref_nest_nest_name">NEST_NAME</td>
+		<td class="typecell">VARCHAR</td>
+		<td class="sizecell"> 50 </td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="subcell">nestName</td>
+		<td class="subcell">String</td>
 	</tr>
 </table>
   <h2 id="white_date_adjustment" title="type=TABLE, primaryKey={DATE_ADJUSTMENT_ID}, nameLength=21, columnCount=11">

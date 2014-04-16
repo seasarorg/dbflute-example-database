@@ -32,7 +32,7 @@ import com.example.dbflute.mysql.dbflute.exentity.*;
  *     COMPOUND_PK_REF_NEST_ID
  * 
  * [column]
- *     COMPOUND_PK_REF_NEST_ID, FOO_MULTIPLE_ID, BAR_MULTIPLE_ID, QUX_MULTIPLE_ID
+ *     COMPOUND_PK_REF_NEST_ID, FOO_MULTIPLE_ID, BAR_MULTIPLE_ID, QUX_MULTIPLE_ID, NEST_NAME
  * 
  * [sequence]
  *     
@@ -61,10 +61,12 @@ import com.example.dbflute.mysql.dbflute.exentity.*;
  * Integer fooMultipleId = entity.getFooMultipleId();
  * Integer barMultipleId = entity.getBarMultipleId();
  * Integer quxMultipleId = entity.getQuxMultipleId();
+ * String nestName = entity.getNestName();
  * entity.setCompoundPkRefNestId(compoundPkRefNestId);
  * entity.setFooMultipleId(fooMultipleId);
  * entity.setBarMultipleId(barMultipleId);
  * entity.setQuxMultipleId(quxMultipleId);
+ * entity.setNestName(nestName);
  * = = = = = = = = = =/
  * </pre>
  * @author DBFlute(AutoGenerator)
@@ -94,6 +96,9 @@ public abstract class BsWhiteCompoundPkRefNest implements Entity, Serializable, 
 
     /** QUX_MULTIPLE_ID: {IX+, NotNull, INT(10), FK to white_compound_pk_ref} */
     protected Integer _quxMultipleId;
+
+    /** NEST_NAME: {NotNull, VARCHAR(50)} */
+    protected String _nestName;
 
     // -----------------------------------------------------
     //                                              Internal
@@ -318,6 +323,7 @@ public abstract class BsWhiteCompoundPkRefNest implements Entity, Serializable, 
         sb.append(delimiter).append(getFooMultipleId());
         sb.append(delimiter).append(getBarMultipleId());
         sb.append(delimiter).append(getQuxMultipleId());
+        sb.append(delimiter).append(getNestName());
         if (sb.length() > delimiter.length()) {
             sb.delete(0, delimiter.length());
         }
@@ -416,5 +422,22 @@ public abstract class BsWhiteCompoundPkRefNest implements Entity, Serializable, 
     public void setQuxMultipleId(Integer quxMultipleId) {
         __modifiedProperties.addPropertyName("quxMultipleId");
         this._quxMultipleId = quxMultipleId;
+    }
+
+    /**
+     * [get] NEST_NAME: {NotNull, VARCHAR(50)} <br />
+     * @return The value of the column 'NEST_NAME'. (basically NotNull if selected: for the constraint)
+     */
+    public String getNestName() {
+        return _nestName;
+    }
+
+    /**
+     * [set] NEST_NAME: {NotNull, VARCHAR(50)} <br />
+     * @param nestName The value of the column 'NEST_NAME'. (basically NotNull if update: for the constraint)
+     */
+    public void setNestName(String nestName) {
+        __modifiedProperties.addPropertyName("nestName");
+        this._nestName = nestName;
     }
 }

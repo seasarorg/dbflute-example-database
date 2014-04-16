@@ -47,13 +47,13 @@ import com.example.dbflute.mysql.dbflute.exentity.*;
  *     
  * 
  * [referrer table]
- *     white_compound_pk_ref
+ *     white_compound_pk_ref, white_compound_pk_ref_many
  * 
  * [foreign property]
  *     
  * 
  * [referrer property]
- *     whiteCompoundPkRefList
+ *     whiteCompoundPkRefList, whiteCompoundPkRefManyToPKList
  * 
  * [get/set template]
  * /= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
@@ -164,6 +164,26 @@ public abstract class BsWhiteCompoundPk implements Entity, Serializable, Cloneab
         _whiteCompoundPkRefList = whiteCompoundPkRefList;
     }
 
+    /** white_compound_pk_ref_many by REF_MANY_FIRST_ID, REF_MANY_SECOND_ID, named 'whiteCompoundPkRefManyToPKList'. */
+    protected List<WhiteCompoundPkRefMany> _whiteCompoundPkRefManyToPKList;
+
+    /**
+     * white_compound_pk_ref_many by REF_MANY_FIRST_ID, REF_MANY_SECOND_ID, named 'whiteCompoundPkRefManyToPKList'.
+     * @return The entity list of referrer property 'whiteCompoundPkRefManyToPKList'. (NotNull: even if no loading, returns empty list)
+     */
+    public List<WhiteCompoundPkRefMany> getWhiteCompoundPkRefManyToPKList() {
+        if (_whiteCompoundPkRefManyToPKList == null) { _whiteCompoundPkRefManyToPKList = newReferrerList(); }
+        return _whiteCompoundPkRefManyToPKList;
+    }
+
+    /**
+     * white_compound_pk_ref_many by REF_MANY_FIRST_ID, REF_MANY_SECOND_ID, named 'whiteCompoundPkRefManyToPKList'.
+     * @param whiteCompoundPkRefManyToPKList The entity list of referrer property 'whiteCompoundPkRefManyToPKList'. (NullAllowed)
+     */
+    public void setWhiteCompoundPkRefManyToPKList(List<WhiteCompoundPkRefMany> whiteCompoundPkRefManyToPKList) {
+        _whiteCompoundPkRefManyToPKList = whiteCompoundPkRefManyToPKList;
+    }
+
     protected <ELEMENT> List<ELEMENT> newReferrerList() {
         return new ArrayList<ELEMENT>();
     }
@@ -272,6 +292,8 @@ public abstract class BsWhiteCompoundPk implements Entity, Serializable, Cloneab
         String l = "\n  ";
         if (_whiteCompoundPkRefList != null) { for (Entity e : _whiteCompoundPkRefList)
         { if (e != null) { sb.append(l).append(xbRDS(e, "whiteCompoundPkRefList")); } } }
+        if (_whiteCompoundPkRefManyToPKList != null) { for (Entity e : _whiteCompoundPkRefManyToPKList)
+        { if (e != null) { sb.append(l).append(xbRDS(e, "whiteCompoundPkRefManyToPKList")); } } }
         return sb.toString();
     }
     protected String xbRDS(Entity e, String name) { // buildRelationDisplayString()
@@ -306,6 +328,8 @@ public abstract class BsWhiteCompoundPk implements Entity, Serializable, Cloneab
         String c = ",";
         if (_whiteCompoundPkRefList != null && !_whiteCompoundPkRefList.isEmpty())
         { sb.append(c).append("whiteCompoundPkRefList"); }
+        if (_whiteCompoundPkRefManyToPKList != null && !_whiteCompoundPkRefManyToPKList.isEmpty())
+        { sb.append(c).append("whiteCompoundPkRefManyToPKList"); }
         if (sb.length() > c.length()) {
             sb.delete(0, c.length()).insert(0, "(").append(")");
         }

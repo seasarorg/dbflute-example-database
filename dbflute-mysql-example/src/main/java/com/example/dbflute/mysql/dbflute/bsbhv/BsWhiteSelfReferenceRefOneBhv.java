@@ -154,10 +154,10 @@ public abstract class BsWhiteSelfReferenceRefOneBhv extends AbstractBehaviorWrit
         return doSelectEntity(cb, WhiteSelfReferenceRefOne.class);
     }
 
-    protected <ENTITY extends WhiteSelfReferenceRefOne> ENTITY doSelectEntity(final WhiteSelfReferenceRefOneCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends WhiteSelfReferenceRefOne> ENTITY doSelectEntity(WhiteSelfReferenceRefOneCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, WhiteSelfReferenceRefOneCB>() {
-            public List<ENTITY> callbackSelectList(WhiteSelfReferenceRefOneCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhiteSelfReferenceRefOneCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -183,10 +183,10 @@ public abstract class BsWhiteSelfReferenceRefOneBhv extends AbstractBehaviorWrit
         return doSelectEntityWithDeletedCheck(cb, WhiteSelfReferenceRefOne.class);
     }
 
-    protected <ENTITY extends WhiteSelfReferenceRefOne> ENTITY doSelectEntityWithDeletedCheck(final WhiteSelfReferenceRefOneCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends WhiteSelfReferenceRefOne> ENTITY doSelectEntityWithDeletedCheck(WhiteSelfReferenceRefOneCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, WhiteSelfReferenceRefOneCB>() {
-            public List<ENTITY> callbackSelectList(WhiteSelfReferenceRefOneCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhiteSelfReferenceRefOneCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -258,7 +258,7 @@ public abstract class BsWhiteSelfReferenceRefOneBhv extends AbstractBehaviorWrit
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
         return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, WhiteSelfReferenceRefOneCB>() {
-            public List<ENTITY> callbackSelectList(WhiteSelfReferenceRefOneCB cb, Class<ENTITY> tp) { return delegateSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhiteSelfReferenceRefOneCB lcb, Class<ENTITY> ltp) { return delegateSelectList(lcb, ltp); } });
     }
 
     @Override

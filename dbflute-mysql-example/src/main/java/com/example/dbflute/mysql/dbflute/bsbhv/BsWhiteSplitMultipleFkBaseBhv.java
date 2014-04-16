@@ -154,10 +154,10 @@ public abstract class BsWhiteSplitMultipleFkBaseBhv extends AbstractBehaviorWrit
         return doSelectEntity(cb, WhiteSplitMultipleFkBase.class);
     }
 
-    protected <ENTITY extends WhiteSplitMultipleFkBase> ENTITY doSelectEntity(final WhiteSplitMultipleFkBaseCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends WhiteSplitMultipleFkBase> ENTITY doSelectEntity(WhiteSplitMultipleFkBaseCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, WhiteSplitMultipleFkBaseCB>() {
-            public List<ENTITY> callbackSelectList(WhiteSplitMultipleFkBaseCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhiteSplitMultipleFkBaseCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -183,10 +183,10 @@ public abstract class BsWhiteSplitMultipleFkBaseBhv extends AbstractBehaviorWrit
         return doSelectEntityWithDeletedCheck(cb, WhiteSplitMultipleFkBase.class);
     }
 
-    protected <ENTITY extends WhiteSplitMultipleFkBase> ENTITY doSelectEntityWithDeletedCheck(final WhiteSplitMultipleFkBaseCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends WhiteSplitMultipleFkBase> ENTITY doSelectEntityWithDeletedCheck(WhiteSplitMultipleFkBaseCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, WhiteSplitMultipleFkBaseCB>() {
-            public List<ENTITY> callbackSelectList(WhiteSplitMultipleFkBaseCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhiteSplitMultipleFkBaseCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -258,7 +258,7 @@ public abstract class BsWhiteSplitMultipleFkBaseBhv extends AbstractBehaviorWrit
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
         return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, WhiteSplitMultipleFkBaseCB>() {
-            public List<ENTITY> callbackSelectList(WhiteSplitMultipleFkBaseCB cb, Class<ENTITY> tp) { return delegateSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhiteSplitMultipleFkBaseCB lcb, Class<ENTITY> ltp) { return delegateSelectList(lcb, ltp); } });
     }
 
     @Override

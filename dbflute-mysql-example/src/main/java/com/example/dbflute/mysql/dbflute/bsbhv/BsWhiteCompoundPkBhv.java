@@ -49,13 +49,13 @@ import com.example.dbflute.mysql.dbflute.cbean.*;
  *     
  *
  * [referrer table]
- *     white_compound_pk_ref
+ *     white_compound_pk_ref, white_compound_pk_ref_many
  *
  * [foreign property]
  *     
  *
  * [referrer property]
- *     whiteCompoundPkRefList
+ *     whiteCompoundPkRefList, whiteCompoundPkRefManyToPKList
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
@@ -154,10 +154,10 @@ public abstract class BsWhiteCompoundPkBhv extends AbstractBehaviorWritable {
         return doSelectEntity(cb, WhiteCompoundPk.class);
     }
 
-    protected <ENTITY extends WhiteCompoundPk> ENTITY doSelectEntity(final WhiteCompoundPkCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends WhiteCompoundPk> ENTITY doSelectEntity(WhiteCompoundPkCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, WhiteCompoundPkCB>() {
-            public List<ENTITY> callbackSelectList(WhiteCompoundPkCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhiteCompoundPkCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -183,10 +183,10 @@ public abstract class BsWhiteCompoundPkBhv extends AbstractBehaviorWritable {
         return doSelectEntityWithDeletedCheck(cb, WhiteCompoundPk.class);
     }
 
-    protected <ENTITY extends WhiteCompoundPk> ENTITY doSelectEntityWithDeletedCheck(final WhiteCompoundPkCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends WhiteCompoundPk> ENTITY doSelectEntityWithDeletedCheck(WhiteCompoundPkCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, WhiteCompoundPkCB>() {
-            public List<ENTITY> callbackSelectList(WhiteCompoundPkCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhiteCompoundPkCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -260,7 +260,7 @@ public abstract class BsWhiteCompoundPkBhv extends AbstractBehaviorWritable {
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
         return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, WhiteCompoundPkCB>() {
-            public List<ENTITY> callbackSelectList(WhiteCompoundPkCB cb, Class<ENTITY> tp) { return delegateSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhiteCompoundPkCB lcb, Class<ENTITY> ltp) { return delegateSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -486,6 +486,107 @@ public abstract class BsWhiteCompoundPkBhv extends AbstractBehaviorWritable {
             }
             public void setlcEt(WhiteCompoundPkRef re, WhiteCompoundPk le) { re.setWhiteCompoundPk(le); }
             public String getRfPrNm() { return "whiteCompoundPkRefList"; }
+        });
+    }
+
+    /**
+     * {Refer to overload method that has an argument of the list of entity.}
+     * @param whiteCompoundPk The entity of whiteCompoundPk. (NotNull)
+     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
+     */
+    public void loadWhiteCompoundPkRefManyToPKList(WhiteCompoundPk whiteCompoundPk, ConditionBeanSetupper<WhiteCompoundPkRefManyCB> conditionBeanSetupper) {
+        xassLRArg(whiteCompoundPk, conditionBeanSetupper);
+        loadWhiteCompoundPkRefManyToPKList(xnewLRLs(whiteCompoundPk), conditionBeanSetupper);
+    }
+    /**
+     * Load referrer of whiteCompoundPkRefManyToPKList with the set-upper for condition-bean of referrer. <br />
+     * white_compound_pk_ref_many by REF_MANY_FIRST_ID, REF_MANY_SECOND_ID, named 'whiteCompoundPkRefManyToPKList'.
+     * <pre>
+     * whiteCompoundPkBhv.<span style="color: #FD4747">loadWhiteCompoundPkRefManyToPKList</span>(whiteCompoundPkList, new ConditionBeanSetupper&lt;WhiteCompoundPkRefManyCB&gt;() {
+     *     public void setup(WhiteCompoundPkRefManyCB cb) {
+     *         cb.setupSelect...();
+     *         cb.query().setFoo...(value);
+     *         cb.query().addOrderBy_Bar...(); <span style="color: #3F7E5E">// basically you should order referrer list</span>
+     *     }
+     * });
+     * for (WhiteCompoundPk whiteCompoundPk : whiteCompoundPkList) {
+     *     ... = whiteCompoundPk.<span style="color: #FD4747">getWhiteCompoundPkRefManyToPKList()</span>;
+     * }
+     * </pre>
+     * About internal policy, the value of primary key(and others too) is treated as case-insensitive. <br />
+     * The condition-bean that the set-upper provides have settings before you touch it. It is as follows:
+     * <pre>
+     * cb.query().set[ForeignKey]_InScope(pkList);
+     * cb.query().addOrderBy_[ForeignKey]_Asc();
+     * </pre>
+     * @param whiteCompoundPkList The entity list of whiteCompoundPk. (NotNull)
+     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
+     */
+    public void loadWhiteCompoundPkRefManyToPKList(List<WhiteCompoundPk> whiteCompoundPkList, ConditionBeanSetupper<WhiteCompoundPkRefManyCB> conditionBeanSetupper) {
+        xassLRArg(whiteCompoundPkList, conditionBeanSetupper);
+        loadWhiteCompoundPkRefManyToPKList(whiteCompoundPkList, new LoadReferrerOption<WhiteCompoundPkRefManyCB, WhiteCompoundPkRefMany>().xinit(conditionBeanSetupper));
+    }
+    /**
+     * {Refer to overload method that has an argument of the list of entity.}
+     * @param whiteCompoundPk The entity of whiteCompoundPk. (NotNull)
+     * @param loadReferrerOption The option of load-referrer. (NotNull)
+     */
+    public void loadWhiteCompoundPkRefManyToPKList(WhiteCompoundPk whiteCompoundPk, LoadReferrerOption<WhiteCompoundPkRefManyCB, WhiteCompoundPkRefMany> loadReferrerOption) {
+        xassLRArg(whiteCompoundPk, loadReferrerOption);
+        loadWhiteCompoundPkRefManyToPKList(xnewLRLs(whiteCompoundPk), loadReferrerOption);
+    }
+    /**
+     * {Refer to overload method that has an argument of condition-bean setupper.}
+     * @param whiteCompoundPkList The entity list of whiteCompoundPk. (NotNull)
+     * @param loadReferrerOption The option of load-referrer. (NotNull)
+     */
+    public void loadWhiteCompoundPkRefManyToPKList(List<WhiteCompoundPk> whiteCompoundPkList, LoadReferrerOption<WhiteCompoundPkRefManyCB, WhiteCompoundPkRefMany> loadReferrerOption) {
+        xassLRArg(whiteCompoundPkList, loadReferrerOption);
+        if (whiteCompoundPkList.isEmpty()) { return; }
+        final WhiteCompoundPkRefManyBhv referrerBhv = xgetBSFLR().select(WhiteCompoundPkRefManyBhv.class);
+        helpLoadReferrerInternally(whiteCompoundPkList, loadReferrerOption, new InternalLoadReferrerCallback<WhiteCompoundPk, java.util.Map<String, Object>, WhiteCompoundPkRefManyCB, WhiteCompoundPkRefMany>() {
+            public java.util.Map<String, Object> getPKVal(WhiteCompoundPk et) {
+                java.util.Map<String, Object> primaryKeyMap = new java.util.LinkedHashMap<String, Object>();
+                primaryKeyMap.put("PkFirstId", et.getPkFirstId());
+                primaryKeyMap.put("PkSecondId", et.getPkSecondId());
+                return primaryKeyMap;
+            }
+            public void setRfLs(WhiteCompoundPk et, List<WhiteCompoundPkRefMany> ls) { et.setWhiteCompoundPkRefManyToPKList(ls); }
+            public WhiteCompoundPkRefManyCB newMyCB() { return referrerBhv.newMyConditionBean(); }
+            public void qyFKIn(WhiteCompoundPkRefManyCB cb, List<java.util.Map<String, Object>> ls) {
+                final String aliasName = cb.getSqlClause().getBasePointAliasName();
+                String identity = null;
+                StringBuilder sb = new StringBuilder();
+                for (java.util.Map<String, Object> primaryKeyMap : ls) {
+                    if (sb.length() > 0) { sb.append(")").append(ln()).append("     or ("); }
+                    sb.append(aliasName).append(".REF_MANY_FIRST_ID = ");
+                    identity = "whiteCompoundPkRefManyToPKListPkFirstId";
+                    sb.append(cb.query().xregisterFreeParameterToThemeList(identity, primaryKeyMap.get("PkFirstId")));
+                    sb.append(" and ");
+                    sb.append(aliasName).append(".REF_MANY_SECOND_ID = ");
+                    identity = "whiteCompoundPkRefManyToPKListPkSecondId";
+                    sb.append(cb.query().xregisterFreeParameterToThemeList(identity, primaryKeyMap.get("PkSecondId")));
+                }
+                sb.insert(0, "((").append("))");
+                cb.getSqlClause().registerWhereClause(sb.toString(), aliasName);
+            }
+            public void qyOdFKAsc(WhiteCompoundPkRefManyCB cb) {
+                cb.query().addOrderBy_RefManyFirstId_Asc();
+                cb.query().addOrderBy_RefManySecondId_Asc();
+            }
+            public void spFKCol(WhiteCompoundPkRefManyCB cb) {
+                cb.specify().columnRefManyFirstId();
+                cb.specify().columnRefManySecondId();
+            }
+            public List<WhiteCompoundPkRefMany> selRfLs(WhiteCompoundPkRefManyCB cb) { return referrerBhv.selectList(cb); }
+            public java.util.Map<String, Object> getFKVal(WhiteCompoundPkRefMany re) {
+                java.util.Map<String, Object> foreignKeyMap = new java.util.LinkedHashMap<String, Object>();
+                foreignKeyMap.put("PkFirstId", re.getRefManyFirstId());
+                foreignKeyMap.put("PkSecondId", re.getRefManySecondId());
+                return foreignKeyMap;
+            }
+            public void setlcEt(WhiteCompoundPkRefMany re, WhiteCompoundPk le) { re.setWhiteCompoundPkToPK(le); }
+            public String getRfPrNm() { return "whiteCompoundPkRefManyToPKList"; }
         });
     }
 

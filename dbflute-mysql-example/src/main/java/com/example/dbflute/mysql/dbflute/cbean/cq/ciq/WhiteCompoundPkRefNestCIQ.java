@@ -88,6 +88,7 @@ public class WhiteCompoundPkRefNestCIQ extends AbstractBsWhiteCompoundPkRefNestC
     protected ConditionValue getCValueFooMultipleId() { return _myCQ.getFooMultipleId(); }
     protected ConditionValue getCValueBarMultipleId() { return _myCQ.getBarMultipleId(); }
     protected ConditionValue getCValueQuxMultipleId() { return _myCQ.getQuxMultipleId(); }
+    protected ConditionValue getCValueNestName() { return _myCQ.getNestName(); }
     protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
     public String keepScalarCondition(WhiteCompoundPkRefNestCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }

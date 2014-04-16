@@ -154,10 +154,10 @@ public abstract class BsWhiteImplicitReverseFkSuppressBhv extends AbstractBehavi
         return doSelectEntity(cb, WhiteImplicitReverseFkSuppress.class);
     }
 
-    protected <ENTITY extends WhiteImplicitReverseFkSuppress> ENTITY doSelectEntity(final WhiteImplicitReverseFkSuppressCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends WhiteImplicitReverseFkSuppress> ENTITY doSelectEntity(WhiteImplicitReverseFkSuppressCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, WhiteImplicitReverseFkSuppressCB>() {
-            public List<ENTITY> callbackSelectList(WhiteImplicitReverseFkSuppressCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhiteImplicitReverseFkSuppressCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -183,10 +183,10 @@ public abstract class BsWhiteImplicitReverseFkSuppressBhv extends AbstractBehavi
         return doSelectEntityWithDeletedCheck(cb, WhiteImplicitReverseFkSuppress.class);
     }
 
-    protected <ENTITY extends WhiteImplicitReverseFkSuppress> ENTITY doSelectEntityWithDeletedCheck(final WhiteImplicitReverseFkSuppressCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends WhiteImplicitReverseFkSuppress> ENTITY doSelectEntityWithDeletedCheck(WhiteImplicitReverseFkSuppressCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, WhiteImplicitReverseFkSuppressCB>() {
-            public List<ENTITY> callbackSelectList(WhiteImplicitReverseFkSuppressCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhiteImplicitReverseFkSuppressCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -258,7 +258,7 @@ public abstract class BsWhiteImplicitReverseFkSuppressBhv extends AbstractBehavi
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
         return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, WhiteImplicitReverseFkSuppressCB>() {
-            public List<ENTITY> callbackSelectList(WhiteImplicitReverseFkSuppressCB cb, Class<ENTITY> tp) { return delegateSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhiteImplicitReverseFkSuppressCB lcb, Class<ENTITY> ltp) { return delegateSelectList(lcb, ltp); } });
     }
 
     @Override

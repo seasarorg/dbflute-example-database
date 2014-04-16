@@ -149,7 +149,7 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
     }
 
     /**
-     * Set up ExistsReferrer (co-related sub-query). <br />
+     * Set up ExistsReferrer (correlated sub-query). <br />
      * {exists (select PURCHASE_REFERRER_ID from white_purchase_referrer where ...)} <br />
      * white_purchase_referrer by PURCHASE_REFERRER_ID, named 'whitePurchaseReferrerAsOne'.
      * <pre>
@@ -170,7 +170,7 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
     public abstract String keepPurchaseId_ExistsReferrer_WhitePurchaseReferrerAsOne(WhitePurchaseReferrerCQ sq);
 
     /**
-     * Set up ExistsReferrer (co-related sub-query). <br />
+     * Set up ExistsReferrer (correlated sub-query). <br />
      * {exists (select PURCHASE_ID from purchase where ...)} <br />
      * (購入)purchase by PURCHASE_ID, named 'purchaseSelfAsOne'.
      * <pre>
@@ -191,7 +191,7 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
     public abstract String keepPurchaseId_ExistsReferrer_PurchaseSelfAsOne(PurchaseCQ sq);
 
     /**
-     * Set up NotExistsReferrer (co-related sub-query). <br />
+     * Set up NotExistsReferrer (correlated sub-query). <br />
      * {not exists (select PURCHASE_REFERRER_ID from white_purchase_referrer where ...)} <br />
      * white_purchase_referrer by PURCHASE_REFERRER_ID, named 'whitePurchaseReferrerAsOne'.
      * <pre>
@@ -212,7 +212,7 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
     public abstract String keepPurchaseId_NotExistsReferrer_WhitePurchaseReferrerAsOne(WhitePurchaseReferrerCQ sq);
 
     /**
-     * Set up NotExistsReferrer (co-related sub-query). <br />
+     * Set up NotExistsReferrer (correlated sub-query). <br />
      * {not exists (select PURCHASE_ID from purchase where ...)} <br />
      * (購入)purchase by PURCHASE_ID, named 'purchaseSelfAsOne'.
      * <pre>

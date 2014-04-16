@@ -154,10 +154,10 @@ public abstract class BsWhiteTableExceptGenHeadBhv extends AbstractBehaviorWrita
         return doSelectEntity(cb, WhiteTableExceptGenHead.class);
     }
 
-    protected <ENTITY extends WhiteTableExceptGenHead> ENTITY doSelectEntity(final WhiteTableExceptGenHeadCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends WhiteTableExceptGenHead> ENTITY doSelectEntity(WhiteTableExceptGenHeadCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, WhiteTableExceptGenHeadCB>() {
-            public List<ENTITY> callbackSelectList(WhiteTableExceptGenHeadCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhiteTableExceptGenHeadCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -183,10 +183,10 @@ public abstract class BsWhiteTableExceptGenHeadBhv extends AbstractBehaviorWrita
         return doSelectEntityWithDeletedCheck(cb, WhiteTableExceptGenHead.class);
     }
 
-    protected <ENTITY extends WhiteTableExceptGenHead> ENTITY doSelectEntityWithDeletedCheck(final WhiteTableExceptGenHeadCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends WhiteTableExceptGenHead> ENTITY doSelectEntityWithDeletedCheck(WhiteTableExceptGenHeadCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, WhiteTableExceptGenHeadCB>() {
-            public List<ENTITY> callbackSelectList(WhiteTableExceptGenHeadCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhiteTableExceptGenHeadCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -258,7 +258,7 @@ public abstract class BsWhiteTableExceptGenHeadBhv extends AbstractBehaviorWrita
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
         return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, WhiteTableExceptGenHeadCB>() {
-            public List<ENTITY> callbackSelectList(WhiteTableExceptGenHeadCB cb, Class<ENTITY> tp) { return delegateSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhiteTableExceptGenHeadCB lcb, Class<ENTITY> ltp) { return delegateSelectList(lcb, ltp); } });
     }
 
     @Override

@@ -154,10 +154,10 @@ public abstract class BsWhitePointTypeMappingBhv extends AbstractBehaviorWritabl
         return doSelectEntity(cb, WhitePointTypeMapping.class);
     }
 
-    protected <ENTITY extends WhitePointTypeMapping> ENTITY doSelectEntity(final WhitePointTypeMappingCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends WhitePointTypeMapping> ENTITY doSelectEntity(WhitePointTypeMappingCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, WhitePointTypeMappingCB>() {
-            public List<ENTITY> callbackSelectList(WhitePointTypeMappingCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhitePointTypeMappingCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -183,10 +183,10 @@ public abstract class BsWhitePointTypeMappingBhv extends AbstractBehaviorWritabl
         return doSelectEntityWithDeletedCheck(cb, WhitePointTypeMapping.class);
     }
 
-    protected <ENTITY extends WhitePointTypeMapping> ENTITY doSelectEntityWithDeletedCheck(final WhitePointTypeMappingCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends WhitePointTypeMapping> ENTITY doSelectEntityWithDeletedCheck(WhitePointTypeMappingCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, WhitePointTypeMappingCB>() {
-            public List<ENTITY> callbackSelectList(WhitePointTypeMappingCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhitePointTypeMappingCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -258,7 +258,7 @@ public abstract class BsWhitePointTypeMappingBhv extends AbstractBehaviorWritabl
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
         return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, WhitePointTypeMappingCB>() {
-            public List<ENTITY> callbackSelectList(WhitePointTypeMappingCB cb, Class<ENTITY> tp) { return delegateSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhitePointTypeMappingCB lcb, Class<ENTITY> ltp) { return delegateSelectList(lcb, ltp); } });
     }
 
     @Override

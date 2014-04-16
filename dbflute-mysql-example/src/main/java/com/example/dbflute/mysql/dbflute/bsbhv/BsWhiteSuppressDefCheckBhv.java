@@ -154,10 +154,10 @@ public abstract class BsWhiteSuppressDefCheckBhv extends AbstractBehaviorWritabl
         return doSelectEntity(cb, WhiteSuppressDefCheck.class);
     }
 
-    protected <ENTITY extends WhiteSuppressDefCheck> ENTITY doSelectEntity(final WhiteSuppressDefCheckCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends WhiteSuppressDefCheck> ENTITY doSelectEntity(WhiteSuppressDefCheckCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, WhiteSuppressDefCheckCB>() {
-            public List<ENTITY> callbackSelectList(WhiteSuppressDefCheckCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhiteSuppressDefCheckCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -183,10 +183,10 @@ public abstract class BsWhiteSuppressDefCheckBhv extends AbstractBehaviorWritabl
         return doSelectEntityWithDeletedCheck(cb, WhiteSuppressDefCheck.class);
     }
 
-    protected <ENTITY extends WhiteSuppressDefCheck> ENTITY doSelectEntityWithDeletedCheck(final WhiteSuppressDefCheckCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends WhiteSuppressDefCheck> ENTITY doSelectEntityWithDeletedCheck(WhiteSuppressDefCheckCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, WhiteSuppressDefCheckCB>() {
-            public List<ENTITY> callbackSelectList(WhiteSuppressDefCheckCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhiteSuppressDefCheckCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -258,7 +258,7 @@ public abstract class BsWhiteSuppressDefCheckBhv extends AbstractBehaviorWritabl
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
         return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, WhiteSuppressDefCheckCB>() {
-            public List<ENTITY> callbackSelectList(WhiteSuppressDefCheckCB cb, Class<ENTITY> tp) { return delegateSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhiteSuppressDefCheckCB lcb, Class<ENTITY> ltp) { return delegateSelectList(lcb, ltp); } });
     }
 
     @Override

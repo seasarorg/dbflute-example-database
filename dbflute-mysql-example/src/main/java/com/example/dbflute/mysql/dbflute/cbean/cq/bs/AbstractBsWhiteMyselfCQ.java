@@ -149,7 +149,7 @@ public abstract class AbstractBsWhiteMyselfCQ extends AbstractConditionQuery {
     }
 
     /**
-     * Set up ExistsReferrer (co-related sub-query). <br />
+     * Set up ExistsReferrer (correlated sub-query). <br />
      * {exists (select MYSELF_ID from white_myself_check where ...)} <br />
      * white_myself_check by MYSELF_ID, named 'whiteMyselfCheckAsOne'.
      * <pre>
@@ -170,7 +170,7 @@ public abstract class AbstractBsWhiteMyselfCQ extends AbstractConditionQuery {
     public abstract String keepMyselfId_ExistsReferrer_WhiteMyselfCheckList(WhiteMyselfCheckCQ sq);
 
     /**
-     * Set up NotExistsReferrer (co-related sub-query). <br />
+     * Set up NotExistsReferrer (correlated sub-query). <br />
      * {not exists (select MYSELF_ID from white_myself_check where ...)} <br />
      * white_myself_check by MYSELF_ID, named 'whiteMyselfCheckAsOne'.
      * <pre>

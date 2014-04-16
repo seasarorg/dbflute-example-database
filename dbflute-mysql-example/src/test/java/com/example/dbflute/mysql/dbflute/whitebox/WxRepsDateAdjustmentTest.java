@@ -185,7 +185,7 @@ public class WxRepsDateAdjustmentTest extends UnitContainerTestCase {
                 String timeExp = toString(time, "HH:mm:ss");
                 log(id, date, datetime, timeExp, integer, namedStringDate, namedTypedDate, pinpointStringDate,
                         pinpointTypedDate, string);
-                HandyDate baseHandy = new HandyDate(currentDate()).addDay(30);
+                HandyDate baseHandy = new HandyDate(currentDate()).addDay(-30);
                 assertTrue(baseHandy.isLessEqual(date));
                 Date expectedDatetime = new HandyDate(date).addDay(1).addHour(12).addMinute(34).addSecond(56).getDate();
                 assertEquals(expectedDatetime, datetime);

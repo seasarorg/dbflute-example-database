@@ -54,6 +54,7 @@ public class WhiteCompoundPkRefDbm extends AbstractDBMeta {
         setupEpg(_epgMap, new EpgMultipleSecondId(), "multipleSecondId");
         setupEpg(_epgMap, new EpgRefFirstId(), "refFirstId");
         setupEpg(_epgMap, new EpgRefSecondId(), "refSecondId");
+        setupEpg(_epgMap, new EpgRefName(), "refName");
     }
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
@@ -72,6 +73,10 @@ public class WhiteCompoundPkRefDbm extends AbstractDBMeta {
     public static class EpgRefSecondId implements PropertyGateway {
         public Object read(Entity et) { return ((WhiteCompoundPkRef)et).getRefSecondId(); }
         public void write(Entity et, Object vl) { ((WhiteCompoundPkRef)et).setRefSecondId(cti(vl)); }
+    }
+    public static class EpgRefName implements PropertyGateway {
+        public Object read(Entity et) { return ((WhiteCompoundPkRef)et).getRefName(); }
+        public void write(Entity et, Object vl) { ((WhiteCompoundPkRef)et).setRefName((String)vl); }
     }
 
     // ===================================================================================
@@ -92,11 +97,13 @@ public class WhiteCompoundPkRefDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnMultipleSecondId = cci("MULTIPLE_SECOND_ID", "MULTIPLE_SECOND_ID", null, null, true, "multipleSecondId", Integer.class, true, false, "INT", 10, 0, null, false, null, null, null, "whiteCompoundPkRefNestByQuxMultipleIdList,whiteCompoundPkRefNestByFooMultipleIdList", null);
     protected final ColumnInfo _columnRefFirstId = cci("REF_FIRST_ID", "REF_FIRST_ID", null, null, true, "refFirstId", Integer.class, false, false, "INT", 10, 0, null, false, null, null, "whiteCompoundPk", null, null);
     protected final ColumnInfo _columnRefSecondId = cci("REF_SECOND_ID", "REF_SECOND_ID", null, null, true, "refSecondId", Integer.class, false, false, "INT", 10, 0, null, false, null, null, "whiteCompoundPk", null, null);
+    protected final ColumnInfo _columnRefName = cci("REF_NAME", "REF_NAME", null, null, true, "refName", String.class, false, false, "VARCHAR", 50, 0, null, false, null, null, null, null, null);
 
     public ColumnInfo columnMultipleFirstId() { return _columnMultipleFirstId; }
     public ColumnInfo columnMultipleSecondId() { return _columnMultipleSecondId; }
     public ColumnInfo columnRefFirstId() { return _columnRefFirstId; }
     public ColumnInfo columnRefSecondId() { return _columnRefSecondId; }
+    public ColumnInfo columnRefName() { return _columnRefName; }
 
     protected List<ColumnInfo> ccil() {
         List<ColumnInfo> ls = newArrayList();
@@ -104,6 +111,7 @@ public class WhiteCompoundPkRefDbm extends AbstractDBMeta {
         ls.add(columnMultipleSecondId());
         ls.add(columnRefFirstId());
         ls.add(columnRefSecondId());
+        ls.add(columnRefName());
         return ls;
     }
 

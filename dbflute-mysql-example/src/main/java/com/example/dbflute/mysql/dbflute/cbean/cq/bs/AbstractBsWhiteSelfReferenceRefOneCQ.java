@@ -149,7 +149,7 @@ public abstract class AbstractBsWhiteSelfReferenceRefOneCQ extends AbstractCondi
     }
 
     /**
-     * Set up ExistsReferrer (co-related sub-query). <br />
+     * Set up ExistsReferrer (correlated sub-query). <br />
      * {exists (select PARENT_ID from white_self_reference where ...)} <br />
      * white_self_reference by PARENT_ID, named 'whiteSelfReferenceAsOne'. <br />
      * This relation is auto-detected as implicit reverse FK.
@@ -171,7 +171,7 @@ public abstract class AbstractBsWhiteSelfReferenceRefOneCQ extends AbstractCondi
     public abstract String keepSelfReferenceId_ExistsReferrer_WhiteSelfReferenceByParentIdList(WhiteSelfReferenceCQ sq);
 
     /**
-     * Set up NotExistsReferrer (co-related sub-query). <br />
+     * Set up NotExistsReferrer (correlated sub-query). <br />
      * {not exists (select PARENT_ID from white_self_reference where ...)} <br />
      * white_self_reference by PARENT_ID, named 'whiteSelfReferenceAsOne'. <br />
      * This relation is auto-detected as implicit reverse FK.

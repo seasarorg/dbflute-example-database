@@ -154,10 +154,10 @@ public abstract class BsWhiteNoPkBhv extends AbstractBehaviorReadable {
         return doSelectEntity(cb, WhiteNoPk.class);
     }
 
-    protected <ENTITY extends WhiteNoPk> ENTITY doSelectEntity(final WhiteNoPkCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends WhiteNoPk> ENTITY doSelectEntity(WhiteNoPkCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, WhiteNoPkCB>() {
-            public List<ENTITY> callbackSelectList(WhiteNoPkCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhiteNoPkCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -183,10 +183,10 @@ public abstract class BsWhiteNoPkBhv extends AbstractBehaviorReadable {
         return doSelectEntityWithDeletedCheck(cb, WhiteNoPk.class);
     }
 
-    protected <ENTITY extends WhiteNoPk> ENTITY doSelectEntityWithDeletedCheck(final WhiteNoPkCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends WhiteNoPk> ENTITY doSelectEntityWithDeletedCheck(WhiteNoPkCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, WhiteNoPkCB>() {
-            public List<ENTITY> callbackSelectList(WhiteNoPkCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhiteNoPkCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -220,7 +220,7 @@ public abstract class BsWhiteNoPkBhv extends AbstractBehaviorReadable {
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
         return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, WhiteNoPkCB>() {
-            public List<ENTITY> callbackSelectList(WhiteNoPkCB cb, Class<ENTITY> tp) { return delegateSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhiteNoPkCB lcb, Class<ENTITY> ltp) { return delegateSelectList(lcb, ltp); } });
     }
 
     @Override

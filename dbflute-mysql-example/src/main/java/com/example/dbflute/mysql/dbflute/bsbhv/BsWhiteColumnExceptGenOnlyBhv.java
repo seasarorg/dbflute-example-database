@@ -154,10 +154,10 @@ public abstract class BsWhiteColumnExceptGenOnlyBhv extends AbstractBehaviorWrit
         return doSelectEntity(cb, WhiteColumnExceptGenOnly.class);
     }
 
-    protected <ENTITY extends WhiteColumnExceptGenOnly> ENTITY doSelectEntity(final WhiteColumnExceptGenOnlyCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends WhiteColumnExceptGenOnly> ENTITY doSelectEntity(WhiteColumnExceptGenOnlyCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, WhiteColumnExceptGenOnlyCB>() {
-            public List<ENTITY> callbackSelectList(WhiteColumnExceptGenOnlyCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhiteColumnExceptGenOnlyCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -183,10 +183,10 @@ public abstract class BsWhiteColumnExceptGenOnlyBhv extends AbstractBehaviorWrit
         return doSelectEntityWithDeletedCheck(cb, WhiteColumnExceptGenOnly.class);
     }
 
-    protected <ENTITY extends WhiteColumnExceptGenOnly> ENTITY doSelectEntityWithDeletedCheck(final WhiteColumnExceptGenOnlyCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends WhiteColumnExceptGenOnly> ENTITY doSelectEntityWithDeletedCheck(WhiteColumnExceptGenOnlyCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, WhiteColumnExceptGenOnlyCB>() {
-            public List<ENTITY> callbackSelectList(WhiteColumnExceptGenOnlyCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhiteColumnExceptGenOnlyCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -258,7 +258,7 @@ public abstract class BsWhiteColumnExceptGenOnlyBhv extends AbstractBehaviorWrit
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
         return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, WhiteColumnExceptGenOnlyCB>() {
-            public List<ENTITY> callbackSelectList(WhiteColumnExceptGenOnlyCB cb, Class<ENTITY> tp) { return delegateSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhiteColumnExceptGenOnlyCB lcb, Class<ENTITY> ltp) { return delegateSelectList(lcb, ltp); } });
     }
 
     @Override

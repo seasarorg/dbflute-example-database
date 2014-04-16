@@ -154,10 +154,10 @@ public abstract class BsWhiteLineSepCommentBhv extends AbstractBehaviorWritable 
         return doSelectEntity(cb, WhiteLineSepComment.class);
     }
 
-    protected <ENTITY extends WhiteLineSepComment> ENTITY doSelectEntity(final WhiteLineSepCommentCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends WhiteLineSepComment> ENTITY doSelectEntity(WhiteLineSepCommentCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, WhiteLineSepCommentCB>() {
-            public List<ENTITY> callbackSelectList(WhiteLineSepCommentCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhiteLineSepCommentCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -183,10 +183,10 @@ public abstract class BsWhiteLineSepCommentBhv extends AbstractBehaviorWritable 
         return doSelectEntityWithDeletedCheck(cb, WhiteLineSepComment.class);
     }
 
-    protected <ENTITY extends WhiteLineSepComment> ENTITY doSelectEntityWithDeletedCheck(final WhiteLineSepCommentCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends WhiteLineSepComment> ENTITY doSelectEntityWithDeletedCheck(WhiteLineSepCommentCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, WhiteLineSepCommentCB>() {
-            public List<ENTITY> callbackSelectList(WhiteLineSepCommentCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhiteLineSepCommentCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -258,7 +258,7 @@ public abstract class BsWhiteLineSepCommentBhv extends AbstractBehaviorWritable 
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
         return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, WhiteLineSepCommentCB>() {
-            public List<ENTITY> callbackSelectList(WhiteLineSepCommentCB cb, Class<ENTITY> tp) { return delegateSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhiteLineSepCommentCB lcb, Class<ENTITY> ltp) { return delegateSelectList(lcb, ltp); } });
     }
 
     @Override

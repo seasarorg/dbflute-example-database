@@ -149,7 +149,7 @@ public abstract class AbstractBsVendorTheLongAndWindingTableAndColumnCQ extends 
     }
 
     /**
-     * Set up ExistsReferrer (co-related sub-query). <br />
+     * Set up ExistsReferrer (correlated sub-query). <br />
      * {exists (select THE_LONG_AND_WINDING_TABLE_AND_COLUMN_ID from vendor_the_long_and_winding_table_and_column_ref where ...)} <br />
      * vendor_the_long_and_winding_table_and_column_ref by THE_LONG_AND_WINDING_TABLE_AND_COLUMN_ID, named 'vendorTheLongAndWindingTableAndColumnRefAsOne'.
      * <pre>
@@ -170,7 +170,7 @@ public abstract class AbstractBsVendorTheLongAndWindingTableAndColumnCQ extends 
     public abstract String keepTheLongAndWindingTableAndColumnId_ExistsReferrer_VendorTheLongAndWindingTableAndColumnRefList(VendorTheLongAndWindingTableAndColumnRefCQ sq);
 
     /**
-     * Set up NotExistsReferrer (co-related sub-query). <br />
+     * Set up NotExistsReferrer (correlated sub-query). <br />
      * {not exists (select THE_LONG_AND_WINDING_TABLE_AND_COLUMN_ID from vendor_the_long_and_winding_table_and_column_ref where ...)} <br />
      * vendor_the_long_and_winding_table_and_column_ref by THE_LONG_AND_WINDING_TABLE_AND_COLUMN_ID, named 'vendorTheLongAndWindingTableAndColumnRefAsOne'.
      * <pre>

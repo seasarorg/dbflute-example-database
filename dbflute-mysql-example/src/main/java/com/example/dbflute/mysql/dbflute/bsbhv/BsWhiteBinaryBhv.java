@@ -154,10 +154,10 @@ public abstract class BsWhiteBinaryBhv extends AbstractBehaviorWritable {
         return doSelectEntity(cb, WhiteBinary.class);
     }
 
-    protected <ENTITY extends WhiteBinary> ENTITY doSelectEntity(final WhiteBinaryCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends WhiteBinary> ENTITY doSelectEntity(WhiteBinaryCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, WhiteBinaryCB>() {
-            public List<ENTITY> callbackSelectList(WhiteBinaryCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhiteBinaryCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -183,10 +183,10 @@ public abstract class BsWhiteBinaryBhv extends AbstractBehaviorWritable {
         return doSelectEntityWithDeletedCheck(cb, WhiteBinary.class);
     }
 
-    protected <ENTITY extends WhiteBinary> ENTITY doSelectEntityWithDeletedCheck(final WhiteBinaryCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends WhiteBinary> ENTITY doSelectEntityWithDeletedCheck(WhiteBinaryCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, WhiteBinaryCB>() {
-            public List<ENTITY> callbackSelectList(WhiteBinaryCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhiteBinaryCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -258,7 +258,7 @@ public abstract class BsWhiteBinaryBhv extends AbstractBehaviorWritable {
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
         return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, WhiteBinaryCB>() {
-            public List<ENTITY> callbackSelectList(WhiteBinaryCB cb, Class<ENTITY> tp) { return delegateSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhiteBinaryCB lcb, Class<ENTITY> ltp) { return delegateSelectList(lcb, ltp); } });
     }
 
     @Override

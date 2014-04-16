@@ -46,6 +46,7 @@
     <component name="whiteColumnExceptGenOnlyBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteColumnExceptGenOnlyBhv"/>
     <component name="whiteCompoundPkBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteCompoundPkBhv"/>
     <component name="whiteCompoundPkRefBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteCompoundPkRefBhv"/>
+    <component name="whiteCompoundPkRefManyBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteCompoundPkRefManyBhv"/>
     <component name="whiteCompoundPkRefNestBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteCompoundPkRefNestBhv"/>
     <component name="whiteDateAdjustmentBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteDateAdjustmentBhv"/>
     <component name="whiteDbCommentBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteDbCommentBhv"/>

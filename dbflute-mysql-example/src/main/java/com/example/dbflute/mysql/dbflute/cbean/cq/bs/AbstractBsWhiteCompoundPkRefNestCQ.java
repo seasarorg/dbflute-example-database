@@ -436,6 +436,92 @@ public abstract class AbstractBsWhiteCompoundPkRefNestCQ extends AbstractConditi
     protected void regQuxMultipleId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueQuxMultipleId(), "QUX_MULTIPLE_ID"); }
     protected abstract ConditionValue getCValueQuxMultipleId();
 
+    /**
+     * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
+     * NEST_NAME: {NotNull, VARCHAR(50)}
+     * @param nestName The value of nestName as equal. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setNestName_Equal(String nestName) {
+        doSetNestName_Equal(fRES(nestName));
+    }
+
+    protected void doSetNestName_Equal(String nestName) {
+        regNestName(CK_EQ, nestName);
+    }
+
+    /**
+     * NotEqual(&lt;&gt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
+     * NEST_NAME: {NotNull, VARCHAR(50)}
+     * @param nestName The value of nestName as notEqual. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setNestName_NotEqual(String nestName) {
+        doSetNestName_NotEqual(fRES(nestName));
+    }
+
+    protected void doSetNestName_NotEqual(String nestName) {
+        regNestName(CK_NES, nestName);
+    }
+
+    /**
+     * InScope {in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br />
+     * NEST_NAME: {NotNull, VARCHAR(50)}
+     * @param nestNameList The collection of nestName as inScope. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setNestName_InScope(Collection<String> nestNameList) {
+        doSetNestName_InScope(nestNameList);
+    }
+
+    public void doSetNestName_InScope(Collection<String> nestNameList) {
+        regINS(CK_INS, cTL(nestNameList), getCValueNestName(), "NEST_NAME");
+    }
+
+    /**
+     * NotInScope {not in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br />
+     * NEST_NAME: {NotNull, VARCHAR(50)}
+     * @param nestNameList The collection of nestName as notInScope. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setNestName_NotInScope(Collection<String> nestNameList) {
+        doSetNestName_NotInScope(nestNameList);
+    }
+
+    public void doSetNestName_NotInScope(Collection<String> nestNameList) {
+        regINS(CK_NINS, cTL(nestNameList), getCValueNestName(), "NEST_NAME");
+    }
+
+    /**
+     * PrefixSearch {like 'xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br />
+     * NEST_NAME: {NotNull, VARCHAR(50)}
+     * @param nestName The value of nestName as prefixSearch. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setNestName_PrefixSearch(String nestName) {
+        setNestName_LikeSearch(nestName, cLSOP());
+    }
+
+    /**
+     * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br />
+     * NEST_NAME: {NotNull, VARCHAR(50)} <br />
+     * <pre>e.g. setNestName_LikeSearch("xxx", new <span style="color: #FD4747">LikeSearchOption</span>().likeContain());</pre>
+     * @param nestName The value of nestName as likeSearch. (NullAllowed: if null (or empty), no condition)
+     * @param likeSearchOption The option of like-search. (NotNull)
+     */
+    public void setNestName_LikeSearch(String nestName, LikeSearchOption likeSearchOption) {
+        regLSQ(CK_LS, fRES(nestName), getCValueNestName(), "NEST_NAME", likeSearchOption);
+    }
+
+    /**
+     * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br />
+     * And NullOrEmptyIgnored, SeveralRegistered. <br />
+     * NEST_NAME: {NotNull, VARCHAR(50)}
+     * @param nestName The value of nestName as notLikeSearch. (NullAllowed: if null (or empty), no condition)
+     * @param likeSearchOption The option of not-like-search. (NotNull)
+     */
+    public void setNestName_NotLikeSearch(String nestName, LikeSearchOption likeSearchOption) {
+        regLSQ(CK_NLS, fRES(nestName), getCValueNestName(), "NEST_NAME", likeSearchOption);
+    }
+
+    protected void regNestName(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueNestName(), "NEST_NAME"); }
+    protected abstract ConditionValue getCValueNestName();
+
     // ===================================================================================
     //                                                                     ScalarCondition
     //                                                                     ===============

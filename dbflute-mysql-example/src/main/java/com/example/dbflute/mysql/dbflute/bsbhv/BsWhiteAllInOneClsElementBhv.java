@@ -154,10 +154,10 @@ public abstract class BsWhiteAllInOneClsElementBhv extends AbstractBehaviorWrita
         return doSelectEntity(cb, WhiteAllInOneClsElement.class);
     }
 
-    protected <ENTITY extends WhiteAllInOneClsElement> ENTITY doSelectEntity(final WhiteAllInOneClsElementCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends WhiteAllInOneClsElement> ENTITY doSelectEntity(WhiteAllInOneClsElementCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, WhiteAllInOneClsElementCB>() {
-            public List<ENTITY> callbackSelectList(WhiteAllInOneClsElementCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhiteAllInOneClsElementCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -183,10 +183,10 @@ public abstract class BsWhiteAllInOneClsElementBhv extends AbstractBehaviorWrita
         return doSelectEntityWithDeletedCheck(cb, WhiteAllInOneClsElement.class);
     }
 
-    protected <ENTITY extends WhiteAllInOneClsElement> ENTITY doSelectEntityWithDeletedCheck(final WhiteAllInOneClsElementCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends WhiteAllInOneClsElement> ENTITY doSelectEntityWithDeletedCheck(WhiteAllInOneClsElementCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, WhiteAllInOneClsElementCB>() {
-            public List<ENTITY> callbackSelectList(WhiteAllInOneClsElementCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhiteAllInOneClsElementCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -260,7 +260,7 @@ public abstract class BsWhiteAllInOneClsElementBhv extends AbstractBehaviorWrita
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
         return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, WhiteAllInOneClsElementCB>() {
-            public List<ENTITY> callbackSelectList(WhiteAllInOneClsElementCB cb, Class<ENTITY> tp) { return delegateSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhiteAllInOneClsElementCB lcb, Class<ENTITY> ltp) { return delegateSelectList(lcb, ltp); } });
     }
 
     @Override

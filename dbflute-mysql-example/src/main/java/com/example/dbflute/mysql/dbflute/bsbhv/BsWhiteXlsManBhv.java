@@ -154,10 +154,10 @@ public abstract class BsWhiteXlsManBhv extends AbstractBehaviorWritable {
         return doSelectEntity(cb, WhiteXlsMan.class);
     }
 
-    protected <ENTITY extends WhiteXlsMan> ENTITY doSelectEntity(final WhiteXlsManCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends WhiteXlsMan> ENTITY doSelectEntity(WhiteXlsManCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, WhiteXlsManCB>() {
-            public List<ENTITY> callbackSelectList(WhiteXlsManCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhiteXlsManCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -183,10 +183,10 @@ public abstract class BsWhiteXlsManBhv extends AbstractBehaviorWritable {
         return doSelectEntityWithDeletedCheck(cb, WhiteXlsMan.class);
     }
 
-    protected <ENTITY extends WhiteXlsMan> ENTITY doSelectEntityWithDeletedCheck(final WhiteXlsManCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends WhiteXlsMan> ENTITY doSelectEntityWithDeletedCheck(WhiteXlsManCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, WhiteXlsManCB>() {
-            public List<ENTITY> callbackSelectList(WhiteXlsManCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhiteXlsManCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -258,7 +258,7 @@ public abstract class BsWhiteXlsManBhv extends AbstractBehaviorWritable {
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
         return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, WhiteXlsManCB>() {
-            public List<ENTITY> callbackSelectList(WhiteXlsManCB cb, Class<ENTITY> tp) { return delegateSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhiteXlsManCB lcb, Class<ENTITY> ltp) { return delegateSelectList(lcb, ltp); } });
     }
 
     @Override

@@ -154,10 +154,10 @@ public abstract class BsVendorConstraintNameAutoFooBhv extends AbstractBehaviorW
         return doSelectEntity(cb, VendorConstraintNameAutoFoo.class);
     }
 
-    protected <ENTITY extends VendorConstraintNameAutoFoo> ENTITY doSelectEntity(final VendorConstraintNameAutoFooCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends VendorConstraintNameAutoFoo> ENTITY doSelectEntity(VendorConstraintNameAutoFooCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, VendorConstraintNameAutoFooCB>() {
-            public List<ENTITY> callbackSelectList(VendorConstraintNameAutoFooCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(VendorConstraintNameAutoFooCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -183,10 +183,10 @@ public abstract class BsVendorConstraintNameAutoFooBhv extends AbstractBehaviorW
         return doSelectEntityWithDeletedCheck(cb, VendorConstraintNameAutoFoo.class);
     }
 
-    protected <ENTITY extends VendorConstraintNameAutoFoo> ENTITY doSelectEntityWithDeletedCheck(final VendorConstraintNameAutoFooCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends VendorConstraintNameAutoFoo> ENTITY doSelectEntityWithDeletedCheck(VendorConstraintNameAutoFooCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, VendorConstraintNameAutoFooCB>() {
-            public List<ENTITY> callbackSelectList(VendorConstraintNameAutoFooCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(VendorConstraintNameAutoFooCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -258,7 +258,7 @@ public abstract class BsVendorConstraintNameAutoFooBhv extends AbstractBehaviorW
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
         return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, VendorConstraintNameAutoFooCB>() {
-            public List<ENTITY> callbackSelectList(VendorConstraintNameAutoFooCB cb, Class<ENTITY> tp) { return delegateSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(VendorConstraintNameAutoFooCB lcb, Class<ENTITY> ltp) { return delegateSelectList(lcb, ltp); } });
     }
 
     @Override

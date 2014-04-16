@@ -448,6 +448,92 @@ public abstract class AbstractBsWhiteCompoundPkRefCQ extends AbstractConditionQu
     protected void regRefSecondId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueRefSecondId(), "REF_SECOND_ID"); }
     protected abstract ConditionValue getCValueRefSecondId();
 
+    /**
+     * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
+     * REF_NAME: {NotNull, VARCHAR(50)}
+     * @param refName The value of refName as equal. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setRefName_Equal(String refName) {
+        doSetRefName_Equal(fRES(refName));
+    }
+
+    protected void doSetRefName_Equal(String refName) {
+        regRefName(CK_EQ, refName);
+    }
+
+    /**
+     * NotEqual(&lt;&gt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
+     * REF_NAME: {NotNull, VARCHAR(50)}
+     * @param refName The value of refName as notEqual. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setRefName_NotEqual(String refName) {
+        doSetRefName_NotEqual(fRES(refName));
+    }
+
+    protected void doSetRefName_NotEqual(String refName) {
+        regRefName(CK_NES, refName);
+    }
+
+    /**
+     * InScope {in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br />
+     * REF_NAME: {NotNull, VARCHAR(50)}
+     * @param refNameList The collection of refName as inScope. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setRefName_InScope(Collection<String> refNameList) {
+        doSetRefName_InScope(refNameList);
+    }
+
+    public void doSetRefName_InScope(Collection<String> refNameList) {
+        regINS(CK_INS, cTL(refNameList), getCValueRefName(), "REF_NAME");
+    }
+
+    /**
+     * NotInScope {not in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br />
+     * REF_NAME: {NotNull, VARCHAR(50)}
+     * @param refNameList The collection of refName as notInScope. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setRefName_NotInScope(Collection<String> refNameList) {
+        doSetRefName_NotInScope(refNameList);
+    }
+
+    public void doSetRefName_NotInScope(Collection<String> refNameList) {
+        regINS(CK_NINS, cTL(refNameList), getCValueRefName(), "REF_NAME");
+    }
+
+    /**
+     * PrefixSearch {like 'xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br />
+     * REF_NAME: {NotNull, VARCHAR(50)}
+     * @param refName The value of refName as prefixSearch. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setRefName_PrefixSearch(String refName) {
+        setRefName_LikeSearch(refName, cLSOP());
+    }
+
+    /**
+     * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br />
+     * REF_NAME: {NotNull, VARCHAR(50)} <br />
+     * <pre>e.g. setRefName_LikeSearch("xxx", new <span style="color: #FD4747">LikeSearchOption</span>().likeContain());</pre>
+     * @param refName The value of refName as likeSearch. (NullAllowed: if null (or empty), no condition)
+     * @param likeSearchOption The option of like-search. (NotNull)
+     */
+    public void setRefName_LikeSearch(String refName, LikeSearchOption likeSearchOption) {
+        regLSQ(CK_LS, fRES(refName), getCValueRefName(), "REF_NAME", likeSearchOption);
+    }
+
+    /**
+     * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br />
+     * And NullOrEmptyIgnored, SeveralRegistered. <br />
+     * REF_NAME: {NotNull, VARCHAR(50)}
+     * @param refName The value of refName as notLikeSearch. (NullAllowed: if null (or empty), no condition)
+     * @param likeSearchOption The option of not-like-search. (NotNull)
+     */
+    public void setRefName_NotLikeSearch(String refName, LikeSearchOption likeSearchOption) {
+        regLSQ(CK_NLS, fRES(refName), getCValueRefName(), "REF_NAME", likeSearchOption);
+    }
+
+    protected void regRefName(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueRefName(), "REF_NAME"); }
+    protected abstract ConditionValue getCValueRefName();
+
     // ===================================================================================
     //                                                                    Full Text Search
     //                                                                    ================

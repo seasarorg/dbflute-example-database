@@ -154,10 +154,10 @@ public abstract class BsWhiteImplicitConvIntegerBhv extends AbstractBehaviorWrit
         return doSelectEntity(cb, WhiteImplicitConvInteger.class);
     }
 
-    protected <ENTITY extends WhiteImplicitConvInteger> ENTITY doSelectEntity(final WhiteImplicitConvIntegerCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends WhiteImplicitConvInteger> ENTITY doSelectEntity(WhiteImplicitConvIntegerCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, WhiteImplicitConvIntegerCB>() {
-            public List<ENTITY> callbackSelectList(WhiteImplicitConvIntegerCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhiteImplicitConvIntegerCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -183,10 +183,10 @@ public abstract class BsWhiteImplicitConvIntegerBhv extends AbstractBehaviorWrit
         return doSelectEntityWithDeletedCheck(cb, WhiteImplicitConvInteger.class);
     }
 
-    protected <ENTITY extends WhiteImplicitConvInteger> ENTITY doSelectEntityWithDeletedCheck(final WhiteImplicitConvIntegerCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends WhiteImplicitConvInteger> ENTITY doSelectEntityWithDeletedCheck(WhiteImplicitConvIntegerCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, WhiteImplicitConvIntegerCB>() {
-            public List<ENTITY> callbackSelectList(WhiteImplicitConvIntegerCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhiteImplicitConvIntegerCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -258,7 +258,7 @@ public abstract class BsWhiteImplicitConvIntegerBhv extends AbstractBehaviorWrit
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
         return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, WhiteImplicitConvIntegerCB>() {
-            public List<ENTITY> callbackSelectList(WhiteImplicitConvIntegerCB cb, Class<ENTITY> tp) { return delegateSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhiteImplicitConvIntegerCB lcb, Class<ENTITY> ltp) { return delegateSelectList(lcb, ltp); } });
     }
 
     @Override

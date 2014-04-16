@@ -8,10 +8,13 @@ import org.seasar.dbflute.bhv.EntityListSetupper;
 import org.seasar.dbflute.bhv.LoadReferrerOption;
 import org.seasar.dbflute.cbean.ListResultBean;
 import org.seasar.dbflute.cbean.SubQuery;
+import org.seasar.dbflute.cbean.UnionQuery;
+import org.seasar.dbflute.cbean.coption.DerivedReferrerOption;
 import org.seasar.dbflute.util.Srl;
 
 import com.example.dbflute.mysql.dbflute.cbean.WhiteCompoundPkCB;
 import com.example.dbflute.mysql.dbflute.cbean.WhiteCompoundPkRefCB;
+import com.example.dbflute.mysql.dbflute.cbean.WhiteCompoundPkRefManyCB;
 import com.example.dbflute.mysql.dbflute.cbean.WhiteCompoundPkRefNestCB;
 import com.example.dbflute.mysql.dbflute.exbhv.WhiteCompoundPkBhv;
 import com.example.dbflute.mysql.dbflute.exbhv.WhiteCompoundPkRefBhv;
@@ -83,10 +86,317 @@ public class WxCompoundPKMainTest extends UnitContainerTestCase {
         for (WhiteCompoundPk main : mainList) {
             log(main);
         }
-        assertTrue(Srl.containsAll(cb.toDisplaySql(), "exists", // ln 
-                "where sub1loc.REF_FIRST_ID = dfloc.PK_FIRST_ID", // ln 
-                "  and sub1loc.REF_SECOND_ID = dfloc.PK_SECOND_ID", // ln
+        assertTrue(Srl.containsAll(cb.toDisplaySql(), "exists", //
+                "where sub1loc.REF_FIRST_ID = dfloc.PK_FIRST_ID", //
+                "  and sub1loc.REF_SECOND_ID = dfloc.PK_SECOND_ID", //
                 "  and sub1loc.REF_SECOND_ID > 1"));
+    }
+
+    public void test_CompoundPK_ExistsReferrer_fixedCondition() {
+        // ## Arrange ##
+        registerTestData();
+        WhiteCompoundPkCB cb = new WhiteCompoundPkCB();
+        cb.query().existsWhiteCompoundPkRefManyToPKList(new SubQuery<WhiteCompoundPkRefManyCB>() {
+            public void query(WhiteCompoundPkRefManyCB subCB) {
+            }
+        });
+
+        // ## Act ##
+        ListResultBean<WhiteCompoundPk> mainList = whiteCompoundPkBhv.selectList(cb);
+
+        // ## Assert ##
+        assertHasZeroElement(mainList); // no data for now
+        assertTrue(Srl.containsAll(cb.toDisplaySql(), "exists", //
+                "where sub1loc.REF_MANY_FIRST_ID = dfloc.PK_FIRST_ID", //
+                "  and sub1loc.REF_MANY_SECOND_ID = dfloc.PK_SECOND_ID", //
+                "  and sub1loc.REF_MANY_CODE = 'TPK'"));
+    }
+
+    public void test_CompoundPK_ExistsReferrer_union() {
+        // ## Arrange ##
+        registerTestData();
+        WhiteCompoundPkCB cb = new WhiteCompoundPkCB();
+        cb.query().existsWhiteCompoundPkRefList(new SubQuery<WhiteCompoundPkRefCB>() {
+            public void query(WhiteCompoundPkRefCB subCB) {
+                subCB.query().setRefSecondId_GreaterThan(1);
+                subCB.union(new UnionQuery<WhiteCompoundPkRefCB>() {
+                    public void query(WhiteCompoundPkRefCB unionCB) {
+                        unionCB.query().setRefFirstId_LessEqual(99999);
+                    }
+                });
+            }
+        });
+
+        // ## Act ##
+        ListResultBean<WhiteCompoundPk> mainList = whiteCompoundPkBhv.selectList(cb);
+
+        // ## Assert ##
+        assertNotSame(0, mainList.size());
+        for (WhiteCompoundPk main : mainList) {
+            log(main);
+        }
+        assertTrue(Srl.containsAll(cb.toDisplaySql(), "union", "exists", //
+                "where sub1loc.REF_FIRST_ID = dfloc.PK_FIRST_ID", //
+                "  and sub1loc.REF_SECOND_ID = dfloc.PK_SECOND_ID", //
+                "  and sub1loc.REF_SECOND_ID > 1", //
+                "  and sub1loc.REF_FIRST_ID <= 99999"));
+        assertEquals(2, Srl.count(cb.toDisplaySql(), "where sub1loc.REF_FIRST_ID = dfloc.PK_FIRST_ID"));
+        assertEquals(2, Srl.count(cb.toDisplaySql(), "  and sub1loc.REF_SECOND_ID = dfloc.PK_SECOND_ID"));
+    }
+
+    public void test_CompoundPK_ExistsReferrer_union_fixedCondition() {
+        // ## Arrange ##
+        registerTestData();
+        WhiteCompoundPkCB cb = new WhiteCompoundPkCB();
+        cb.query().existsWhiteCompoundPkRefManyToPKList(new SubQuery<WhiteCompoundPkRefManyCB>() {
+            public void query(WhiteCompoundPkRefManyCB subCB) {
+                subCB.union(new UnionQuery<WhiteCompoundPkRefManyCB>() {
+                    public void query(WhiteCompoundPkRefManyCB unionCB) {
+                    }
+                });
+            }
+        });
+
+        // ## Act ##
+        ListResultBean<WhiteCompoundPk> mainList = whiteCompoundPkBhv.selectList(cb);
+
+        // ## Assert ##
+        assertHasZeroElement(mainList); // no data for now
+        assertTrue(Srl.containsAll(cb.toDisplaySql(), "union", "exists", //
+                "where sub1loc.REF_MANY_FIRST_ID = dfloc.PK_FIRST_ID", //
+                "  and sub1loc.REF_MANY_SECOND_ID = dfloc.PK_SECOND_ID", //
+                "  and sub1loc.REF_MANY_CODE = 'TPK'"));
+        assertEquals(2, Srl.count(cb.toDisplaySql(), "where sub1loc.REF_MANY_FIRST_ID = dfloc.PK_FIRST_ID"));
+        assertEquals(2, Srl.count(cb.toDisplaySql(), "  and sub1loc.REF_MANY_SECOND_ID = dfloc.PK_SECOND_ID"));
+        assertEquals(2, Srl.count(cb.toDisplaySql(), "  and sub1loc.REF_MANY_CODE = 'TPK'"));
+    }
+
+    public void test_CompoundPK_ExistsReferrer_collaboration() {
+        // ## Arrange ##
+        registerTestData();
+        WhiteCompoundPkCB cb = new WhiteCompoundPkCB();
+        cb.specify().derivedWhiteCompoundPkRefList().max(new SubQuery<WhiteCompoundPkRefCB>() {
+            public void query(WhiteCompoundPkRefCB subCB) {
+                subCB.specify().columnRefFirstId();
+                subCB.query().setRefSecondId_GreaterThan(3);
+            }
+        }, WhiteCompoundPk.ALIAS_maxId, new DerivedReferrerOption().coalesce(0));
+        cb.query().derivedWhiteCompoundPkRefList().min(new SubQuery<WhiteCompoundPkRefCB>() {
+            public void query(WhiteCompoundPkRefCB subCB) {
+                subCB.specify().columnRefFirstId();
+                subCB.query().setRefSecondId_GreaterThan(2);
+            }
+        }, new DerivedReferrerOption().coalesce(0)).greaterEqual(0);
+        cb.query().existsWhiteCompoundPkRefList(new SubQuery<WhiteCompoundPkRefCB>() {
+            public void query(WhiteCompoundPkRefCB subCB) {
+                subCB.query().setRefSecondId_GreaterThan(1);
+            }
+        });
+
+        // ## Act ##
+        ListResultBean<WhiteCompoundPk> mainList = whiteCompoundPkBhv.selectList(cb);
+
+        // ## Assert ##
+        assertNotSame(0, mainList.size());
+        for (WhiteCompoundPk main : mainList) {
+            log(main);
+        }
+        assertTrue(Srl.containsAll(cb.toDisplaySql(), "max(", "min(", "exists", //
+                "where sub1loc.REF_FIRST_ID = dfloc.PK_FIRST_ID", //
+                "  and sub1loc.REF_SECOND_ID = dfloc.PK_SECOND_ID", //
+                "  and sub1loc.REF_SECOND_ID > 3", //
+                "  and sub1loc.REF_SECOND_ID > 2", //
+                "  and sub1loc.REF_SECOND_ID > 1", //
+                " >= 0"));
+    }
+
+    public void test_CompoundPK_NotExistsReferrer_basic() {
+        // ## Arrange ##
+        registerTestData();
+        WhiteCompoundPkCB cb = new WhiteCompoundPkCB();
+        cb.query().notExistsWhiteCompoundPkRefList(new SubQuery<WhiteCompoundPkRefCB>() {
+            public void query(WhiteCompoundPkRefCB subCB) {
+                subCB.query().setRefSecondId_LessThan(0);
+            }
+        });
+
+        // ## Act ##
+        ListResultBean<WhiteCompoundPk> mainList = whiteCompoundPkBhv.selectList(cb);
+
+        // ## Assert ##
+        assertNotSame(0, mainList.size());
+        for (WhiteCompoundPk main : mainList) {
+            log(main);
+        }
+        assertTrue(Srl.containsAll(cb.toDisplaySql(), "not exists", //
+                "where sub1loc.REF_FIRST_ID = dfloc.PK_FIRST_ID", //
+                "  and sub1loc.REF_SECOND_ID = dfloc.PK_SECOND_ID", //
+                "  and sub1loc.REF_SECOND_ID < 0"));
+    }
+
+    // -----------------------------------------------------
+    //                              (Specify)DerivedReferrer
+    //                              ------------------------
+    public void test_CompoundPK_SpecifyDerivedReferrer_basic() {
+        // ## Arrange ##
+        registerTestData();
+        WhiteCompoundPkCB cb = new WhiteCompoundPkCB();
+        cb.specify().derivedWhiteCompoundPkRefList().max(new SubQuery<WhiteCompoundPkRefCB>() {
+            public void query(WhiteCompoundPkRefCB subCB) {
+                subCB.specify().columnRefFirstId();
+                subCB.query().setRefSecondId_GreaterThan(1);
+            }
+        }, WhiteCompoundPk.ALIAS_maxId);
+
+        // ## Act ##
+        ListResultBean<WhiteCompoundPk> mainList = whiteCompoundPkBhv.selectList(cb);
+
+        // ## Assert ##
+        assertHasAnyElement(mainList);
+        for (WhiteCompoundPk main : mainList) {
+            log(main.getPkFirstId(), main.getPkSecondId(), main.getMaxId());
+        }
+        assertTrue(Srl.containsAll(cb.toDisplaySql(), "max(", // 
+                "where sub1loc.REF_FIRST_ID = dfloc.PK_FIRST_ID", // 
+                "  and sub1loc.REF_SECOND_ID = dfloc.PK_SECOND_ID", //
+                "  and sub1loc.REF_SECOND_ID > 1"));
+    }
+
+    public void test_CompoundPK_SpecifyDerivedReferrer_fixedCondition() {
+        // ## Arrange ##
+        registerTestData();
+        WhiteCompoundPkCB cb = new WhiteCompoundPkCB();
+        cb.specify().derivedWhiteCompoundPkRefManyToPKList().max(new SubQuery<WhiteCompoundPkRefManyCB>() {
+            public void query(WhiteCompoundPkRefManyCB subCB) {
+                subCB.specify().columnRefManyName();
+            }
+        }, WhiteCompoundPk.ALIAS_maxId);
+
+        // ## Act ##
+        ListResultBean<WhiteCompoundPk> mainList = whiteCompoundPkBhv.selectList(cb);
+
+        // ## Assert ##
+        assertHasAnyElement(mainList);
+        for (WhiteCompoundPk main : mainList) {
+            log(main.getPkFirstId(), main.getPkSecondId(), main.getMaxId());
+        }
+        assertTrue(Srl.containsAll(cb.toDisplaySql(), "max(", // 
+                "where sub1loc.REF_MANY_FIRST_ID = dfloc.PK_FIRST_ID", // 
+                "  and sub1loc.REF_MANY_SECOND_ID = dfloc.PK_SECOND_ID", //
+                "  and sub1loc.REF_MANY_CODE = 'TPK'"));
+    }
+
+    public void test_CompoundPK_SpecifyDerivedReferrer_union() {
+        // ## Arrange ##
+        registerTestData();
+        WhiteCompoundPkCB cb = new WhiteCompoundPkCB();
+        cb.specify().derivedWhiteCompoundPkRefList().max(new SubQuery<WhiteCompoundPkRefCB>() {
+            public void query(WhiteCompoundPkRefCB subCB) {
+                subCB.specify().columnRefFirstId();
+                subCB.query().setRefSecondId_GreaterThan(1);
+                subCB.union(new UnionQuery<WhiteCompoundPkRefCB>() {
+                    public void query(WhiteCompoundPkRefCB unionCB) {
+                        unionCB.query().setRefFirstId_LessEqual(99999);
+                    }
+                });
+            }
+        }, WhiteCompoundPk.ALIAS_maxId, new DerivedReferrerOption().coalesce(0));
+
+        // ## Act ##
+        ListResultBean<WhiteCompoundPk> mainList = whiteCompoundPkBhv.selectList(cb);
+
+        // ## Assert ##
+        assertHasAnyElement(mainList);
+        for (WhiteCompoundPk main : mainList) {
+            log(main.getPkFirstId(), main.getPkSecondId(), main.getMaxId());
+        }
+        assertTrue(Srl.containsAll(cb.toDisplaySql(), "coalesce(", "max(", // 
+                "where sub1main.REF_FIRST_ID = dfloc.PK_FIRST_ID", // 
+                "  and sub1main.REF_SECOND_ID = dfloc.PK_SECOND_ID", //
+                "where sub1loc.REF_SECOND_ID > 1", //
+                "where sub1loc.REF_FIRST_ID <= 99999"));
+    }
+
+    public void test_CompoundPK_SpecifyDerivedReferrer_union_fixedCondition() {
+        // ## Arrange ##
+        registerTestData();
+        WhiteCompoundPkCB cb = new WhiteCompoundPkCB();
+        cb.specify().derivedWhiteCompoundPkRefManyToPKList().count(new SubQuery<WhiteCompoundPkRefManyCB>() {
+            public void query(WhiteCompoundPkRefManyCB subCB) {
+                subCB.specify().columnMultipleFirstId();
+                subCB.union(new UnionQuery<WhiteCompoundPkRefManyCB>() {
+                    public void query(WhiteCompoundPkRefManyCB unionCB) {
+                    }
+                });
+            }
+        }, WhiteCompoundPk.ALIAS_maxId);
+
+        // ## Act ##
+        ListResultBean<WhiteCompoundPk> mainList = whiteCompoundPkBhv.selectList(cb);
+
+        // ## Assert ##
+        assertHasAnyElement(mainList);
+        for (WhiteCompoundPk main : mainList) {
+            log(main.getPkFirstId(), main.getPkSecondId(), main.getMaxId());
+        }
+        assertTrue(Srl.containsAll(cb.toDisplaySql(), "count(", // 
+                "where sub1main.REF_MANY_FIRST_ID = dfloc.PK_FIRST_ID", // 
+                "  and sub1main.REF_MANY_SECOND_ID = dfloc.PK_SECOND_ID", //
+                "  and sub1main.REF_MANY_CODE = 'TPK'"));
+    }
+
+    // -----------------------------------------------------
+    //                                (Query)DerivedReferrer
+    //                                ----------------------
+    public void test_CompoundPK_QueryDerivedReferrer_basic() {
+        // ## Arrange ##
+        registerTestData();
+        WhiteCompoundPkCB cb = new WhiteCompoundPkCB();
+        cb.query().derivedWhiteCompoundPkRefList().max(new SubQuery<WhiteCompoundPkRefCB>() {
+            public void query(WhiteCompoundPkRefCB subCB) {
+                subCB.specify().columnRefFirstId();
+                subCB.query().setRefSecondId_GreaterThan(1);
+            }
+        }).greaterEqual(0);
+
+        // ## Act ##
+        ListResultBean<WhiteCompoundPk> mainList = whiteCompoundPkBhv.selectList(cb);
+
+        // ## Assert ##
+        assertHasAnyElement(mainList);
+        for (WhiteCompoundPk main : mainList) {
+            log(main.getPkFirstId(), main.getPkSecondId(), main.getMaxId());
+        }
+        assertTrue(Srl.containsAll(cb.toDisplaySql(), "max(", // 
+                "where sub1loc.REF_FIRST_ID = dfloc.PK_FIRST_ID", // 
+                "  and sub1loc.REF_SECOND_ID = dfloc.PK_SECOND_ID", //
+                "  and sub1loc.REF_SECOND_ID > 1", //
+                " >= 0"));
+    }
+
+    public void test_CompoundPK_QueryDerivedReferrer_fixedCondition() {
+        // ## Arrange ##
+        registerTestData();
+        WhiteCompoundPkCB cb = new WhiteCompoundPkCB();
+        cb.query().derivedWhiteCompoundPkRefManyToPKList().max(new SubQuery<WhiteCompoundPkRefManyCB>() {
+            public void query(WhiteCompoundPkRefManyCB subCB) {
+                subCB.specify().columnRefManyName();
+            }
+        }, new DerivedReferrerOption().coalesce(0)).greaterEqual(0);
+
+        // ## Act ##
+        ListResultBean<WhiteCompoundPk> mainList = whiteCompoundPkBhv.selectList(cb);
+
+        // ## Assert ##
+        assertHasAnyElement(mainList);
+        for (WhiteCompoundPk compoundPk : mainList) {
+            log(compoundPk);
+        }
+        assertTrue(Srl.containsAll(cb.toDisplaySql(), "max(", // 
+                "where sub1loc.REF_MANY_FIRST_ID = dfloc.PK_FIRST_ID", // 
+                "  and sub1loc.REF_MANY_SECOND_ID = dfloc.PK_SECOND_ID", //
+                "  and sub1loc.REF_MANY_CODE = 'TPK'", //
+                " >= 0"));
     }
 
     // -----------------------------------------------------
@@ -253,6 +563,7 @@ public class WxCompoundPKMainTest extends UnitContainerTestCase {
         ref.setMultipleSecondId(mulSecond);
         ref.setRefFirstId(refFirst);
         ref.setRefSecondId(refSecond);
+        ref.setRefName(mulFirst + ":" + mulSecond);
         whiteCompoundPkRefBhv.insert(ref);
         return ref;
     }
@@ -263,6 +574,7 @@ public class WxCompoundPKMainTest extends UnitContainerTestCase {
         nest.setFooMultipleId(foo);
         nest.setBarMultipleId(bar);
         nest.setQuxMultipleId(qux);
+        nest.setNestName(id + ":" + foo + ":" + bar + ":" + qux);
         whiteCompoundPkRefNestBhv.insert(nest);
         return nest;
     }

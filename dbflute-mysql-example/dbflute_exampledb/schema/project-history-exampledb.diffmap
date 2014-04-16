@@ -1,4 +1,37 @@
 map:{
+    ; 2014/04/17 01:52:26 = map:{
+        ; diffDate = 2014/04/17 01:52:26
+        ; tableCount = map:{
+            ; next = 83
+            ; previous = 82
+        }
+        ; tableDiff = map:{
+            ; white_compound_pk_ref_many = map:{
+                ; tableName = white_compound_pk_ref_many
+                ; diffType = ADD
+            }
+            ; white_compound_pk_ref = map:{
+                ; tableName = white_compound_pk_ref
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; REF_NAME = map:{
+                        ; columnName = REF_NAME
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; white_compound_pk_ref_nest = map:{
+                ; tableName = white_compound_pk_ref_nest
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; NEST_NAME = map:{
+                        ; columnName = NEST_NAME
+                        ; diffType = ADD
+                    }
+                }
+            }
+        }
+    }
     ; 2014/03/21 22:41:37 = map:{
         ; diffDate = 2014/03/21 22:41:37
         ; tableCount = map:{

@@ -154,10 +154,10 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
         return doSelectEntity(cb, WhiteAllInOneClsNormalColRef.class);
     }
 
-    protected <ENTITY extends WhiteAllInOneClsNormalColRef> ENTITY doSelectEntity(final WhiteAllInOneClsNormalColRefCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends WhiteAllInOneClsNormalColRef> ENTITY doSelectEntity(WhiteAllInOneClsNormalColRefCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, WhiteAllInOneClsNormalColRefCB>() {
-            public List<ENTITY> callbackSelectList(WhiteAllInOneClsNormalColRefCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhiteAllInOneClsNormalColRefCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -183,10 +183,10 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
         return doSelectEntityWithDeletedCheck(cb, WhiteAllInOneClsNormalColRef.class);
     }
 
-    protected <ENTITY extends WhiteAllInOneClsNormalColRef> ENTITY doSelectEntityWithDeletedCheck(final WhiteAllInOneClsNormalColRefCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends WhiteAllInOneClsNormalColRef> ENTITY doSelectEntityWithDeletedCheck(WhiteAllInOneClsNormalColRefCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, WhiteAllInOneClsNormalColRefCB>() {
-            public List<ENTITY> callbackSelectList(WhiteAllInOneClsNormalColRefCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhiteAllInOneClsNormalColRefCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -262,7 +262,7 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
         return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, WhiteAllInOneClsNormalColRefCB>() {
-            public List<ENTITY> callbackSelectList(WhiteAllInOneClsNormalColRefCB cb, Class<ENTITY> tp) { return delegateSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhiteAllInOneClsNormalColRefCB lcb, Class<ENTITY> ltp) { return delegateSelectList(lcb, ltp); } });
     }
 
     @Override

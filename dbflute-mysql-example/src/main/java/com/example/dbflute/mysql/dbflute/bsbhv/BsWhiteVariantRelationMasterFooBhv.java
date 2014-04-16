@@ -154,10 +154,10 @@ public abstract class BsWhiteVariantRelationMasterFooBhv extends AbstractBehavio
         return doSelectEntity(cb, WhiteVariantRelationMasterFoo.class);
     }
 
-    protected <ENTITY extends WhiteVariantRelationMasterFoo> ENTITY doSelectEntity(final WhiteVariantRelationMasterFooCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends WhiteVariantRelationMasterFoo> ENTITY doSelectEntity(WhiteVariantRelationMasterFooCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, WhiteVariantRelationMasterFooCB>() {
-            public List<ENTITY> callbackSelectList(WhiteVariantRelationMasterFooCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhiteVariantRelationMasterFooCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -183,10 +183,10 @@ public abstract class BsWhiteVariantRelationMasterFooBhv extends AbstractBehavio
         return doSelectEntityWithDeletedCheck(cb, WhiteVariantRelationMasterFoo.class);
     }
 
-    protected <ENTITY extends WhiteVariantRelationMasterFoo> ENTITY doSelectEntityWithDeletedCheck(final WhiteVariantRelationMasterFooCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends WhiteVariantRelationMasterFoo> ENTITY doSelectEntityWithDeletedCheck(WhiteVariantRelationMasterFooCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, WhiteVariantRelationMasterFooCB>() {
-            public List<ENTITY> callbackSelectList(WhiteVariantRelationMasterFooCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhiteVariantRelationMasterFooCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -258,7 +258,7 @@ public abstract class BsWhiteVariantRelationMasterFooBhv extends AbstractBehavio
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
         return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, WhiteVariantRelationMasterFooCB>() {
-            public List<ENTITY> callbackSelectList(WhiteVariantRelationMasterFooCB cb, Class<ENTITY> tp) { return delegateSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhiteVariantRelationMasterFooCB lcb, Class<ENTITY> ltp) { return delegateSelectList(lcb, ltp); } });
     }
 
     @Override

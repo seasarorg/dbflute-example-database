@@ -171,6 +171,27 @@ public class BsWhiteCompoundPkRefNestCQ extends AbstractBsWhiteCompoundPkRefNest
      */
     public BsWhiteCompoundPkRefNestCQ addOrderBy_QuxMultipleId_Desc() { regOBD("QUX_MULTIPLE_ID"); return this; }
 
+    protected ConditionValue _nestName;
+    public ConditionValue getNestName() {
+        if (_nestName == null) { _nestName = nCV(); }
+        return _nestName;
+    }
+    protected ConditionValue getCValueNestName() { return getNestName(); }
+
+    /** 
+     * Add order-by as ascend. <br />
+     * NEST_NAME: {NotNull, VARCHAR(50)}
+     * @return this. (NotNull)
+     */
+    public BsWhiteCompoundPkRefNestCQ addOrderBy_NestName_Asc() { regOBA("NEST_NAME"); return this; }
+
+    /**
+     * Add order-by as descend. <br />
+     * NEST_NAME: {NotNull, VARCHAR(50)}
+     * @return this. (NotNull)
+     */
+    public BsWhiteCompoundPkRefNestCQ addOrderBy_NestName_Desc() { regOBD("NEST_NAME"); return this; }
+
     // ===================================================================================
     //                                                             SpecifiedDerivedOrderBy
     //                                                             =======================

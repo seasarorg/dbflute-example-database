@@ -149,7 +149,7 @@ public abstract class AbstractBsWhitePgReservCQ extends AbstractConditionQuery {
     }
 
     /**
-     * Set up ExistsReferrer (co-related sub-query). <br />
+     * Set up ExistsReferrer (correlated sub-query). <br />
      * {exists (select CLASS from white_pg_reserv_ref where ...)} <br />
      * white_pg_reserv_ref by CLASS, named 'whitePgReservRefAsOne'.
      * <pre>
@@ -170,7 +170,7 @@ public abstract class AbstractBsWhitePgReservCQ extends AbstractConditionQuery {
     public abstract String keepClassSynonym_ExistsReferrer_WhitePgReservRefList(WhitePgReservRefCQ sq);
 
     /**
-     * Set up NotExistsReferrer (co-related sub-query). <br />
+     * Set up NotExistsReferrer (correlated sub-query). <br />
      * {not exists (select CLASS from white_pg_reserv_ref where ...)} <br />
      * white_pg_reserv_ref by CLASS, named 'whitePgReservRefAsOne'.
      * <pre>

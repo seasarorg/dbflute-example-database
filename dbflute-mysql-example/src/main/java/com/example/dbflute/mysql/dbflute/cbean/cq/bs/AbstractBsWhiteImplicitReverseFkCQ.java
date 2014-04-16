@@ -149,7 +149,7 @@ public abstract class AbstractBsWhiteImplicitReverseFkCQ extends AbstractConditi
     }
 
     /**
-     * Set up ExistsReferrer (co-related sub-query). <br />
+     * Set up ExistsReferrer (correlated sub-query). <br />
      * {exists (select WHITE_IMPLICIT_REVERSE_FK_ID from white_implicit_reverse_fk_ref where ...)} <br />
      * white_implicit_reverse_fk_ref by WHITE_IMPLICIT_REVERSE_FK_ID, named 'whiteImplicitReverseFkRefAsOne'. <br />
      * This relation is auto-detected as implicit reverse FK.
@@ -171,7 +171,7 @@ public abstract class AbstractBsWhiteImplicitReverseFkCQ extends AbstractConditi
     public abstract String keepWhiteImplicitReverseFkId_ExistsReferrer_WhiteImplicitReverseFkRefList(WhiteImplicitReverseFkRefCQ sq);
 
     /**
-     * Set up NotExistsReferrer (co-related sub-query). <br />
+     * Set up NotExistsReferrer (correlated sub-query). <br />
      * {not exists (select WHITE_IMPLICIT_REVERSE_FK_ID from white_implicit_reverse_fk_ref where ...)} <br />
      * white_implicit_reverse_fk_ref by WHITE_IMPLICIT_REVERSE_FK_ID, named 'whiteImplicitReverseFkRefAsOne'. <br />
      * This relation is auto-detected as implicit reverse FK.

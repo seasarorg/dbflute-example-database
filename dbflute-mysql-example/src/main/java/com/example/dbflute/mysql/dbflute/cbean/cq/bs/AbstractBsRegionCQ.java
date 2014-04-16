@@ -162,7 +162,7 @@ public abstract class AbstractBsRegionCQ extends AbstractConditionQuery {
     }
 
     /**
-     * Set up ExistsReferrer (co-related sub-query). <br />
+     * Set up ExistsReferrer (correlated sub-query). <br />
      * {exists (select REGION_ID from member_address where ...)} <br />
      * (会員住所情報)member_address by REGION_ID, named 'memberAddressAsOne'.
      * <pre>
@@ -183,7 +183,7 @@ public abstract class AbstractBsRegionCQ extends AbstractConditionQuery {
     public abstract String keepRegionId_ExistsReferrer_MemberAddressList(MemberAddressCQ sq);
 
     /**
-     * Set up NotExistsReferrer (co-related sub-query). <br />
+     * Set up NotExistsReferrer (correlated sub-query). <br />
      * {not exists (select REGION_ID from member_address where ...)} <br />
      * (会員住所情報)member_address by REGION_ID, named 'memberAddressAsOne'.
      * <pre>

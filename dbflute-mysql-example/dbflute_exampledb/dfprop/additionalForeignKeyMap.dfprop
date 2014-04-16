@@ -386,6 +386,17 @@ $$over($localTable.whiteSplitMultipleFkNext)$$.SECOND_CODE = $$foreignAlias$$.SE
         ; fixedSuffix = AsBar
     }
 
+    #
+    # for the test of compound PK (biz-many-to-one)
+    #
+    ; FK_WHITE_COMPOUND_PK_REF_MANY_TEST = map:{
+        ; localTableName  = WHITE_COMPOUND_PK_REF_MANY ; foreignTableName  = WHITE_COMPOUND_PK
+        ; localColumnName = REF_MANY_FIRST_ID/REF_MANY_SECOND_ID ; foreignColumnName = PK_FIRST_ID/PK_SECOND_ID
+        ; fixedCondition = $$localAlias$$.REF_MANY_CODE = 'TPK'
+        ; fixedSuffix = ToPK
+        ; fixedReferrer = true
+    }
+
     # ====================================================================================
     #                                                               Implicit Conversion FK
     #                                                               ======================

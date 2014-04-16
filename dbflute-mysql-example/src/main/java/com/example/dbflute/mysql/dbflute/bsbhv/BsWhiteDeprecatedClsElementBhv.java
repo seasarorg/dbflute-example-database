@@ -154,10 +154,10 @@ public abstract class BsWhiteDeprecatedClsElementBhv extends AbstractBehaviorWri
         return doSelectEntity(cb, WhiteDeprecatedClsElement.class);
     }
 
-    protected <ENTITY extends WhiteDeprecatedClsElement> ENTITY doSelectEntity(final WhiteDeprecatedClsElementCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends WhiteDeprecatedClsElement> ENTITY doSelectEntity(WhiteDeprecatedClsElementCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, WhiteDeprecatedClsElementCB>() {
-            public List<ENTITY> callbackSelectList(WhiteDeprecatedClsElementCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhiteDeprecatedClsElementCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -183,10 +183,10 @@ public abstract class BsWhiteDeprecatedClsElementBhv extends AbstractBehaviorWri
         return doSelectEntityWithDeletedCheck(cb, WhiteDeprecatedClsElement.class);
     }
 
-    protected <ENTITY extends WhiteDeprecatedClsElement> ENTITY doSelectEntityWithDeletedCheck(final WhiteDeprecatedClsElementCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends WhiteDeprecatedClsElement> ENTITY doSelectEntityWithDeletedCheck(WhiteDeprecatedClsElementCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, WhiteDeprecatedClsElementCB>() {
-            public List<ENTITY> callbackSelectList(WhiteDeprecatedClsElementCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhiteDeprecatedClsElementCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -258,7 +258,7 @@ public abstract class BsWhiteDeprecatedClsElementBhv extends AbstractBehaviorWri
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
         return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, WhiteDeprecatedClsElementCB>() {
-            public List<ENTITY> callbackSelectList(WhiteDeprecatedClsElementCB cb, Class<ENTITY> tp) { return delegateSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhiteDeprecatedClsElementCB lcb, Class<ENTITY> ltp) { return delegateSelectList(lcb, ltp); } });
     }
 
     @Override

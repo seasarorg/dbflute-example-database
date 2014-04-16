@@ -139,7 +139,7 @@ public class BsMemberCB extends AbstractConditionBean {
      * cb.query().setBirthdate_IsNull();    <span style="color: #3F7E5E">// is null</span>
      * cb.query().setBirthdate_IsNotNull(); <span style="color: #3F7E5E">// is not null</span>
      * 
-     * <span style="color: #3F7E5E">// ExistsReferrer: (co-related sub-query)</span>
+     * <span style="color: #3F7E5E">// ExistsReferrer: (correlated sub-query)</span>
      * <span style="color: #3F7E5E">// {where exists (select PURCHASE_ID from PURCHASE where ...)}</span>
      * cb.query().existsPurchaseList(new SubQuery&lt;PurchaseCB&gt;() {
      *     public void query(PurchaseCB subCB) {
@@ -157,7 +157,7 @@ public class BsMemberCB extends AbstractConditionBean {
      * });
      * cb.query().notInScopeMemberStatus...
      * 
-     * <span style="color: #3F7E5E">// (Query)DerivedReferrer: (co-related sub-query)</span>
+     * <span style="color: #3F7E5E">// (Query)DerivedReferrer: (correlated sub-query)</span>
      * cb.query().derivedPurchaseList().max(new SubQuery&lt;PurchaseCB&gt;() {
      *     public void query(PurchaseCB subCB) {
      *         subCB.specify().columnPurchasePrice(); <span style="color: #3F7E5E">// derived column for function</span>
@@ -1621,7 +1621,7 @@ public class BsMemberCB extends AbstractConditionBean {
             return _memberWithdrawalAsOne;
         }
         /**
-         * Prepare for (Specify)DerivedReferrer. <br />
+         * Prepare for (Specify)DerivedReferrer (correlated sub-query). <br />
          * {select max(FOO) from member_address where ...) as FOO_MAX} <br />
          * (会員住所情報)member_address by MEMBER_ID, named 'memberAddressList'.
          * <pre>
@@ -1641,7 +1641,7 @@ public class BsMemberCB extends AbstractConditionBean {
                     cq.xsderiveMemberAddressList(fn, sq, al, op); } }, _dbmetaProvider);
         }
         /**
-         * Prepare for (Specify)DerivedReferrer. <br />
+         * Prepare for (Specify)DerivedReferrer (correlated sub-query). <br />
          * {select max(FOO) from member_login where ...) as FOO_MAX} <br />
          * (会員ログイン情報)member_login by MEMBER_ID, named 'memberLoginList'.
          * <pre>
@@ -1661,7 +1661,7 @@ public class BsMemberCB extends AbstractConditionBean {
                     cq.xsderiveMemberLoginList(fn, sq, al, op); } }, _dbmetaProvider);
         }
         /**
-         * Prepare for (Specify)DerivedReferrer. <br />
+         * Prepare for (Specify)DerivedReferrer (correlated sub-query). <br />
          * {select max(FOO) from purchase where ...) as FOO_MAX} <br />
          * (購入)purchase by MEMBER_ID, named 'purchaseList'.
          * <pre>

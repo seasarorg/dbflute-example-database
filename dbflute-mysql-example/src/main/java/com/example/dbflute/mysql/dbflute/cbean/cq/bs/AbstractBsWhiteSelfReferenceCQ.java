@@ -149,7 +149,7 @@ public abstract class AbstractBsWhiteSelfReferenceCQ extends AbstractConditionQu
     }
 
     /**
-     * Set up ExistsReferrer (co-related sub-query). <br />
+     * Set up ExistsReferrer (correlated sub-query). <br />
      * {exists (select PARENT_ID from white_self_reference where ...)} <br />
      * white_self_reference by PARENT_ID, named 'whiteSelfReferenceSelfAsOne'.
      * <pre>
@@ -170,7 +170,7 @@ public abstract class AbstractBsWhiteSelfReferenceCQ extends AbstractConditionQu
     public abstract String keepSelfReferenceId_ExistsReferrer_WhiteSelfReferenceSelfList(WhiteSelfReferenceCQ sq);
 
     /**
-     * Set up ExistsReferrer (co-related sub-query). <br />
+     * Set up ExistsReferrer (correlated sub-query). <br />
      * {exists (select SELF_REFERENCE_ID from white_self_reference_ref_one where ...)} <br />
      * white_self_reference_ref_one by SELF_REFERENCE_ID, named 'whiteSelfReferenceRefOneAsOne'.
      * <pre>
@@ -191,7 +191,7 @@ public abstract class AbstractBsWhiteSelfReferenceCQ extends AbstractConditionQu
     public abstract String keepSelfReferenceId_ExistsReferrer_WhiteSelfReferenceRefOneAsOne(WhiteSelfReferenceRefOneCQ sq);
 
     /**
-     * Set up NotExistsReferrer (co-related sub-query). <br />
+     * Set up NotExistsReferrer (correlated sub-query). <br />
      * {not exists (select PARENT_ID from white_self_reference where ...)} <br />
      * white_self_reference by PARENT_ID, named 'whiteSelfReferenceSelfAsOne'.
      * <pre>
@@ -212,7 +212,7 @@ public abstract class AbstractBsWhiteSelfReferenceCQ extends AbstractConditionQu
     public abstract String keepSelfReferenceId_NotExistsReferrer_WhiteSelfReferenceSelfList(WhiteSelfReferenceCQ sq);
 
     /**
-     * Set up NotExistsReferrer (co-related sub-query). <br />
+     * Set up NotExistsReferrer (correlated sub-query). <br />
      * {not exists (select SELF_REFERENCE_ID from white_self_reference_ref_one where ...)} <br />
      * white_self_reference_ref_one by SELF_REFERENCE_ID, named 'whiteSelfReferenceRefOneAsOne'.
      * <pre>

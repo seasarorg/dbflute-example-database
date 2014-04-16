@@ -323,6 +323,36 @@ public class WxBizManyToOneVariantRelationTest extends UnitContainerTestCase {
         assertEquals(null, fooList.get(2).getHighestPurchasePrice());
     }
 
+    public void test_VariantRelation_DerivedReferrer_union() throws Exception {
+        // ## Arrange ##
+        registerTestData();
+        WhiteVariantRelationMasterFooCB cb = new WhiteVariantRelationMasterFooCB();
+        cb.specify().derivedWhiteVariantRelationReferrerAsVariantList()
+                .max(new SubQuery<WhiteVariantRelationReferrerCB>() {
+                    public void query(WhiteVariantRelationReferrerCB subCB) {
+                        subCB.specify().columnReferrerId();
+                        subCB.union(new UnionQuery<WhiteVariantRelationReferrerCB>() {
+                            public void query(WhiteVariantRelationReferrerCB unionCB) {
+                            }
+                        });
+                    }
+                }, WhiteVariantRelationMasterFoo.ALIAS_highestPurchasePrice);
+        cb.query().addOrderBy_MasterFooId_Asc();
+
+        // ## Act ##
+        ListResultBean<WhiteVariantRelationMasterFoo> fooList = whiteVariantRelationMasterFooBhv.selectList(cb);
+
+        // ## Assert ##
+        assertHasAnyElement(fooList);
+        assertEquals(5, fooList.get(0).getHighestPurchasePrice());
+        assertEquals(4, fooList.get(1).getHighestPurchasePrice());
+        assertEquals(null, fooList.get(2).getHighestPurchasePrice());
+
+        assertTrue(Srl.containsAll(cb.toDisplaySql(), "union", "max(", // 
+                "where sub1main.VARIANT_MASTER_ID = dfloc.MASTER_FOO_ID", // 
+                "  and sub1main.MASTER_TYPE_CODE = 'FOO'"));
+    }
+
     // ===================================================================================
     //                                                                     InScopeRelation
     //                                                                     ===============
