@@ -82,6 +82,8 @@ public class DBMetaInstanceHandler implements DBMetaProvider {
         tmpMap.put("white_compound_pk_ref", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteCompoundPkRefDbm");
         tmpMap.put("white_compound_pk_ref_many", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteCompoundPkRefManyDbm");
         tmpMap.put("white_compound_pk_ref_nest", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteCompoundPkRefNestDbm");
+        tmpMap.put("white_compound_referred_normally", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteCompoundReferredNormallyDbm");
+        tmpMap.put("white_compound_referred_primary", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteCompoundReferredPrimaryDbm");
         tmpMap.put("white_date_adjustment", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteDateAdjustmentDbm");
         tmpMap.put("white_db_comment", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteDbCommentDbm");
         tmpMap.put("white_delimiter", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteDelimiterDbm");

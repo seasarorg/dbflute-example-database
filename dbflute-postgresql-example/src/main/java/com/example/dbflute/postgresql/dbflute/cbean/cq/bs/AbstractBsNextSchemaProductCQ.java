@@ -134,7 +134,7 @@ public abstract class AbstractBsNextSchemaProductCQ extends AbstractConditionQue
     }
 
     /**
-     * Set up ExistsReferrer (co-related sub-query). <br />
+     * Set up ExistsReferrer (correlated sub-query). <br />
      * {exists (select NEXT_SCHEMA_PRODUCT_ID from white_same_name where ...)} <br />
      * white_same_name by next_schema_product_id, named 'whiteSameNameAsOne'.
      * <pre>
@@ -155,7 +155,7 @@ public abstract class AbstractBsNextSchemaProductCQ extends AbstractConditionQue
     public abstract String keepProductId_ExistsReferrer_WhiteSameNameList(WhiteSameNameCQ sq);
 
     /**
-     * Set up NotExistsReferrer (co-related sub-query). <br />
+     * Set up NotExistsReferrer (correlated sub-query). <br />
      * {not exists (select NEXT_SCHEMA_PRODUCT_ID from white_same_name where ...)} <br />
      * white_same_name by next_schema_product_id, named 'whiteSameNameAsOne'.
      * <pre>

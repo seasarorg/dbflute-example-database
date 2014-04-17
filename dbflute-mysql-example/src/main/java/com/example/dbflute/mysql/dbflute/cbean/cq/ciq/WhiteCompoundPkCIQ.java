@@ -86,7 +86,16 @@ public class WhiteCompoundPkCIQ extends AbstractBsWhiteCompoundPkCQ {
     //                                                                ====================
     protected ConditionValue getCValuePkFirstId() { return _myCQ.getPkFirstId(); }
     protected ConditionValue getCValuePkSecondId() { return _myCQ.getPkSecondId(); }
+    public String keepPkSecondId_InScopeRelation_WhiteCompoundReferredPrimary(WhiteCompoundReferredPrimaryCQ sq)
+    { return _myCQ.keepPkSecondId_InScopeRelation_WhiteCompoundReferredPrimary(sq); }
+    public String keepPkSecondId_NotInScopeRelation_WhiteCompoundReferredPrimary(WhiteCompoundReferredPrimaryCQ sq)
+    { return _myCQ.keepPkSecondId_NotInScopeRelation_WhiteCompoundReferredPrimary(sq); }
     protected ConditionValue getCValuePkName() { return _myCQ.getPkName(); }
+    protected ConditionValue getCValueReferredId() { return _myCQ.getReferredId(); }
+    public String keepReferredId_InScopeRelation_WhiteCompoundReferredNormally(WhiteCompoundReferredNormallyCQ sq)
+    { return _myCQ.keepReferredId_InScopeRelation_WhiteCompoundReferredNormally(sq); }
+    public String keepReferredId_NotInScopeRelation_WhiteCompoundReferredNormally(WhiteCompoundReferredNormallyCQ sq)
+    { return _myCQ.keepReferredId_NotInScopeRelation_WhiteCompoundReferredNormally(sq); }
     protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
 
     protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()

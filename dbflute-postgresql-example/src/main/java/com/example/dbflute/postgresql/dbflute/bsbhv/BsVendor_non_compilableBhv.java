@@ -139,10 +139,10 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
         return doSelectEntity(cb, Vendor_non_compilable.class);
     }
 
-    protected <ENTITY extends Vendor_non_compilable> ENTITY doSelectEntity(final Vendor_non_compilableCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends Vendor_non_compilable> ENTITY doSelectEntity(Vendor_non_compilableCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, Vendor_non_compilableCB>() {
-            public List<ENTITY> callbackSelectList(Vendor_non_compilableCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(Vendor_non_compilableCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -168,10 +168,10 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
         return doSelectEntityWithDeletedCheck(cb, Vendor_non_compilable.class);
     }
 
-    protected <ENTITY extends Vendor_non_compilable> ENTITY doSelectEntityWithDeletedCheck(final Vendor_non_compilableCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends Vendor_non_compilable> ENTITY doSelectEntityWithDeletedCheck(Vendor_non_compilableCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, Vendor_non_compilableCB>() {
-            public List<ENTITY> callbackSelectList(Vendor_non_compilableCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(Vendor_non_compilableCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -243,7 +243,7 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
         return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, Vendor_non_compilableCB>() {
-            public List<ENTITY> callbackSelectList(Vendor_non_compilableCB cb, Class<ENTITY> tp) { return delegateSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(Vendor_non_compilableCB lcb, Class<ENTITY> ltp) { return delegateSelectList(lcb, ltp); } });
     }
 
     @Override

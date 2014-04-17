@@ -57,7 +57,7 @@ import com.example.dbflute.mysql.dbflute.nogen.cache.*;
  *     member_address, member_login, purchase, member_security, member_service, member_withdrawal
  * 
  * [foreign property]
- *     memberStatus, memberAddressAsValid, memberAddressAsValidBefore, memberLoginAsLoginStatus, memberAddressAsIfComment, memberAddressAsOnlyOneDate, memberLoginAsLocalForeignOverTest, memberLoginAsForeignForeignEachOverTest, memberLoginAsForeignForeignOptimizedBasicOverTest, memberLoginAsForeignForeignOptimizedMarkOverTest, memberLoginAsForeignForeignOptimizedPartOverTest, memberLoginAsForeignForeignOptimizedWholeOverTest, memberLoginAsForeignForeignParameterOverTest, memberLoginAsForeignForeignVariousOverTest, memberLoginAsReferrerOverTest, memberLoginAsReferrerForeignOverTest, memberAddressAsFormattedBasic, memberAddressAsFormattedLong, memberLoginAsFormattedMany, memberLoginAsLatest, memberSecurityAsOne, memberServiceAsOne, memberWithdrawalAsOne
+ *     memberStatus, memberAddressAsValid, memberAddressAsValidBefore, memberLoginAsLoginStatus, memberAddressAsIfComment, memberAddressAsOnlyOneDate, memberLoginAsLocalForeignOverTest, memberLoginAsForeignForeignEachOverTest, memberLoginAsForeignForeignOptimizedBasicOverTest, memberLoginAsForeignForeignOptimizedMarkOverTest, memberLoginAsForeignForeignOptimizedPartOverTest, memberLoginAsForeignForeignOptimizedWholeOverTest, memberLoginAsForeignForeignParameterOverTest, memberLoginAsForeignForeignVariousOverTest, memberLoginAsReferrerOverTest, memberLoginAsReferrerForeignOverTest, memberAddressAsFormattedBasic, memberAddressAsFormattedLong, memberLoginAsFormattedMany, memberLoginAsLatest, memberLoginAsOldest, memberSecurityAsOne, memberServiceAsOne, memberWithdrawalAsOne
  * 
  * [referrer property]
  *     memberAddressList, memberLoginList, purchaseList
@@ -681,6 +681,25 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
         _memberLoginAsLatest = memberLoginAsLatest;
     }
 
+    /** (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsOldest'. */
+    protected MemberLogin _memberLoginAsOldest;
+
+    /**
+     * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsOldest'.
+     * @return The entity of foreign property 'memberLoginAsOldest'. (NullAllowed: when e.g. null FK column, no setupSelect)
+     */
+    public MemberLogin getMemberLoginAsOldest() {
+        return _memberLoginAsOldest;
+    }
+
+    /**
+     * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsOldest'.
+     * @param memberLoginAsOldest The entity of foreign property 'memberLoginAsOldest'. (NullAllowed)
+     */
+    public void setMemberLoginAsOldest(MemberLogin memberLoginAsOldest) {
+        _memberLoginAsOldest = memberLoginAsOldest;
+    }
+
     /** (会員セキュリティ情報)member_security by MEMBER_ID, named 'memberSecurityAsOne'. */
     protected MemberSecurity _memberSecurityAsOne;
 
@@ -972,6 +991,8 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
         { sb.append(l).append(xbRDS(_memberLoginAsFormattedMany, "memberLoginAsFormattedMany")); }
         if (_memberLoginAsLatest != null)
         { sb.append(l).append(xbRDS(_memberLoginAsLatest, "memberLoginAsLatest")); }
+        if (_memberLoginAsOldest != null)
+        { sb.append(l).append(xbRDS(_memberLoginAsOldest, "memberLoginAsOldest")); }
         if (_memberSecurityAsOne != null)
         { sb.append(l).append(xbRDS(_memberSecurityAsOne, "memberSecurityAsOne")); }
         if (_memberServiceAsOne != null)
@@ -1050,6 +1071,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
         if (_memberAddressAsFormattedLong != null) { sb.append(c).append("memberAddressAsFormattedLong"); }
         if (_memberLoginAsFormattedMany != null) { sb.append(c).append("memberLoginAsFormattedMany"); }
         if (_memberLoginAsLatest != null) { sb.append(c).append("memberLoginAsLatest"); }
+        if (_memberLoginAsOldest != null) { sb.append(c).append("memberLoginAsOldest"); }
         if (_memberSecurityAsOne != null) { sb.append(c).append("memberSecurityAsOne"); }
         if (_memberServiceAsOne != null) { sb.append(c).append("memberServiceAsOne"); }
         if (_memberWithdrawalAsOne != null) { sb.append(c).append("memberWithdrawalAsOne"); }

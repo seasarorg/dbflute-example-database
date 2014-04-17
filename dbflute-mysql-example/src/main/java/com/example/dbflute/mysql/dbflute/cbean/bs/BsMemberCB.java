@@ -733,6 +733,29 @@ public class BsMemberCB extends AbstractConditionBean {
         { _nssMemberLoginAsLatest = new MemberLoginNss(query().queryMemberLoginAsLatest()); }
         return _nssMemberLoginAsLatest;
     }
+    protected MemberLoginNss _nssMemberLoginAsOldest;
+    public MemberLoginNss getNssMemberLoginAsOldest() {
+        if (_nssMemberLoginAsOldest == null) { _nssMemberLoginAsOldest = new MemberLoginNss(null); }
+        return _nssMemberLoginAsOldest;
+    }
+    /**
+     * Set up relation columns to select clause. <br />
+     * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsOldest'.
+     * <pre>
+     * MemberCB cb = new MemberCB();
+     * cb.<span style="color: #FD4747">setupSelect_MemberLoginAsOldest()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
+     * cb.query().setFoo...(value);
+     * Member member = memberBhv.selectEntityWithDeletedCheck(cb);
+     * ... = member.<span style="color: #FD4747">getMemberLoginAsOldest()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
+     * </pre>
+     * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
+     */
+    public MemberLoginNss setupSelect_MemberLoginAsOldest() {
+        doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryMemberLoginAsOldest(); } });
+        if (_nssMemberLoginAsOldest == null || !_nssMemberLoginAsOldest.hasConditionQuery())
+        { _nssMemberLoginAsOldest = new MemberLoginNss(query().queryMemberLoginAsOldest()); }
+        return _nssMemberLoginAsOldest;
+    }
 
     protected MemberSecurityNss _nssMemberSecurityAsOne;
     public MemberSecurityNss getNssMemberSecurityAsOne() {
@@ -865,6 +888,7 @@ public class BsMemberCB extends AbstractConditionBean {
         protected MemberAddressCB.HpSpecification _memberAddressAsFormattedLong;
         protected MemberLoginCB.HpSpecification _memberLoginAsFormattedMany;
         protected MemberLoginCB.HpSpecification _memberLoginAsLatest;
+        protected MemberLoginCB.HpSpecification _memberLoginAsOldest;
         protected MemberSecurityCB.HpSpecification _memberSecurityAsOne;
         protected MemberServiceCB.HpSpecification _memberServiceAsOne;
         protected MemberWithdrawalCB.HpSpecification _memberWithdrawalAsOne;
@@ -1556,6 +1580,27 @@ public class BsMemberCB extends AbstractConditionBean {
                 }
             }
             return _memberLoginAsLatest;
+        }
+        /**
+         * Prepare to specify functions about relation table. <br />
+         * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsOldest'.
+         * @return The instance for specification for relation table to specify. (NotNull)
+         */
+        public MemberLoginCB.HpSpecification specifyMemberLoginAsOldest() {
+            assertRelation("memberLoginAsOldest");
+            if (_memberLoginAsOldest == null) {
+                _memberLoginAsOldest = new MemberLoginCB.HpSpecification(_baseCB, new HpSpQyCall<MemberLoginCQ>() {
+                    public boolean has() { return _qyCall.has() && _qyCall.qy().hasConditionQueryMemberLoginAsOldest(); }
+                    public MemberLoginCQ qy() { return _qyCall.qy().queryMemberLoginAsOldest(); } }
+                    , _purpose, _dbmetaProvider);
+                if (xhasSyncQyCall()) { // inherits it
+                    _memberLoginAsOldest.xsetSyncQyCall(new HpSpQyCall<MemberLoginCQ>() {
+                        public boolean has() { return xsyncQyCall().has() && xsyncQyCall().qy().hasConditionQueryMemberLoginAsOldest(); }
+                        public MemberLoginCQ qy() { return xsyncQyCall().qy().queryMemberLoginAsOldest(); }
+                    });
+                }
+            }
+            return _memberLoginAsOldest;
         }
         /**
          * Prepare to specify functions about relation table. <br />

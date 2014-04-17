@@ -232,8 +232,33 @@ public class VendorMetaDataTest extends UnitContainerTestCase {
                 String fkName = rs.getString(12);
 
                 log("[" + fkName + "]");
-                log("  catalog=" + catalog + ", schema=" + schema);
-                log("  foreignTable=" + foreignTable + ", foreignColumn=" + foreignColumn);
+                log("  catalog=" + catalog + ", schema=" + schema + ", foreign=" + foreignTable + "." + foreignColumn);
+            }
+        }
+    }
+
+    // -----------------------------------------------------
+    //                                        getIndexInfo()
+    //                                        --------------
+    public void test_DatabaseMetaData_getIndexInfo_order() throws SQLException {
+        DatabaseMetaData metaData = _conn.getMetaData();
+        Map<String, DBMeta> dbmetaMap = DBMetaInstanceHandler.getUnmodifiableDBMetaMap();
+        for (Entry<String, DBMeta> entry : dbmetaMap.entrySet()) {
+            String tableDbName = entry.getKey();
+            if (entry.getValue().getForeignInfoList().size() < 2) {
+                continue;
+            }
+            ResultSet rs = metaData.getIndexInfo("exampledb", null, tableDbName, true, true);
+            log("");
+            log("= = = = = = = = = = = = = = = " + tableDbName);
+            while (rs.next()) {
+                String indexName = rs.getString(6);
+                String metaTableName = rs.getString(3);
+                String columnName = rs.getString(9);
+                String position = rs.getString(8);
+
+                log("[" + indexName + "]");
+                log("  table=" + metaTableName + ", columnName=" + columnName + ", " + position);
             }
         }
     }

@@ -53,6 +53,7 @@ public class WhiteCompoundPkDbm extends AbstractDBMeta {
         setupEpg(_epgMap, new EpgPkFirstId(), "pkFirstId");
         setupEpg(_epgMap, new EpgPkSecondId(), "pkSecondId");
         setupEpg(_epgMap, new EpgPkName(), "pkName");
+        setupEpg(_epgMap, new EpgReferredId(), "referredId");
     }
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
@@ -67,6 +68,10 @@ public class WhiteCompoundPkDbm extends AbstractDBMeta {
     public static class EpgPkName implements PropertyGateway {
         public Object read(Entity et) { return ((WhiteCompoundPk)et).getPkName(); }
         public void write(Entity et, Object vl) { ((WhiteCompoundPk)et).setPkName((String)vl); }
+    }
+    public static class EpgReferredId implements PropertyGateway {
+        public Object read(Entity et) { return ((WhiteCompoundPk)et).getReferredId(); }
+        public void write(Entity et, Object vl) { ((WhiteCompoundPk)et).setReferredId(cti(vl)); }
     }
 
     // ===================================================================================
@@ -83,19 +88,22 @@ public class WhiteCompoundPkDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnPkFirstId = cci("PK_FIRST_ID", "PK_FIRST_ID", null, null, true, "pkFirstId", Integer.class, true, false, "INT", 10, 0, null, false, null, null, null, "whiteCompoundPkRefList,whiteCompoundPkRefManyToPKList", null);
-    protected final ColumnInfo _columnPkSecondId = cci("PK_SECOND_ID", "PK_SECOND_ID", null, null, true, "pkSecondId", Integer.class, true, false, "INT", 10, 0, null, false, null, null, null, "whiteCompoundPkRefList,whiteCompoundPkRefManyToPKList", null);
+    protected final ColumnInfo _columnPkFirstId = cci("PK_FIRST_ID", "PK_FIRST_ID", null, null, true, "pkFirstId", Integer.class, true, false, "INT", 10, 0, null, false, null, null, "whiteCompoundPkRefManyAsMax,whiteCompoundPkRefManyAsMin", "whiteCompoundPkRefList,whiteCompoundPkRefManyToPKList", null);
+    protected final ColumnInfo _columnPkSecondId = cci("PK_SECOND_ID", "PK_SECOND_ID", null, null, true, "pkSecondId", Integer.class, true, false, "INT", 10, 0, null, false, null, null, "whiteCompoundReferredPrimary,whiteCompoundPkRefManyAsMax,whiteCompoundPkRefManyAsMin", "whiteCompoundPkRefList,whiteCompoundPkRefManyToPKList", null);
     protected final ColumnInfo _columnPkName = cci("PK_NAME", "PK_NAME", null, null, true, "pkName", String.class, false, false, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnReferredId = cci("REFERRED_ID", "REFERRED_ID", null, null, true, "referredId", Integer.class, false, false, "INT", 10, 0, null, false, null, null, "whiteCompoundReferredNormally", null, null);
 
     public ColumnInfo columnPkFirstId() { return _columnPkFirstId; }
     public ColumnInfo columnPkSecondId() { return _columnPkSecondId; }
     public ColumnInfo columnPkName() { return _columnPkName; }
+    public ColumnInfo columnReferredId() { return _columnReferredId; }
 
     protected List<ColumnInfo> ccil() {
         List<ColumnInfo> ls = newArrayList();
         ls.add(columnPkFirstId());
         ls.add(columnPkSecondId());
         ls.add(columnPkName());
+        ls.add(columnReferredId());
         return ls;
     }
 
@@ -122,6 +130,26 @@ public class WhiteCompoundPkDbm extends AbstractDBMeta {
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------
+    public ForeignInfo foreignWhiteCompoundReferredNormally() {
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnReferredId(), WhiteCompoundReferredNormallyDbm.getInstance().columnReferredId());
+        return cfi("FK_WHITE_COMPOUND_PK_REFERRED_NORMALLY_TEST", "whiteCompoundReferredNormally", this, WhiteCompoundReferredNormallyDbm.getInstance(), mp, 0, false, false, false, true, null, null, false, "whiteCompoundPkList");
+    }
+    public ForeignInfo foreignWhiteCompoundReferredPrimary() {
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnPkSecondId(), WhiteCompoundReferredPrimaryDbm.getInstance().columnReferredId());
+        return cfi("FK_WHITE_COMPOUND_PK_REFERRED_PRIMARY_TEST", "whiteCompoundReferredPrimary", this, WhiteCompoundReferredPrimaryDbm.getInstance(), mp, 1, false, false, false, true, null, null, false, "whiteCompoundPkList");
+    }
+    public ForeignInfo foreignWhiteCompoundPkRefManyAsMax() {
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMapSized(4);
+        mp.put(columnPkFirstId(), WhiteCompoundPkRefManyDbm.getInstance().columnRefManyFirstId());
+        mp.put(columnPkSecondId(), WhiteCompoundPkRefManyDbm.getInstance().columnRefManySecondId());
+        return cfi("FK_WHITE_COMPOUND_PK_REF_MANY_DERIVED_ONE_MAX_TEST", "whiteCompoundPkRefManyAsMax", this, WhiteCompoundPkRefManyDbm.getInstance(), mp, 2, true, true, false, true, "$$foreignAlias$$.REF_MANY_DATETIME = ($$sqbegin$$\nselect max(many.REF_MANY_DATETIME)\n  from WHITE_COMPOUND_PK_REF_MANY many\n where many.REF_MANY_FIRST_ID = $$foreignAlias$$.REF_MANY_FIRST_ID\n   and many.REF_MANY_SECOND_ID = $$foreignAlias$$.REF_MANY_SECOND_ID\n   and many.REF_MANY_CODE = 'TPK'\n)$$sqend$$", null, false, null);
+    }
+    public ForeignInfo foreignWhiteCompoundPkRefManyAsMin() {
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMapSized(4);
+        mp.put(columnPkFirstId(), WhiteCompoundPkRefManyDbm.getInstance().columnRefManyFirstId());
+        mp.put(columnPkSecondId(), WhiteCompoundPkRefManyDbm.getInstance().columnRefManySecondId());
+        return cfi("FK_WHITE_COMPOUND_PK_REF_MANY_DERIVED_ONE_MIN_TEST", "whiteCompoundPkRefManyAsMin", this, WhiteCompoundPkRefManyDbm.getInstance(), mp, 3, true, true, false, true, "$$foreignAlias$$.REF_MANY_DATETIME = ($$sqbegin$$\nselect min(many.REF_MANY_DATETIME)\n  from WHITE_COMPOUND_PK_REF_MANY many\n where many.REF_MANY_FIRST_ID = $$foreignAlias$$.REF_MANY_FIRST_ID\n   and many.REF_MANY_SECOND_ID = $$foreignAlias$$.REF_MANY_SECOND_ID\n   and many.REF_MANY_CODE = 'TPK'\n)$$sqend$$", null, false, null);
+    }
 
     // -----------------------------------------------------
     //                                     Referrer Property
@@ -136,7 +164,7 @@ public class WhiteCompoundPkDbm extends AbstractDBMeta {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMapSized(4);
         mp.put(columnPkFirstId(), WhiteCompoundPkRefManyDbm.getInstance().columnRefManyFirstId());
         mp.put(columnPkSecondId(), WhiteCompoundPkRefManyDbm.getInstance().columnRefManySecondId());
-        return cri("FK_WHITE_COMPOUND_PK_REF_MANY_TEST", "whiteCompoundPkRefManyToPKList", this, WhiteCompoundPkRefManyDbm.getInstance(), mp, false, "whiteCompoundPkToPK");
+        return cri("FK_WHITE_COMPOUND_PK_REF_MANY_TO_ONE_TEST", "whiteCompoundPkRefManyToPKList", this, WhiteCompoundPkRefManyDbm.getInstance(), mp, false, "whiteCompoundPkToPK");
     }
 
     // ===================================================================================

@@ -134,7 +134,7 @@ public abstract class AbstractBsVendorLargeDataRefCQ extends AbstractConditionQu
     }
 
     /**
-     * Set up ExistsReferrer (co-related sub-query). <br />
+     * Set up ExistsReferrer (correlated sub-query). <br />
      * {exists (select self_parent_id from vendor_large_data_ref where ...)} <br />
      * vendor_large_data_ref by self_parent_id, named 'vendorLargeDataRefSelfAsOne'.
      * <pre>
@@ -155,7 +155,7 @@ public abstract class AbstractBsVendorLargeDataRefCQ extends AbstractConditionQu
     public abstract String keepLargeDataRefId_ExistsReferrer_VendorLargeDataRefSelfList(VendorLargeDataRefCQ sq);
 
     /**
-     * Set up NotExistsReferrer (co-related sub-query). <br />
+     * Set up NotExistsReferrer (correlated sub-query). <br />
      * {not exists (select self_parent_id from vendor_large_data_ref where ...)} <br />
      * vendor_large_data_ref by self_parent_id, named 'vendorLargeDataRefSelfAsOne'.
      * <pre>

@@ -620,6 +620,82 @@ public abstract class AbstractBsWhiteCompoundPkRefManyCQ extends AbstractConditi
     protected void regRefManyName(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueRefManyName(), "REF_MANY_NAME"); }
     protected abstract ConditionValue getCValueRefManyName();
 
+    /**
+     * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
+     * REF_MANY_DATETIME: {NotNull, DATETIME(19)}
+     * @param refManyDatetime The value of refManyDatetime as equal. (NullAllowed: if null, no condition)
+     */
+    public void setRefManyDatetime_Equal(java.sql.Timestamp refManyDatetime) {
+        regRefManyDatetime(CK_EQ,  refManyDatetime);
+    }
+
+    /**
+     * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br />
+     * REF_MANY_DATETIME: {NotNull, DATETIME(19)}
+     * @param refManyDatetime The value of refManyDatetime as greaterThan. (NullAllowed: if null, no condition)
+     */
+    public void setRefManyDatetime_GreaterThan(java.sql.Timestamp refManyDatetime) {
+        regRefManyDatetime(CK_GT,  refManyDatetime);
+    }
+
+    /**
+     * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br />
+     * REF_MANY_DATETIME: {NotNull, DATETIME(19)}
+     * @param refManyDatetime The value of refManyDatetime as lessThan. (NullAllowed: if null, no condition)
+     */
+    public void setRefManyDatetime_LessThan(java.sql.Timestamp refManyDatetime) {
+        regRefManyDatetime(CK_LT,  refManyDatetime);
+    }
+
+    /**
+     * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br />
+     * REF_MANY_DATETIME: {NotNull, DATETIME(19)}
+     * @param refManyDatetime The value of refManyDatetime as greaterEqual. (NullAllowed: if null, no condition)
+     */
+    public void setRefManyDatetime_GreaterEqual(java.sql.Timestamp refManyDatetime) {
+        regRefManyDatetime(CK_GE,  refManyDatetime);
+    }
+
+    /**
+     * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br />
+     * REF_MANY_DATETIME: {NotNull, DATETIME(19)}
+     * @param refManyDatetime The value of refManyDatetime as lessEqual. (NullAllowed: if null, no condition)
+     */
+    public void setRefManyDatetime_LessEqual(java.sql.Timestamp refManyDatetime) {
+        regRefManyDatetime(CK_LE, refManyDatetime);
+    }
+
+    /**
+     * FromTo with various options. (versatile) {(default) fromDatetime &lt;= column &lt;= toDatetime} <br />
+     * And NullIgnored, OnlyOnceRegistered. <br />
+     * REF_MANY_DATETIME: {NotNull, DATETIME(19)}
+     * <pre>e.g. setRefManyDatetime_FromTo(fromDate, toDate, new <span style="color: #FD4747">FromToOption</span>().compareAsDate());</pre>
+     * @param fromDatetime The from-datetime(yyyy/MM/dd HH:mm:ss.SSS) of refManyDatetime. (NullAllowed: if null, no from-condition)
+     * @param toDatetime The to-datetime(yyyy/MM/dd HH:mm:ss.SSS) of refManyDatetime. (NullAllowed: if null, no to-condition)
+     * @param fromToOption The option of from-to. (NotNull)
+     */
+    public void setRefManyDatetime_FromTo(Date fromDatetime, Date toDatetime, FromToOption fromToOption) {
+        regFTQ((fromDatetime != null ? new java.sql.Timestamp(fromDatetime.getTime()) : null), (toDatetime != null ? new java.sql.Timestamp(toDatetime.getTime()) : null), getCValueRefManyDatetime(), "REF_MANY_DATETIME", fromToOption);
+    }
+
+    /**
+     * DateFromTo. (Date means yyyy/MM/dd) {fromDate &lt;= column &lt; toDate + 1 day} <br />
+     * And NullIgnored, OnlyOnceRegistered. <br />
+     * REF_MANY_DATETIME: {NotNull, DATETIME(19)}
+     * <pre>
+     * e.g. from:{2007/04/10 08:24:53} to:{2007/04/16 14:36:29}
+     *  column &gt;= '2007/04/10 00:00:00' and column <span style="color: #FD4747">&lt; '2007/04/17 00:00:00'</span>
+     * </pre>
+     * @param fromDate The from-date(yyyy/MM/dd) of refManyDatetime. (NullAllowed: if null, no from-condition)
+     * @param toDate The to-date(yyyy/MM/dd) of refManyDatetime. (NullAllowed: if null, no to-condition)
+     */
+    public void setRefManyDatetime_DateFromTo(Date fromDate, Date toDate) {
+        setRefManyDatetime_FromTo(fromDate, toDate, new FromToOption().compareAsDate());
+    }
+
+    protected void regRefManyDatetime(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueRefManyDatetime(), "REF_MANY_DATETIME"); }
+    protected abstract ConditionValue getCValueRefManyDatetime();
+
     // ===================================================================================
     //                                                                    Full Text Search
     //                                                                    ================

@@ -32,7 +32,7 @@ import com.example.dbflute.mysql.dbflute.exentity.*;
  *     PK_FIRST_ID, PK_SECOND_ID
  * 
  * [column]
- *     PK_FIRST_ID, PK_SECOND_ID, PK_NAME
+ *     PK_FIRST_ID, PK_SECOND_ID, PK_NAME, REFERRED_ID
  * 
  * [sequence]
  *     
@@ -44,13 +44,13 @@ import com.example.dbflute.mysql.dbflute.exentity.*;
  *     
  * 
  * [foreign table]
- *     
+ *     WHITE_COMPOUND_REFERRED_NORMALLY, WHITE_COMPOUND_REFERRED_PRIMARY, WHITE_COMPOUND_PK_REF_MANY(AsMax)
  * 
  * [referrer table]
  *     white_compound_pk_ref, white_compound_pk_ref_many
  * 
  * [foreign property]
- *     
+ *     whiteCompoundReferredNormally, whiteCompoundReferredPrimary, whiteCompoundPkRefManyAsMax, whiteCompoundPkRefManyAsMin
  * 
  * [referrer property]
  *     whiteCompoundPkRefList, whiteCompoundPkRefManyToPKList
@@ -60,9 +60,11 @@ import com.example.dbflute.mysql.dbflute.exentity.*;
  * Integer pkFirstId = entity.getPkFirstId();
  * Integer pkSecondId = entity.getPkSecondId();
  * String pkName = entity.getPkName();
+ * Integer referredId = entity.getReferredId();
  * entity.setPkFirstId(pkFirstId);
  * entity.setPkSecondId(pkSecondId);
  * entity.setPkName(pkName);
+ * entity.setReferredId(referredId);
  * = = = = = = = = = =/
  * </pre>
  * @author DBFlute(AutoGenerator)
@@ -81,14 +83,17 @@ public abstract class BsWhiteCompoundPk implements Entity, Serializable, Cloneab
     // -----------------------------------------------------
     //                                                Column
     //                                                ------
-    /** PK_FIRST_ID: {PK, NotNull, INT(10)} */
+    /** PK_FIRST_ID: {PK, UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_PK_REF_MANY} */
     protected Integer _pkFirstId;
 
-    /** PK_SECOND_ID: {PK, NotNull, INT(10)} */
+    /** PK_SECOND_ID: {PK, UQ, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_PRIMARY} */
     protected Integer _pkSecondId;
 
     /** PK_NAME: {NotNull, VARCHAR(200)} */
     protected String _pkName;
+
+    /** REFERRED_ID: {UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_NORMALLY} */
+    protected Integer _referredId;
 
     // -----------------------------------------------------
     //                                              Internal
@@ -141,6 +146,82 @@ public abstract class BsWhiteCompoundPk implements Entity, Serializable, Cloneab
     // ===================================================================================
     //                                                                    Foreign Property
     //                                                                    ================
+    /** white_compound_referred_normally by my REFERRED_ID, named 'whiteCompoundReferredNormally'. */
+    protected WhiteCompoundReferredNormally _whiteCompoundReferredNormally;
+
+    /**
+     * white_compound_referred_normally by my REFERRED_ID, named 'whiteCompoundReferredNormally'.
+     * @return The entity of foreign property 'whiteCompoundReferredNormally'. (NullAllowed: when e.g. null FK column, no setupSelect)
+     */
+    public WhiteCompoundReferredNormally getWhiteCompoundReferredNormally() {
+        return _whiteCompoundReferredNormally;
+    }
+
+    /**
+     * white_compound_referred_normally by my REFERRED_ID, named 'whiteCompoundReferredNormally'.
+     * @param whiteCompoundReferredNormally The entity of foreign property 'whiteCompoundReferredNormally'. (NullAllowed)
+     */
+    public void setWhiteCompoundReferredNormally(WhiteCompoundReferredNormally whiteCompoundReferredNormally) {
+        _whiteCompoundReferredNormally = whiteCompoundReferredNormally;
+    }
+
+    /** white_compound_referred_primary by my PK_SECOND_ID, named 'whiteCompoundReferredPrimary'. */
+    protected WhiteCompoundReferredPrimary _whiteCompoundReferredPrimary;
+
+    /**
+     * white_compound_referred_primary by my PK_SECOND_ID, named 'whiteCompoundReferredPrimary'.
+     * @return The entity of foreign property 'whiteCompoundReferredPrimary'. (NullAllowed: when e.g. null FK column, no setupSelect)
+     */
+    public WhiteCompoundReferredPrimary getWhiteCompoundReferredPrimary() {
+        return _whiteCompoundReferredPrimary;
+    }
+
+    /**
+     * white_compound_referred_primary by my PK_SECOND_ID, named 'whiteCompoundReferredPrimary'.
+     * @param whiteCompoundReferredPrimary The entity of foreign property 'whiteCompoundReferredPrimary'. (NullAllowed)
+     */
+    public void setWhiteCompoundReferredPrimary(WhiteCompoundReferredPrimary whiteCompoundReferredPrimary) {
+        _whiteCompoundReferredPrimary = whiteCompoundReferredPrimary;
+    }
+
+    /** white_compound_pk_ref_many by my PK_FIRST_ID, PK_SECOND_ID, named 'whiteCompoundPkRefManyAsMax'. */
+    protected WhiteCompoundPkRefMany _whiteCompoundPkRefManyAsMax;
+
+    /**
+     * white_compound_pk_ref_many by my PK_FIRST_ID, PK_SECOND_ID, named 'whiteCompoundPkRefManyAsMax'.
+     * @return The entity of foreign property 'whiteCompoundPkRefManyAsMax'. (NullAllowed: when e.g. null FK column, no setupSelect)
+     */
+    public WhiteCompoundPkRefMany getWhiteCompoundPkRefManyAsMax() {
+        return _whiteCompoundPkRefManyAsMax;
+    }
+
+    /**
+     * white_compound_pk_ref_many by my PK_FIRST_ID, PK_SECOND_ID, named 'whiteCompoundPkRefManyAsMax'.
+     * @param whiteCompoundPkRefManyAsMax The entity of foreign property 'whiteCompoundPkRefManyAsMax'. (NullAllowed)
+     */
+    public void setWhiteCompoundPkRefManyAsMax(WhiteCompoundPkRefMany whiteCompoundPkRefManyAsMax) {
+        _whiteCompoundPkRefManyAsMax = whiteCompoundPkRefManyAsMax;
+    }
+
+    /** white_compound_pk_ref_many by my PK_FIRST_ID, PK_SECOND_ID, named 'whiteCompoundPkRefManyAsMin'. */
+    protected WhiteCompoundPkRefMany _whiteCompoundPkRefManyAsMin;
+
+    /**
+     * white_compound_pk_ref_many by my PK_FIRST_ID, PK_SECOND_ID, named 'whiteCompoundPkRefManyAsMin'.
+     * @return The entity of foreign property 'whiteCompoundPkRefManyAsMin'. (NullAllowed: when e.g. null FK column, no setupSelect)
+     */
+    public WhiteCompoundPkRefMany getWhiteCompoundPkRefManyAsMin() {
+        return _whiteCompoundPkRefManyAsMin;
+    }
+
+    /**
+     * white_compound_pk_ref_many by my PK_FIRST_ID, PK_SECOND_ID, named 'whiteCompoundPkRefManyAsMin'.
+     * @param whiteCompoundPkRefManyAsMin The entity of foreign property 'whiteCompoundPkRefManyAsMin'. (NullAllowed)
+     */
+    public void setWhiteCompoundPkRefManyAsMin(WhiteCompoundPkRefMany whiteCompoundPkRefManyAsMin) {
+        _whiteCompoundPkRefManyAsMin = whiteCompoundPkRefManyAsMin;
+    }
+
     // ===================================================================================
     //                                                                   Referrer Property
     //                                                                   =================
@@ -290,6 +371,14 @@ public abstract class BsWhiteCompoundPk implements Entity, Serializable, Cloneab
         StringBuilder sb = new StringBuilder();
         sb.append(toString());
         String l = "\n  ";
+        if (_whiteCompoundReferredNormally != null)
+        { sb.append(l).append(xbRDS(_whiteCompoundReferredNormally, "whiteCompoundReferredNormally")); }
+        if (_whiteCompoundReferredPrimary != null)
+        { sb.append(l).append(xbRDS(_whiteCompoundReferredPrimary, "whiteCompoundReferredPrimary")); }
+        if (_whiteCompoundPkRefManyAsMax != null)
+        { sb.append(l).append(xbRDS(_whiteCompoundPkRefManyAsMax, "whiteCompoundPkRefManyAsMax")); }
+        if (_whiteCompoundPkRefManyAsMin != null)
+        { sb.append(l).append(xbRDS(_whiteCompoundPkRefManyAsMin, "whiteCompoundPkRefManyAsMin")); }
         if (_whiteCompoundPkRefList != null) { for (Entity e : _whiteCompoundPkRefList)
         { if (e != null) { sb.append(l).append(xbRDS(e, "whiteCompoundPkRefList")); } } }
         if (_whiteCompoundPkRefManyToPKList != null) { for (Entity e : _whiteCompoundPkRefManyToPKList)
@@ -317,6 +406,7 @@ public abstract class BsWhiteCompoundPk implements Entity, Serializable, Cloneab
         sb.append(delimiter).append(getPkFirstId());
         sb.append(delimiter).append(getPkSecondId());
         sb.append(delimiter).append(getPkName());
+        sb.append(delimiter).append(getReferredId());
         if (sb.length() > delimiter.length()) {
             sb.delete(0, delimiter.length());
         }
@@ -326,6 +416,10 @@ public abstract class BsWhiteCompoundPk implements Entity, Serializable, Cloneab
     protected String buildRelationString() {
         StringBuilder sb = new StringBuilder();
         String c = ",";
+        if (_whiteCompoundReferredNormally != null) { sb.append(c).append("whiteCompoundReferredNormally"); }
+        if (_whiteCompoundReferredPrimary != null) { sb.append(c).append("whiteCompoundReferredPrimary"); }
+        if (_whiteCompoundPkRefManyAsMax != null) { sb.append(c).append("whiteCompoundPkRefManyAsMax"); }
+        if (_whiteCompoundPkRefManyAsMin != null) { sb.append(c).append("whiteCompoundPkRefManyAsMin"); }
         if (_whiteCompoundPkRefList != null && !_whiteCompoundPkRefList.isEmpty())
         { sb.append(c).append("whiteCompoundPkRefList"); }
         if (_whiteCompoundPkRefManyToPKList != null && !_whiteCompoundPkRefManyToPKList.isEmpty())
@@ -352,7 +446,7 @@ public abstract class BsWhiteCompoundPk implements Entity, Serializable, Cloneab
     //                                                                            Accessor
     //                                                                            ========
     /**
-     * [get] PK_FIRST_ID: {PK, NotNull, INT(10)} <br />
+     * [get] PK_FIRST_ID: {PK, UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_PK_REF_MANY} <br />
      * @return The value of the column 'PK_FIRST_ID'. (basically NotNull if selected: for the constraint)
      */
     public Integer getPkFirstId() {
@@ -360,7 +454,7 @@ public abstract class BsWhiteCompoundPk implements Entity, Serializable, Cloneab
     }
 
     /**
-     * [set] PK_FIRST_ID: {PK, NotNull, INT(10)} <br />
+     * [set] PK_FIRST_ID: {PK, UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_PK_REF_MANY} <br />
      * @param pkFirstId The value of the column 'PK_FIRST_ID'. (basically NotNull if update: for the constraint)
      */
     public void setPkFirstId(Integer pkFirstId) {
@@ -369,7 +463,7 @@ public abstract class BsWhiteCompoundPk implements Entity, Serializable, Cloneab
     }
 
     /**
-     * [get] PK_SECOND_ID: {PK, NotNull, INT(10)} <br />
+     * [get] PK_SECOND_ID: {PK, UQ, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_PRIMARY} <br />
      * @return The value of the column 'PK_SECOND_ID'. (basically NotNull if selected: for the constraint)
      */
     public Integer getPkSecondId() {
@@ -377,7 +471,7 @@ public abstract class BsWhiteCompoundPk implements Entity, Serializable, Cloneab
     }
 
     /**
-     * [set] PK_SECOND_ID: {PK, NotNull, INT(10)} <br />
+     * [set] PK_SECOND_ID: {PK, UQ, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_PRIMARY} <br />
      * @param pkSecondId The value of the column 'PK_SECOND_ID'. (basically NotNull if update: for the constraint)
      */
     public void setPkSecondId(Integer pkSecondId) {
@@ -400,5 +494,22 @@ public abstract class BsWhiteCompoundPk implements Entity, Serializable, Cloneab
     public void setPkName(String pkName) {
         __modifiedProperties.addPropertyName("pkName");
         this._pkName = pkName;
+    }
+
+    /**
+     * [get] REFERRED_ID: {UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_NORMALLY} <br />
+     * @return The value of the column 'REFERRED_ID'. (basically NotNull if selected: for the constraint)
+     */
+    public Integer getReferredId() {
+        return _referredId;
+    }
+
+    /**
+     * [set] REFERRED_ID: {UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_NORMALLY} <br />
+     * @param referredId The value of the column 'REFERRED_ID'. (basically NotNull if update: for the constraint)
+     */
+    public void setReferredId(Integer referredId) {
+        __modifiedProperties.addPropertyName("referredId");
+        this._referredId = referredId;
     }
 }

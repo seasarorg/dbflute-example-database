@@ -139,10 +139,10 @@ public abstract class BsNextschemaWhiteSameNameRefBhv extends AbstractBehaviorWr
         return doSelectEntity(cb, NextschemaWhiteSameNameRef.class);
     }
 
-    protected <ENTITY extends NextschemaWhiteSameNameRef> ENTITY doSelectEntity(final NextschemaWhiteSameNameRefCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends NextschemaWhiteSameNameRef> ENTITY doSelectEntity(NextschemaWhiteSameNameRefCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, NextschemaWhiteSameNameRefCB>() {
-            public List<ENTITY> callbackSelectList(NextschemaWhiteSameNameRefCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(NextschemaWhiteSameNameRefCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -168,10 +168,10 @@ public abstract class BsNextschemaWhiteSameNameRefBhv extends AbstractBehaviorWr
         return doSelectEntityWithDeletedCheck(cb, NextschemaWhiteSameNameRef.class);
     }
 
-    protected <ENTITY extends NextschemaWhiteSameNameRef> ENTITY doSelectEntityWithDeletedCheck(final NextschemaWhiteSameNameRefCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends NextschemaWhiteSameNameRef> ENTITY doSelectEntityWithDeletedCheck(NextschemaWhiteSameNameRefCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, NextschemaWhiteSameNameRefCB>() {
-            public List<ENTITY> callbackSelectList(NextschemaWhiteSameNameRefCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(NextschemaWhiteSameNameRefCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -243,7 +243,7 @@ public abstract class BsNextschemaWhiteSameNameRefBhv extends AbstractBehaviorWr
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
         return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, NextschemaWhiteSameNameRefCB>() {
-            public List<ENTITY> callbackSelectList(NextschemaWhiteSameNameRefCB cb, Class<ENTITY> tp) { return delegateSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(NextschemaWhiteSameNameRefCB lcb, Class<ENTITY> ltp) { return delegateSelectList(lcb, ltp); } });
     }
 
     @Override

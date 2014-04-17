@@ -56,6 +56,7 @@ public class WhiteCompoundPkRefManyDbm extends AbstractDBMeta {
         setupEpg(_epgMap, new EpgRefManySecondId(), "refManySecondId");
         setupEpg(_epgMap, new EpgRefManyCode(), "refManyCode");
         setupEpg(_epgMap, new EpgRefManyName(), "refManyName");
+        setupEpg(_epgMap, new EpgRefManyDatetime(), "refManyDatetime");
     }
     public PropertyGateway findPropertyGateway(String propertyName)
     { return doFindEpg(_epgMap, propertyName); }
@@ -83,6 +84,10 @@ public class WhiteCompoundPkRefManyDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((WhiteCompoundPkRefMany)et).getRefManyName(); }
         public void write(Entity et, Object vl) { ((WhiteCompoundPkRefMany)et).setRefManyName((String)vl); }
     }
+    public static class EpgRefManyDatetime implements PropertyGateway {
+        public Object read(Entity et) { return ((WhiteCompoundPkRefMany)et).getRefManyDatetime(); }
+        public void write(Entity et, Object vl) { ((WhiteCompoundPkRefMany)et).setRefManyDatetime((java.sql.Timestamp)vl); }
+    }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -104,6 +109,7 @@ public class WhiteCompoundPkRefManyDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnRefManySecondId = cci("REF_MANY_SECOND_ID", "REF_MANY_SECOND_ID", null, null, true, "refManySecondId", Integer.class, false, false, "INT", 10, 0, null, false, null, null, "whiteCompoundPkToPK", null, null);
     protected final ColumnInfo _columnRefManyCode = cci("REF_MANY_CODE", "REF_MANY_CODE", null, null, true, "refManyCode", String.class, false, false, "CHAR", 3, 0, null, false, null, null, null, null, null);
     protected final ColumnInfo _columnRefManyName = cci("REF_MANY_NAME", "REF_MANY_NAME", null, null, true, "refManyName", String.class, false, false, "VARCHAR", 50, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnRefManyDatetime = cci("REF_MANY_DATETIME", "REF_MANY_DATETIME", null, null, true, "refManyDatetime", java.sql.Timestamp.class, false, false, "DATETIME", 19, 0, null, false, null, null, null, null, null);
 
     public ColumnInfo columnMultipleFirstId() { return _columnMultipleFirstId; }
     public ColumnInfo columnMultipleSecondId() { return _columnMultipleSecondId; }
@@ -111,6 +117,7 @@ public class WhiteCompoundPkRefManyDbm extends AbstractDBMeta {
     public ColumnInfo columnRefManySecondId() { return _columnRefManySecondId; }
     public ColumnInfo columnRefManyCode() { return _columnRefManyCode; }
     public ColumnInfo columnRefManyName() { return _columnRefManyName; }
+    public ColumnInfo columnRefManyDatetime() { return _columnRefManyDatetime; }
 
     protected List<ColumnInfo> ccil() {
         List<ColumnInfo> ls = newArrayList();
@@ -120,6 +127,7 @@ public class WhiteCompoundPkRefManyDbm extends AbstractDBMeta {
         ls.add(columnRefManySecondId());
         ls.add(columnRefManyCode());
         ls.add(columnRefManyName());
+        ls.add(columnRefManyDatetime());
         return ls;
     }
 
@@ -150,7 +158,7 @@ public class WhiteCompoundPkRefManyDbm extends AbstractDBMeta {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMapSized(4);
         mp.put(columnRefManyFirstId(), WhiteCompoundPkDbm.getInstance().columnPkFirstId());
         mp.put(columnRefManySecondId(), WhiteCompoundPkDbm.getInstance().columnPkSecondId());
-        return cfi("FK_WHITE_COMPOUND_PK_REF_MANY_TEST", "whiteCompoundPkToPK", this, WhiteCompoundPkDbm.getInstance(), mp, 0, false, false, false, true, "$$localAlias$$.REF_MANY_CODE = 'TPK'", null, false, "whiteCompoundPkRefManyToPKList");
+        return cfi("FK_WHITE_COMPOUND_PK_REF_MANY_TO_ONE_TEST", "whiteCompoundPkToPK", this, WhiteCompoundPkDbm.getInstance(), mp, 0, false, false, false, true, "$$localAlias$$.REF_MANY_CODE = 'TPK'", null, false, "whiteCompoundPkRefManyToPKList");
     }
 
     // -----------------------------------------------------

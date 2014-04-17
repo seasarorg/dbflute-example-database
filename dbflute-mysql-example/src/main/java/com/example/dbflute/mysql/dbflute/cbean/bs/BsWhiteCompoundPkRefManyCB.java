@@ -366,6 +366,11 @@ public class BsWhiteCompoundPkRefManyCB extends AbstractConditionBean {
          * @return The information object of specified column. (NotNull)
          */
         public HpSpecifiedColumn columnRefManyName() { return doColumn("REF_MANY_NAME"); }
+        /**
+         * REF_MANY_DATETIME: {NotNull, DATETIME(19)}
+         * @return The information object of specified column. (NotNull)
+         */
+        public HpSpecifiedColumn columnRefManyDatetime() { return doColumn("REF_MANY_DATETIME"); }
         public void everyColumn() { doEveryColumn(); }
         public void exceptRecordMetaColumn() { doExceptRecordMetaColumn(); }
         @Override

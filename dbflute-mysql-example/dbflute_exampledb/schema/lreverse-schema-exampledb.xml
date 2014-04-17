@@ -797,6 +797,11 @@
         <column comment="" dbType="CHAR" javaType="String"
             name="QUX_CODE" pkName="PRIMARY" primaryKey="true"
             required="true" size="3" type="CHAR"/>
+        <unique name="PRIMARY">
+            <unique-column name="FOO_CODE" position="1"/>
+            <unique-column name="BAR_CODE" position="2"/>
+            <unique-column name="QUX_CODE" position="3"/>
+        </unique>
     </table>
     <table name="white_all_in_one_cls_element"
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
@@ -828,6 +833,11 @@
         <column comment="" dbType="CHAR" javaType="String"
             name="QUX_CODE" pkName="PRIMARY" primaryKey="true"
             required="true" size="3" type="CHAR"/>
+        <unique name="PRIMARY">
+            <unique-column name="FOO_CODE" position="1"/>
+            <unique-column name="BAR_CODE" position="2"/>
+            <unique-column name="QUX_CODE" position="3"/>
+        </unique>
     </table>
     <table name="white_binary" schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column autoIncrement="true" comment="" dbType="BIGINT"
@@ -865,6 +875,16 @@
             required="true" size="10" type="INTEGER"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="PK_NAME" required="true" size="200" type="VARCHAR"/>
+        <column comment="" dbType="INT" javaType="Integer"
+            name="REFERRED_ID" required="true" size="10" type="INTEGER"/>
+        <unique name="PK_SECOND_ID">
+            <unique-column name="PK_SECOND_ID" position="1"/>
+            <unique-column name="REFERRED_ID" position="2"/>
+        </unique>
+        <unique name="PK_SECOND_ID_2">
+            <unique-column name="PK_SECOND_ID" position="1"/>
+            <unique-column name="PK_FIRST_ID" position="2"/>
+        </unique>
     </table>
     <table name="white_compound_pk_ref"
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
@@ -878,6 +898,8 @@
             name="REF_FIRST_ID" required="true" size="10" type="INTEGER"/>
         <column comment="" dbType="INT" javaType="Integer"
             name="REF_SECOND_ID" required="true" size="10" type="INTEGER"/>
+        <column comment="" dbType="VARCHAR" javaType="String"
+            name="REF_NAME" required="true" size="50" type="VARCHAR"/>
         <foreign-key foreignSchema="exampledb.$$NoNameSchema$$"
             foreignTable="white_compound_pk" name="FK_WHITE_COMPOUND_PK_REF">
             <reference foreign="PK_FIRST_ID" local="REF_FIRST_ID"/>
@@ -887,6 +909,26 @@
             <index-column name="REF_FIRST_ID" position="1"/>
             <index-column name="REF_SECOND_ID" position="2"/>
         </index>
+    </table>
+    <table name="white_compound_pk_ref_many"
+        schema="exampledb.$$NoNameSchema$$" type="TABLE">
+        <column comment="" dbType="INT" javaType="Integer"
+            name="MULTIPLE_FIRST_ID" pkName="PRIMARY" primaryKey="true"
+            required="true" size="10" type="INTEGER"/>
+        <column comment="" dbType="INT" javaType="Integer"
+            name="MULTIPLE_SECOND_ID" pkName="PRIMARY" primaryKey="true"
+            required="true" size="10" type="INTEGER"/>
+        <column comment="" dbType="INT" javaType="Integer"
+            name="REF_MANY_FIRST_ID" required="true" size="10" type="INTEGER"/>
+        <column comment="" dbType="INT" javaType="Integer"
+            name="REF_MANY_SECOND_ID" required="true" size="10" type="INTEGER"/>
+        <column comment="" dbType="CHAR" javaType="String"
+            name="REF_MANY_CODE" required="true" size="3" type="CHAR"/>
+        <column comment="" dbType="VARCHAR" javaType="String"
+            name="REF_MANY_NAME" required="true" size="50" type="VARCHAR"/>
+        <column comment="" dbType="DATETIME"
+            javaType="java.sql.Timestamp" name="REF_MANY_DATETIME"
+            required="true" size="19" type="TIMESTAMP"/>
     </table>
     <table name="white_compound_pk_ref_nest"
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
@@ -899,6 +941,8 @@
             name="BAR_MULTIPLE_ID" required="true" size="10" type="INTEGER"/>
         <column comment="" dbType="INT" javaType="Integer"
             name="QUX_MULTIPLE_ID" required="true" size="10" type="INTEGER"/>
+        <column comment="" dbType="VARCHAR" javaType="String"
+            name="NEST_NAME" required="true" size="50" type="VARCHAR"/>
         <foreign-key foreignSchema="exampledb.$$NoNameSchema$$"
             foreignTable="white_compound_pk_ref" name="FK_WHITE_COMPOUND_PK_REF_NEST_BAR_QUX">
             <reference foreign="MULTIPLE_FIRST_ID" local="BAR_MULTIPLE_ID"/>
@@ -917,6 +961,22 @@
             <index-column name="FOO_MULTIPLE_ID" position="1"/>
             <index-column name="BAR_MULTIPLE_ID" position="2"/>
         </index>
+    </table>
+    <table name="white_compound_referred_normally"
+        schema="exampledb.$$NoNameSchema$$" type="TABLE">
+        <column comment="" dbType="INT" javaType="Integer"
+            name="REFERRED_ID" pkName="PRIMARY" primaryKey="true"
+            required="true" size="10" type="INTEGER"/>
+        <column comment="" dbType="VARCHAR" javaType="String"
+            name="REFERRED_NAME" required="true" size="200" type="VARCHAR"/>
+    </table>
+    <table name="white_compound_referred_primary"
+        schema="exampledb.$$NoNameSchema$$" type="TABLE">
+        <column comment="" dbType="INT" javaType="Integer"
+            name="REFERRED_ID" pkName="PRIMARY" primaryKey="true"
+            required="true" size="10" type="INTEGER"/>
+        <column comment="" dbType="VARCHAR" javaType="String"
+            name="REFERRED_NAME" required="true" size="200" type="VARCHAR"/>
     </table>
     <table name="white_date_adjustment"
         schema="exampledb.$$NoNameSchema$$" type="TABLE">

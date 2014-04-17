@@ -34,7 +34,7 @@ import com.example.dbflute.mysql.dbflute.cbean.*;
  *     PK_FIRST_ID, PK_SECOND_ID
  *
  * [column]
- *     PK_FIRST_ID, PK_SECOND_ID, PK_NAME
+ *     PK_FIRST_ID, PK_SECOND_ID, PK_NAME, REFERRED_ID
  *
  * [sequence]
  *     
@@ -46,13 +46,13 @@ import com.example.dbflute.mysql.dbflute.cbean.*;
  *     
  *
  * [foreign table]
- *     
+ *     WHITE_COMPOUND_REFERRED_NORMALLY, WHITE_COMPOUND_REFERRED_PRIMARY, WHITE_COMPOUND_PK_REF_MANY(AsMax)
  *
  * [referrer table]
  *     white_compound_pk_ref, white_compound_pk_ref_many
  *
  * [foreign property]
- *     
+ *     whiteCompoundReferredNormally, whiteCompoundReferredPrimary, whiteCompoundPkRefManyAsMax, whiteCompoundPkRefManyAsMin
  *
  * [referrer property]
  *     whiteCompoundPkRefList, whiteCompoundPkRefManyToPKList
@@ -593,6 +593,58 @@ public abstract class BsWhiteCompoundPkBhv extends AbstractBehaviorWritable {
     // ===================================================================================
     //                                                                   Pull out Relation
     //                                                                   =================
+    /**
+     * Pull out the list of foreign table 'WhiteCompoundReferredNormally'.
+     * @param whiteCompoundPkList The list of whiteCompoundPk. (NotNull, EmptyAllowed)
+     * @return The list of foreign table. (NotNull, EmptyAllowed, NotNullElement)
+     */
+    public List<WhiteCompoundReferredNormally> pulloutWhiteCompoundReferredNormally(List<WhiteCompoundPk> whiteCompoundPkList) {
+        return helpPulloutInternally(whiteCompoundPkList, new InternalPulloutCallback<WhiteCompoundPk, WhiteCompoundReferredNormally>() {
+            public WhiteCompoundReferredNormally getFr(WhiteCompoundPk et) { return et.getWhiteCompoundReferredNormally(); }
+            public boolean hasRf() { return true; }
+            public void setRfLs(WhiteCompoundReferredNormally et, List<WhiteCompoundPk> ls)
+            { et.setWhiteCompoundPkList(ls); }
+        });
+    }
+    /**
+     * Pull out the list of foreign table 'WhiteCompoundReferredPrimary'.
+     * @param whiteCompoundPkList The list of whiteCompoundPk. (NotNull, EmptyAllowed)
+     * @return The list of foreign table. (NotNull, EmptyAllowed, NotNullElement)
+     */
+    public List<WhiteCompoundReferredPrimary> pulloutWhiteCompoundReferredPrimary(List<WhiteCompoundPk> whiteCompoundPkList) {
+        return helpPulloutInternally(whiteCompoundPkList, new InternalPulloutCallback<WhiteCompoundPk, WhiteCompoundReferredPrimary>() {
+            public WhiteCompoundReferredPrimary getFr(WhiteCompoundPk et) { return et.getWhiteCompoundReferredPrimary(); }
+            public boolean hasRf() { return true; }
+            public void setRfLs(WhiteCompoundReferredPrimary et, List<WhiteCompoundPk> ls)
+            { et.setWhiteCompoundPkList(ls); }
+        });
+    }
+    /**
+     * Pull out the list of foreign table 'WhiteCompoundPkRefMany'.
+     * @param whiteCompoundPkList The list of whiteCompoundPk. (NotNull, EmptyAllowed)
+     * @return The list of foreign table. (NotNull, EmptyAllowed, NotNullElement)
+     */
+    public List<WhiteCompoundPkRefMany> pulloutWhiteCompoundPkRefManyAsMax(List<WhiteCompoundPk> whiteCompoundPkList) {
+        return helpPulloutInternally(whiteCompoundPkList, new InternalPulloutCallback<WhiteCompoundPk, WhiteCompoundPkRefMany>() {
+            public WhiteCompoundPkRefMany getFr(WhiteCompoundPk et) { return et.getWhiteCompoundPkRefManyAsMax(); }
+            public boolean hasRf() { return false; }
+            public void setRfLs(WhiteCompoundPkRefMany et, List<WhiteCompoundPk> ls)
+            { throw new UnsupportedOperationException(); }
+        });
+    }
+    /**
+     * Pull out the list of foreign table 'WhiteCompoundPkRefMany'.
+     * @param whiteCompoundPkList The list of whiteCompoundPk. (NotNull, EmptyAllowed)
+     * @return The list of foreign table. (NotNull, EmptyAllowed, NotNullElement)
+     */
+    public List<WhiteCompoundPkRefMany> pulloutWhiteCompoundPkRefManyAsMin(List<WhiteCompoundPk> whiteCompoundPkList) {
+        return helpPulloutInternally(whiteCompoundPkList, new InternalPulloutCallback<WhiteCompoundPk, WhiteCompoundPkRefMany>() {
+            public WhiteCompoundPkRefMany getFr(WhiteCompoundPk et) { return et.getWhiteCompoundPkRefManyAsMin(); }
+            public boolean hasRf() { return false; }
+            public void setRfLs(WhiteCompoundPkRefMany et, List<WhiteCompoundPk> ls)
+            { throw new UnsupportedOperationException(); }
+        });
+    }
 
     // ===================================================================================
     //                                                                      Extract Column

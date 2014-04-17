@@ -52,7 +52,7 @@ import com.example.dbflute.mysql.dbflute.cbean.*;
  *     member_address, member_login, purchase, member_security, member_service, member_withdrawal
  *
  * [foreign property]
- *     memberStatus, memberAddressAsValid, memberAddressAsValidBefore, memberLoginAsLoginStatus, memberAddressAsIfComment, memberAddressAsOnlyOneDate, memberLoginAsLocalForeignOverTest, memberLoginAsForeignForeignEachOverTest, memberLoginAsForeignForeignOptimizedBasicOverTest, memberLoginAsForeignForeignOptimizedMarkOverTest, memberLoginAsForeignForeignOptimizedPartOverTest, memberLoginAsForeignForeignOptimizedWholeOverTest, memberLoginAsForeignForeignParameterOverTest, memberLoginAsForeignForeignVariousOverTest, memberLoginAsReferrerOverTest, memberLoginAsReferrerForeignOverTest, memberAddressAsFormattedBasic, memberAddressAsFormattedLong, memberLoginAsFormattedMany, memberLoginAsLatest, memberSecurityAsOne, memberServiceAsOne, memberWithdrawalAsOne
+ *     memberStatus, memberAddressAsValid, memberAddressAsValidBefore, memberLoginAsLoginStatus, memberAddressAsIfComment, memberAddressAsOnlyOneDate, memberLoginAsLocalForeignOverTest, memberLoginAsForeignForeignEachOverTest, memberLoginAsForeignForeignOptimizedBasicOverTest, memberLoginAsForeignForeignOptimizedMarkOverTest, memberLoginAsForeignForeignOptimizedPartOverTest, memberLoginAsForeignForeignOptimizedWholeOverTest, memberLoginAsForeignForeignParameterOverTest, memberLoginAsForeignForeignVariousOverTest, memberLoginAsReferrerOverTest, memberLoginAsReferrerForeignOverTest, memberAddressAsFormattedBasic, memberAddressAsFormattedLong, memberLoginAsFormattedMany, memberLoginAsLatest, memberLoginAsOldest, memberSecurityAsOne, memberServiceAsOne, memberWithdrawalAsOne
  *
  * [referrer property]
  *     memberAddressList, memberLoginList, purchaseList
@@ -899,6 +899,19 @@ public abstract class BsMemberBhv extends AbstractBehaviorWritable {
     public List<MemberLogin> pulloutMemberLoginAsLatest(List<Member> memberList) {
         return helpPulloutInternally(memberList, new InternalPulloutCallback<Member, MemberLogin>() {
             public MemberLogin getFr(Member et) { return et.getMemberLoginAsLatest(); }
+            public boolean hasRf() { return false; }
+            public void setRfLs(MemberLogin et, List<Member> ls)
+            { throw new UnsupportedOperationException(); }
+        });
+    }
+    /**
+     * Pull out the list of foreign table 'MemberLogin'.
+     * @param memberList The list of member. (NotNull, EmptyAllowed)
+     * @return The list of foreign table. (NotNull, EmptyAllowed, NotNullElement)
+     */
+    public List<MemberLogin> pulloutMemberLoginAsOldest(List<Member> memberList) {
+        return helpPulloutInternally(memberList, new InternalPulloutCallback<Member, MemberLogin>() {
+            public MemberLogin getFr(Member et) { return et.getMemberLoginAsOldest(); }
             public boolean hasRf() { return false; }
             public void setRfLs(MemberLogin et, List<Member> ls)
             { throw new UnsupportedOperationException(); }

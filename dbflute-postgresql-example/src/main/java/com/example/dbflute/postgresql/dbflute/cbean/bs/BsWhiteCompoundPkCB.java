@@ -125,7 +125,7 @@ public class BsWhiteCompoundPkCB extends AbstractConditionBean {
      * cb.query().setBirthdate_IsNull();    <span style="color: #3F7E5E">// is null</span>
      * cb.query().setBirthdate_IsNotNull(); <span style="color: #3F7E5E">// is not null</span>
      * 
-     * <span style="color: #3F7E5E">// ExistsReferrer: (co-related sub-query)</span>
+     * <span style="color: #3F7E5E">// ExistsReferrer: (correlated sub-query)</span>
      * <span style="color: #3F7E5E">// {where exists (select PURCHASE_ID from PURCHASE where ...)}</span>
      * cb.query().existsPurchaseList(new SubQuery&lt;PurchaseCB&gt;() {
      *     public void query(PurchaseCB subCB) {
@@ -143,7 +143,7 @@ public class BsWhiteCompoundPkCB extends AbstractConditionBean {
      * });
      * cb.query().notInScopeMemberStatus...
      * 
-     * <span style="color: #3F7E5E">// (Query)DerivedReferrer: (co-related sub-query)</span>
+     * <span style="color: #3F7E5E">// (Query)DerivedReferrer: (correlated sub-query)</span>
      * cb.query().derivedPurchaseList().max(new SubQuery&lt;PurchaseCB&gt;() {
      *     public void query(PurchaseCB subCB) {
      *         subCB.specify().columnPurchasePrice(); <span style="color: #3F7E5E">// derived column for function</span>
@@ -330,6 +330,26 @@ public class BsWhiteCompoundPkCB extends AbstractConditionBean {
         }
         @Override
         protected String getTableDbName() { return "white_compound_pk"; }
+        /**
+         * Prepare for (Specify)DerivedReferrer (correlated sub-query). <br />
+         * {select max(FOO) from white_compound_pk_ref where ...) as FOO_MAX} <br />
+         * white_compound_pk_ref by ref_first_id, ref_second_id, named 'whiteCompoundPkRefList'.
+         * <pre>
+         * cb.specify().<span style="color: #FD4747">derivedWhiteCompoundPkRefList()</span>.<span style="color: #FD4747">max</span>(new SubQuery&lt;WhiteCompoundPkRefCB&gt;() {
+         *     public void query(WhiteCompoundPkRefCB subCB) {
+         *         subCB.specify().<span style="color: #FD4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
+         *         subCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
+         *     }
+         * }, WhiteCompoundPkRef.<span style="color: #FD4747">ALIAS_foo...</span>);
+         * </pre>
+         * @return The object to set up a function for referrer table. (NotNull)
+         */
+        public HpSDRFunction<WhiteCompoundPkRefCB, WhiteCompoundPkCQ> derivedWhiteCompoundPkRefList() {
+            assertDerived("whiteCompoundPkRefList"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
+            return new HpSDRFunction<WhiteCompoundPkRefCB, WhiteCompoundPkCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<WhiteCompoundPkRefCB, WhiteCompoundPkCQ>() {
+                public void setup(String fn, SubQuery<WhiteCompoundPkRefCB> sq, WhiteCompoundPkCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsderiveWhiteCompoundPkRefList(fn, sq, al, op); } }, _dbmetaProvider);
+        }
     }
 
     // [DBFlute-0.9.5.3]

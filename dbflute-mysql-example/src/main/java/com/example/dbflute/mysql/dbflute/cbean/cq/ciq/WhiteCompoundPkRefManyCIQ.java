@@ -90,6 +90,7 @@ public class WhiteCompoundPkRefManyCIQ extends AbstractBsWhiteCompoundPkRefManyC
     protected ConditionValue getCValueRefManySecondId() { return _myCQ.getRefManySecondId(); }
     protected ConditionValue getCValueRefManyCode() { return _myCQ.getRefManyCode(); }
     protected ConditionValue getCValueRefManyName() { return _myCQ.getRefManyName(); }
+    protected ConditionValue getCValueRefManyDatetime() { return _myCQ.getRefManyDatetime(); }
     protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
 
     protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()

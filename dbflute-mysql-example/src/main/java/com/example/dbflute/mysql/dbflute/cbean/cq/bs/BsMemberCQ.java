@@ -707,6 +707,9 @@ public class BsMemberCQ extends AbstractBsMemberCQ {
         if (bq.hasConditionQueryMemberLoginAsLatest()) {
             uq.queryMemberLoginAsLatest().reflectRelationOnUnionQuery(bq.queryMemberLoginAsLatest(), uq.queryMemberLoginAsLatest());
         }
+        if (bq.hasConditionQueryMemberLoginAsOldest()) {
+            uq.queryMemberLoginAsOldest().reflectRelationOnUnionQuery(bq.queryMemberLoginAsOldest(), uq.queryMemberLoginAsOldest());
+        }
         if (bq.hasConditionQueryMemberSecurityAsOne()) {
             uq.queryMemberSecurityAsOne().reflectRelationOnUnionQuery(bq.queryMemberSecurityAsOne(), uq.queryMemberSecurityAsOne());
         }
@@ -1526,6 +1529,40 @@ public class BsMemberCQ extends AbstractBsMemberCQ {
     }
     public boolean hasConditionQueryMemberLoginAsLatest() {
         return _conditionQueryMemberLoginAsLatest != null;
+    }
+
+    /**
+     * Get the condition-query for relation table. <br />
+     * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsOldest'.
+     * @return The instance of condition-query. (NotNull)
+     */
+    public MemberLoginCQ queryMemberLoginAsOldest() {
+        return getConditionQueryMemberLoginAsOldest();
+    }
+    protected MemberLoginCQ _conditionQueryMemberLoginAsOldest;
+    public MemberLoginCQ getConditionQueryMemberLoginAsOldest() {
+        if (_conditionQueryMemberLoginAsOldest == null) {
+            _conditionQueryMemberLoginAsOldest = xcreateQueryMemberLoginAsOldest();
+            xsetupOuterJoinMemberLoginAsOldest();
+        }
+        return _conditionQueryMemberLoginAsOldest;
+    }
+    protected MemberLoginCQ xcreateQueryMemberLoginAsOldest() {
+        String nrp = resolveNextRelationPath("member", "memberLoginAsOldest");
+        String jan = resolveJoinAliasName(nrp, xgetNextNestLevel());
+        MemberLoginCQ cq = new MemberLoginCQ(this, xgetSqlClause(), jan, xgetNextNestLevel());
+        cq.xsetBaseCB(_baseCB);
+        cq.xsetForeignPropertyName("memberLoginAsOldest");
+        cq.xsetRelationPath(nrp); return cq;
+    }
+    protected void xsetupOuterJoinMemberLoginAsOldest() {
+        MemberLoginCQ cq = getConditionQueryMemberLoginAsOldest();
+        Map<String, String> joinOnMap = newLinkedHashMapSized(4);
+        joinOnMap.put("MEMBER_ID", "MEMBER_ID");
+        registerOuterJoin(cq, joinOnMap, "memberLoginAsOldest");
+    }
+    public boolean hasConditionQueryMemberLoginAsOldest() {
+        return _conditionQueryMemberLoginAsOldest != null;
     }
 
     /**

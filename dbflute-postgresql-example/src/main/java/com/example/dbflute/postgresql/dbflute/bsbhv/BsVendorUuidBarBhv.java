@@ -139,10 +139,10 @@ public abstract class BsVendorUuidBarBhv extends AbstractBehaviorWritable {
         return doSelectEntity(cb, VendorUuidBar.class);
     }
 
-    protected <ENTITY extends VendorUuidBar> ENTITY doSelectEntity(final VendorUuidBarCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends VendorUuidBar> ENTITY doSelectEntity(VendorUuidBarCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, VendorUuidBarCB>() {
-            public List<ENTITY> callbackSelectList(VendorUuidBarCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(VendorUuidBarCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -168,10 +168,10 @@ public abstract class BsVendorUuidBarBhv extends AbstractBehaviorWritable {
         return doSelectEntityWithDeletedCheck(cb, VendorUuidBar.class);
     }
 
-    protected <ENTITY extends VendorUuidBar> ENTITY doSelectEntityWithDeletedCheck(final VendorUuidBarCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends VendorUuidBar> ENTITY doSelectEntityWithDeletedCheck(VendorUuidBarCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, VendorUuidBarCB>() {
-            public List<ENTITY> callbackSelectList(VendorUuidBarCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(VendorUuidBarCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -243,7 +243,7 @@ public abstract class BsVendorUuidBarBhv extends AbstractBehaviorWritable {
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
         return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, VendorUuidBarCB>() {
-            public List<ENTITY> callbackSelectList(VendorUuidBarCB cb, Class<ENTITY> tp) { return delegateSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(VendorUuidBarCB lcb, Class<ENTITY> ltp) { return delegateSelectList(lcb, ltp); } });
     }
 
     @Override

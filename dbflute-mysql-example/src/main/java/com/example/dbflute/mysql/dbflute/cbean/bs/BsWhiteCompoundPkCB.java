@@ -35,6 +35,7 @@ import com.example.dbflute.mysql.dbflute.allcommon.ImplementedInvokerAssistant;
 import com.example.dbflute.mysql.dbflute.allcommon.ImplementedSqlClauseCreator;
 import com.example.dbflute.mysql.dbflute.cbean.*;
 import com.example.dbflute.mysql.dbflute.cbean.cq.*;
+import com.example.dbflute.mysql.dbflute.cbean.nss.*;
 
 /**
  * The base condition-bean of white_compound_pk.
@@ -261,6 +262,101 @@ public class BsWhiteCompoundPkCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                         SetupSelect
     //                                                                         ===========
+    protected WhiteCompoundReferredNormallyNss _nssWhiteCompoundReferredNormally;
+    public WhiteCompoundReferredNormallyNss getNssWhiteCompoundReferredNormally() {
+        if (_nssWhiteCompoundReferredNormally == null) { _nssWhiteCompoundReferredNormally = new WhiteCompoundReferredNormallyNss(null); }
+        return _nssWhiteCompoundReferredNormally;
+    }
+    /**
+     * Set up relation columns to select clause. <br />
+     * white_compound_referred_normally by my REFERRED_ID, named 'whiteCompoundReferredNormally'.
+     * <pre>
+     * WhiteCompoundPkCB cb = new WhiteCompoundPkCB();
+     * cb.<span style="color: #FD4747">setupSelect_WhiteCompoundReferredNormally()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
+     * cb.query().setFoo...(value);
+     * WhiteCompoundPk whiteCompoundPk = whiteCompoundPkBhv.selectEntityWithDeletedCheck(cb);
+     * ... = whiteCompoundPk.<span style="color: #FD4747">getWhiteCompoundReferredNormally()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
+     * </pre>
+     * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
+     */
+    public WhiteCompoundReferredNormallyNss setupSelect_WhiteCompoundReferredNormally() {
+        if (hasSpecifiedColumn()) { // if reverse call
+            specify().columnReferredId();
+        }
+        doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryWhiteCompoundReferredNormally(); } });
+        if (_nssWhiteCompoundReferredNormally == null || !_nssWhiteCompoundReferredNormally.hasConditionQuery())
+        { _nssWhiteCompoundReferredNormally = new WhiteCompoundReferredNormallyNss(query().queryWhiteCompoundReferredNormally()); }
+        return _nssWhiteCompoundReferredNormally;
+    }
+    protected WhiteCompoundReferredPrimaryNss _nssWhiteCompoundReferredPrimary;
+    public WhiteCompoundReferredPrimaryNss getNssWhiteCompoundReferredPrimary() {
+        if (_nssWhiteCompoundReferredPrimary == null) { _nssWhiteCompoundReferredPrimary = new WhiteCompoundReferredPrimaryNss(null); }
+        return _nssWhiteCompoundReferredPrimary;
+    }
+    /**
+     * Set up relation columns to select clause. <br />
+     * white_compound_referred_primary by my PK_SECOND_ID, named 'whiteCompoundReferredPrimary'.
+     * <pre>
+     * WhiteCompoundPkCB cb = new WhiteCompoundPkCB();
+     * cb.<span style="color: #FD4747">setupSelect_WhiteCompoundReferredPrimary()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
+     * cb.query().setFoo...(value);
+     * WhiteCompoundPk whiteCompoundPk = whiteCompoundPkBhv.selectEntityWithDeletedCheck(cb);
+     * ... = whiteCompoundPk.<span style="color: #FD4747">getWhiteCompoundReferredPrimary()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
+     * </pre>
+     * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
+     */
+    public WhiteCompoundReferredPrimaryNss setupSelect_WhiteCompoundReferredPrimary() {
+        doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryWhiteCompoundReferredPrimary(); } });
+        if (_nssWhiteCompoundReferredPrimary == null || !_nssWhiteCompoundReferredPrimary.hasConditionQuery())
+        { _nssWhiteCompoundReferredPrimary = new WhiteCompoundReferredPrimaryNss(query().queryWhiteCompoundReferredPrimary()); }
+        return _nssWhiteCompoundReferredPrimary;
+    }
+    protected WhiteCompoundPkRefManyNss _nssWhiteCompoundPkRefManyAsMax;
+    public WhiteCompoundPkRefManyNss getNssWhiteCompoundPkRefManyAsMax() {
+        if (_nssWhiteCompoundPkRefManyAsMax == null) { _nssWhiteCompoundPkRefManyAsMax = new WhiteCompoundPkRefManyNss(null); }
+        return _nssWhiteCompoundPkRefManyAsMax;
+    }
+    /**
+     * Set up relation columns to select clause. <br />
+     * white_compound_pk_ref_many by my PK_FIRST_ID, PK_SECOND_ID, named 'whiteCompoundPkRefManyAsMax'.
+     * <pre>
+     * WhiteCompoundPkCB cb = new WhiteCompoundPkCB();
+     * cb.<span style="color: #FD4747">setupSelect_WhiteCompoundPkRefManyAsMax()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
+     * cb.query().setFoo...(value);
+     * WhiteCompoundPk whiteCompoundPk = whiteCompoundPkBhv.selectEntityWithDeletedCheck(cb);
+     * ... = whiteCompoundPk.<span style="color: #FD4747">getWhiteCompoundPkRefManyAsMax()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
+     * </pre>
+     * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
+     */
+    public WhiteCompoundPkRefManyNss setupSelect_WhiteCompoundPkRefManyAsMax() {
+        doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryWhiteCompoundPkRefManyAsMax(); } });
+        if (_nssWhiteCompoundPkRefManyAsMax == null || !_nssWhiteCompoundPkRefManyAsMax.hasConditionQuery())
+        { _nssWhiteCompoundPkRefManyAsMax = new WhiteCompoundPkRefManyNss(query().queryWhiteCompoundPkRefManyAsMax()); }
+        return _nssWhiteCompoundPkRefManyAsMax;
+    }
+    protected WhiteCompoundPkRefManyNss _nssWhiteCompoundPkRefManyAsMin;
+    public WhiteCompoundPkRefManyNss getNssWhiteCompoundPkRefManyAsMin() {
+        if (_nssWhiteCompoundPkRefManyAsMin == null) { _nssWhiteCompoundPkRefManyAsMin = new WhiteCompoundPkRefManyNss(null); }
+        return _nssWhiteCompoundPkRefManyAsMin;
+    }
+    /**
+     * Set up relation columns to select clause. <br />
+     * white_compound_pk_ref_many by my PK_FIRST_ID, PK_SECOND_ID, named 'whiteCompoundPkRefManyAsMin'.
+     * <pre>
+     * WhiteCompoundPkCB cb = new WhiteCompoundPkCB();
+     * cb.<span style="color: #FD4747">setupSelect_WhiteCompoundPkRefManyAsMin()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
+     * cb.query().setFoo...(value);
+     * WhiteCompoundPk whiteCompoundPk = whiteCompoundPkBhv.selectEntityWithDeletedCheck(cb);
+     * ... = whiteCompoundPk.<span style="color: #FD4747">getWhiteCompoundPkRefManyAsMin()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
+     * </pre>
+     * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
+     */
+    public WhiteCompoundPkRefManyNss setupSelect_WhiteCompoundPkRefManyAsMin() {
+        doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryWhiteCompoundPkRefManyAsMin(); } });
+        if (_nssWhiteCompoundPkRefManyAsMin == null || !_nssWhiteCompoundPkRefManyAsMin.hasConditionQuery())
+        { _nssWhiteCompoundPkRefManyAsMin = new WhiteCompoundPkRefManyNss(query().queryWhiteCompoundPkRefManyAsMin()); }
+        return _nssWhiteCompoundPkRefManyAsMin;
+    }
 
     // [DBFlute-0.7.4]
     // ===================================================================================
@@ -304,16 +400,20 @@ public class BsWhiteCompoundPkCB extends AbstractConditionBean {
     }
 
     public static class HpSpecification extends HpAbstractSpecification<WhiteCompoundPkCQ> {
+        protected WhiteCompoundReferredNormallyCB.HpSpecification _whiteCompoundReferredNormally;
+        protected WhiteCompoundReferredPrimaryCB.HpSpecification _whiteCompoundReferredPrimary;
+        protected WhiteCompoundPkRefManyCB.HpSpecification _whiteCompoundPkRefManyAsMax;
+        protected WhiteCompoundPkRefManyCB.HpSpecification _whiteCompoundPkRefManyAsMin;
         public HpSpecification(ConditionBean baseCB, HpSpQyCall<WhiteCompoundPkCQ> qyCall
                              , HpCBPurpose purpose, DBMetaProvider dbmetaProvider)
         { super(baseCB, qyCall, purpose, dbmetaProvider); }
         /**
-         * PK_FIRST_ID: {PK, NotNull, INT(10)}
+         * PK_FIRST_ID: {PK, UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_PK_REF_MANY}
          * @return The information object of specified column. (NotNull)
          */
         public HpSpecifiedColumn columnPkFirstId() { return doColumn("PK_FIRST_ID"); }
         /**
-         * PK_SECOND_ID: {PK, NotNull, INT(10)}
+         * PK_SECOND_ID: {PK, UQ, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_PRIMARY}
          * @return The information object of specified column. (NotNull)
          */
         public HpSpecifiedColumn columnPkSecondId() { return doColumn("PK_SECOND_ID"); }
@@ -322,15 +422,108 @@ public class BsWhiteCompoundPkCB extends AbstractConditionBean {
          * @return The information object of specified column. (NotNull)
          */
         public HpSpecifiedColumn columnPkName() { return doColumn("PK_NAME"); }
+        /**
+         * REFERRED_ID: {UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_NORMALLY}
+         * @return The information object of specified column. (NotNull)
+         */
+        public HpSpecifiedColumn columnReferredId() { return doColumn("REFERRED_ID"); }
         public void everyColumn() { doEveryColumn(); }
         public void exceptRecordMetaColumn() { doExceptRecordMetaColumn(); }
         @Override
         protected void doSpecifyRequiredColumn() {
             columnPkFirstId(); // PK
             columnPkSecondId(); // PK
+            if (qyCall().qy().hasConditionQueryWhiteCompoundReferredNormally()
+                    || qyCall().qy().xgetReferrerQuery() instanceof WhiteCompoundReferredNormallyCQ) {
+                columnReferredId(); // FK or one-to-one referrer
+            }
         }
         @Override
         protected String getTableDbName() { return "white_compound_pk"; }
+        /**
+         * Prepare to specify functions about relation table. <br />
+         * white_compound_referred_normally by my REFERRED_ID, named 'whiteCompoundReferredNormally'.
+         * @return The instance for specification for relation table to specify. (NotNull)
+         */
+        public WhiteCompoundReferredNormallyCB.HpSpecification specifyWhiteCompoundReferredNormally() {
+            assertRelation("whiteCompoundReferredNormally");
+            if (_whiteCompoundReferredNormally == null) {
+                _whiteCompoundReferredNormally = new WhiteCompoundReferredNormallyCB.HpSpecification(_baseCB, new HpSpQyCall<WhiteCompoundReferredNormallyCQ>() {
+                    public boolean has() { return _qyCall.has() && _qyCall.qy().hasConditionQueryWhiteCompoundReferredNormally(); }
+                    public WhiteCompoundReferredNormallyCQ qy() { return _qyCall.qy().queryWhiteCompoundReferredNormally(); } }
+                    , _purpose, _dbmetaProvider);
+                if (xhasSyncQyCall()) { // inherits it
+                    _whiteCompoundReferredNormally.xsetSyncQyCall(new HpSpQyCall<WhiteCompoundReferredNormallyCQ>() {
+                        public boolean has() { return xsyncQyCall().has() && xsyncQyCall().qy().hasConditionQueryWhiteCompoundReferredNormally(); }
+                        public WhiteCompoundReferredNormallyCQ qy() { return xsyncQyCall().qy().queryWhiteCompoundReferredNormally(); }
+                    });
+                }
+            }
+            return _whiteCompoundReferredNormally;
+        }
+        /**
+         * Prepare to specify functions about relation table. <br />
+         * white_compound_referred_primary by my PK_SECOND_ID, named 'whiteCompoundReferredPrimary'.
+         * @return The instance for specification for relation table to specify. (NotNull)
+         */
+        public WhiteCompoundReferredPrimaryCB.HpSpecification specifyWhiteCompoundReferredPrimary() {
+            assertRelation("whiteCompoundReferredPrimary");
+            if (_whiteCompoundReferredPrimary == null) {
+                _whiteCompoundReferredPrimary = new WhiteCompoundReferredPrimaryCB.HpSpecification(_baseCB, new HpSpQyCall<WhiteCompoundReferredPrimaryCQ>() {
+                    public boolean has() { return _qyCall.has() && _qyCall.qy().hasConditionQueryWhiteCompoundReferredPrimary(); }
+                    public WhiteCompoundReferredPrimaryCQ qy() { return _qyCall.qy().queryWhiteCompoundReferredPrimary(); } }
+                    , _purpose, _dbmetaProvider);
+                if (xhasSyncQyCall()) { // inherits it
+                    _whiteCompoundReferredPrimary.xsetSyncQyCall(new HpSpQyCall<WhiteCompoundReferredPrimaryCQ>() {
+                        public boolean has() { return xsyncQyCall().has() && xsyncQyCall().qy().hasConditionQueryWhiteCompoundReferredPrimary(); }
+                        public WhiteCompoundReferredPrimaryCQ qy() { return xsyncQyCall().qy().queryWhiteCompoundReferredPrimary(); }
+                    });
+                }
+            }
+            return _whiteCompoundReferredPrimary;
+        }
+        /**
+         * Prepare to specify functions about relation table. <br />
+         * white_compound_pk_ref_many by my PK_FIRST_ID, PK_SECOND_ID, named 'whiteCompoundPkRefManyAsMax'.
+         * @return The instance for specification for relation table to specify. (NotNull)
+         */
+        public WhiteCompoundPkRefManyCB.HpSpecification specifyWhiteCompoundPkRefManyAsMax() {
+            assertRelation("whiteCompoundPkRefManyAsMax");
+            if (_whiteCompoundPkRefManyAsMax == null) {
+                _whiteCompoundPkRefManyAsMax = new WhiteCompoundPkRefManyCB.HpSpecification(_baseCB, new HpSpQyCall<WhiteCompoundPkRefManyCQ>() {
+                    public boolean has() { return _qyCall.has() && _qyCall.qy().hasConditionQueryWhiteCompoundPkRefManyAsMax(); }
+                    public WhiteCompoundPkRefManyCQ qy() { return _qyCall.qy().queryWhiteCompoundPkRefManyAsMax(); } }
+                    , _purpose, _dbmetaProvider);
+                if (xhasSyncQyCall()) { // inherits it
+                    _whiteCompoundPkRefManyAsMax.xsetSyncQyCall(new HpSpQyCall<WhiteCompoundPkRefManyCQ>() {
+                        public boolean has() { return xsyncQyCall().has() && xsyncQyCall().qy().hasConditionQueryWhiteCompoundPkRefManyAsMax(); }
+                        public WhiteCompoundPkRefManyCQ qy() { return xsyncQyCall().qy().queryWhiteCompoundPkRefManyAsMax(); }
+                    });
+                }
+            }
+            return _whiteCompoundPkRefManyAsMax;
+        }
+        /**
+         * Prepare to specify functions about relation table. <br />
+         * white_compound_pk_ref_many by my PK_FIRST_ID, PK_SECOND_ID, named 'whiteCompoundPkRefManyAsMin'.
+         * @return The instance for specification for relation table to specify. (NotNull)
+         */
+        public WhiteCompoundPkRefManyCB.HpSpecification specifyWhiteCompoundPkRefManyAsMin() {
+            assertRelation("whiteCompoundPkRefManyAsMin");
+            if (_whiteCompoundPkRefManyAsMin == null) {
+                _whiteCompoundPkRefManyAsMin = new WhiteCompoundPkRefManyCB.HpSpecification(_baseCB, new HpSpQyCall<WhiteCompoundPkRefManyCQ>() {
+                    public boolean has() { return _qyCall.has() && _qyCall.qy().hasConditionQueryWhiteCompoundPkRefManyAsMin(); }
+                    public WhiteCompoundPkRefManyCQ qy() { return _qyCall.qy().queryWhiteCompoundPkRefManyAsMin(); } }
+                    , _purpose, _dbmetaProvider);
+                if (xhasSyncQyCall()) { // inherits it
+                    _whiteCompoundPkRefManyAsMin.xsetSyncQyCall(new HpSpQyCall<WhiteCompoundPkRefManyCQ>() {
+                        public boolean has() { return xsyncQyCall().has() && xsyncQyCall().qy().hasConditionQueryWhiteCompoundPkRefManyAsMin(); }
+                        public WhiteCompoundPkRefManyCQ qy() { return xsyncQyCall().qy().queryWhiteCompoundPkRefManyAsMin(); }
+                    });
+                }
+            }
+            return _whiteCompoundPkRefManyAsMin;
+        }
         /**
          * Prepare for (Specify)DerivedReferrer (correlated sub-query). <br />
          * {select max(FOO) from white_compound_pk_ref where ...) as FOO_MAX} <br />

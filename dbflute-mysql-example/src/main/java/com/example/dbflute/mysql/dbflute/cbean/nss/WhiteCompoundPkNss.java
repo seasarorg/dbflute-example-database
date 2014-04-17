@@ -15,6 +15,7 @@
  */
 package com.example.dbflute.mysql.dbflute.cbean.nss;
 
+import org.seasar.dbflute.cbean.ConditionQuery;
 import com.example.dbflute.mysql.dbflute.cbean.cq.WhiteCompoundPkCQ;
 
 /**
@@ -33,5 +34,41 @@ public class WhiteCompoundPkNss {
     // ===================================================================================
     //                                                                     Nested Relation
     //                                                                     ===============
+    /**
+     * With nested relation columns to select clause. <br />
+     * white_compound_referred_normally by my REFERRED_ID, named 'whiteCompoundReferredNormally'.
+     * @return The set-upper of more nested relation. {...with[nested-relation].with[more-nested-relation]} (NotNull)
+     */
+    public WhiteCompoundReferredNormallyNss withWhiteCompoundReferredNormally() {
+        _query.doNss(new WhiteCompoundPkCQ.NssCall() { public ConditionQuery qf() { return _query.queryWhiteCompoundReferredNormally(); }});
+        return new WhiteCompoundReferredNormallyNss(_query.queryWhiteCompoundReferredNormally());
+    }
+    /**
+     * With nested relation columns to select clause. <br />
+     * white_compound_referred_primary by my PK_SECOND_ID, named 'whiteCompoundReferredPrimary'.
+     * @return The set-upper of more nested relation. {...with[nested-relation].with[more-nested-relation]} (NotNull)
+     */
+    public WhiteCompoundReferredPrimaryNss withWhiteCompoundReferredPrimary() {
+        _query.doNss(new WhiteCompoundPkCQ.NssCall() { public ConditionQuery qf() { return _query.queryWhiteCompoundReferredPrimary(); }});
+        return new WhiteCompoundReferredPrimaryNss(_query.queryWhiteCompoundReferredPrimary());
+    }
+    /**
+     * With nested relation columns to select clause. <br />
+     * white_compound_pk_ref_many by my PK_FIRST_ID, PK_SECOND_ID, named 'whiteCompoundPkRefManyAsMax'.
+     * @return The set-upper of more nested relation. {...with[nested-relation].with[more-nested-relation]} (NotNull)
+     */
+    public WhiteCompoundPkRefManyNss withWhiteCompoundPkRefManyAsMax() {
+        _query.doNss(new WhiteCompoundPkCQ.NssCall() { public ConditionQuery qf() { return _query.queryWhiteCompoundPkRefManyAsMax(); }});
+        return new WhiteCompoundPkRefManyNss(_query.queryWhiteCompoundPkRefManyAsMax());
+    }
+    /**
+     * With nested relation columns to select clause. <br />
+     * white_compound_pk_ref_many by my PK_FIRST_ID, PK_SECOND_ID, named 'whiteCompoundPkRefManyAsMin'.
+     * @return The set-upper of more nested relation. {...with[nested-relation].with[more-nested-relation]} (NotNull)
+     */
+    public WhiteCompoundPkRefManyNss withWhiteCompoundPkRefManyAsMin() {
+        _query.doNss(new WhiteCompoundPkCQ.NssCall() { public ConditionQuery qf() { return _query.queryWhiteCompoundPkRefManyAsMin(); }});
+        return new WhiteCompoundPkRefManyNss(_query.queryWhiteCompoundPkRefManyAsMin());
+    }
 
 }

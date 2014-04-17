@@ -32,7 +32,7 @@ import com.example.dbflute.mysql.dbflute.exentity.*;
  *     MULTIPLE_FIRST_ID, MULTIPLE_SECOND_ID
  * 
  * [column]
- *     MULTIPLE_FIRST_ID, MULTIPLE_SECOND_ID, REF_MANY_FIRST_ID, REF_MANY_SECOND_ID, REF_MANY_CODE, REF_MANY_NAME
+ *     MULTIPLE_FIRST_ID, MULTIPLE_SECOND_ID, REF_MANY_FIRST_ID, REF_MANY_SECOND_ID, REF_MANY_CODE, REF_MANY_NAME, REF_MANY_DATETIME
  * 
  * [sequence]
  *     
@@ -63,12 +63,14 @@ import com.example.dbflute.mysql.dbflute.exentity.*;
  * Integer refManySecondId = entity.getRefManySecondId();
  * String refManyCode = entity.getRefManyCode();
  * String refManyName = entity.getRefManyName();
+ * java.sql.Timestamp refManyDatetime = entity.getRefManyDatetime();
  * entity.setMultipleFirstId(multipleFirstId);
  * entity.setMultipleSecondId(multipleSecondId);
  * entity.setRefManyFirstId(refManyFirstId);
  * entity.setRefManySecondId(refManySecondId);
  * entity.setRefManyCode(refManyCode);
  * entity.setRefManyName(refManyName);
+ * entity.setRefManyDatetime(refManyDatetime);
  * = = = = = = = = = =/
  * </pre>
  * @author DBFlute(AutoGenerator)
@@ -104,6 +106,9 @@ public abstract class BsWhiteCompoundPkRefMany implements Entity, Serializable, 
 
     /** REF_MANY_NAME: {NotNull, VARCHAR(50)} */
     protected String _refManyName;
+
+    /** REF_MANY_DATETIME: {NotNull, DATETIME(19)} */
+    protected java.sql.Timestamp _refManyDatetime;
 
     // -----------------------------------------------------
     //                                              Internal
@@ -312,6 +317,7 @@ public abstract class BsWhiteCompoundPkRefMany implements Entity, Serializable, 
         sb.append(delimiter).append(getRefManySecondId());
         sb.append(delimiter).append(getRefManyCode());
         sb.append(delimiter).append(getRefManyName());
+        sb.append(delimiter).append(getRefManyDatetime());
         if (sb.length() > delimiter.length()) {
             sb.delete(0, delimiter.length());
         }
@@ -443,5 +449,22 @@ public abstract class BsWhiteCompoundPkRefMany implements Entity, Serializable, 
     public void setRefManyName(String refManyName) {
         __modifiedProperties.addPropertyName("refManyName");
         this._refManyName = refManyName;
+    }
+
+    /**
+     * [get] REF_MANY_DATETIME: {NotNull, DATETIME(19)} <br />
+     * @return The value of the column 'REF_MANY_DATETIME'. (basically NotNull if selected: for the constraint)
+     */
+    public java.sql.Timestamp getRefManyDatetime() {
+        return _refManyDatetime;
+    }
+
+    /**
+     * [set] REF_MANY_DATETIME: {NotNull, DATETIME(19)} <br />
+     * @param refManyDatetime The value of the column 'REF_MANY_DATETIME'. (basically NotNull if update: for the constraint)
+     */
+    public void setRefManyDatetime(java.sql.Timestamp refManyDatetime) {
+        __modifiedProperties.addPropertyName("refManyDatetime");
+        this._refManyDatetime = refManyDatetime;
     }
 }

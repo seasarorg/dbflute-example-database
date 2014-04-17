@@ -129,7 +129,7 @@ public abstract class AbstractBsProductStatusCQ extends AbstractConditionQuery {
     }
 
     /**
-     * Set up ExistsReferrer (co-related sub-query). <br />
+     * Set up ExistsReferrer (correlated sub-query). <br />
      * {exists (select product_status_code from product where ...)} <br />
      * (商品)product by product_status_code, named 'productAsOne'.
      * <pre>
@@ -150,7 +150,7 @@ public abstract class AbstractBsProductStatusCQ extends AbstractConditionQuery {
     public abstract String keepProductStatusCode_ExistsReferrer_ProductList(ProductCQ sq);
 
     /**
-     * Set up NotExistsReferrer (co-related sub-query). <br />
+     * Set up NotExistsReferrer (correlated sub-query). <br />
      * {not exists (select product_status_code from product where ...)} <br />
      * (商品)product by product_status_code, named 'productAsOne'.
      * <pre>

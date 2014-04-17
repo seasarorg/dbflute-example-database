@@ -386,15 +386,52 @@ $$over($localTable.whiteSplitMultipleFkNext)$$.SECOND_CODE = $$foreignAlias$$.SE
         ; fixedSuffix = AsBar
     }
 
+    # ====================================================================================
+    #                                                          Compound FK Biz-Many-to-One
+    #                                                          ===========================
     #
     # for the test of compound PK (biz-many-to-one)
     #
-    ; FK_WHITE_COMPOUND_PK_REF_MANY_TEST = map:{
+    ; FK_WHITE_COMPOUND_PK_REFERRED_NORMALLY_TEST = map:{
+        ; localTableName  = WHITE_COMPOUND_PK ; foreignTableName  = WHITE_COMPOUND_REFERRED_NORMALLY
+        ; localColumnName = REFERRED_ID ; foreignColumnName = REFERRED_ID
+    }
+    ; FK_WHITE_COMPOUND_PK_REFERRED_PRIMARY_TEST = map:{
+        ; localTableName  = WHITE_COMPOUND_PK ; foreignTableName  = WHITE_COMPOUND_REFERRED_PRIMARY
+        ; localColumnName = PK_SECOND_ID ; foreignColumnName = REFERRED_ID
+    }
+    ; FK_WHITE_COMPOUND_PK_REF_MANY_TO_ONE_TEST = map:{
         ; localTableName  = WHITE_COMPOUND_PK_REF_MANY ; foreignTableName  = WHITE_COMPOUND_PK
         ; localColumnName = REF_MANY_FIRST_ID/REF_MANY_SECOND_ID ; foreignColumnName = PK_FIRST_ID/PK_SECOND_ID
         ; fixedCondition = $$localAlias$$.REF_MANY_CODE = 'TPK'
         ; fixedSuffix = ToPK
         ; fixedReferrer = true
+    }
+    ; FK_WHITE_COMPOUND_PK_REF_MANY_DERIVED_ONE_MAX_TEST = map:{
+        ; localTableName  = WHITE_COMPOUND_PK ; foreignTableName  = WHITE_COMPOUND_PK_REF_MANY
+        ; localColumnName = PK_FIRST_ID/PK_SECOND_ID ; foreignColumnName = REF_MANY_FIRST_ID/REF_MANY_SECOND_ID
+        ; fixedCondition = 
+$$foreignAlias$$.REF_MANY_DATETIME = ($$sqbegin$$
+select max(many.REF_MANY_DATETIME)
+  from WHITE_COMPOUND_PK_REF_MANY many
+ where many.REF_MANY_FIRST_ID = $$foreignAlias$$.REF_MANY_FIRST_ID
+   and many.REF_MANY_SECOND_ID = $$foreignAlias$$.REF_MANY_SECOND_ID
+   and many.REF_MANY_CODE = 'TPK'
+)$$sqend$$
+        ; fixedSuffix = AsMax
+    }
+    ; FK_WHITE_COMPOUND_PK_REF_MANY_DERIVED_ONE_MIN_TEST = map:{
+        ; localTableName  = WHITE_COMPOUND_PK ; foreignTableName  = WHITE_COMPOUND_PK_REF_MANY
+        ; localColumnName = PK_FIRST_ID/PK_SECOND_ID ; foreignColumnName = REF_MANY_FIRST_ID/REF_MANY_SECOND_ID
+        ; fixedCondition = 
+$$foreignAlias$$.REF_MANY_DATETIME = ($$sqbegin$$
+select min(many.REF_MANY_DATETIME)
+  from WHITE_COMPOUND_PK_REF_MANY many
+ where many.REF_MANY_FIRST_ID = $$foreignAlias$$.REF_MANY_FIRST_ID
+   and many.REF_MANY_SECOND_ID = $$foreignAlias$$.REF_MANY_SECOND_ID
+   and many.REF_MANY_CODE = 'TPK'
+)$$sqend$$
+        ; fixedSuffix = AsMin
     }
 
     # ====================================================================================
@@ -476,6 +513,17 @@ select max(login.LOGIN_DATETIME)
  where login.MEMBER_ID = $$foreignAlias$$.MEMBER_ID
 )$$sqend$$
         ; fixedSuffix = AsLatest
+    }
+    ; FK_MEMBER_MEMBER_LOGIN_OLDEST  = map:{
+        ; localTableName  = MEMBER    ; foreignTableName  = MEMBER_LOGIN
+        ; localColumnName = MEMBER_ID ; foreignColumnName = MEMBER_ID
+        ; fixedCondition  = 
+$$foreignAlias$$.LOGIN_DATETIME = ($$sqbegin$$
+select min(login.LOGIN_DATETIME)
+  from MEMBER_LOGIN login
+ where login.MEMBER_ID = $$foreignAlias$$.MEMBER_ID
+)$$sqend$$
+        ; fixedSuffix = AsOldest
     }
 }
 # ----------------/

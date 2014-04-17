@@ -3,6 +3,8 @@ package com.example.dbflute.postgresql.dbflute.cbean.cq.bs;
 import java.util.Map;
 
 import org.seasar.dbflute.cbean.*;
+import org.seasar.dbflute.cbean.chelper.*;
+import org.seasar.dbflute.cbean.coption.*;
 import org.seasar.dbflute.cbean.cvalue.ConditionValue;
 import org.seasar.dbflute.cbean.sqlclause.SqlClause;
 import org.seasar.dbflute.exception.IllegalConditionBeanOperationException;
@@ -186,10 +188,10 @@ public class BsWhiteCompoundPkCQ extends AbstractBsWhiteCompoundPkCQ {
     }
 
     // ===================================================================================
-    //                                                       Compound PK's Exists Referrer
-    //                                                       =============================
+    //                                                      ExistsReferrer for Compound PK
+    //                                                      ==============================
     /**
-     * Set up 'exists-referrer' (co-related sub-query). <br />
+     * Set up ExistsReferrer (correlated sub-query). <br />
      * {exists (select ... from white_compound_pk_ref where ...)}
      * @param subQuery The sub-query of WhiteCompoundPkRefList for 'exists'. (NotNull)
      */
@@ -205,6 +207,91 @@ public class BsWhiteCompoundPkCQ extends AbstractBsWhiteCompoundPkCQ {
         if (_twoOrMorePk_ExistsReferrer_WhiteCompoundPkRefListMap == null) { _twoOrMorePk_ExistsReferrer_WhiteCompoundPkRefListMap = newLinkedHashMapSized(4); }
         String ky = "subQueryMapKey" + (_twoOrMorePk_ExistsReferrer_WhiteCompoundPkRefListMap.size() + 1);
         _twoOrMorePk_ExistsReferrer_WhiteCompoundPkRefListMap.put(ky, sq); return "twoOrMorePk_ExistsReferrer_WhiteCompoundPkRefList." + ky;
+    }
+
+    /**
+     * Set up NotExistsReferrer (correlated sub-query). <br />
+     * {not exists (select ... from white_compound_pk_ref where ...)}
+     * @param subQuery The sub-query of WhiteCompoundPkRefList for 'not exists'. (NotNull)
+     */
+    public void notExistsWhiteCompoundPkRefList(SubQuery<WhiteCompoundPkRefCB> subQuery) {
+        assertObjectNotNull("subQuery<WhiteCompoundPkRefCB>", subQuery);
+        WhiteCompoundPkRefCB cb = new WhiteCompoundPkRefCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
+        String pp = keepTwoOrMorePk_NotExistsReferrer_WhiteCompoundPkRefList(cb.query()); // for saving query-value.
+        registerNotExistsReferrer(cb.query(), "pk_first_id, pk_second_id", "ref_first_id, ref_second_id", pp, "whiteCompoundPkRefList");
+    }
+    protected Map<String, WhiteCompoundPkRefCQ> _twoOrMorePk_NotExistsReferrer_WhiteCompoundPkRefListMap;
+    public Map<String, WhiteCompoundPkRefCQ> getTwoOrMorePk_NotExistsReferrer_WhiteCompoundPkRefList() { return _twoOrMorePk_NotExistsReferrer_WhiteCompoundPkRefListMap; }
+    public String keepTwoOrMorePk_NotExistsReferrer_WhiteCompoundPkRefList(WhiteCompoundPkRefCQ sq) {
+        if (_twoOrMorePk_NotExistsReferrer_WhiteCompoundPkRefListMap == null) { _twoOrMorePk_NotExistsReferrer_WhiteCompoundPkRefListMap = newLinkedHashMapSized(4); }
+        String ky = "subQueryMapKey" + (_twoOrMorePk_NotExistsReferrer_WhiteCompoundPkRefListMap.size() + 1);
+        _twoOrMorePk_NotExistsReferrer_WhiteCompoundPkRefListMap.put(ky, sq); return "twoOrMorePk_NotExistsReferrer_WhiteCompoundPkRefList." + ky;
+    }
+
+    // ===================================================================================
+    //                                            (Specify)DerivedReferrer for Compound PK
+    //                                            ========================================
+    public void xsderiveWhiteCompoundPkRefList(String fn, SubQuery<WhiteCompoundPkRefCB> sq, String al, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteCompoundPkRefCB cb = new WhiteCompoundPkRefCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String pp = keepTwoOrMorePk_SpecifyDerivedReferrer_WhiteCompoundPkRefList(cb.query()); // for saving query-value.
+        registerSpecifyDerivedReferrer(fn, cb.query(), "pk_first_id, pk_second_id", "ref_first_id, ref_second_id", pp, "whiteCompoundPkRefList", al, op);
+    }
+    protected Map<String, WhiteCompoundPkRefCQ> _twoOrMorePk_SpecifyDerivedReferrer_WhiteCompoundPkRefListMap;
+    public Map<String, WhiteCompoundPkRefCQ> getTwoOrMorePk_SpecifyDerivedReferrer_WhiteCompoundPkRefList() { return _twoOrMorePk_SpecifyDerivedReferrer_WhiteCompoundPkRefListMap; }
+    public String keepTwoOrMorePk_SpecifyDerivedReferrer_WhiteCompoundPkRefList(WhiteCompoundPkRefCQ sq) {
+        if (_twoOrMorePk_SpecifyDerivedReferrer_WhiteCompoundPkRefListMap == null) { _twoOrMorePk_SpecifyDerivedReferrer_WhiteCompoundPkRefListMap = newLinkedHashMapSized(4); }
+        String ky = "subQueryMapKey" + (_twoOrMorePk_SpecifyDerivedReferrer_WhiteCompoundPkRefListMap.size() + 1);
+        _twoOrMorePk_SpecifyDerivedReferrer_WhiteCompoundPkRefListMap.put(ky, sq); return "twoOrMorePk_SpecifyDerivedReferrer_WhiteCompoundPkRefList." + ky;
+    }
+
+    // ===================================================================================
+    //                                              (Query)DerivedReferrer for Compound PK
+    //                                              ======================================
+    /**
+     * Prepare for (Query)DerivedReferrer. <br />
+     * {FOO &lt;= (select max(BAR) from white_compound_pk_ref where ...)} <br />
+     * white_compound_pk_ref by ref_first_id, ref_second_id, named 'whiteCompoundPkRefAsOne'.
+     * <pre>
+     * cb.query().<span style="color: #FD4747">derivedWhiteCompoundPkRefList()</span>.<span style="color: #FD4747">max</span>(new SubQuery&lt;WhiteCompoundPkRefCB&gt;() {
+     *     public void query(WhiteCompoundPkRefCB subCB) {
+     *         subCB.specify().<span style="color: #FD4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
+     *         subCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
+     *     }
+     * }).<span style="color: #FD4747">greaterEqual</span>(123); <span style="color: #3F7E5E">// condition to derived column</span>
+     * </pre>
+     * @return The object to set up a function for referrer table. (NotNull)
+     */
+    public HpQDRFunction<WhiteCompoundPkRefCB> derivedWhiteCompoundPkRefList() {
+        return xcreateQDRFunctionWhiteCompoundPkRefList();
+    }
+    protected HpQDRFunction<WhiteCompoundPkRefCB> xcreateQDRFunctionWhiteCompoundPkRefList() {
+        return new HpQDRFunction<WhiteCompoundPkRefCB>(new HpQDRSetupper<WhiteCompoundPkRefCB>() {
+            public void setup(String fn, SubQuery<WhiteCompoundPkRefCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+                xqderiveWhiteCompoundPkRefList(fn, sq, rd, vl, op);
+            }
+        });
+    }
+    public void xqderiveWhiteCompoundPkRefList(String fn, SubQuery<WhiteCompoundPkRefCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteCompoundPkRefCB cb = new WhiteCompoundPkRefCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        String sqpp = keepTwoOrMorePk_QueryDerivedReferrer_WhiteCompoundPkRefList(cb.query()); // for saving query-value.
+        String prpp = keepTwoOrMorePk_QueryDerivedReferrer_WhiteCompoundPkRefListParameter(vl);
+        registerQueryDerivedReferrer(fn, cb.query(), "pk_first_id, pk_second_id", "ref_first_id, ref_second_id", sqpp, "whiteCompoundPkRefList", rd, vl, prpp, op);
+    }
+    protected Map<String, WhiteCompoundPkRefCQ> _twoOrMorePk_QueryDerivedReferrer_WhiteCompoundPkRefListMap;
+    public Map<String, WhiteCompoundPkRefCQ> getTwoOrMorePk_QueryDerivedReferrer_WhiteCompoundPkRefList() { return _twoOrMorePk_QueryDerivedReferrer_WhiteCompoundPkRefListMap; }
+    public String keepTwoOrMorePk_QueryDerivedReferrer_WhiteCompoundPkRefList(WhiteCompoundPkRefCQ sq) {
+        if (_twoOrMorePk_QueryDerivedReferrer_WhiteCompoundPkRefListMap == null) { _twoOrMorePk_QueryDerivedReferrer_WhiteCompoundPkRefListMap = newLinkedHashMapSized(4); }
+        String ky = "subQueryMapKey" + (_twoOrMorePk_QueryDerivedReferrer_WhiteCompoundPkRefListMap.size() + 1);
+        _twoOrMorePk_QueryDerivedReferrer_WhiteCompoundPkRefListMap.put(ky, sq); return "twoOrMorePk_QueryDerivedReferrer_WhiteCompoundPkRefList." + ky;
+    }
+    protected Map<String, Object> _twoOrMorePk_QueryDerivedReferrer_WhiteCompoundPkRefListParameterMap;
+    public Map<String, Object> getTwoOrMorePk_QueryDerivedReferrer_WhiteCompoundPkRefListParameter() { return _twoOrMorePk_QueryDerivedReferrer_WhiteCompoundPkRefListParameterMap; }
+    public String keepTwoOrMorePk_QueryDerivedReferrer_WhiteCompoundPkRefListParameter(Object vl) {
+        if (_twoOrMorePk_QueryDerivedReferrer_WhiteCompoundPkRefListParameterMap == null) { _twoOrMorePk_QueryDerivedReferrer_WhiteCompoundPkRefListParameterMap = newLinkedHashMapSized(4); }
+        String ky = "subQueryParameterKey" + (_twoOrMorePk_QueryDerivedReferrer_WhiteCompoundPkRefListParameterMap.size() + 1);
+        _twoOrMorePk_QueryDerivedReferrer_WhiteCompoundPkRefListParameterMap.put(ky, vl); return "twoOrMorePk_QueryDerivedReferrer_WhiteCompoundPkRefListParameter." + ky;
     }
 
     // ===================================================================================

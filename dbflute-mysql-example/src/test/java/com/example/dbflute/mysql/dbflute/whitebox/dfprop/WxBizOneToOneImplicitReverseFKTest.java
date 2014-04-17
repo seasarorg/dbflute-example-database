@@ -3,6 +3,7 @@ package com.example.dbflute.mysql.dbflute.whitebox.dfprop;
 import java.util.Date;
 
 import org.seasar.dbflute.cbean.ListResultBean;
+import org.seasar.dbflute.cbean.SubQuery;
 import org.seasar.dbflute.exception.DBMetaNotFoundException;
 
 import com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteImplicitReverseFkRefDbm;
@@ -59,12 +60,22 @@ public class WxBizOneToOneImplicitReverseFKTest extends UnitContainerTestCase {
         cb.setupSelect_WhiteImplicitReverseFkSuppressSuppressImplicitReverseFK(targetDate);
         cb.specify().specifyWhiteImplicitReverseFkRefWithImplicitReverseFK().columnValidBeginDate();
         cb.specify().specifyWhiteImplicitReverseFkSuppressSuppressImplicitReverseFK().columnValidBeginDate();
+        cb.specify().derivedWhiteImplicitReverseFkRefList().max(new SubQuery<WhiteImplicitReverseFkRefCB>() {
+            public void query(WhiteImplicitReverseFkRefCB subCB) {
+                subCB.specify().columnValidBeginDate();
+            }
+        }, WhiteImplicitReverseFk.ALIAS_maxBeginDate);
+        cb.query().existsWhiteImplicitReverseFkRefList(new SubQuery<WhiteImplicitReverseFkRefCB>() {
+            public void query(WhiteImplicitReverseFkRefCB subCB) {
+            }
+        });
 
         // ## Act ##
         ListResultBean<WhiteImplicitReverseFk> fkList = whiteImplicitReverseFkBhv.selectList(cb);
 
         // ## Assert ##
         assertHasZeroElement(fkList);
+        assertContainsAll(cb.toDisplaySql(), ") as MAX_BEGIN_DATE", "exists");
     }
 
     public void test_BizOneToOne_implicitReverseFK_with() {

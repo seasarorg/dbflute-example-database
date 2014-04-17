@@ -186,7 +186,7 @@ public abstract class AbstractBsMemberStatusCQ extends AbstractConditionQuery {
     }
 
     /**
-     * Set up ExistsReferrer (co-related sub-query). <br />
+     * Set up ExistsReferrer (correlated sub-query). <br />
      * {exists (select member_status_code from member where ...)} <br />
      * (会員)member by member_status_code, named 'memberAsOne'.
      * <pre>
@@ -207,7 +207,7 @@ public abstract class AbstractBsMemberStatusCQ extends AbstractConditionQuery {
     public abstract String keepMemberStatusCode_ExistsReferrer_MemberList(MemberCQ sq);
 
     /**
-     * Set up ExistsReferrer (co-related sub-query). <br />
+     * Set up ExistsReferrer (correlated sub-query). <br />
      * {exists (select login_member_status_code from member_login where ...)} <br />
      * (会員ログイン)member_login by login_member_status_code, named 'memberLoginAsOne'.
      * <pre>
@@ -228,7 +228,7 @@ public abstract class AbstractBsMemberStatusCQ extends AbstractConditionQuery {
     public abstract String keepMemberStatusCode_ExistsReferrer_MemberLoginList(MemberLoginCQ sq);
 
     /**
-     * Set up NotExistsReferrer (co-related sub-query). <br />
+     * Set up NotExistsReferrer (correlated sub-query). <br />
      * {not exists (select member_status_code from member where ...)} <br />
      * (会員)member by member_status_code, named 'memberAsOne'.
      * <pre>
@@ -249,7 +249,7 @@ public abstract class AbstractBsMemberStatusCQ extends AbstractConditionQuery {
     public abstract String keepMemberStatusCode_NotExistsReferrer_MemberList(MemberCQ sq);
 
     /**
-     * Set up NotExistsReferrer (co-related sub-query). <br />
+     * Set up NotExistsReferrer (correlated sub-query). <br />
      * {not exists (select login_member_status_code from member_login where ...)} <br />
      * (会員ログイン)member_login by login_member_status_code, named 'memberLoginAsOne'.
      * <pre>

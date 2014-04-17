@@ -213,6 +213,27 @@ public class BsWhiteCompoundPkRefManyCQ extends AbstractBsWhiteCompoundPkRefMany
      */
     public BsWhiteCompoundPkRefManyCQ addOrderBy_RefManyName_Desc() { regOBD("REF_MANY_NAME"); return this; }
 
+    protected ConditionValue _refManyDatetime;
+    public ConditionValue getRefManyDatetime() {
+        if (_refManyDatetime == null) { _refManyDatetime = nCV(); }
+        return _refManyDatetime;
+    }
+    protected ConditionValue getCValueRefManyDatetime() { return getRefManyDatetime(); }
+
+    /** 
+     * Add order-by as ascend. <br />
+     * REF_MANY_DATETIME: {NotNull, DATETIME(19)}
+     * @return this. (NotNull)
+     */
+    public BsWhiteCompoundPkRefManyCQ addOrderBy_RefManyDatetime_Asc() { regOBA("REF_MANY_DATETIME"); return this; }
+
+    /**
+     * Add order-by as descend. <br />
+     * REF_MANY_DATETIME: {NotNull, DATETIME(19)}
+     * @return this. (NotNull)
+     */
+    public BsWhiteCompoundPkRefManyCQ addOrderBy_RefManyDatetime_Desc() { regOBD("REF_MANY_DATETIME"); return this; }
+
     // ===================================================================================
     //                                                             SpecifiedDerivedOrderBy
     //                                                             =======================

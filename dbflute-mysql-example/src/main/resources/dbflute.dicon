@@ -48,6 +48,8 @@
     <component name="whiteCompoundPkRefBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteCompoundPkRefBhv"/>
     <component name="whiteCompoundPkRefManyBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteCompoundPkRefManyBhv"/>
     <component name="whiteCompoundPkRefNestBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteCompoundPkRefNestBhv"/>
+    <component name="whiteCompoundReferredNormallyBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteCompoundReferredNormallyBhv"/>
+    <component name="whiteCompoundReferredPrimaryBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteCompoundReferredPrimaryBhv"/>
     <component name="whiteDateAdjustmentBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteDateAdjustmentBhv"/>
     <component name="whiteDbCommentBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteDbCommentBhv"/>
     <component name="whiteDelimiterBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteDelimiterBhv"/>

@@ -86,13 +86,13 @@ public abstract class BsWhiteAllInOneClsNormalColRef implements Entity, Serializ
     /** CLS_REF_ID: {NotNull, INT(10)} */
     protected Integer _clsRefId;
 
-    /** FOO_CODE: {PK, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT} */
+    /** FOO_CODE: {PK, UQ, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT} */
     protected String _fooCode;
 
-    /** BAR_CODE: {PK, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT} */
+    /** BAR_CODE: {PK, UQ+, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT} */
     protected String _barCode;
 
-    /** QUX_CODE: {PK, NotNull, CHAR(3)} */
+    /** QUX_CODE: {PK, UQ+, NotNull, CHAR(3)} */
     protected String _quxCode;
 
     // -----------------------------------------------------
@@ -374,7 +374,7 @@ public abstract class BsWhiteAllInOneClsNormalColRef implements Entity, Serializ
     }
 
     /**
-     * [get] FOO_CODE: {PK, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT} <br />
+     * [get] FOO_CODE: {PK, UQ, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT} <br />
      * @return The value of the column 'FOO_CODE'. (basically NotNull if selected: for the constraint)
      */
     public String getFooCode() {
@@ -382,7 +382,7 @@ public abstract class BsWhiteAllInOneClsNormalColRef implements Entity, Serializ
     }
 
     /**
-     * [set] FOO_CODE: {PK, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT} <br />
+     * [set] FOO_CODE: {PK, UQ, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT} <br />
      * @param fooCode The value of the column 'FOO_CODE'. (basically NotNull if update: for the constraint)
      */
     public void setFooCode(String fooCode) {
@@ -391,7 +391,7 @@ public abstract class BsWhiteAllInOneClsNormalColRef implements Entity, Serializ
     }
 
     /**
-     * [get] BAR_CODE: {PK, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT} <br />
+     * [get] BAR_CODE: {PK, UQ+, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT} <br />
      * @return The value of the column 'BAR_CODE'. (basically NotNull if selected: for the constraint)
      */
     public String getBarCode() {
@@ -399,7 +399,7 @@ public abstract class BsWhiteAllInOneClsNormalColRef implements Entity, Serializ
     }
 
     /**
-     * [set] BAR_CODE: {PK, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT} <br />
+     * [set] BAR_CODE: {PK, UQ+, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT} <br />
      * @param barCode The value of the column 'BAR_CODE'. (basically NotNull if update: for the constraint)
      */
     public void setBarCode(String barCode) {
@@ -408,7 +408,7 @@ public abstract class BsWhiteAllInOneClsNormalColRef implements Entity, Serializ
     }
 
     /**
-     * [get] QUX_CODE: {PK, NotNull, CHAR(3)} <br />
+     * [get] QUX_CODE: {PK, UQ+, NotNull, CHAR(3)} <br />
      * @return The value of the column 'QUX_CODE'. (basically NotNull if selected: for the constraint)
      */
     public String getQuxCode() {
@@ -416,7 +416,7 @@ public abstract class BsWhiteAllInOneClsNormalColRef implements Entity, Serializ
     }
 
     /**
-     * [set] QUX_CODE: {PK, NotNull, CHAR(3)} <br />
+     * [set] QUX_CODE: {PK, UQ+, NotNull, CHAR(3)} <br />
      * @param quxCode The value of the column 'QUX_CODE'. (basically NotNull if update: for the constraint)
      */
     public void setQuxCode(String quxCode) {

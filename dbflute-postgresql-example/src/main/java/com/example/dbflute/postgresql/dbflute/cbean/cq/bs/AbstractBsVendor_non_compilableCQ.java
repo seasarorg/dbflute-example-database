@@ -134,7 +134,7 @@ public abstract class AbstractBsVendor_non_compilableCQ extends AbstractConditio
     }
 
     /**
-     * Set up ExistsReferrer (co-related sub-query). <br />
+     * Set up ExistsReferrer (correlated sub-query). <br />
      * {exists (select PARENT-ID from VENDOR-NON COMPILABLE where ...)} <br />
      * VENDOR-NON COMPILABLE by PARENT-ID, named 'vendor_non_compilableSelfAsOne'.
      * <pre>
@@ -155,7 +155,7 @@ public abstract class AbstractBsVendor_non_compilableCQ extends AbstractConditio
     public abstract String keepNon_compilable_id_ExistsReferrer_Vendor_non_compilableSelfList(Vendor_non_compilableCQ sq);
 
     /**
-     * Set up NotExistsReferrer (co-related sub-query). <br />
+     * Set up NotExistsReferrer (correlated sub-query). <br />
      * {not exists (select PARENT-ID from VENDOR-NON COMPILABLE where ...)} <br />
      * VENDOR-NON COMPILABLE by PARENT-ID, named 'vendor_non_compilableSelfAsOne'.
      * <pre>

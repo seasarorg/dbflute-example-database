@@ -139,10 +139,10 @@ public abstract class BsVendorDatePkBhv extends AbstractBehaviorWritable {
         return doSelectEntity(cb, VendorDatePk.class);
     }
 
-    protected <ENTITY extends VendorDatePk> ENTITY doSelectEntity(final VendorDatePkCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends VendorDatePk> ENTITY doSelectEntity(VendorDatePkCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, VendorDatePkCB>() {
-            public List<ENTITY> callbackSelectList(VendorDatePkCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(VendorDatePkCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -168,10 +168,10 @@ public abstract class BsVendorDatePkBhv extends AbstractBehaviorWritable {
         return doSelectEntityWithDeletedCheck(cb, VendorDatePk.class);
     }
 
-    protected <ENTITY extends VendorDatePk> ENTITY doSelectEntityWithDeletedCheck(final VendorDatePkCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends VendorDatePk> ENTITY doSelectEntityWithDeletedCheck(VendorDatePkCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, VendorDatePkCB>() {
-            public List<ENTITY> callbackSelectList(VendorDatePkCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(VendorDatePkCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -243,7 +243,7 @@ public abstract class BsVendorDatePkBhv extends AbstractBehaviorWritable {
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
         return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, VendorDatePkCB>() {
-            public List<ENTITY> callbackSelectList(VendorDatePkCB cb, Class<ENTITY> tp) { return delegateSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(VendorDatePkCB lcb, Class<ENTITY> ltp) { return delegateSelectList(lcb, ltp); } });
     }
 
     @Override

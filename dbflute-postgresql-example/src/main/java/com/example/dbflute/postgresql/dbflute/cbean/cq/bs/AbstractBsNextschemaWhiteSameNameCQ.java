@@ -134,7 +134,7 @@ public abstract class AbstractBsNextschemaWhiteSameNameCQ extends AbstractCondit
     }
 
     /**
-     * Set up ExistsReferrer (co-related sub-query). <br />
+     * Set up ExistsReferrer (correlated sub-query). <br />
      * {exists (select same_name_id from nextschema.white_same_name_ref where ...)} <br />
      * nextschema.white_same_name_ref by same_name_id, named 'whiteSameNameRefAsOne'.
      * <pre>
@@ -155,7 +155,7 @@ public abstract class AbstractBsNextschemaWhiteSameNameCQ extends AbstractCondit
     public abstract String keepSameNameId_ExistsReferrer_WhiteSameNameRefList(NextschemaWhiteSameNameRefCQ sq);
 
     /**
-     * Set up NotExistsReferrer (co-related sub-query). <br />
+     * Set up NotExistsReferrer (correlated sub-query). <br />
      * {not exists (select same_name_id from nextschema.white_same_name_ref where ...)} <br />
      * nextschema.white_same_name_ref by same_name_id, named 'whiteSameNameRefAsOne'.
      * <pre>

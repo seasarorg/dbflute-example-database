@@ -129,7 +129,7 @@ public abstract class AbstractBsWithdrawalReasonCQ extends AbstractConditionQuer
     }
 
     /**
-     * Set up ExistsReferrer (co-related sub-query). <br />
+     * Set up ExistsReferrer (correlated sub-query). <br />
      * {exists (select withdrawal_reason_code from member_withdrawal where ...)} <br />
      * (会員退会情報)member_withdrawal by withdrawal_reason_code, named 'memberWithdrawalAsOne'.
      * <pre>
@@ -150,7 +150,7 @@ public abstract class AbstractBsWithdrawalReasonCQ extends AbstractConditionQuer
     public abstract String keepWithdrawalReasonCode_ExistsReferrer_MemberWithdrawalList(MemberWithdrawalCQ sq);
 
     /**
-     * Set up NotExistsReferrer (co-related sub-query). <br />
+     * Set up NotExistsReferrer (correlated sub-query). <br />
      * {not exists (select withdrawal_reason_code from member_withdrawal where ...)} <br />
      * (会員退会情報)member_withdrawal by withdrawal_reason_code, named 'memberWithdrawalAsOne'.
      * <pre>

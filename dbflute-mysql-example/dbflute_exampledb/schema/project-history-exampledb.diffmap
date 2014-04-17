@@ -1,4 +1,1672 @@
 map:{
+    ; 2014/04/17 20:17:47 = map:{
+        ; diffDate = 2014/04/17 20:17:47
+        ; tableDiff = map:{
+            ; member = map:{
+                ; tableName = member
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; member_address = map:{
+                ; tableName = member_address
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; member_login = map:{
+                ; tableName = member_login
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; member_security = map:{
+                ; tableName = member_security
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; member_service = map:{
+                ; tableName = member_service
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; member_status = map:{
+                ; tableName = member_status
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; member_withdrawal = map:{
+                ; tableName = member_withdrawal
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; product = map:{
+                ; tableName = product
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; product_category = map:{
+                ; tableName = product_category
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; product_status = map:{
+                ; tableName = product_status
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; purchase = map:{
+                ; tableName = purchase
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; region = map:{
+                ; tableName = region
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; service_rank = map:{
+                ; tableName = service_rank
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; vendor_check = map:{
+                ; tableName = vendor_check
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; vendor_constraint_name_auto_bar = map:{
+                ; tableName = vendor_constraint_name_auto_bar
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; vendor_constraint_name_auto_foo = map:{
+                ; tableName = vendor_constraint_name_auto_foo
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; vendor_constraint_name_auto_qux = map:{
+                ; tableName = vendor_constraint_name_auto_qux
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; vendor_constraint_name_auto_ref = map:{
+                ; tableName = vendor_constraint_name_auto_ref
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; vendor_large_data = map:{
+                ; tableName = vendor_large_data
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; vendor_large_data_ref = map:{
+                ; tableName = vendor_large_data_ref
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; vendor_the_long_and_winding_table_and_column = map:{
+                ; tableName = vendor_the_long_and_winding_table_and_column
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; vendor_the_long_and_winding_table_and_column_ref = map:{
+                ; tableName = vendor_the_long_and_winding_table_and_column_ref
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; white_all_in_one_cls_category = map:{
+                ; tableName = white_all_in_one_cls_category
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; white_all_in_one_cls_element = map:{
+                ; tableName = white_all_in_one_cls_element
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; white_binary = map:{
+                ; tableName = white_binary
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; white_column_except = map:{
+                ; tableName = white_column_except
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; white_column_except_gen_only = map:{
+                ; tableName = white_column_except_gen_only
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; white_compound_pk = map:{
+                ; tableName = white_compound_pk
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; white_compound_pk_ref = map:{
+                ; tableName = white_compound_pk_ref
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; white_compound_pk_ref_many = map:{
+                ; tableName = white_compound_pk_ref_many
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; white_compound_pk_ref_nest = map:{
+                ; tableName = white_compound_pk_ref_nest
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; white_compound_referred_normally = map:{
+                ; tableName = white_compound_referred_normally
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; white_compound_referred_primary = map:{
+                ; tableName = white_compound_referred_primary
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; white_date_adjustment = map:{
+                ; tableName = white_date_adjustment
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; white_db_comment = map:{
+                ; tableName = white_db_comment
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; white_delimiter = map:{
+                ; tableName = white_delimiter
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; white_deprecated_cls_element = map:{
+                ; tableName = white_deprecated_cls_element
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; white_escaped_dfprop = map:{
+                ; tableName = white_escaped_dfprop
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; white_escaped_java_doc = map:{
+                ; tableName = white_escaped_java_doc
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; white_implicit_conv_integer = map:{
+                ; tableName = white_implicit_conv_integer
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; white_implicit_conv_numeric = map:{
+                ; tableName = white_implicit_conv_numeric
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; white_implicit_conv_string = map:{
+                ; tableName = white_implicit_conv_string
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; white_implicit_reverse_fk = map:{
+                ; tableName = white_implicit_reverse_fk
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; white_implicit_reverse_fk_ref = map:{
+                ; tableName = white_implicit_reverse_fk_ref
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; white_implicit_reverse_fk_suppress = map:{
+                ; tableName = white_implicit_reverse_fk_suppress
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; white_line_sep_comment = map:{
+                ; tableName = white_line_sep_comment
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; white_load_data = map:{
+                ; tableName = white_load_data
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; white_myself = map:{
+                ; tableName = white_myself
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; white_myself_check = map:{
+                ; tableName = white_myself_check
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; white_pg_reserv = map:{
+                ; tableName = white_pg_reserv
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; white_pg_reserv_ref = map:{
+                ; tableName = white_pg_reserv_ref
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; white_point_type_mapping = map:{
+                ; tableName = white_point_type_mapping
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; white_purchase_referrer = map:{
+                ; tableName = white_purchase_referrer
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; white_quoted = map:{
+                ; tableName = white_quoted
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; white_quoted_ref = map:{
+                ; tableName = white_quoted_ref
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; white_self_reference = map:{
+                ; tableName = white_self_reference
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; white_self_reference_ref_one = map:{
+                ; tableName = white_self_reference_ref_one
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; white_split_multiple_fk_base = map:{
+                ; tableName = white_split_multiple_fk_base
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; white_split_multiple_fk_child = map:{
+                ; tableName = white_split_multiple_fk_child
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; white_split_multiple_fk_next = map:{
+                ; tableName = white_split_multiple_fk_next
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; white_split_multiple_fk_ref = map:{
+                ; tableName = white_split_multiple_fk_ref
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; white_suppress_def_check = map:{
+                ; tableName = white_suppress_def_check
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; white_table_except_gen_head = map:{
+                ; tableName = white_table_except_gen_head
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; white_table_except_gen_only = map:{
+                ; tableName = white_table_except_gen_only
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; white_table_except_gen_ref = map:{
+                ; tableName = white_table_except_gen_ref
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; white_uq_fk = map:{
+                ; tableName = white_uq_fk
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; white_uq_fk_ref = map:{
+                ; tableName = white_uq_fk_ref
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; white_uq_fk_ref_nest = map:{
+                ; tableName = white_uq_fk_ref_nest
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; white_variant_relation_master_bar = map:{
+                ; tableName = white_variant_relation_master_bar
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; white_variant_relation_master_corge = map:{
+                ; tableName = white_variant_relation_master_corge
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; white_variant_relation_master_foo = map:{
+                ; tableName = white_variant_relation_master_foo
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; white_variant_relation_master_qux = map:{
+                ; tableName = white_variant_relation_master_qux
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; white_variant_relation_referrer = map:{
+                ; tableName = white_variant_relation_referrer
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; white_xls_man = map:{
+                ; tableName = white_xls_man
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; withdrawal_reason = map:{
+                ; tableName = withdrawal_reason
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; next_schema_product = map:{
+                ; tableName = next_schema_product
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+        }
+    }
+    ; 2014/04/17 20:12:07 = map:{
+        ; diffDate = 2014/04/17 20:12:07
+        ; tableDiff = map:{
+            ; member = map:{
+                ; tableName = member
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; member_address = map:{
+                ; tableName = member_address
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; member_login = map:{
+                ; tableName = member_login
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; member_security = map:{
+                ; tableName = member_security
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; member_service = map:{
+                ; tableName = member_service
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; member_status = map:{
+                ; tableName = member_status
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; member_withdrawal = map:{
+                ; tableName = member_withdrawal
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; product = map:{
+                ; tableName = product
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; product_category = map:{
+                ; tableName = product_category
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; product_status = map:{
+                ; tableName = product_status
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; purchase = map:{
+                ; tableName = purchase
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; region = map:{
+                ; tableName = region
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; service_rank = map:{
+                ; tableName = service_rank
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; vendor_check = map:{
+                ; tableName = vendor_check
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; vendor_constraint_name_auto_bar = map:{
+                ; tableName = vendor_constraint_name_auto_bar
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; vendor_constraint_name_auto_foo = map:{
+                ; tableName = vendor_constraint_name_auto_foo
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; vendor_constraint_name_auto_qux = map:{
+                ; tableName = vendor_constraint_name_auto_qux
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; vendor_constraint_name_auto_ref = map:{
+                ; tableName = vendor_constraint_name_auto_ref
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; vendor_large_data = map:{
+                ; tableName = vendor_large_data
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; vendor_large_data_ref = map:{
+                ; tableName = vendor_large_data_ref
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; vendor_the_long_and_winding_table_and_column = map:{
+                ; tableName = vendor_the_long_and_winding_table_and_column
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; vendor_the_long_and_winding_table_and_column_ref = map:{
+                ; tableName = vendor_the_long_and_winding_table_and_column_ref
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; white_all_in_one_cls_category = map:{
+                ; tableName = white_all_in_one_cls_category
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; white_all_in_one_cls_element = map:{
+                ; tableName = white_all_in_one_cls_element
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; white_binary = map:{
+                ; tableName = white_binary
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; white_column_except = map:{
+                ; tableName = white_column_except
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; white_column_except_gen_only = map:{
+                ; tableName = white_column_except_gen_only
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; white_compound_pk = map:{
+                ; tableName = white_compound_pk
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; white_compound_pk_ref = map:{
+                ; tableName = white_compound_pk_ref
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; white_compound_pk_ref_many = map:{
+                ; tableName = white_compound_pk_ref_many
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; white_compound_pk_ref_nest = map:{
+                ; tableName = white_compound_pk_ref_nest
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; white_compound_referred_normally = map:{
+                ; tableName = white_compound_referred_normally
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; white_compound_referred_primary = map:{
+                ; tableName = white_compound_referred_primary
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; white_date_adjustment = map:{
+                ; tableName = white_date_adjustment
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; white_db_comment = map:{
+                ; tableName = white_db_comment
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; white_delimiter = map:{
+                ; tableName = white_delimiter
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; white_deprecated_cls_element = map:{
+                ; tableName = white_deprecated_cls_element
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; white_escaped_dfprop = map:{
+                ; tableName = white_escaped_dfprop
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; white_escaped_java_doc = map:{
+                ; tableName = white_escaped_java_doc
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; white_implicit_conv_integer = map:{
+                ; tableName = white_implicit_conv_integer
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; white_implicit_conv_numeric = map:{
+                ; tableName = white_implicit_conv_numeric
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; white_implicit_conv_string = map:{
+                ; tableName = white_implicit_conv_string
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; white_implicit_reverse_fk = map:{
+                ; tableName = white_implicit_reverse_fk
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; white_implicit_reverse_fk_ref = map:{
+                ; tableName = white_implicit_reverse_fk_ref
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; white_implicit_reverse_fk_suppress = map:{
+                ; tableName = white_implicit_reverse_fk_suppress
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; white_line_sep_comment = map:{
+                ; tableName = white_line_sep_comment
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; white_load_data = map:{
+                ; tableName = white_load_data
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; white_myself = map:{
+                ; tableName = white_myself
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; white_myself_check = map:{
+                ; tableName = white_myself_check
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; white_pg_reserv = map:{
+                ; tableName = white_pg_reserv
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; white_pg_reserv_ref = map:{
+                ; tableName = white_pg_reserv_ref
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; white_point_type_mapping = map:{
+                ; tableName = white_point_type_mapping
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; white_purchase_referrer = map:{
+                ; tableName = white_purchase_referrer
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; white_quoted = map:{
+                ; tableName = white_quoted
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; white_quoted_ref = map:{
+                ; tableName = white_quoted_ref
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; white_self_reference = map:{
+                ; tableName = white_self_reference
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; white_self_reference_ref_one = map:{
+                ; tableName = white_self_reference_ref_one
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; white_split_multiple_fk_base = map:{
+                ; tableName = white_split_multiple_fk_base
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; white_split_multiple_fk_child = map:{
+                ; tableName = white_split_multiple_fk_child
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; white_split_multiple_fk_next = map:{
+                ; tableName = white_split_multiple_fk_next
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; white_split_multiple_fk_ref = map:{
+                ; tableName = white_split_multiple_fk_ref
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; white_suppress_def_check = map:{
+                ; tableName = white_suppress_def_check
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; white_table_except_gen_head = map:{
+                ; tableName = white_table_except_gen_head
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; white_table_except_gen_only = map:{
+                ; tableName = white_table_except_gen_only
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; white_table_except_gen_ref = map:{
+                ; tableName = white_table_except_gen_ref
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; white_uq_fk = map:{
+                ; tableName = white_uq_fk
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; white_uq_fk_ref = map:{
+                ; tableName = white_uq_fk_ref
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; white_uq_fk_ref_nest = map:{
+                ; tableName = white_uq_fk_ref_nest
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; white_variant_relation_master_bar = map:{
+                ; tableName = white_variant_relation_master_bar
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; white_variant_relation_master_corge = map:{
+                ; tableName = white_variant_relation_master_corge
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; white_variant_relation_master_foo = map:{
+                ; tableName = white_variant_relation_master_foo
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; white_variant_relation_master_qux = map:{
+                ; tableName = white_variant_relation_master_qux
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; white_variant_relation_referrer = map:{
+                ; tableName = white_variant_relation_referrer
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; white_xls_man = map:{
+                ; tableName = white_xls_man
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; withdrawal_reason = map:{
+                ; tableName = withdrawal_reason
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; next_schema_product = map:{
+                ; tableName = next_schema_product
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+        }
+    }
+    ; 2014/04/17 20:09:23 = map:{
+        ; diffDate = 2014/04/17 20:09:23
+        ; tableDiff = map:{
+            ; white_compound_pk = map:{
+                ; tableName = white_compound_pk
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PK_SECOND_ID_2 = map:{
+                        ; constraintName = PK_SECOND_ID_2
+                        ; diffType = ADD
+                    }
+                }
+            }
+        }
+    }
+    ; 2014/04/17 20:07:39 = map:{
+        ; diffDate = 2014/04/17 20:07:39
+        ; tableDiff = map:{
+            ; white_all_in_one_cls_compound_pk_ref = map:{
+                ; tableName = white_all_in_one_cls_compound_pk_ref
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; white_all_in_one_cls_normal_col_ref = map:{
+                ; tableName = white_all_in_one_cls_normal_col_ref
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; white_compound_pk = map:{
+                ; tableName = white_compound_pk
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PK_SECOND_ID = map:{
+                        ; constraintName = PK_SECOND_ID
+                        ; diffType = CHANGE
+                        ; columnDiff = map:{
+                            ; next = PK_SECOND_ID, REFERRED_ID
+                            ; previous = REFERRED_ID
+                        }
+                    }
+                }
+            }
+        }
+    }
+    ; 2014/04/17 19:44:35 = map:{
+        ; diffDate = 2014/04/17 19:44:35
+        ; tableDiff = map:{
+            ; white_compound_pk = map:{
+                ; tableName = white_compound_pk
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; REFERRED_ID = map:{
+                        ; columnName = REFERRED_ID
+                        ; diffType = CHANGE
+                        ; notNullDiff = map:{
+                            ; next = true
+                            ; previous = false
+                        }
+                    }
+                }
+                ; uniqueKeyDiff = map:{
+                    ; PK_SECOND_ID = map:{
+                        ; constraintName = PK_SECOND_ID
+                        ; diffType = ADD
+                    }
+                }
+            }
+        }
+    }
+    ; 2014/04/17 15:52:30 = map:{
+        ; diffDate = 2014/04/17 15:52:30
+        ; tableCount = map:{
+            ; next = 85
+            ; previous = 84
+        }
+        ; tableDiff = map:{
+            ; white_compound_referred_normally = map:{
+                ; tableName = white_compound_referred_normally
+                ; diffType = ADD
+            }
+            ; white_compound_referred_primary = map:{
+                ; tableName = white_compound_referred_primary
+                ; diffType = ADD
+            }
+            ; white_compound_referred_logically = map:{
+                ; tableName = white_compound_referred_logically
+                ; diffType = DELETE
+            }
+        }
+    }
+    ; 2014/04/17 13:58:12 = map:{
+        ; diffDate = 2014/04/17 13:58:12
+        ; tableCount = map:{
+            ; next = 84
+            ; previous = 83
+        }
+        ; tableDiff = map:{
+            ; white_compound_referred_logically = map:{
+                ; tableName = white_compound_referred_logically
+                ; diffType = ADD
+            }
+            ; white_compound_pk = map:{
+                ; tableName = white_compound_pk
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; REFERRED_ID = map:{
+                        ; columnName = REFERRED_ID
+                        ; diffType = ADD
+                    }
+                }
+            }
+        }
+    }
+    ; 2014/04/17 10:31:14 = map:{
+        ; diffDate = 2014/04/17 10:31:14
+        ; tableDiff = map:{
+            ; white_compound_pk_ref_many = map:{
+                ; tableName = white_compound_pk_ref_many
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; REF_MANY_DATETIME = map:{
+                        ; columnName = REF_MANY_DATETIME
+                        ; diffType = ADD
+                    }
+                }
+            }
+        }
+    }
     ; 2014/04/17 01:52:26 = map:{
         ; diffDate = 2014/04/17 01:52:26
         ; tableCount = map:{

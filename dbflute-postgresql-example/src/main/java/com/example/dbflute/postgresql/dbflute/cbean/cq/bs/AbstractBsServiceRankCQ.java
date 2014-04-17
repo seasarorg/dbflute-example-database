@@ -129,7 +129,7 @@ public abstract class AbstractBsServiceRankCQ extends AbstractConditionQuery {
     }
 
     /**
-     * Set up ExistsReferrer (co-related sub-query). <br />
+     * Set up ExistsReferrer (correlated sub-query). <br />
      * {exists (select service_rank_code from member_service where ...)} <br />
      * (会員サービス)member_service by service_rank_code, named 'memberServiceAsOne'.
      * <pre>
@@ -150,7 +150,7 @@ public abstract class AbstractBsServiceRankCQ extends AbstractConditionQuery {
     public abstract String keepServiceRankCode_ExistsReferrer_MemberServiceList(MemberServiceCQ sq);
 
     /**
-     * Set up NotExistsReferrer (co-related sub-query). <br />
+     * Set up NotExistsReferrer (correlated sub-query). <br />
      * {not exists (select service_rank_code from member_service where ...)} <br />
      * (会員サービス)member_service by service_rank_code, named 'memberServiceAsOne'.
      * <pre>

@@ -98,14 +98,14 @@ public class BsWhiteCompoundPkCQ extends AbstractBsWhiteCompoundPkCQ {
 
     /** 
      * Add order-by as ascend. <br />
-     * PK_FIRST_ID: {PK, NotNull, INT(10)}
+     * PK_FIRST_ID: {PK, UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_PK_REF_MANY}
      * @return this. (NotNull)
      */
     public BsWhiteCompoundPkCQ addOrderBy_PkFirstId_Asc() { regOBA("PK_FIRST_ID"); return this; }
 
     /**
      * Add order-by as descend. <br />
-     * PK_FIRST_ID: {PK, NotNull, INT(10)}
+     * PK_FIRST_ID: {PK, UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_PK_REF_MANY}
      * @return this. (NotNull)
      */
     public BsWhiteCompoundPkCQ addOrderBy_PkFirstId_Desc() { regOBD("PK_FIRST_ID"); return this; }
@@ -117,16 +117,32 @@ public class BsWhiteCompoundPkCQ extends AbstractBsWhiteCompoundPkCQ {
     }
     protected ConditionValue getCValuePkSecondId() { return getPkSecondId(); }
 
+    protected Map<String, WhiteCompoundReferredPrimaryCQ> _pkSecondId_InScopeRelation_WhiteCompoundReferredPrimaryMap;
+    public Map<String, WhiteCompoundReferredPrimaryCQ> getPkSecondId_InScopeRelation_WhiteCompoundReferredPrimary() { return _pkSecondId_InScopeRelation_WhiteCompoundReferredPrimaryMap; }
+    public String keepPkSecondId_InScopeRelation_WhiteCompoundReferredPrimary(WhiteCompoundReferredPrimaryCQ sq) {
+        if (_pkSecondId_InScopeRelation_WhiteCompoundReferredPrimaryMap == null) { _pkSecondId_InScopeRelation_WhiteCompoundReferredPrimaryMap = newLinkedHashMapSized(4); }
+        String ky = "subQueryMapKey" + (_pkSecondId_InScopeRelation_WhiteCompoundReferredPrimaryMap.size() + 1);
+        _pkSecondId_InScopeRelation_WhiteCompoundReferredPrimaryMap.put(ky, sq); return "pkSecondId_InScopeRelation_WhiteCompoundReferredPrimary." + ky;
+    }
+
+    protected Map<String, WhiteCompoundReferredPrimaryCQ> _pkSecondId_NotInScopeRelation_WhiteCompoundReferredPrimaryMap;
+    public Map<String, WhiteCompoundReferredPrimaryCQ> getPkSecondId_NotInScopeRelation_WhiteCompoundReferredPrimary() { return _pkSecondId_NotInScopeRelation_WhiteCompoundReferredPrimaryMap; }
+    public String keepPkSecondId_NotInScopeRelation_WhiteCompoundReferredPrimary(WhiteCompoundReferredPrimaryCQ sq) {
+        if (_pkSecondId_NotInScopeRelation_WhiteCompoundReferredPrimaryMap == null) { _pkSecondId_NotInScopeRelation_WhiteCompoundReferredPrimaryMap = newLinkedHashMapSized(4); }
+        String ky = "subQueryMapKey" + (_pkSecondId_NotInScopeRelation_WhiteCompoundReferredPrimaryMap.size() + 1);
+        _pkSecondId_NotInScopeRelation_WhiteCompoundReferredPrimaryMap.put(ky, sq); return "pkSecondId_NotInScopeRelation_WhiteCompoundReferredPrimary." + ky;
+    }
+
     /** 
      * Add order-by as ascend. <br />
-     * PK_SECOND_ID: {PK, NotNull, INT(10)}
+     * PK_SECOND_ID: {PK, UQ, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_PRIMARY}
      * @return this. (NotNull)
      */
     public BsWhiteCompoundPkCQ addOrderBy_PkSecondId_Asc() { regOBA("PK_SECOND_ID"); return this; }
 
     /**
      * Add order-by as descend. <br />
-     * PK_SECOND_ID: {PK, NotNull, INT(10)}
+     * PK_SECOND_ID: {PK, UQ, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_PRIMARY}
      * @return this. (NotNull)
      */
     public BsWhiteCompoundPkCQ addOrderBy_PkSecondId_Desc() { regOBD("PK_SECOND_ID"); return this; }
@@ -151,6 +167,43 @@ public class BsWhiteCompoundPkCQ extends AbstractBsWhiteCompoundPkCQ {
      * @return this. (NotNull)
      */
     public BsWhiteCompoundPkCQ addOrderBy_PkName_Desc() { regOBD("PK_NAME"); return this; }
+
+    protected ConditionValue _referredId;
+    public ConditionValue getReferredId() {
+        if (_referredId == null) { _referredId = nCV(); }
+        return _referredId;
+    }
+    protected ConditionValue getCValueReferredId() { return getReferredId(); }
+
+    protected Map<String, WhiteCompoundReferredNormallyCQ> _referredId_InScopeRelation_WhiteCompoundReferredNormallyMap;
+    public Map<String, WhiteCompoundReferredNormallyCQ> getReferredId_InScopeRelation_WhiteCompoundReferredNormally() { return _referredId_InScopeRelation_WhiteCompoundReferredNormallyMap; }
+    public String keepReferredId_InScopeRelation_WhiteCompoundReferredNormally(WhiteCompoundReferredNormallyCQ sq) {
+        if (_referredId_InScopeRelation_WhiteCompoundReferredNormallyMap == null) { _referredId_InScopeRelation_WhiteCompoundReferredNormallyMap = newLinkedHashMapSized(4); }
+        String ky = "subQueryMapKey" + (_referredId_InScopeRelation_WhiteCompoundReferredNormallyMap.size() + 1);
+        _referredId_InScopeRelation_WhiteCompoundReferredNormallyMap.put(ky, sq); return "referredId_InScopeRelation_WhiteCompoundReferredNormally." + ky;
+    }
+
+    protected Map<String, WhiteCompoundReferredNormallyCQ> _referredId_NotInScopeRelation_WhiteCompoundReferredNormallyMap;
+    public Map<String, WhiteCompoundReferredNormallyCQ> getReferredId_NotInScopeRelation_WhiteCompoundReferredNormally() { return _referredId_NotInScopeRelation_WhiteCompoundReferredNormallyMap; }
+    public String keepReferredId_NotInScopeRelation_WhiteCompoundReferredNormally(WhiteCompoundReferredNormallyCQ sq) {
+        if (_referredId_NotInScopeRelation_WhiteCompoundReferredNormallyMap == null) { _referredId_NotInScopeRelation_WhiteCompoundReferredNormallyMap = newLinkedHashMapSized(4); }
+        String ky = "subQueryMapKey" + (_referredId_NotInScopeRelation_WhiteCompoundReferredNormallyMap.size() + 1);
+        _referredId_NotInScopeRelation_WhiteCompoundReferredNormallyMap.put(ky, sq); return "referredId_NotInScopeRelation_WhiteCompoundReferredNormally." + ky;
+    }
+
+    /** 
+     * Add order-by as ascend. <br />
+     * REFERRED_ID: {UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_NORMALLY}
+     * @return this. (NotNull)
+     */
+    public BsWhiteCompoundPkCQ addOrderBy_ReferredId_Asc() { regOBA("REFERRED_ID"); return this; }
+
+    /**
+     * Add order-by as descend. <br />
+     * REFERRED_ID: {UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_NORMALLY}
+     * @return this. (NotNull)
+     */
+    public BsWhiteCompoundPkCQ addOrderBy_ReferredId_Desc() { regOBD("REFERRED_ID"); return this; }
 
     // ===================================================================================
     //                                                             SpecifiedDerivedOrderBy
@@ -193,11 +246,163 @@ public class BsWhiteCompoundPkCQ extends AbstractBsWhiteCompoundPkCQ {
     //                                                                         Union Query
     //                                                                         ===========
     protected void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
+        WhiteCompoundPkCQ bq = (WhiteCompoundPkCQ)bqs;
+        WhiteCompoundPkCQ uq = (WhiteCompoundPkCQ)uqs;
+        if (bq.hasConditionQueryWhiteCompoundReferredNormally()) {
+            uq.queryWhiteCompoundReferredNormally().reflectRelationOnUnionQuery(bq.queryWhiteCompoundReferredNormally(), uq.queryWhiteCompoundReferredNormally());
+        }
+        if (bq.hasConditionQueryWhiteCompoundReferredPrimary()) {
+            uq.queryWhiteCompoundReferredPrimary().reflectRelationOnUnionQuery(bq.queryWhiteCompoundReferredPrimary(), uq.queryWhiteCompoundReferredPrimary());
+        }
+        if (bq.hasConditionQueryWhiteCompoundPkRefManyAsMax()) {
+            uq.queryWhiteCompoundPkRefManyAsMax().reflectRelationOnUnionQuery(bq.queryWhiteCompoundPkRefManyAsMax(), uq.queryWhiteCompoundPkRefManyAsMax());
+        }
+        if (bq.hasConditionQueryWhiteCompoundPkRefManyAsMin()) {
+            uq.queryWhiteCompoundPkRefManyAsMin().reflectRelationOnUnionQuery(bq.queryWhiteCompoundPkRefManyAsMin(), uq.queryWhiteCompoundPkRefManyAsMin());
+        }
     }
 
     // ===================================================================================
     //                                                                       Foreign Query
     //                                                                       =============
+    /**
+     * Get the condition-query for relation table. <br />
+     * white_compound_referred_normally by my REFERRED_ID, named 'whiteCompoundReferredNormally'.
+     * @return The instance of condition-query. (NotNull)
+     */
+    public WhiteCompoundReferredNormallyCQ queryWhiteCompoundReferredNormally() {
+        return getConditionQueryWhiteCompoundReferredNormally();
+    }
+    protected WhiteCompoundReferredNormallyCQ _conditionQueryWhiteCompoundReferredNormally;
+    public WhiteCompoundReferredNormallyCQ getConditionQueryWhiteCompoundReferredNormally() {
+        if (_conditionQueryWhiteCompoundReferredNormally == null) {
+            _conditionQueryWhiteCompoundReferredNormally = xcreateQueryWhiteCompoundReferredNormally();
+            xsetupOuterJoinWhiteCompoundReferredNormally();
+        }
+        return _conditionQueryWhiteCompoundReferredNormally;
+    }
+    protected WhiteCompoundReferredNormallyCQ xcreateQueryWhiteCompoundReferredNormally() {
+        String nrp = resolveNextRelationPath("white_compound_pk", "whiteCompoundReferredNormally");
+        String jan = resolveJoinAliasName(nrp, xgetNextNestLevel());
+        WhiteCompoundReferredNormallyCQ cq = new WhiteCompoundReferredNormallyCQ(this, xgetSqlClause(), jan, xgetNextNestLevel());
+        cq.xsetBaseCB(_baseCB);
+        cq.xsetForeignPropertyName("whiteCompoundReferredNormally");
+        cq.xsetRelationPath(nrp); return cq;
+    }
+    protected void xsetupOuterJoinWhiteCompoundReferredNormally() {
+        WhiteCompoundReferredNormallyCQ cq = getConditionQueryWhiteCompoundReferredNormally();
+        Map<String, String> joinOnMap = newLinkedHashMapSized(4);
+        joinOnMap.put("REFERRED_ID", "REFERRED_ID");
+        registerOuterJoin(cq, joinOnMap, "whiteCompoundReferredNormally");
+    }
+    public boolean hasConditionQueryWhiteCompoundReferredNormally() {
+        return _conditionQueryWhiteCompoundReferredNormally != null;
+    }
+
+    /**
+     * Get the condition-query for relation table. <br />
+     * white_compound_referred_primary by my PK_SECOND_ID, named 'whiteCompoundReferredPrimary'.
+     * @return The instance of condition-query. (NotNull)
+     */
+    public WhiteCompoundReferredPrimaryCQ queryWhiteCompoundReferredPrimary() {
+        return getConditionQueryWhiteCompoundReferredPrimary();
+    }
+    protected WhiteCompoundReferredPrimaryCQ _conditionQueryWhiteCompoundReferredPrimary;
+    public WhiteCompoundReferredPrimaryCQ getConditionQueryWhiteCompoundReferredPrimary() {
+        if (_conditionQueryWhiteCompoundReferredPrimary == null) {
+            _conditionQueryWhiteCompoundReferredPrimary = xcreateQueryWhiteCompoundReferredPrimary();
+            xsetupOuterJoinWhiteCompoundReferredPrimary();
+        }
+        return _conditionQueryWhiteCompoundReferredPrimary;
+    }
+    protected WhiteCompoundReferredPrimaryCQ xcreateQueryWhiteCompoundReferredPrimary() {
+        String nrp = resolveNextRelationPath("white_compound_pk", "whiteCompoundReferredPrimary");
+        String jan = resolveJoinAliasName(nrp, xgetNextNestLevel());
+        WhiteCompoundReferredPrimaryCQ cq = new WhiteCompoundReferredPrimaryCQ(this, xgetSqlClause(), jan, xgetNextNestLevel());
+        cq.xsetBaseCB(_baseCB);
+        cq.xsetForeignPropertyName("whiteCompoundReferredPrimary");
+        cq.xsetRelationPath(nrp); return cq;
+    }
+    protected void xsetupOuterJoinWhiteCompoundReferredPrimary() {
+        WhiteCompoundReferredPrimaryCQ cq = getConditionQueryWhiteCompoundReferredPrimary();
+        Map<String, String> joinOnMap = newLinkedHashMapSized(4);
+        joinOnMap.put("PK_SECOND_ID", "REFERRED_ID");
+        registerOuterJoin(cq, joinOnMap, "whiteCompoundReferredPrimary");
+    }
+    public boolean hasConditionQueryWhiteCompoundReferredPrimary() {
+        return _conditionQueryWhiteCompoundReferredPrimary != null;
+    }
+
+    /**
+     * Get the condition-query for relation table. <br />
+     * white_compound_pk_ref_many by my PK_FIRST_ID, PK_SECOND_ID, named 'whiteCompoundPkRefManyAsMax'.
+     * @return The instance of condition-query. (NotNull)
+     */
+    public WhiteCompoundPkRefManyCQ queryWhiteCompoundPkRefManyAsMax() {
+        return getConditionQueryWhiteCompoundPkRefManyAsMax();
+    }
+    protected WhiteCompoundPkRefManyCQ _conditionQueryWhiteCompoundPkRefManyAsMax;
+    public WhiteCompoundPkRefManyCQ getConditionQueryWhiteCompoundPkRefManyAsMax() {
+        if (_conditionQueryWhiteCompoundPkRefManyAsMax == null) {
+            _conditionQueryWhiteCompoundPkRefManyAsMax = xcreateQueryWhiteCompoundPkRefManyAsMax();
+            xsetupOuterJoinWhiteCompoundPkRefManyAsMax();
+        }
+        return _conditionQueryWhiteCompoundPkRefManyAsMax;
+    }
+    protected WhiteCompoundPkRefManyCQ xcreateQueryWhiteCompoundPkRefManyAsMax() {
+        String nrp = resolveNextRelationPath("white_compound_pk", "whiteCompoundPkRefManyAsMax");
+        String jan = resolveJoinAliasName(nrp, xgetNextNestLevel());
+        WhiteCompoundPkRefManyCQ cq = new WhiteCompoundPkRefManyCQ(this, xgetSqlClause(), jan, xgetNextNestLevel());
+        cq.xsetBaseCB(_baseCB);
+        cq.xsetForeignPropertyName("whiteCompoundPkRefManyAsMax");
+        cq.xsetRelationPath(nrp); return cq;
+    }
+    protected void xsetupOuterJoinWhiteCompoundPkRefManyAsMax() {
+        WhiteCompoundPkRefManyCQ cq = getConditionQueryWhiteCompoundPkRefManyAsMax();
+        Map<String, String> joinOnMap = newLinkedHashMapSized(4);
+        joinOnMap.put("PK_FIRST_ID", "REF_MANY_FIRST_ID");
+        joinOnMap.put("PK_SECOND_ID", "REF_MANY_SECOND_ID");
+        registerOuterJoin(cq, joinOnMap, "whiteCompoundPkRefManyAsMax");
+    }
+    public boolean hasConditionQueryWhiteCompoundPkRefManyAsMax() {
+        return _conditionQueryWhiteCompoundPkRefManyAsMax != null;
+    }
+
+    /**
+     * Get the condition-query for relation table. <br />
+     * white_compound_pk_ref_many by my PK_FIRST_ID, PK_SECOND_ID, named 'whiteCompoundPkRefManyAsMin'.
+     * @return The instance of condition-query. (NotNull)
+     */
+    public WhiteCompoundPkRefManyCQ queryWhiteCompoundPkRefManyAsMin() {
+        return getConditionQueryWhiteCompoundPkRefManyAsMin();
+    }
+    protected WhiteCompoundPkRefManyCQ _conditionQueryWhiteCompoundPkRefManyAsMin;
+    public WhiteCompoundPkRefManyCQ getConditionQueryWhiteCompoundPkRefManyAsMin() {
+        if (_conditionQueryWhiteCompoundPkRefManyAsMin == null) {
+            _conditionQueryWhiteCompoundPkRefManyAsMin = xcreateQueryWhiteCompoundPkRefManyAsMin();
+            xsetupOuterJoinWhiteCompoundPkRefManyAsMin();
+        }
+        return _conditionQueryWhiteCompoundPkRefManyAsMin;
+    }
+    protected WhiteCompoundPkRefManyCQ xcreateQueryWhiteCompoundPkRefManyAsMin() {
+        String nrp = resolveNextRelationPath("white_compound_pk", "whiteCompoundPkRefManyAsMin");
+        String jan = resolveJoinAliasName(nrp, xgetNextNestLevel());
+        WhiteCompoundPkRefManyCQ cq = new WhiteCompoundPkRefManyCQ(this, xgetSqlClause(), jan, xgetNextNestLevel());
+        cq.xsetBaseCB(_baseCB);
+        cq.xsetForeignPropertyName("whiteCompoundPkRefManyAsMin");
+        cq.xsetRelationPath(nrp); return cq;
+    }
+    protected void xsetupOuterJoinWhiteCompoundPkRefManyAsMin() {
+        WhiteCompoundPkRefManyCQ cq = getConditionQueryWhiteCompoundPkRefManyAsMin();
+        Map<String, String> joinOnMap = newLinkedHashMapSized(4);
+        joinOnMap.put("PK_FIRST_ID", "REF_MANY_FIRST_ID");
+        joinOnMap.put("PK_SECOND_ID", "REF_MANY_SECOND_ID");
+        registerOuterJoin(cq, joinOnMap, "whiteCompoundPkRefManyAsMin");
+    }
+    public boolean hasConditionQueryWhiteCompoundPkRefManyAsMin() {
+        return _conditionQueryWhiteCompoundPkRefManyAsMin != null;
+    }
+
     protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) {
         return null;
     }
@@ -388,23 +593,23 @@ public class BsWhiteCompoundPkCQ extends AbstractBsWhiteCompoundPkCQ {
     public void xqderiveWhiteCompoundPkRefManyToPKList(String fn, SubQuery<WhiteCompoundPkRefManyCB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
         WhiteCompoundPkRefManyCB cb = new WhiteCompoundPkRefManyCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
-        String sqpp = keepTwoOrMorePk_QueryDerivedReferrer_WhiteCompoundPkRefManyToPKList(cb.query()); // for saving query-value.
-        String prpp = keepTwoOrMorePk_QueryDerivedReferrer_WhiteCompoundPkRefManyToPKListParameter(vl);
+        String sqpp = keepTwoOrMorePkToPK_QueryDerivedReferrer_WhiteCompoundPkRefManyToPKList(cb.query()); // for saving query-value.
+        String prpp = keepTwoOrMorePkToPK_QueryDerivedReferrer_WhiteCompoundPkRefManyToPKListParameter(vl);
         registerQueryDerivedReferrer(fn, cb.query(), "PK_FIRST_ID, PK_SECOND_ID", "REF_MANY_FIRST_ID, REF_MANY_SECOND_ID", sqpp, "whiteCompoundPkRefManyToPKList", rd, vl, prpp, op);
     }
-    protected Map<String, WhiteCompoundPkRefManyCQ> _twoOrMorePk_QueryDerivedReferrer_WhiteCompoundPkRefManyToPKListMap;
-    public Map<String, WhiteCompoundPkRefManyCQ> getTwoOrMorePk_QueryDerivedReferrer_WhiteCompoundPkRefManyToPKList() { return _twoOrMorePk_QueryDerivedReferrer_WhiteCompoundPkRefManyToPKListMap; }
-    public String keepTwoOrMorePk_QueryDerivedReferrer_WhiteCompoundPkRefManyToPKList(WhiteCompoundPkRefManyCQ sq) {
-        if (_twoOrMorePk_QueryDerivedReferrer_WhiteCompoundPkRefManyToPKListMap == null) { _twoOrMorePk_QueryDerivedReferrer_WhiteCompoundPkRefManyToPKListMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_twoOrMorePk_QueryDerivedReferrer_WhiteCompoundPkRefManyToPKListMap.size() + 1);
-        _twoOrMorePk_QueryDerivedReferrer_WhiteCompoundPkRefManyToPKListMap.put(ky, sq); return "twoOrMorePk_QueryDerivedReferrer_WhiteCompoundPkRefManyToPKList." + ky;
+    protected Map<String, WhiteCompoundPkRefManyCQ> _twoOrMorePkToPK_QueryDerivedReferrer_WhiteCompoundPkRefManyToPKListMap;
+    public Map<String, WhiteCompoundPkRefManyCQ> getTwoOrMorePkToPK_QueryDerivedReferrer_WhiteCompoundPkRefManyToPKList() { return _twoOrMorePkToPK_QueryDerivedReferrer_WhiteCompoundPkRefManyToPKListMap; }
+    public String keepTwoOrMorePkToPK_QueryDerivedReferrer_WhiteCompoundPkRefManyToPKList(WhiteCompoundPkRefManyCQ sq) {
+        if (_twoOrMorePkToPK_QueryDerivedReferrer_WhiteCompoundPkRefManyToPKListMap == null) { _twoOrMorePkToPK_QueryDerivedReferrer_WhiteCompoundPkRefManyToPKListMap = newLinkedHashMapSized(4); }
+        String ky = "subQueryMapKey" + (_twoOrMorePkToPK_QueryDerivedReferrer_WhiteCompoundPkRefManyToPKListMap.size() + 1);
+        _twoOrMorePkToPK_QueryDerivedReferrer_WhiteCompoundPkRefManyToPKListMap.put(ky, sq); return "twoOrMorePkToPK_QueryDerivedReferrer_WhiteCompoundPkRefManyToPKList." + ky;
     }
-    protected Map<String, Object> _twoOrMorePk_QueryDerivedReferrer_WhiteCompoundPkRefManyToPKListParameterMap;
-    public Map<String, Object> getTwoOrMorePk_QueryDerivedReferrer_WhiteCompoundPkRefManyToPKListParameter() { return _twoOrMorePk_QueryDerivedReferrer_WhiteCompoundPkRefManyToPKListParameterMap; }
-    public String keepTwoOrMorePk_QueryDerivedReferrer_WhiteCompoundPkRefManyToPKListParameter(Object vl) {
-        if (_twoOrMorePk_QueryDerivedReferrer_WhiteCompoundPkRefManyToPKListParameterMap == null) { _twoOrMorePk_QueryDerivedReferrer_WhiteCompoundPkRefManyToPKListParameterMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryParameterKey" + (_twoOrMorePk_QueryDerivedReferrer_WhiteCompoundPkRefManyToPKListParameterMap.size() + 1);
-        _twoOrMorePk_QueryDerivedReferrer_WhiteCompoundPkRefManyToPKListParameterMap.put(ky, vl); return "twoOrMorePk_QueryDerivedReferrer_WhiteCompoundPkRefManyToPKListParameter." + ky;
+    protected Map<String, Object> _twoOrMorePkToPK_QueryDerivedReferrer_WhiteCompoundPkRefManyToPKListParameterMap;
+    public Map<String, Object> getTwoOrMorePkToPK_QueryDerivedReferrer_WhiteCompoundPkRefManyToPKListParameter() { return _twoOrMorePkToPK_QueryDerivedReferrer_WhiteCompoundPkRefManyToPKListParameterMap; }
+    public String keepTwoOrMorePkToPK_QueryDerivedReferrer_WhiteCompoundPkRefManyToPKListParameter(Object vl) {
+        if (_twoOrMorePkToPK_QueryDerivedReferrer_WhiteCompoundPkRefManyToPKListParameterMap == null) { _twoOrMorePkToPK_QueryDerivedReferrer_WhiteCompoundPkRefManyToPKListParameterMap = newLinkedHashMapSized(4); }
+        String ky = "subQueryParameterKey" + (_twoOrMorePkToPK_QueryDerivedReferrer_WhiteCompoundPkRefManyToPKListParameterMap.size() + 1);
+        _twoOrMorePkToPK_QueryDerivedReferrer_WhiteCompoundPkRefManyToPKListParameterMap.put(ky, vl); return "twoOrMorePkToPK_QueryDerivedReferrer_WhiteCompoundPkRefManyToPKListParameter." + ky;
     }
 
     // ===================================================================================

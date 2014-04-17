@@ -134,7 +134,7 @@ public abstract class AbstractBsMemberCQ extends AbstractConditionQuery {
     }
 
     /**
-     * Set up ExistsReferrer (co-related sub-query). <br />
+     * Set up ExistsReferrer (correlated sub-query). <br />
      * {exists (select member_id from member_address where ...)} <br />
      * (会員住所情報)member_address by member_id, named 'memberAddressAsOne'.
      * <pre>
@@ -155,7 +155,7 @@ public abstract class AbstractBsMemberCQ extends AbstractConditionQuery {
     public abstract String keepMemberId_ExistsReferrer_MemberAddressList(MemberAddressCQ sq);
 
     /**
-     * Set up ExistsReferrer (co-related sub-query). <br />
+     * Set up ExistsReferrer (correlated sub-query). <br />
      * {exists (select member_id from member_login where ...)} <br />
      * (会員ログイン)member_login by member_id, named 'memberLoginAsOne'.
      * <pre>
@@ -176,7 +176,7 @@ public abstract class AbstractBsMemberCQ extends AbstractConditionQuery {
     public abstract String keepMemberId_ExistsReferrer_MemberLoginList(MemberLoginCQ sq);
 
     /**
-     * Set up ExistsReferrer (co-related sub-query). <br />
+     * Set up ExistsReferrer (correlated sub-query). <br />
      * {exists (select member_id from member_security where ...)} <br />
      * (会員セキュリティ情報)member_security by member_id, named 'memberSecurityAsOne'.
      * <pre>
@@ -197,7 +197,7 @@ public abstract class AbstractBsMemberCQ extends AbstractConditionQuery {
     public abstract String keepMemberId_ExistsReferrer_MemberSecurityAsOne(MemberSecurityCQ sq);
 
     /**
-     * Set up ExistsReferrer (co-related sub-query). <br />
+     * Set up ExistsReferrer (correlated sub-query). <br />
      * {exists (select member_id from member_withdrawal where ...)} <br />
      * (会員退会情報)member_withdrawal by member_id, named 'memberWithdrawalAsOne'.
      * <pre>
@@ -218,7 +218,7 @@ public abstract class AbstractBsMemberCQ extends AbstractConditionQuery {
     public abstract String keepMemberId_ExistsReferrer_MemberWithdrawalAsOne(MemberWithdrawalCQ sq);
 
     /**
-     * Set up ExistsReferrer (co-related sub-query). <br />
+     * Set up ExistsReferrer (correlated sub-query). <br />
      * {exists (select member_id from purchase where ...)} <br />
      * (購入)purchase by member_id, named 'purchaseAsOne'.
      * <pre>
@@ -239,7 +239,7 @@ public abstract class AbstractBsMemberCQ extends AbstractConditionQuery {
     public abstract String keepMemberId_ExistsReferrer_PurchaseList(PurchaseCQ sq);
 
     /**
-     * Set up NotExistsReferrer (co-related sub-query). <br />
+     * Set up NotExistsReferrer (correlated sub-query). <br />
      * {not exists (select member_id from member_address where ...)} <br />
      * (会員住所情報)member_address by member_id, named 'memberAddressAsOne'.
      * <pre>
@@ -260,7 +260,7 @@ public abstract class AbstractBsMemberCQ extends AbstractConditionQuery {
     public abstract String keepMemberId_NotExistsReferrer_MemberAddressList(MemberAddressCQ sq);
 
     /**
-     * Set up NotExistsReferrer (co-related sub-query). <br />
+     * Set up NotExistsReferrer (correlated sub-query). <br />
      * {not exists (select member_id from member_login where ...)} <br />
      * (会員ログイン)member_login by member_id, named 'memberLoginAsOne'.
      * <pre>
@@ -281,7 +281,7 @@ public abstract class AbstractBsMemberCQ extends AbstractConditionQuery {
     public abstract String keepMemberId_NotExistsReferrer_MemberLoginList(MemberLoginCQ sq);
 
     /**
-     * Set up NotExistsReferrer (co-related sub-query). <br />
+     * Set up NotExistsReferrer (correlated sub-query). <br />
      * {not exists (select member_id from member_security where ...)} <br />
      * (会員セキュリティ情報)member_security by member_id, named 'memberSecurityAsOne'.
      * <pre>
@@ -302,7 +302,7 @@ public abstract class AbstractBsMemberCQ extends AbstractConditionQuery {
     public abstract String keepMemberId_NotExistsReferrer_MemberSecurityAsOne(MemberSecurityCQ sq);
 
     /**
-     * Set up NotExistsReferrer (co-related sub-query). <br />
+     * Set up NotExistsReferrer (correlated sub-query). <br />
      * {not exists (select member_id from member_withdrawal where ...)} <br />
      * (会員退会情報)member_withdrawal by member_id, named 'memberWithdrawalAsOne'.
      * <pre>
@@ -323,7 +323,7 @@ public abstract class AbstractBsMemberCQ extends AbstractConditionQuery {
     public abstract String keepMemberId_NotExistsReferrer_MemberWithdrawalAsOne(MemberWithdrawalCQ sq);
 
     /**
-     * Set up NotExistsReferrer (co-related sub-query). <br />
+     * Set up NotExistsReferrer (correlated sub-query). <br />
      * {not exists (select member_id from purchase where ...)} <br />
      * (購入)purchase by member_id, named 'purchaseAsOne'.
      * <pre>
