@@ -139,10 +139,10 @@ public abstract class BsWhiteRefTargetBhv extends AbstractBehaviorWritable {
         return doSelectEntity(cb, WhiteRefTarget.class);
     }
 
-    protected <ENTITY extends WhiteRefTarget> ENTITY doSelectEntity(final WhiteRefTargetCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends WhiteRefTarget> ENTITY doSelectEntity(WhiteRefTargetCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, WhiteRefTargetCB>() {
-            public List<ENTITY> callbackSelectList(WhiteRefTargetCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhiteRefTargetCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -168,10 +168,10 @@ public abstract class BsWhiteRefTargetBhv extends AbstractBehaviorWritable {
         return doSelectEntityWithDeletedCheck(cb, WhiteRefTarget.class);
     }
 
-    protected <ENTITY extends WhiteRefTarget> ENTITY doSelectEntityWithDeletedCheck(final WhiteRefTargetCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends WhiteRefTarget> ENTITY doSelectEntityWithDeletedCheck(WhiteRefTargetCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, WhiteRefTargetCB>() {
-            public List<ENTITY> callbackSelectList(WhiteRefTargetCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhiteRefTargetCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -243,7 +243,7 @@ public abstract class BsWhiteRefTargetBhv extends AbstractBehaviorWritable {
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
         return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, WhiteRefTargetCB>() {
-            public List<ENTITY> callbackSelectList(WhiteRefTargetCB cb, Class<ENTITY> tp) { return delegateSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhiteRefTargetCB lcb, Class<ENTITY> ltp) { return delegateSelectList(lcb, ltp); } });
     }
 
     @Override

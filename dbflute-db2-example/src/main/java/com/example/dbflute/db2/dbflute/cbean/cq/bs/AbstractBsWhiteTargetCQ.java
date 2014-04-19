@@ -147,7 +147,7 @@ public abstract class AbstractBsWhiteTargetCQ extends AbstractConditionQuery {
     }
 
     /**
-     * Set up ExistsReferrer (co-related sub-query). <br />
+     * Set up ExistsReferrer (correlated sub-query). <br />
      * {exists (select TARGET_ID from WHITE_REF_TARGET where ...)} <br />
      * WHITE_REF_TARGET by TARGET_ID, named 'whiteRefTargetAsOne'.
      * <pre>
@@ -168,7 +168,7 @@ public abstract class AbstractBsWhiteTargetCQ extends AbstractConditionQuery {
     public abstract String keepTargetId_ExistsReferrer_WhiteRefTargetList(WhiteRefTargetCQ sq);
 
     /**
-     * Set up NotExistsReferrer (co-related sub-query). <br />
+     * Set up NotExistsReferrer (correlated sub-query). <br />
      * {not exists (select TARGET_ID from WHITE_REF_TARGET where ...)} <br />
      * WHITE_REF_TARGET by TARGET_ID, named 'whiteRefTargetAsOne'.
      * <pre>

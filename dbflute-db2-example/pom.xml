@@ -12,9 +12,9 @@
 
 	<properties>
 		<seasar.version>2.4.46</seasar.version>
-		<dbflute.version>1.0.5C</dbflute.version>
+		<dbflute.version>1.0.5D</dbflute.version>
 		<db2.jdbc.version>1.0.0</db2.jdbc.version>
-		<utflute.version>0.4.1</utflute.version>
+		<utflute.version>0.4.3</utflute.version>
 	</properties>
 
 	<url>http://dbflute.sandbox.seasar.org/</url>

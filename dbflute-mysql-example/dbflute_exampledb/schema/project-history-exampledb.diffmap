@@ -1,4 +1,120 @@
 map:{
+    ; 2014/04/19 13:35:36 = map:{
+        ; diffDate = 2014/04/19 13:35:36
+        ; craftDiff = map:{
+            ; MemberStatus = map:{
+                ; craftTitle = MemberStatus
+                ; craftRowDiff = map:{
+                    ; FML = map:{
+                        ; craftKeyName = FML
+                        ; diffType = CHANGE
+                        ; craftValueDiff = map:{
+                            ; next = "1:27:c756b923"
+                            ; previous = "2:28:7711c9c7"
+                        }
+                    }
+                }
+            }
+        }
+    }
+    ; 2014/04/18 18:20:50 = map:{
+        ; diffDate = 2014/04/18 18:20:50
+        ; craftDiff = map:{
+            ; MemberStatus = map:{
+                ; craftTitle = MemberStatus
+                ; craftRowDiff = map:{
+                    ; FML = map:{
+                        ; craftKeyName = FML
+                        ; diffType = CHANGE
+                        ; craftValueDiff = map:{
+                            ; next = "2:28:7711c9c7"
+                            ; previous = "1:27:c756b923"
+                        }
+                    }
+                }
+            }
+        }
+    }
+    ; 2014/04/18 16:15:41 = map:{
+        ; diffDate = 2014/04/18 16:15:41
+        ; craftDiff = map:{
+            ; MemberStatus = map:{
+                ; craftTitle = MemberStatus
+                ; craftRowDiff = map:{
+                    ; FML = map:{
+                        ; craftKeyName = FML
+                        ; diffType = CHANGE
+                        ; craftValueDiff = map:{
+                            ; next = "1:27:c756b923"
+                            ; previous = "2:28:2f8102d9"
+                        }
+                    }
+                }
+            }
+        }
+    }
+    ; 2014/04/18 16:13:15 = map:{
+        ; diffDate = 2014/04/18 16:13:15
+        ; craftDiff = map:{
+            ; MemberStatus = map:{
+                ; craftTitle = MemberStatus
+                ; craftRowDiff = map:{
+                    ; FML = map:{
+                        ; craftKeyName = FML
+                        ; diffType = CHANGE
+                        ; craftValueDiff = map:{
+                            ; next = "2:28:2f8102d9"
+                            ; previous = "2:28:7711c9c7"
+                        }
+                    }
+                }
+            }
+        }
+    }
+    ; 2014/04/18 16:12:39 = map:{
+        ; diffDate = 2014/04/18 16:12:39
+        ; craftDiff = map:{
+            ; MemberStatus = map:{
+                ; craftTitle = MemberStatus
+                ; craftRowDiff = map:{
+                    ; WDL = map:{
+                        ; craftKeyName = WDL
+                        ; diffType = CHANGE
+                        ; craftValueDiff = map:{
+                            ; next = "退会会員|退会が確定した会員でサイトサービスはダメ|2"
+                            ; previous = "式会員|退会が確定した会員でサイトサービスはダメ|2"
+                        }
+                    }
+                }
+            }
+        }
+    }
+    ; 2014/04/18 16:10:59 = map:{
+        ; diffDate = 2014/04/18 16:10:59
+        ; craftDiff = map:{
+            ; MemberStatus = map:{
+                ; craftTitle = MemberStatus
+                ; craftRowDiff = map:{
+                    ; FML = map:{
+                        ; craftKeyName = FML
+                        ; diffType = CHANGE
+                        ; craftValueDiff = map:{
+                            ; next = "2:28:7711c9c7"
+                            ; previous = "1:27:c756b923"
+                        }
+                    }
+                    ; WDL = map:{
+                        ; craftKeyName = WDL
+                        ; diffType = CHANGE
+                        ; craftValueDiff = map:{
+                            ; next = "式会員|退会が確定した会員でサイトサービスはダメ|2"
+                            ; previous = "退会会員|退会が確定した会員でサイトサービスはダメ|2"
+                        }
+                    }
+                }
+            }
+        }
+    }
     ; 2014/04/17 20:17:47 = map:{
         ; diffDate = 2014/04/17 20:17:47
         ; tableDiff = map:{

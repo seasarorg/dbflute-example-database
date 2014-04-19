@@ -139,10 +139,10 @@ public abstract class BsAliasRefExceptBhv extends AbstractBehaviorWritable {
         return doSelectEntity(cb, AliasRefExcept.class);
     }
 
-    protected <ENTITY extends AliasRefExcept> ENTITY doSelectEntity(final AliasRefExceptCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends AliasRefExcept> ENTITY doSelectEntity(AliasRefExceptCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, AliasRefExceptCB>() {
-            public List<ENTITY> callbackSelectList(AliasRefExceptCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(AliasRefExceptCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -168,10 +168,10 @@ public abstract class BsAliasRefExceptBhv extends AbstractBehaviorWritable {
         return doSelectEntityWithDeletedCheck(cb, AliasRefExcept.class);
     }
 
-    protected <ENTITY extends AliasRefExcept> ENTITY doSelectEntityWithDeletedCheck(final AliasRefExceptCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends AliasRefExcept> ENTITY doSelectEntityWithDeletedCheck(AliasRefExceptCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, AliasRefExceptCB>() {
-            public List<ENTITY> callbackSelectList(AliasRefExceptCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(AliasRefExceptCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -243,7 +243,7 @@ public abstract class BsAliasRefExceptBhv extends AbstractBehaviorWritable {
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
         return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, AliasRefExceptCB>() {
-            public List<ENTITY> callbackSelectList(AliasRefExceptCB cb, Class<ENTITY> tp) { return delegateSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(AliasRefExceptCB lcb, Class<ENTITY> ltp) { return delegateSelectList(lcb, ltp); } });
     }
 
     @Override

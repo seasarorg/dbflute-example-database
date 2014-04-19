@@ -108,6 +108,8 @@ map:{
                 ; regularStringItem=value2<teg> ; regularNumberItem=456
                 ; regularVariousItem=map:{reg=var;ous=ite}
                 ; mapItem=map:{key11=value11}
+                ; containsLine = va
+lue
             }
         }
     }

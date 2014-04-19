@@ -147,7 +147,7 @@ public abstract class AbstractBsAliasExceptCQ extends AbstractConditionQuery {
     }
 
     /**
-     * Set up ExistsReferrer (co-related sub-query). <br />
+     * Set up ExistsReferrer (correlated sub-query). <br />
      * {exists (select EXCEPT_ID from ALIAS_REF_EXCEPT where ...)} <br />
      * ALIAS_REF_EXCEPT by EXCEPT_ID, named 'aliasRefExceptAsOne'.
      * <pre>
@@ -168,7 +168,7 @@ public abstract class AbstractBsAliasExceptCQ extends AbstractConditionQuery {
     public abstract String keepExceptId_ExistsReferrer_AliasRefExceptList(AliasRefExceptCQ sq);
 
     /**
-     * Set up NotExistsReferrer (co-related sub-query). <br />
+     * Set up NotExistsReferrer (correlated sub-query). <br />
      * {not exists (select EXCEPT_ID from ALIAS_REF_EXCEPT where ...)} <br />
      * ALIAS_REF_EXCEPT by EXCEPT_ID, named 'aliasRefExceptAsOne'.
      * <pre>

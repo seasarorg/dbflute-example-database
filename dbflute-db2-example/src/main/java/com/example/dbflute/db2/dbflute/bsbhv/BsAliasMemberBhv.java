@@ -139,10 +139,10 @@ public abstract class BsAliasMemberBhv extends AbstractBehaviorWritable {
         return doSelectEntity(cb, AliasMember.class);
     }
 
-    protected <ENTITY extends AliasMember> ENTITY doSelectEntity(final AliasMemberCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends AliasMember> ENTITY doSelectEntity(AliasMemberCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, AliasMemberCB>() {
-            public List<ENTITY> callbackSelectList(AliasMemberCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(AliasMemberCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -168,10 +168,10 @@ public abstract class BsAliasMemberBhv extends AbstractBehaviorWritable {
         return doSelectEntityWithDeletedCheck(cb, AliasMember.class);
     }
 
-    protected <ENTITY extends AliasMember> ENTITY doSelectEntityWithDeletedCheck(final AliasMemberCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends AliasMember> ENTITY doSelectEntityWithDeletedCheck(AliasMemberCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, AliasMemberCB>() {
-            public List<ENTITY> callbackSelectList(AliasMemberCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(AliasMemberCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -243,7 +243,7 @@ public abstract class BsAliasMemberBhv extends AbstractBehaviorWritable {
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
         return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, AliasMemberCB>() {
-            public List<ENTITY> callbackSelectList(AliasMemberCB cb, Class<ENTITY> tp) { return delegateSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(AliasMemberCB lcb, Class<ENTITY> ltp) { return delegateSelectList(lcb, ltp); } });
     }
 
     @Override

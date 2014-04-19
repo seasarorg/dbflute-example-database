@@ -370,6 +370,7 @@ public interface CDef extends Classification {
                 subItemMap.put("regularNumberItem", "456");
                 subItemMap.put("regularVariousItem", "map:{\n    ; reg = var\n    ; ous = ite\n}");
                 subItemMap.put("mapItem", "map:{\n    ; key11 = value11\n}");
+                subItemMap.put("containsLine", "va\nlue");
                 _subItemMapMap.put(Bar.code(), Collections.unmodifiableMap(subItemMap));
             }
         }
