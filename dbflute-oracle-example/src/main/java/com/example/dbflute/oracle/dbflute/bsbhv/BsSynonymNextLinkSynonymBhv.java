@@ -139,10 +139,10 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
         return doSelectEntity(cb, SynonymNextLinkSynonym.class);
     }
 
-    protected <ENTITY extends SynonymNextLinkSynonym> ENTITY doSelectEntity(final SynonymNextLinkSynonymCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends SynonymNextLinkSynonym> ENTITY doSelectEntity(SynonymNextLinkSynonymCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, SynonymNextLinkSynonymCB>() {
-            public List<ENTITY> callbackSelectList(SynonymNextLinkSynonymCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(SynonymNextLinkSynonymCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -168,10 +168,10 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
         return doSelectEntityWithDeletedCheck(cb, SynonymNextLinkSynonym.class);
     }
 
-    protected <ENTITY extends SynonymNextLinkSynonym> ENTITY doSelectEntityWithDeletedCheck(final SynonymNextLinkSynonymCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends SynonymNextLinkSynonym> ENTITY doSelectEntityWithDeletedCheck(SynonymNextLinkSynonymCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, SynonymNextLinkSynonymCB>() {
-            public List<ENTITY> callbackSelectList(SynonymNextLinkSynonymCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(SynonymNextLinkSynonymCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -243,7 +243,7 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
         return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, SynonymNextLinkSynonymCB>() {
-            public List<ENTITY> callbackSelectList(SynonymNextLinkSynonymCB cb, Class<ENTITY> tp) { return delegateSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(SynonymNextLinkSynonymCB lcb, Class<ENTITY> ltp) { return delegateSelectList(lcb, ltp); } });
     }
 
     @Override

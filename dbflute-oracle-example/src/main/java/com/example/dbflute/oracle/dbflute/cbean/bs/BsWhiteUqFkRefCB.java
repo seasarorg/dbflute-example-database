@@ -124,7 +124,7 @@ public class BsWhiteUqFkRefCB extends AbstractConditionBean {
      * cb.query().setBirthdate_IsNull();    <span style="color: #3F7E5E">// is null</span>
      * cb.query().setBirthdate_IsNotNull(); <span style="color: #3F7E5E">// is not null</span>
      * 
-     * <span style="color: #3F7E5E">// ExistsReferrer: (co-related sub-query)</span>
+     * <span style="color: #3F7E5E">// ExistsReferrer: (correlated sub-query)</span>
      * <span style="color: #3F7E5E">// {where exists (select PURCHASE_ID from PURCHASE where ...)}</span>
      * cb.query().existsPurchaseList(new SubQuery&lt;PurchaseCB&gt;() {
      *     public void query(PurchaseCB subCB) {
@@ -142,7 +142,7 @@ public class BsWhiteUqFkRefCB extends AbstractConditionBean {
      * });
      * cb.query().notInScopeMemberStatus...
      * 
-     * <span style="color: #3F7E5E">// (Query)DerivedReferrer: (co-related sub-query)</span>
+     * <span style="color: #3F7E5E">// (Query)DerivedReferrer: (correlated sub-query)</span>
      * cb.query().derivedPurchaseList().max(new SubQuery&lt;PurchaseCB&gt;() {
      *     public void query(PurchaseCB subCB) {
      *         subCB.specify().columnPurchasePrice(); <span style="color: #3F7E5E">// derived column for function</span>
@@ -447,6 +447,26 @@ public class BsWhiteUqFkRefCB extends AbstractConditionBean {
                 }
             }
             return _whiteUqFkByFkToUqCode;
+        }
+        /**
+         * Prepare for (Specify)DerivedReferrer (correlated sub-query). <br />
+         * {select max(FOO) from WHITE_UQ_FK_REF_NEST where ...) as FOO_MAX} <br />
+         * WHITE_UQ_FK_REF_NEST by COMPOUND_UQ_FIRST_CODE, COMPOUND_UQ_SECOND_CODE, named 'whiteUqFkRefNestList'.
+         * <pre>
+         * cb.specify().<span style="color: #FD4747">derivedWhiteUqFkRefNestList()</span>.<span style="color: #FD4747">max</span>(new SubQuery&lt;WhiteUqFkRefNestCB&gt;() {
+         *     public void query(WhiteUqFkRefNestCB subCB) {
+         *         subCB.specify().<span style="color: #FD4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
+         *         subCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
+         *     }
+         * }, WhiteUqFkRefNest.<span style="color: #FD4747">ALIAS_foo...</span>);
+         * </pre>
+         * @return The object to set up a function for referrer table. (NotNull)
+         */
+        public HpSDRFunction<WhiteUqFkRefNestCB, WhiteUqFkRefCQ> derivedWhiteUqFkRefNestList() {
+            assertDerived("whiteUqFkRefNestList"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
+            return new HpSDRFunction<WhiteUqFkRefNestCB, WhiteUqFkRefCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<WhiteUqFkRefNestCB, WhiteUqFkRefCQ>() {
+                public void setup(String fn, SubQuery<WhiteUqFkRefNestCB> sq, WhiteUqFkRefCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsderiveWhiteUqFkRefNestList(fn, sq, al, op); } }, _dbmetaProvider);
         }
         /**
          * Prepare for (Specify)MyselfDerived (SubQuery).

@@ -129,7 +129,7 @@ public abstract class AbstractBsNextSchemaProductStatusCQ extends AbstractCondit
     }
 
     /**
-     * Set up ExistsReferrer (co-related sub-query). <br />
+     * Set up ExistsReferrer (correlated sub-query). <br />
      * {exists (select NEXT_TARGET_CODE from WHITE_REF_NEXT_TARGET where ...)} <br />
      * WHITE_REF_NEXT_TARGET by NEXT_TARGET_CODE, named 'whiteRefNextTargetAsOne'.
      * <pre>
@@ -150,7 +150,7 @@ public abstract class AbstractBsNextSchemaProductStatusCQ extends AbstractCondit
     public abstract String keepProductStatusCode_ExistsReferrer_WhiteRefNextTargetList(WhiteRefNextTargetCQ sq);
 
     /**
-     * Set up ExistsReferrer (co-related sub-query). <br />
+     * Set up ExistsReferrer (correlated sub-query). <br />
      * {exists (select PRODUCT_STATUS_CODE from NEXT_SCHEMA_PRODUCT where ...)} <br />
      * (隣のスキーマ)NEXT_SCHEMA_PRODUCT by PRODUCT_STATUS_CODE, named 'nextSchemaProductAsOne'.
      * <pre>
@@ -171,7 +171,7 @@ public abstract class AbstractBsNextSchemaProductStatusCQ extends AbstractCondit
     public abstract String keepProductStatusCode_ExistsReferrer_NextSchemaProductList(NextSchemaProductCQ sq);
 
     /**
-     * Set up NotExistsReferrer (co-related sub-query). <br />
+     * Set up NotExistsReferrer (correlated sub-query). <br />
      * {not exists (select NEXT_TARGET_CODE from WHITE_REF_NEXT_TARGET where ...)} <br />
      * WHITE_REF_NEXT_TARGET by NEXT_TARGET_CODE, named 'whiteRefNextTargetAsOne'.
      * <pre>
@@ -192,7 +192,7 @@ public abstract class AbstractBsNextSchemaProductStatusCQ extends AbstractCondit
     public abstract String keepProductStatusCode_NotExistsReferrer_WhiteRefNextTargetList(WhiteRefNextTargetCQ sq);
 
     /**
-     * Set up NotExistsReferrer (co-related sub-query). <br />
+     * Set up NotExistsReferrer (correlated sub-query). <br />
      * {not exists (select PRODUCT_STATUS_CODE from NEXT_SCHEMA_PRODUCT where ...)} <br />
      * (隣のスキーマ)NEXT_SCHEMA_PRODUCT by PRODUCT_STATUS_CODE, named 'nextSchemaProductAsOne'.
      * <pre>

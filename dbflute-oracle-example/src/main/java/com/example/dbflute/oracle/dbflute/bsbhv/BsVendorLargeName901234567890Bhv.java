@@ -139,10 +139,10 @@ public abstract class BsVendorLargeName901234567890Bhv extends AbstractBehaviorW
         return doSelectEntity(cb, VendorLargeName901234567890.class);
     }
 
-    protected <ENTITY extends VendorLargeName901234567890> ENTITY doSelectEntity(final VendorLargeName901234567890CB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends VendorLargeName901234567890> ENTITY doSelectEntity(VendorLargeName901234567890CB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, VendorLargeName901234567890CB>() {
-            public List<ENTITY> callbackSelectList(VendorLargeName901234567890CB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(VendorLargeName901234567890CB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -168,10 +168,10 @@ public abstract class BsVendorLargeName901234567890Bhv extends AbstractBehaviorW
         return doSelectEntityWithDeletedCheck(cb, VendorLargeName901234567890.class);
     }
 
-    protected <ENTITY extends VendorLargeName901234567890> ENTITY doSelectEntityWithDeletedCheck(final VendorLargeName901234567890CB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends VendorLargeName901234567890> ENTITY doSelectEntityWithDeletedCheck(VendorLargeName901234567890CB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, VendorLargeName901234567890CB>() {
-            public List<ENTITY> callbackSelectList(VendorLargeName901234567890CB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(VendorLargeName901234567890CB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -243,7 +243,7 @@ public abstract class BsVendorLargeName901234567890Bhv extends AbstractBehaviorW
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
         return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, VendorLargeName901234567890CB>() {
-            public List<ENTITY> callbackSelectList(VendorLargeName901234567890CB cb, Class<ENTITY> tp) { return delegateSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(VendorLargeName901234567890CB lcb, Class<ENTITY> ltp) { return delegateSelectList(lcb, ltp); } });
     }
 
     @Override

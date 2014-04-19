@@ -139,10 +139,10 @@ public abstract class BsSummaryMemberPurchaseBhv extends AbstractBehaviorReadabl
         return doSelectEntity(cb, SummaryMemberPurchase.class);
     }
 
-    protected <ENTITY extends SummaryMemberPurchase> ENTITY doSelectEntity(final SummaryMemberPurchaseCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends SummaryMemberPurchase> ENTITY doSelectEntity(SummaryMemberPurchaseCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, SummaryMemberPurchaseCB>() {
-            public List<ENTITY> callbackSelectList(SummaryMemberPurchaseCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(SummaryMemberPurchaseCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -168,10 +168,10 @@ public abstract class BsSummaryMemberPurchaseBhv extends AbstractBehaviorReadabl
         return doSelectEntityWithDeletedCheck(cb, SummaryMemberPurchase.class);
     }
 
-    protected <ENTITY extends SummaryMemberPurchase> ENTITY doSelectEntityWithDeletedCheck(final SummaryMemberPurchaseCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends SummaryMemberPurchase> ENTITY doSelectEntityWithDeletedCheck(SummaryMemberPurchaseCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, SummaryMemberPurchaseCB>() {
-            public List<ENTITY> callbackSelectList(SummaryMemberPurchaseCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(SummaryMemberPurchaseCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -205,7 +205,7 @@ public abstract class BsSummaryMemberPurchaseBhv extends AbstractBehaviorReadabl
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
         return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, SummaryMemberPurchaseCB>() {
-            public List<ENTITY> callbackSelectList(SummaryMemberPurchaseCB cb, Class<ENTITY> tp) { return delegateSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(SummaryMemberPurchaseCB lcb, Class<ENTITY> ltp) { return delegateSelectList(lcb, ltp); } });
     }
 
     @Override

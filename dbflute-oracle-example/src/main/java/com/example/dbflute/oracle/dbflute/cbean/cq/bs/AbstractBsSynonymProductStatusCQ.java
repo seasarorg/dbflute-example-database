@@ -129,7 +129,7 @@ public abstract class AbstractBsSynonymProductStatusCQ extends AbstractCondition
     }
 
     /**
-     * Set up ExistsReferrer (co-related sub-query). <br />
+     * Set up ExistsReferrer (correlated sub-query). <br />
      * {exists (select PRODUCT_STATUS_CODE from SYNONYM_PRODUCT where ...)} <br />
      * (商品)SYNONYM_PRODUCT by PRODUCT_STATUS_CODE, named 'synonymProductAsOne'.
      * <pre>
@@ -150,7 +150,7 @@ public abstract class AbstractBsSynonymProductStatusCQ extends AbstractCondition
     public abstract String keepProductStatusCode_ExistsReferrer_SynonymProductList(SynonymProductCQ sq);
 
     /**
-     * Set up NotExistsReferrer (co-related sub-query). <br />
+     * Set up NotExistsReferrer (correlated sub-query). <br />
      * {not exists (select PRODUCT_STATUS_CODE from SYNONYM_PRODUCT where ...)} <br />
      * (商品)SYNONYM_PRODUCT by PRODUCT_STATUS_CODE, named 'synonymProductAsOne'.
      * <pre>

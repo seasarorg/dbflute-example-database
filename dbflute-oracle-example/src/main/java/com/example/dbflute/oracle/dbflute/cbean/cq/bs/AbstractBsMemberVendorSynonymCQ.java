@@ -134,7 +134,7 @@ public abstract class AbstractBsMemberVendorSynonymCQ extends AbstractConditionQ
     }
 
     /**
-     * Set up ExistsReferrer (co-related sub-query). <br />
+     * Set up ExistsReferrer (correlated sub-query). <br />
      * {exists (select MEMBER_ID from SYNONYM_MEMBER_LOGIN where ...)} <br />
      * (会員ログイン)SYNONYM_MEMBER_LOGIN by MEMBER_ID, named 'synonymMemberLoginAsOne'.
      * <pre>
@@ -155,7 +155,7 @@ public abstract class AbstractBsMemberVendorSynonymCQ extends AbstractConditionQ
     public abstract String keepMemberId_ExistsReferrer_SynonymMemberLoginList(SynonymMemberLoginCQ sq);
 
     /**
-     * Set up ExistsReferrer (co-related sub-query). <br />
+     * Set up ExistsReferrer (correlated sub-query). <br />
      * {exists (select MEMBER_ID from SYNONYM_MEMBER_WITHDRAWAL where ...)} <br />
      * SYNONYM_MEMBER_WITHDRAWAL by MEMBER_ID, named 'synonymMemberWithdrawalAsOne'.
      * <pre>
@@ -176,7 +176,7 @@ public abstract class AbstractBsMemberVendorSynonymCQ extends AbstractConditionQ
     public abstract String keepMemberId_ExistsReferrer_SynonymMemberWithdrawalAsOne(SynonymMemberWithdrawalCQ sq);
 
     /**
-     * Set up NotExistsReferrer (co-related sub-query). <br />
+     * Set up NotExistsReferrer (correlated sub-query). <br />
      * {not exists (select MEMBER_ID from SYNONYM_MEMBER_LOGIN where ...)} <br />
      * (会員ログイン)SYNONYM_MEMBER_LOGIN by MEMBER_ID, named 'synonymMemberLoginAsOne'.
      * <pre>
@@ -197,7 +197,7 @@ public abstract class AbstractBsMemberVendorSynonymCQ extends AbstractConditionQ
     public abstract String keepMemberId_NotExistsReferrer_SynonymMemberLoginList(SynonymMemberLoginCQ sq);
 
     /**
-     * Set up NotExistsReferrer (co-related sub-query). <br />
+     * Set up NotExistsReferrer (correlated sub-query). <br />
      * {not exists (select MEMBER_ID from SYNONYM_MEMBER_WITHDRAWAL where ...)} <br />
      * SYNONYM_MEMBER_WITHDRAWAL by MEMBER_ID, named 'synonymMemberWithdrawalAsOne'.
      * <pre>

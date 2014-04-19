@@ -134,7 +134,7 @@ public abstract class AbstractBsVendorLargeName901234567890CQ extends AbstractCo
     }
 
     /**
-     * Set up ExistsReferrer (co-related sub-query). <br />
+     * Set up ExistsReferrer (correlated sub-query). <br />
      * {exists (select VENDOR_LARGE_NAME_901234567_ID from VENDOR_LARGE_NAME_90123456_REF where ...)} <br />
      * VENDOR_LARGE_NAME_90123456_REF by VENDOR_LARGE_NAME_901234567_ID, named 'vendorLargeName90123456RefAsOne'.
      * <pre>
@@ -155,7 +155,7 @@ public abstract class AbstractBsVendorLargeName901234567890CQ extends AbstractCo
     public abstract String keepVendorLargeName901234567Id_ExistsReferrer_VendorLargeName90123456RefList(VendorLargeName90123456RefCQ sq);
 
     /**
-     * Set up NotExistsReferrer (co-related sub-query). <br />
+     * Set up NotExistsReferrer (correlated sub-query). <br />
      * {not exists (select VENDOR_LARGE_NAME_901234567_ID from VENDOR_LARGE_NAME_90123456_REF where ...)} <br />
      * VENDOR_LARGE_NAME_90123456_REF by VENDOR_LARGE_NAME_901234567_ID, named 'vendorLargeName90123456RefAsOne'.
      * <pre>

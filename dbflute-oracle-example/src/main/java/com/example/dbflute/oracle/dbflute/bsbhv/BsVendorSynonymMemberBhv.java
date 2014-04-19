@@ -139,10 +139,10 @@ public abstract class BsVendorSynonymMemberBhv extends AbstractBehaviorWritable 
         return doSelectEntity(cb, VendorSynonymMember.class);
     }
 
-    protected <ENTITY extends VendorSynonymMember> ENTITY doSelectEntity(final VendorSynonymMemberCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends VendorSynonymMember> ENTITY doSelectEntity(VendorSynonymMemberCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, VendorSynonymMemberCB>() {
-            public List<ENTITY> callbackSelectList(VendorSynonymMemberCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(VendorSynonymMemberCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -168,10 +168,10 @@ public abstract class BsVendorSynonymMemberBhv extends AbstractBehaviorWritable 
         return doSelectEntityWithDeletedCheck(cb, VendorSynonymMember.class);
     }
 
-    protected <ENTITY extends VendorSynonymMember> ENTITY doSelectEntityWithDeletedCheck(final VendorSynonymMemberCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends VendorSynonymMember> ENTITY doSelectEntityWithDeletedCheck(VendorSynonymMemberCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, VendorSynonymMemberCB>() {
-            public List<ENTITY> callbackSelectList(VendorSynonymMemberCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(VendorSynonymMemberCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -243,7 +243,7 @@ public abstract class BsVendorSynonymMemberBhv extends AbstractBehaviorWritable 
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
         return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, VendorSynonymMemberCB>() {
-            public List<ENTITY> callbackSelectList(VendorSynonymMemberCB cb, Class<ENTITY> tp) { return delegateSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(VendorSynonymMemberCB lcb, Class<ENTITY> ltp) { return delegateSelectList(lcb, ltp); } });
     }
 
     @Override

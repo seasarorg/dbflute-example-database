@@ -139,10 +139,10 @@ public abstract class BsWhiteDiffWorldBhv extends AbstractBehaviorWritable {
         return doSelectEntity(cb, WhiteDiffWorld.class);
     }
 
-    protected <ENTITY extends WhiteDiffWorld> ENTITY doSelectEntity(final WhiteDiffWorldCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends WhiteDiffWorld> ENTITY doSelectEntity(WhiteDiffWorldCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, WhiteDiffWorldCB>() {
-            public List<ENTITY> callbackSelectList(WhiteDiffWorldCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhiteDiffWorldCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -168,10 +168,10 @@ public abstract class BsWhiteDiffWorldBhv extends AbstractBehaviorWritable {
         return doSelectEntityWithDeletedCheck(cb, WhiteDiffWorld.class);
     }
 
-    protected <ENTITY extends WhiteDiffWorld> ENTITY doSelectEntityWithDeletedCheck(final WhiteDiffWorldCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb);
+    protected <ENTITY extends WhiteDiffWorld> ENTITY doSelectEntityWithDeletedCheck(WhiteDiffWorldCB cb, Class<ENTITY> tp) {
+        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, WhiteDiffWorldCB>() {
-            public List<ENTITY> callbackSelectList(WhiteDiffWorldCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhiteDiffWorldCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -243,7 +243,7 @@ public abstract class BsWhiteDiffWorldBhv extends AbstractBehaviorWritable {
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
         return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, WhiteDiffWorldCB>() {
-            public List<ENTITY> callbackSelectList(WhiteDiffWorldCB cb, Class<ENTITY> tp) { return delegateSelectList(cb, tp); } });
+            public List<ENTITY> callbackSelectList(WhiteDiffWorldCB lcb, Class<ENTITY> ltp) { return delegateSelectList(lcb, ltp); } });
     }
 
     @Override
