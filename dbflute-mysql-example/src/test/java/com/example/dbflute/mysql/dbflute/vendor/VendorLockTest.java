@@ -102,8 +102,8 @@ public class VendorLockTest extends UnitContainerTestCase {
     }
 
     // -----------------------------------------------------
-    //                                     UniqueKey Wait
-    //                                     --------------
+    //                                        UniqueKey Wait
+    //                                        --------------
     public void test_insert_UniqueKeyWait_basic() throws Exception {
         cannonball(new CannonballRun() {
             public void drive(CannonballCar car) {
@@ -230,8 +230,8 @@ public class VendorLockTest extends UnitContainerTestCase {
                 });
         cannonball(new CannonballRun() {
             public void drive(CannonballCar car) {
-                long threadId = car.getThreadId();
-                Integer memberId = parameterMap.get(car.getEntryNumber());
+                int entryNumber = car.getEntryNumber();
+                Integer memberId = parameterMap.get(entryNumber);
 
                 // empty delete (update, for update) locks new record
                 // (if it deletes existing records, second threads waits here)
@@ -242,7 +242,8 @@ public class VendorLockTest extends UnitContainerTestCase {
 
                 Purchase inserted = source.clone();
                 inserted.setMemberId(memberId);
-                long randomMillis = currentTimestamp().getTime() + (threadId * 10000);
+                long currentTime = currentTimestamp().getTime();
+                long randomMillis = currentTime + (entryNumber * 10000);
                 inserted.setPurchaseDatetime(toTimestamp(randomMillis));
 
                 purchaseBhv.insert(inserted);
