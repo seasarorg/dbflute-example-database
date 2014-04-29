@@ -79,7 +79,7 @@
 	      <url>http://maven.seasar.org/maven2-snapshot</url>
 	    </repository>
 	</repositories>
-	
+
 	<build>
 		<defaultGoal>validate</defaultGoal>
 		<pluginManagement>

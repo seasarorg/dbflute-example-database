@@ -142,7 +142,7 @@
 			<url>dav:https://www.seasar.org/maven/maven2-snapshot</url>
 		</snapshotRepository>
 	</distributionManagement>
-	
+
 	<repositories>
 		<repository>
 			<id>maven.seasar.org</id>
