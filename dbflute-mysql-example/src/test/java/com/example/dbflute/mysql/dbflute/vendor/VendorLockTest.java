@@ -306,6 +306,114 @@ public class VendorLockTest extends UnitContainerTestCase {
     //                                                                              Update
     //                                                                              ======
     // -----------------------------------------------------
+    //                                       Formal Deadlock
+    //                                       ---------------
+    public void test_update_FormalDeadlock_basic() throws Exception {
+        cannonball(new CannonballRun() {
+            public void drive(CannonballCar car) {
+                car.projectA(new CannonballProjectA() {
+                    public void plan(CannonballDragon dragon) {
+                        dragon.expectNormallyDone();
+                        updateFoo();
+                    }
+                }, 1);
+                car.projectA(new CannonballProjectA() {
+                    public void plan(CannonballDragon dragon) {
+                        dragon.expectNormallyDone();
+                        updateBar();
+                    }
+                }, 2);
+                car.projectA(new CannonballProjectA() {
+                    public void plan(CannonballDragon dragon) {
+                        dragon.expectOvertime();
+                        updateBar();
+                    }
+                }, 1);
+                car.projectA(new CannonballProjectA() {
+                    public void plan(CannonballDragon dragon) {
+                        updateFoo();
+                    }
+                }, 2);
+            }
+
+            protected void updateFoo() {
+                Member member = new Member();
+                member.setMemberId(3);
+                member.setMemberStatusCode_Formalized();
+                memberBhv.updateNonstrict(member);
+            }
+
+            protected void updateBar() {
+                Member member = new Member();
+                member.setMemberId(7);
+                member.setMemberStatusCode_Formalized();
+                memberBhv.updateNonstrict(member);
+            }
+        }, new CannonballOption().threadCount(2).expectExceptionAny("Deadlock"));
+    }
+
+    // -----------------------------------------------------
+    //                                        UniqueKey Wait
+    //                                        --------------
+    public void test_update_UniqueKeyWait_basic() throws Exception {
+        final String memberAccount = "update_UniqueKeyWait";
+        cannonball(new CannonballRun() {
+            public void drive(CannonballCar car) {
+                car.projectA(new CannonballProjectA() {
+                    public void plan(CannonballDragon dragon) {
+                        Member member = new Member();
+                        member.setMemberName("lock1");
+                        member.setMemberAccount(memberAccount);
+                        member.setMemberStatusCode_Formalized();
+                        memberBhv.insert(member);
+                    }
+                }, 1);
+                car.projectA(new CannonballProjectA() {
+                    public void plan(CannonballDragon dragon) {
+                        dragon.releaseIfOvertime(500);
+                        dragon.expectOvertime(); // update waits for index lock
+                        Member member = new Member();
+                        member.setMemberId(3);
+                        member.setMemberAccount(memberAccount);
+                        member.setMemberStatusCode_Formalized();
+                        memberBhv.updateNonstrict(member);
+                    }
+                }, 2);
+            }
+        }, new CannonballOption().threadCount(2));
+    }
+
+    public void test_update_UniqueKeyWait_compoundKey() throws Exception {
+        final Timestamp purchaseDatetime = toTimestamp("2014/04/30 12:34:56");
+        cannonball(new CannonballRun() {
+            public void drive(CannonballCar car) {
+                car.projectA(new CannonballProjectA() {
+                    public void plan(CannonballDragon dragon) {
+                        Purchase purchase = new Purchase();
+                        purchase.setMemberId(13); // same as purchaseId is 3
+                        purchase.setProductId(3); // me too
+                        purchase.setPurchaseDatetime(purchaseDatetime);
+                        purchase.setPaymentCompleteFlg_True();
+                        purchase.setPurchasePrice(3);
+                        purchase.setPurchaseCount(1);
+                        purchaseBhv.insert(purchase);
+                    }
+                }, 1);
+                car.projectA(new CannonballProjectA() {
+                    public void plan(CannonballDragon dragon) {
+                        dragon.releaseIfOvertime(500);
+                        dragon.expectOvertime(); // update waits for index lock
+                        Purchase purchase = new Purchase();
+                        purchase.setPurchaseId(3L);
+                        purchase.setPurchaseDatetime(purchaseDatetime);
+                        purchaseBhv.updateNonstrict(purchase);
+                    }
+                }, 2);
+            }
+        }, new CannonballOption().threadCount(2));
+    }
+
+    // -----------------------------------------------------
     //                                  AfterInsert Deadlock
     //                                  --------------------
     public void test_update_AfterInsertDeadlock_basic() {
@@ -428,8 +536,8 @@ public class VendorLockTest extends UnitContainerTestCase {
     }
 
     // ===================================================================================
-    //                                                                           Delete
-    //                                                                           ======
+    //                                                                              Delete
+    //                                                                              ======
     public void test_delete_nonDeadlock() throws Exception {
         PurchaseCB cb = new PurchaseCB();
         cb.query().setMemberId_Equal(3);
