@@ -12,9 +12,9 @@
 
 	<properties>
 		<seasar.version>2.4.46</seasar.version>
-		<dbflute.version>1.0.5D</dbflute.version>
+		<dbflute.version>1.0.5F-01-SNAPSHOT</dbflute.version>
 		<mysql.jdbc.version>5.1.26</mysql.jdbc.version>
-		<utflute.version>0.4.3</utflute.version>
+		<utflute.version>0.4.4</utflute.version>
 
 		<!-- example of Mobylet (test case only) -->
 		<mobylet.charset.version>1.0.7</mobylet.charset.version>

@@ -182,19 +182,19 @@ public abstract class BsWhiteNotPk implements Entity, Serializable, Cloneable {
     /**
      * Determine the object is equal with this. <br />
      * If primary-keys or columns of the other are same as this one, returns true.
-     * @param other The other entity. (NullAllowed: if null, returns false fixedly)
+     * @param obj The object as other entity. (NullAllowed: if null, returns false fixedly)
      * @return Comparing result.
      */
-    public boolean equals(Object other) {
-        if (other == null || !(other instanceof BsWhiteNotPk)) { return false; }
-        BsWhiteNotPk otherEntity = (BsWhiteNotPk)other;
-        if (!xSV(getNotPkId(), otherEntity.getNotPkId())) { return false; }
-        if (!xSV(getNotPkName(), otherEntity.getNotPkName())) { return false; }
-        if (!xSV(getNotPkInteger(), otherEntity.getNotPkInteger())) { return false; }
+    public boolean equals(Object obj) {
+        if (obj == null || !(obj instanceof BsWhiteNotPk)) { return false; }
+        BsWhiteNotPk other = (BsWhiteNotPk)obj;
+        if (!xSV(getNotPkId(), other.getNotPkId())) { return false; }
+        if (!xSV(getNotPkName(), other.getNotPkName())) { return false; }
+        if (!xSV(getNotPkInteger(), other.getNotPkInteger())) { return false; }
         return true;
     }
-    protected boolean xSV(Object value1, Object value2) { // isSameValue()
-        return InternalUtil.isSameValue(value1, value2);
+    protected boolean xSV(Object value1, Object value2) {
+        return FunCustodial.isSameValue(value1, value2);
     }
 
     /**
@@ -209,8 +209,8 @@ public abstract class BsWhiteNotPk implements Entity, Serializable, Cloneable {
         result = xCH(result, getNotPkInteger());
         return result;
     }
-    protected int xCH(int result, Object value) { // calculateHashcode()
-        return InternalUtil.calculateHashcode(result, value);
+    protected int xCH(int result, Object value) {
+        return FunCustodial.calculateHashcode(result, value);
     }
 
     /**
@@ -225,7 +225,7 @@ public abstract class BsWhiteNotPk implements Entity, Serializable, Cloneable {
      * @return The display string of all columns and relation existences. (NotNull)
      */
     public String toString() {
-        return buildDisplayString(InternalUtil.toClassTitle(this), true, true);
+        return buildDisplayString(FunCustodial.toClassTitle(this), true, true);
     }
 
     /**

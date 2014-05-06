@@ -208,7 +208,7 @@ public class BsNextSchemaProductCB extends AbstractConditionBean {
      * You don't need to call SetupSelect in union-query,
      * because it inherits calls before. (Don't call SetupSelect after here)
      * <pre>
-     * cb.query().<span style="color: #FD4747">union</span>(new UnionQuery&lt;NextSchemaProductCB&gt;() {
+     * cb.query().<span style="color: #DD4747">union</span>(new UnionQuery&lt;NextSchemaProductCB&gt;() {
      *     public void query(NextSchemaProductCB unionCB) {
      *         unionCB.query().setXxx...
      *     }
@@ -227,7 +227,7 @@ public class BsNextSchemaProductCB extends AbstractConditionBean {
      * You don't need to call SetupSelect in union-query,
      * because it inherits calls before. (Don't call SetupSelect after here)
      * <pre>
-     * cb.query().<span style="color: #FD4747">unionAll</span>(new UnionQuery&lt;NextSchemaProductCB&gt;() {
+     * cb.query().<span style="color: #DD4747">unionAll</span>(new UnionQuery&lt;NextSchemaProductCB&gt;() {
      *     public void query(NextSchemaProductCB unionCB) {
      *         unionCB.query().setXxx...
      *     }
@@ -327,12 +327,12 @@ public class BsNextSchemaProductCB extends AbstractConditionBean {
          * {select max(FOO) from white_same_name where ...) as FOO_MAX} <br />
          * white_same_name by next_schema_product_id, named 'whiteSameNameList'.
          * <pre>
-         * cb.specify().<span style="color: #FD4747">derivedWhiteSameNameList()</span>.<span style="color: #FD4747">max</span>(new SubQuery&lt;WhiteSameNameCB&gt;() {
+         * cb.specify().<span style="color: #DD4747">derivedWhiteSameNameList()</span>.<span style="color: #DD4747">max</span>(new SubQuery&lt;WhiteSameNameCB&gt;() {
          *     public void query(WhiteSameNameCB subCB) {
-         *         subCB.specify().<span style="color: #FD4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
+         *         subCB.specify().<span style="color: #DD4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
          *         subCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
          *     }
-         * }, WhiteSameName.<span style="color: #FD4747">ALIAS_foo...</span>);
+         * }, WhiteSameName.<span style="color: #DD4747">ALIAS_foo...</span>);
          * </pre>
          * @return The object to set up a function for referrer table. (NotNull)
          */
@@ -362,13 +362,13 @@ public class BsNextSchemaProductCB extends AbstractConditionBean {
      * Set up column-query. {column1 = column2}
      * <pre>
      * <span style="color: #3F7E5E">// where FOO &lt; BAR</span>
-     * cb.<span style="color: #FD4747">columnQuery</span>(new SpecifyQuery&lt;NextSchemaProductCB&gt;() {
+     * cb.<span style="color: #DD4747">columnQuery</span>(new SpecifyQuery&lt;NextSchemaProductCB&gt;() {
      *     public void query(NextSchemaProductCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFoo()</span>; <span style="color: #3F7E5E">// left column</span>
+     *         cb.specify().<span style="color: #DD4747">columnFoo()</span>; <span style="color: #3F7E5E">// left column</span>
      *     }
      * }).lessThan(new SpecifyQuery&lt;NextSchemaProductCB&gt;() {
      *     public void query(NextSchemaProductCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnBar()</span>; <span style="color: #3F7E5E">// right column</span>
+     *         cb.specify().<span style="color: #DD4747">columnBar()</span>; <span style="color: #3F7E5E">// right column</span>
      *     }
      * }); <span style="color: #3F7E5E">// you can calculate for right column like '}).plus(3);'</span>
      * </pre>
@@ -416,7 +416,7 @@ public class BsNextSchemaProductCB extends AbstractConditionBean {
      * (Same-column-and-same-condition-key conditions are allowed in or-scope)
      * <pre>
      * <span style="color: #3F7E5E">// where (FOO = '...' or BAR = '...')</span>
-     * cb.<span style="color: #FD4747">orScopeQuery</span>(new OrQuery&lt;NextSchemaProductCB&gt;() {
+     * cb.<span style="color: #DD4747">orScopeQuery</span>(new OrQuery&lt;NextSchemaProductCB&gt;() {
      *     public void query(NextSchemaProductCB orCB) {
      *         orCB.query().setFOO_Equal...
      *         orCB.query().setBAR_Equal...
@@ -434,10 +434,10 @@ public class BsNextSchemaProductCB extends AbstractConditionBean {
      * (However nested or-scope query and as-or-split of like-search in and-part are unsupported)
      * <pre>
      * <span style="color: #3F7E5E">// where (FOO = '...' or (BAR = '...' and QUX = '...'))</span>
-     * cb.<span style="color: #FD4747">orScopeQuery</span>(new OrQuery&lt;NextSchemaProductCB&gt;() {
+     * cb.<span style="color: #DD4747">orScopeQuery</span>(new OrQuery&lt;NextSchemaProductCB&gt;() {
      *     public void query(NextSchemaProductCB orCB) {
      *         orCB.query().setFOO_Equal...
-     *         orCB.<span style="color: #FD4747">orScopeQueryAndPart</span>(new AndQuery&lt;NextSchemaProductCB&gt;() {
+     *         orCB.<span style="color: #DD4747">orScopeQueryAndPart</span>(new AndQuery&lt;NextSchemaProductCB&gt;() {
      *             public void query(NextSchemaProductCB andCB) {
      *                 andCB.query().setBar_...
      *                 andCB.query().setQux_...

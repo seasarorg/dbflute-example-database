@@ -21,6 +21,7 @@ import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
 import org.seasar.dbflute.dbmeta.DBMeta;
+import org.seasar.dbflute.exception.*;
 import org.seasar.dbflute.outsidesql.executor.*;
 import com.example.dbflute.mysql.dbflute.exbhv.*;
 import com.example.dbflute.mysql.dbflute.exentity.*;
@@ -106,7 +107,7 @@ public abstract class BsWhiteUqFkBhv extends AbstractBehaviorWritable {
      * <pre>
      * WhiteUqFkCB cb = new WhiteUqFkCB();
      * cb.query().setFoo...(value);
-     * int count = whiteUqFkBhv.<span style="color: #FD4747">selectCount</span>(cb);
+     * int count = whiteUqFkBhv.<span style="color: #DD4747">selectCount</span>(cb);
      * </pre>
      * @param cb The condition-bean of WhiteUqFk. (NotNull)
      * @return The count for the condition. (NotMinus)
@@ -134,12 +135,14 @@ public abstract class BsWhiteUqFkBhv extends AbstractBehaviorWritable {
     //                                                                       Entity Select
     //                                                                       =============
     /**
-     * Select the entity by the condition-bean.
+     * Select the entity by the condition-bean. <br />
+     * <span style="color: #AD4747; font-size: 120%">The return might be null if no data, so you should have null check.</span> <br />
+     * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, use selectEntityWithDeletedCheck().</span>
      * <pre>
      * WhiteUqFkCB cb = new WhiteUqFkCB();
      * cb.query().setFoo...(value);
-     * WhiteUqFk whiteUqFk = whiteUqFkBhv.<span style="color: #FD4747">selectEntity</span>(cb);
-     * if (whiteUqFk != null) {
+     * WhiteUqFk whiteUqFk = whiteUqFkBhv.<span style="color: #DD4747">selectEntity</span>(cb);
+     * if (whiteUqFk != null) { <span style="color: #3F7E5E">// null check</span>
      *     ... = whiteUqFk.get...();
      * } else {
      *     ...
@@ -147,8 +150,8 @@ public abstract class BsWhiteUqFkBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of WhiteUqFk. (NotNull)
      * @return The entity selected by the condition. (NullAllowed: if no data, it returns null)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteUqFk selectEntity(WhiteUqFkCB cb) {
         return doSelectEntity(cb, WhiteUqFk.class);
@@ -166,18 +169,19 @@ public abstract class BsWhiteUqFkBhv extends AbstractBehaviorWritable {
     }
 
     /**
-     * Select the entity by the condition-bean with deleted check.
+     * Select the entity by the condition-bean with deleted check. <br />
+     * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, this method is good.</span>
      * <pre>
      * WhiteUqFkCB cb = new WhiteUqFkCB();
      * cb.query().setFoo...(value);
-     * WhiteUqFk whiteUqFk = whiteUqFkBhv.<span style="color: #FD4747">selectEntityWithDeletedCheck</span>(cb);
+     * WhiteUqFk whiteUqFk = whiteUqFkBhv.<span style="color: #DD4747">selectEntityWithDeletedCheck</span>(cb);
      * ... = whiteUqFk.get...(); <span style="color: #3F7E5E">// the entity always be not null</span>
      * </pre>
      * @param cb The condition-bean of WhiteUqFk. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteUqFk selectEntityWithDeletedCheck(WhiteUqFkCB cb) {
         return doSelectEntityWithDeletedCheck(cb, WhiteUqFk.class);
@@ -198,8 +202,8 @@ public abstract class BsWhiteUqFkBhv extends AbstractBehaviorWritable {
      * Select the entity by the primary-key value.
      * @param uqFkId The one of primary key. (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteUqFk selectByPKValue(Long uqFkId) {
         return doSelectByPKValue(uqFkId, WhiteUqFk.class);
@@ -213,9 +217,9 @@ public abstract class BsWhiteUqFkBhv extends AbstractBehaviorWritable {
      * Select the entity by the primary-key value with deleted check.
      * @param uqFkId The one of primary key. (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteUqFk selectByPKValueWithDeletedCheck(Long uqFkId) {
         return doSelectByPKValueWithDeletedCheck(uqFkId, WhiteUqFk.class);
@@ -241,14 +245,14 @@ public abstract class BsWhiteUqFkBhv extends AbstractBehaviorWritable {
      * WhiteUqFkCB cb = new WhiteUqFkCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * ListResultBean&lt;WhiteUqFk&gt; whiteUqFkList = whiteUqFkBhv.<span style="color: #FD4747">selectList</span>(cb);
+     * ListResultBean&lt;WhiteUqFk&gt; whiteUqFkList = whiteUqFkBhv.<span style="color: #DD4747">selectList</span>(cb);
      * for (WhiteUqFk whiteUqFk : whiteUqFkList) {
      *     ... = whiteUqFk.get...();
      * }
      * </pre>
      * @param cb The condition-bean of WhiteUqFk. (NotNull)
      * @return The result bean of selected list. (NotNull: if no data, returns empty list)
-     * @exception org.seasar.dbflute.exception.DangerousResultSizeException When the result size is over the specified safety size.
+     * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public ListResultBean<WhiteUqFk> selectList(WhiteUqFkCB cb) {
         return doSelectList(cb, WhiteUqFk.class);
@@ -276,8 +280,8 @@ public abstract class BsWhiteUqFkBhv extends AbstractBehaviorWritable {
      * WhiteUqFkCB cb = new WhiteUqFkCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * cb.<span style="color: #FD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
-     * PagingResultBean&lt;WhiteUqFk&gt; page = whiteUqFkBhv.<span style="color: #FD4747">selectPage</span>(cb);
+     * cb.<span style="color: #DD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
+     * PagingResultBean&lt;WhiteUqFk&gt; page = whiteUqFkBhv.<span style="color: #DD4747">selectPage</span>(cb);
      * int allRecordCount = page.getAllRecordCount();
      * int allPageCount = page.getAllPageCount();
      * boolean isExistPrePage = page.isExistPrePage();
@@ -289,7 +293,7 @@ public abstract class BsWhiteUqFkBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of WhiteUqFk. (NotNull)
      * @return The result bean of selected page. (NotNull: if no data, returns bean as empty list)
-     * @exception org.seasar.dbflute.exception.DangerousResultSizeException When the result size is over the specified safety size.
+     * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public PagingResultBean<WhiteUqFk> selectPage(WhiteUqFkCB cb) {
         return doSelectPage(cb, WhiteUqFk.class);
@@ -316,7 +320,7 @@ public abstract class BsWhiteUqFkBhv extends AbstractBehaviorWritable {
      * <pre>
      * WhiteUqFkCB cb = new WhiteUqFkCB();
      * cb.query().setFoo...(value);
-     * whiteUqFkBhv.<span style="color: #FD4747">selectCursor</span>(cb, new EntityRowHandler&lt;WhiteUqFk&gt;() {
+     * whiteUqFkBhv.<span style="color: #DD4747">selectCursor</span>(cb, new EntityRowHandler&lt;WhiteUqFk&gt;() {
      *     public void handle(WhiteUqFk entity) {
      *         ... = entity.getFoo...();
      *     }
@@ -345,9 +349,9 @@ public abstract class BsWhiteUqFkBhv extends AbstractBehaviorWritable {
      * Select the scalar value derived by a function from uniquely-selected records. <br />
      * You should call a function method after this method called like as follows:
      * <pre>
-     * whiteUqFkBhv.<span style="color: #FD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
+     * whiteUqFkBhv.<span style="color: #DD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
      *     public void query(WhiteUqFkCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
+     *         cb.specify().<span style="color: #DD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
      *         cb.query().setBarName_PrefixSearch("S");
      *     }
      * });
@@ -387,61 +391,92 @@ public abstract class BsWhiteUqFkBhv extends AbstractBehaviorWritable {
     //                                                                       Load Referrer
     //                                                                       =============
     /**
-     * {Refer to overload method that has an argument of the list of entity.}
-     * @param whiteUqFk The entity of whiteUqFk. (NotNull)
-     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
-     */
-    public void loadWhiteUqFkRefByFkToPkIdList(WhiteUqFk whiteUqFk, ConditionBeanSetupper<WhiteUqFkRefCB> conditionBeanSetupper) {
-        xassLRArg(whiteUqFk, conditionBeanSetupper);
-        loadWhiteUqFkRefByFkToPkIdList(xnewLRLs(whiteUqFk), conditionBeanSetupper);
-    }
-    /**
-     * Load referrer of whiteUqFkRefByFkToPkIdList with the set-upper for condition-bean of referrer. <br />
+     * Load referrer of whiteUqFkRefByFkToPkIdList by the set-upper of referrer. <br />
      * white_uq_fk_ref by FK_TO_PK_ID, named 'whiteUqFkRefByFkToPkIdList'.
      * <pre>
-     * whiteUqFkBhv.<span style="color: #FD4747">loadWhiteUqFkRefByFkToPkIdList</span>(whiteUqFkList, new ConditionBeanSetupper&lt;WhiteUqFkRefCB&gt;() {
+     * whiteUqFkBhv.<span style="color: #DD4747">loadWhiteUqFkRefByFkToPkIdList</span>(whiteUqFkList, new ConditionBeanSetupper&lt;WhiteUqFkRefCB&gt;() {
      *     public void setup(WhiteUqFkRefCB cb) {
      *         cb.setupSelect...();
      *         cb.query().setFoo...(value);
      *         cb.query().addOrderBy_Bar...(); <span style="color: #3F7E5E">// basically you should order referrer list</span>
      *     }
-     * });
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here by calling like '}).withNestedList(new ...)'</span>
      * for (WhiteUqFk whiteUqFk : whiteUqFkList) {
-     *     ... = whiteUqFk.<span style="color: #FD4747">getWhiteUqFkRefByFkToPkIdList()</span>;
+     *     ... = whiteUqFk.<span style="color: #DD4747">getWhiteUqFkRefByFkToPkIdList()</span>;
      * }
      * </pre>
-     * About internal policy, the value of primary key(and others too) is treated as case-insensitive. <br />
-     * The condition-bean that the set-upper provides have settings before you touch it. It is as follows:
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
+     * <pre>
+     * cb.query().setFkToPkId_InScope(pkList);
+     * cb.query().addOrderBy_FkToPkId_Asc();
+     * </pre>
+     * @param whiteUqFk The entity of whiteUqFk. (NotNull)
+     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
+     */
+    public NestedReferrerLoader<WhiteUqFkRef> loadWhiteUqFkRefByFkToPkIdList(WhiteUqFk whiteUqFk, ConditionBeanSetupper<WhiteUqFkRefCB> conditionBeanSetupper) {
+        xassLRArg(whiteUqFk, conditionBeanSetupper);
+        return loadWhiteUqFkRefByFkToPkIdList(xnewLRLs(whiteUqFk), conditionBeanSetupper);
+    }
+
+    /**
+     * Load referrer of whiteUqFkRefByFkToPkIdList by the set-upper of referrer. <br />
+     * white_uq_fk_ref by FK_TO_PK_ID, named 'whiteUqFkRefByFkToPkIdList'.
+     * <pre>
+     * whiteUqFkBhv.<span style="color: #DD4747">loadWhiteUqFkRefByFkToPkIdList</span>(whiteUqFkList, new ConditionBeanSetupper&lt;WhiteUqFkRefCB&gt;() {
+     *     public void setup(WhiteUqFkRefCB cb) {
+     *         cb.setupSelect...();
+     *         cb.query().setFoo...(value);
+     *         cb.query().addOrderBy_Bar...(); <span style="color: #3F7E5E">// basically you should order referrer list</span>
+     *     }
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here by calling like '}).withNestedList(new ...)'</span>
+     * for (WhiteUqFk whiteUqFk : whiteUqFkList) {
+     *     ... = whiteUqFk.<span style="color: #DD4747">getWhiteUqFkRefByFkToPkIdList()</span>;
+     * }
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
      * <pre>
      * cb.query().setFkToPkId_InScope(pkList);
      * cb.query().addOrderBy_FkToPkId_Asc();
      * </pre>
      * @param whiteUqFkList The entity list of whiteUqFk. (NotNull)
      * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public void loadWhiteUqFkRefByFkToPkIdList(List<WhiteUqFk> whiteUqFkList, ConditionBeanSetupper<WhiteUqFkRefCB> conditionBeanSetupper) {
+    public NestedReferrerLoader<WhiteUqFkRef> loadWhiteUqFkRefByFkToPkIdList(List<WhiteUqFk> whiteUqFkList, ConditionBeanSetupper<WhiteUqFkRefCB> conditionBeanSetupper) {
         xassLRArg(whiteUqFkList, conditionBeanSetupper);
-        loadWhiteUqFkRefByFkToPkIdList(whiteUqFkList, new LoadReferrerOption<WhiteUqFkRefCB, WhiteUqFkRef>().xinit(conditionBeanSetupper));
+        return loadWhiteUqFkRefByFkToPkIdList(whiteUqFkList, new LoadReferrerOption<WhiteUqFkRefCB, WhiteUqFkRef>().xinit(conditionBeanSetupper));
     }
+
     /**
      * {Refer to overload method that has an argument of the list of entity.}
      * @param whiteUqFk The entity of whiteUqFk. (NotNull)
      * @param loadReferrerOption The option of load-referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public void loadWhiteUqFkRefByFkToPkIdList(WhiteUqFk whiteUqFk, LoadReferrerOption<WhiteUqFkRefCB, WhiteUqFkRef> loadReferrerOption) {
+    public NestedReferrerLoader<WhiteUqFkRef> loadWhiteUqFkRefByFkToPkIdList(WhiteUqFk whiteUqFk, LoadReferrerOption<WhiteUqFkRefCB, WhiteUqFkRef> loadReferrerOption) {
         xassLRArg(whiteUqFk, loadReferrerOption);
-        loadWhiteUqFkRefByFkToPkIdList(xnewLRLs(whiteUqFk), loadReferrerOption);
+        return loadWhiteUqFkRefByFkToPkIdList(xnewLRLs(whiteUqFk), loadReferrerOption);
     }
+
     /**
      * {Refer to overload method that has an argument of condition-bean setupper.}
      * @param whiteUqFkList The entity list of whiteUqFk. (NotNull)
      * @param loadReferrerOption The option of load-referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public void loadWhiteUqFkRefByFkToPkIdList(List<WhiteUqFk> whiteUqFkList, LoadReferrerOption<WhiteUqFkRefCB, WhiteUqFkRef> loadReferrerOption) {
+    @SuppressWarnings("unchecked")
+    public NestedReferrerLoader<WhiteUqFkRef> loadWhiteUqFkRefByFkToPkIdList(List<WhiteUqFk> whiteUqFkList, LoadReferrerOption<WhiteUqFkRefCB, WhiteUqFkRef> loadReferrerOption) {
         xassLRArg(whiteUqFkList, loadReferrerOption);
-        if (whiteUqFkList.isEmpty()) { return; }
+        if (whiteUqFkList.isEmpty()) { return (NestedReferrerLoader<WhiteUqFkRef>)EMPTY_LOADER; }
+        return doLoadWhiteUqFkRefByFkToPkIdList(whiteUqFkList, loadReferrerOption);
+    }
+
+    protected NestedReferrerLoader<WhiteUqFkRef> doLoadWhiteUqFkRefByFkToPkIdList(List<WhiteUqFk> whiteUqFkList, LoadReferrerOption<WhiteUqFkRefCB, WhiteUqFkRef> option) {
         final WhiteUqFkRefBhv referrerBhv = xgetBSFLR().select(WhiteUqFkRefBhv.class);
-        helpLoadReferrerInternally(whiteUqFkList, loadReferrerOption, new InternalLoadReferrerCallback<WhiteUqFk, Long, WhiteUqFkRefCB, WhiteUqFkRef>() {
+        return helpLoadReferrerInternally(whiteUqFkList, option, new InternalLoadReferrerCallback<WhiteUqFk, Long, WhiteUqFkRefCB, WhiteUqFkRef>() {
             public Long getPKVal(WhiteUqFk et)
             { return et.getUqFkId(); }
             public void setRfLs(WhiteUqFk et, List<WhiteUqFkRef> ls)
@@ -460,61 +495,92 @@ public abstract class BsWhiteUqFkBhv extends AbstractBehaviorWritable {
     }
 
     /**
-     * {Refer to overload method that has an argument of the list of entity.}
-     * @param whiteUqFk The entity of whiteUqFk. (NotNull)
-     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
-     */
-    public void loadWhiteUqFkRefByFkToUqCodeList(WhiteUqFk whiteUqFk, ConditionBeanSetupper<WhiteUqFkRefCB> conditionBeanSetupper) {
-        xassLRArg(whiteUqFk, conditionBeanSetupper);
-        loadWhiteUqFkRefByFkToUqCodeList(xnewLRLs(whiteUqFk), conditionBeanSetupper);
-    }
-    /**
-     * Load referrer of whiteUqFkRefByFkToUqCodeList with the set-upper for condition-bean of referrer. <br />
+     * Load referrer of whiteUqFkRefByFkToUqCodeList by the set-upper of referrer. <br />
      * white_uq_fk_ref by FK_TO_UQ_CODE, named 'whiteUqFkRefByFkToUqCodeList'.
      * <pre>
-     * whiteUqFkBhv.<span style="color: #FD4747">loadWhiteUqFkRefByFkToUqCodeList</span>(whiteUqFkList, new ConditionBeanSetupper&lt;WhiteUqFkRefCB&gt;() {
+     * whiteUqFkBhv.<span style="color: #DD4747">loadWhiteUqFkRefByFkToUqCodeList</span>(whiteUqFkList, new ConditionBeanSetupper&lt;WhiteUqFkRefCB&gt;() {
      *     public void setup(WhiteUqFkRefCB cb) {
      *         cb.setupSelect...();
      *         cb.query().setFoo...(value);
      *         cb.query().addOrderBy_Bar...(); <span style="color: #3F7E5E">// basically you should order referrer list</span>
      *     }
-     * });
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here by calling like '}).withNestedList(new ...)'</span>
      * for (WhiteUqFk whiteUqFk : whiteUqFkList) {
-     *     ... = whiteUqFk.<span style="color: #FD4747">getWhiteUqFkRefByFkToUqCodeList()</span>;
+     *     ... = whiteUqFk.<span style="color: #DD4747">getWhiteUqFkRefByFkToUqCodeList()</span>;
      * }
      * </pre>
-     * About internal policy, the value of primary key(and others too) is treated as case-insensitive. <br />
-     * The condition-bean that the set-upper provides have settings before you touch it. It is as follows:
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
+     * <pre>
+     * cb.query().setFkToUqCode_InScope(pkList);
+     * cb.query().addOrderBy_FkToUqCode_Asc();
+     * </pre>
+     * @param whiteUqFk The entity of whiteUqFk. (NotNull)
+     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
+     */
+    public NestedReferrerLoader<WhiteUqFkRef> loadWhiteUqFkRefByFkToUqCodeList(WhiteUqFk whiteUqFk, ConditionBeanSetupper<WhiteUqFkRefCB> conditionBeanSetupper) {
+        xassLRArg(whiteUqFk, conditionBeanSetupper);
+        return loadWhiteUqFkRefByFkToUqCodeList(xnewLRLs(whiteUqFk), conditionBeanSetupper);
+    }
+
+    /**
+     * Load referrer of whiteUqFkRefByFkToUqCodeList by the set-upper of referrer. <br />
+     * white_uq_fk_ref by FK_TO_UQ_CODE, named 'whiteUqFkRefByFkToUqCodeList'.
+     * <pre>
+     * whiteUqFkBhv.<span style="color: #DD4747">loadWhiteUqFkRefByFkToUqCodeList</span>(whiteUqFkList, new ConditionBeanSetupper&lt;WhiteUqFkRefCB&gt;() {
+     *     public void setup(WhiteUqFkRefCB cb) {
+     *         cb.setupSelect...();
+     *         cb.query().setFoo...(value);
+     *         cb.query().addOrderBy_Bar...(); <span style="color: #3F7E5E">// basically you should order referrer list</span>
+     *     }
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here by calling like '}).withNestedList(new ...)'</span>
+     * for (WhiteUqFk whiteUqFk : whiteUqFkList) {
+     *     ... = whiteUqFk.<span style="color: #DD4747">getWhiteUqFkRefByFkToUqCodeList()</span>;
+     * }
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
      * <pre>
      * cb.query().setFkToUqCode_InScope(pkList);
      * cb.query().addOrderBy_FkToUqCode_Asc();
      * </pre>
      * @param whiteUqFkList The entity list of whiteUqFk. (NotNull)
      * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public void loadWhiteUqFkRefByFkToUqCodeList(List<WhiteUqFk> whiteUqFkList, ConditionBeanSetupper<WhiteUqFkRefCB> conditionBeanSetupper) {
+    public NestedReferrerLoader<WhiteUqFkRef> loadWhiteUqFkRefByFkToUqCodeList(List<WhiteUqFk> whiteUqFkList, ConditionBeanSetupper<WhiteUqFkRefCB> conditionBeanSetupper) {
         xassLRArg(whiteUqFkList, conditionBeanSetupper);
-        loadWhiteUqFkRefByFkToUqCodeList(whiteUqFkList, new LoadReferrerOption<WhiteUqFkRefCB, WhiteUqFkRef>().xinit(conditionBeanSetupper));
+        return loadWhiteUqFkRefByFkToUqCodeList(whiteUqFkList, new LoadReferrerOption<WhiteUqFkRefCB, WhiteUqFkRef>().xinit(conditionBeanSetupper));
     }
+
     /**
      * {Refer to overload method that has an argument of the list of entity.}
      * @param whiteUqFk The entity of whiteUqFk. (NotNull)
      * @param loadReferrerOption The option of load-referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public void loadWhiteUqFkRefByFkToUqCodeList(WhiteUqFk whiteUqFk, LoadReferrerOption<WhiteUqFkRefCB, WhiteUqFkRef> loadReferrerOption) {
+    public NestedReferrerLoader<WhiteUqFkRef> loadWhiteUqFkRefByFkToUqCodeList(WhiteUqFk whiteUqFk, LoadReferrerOption<WhiteUqFkRefCB, WhiteUqFkRef> loadReferrerOption) {
         xassLRArg(whiteUqFk, loadReferrerOption);
-        loadWhiteUqFkRefByFkToUqCodeList(xnewLRLs(whiteUqFk), loadReferrerOption);
+        return loadWhiteUqFkRefByFkToUqCodeList(xnewLRLs(whiteUqFk), loadReferrerOption);
     }
+
     /**
      * {Refer to overload method that has an argument of condition-bean setupper.}
      * @param whiteUqFkList The entity list of whiteUqFk. (NotNull)
      * @param loadReferrerOption The option of load-referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public void loadWhiteUqFkRefByFkToUqCodeList(List<WhiteUqFk> whiteUqFkList, LoadReferrerOption<WhiteUqFkRefCB, WhiteUqFkRef> loadReferrerOption) {
+    @SuppressWarnings("unchecked")
+    public NestedReferrerLoader<WhiteUqFkRef> loadWhiteUqFkRefByFkToUqCodeList(List<WhiteUqFk> whiteUqFkList, LoadReferrerOption<WhiteUqFkRefCB, WhiteUqFkRef> loadReferrerOption) {
         xassLRArg(whiteUqFkList, loadReferrerOption);
-        if (whiteUqFkList.isEmpty()) { return; }
+        if (whiteUqFkList.isEmpty()) { return (NestedReferrerLoader<WhiteUqFkRef>)EMPTY_LOADER; }
+        return doLoadWhiteUqFkRefByFkToUqCodeList(whiteUqFkList, loadReferrerOption);
+    }
+
+    protected NestedReferrerLoader<WhiteUqFkRef> doLoadWhiteUqFkRefByFkToUqCodeList(List<WhiteUqFk> whiteUqFkList, LoadReferrerOption<WhiteUqFkRefCB, WhiteUqFkRef> option) {
         final WhiteUqFkRefBhv referrerBhv = xgetBSFLR().select(WhiteUqFkRefBhv.class);
-        helpLoadReferrerInternally(whiteUqFkList, loadReferrerOption, new InternalLoadReferrerCallback<WhiteUqFk, String, WhiteUqFkRefCB, WhiteUqFkRef>() {
+        return helpLoadReferrerInternally(whiteUqFkList, option, new InternalLoadReferrerCallback<WhiteUqFk, String, WhiteUqFkRefCB, WhiteUqFkRef>() {
             public String getPKVal(WhiteUqFk et)
             { return et.getUqFkCode(); }
             public void setRfLs(WhiteUqFk et, List<WhiteUqFkRef> ls)
@@ -574,12 +640,12 @@ public abstract class BsWhiteUqFkBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
      * <span style="color: #3F7E5E">//whiteUqFk.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//whiteUqFk.set...;</span>
-     * whiteUqFkBhv.<span style="color: #FD4747">insert</span>(whiteUqFk);
+     * whiteUqFkBhv.<span style="color: #DD4747">insert</span>(whiteUqFk);
      * ... = whiteUqFk.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * <p>While, when the entity is created by select, all columns are registered.</p>
      * @param whiteUqFk The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insert(WhiteUqFk whiteUqFk) {
         doInsert(whiteUqFk, null);
@@ -615,17 +681,17 @@ public abstract class BsWhiteUqFkBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">//whiteUqFk.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//whiteUqFk.set...;</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * whiteUqFk.<span style="color: #FD4747">setVersionNo</span>(value);
+     * whiteUqFk.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
-     *     whiteUqFkBhv.<span style="color: #FD4747">update</span>(whiteUqFk);
+     *     whiteUqFkBhv.<span style="color: #DD4747">update</span>(whiteUqFk);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param whiteUqFk The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void update(final WhiteUqFk whiteUqFk) {
         doUpdate(whiteUqFk, null);
@@ -675,11 +741,11 @@ public abstract class BsWhiteUqFkBhv extends AbstractBehaviorWritable {
     /**
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br />
-     * <p><span style="color: #FD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
+     * <p><span style="color: #DD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
      * @param whiteUqFk The entity of insert or update target. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insertOrUpdate(WhiteUqFk whiteUqFk) {
         doInesrtOrUpdate(whiteUqFk, null, null);
@@ -715,16 +781,16 @@ public abstract class BsWhiteUqFkBhv extends AbstractBehaviorWritable {
      * WhiteUqFk whiteUqFk = new WhiteUqFk();
      * whiteUqFk.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * whiteUqFk.<span style="color: #FD4747">setVersionNo</span>(value);
+     * whiteUqFk.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
-     *     whiteUqFkBhv.<span style="color: #FD4747">delete</span>(whiteUqFk);
+     *     whiteUqFkBhv.<span style="color: #DD4747">delete</span>(whiteUqFk);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param whiteUqFk The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void delete(WhiteUqFk whiteUqFk) {
         doDelete(whiteUqFk, null);
@@ -759,7 +825,7 @@ public abstract class BsWhiteUqFkBhv extends AbstractBehaviorWritable {
     /**
      * Batch-insert the entity list modified-only of same-set columns. (DefaultConstraintsEnabled) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
-     * <p><span style="color: #FD4747; font-size: 120%">The columns of least common multiple are registered like this:</span></p>
+     * <p><span style="color: #DD4747; font-size: 120%">The columns of least common multiple are registered like this:</span></p>
      * <pre>
      * for (... : ...) {
      *     WhiteUqFk whiteUqFk = new WhiteUqFk();
@@ -772,7 +838,7 @@ public abstract class BsWhiteUqFkBhv extends AbstractBehaviorWritable {
      *     <span style="color: #3F7E5E">// columns not-called in all entities are registered as null or default value</span>
      *     whiteUqFkList.add(whiteUqFk);
      * }
-     * whiteUqFkBhv.<span style="color: #FD4747">batchInsert</span>(whiteUqFkList);
+     * whiteUqFkBhv.<span style="color: #DD4747">batchInsert</span>(whiteUqFkList);
      * </pre>
      * <p>While, when the entities are created by select, all columns are registered.</p>
      * <p>And if the table has an identity, entities after the process don't have incremented values.
@@ -806,7 +872,7 @@ public abstract class BsWhiteUqFkBhv extends AbstractBehaviorWritable {
     /**
      * Batch-update the entity list modified-only of same-set columns. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
-     * <span style="color: #FD4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
+     * <span style="color: #DD4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
      * <pre>
      * for (... : ...) {
      *     WhiteUqFk whiteUqFk = new WhiteUqFk();
@@ -821,11 +887,11 @@ public abstract class BsWhiteUqFkBhv extends AbstractBehaviorWritable {
      *     <span style="color: #3F7E5E">// (others are not updated: their values are kept)</span>
      *     whiteUqFkList.add(whiteUqFk);
      * }
-     * whiteUqFkBhv.<span style="color: #FD4747">batchUpdate</span>(whiteUqFkList);
+     * whiteUqFkBhv.<span style="color: #DD4747">batchUpdate</span>(whiteUqFkList);
      * </pre>
      * @param whiteUqFkList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<WhiteUqFk> whiteUqFkList) {
         UpdateOption<WhiteUqFkCB> op = createPlainUpdateOption();
@@ -854,16 +920,16 @@ public abstract class BsWhiteUqFkBhv extends AbstractBehaviorWritable {
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * <pre>
      * <span style="color: #3F7E5E">// e.g. update two columns only</span>
-     * whiteUqFkBhv.<span style="color: #FD4747">batchUpdate</span>(whiteUqFkList, new SpecifyQuery<WhiteUqFkCB>() {
+     * whiteUqFkBhv.<span style="color: #DD4747">batchUpdate</span>(whiteUqFkList, new SpecifyQuery<WhiteUqFkCB>() {
      *     public void specify(WhiteUqFkCB cb) { <span style="color: #3F7E5E">// the two only updated</span>
-     *         cb.specify().<span style="color: #FD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
-     *         cb.specify().<span style="color: #FD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
+     *         cb.specify().<span style="color: #DD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
+     *         cb.specify().<span style="color: #DD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
      *     }
      * });
      * <span style="color: #3F7E5E">// e.g. update every column in the table</span>
-     * whiteUqFkBhv.<span style="color: #FD4747">batchUpdate</span>(whiteUqFkList, new SpecifyQuery<WhiteUqFkCB>() {
+     * whiteUqFkBhv.<span style="color: #DD4747">batchUpdate</span>(whiteUqFkList, new SpecifyQuery<WhiteUqFkCB>() {
      *     public void specify(WhiteUqFkCB cb) { <span style="color: #3F7E5E">// all columns are updated</span>
-     *         cb.specify().<span style="color: #FD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
+     *         cb.specify().<span style="color: #DD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
      *     }
      * });
      * </pre>
@@ -875,7 +941,7 @@ public abstract class BsWhiteUqFkBhv extends AbstractBehaviorWritable {
      * @param whiteUqFkList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @param updateColumnSpec The specification of update columns. (NotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<WhiteUqFk> whiteUqFkList, SpecifyQuery<WhiteUqFkCB> updateColumnSpec) {
         return doBatchUpdate(whiteUqFkList, createSpecifiedUpdateOption(updateColumnSpec));
@@ -891,7 +957,7 @@ public abstract class BsWhiteUqFkBhv extends AbstractBehaviorWritable {
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * @param whiteUqFkList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of deleted count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchDelete(List<WhiteUqFk> whiteUqFkList) {
         return doBatchDelete(whiteUqFkList, null);
@@ -920,7 +986,7 @@ public abstract class BsWhiteUqFkBhv extends AbstractBehaviorWritable {
     /**
      * Insert the several entities by query (modified-only for fixed value).
      * <pre>
-     * whiteUqFkBhv.<span style="color: #FD4747">queryInsert</span>(new QueryInsertSetupper&lt;WhiteUqFk, WhiteUqFkCB&gt;() {
+     * whiteUqFkBhv.<span style="color: #DD4747">queryInsert</span>(new QueryInsertSetupper&lt;WhiteUqFk, WhiteUqFkCB&gt;() {
      *     public ConditionBean setup(whiteUqFk entity, WhiteUqFkCB intoCB) {
      *         FooCB cb = FooCB();
      *         cb.setupSelect_Bar();
@@ -982,12 +1048,12 @@ public abstract class BsWhiteUqFkBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">//whiteUqFk.setVersionNo(value);</span>
      * WhiteUqFkCB cb = new WhiteUqFkCB();
      * cb.query().setFoo...(value);
-     * whiteUqFkBhv.<span style="color: #FD4747">queryUpdate</span>(whiteUqFk, cb);
+     * whiteUqFkBhv.<span style="color: #DD4747">queryUpdate</span>(whiteUqFk, cb);
      * </pre>
      * @param whiteUqFk The entity that contains update values. (NotNull, PrimaryKeyNullAllowed)
      * @param cb The condition-bean of WhiteUqFk. (NotNull)
      * @return The updated count.
-     * @exception org.seasar.dbflute.exception.NonQueryUpdateNotAllowedException When the query has no condition.
+     * @exception NonQueryUpdateNotAllowedException When the query has no condition.
      */
     public int queryUpdate(WhiteUqFk whiteUqFk, WhiteUqFkCB cb) {
         return doQueryUpdate(whiteUqFk, cb, null);
@@ -1010,11 +1076,11 @@ public abstract class BsWhiteUqFkBhv extends AbstractBehaviorWritable {
      * <pre>
      * WhiteUqFkCB cb = new WhiteUqFkCB();
      * cb.query().setFoo...(value);
-     * whiteUqFkBhv.<span style="color: #FD4747">queryDelete</span>(whiteUqFk, cb);
+     * whiteUqFkBhv.<span style="color: #DD4747">queryDelete</span>(whiteUqFk, cb);
      * </pre>
      * @param cb The condition-bean of WhiteUqFk. (NotNull)
      * @return The deleted count.
-     * @exception org.seasar.dbflute.exception.NonQueryDeleteNotAllowedException When the query has no condition.
+     * @exception NonQueryDeleteNotAllowedException When the query has no condition.
      */
     public int queryDelete(WhiteUqFkCB cb) {
         return doQueryDelete(cb, null);
@@ -1050,12 +1116,12 @@ public abstract class BsWhiteUqFkBhv extends AbstractBehaviorWritable {
      * InsertOption<WhiteUqFkCB> option = new InsertOption<WhiteUqFkCB>();
      * <span style="color: #3F7E5E">// you can insert by your values for common columns</span>
      * option.disableCommonColumnAutoSetup();
-     * whiteUqFkBhv.<span style="color: #FD4747">varyingInsert</span>(whiteUqFk, option);
+     * whiteUqFkBhv.<span style="color: #DD4747">varyingInsert</span>(whiteUqFk, option);
      * ... = whiteUqFk.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * @param whiteUqFk The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
      * @param option The option of insert for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingInsert(WhiteUqFk whiteUqFk, InsertOption<WhiteUqFkCB> option) {
         assertInsertOptionNotNull(option);
@@ -1071,25 +1137,25 @@ public abstract class BsWhiteUqFkBhv extends AbstractBehaviorWritable {
      * whiteUqFk.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * whiteUqFk.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * whiteUqFk.<span style="color: #FD4747">setVersionNo</span>(value);
+     * whiteUqFk.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     <span style="color: #3F7E5E">// you can update by self calculation values</span>
      *     UpdateOption&lt;WhiteUqFkCB&gt; option = new UpdateOption&lt;WhiteUqFkCB&gt;();
      *     option.self(new SpecifyQuery&lt;WhiteUqFkCB&gt;() {
      *         public void specify(WhiteUqFkCB cb) {
-     *             cb.specify().<span style="color: #FD4747">columnXxxCount()</span>;
+     *             cb.specify().<span style="color: #DD4747">columnXxxCount()</span>;
      *         }
      *     }).plus(1); <span style="color: #3F7E5E">// XXX_COUNT = XXX_COUNT + 1</span>
-     *     whiteUqFkBhv.<span style="color: #FD4747">varyingUpdate</span>(whiteUqFk, option);
+     *     whiteUqFkBhv.<span style="color: #DD4747">varyingUpdate</span>(whiteUqFk, option);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param whiteUqFk The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @param option The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingUpdate(WhiteUqFk whiteUqFk, UpdateOption<WhiteUqFkCB> option) {
         assertUpdateOptionNotNull(option);
@@ -1102,9 +1168,9 @@ public abstract class BsWhiteUqFkBhv extends AbstractBehaviorWritable {
      * @param whiteUqFk The entity of insert or update target. (NotNull)
      * @param insertOption The option of insert for varying requests. (NotNull)
      * @param updateOption The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingInsertOrUpdate(WhiteUqFk whiteUqFk, InsertOption<WhiteUqFkCB> insertOption, UpdateOption<WhiteUqFkCB> updateOption) {
         assertInsertOptionNotNull(insertOption); assertUpdateOptionNotNull(updateOption);
@@ -1117,8 +1183,8 @@ public abstract class BsWhiteUqFkBhv extends AbstractBehaviorWritable {
      * Other specifications are same as delete(entity).
      * @param whiteUqFk The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @param option The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void varyingDelete(WhiteUqFk whiteUqFk, DeleteOption<WhiteUqFkCB> option) {
         assertDeleteOptionNotNull(option);
@@ -1204,16 +1270,16 @@ public abstract class BsWhiteUqFkBhv extends AbstractBehaviorWritable {
      * UpdateOption&lt;WhiteUqFkCB&gt; option = new UpdateOption&lt;WhiteUqFkCB&gt;();
      * option.self(new SpecifyQuery&lt;WhiteUqFkCB&gt;() {
      *     public void specify(WhiteUqFkCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFooCount()</span>;
+     *         cb.specify().<span style="color: #DD4747">columnFooCount()</span>;
      *     }
      * }).plus(1); <span style="color: #3F7E5E">// FOO_COUNT = FOO_COUNT + 1</span>
-     * whiteUqFkBhv.<span style="color: #FD4747">varyingQueryUpdate</span>(whiteUqFk, cb, option);
+     * whiteUqFkBhv.<span style="color: #DD4747">varyingQueryUpdate</span>(whiteUqFk, cb, option);
      * </pre>
      * @param whiteUqFk The entity that contains update values. (NotNull) {PrimaryKeyNotRequired}
      * @param cb The condition-bean of WhiteUqFk. (NotNull)
      * @param option The option of update for varying requests. (NotNull)
      * @return The updated count.
-     * @exception org.seasar.dbflute.exception.NonQueryUpdateNotAllowedException When the query has no condition (if not allowed).
+     * @exception NonQueryUpdateNotAllowedException When the query has no condition (if not allowed).
      */
     public int varyingQueryUpdate(WhiteUqFk whiteUqFk, WhiteUqFkCB cb, UpdateOption<WhiteUqFkCB> option) {
         assertUpdateOptionNotNull(option);
@@ -1227,7 +1293,7 @@ public abstract class BsWhiteUqFkBhv extends AbstractBehaviorWritable {
      * @param cb The condition-bean of WhiteUqFk. (NotNull)
      * @param option The option of delete for varying requests. (NotNull)
      * @return The deleted count.
-     * @exception org.seasar.dbflute.exception.NonQueryDeleteNotAllowedException When the query has no condition (if not allowed).
+     * @exception NonQueryDeleteNotAllowedException When the query has no condition (if not allowed).
      */
     public int varyingQueryDelete(WhiteUqFkCB cb, DeleteOption<WhiteUqFkCB> option) {
         assertDeleteOptionNotNull(option);

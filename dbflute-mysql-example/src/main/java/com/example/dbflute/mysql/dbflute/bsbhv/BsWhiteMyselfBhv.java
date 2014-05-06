@@ -21,6 +21,7 @@ import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
 import org.seasar.dbflute.dbmeta.DBMeta;
+import org.seasar.dbflute.exception.*;
 import org.seasar.dbflute.outsidesql.executor.*;
 import com.example.dbflute.mysql.dbflute.exbhv.*;
 import com.example.dbflute.mysql.dbflute.exentity.*;
@@ -106,7 +107,7 @@ public abstract class BsWhiteMyselfBhv extends AbstractBehaviorWritable {
      * <pre>
      * WhiteMyselfCB cb = new WhiteMyselfCB();
      * cb.query().setFoo...(value);
-     * int count = whiteMyselfBhv.<span style="color: #FD4747">selectCount</span>(cb);
+     * int count = whiteMyselfBhv.<span style="color: #DD4747">selectCount</span>(cb);
      * </pre>
      * @param cb The condition-bean of WhiteMyself. (NotNull)
      * @return The count for the condition. (NotMinus)
@@ -134,12 +135,14 @@ public abstract class BsWhiteMyselfBhv extends AbstractBehaviorWritable {
     //                                                                       Entity Select
     //                                                                       =============
     /**
-     * Select the entity by the condition-bean.
+     * Select the entity by the condition-bean. <br />
+     * <span style="color: #AD4747; font-size: 120%">The return might be null if no data, so you should have null check.</span> <br />
+     * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, use selectEntityWithDeletedCheck().</span>
      * <pre>
      * WhiteMyselfCB cb = new WhiteMyselfCB();
      * cb.query().setFoo...(value);
-     * WhiteMyself whiteMyself = whiteMyselfBhv.<span style="color: #FD4747">selectEntity</span>(cb);
-     * if (whiteMyself != null) {
+     * WhiteMyself whiteMyself = whiteMyselfBhv.<span style="color: #DD4747">selectEntity</span>(cb);
+     * if (whiteMyself != null) { <span style="color: #3F7E5E">// null check</span>
      *     ... = whiteMyself.get...();
      * } else {
      *     ...
@@ -147,8 +150,8 @@ public abstract class BsWhiteMyselfBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of WhiteMyself. (NotNull)
      * @return The entity selected by the condition. (NullAllowed: if no data, it returns null)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteMyself selectEntity(WhiteMyselfCB cb) {
         return doSelectEntity(cb, WhiteMyself.class);
@@ -166,18 +169,19 @@ public abstract class BsWhiteMyselfBhv extends AbstractBehaviorWritable {
     }
 
     /**
-     * Select the entity by the condition-bean with deleted check.
+     * Select the entity by the condition-bean with deleted check. <br />
+     * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, this method is good.</span>
      * <pre>
      * WhiteMyselfCB cb = new WhiteMyselfCB();
      * cb.query().setFoo...(value);
-     * WhiteMyself whiteMyself = whiteMyselfBhv.<span style="color: #FD4747">selectEntityWithDeletedCheck</span>(cb);
+     * WhiteMyself whiteMyself = whiteMyselfBhv.<span style="color: #DD4747">selectEntityWithDeletedCheck</span>(cb);
      * ... = whiteMyself.get...(); <span style="color: #3F7E5E">// the entity always be not null</span>
      * </pre>
      * @param cb The condition-bean of WhiteMyself. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteMyself selectEntityWithDeletedCheck(WhiteMyselfCB cb) {
         return doSelectEntityWithDeletedCheck(cb, WhiteMyself.class);
@@ -198,8 +202,8 @@ public abstract class BsWhiteMyselfBhv extends AbstractBehaviorWritable {
      * Select the entity by the primary-key value.
      * @param myselfId The one of primary key. (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteMyself selectByPKValue(Integer myselfId) {
         return doSelectByPKValue(myselfId, WhiteMyself.class);
@@ -213,9 +217,9 @@ public abstract class BsWhiteMyselfBhv extends AbstractBehaviorWritable {
      * Select the entity by the primary-key value with deleted check.
      * @param myselfId The one of primary key. (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteMyself selectByPKValueWithDeletedCheck(Integer myselfId) {
         return doSelectByPKValueWithDeletedCheck(myselfId, WhiteMyself.class);
@@ -241,14 +245,14 @@ public abstract class BsWhiteMyselfBhv extends AbstractBehaviorWritable {
      * WhiteMyselfCB cb = new WhiteMyselfCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * ListResultBean&lt;WhiteMyself&gt; whiteMyselfList = whiteMyselfBhv.<span style="color: #FD4747">selectList</span>(cb);
+     * ListResultBean&lt;WhiteMyself&gt; whiteMyselfList = whiteMyselfBhv.<span style="color: #DD4747">selectList</span>(cb);
      * for (WhiteMyself whiteMyself : whiteMyselfList) {
      *     ... = whiteMyself.get...();
      * }
      * </pre>
      * @param cb The condition-bean of WhiteMyself. (NotNull)
      * @return The result bean of selected list. (NotNull: if no data, returns empty list)
-     * @exception org.seasar.dbflute.exception.DangerousResultSizeException When the result size is over the specified safety size.
+     * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public ListResultBean<WhiteMyself> selectList(WhiteMyselfCB cb) {
         return doSelectList(cb, WhiteMyself.class);
@@ -276,8 +280,8 @@ public abstract class BsWhiteMyselfBhv extends AbstractBehaviorWritable {
      * WhiteMyselfCB cb = new WhiteMyselfCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * cb.<span style="color: #FD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
-     * PagingResultBean&lt;WhiteMyself&gt; page = whiteMyselfBhv.<span style="color: #FD4747">selectPage</span>(cb);
+     * cb.<span style="color: #DD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
+     * PagingResultBean&lt;WhiteMyself&gt; page = whiteMyselfBhv.<span style="color: #DD4747">selectPage</span>(cb);
      * int allRecordCount = page.getAllRecordCount();
      * int allPageCount = page.getAllPageCount();
      * boolean isExistPrePage = page.isExistPrePage();
@@ -289,7 +293,7 @@ public abstract class BsWhiteMyselfBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of WhiteMyself. (NotNull)
      * @return The result bean of selected page. (NotNull: if no data, returns bean as empty list)
-     * @exception org.seasar.dbflute.exception.DangerousResultSizeException When the result size is over the specified safety size.
+     * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public PagingResultBean<WhiteMyself> selectPage(WhiteMyselfCB cb) {
         return doSelectPage(cb, WhiteMyself.class);
@@ -316,7 +320,7 @@ public abstract class BsWhiteMyselfBhv extends AbstractBehaviorWritable {
      * <pre>
      * WhiteMyselfCB cb = new WhiteMyselfCB();
      * cb.query().setFoo...(value);
-     * whiteMyselfBhv.<span style="color: #FD4747">selectCursor</span>(cb, new EntityRowHandler&lt;WhiteMyself&gt;() {
+     * whiteMyselfBhv.<span style="color: #DD4747">selectCursor</span>(cb, new EntityRowHandler&lt;WhiteMyself&gt;() {
      *     public void handle(WhiteMyself entity) {
      *         ... = entity.getFoo...();
      *     }
@@ -345,9 +349,9 @@ public abstract class BsWhiteMyselfBhv extends AbstractBehaviorWritable {
      * Select the scalar value derived by a function from uniquely-selected records. <br />
      * You should call a function method after this method called like as follows:
      * <pre>
-     * whiteMyselfBhv.<span style="color: #FD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
+     * whiteMyselfBhv.<span style="color: #DD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
      *     public void query(WhiteMyselfCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
+     *         cb.specify().<span style="color: #DD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
      *         cb.query().setBarName_PrefixSearch("S");
      *     }
      * });
@@ -387,61 +391,92 @@ public abstract class BsWhiteMyselfBhv extends AbstractBehaviorWritable {
     //                                                                       Load Referrer
     //                                                                       =============
     /**
-     * {Refer to overload method that has an argument of the list of entity.}
-     * @param whiteMyself The entity of whiteMyself. (NotNull)
-     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
-     */
-    public void loadWhiteMyselfCheckList(WhiteMyself whiteMyself, ConditionBeanSetupper<WhiteMyselfCheckCB> conditionBeanSetupper) {
-        xassLRArg(whiteMyself, conditionBeanSetupper);
-        loadWhiteMyselfCheckList(xnewLRLs(whiteMyself), conditionBeanSetupper);
-    }
-    /**
-     * Load referrer of whiteMyselfCheckList with the set-upper for condition-bean of referrer. <br />
+     * Load referrer of whiteMyselfCheckList by the set-upper of referrer. <br />
      * white_myself_check by MYSELF_ID, named 'whiteMyselfCheckList'.
      * <pre>
-     * whiteMyselfBhv.<span style="color: #FD4747">loadWhiteMyselfCheckList</span>(whiteMyselfList, new ConditionBeanSetupper&lt;WhiteMyselfCheckCB&gt;() {
+     * whiteMyselfBhv.<span style="color: #DD4747">loadWhiteMyselfCheckList</span>(whiteMyselfList, new ConditionBeanSetupper&lt;WhiteMyselfCheckCB&gt;() {
      *     public void setup(WhiteMyselfCheckCB cb) {
      *         cb.setupSelect...();
      *         cb.query().setFoo...(value);
      *         cb.query().addOrderBy_Bar...(); <span style="color: #3F7E5E">// basically you should order referrer list</span>
      *     }
-     * });
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here by calling like '}).withNestedList(new ...)'</span>
      * for (WhiteMyself whiteMyself : whiteMyselfList) {
-     *     ... = whiteMyself.<span style="color: #FD4747">getWhiteMyselfCheckList()</span>;
+     *     ... = whiteMyself.<span style="color: #DD4747">getWhiteMyselfCheckList()</span>;
      * }
      * </pre>
-     * About internal policy, the value of primary key(and others too) is treated as case-insensitive. <br />
-     * The condition-bean that the set-upper provides have settings before you touch it. It is as follows:
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
+     * <pre>
+     * cb.query().setMyselfId_InScope(pkList);
+     * cb.query().addOrderBy_MyselfId_Asc();
+     * </pre>
+     * @param whiteMyself The entity of whiteMyself. (NotNull)
+     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
+     */
+    public NestedReferrerLoader<WhiteMyselfCheck> loadWhiteMyselfCheckList(WhiteMyself whiteMyself, ConditionBeanSetupper<WhiteMyselfCheckCB> conditionBeanSetupper) {
+        xassLRArg(whiteMyself, conditionBeanSetupper);
+        return loadWhiteMyselfCheckList(xnewLRLs(whiteMyself), conditionBeanSetupper);
+    }
+
+    /**
+     * Load referrer of whiteMyselfCheckList by the set-upper of referrer. <br />
+     * white_myself_check by MYSELF_ID, named 'whiteMyselfCheckList'.
+     * <pre>
+     * whiteMyselfBhv.<span style="color: #DD4747">loadWhiteMyselfCheckList</span>(whiteMyselfList, new ConditionBeanSetupper&lt;WhiteMyselfCheckCB&gt;() {
+     *     public void setup(WhiteMyselfCheckCB cb) {
+     *         cb.setupSelect...();
+     *         cb.query().setFoo...(value);
+     *         cb.query().addOrderBy_Bar...(); <span style="color: #3F7E5E">// basically you should order referrer list</span>
+     *     }
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here by calling like '}).withNestedList(new ...)'</span>
+     * for (WhiteMyself whiteMyself : whiteMyselfList) {
+     *     ... = whiteMyself.<span style="color: #DD4747">getWhiteMyselfCheckList()</span>;
+     * }
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
      * <pre>
      * cb.query().setMyselfId_InScope(pkList);
      * cb.query().addOrderBy_MyselfId_Asc();
      * </pre>
      * @param whiteMyselfList The entity list of whiteMyself. (NotNull)
      * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public void loadWhiteMyselfCheckList(List<WhiteMyself> whiteMyselfList, ConditionBeanSetupper<WhiteMyselfCheckCB> conditionBeanSetupper) {
+    public NestedReferrerLoader<WhiteMyselfCheck> loadWhiteMyselfCheckList(List<WhiteMyself> whiteMyselfList, ConditionBeanSetupper<WhiteMyselfCheckCB> conditionBeanSetupper) {
         xassLRArg(whiteMyselfList, conditionBeanSetupper);
-        loadWhiteMyselfCheckList(whiteMyselfList, new LoadReferrerOption<WhiteMyselfCheckCB, WhiteMyselfCheck>().xinit(conditionBeanSetupper));
+        return loadWhiteMyselfCheckList(whiteMyselfList, new LoadReferrerOption<WhiteMyselfCheckCB, WhiteMyselfCheck>().xinit(conditionBeanSetupper));
     }
+
     /**
      * {Refer to overload method that has an argument of the list of entity.}
      * @param whiteMyself The entity of whiteMyself. (NotNull)
      * @param loadReferrerOption The option of load-referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public void loadWhiteMyselfCheckList(WhiteMyself whiteMyself, LoadReferrerOption<WhiteMyselfCheckCB, WhiteMyselfCheck> loadReferrerOption) {
+    public NestedReferrerLoader<WhiteMyselfCheck> loadWhiteMyselfCheckList(WhiteMyself whiteMyself, LoadReferrerOption<WhiteMyselfCheckCB, WhiteMyselfCheck> loadReferrerOption) {
         xassLRArg(whiteMyself, loadReferrerOption);
-        loadWhiteMyselfCheckList(xnewLRLs(whiteMyself), loadReferrerOption);
+        return loadWhiteMyselfCheckList(xnewLRLs(whiteMyself), loadReferrerOption);
     }
+
     /**
      * {Refer to overload method that has an argument of condition-bean setupper.}
      * @param whiteMyselfList The entity list of whiteMyself. (NotNull)
      * @param loadReferrerOption The option of load-referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public void loadWhiteMyselfCheckList(List<WhiteMyself> whiteMyselfList, LoadReferrerOption<WhiteMyselfCheckCB, WhiteMyselfCheck> loadReferrerOption) {
+    @SuppressWarnings("unchecked")
+    public NestedReferrerLoader<WhiteMyselfCheck> loadWhiteMyselfCheckList(List<WhiteMyself> whiteMyselfList, LoadReferrerOption<WhiteMyselfCheckCB, WhiteMyselfCheck> loadReferrerOption) {
         xassLRArg(whiteMyselfList, loadReferrerOption);
-        if (whiteMyselfList.isEmpty()) { return; }
+        if (whiteMyselfList.isEmpty()) { return (NestedReferrerLoader<WhiteMyselfCheck>)EMPTY_LOADER; }
+        return doLoadWhiteMyselfCheckList(whiteMyselfList, loadReferrerOption);
+    }
+
+    protected NestedReferrerLoader<WhiteMyselfCheck> doLoadWhiteMyselfCheckList(List<WhiteMyself> whiteMyselfList, LoadReferrerOption<WhiteMyselfCheckCB, WhiteMyselfCheck> option) {
         final WhiteMyselfCheckBhv referrerBhv = xgetBSFLR().select(WhiteMyselfCheckBhv.class);
-        helpLoadReferrerInternally(whiteMyselfList, loadReferrerOption, new InternalLoadReferrerCallback<WhiteMyself, Integer, WhiteMyselfCheckCB, WhiteMyselfCheck>() {
+        return helpLoadReferrerInternally(whiteMyselfList, option, new InternalLoadReferrerCallback<WhiteMyself, Integer, WhiteMyselfCheckCB, WhiteMyselfCheck>() {
             public Integer getPKVal(WhiteMyself et)
             { return et.getMyselfId(); }
             public void setRfLs(WhiteMyself et, List<WhiteMyselfCheck> ls)
@@ -490,12 +525,12 @@ public abstract class BsWhiteMyselfBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
      * <span style="color: #3F7E5E">//whiteMyself.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//whiteMyself.set...;</span>
-     * whiteMyselfBhv.<span style="color: #FD4747">insert</span>(whiteMyself);
+     * whiteMyselfBhv.<span style="color: #DD4747">insert</span>(whiteMyself);
      * ... = whiteMyself.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * <p>While, when the entity is created by select, all columns are registered.</p>
      * @param whiteMyself The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insert(WhiteMyself whiteMyself) {
         doInsert(whiteMyself, null);
@@ -531,17 +566,17 @@ public abstract class BsWhiteMyselfBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">//whiteMyself.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//whiteMyself.set...;</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * whiteMyself.<span style="color: #FD4747">setVersionNo</span>(value);
+     * whiteMyself.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
-     *     whiteMyselfBhv.<span style="color: #FD4747">update</span>(whiteMyself);
+     *     whiteMyselfBhv.<span style="color: #DD4747">update</span>(whiteMyself);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param whiteMyself The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void update(final WhiteMyself whiteMyself) {
         doUpdate(whiteMyself, null);
@@ -591,11 +626,11 @@ public abstract class BsWhiteMyselfBhv extends AbstractBehaviorWritable {
     /**
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br />
-     * <p><span style="color: #FD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
+     * <p><span style="color: #DD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
      * @param whiteMyself The entity of insert or update target. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insertOrUpdate(WhiteMyself whiteMyself) {
         doInesrtOrUpdate(whiteMyself, null, null);
@@ -631,16 +666,16 @@ public abstract class BsWhiteMyselfBhv extends AbstractBehaviorWritable {
      * WhiteMyself whiteMyself = new WhiteMyself();
      * whiteMyself.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * whiteMyself.<span style="color: #FD4747">setVersionNo</span>(value);
+     * whiteMyself.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
-     *     whiteMyselfBhv.<span style="color: #FD4747">delete</span>(whiteMyself);
+     *     whiteMyselfBhv.<span style="color: #DD4747">delete</span>(whiteMyself);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param whiteMyself The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void delete(WhiteMyself whiteMyself) {
         doDelete(whiteMyself, null);
@@ -675,7 +710,7 @@ public abstract class BsWhiteMyselfBhv extends AbstractBehaviorWritable {
     /**
      * Batch-insert the entity list modified-only of same-set columns. (DefaultConstraintsEnabled) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
-     * <p><span style="color: #FD4747; font-size: 120%">The columns of least common multiple are registered like this:</span></p>
+     * <p><span style="color: #DD4747; font-size: 120%">The columns of least common multiple are registered like this:</span></p>
      * <pre>
      * for (... : ...) {
      *     WhiteMyself whiteMyself = new WhiteMyself();
@@ -688,7 +723,7 @@ public abstract class BsWhiteMyselfBhv extends AbstractBehaviorWritable {
      *     <span style="color: #3F7E5E">// columns not-called in all entities are registered as null or default value</span>
      *     whiteMyselfList.add(whiteMyself);
      * }
-     * whiteMyselfBhv.<span style="color: #FD4747">batchInsert</span>(whiteMyselfList);
+     * whiteMyselfBhv.<span style="color: #DD4747">batchInsert</span>(whiteMyselfList);
      * </pre>
      * <p>While, when the entities are created by select, all columns are registered.</p>
      * <p>And if the table has an identity, entities after the process don't have incremented values.
@@ -722,7 +757,7 @@ public abstract class BsWhiteMyselfBhv extends AbstractBehaviorWritable {
     /**
      * Batch-update the entity list modified-only of same-set columns. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
-     * <span style="color: #FD4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
+     * <span style="color: #DD4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
      * <pre>
      * for (... : ...) {
      *     WhiteMyself whiteMyself = new WhiteMyself();
@@ -737,11 +772,11 @@ public abstract class BsWhiteMyselfBhv extends AbstractBehaviorWritable {
      *     <span style="color: #3F7E5E">// (others are not updated: their values are kept)</span>
      *     whiteMyselfList.add(whiteMyself);
      * }
-     * whiteMyselfBhv.<span style="color: #FD4747">batchUpdate</span>(whiteMyselfList);
+     * whiteMyselfBhv.<span style="color: #DD4747">batchUpdate</span>(whiteMyselfList);
      * </pre>
      * @param whiteMyselfList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<WhiteMyself> whiteMyselfList) {
         UpdateOption<WhiteMyselfCB> op = createPlainUpdateOption();
@@ -770,16 +805,16 @@ public abstract class BsWhiteMyselfBhv extends AbstractBehaviorWritable {
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * <pre>
      * <span style="color: #3F7E5E">// e.g. update two columns only</span>
-     * whiteMyselfBhv.<span style="color: #FD4747">batchUpdate</span>(whiteMyselfList, new SpecifyQuery<WhiteMyselfCB>() {
+     * whiteMyselfBhv.<span style="color: #DD4747">batchUpdate</span>(whiteMyselfList, new SpecifyQuery<WhiteMyselfCB>() {
      *     public void specify(WhiteMyselfCB cb) { <span style="color: #3F7E5E">// the two only updated</span>
-     *         cb.specify().<span style="color: #FD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
-     *         cb.specify().<span style="color: #FD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
+     *         cb.specify().<span style="color: #DD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
+     *         cb.specify().<span style="color: #DD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
      *     }
      * });
      * <span style="color: #3F7E5E">// e.g. update every column in the table</span>
-     * whiteMyselfBhv.<span style="color: #FD4747">batchUpdate</span>(whiteMyselfList, new SpecifyQuery<WhiteMyselfCB>() {
+     * whiteMyselfBhv.<span style="color: #DD4747">batchUpdate</span>(whiteMyselfList, new SpecifyQuery<WhiteMyselfCB>() {
      *     public void specify(WhiteMyselfCB cb) { <span style="color: #3F7E5E">// all columns are updated</span>
-     *         cb.specify().<span style="color: #FD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
+     *         cb.specify().<span style="color: #DD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
      *     }
      * });
      * </pre>
@@ -791,7 +826,7 @@ public abstract class BsWhiteMyselfBhv extends AbstractBehaviorWritable {
      * @param whiteMyselfList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @param updateColumnSpec The specification of update columns. (NotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<WhiteMyself> whiteMyselfList, SpecifyQuery<WhiteMyselfCB> updateColumnSpec) {
         return doBatchUpdate(whiteMyselfList, createSpecifiedUpdateOption(updateColumnSpec));
@@ -807,7 +842,7 @@ public abstract class BsWhiteMyselfBhv extends AbstractBehaviorWritable {
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * @param whiteMyselfList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of deleted count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchDelete(List<WhiteMyself> whiteMyselfList) {
         return doBatchDelete(whiteMyselfList, null);
@@ -836,7 +871,7 @@ public abstract class BsWhiteMyselfBhv extends AbstractBehaviorWritable {
     /**
      * Insert the several entities by query (modified-only for fixed value).
      * <pre>
-     * whiteMyselfBhv.<span style="color: #FD4747">queryInsert</span>(new QueryInsertSetupper&lt;WhiteMyself, WhiteMyselfCB&gt;() {
+     * whiteMyselfBhv.<span style="color: #DD4747">queryInsert</span>(new QueryInsertSetupper&lt;WhiteMyself, WhiteMyselfCB&gt;() {
      *     public ConditionBean setup(whiteMyself entity, WhiteMyselfCB intoCB) {
      *         FooCB cb = FooCB();
      *         cb.setupSelect_Bar();
@@ -898,12 +933,12 @@ public abstract class BsWhiteMyselfBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">//whiteMyself.setVersionNo(value);</span>
      * WhiteMyselfCB cb = new WhiteMyselfCB();
      * cb.query().setFoo...(value);
-     * whiteMyselfBhv.<span style="color: #FD4747">queryUpdate</span>(whiteMyself, cb);
+     * whiteMyselfBhv.<span style="color: #DD4747">queryUpdate</span>(whiteMyself, cb);
      * </pre>
      * @param whiteMyself The entity that contains update values. (NotNull, PrimaryKeyNullAllowed)
      * @param cb The condition-bean of WhiteMyself. (NotNull)
      * @return The updated count.
-     * @exception org.seasar.dbflute.exception.NonQueryUpdateNotAllowedException When the query has no condition.
+     * @exception NonQueryUpdateNotAllowedException When the query has no condition.
      */
     public int queryUpdate(WhiteMyself whiteMyself, WhiteMyselfCB cb) {
         return doQueryUpdate(whiteMyself, cb, null);
@@ -926,11 +961,11 @@ public abstract class BsWhiteMyselfBhv extends AbstractBehaviorWritable {
      * <pre>
      * WhiteMyselfCB cb = new WhiteMyselfCB();
      * cb.query().setFoo...(value);
-     * whiteMyselfBhv.<span style="color: #FD4747">queryDelete</span>(whiteMyself, cb);
+     * whiteMyselfBhv.<span style="color: #DD4747">queryDelete</span>(whiteMyself, cb);
      * </pre>
      * @param cb The condition-bean of WhiteMyself. (NotNull)
      * @return The deleted count.
-     * @exception org.seasar.dbflute.exception.NonQueryDeleteNotAllowedException When the query has no condition.
+     * @exception NonQueryDeleteNotAllowedException When the query has no condition.
      */
     public int queryDelete(WhiteMyselfCB cb) {
         return doQueryDelete(cb, null);
@@ -966,12 +1001,12 @@ public abstract class BsWhiteMyselfBhv extends AbstractBehaviorWritable {
      * InsertOption<WhiteMyselfCB> option = new InsertOption<WhiteMyselfCB>();
      * <span style="color: #3F7E5E">// you can insert by your values for common columns</span>
      * option.disableCommonColumnAutoSetup();
-     * whiteMyselfBhv.<span style="color: #FD4747">varyingInsert</span>(whiteMyself, option);
+     * whiteMyselfBhv.<span style="color: #DD4747">varyingInsert</span>(whiteMyself, option);
      * ... = whiteMyself.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * @param whiteMyself The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
      * @param option The option of insert for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingInsert(WhiteMyself whiteMyself, InsertOption<WhiteMyselfCB> option) {
         assertInsertOptionNotNull(option);
@@ -987,25 +1022,25 @@ public abstract class BsWhiteMyselfBhv extends AbstractBehaviorWritable {
      * whiteMyself.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * whiteMyself.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * whiteMyself.<span style="color: #FD4747">setVersionNo</span>(value);
+     * whiteMyself.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     <span style="color: #3F7E5E">// you can update by self calculation values</span>
      *     UpdateOption&lt;WhiteMyselfCB&gt; option = new UpdateOption&lt;WhiteMyselfCB&gt;();
      *     option.self(new SpecifyQuery&lt;WhiteMyselfCB&gt;() {
      *         public void specify(WhiteMyselfCB cb) {
-     *             cb.specify().<span style="color: #FD4747">columnXxxCount()</span>;
+     *             cb.specify().<span style="color: #DD4747">columnXxxCount()</span>;
      *         }
      *     }).plus(1); <span style="color: #3F7E5E">// XXX_COUNT = XXX_COUNT + 1</span>
-     *     whiteMyselfBhv.<span style="color: #FD4747">varyingUpdate</span>(whiteMyself, option);
+     *     whiteMyselfBhv.<span style="color: #DD4747">varyingUpdate</span>(whiteMyself, option);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param whiteMyself The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @param option The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingUpdate(WhiteMyself whiteMyself, UpdateOption<WhiteMyselfCB> option) {
         assertUpdateOptionNotNull(option);
@@ -1018,9 +1053,9 @@ public abstract class BsWhiteMyselfBhv extends AbstractBehaviorWritable {
      * @param whiteMyself The entity of insert or update target. (NotNull)
      * @param insertOption The option of insert for varying requests. (NotNull)
      * @param updateOption The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingInsertOrUpdate(WhiteMyself whiteMyself, InsertOption<WhiteMyselfCB> insertOption, UpdateOption<WhiteMyselfCB> updateOption) {
         assertInsertOptionNotNull(insertOption); assertUpdateOptionNotNull(updateOption);
@@ -1033,8 +1068,8 @@ public abstract class BsWhiteMyselfBhv extends AbstractBehaviorWritable {
      * Other specifications are same as delete(entity).
      * @param whiteMyself The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @param option The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void varyingDelete(WhiteMyself whiteMyself, DeleteOption<WhiteMyselfCB> option) {
         assertDeleteOptionNotNull(option);
@@ -1120,16 +1155,16 @@ public abstract class BsWhiteMyselfBhv extends AbstractBehaviorWritable {
      * UpdateOption&lt;WhiteMyselfCB&gt; option = new UpdateOption&lt;WhiteMyselfCB&gt;();
      * option.self(new SpecifyQuery&lt;WhiteMyselfCB&gt;() {
      *     public void specify(WhiteMyselfCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFooCount()</span>;
+     *         cb.specify().<span style="color: #DD4747">columnFooCount()</span>;
      *     }
      * }).plus(1); <span style="color: #3F7E5E">// FOO_COUNT = FOO_COUNT + 1</span>
-     * whiteMyselfBhv.<span style="color: #FD4747">varyingQueryUpdate</span>(whiteMyself, cb, option);
+     * whiteMyselfBhv.<span style="color: #DD4747">varyingQueryUpdate</span>(whiteMyself, cb, option);
      * </pre>
      * @param whiteMyself The entity that contains update values. (NotNull) {PrimaryKeyNotRequired}
      * @param cb The condition-bean of WhiteMyself. (NotNull)
      * @param option The option of update for varying requests. (NotNull)
      * @return The updated count.
-     * @exception org.seasar.dbflute.exception.NonQueryUpdateNotAllowedException When the query has no condition (if not allowed).
+     * @exception NonQueryUpdateNotAllowedException When the query has no condition (if not allowed).
      */
     public int varyingQueryUpdate(WhiteMyself whiteMyself, WhiteMyselfCB cb, UpdateOption<WhiteMyselfCB> option) {
         assertUpdateOptionNotNull(option);
@@ -1143,7 +1178,7 @@ public abstract class BsWhiteMyselfBhv extends AbstractBehaviorWritable {
      * @param cb The condition-bean of WhiteMyself. (NotNull)
      * @param option The option of delete for varying requests. (NotNull)
      * @return The deleted count.
-     * @exception org.seasar.dbflute.exception.NonQueryDeleteNotAllowedException When the query has no condition (if not allowed).
+     * @exception NonQueryDeleteNotAllowedException When the query has no condition (if not allowed).
      */
     public int varyingQueryDelete(WhiteMyselfCB cb, DeleteOption<WhiteMyselfCB> option) {
         assertDeleteOptionNotNull(option);

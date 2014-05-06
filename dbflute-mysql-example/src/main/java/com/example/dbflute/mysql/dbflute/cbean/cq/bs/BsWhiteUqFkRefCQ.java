@@ -52,7 +52,7 @@ public class BsWhiteUqFkRefCQ extends AbstractBsWhiteUqFkRefCQ {
      * Prepare InlineView query. <br />
      * {select ... from ... left outer join (select * from white_uq_fk_ref) where FOO = [value] ...}
      * <pre>
-     * cb.query().queryMemberStatus().<span style="color: #FD4747">inline()</span>.setFoo...;
+     * cb.query().queryMemberStatus().<span style="color: #DD4747">inline()</span>.setFoo...;
      * </pre>
      * @return The condition-query for InlineView query. (NotNull)
      */
@@ -75,7 +75,7 @@ public class BsWhiteUqFkRefCQ extends AbstractBsWhiteUqFkRefCQ {
      * Prepare OnClause query. <br />
      * {select ... from ... left outer join white_uq_fk_ref on ... and FOO = [value] ...}
      * <pre>
-     * cb.query().queryMemberStatus().<span style="color: #FD4747">on()</span>.setFoo...;
+     * cb.query().queryMemberStatus().<span style="color: #DD4747">on()</span>.setFoo...;
      * </pre>
      * @return The condition-query for OnClause query. (NotNull)
      * @throws IllegalConditionBeanOperationException When this condition-query is base query.
@@ -236,9 +236,9 @@ public class BsWhiteUqFkRefCQ extends AbstractBsWhiteUqFkRefCQ {
      *     public void query(PurchaseCB subCB) {
      *         subCB.specify().columnPurchaseDatetime();
      *     }
-     * }, <span style="color: #FD4747">aliasName</span>);
+     * }, <span style="color: #DD4747">aliasName</span>);
      * <span style="color: #3F7E5E">// order by [alias-name] asc</span>
-     * cb.<span style="color: #FD4747">addSpecifiedDerivedOrderBy_Asc</span>(<span style="color: #FD4747">aliasName</span>);
+     * cb.<span style="color: #DD4747">addSpecifiedDerivedOrderBy_Asc</span>(<span style="color: #DD4747">aliasName</span>);
      * </pre>
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
@@ -253,9 +253,9 @@ public class BsWhiteUqFkRefCQ extends AbstractBsWhiteUqFkRefCQ {
      *     public void query(PurchaseCB subCB) {
      *         subCB.specify().columnPurchaseDatetime();
      *     }
-     * }, <span style="color: #FD4747">aliasName</span>);
+     * }, <span style="color: #DD4747">aliasName</span>);
      * <span style="color: #3F7E5E">// order by [alias-name] desc</span>
-     * cb.<span style="color: #FD4747">addSpecifiedDerivedOrderBy_Desc</span>(<span style="color: #FD4747">aliasName</span>);
+     * cb.<span style="color: #DD4747">addSpecifiedDerivedOrderBy_Desc</span>(<span style="color: #DD4747">aliasName</span>);
      * </pre>
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
@@ -477,12 +477,12 @@ public class BsWhiteUqFkRefCQ extends AbstractBsWhiteUqFkRefCQ {
      * {FOO &lt;= (select max(BAR) from white_uq_fk_ref_nest where ...)} <br />
      * white_uq_fk_ref_nest by COMPOUND_UQ_FIRST_CODE, COMPOUND_UQ_SECOND_CODE, named 'whiteUqFkRefNestAsOne'.
      * <pre>
-     * cb.query().<span style="color: #FD4747">derivedWhiteUqFkRefNestList()</span>.<span style="color: #FD4747">max</span>(new SubQuery&lt;WhiteUqFkRefNestCB&gt;() {
+     * cb.query().<span style="color: #DD4747">derivedWhiteUqFkRefNestList()</span>.<span style="color: #DD4747">max</span>(new SubQuery&lt;WhiteUqFkRefNestCB&gt;() {
      *     public void query(WhiteUqFkRefNestCB subCB) {
-     *         subCB.specify().<span style="color: #FD4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
+     *         subCB.specify().<span style="color: #DD4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
      *         subCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
      *     }
-     * }).<span style="color: #FD4747">greaterEqual</span>(123); <span style="color: #3F7E5E">// condition to derived column</span>
+     * }).<span style="color: #DD4747">greaterEqual</span>(123); <span style="color: #3F7E5E">// condition to derived column</span>
      * </pre>
      * @return The object to set up a function for referrer table. (NotNull)
      */

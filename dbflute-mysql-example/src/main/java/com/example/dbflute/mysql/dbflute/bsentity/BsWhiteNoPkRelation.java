@@ -316,21 +316,21 @@ public abstract class BsWhiteNoPkRelation implements Entity, Serializable, Clone
     /**
      * Determine the object is equal with this. <br />
      * If primary-keys or columns of the other are same as this one, returns true.
-     * @param other The other entity. (NullAllowed: if null, returns false fixedly)
+     * @param obj The object as other entity. (NullAllowed: if null, returns false fixedly)
      * @return Comparing result.
      */
-    public boolean equals(Object other) {
-        if (other == null || !(other instanceof BsWhiteNoPkRelation)) { return false; }
-        BsWhiteNoPkRelation otherEntity = (BsWhiteNoPkRelation)other;
-        if (!xSV(getProductId(), otherEntity.getProductId())) { return false; }
-        if (!xSV(getProductName(), otherEntity.getProductName())) { return false; }
-        if (!xSV(getProductHandleCode(), otherEntity.getProductHandleCode())) { return false; }
-        if (!xSV(getProductStatusCode(), otherEntity.getProductStatusCode())) { return false; }
-        if (!xSV(getLatestPurchaseDatetime(), otherEntity.getLatestPurchaseDatetime())) { return false; }
+    public boolean equals(Object obj) {
+        if (obj == null || !(obj instanceof BsWhiteNoPkRelation)) { return false; }
+        BsWhiteNoPkRelation other = (BsWhiteNoPkRelation)obj;
+        if (!xSV(getProductId(), other.getProductId())) { return false; }
+        if (!xSV(getProductName(), other.getProductName())) { return false; }
+        if (!xSV(getProductHandleCode(), other.getProductHandleCode())) { return false; }
+        if (!xSV(getProductStatusCode(), other.getProductStatusCode())) { return false; }
+        if (!xSV(getLatestPurchaseDatetime(), other.getLatestPurchaseDatetime())) { return false; }
         return true;
     }
-    protected boolean xSV(Object value1, Object value2) { // isSameValue()
-        return InternalUtil.isSameValue(value1, value2);
+    protected boolean xSV(Object value1, Object value2) {
+        return FunCustodial.isSameValue(value1, value2);
     }
 
     /**
@@ -347,8 +347,8 @@ public abstract class BsWhiteNoPkRelation implements Entity, Serializable, Clone
         result = xCH(result, getLatestPurchaseDatetime());
         return result;
     }
-    protected int xCH(int result, Object value) { // calculateHashcode()
-        return InternalUtil.calculateHashcode(result, value);
+    protected int xCH(int result, Object value) {
+        return FunCustodial.calculateHashcode(result, value);
     }
 
     /**
@@ -363,7 +363,7 @@ public abstract class BsWhiteNoPkRelation implements Entity, Serializable, Clone
      * @return The display string of all columns and relation existences. (NotNull)
      */
     public String toString() {
-        return buildDisplayString(InternalUtil.toClassTitle(this), true, true);
+        return buildDisplayString(FunCustodial.toClassTitle(this), true, true);
     }
 
     /**

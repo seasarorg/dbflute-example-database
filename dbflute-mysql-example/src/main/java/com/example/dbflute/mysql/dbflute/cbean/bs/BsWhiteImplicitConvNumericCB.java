@@ -224,7 +224,7 @@ public class BsWhiteImplicitConvNumericCB extends AbstractConditionBean {
      * You don't need to call SetupSelect in union-query,
      * because it inherits calls before. (Don't call SetupSelect after here)
      * <pre>
-     * cb.query().<span style="color: #FD4747">union</span>(new UnionQuery&lt;WhiteImplicitConvNumericCB&gt;() {
+     * cb.query().<span style="color: #DD4747">union</span>(new UnionQuery&lt;WhiteImplicitConvNumericCB&gt;() {
      *     public void query(WhiteImplicitConvNumericCB unionCB) {
      *         unionCB.query().setXxx...
      *     }
@@ -243,7 +243,7 @@ public class BsWhiteImplicitConvNumericCB extends AbstractConditionBean {
      * You don't need to call SetupSelect in union-query,
      * because it inherits calls before. (Don't call SetupSelect after here)
      * <pre>
-     * cb.query().<span style="color: #FD4747">unionAll</span>(new UnionQuery&lt;WhiteImplicitConvNumericCB&gt;() {
+     * cb.query().<span style="color: #DD4747">unionAll</span>(new UnionQuery&lt;WhiteImplicitConvNumericCB&gt;() {
      *     public void query(WhiteImplicitConvNumericCB unionCB) {
      *         unionCB.query().setXxx...
      *     }
@@ -270,10 +270,10 @@ public class BsWhiteImplicitConvNumericCB extends AbstractConditionBean {
      * white_implicit_conv_integer by my IMPLICIT_CONV_INTEGER_ID, named 'whiteImplicitConvInteger'.
      * <pre>
      * WhiteImplicitConvNumericCB cb = new WhiteImplicitConvNumericCB();
-     * cb.<span style="color: #FD4747">setupSelect_WhiteImplicitConvInteger()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
+     * cb.<span style="color: #DD4747">setupSelect_WhiteImplicitConvInteger()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
      * cb.query().setFoo...(value);
      * WhiteImplicitConvNumeric whiteImplicitConvNumeric = whiteImplicitConvNumericBhv.selectEntityWithDeletedCheck(cb);
-     * ... = whiteImplicitConvNumeric.<span style="color: #FD4747">getWhiteImplicitConvInteger()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
+     * ... = whiteImplicitConvNumeric.<span style="color: #DD4747">getWhiteImplicitConvInteger()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
      * </pre>
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
@@ -296,10 +296,10 @@ public class BsWhiteImplicitConvNumericCB extends AbstractConditionBean {
      * white_implicit_conv_string by my IMPLICIT_CONV_STRING_ID, named 'whiteImplicitConvString'.
      * <pre>
      * WhiteImplicitConvNumericCB cb = new WhiteImplicitConvNumericCB();
-     * cb.<span style="color: #FD4747">setupSelect_WhiteImplicitConvString()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
+     * cb.<span style="color: #DD4747">setupSelect_WhiteImplicitConvString()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
      * cb.query().setFoo...(value);
      * WhiteImplicitConvNumeric whiteImplicitConvNumeric = whiteImplicitConvNumericBhv.selectEntityWithDeletedCheck(cb);
-     * ... = whiteImplicitConvNumeric.<span style="color: #FD4747">getWhiteImplicitConvString()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
+     * ... = whiteImplicitConvNumeric.<span style="color: #DD4747">getWhiteImplicitConvString()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
      * </pre>
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
@@ -443,12 +443,12 @@ public class BsWhiteImplicitConvNumericCB extends AbstractConditionBean {
          * {select max(FOO) from white_implicit_conv_integer where ...) as FOO_MAX} <br />
          * white_implicit_conv_integer by IMPLICIT_CONV_NUMERIC_ID, named 'whiteImplicitConvIntegerList'.
          * <pre>
-         * cb.specify().<span style="color: #FD4747">derivedWhiteImplicitConvIntegerList()</span>.<span style="color: #FD4747">max</span>(new SubQuery&lt;WhiteImplicitConvIntegerCB&gt;() {
+         * cb.specify().<span style="color: #DD4747">derivedWhiteImplicitConvIntegerList()</span>.<span style="color: #DD4747">max</span>(new SubQuery&lt;WhiteImplicitConvIntegerCB&gt;() {
          *     public void query(WhiteImplicitConvIntegerCB subCB) {
-         *         subCB.specify().<span style="color: #FD4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
+         *         subCB.specify().<span style="color: #DD4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
          *         subCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
          *     }
-         * }, WhiteImplicitConvInteger.<span style="color: #FD4747">ALIAS_foo...</span>);
+         * }, WhiteImplicitConvInteger.<span style="color: #DD4747">ALIAS_foo...</span>);
          * </pre>
          * @return The object to set up a function for referrer table. (NotNull)
          */
@@ -463,12 +463,12 @@ public class BsWhiteImplicitConvNumericCB extends AbstractConditionBean {
          * {select max(FOO) from white_implicit_conv_string where ...) as FOO_MAX} <br />
          * white_implicit_conv_string by IMPLICIT_CONV_NUMERIC_ID, named 'whiteImplicitConvStringList'.
          * <pre>
-         * cb.specify().<span style="color: #FD4747">derivedWhiteImplicitConvStringList()</span>.<span style="color: #FD4747">max</span>(new SubQuery&lt;WhiteImplicitConvStringCB&gt;() {
+         * cb.specify().<span style="color: #DD4747">derivedWhiteImplicitConvStringList()</span>.<span style="color: #DD4747">max</span>(new SubQuery&lt;WhiteImplicitConvStringCB&gt;() {
          *     public void query(WhiteImplicitConvStringCB subCB) {
-         *         subCB.specify().<span style="color: #FD4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
+         *         subCB.specify().<span style="color: #DD4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
          *         subCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
          *     }
-         * }, WhiteImplicitConvString.<span style="color: #FD4747">ALIAS_foo...</span>);
+         * }, WhiteImplicitConvString.<span style="color: #DD4747">ALIAS_foo...</span>);
          * </pre>
          * @return The object to set up a function for referrer table. (NotNull)
          */
@@ -498,13 +498,13 @@ public class BsWhiteImplicitConvNumericCB extends AbstractConditionBean {
      * Set up column-query. {column1 = column2}
      * <pre>
      * <span style="color: #3F7E5E">// where FOO &lt; BAR</span>
-     * cb.<span style="color: #FD4747">columnQuery</span>(new SpecifyQuery&lt;WhiteImplicitConvNumericCB&gt;() {
+     * cb.<span style="color: #DD4747">columnQuery</span>(new SpecifyQuery&lt;WhiteImplicitConvNumericCB&gt;() {
      *     public void query(WhiteImplicitConvNumericCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFoo()</span>; <span style="color: #3F7E5E">// left column</span>
+     *         cb.specify().<span style="color: #DD4747">columnFoo()</span>; <span style="color: #3F7E5E">// left column</span>
      *     }
      * }).lessThan(new SpecifyQuery&lt;WhiteImplicitConvNumericCB&gt;() {
      *     public void query(WhiteImplicitConvNumericCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnBar()</span>; <span style="color: #3F7E5E">// right column</span>
+     *         cb.specify().<span style="color: #DD4747">columnBar()</span>; <span style="color: #3F7E5E">// right column</span>
      *     }
      * }); <span style="color: #3F7E5E">// you can calculate for right column like '}).plus(3);'</span>
      * </pre>
@@ -552,7 +552,7 @@ public class BsWhiteImplicitConvNumericCB extends AbstractConditionBean {
      * (Same-column-and-same-condition-key conditions are allowed in or-scope)
      * <pre>
      * <span style="color: #3F7E5E">// where (FOO = '...' or BAR = '...')</span>
-     * cb.<span style="color: #FD4747">orScopeQuery</span>(new OrQuery&lt;WhiteImplicitConvNumericCB&gt;() {
+     * cb.<span style="color: #DD4747">orScopeQuery</span>(new OrQuery&lt;WhiteImplicitConvNumericCB&gt;() {
      *     public void query(WhiteImplicitConvNumericCB orCB) {
      *         orCB.query().setFOO_Equal...
      *         orCB.query().setBAR_Equal...
@@ -570,10 +570,10 @@ public class BsWhiteImplicitConvNumericCB extends AbstractConditionBean {
      * (However nested or-scope query and as-or-split of like-search in and-part are unsupported)
      * <pre>
      * <span style="color: #3F7E5E">// where (FOO = '...' or (BAR = '...' and QUX = '...'))</span>
-     * cb.<span style="color: #FD4747">orScopeQuery</span>(new OrQuery&lt;WhiteImplicitConvNumericCB&gt;() {
+     * cb.<span style="color: #DD4747">orScopeQuery</span>(new OrQuery&lt;WhiteImplicitConvNumericCB&gt;() {
      *     public void query(WhiteImplicitConvNumericCB orCB) {
      *         orCB.query().setFOO_Equal...
-     *         orCB.<span style="color: #FD4747">orScopeQueryAndPart</span>(new AndQuery&lt;WhiteImplicitConvNumericCB&gt;() {
+     *         orCB.<span style="color: #DD4747">orScopeQueryAndPart</span>(new AndQuery&lt;WhiteImplicitConvNumericCB&gt;() {
      *             public void query(WhiteImplicitConvNumericCB andCB) {
      *                 andCB.query().setBar_...
      *                 andCB.query().setQux_...

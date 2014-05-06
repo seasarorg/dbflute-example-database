@@ -6,6 +6,7 @@ import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
 import org.seasar.dbflute.dbmeta.DBMeta;
+import org.seasar.dbflute.exception.*;
 import org.seasar.dbflute.outsidesql.executor.*;
 import com.example.dbflute.postgresql.dbflute.exbhv.*;
 import com.example.dbflute.postgresql.dbflute.exentity.*;
@@ -91,7 +92,7 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
      * <pre>
      * Vendor_non_compilableCB cb = new Vendor_non_compilableCB();
      * cb.query().setFoo...(value);
-     * int count = vendor_non_compilableBhv.<span style="color: #FD4747">selectCount</span>(cb);
+     * int count = vendor_non_compilableBhv.<span style="color: #DD4747">selectCount</span>(cb);
      * </pre>
      * @param cb The condition-bean of Vendor_non_compilable. (NotNull)
      * @return The count for the condition. (NotMinus)
@@ -119,12 +120,14 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
     //                                                                       Entity Select
     //                                                                       =============
     /**
-     * Select the entity by the condition-bean.
+     * Select the entity by the condition-bean. <br />
+     * <span style="color: #AD4747; font-size: 120%">The return might be null if no data, so you should have null check.</span> <br />
+     * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, use selectEntityWithDeletedCheck().</span>
      * <pre>
      * Vendor_non_compilableCB cb = new Vendor_non_compilableCB();
      * cb.query().setFoo...(value);
-     * Vendor_non_compilable vendor_non_compilable = vendor_non_compilableBhv.<span style="color: #FD4747">selectEntity</span>(cb);
-     * if (vendor_non_compilable != null) {
+     * Vendor_non_compilable vendor_non_compilable = vendor_non_compilableBhv.<span style="color: #DD4747">selectEntity</span>(cb);
+     * if (vendor_non_compilable != null) { <span style="color: #3F7E5E">// null check</span>
      *     ... = vendor_non_compilable.get...();
      * } else {
      *     ...
@@ -132,8 +135,8 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
      * </pre>
      * @param cb The condition-bean of Vendor_non_compilable. (NotNull)
      * @return The entity selected by the condition. (NullAllowed: if no data, it returns null)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public Vendor_non_compilable selectEntity(Vendor_non_compilableCB cb) {
         return doSelectEntity(cb, Vendor_non_compilable.class);
@@ -151,18 +154,19 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
     }
 
     /**
-     * Select the entity by the condition-bean with deleted check.
+     * Select the entity by the condition-bean with deleted check. <br />
+     * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, this method is good.</span>
      * <pre>
      * Vendor_non_compilableCB cb = new Vendor_non_compilableCB();
      * cb.query().setFoo...(value);
-     * Vendor_non_compilable vendor_non_compilable = vendor_non_compilableBhv.<span style="color: #FD4747">selectEntityWithDeletedCheck</span>(cb);
+     * Vendor_non_compilable vendor_non_compilable = vendor_non_compilableBhv.<span style="color: #DD4747">selectEntityWithDeletedCheck</span>(cb);
      * ... = vendor_non_compilable.get...(); <span style="color: #3F7E5E">// the entity always be not null</span>
      * </pre>
      * @param cb The condition-bean of Vendor_non_compilable. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public Vendor_non_compilable selectEntityWithDeletedCheck(Vendor_non_compilableCB cb) {
         return doSelectEntityWithDeletedCheck(cb, Vendor_non_compilable.class);
@@ -183,8 +187,8 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
      * Select the entity by the primary-key value.
      * @param non_compilable_id The one of primary key. (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public Vendor_non_compilable selectByPKValue(Integer non_compilable_id) {
         return doSelectByPKValue(non_compilable_id, Vendor_non_compilable.class);
@@ -198,9 +202,9 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
      * Select the entity by the primary-key value with deleted check.
      * @param non_compilable_id The one of primary key. (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public Vendor_non_compilable selectByPKValueWithDeletedCheck(Integer non_compilable_id) {
         return doSelectByPKValueWithDeletedCheck(non_compilable_id, Vendor_non_compilable.class);
@@ -226,14 +230,14 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
      * Vendor_non_compilableCB cb = new Vendor_non_compilableCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * ListResultBean&lt;Vendor_non_compilable&gt; vendor_non_compilableList = vendor_non_compilableBhv.<span style="color: #FD4747">selectList</span>(cb);
+     * ListResultBean&lt;Vendor_non_compilable&gt; vendor_non_compilableList = vendor_non_compilableBhv.<span style="color: #DD4747">selectList</span>(cb);
      * for (Vendor_non_compilable vendor_non_compilable : vendor_non_compilableList) {
      *     ... = vendor_non_compilable.get...();
      * }
      * </pre>
      * @param cb The condition-bean of Vendor_non_compilable. (NotNull)
      * @return The result bean of selected list. (NotNull: if no data, returns empty list)
-     * @exception org.seasar.dbflute.exception.DangerousResultSizeException When the result size is over the specified safety size.
+     * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public ListResultBean<Vendor_non_compilable> selectList(Vendor_non_compilableCB cb) {
         return doSelectList(cb, Vendor_non_compilable.class);
@@ -261,8 +265,8 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
      * Vendor_non_compilableCB cb = new Vendor_non_compilableCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * cb.<span style="color: #FD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
-     * PagingResultBean&lt;Vendor_non_compilable&gt; page = vendor_non_compilableBhv.<span style="color: #FD4747">selectPage</span>(cb);
+     * cb.<span style="color: #DD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
+     * PagingResultBean&lt;Vendor_non_compilable&gt; page = vendor_non_compilableBhv.<span style="color: #DD4747">selectPage</span>(cb);
      * int allRecordCount = page.getAllRecordCount();
      * int allPageCount = page.getAllPageCount();
      * boolean isExistPrePage = page.isExistPrePage();
@@ -274,7 +278,7 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
      * </pre>
      * @param cb The condition-bean of Vendor_non_compilable. (NotNull)
      * @return The result bean of selected page. (NotNull: if no data, returns bean as empty list)
-     * @exception org.seasar.dbflute.exception.DangerousResultSizeException When the result size is over the specified safety size.
+     * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public PagingResultBean<Vendor_non_compilable> selectPage(Vendor_non_compilableCB cb) {
         return doSelectPage(cb, Vendor_non_compilable.class);
@@ -301,7 +305,7 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
      * <pre>
      * Vendor_non_compilableCB cb = new Vendor_non_compilableCB();
      * cb.query().setFoo...(value);
-     * vendor_non_compilableBhv.<span style="color: #FD4747">selectCursor</span>(cb, new EntityRowHandler&lt;Vendor_non_compilable&gt;() {
+     * vendor_non_compilableBhv.<span style="color: #DD4747">selectCursor</span>(cb, new EntityRowHandler&lt;Vendor_non_compilable&gt;() {
      *     public void handle(Vendor_non_compilable entity) {
      *         ... = entity.getFoo...();
      *     }
@@ -330,9 +334,9 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
      * Select the scalar value derived by a function from uniquely-selected records. <br />
      * You should call a function method after this method called like as follows:
      * <pre>
-     * vendor_non_compilableBhv.<span style="color: #FD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
+     * vendor_non_compilableBhv.<span style="color: #DD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
      *     public void query(Vendor_non_compilableCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
+     *         cb.specify().<span style="color: #DD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
      *         cb.query().setBarName_PrefixSearch("S");
      *     }
      * });
@@ -372,61 +376,92 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
     //                                                                       Load Referrer
     //                                                                       =============
     /**
-     * {Refer to overload method that has an argument of the list of entity.}
-     * @param vendor_non_compilable The entity of vendor_non_compilable. (NotNull)
-     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
-     */
-    public void loadVendor_non_compilableSelfList(Vendor_non_compilable vendor_non_compilable, ConditionBeanSetupper<Vendor_non_compilableCB> conditionBeanSetupper) {
-        xassLRArg(vendor_non_compilable, conditionBeanSetupper);
-        loadVendor_non_compilableSelfList(xnewLRLs(vendor_non_compilable), conditionBeanSetupper);
-    }
-    /**
-     * Load referrer of vendor_non_compilableSelfList with the set-upper for condition-bean of referrer. <br />
+     * Load referrer of vendor_non_compilableSelfList by the set-upper of referrer. <br />
      * VENDOR-NON COMPILABLE by PARENT-ID, named 'vendor_non_compilableSelfList'.
      * <pre>
-     * vendor_non_compilableBhv.<span style="color: #FD4747">loadVendor_non_compilableSelfList</span>(vendor_non_compilableList, new ConditionBeanSetupper&lt;Vendor_non_compilableCB&gt;() {
+     * vendor_non_compilableBhv.<span style="color: #DD4747">loadVendor_non_compilableSelfList</span>(vendor_non_compilableList, new ConditionBeanSetupper&lt;Vendor_non_compilableCB&gt;() {
      *     public void setup(Vendor_non_compilableCB cb) {
      *         cb.setupSelect...();
      *         cb.query().setFoo...(value);
      *         cb.query().addOrderBy_Bar...(); <span style="color: #3F7E5E">// basically you should order referrer list</span>
      *     }
-     * });
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here by calling like '}).withNestedList(new ...)'</span>
      * for (Vendor_non_compilable vendor_non_compilable : vendor_non_compilableList) {
-     *     ... = vendor_non_compilable.<span style="color: #FD4747">getVendor_non_compilableSelfList()</span>;
+     *     ... = vendor_non_compilable.<span style="color: #DD4747">getVendor_non_compilableSelfList()</span>;
      * }
      * </pre>
-     * About internal policy, the value of primary key(and others too) is treated as case-insensitive. <br />
-     * The condition-bean that the set-upper provides have settings before you touch it. It is as follows:
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
+     * <pre>
+     * cb.query().setParent_id_InScope(pkList);
+     * cb.query().addOrderBy_Parent_id_Asc();
+     * </pre>
+     * @param vendor_non_compilable The entity of vendor_non_compilable. (NotNull)
+     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
+     */
+    public NestedReferrerLoader<Vendor_non_compilable> loadVendor_non_compilableSelfList(Vendor_non_compilable vendor_non_compilable, ConditionBeanSetupper<Vendor_non_compilableCB> conditionBeanSetupper) {
+        xassLRArg(vendor_non_compilable, conditionBeanSetupper);
+        return loadVendor_non_compilableSelfList(xnewLRLs(vendor_non_compilable), conditionBeanSetupper);
+    }
+
+    /**
+     * Load referrer of vendor_non_compilableSelfList by the set-upper of referrer. <br />
+     * VENDOR-NON COMPILABLE by PARENT-ID, named 'vendor_non_compilableSelfList'.
+     * <pre>
+     * vendor_non_compilableBhv.<span style="color: #DD4747">loadVendor_non_compilableSelfList</span>(vendor_non_compilableList, new ConditionBeanSetupper&lt;Vendor_non_compilableCB&gt;() {
+     *     public void setup(Vendor_non_compilableCB cb) {
+     *         cb.setupSelect...();
+     *         cb.query().setFoo...(value);
+     *         cb.query().addOrderBy_Bar...(); <span style="color: #3F7E5E">// basically you should order referrer list</span>
+     *     }
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here by calling like '}).withNestedList(new ...)'</span>
+     * for (Vendor_non_compilable vendor_non_compilable : vendor_non_compilableList) {
+     *     ... = vendor_non_compilable.<span style="color: #DD4747">getVendor_non_compilableSelfList()</span>;
+     * }
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
      * <pre>
      * cb.query().setParent_id_InScope(pkList);
      * cb.query().addOrderBy_Parent_id_Asc();
      * </pre>
      * @param vendor_non_compilableList The entity list of vendor_non_compilable. (NotNull)
      * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public void loadVendor_non_compilableSelfList(List<Vendor_non_compilable> vendor_non_compilableList, ConditionBeanSetupper<Vendor_non_compilableCB> conditionBeanSetupper) {
+    public NestedReferrerLoader<Vendor_non_compilable> loadVendor_non_compilableSelfList(List<Vendor_non_compilable> vendor_non_compilableList, ConditionBeanSetupper<Vendor_non_compilableCB> conditionBeanSetupper) {
         xassLRArg(vendor_non_compilableList, conditionBeanSetupper);
-        loadVendor_non_compilableSelfList(vendor_non_compilableList, new LoadReferrerOption<Vendor_non_compilableCB, Vendor_non_compilable>().xinit(conditionBeanSetupper));
+        return loadVendor_non_compilableSelfList(vendor_non_compilableList, new LoadReferrerOption<Vendor_non_compilableCB, Vendor_non_compilable>().xinit(conditionBeanSetupper));
     }
+
     /**
      * {Refer to overload method that has an argument of the list of entity.}
      * @param vendor_non_compilable The entity of vendor_non_compilable. (NotNull)
      * @param loadReferrerOption The option of load-referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public void loadVendor_non_compilableSelfList(Vendor_non_compilable vendor_non_compilable, LoadReferrerOption<Vendor_non_compilableCB, Vendor_non_compilable> loadReferrerOption) {
+    public NestedReferrerLoader<Vendor_non_compilable> loadVendor_non_compilableSelfList(Vendor_non_compilable vendor_non_compilable, LoadReferrerOption<Vendor_non_compilableCB, Vendor_non_compilable> loadReferrerOption) {
         xassLRArg(vendor_non_compilable, loadReferrerOption);
-        loadVendor_non_compilableSelfList(xnewLRLs(vendor_non_compilable), loadReferrerOption);
+        return loadVendor_non_compilableSelfList(xnewLRLs(vendor_non_compilable), loadReferrerOption);
     }
+
     /**
      * {Refer to overload method that has an argument of condition-bean setupper.}
      * @param vendor_non_compilableList The entity list of vendor_non_compilable. (NotNull)
      * @param loadReferrerOption The option of load-referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public void loadVendor_non_compilableSelfList(List<Vendor_non_compilable> vendor_non_compilableList, LoadReferrerOption<Vendor_non_compilableCB, Vendor_non_compilable> loadReferrerOption) {
+    @SuppressWarnings("unchecked")
+    public NestedReferrerLoader<Vendor_non_compilable> loadVendor_non_compilableSelfList(List<Vendor_non_compilable> vendor_non_compilableList, LoadReferrerOption<Vendor_non_compilableCB, Vendor_non_compilable> loadReferrerOption) {
         xassLRArg(vendor_non_compilableList, loadReferrerOption);
-        if (vendor_non_compilableList.isEmpty()) { return; }
+        if (vendor_non_compilableList.isEmpty()) { return (NestedReferrerLoader<Vendor_non_compilable>)EMPTY_LOADER; }
+        return doLoadVendor_non_compilableSelfList(vendor_non_compilableList, loadReferrerOption);
+    }
+
+    protected NestedReferrerLoader<Vendor_non_compilable> doLoadVendor_non_compilableSelfList(List<Vendor_non_compilable> vendor_non_compilableList, LoadReferrerOption<Vendor_non_compilableCB, Vendor_non_compilable> option) {
         final Vendor_non_compilableBhv referrerBhv = xgetBSFLR().select(Vendor_non_compilableBhv.class);
-        helpLoadReferrerInternally(vendor_non_compilableList, loadReferrerOption, new InternalLoadReferrerCallback<Vendor_non_compilable, Integer, Vendor_non_compilableCB, Vendor_non_compilable>() {
+        return helpLoadReferrerInternally(vendor_non_compilableList, option, new InternalLoadReferrerCallback<Vendor_non_compilable, Integer, Vendor_non_compilableCB, Vendor_non_compilable>() {
             public Integer getPKVal(Vendor_non_compilable et)
             { return et.getNon_compilable_id(); }
             public void setRfLs(Vendor_non_compilable et, List<Vendor_non_compilable> ls)
@@ -488,12 +523,12 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
      * <span style="color: #3F7E5E">//vendor_non_compilable.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//vendor_non_compilable.set...;</span>
-     * vendor_non_compilableBhv.<span style="color: #FD4747">insert</span>(vendor_non_compilable);
+     * vendor_non_compilableBhv.<span style="color: #DD4747">insert</span>(vendor_non_compilable);
      * ... = vendor_non_compilable.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * <p>While, when the entity is created by select, all columns are registered.</p>
      * @param vendor_non_compilable The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insert(Vendor_non_compilable vendor_non_compilable) {
         doInsert(vendor_non_compilable, null);
@@ -529,17 +564,17 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
      * <span style="color: #3F7E5E">//vendor_non_compilable.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//vendor_non_compilable.set...;</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * vendor_non_compilable.<span style="color: #FD4747">setVersionNo</span>(value);
+     * vendor_non_compilable.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
-     *     vendor_non_compilableBhv.<span style="color: #FD4747">update</span>(vendor_non_compilable);
+     *     vendor_non_compilableBhv.<span style="color: #DD4747">update</span>(vendor_non_compilable);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param vendor_non_compilable The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void update(final Vendor_non_compilable vendor_non_compilable) {
         doUpdate(vendor_non_compilable, null);
@@ -589,11 +624,11 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
     /**
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br />
-     * <p><span style="color: #FD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
+     * <p><span style="color: #DD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
      * @param vendor_non_compilable The entity of insert or update target. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insertOrUpdate(Vendor_non_compilable vendor_non_compilable) {
         doInesrtOrUpdate(vendor_non_compilable, null, null);
@@ -629,16 +664,16 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
      * Vendor_non_compilable vendor_non_compilable = new Vendor_non_compilable();
      * vendor_non_compilable.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * vendor_non_compilable.<span style="color: #FD4747">setVersionNo</span>(value);
+     * vendor_non_compilable.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
-     *     vendor_non_compilableBhv.<span style="color: #FD4747">delete</span>(vendor_non_compilable);
+     *     vendor_non_compilableBhv.<span style="color: #DD4747">delete</span>(vendor_non_compilable);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param vendor_non_compilable The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void delete(Vendor_non_compilable vendor_non_compilable) {
         doDelete(vendor_non_compilable, null);
@@ -673,7 +708,7 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
     /**
      * Batch-insert the entity list modified-only of same-set columns. (DefaultConstraintsEnabled) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
-     * <p><span style="color: #FD4747; font-size: 120%">The columns of least common multiple are registered like this:</span></p>
+     * <p><span style="color: #DD4747; font-size: 120%">The columns of least common multiple are registered like this:</span></p>
      * <pre>
      * for (... : ...) {
      *     Vendor_non_compilable vendor_non_compilable = new Vendor_non_compilable();
@@ -686,7 +721,7 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
      *     <span style="color: #3F7E5E">// columns not-called in all entities are registered as null or default value</span>
      *     vendor_non_compilableList.add(vendor_non_compilable);
      * }
-     * vendor_non_compilableBhv.<span style="color: #FD4747">batchInsert</span>(vendor_non_compilableList);
+     * vendor_non_compilableBhv.<span style="color: #DD4747">batchInsert</span>(vendor_non_compilableList);
      * </pre>
      * <p>While, when the entities are created by select, all columns are registered.</p>
      * <p>And if the table has an identity, entities after the process don't have incremented values.
@@ -720,7 +755,7 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
     /**
      * Batch-update the entity list modified-only of same-set columns. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
-     * <span style="color: #FD4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
+     * <span style="color: #DD4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
      * <pre>
      * for (... : ...) {
      *     Vendor_non_compilable vendor_non_compilable = new Vendor_non_compilable();
@@ -735,11 +770,11 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
      *     <span style="color: #3F7E5E">// (others are not updated: their values are kept)</span>
      *     vendor_non_compilableList.add(vendor_non_compilable);
      * }
-     * vendor_non_compilableBhv.<span style="color: #FD4747">batchUpdate</span>(vendor_non_compilableList);
+     * vendor_non_compilableBhv.<span style="color: #DD4747">batchUpdate</span>(vendor_non_compilableList);
      * </pre>
      * @param vendor_non_compilableList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<Vendor_non_compilable> vendor_non_compilableList) {
         UpdateOption<Vendor_non_compilableCB> op = createPlainUpdateOption();
@@ -768,16 +803,16 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * <pre>
      * <span style="color: #3F7E5E">// e.g. update two columns only</span>
-     * vendor_non_compilableBhv.<span style="color: #FD4747">batchUpdate</span>(vendor_non_compilableList, new SpecifyQuery<Vendor_non_compilableCB>() {
+     * vendor_non_compilableBhv.<span style="color: #DD4747">batchUpdate</span>(vendor_non_compilableList, new SpecifyQuery<Vendor_non_compilableCB>() {
      *     public void specify(Vendor_non_compilableCB cb) { <span style="color: #3F7E5E">// the two only updated</span>
-     *         cb.specify().<span style="color: #FD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
-     *         cb.specify().<span style="color: #FD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
+     *         cb.specify().<span style="color: #DD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
+     *         cb.specify().<span style="color: #DD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
      *     }
      * });
      * <span style="color: #3F7E5E">// e.g. update every column in the table</span>
-     * vendor_non_compilableBhv.<span style="color: #FD4747">batchUpdate</span>(vendor_non_compilableList, new SpecifyQuery<Vendor_non_compilableCB>() {
+     * vendor_non_compilableBhv.<span style="color: #DD4747">batchUpdate</span>(vendor_non_compilableList, new SpecifyQuery<Vendor_non_compilableCB>() {
      *     public void specify(Vendor_non_compilableCB cb) { <span style="color: #3F7E5E">// all columns are updated</span>
-     *         cb.specify().<span style="color: #FD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
+     *         cb.specify().<span style="color: #DD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
      *     }
      * });
      * </pre>
@@ -789,7 +824,7 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
      * @param vendor_non_compilableList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @param updateColumnSpec The specification of update columns. (NotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<Vendor_non_compilable> vendor_non_compilableList, SpecifyQuery<Vendor_non_compilableCB> updateColumnSpec) {
         return doBatchUpdate(vendor_non_compilableList, createSpecifiedUpdateOption(updateColumnSpec));
@@ -805,7 +840,7 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * @param vendor_non_compilableList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of deleted count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchDelete(List<Vendor_non_compilable> vendor_non_compilableList) {
         return doBatchDelete(vendor_non_compilableList, null);
@@ -834,7 +869,7 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
     /**
      * Insert the several entities by query (modified-only for fixed value).
      * <pre>
-     * vendor_non_compilableBhv.<span style="color: #FD4747">queryInsert</span>(new QueryInsertSetupper&lt;Vendor_non_compilable, Vendor_non_compilableCB&gt;() {
+     * vendor_non_compilableBhv.<span style="color: #DD4747">queryInsert</span>(new QueryInsertSetupper&lt;Vendor_non_compilable, Vendor_non_compilableCB&gt;() {
      *     public ConditionBean setup(vendor_non_compilable entity, Vendor_non_compilableCB intoCB) {
      *         FooCB cb = FooCB();
      *         cb.setupSelect_Bar();
@@ -896,12 +931,12 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
      * <span style="color: #3F7E5E">//vendor_non_compilable.setVersionNo(value);</span>
      * Vendor_non_compilableCB cb = new Vendor_non_compilableCB();
      * cb.query().setFoo...(value);
-     * vendor_non_compilableBhv.<span style="color: #FD4747">queryUpdate</span>(vendor_non_compilable, cb);
+     * vendor_non_compilableBhv.<span style="color: #DD4747">queryUpdate</span>(vendor_non_compilable, cb);
      * </pre>
      * @param vendor_non_compilable The entity that contains update values. (NotNull, PrimaryKeyNullAllowed)
      * @param cb The condition-bean of Vendor_non_compilable. (NotNull)
      * @return The updated count.
-     * @exception org.seasar.dbflute.exception.NonQueryUpdateNotAllowedException When the query has no condition.
+     * @exception NonQueryUpdateNotAllowedException When the query has no condition.
      */
     public int queryUpdate(Vendor_non_compilable vendor_non_compilable, Vendor_non_compilableCB cb) {
         return doQueryUpdate(vendor_non_compilable, cb, null);
@@ -924,11 +959,11 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
      * <pre>
      * Vendor_non_compilableCB cb = new Vendor_non_compilableCB();
      * cb.query().setFoo...(value);
-     * vendor_non_compilableBhv.<span style="color: #FD4747">queryDelete</span>(vendor_non_compilable, cb);
+     * vendor_non_compilableBhv.<span style="color: #DD4747">queryDelete</span>(vendor_non_compilable, cb);
      * </pre>
      * @param cb The condition-bean of Vendor_non_compilable. (NotNull)
      * @return The deleted count.
-     * @exception org.seasar.dbflute.exception.NonQueryDeleteNotAllowedException When the query has no condition.
+     * @exception NonQueryDeleteNotAllowedException When the query has no condition.
      */
     public int queryDelete(Vendor_non_compilableCB cb) {
         return doQueryDelete(cb, null);
@@ -964,12 +999,12 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
      * InsertOption<Vendor_non_compilableCB> option = new InsertOption<Vendor_non_compilableCB>();
      * <span style="color: #3F7E5E">// you can insert by your values for common columns</span>
      * option.disableCommonColumnAutoSetup();
-     * vendor_non_compilableBhv.<span style="color: #FD4747">varyingInsert</span>(vendor_non_compilable, option);
+     * vendor_non_compilableBhv.<span style="color: #DD4747">varyingInsert</span>(vendor_non_compilable, option);
      * ... = vendor_non_compilable.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * @param vendor_non_compilable The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
      * @param option The option of insert for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingInsert(Vendor_non_compilable vendor_non_compilable, InsertOption<Vendor_non_compilableCB> option) {
         assertInsertOptionNotNull(option);
@@ -985,25 +1020,25 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
      * vendor_non_compilable.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * vendor_non_compilable.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * vendor_non_compilable.<span style="color: #FD4747">setVersionNo</span>(value);
+     * vendor_non_compilable.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     <span style="color: #3F7E5E">// you can update by self calculation values</span>
      *     UpdateOption&lt;Vendor_non_compilableCB&gt; option = new UpdateOption&lt;Vendor_non_compilableCB&gt;();
      *     option.self(new SpecifyQuery&lt;Vendor_non_compilableCB&gt;() {
      *         public void specify(Vendor_non_compilableCB cb) {
-     *             cb.specify().<span style="color: #FD4747">columnXxxCount()</span>;
+     *             cb.specify().<span style="color: #DD4747">columnXxxCount()</span>;
      *         }
      *     }).plus(1); <span style="color: #3F7E5E">// XXX_COUNT = XXX_COUNT + 1</span>
-     *     vendor_non_compilableBhv.<span style="color: #FD4747">varyingUpdate</span>(vendor_non_compilable, option);
+     *     vendor_non_compilableBhv.<span style="color: #DD4747">varyingUpdate</span>(vendor_non_compilable, option);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param vendor_non_compilable The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @param option The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingUpdate(Vendor_non_compilable vendor_non_compilable, UpdateOption<Vendor_non_compilableCB> option) {
         assertUpdateOptionNotNull(option);
@@ -1016,9 +1051,9 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
      * @param vendor_non_compilable The entity of insert or update target. (NotNull)
      * @param insertOption The option of insert for varying requests. (NotNull)
      * @param updateOption The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingInsertOrUpdate(Vendor_non_compilable vendor_non_compilable, InsertOption<Vendor_non_compilableCB> insertOption, UpdateOption<Vendor_non_compilableCB> updateOption) {
         assertInsertOptionNotNull(insertOption); assertUpdateOptionNotNull(updateOption);
@@ -1031,8 +1066,8 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
      * Other specifications are same as delete(entity).
      * @param vendor_non_compilable The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @param option The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void varyingDelete(Vendor_non_compilable vendor_non_compilable, DeleteOption<Vendor_non_compilableCB> option) {
         assertDeleteOptionNotNull(option);
@@ -1118,16 +1153,16 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
      * UpdateOption&lt;Vendor_non_compilableCB&gt; option = new UpdateOption&lt;Vendor_non_compilableCB&gt;();
      * option.self(new SpecifyQuery&lt;Vendor_non_compilableCB&gt;() {
      *     public void specify(Vendor_non_compilableCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFooCount()</span>;
+     *         cb.specify().<span style="color: #DD4747">columnFooCount()</span>;
      *     }
      * }).plus(1); <span style="color: #3F7E5E">// FOO_COUNT = FOO_COUNT + 1</span>
-     * vendor_non_compilableBhv.<span style="color: #FD4747">varyingQueryUpdate</span>(vendor_non_compilable, cb, option);
+     * vendor_non_compilableBhv.<span style="color: #DD4747">varyingQueryUpdate</span>(vendor_non_compilable, cb, option);
      * </pre>
      * @param vendor_non_compilable The entity that contains update values. (NotNull) {PrimaryKeyNotRequired}
      * @param cb The condition-bean of Vendor_non_compilable. (NotNull)
      * @param option The option of update for varying requests. (NotNull)
      * @return The updated count.
-     * @exception org.seasar.dbflute.exception.NonQueryUpdateNotAllowedException When the query has no condition (if not allowed).
+     * @exception NonQueryUpdateNotAllowedException When the query has no condition (if not allowed).
      */
     public int varyingQueryUpdate(Vendor_non_compilable vendor_non_compilable, Vendor_non_compilableCB cb, UpdateOption<Vendor_non_compilableCB> option) {
         assertUpdateOptionNotNull(option);
@@ -1141,7 +1176,7 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
      * @param cb The condition-bean of Vendor_non_compilable. (NotNull)
      * @param option The option of delete for varying requests. (NotNull)
      * @return The deleted count.
-     * @exception org.seasar.dbflute.exception.NonQueryDeleteNotAllowedException When the query has no condition (if not allowed).
+     * @exception NonQueryDeleteNotAllowedException When the query has no condition (if not allowed).
      */
     public int varyingQueryDelete(Vendor_non_compilableCB cb, DeleteOption<Vendor_non_compilableCB> option) {
         assertDeleteOptionNotNull(option);

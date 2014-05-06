@@ -21,6 +21,7 @@ import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
 import org.seasar.dbflute.dbmeta.DBMeta;
+import org.seasar.dbflute.exception.*;
 import org.seasar.dbflute.outsidesql.executor.*;
 import com.example.dbflute.mysql.dbflute.exbhv.*;
 import com.example.dbflute.mysql.dbflute.exentity.*;
@@ -106,7 +107,7 @@ public abstract class BsWhiteDeprecatedClsElementBhv extends AbstractBehaviorWri
      * <pre>
      * WhiteDeprecatedClsElementCB cb = new WhiteDeprecatedClsElementCB();
      * cb.query().setFoo...(value);
-     * int count = whiteDeprecatedClsElementBhv.<span style="color: #FD4747">selectCount</span>(cb);
+     * int count = whiteDeprecatedClsElementBhv.<span style="color: #DD4747">selectCount</span>(cb);
      * </pre>
      * @param cb The condition-bean of WhiteDeprecatedClsElement. (NotNull)
      * @return The count for the condition. (NotMinus)
@@ -134,12 +135,14 @@ public abstract class BsWhiteDeprecatedClsElementBhv extends AbstractBehaviorWri
     //                                                                       Entity Select
     //                                                                       =============
     /**
-     * Select the entity by the condition-bean.
+     * Select the entity by the condition-bean. <br />
+     * <span style="color: #AD4747; font-size: 120%">The return might be null if no data, so you should have null check.</span> <br />
+     * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, use selectEntityWithDeletedCheck().</span>
      * <pre>
      * WhiteDeprecatedClsElementCB cb = new WhiteDeprecatedClsElementCB();
      * cb.query().setFoo...(value);
-     * WhiteDeprecatedClsElement whiteDeprecatedClsElement = whiteDeprecatedClsElementBhv.<span style="color: #FD4747">selectEntity</span>(cb);
-     * if (whiteDeprecatedClsElement != null) {
+     * WhiteDeprecatedClsElement whiteDeprecatedClsElement = whiteDeprecatedClsElementBhv.<span style="color: #DD4747">selectEntity</span>(cb);
+     * if (whiteDeprecatedClsElement != null) { <span style="color: #3F7E5E">// null check</span>
      *     ... = whiteDeprecatedClsElement.get...();
      * } else {
      *     ...
@@ -147,8 +150,8 @@ public abstract class BsWhiteDeprecatedClsElementBhv extends AbstractBehaviorWri
      * </pre>
      * @param cb The condition-bean of WhiteDeprecatedClsElement. (NotNull)
      * @return The entity selected by the condition. (NullAllowed: if no data, it returns null)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteDeprecatedClsElement selectEntity(WhiteDeprecatedClsElementCB cb) {
         return doSelectEntity(cb, WhiteDeprecatedClsElement.class);
@@ -166,18 +169,19 @@ public abstract class BsWhiteDeprecatedClsElementBhv extends AbstractBehaviorWri
     }
 
     /**
-     * Select the entity by the condition-bean with deleted check.
+     * Select the entity by the condition-bean with deleted check. <br />
+     * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, this method is good.</span>
      * <pre>
      * WhiteDeprecatedClsElementCB cb = new WhiteDeprecatedClsElementCB();
      * cb.query().setFoo...(value);
-     * WhiteDeprecatedClsElement whiteDeprecatedClsElement = whiteDeprecatedClsElementBhv.<span style="color: #FD4747">selectEntityWithDeletedCheck</span>(cb);
+     * WhiteDeprecatedClsElement whiteDeprecatedClsElement = whiteDeprecatedClsElementBhv.<span style="color: #DD4747">selectEntityWithDeletedCheck</span>(cb);
      * ... = whiteDeprecatedClsElement.get...(); <span style="color: #3F7E5E">// the entity always be not null</span>
      * </pre>
      * @param cb The condition-bean of WhiteDeprecatedClsElement. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteDeprecatedClsElement selectEntityWithDeletedCheck(WhiteDeprecatedClsElementCB cb) {
         return doSelectEntityWithDeletedCheck(cb, WhiteDeprecatedClsElement.class);
@@ -198,8 +202,8 @@ public abstract class BsWhiteDeprecatedClsElementBhv extends AbstractBehaviorWri
      * Select the entity by the primary-key value.
      * @param deprecatedClsElementCode The one of primary key. (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteDeprecatedClsElement selectByPKValue(String deprecatedClsElementCode) {
         return doSelectByPKValue(deprecatedClsElementCode, WhiteDeprecatedClsElement.class);
@@ -213,9 +217,9 @@ public abstract class BsWhiteDeprecatedClsElementBhv extends AbstractBehaviorWri
      * Select the entity by the primary-key value with deleted check.
      * @param deprecatedClsElementCode The one of primary key. (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteDeprecatedClsElement selectByPKValueWithDeletedCheck(String deprecatedClsElementCode) {
         return doSelectByPKValueWithDeletedCheck(deprecatedClsElementCode, WhiteDeprecatedClsElement.class);
@@ -241,14 +245,14 @@ public abstract class BsWhiteDeprecatedClsElementBhv extends AbstractBehaviorWri
      * WhiteDeprecatedClsElementCB cb = new WhiteDeprecatedClsElementCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * ListResultBean&lt;WhiteDeprecatedClsElement&gt; whiteDeprecatedClsElementList = whiteDeprecatedClsElementBhv.<span style="color: #FD4747">selectList</span>(cb);
+     * ListResultBean&lt;WhiteDeprecatedClsElement&gt; whiteDeprecatedClsElementList = whiteDeprecatedClsElementBhv.<span style="color: #DD4747">selectList</span>(cb);
      * for (WhiteDeprecatedClsElement whiteDeprecatedClsElement : whiteDeprecatedClsElementList) {
      *     ... = whiteDeprecatedClsElement.get...();
      * }
      * </pre>
      * @param cb The condition-bean of WhiteDeprecatedClsElement. (NotNull)
      * @return The result bean of selected list. (NotNull: if no data, returns empty list)
-     * @exception org.seasar.dbflute.exception.DangerousResultSizeException When the result size is over the specified safety size.
+     * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public ListResultBean<WhiteDeprecatedClsElement> selectList(WhiteDeprecatedClsElementCB cb) {
         return doSelectList(cb, WhiteDeprecatedClsElement.class);
@@ -276,8 +280,8 @@ public abstract class BsWhiteDeprecatedClsElementBhv extends AbstractBehaviorWri
      * WhiteDeprecatedClsElementCB cb = new WhiteDeprecatedClsElementCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * cb.<span style="color: #FD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
-     * PagingResultBean&lt;WhiteDeprecatedClsElement&gt; page = whiteDeprecatedClsElementBhv.<span style="color: #FD4747">selectPage</span>(cb);
+     * cb.<span style="color: #DD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
+     * PagingResultBean&lt;WhiteDeprecatedClsElement&gt; page = whiteDeprecatedClsElementBhv.<span style="color: #DD4747">selectPage</span>(cb);
      * int allRecordCount = page.getAllRecordCount();
      * int allPageCount = page.getAllPageCount();
      * boolean isExistPrePage = page.isExistPrePage();
@@ -289,7 +293,7 @@ public abstract class BsWhiteDeprecatedClsElementBhv extends AbstractBehaviorWri
      * </pre>
      * @param cb The condition-bean of WhiteDeprecatedClsElement. (NotNull)
      * @return The result bean of selected page. (NotNull: if no data, returns bean as empty list)
-     * @exception org.seasar.dbflute.exception.DangerousResultSizeException When the result size is over the specified safety size.
+     * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public PagingResultBean<WhiteDeprecatedClsElement> selectPage(WhiteDeprecatedClsElementCB cb) {
         return doSelectPage(cb, WhiteDeprecatedClsElement.class);
@@ -316,7 +320,7 @@ public abstract class BsWhiteDeprecatedClsElementBhv extends AbstractBehaviorWri
      * <pre>
      * WhiteDeprecatedClsElementCB cb = new WhiteDeprecatedClsElementCB();
      * cb.query().setFoo...(value);
-     * whiteDeprecatedClsElementBhv.<span style="color: #FD4747">selectCursor</span>(cb, new EntityRowHandler&lt;WhiteDeprecatedClsElement&gt;() {
+     * whiteDeprecatedClsElementBhv.<span style="color: #DD4747">selectCursor</span>(cb, new EntityRowHandler&lt;WhiteDeprecatedClsElement&gt;() {
      *     public void handle(WhiteDeprecatedClsElement entity) {
      *         ... = entity.getFoo...();
      *     }
@@ -345,9 +349,9 @@ public abstract class BsWhiteDeprecatedClsElementBhv extends AbstractBehaviorWri
      * Select the scalar value derived by a function from uniquely-selected records. <br />
      * You should call a function method after this method called like as follows:
      * <pre>
-     * whiteDeprecatedClsElementBhv.<span style="color: #FD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
+     * whiteDeprecatedClsElementBhv.<span style="color: #DD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
      *     public void query(WhiteDeprecatedClsElementCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
+     *         cb.specify().<span style="color: #DD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
      *         cb.query().setBarName_PrefixSearch("S");
      *     }
      * });
@@ -414,12 +418,12 @@ public abstract class BsWhiteDeprecatedClsElementBhv extends AbstractBehaviorWri
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
      * <span style="color: #3F7E5E">//whiteDeprecatedClsElement.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//whiteDeprecatedClsElement.set...;</span>
-     * whiteDeprecatedClsElementBhv.<span style="color: #FD4747">insert</span>(whiteDeprecatedClsElement);
+     * whiteDeprecatedClsElementBhv.<span style="color: #DD4747">insert</span>(whiteDeprecatedClsElement);
      * ... = whiteDeprecatedClsElement.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * <p>While, when the entity is created by select, all columns are registered.</p>
      * @param whiteDeprecatedClsElement The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insert(WhiteDeprecatedClsElement whiteDeprecatedClsElement) {
         doInsert(whiteDeprecatedClsElement, null);
@@ -455,17 +459,17 @@ public abstract class BsWhiteDeprecatedClsElementBhv extends AbstractBehaviorWri
      * <span style="color: #3F7E5E">//whiteDeprecatedClsElement.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//whiteDeprecatedClsElement.set...;</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * whiteDeprecatedClsElement.<span style="color: #FD4747">setVersionNo</span>(value);
+     * whiteDeprecatedClsElement.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
-     *     whiteDeprecatedClsElementBhv.<span style="color: #FD4747">update</span>(whiteDeprecatedClsElement);
+     *     whiteDeprecatedClsElementBhv.<span style="color: #DD4747">update</span>(whiteDeprecatedClsElement);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param whiteDeprecatedClsElement The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void update(final WhiteDeprecatedClsElement whiteDeprecatedClsElement) {
         doUpdate(whiteDeprecatedClsElement, null);
@@ -515,11 +519,11 @@ public abstract class BsWhiteDeprecatedClsElementBhv extends AbstractBehaviorWri
     /**
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br />
-     * <p><span style="color: #FD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
+     * <p><span style="color: #DD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
      * @param whiteDeprecatedClsElement The entity of insert or update target. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insertOrUpdate(WhiteDeprecatedClsElement whiteDeprecatedClsElement) {
         doInesrtOrUpdate(whiteDeprecatedClsElement, null, null);
@@ -555,16 +559,16 @@ public abstract class BsWhiteDeprecatedClsElementBhv extends AbstractBehaviorWri
      * WhiteDeprecatedClsElement whiteDeprecatedClsElement = new WhiteDeprecatedClsElement();
      * whiteDeprecatedClsElement.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * whiteDeprecatedClsElement.<span style="color: #FD4747">setVersionNo</span>(value);
+     * whiteDeprecatedClsElement.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
-     *     whiteDeprecatedClsElementBhv.<span style="color: #FD4747">delete</span>(whiteDeprecatedClsElement);
+     *     whiteDeprecatedClsElementBhv.<span style="color: #DD4747">delete</span>(whiteDeprecatedClsElement);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param whiteDeprecatedClsElement The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void delete(WhiteDeprecatedClsElement whiteDeprecatedClsElement) {
         doDelete(whiteDeprecatedClsElement, null);
@@ -599,7 +603,7 @@ public abstract class BsWhiteDeprecatedClsElementBhv extends AbstractBehaviorWri
     /**
      * Batch-insert the entity list modified-only of same-set columns. (DefaultConstraintsEnabled) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
-     * <p><span style="color: #FD4747; font-size: 120%">The columns of least common multiple are registered like this:</span></p>
+     * <p><span style="color: #DD4747; font-size: 120%">The columns of least common multiple are registered like this:</span></p>
      * <pre>
      * for (... : ...) {
      *     WhiteDeprecatedClsElement whiteDeprecatedClsElement = new WhiteDeprecatedClsElement();
@@ -612,7 +616,7 @@ public abstract class BsWhiteDeprecatedClsElementBhv extends AbstractBehaviorWri
      *     <span style="color: #3F7E5E">// columns not-called in all entities are registered as null or default value</span>
      *     whiteDeprecatedClsElementList.add(whiteDeprecatedClsElement);
      * }
-     * whiteDeprecatedClsElementBhv.<span style="color: #FD4747">batchInsert</span>(whiteDeprecatedClsElementList);
+     * whiteDeprecatedClsElementBhv.<span style="color: #DD4747">batchInsert</span>(whiteDeprecatedClsElementList);
      * </pre>
      * <p>While, when the entities are created by select, all columns are registered.</p>
      * <p>And if the table has an identity, entities after the process don't have incremented values.
@@ -646,7 +650,7 @@ public abstract class BsWhiteDeprecatedClsElementBhv extends AbstractBehaviorWri
     /**
      * Batch-update the entity list modified-only of same-set columns. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
-     * <span style="color: #FD4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
+     * <span style="color: #DD4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
      * <pre>
      * for (... : ...) {
      *     WhiteDeprecatedClsElement whiteDeprecatedClsElement = new WhiteDeprecatedClsElement();
@@ -661,11 +665,11 @@ public abstract class BsWhiteDeprecatedClsElementBhv extends AbstractBehaviorWri
      *     <span style="color: #3F7E5E">// (others are not updated: their values are kept)</span>
      *     whiteDeprecatedClsElementList.add(whiteDeprecatedClsElement);
      * }
-     * whiteDeprecatedClsElementBhv.<span style="color: #FD4747">batchUpdate</span>(whiteDeprecatedClsElementList);
+     * whiteDeprecatedClsElementBhv.<span style="color: #DD4747">batchUpdate</span>(whiteDeprecatedClsElementList);
      * </pre>
      * @param whiteDeprecatedClsElementList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<WhiteDeprecatedClsElement> whiteDeprecatedClsElementList) {
         UpdateOption<WhiteDeprecatedClsElementCB> op = createPlainUpdateOption();
@@ -694,16 +698,16 @@ public abstract class BsWhiteDeprecatedClsElementBhv extends AbstractBehaviorWri
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * <pre>
      * <span style="color: #3F7E5E">// e.g. update two columns only</span>
-     * whiteDeprecatedClsElementBhv.<span style="color: #FD4747">batchUpdate</span>(whiteDeprecatedClsElementList, new SpecifyQuery<WhiteDeprecatedClsElementCB>() {
+     * whiteDeprecatedClsElementBhv.<span style="color: #DD4747">batchUpdate</span>(whiteDeprecatedClsElementList, new SpecifyQuery<WhiteDeprecatedClsElementCB>() {
      *     public void specify(WhiteDeprecatedClsElementCB cb) { <span style="color: #3F7E5E">// the two only updated</span>
-     *         cb.specify().<span style="color: #FD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
-     *         cb.specify().<span style="color: #FD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
+     *         cb.specify().<span style="color: #DD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
+     *         cb.specify().<span style="color: #DD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
      *     }
      * });
      * <span style="color: #3F7E5E">// e.g. update every column in the table</span>
-     * whiteDeprecatedClsElementBhv.<span style="color: #FD4747">batchUpdate</span>(whiteDeprecatedClsElementList, new SpecifyQuery<WhiteDeprecatedClsElementCB>() {
+     * whiteDeprecatedClsElementBhv.<span style="color: #DD4747">batchUpdate</span>(whiteDeprecatedClsElementList, new SpecifyQuery<WhiteDeprecatedClsElementCB>() {
      *     public void specify(WhiteDeprecatedClsElementCB cb) { <span style="color: #3F7E5E">// all columns are updated</span>
-     *         cb.specify().<span style="color: #FD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
+     *         cb.specify().<span style="color: #DD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
      *     }
      * });
      * </pre>
@@ -715,7 +719,7 @@ public abstract class BsWhiteDeprecatedClsElementBhv extends AbstractBehaviorWri
      * @param whiteDeprecatedClsElementList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @param updateColumnSpec The specification of update columns. (NotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<WhiteDeprecatedClsElement> whiteDeprecatedClsElementList, SpecifyQuery<WhiteDeprecatedClsElementCB> updateColumnSpec) {
         return doBatchUpdate(whiteDeprecatedClsElementList, createSpecifiedUpdateOption(updateColumnSpec));
@@ -731,7 +735,7 @@ public abstract class BsWhiteDeprecatedClsElementBhv extends AbstractBehaviorWri
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * @param whiteDeprecatedClsElementList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of deleted count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchDelete(List<WhiteDeprecatedClsElement> whiteDeprecatedClsElementList) {
         return doBatchDelete(whiteDeprecatedClsElementList, null);
@@ -760,7 +764,7 @@ public abstract class BsWhiteDeprecatedClsElementBhv extends AbstractBehaviorWri
     /**
      * Insert the several entities by query (modified-only for fixed value).
      * <pre>
-     * whiteDeprecatedClsElementBhv.<span style="color: #FD4747">queryInsert</span>(new QueryInsertSetupper&lt;WhiteDeprecatedClsElement, WhiteDeprecatedClsElementCB&gt;() {
+     * whiteDeprecatedClsElementBhv.<span style="color: #DD4747">queryInsert</span>(new QueryInsertSetupper&lt;WhiteDeprecatedClsElement, WhiteDeprecatedClsElementCB&gt;() {
      *     public ConditionBean setup(whiteDeprecatedClsElement entity, WhiteDeprecatedClsElementCB intoCB) {
      *         FooCB cb = FooCB();
      *         cb.setupSelect_Bar();
@@ -822,12 +826,12 @@ public abstract class BsWhiteDeprecatedClsElementBhv extends AbstractBehaviorWri
      * <span style="color: #3F7E5E">//whiteDeprecatedClsElement.setVersionNo(value);</span>
      * WhiteDeprecatedClsElementCB cb = new WhiteDeprecatedClsElementCB();
      * cb.query().setFoo...(value);
-     * whiteDeprecatedClsElementBhv.<span style="color: #FD4747">queryUpdate</span>(whiteDeprecatedClsElement, cb);
+     * whiteDeprecatedClsElementBhv.<span style="color: #DD4747">queryUpdate</span>(whiteDeprecatedClsElement, cb);
      * </pre>
      * @param whiteDeprecatedClsElement The entity that contains update values. (NotNull, PrimaryKeyNullAllowed)
      * @param cb The condition-bean of WhiteDeprecatedClsElement. (NotNull)
      * @return The updated count.
-     * @exception org.seasar.dbflute.exception.NonQueryUpdateNotAllowedException When the query has no condition.
+     * @exception NonQueryUpdateNotAllowedException When the query has no condition.
      */
     public int queryUpdate(WhiteDeprecatedClsElement whiteDeprecatedClsElement, WhiteDeprecatedClsElementCB cb) {
         return doQueryUpdate(whiteDeprecatedClsElement, cb, null);
@@ -850,11 +854,11 @@ public abstract class BsWhiteDeprecatedClsElementBhv extends AbstractBehaviorWri
      * <pre>
      * WhiteDeprecatedClsElementCB cb = new WhiteDeprecatedClsElementCB();
      * cb.query().setFoo...(value);
-     * whiteDeprecatedClsElementBhv.<span style="color: #FD4747">queryDelete</span>(whiteDeprecatedClsElement, cb);
+     * whiteDeprecatedClsElementBhv.<span style="color: #DD4747">queryDelete</span>(whiteDeprecatedClsElement, cb);
      * </pre>
      * @param cb The condition-bean of WhiteDeprecatedClsElement. (NotNull)
      * @return The deleted count.
-     * @exception org.seasar.dbflute.exception.NonQueryDeleteNotAllowedException When the query has no condition.
+     * @exception NonQueryDeleteNotAllowedException When the query has no condition.
      */
     public int queryDelete(WhiteDeprecatedClsElementCB cb) {
         return doQueryDelete(cb, null);
@@ -890,12 +894,12 @@ public abstract class BsWhiteDeprecatedClsElementBhv extends AbstractBehaviorWri
      * InsertOption<WhiteDeprecatedClsElementCB> option = new InsertOption<WhiteDeprecatedClsElementCB>();
      * <span style="color: #3F7E5E">// you can insert by your values for common columns</span>
      * option.disableCommonColumnAutoSetup();
-     * whiteDeprecatedClsElementBhv.<span style="color: #FD4747">varyingInsert</span>(whiteDeprecatedClsElement, option);
+     * whiteDeprecatedClsElementBhv.<span style="color: #DD4747">varyingInsert</span>(whiteDeprecatedClsElement, option);
      * ... = whiteDeprecatedClsElement.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * @param whiteDeprecatedClsElement The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
      * @param option The option of insert for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingInsert(WhiteDeprecatedClsElement whiteDeprecatedClsElement, InsertOption<WhiteDeprecatedClsElementCB> option) {
         assertInsertOptionNotNull(option);
@@ -911,25 +915,25 @@ public abstract class BsWhiteDeprecatedClsElementBhv extends AbstractBehaviorWri
      * whiteDeprecatedClsElement.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * whiteDeprecatedClsElement.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * whiteDeprecatedClsElement.<span style="color: #FD4747">setVersionNo</span>(value);
+     * whiteDeprecatedClsElement.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     <span style="color: #3F7E5E">// you can update by self calculation values</span>
      *     UpdateOption&lt;WhiteDeprecatedClsElementCB&gt; option = new UpdateOption&lt;WhiteDeprecatedClsElementCB&gt;();
      *     option.self(new SpecifyQuery&lt;WhiteDeprecatedClsElementCB&gt;() {
      *         public void specify(WhiteDeprecatedClsElementCB cb) {
-     *             cb.specify().<span style="color: #FD4747">columnXxxCount()</span>;
+     *             cb.specify().<span style="color: #DD4747">columnXxxCount()</span>;
      *         }
      *     }).plus(1); <span style="color: #3F7E5E">// XXX_COUNT = XXX_COUNT + 1</span>
-     *     whiteDeprecatedClsElementBhv.<span style="color: #FD4747">varyingUpdate</span>(whiteDeprecatedClsElement, option);
+     *     whiteDeprecatedClsElementBhv.<span style="color: #DD4747">varyingUpdate</span>(whiteDeprecatedClsElement, option);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param whiteDeprecatedClsElement The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @param option The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingUpdate(WhiteDeprecatedClsElement whiteDeprecatedClsElement, UpdateOption<WhiteDeprecatedClsElementCB> option) {
         assertUpdateOptionNotNull(option);
@@ -942,9 +946,9 @@ public abstract class BsWhiteDeprecatedClsElementBhv extends AbstractBehaviorWri
      * @param whiteDeprecatedClsElement The entity of insert or update target. (NotNull)
      * @param insertOption The option of insert for varying requests. (NotNull)
      * @param updateOption The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingInsertOrUpdate(WhiteDeprecatedClsElement whiteDeprecatedClsElement, InsertOption<WhiteDeprecatedClsElementCB> insertOption, UpdateOption<WhiteDeprecatedClsElementCB> updateOption) {
         assertInsertOptionNotNull(insertOption); assertUpdateOptionNotNull(updateOption);
@@ -957,8 +961,8 @@ public abstract class BsWhiteDeprecatedClsElementBhv extends AbstractBehaviorWri
      * Other specifications are same as delete(entity).
      * @param whiteDeprecatedClsElement The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @param option The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void varyingDelete(WhiteDeprecatedClsElement whiteDeprecatedClsElement, DeleteOption<WhiteDeprecatedClsElementCB> option) {
         assertDeleteOptionNotNull(option);
@@ -1044,16 +1048,16 @@ public abstract class BsWhiteDeprecatedClsElementBhv extends AbstractBehaviorWri
      * UpdateOption&lt;WhiteDeprecatedClsElementCB&gt; option = new UpdateOption&lt;WhiteDeprecatedClsElementCB&gt;();
      * option.self(new SpecifyQuery&lt;WhiteDeprecatedClsElementCB&gt;() {
      *     public void specify(WhiteDeprecatedClsElementCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFooCount()</span>;
+     *         cb.specify().<span style="color: #DD4747">columnFooCount()</span>;
      *     }
      * }).plus(1); <span style="color: #3F7E5E">// FOO_COUNT = FOO_COUNT + 1</span>
-     * whiteDeprecatedClsElementBhv.<span style="color: #FD4747">varyingQueryUpdate</span>(whiteDeprecatedClsElement, cb, option);
+     * whiteDeprecatedClsElementBhv.<span style="color: #DD4747">varyingQueryUpdate</span>(whiteDeprecatedClsElement, cb, option);
      * </pre>
      * @param whiteDeprecatedClsElement The entity that contains update values. (NotNull) {PrimaryKeyNotRequired}
      * @param cb The condition-bean of WhiteDeprecatedClsElement. (NotNull)
      * @param option The option of update for varying requests. (NotNull)
      * @return The updated count.
-     * @exception org.seasar.dbflute.exception.NonQueryUpdateNotAllowedException When the query has no condition (if not allowed).
+     * @exception NonQueryUpdateNotAllowedException When the query has no condition (if not allowed).
      */
     public int varyingQueryUpdate(WhiteDeprecatedClsElement whiteDeprecatedClsElement, WhiteDeprecatedClsElementCB cb, UpdateOption<WhiteDeprecatedClsElementCB> option) {
         assertUpdateOptionNotNull(option);
@@ -1067,7 +1071,7 @@ public abstract class BsWhiteDeprecatedClsElementBhv extends AbstractBehaviorWri
      * @param cb The condition-bean of WhiteDeprecatedClsElement. (NotNull)
      * @param option The option of delete for varying requests. (NotNull)
      * @return The deleted count.
-     * @exception org.seasar.dbflute.exception.NonQueryDeleteNotAllowedException When the query has no condition (if not allowed).
+     * @exception NonQueryDeleteNotAllowedException When the query has no condition (if not allowed).
      */
     public int varyingQueryDelete(WhiteDeprecatedClsElementCB cb, DeleteOption<WhiteDeprecatedClsElementCB> option) {
         assertDeleteOptionNotNull(option);

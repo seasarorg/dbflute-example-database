@@ -21,6 +21,7 @@ import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
 import org.seasar.dbflute.dbmeta.DBMeta;
+import org.seasar.dbflute.exception.*;
 import org.seasar.dbflute.outsidesql.executor.*;
 import com.example.dbflute.mysql.dbflute.exbhv.*;
 import com.example.dbflute.mysql.dbflute.exentity.*;
@@ -106,7 +107,7 @@ public abstract class BsWhiteQuotedBhv extends AbstractBehaviorWritable {
      * <pre>
      * WhiteQuotedCB cb = new WhiteQuotedCB();
      * cb.query().setFoo...(value);
-     * int count = whiteQuotedBhv.<span style="color: #FD4747">selectCount</span>(cb);
+     * int count = whiteQuotedBhv.<span style="color: #DD4747">selectCount</span>(cb);
      * </pre>
      * @param cb The condition-bean of WhiteQuoted. (NotNull)
      * @return The count for the condition. (NotMinus)
@@ -134,12 +135,14 @@ public abstract class BsWhiteQuotedBhv extends AbstractBehaviorWritable {
     //                                                                       Entity Select
     //                                                                       =============
     /**
-     * Select the entity by the condition-bean.
+     * Select the entity by the condition-bean. <br />
+     * <span style="color: #AD4747; font-size: 120%">The return might be null if no data, so you should have null check.</span> <br />
+     * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, use selectEntityWithDeletedCheck().</span>
      * <pre>
      * WhiteQuotedCB cb = new WhiteQuotedCB();
      * cb.query().setFoo...(value);
-     * WhiteQuoted whiteQuoted = whiteQuotedBhv.<span style="color: #FD4747">selectEntity</span>(cb);
-     * if (whiteQuoted != null) {
+     * WhiteQuoted whiteQuoted = whiteQuotedBhv.<span style="color: #DD4747">selectEntity</span>(cb);
+     * if (whiteQuoted != null) { <span style="color: #3F7E5E">// null check</span>
      *     ... = whiteQuoted.get...();
      * } else {
      *     ...
@@ -147,8 +150,8 @@ public abstract class BsWhiteQuotedBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of WhiteQuoted. (NotNull)
      * @return The entity selected by the condition. (NullAllowed: if no data, it returns null)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteQuoted selectEntity(WhiteQuotedCB cb) {
         return doSelectEntity(cb, WhiteQuoted.class);
@@ -166,18 +169,19 @@ public abstract class BsWhiteQuotedBhv extends AbstractBehaviorWritable {
     }
 
     /**
-     * Select the entity by the condition-bean with deleted check.
+     * Select the entity by the condition-bean with deleted check. <br />
+     * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, this method is good.</span>
      * <pre>
      * WhiteQuotedCB cb = new WhiteQuotedCB();
      * cb.query().setFoo...(value);
-     * WhiteQuoted whiteQuoted = whiteQuotedBhv.<span style="color: #FD4747">selectEntityWithDeletedCheck</span>(cb);
+     * WhiteQuoted whiteQuoted = whiteQuotedBhv.<span style="color: #DD4747">selectEntityWithDeletedCheck</span>(cb);
      * ... = whiteQuoted.get...(); <span style="color: #3F7E5E">// the entity always be not null</span>
      * </pre>
      * @param cb The condition-bean of WhiteQuoted. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteQuoted selectEntityWithDeletedCheck(WhiteQuotedCB cb) {
         return doSelectEntityWithDeletedCheck(cb, WhiteQuoted.class);
@@ -198,8 +202,8 @@ public abstract class BsWhiteQuotedBhv extends AbstractBehaviorWritable {
      * Select the entity by the primary-key value.
      * @param select The one of primary key. (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteQuoted selectByPKValue(Integer select) {
         return doSelectByPKValue(select, WhiteQuoted.class);
@@ -213,9 +217,9 @@ public abstract class BsWhiteQuotedBhv extends AbstractBehaviorWritable {
      * Select the entity by the primary-key value with deleted check.
      * @param select The one of primary key. (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteQuoted selectByPKValueWithDeletedCheck(Integer select) {
         return doSelectByPKValueWithDeletedCheck(select, WhiteQuoted.class);
@@ -241,14 +245,14 @@ public abstract class BsWhiteQuotedBhv extends AbstractBehaviorWritable {
      * WhiteQuotedCB cb = new WhiteQuotedCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * ListResultBean&lt;WhiteQuoted&gt; whiteQuotedList = whiteQuotedBhv.<span style="color: #FD4747">selectList</span>(cb);
+     * ListResultBean&lt;WhiteQuoted&gt; whiteQuotedList = whiteQuotedBhv.<span style="color: #DD4747">selectList</span>(cb);
      * for (WhiteQuoted whiteQuoted : whiteQuotedList) {
      *     ... = whiteQuoted.get...();
      * }
      * </pre>
      * @param cb The condition-bean of WhiteQuoted. (NotNull)
      * @return The result bean of selected list. (NotNull: if no data, returns empty list)
-     * @exception org.seasar.dbflute.exception.DangerousResultSizeException When the result size is over the specified safety size.
+     * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public ListResultBean<WhiteQuoted> selectList(WhiteQuotedCB cb) {
         return doSelectList(cb, WhiteQuoted.class);
@@ -276,8 +280,8 @@ public abstract class BsWhiteQuotedBhv extends AbstractBehaviorWritable {
      * WhiteQuotedCB cb = new WhiteQuotedCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * cb.<span style="color: #FD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
-     * PagingResultBean&lt;WhiteQuoted&gt; page = whiteQuotedBhv.<span style="color: #FD4747">selectPage</span>(cb);
+     * cb.<span style="color: #DD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
+     * PagingResultBean&lt;WhiteQuoted&gt; page = whiteQuotedBhv.<span style="color: #DD4747">selectPage</span>(cb);
      * int allRecordCount = page.getAllRecordCount();
      * int allPageCount = page.getAllPageCount();
      * boolean isExistPrePage = page.isExistPrePage();
@@ -289,7 +293,7 @@ public abstract class BsWhiteQuotedBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of WhiteQuoted. (NotNull)
      * @return The result bean of selected page. (NotNull: if no data, returns bean as empty list)
-     * @exception org.seasar.dbflute.exception.DangerousResultSizeException When the result size is over the specified safety size.
+     * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public PagingResultBean<WhiteQuoted> selectPage(WhiteQuotedCB cb) {
         return doSelectPage(cb, WhiteQuoted.class);
@@ -316,7 +320,7 @@ public abstract class BsWhiteQuotedBhv extends AbstractBehaviorWritable {
      * <pre>
      * WhiteQuotedCB cb = new WhiteQuotedCB();
      * cb.query().setFoo...(value);
-     * whiteQuotedBhv.<span style="color: #FD4747">selectCursor</span>(cb, new EntityRowHandler&lt;WhiteQuoted&gt;() {
+     * whiteQuotedBhv.<span style="color: #DD4747">selectCursor</span>(cb, new EntityRowHandler&lt;WhiteQuoted&gt;() {
      *     public void handle(WhiteQuoted entity) {
      *         ... = entity.getFoo...();
      *     }
@@ -345,9 +349,9 @@ public abstract class BsWhiteQuotedBhv extends AbstractBehaviorWritable {
      * Select the scalar value derived by a function from uniquely-selected records. <br />
      * You should call a function method after this method called like as follows:
      * <pre>
-     * whiteQuotedBhv.<span style="color: #FD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
+     * whiteQuotedBhv.<span style="color: #DD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
      *     public void query(WhiteQuotedCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
+     *         cb.specify().<span style="color: #DD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
      *         cb.query().setBarName_PrefixSearch("S");
      *     }
      * });
@@ -387,61 +391,92 @@ public abstract class BsWhiteQuotedBhv extends AbstractBehaviorWritable {
     //                                                                       Load Referrer
     //                                                                       =============
     /**
-     * {Refer to overload method that has an argument of the list of entity.}
-     * @param whiteQuoted The entity of whiteQuoted. (NotNull)
-     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
-     */
-    public void loadWhiteQuotedRefList(WhiteQuoted whiteQuoted, ConditionBeanSetupper<WhiteQuotedRefCB> conditionBeanSetupper) {
-        xassLRArg(whiteQuoted, conditionBeanSetupper);
-        loadWhiteQuotedRefList(xnewLRLs(whiteQuoted), conditionBeanSetupper);
-    }
-    /**
-     * Load referrer of whiteQuotedRefList with the set-upper for condition-bean of referrer. <br />
+     * Load referrer of whiteQuotedRefList by the set-upper of referrer. <br />
      * white_quoted_ref by ORDER, named 'whiteQuotedRefList'.
      * <pre>
-     * whiteQuotedBhv.<span style="color: #FD4747">loadWhiteQuotedRefList</span>(whiteQuotedList, new ConditionBeanSetupper&lt;WhiteQuotedRefCB&gt;() {
+     * whiteQuotedBhv.<span style="color: #DD4747">loadWhiteQuotedRefList</span>(whiteQuotedList, new ConditionBeanSetupper&lt;WhiteQuotedRefCB&gt;() {
      *     public void setup(WhiteQuotedRefCB cb) {
      *         cb.setupSelect...();
      *         cb.query().setFoo...(value);
      *         cb.query().addOrderBy_Bar...(); <span style="color: #3F7E5E">// basically you should order referrer list</span>
      *     }
-     * });
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here by calling like '}).withNestedList(new ...)'</span>
      * for (WhiteQuoted whiteQuoted : whiteQuotedList) {
-     *     ... = whiteQuoted.<span style="color: #FD4747">getWhiteQuotedRefList()</span>;
+     *     ... = whiteQuoted.<span style="color: #DD4747">getWhiteQuotedRefList()</span>;
      * }
      * </pre>
-     * About internal policy, the value of primary key(and others too) is treated as case-insensitive. <br />
-     * The condition-bean that the set-upper provides have settings before you touch it. It is as follows:
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
+     * <pre>
+     * cb.query().setOrder_InScope(pkList);
+     * cb.query().addOrderBy_Order_Asc();
+     * </pre>
+     * @param whiteQuoted The entity of whiteQuoted. (NotNull)
+     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
+     */
+    public NestedReferrerLoader<WhiteQuotedRef> loadWhiteQuotedRefList(WhiteQuoted whiteQuoted, ConditionBeanSetupper<WhiteQuotedRefCB> conditionBeanSetupper) {
+        xassLRArg(whiteQuoted, conditionBeanSetupper);
+        return loadWhiteQuotedRefList(xnewLRLs(whiteQuoted), conditionBeanSetupper);
+    }
+
+    /**
+     * Load referrer of whiteQuotedRefList by the set-upper of referrer. <br />
+     * white_quoted_ref by ORDER, named 'whiteQuotedRefList'.
+     * <pre>
+     * whiteQuotedBhv.<span style="color: #DD4747">loadWhiteQuotedRefList</span>(whiteQuotedList, new ConditionBeanSetupper&lt;WhiteQuotedRefCB&gt;() {
+     *     public void setup(WhiteQuotedRefCB cb) {
+     *         cb.setupSelect...();
+     *         cb.query().setFoo...(value);
+     *         cb.query().addOrderBy_Bar...(); <span style="color: #3F7E5E">// basically you should order referrer list</span>
+     *     }
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here by calling like '}).withNestedList(new ...)'</span>
+     * for (WhiteQuoted whiteQuoted : whiteQuotedList) {
+     *     ... = whiteQuoted.<span style="color: #DD4747">getWhiteQuotedRefList()</span>;
+     * }
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
      * <pre>
      * cb.query().setOrder_InScope(pkList);
      * cb.query().addOrderBy_Order_Asc();
      * </pre>
      * @param whiteQuotedList The entity list of whiteQuoted. (NotNull)
      * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public void loadWhiteQuotedRefList(List<WhiteQuoted> whiteQuotedList, ConditionBeanSetupper<WhiteQuotedRefCB> conditionBeanSetupper) {
+    public NestedReferrerLoader<WhiteQuotedRef> loadWhiteQuotedRefList(List<WhiteQuoted> whiteQuotedList, ConditionBeanSetupper<WhiteQuotedRefCB> conditionBeanSetupper) {
         xassLRArg(whiteQuotedList, conditionBeanSetupper);
-        loadWhiteQuotedRefList(whiteQuotedList, new LoadReferrerOption<WhiteQuotedRefCB, WhiteQuotedRef>().xinit(conditionBeanSetupper));
+        return loadWhiteQuotedRefList(whiteQuotedList, new LoadReferrerOption<WhiteQuotedRefCB, WhiteQuotedRef>().xinit(conditionBeanSetupper));
     }
+
     /**
      * {Refer to overload method that has an argument of the list of entity.}
      * @param whiteQuoted The entity of whiteQuoted. (NotNull)
      * @param loadReferrerOption The option of load-referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public void loadWhiteQuotedRefList(WhiteQuoted whiteQuoted, LoadReferrerOption<WhiteQuotedRefCB, WhiteQuotedRef> loadReferrerOption) {
+    public NestedReferrerLoader<WhiteQuotedRef> loadWhiteQuotedRefList(WhiteQuoted whiteQuoted, LoadReferrerOption<WhiteQuotedRefCB, WhiteQuotedRef> loadReferrerOption) {
         xassLRArg(whiteQuoted, loadReferrerOption);
-        loadWhiteQuotedRefList(xnewLRLs(whiteQuoted), loadReferrerOption);
+        return loadWhiteQuotedRefList(xnewLRLs(whiteQuoted), loadReferrerOption);
     }
+
     /**
      * {Refer to overload method that has an argument of condition-bean setupper.}
      * @param whiteQuotedList The entity list of whiteQuoted. (NotNull)
      * @param loadReferrerOption The option of load-referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public void loadWhiteQuotedRefList(List<WhiteQuoted> whiteQuotedList, LoadReferrerOption<WhiteQuotedRefCB, WhiteQuotedRef> loadReferrerOption) {
+    @SuppressWarnings("unchecked")
+    public NestedReferrerLoader<WhiteQuotedRef> loadWhiteQuotedRefList(List<WhiteQuoted> whiteQuotedList, LoadReferrerOption<WhiteQuotedRefCB, WhiteQuotedRef> loadReferrerOption) {
         xassLRArg(whiteQuotedList, loadReferrerOption);
-        if (whiteQuotedList.isEmpty()) { return; }
+        if (whiteQuotedList.isEmpty()) { return (NestedReferrerLoader<WhiteQuotedRef>)EMPTY_LOADER; }
+        return doLoadWhiteQuotedRefList(whiteQuotedList, loadReferrerOption);
+    }
+
+    protected NestedReferrerLoader<WhiteQuotedRef> doLoadWhiteQuotedRefList(List<WhiteQuoted> whiteQuotedList, LoadReferrerOption<WhiteQuotedRefCB, WhiteQuotedRef> option) {
         final WhiteQuotedRefBhv referrerBhv = xgetBSFLR().select(WhiteQuotedRefBhv.class);
-        helpLoadReferrerInternally(whiteQuotedList, loadReferrerOption, new InternalLoadReferrerCallback<WhiteQuoted, Integer, WhiteQuotedRefCB, WhiteQuotedRef>() {
+        return helpLoadReferrerInternally(whiteQuotedList, option, new InternalLoadReferrerCallback<WhiteQuoted, Integer, WhiteQuotedRefCB, WhiteQuotedRef>() {
             public Integer getPKVal(WhiteQuoted et)
             { return et.getSelect(); }
             public void setRfLs(WhiteQuoted et, List<WhiteQuotedRef> ls)
@@ -490,12 +525,12 @@ public abstract class BsWhiteQuotedBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
      * <span style="color: #3F7E5E">//whiteQuoted.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//whiteQuoted.set...;</span>
-     * whiteQuotedBhv.<span style="color: #FD4747">insert</span>(whiteQuoted);
+     * whiteQuotedBhv.<span style="color: #DD4747">insert</span>(whiteQuoted);
      * ... = whiteQuoted.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * <p>While, when the entity is created by select, all columns are registered.</p>
      * @param whiteQuoted The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insert(WhiteQuoted whiteQuoted) {
         doInsert(whiteQuoted, null);
@@ -531,17 +566,17 @@ public abstract class BsWhiteQuotedBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">//whiteQuoted.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//whiteQuoted.set...;</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * whiteQuoted.<span style="color: #FD4747">setVersionNo</span>(value);
+     * whiteQuoted.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
-     *     whiteQuotedBhv.<span style="color: #FD4747">update</span>(whiteQuoted);
+     *     whiteQuotedBhv.<span style="color: #DD4747">update</span>(whiteQuoted);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param whiteQuoted The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void update(final WhiteQuoted whiteQuoted) {
         doUpdate(whiteQuoted, null);
@@ -591,11 +626,11 @@ public abstract class BsWhiteQuotedBhv extends AbstractBehaviorWritable {
     /**
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br />
-     * <p><span style="color: #FD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
+     * <p><span style="color: #DD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
      * @param whiteQuoted The entity of insert or update target. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insertOrUpdate(WhiteQuoted whiteQuoted) {
         doInesrtOrUpdate(whiteQuoted, null, null);
@@ -631,16 +666,16 @@ public abstract class BsWhiteQuotedBhv extends AbstractBehaviorWritable {
      * WhiteQuoted whiteQuoted = new WhiteQuoted();
      * whiteQuoted.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * whiteQuoted.<span style="color: #FD4747">setVersionNo</span>(value);
+     * whiteQuoted.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
-     *     whiteQuotedBhv.<span style="color: #FD4747">delete</span>(whiteQuoted);
+     *     whiteQuotedBhv.<span style="color: #DD4747">delete</span>(whiteQuoted);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param whiteQuoted The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void delete(WhiteQuoted whiteQuoted) {
         doDelete(whiteQuoted, null);
@@ -675,7 +710,7 @@ public abstract class BsWhiteQuotedBhv extends AbstractBehaviorWritable {
     /**
      * Batch-insert the entity list modified-only of same-set columns. (DefaultConstraintsEnabled) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
-     * <p><span style="color: #FD4747; font-size: 120%">The columns of least common multiple are registered like this:</span></p>
+     * <p><span style="color: #DD4747; font-size: 120%">The columns of least common multiple are registered like this:</span></p>
      * <pre>
      * for (... : ...) {
      *     WhiteQuoted whiteQuoted = new WhiteQuoted();
@@ -688,7 +723,7 @@ public abstract class BsWhiteQuotedBhv extends AbstractBehaviorWritable {
      *     <span style="color: #3F7E5E">// columns not-called in all entities are registered as null or default value</span>
      *     whiteQuotedList.add(whiteQuoted);
      * }
-     * whiteQuotedBhv.<span style="color: #FD4747">batchInsert</span>(whiteQuotedList);
+     * whiteQuotedBhv.<span style="color: #DD4747">batchInsert</span>(whiteQuotedList);
      * </pre>
      * <p>While, when the entities are created by select, all columns are registered.</p>
      * <p>And if the table has an identity, entities after the process don't have incremented values.
@@ -722,7 +757,7 @@ public abstract class BsWhiteQuotedBhv extends AbstractBehaviorWritable {
     /**
      * Batch-update the entity list modified-only of same-set columns. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
-     * <span style="color: #FD4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
+     * <span style="color: #DD4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
      * <pre>
      * for (... : ...) {
      *     WhiteQuoted whiteQuoted = new WhiteQuoted();
@@ -737,11 +772,11 @@ public abstract class BsWhiteQuotedBhv extends AbstractBehaviorWritable {
      *     <span style="color: #3F7E5E">// (others are not updated: their values are kept)</span>
      *     whiteQuotedList.add(whiteQuoted);
      * }
-     * whiteQuotedBhv.<span style="color: #FD4747">batchUpdate</span>(whiteQuotedList);
+     * whiteQuotedBhv.<span style="color: #DD4747">batchUpdate</span>(whiteQuotedList);
      * </pre>
      * @param whiteQuotedList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<WhiteQuoted> whiteQuotedList) {
         UpdateOption<WhiteQuotedCB> op = createPlainUpdateOption();
@@ -770,16 +805,16 @@ public abstract class BsWhiteQuotedBhv extends AbstractBehaviorWritable {
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * <pre>
      * <span style="color: #3F7E5E">// e.g. update two columns only</span>
-     * whiteQuotedBhv.<span style="color: #FD4747">batchUpdate</span>(whiteQuotedList, new SpecifyQuery<WhiteQuotedCB>() {
+     * whiteQuotedBhv.<span style="color: #DD4747">batchUpdate</span>(whiteQuotedList, new SpecifyQuery<WhiteQuotedCB>() {
      *     public void specify(WhiteQuotedCB cb) { <span style="color: #3F7E5E">// the two only updated</span>
-     *         cb.specify().<span style="color: #FD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
-     *         cb.specify().<span style="color: #FD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
+     *         cb.specify().<span style="color: #DD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
+     *         cb.specify().<span style="color: #DD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
      *     }
      * });
      * <span style="color: #3F7E5E">// e.g. update every column in the table</span>
-     * whiteQuotedBhv.<span style="color: #FD4747">batchUpdate</span>(whiteQuotedList, new SpecifyQuery<WhiteQuotedCB>() {
+     * whiteQuotedBhv.<span style="color: #DD4747">batchUpdate</span>(whiteQuotedList, new SpecifyQuery<WhiteQuotedCB>() {
      *     public void specify(WhiteQuotedCB cb) { <span style="color: #3F7E5E">// all columns are updated</span>
-     *         cb.specify().<span style="color: #FD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
+     *         cb.specify().<span style="color: #DD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
      *     }
      * });
      * </pre>
@@ -791,7 +826,7 @@ public abstract class BsWhiteQuotedBhv extends AbstractBehaviorWritable {
      * @param whiteQuotedList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @param updateColumnSpec The specification of update columns. (NotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<WhiteQuoted> whiteQuotedList, SpecifyQuery<WhiteQuotedCB> updateColumnSpec) {
         return doBatchUpdate(whiteQuotedList, createSpecifiedUpdateOption(updateColumnSpec));
@@ -807,7 +842,7 @@ public abstract class BsWhiteQuotedBhv extends AbstractBehaviorWritable {
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * @param whiteQuotedList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of deleted count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchDelete(List<WhiteQuoted> whiteQuotedList) {
         return doBatchDelete(whiteQuotedList, null);
@@ -836,7 +871,7 @@ public abstract class BsWhiteQuotedBhv extends AbstractBehaviorWritable {
     /**
      * Insert the several entities by query (modified-only for fixed value).
      * <pre>
-     * whiteQuotedBhv.<span style="color: #FD4747">queryInsert</span>(new QueryInsertSetupper&lt;WhiteQuoted, WhiteQuotedCB&gt;() {
+     * whiteQuotedBhv.<span style="color: #DD4747">queryInsert</span>(new QueryInsertSetupper&lt;WhiteQuoted, WhiteQuotedCB&gt;() {
      *     public ConditionBean setup(whiteQuoted entity, WhiteQuotedCB intoCB) {
      *         FooCB cb = FooCB();
      *         cb.setupSelect_Bar();
@@ -898,12 +933,12 @@ public abstract class BsWhiteQuotedBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">//whiteQuoted.setVersionNo(value);</span>
      * WhiteQuotedCB cb = new WhiteQuotedCB();
      * cb.query().setFoo...(value);
-     * whiteQuotedBhv.<span style="color: #FD4747">queryUpdate</span>(whiteQuoted, cb);
+     * whiteQuotedBhv.<span style="color: #DD4747">queryUpdate</span>(whiteQuoted, cb);
      * </pre>
      * @param whiteQuoted The entity that contains update values. (NotNull, PrimaryKeyNullAllowed)
      * @param cb The condition-bean of WhiteQuoted. (NotNull)
      * @return The updated count.
-     * @exception org.seasar.dbflute.exception.NonQueryUpdateNotAllowedException When the query has no condition.
+     * @exception NonQueryUpdateNotAllowedException When the query has no condition.
      */
     public int queryUpdate(WhiteQuoted whiteQuoted, WhiteQuotedCB cb) {
         return doQueryUpdate(whiteQuoted, cb, null);
@@ -926,11 +961,11 @@ public abstract class BsWhiteQuotedBhv extends AbstractBehaviorWritable {
      * <pre>
      * WhiteQuotedCB cb = new WhiteQuotedCB();
      * cb.query().setFoo...(value);
-     * whiteQuotedBhv.<span style="color: #FD4747">queryDelete</span>(whiteQuoted, cb);
+     * whiteQuotedBhv.<span style="color: #DD4747">queryDelete</span>(whiteQuoted, cb);
      * </pre>
      * @param cb The condition-bean of WhiteQuoted. (NotNull)
      * @return The deleted count.
-     * @exception org.seasar.dbflute.exception.NonQueryDeleteNotAllowedException When the query has no condition.
+     * @exception NonQueryDeleteNotAllowedException When the query has no condition.
      */
     public int queryDelete(WhiteQuotedCB cb) {
         return doQueryDelete(cb, null);
@@ -966,12 +1001,12 @@ public abstract class BsWhiteQuotedBhv extends AbstractBehaviorWritable {
      * InsertOption<WhiteQuotedCB> option = new InsertOption<WhiteQuotedCB>();
      * <span style="color: #3F7E5E">// you can insert by your values for common columns</span>
      * option.disableCommonColumnAutoSetup();
-     * whiteQuotedBhv.<span style="color: #FD4747">varyingInsert</span>(whiteQuoted, option);
+     * whiteQuotedBhv.<span style="color: #DD4747">varyingInsert</span>(whiteQuoted, option);
      * ... = whiteQuoted.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * @param whiteQuoted The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
      * @param option The option of insert for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingInsert(WhiteQuoted whiteQuoted, InsertOption<WhiteQuotedCB> option) {
         assertInsertOptionNotNull(option);
@@ -987,25 +1022,25 @@ public abstract class BsWhiteQuotedBhv extends AbstractBehaviorWritable {
      * whiteQuoted.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * whiteQuoted.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * whiteQuoted.<span style="color: #FD4747">setVersionNo</span>(value);
+     * whiteQuoted.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     <span style="color: #3F7E5E">// you can update by self calculation values</span>
      *     UpdateOption&lt;WhiteQuotedCB&gt; option = new UpdateOption&lt;WhiteQuotedCB&gt;();
      *     option.self(new SpecifyQuery&lt;WhiteQuotedCB&gt;() {
      *         public void specify(WhiteQuotedCB cb) {
-     *             cb.specify().<span style="color: #FD4747">columnXxxCount()</span>;
+     *             cb.specify().<span style="color: #DD4747">columnXxxCount()</span>;
      *         }
      *     }).plus(1); <span style="color: #3F7E5E">// XXX_COUNT = XXX_COUNT + 1</span>
-     *     whiteQuotedBhv.<span style="color: #FD4747">varyingUpdate</span>(whiteQuoted, option);
+     *     whiteQuotedBhv.<span style="color: #DD4747">varyingUpdate</span>(whiteQuoted, option);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param whiteQuoted The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @param option The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingUpdate(WhiteQuoted whiteQuoted, UpdateOption<WhiteQuotedCB> option) {
         assertUpdateOptionNotNull(option);
@@ -1018,9 +1053,9 @@ public abstract class BsWhiteQuotedBhv extends AbstractBehaviorWritable {
      * @param whiteQuoted The entity of insert or update target. (NotNull)
      * @param insertOption The option of insert for varying requests. (NotNull)
      * @param updateOption The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingInsertOrUpdate(WhiteQuoted whiteQuoted, InsertOption<WhiteQuotedCB> insertOption, UpdateOption<WhiteQuotedCB> updateOption) {
         assertInsertOptionNotNull(insertOption); assertUpdateOptionNotNull(updateOption);
@@ -1033,8 +1068,8 @@ public abstract class BsWhiteQuotedBhv extends AbstractBehaviorWritable {
      * Other specifications are same as delete(entity).
      * @param whiteQuoted The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @param option The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void varyingDelete(WhiteQuoted whiteQuoted, DeleteOption<WhiteQuotedCB> option) {
         assertDeleteOptionNotNull(option);
@@ -1120,16 +1155,16 @@ public abstract class BsWhiteQuotedBhv extends AbstractBehaviorWritable {
      * UpdateOption&lt;WhiteQuotedCB&gt; option = new UpdateOption&lt;WhiteQuotedCB&gt;();
      * option.self(new SpecifyQuery&lt;WhiteQuotedCB&gt;() {
      *     public void specify(WhiteQuotedCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFooCount()</span>;
+     *         cb.specify().<span style="color: #DD4747">columnFooCount()</span>;
      *     }
      * }).plus(1); <span style="color: #3F7E5E">// FOO_COUNT = FOO_COUNT + 1</span>
-     * whiteQuotedBhv.<span style="color: #FD4747">varyingQueryUpdate</span>(whiteQuoted, cb, option);
+     * whiteQuotedBhv.<span style="color: #DD4747">varyingQueryUpdate</span>(whiteQuoted, cb, option);
      * </pre>
      * @param whiteQuoted The entity that contains update values. (NotNull) {PrimaryKeyNotRequired}
      * @param cb The condition-bean of WhiteQuoted. (NotNull)
      * @param option The option of update for varying requests. (NotNull)
      * @return The updated count.
-     * @exception org.seasar.dbflute.exception.NonQueryUpdateNotAllowedException When the query has no condition (if not allowed).
+     * @exception NonQueryUpdateNotAllowedException When the query has no condition (if not allowed).
      */
     public int varyingQueryUpdate(WhiteQuoted whiteQuoted, WhiteQuotedCB cb, UpdateOption<WhiteQuotedCB> option) {
         assertUpdateOptionNotNull(option);
@@ -1143,7 +1178,7 @@ public abstract class BsWhiteQuotedBhv extends AbstractBehaviorWritable {
      * @param cb The condition-bean of WhiteQuoted. (NotNull)
      * @param option The option of delete for varying requests. (NotNull)
      * @return The deleted count.
-     * @exception org.seasar.dbflute.exception.NonQueryDeleteNotAllowedException When the query has no condition (if not allowed).
+     * @exception NonQueryDeleteNotAllowedException When the query has no condition (if not allowed).
      */
     public int varyingQueryDelete(WhiteQuotedCB cb, DeleteOption<WhiteQuotedCB> option) {
         assertDeleteOptionNotNull(option);

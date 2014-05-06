@@ -153,7 +153,7 @@ public abstract class AbstractBsVendorLargeDataRefCQ extends AbstractConditionQu
      * {exists (select SELF_PARENT_ID from vendor_large_data_ref where ...)} <br />
      * vendor_large_data_ref by SELF_PARENT_ID, named 'vendorLargeDataRefSelfAsOne'.
      * <pre>
-     * cb.query().<span style="color: #FD4747">existsVendorLargeDataRefSelfList</span>(new SubQuery&lt;VendorLargeDataRefCB&gt;() {
+     * cb.query().<span style="color: #DD4747">existsVendorLargeDataRefSelfList</span>(new SubQuery&lt;VendorLargeDataRefCB&gt;() {
      *     public void query(VendorLargeDataRefCB subCB) {
      *         subCB.query().setXxx...
      *     }
@@ -174,7 +174,7 @@ public abstract class AbstractBsVendorLargeDataRefCQ extends AbstractConditionQu
      * {not exists (select SELF_PARENT_ID from vendor_large_data_ref where ...)} <br />
      * vendor_large_data_ref by SELF_PARENT_ID, named 'vendorLargeDataRefSelfAsOne'.
      * <pre>
-     * cb.query().<span style="color: #FD4747">notExistsVendorLargeDataRefSelfList</span>(new SubQuery&lt;VendorLargeDataRefCB&gt;() {
+     * cb.query().<span style="color: #DD4747">notExistsVendorLargeDataRefSelfList</span>(new SubQuery&lt;VendorLargeDataRefCB&gt;() {
      *     public void query(VendorLargeDataRefCB subCB) {
      *         subCB.query().setXxx...
      *     }
@@ -231,12 +231,12 @@ public abstract class AbstractBsVendorLargeDataRefCQ extends AbstractConditionQu
      * {FOO &lt;= (select max(BAR) from vendor_large_data_ref where ...)} <br />
      * vendor_large_data_ref by SELF_PARENT_ID, named 'vendorLargeDataRefSelfAsOne'.
      * <pre>
-     * cb.query().<span style="color: #FD4747">derivedVendorLargeDataRefSelfList()</span>.<span style="color: #FD4747">max</span>(new SubQuery&lt;VendorLargeDataRefCB&gt;() {
+     * cb.query().<span style="color: #DD4747">derivedVendorLargeDataRefSelfList()</span>.<span style="color: #DD4747">max</span>(new SubQuery&lt;VendorLargeDataRefCB&gt;() {
      *     public void query(VendorLargeDataRefCB subCB) {
-     *         subCB.specify().<span style="color: #FD4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
+     *         subCB.specify().<span style="color: #DD4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
      *         subCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
      *     }
-     * }).<span style="color: #FD4747">greaterEqual</span>(123); <span style="color: #3F7E5E">// condition to derived column</span>
+     * }).<span style="color: #DD4747">greaterEqual</span>(123); <span style="color: #3F7E5E">// condition to derived column</span>
      * </pre>
      * @return The object to set up a function for referrer table. (NotNull)
      */
@@ -443,7 +443,7 @@ public abstract class AbstractBsVendorLargeDataRefCQ extends AbstractConditionQu
      * FromTo with various options. (versatile) {(default) fromDatetime &lt;= column &lt;= toDatetime} <br />
      * And NullIgnored, OnlyOnceRegistered. <br />
      * DATE_INDEX: {IX, NotNull, DATE(10)}
-     * <pre>e.g. setDateIndex_FromTo(fromDate, toDate, new <span style="color: #FD4747">FromToOption</span>().compareAsDate());</pre>
+     * <pre>e.g. setDateIndex_FromTo(fromDate, toDate, new <span style="color: #DD4747">FromToOption</span>().compareAsDate());</pre>
      * @param fromDatetime The from-datetime(yyyy/MM/dd HH:mm:ss.SSS) of dateIndex. (NullAllowed: if null, no from-condition)
      * @param toDatetime The to-datetime(yyyy/MM/dd HH:mm:ss.SSS) of dateIndex. (NullAllowed: if null, no to-condition)
      * @param fromToOption The option of from-to. (NotNull)
@@ -458,7 +458,7 @@ public abstract class AbstractBsVendorLargeDataRefCQ extends AbstractConditionQu
      * DATE_INDEX: {IX, NotNull, DATE(10)}
      * <pre>
      * e.g. from:{2007/04/10 08:24:53} to:{2007/04/16 14:36:29}
-     *  column &gt;= '2007/04/10 00:00:00' and column <span style="color: #FD4747">&lt; '2007/04/17 00:00:00'</span>
+     *  column &gt;= '2007/04/10 00:00:00' and column <span style="color: #DD4747">&lt; '2007/04/17 00:00:00'</span>
      * </pre>
      * @param fromDate The from-date(yyyy/MM/dd) of dateIndex. (NullAllowed: if null, no from-condition)
      * @param toDate The to-date(yyyy/MM/dd) of dateIndex. (NullAllowed: if null, no to-condition)
@@ -519,7 +519,7 @@ public abstract class AbstractBsVendorLargeDataRefCQ extends AbstractConditionQu
      * FromTo with various options. (versatile) {(default) fromDatetime &lt;= column &lt;= toDatetime} <br />
      * And NullIgnored, OnlyOnceRegistered. <br />
      * DATE_NO_INDEX: {NotNull, DATE(10)}
-     * <pre>e.g. setDateNoIndex_FromTo(fromDate, toDate, new <span style="color: #FD4747">FromToOption</span>().compareAsDate());</pre>
+     * <pre>e.g. setDateNoIndex_FromTo(fromDate, toDate, new <span style="color: #DD4747">FromToOption</span>().compareAsDate());</pre>
      * @param fromDatetime The from-datetime(yyyy/MM/dd HH:mm:ss.SSS) of dateNoIndex. (NullAllowed: if null, no from-condition)
      * @param toDatetime The to-datetime(yyyy/MM/dd HH:mm:ss.SSS) of dateNoIndex. (NullAllowed: if null, no to-condition)
      * @param fromToOption The option of from-to. (NotNull)
@@ -534,7 +534,7 @@ public abstract class AbstractBsVendorLargeDataRefCQ extends AbstractConditionQu
      * DATE_NO_INDEX: {NotNull, DATE(10)}
      * <pre>
      * e.g. from:{2007/04/10 08:24:53} to:{2007/04/16 14:36:29}
-     *  column &gt;= '2007/04/10 00:00:00' and column <span style="color: #FD4747">&lt; '2007/04/17 00:00:00'</span>
+     *  column &gt;= '2007/04/10 00:00:00' and column <span style="color: #DD4747">&lt; '2007/04/17 00:00:00'</span>
      * </pre>
      * @param fromDate The from-date(yyyy/MM/dd) of dateNoIndex. (NullAllowed: if null, no from-condition)
      * @param toDate The to-date(yyyy/MM/dd) of dateNoIndex. (NullAllowed: if null, no to-condition)
@@ -595,7 +595,7 @@ public abstract class AbstractBsVendorLargeDataRefCQ extends AbstractConditionQu
      * FromTo with various options. (versatile) {(default) fromDatetime &lt;= column &lt;= toDatetime} <br />
      * And NullIgnored, OnlyOnceRegistered. <br />
      * TIMESTAMP_INDEX: {IX, NotNull, DATETIME(19)}
-     * <pre>e.g. setTimestampIndex_FromTo(fromDate, toDate, new <span style="color: #FD4747">FromToOption</span>().compareAsDate());</pre>
+     * <pre>e.g. setTimestampIndex_FromTo(fromDate, toDate, new <span style="color: #DD4747">FromToOption</span>().compareAsDate());</pre>
      * @param fromDatetime The from-datetime(yyyy/MM/dd HH:mm:ss.SSS) of timestampIndex. (NullAllowed: if null, no from-condition)
      * @param toDatetime The to-datetime(yyyy/MM/dd HH:mm:ss.SSS) of timestampIndex. (NullAllowed: if null, no to-condition)
      * @param fromToOption The option of from-to. (NotNull)
@@ -610,7 +610,7 @@ public abstract class AbstractBsVendorLargeDataRefCQ extends AbstractConditionQu
      * TIMESTAMP_INDEX: {IX, NotNull, DATETIME(19)}
      * <pre>
      * e.g. from:{2007/04/10 08:24:53} to:{2007/04/16 14:36:29}
-     *  column &gt;= '2007/04/10 00:00:00' and column <span style="color: #FD4747">&lt; '2007/04/17 00:00:00'</span>
+     *  column &gt;= '2007/04/10 00:00:00' and column <span style="color: #DD4747">&lt; '2007/04/17 00:00:00'</span>
      * </pre>
      * @param fromDate The from-date(yyyy/MM/dd) of timestampIndex. (NullAllowed: if null, no from-condition)
      * @param toDate The to-date(yyyy/MM/dd) of timestampIndex. (NullAllowed: if null, no to-condition)
@@ -671,7 +671,7 @@ public abstract class AbstractBsVendorLargeDataRefCQ extends AbstractConditionQu
      * FromTo with various options. (versatile) {(default) fromDatetime &lt;= column &lt;= toDatetime} <br />
      * And NullIgnored, OnlyOnceRegistered. <br />
      * TIMESTAMP_NO_INDEX: {NotNull, DATETIME(19)}
-     * <pre>e.g. setTimestampNoIndex_FromTo(fromDate, toDate, new <span style="color: #FD4747">FromToOption</span>().compareAsDate());</pre>
+     * <pre>e.g. setTimestampNoIndex_FromTo(fromDate, toDate, new <span style="color: #DD4747">FromToOption</span>().compareAsDate());</pre>
      * @param fromDatetime The from-datetime(yyyy/MM/dd HH:mm:ss.SSS) of timestampNoIndex. (NullAllowed: if null, no from-condition)
      * @param toDatetime The to-datetime(yyyy/MM/dd HH:mm:ss.SSS) of timestampNoIndex. (NullAllowed: if null, no to-condition)
      * @param fromToOption The option of from-to. (NotNull)
@@ -686,7 +686,7 @@ public abstract class AbstractBsVendorLargeDataRefCQ extends AbstractConditionQu
      * TIMESTAMP_NO_INDEX: {NotNull, DATETIME(19)}
      * <pre>
      * e.g. from:{2007/04/10 08:24:53} to:{2007/04/16 14:36:29}
-     *  column &gt;= '2007/04/10 00:00:00' and column <span style="color: #FD4747">&lt; '2007/04/17 00:00:00'</span>
+     *  column &gt;= '2007/04/10 00:00:00' and column <span style="color: #DD4747">&lt; '2007/04/17 00:00:00'</span>
      * </pre>
      * @param fromDate The from-date(yyyy/MM/dd) of timestampNoIndex. (NullAllowed: if null, no from-condition)
      * @param toDate The to-date(yyyy/MM/dd) of timestampNoIndex. (NullAllowed: if null, no to-condition)
@@ -1042,7 +1042,7 @@ public abstract class AbstractBsVendorLargeDataRefCQ extends AbstractConditionQu
      * Prepare ScalarCondition as equal. <br />
      * {where FOO = (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #FD4747">scalar_Equal()</span>.max(new SubQuery&lt;VendorLargeDataRefCB&gt;() {
+     * cb.query().<span style="color: #DD4747">scalar_Equal()</span>.max(new SubQuery&lt;VendorLargeDataRefCB&gt;() {
      *     public void query(VendorLargeDataRefCB subCB) {
      *         subCB.specify().setXxx... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setYyy...
@@ -1059,7 +1059,7 @@ public abstract class AbstractBsVendorLargeDataRefCQ extends AbstractConditionQu
      * Prepare ScalarCondition as equal. <br />
      * {where FOO &lt;&gt; (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #FD4747">scalar_NotEqual()</span>.max(new SubQuery&lt;VendorLargeDataRefCB&gt;() {
+     * cb.query().<span style="color: #DD4747">scalar_NotEqual()</span>.max(new SubQuery&lt;VendorLargeDataRefCB&gt;() {
      *     public void query(VendorLargeDataRefCB subCB) {
      *         subCB.specify().setXxx... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setYyy...
@@ -1076,7 +1076,7 @@ public abstract class AbstractBsVendorLargeDataRefCQ extends AbstractConditionQu
      * Prepare ScalarCondition as greaterThan. <br />
      * {where FOO &gt; (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #FD4747">scalar_GreaterThan()</span>.max(new SubQuery&lt;VendorLargeDataRefCB&gt;() {
+     * cb.query().<span style="color: #DD4747">scalar_GreaterThan()</span>.max(new SubQuery&lt;VendorLargeDataRefCB&gt;() {
      *     public void query(VendorLargeDataRefCB subCB) {
      *         subCB.specify().setFoo... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setBar...
@@ -1093,7 +1093,7 @@ public abstract class AbstractBsVendorLargeDataRefCQ extends AbstractConditionQu
      * Prepare ScalarCondition as lessThan. <br />
      * {where FOO &lt; (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #FD4747">scalar_LessThan()</span>.max(new SubQuery&lt;VendorLargeDataRefCB&gt;() {
+     * cb.query().<span style="color: #DD4747">scalar_LessThan()</span>.max(new SubQuery&lt;VendorLargeDataRefCB&gt;() {
      *     public void query(VendorLargeDataRefCB subCB) {
      *         subCB.specify().setFoo... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setBar...
@@ -1110,7 +1110,7 @@ public abstract class AbstractBsVendorLargeDataRefCQ extends AbstractConditionQu
      * Prepare ScalarCondition as greaterEqual. <br />
      * {where FOO &gt;= (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #FD4747">scalar_GreaterEqual()</span>.max(new SubQuery&lt;VendorLargeDataRefCB&gt;() {
+     * cb.query().<span style="color: #DD4747">scalar_GreaterEqual()</span>.max(new SubQuery&lt;VendorLargeDataRefCB&gt;() {
      *     public void query(VendorLargeDataRefCB subCB) {
      *         subCB.specify().setFoo... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setBar...
@@ -1127,7 +1127,7 @@ public abstract class AbstractBsVendorLargeDataRefCQ extends AbstractConditionQu
      * Prepare ScalarCondition as lessEqual. <br />
      * {where FOO &lt;= (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #FD4747">scalar_LessEqual()</span>.max(new SubQuery&lt;VendorLargeDataRefCB&gt;() {
+     * cb.query().<span style="color: #DD4747">scalar_LessEqual()</span>.max(new SubQuery&lt;VendorLargeDataRefCB&gt;() {
      *     public void query(VendorLargeDataRefCB subCB) {
      *         subCB.specify().setFoo... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setBar...

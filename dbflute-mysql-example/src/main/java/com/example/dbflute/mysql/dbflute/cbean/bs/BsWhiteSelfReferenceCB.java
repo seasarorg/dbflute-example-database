@@ -224,7 +224,7 @@ public class BsWhiteSelfReferenceCB extends AbstractConditionBean {
      * You don't need to call SetupSelect in union-query,
      * because it inherits calls before. (Don't call SetupSelect after here)
      * <pre>
-     * cb.query().<span style="color: #FD4747">union</span>(new UnionQuery&lt;WhiteSelfReferenceCB&gt;() {
+     * cb.query().<span style="color: #DD4747">union</span>(new UnionQuery&lt;WhiteSelfReferenceCB&gt;() {
      *     public void query(WhiteSelfReferenceCB unionCB) {
      *         unionCB.query().setXxx...
      *     }
@@ -243,7 +243,7 @@ public class BsWhiteSelfReferenceCB extends AbstractConditionBean {
      * You don't need to call SetupSelect in union-query,
      * because it inherits calls before. (Don't call SetupSelect after here)
      * <pre>
-     * cb.query().<span style="color: #FD4747">unionAll</span>(new UnionQuery&lt;WhiteSelfReferenceCB&gt;() {
+     * cb.query().<span style="color: #DD4747">unionAll</span>(new UnionQuery&lt;WhiteSelfReferenceCB&gt;() {
      *     public void query(WhiteSelfReferenceCB unionCB) {
      *         unionCB.query().setXxx...
      *     }
@@ -270,10 +270,10 @@ public class BsWhiteSelfReferenceCB extends AbstractConditionBean {
      * white_self_reference by my PARENT_ID, named 'whiteSelfReferenceSelf'.
      * <pre>
      * WhiteSelfReferenceCB cb = new WhiteSelfReferenceCB();
-     * cb.<span style="color: #FD4747">setupSelect_WhiteSelfReferenceSelf()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
+     * cb.<span style="color: #DD4747">setupSelect_WhiteSelfReferenceSelf()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
      * cb.query().setFoo...(value);
      * WhiteSelfReference whiteSelfReference = whiteSelfReferenceBhv.selectEntityWithDeletedCheck(cb);
-     * ... = whiteSelfReference.<span style="color: #FD4747">getWhiteSelfReferenceSelf()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
+     * ... = whiteSelfReference.<span style="color: #DD4747">getWhiteSelfReferenceSelf()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
      * </pre>
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
@@ -297,10 +297,10 @@ public class BsWhiteSelfReferenceCB extends AbstractConditionBean {
      * This relation is auto-detected as implicit reverse FK.
      * <pre>
      * WhiteSelfReferenceCB cb = new WhiteSelfReferenceCB();
-     * cb.<span style="color: #FD4747">setupSelect_WhiteSelfReferenceRefOneByParentId()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
+     * cb.<span style="color: #DD4747">setupSelect_WhiteSelfReferenceRefOneByParentId()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
      * cb.query().setFoo...(value);
      * WhiteSelfReference whiteSelfReference = whiteSelfReferenceBhv.selectEntityWithDeletedCheck(cb);
-     * ... = whiteSelfReference.<span style="color: #FD4747">getWhiteSelfReferenceRefOneByParentId()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
+     * ... = whiteSelfReference.<span style="color: #DD4747">getWhiteSelfReferenceRefOneByParentId()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
      * </pre>
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
@@ -324,10 +324,10 @@ public class BsWhiteSelfReferenceCB extends AbstractConditionBean {
      * white_self_reference_ref_one by SELF_REFERENCE_ID, named 'whiteSelfReferenceRefOneAsOne'.
      * <pre>
      * WhiteSelfReferenceCB cb = new WhiteSelfReferenceCB();
-     * cb.<span style="color: #FD4747">setupSelect_WhiteSelfReferenceRefOneAsOne()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
+     * cb.<span style="color: #DD4747">setupSelect_WhiteSelfReferenceRefOneAsOne()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
      * cb.query().setFoo...(value);
      * WhiteSelfReference whiteSelfReference = whiteSelfReferenceBhv.selectEntityWithDeletedCheck(cb);
-     * ... = whiteSelfReference.<span style="color: #FD4747">getWhiteSelfReferenceRefOneAsOne()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
+     * ... = whiteSelfReference.<span style="color: #DD4747">getWhiteSelfReferenceRefOneAsOne()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
      * </pre>
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
@@ -485,12 +485,12 @@ public class BsWhiteSelfReferenceCB extends AbstractConditionBean {
          * {select max(FOO) from white_self_reference where ...) as FOO_MAX} <br />
          * white_self_reference by PARENT_ID, named 'whiteSelfReferenceSelfList'.
          * <pre>
-         * cb.specify().<span style="color: #FD4747">derivedWhiteSelfReferenceSelfList()</span>.<span style="color: #FD4747">max</span>(new SubQuery&lt;WhiteSelfReferenceCB&gt;() {
+         * cb.specify().<span style="color: #DD4747">derivedWhiteSelfReferenceSelfList()</span>.<span style="color: #DD4747">max</span>(new SubQuery&lt;WhiteSelfReferenceCB&gt;() {
          *     public void query(WhiteSelfReferenceCB subCB) {
-         *         subCB.specify().<span style="color: #FD4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
+         *         subCB.specify().<span style="color: #DD4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
          *         subCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
          *     }
-         * }, WhiteSelfReference.<span style="color: #FD4747">ALIAS_foo...</span>);
+         * }, WhiteSelfReference.<span style="color: #DD4747">ALIAS_foo...</span>);
          * </pre>
          * @return The object to set up a function for referrer table. (NotNull)
          */
@@ -520,13 +520,13 @@ public class BsWhiteSelfReferenceCB extends AbstractConditionBean {
      * Set up column-query. {column1 = column2}
      * <pre>
      * <span style="color: #3F7E5E">// where FOO &lt; BAR</span>
-     * cb.<span style="color: #FD4747">columnQuery</span>(new SpecifyQuery&lt;WhiteSelfReferenceCB&gt;() {
+     * cb.<span style="color: #DD4747">columnQuery</span>(new SpecifyQuery&lt;WhiteSelfReferenceCB&gt;() {
      *     public void query(WhiteSelfReferenceCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFoo()</span>; <span style="color: #3F7E5E">// left column</span>
+     *         cb.specify().<span style="color: #DD4747">columnFoo()</span>; <span style="color: #3F7E5E">// left column</span>
      *     }
      * }).lessThan(new SpecifyQuery&lt;WhiteSelfReferenceCB&gt;() {
      *     public void query(WhiteSelfReferenceCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnBar()</span>; <span style="color: #3F7E5E">// right column</span>
+     *         cb.specify().<span style="color: #DD4747">columnBar()</span>; <span style="color: #3F7E5E">// right column</span>
      *     }
      * }); <span style="color: #3F7E5E">// you can calculate for right column like '}).plus(3);'</span>
      * </pre>
@@ -574,7 +574,7 @@ public class BsWhiteSelfReferenceCB extends AbstractConditionBean {
      * (Same-column-and-same-condition-key conditions are allowed in or-scope)
      * <pre>
      * <span style="color: #3F7E5E">// where (FOO = '...' or BAR = '...')</span>
-     * cb.<span style="color: #FD4747">orScopeQuery</span>(new OrQuery&lt;WhiteSelfReferenceCB&gt;() {
+     * cb.<span style="color: #DD4747">orScopeQuery</span>(new OrQuery&lt;WhiteSelfReferenceCB&gt;() {
      *     public void query(WhiteSelfReferenceCB orCB) {
      *         orCB.query().setFOO_Equal...
      *         orCB.query().setBAR_Equal...
@@ -592,10 +592,10 @@ public class BsWhiteSelfReferenceCB extends AbstractConditionBean {
      * (However nested or-scope query and as-or-split of like-search in and-part are unsupported)
      * <pre>
      * <span style="color: #3F7E5E">// where (FOO = '...' or (BAR = '...' and QUX = '...'))</span>
-     * cb.<span style="color: #FD4747">orScopeQuery</span>(new OrQuery&lt;WhiteSelfReferenceCB&gt;() {
+     * cb.<span style="color: #DD4747">orScopeQuery</span>(new OrQuery&lt;WhiteSelfReferenceCB&gt;() {
      *     public void query(WhiteSelfReferenceCB orCB) {
      *         orCB.query().setFOO_Equal...
-     *         orCB.<span style="color: #FD4747">orScopeQueryAndPart</span>(new AndQuery&lt;WhiteSelfReferenceCB&gt;() {
+     *         orCB.<span style="color: #DD4747">orScopeQueryAndPart</span>(new AndQuery&lt;WhiteSelfReferenceCB&gt;() {
      *             public void query(WhiteSelfReferenceCB andCB) {
      *                 andCB.query().setBar_...
      *                 andCB.query().setQux_...

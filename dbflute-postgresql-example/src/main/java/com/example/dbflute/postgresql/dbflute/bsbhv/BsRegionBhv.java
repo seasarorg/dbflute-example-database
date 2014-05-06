@@ -6,6 +6,7 @@ import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
 import org.seasar.dbflute.dbmeta.DBMeta;
+import org.seasar.dbflute.exception.*;
 import org.seasar.dbflute.outsidesql.executor.*;
 import com.example.dbflute.postgresql.dbflute.exbhv.*;
 import com.example.dbflute.postgresql.dbflute.exentity.*;
@@ -91,7 +92,7 @@ public abstract class BsRegionBhv extends AbstractBehaviorWritable {
      * <pre>
      * RegionCB cb = new RegionCB();
      * cb.query().setFoo...(value);
-     * int count = regionBhv.<span style="color: #FD4747">selectCount</span>(cb);
+     * int count = regionBhv.<span style="color: #DD4747">selectCount</span>(cb);
      * </pre>
      * @param cb The condition-bean of Region. (NotNull)
      * @return The count for the condition. (NotMinus)
@@ -119,12 +120,14 @@ public abstract class BsRegionBhv extends AbstractBehaviorWritable {
     //                                                                       Entity Select
     //                                                                       =============
     /**
-     * Select the entity by the condition-bean.
+     * Select the entity by the condition-bean. <br />
+     * <span style="color: #AD4747; font-size: 120%">The return might be null if no data, so you should have null check.</span> <br />
+     * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, use selectEntityWithDeletedCheck().</span>
      * <pre>
      * RegionCB cb = new RegionCB();
      * cb.query().setFoo...(value);
-     * Region region = regionBhv.<span style="color: #FD4747">selectEntity</span>(cb);
-     * if (region != null) {
+     * Region region = regionBhv.<span style="color: #DD4747">selectEntity</span>(cb);
+     * if (region != null) { <span style="color: #3F7E5E">// null check</span>
      *     ... = region.get...();
      * } else {
      *     ...
@@ -132,8 +135,8 @@ public abstract class BsRegionBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of Region. (NotNull)
      * @return The entity selected by the condition. (NullAllowed: if no data, it returns null)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public Region selectEntity(RegionCB cb) {
         return doSelectEntity(cb, Region.class);
@@ -151,18 +154,19 @@ public abstract class BsRegionBhv extends AbstractBehaviorWritable {
     }
 
     /**
-     * Select the entity by the condition-bean with deleted check.
+     * Select the entity by the condition-bean with deleted check. <br />
+     * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, this method is good.</span>
      * <pre>
      * RegionCB cb = new RegionCB();
      * cb.query().setFoo...(value);
-     * Region region = regionBhv.<span style="color: #FD4747">selectEntityWithDeletedCheck</span>(cb);
+     * Region region = regionBhv.<span style="color: #DD4747">selectEntityWithDeletedCheck</span>(cb);
      * ... = region.get...(); <span style="color: #3F7E5E">// the entity always be not null</span>
      * </pre>
      * @param cb The condition-bean of Region. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public Region selectEntityWithDeletedCheck(RegionCB cb) {
         return doSelectEntityWithDeletedCheck(cb, Region.class);
@@ -183,8 +187,8 @@ public abstract class BsRegionBhv extends AbstractBehaviorWritable {
      * Select the entity by the primary-key value.
      * @param regionId The one of primary key. (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public Region selectByPKValue(Integer regionId) {
         return doSelectByPKValue(regionId, Region.class);
@@ -198,9 +202,9 @@ public abstract class BsRegionBhv extends AbstractBehaviorWritable {
      * Select the entity by the primary-key value with deleted check.
      * @param regionId The one of primary key. (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public Region selectByPKValueWithDeletedCheck(Integer regionId) {
         return doSelectByPKValueWithDeletedCheck(regionId, Region.class);
@@ -226,14 +230,14 @@ public abstract class BsRegionBhv extends AbstractBehaviorWritable {
      * RegionCB cb = new RegionCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * ListResultBean&lt;Region&gt; regionList = regionBhv.<span style="color: #FD4747">selectList</span>(cb);
+     * ListResultBean&lt;Region&gt; regionList = regionBhv.<span style="color: #DD4747">selectList</span>(cb);
      * for (Region region : regionList) {
      *     ... = region.get...();
      * }
      * </pre>
      * @param cb The condition-bean of Region. (NotNull)
      * @return The result bean of selected list. (NotNull: if no data, returns empty list)
-     * @exception org.seasar.dbflute.exception.DangerousResultSizeException When the result size is over the specified safety size.
+     * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public ListResultBean<Region> selectList(RegionCB cb) {
         return doSelectList(cb, Region.class);
@@ -261,8 +265,8 @@ public abstract class BsRegionBhv extends AbstractBehaviorWritable {
      * RegionCB cb = new RegionCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * cb.<span style="color: #FD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
-     * PagingResultBean&lt;Region&gt; page = regionBhv.<span style="color: #FD4747">selectPage</span>(cb);
+     * cb.<span style="color: #DD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
+     * PagingResultBean&lt;Region&gt; page = regionBhv.<span style="color: #DD4747">selectPage</span>(cb);
      * int allRecordCount = page.getAllRecordCount();
      * int allPageCount = page.getAllPageCount();
      * boolean isExistPrePage = page.isExistPrePage();
@@ -274,7 +278,7 @@ public abstract class BsRegionBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of Region. (NotNull)
      * @return The result bean of selected page. (NotNull: if no data, returns bean as empty list)
-     * @exception org.seasar.dbflute.exception.DangerousResultSizeException When the result size is over the specified safety size.
+     * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public PagingResultBean<Region> selectPage(RegionCB cb) {
         return doSelectPage(cb, Region.class);
@@ -301,7 +305,7 @@ public abstract class BsRegionBhv extends AbstractBehaviorWritable {
      * <pre>
      * RegionCB cb = new RegionCB();
      * cb.query().setFoo...(value);
-     * regionBhv.<span style="color: #FD4747">selectCursor</span>(cb, new EntityRowHandler&lt;Region&gt;() {
+     * regionBhv.<span style="color: #DD4747">selectCursor</span>(cb, new EntityRowHandler&lt;Region&gt;() {
      *     public void handle(Region entity) {
      *         ... = entity.getFoo...();
      *     }
@@ -330,9 +334,9 @@ public abstract class BsRegionBhv extends AbstractBehaviorWritable {
      * Select the scalar value derived by a function from uniquely-selected records. <br />
      * You should call a function method after this method called like as follows:
      * <pre>
-     * regionBhv.<span style="color: #FD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
+     * regionBhv.<span style="color: #DD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
      *     public void query(RegionCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
+     *         cb.specify().<span style="color: #DD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
      *         cb.query().setBarName_PrefixSearch("S");
      *     }
      * });
@@ -372,61 +376,92 @@ public abstract class BsRegionBhv extends AbstractBehaviorWritable {
     //                                                                       Load Referrer
     //                                                                       =============
     /**
-     * {Refer to overload method that has an argument of the list of entity.}
-     * @param region The entity of region. (NotNull)
-     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
-     */
-    public void loadMemberAddressList(Region region, ConditionBeanSetupper<MemberAddressCB> conditionBeanSetupper) {
-        xassLRArg(region, conditionBeanSetupper);
-        loadMemberAddressList(xnewLRLs(region), conditionBeanSetupper);
-    }
-    /**
-     * Load referrer of memberAddressList with the set-upper for condition-bean of referrer. <br />
+     * Load referrer of memberAddressList by the set-upper of referrer. <br />
      * (会員住所情報)member_address by region_id, named 'memberAddressList'.
      * <pre>
-     * regionBhv.<span style="color: #FD4747">loadMemberAddressList</span>(regionList, new ConditionBeanSetupper&lt;MemberAddressCB&gt;() {
+     * regionBhv.<span style="color: #DD4747">loadMemberAddressList</span>(regionList, new ConditionBeanSetupper&lt;MemberAddressCB&gt;() {
      *     public void setup(MemberAddressCB cb) {
      *         cb.setupSelect...();
      *         cb.query().setFoo...(value);
      *         cb.query().addOrderBy_Bar...(); <span style="color: #3F7E5E">// basically you should order referrer list</span>
      *     }
-     * });
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here by calling like '}).withNestedList(new ...)'</span>
      * for (Region region : regionList) {
-     *     ... = region.<span style="color: #FD4747">getMemberAddressList()</span>;
+     *     ... = region.<span style="color: #DD4747">getMemberAddressList()</span>;
      * }
      * </pre>
-     * About internal policy, the value of primary key(and others too) is treated as case-insensitive. <br />
-     * The condition-bean that the set-upper provides have settings before you touch it. It is as follows:
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
+     * <pre>
+     * cb.query().setRegionId_InScope(pkList);
+     * cb.query().addOrderBy_RegionId_Asc();
+     * </pre>
+     * @param region The entity of region. (NotNull)
+     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
+     */
+    public NestedReferrerLoader<MemberAddress> loadMemberAddressList(Region region, ConditionBeanSetupper<MemberAddressCB> conditionBeanSetupper) {
+        xassLRArg(region, conditionBeanSetupper);
+        return loadMemberAddressList(xnewLRLs(region), conditionBeanSetupper);
+    }
+
+    /**
+     * Load referrer of memberAddressList by the set-upper of referrer. <br />
+     * (会員住所情報)member_address by region_id, named 'memberAddressList'.
+     * <pre>
+     * regionBhv.<span style="color: #DD4747">loadMemberAddressList</span>(regionList, new ConditionBeanSetupper&lt;MemberAddressCB&gt;() {
+     *     public void setup(MemberAddressCB cb) {
+     *         cb.setupSelect...();
+     *         cb.query().setFoo...(value);
+     *         cb.query().addOrderBy_Bar...(); <span style="color: #3F7E5E">// basically you should order referrer list</span>
+     *     }
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here by calling like '}).withNestedList(new ...)'</span>
+     * for (Region region : regionList) {
+     *     ... = region.<span style="color: #DD4747">getMemberAddressList()</span>;
+     * }
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
      * <pre>
      * cb.query().setRegionId_InScope(pkList);
      * cb.query().addOrderBy_RegionId_Asc();
      * </pre>
      * @param regionList The entity list of region. (NotNull)
      * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public void loadMemberAddressList(List<Region> regionList, ConditionBeanSetupper<MemberAddressCB> conditionBeanSetupper) {
+    public NestedReferrerLoader<MemberAddress> loadMemberAddressList(List<Region> regionList, ConditionBeanSetupper<MemberAddressCB> conditionBeanSetupper) {
         xassLRArg(regionList, conditionBeanSetupper);
-        loadMemberAddressList(regionList, new LoadReferrerOption<MemberAddressCB, MemberAddress>().xinit(conditionBeanSetupper));
+        return loadMemberAddressList(regionList, new LoadReferrerOption<MemberAddressCB, MemberAddress>().xinit(conditionBeanSetupper));
     }
+
     /**
      * {Refer to overload method that has an argument of the list of entity.}
      * @param region The entity of region. (NotNull)
      * @param loadReferrerOption The option of load-referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public void loadMemberAddressList(Region region, LoadReferrerOption<MemberAddressCB, MemberAddress> loadReferrerOption) {
+    public NestedReferrerLoader<MemberAddress> loadMemberAddressList(Region region, LoadReferrerOption<MemberAddressCB, MemberAddress> loadReferrerOption) {
         xassLRArg(region, loadReferrerOption);
-        loadMemberAddressList(xnewLRLs(region), loadReferrerOption);
+        return loadMemberAddressList(xnewLRLs(region), loadReferrerOption);
     }
+
     /**
      * {Refer to overload method that has an argument of condition-bean setupper.}
      * @param regionList The entity list of region. (NotNull)
      * @param loadReferrerOption The option of load-referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public void loadMemberAddressList(List<Region> regionList, LoadReferrerOption<MemberAddressCB, MemberAddress> loadReferrerOption) {
+    @SuppressWarnings("unchecked")
+    public NestedReferrerLoader<MemberAddress> loadMemberAddressList(List<Region> regionList, LoadReferrerOption<MemberAddressCB, MemberAddress> loadReferrerOption) {
         xassLRArg(regionList, loadReferrerOption);
-        if (regionList.isEmpty()) { return; }
+        if (regionList.isEmpty()) { return (NestedReferrerLoader<MemberAddress>)EMPTY_LOADER; }
+        return doLoadMemberAddressList(regionList, loadReferrerOption);
+    }
+
+    protected NestedReferrerLoader<MemberAddress> doLoadMemberAddressList(List<Region> regionList, LoadReferrerOption<MemberAddressCB, MemberAddress> option) {
         final MemberAddressBhv referrerBhv = xgetBSFLR().select(MemberAddressBhv.class);
-        helpLoadReferrerInternally(regionList, loadReferrerOption, new InternalLoadReferrerCallback<Region, Integer, MemberAddressCB, MemberAddress>() {
+        return helpLoadReferrerInternally(regionList, option, new InternalLoadReferrerCallback<Region, Integer, MemberAddressCB, MemberAddress>() {
             public Integer getPKVal(Region et)
             { return et.getRegionId(); }
             public void setRfLs(Region et, List<MemberAddress> ls)
@@ -475,12 +510,12 @@ public abstract class BsRegionBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
      * <span style="color: #3F7E5E">//region.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//region.set...;</span>
-     * regionBhv.<span style="color: #FD4747">insert</span>(region);
+     * regionBhv.<span style="color: #DD4747">insert</span>(region);
      * ... = region.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * <p>While, when the entity is created by select, all columns are registered.</p>
      * @param region The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insert(Region region) {
         doInsert(region, null);
@@ -516,17 +551,17 @@ public abstract class BsRegionBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">//region.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//region.set...;</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * region.<span style="color: #FD4747">setVersionNo</span>(value);
+     * region.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
-     *     regionBhv.<span style="color: #FD4747">update</span>(region);
+     *     regionBhv.<span style="color: #DD4747">update</span>(region);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param region The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void update(final Region region) {
         doUpdate(region, null);
@@ -576,11 +611,11 @@ public abstract class BsRegionBhv extends AbstractBehaviorWritable {
     /**
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br />
-     * <p><span style="color: #FD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
+     * <p><span style="color: #DD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
      * @param region The entity of insert or update target. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insertOrUpdate(Region region) {
         doInesrtOrUpdate(region, null, null);
@@ -616,16 +651,16 @@ public abstract class BsRegionBhv extends AbstractBehaviorWritable {
      * Region region = new Region();
      * region.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * region.<span style="color: #FD4747">setVersionNo</span>(value);
+     * region.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
-     *     regionBhv.<span style="color: #FD4747">delete</span>(region);
+     *     regionBhv.<span style="color: #DD4747">delete</span>(region);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param region The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void delete(Region region) {
         doDelete(region, null);
@@ -660,7 +695,7 @@ public abstract class BsRegionBhv extends AbstractBehaviorWritable {
     /**
      * Batch-insert the entity list modified-only of same-set columns. (DefaultConstraintsEnabled) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
-     * <p><span style="color: #FD4747; font-size: 120%">The columns of least common multiple are registered like this:</span></p>
+     * <p><span style="color: #DD4747; font-size: 120%">The columns of least common multiple are registered like this:</span></p>
      * <pre>
      * for (... : ...) {
      *     Region region = new Region();
@@ -673,7 +708,7 @@ public abstract class BsRegionBhv extends AbstractBehaviorWritable {
      *     <span style="color: #3F7E5E">// columns not-called in all entities are registered as null or default value</span>
      *     regionList.add(region);
      * }
-     * regionBhv.<span style="color: #FD4747">batchInsert</span>(regionList);
+     * regionBhv.<span style="color: #DD4747">batchInsert</span>(regionList);
      * </pre>
      * <p>While, when the entities are created by select, all columns are registered.</p>
      * <p>And if the table has an identity, entities after the process don't have incremented values.
@@ -707,7 +742,7 @@ public abstract class BsRegionBhv extends AbstractBehaviorWritable {
     /**
      * Batch-update the entity list modified-only of same-set columns. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
-     * <span style="color: #FD4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
+     * <span style="color: #DD4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
      * <pre>
      * for (... : ...) {
      *     Region region = new Region();
@@ -722,11 +757,11 @@ public abstract class BsRegionBhv extends AbstractBehaviorWritable {
      *     <span style="color: #3F7E5E">// (others are not updated: their values are kept)</span>
      *     regionList.add(region);
      * }
-     * regionBhv.<span style="color: #FD4747">batchUpdate</span>(regionList);
+     * regionBhv.<span style="color: #DD4747">batchUpdate</span>(regionList);
      * </pre>
      * @param regionList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<Region> regionList) {
         UpdateOption<RegionCB> op = createPlainUpdateOption();
@@ -755,16 +790,16 @@ public abstract class BsRegionBhv extends AbstractBehaviorWritable {
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * <pre>
      * <span style="color: #3F7E5E">// e.g. update two columns only</span>
-     * regionBhv.<span style="color: #FD4747">batchUpdate</span>(regionList, new SpecifyQuery<RegionCB>() {
+     * regionBhv.<span style="color: #DD4747">batchUpdate</span>(regionList, new SpecifyQuery<RegionCB>() {
      *     public void specify(RegionCB cb) { <span style="color: #3F7E5E">// the two only updated</span>
-     *         cb.specify().<span style="color: #FD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
-     *         cb.specify().<span style="color: #FD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
+     *         cb.specify().<span style="color: #DD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
+     *         cb.specify().<span style="color: #DD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
      *     }
      * });
      * <span style="color: #3F7E5E">// e.g. update every column in the table</span>
-     * regionBhv.<span style="color: #FD4747">batchUpdate</span>(regionList, new SpecifyQuery<RegionCB>() {
+     * regionBhv.<span style="color: #DD4747">batchUpdate</span>(regionList, new SpecifyQuery<RegionCB>() {
      *     public void specify(RegionCB cb) { <span style="color: #3F7E5E">// all columns are updated</span>
-     *         cb.specify().<span style="color: #FD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
+     *         cb.specify().<span style="color: #DD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
      *     }
      * });
      * </pre>
@@ -776,7 +811,7 @@ public abstract class BsRegionBhv extends AbstractBehaviorWritable {
      * @param regionList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @param updateColumnSpec The specification of update columns. (NotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<Region> regionList, SpecifyQuery<RegionCB> updateColumnSpec) {
         return doBatchUpdate(regionList, createSpecifiedUpdateOption(updateColumnSpec));
@@ -792,7 +827,7 @@ public abstract class BsRegionBhv extends AbstractBehaviorWritable {
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * @param regionList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of deleted count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchDelete(List<Region> regionList) {
         return doBatchDelete(regionList, null);
@@ -821,7 +856,7 @@ public abstract class BsRegionBhv extends AbstractBehaviorWritable {
     /**
      * Insert the several entities by query (modified-only for fixed value).
      * <pre>
-     * regionBhv.<span style="color: #FD4747">queryInsert</span>(new QueryInsertSetupper&lt;Region, RegionCB&gt;() {
+     * regionBhv.<span style="color: #DD4747">queryInsert</span>(new QueryInsertSetupper&lt;Region, RegionCB&gt;() {
      *     public ConditionBean setup(region entity, RegionCB intoCB) {
      *         FooCB cb = FooCB();
      *         cb.setupSelect_Bar();
@@ -883,12 +918,12 @@ public abstract class BsRegionBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">//region.setVersionNo(value);</span>
      * RegionCB cb = new RegionCB();
      * cb.query().setFoo...(value);
-     * regionBhv.<span style="color: #FD4747">queryUpdate</span>(region, cb);
+     * regionBhv.<span style="color: #DD4747">queryUpdate</span>(region, cb);
      * </pre>
      * @param region The entity that contains update values. (NotNull, PrimaryKeyNullAllowed)
      * @param cb The condition-bean of Region. (NotNull)
      * @return The updated count.
-     * @exception org.seasar.dbflute.exception.NonQueryUpdateNotAllowedException When the query has no condition.
+     * @exception NonQueryUpdateNotAllowedException When the query has no condition.
      */
     public int queryUpdate(Region region, RegionCB cb) {
         return doQueryUpdate(region, cb, null);
@@ -911,11 +946,11 @@ public abstract class BsRegionBhv extends AbstractBehaviorWritable {
      * <pre>
      * RegionCB cb = new RegionCB();
      * cb.query().setFoo...(value);
-     * regionBhv.<span style="color: #FD4747">queryDelete</span>(region, cb);
+     * regionBhv.<span style="color: #DD4747">queryDelete</span>(region, cb);
      * </pre>
      * @param cb The condition-bean of Region. (NotNull)
      * @return The deleted count.
-     * @exception org.seasar.dbflute.exception.NonQueryDeleteNotAllowedException When the query has no condition.
+     * @exception NonQueryDeleteNotAllowedException When the query has no condition.
      */
     public int queryDelete(RegionCB cb) {
         return doQueryDelete(cb, null);
@@ -951,12 +986,12 @@ public abstract class BsRegionBhv extends AbstractBehaviorWritable {
      * InsertOption<RegionCB> option = new InsertOption<RegionCB>();
      * <span style="color: #3F7E5E">// you can insert by your values for common columns</span>
      * option.disableCommonColumnAutoSetup();
-     * regionBhv.<span style="color: #FD4747">varyingInsert</span>(region, option);
+     * regionBhv.<span style="color: #DD4747">varyingInsert</span>(region, option);
      * ... = region.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * @param region The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
      * @param option The option of insert for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingInsert(Region region, InsertOption<RegionCB> option) {
         assertInsertOptionNotNull(option);
@@ -972,25 +1007,25 @@ public abstract class BsRegionBhv extends AbstractBehaviorWritable {
      * region.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * region.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * region.<span style="color: #FD4747">setVersionNo</span>(value);
+     * region.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     <span style="color: #3F7E5E">// you can update by self calculation values</span>
      *     UpdateOption&lt;RegionCB&gt; option = new UpdateOption&lt;RegionCB&gt;();
      *     option.self(new SpecifyQuery&lt;RegionCB&gt;() {
      *         public void specify(RegionCB cb) {
-     *             cb.specify().<span style="color: #FD4747">columnXxxCount()</span>;
+     *             cb.specify().<span style="color: #DD4747">columnXxxCount()</span>;
      *         }
      *     }).plus(1); <span style="color: #3F7E5E">// XXX_COUNT = XXX_COUNT + 1</span>
-     *     regionBhv.<span style="color: #FD4747">varyingUpdate</span>(region, option);
+     *     regionBhv.<span style="color: #DD4747">varyingUpdate</span>(region, option);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param region The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @param option The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingUpdate(Region region, UpdateOption<RegionCB> option) {
         assertUpdateOptionNotNull(option);
@@ -1003,9 +1038,9 @@ public abstract class BsRegionBhv extends AbstractBehaviorWritable {
      * @param region The entity of insert or update target. (NotNull)
      * @param insertOption The option of insert for varying requests. (NotNull)
      * @param updateOption The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingInsertOrUpdate(Region region, InsertOption<RegionCB> insertOption, UpdateOption<RegionCB> updateOption) {
         assertInsertOptionNotNull(insertOption); assertUpdateOptionNotNull(updateOption);
@@ -1018,8 +1053,8 @@ public abstract class BsRegionBhv extends AbstractBehaviorWritable {
      * Other specifications are same as delete(entity).
      * @param region The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @param option The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void varyingDelete(Region region, DeleteOption<RegionCB> option) {
         assertDeleteOptionNotNull(option);
@@ -1105,16 +1140,16 @@ public abstract class BsRegionBhv extends AbstractBehaviorWritable {
      * UpdateOption&lt;RegionCB&gt; option = new UpdateOption&lt;RegionCB&gt;();
      * option.self(new SpecifyQuery&lt;RegionCB&gt;() {
      *     public void specify(RegionCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFooCount()</span>;
+     *         cb.specify().<span style="color: #DD4747">columnFooCount()</span>;
      *     }
      * }).plus(1); <span style="color: #3F7E5E">// FOO_COUNT = FOO_COUNT + 1</span>
-     * regionBhv.<span style="color: #FD4747">varyingQueryUpdate</span>(region, cb, option);
+     * regionBhv.<span style="color: #DD4747">varyingQueryUpdate</span>(region, cb, option);
      * </pre>
      * @param region The entity that contains update values. (NotNull) {PrimaryKeyNotRequired}
      * @param cb The condition-bean of Region. (NotNull)
      * @param option The option of update for varying requests. (NotNull)
      * @return The updated count.
-     * @exception org.seasar.dbflute.exception.NonQueryUpdateNotAllowedException When the query has no condition (if not allowed).
+     * @exception NonQueryUpdateNotAllowedException When the query has no condition (if not allowed).
      */
     public int varyingQueryUpdate(Region region, RegionCB cb, UpdateOption<RegionCB> option) {
         assertUpdateOptionNotNull(option);
@@ -1128,7 +1163,7 @@ public abstract class BsRegionBhv extends AbstractBehaviorWritable {
      * @param cb The condition-bean of Region. (NotNull)
      * @param option The option of delete for varying requests. (NotNull)
      * @return The deleted count.
-     * @exception org.seasar.dbflute.exception.NonQueryDeleteNotAllowedException When the query has no condition (if not allowed).
+     * @exception NonQueryDeleteNotAllowedException When the query has no condition (if not allowed).
      */
     public int varyingQueryDelete(RegionCB cb, DeleteOption<RegionCB> option) {
         assertDeleteOptionNotNull(option);

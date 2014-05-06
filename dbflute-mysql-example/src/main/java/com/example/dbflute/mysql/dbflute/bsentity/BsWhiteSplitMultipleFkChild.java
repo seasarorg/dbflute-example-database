@@ -217,17 +217,17 @@ public abstract class BsWhiteSplitMultipleFkChild implements Entity, Serializabl
     /**
      * Determine the object is equal with this. <br />
      * If primary-keys or columns of the other are same as this one, returns true.
-     * @param other The other entity. (NullAllowed: if null, returns false fixedly)
+     * @param obj The object as other entity. (NullAllowed: if null, returns false fixedly)
      * @return Comparing result.
      */
-    public boolean equals(Object other) {
-        if (other == null || !(other instanceof BsWhiteSplitMultipleFkChild)) { return false; }
-        BsWhiteSplitMultipleFkChild otherEntity = (BsWhiteSplitMultipleFkChild)other;
-        if (!xSV(getChildId(), otherEntity.getChildId())) { return false; }
+    public boolean equals(Object obj) {
+        if (obj == null || !(obj instanceof BsWhiteSplitMultipleFkChild)) { return false; }
+        BsWhiteSplitMultipleFkChild other = (BsWhiteSplitMultipleFkChild)obj;
+        if (!xSV(getChildId(), other.getChildId())) { return false; }
         return true;
     }
-    protected boolean xSV(Object value1, Object value2) { // isSameValue()
-        return InternalUtil.isSameValue(value1, value2);
+    protected boolean xSV(Object value1, Object value2) {
+        return FunCustodial.isSameValue(value1, value2);
     }
 
     /**
@@ -240,8 +240,8 @@ public abstract class BsWhiteSplitMultipleFkChild implements Entity, Serializabl
         result = xCH(result, getChildId());
         return result;
     }
-    protected int xCH(int result, Object value) { // calculateHashcode()
-        return InternalUtil.calculateHashcode(result, value);
+    protected int xCH(int result, Object value) {
+        return FunCustodial.calculateHashcode(result, value);
     }
 
     /**
@@ -256,7 +256,7 @@ public abstract class BsWhiteSplitMultipleFkChild implements Entity, Serializabl
      * @return The display string of all columns and relation existences. (NotNull)
      */
     public String toString() {
-        return buildDisplayString(InternalUtil.toClassTitle(this), true, true);
+        return buildDisplayString(FunCustodial.toClassTitle(this), true, true);
     }
 
     /**

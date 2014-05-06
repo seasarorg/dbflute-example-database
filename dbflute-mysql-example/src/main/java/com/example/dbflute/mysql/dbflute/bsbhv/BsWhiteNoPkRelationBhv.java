@@ -21,6 +21,7 @@ import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
 import org.seasar.dbflute.dbmeta.DBMeta;
+import org.seasar.dbflute.exception.*;
 import org.seasar.dbflute.outsidesql.executor.*;
 import com.example.dbflute.mysql.dbflute.exbhv.*;
 import com.example.dbflute.mysql.dbflute.exentity.*;
@@ -106,7 +107,7 @@ public abstract class BsWhiteNoPkRelationBhv extends AbstractBehaviorReadable {
      * <pre>
      * WhiteNoPkRelationCB cb = new WhiteNoPkRelationCB();
      * cb.query().setFoo...(value);
-     * int count = whiteNoPkRelationBhv.<span style="color: #FD4747">selectCount</span>(cb);
+     * int count = whiteNoPkRelationBhv.<span style="color: #DD4747">selectCount</span>(cb);
      * </pre>
      * @param cb The condition-bean of WhiteNoPkRelation. (NotNull)
      * @return The count for the condition. (NotMinus)
@@ -134,12 +135,14 @@ public abstract class BsWhiteNoPkRelationBhv extends AbstractBehaviorReadable {
     //                                                                       Entity Select
     //                                                                       =============
     /**
-     * Select the entity by the condition-bean.
+     * Select the entity by the condition-bean. <br />
+     * <span style="color: #AD4747; font-size: 120%">The return might be null if no data, so you should have null check.</span> <br />
+     * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, use selectEntityWithDeletedCheck().</span>
      * <pre>
      * WhiteNoPkRelationCB cb = new WhiteNoPkRelationCB();
      * cb.query().setFoo...(value);
-     * WhiteNoPkRelation whiteNoPkRelation = whiteNoPkRelationBhv.<span style="color: #FD4747">selectEntity</span>(cb);
-     * if (whiteNoPkRelation != null) {
+     * WhiteNoPkRelation whiteNoPkRelation = whiteNoPkRelationBhv.<span style="color: #DD4747">selectEntity</span>(cb);
+     * if (whiteNoPkRelation != null) { <span style="color: #3F7E5E">// null check</span>
      *     ... = whiteNoPkRelation.get...();
      * } else {
      *     ...
@@ -147,8 +150,8 @@ public abstract class BsWhiteNoPkRelationBhv extends AbstractBehaviorReadable {
      * </pre>
      * @param cb The condition-bean of WhiteNoPkRelation. (NotNull)
      * @return The entity selected by the condition. (NullAllowed: if no data, it returns null)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteNoPkRelation selectEntity(WhiteNoPkRelationCB cb) {
         return doSelectEntity(cb, WhiteNoPkRelation.class);
@@ -166,18 +169,19 @@ public abstract class BsWhiteNoPkRelationBhv extends AbstractBehaviorReadable {
     }
 
     /**
-     * Select the entity by the condition-bean with deleted check.
+     * Select the entity by the condition-bean with deleted check. <br />
+     * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, this method is good.</span>
      * <pre>
      * WhiteNoPkRelationCB cb = new WhiteNoPkRelationCB();
      * cb.query().setFoo...(value);
-     * WhiteNoPkRelation whiteNoPkRelation = whiteNoPkRelationBhv.<span style="color: #FD4747">selectEntityWithDeletedCheck</span>(cb);
+     * WhiteNoPkRelation whiteNoPkRelation = whiteNoPkRelationBhv.<span style="color: #DD4747">selectEntityWithDeletedCheck</span>(cb);
      * ... = whiteNoPkRelation.get...(); <span style="color: #3F7E5E">// the entity always be not null</span>
      * </pre>
      * @param cb The condition-bean of WhiteNoPkRelation. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteNoPkRelation selectEntityWithDeletedCheck(WhiteNoPkRelationCB cb) {
         return doSelectEntityWithDeletedCheck(cb, WhiteNoPkRelation.class);
@@ -203,14 +207,14 @@ public abstract class BsWhiteNoPkRelationBhv extends AbstractBehaviorReadable {
      * WhiteNoPkRelationCB cb = new WhiteNoPkRelationCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * ListResultBean&lt;WhiteNoPkRelation&gt; whiteNoPkRelationList = whiteNoPkRelationBhv.<span style="color: #FD4747">selectList</span>(cb);
+     * ListResultBean&lt;WhiteNoPkRelation&gt; whiteNoPkRelationList = whiteNoPkRelationBhv.<span style="color: #DD4747">selectList</span>(cb);
      * for (WhiteNoPkRelation whiteNoPkRelation : whiteNoPkRelationList) {
      *     ... = whiteNoPkRelation.get...();
      * }
      * </pre>
      * @param cb The condition-bean of WhiteNoPkRelation. (NotNull)
      * @return The result bean of selected list. (NotNull: if no data, returns empty list)
-     * @exception org.seasar.dbflute.exception.DangerousResultSizeException When the result size is over the specified safety size.
+     * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public ListResultBean<WhiteNoPkRelation> selectList(WhiteNoPkRelationCB cb) {
         return doSelectList(cb, WhiteNoPkRelation.class);
@@ -238,8 +242,8 @@ public abstract class BsWhiteNoPkRelationBhv extends AbstractBehaviorReadable {
      * WhiteNoPkRelationCB cb = new WhiteNoPkRelationCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * cb.<span style="color: #FD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
-     * PagingResultBean&lt;WhiteNoPkRelation&gt; page = whiteNoPkRelationBhv.<span style="color: #FD4747">selectPage</span>(cb);
+     * cb.<span style="color: #DD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
+     * PagingResultBean&lt;WhiteNoPkRelation&gt; page = whiteNoPkRelationBhv.<span style="color: #DD4747">selectPage</span>(cb);
      * int allRecordCount = page.getAllRecordCount();
      * int allPageCount = page.getAllPageCount();
      * boolean isExistPrePage = page.isExistPrePage();
@@ -251,7 +255,7 @@ public abstract class BsWhiteNoPkRelationBhv extends AbstractBehaviorReadable {
      * </pre>
      * @param cb The condition-bean of WhiteNoPkRelation. (NotNull)
      * @return The result bean of selected page. (NotNull: if no data, returns bean as empty list)
-     * @exception org.seasar.dbflute.exception.DangerousResultSizeException When the result size is over the specified safety size.
+     * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public PagingResultBean<WhiteNoPkRelation> selectPage(WhiteNoPkRelationCB cb) {
         return doSelectPage(cb, WhiteNoPkRelation.class);
@@ -278,7 +282,7 @@ public abstract class BsWhiteNoPkRelationBhv extends AbstractBehaviorReadable {
      * <pre>
      * WhiteNoPkRelationCB cb = new WhiteNoPkRelationCB();
      * cb.query().setFoo...(value);
-     * whiteNoPkRelationBhv.<span style="color: #FD4747">selectCursor</span>(cb, new EntityRowHandler&lt;WhiteNoPkRelation&gt;() {
+     * whiteNoPkRelationBhv.<span style="color: #DD4747">selectCursor</span>(cb, new EntityRowHandler&lt;WhiteNoPkRelation&gt;() {
      *     public void handle(WhiteNoPkRelation entity) {
      *         ... = entity.getFoo...();
      *     }
@@ -307,9 +311,9 @@ public abstract class BsWhiteNoPkRelationBhv extends AbstractBehaviorReadable {
      * Select the scalar value derived by a function from uniquely-selected records. <br />
      * You should call a function method after this method called like as follows:
      * <pre>
-     * whiteNoPkRelationBhv.<span style="color: #FD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
+     * whiteNoPkRelationBhv.<span style="color: #DD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
      *     public void query(WhiteNoPkRelationCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
+     *         cb.specify().<span style="color: #DD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
      *         cb.query().setBarName_PrefixSearch("S");
      *     }
      * });

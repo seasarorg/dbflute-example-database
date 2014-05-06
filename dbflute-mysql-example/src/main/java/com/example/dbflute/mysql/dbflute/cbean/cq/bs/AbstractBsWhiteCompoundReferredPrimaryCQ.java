@@ -153,7 +153,7 @@ public abstract class AbstractBsWhiteCompoundReferredPrimaryCQ extends AbstractC
      * {exists (select PK_SECOND_ID from white_compound_pk where ...)} <br />
      * white_compound_pk by PK_SECOND_ID, named 'whiteCompoundPkAsOne'.
      * <pre>
-     * cb.query().<span style="color: #FD4747">existsWhiteCompoundPkList</span>(new SubQuery&lt;WhiteCompoundPkCB&gt;() {
+     * cb.query().<span style="color: #DD4747">existsWhiteCompoundPkList</span>(new SubQuery&lt;WhiteCompoundPkCB&gt;() {
      *     public void query(WhiteCompoundPkCB subCB) {
      *         subCB.query().setXxx...
      *     }
@@ -174,7 +174,7 @@ public abstract class AbstractBsWhiteCompoundReferredPrimaryCQ extends AbstractC
      * {not exists (select PK_SECOND_ID from white_compound_pk where ...)} <br />
      * white_compound_pk by PK_SECOND_ID, named 'whiteCompoundPkAsOne'.
      * <pre>
-     * cb.query().<span style="color: #FD4747">notExistsWhiteCompoundPkList</span>(new SubQuery&lt;WhiteCompoundPkCB&gt;() {
+     * cb.query().<span style="color: #DD4747">notExistsWhiteCompoundPkList</span>(new SubQuery&lt;WhiteCompoundPkCB&gt;() {
      *     public void query(WhiteCompoundPkCB subCB) {
      *         subCB.query().setXxx...
      *     }
@@ -231,12 +231,12 @@ public abstract class AbstractBsWhiteCompoundReferredPrimaryCQ extends AbstractC
      * {FOO &lt;= (select max(BAR) from white_compound_pk where ...)} <br />
      * white_compound_pk by PK_SECOND_ID, named 'whiteCompoundPkAsOne'.
      * <pre>
-     * cb.query().<span style="color: #FD4747">derivedWhiteCompoundPkList()</span>.<span style="color: #FD4747">max</span>(new SubQuery&lt;WhiteCompoundPkCB&gt;() {
+     * cb.query().<span style="color: #DD4747">derivedWhiteCompoundPkList()</span>.<span style="color: #DD4747">max</span>(new SubQuery&lt;WhiteCompoundPkCB&gt;() {
      *     public void query(WhiteCompoundPkCB subCB) {
-     *         subCB.specify().<span style="color: #FD4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
+     *         subCB.specify().<span style="color: #DD4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
      *         subCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
      *     }
-     * }).<span style="color: #FD4747">greaterEqual</span>(123); <span style="color: #3F7E5E">// condition to derived column</span>
+     * }).<span style="color: #DD4747">greaterEqual</span>(123); <span style="color: #3F7E5E">// condition to derived column</span>
      * </pre>
      * @return The object to set up a function for referrer table. (NotNull)
      */
@@ -339,7 +339,7 @@ public abstract class AbstractBsWhiteCompoundReferredPrimaryCQ extends AbstractC
     /**
      * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br />
      * REFERRED_NAME: {NotNull, VARCHAR(200)} <br />
-     * <pre>e.g. setReferredName_LikeSearch("xxx", new <span style="color: #FD4747">LikeSearchOption</span>().likeContain());</pre>
+     * <pre>e.g. setReferredName_LikeSearch("xxx", new <span style="color: #DD4747">LikeSearchOption</span>().likeContain());</pre>
      * @param referredName The value of referredName as likeSearch. (NullAllowed: if null (or empty), no condition)
      * @param likeSearchOption The option of like-search. (NotNull)
      */
@@ -368,7 +368,7 @@ public abstract class AbstractBsWhiteCompoundReferredPrimaryCQ extends AbstractC
      * Prepare ScalarCondition as equal. <br />
      * {where FOO = (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #FD4747">scalar_Equal()</span>.max(new SubQuery&lt;WhiteCompoundReferredPrimaryCB&gt;() {
+     * cb.query().<span style="color: #DD4747">scalar_Equal()</span>.max(new SubQuery&lt;WhiteCompoundReferredPrimaryCB&gt;() {
      *     public void query(WhiteCompoundReferredPrimaryCB subCB) {
      *         subCB.specify().setXxx... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setYyy...
@@ -385,7 +385,7 @@ public abstract class AbstractBsWhiteCompoundReferredPrimaryCQ extends AbstractC
      * Prepare ScalarCondition as equal. <br />
      * {where FOO &lt;&gt; (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #FD4747">scalar_NotEqual()</span>.max(new SubQuery&lt;WhiteCompoundReferredPrimaryCB&gt;() {
+     * cb.query().<span style="color: #DD4747">scalar_NotEqual()</span>.max(new SubQuery&lt;WhiteCompoundReferredPrimaryCB&gt;() {
      *     public void query(WhiteCompoundReferredPrimaryCB subCB) {
      *         subCB.specify().setXxx... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setYyy...
@@ -402,7 +402,7 @@ public abstract class AbstractBsWhiteCompoundReferredPrimaryCQ extends AbstractC
      * Prepare ScalarCondition as greaterThan. <br />
      * {where FOO &gt; (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #FD4747">scalar_GreaterThan()</span>.max(new SubQuery&lt;WhiteCompoundReferredPrimaryCB&gt;() {
+     * cb.query().<span style="color: #DD4747">scalar_GreaterThan()</span>.max(new SubQuery&lt;WhiteCompoundReferredPrimaryCB&gt;() {
      *     public void query(WhiteCompoundReferredPrimaryCB subCB) {
      *         subCB.specify().setFoo... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setBar...
@@ -419,7 +419,7 @@ public abstract class AbstractBsWhiteCompoundReferredPrimaryCQ extends AbstractC
      * Prepare ScalarCondition as lessThan. <br />
      * {where FOO &lt; (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #FD4747">scalar_LessThan()</span>.max(new SubQuery&lt;WhiteCompoundReferredPrimaryCB&gt;() {
+     * cb.query().<span style="color: #DD4747">scalar_LessThan()</span>.max(new SubQuery&lt;WhiteCompoundReferredPrimaryCB&gt;() {
      *     public void query(WhiteCompoundReferredPrimaryCB subCB) {
      *         subCB.specify().setFoo... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setBar...
@@ -436,7 +436,7 @@ public abstract class AbstractBsWhiteCompoundReferredPrimaryCQ extends AbstractC
      * Prepare ScalarCondition as greaterEqual. <br />
      * {where FOO &gt;= (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #FD4747">scalar_GreaterEqual()</span>.max(new SubQuery&lt;WhiteCompoundReferredPrimaryCB&gt;() {
+     * cb.query().<span style="color: #DD4747">scalar_GreaterEqual()</span>.max(new SubQuery&lt;WhiteCompoundReferredPrimaryCB&gt;() {
      *     public void query(WhiteCompoundReferredPrimaryCB subCB) {
      *         subCB.specify().setFoo... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setBar...
@@ -453,7 +453,7 @@ public abstract class AbstractBsWhiteCompoundReferredPrimaryCQ extends AbstractC
      * Prepare ScalarCondition as lessEqual. <br />
      * {where FOO &lt;= (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #FD4747">scalar_LessEqual()</span>.max(new SubQuery&lt;WhiteCompoundReferredPrimaryCB&gt;() {
+     * cb.query().<span style="color: #DD4747">scalar_LessEqual()</span>.max(new SubQuery&lt;WhiteCompoundReferredPrimaryCB&gt;() {
      *     public void query(WhiteCompoundReferredPrimaryCB subCB) {
      *         subCB.specify().setFoo... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setBar...

@@ -6,6 +6,7 @@ import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
 import org.seasar.dbflute.dbmeta.DBMeta;
+import org.seasar.dbflute.exception.*;
 import org.seasar.dbflute.outsidesql.executor.*;
 import com.example.dbflute.postgresql.dbflute.exbhv.*;
 import com.example.dbflute.postgresql.dbflute.exentity.*;
@@ -91,7 +92,7 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorReadable {
      * <pre>
      * SummaryProductCB cb = new SummaryProductCB();
      * cb.query().setFoo...(value);
-     * int count = summaryProductBhv.<span style="color: #FD4747">selectCount</span>(cb);
+     * int count = summaryProductBhv.<span style="color: #DD4747">selectCount</span>(cb);
      * </pre>
      * @param cb The condition-bean of SummaryProduct. (NotNull)
      * @return The count for the condition. (NotMinus)
@@ -119,12 +120,14 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorReadable {
     //                                                                       Entity Select
     //                                                                       =============
     /**
-     * Select the entity by the condition-bean.
+     * Select the entity by the condition-bean. <br />
+     * <span style="color: #AD4747; font-size: 120%">The return might be null if no data, so you should have null check.</span> <br />
+     * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, use selectEntityWithDeletedCheck().</span>
      * <pre>
      * SummaryProductCB cb = new SummaryProductCB();
      * cb.query().setFoo...(value);
-     * SummaryProduct summaryProduct = summaryProductBhv.<span style="color: #FD4747">selectEntity</span>(cb);
-     * if (summaryProduct != null) {
+     * SummaryProduct summaryProduct = summaryProductBhv.<span style="color: #DD4747">selectEntity</span>(cb);
+     * if (summaryProduct != null) { <span style="color: #3F7E5E">// null check</span>
      *     ... = summaryProduct.get...();
      * } else {
      *     ...
@@ -132,8 +135,8 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorReadable {
      * </pre>
      * @param cb The condition-bean of SummaryProduct. (NotNull)
      * @return The entity selected by the condition. (NullAllowed: if no data, it returns null)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public SummaryProduct selectEntity(SummaryProductCB cb) {
         return doSelectEntity(cb, SummaryProduct.class);
@@ -151,18 +154,19 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorReadable {
     }
 
     /**
-     * Select the entity by the condition-bean with deleted check.
+     * Select the entity by the condition-bean with deleted check. <br />
+     * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, this method is good.</span>
      * <pre>
      * SummaryProductCB cb = new SummaryProductCB();
      * cb.query().setFoo...(value);
-     * SummaryProduct summaryProduct = summaryProductBhv.<span style="color: #FD4747">selectEntityWithDeletedCheck</span>(cb);
+     * SummaryProduct summaryProduct = summaryProductBhv.<span style="color: #DD4747">selectEntityWithDeletedCheck</span>(cb);
      * ... = summaryProduct.get...(); <span style="color: #3F7E5E">// the entity always be not null</span>
      * </pre>
      * @param cb The condition-bean of SummaryProduct. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public SummaryProduct selectEntityWithDeletedCheck(SummaryProductCB cb) {
         return doSelectEntityWithDeletedCheck(cb, SummaryProduct.class);
@@ -188,14 +192,14 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorReadable {
      * SummaryProductCB cb = new SummaryProductCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * ListResultBean&lt;SummaryProduct&gt; summaryProductList = summaryProductBhv.<span style="color: #FD4747">selectList</span>(cb);
+     * ListResultBean&lt;SummaryProduct&gt; summaryProductList = summaryProductBhv.<span style="color: #DD4747">selectList</span>(cb);
      * for (SummaryProduct summaryProduct : summaryProductList) {
      *     ... = summaryProduct.get...();
      * }
      * </pre>
      * @param cb The condition-bean of SummaryProduct. (NotNull)
      * @return The result bean of selected list. (NotNull: if no data, returns empty list)
-     * @exception org.seasar.dbflute.exception.DangerousResultSizeException When the result size is over the specified safety size.
+     * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public ListResultBean<SummaryProduct> selectList(SummaryProductCB cb) {
         return doSelectList(cb, SummaryProduct.class);
@@ -223,8 +227,8 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorReadable {
      * SummaryProductCB cb = new SummaryProductCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * cb.<span style="color: #FD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
-     * PagingResultBean&lt;SummaryProduct&gt; page = summaryProductBhv.<span style="color: #FD4747">selectPage</span>(cb);
+     * cb.<span style="color: #DD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
+     * PagingResultBean&lt;SummaryProduct&gt; page = summaryProductBhv.<span style="color: #DD4747">selectPage</span>(cb);
      * int allRecordCount = page.getAllRecordCount();
      * int allPageCount = page.getAllPageCount();
      * boolean isExistPrePage = page.isExistPrePage();
@@ -236,7 +240,7 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorReadable {
      * </pre>
      * @param cb The condition-bean of SummaryProduct. (NotNull)
      * @return The result bean of selected page. (NotNull: if no data, returns bean as empty list)
-     * @exception org.seasar.dbflute.exception.DangerousResultSizeException When the result size is over the specified safety size.
+     * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public PagingResultBean<SummaryProduct> selectPage(SummaryProductCB cb) {
         return doSelectPage(cb, SummaryProduct.class);
@@ -263,7 +267,7 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorReadable {
      * <pre>
      * SummaryProductCB cb = new SummaryProductCB();
      * cb.query().setFoo...(value);
-     * summaryProductBhv.<span style="color: #FD4747">selectCursor</span>(cb, new EntityRowHandler&lt;SummaryProduct&gt;() {
+     * summaryProductBhv.<span style="color: #DD4747">selectCursor</span>(cb, new EntityRowHandler&lt;SummaryProduct&gt;() {
      *     public void handle(SummaryProduct entity) {
      *         ... = entity.getFoo...();
      *     }
@@ -292,9 +296,9 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorReadable {
      * Select the scalar value derived by a function from uniquely-selected records. <br />
      * You should call a function method after this method called like as follows:
      * <pre>
-     * summaryProductBhv.<span style="color: #FD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
+     * summaryProductBhv.<span style="color: #DD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
      *     public void query(SummaryProductCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
+     *         cb.specify().<span style="color: #DD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
      *         cb.query().setBarName_PrefixSearch("S");
      *     }
      * });
@@ -348,7 +352,7 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorReadable {
      * SummaryProduct summaryProduct = new SummaryProduct();
      * summaryProduct.setFoo...(value);
      * summaryProduct.setBar...(value);
-     * summaryProductBhv.<span style="color: #FD4747">insert</span>(summaryProduct);
+     * summaryProductBhv.<span style="color: #DD4747">insert</span>(summaryProduct);
      * </pre>
      * @param summaryProduct The entity for insert. (NotNull)
      */

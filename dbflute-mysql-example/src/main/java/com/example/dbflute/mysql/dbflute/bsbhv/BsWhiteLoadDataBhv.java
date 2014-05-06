@@ -21,6 +21,7 @@ import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
 import org.seasar.dbflute.dbmeta.DBMeta;
+import org.seasar.dbflute.exception.*;
 import org.seasar.dbflute.outsidesql.executor.*;
 import com.example.dbflute.mysql.dbflute.exbhv.*;
 import com.example.dbflute.mysql.dbflute.exentity.*;
@@ -106,7 +107,7 @@ public abstract class BsWhiteLoadDataBhv extends AbstractBehaviorWritable {
      * <pre>
      * WhiteLoadDataCB cb = new WhiteLoadDataCB();
      * cb.query().setFoo...(value);
-     * int count = whiteLoadDataBhv.<span style="color: #FD4747">selectCount</span>(cb);
+     * int count = whiteLoadDataBhv.<span style="color: #DD4747">selectCount</span>(cb);
      * </pre>
      * @param cb The condition-bean of WhiteLoadData. (NotNull)
      * @return The count for the condition. (NotMinus)
@@ -134,12 +135,14 @@ public abstract class BsWhiteLoadDataBhv extends AbstractBehaviorWritable {
     //                                                                       Entity Select
     //                                                                       =============
     /**
-     * Select the entity by the condition-bean.
+     * Select the entity by the condition-bean. <br />
+     * <span style="color: #AD4747; font-size: 120%">The return might be null if no data, so you should have null check.</span> <br />
+     * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, use selectEntityWithDeletedCheck().</span>
      * <pre>
      * WhiteLoadDataCB cb = new WhiteLoadDataCB();
      * cb.query().setFoo...(value);
-     * WhiteLoadData whiteLoadData = whiteLoadDataBhv.<span style="color: #FD4747">selectEntity</span>(cb);
-     * if (whiteLoadData != null) {
+     * WhiteLoadData whiteLoadData = whiteLoadDataBhv.<span style="color: #DD4747">selectEntity</span>(cb);
+     * if (whiteLoadData != null) { <span style="color: #3F7E5E">// null check</span>
      *     ... = whiteLoadData.get...();
      * } else {
      *     ...
@@ -147,8 +150,8 @@ public abstract class BsWhiteLoadDataBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of WhiteLoadData. (NotNull)
      * @return The entity selected by the condition. (NullAllowed: if no data, it returns null)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteLoadData selectEntity(WhiteLoadDataCB cb) {
         return doSelectEntity(cb, WhiteLoadData.class);
@@ -166,18 +169,19 @@ public abstract class BsWhiteLoadDataBhv extends AbstractBehaviorWritable {
     }
 
     /**
-     * Select the entity by the condition-bean with deleted check.
+     * Select the entity by the condition-bean with deleted check. <br />
+     * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, this method is good.</span>
      * <pre>
      * WhiteLoadDataCB cb = new WhiteLoadDataCB();
      * cb.query().setFoo...(value);
-     * WhiteLoadData whiteLoadData = whiteLoadDataBhv.<span style="color: #FD4747">selectEntityWithDeletedCheck</span>(cb);
+     * WhiteLoadData whiteLoadData = whiteLoadDataBhv.<span style="color: #DD4747">selectEntityWithDeletedCheck</span>(cb);
      * ... = whiteLoadData.get...(); <span style="color: #3F7E5E">// the entity always be not null</span>
      * </pre>
      * @param cb The condition-bean of WhiteLoadData. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteLoadData selectEntityWithDeletedCheck(WhiteLoadDataCB cb) {
         return doSelectEntityWithDeletedCheck(cb, WhiteLoadData.class);
@@ -198,8 +202,8 @@ public abstract class BsWhiteLoadDataBhv extends AbstractBehaviorWritable {
      * Select the entity by the primary-key value.
      * @param loadDataId The one of primary key. (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteLoadData selectByPKValue(Long loadDataId) {
         return doSelectByPKValue(loadDataId, WhiteLoadData.class);
@@ -213,9 +217,9 @@ public abstract class BsWhiteLoadDataBhv extends AbstractBehaviorWritable {
      * Select the entity by the primary-key value with deleted check.
      * @param loadDataId The one of primary key. (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteLoadData selectByPKValueWithDeletedCheck(Long loadDataId) {
         return doSelectByPKValueWithDeletedCheck(loadDataId, WhiteLoadData.class);
@@ -241,14 +245,14 @@ public abstract class BsWhiteLoadDataBhv extends AbstractBehaviorWritable {
      * WhiteLoadDataCB cb = new WhiteLoadDataCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * ListResultBean&lt;WhiteLoadData&gt; whiteLoadDataList = whiteLoadDataBhv.<span style="color: #FD4747">selectList</span>(cb);
+     * ListResultBean&lt;WhiteLoadData&gt; whiteLoadDataList = whiteLoadDataBhv.<span style="color: #DD4747">selectList</span>(cb);
      * for (WhiteLoadData whiteLoadData : whiteLoadDataList) {
      *     ... = whiteLoadData.get...();
      * }
      * </pre>
      * @param cb The condition-bean of WhiteLoadData. (NotNull)
      * @return The result bean of selected list. (NotNull: if no data, returns empty list)
-     * @exception org.seasar.dbflute.exception.DangerousResultSizeException When the result size is over the specified safety size.
+     * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public ListResultBean<WhiteLoadData> selectList(WhiteLoadDataCB cb) {
         return doSelectList(cb, WhiteLoadData.class);
@@ -276,8 +280,8 @@ public abstract class BsWhiteLoadDataBhv extends AbstractBehaviorWritable {
      * WhiteLoadDataCB cb = new WhiteLoadDataCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * cb.<span style="color: #FD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
-     * PagingResultBean&lt;WhiteLoadData&gt; page = whiteLoadDataBhv.<span style="color: #FD4747">selectPage</span>(cb);
+     * cb.<span style="color: #DD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
+     * PagingResultBean&lt;WhiteLoadData&gt; page = whiteLoadDataBhv.<span style="color: #DD4747">selectPage</span>(cb);
      * int allRecordCount = page.getAllRecordCount();
      * int allPageCount = page.getAllPageCount();
      * boolean isExistPrePage = page.isExistPrePage();
@@ -289,7 +293,7 @@ public abstract class BsWhiteLoadDataBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of WhiteLoadData. (NotNull)
      * @return The result bean of selected page. (NotNull: if no data, returns bean as empty list)
-     * @exception org.seasar.dbflute.exception.DangerousResultSizeException When the result size is over the specified safety size.
+     * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public PagingResultBean<WhiteLoadData> selectPage(WhiteLoadDataCB cb) {
         return doSelectPage(cb, WhiteLoadData.class);
@@ -316,7 +320,7 @@ public abstract class BsWhiteLoadDataBhv extends AbstractBehaviorWritable {
      * <pre>
      * WhiteLoadDataCB cb = new WhiteLoadDataCB();
      * cb.query().setFoo...(value);
-     * whiteLoadDataBhv.<span style="color: #FD4747">selectCursor</span>(cb, new EntityRowHandler&lt;WhiteLoadData&gt;() {
+     * whiteLoadDataBhv.<span style="color: #DD4747">selectCursor</span>(cb, new EntityRowHandler&lt;WhiteLoadData&gt;() {
      *     public void handle(WhiteLoadData entity) {
      *         ... = entity.getFoo...();
      *     }
@@ -345,9 +349,9 @@ public abstract class BsWhiteLoadDataBhv extends AbstractBehaviorWritable {
      * Select the scalar value derived by a function from uniquely-selected records. <br />
      * You should call a function method after this method called like as follows:
      * <pre>
-     * whiteLoadDataBhv.<span style="color: #FD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
+     * whiteLoadDataBhv.<span style="color: #DD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
      *     public void query(WhiteLoadDataCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
+     *         cb.specify().<span style="color: #DD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
      *         cb.query().setBarName_PrefixSearch("S");
      *     }
      * });
@@ -414,12 +418,12 @@ public abstract class BsWhiteLoadDataBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
      * <span style="color: #3F7E5E">//whiteLoadData.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//whiteLoadData.set...;</span>
-     * whiteLoadDataBhv.<span style="color: #FD4747">insert</span>(whiteLoadData);
+     * whiteLoadDataBhv.<span style="color: #DD4747">insert</span>(whiteLoadData);
      * ... = whiteLoadData.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * <p>While, when the entity is created by select, all columns are registered.</p>
      * @param whiteLoadData The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insert(WhiteLoadData whiteLoadData) {
         doInsert(whiteLoadData, null);
@@ -455,17 +459,17 @@ public abstract class BsWhiteLoadDataBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">//whiteLoadData.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//whiteLoadData.set...;</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * whiteLoadData.<span style="color: #FD4747">setVersionNo</span>(value);
+     * whiteLoadData.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
-     *     whiteLoadDataBhv.<span style="color: #FD4747">update</span>(whiteLoadData);
+     *     whiteLoadDataBhv.<span style="color: #DD4747">update</span>(whiteLoadData);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param whiteLoadData The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void update(final WhiteLoadData whiteLoadData) {
         doUpdate(whiteLoadData, null);
@@ -515,11 +519,11 @@ public abstract class BsWhiteLoadDataBhv extends AbstractBehaviorWritable {
     /**
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br />
-     * <p><span style="color: #FD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
+     * <p><span style="color: #DD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
      * @param whiteLoadData The entity of insert or update target. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insertOrUpdate(WhiteLoadData whiteLoadData) {
         doInesrtOrUpdate(whiteLoadData, null, null);
@@ -555,16 +559,16 @@ public abstract class BsWhiteLoadDataBhv extends AbstractBehaviorWritable {
      * WhiteLoadData whiteLoadData = new WhiteLoadData();
      * whiteLoadData.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * whiteLoadData.<span style="color: #FD4747">setVersionNo</span>(value);
+     * whiteLoadData.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
-     *     whiteLoadDataBhv.<span style="color: #FD4747">delete</span>(whiteLoadData);
+     *     whiteLoadDataBhv.<span style="color: #DD4747">delete</span>(whiteLoadData);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param whiteLoadData The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void delete(WhiteLoadData whiteLoadData) {
         doDelete(whiteLoadData, null);
@@ -599,7 +603,7 @@ public abstract class BsWhiteLoadDataBhv extends AbstractBehaviorWritable {
     /**
      * Batch-insert the entity list modified-only of same-set columns. (DefaultConstraintsEnabled) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
-     * <p><span style="color: #FD4747; font-size: 120%">The columns of least common multiple are registered like this:</span></p>
+     * <p><span style="color: #DD4747; font-size: 120%">The columns of least common multiple are registered like this:</span></p>
      * <pre>
      * for (... : ...) {
      *     WhiteLoadData whiteLoadData = new WhiteLoadData();
@@ -612,7 +616,7 @@ public abstract class BsWhiteLoadDataBhv extends AbstractBehaviorWritable {
      *     <span style="color: #3F7E5E">// columns not-called in all entities are registered as null or default value</span>
      *     whiteLoadDataList.add(whiteLoadData);
      * }
-     * whiteLoadDataBhv.<span style="color: #FD4747">batchInsert</span>(whiteLoadDataList);
+     * whiteLoadDataBhv.<span style="color: #DD4747">batchInsert</span>(whiteLoadDataList);
      * </pre>
      * <p>While, when the entities are created by select, all columns are registered.</p>
      * <p>And if the table has an identity, entities after the process don't have incremented values.
@@ -646,7 +650,7 @@ public abstract class BsWhiteLoadDataBhv extends AbstractBehaviorWritable {
     /**
      * Batch-update the entity list modified-only of same-set columns. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
-     * <span style="color: #FD4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
+     * <span style="color: #DD4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
      * <pre>
      * for (... : ...) {
      *     WhiteLoadData whiteLoadData = new WhiteLoadData();
@@ -661,11 +665,11 @@ public abstract class BsWhiteLoadDataBhv extends AbstractBehaviorWritable {
      *     <span style="color: #3F7E5E">// (others are not updated: their values are kept)</span>
      *     whiteLoadDataList.add(whiteLoadData);
      * }
-     * whiteLoadDataBhv.<span style="color: #FD4747">batchUpdate</span>(whiteLoadDataList);
+     * whiteLoadDataBhv.<span style="color: #DD4747">batchUpdate</span>(whiteLoadDataList);
      * </pre>
      * @param whiteLoadDataList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<WhiteLoadData> whiteLoadDataList) {
         UpdateOption<WhiteLoadDataCB> op = createPlainUpdateOption();
@@ -694,16 +698,16 @@ public abstract class BsWhiteLoadDataBhv extends AbstractBehaviorWritable {
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * <pre>
      * <span style="color: #3F7E5E">// e.g. update two columns only</span>
-     * whiteLoadDataBhv.<span style="color: #FD4747">batchUpdate</span>(whiteLoadDataList, new SpecifyQuery<WhiteLoadDataCB>() {
+     * whiteLoadDataBhv.<span style="color: #DD4747">batchUpdate</span>(whiteLoadDataList, new SpecifyQuery<WhiteLoadDataCB>() {
      *     public void specify(WhiteLoadDataCB cb) { <span style="color: #3F7E5E">// the two only updated</span>
-     *         cb.specify().<span style="color: #FD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
-     *         cb.specify().<span style="color: #FD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
+     *         cb.specify().<span style="color: #DD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
+     *         cb.specify().<span style="color: #DD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
      *     }
      * });
      * <span style="color: #3F7E5E">// e.g. update every column in the table</span>
-     * whiteLoadDataBhv.<span style="color: #FD4747">batchUpdate</span>(whiteLoadDataList, new SpecifyQuery<WhiteLoadDataCB>() {
+     * whiteLoadDataBhv.<span style="color: #DD4747">batchUpdate</span>(whiteLoadDataList, new SpecifyQuery<WhiteLoadDataCB>() {
      *     public void specify(WhiteLoadDataCB cb) { <span style="color: #3F7E5E">// all columns are updated</span>
-     *         cb.specify().<span style="color: #FD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
+     *         cb.specify().<span style="color: #DD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
      *     }
      * });
      * </pre>
@@ -715,7 +719,7 @@ public abstract class BsWhiteLoadDataBhv extends AbstractBehaviorWritable {
      * @param whiteLoadDataList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @param updateColumnSpec The specification of update columns. (NotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<WhiteLoadData> whiteLoadDataList, SpecifyQuery<WhiteLoadDataCB> updateColumnSpec) {
         return doBatchUpdate(whiteLoadDataList, createSpecifiedUpdateOption(updateColumnSpec));
@@ -731,7 +735,7 @@ public abstract class BsWhiteLoadDataBhv extends AbstractBehaviorWritable {
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * @param whiteLoadDataList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of deleted count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchDelete(List<WhiteLoadData> whiteLoadDataList) {
         return doBatchDelete(whiteLoadDataList, null);
@@ -760,7 +764,7 @@ public abstract class BsWhiteLoadDataBhv extends AbstractBehaviorWritable {
     /**
      * Insert the several entities by query (modified-only for fixed value).
      * <pre>
-     * whiteLoadDataBhv.<span style="color: #FD4747">queryInsert</span>(new QueryInsertSetupper&lt;WhiteLoadData, WhiteLoadDataCB&gt;() {
+     * whiteLoadDataBhv.<span style="color: #DD4747">queryInsert</span>(new QueryInsertSetupper&lt;WhiteLoadData, WhiteLoadDataCB&gt;() {
      *     public ConditionBean setup(whiteLoadData entity, WhiteLoadDataCB intoCB) {
      *         FooCB cb = FooCB();
      *         cb.setupSelect_Bar();
@@ -822,12 +826,12 @@ public abstract class BsWhiteLoadDataBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">//whiteLoadData.setVersionNo(value);</span>
      * WhiteLoadDataCB cb = new WhiteLoadDataCB();
      * cb.query().setFoo...(value);
-     * whiteLoadDataBhv.<span style="color: #FD4747">queryUpdate</span>(whiteLoadData, cb);
+     * whiteLoadDataBhv.<span style="color: #DD4747">queryUpdate</span>(whiteLoadData, cb);
      * </pre>
      * @param whiteLoadData The entity that contains update values. (NotNull, PrimaryKeyNullAllowed)
      * @param cb The condition-bean of WhiteLoadData. (NotNull)
      * @return The updated count.
-     * @exception org.seasar.dbflute.exception.NonQueryUpdateNotAllowedException When the query has no condition.
+     * @exception NonQueryUpdateNotAllowedException When the query has no condition.
      */
     public int queryUpdate(WhiteLoadData whiteLoadData, WhiteLoadDataCB cb) {
         return doQueryUpdate(whiteLoadData, cb, null);
@@ -850,11 +854,11 @@ public abstract class BsWhiteLoadDataBhv extends AbstractBehaviorWritable {
      * <pre>
      * WhiteLoadDataCB cb = new WhiteLoadDataCB();
      * cb.query().setFoo...(value);
-     * whiteLoadDataBhv.<span style="color: #FD4747">queryDelete</span>(whiteLoadData, cb);
+     * whiteLoadDataBhv.<span style="color: #DD4747">queryDelete</span>(whiteLoadData, cb);
      * </pre>
      * @param cb The condition-bean of WhiteLoadData. (NotNull)
      * @return The deleted count.
-     * @exception org.seasar.dbflute.exception.NonQueryDeleteNotAllowedException When the query has no condition.
+     * @exception NonQueryDeleteNotAllowedException When the query has no condition.
      */
     public int queryDelete(WhiteLoadDataCB cb) {
         return doQueryDelete(cb, null);
@@ -890,12 +894,12 @@ public abstract class BsWhiteLoadDataBhv extends AbstractBehaviorWritable {
      * InsertOption<WhiteLoadDataCB> option = new InsertOption<WhiteLoadDataCB>();
      * <span style="color: #3F7E5E">// you can insert by your values for common columns</span>
      * option.disableCommonColumnAutoSetup();
-     * whiteLoadDataBhv.<span style="color: #FD4747">varyingInsert</span>(whiteLoadData, option);
+     * whiteLoadDataBhv.<span style="color: #DD4747">varyingInsert</span>(whiteLoadData, option);
      * ... = whiteLoadData.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * @param whiteLoadData The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
      * @param option The option of insert for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingInsert(WhiteLoadData whiteLoadData, InsertOption<WhiteLoadDataCB> option) {
         assertInsertOptionNotNull(option);
@@ -911,25 +915,25 @@ public abstract class BsWhiteLoadDataBhv extends AbstractBehaviorWritable {
      * whiteLoadData.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * whiteLoadData.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * whiteLoadData.<span style="color: #FD4747">setVersionNo</span>(value);
+     * whiteLoadData.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     <span style="color: #3F7E5E">// you can update by self calculation values</span>
      *     UpdateOption&lt;WhiteLoadDataCB&gt; option = new UpdateOption&lt;WhiteLoadDataCB&gt;();
      *     option.self(new SpecifyQuery&lt;WhiteLoadDataCB&gt;() {
      *         public void specify(WhiteLoadDataCB cb) {
-     *             cb.specify().<span style="color: #FD4747">columnXxxCount()</span>;
+     *             cb.specify().<span style="color: #DD4747">columnXxxCount()</span>;
      *         }
      *     }).plus(1); <span style="color: #3F7E5E">// XXX_COUNT = XXX_COUNT + 1</span>
-     *     whiteLoadDataBhv.<span style="color: #FD4747">varyingUpdate</span>(whiteLoadData, option);
+     *     whiteLoadDataBhv.<span style="color: #DD4747">varyingUpdate</span>(whiteLoadData, option);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param whiteLoadData The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @param option The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingUpdate(WhiteLoadData whiteLoadData, UpdateOption<WhiteLoadDataCB> option) {
         assertUpdateOptionNotNull(option);
@@ -942,9 +946,9 @@ public abstract class BsWhiteLoadDataBhv extends AbstractBehaviorWritable {
      * @param whiteLoadData The entity of insert or update target. (NotNull)
      * @param insertOption The option of insert for varying requests. (NotNull)
      * @param updateOption The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingInsertOrUpdate(WhiteLoadData whiteLoadData, InsertOption<WhiteLoadDataCB> insertOption, UpdateOption<WhiteLoadDataCB> updateOption) {
         assertInsertOptionNotNull(insertOption); assertUpdateOptionNotNull(updateOption);
@@ -957,8 +961,8 @@ public abstract class BsWhiteLoadDataBhv extends AbstractBehaviorWritable {
      * Other specifications are same as delete(entity).
      * @param whiteLoadData The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @param option The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void varyingDelete(WhiteLoadData whiteLoadData, DeleteOption<WhiteLoadDataCB> option) {
         assertDeleteOptionNotNull(option);
@@ -1044,16 +1048,16 @@ public abstract class BsWhiteLoadDataBhv extends AbstractBehaviorWritable {
      * UpdateOption&lt;WhiteLoadDataCB&gt; option = new UpdateOption&lt;WhiteLoadDataCB&gt;();
      * option.self(new SpecifyQuery&lt;WhiteLoadDataCB&gt;() {
      *     public void specify(WhiteLoadDataCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFooCount()</span>;
+     *         cb.specify().<span style="color: #DD4747">columnFooCount()</span>;
      *     }
      * }).plus(1); <span style="color: #3F7E5E">// FOO_COUNT = FOO_COUNT + 1</span>
-     * whiteLoadDataBhv.<span style="color: #FD4747">varyingQueryUpdate</span>(whiteLoadData, cb, option);
+     * whiteLoadDataBhv.<span style="color: #DD4747">varyingQueryUpdate</span>(whiteLoadData, cb, option);
      * </pre>
      * @param whiteLoadData The entity that contains update values. (NotNull) {PrimaryKeyNotRequired}
      * @param cb The condition-bean of WhiteLoadData. (NotNull)
      * @param option The option of update for varying requests. (NotNull)
      * @return The updated count.
-     * @exception org.seasar.dbflute.exception.NonQueryUpdateNotAllowedException When the query has no condition (if not allowed).
+     * @exception NonQueryUpdateNotAllowedException When the query has no condition (if not allowed).
      */
     public int varyingQueryUpdate(WhiteLoadData whiteLoadData, WhiteLoadDataCB cb, UpdateOption<WhiteLoadDataCB> option) {
         assertUpdateOptionNotNull(option);
@@ -1067,7 +1071,7 @@ public abstract class BsWhiteLoadDataBhv extends AbstractBehaviorWritable {
      * @param cb The condition-bean of WhiteLoadData. (NotNull)
      * @param option The option of delete for varying requests. (NotNull)
      * @return The deleted count.
-     * @exception org.seasar.dbflute.exception.NonQueryDeleteNotAllowedException When the query has no condition (if not allowed).
+     * @exception NonQueryDeleteNotAllowedException When the query has no condition (if not allowed).
      */
     public int varyingQueryDelete(WhiteLoadDataCB cb, DeleteOption<WhiteLoadDataCB> option) {
         assertDeleteOptionNotNull(option);

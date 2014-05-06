@@ -21,6 +21,7 @@ import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
 import org.seasar.dbflute.dbmeta.DBMeta;
+import org.seasar.dbflute.exception.*;
 import org.seasar.dbflute.outsidesql.executor.*;
 import com.example.dbflute.mysql.dbflute.exbhv.*;
 import com.example.dbflute.mysql.dbflute.exentity.*;
@@ -106,7 +107,7 @@ public abstract class BsWhitePgReservBhv extends AbstractBehaviorWritable {
      * <pre>
      * WhitePgReservCB cb = new WhitePgReservCB();
      * cb.query().setFoo...(value);
-     * int count = whitePgReservBhv.<span style="color: #FD4747">selectCount</span>(cb);
+     * int count = whitePgReservBhv.<span style="color: #DD4747">selectCount</span>(cb);
      * </pre>
      * @param cb The condition-bean of WhitePgReserv. (NotNull)
      * @return The count for the condition. (NotMinus)
@@ -134,12 +135,14 @@ public abstract class BsWhitePgReservBhv extends AbstractBehaviorWritable {
     //                                                                       Entity Select
     //                                                                       =============
     /**
-     * Select the entity by the condition-bean.
+     * Select the entity by the condition-bean. <br />
+     * <span style="color: #AD4747; font-size: 120%">The return might be null if no data, so you should have null check.</span> <br />
+     * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, use selectEntityWithDeletedCheck().</span>
      * <pre>
      * WhitePgReservCB cb = new WhitePgReservCB();
      * cb.query().setFoo...(value);
-     * WhitePgReserv whitePgReserv = whitePgReservBhv.<span style="color: #FD4747">selectEntity</span>(cb);
-     * if (whitePgReserv != null) {
+     * WhitePgReserv whitePgReserv = whitePgReservBhv.<span style="color: #DD4747">selectEntity</span>(cb);
+     * if (whitePgReserv != null) { <span style="color: #3F7E5E">// null check</span>
      *     ... = whitePgReserv.get...();
      * } else {
      *     ...
@@ -147,8 +150,8 @@ public abstract class BsWhitePgReservBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of WhitePgReserv. (NotNull)
      * @return The entity selected by the condition. (NullAllowed: if no data, it returns null)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhitePgReserv selectEntity(WhitePgReservCB cb) {
         return doSelectEntity(cb, WhitePgReserv.class);
@@ -166,18 +169,19 @@ public abstract class BsWhitePgReservBhv extends AbstractBehaviorWritable {
     }
 
     /**
-     * Select the entity by the condition-bean with deleted check.
+     * Select the entity by the condition-bean with deleted check. <br />
+     * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, this method is good.</span>
      * <pre>
      * WhitePgReservCB cb = new WhitePgReservCB();
      * cb.query().setFoo...(value);
-     * WhitePgReserv whitePgReserv = whitePgReservBhv.<span style="color: #FD4747">selectEntityWithDeletedCheck</span>(cb);
+     * WhitePgReserv whitePgReserv = whitePgReservBhv.<span style="color: #DD4747">selectEntityWithDeletedCheck</span>(cb);
      * ... = whitePgReserv.get...(); <span style="color: #3F7E5E">// the entity always be not null</span>
      * </pre>
      * @param cb The condition-bean of WhitePgReserv. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhitePgReserv selectEntityWithDeletedCheck(WhitePgReservCB cb) {
         return doSelectEntityWithDeletedCheck(cb, WhitePgReserv.class);
@@ -198,8 +202,8 @@ public abstract class BsWhitePgReservBhv extends AbstractBehaviorWritable {
      * Select the entity by the primary-key value.
      * @param classSynonym The one of primary key. (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhitePgReserv selectByPKValue(Integer classSynonym) {
         return doSelectByPKValue(classSynonym, WhitePgReserv.class);
@@ -213,9 +217,9 @@ public abstract class BsWhitePgReservBhv extends AbstractBehaviorWritable {
      * Select the entity by the primary-key value with deleted check.
      * @param classSynonym The one of primary key. (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhitePgReserv selectByPKValueWithDeletedCheck(Integer classSynonym) {
         return doSelectByPKValueWithDeletedCheck(classSynonym, WhitePgReserv.class);
@@ -241,14 +245,14 @@ public abstract class BsWhitePgReservBhv extends AbstractBehaviorWritable {
      * WhitePgReservCB cb = new WhitePgReservCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * ListResultBean&lt;WhitePgReserv&gt; whitePgReservList = whitePgReservBhv.<span style="color: #FD4747">selectList</span>(cb);
+     * ListResultBean&lt;WhitePgReserv&gt; whitePgReservList = whitePgReservBhv.<span style="color: #DD4747">selectList</span>(cb);
      * for (WhitePgReserv whitePgReserv : whitePgReservList) {
      *     ... = whitePgReserv.get...();
      * }
      * </pre>
      * @param cb The condition-bean of WhitePgReserv. (NotNull)
      * @return The result bean of selected list. (NotNull: if no data, returns empty list)
-     * @exception org.seasar.dbflute.exception.DangerousResultSizeException When the result size is over the specified safety size.
+     * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public ListResultBean<WhitePgReserv> selectList(WhitePgReservCB cb) {
         return doSelectList(cb, WhitePgReserv.class);
@@ -276,8 +280,8 @@ public abstract class BsWhitePgReservBhv extends AbstractBehaviorWritable {
      * WhitePgReservCB cb = new WhitePgReservCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * cb.<span style="color: #FD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
-     * PagingResultBean&lt;WhitePgReserv&gt; page = whitePgReservBhv.<span style="color: #FD4747">selectPage</span>(cb);
+     * cb.<span style="color: #DD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
+     * PagingResultBean&lt;WhitePgReserv&gt; page = whitePgReservBhv.<span style="color: #DD4747">selectPage</span>(cb);
      * int allRecordCount = page.getAllRecordCount();
      * int allPageCount = page.getAllPageCount();
      * boolean isExistPrePage = page.isExistPrePage();
@@ -289,7 +293,7 @@ public abstract class BsWhitePgReservBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of WhitePgReserv. (NotNull)
      * @return The result bean of selected page. (NotNull: if no data, returns bean as empty list)
-     * @exception org.seasar.dbflute.exception.DangerousResultSizeException When the result size is over the specified safety size.
+     * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public PagingResultBean<WhitePgReserv> selectPage(WhitePgReservCB cb) {
         return doSelectPage(cb, WhitePgReserv.class);
@@ -316,7 +320,7 @@ public abstract class BsWhitePgReservBhv extends AbstractBehaviorWritable {
      * <pre>
      * WhitePgReservCB cb = new WhitePgReservCB();
      * cb.query().setFoo...(value);
-     * whitePgReservBhv.<span style="color: #FD4747">selectCursor</span>(cb, new EntityRowHandler&lt;WhitePgReserv&gt;() {
+     * whitePgReservBhv.<span style="color: #DD4747">selectCursor</span>(cb, new EntityRowHandler&lt;WhitePgReserv&gt;() {
      *     public void handle(WhitePgReserv entity) {
      *         ... = entity.getFoo...();
      *     }
@@ -345,9 +349,9 @@ public abstract class BsWhitePgReservBhv extends AbstractBehaviorWritable {
      * Select the scalar value derived by a function from uniquely-selected records. <br />
      * You should call a function method after this method called like as follows:
      * <pre>
-     * whitePgReservBhv.<span style="color: #FD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
+     * whitePgReservBhv.<span style="color: #DD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
      *     public void query(WhitePgReservCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
+     *         cb.specify().<span style="color: #DD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
      *         cb.query().setBarName_PrefixSearch("S");
      *     }
      * });
@@ -387,61 +391,92 @@ public abstract class BsWhitePgReservBhv extends AbstractBehaviorWritable {
     //                                                                       Load Referrer
     //                                                                       =============
     /**
-     * {Refer to overload method that has an argument of the list of entity.}
-     * @param whitePgReserv The entity of whitePgReserv. (NotNull)
-     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
-     */
-    public void loadWhitePgReservRefList(WhitePgReserv whitePgReserv, ConditionBeanSetupper<WhitePgReservRefCB> conditionBeanSetupper) {
-        xassLRArg(whitePgReserv, conditionBeanSetupper);
-        loadWhitePgReservRefList(xnewLRLs(whitePgReserv), conditionBeanSetupper);
-    }
-    /**
-     * Load referrer of whitePgReservRefList with the set-upper for condition-bean of referrer. <br />
+     * Load referrer of whitePgReservRefList by the set-upper of referrer. <br />
      * white_pg_reserv_ref by CLASS, named 'whitePgReservRefList'.
      * <pre>
-     * whitePgReservBhv.<span style="color: #FD4747">loadWhitePgReservRefList</span>(whitePgReservList, new ConditionBeanSetupper&lt;WhitePgReservRefCB&gt;() {
+     * whitePgReservBhv.<span style="color: #DD4747">loadWhitePgReservRefList</span>(whitePgReservList, new ConditionBeanSetupper&lt;WhitePgReservRefCB&gt;() {
      *     public void setup(WhitePgReservRefCB cb) {
      *         cb.setupSelect...();
      *         cb.query().setFoo...(value);
      *         cb.query().addOrderBy_Bar...(); <span style="color: #3F7E5E">// basically you should order referrer list</span>
      *     }
-     * });
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here by calling like '}).withNestedList(new ...)'</span>
      * for (WhitePgReserv whitePgReserv : whitePgReservList) {
-     *     ... = whitePgReserv.<span style="color: #FD4747">getWhitePgReservRefList()</span>;
+     *     ... = whitePgReserv.<span style="color: #DD4747">getWhitePgReservRefList()</span>;
      * }
      * </pre>
-     * About internal policy, the value of primary key(and others too) is treated as case-insensitive. <br />
-     * The condition-bean that the set-upper provides have settings before you touch it. It is as follows:
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
+     * <pre>
+     * cb.query().setClassSynonym_InScope(pkList);
+     * cb.query().addOrderBy_ClassSynonym_Asc();
+     * </pre>
+     * @param whitePgReserv The entity of whitePgReserv. (NotNull)
+     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
+     */
+    public NestedReferrerLoader<WhitePgReservRef> loadWhitePgReservRefList(WhitePgReserv whitePgReserv, ConditionBeanSetupper<WhitePgReservRefCB> conditionBeanSetupper) {
+        xassLRArg(whitePgReserv, conditionBeanSetupper);
+        return loadWhitePgReservRefList(xnewLRLs(whitePgReserv), conditionBeanSetupper);
+    }
+
+    /**
+     * Load referrer of whitePgReservRefList by the set-upper of referrer. <br />
+     * white_pg_reserv_ref by CLASS, named 'whitePgReservRefList'.
+     * <pre>
+     * whitePgReservBhv.<span style="color: #DD4747">loadWhitePgReservRefList</span>(whitePgReservList, new ConditionBeanSetupper&lt;WhitePgReservRefCB&gt;() {
+     *     public void setup(WhitePgReservRefCB cb) {
+     *         cb.setupSelect...();
+     *         cb.query().setFoo...(value);
+     *         cb.query().addOrderBy_Bar...(); <span style="color: #3F7E5E">// basically you should order referrer list</span>
+     *     }
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here by calling like '}).withNestedList(new ...)'</span>
+     * for (WhitePgReserv whitePgReserv : whitePgReservList) {
+     *     ... = whitePgReserv.<span style="color: #DD4747">getWhitePgReservRefList()</span>;
+     * }
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
      * <pre>
      * cb.query().setClassSynonym_InScope(pkList);
      * cb.query().addOrderBy_ClassSynonym_Asc();
      * </pre>
      * @param whitePgReservList The entity list of whitePgReserv. (NotNull)
      * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public void loadWhitePgReservRefList(List<WhitePgReserv> whitePgReservList, ConditionBeanSetupper<WhitePgReservRefCB> conditionBeanSetupper) {
+    public NestedReferrerLoader<WhitePgReservRef> loadWhitePgReservRefList(List<WhitePgReserv> whitePgReservList, ConditionBeanSetupper<WhitePgReservRefCB> conditionBeanSetupper) {
         xassLRArg(whitePgReservList, conditionBeanSetupper);
-        loadWhitePgReservRefList(whitePgReservList, new LoadReferrerOption<WhitePgReservRefCB, WhitePgReservRef>().xinit(conditionBeanSetupper));
+        return loadWhitePgReservRefList(whitePgReservList, new LoadReferrerOption<WhitePgReservRefCB, WhitePgReservRef>().xinit(conditionBeanSetupper));
     }
+
     /**
      * {Refer to overload method that has an argument of the list of entity.}
      * @param whitePgReserv The entity of whitePgReserv. (NotNull)
      * @param loadReferrerOption The option of load-referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public void loadWhitePgReservRefList(WhitePgReserv whitePgReserv, LoadReferrerOption<WhitePgReservRefCB, WhitePgReservRef> loadReferrerOption) {
+    public NestedReferrerLoader<WhitePgReservRef> loadWhitePgReservRefList(WhitePgReserv whitePgReserv, LoadReferrerOption<WhitePgReservRefCB, WhitePgReservRef> loadReferrerOption) {
         xassLRArg(whitePgReserv, loadReferrerOption);
-        loadWhitePgReservRefList(xnewLRLs(whitePgReserv), loadReferrerOption);
+        return loadWhitePgReservRefList(xnewLRLs(whitePgReserv), loadReferrerOption);
     }
+
     /**
      * {Refer to overload method that has an argument of condition-bean setupper.}
      * @param whitePgReservList The entity list of whitePgReserv. (NotNull)
      * @param loadReferrerOption The option of load-referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public void loadWhitePgReservRefList(List<WhitePgReserv> whitePgReservList, LoadReferrerOption<WhitePgReservRefCB, WhitePgReservRef> loadReferrerOption) {
+    @SuppressWarnings("unchecked")
+    public NestedReferrerLoader<WhitePgReservRef> loadWhitePgReservRefList(List<WhitePgReserv> whitePgReservList, LoadReferrerOption<WhitePgReservRefCB, WhitePgReservRef> loadReferrerOption) {
         xassLRArg(whitePgReservList, loadReferrerOption);
-        if (whitePgReservList.isEmpty()) { return; }
+        if (whitePgReservList.isEmpty()) { return (NestedReferrerLoader<WhitePgReservRef>)EMPTY_LOADER; }
+        return doLoadWhitePgReservRefList(whitePgReservList, loadReferrerOption);
+    }
+
+    protected NestedReferrerLoader<WhitePgReservRef> doLoadWhitePgReservRefList(List<WhitePgReserv> whitePgReservList, LoadReferrerOption<WhitePgReservRefCB, WhitePgReservRef> option) {
         final WhitePgReservRefBhv referrerBhv = xgetBSFLR().select(WhitePgReservRefBhv.class);
-        helpLoadReferrerInternally(whitePgReservList, loadReferrerOption, new InternalLoadReferrerCallback<WhitePgReserv, Integer, WhitePgReservRefCB, WhitePgReservRef>() {
+        return helpLoadReferrerInternally(whitePgReservList, option, new InternalLoadReferrerCallback<WhitePgReserv, Integer, WhitePgReservRefCB, WhitePgReservRef>() {
             public Integer getPKVal(WhitePgReserv et)
             { return et.getClassSynonym(); }
             public void setRfLs(WhitePgReserv et, List<WhitePgReservRef> ls)
@@ -490,12 +525,12 @@ public abstract class BsWhitePgReservBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
      * <span style="color: #3F7E5E">//whitePgReserv.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//whitePgReserv.set...;</span>
-     * whitePgReservBhv.<span style="color: #FD4747">insert</span>(whitePgReserv);
+     * whitePgReservBhv.<span style="color: #DD4747">insert</span>(whitePgReserv);
      * ... = whitePgReserv.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * <p>While, when the entity is created by select, all columns are registered.</p>
      * @param whitePgReserv The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insert(WhitePgReserv whitePgReserv) {
         doInsert(whitePgReserv, null);
@@ -531,17 +566,17 @@ public abstract class BsWhitePgReservBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">//whitePgReserv.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//whitePgReserv.set...;</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * whitePgReserv.<span style="color: #FD4747">setVersionNo</span>(value);
+     * whitePgReserv.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
-     *     whitePgReservBhv.<span style="color: #FD4747">update</span>(whitePgReserv);
+     *     whitePgReservBhv.<span style="color: #DD4747">update</span>(whitePgReserv);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param whitePgReserv The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void update(final WhitePgReserv whitePgReserv) {
         doUpdate(whitePgReserv, null);
@@ -591,11 +626,11 @@ public abstract class BsWhitePgReservBhv extends AbstractBehaviorWritable {
     /**
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br />
-     * <p><span style="color: #FD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
+     * <p><span style="color: #DD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
      * @param whitePgReserv The entity of insert or update target. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insertOrUpdate(WhitePgReserv whitePgReserv) {
         doInesrtOrUpdate(whitePgReserv, null, null);
@@ -631,16 +666,16 @@ public abstract class BsWhitePgReservBhv extends AbstractBehaviorWritable {
      * WhitePgReserv whitePgReserv = new WhitePgReserv();
      * whitePgReserv.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * whitePgReserv.<span style="color: #FD4747">setVersionNo</span>(value);
+     * whitePgReserv.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
-     *     whitePgReservBhv.<span style="color: #FD4747">delete</span>(whitePgReserv);
+     *     whitePgReservBhv.<span style="color: #DD4747">delete</span>(whitePgReserv);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param whitePgReserv The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void delete(WhitePgReserv whitePgReserv) {
         doDelete(whitePgReserv, null);
@@ -675,7 +710,7 @@ public abstract class BsWhitePgReservBhv extends AbstractBehaviorWritable {
     /**
      * Batch-insert the entity list modified-only of same-set columns. (DefaultConstraintsEnabled) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
-     * <p><span style="color: #FD4747; font-size: 120%">The columns of least common multiple are registered like this:</span></p>
+     * <p><span style="color: #DD4747; font-size: 120%">The columns of least common multiple are registered like this:</span></p>
      * <pre>
      * for (... : ...) {
      *     WhitePgReserv whitePgReserv = new WhitePgReserv();
@@ -688,7 +723,7 @@ public abstract class BsWhitePgReservBhv extends AbstractBehaviorWritable {
      *     <span style="color: #3F7E5E">// columns not-called in all entities are registered as null or default value</span>
      *     whitePgReservList.add(whitePgReserv);
      * }
-     * whitePgReservBhv.<span style="color: #FD4747">batchInsert</span>(whitePgReservList);
+     * whitePgReservBhv.<span style="color: #DD4747">batchInsert</span>(whitePgReservList);
      * </pre>
      * <p>While, when the entities are created by select, all columns are registered.</p>
      * <p>And if the table has an identity, entities after the process don't have incremented values.
@@ -722,7 +757,7 @@ public abstract class BsWhitePgReservBhv extends AbstractBehaviorWritable {
     /**
      * Batch-update the entity list modified-only of same-set columns. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
-     * <span style="color: #FD4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
+     * <span style="color: #DD4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
      * <pre>
      * for (... : ...) {
      *     WhitePgReserv whitePgReserv = new WhitePgReserv();
@@ -737,11 +772,11 @@ public abstract class BsWhitePgReservBhv extends AbstractBehaviorWritable {
      *     <span style="color: #3F7E5E">// (others are not updated: their values are kept)</span>
      *     whitePgReservList.add(whitePgReserv);
      * }
-     * whitePgReservBhv.<span style="color: #FD4747">batchUpdate</span>(whitePgReservList);
+     * whitePgReservBhv.<span style="color: #DD4747">batchUpdate</span>(whitePgReservList);
      * </pre>
      * @param whitePgReservList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<WhitePgReserv> whitePgReservList) {
         UpdateOption<WhitePgReservCB> op = createPlainUpdateOption();
@@ -770,16 +805,16 @@ public abstract class BsWhitePgReservBhv extends AbstractBehaviorWritable {
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * <pre>
      * <span style="color: #3F7E5E">// e.g. update two columns only</span>
-     * whitePgReservBhv.<span style="color: #FD4747">batchUpdate</span>(whitePgReservList, new SpecifyQuery<WhitePgReservCB>() {
+     * whitePgReservBhv.<span style="color: #DD4747">batchUpdate</span>(whitePgReservList, new SpecifyQuery<WhitePgReservCB>() {
      *     public void specify(WhitePgReservCB cb) { <span style="color: #3F7E5E">// the two only updated</span>
-     *         cb.specify().<span style="color: #FD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
-     *         cb.specify().<span style="color: #FD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
+     *         cb.specify().<span style="color: #DD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
+     *         cb.specify().<span style="color: #DD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
      *     }
      * });
      * <span style="color: #3F7E5E">// e.g. update every column in the table</span>
-     * whitePgReservBhv.<span style="color: #FD4747">batchUpdate</span>(whitePgReservList, new SpecifyQuery<WhitePgReservCB>() {
+     * whitePgReservBhv.<span style="color: #DD4747">batchUpdate</span>(whitePgReservList, new SpecifyQuery<WhitePgReservCB>() {
      *     public void specify(WhitePgReservCB cb) { <span style="color: #3F7E5E">// all columns are updated</span>
-     *         cb.specify().<span style="color: #FD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
+     *         cb.specify().<span style="color: #DD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
      *     }
      * });
      * </pre>
@@ -791,7 +826,7 @@ public abstract class BsWhitePgReservBhv extends AbstractBehaviorWritable {
      * @param whitePgReservList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @param updateColumnSpec The specification of update columns. (NotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<WhitePgReserv> whitePgReservList, SpecifyQuery<WhitePgReservCB> updateColumnSpec) {
         return doBatchUpdate(whitePgReservList, createSpecifiedUpdateOption(updateColumnSpec));
@@ -807,7 +842,7 @@ public abstract class BsWhitePgReservBhv extends AbstractBehaviorWritable {
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * @param whitePgReservList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of deleted count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchDelete(List<WhitePgReserv> whitePgReservList) {
         return doBatchDelete(whitePgReservList, null);
@@ -836,7 +871,7 @@ public abstract class BsWhitePgReservBhv extends AbstractBehaviorWritable {
     /**
      * Insert the several entities by query (modified-only for fixed value).
      * <pre>
-     * whitePgReservBhv.<span style="color: #FD4747">queryInsert</span>(new QueryInsertSetupper&lt;WhitePgReserv, WhitePgReservCB&gt;() {
+     * whitePgReservBhv.<span style="color: #DD4747">queryInsert</span>(new QueryInsertSetupper&lt;WhitePgReserv, WhitePgReservCB&gt;() {
      *     public ConditionBean setup(whitePgReserv entity, WhitePgReservCB intoCB) {
      *         FooCB cb = FooCB();
      *         cb.setupSelect_Bar();
@@ -898,12 +933,12 @@ public abstract class BsWhitePgReservBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">//whitePgReserv.setVersionNo(value);</span>
      * WhitePgReservCB cb = new WhitePgReservCB();
      * cb.query().setFoo...(value);
-     * whitePgReservBhv.<span style="color: #FD4747">queryUpdate</span>(whitePgReserv, cb);
+     * whitePgReservBhv.<span style="color: #DD4747">queryUpdate</span>(whitePgReserv, cb);
      * </pre>
      * @param whitePgReserv The entity that contains update values. (NotNull, PrimaryKeyNullAllowed)
      * @param cb The condition-bean of WhitePgReserv. (NotNull)
      * @return The updated count.
-     * @exception org.seasar.dbflute.exception.NonQueryUpdateNotAllowedException When the query has no condition.
+     * @exception NonQueryUpdateNotAllowedException When the query has no condition.
      */
     public int queryUpdate(WhitePgReserv whitePgReserv, WhitePgReservCB cb) {
         return doQueryUpdate(whitePgReserv, cb, null);
@@ -926,11 +961,11 @@ public abstract class BsWhitePgReservBhv extends AbstractBehaviorWritable {
      * <pre>
      * WhitePgReservCB cb = new WhitePgReservCB();
      * cb.query().setFoo...(value);
-     * whitePgReservBhv.<span style="color: #FD4747">queryDelete</span>(whitePgReserv, cb);
+     * whitePgReservBhv.<span style="color: #DD4747">queryDelete</span>(whitePgReserv, cb);
      * </pre>
      * @param cb The condition-bean of WhitePgReserv. (NotNull)
      * @return The deleted count.
-     * @exception org.seasar.dbflute.exception.NonQueryDeleteNotAllowedException When the query has no condition.
+     * @exception NonQueryDeleteNotAllowedException When the query has no condition.
      */
     public int queryDelete(WhitePgReservCB cb) {
         return doQueryDelete(cb, null);
@@ -966,12 +1001,12 @@ public abstract class BsWhitePgReservBhv extends AbstractBehaviorWritable {
      * InsertOption<WhitePgReservCB> option = new InsertOption<WhitePgReservCB>();
      * <span style="color: #3F7E5E">// you can insert by your values for common columns</span>
      * option.disableCommonColumnAutoSetup();
-     * whitePgReservBhv.<span style="color: #FD4747">varyingInsert</span>(whitePgReserv, option);
+     * whitePgReservBhv.<span style="color: #DD4747">varyingInsert</span>(whitePgReserv, option);
      * ... = whitePgReserv.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * @param whitePgReserv The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
      * @param option The option of insert for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingInsert(WhitePgReserv whitePgReserv, InsertOption<WhitePgReservCB> option) {
         assertInsertOptionNotNull(option);
@@ -987,25 +1022,25 @@ public abstract class BsWhitePgReservBhv extends AbstractBehaviorWritable {
      * whitePgReserv.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * whitePgReserv.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * whitePgReserv.<span style="color: #FD4747">setVersionNo</span>(value);
+     * whitePgReserv.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     <span style="color: #3F7E5E">// you can update by self calculation values</span>
      *     UpdateOption&lt;WhitePgReservCB&gt; option = new UpdateOption&lt;WhitePgReservCB&gt;();
      *     option.self(new SpecifyQuery&lt;WhitePgReservCB&gt;() {
      *         public void specify(WhitePgReservCB cb) {
-     *             cb.specify().<span style="color: #FD4747">columnXxxCount()</span>;
+     *             cb.specify().<span style="color: #DD4747">columnXxxCount()</span>;
      *         }
      *     }).plus(1); <span style="color: #3F7E5E">// XXX_COUNT = XXX_COUNT + 1</span>
-     *     whitePgReservBhv.<span style="color: #FD4747">varyingUpdate</span>(whitePgReserv, option);
+     *     whitePgReservBhv.<span style="color: #DD4747">varyingUpdate</span>(whitePgReserv, option);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param whitePgReserv The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @param option The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingUpdate(WhitePgReserv whitePgReserv, UpdateOption<WhitePgReservCB> option) {
         assertUpdateOptionNotNull(option);
@@ -1018,9 +1053,9 @@ public abstract class BsWhitePgReservBhv extends AbstractBehaviorWritable {
      * @param whitePgReserv The entity of insert or update target. (NotNull)
      * @param insertOption The option of insert for varying requests. (NotNull)
      * @param updateOption The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingInsertOrUpdate(WhitePgReserv whitePgReserv, InsertOption<WhitePgReservCB> insertOption, UpdateOption<WhitePgReservCB> updateOption) {
         assertInsertOptionNotNull(insertOption); assertUpdateOptionNotNull(updateOption);
@@ -1033,8 +1068,8 @@ public abstract class BsWhitePgReservBhv extends AbstractBehaviorWritable {
      * Other specifications are same as delete(entity).
      * @param whitePgReserv The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @param option The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void varyingDelete(WhitePgReserv whitePgReserv, DeleteOption<WhitePgReservCB> option) {
         assertDeleteOptionNotNull(option);
@@ -1120,16 +1155,16 @@ public abstract class BsWhitePgReservBhv extends AbstractBehaviorWritable {
      * UpdateOption&lt;WhitePgReservCB&gt; option = new UpdateOption&lt;WhitePgReservCB&gt;();
      * option.self(new SpecifyQuery&lt;WhitePgReservCB&gt;() {
      *     public void specify(WhitePgReservCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFooCount()</span>;
+     *         cb.specify().<span style="color: #DD4747">columnFooCount()</span>;
      *     }
      * }).plus(1); <span style="color: #3F7E5E">// FOO_COUNT = FOO_COUNT + 1</span>
-     * whitePgReservBhv.<span style="color: #FD4747">varyingQueryUpdate</span>(whitePgReserv, cb, option);
+     * whitePgReservBhv.<span style="color: #DD4747">varyingQueryUpdate</span>(whitePgReserv, cb, option);
      * </pre>
      * @param whitePgReserv The entity that contains update values. (NotNull) {PrimaryKeyNotRequired}
      * @param cb The condition-bean of WhitePgReserv. (NotNull)
      * @param option The option of update for varying requests. (NotNull)
      * @return The updated count.
-     * @exception org.seasar.dbflute.exception.NonQueryUpdateNotAllowedException When the query has no condition (if not allowed).
+     * @exception NonQueryUpdateNotAllowedException When the query has no condition (if not allowed).
      */
     public int varyingQueryUpdate(WhitePgReserv whitePgReserv, WhitePgReservCB cb, UpdateOption<WhitePgReservCB> option) {
         assertUpdateOptionNotNull(option);
@@ -1143,7 +1178,7 @@ public abstract class BsWhitePgReservBhv extends AbstractBehaviorWritable {
      * @param cb The condition-bean of WhitePgReserv. (NotNull)
      * @param option The option of delete for varying requests. (NotNull)
      * @return The deleted count.
-     * @exception org.seasar.dbflute.exception.NonQueryDeleteNotAllowedException When the query has no condition (if not allowed).
+     * @exception NonQueryDeleteNotAllowedException When the query has no condition (if not allowed).
      */
     public int varyingQueryDelete(WhitePgReservCB cb, DeleteOption<WhitePgReservCB> option) {
         assertDeleteOptionNotNull(option);

@@ -6,6 +6,7 @@ import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
 import org.seasar.dbflute.dbmeta.DBMeta;
+import org.seasar.dbflute.exception.*;
 import org.seasar.dbflute.outsidesql.executor.*;
 import com.example.dbflute.postgresql.dbflute.exbhv.*;
 import com.example.dbflute.postgresql.dbflute.exentity.*;
@@ -91,7 +92,7 @@ public abstract class BsMemberServiceBhv extends AbstractBehaviorWritable {
      * <pre>
      * MemberServiceCB cb = new MemberServiceCB();
      * cb.query().setFoo...(value);
-     * int count = memberServiceBhv.<span style="color: #FD4747">selectCount</span>(cb);
+     * int count = memberServiceBhv.<span style="color: #DD4747">selectCount</span>(cb);
      * </pre>
      * @param cb The condition-bean of MemberService. (NotNull)
      * @return The count for the condition. (NotMinus)
@@ -119,12 +120,14 @@ public abstract class BsMemberServiceBhv extends AbstractBehaviorWritable {
     //                                                                       Entity Select
     //                                                                       =============
     /**
-     * Select the entity by the condition-bean.
+     * Select the entity by the condition-bean. <br />
+     * <span style="color: #AD4747; font-size: 120%">The return might be null if no data, so you should have null check.</span> <br />
+     * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, use selectEntityWithDeletedCheck().</span>
      * <pre>
      * MemberServiceCB cb = new MemberServiceCB();
      * cb.query().setFoo...(value);
-     * MemberService memberService = memberServiceBhv.<span style="color: #FD4747">selectEntity</span>(cb);
-     * if (memberService != null) {
+     * MemberService memberService = memberServiceBhv.<span style="color: #DD4747">selectEntity</span>(cb);
+     * if (memberService != null) { <span style="color: #3F7E5E">// null check</span>
      *     ... = memberService.get...();
      * } else {
      *     ...
@@ -132,8 +135,8 @@ public abstract class BsMemberServiceBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of MemberService. (NotNull)
      * @return The entity selected by the condition. (NullAllowed: if no data, it returns null)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public MemberService selectEntity(MemberServiceCB cb) {
         return doSelectEntity(cb, MemberService.class);
@@ -151,18 +154,19 @@ public abstract class BsMemberServiceBhv extends AbstractBehaviorWritable {
     }
 
     /**
-     * Select the entity by the condition-bean with deleted check.
+     * Select the entity by the condition-bean with deleted check. <br />
+     * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, this method is good.</span>
      * <pre>
      * MemberServiceCB cb = new MemberServiceCB();
      * cb.query().setFoo...(value);
-     * MemberService memberService = memberServiceBhv.<span style="color: #FD4747">selectEntityWithDeletedCheck</span>(cb);
+     * MemberService memberService = memberServiceBhv.<span style="color: #DD4747">selectEntityWithDeletedCheck</span>(cb);
      * ... = memberService.get...(); <span style="color: #3F7E5E">// the entity always be not null</span>
      * </pre>
      * @param cb The condition-bean of MemberService. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public MemberService selectEntityWithDeletedCheck(MemberServiceCB cb) {
         return doSelectEntityWithDeletedCheck(cb, MemberService.class);
@@ -183,8 +187,8 @@ public abstract class BsMemberServiceBhv extends AbstractBehaviorWritable {
      * Select the entity by the primary-key value.
      * @param memberServiceId The one of primary key. (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public MemberService selectByPKValue(Integer memberServiceId) {
         return doSelectByPKValue(memberServiceId, MemberService.class);
@@ -198,9 +202,9 @@ public abstract class BsMemberServiceBhv extends AbstractBehaviorWritable {
      * Select the entity by the primary-key value with deleted check.
      * @param memberServiceId The one of primary key. (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public MemberService selectByPKValueWithDeletedCheck(Integer memberServiceId) {
         return doSelectByPKValueWithDeletedCheck(memberServiceId, MemberService.class);
@@ -226,14 +230,14 @@ public abstract class BsMemberServiceBhv extends AbstractBehaviorWritable {
      * MemberServiceCB cb = new MemberServiceCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * ListResultBean&lt;MemberService&gt; memberServiceList = memberServiceBhv.<span style="color: #FD4747">selectList</span>(cb);
+     * ListResultBean&lt;MemberService&gt; memberServiceList = memberServiceBhv.<span style="color: #DD4747">selectList</span>(cb);
      * for (MemberService memberService : memberServiceList) {
      *     ... = memberService.get...();
      * }
      * </pre>
      * @param cb The condition-bean of MemberService. (NotNull)
      * @return The result bean of selected list. (NotNull: if no data, returns empty list)
-     * @exception org.seasar.dbflute.exception.DangerousResultSizeException When the result size is over the specified safety size.
+     * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public ListResultBean<MemberService> selectList(MemberServiceCB cb) {
         return doSelectList(cb, MemberService.class);
@@ -261,8 +265,8 @@ public abstract class BsMemberServiceBhv extends AbstractBehaviorWritable {
      * MemberServiceCB cb = new MemberServiceCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * cb.<span style="color: #FD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
-     * PagingResultBean&lt;MemberService&gt; page = memberServiceBhv.<span style="color: #FD4747">selectPage</span>(cb);
+     * cb.<span style="color: #DD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
+     * PagingResultBean&lt;MemberService&gt; page = memberServiceBhv.<span style="color: #DD4747">selectPage</span>(cb);
      * int allRecordCount = page.getAllRecordCount();
      * int allPageCount = page.getAllPageCount();
      * boolean isExistPrePage = page.isExistPrePage();
@@ -274,7 +278,7 @@ public abstract class BsMemberServiceBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of MemberService. (NotNull)
      * @return The result bean of selected page. (NotNull: if no data, returns bean as empty list)
-     * @exception org.seasar.dbflute.exception.DangerousResultSizeException When the result size is over the specified safety size.
+     * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public PagingResultBean<MemberService> selectPage(MemberServiceCB cb) {
         return doSelectPage(cb, MemberService.class);
@@ -301,7 +305,7 @@ public abstract class BsMemberServiceBhv extends AbstractBehaviorWritable {
      * <pre>
      * MemberServiceCB cb = new MemberServiceCB();
      * cb.query().setFoo...(value);
-     * memberServiceBhv.<span style="color: #FD4747">selectCursor</span>(cb, new EntityRowHandler&lt;MemberService&gt;() {
+     * memberServiceBhv.<span style="color: #DD4747">selectCursor</span>(cb, new EntityRowHandler&lt;MemberService&gt;() {
      *     public void handle(MemberService entity) {
      *         ... = entity.getFoo...();
      *     }
@@ -330,9 +334,9 @@ public abstract class BsMemberServiceBhv extends AbstractBehaviorWritable {
      * Select the scalar value derived by a function from uniquely-selected records. <br />
      * You should call a function method after this method called like as follows:
      * <pre>
-     * memberServiceBhv.<span style="color: #FD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
+     * memberServiceBhv.<span style="color: #DD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
      *     public void query(MemberServiceCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
+     *         cb.specify().<span style="color: #DD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
      *         cb.query().setBarName_PrefixSearch("S");
      *     }
      * });
@@ -425,12 +429,12 @@ public abstract class BsMemberServiceBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
      * <span style="color: #3F7E5E">//memberService.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//memberService.set...;</span>
-     * memberServiceBhv.<span style="color: #FD4747">insert</span>(memberService);
+     * memberServiceBhv.<span style="color: #DD4747">insert</span>(memberService);
      * ... = memberService.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * <p>While, when the entity is created by select, all columns are registered.</p>
      * @param memberService The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insert(MemberService memberService) {
         doInsert(memberService, null);
@@ -466,17 +470,17 @@ public abstract class BsMemberServiceBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">//memberService.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//memberService.set...;</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * memberService.<span style="color: #FD4747">setVersionNo</span>(value);
+     * memberService.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
-     *     memberServiceBhv.<span style="color: #FD4747">update</span>(memberService);
+     *     memberServiceBhv.<span style="color: #DD4747">update</span>(memberService);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param memberService The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyUpdatedException When the entity has already been updated.
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyUpdatedException When the entity has already been updated.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void update(final MemberService memberService) {
         doUpdate(memberService, null);
@@ -530,12 +534,12 @@ public abstract class BsMemberServiceBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">// you don't need to set a value of exclusive control column</span>
      * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
      * <span style="color: #3F7E5E">//memberService.setVersionNo(value);</span>
-     * memberServiceBhv.<span style="color: #FD4747">updateNonstrict</span>(memberService);
+     * memberServiceBhv.<span style="color: #DD4747">updateNonstrict</span>(memberService);
      * </pre>
      * @param memberService The entity of update target. (NotNull, PrimaryKeyNotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void updateNonstrict(final MemberService memberService) {
         doUpdateNonstrict(memberService, null);
@@ -557,11 +561,11 @@ public abstract class BsMemberServiceBhv extends AbstractBehaviorWritable {
     /**
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, ExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br />
-     * <p><span style="color: #FD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
+     * <p><span style="color: #DD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
      * @param memberService The entity of insert or update target. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyUpdatedException When the entity has already been updated.
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyUpdatedException When the entity has already been updated.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insertOrUpdate(MemberService memberService) {
         doInesrtOrUpdate(memberService, null, null);
@@ -589,11 +593,11 @@ public abstract class BsMemberServiceBhv extends AbstractBehaviorWritable {
     /**
      * Insert or update the entity non-strictly modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() }
-     * <p><span style="color: #FD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
+     * <p><span style="color: #DD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
      * @param memberService The entity of insert or update target. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insertOrUpdateNonstrict(MemberService memberService) {
         doInesrtOrUpdateNonstrict(memberService, null, null);
@@ -622,16 +626,16 @@ public abstract class BsMemberServiceBhv extends AbstractBehaviorWritable {
      * MemberService memberService = new MemberService();
      * memberService.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * memberService.<span style="color: #FD4747">setVersionNo</span>(value);
+     * memberService.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
-     *     memberServiceBhv.<span style="color: #FD4747">delete</span>(memberService);
+     *     memberServiceBhv.<span style="color: #DD4747">delete</span>(memberService);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param memberService The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyUpdatedException When the entity has already been updated.
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyUpdatedException When the entity has already been updated.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void delete(MemberService memberService) {
         doDelete(memberService, null);
@@ -663,11 +667,11 @@ public abstract class BsMemberServiceBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">// you don't need to set a value of exclusive control column</span>
      * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
      * <span style="color: #3F7E5E">//memberService.setVersionNo(value);</span>
-     * memberServiceBhv.<span style="color: #FD4747">deleteNonstrict</span>(memberService);
+     * memberServiceBhv.<span style="color: #DD4747">deleteNonstrict</span>(memberService);
      * </pre>
      * @param memberService The entity of delete target. (NotNull, PrimaryKeyNotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void deleteNonstrict(MemberService memberService) {
         doDeleteNonstrict(memberService, null);
@@ -688,11 +692,11 @@ public abstract class BsMemberServiceBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">// you don't need to set a value of exclusive control column</span>
      * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
      * <span style="color: #3F7E5E">//memberService.setVersionNo(value);</span>
-     * memberServiceBhv.<span style="color: #FD4747">deleteNonstrictIgnoreDeleted</span>(memberService);
+     * memberServiceBhv.<span style="color: #DD4747">deleteNonstrictIgnoreDeleted</span>(memberService);
      * <span style="color: #3F7E5E">// if the target entity doesn't exist, no exception</span>
      * </pre>
      * @param memberService The entity of delete target. (NotNull, PrimaryKeyNotNull)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void deleteNonstrictIgnoreDeleted(MemberService memberService) {
         doDeleteNonstrictIgnoreDeleted(memberService, null);
@@ -717,7 +721,7 @@ public abstract class BsMemberServiceBhv extends AbstractBehaviorWritable {
     /**
      * Batch-insert the entity list modified-only of same-set columns. (DefaultConstraintsEnabled) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
-     * <p><span style="color: #FD4747; font-size: 120%">The columns of least common multiple are registered like this:</span></p>
+     * <p><span style="color: #DD4747; font-size: 120%">The columns of least common multiple are registered like this:</span></p>
      * <pre>
      * for (... : ...) {
      *     MemberService memberService = new MemberService();
@@ -730,7 +734,7 @@ public abstract class BsMemberServiceBhv extends AbstractBehaviorWritable {
      *     <span style="color: #3F7E5E">// columns not-called in all entities are registered as null or default value</span>
      *     memberServiceList.add(memberService);
      * }
-     * memberServiceBhv.<span style="color: #FD4747">batchInsert</span>(memberServiceList);
+     * memberServiceBhv.<span style="color: #DD4747">batchInsert</span>(memberServiceList);
      * </pre>
      * <p>While, when the entities are created by select, all columns are registered.</p>
      * <p>And if the table has an identity, entities after the process don't have incremented values.
@@ -764,7 +768,7 @@ public abstract class BsMemberServiceBhv extends AbstractBehaviorWritable {
     /**
      * Batch-update the entity list modified-only of same-set columns. (ExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
-     * <span style="color: #FD4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
+     * <span style="color: #DD4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
      * <pre>
      * for (... : ...) {
      *     MemberService memberService = new MemberService();
@@ -779,11 +783,11 @@ public abstract class BsMemberServiceBhv extends AbstractBehaviorWritable {
      *     <span style="color: #3F7E5E">// (others are not updated: their values are kept)</span>
      *     memberServiceList.add(memberService);
      * }
-     * memberServiceBhv.<span style="color: #FD4747">batchUpdate</span>(memberServiceList);
+     * memberServiceBhv.<span style="color: #DD4747">batchUpdate</span>(memberServiceList);
      * </pre>
      * @param memberServiceList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.BatchEntityAlreadyUpdatedException When the entity has already been updated. This exception extends EntityAlreadyUpdatedException.
+     * @exception BatchEntityAlreadyUpdatedException When the entity has already been updated. This exception extends EntityAlreadyUpdatedException.
      */
     public int[] batchUpdate(List<MemberService> memberServiceList) {
         UpdateOption<MemberServiceCB> op = createPlainUpdateOption();
@@ -812,16 +816,16 @@ public abstract class BsMemberServiceBhv extends AbstractBehaviorWritable {
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * <pre>
      * <span style="color: #3F7E5E">// e.g. update two columns only</span>
-     * memberServiceBhv.<span style="color: #FD4747">batchUpdate</span>(memberServiceList, new SpecifyQuery<MemberServiceCB>() {
+     * memberServiceBhv.<span style="color: #DD4747">batchUpdate</span>(memberServiceList, new SpecifyQuery<MemberServiceCB>() {
      *     public void specify(MemberServiceCB cb) { <span style="color: #3F7E5E">// the two only updated</span>
-     *         cb.specify().<span style="color: #FD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
-     *         cb.specify().<span style="color: #FD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
+     *         cb.specify().<span style="color: #DD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
+     *         cb.specify().<span style="color: #DD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
      *     }
      * });
      * <span style="color: #3F7E5E">// e.g. update every column in the table</span>
-     * memberServiceBhv.<span style="color: #FD4747">batchUpdate</span>(memberServiceList, new SpecifyQuery<MemberServiceCB>() {
+     * memberServiceBhv.<span style="color: #DD4747">batchUpdate</span>(memberServiceList, new SpecifyQuery<MemberServiceCB>() {
      *     public void specify(MemberServiceCB cb) { <span style="color: #3F7E5E">// all columns are updated</span>
-     *         cb.specify().<span style="color: #FD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
+     *         cb.specify().<span style="color: #DD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
      *     }
      * });
      * </pre>
@@ -833,7 +837,7 @@ public abstract class BsMemberServiceBhv extends AbstractBehaviorWritable {
      * @param memberServiceList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @param updateColumnSpec The specification of update columns. (NotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.BatchEntityAlreadyUpdatedException When the entity has already been updated. This exception extends EntityAlreadyUpdatedException.
+     * @exception BatchEntityAlreadyUpdatedException When the entity has already been updated. This exception extends EntityAlreadyUpdatedException.
      */
     public int[] batchUpdate(List<MemberService> memberServiceList, SpecifyQuery<MemberServiceCB> updateColumnSpec) {
         return doBatchUpdate(memberServiceList, createSpecifiedUpdateOption(updateColumnSpec));
@@ -842,7 +846,7 @@ public abstract class BsMemberServiceBhv extends AbstractBehaviorWritable {
     /**
      * Batch-update the entity list non-strictly modified-only of same-set columns. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
-     * <span style="color: #FD4747; font-size: 140%">You should specify same-set columns to all entities like this:</span>
+     * <span style="color: #DD4747; font-size: 140%">You should specify same-set columns to all entities like this:</span>
      * <pre>
      * for (... : ...) {
      *     MemberService memberService = new MemberService();
@@ -857,11 +861,11 @@ public abstract class BsMemberServiceBhv extends AbstractBehaviorWritable {
      *     <span style="color: #3F7E5E">// (others are not updated: their values are kept)</span>
      *     memberServiceList.add(memberService);
      * }
-     * memberServiceBhv.<span style="color: #FD4747">batchUpdate</span>(memberServiceList);
+     * memberServiceBhv.<span style="color: #DD4747">batchUpdate</span>(memberServiceList);
      * </pre>
      * @param memberServiceList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdateNonstrict(List<MemberService> memberServiceList) {
         UpdateOption<MemberServiceCB> option = createPlainUpdateOption();
@@ -879,16 +883,16 @@ public abstract class BsMemberServiceBhv extends AbstractBehaviorWritable {
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * <pre>
      * <span style="color: #3F7E5E">// e.g. update two columns only</span>
-     * memberServiceBhv.<span style="color: #FD4747">batchUpdateNonstrict</span>(memberServiceList, new SpecifyQuery<MemberServiceCB>() {
+     * memberServiceBhv.<span style="color: #DD4747">batchUpdateNonstrict</span>(memberServiceList, new SpecifyQuery<MemberServiceCB>() {
      *     public void specify(MemberServiceCB cb) { <span style="color: #3F7E5E">// the two only updated</span>
-     *         cb.specify().<span style="color: #FD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
-     *         cb.specify().<span style="color: #FD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
+     *         cb.specify().<span style="color: #DD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
+     *         cb.specify().<span style="color: #DD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
      *     }
      * });
      * <span style="color: #3F7E5E">// e.g. update every column in the table</span>
-     * memberServiceBhv.<span style="color: #FD4747">batchUpdateNonstrict</span>(memberServiceList, new SpecifyQuery<MemberServiceCB>() {
+     * memberServiceBhv.<span style="color: #DD4747">batchUpdateNonstrict</span>(memberServiceList, new SpecifyQuery<MemberServiceCB>() {
      *     public void specify(MemberServiceCB cb) { <span style="color: #3F7E5E">// all columns are updated</span>
-     *         cb.specify().<span style="color: #FD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
+     *         cb.specify().<span style="color: #DD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
      *     }
      * });
      * </pre>
@@ -899,7 +903,7 @@ public abstract class BsMemberServiceBhv extends AbstractBehaviorWritable {
      * @param memberServiceList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @param updateColumnSpec The specification of update columns. (NotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdateNonstrict(List<MemberService> memberServiceList, SpecifyQuery<MemberServiceCB> updateColumnSpec) {
         return doBatchUpdateNonstrict(memberServiceList, createSpecifiedUpdateOption(updateColumnSpec));
@@ -916,7 +920,7 @@ public abstract class BsMemberServiceBhv extends AbstractBehaviorWritable {
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * @param memberServiceList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of deleted count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.BatchEntityAlreadyUpdatedException When the entity has already been updated. This exception extends EntityAlreadyUpdatedException.
+     * @exception BatchEntityAlreadyUpdatedException When the entity has already been updated. This exception extends EntityAlreadyUpdatedException.
      */
     public int[] batchDelete(List<MemberService> memberServiceList) {
         return doBatchDelete(memberServiceList, null);
@@ -939,7 +943,7 @@ public abstract class BsMemberServiceBhv extends AbstractBehaviorWritable {
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * @param memberServiceList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of deleted count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchDeleteNonstrict(List<MemberService> memberServiceList) {
         return doBatchDeleteNonstrict(memberServiceList, null);
@@ -963,7 +967,7 @@ public abstract class BsMemberServiceBhv extends AbstractBehaviorWritable {
     /**
      * Insert the several entities by query (modified-only for fixed value).
      * <pre>
-     * memberServiceBhv.<span style="color: #FD4747">queryInsert</span>(new QueryInsertSetupper&lt;MemberService, MemberServiceCB&gt;() {
+     * memberServiceBhv.<span style="color: #DD4747">queryInsert</span>(new QueryInsertSetupper&lt;MemberService, MemberServiceCB&gt;() {
      *     public ConditionBean setup(memberService entity, MemberServiceCB intoCB) {
      *         FooCB cb = FooCB();
      *         cb.setupSelect_Bar();
@@ -1025,12 +1029,12 @@ public abstract class BsMemberServiceBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">//memberService.setVersionNo(value);</span>
      * MemberServiceCB cb = new MemberServiceCB();
      * cb.query().setFoo...(value);
-     * memberServiceBhv.<span style="color: #FD4747">queryUpdate</span>(memberService, cb);
+     * memberServiceBhv.<span style="color: #DD4747">queryUpdate</span>(memberService, cb);
      * </pre>
      * @param memberService The entity that contains update values. (NotNull, PrimaryKeyNullAllowed)
      * @param cb The condition-bean of MemberService. (NotNull)
      * @return The updated count.
-     * @exception org.seasar.dbflute.exception.NonQueryUpdateNotAllowedException When the query has no condition.
+     * @exception NonQueryUpdateNotAllowedException When the query has no condition.
      */
     public int queryUpdate(MemberService memberService, MemberServiceCB cb) {
         return doQueryUpdate(memberService, cb, null);
@@ -1053,11 +1057,11 @@ public abstract class BsMemberServiceBhv extends AbstractBehaviorWritable {
      * <pre>
      * MemberServiceCB cb = new MemberServiceCB();
      * cb.query().setFoo...(value);
-     * memberServiceBhv.<span style="color: #FD4747">queryDelete</span>(memberService, cb);
+     * memberServiceBhv.<span style="color: #DD4747">queryDelete</span>(memberService, cb);
      * </pre>
      * @param cb The condition-bean of MemberService. (NotNull)
      * @return The deleted count.
-     * @exception org.seasar.dbflute.exception.NonQueryDeleteNotAllowedException When the query has no condition.
+     * @exception NonQueryDeleteNotAllowedException When the query has no condition.
      */
     public int queryDelete(MemberServiceCB cb) {
         return doQueryDelete(cb, null);
@@ -1093,12 +1097,12 @@ public abstract class BsMemberServiceBhv extends AbstractBehaviorWritable {
      * InsertOption<MemberServiceCB> option = new InsertOption<MemberServiceCB>();
      * <span style="color: #3F7E5E">// you can insert by your values for common columns</span>
      * option.disableCommonColumnAutoSetup();
-     * memberServiceBhv.<span style="color: #FD4747">varyingInsert</span>(memberService, option);
+     * memberServiceBhv.<span style="color: #DD4747">varyingInsert</span>(memberService, option);
      * ... = memberService.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * @param memberService The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
      * @param option The option of insert for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingInsert(MemberService memberService, InsertOption<MemberServiceCB> option) {
         assertInsertOptionNotNull(option);
@@ -1114,25 +1118,25 @@ public abstract class BsMemberServiceBhv extends AbstractBehaviorWritable {
      * memberService.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * memberService.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * memberService.<span style="color: #FD4747">setVersionNo</span>(value);
+     * memberService.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     <span style="color: #3F7E5E">// you can update by self calculation values</span>
      *     UpdateOption&lt;MemberServiceCB&gt; option = new UpdateOption&lt;MemberServiceCB&gt;();
      *     option.self(new SpecifyQuery&lt;MemberServiceCB&gt;() {
      *         public void specify(MemberServiceCB cb) {
-     *             cb.specify().<span style="color: #FD4747">columnXxxCount()</span>;
+     *             cb.specify().<span style="color: #DD4747">columnXxxCount()</span>;
      *         }
      *     }).plus(1); <span style="color: #3F7E5E">// XXX_COUNT = XXX_COUNT + 1</span>
-     *     memberServiceBhv.<span style="color: #FD4747">varyingUpdate</span>(memberService, option);
+     *     memberServiceBhv.<span style="color: #DD4747">varyingUpdate</span>(memberService, option);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param memberService The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @param option The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyUpdatedException When the entity has already been updated.
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyUpdatedException When the entity has already been updated.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingUpdate(MemberService memberService, UpdateOption<MemberServiceCB> option) {
         assertUpdateOptionNotNull(option);
@@ -1154,16 +1158,16 @@ public abstract class BsMemberServiceBhv extends AbstractBehaviorWritable {
      * UpdateOption&lt;MemberServiceCB&gt; option = new UpdateOption&lt;MemberServiceCB&gt;();
      * option.self(new SpecifyQuery&lt;MemberServiceCB&gt;() {
      *     public void specify(MemberServiceCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFooCount()</span>;
+     *         cb.specify().<span style="color: #DD4747">columnFooCount()</span>;
      *     }
      * }).plus(1); <span style="color: #3F7E5E">// FOO_COUNT = FOO_COUNT + 1</span>
-     * memberServiceBhv.<span style="color: #FD4747">varyingUpdateNonstrict</span>(memberService, option);
+     * memberServiceBhv.<span style="color: #DD4747">varyingUpdateNonstrict</span>(memberService, option);
      * </pre>
      * @param memberService The entity of update target. (NotNull, PrimaryKeyNotNull)
      * @param option The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingUpdateNonstrict(MemberService memberService, UpdateOption<MemberServiceCB> option) {
         assertUpdateOptionNotNull(option);
@@ -1176,9 +1180,9 @@ public abstract class BsMemberServiceBhv extends AbstractBehaviorWritable {
      * @param memberService The entity of insert or update target. (NotNull)
      * @param insertOption The option of insert for varying requests. (NotNull)
      * @param updateOption The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyUpdatedException When the entity has already been updated.
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyUpdatedException When the entity has already been updated.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingInsertOrUpdate(MemberService memberService, InsertOption<MemberServiceCB> insertOption, UpdateOption<MemberServiceCB> updateOption) {
         assertInsertOptionNotNull(insertOption); assertUpdateOptionNotNull(updateOption);
@@ -1191,9 +1195,9 @@ public abstract class BsMemberServiceBhv extends AbstractBehaviorWritable {
      * @param memberService The entity of insert or update target. (NotNull)
      * @param insertOption The option of insert for varying requests. (NotNull)
      * @param updateOption The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingInsertOrUpdateNonstrict(MemberService memberService, InsertOption<MemberServiceCB> insertOption, UpdateOption<MemberServiceCB> updateOption) {
         assertInsertOptionNotNull(insertOption); assertUpdateOptionNotNull(updateOption);
@@ -1206,8 +1210,8 @@ public abstract class BsMemberServiceBhv extends AbstractBehaviorWritable {
      * Other specifications are same as delete(entity).
      * @param memberService The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @param option The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyUpdatedException When the entity has already been updated.
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyUpdatedException When the entity has already been updated.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void varyingDelete(MemberService memberService, DeleteOption<MemberServiceCB> option) {
         assertDeleteOptionNotNull(option);
@@ -1220,8 +1224,8 @@ public abstract class BsMemberServiceBhv extends AbstractBehaviorWritable {
      * Other specifications are same as deleteNonstrict(entity).
      * @param memberService The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @param option The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void varyingDeleteNonstrict(MemberService memberService, DeleteOption<MemberServiceCB> option) {
         assertDeleteOptionNotNull(option);
@@ -1334,16 +1338,16 @@ public abstract class BsMemberServiceBhv extends AbstractBehaviorWritable {
      * UpdateOption&lt;MemberServiceCB&gt; option = new UpdateOption&lt;MemberServiceCB&gt;();
      * option.self(new SpecifyQuery&lt;MemberServiceCB&gt;() {
      *     public void specify(MemberServiceCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFooCount()</span>;
+     *         cb.specify().<span style="color: #DD4747">columnFooCount()</span>;
      *     }
      * }).plus(1); <span style="color: #3F7E5E">// FOO_COUNT = FOO_COUNT + 1</span>
-     * memberServiceBhv.<span style="color: #FD4747">varyingQueryUpdate</span>(memberService, cb, option);
+     * memberServiceBhv.<span style="color: #DD4747">varyingQueryUpdate</span>(memberService, cb, option);
      * </pre>
      * @param memberService The entity that contains update values. (NotNull) {PrimaryKeyNotRequired}
      * @param cb The condition-bean of MemberService. (NotNull)
      * @param option The option of update for varying requests. (NotNull)
      * @return The updated count.
-     * @exception org.seasar.dbflute.exception.NonQueryUpdateNotAllowedException When the query has no condition (if not allowed).
+     * @exception NonQueryUpdateNotAllowedException When the query has no condition (if not allowed).
      */
     public int varyingQueryUpdate(MemberService memberService, MemberServiceCB cb, UpdateOption<MemberServiceCB> option) {
         assertUpdateOptionNotNull(option);
@@ -1357,7 +1361,7 @@ public abstract class BsMemberServiceBhv extends AbstractBehaviorWritable {
      * @param cb The condition-bean of MemberService. (NotNull)
      * @param option The option of delete for varying requests. (NotNull)
      * @return The deleted count.
-     * @exception org.seasar.dbflute.exception.NonQueryDeleteNotAllowedException When the query has no condition (if not allowed).
+     * @exception NonQueryDeleteNotAllowedException When the query has no condition (if not allowed).
      */
     public int varyingQueryDelete(MemberServiceCB cb, DeleteOption<MemberServiceCB> option) {
         assertDeleteOptionNotNull(option);

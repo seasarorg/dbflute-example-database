@@ -675,7 +675,7 @@ public abstract class AbstractBsVendorConstraintNameAutoRefCQ extends AbstractCo
     /**
      * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br />
      * CONSTRAINT_NAME_AUTO_UNIQUE: {UQ, NotNull, VARCHAR(50)} <br />
-     * <pre>e.g. setConstraintNameAutoUnique_LikeSearch("xxx", new <span style="color: #FD4747">LikeSearchOption</span>().likeContain());</pre>
+     * <pre>e.g. setConstraintNameAutoUnique_LikeSearch("xxx", new <span style="color: #DD4747">LikeSearchOption</span>().likeContain());</pre>
      * @param constraintNameAutoUnique The value of constraintNameAutoUnique as likeSearch. (NullAllowed: if null (or empty), no condition)
      * @param likeSearchOption The option of like-search. (NotNull)
      */
@@ -704,7 +704,7 @@ public abstract class AbstractBsVendorConstraintNameAutoRefCQ extends AbstractCo
      * Prepare ScalarCondition as equal. <br />
      * {where FOO = (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #FD4747">scalar_Equal()</span>.max(new SubQuery&lt;VendorConstraintNameAutoRefCB&gt;() {
+     * cb.query().<span style="color: #DD4747">scalar_Equal()</span>.max(new SubQuery&lt;VendorConstraintNameAutoRefCB&gt;() {
      *     public void query(VendorConstraintNameAutoRefCB subCB) {
      *         subCB.specify().setXxx... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setYyy...
@@ -721,7 +721,7 @@ public abstract class AbstractBsVendorConstraintNameAutoRefCQ extends AbstractCo
      * Prepare ScalarCondition as equal. <br />
      * {where FOO &lt;&gt; (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #FD4747">scalar_NotEqual()</span>.max(new SubQuery&lt;VendorConstraintNameAutoRefCB&gt;() {
+     * cb.query().<span style="color: #DD4747">scalar_NotEqual()</span>.max(new SubQuery&lt;VendorConstraintNameAutoRefCB&gt;() {
      *     public void query(VendorConstraintNameAutoRefCB subCB) {
      *         subCB.specify().setXxx... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setYyy...
@@ -738,7 +738,7 @@ public abstract class AbstractBsVendorConstraintNameAutoRefCQ extends AbstractCo
      * Prepare ScalarCondition as greaterThan. <br />
      * {where FOO &gt; (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #FD4747">scalar_GreaterThan()</span>.max(new SubQuery&lt;VendorConstraintNameAutoRefCB&gt;() {
+     * cb.query().<span style="color: #DD4747">scalar_GreaterThan()</span>.max(new SubQuery&lt;VendorConstraintNameAutoRefCB&gt;() {
      *     public void query(VendorConstraintNameAutoRefCB subCB) {
      *         subCB.specify().setFoo... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setBar...
@@ -755,7 +755,7 @@ public abstract class AbstractBsVendorConstraintNameAutoRefCQ extends AbstractCo
      * Prepare ScalarCondition as lessThan. <br />
      * {where FOO &lt; (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #FD4747">scalar_LessThan()</span>.max(new SubQuery&lt;VendorConstraintNameAutoRefCB&gt;() {
+     * cb.query().<span style="color: #DD4747">scalar_LessThan()</span>.max(new SubQuery&lt;VendorConstraintNameAutoRefCB&gt;() {
      *     public void query(VendorConstraintNameAutoRefCB subCB) {
      *         subCB.specify().setFoo... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setBar...
@@ -772,7 +772,7 @@ public abstract class AbstractBsVendorConstraintNameAutoRefCQ extends AbstractCo
      * Prepare ScalarCondition as greaterEqual. <br />
      * {where FOO &gt;= (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #FD4747">scalar_GreaterEqual()</span>.max(new SubQuery&lt;VendorConstraintNameAutoRefCB&gt;() {
+     * cb.query().<span style="color: #DD4747">scalar_GreaterEqual()</span>.max(new SubQuery&lt;VendorConstraintNameAutoRefCB&gt;() {
      *     public void query(VendorConstraintNameAutoRefCB subCB) {
      *         subCB.specify().setFoo... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setBar...
@@ -789,7 +789,7 @@ public abstract class AbstractBsVendorConstraintNameAutoRefCQ extends AbstractCo
      * Prepare ScalarCondition as lessEqual. <br />
      * {where FOO &lt;= (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #FD4747">scalar_LessEqual()</span>.max(new SubQuery&lt;VendorConstraintNameAutoRefCB&gt;() {
+     * cb.query().<span style="color: #DD4747">scalar_LessEqual()</span>.max(new SubQuery&lt;VendorConstraintNameAutoRefCB&gt;() {
      *     public void query(VendorConstraintNameAutoRefCB subCB) {
      *         subCB.specify().setFoo... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setBar...

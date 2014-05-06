@@ -302,43 +302,43 @@ public abstract class BsVendorCheckCursor implements Entity, Serializable, Clone
     /**
      * Determine the object is equal with this. <br />
      * If primary-keys or columns of the other are same as this one, returns true.
-     * @param other The other entity. (NullAllowed: if null, returns false fixedly)
+     * @param obj The object as other entity. (NullAllowed: if null, returns false fixedly)
      * @return Comparing result.
      */
-    public boolean equals(Object other) {
-        if (other == null || !(other instanceof BsVendorCheckCursor)) { return false; }
-        BsVendorCheckCursor otherEntity = (BsVendorCheckCursor)other;
-        if (!xSV(getVendorCheckId(), otherEntity.getVendorCheckId())) { return false; }
-        if (!xSV(getTypeOfChar(), otherEntity.getTypeOfChar())) { return false; }
-        if (!xSV(getTypeOfVarchar(), otherEntity.getTypeOfVarchar())) { return false; }
-        if (!xSV(getTypeOfVcArray(), otherEntity.getTypeOfVcArray())) { return false; }
-        if (!xSV(getTypeOfText(), otherEntity.getTypeOfText())) { return false; }
-        if (!xSV(getTypeOfNumericInteger(), otherEntity.getTypeOfNumericInteger())) { return false; }
-        if (!xSV(getTypeOfNumericBigint(), otherEntity.getTypeOfNumericBigint())) { return false; }
-        if (!xSV(getTypeOfNumericDecimal(), otherEntity.getTypeOfNumericDecimal())) { return false; }
-        if (!xSV(getTypeOfDecimal(), otherEntity.getTypeOfDecimal())) { return false; }
-        if (!xSV(getTypeOfInt8(), otherEntity.getTypeOfInt8())) { return false; }
-        if (!xSV(getTypeOfIntArray(), otherEntity.getTypeOfIntArray())) { return false; }
-        if (!xSV(getTypeOfInt4(), otherEntity.getTypeOfInt4())) { return false; }
-        if (!xSV(getTypeOfBigint(), otherEntity.getTypeOfBigint())) { return false; }
-        if (!xSV(getTypeOfReal(), otherEntity.getTypeOfReal())) { return false; }
-        if (!xSV(getTypeOfFloat(), otherEntity.getTypeOfFloat())) { return false; }
-        if (!xSV(getTypeOfMoney(), otherEntity.getTypeOfMoney())) { return false; }
-        if (!xSV(getTypeOfDate(), otherEntity.getTypeOfDate())) { return false; }
-        if (!xSV(getTypeOfTimestamp(), otherEntity.getTypeOfTimestamp())) { return false; }
-        if (!xSV(getTypeOfTime(), otherEntity.getTypeOfTime())) { return false; }
-        if (!xSV(getTypeOfTimetz(), otherEntity.getTypeOfTimetz())) { return false; }
-        if (!xSV(getTypeOfInterval(), otherEntity.getTypeOfInterval())) { return false; }
-        if (!xSV(getTypeOfBool(), otherEntity.getTypeOfBool())) { return false; }
-        if (!xSV(getTypeOfBit(), otherEntity.getTypeOfBit())) { return false; }
-        if (!xSV(getTypeOfBytea(), otherEntity.getTypeOfBytea())) { return false; }
-        if (!xSV(getTypeOfOid(), otherEntity.getTypeOfOid())) { return false; }
-        if (!xSV(getTypeOfUuid(), otherEntity.getTypeOfUuid())) { return false; }
-        if (!xSV(getTypeOfXml(), otherEntity.getTypeOfXml())) { return false; }
+    public boolean equals(Object obj) {
+        if (obj == null || !(obj instanceof BsVendorCheckCursor)) { return false; }
+        BsVendorCheckCursor other = (BsVendorCheckCursor)obj;
+        if (!xSV(getVendorCheckId(), other.getVendorCheckId())) { return false; }
+        if (!xSV(getTypeOfChar(), other.getTypeOfChar())) { return false; }
+        if (!xSV(getTypeOfVarchar(), other.getTypeOfVarchar())) { return false; }
+        if (!xSV(getTypeOfVcArray(), other.getTypeOfVcArray())) { return false; }
+        if (!xSV(getTypeOfText(), other.getTypeOfText())) { return false; }
+        if (!xSV(getTypeOfNumericInteger(), other.getTypeOfNumericInteger())) { return false; }
+        if (!xSV(getTypeOfNumericBigint(), other.getTypeOfNumericBigint())) { return false; }
+        if (!xSV(getTypeOfNumericDecimal(), other.getTypeOfNumericDecimal())) { return false; }
+        if (!xSV(getTypeOfDecimal(), other.getTypeOfDecimal())) { return false; }
+        if (!xSV(getTypeOfInt8(), other.getTypeOfInt8())) { return false; }
+        if (!xSV(getTypeOfIntArray(), other.getTypeOfIntArray())) { return false; }
+        if (!xSV(getTypeOfInt4(), other.getTypeOfInt4())) { return false; }
+        if (!xSV(getTypeOfBigint(), other.getTypeOfBigint())) { return false; }
+        if (!xSV(getTypeOfReal(), other.getTypeOfReal())) { return false; }
+        if (!xSV(getTypeOfFloat(), other.getTypeOfFloat())) { return false; }
+        if (!xSV(getTypeOfMoney(), other.getTypeOfMoney())) { return false; }
+        if (!xSV(getTypeOfDate(), other.getTypeOfDate())) { return false; }
+        if (!xSV(getTypeOfTimestamp(), other.getTypeOfTimestamp())) { return false; }
+        if (!xSV(getTypeOfTime(), other.getTypeOfTime())) { return false; }
+        if (!xSV(getTypeOfTimetz(), other.getTypeOfTimetz())) { return false; }
+        if (!xSV(getTypeOfInterval(), other.getTypeOfInterval())) { return false; }
+        if (!xSV(getTypeOfBool(), other.getTypeOfBool())) { return false; }
+        if (!xSV(getTypeOfBit(), other.getTypeOfBit())) { return false; }
+        if (!xSV(getTypeOfBytea(), other.getTypeOfBytea())) { return false; }
+        if (!xSV(getTypeOfOid(), other.getTypeOfOid())) { return false; }
+        if (!xSV(getTypeOfUuid(), other.getTypeOfUuid())) { return false; }
+        if (!xSV(getTypeOfXml(), other.getTypeOfXml())) { return false; }
         return true;
     }
-    protected boolean xSV(Object value1, Object value2) { // isSameValue()
-        return InternalUtil.isSameValue(value1, value2);
+    protected boolean xSV(Object value1, Object value2) {
+        return FunCustodial.isSameValue(value1, value2);
     }
 
     /**
@@ -377,8 +377,8 @@ public abstract class BsVendorCheckCursor implements Entity, Serializable, Clone
         result = xCH(result, getTypeOfXml());
         return result;
     }
-    protected int xCH(int result, Object value) { // calculateHashcode()
-        return InternalUtil.calculateHashcode(result, value);
+    protected int xCH(int result, Object value) {
+        return FunCustodial.calculateHashcode(result, value);
     }
 
     /**
@@ -393,7 +393,7 @@ public abstract class BsVendorCheckCursor implements Entity, Serializable, Clone
      * @return The display string of all columns and relation existences. (NotNull)
      */
     public String toString() {
-        return buildDisplayString(InternalUtil.toClassTitle(this), true, true);
+        return buildDisplayString(FunCustodial.toClassTitle(this), true, true);
     }
 
     /**
@@ -453,13 +453,13 @@ public abstract class BsVendorCheckCursor implements Entity, Serializable, Clone
         return sb.toString();
     }
     protected String xfUD(Date date) { // formatUtilDate()
-        return InternalUtil.toString(date, xgDP());
+        return FunCustodial.toString(date, xgDP());
     }
     protected String xgDP() { // getDatePattern
         return "yyyy-MM-dd";
     }
     protected String xfBA(byte[] bytes) { // formatByteArray()
-        return InternalUtil.toString(bytes);
+        return FunCustodial.toString(bytes);
     }
     protected String buildRelationString() {
         return "";

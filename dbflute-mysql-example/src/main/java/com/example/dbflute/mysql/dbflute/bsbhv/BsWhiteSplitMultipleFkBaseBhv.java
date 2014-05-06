@@ -21,6 +21,7 @@ import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
 import org.seasar.dbflute.dbmeta.DBMeta;
+import org.seasar.dbflute.exception.*;
 import org.seasar.dbflute.outsidesql.executor.*;
 import com.example.dbflute.mysql.dbflute.exbhv.*;
 import com.example.dbflute.mysql.dbflute.exentity.*;
@@ -106,7 +107,7 @@ public abstract class BsWhiteSplitMultipleFkBaseBhv extends AbstractBehaviorWrit
      * <pre>
      * WhiteSplitMultipleFkBaseCB cb = new WhiteSplitMultipleFkBaseCB();
      * cb.query().setFoo...(value);
-     * int count = whiteSplitMultipleFkBaseBhv.<span style="color: #FD4747">selectCount</span>(cb);
+     * int count = whiteSplitMultipleFkBaseBhv.<span style="color: #DD4747">selectCount</span>(cb);
      * </pre>
      * @param cb The condition-bean of WhiteSplitMultipleFkBase. (NotNull)
      * @return The count for the condition. (NotMinus)
@@ -134,12 +135,14 @@ public abstract class BsWhiteSplitMultipleFkBaseBhv extends AbstractBehaviorWrit
     //                                                                       Entity Select
     //                                                                       =============
     /**
-     * Select the entity by the condition-bean.
+     * Select the entity by the condition-bean. <br />
+     * <span style="color: #AD4747; font-size: 120%">The return might be null if no data, so you should have null check.</span> <br />
+     * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, use selectEntityWithDeletedCheck().</span>
      * <pre>
      * WhiteSplitMultipleFkBaseCB cb = new WhiteSplitMultipleFkBaseCB();
      * cb.query().setFoo...(value);
-     * WhiteSplitMultipleFkBase whiteSplitMultipleFkBase = whiteSplitMultipleFkBaseBhv.<span style="color: #FD4747">selectEntity</span>(cb);
-     * if (whiteSplitMultipleFkBase != null) {
+     * WhiteSplitMultipleFkBase whiteSplitMultipleFkBase = whiteSplitMultipleFkBaseBhv.<span style="color: #DD4747">selectEntity</span>(cb);
+     * if (whiteSplitMultipleFkBase != null) { <span style="color: #3F7E5E">// null check</span>
      *     ... = whiteSplitMultipleFkBase.get...();
      * } else {
      *     ...
@@ -147,8 +150,8 @@ public abstract class BsWhiteSplitMultipleFkBaseBhv extends AbstractBehaviorWrit
      * </pre>
      * @param cb The condition-bean of WhiteSplitMultipleFkBase. (NotNull)
      * @return The entity selected by the condition. (NullAllowed: if no data, it returns null)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteSplitMultipleFkBase selectEntity(WhiteSplitMultipleFkBaseCB cb) {
         return doSelectEntity(cb, WhiteSplitMultipleFkBase.class);
@@ -166,18 +169,19 @@ public abstract class BsWhiteSplitMultipleFkBaseBhv extends AbstractBehaviorWrit
     }
 
     /**
-     * Select the entity by the condition-bean with deleted check.
+     * Select the entity by the condition-bean with deleted check. <br />
+     * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, this method is good.</span>
      * <pre>
      * WhiteSplitMultipleFkBaseCB cb = new WhiteSplitMultipleFkBaseCB();
      * cb.query().setFoo...(value);
-     * WhiteSplitMultipleFkBase whiteSplitMultipleFkBase = whiteSplitMultipleFkBaseBhv.<span style="color: #FD4747">selectEntityWithDeletedCheck</span>(cb);
+     * WhiteSplitMultipleFkBase whiteSplitMultipleFkBase = whiteSplitMultipleFkBaseBhv.<span style="color: #DD4747">selectEntityWithDeletedCheck</span>(cb);
      * ... = whiteSplitMultipleFkBase.get...(); <span style="color: #3F7E5E">// the entity always be not null</span>
      * </pre>
      * @param cb The condition-bean of WhiteSplitMultipleFkBase. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteSplitMultipleFkBase selectEntityWithDeletedCheck(WhiteSplitMultipleFkBaseCB cb) {
         return doSelectEntityWithDeletedCheck(cb, WhiteSplitMultipleFkBase.class);
@@ -198,8 +202,8 @@ public abstract class BsWhiteSplitMultipleFkBaseBhv extends AbstractBehaviorWrit
      * Select the entity by the primary-key value.
      * @param baseId The one of primary key. (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteSplitMultipleFkBase selectByPKValue(Long baseId) {
         return doSelectByPKValue(baseId, WhiteSplitMultipleFkBase.class);
@@ -213,9 +217,9 @@ public abstract class BsWhiteSplitMultipleFkBaseBhv extends AbstractBehaviorWrit
      * Select the entity by the primary-key value with deleted check.
      * @param baseId The one of primary key. (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteSplitMultipleFkBase selectByPKValueWithDeletedCheck(Long baseId) {
         return doSelectByPKValueWithDeletedCheck(baseId, WhiteSplitMultipleFkBase.class);
@@ -241,14 +245,14 @@ public abstract class BsWhiteSplitMultipleFkBaseBhv extends AbstractBehaviorWrit
      * WhiteSplitMultipleFkBaseCB cb = new WhiteSplitMultipleFkBaseCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * ListResultBean&lt;WhiteSplitMultipleFkBase&gt; whiteSplitMultipleFkBaseList = whiteSplitMultipleFkBaseBhv.<span style="color: #FD4747">selectList</span>(cb);
+     * ListResultBean&lt;WhiteSplitMultipleFkBase&gt; whiteSplitMultipleFkBaseList = whiteSplitMultipleFkBaseBhv.<span style="color: #DD4747">selectList</span>(cb);
      * for (WhiteSplitMultipleFkBase whiteSplitMultipleFkBase : whiteSplitMultipleFkBaseList) {
      *     ... = whiteSplitMultipleFkBase.get...();
      * }
      * </pre>
      * @param cb The condition-bean of WhiteSplitMultipleFkBase. (NotNull)
      * @return The result bean of selected list. (NotNull: if no data, returns empty list)
-     * @exception org.seasar.dbflute.exception.DangerousResultSizeException When the result size is over the specified safety size.
+     * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public ListResultBean<WhiteSplitMultipleFkBase> selectList(WhiteSplitMultipleFkBaseCB cb) {
         return doSelectList(cb, WhiteSplitMultipleFkBase.class);
@@ -276,8 +280,8 @@ public abstract class BsWhiteSplitMultipleFkBaseBhv extends AbstractBehaviorWrit
      * WhiteSplitMultipleFkBaseCB cb = new WhiteSplitMultipleFkBaseCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * cb.<span style="color: #FD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
-     * PagingResultBean&lt;WhiteSplitMultipleFkBase&gt; page = whiteSplitMultipleFkBaseBhv.<span style="color: #FD4747">selectPage</span>(cb);
+     * cb.<span style="color: #DD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
+     * PagingResultBean&lt;WhiteSplitMultipleFkBase&gt; page = whiteSplitMultipleFkBaseBhv.<span style="color: #DD4747">selectPage</span>(cb);
      * int allRecordCount = page.getAllRecordCount();
      * int allPageCount = page.getAllPageCount();
      * boolean isExistPrePage = page.isExistPrePage();
@@ -289,7 +293,7 @@ public abstract class BsWhiteSplitMultipleFkBaseBhv extends AbstractBehaviorWrit
      * </pre>
      * @param cb The condition-bean of WhiteSplitMultipleFkBase. (NotNull)
      * @return The result bean of selected page. (NotNull: if no data, returns bean as empty list)
-     * @exception org.seasar.dbflute.exception.DangerousResultSizeException When the result size is over the specified safety size.
+     * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public PagingResultBean<WhiteSplitMultipleFkBase> selectPage(WhiteSplitMultipleFkBaseCB cb) {
         return doSelectPage(cb, WhiteSplitMultipleFkBase.class);
@@ -316,7 +320,7 @@ public abstract class BsWhiteSplitMultipleFkBaseBhv extends AbstractBehaviorWrit
      * <pre>
      * WhiteSplitMultipleFkBaseCB cb = new WhiteSplitMultipleFkBaseCB();
      * cb.query().setFoo...(value);
-     * whiteSplitMultipleFkBaseBhv.<span style="color: #FD4747">selectCursor</span>(cb, new EntityRowHandler&lt;WhiteSplitMultipleFkBase&gt;() {
+     * whiteSplitMultipleFkBaseBhv.<span style="color: #DD4747">selectCursor</span>(cb, new EntityRowHandler&lt;WhiteSplitMultipleFkBase&gt;() {
      *     public void handle(WhiteSplitMultipleFkBase entity) {
      *         ... = entity.getFoo...();
      *     }
@@ -345,9 +349,9 @@ public abstract class BsWhiteSplitMultipleFkBaseBhv extends AbstractBehaviorWrit
      * Select the scalar value derived by a function from uniquely-selected records. <br />
      * You should call a function method after this method called like as follows:
      * <pre>
-     * whiteSplitMultipleFkBaseBhv.<span style="color: #FD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
+     * whiteSplitMultipleFkBaseBhv.<span style="color: #DD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
      *     public void query(WhiteSplitMultipleFkBaseCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
+     *         cb.specify().<span style="color: #DD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
      *         cb.query().setBarName_PrefixSearch("S");
      *     }
      * });
@@ -387,61 +391,92 @@ public abstract class BsWhiteSplitMultipleFkBaseBhv extends AbstractBehaviorWrit
     //                                                                       Load Referrer
     //                                                                       =============
     /**
-     * {Refer to overload method that has an argument of the list of entity.}
-     * @param whiteSplitMultipleFkBase The entity of whiteSplitMultipleFkBase. (NotNull)
-     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
-     */
-    public void loadWhiteSplitMultipleFkChildList(WhiteSplitMultipleFkBase whiteSplitMultipleFkBase, ConditionBeanSetupper<WhiteSplitMultipleFkChildCB> conditionBeanSetupper) {
-        xassLRArg(whiteSplitMultipleFkBase, conditionBeanSetupper);
-        loadWhiteSplitMultipleFkChildList(xnewLRLs(whiteSplitMultipleFkBase), conditionBeanSetupper);
-    }
-    /**
-     * Load referrer of whiteSplitMultipleFkChildList with the set-upper for condition-bean of referrer. <br />
+     * Load referrer of whiteSplitMultipleFkChildList by the set-upper of referrer. <br />
      * white_split_multiple_fk_child by BASE_ID, named 'whiteSplitMultipleFkChildList'.
      * <pre>
-     * whiteSplitMultipleFkBaseBhv.<span style="color: #FD4747">loadWhiteSplitMultipleFkChildList</span>(whiteSplitMultipleFkBaseList, new ConditionBeanSetupper&lt;WhiteSplitMultipleFkChildCB&gt;() {
+     * whiteSplitMultipleFkBaseBhv.<span style="color: #DD4747">loadWhiteSplitMultipleFkChildList</span>(whiteSplitMultipleFkBaseList, new ConditionBeanSetupper&lt;WhiteSplitMultipleFkChildCB&gt;() {
      *     public void setup(WhiteSplitMultipleFkChildCB cb) {
      *         cb.setupSelect...();
      *         cb.query().setFoo...(value);
      *         cb.query().addOrderBy_Bar...(); <span style="color: #3F7E5E">// basically you should order referrer list</span>
      *     }
-     * });
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here by calling like '}).withNestedList(new ...)'</span>
      * for (WhiteSplitMultipleFkBase whiteSplitMultipleFkBase : whiteSplitMultipleFkBaseList) {
-     *     ... = whiteSplitMultipleFkBase.<span style="color: #FD4747">getWhiteSplitMultipleFkChildList()</span>;
+     *     ... = whiteSplitMultipleFkBase.<span style="color: #DD4747">getWhiteSplitMultipleFkChildList()</span>;
      * }
      * </pre>
-     * About internal policy, the value of primary key(and others too) is treated as case-insensitive. <br />
-     * The condition-bean that the set-upper provides have settings before you touch it. It is as follows:
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
+     * <pre>
+     * cb.query().setBaseId_InScope(pkList);
+     * cb.query().addOrderBy_BaseId_Asc();
+     * </pre>
+     * @param whiteSplitMultipleFkBase The entity of whiteSplitMultipleFkBase. (NotNull)
+     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
+     */
+    public NestedReferrerLoader<WhiteSplitMultipleFkChild> loadWhiteSplitMultipleFkChildList(WhiteSplitMultipleFkBase whiteSplitMultipleFkBase, ConditionBeanSetupper<WhiteSplitMultipleFkChildCB> conditionBeanSetupper) {
+        xassLRArg(whiteSplitMultipleFkBase, conditionBeanSetupper);
+        return loadWhiteSplitMultipleFkChildList(xnewLRLs(whiteSplitMultipleFkBase), conditionBeanSetupper);
+    }
+
+    /**
+     * Load referrer of whiteSplitMultipleFkChildList by the set-upper of referrer. <br />
+     * white_split_multiple_fk_child by BASE_ID, named 'whiteSplitMultipleFkChildList'.
+     * <pre>
+     * whiteSplitMultipleFkBaseBhv.<span style="color: #DD4747">loadWhiteSplitMultipleFkChildList</span>(whiteSplitMultipleFkBaseList, new ConditionBeanSetupper&lt;WhiteSplitMultipleFkChildCB&gt;() {
+     *     public void setup(WhiteSplitMultipleFkChildCB cb) {
+     *         cb.setupSelect...();
+     *         cb.query().setFoo...(value);
+     *         cb.query().addOrderBy_Bar...(); <span style="color: #3F7E5E">// basically you should order referrer list</span>
+     *     }
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here by calling like '}).withNestedList(new ...)'</span>
+     * for (WhiteSplitMultipleFkBase whiteSplitMultipleFkBase : whiteSplitMultipleFkBaseList) {
+     *     ... = whiteSplitMultipleFkBase.<span style="color: #DD4747">getWhiteSplitMultipleFkChildList()</span>;
+     * }
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
      * <pre>
      * cb.query().setBaseId_InScope(pkList);
      * cb.query().addOrderBy_BaseId_Asc();
      * </pre>
      * @param whiteSplitMultipleFkBaseList The entity list of whiteSplitMultipleFkBase. (NotNull)
      * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public void loadWhiteSplitMultipleFkChildList(List<WhiteSplitMultipleFkBase> whiteSplitMultipleFkBaseList, ConditionBeanSetupper<WhiteSplitMultipleFkChildCB> conditionBeanSetupper) {
+    public NestedReferrerLoader<WhiteSplitMultipleFkChild> loadWhiteSplitMultipleFkChildList(List<WhiteSplitMultipleFkBase> whiteSplitMultipleFkBaseList, ConditionBeanSetupper<WhiteSplitMultipleFkChildCB> conditionBeanSetupper) {
         xassLRArg(whiteSplitMultipleFkBaseList, conditionBeanSetupper);
-        loadWhiteSplitMultipleFkChildList(whiteSplitMultipleFkBaseList, new LoadReferrerOption<WhiteSplitMultipleFkChildCB, WhiteSplitMultipleFkChild>().xinit(conditionBeanSetupper));
+        return loadWhiteSplitMultipleFkChildList(whiteSplitMultipleFkBaseList, new LoadReferrerOption<WhiteSplitMultipleFkChildCB, WhiteSplitMultipleFkChild>().xinit(conditionBeanSetupper));
     }
+
     /**
      * {Refer to overload method that has an argument of the list of entity.}
      * @param whiteSplitMultipleFkBase The entity of whiteSplitMultipleFkBase. (NotNull)
      * @param loadReferrerOption The option of load-referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public void loadWhiteSplitMultipleFkChildList(WhiteSplitMultipleFkBase whiteSplitMultipleFkBase, LoadReferrerOption<WhiteSplitMultipleFkChildCB, WhiteSplitMultipleFkChild> loadReferrerOption) {
+    public NestedReferrerLoader<WhiteSplitMultipleFkChild> loadWhiteSplitMultipleFkChildList(WhiteSplitMultipleFkBase whiteSplitMultipleFkBase, LoadReferrerOption<WhiteSplitMultipleFkChildCB, WhiteSplitMultipleFkChild> loadReferrerOption) {
         xassLRArg(whiteSplitMultipleFkBase, loadReferrerOption);
-        loadWhiteSplitMultipleFkChildList(xnewLRLs(whiteSplitMultipleFkBase), loadReferrerOption);
+        return loadWhiteSplitMultipleFkChildList(xnewLRLs(whiteSplitMultipleFkBase), loadReferrerOption);
     }
+
     /**
      * {Refer to overload method that has an argument of condition-bean setupper.}
      * @param whiteSplitMultipleFkBaseList The entity list of whiteSplitMultipleFkBase. (NotNull)
      * @param loadReferrerOption The option of load-referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public void loadWhiteSplitMultipleFkChildList(List<WhiteSplitMultipleFkBase> whiteSplitMultipleFkBaseList, LoadReferrerOption<WhiteSplitMultipleFkChildCB, WhiteSplitMultipleFkChild> loadReferrerOption) {
+    @SuppressWarnings("unchecked")
+    public NestedReferrerLoader<WhiteSplitMultipleFkChild> loadWhiteSplitMultipleFkChildList(List<WhiteSplitMultipleFkBase> whiteSplitMultipleFkBaseList, LoadReferrerOption<WhiteSplitMultipleFkChildCB, WhiteSplitMultipleFkChild> loadReferrerOption) {
         xassLRArg(whiteSplitMultipleFkBaseList, loadReferrerOption);
-        if (whiteSplitMultipleFkBaseList.isEmpty()) { return; }
+        if (whiteSplitMultipleFkBaseList.isEmpty()) { return (NestedReferrerLoader<WhiteSplitMultipleFkChild>)EMPTY_LOADER; }
+        return doLoadWhiteSplitMultipleFkChildList(whiteSplitMultipleFkBaseList, loadReferrerOption);
+    }
+
+    protected NestedReferrerLoader<WhiteSplitMultipleFkChild> doLoadWhiteSplitMultipleFkChildList(List<WhiteSplitMultipleFkBase> whiteSplitMultipleFkBaseList, LoadReferrerOption<WhiteSplitMultipleFkChildCB, WhiteSplitMultipleFkChild> option) {
         final WhiteSplitMultipleFkChildBhv referrerBhv = xgetBSFLR().select(WhiteSplitMultipleFkChildBhv.class);
-        helpLoadReferrerInternally(whiteSplitMultipleFkBaseList, loadReferrerOption, new InternalLoadReferrerCallback<WhiteSplitMultipleFkBase, Long, WhiteSplitMultipleFkChildCB, WhiteSplitMultipleFkChild>() {
+        return helpLoadReferrerInternally(whiteSplitMultipleFkBaseList, option, new InternalLoadReferrerCallback<WhiteSplitMultipleFkBase, Long, WhiteSplitMultipleFkChildCB, WhiteSplitMultipleFkChild>() {
             public Long getPKVal(WhiteSplitMultipleFkBase et)
             { return et.getBaseId(); }
             public void setRfLs(WhiteSplitMultipleFkBase et, List<WhiteSplitMultipleFkChild> ls)
@@ -516,12 +551,12 @@ public abstract class BsWhiteSplitMultipleFkBaseBhv extends AbstractBehaviorWrit
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
      * <span style="color: #3F7E5E">//whiteSplitMultipleFkBase.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//whiteSplitMultipleFkBase.set...;</span>
-     * whiteSplitMultipleFkBaseBhv.<span style="color: #FD4747">insert</span>(whiteSplitMultipleFkBase);
+     * whiteSplitMultipleFkBaseBhv.<span style="color: #DD4747">insert</span>(whiteSplitMultipleFkBase);
      * ... = whiteSplitMultipleFkBase.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * <p>While, when the entity is created by select, all columns are registered.</p>
      * @param whiteSplitMultipleFkBase The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insert(WhiteSplitMultipleFkBase whiteSplitMultipleFkBase) {
         doInsert(whiteSplitMultipleFkBase, null);
@@ -557,17 +592,17 @@ public abstract class BsWhiteSplitMultipleFkBaseBhv extends AbstractBehaviorWrit
      * <span style="color: #3F7E5E">//whiteSplitMultipleFkBase.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//whiteSplitMultipleFkBase.set...;</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * whiteSplitMultipleFkBase.<span style="color: #FD4747">setVersionNo</span>(value);
+     * whiteSplitMultipleFkBase.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
-     *     whiteSplitMultipleFkBaseBhv.<span style="color: #FD4747">update</span>(whiteSplitMultipleFkBase);
+     *     whiteSplitMultipleFkBaseBhv.<span style="color: #DD4747">update</span>(whiteSplitMultipleFkBase);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param whiteSplitMultipleFkBase The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void update(final WhiteSplitMultipleFkBase whiteSplitMultipleFkBase) {
         doUpdate(whiteSplitMultipleFkBase, null);
@@ -617,11 +652,11 @@ public abstract class BsWhiteSplitMultipleFkBaseBhv extends AbstractBehaviorWrit
     /**
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br />
-     * <p><span style="color: #FD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
+     * <p><span style="color: #DD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
      * @param whiteSplitMultipleFkBase The entity of insert or update target. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insertOrUpdate(WhiteSplitMultipleFkBase whiteSplitMultipleFkBase) {
         doInesrtOrUpdate(whiteSplitMultipleFkBase, null, null);
@@ -657,16 +692,16 @@ public abstract class BsWhiteSplitMultipleFkBaseBhv extends AbstractBehaviorWrit
      * WhiteSplitMultipleFkBase whiteSplitMultipleFkBase = new WhiteSplitMultipleFkBase();
      * whiteSplitMultipleFkBase.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * whiteSplitMultipleFkBase.<span style="color: #FD4747">setVersionNo</span>(value);
+     * whiteSplitMultipleFkBase.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
-     *     whiteSplitMultipleFkBaseBhv.<span style="color: #FD4747">delete</span>(whiteSplitMultipleFkBase);
+     *     whiteSplitMultipleFkBaseBhv.<span style="color: #DD4747">delete</span>(whiteSplitMultipleFkBase);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param whiteSplitMultipleFkBase The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void delete(WhiteSplitMultipleFkBase whiteSplitMultipleFkBase) {
         doDelete(whiteSplitMultipleFkBase, null);
@@ -701,7 +736,7 @@ public abstract class BsWhiteSplitMultipleFkBaseBhv extends AbstractBehaviorWrit
     /**
      * Batch-insert the entity list modified-only of same-set columns. (DefaultConstraintsEnabled) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
-     * <p><span style="color: #FD4747; font-size: 120%">The columns of least common multiple are registered like this:</span></p>
+     * <p><span style="color: #DD4747; font-size: 120%">The columns of least common multiple are registered like this:</span></p>
      * <pre>
      * for (... : ...) {
      *     WhiteSplitMultipleFkBase whiteSplitMultipleFkBase = new WhiteSplitMultipleFkBase();
@@ -714,7 +749,7 @@ public abstract class BsWhiteSplitMultipleFkBaseBhv extends AbstractBehaviorWrit
      *     <span style="color: #3F7E5E">// columns not-called in all entities are registered as null or default value</span>
      *     whiteSplitMultipleFkBaseList.add(whiteSplitMultipleFkBase);
      * }
-     * whiteSplitMultipleFkBaseBhv.<span style="color: #FD4747">batchInsert</span>(whiteSplitMultipleFkBaseList);
+     * whiteSplitMultipleFkBaseBhv.<span style="color: #DD4747">batchInsert</span>(whiteSplitMultipleFkBaseList);
      * </pre>
      * <p>While, when the entities are created by select, all columns are registered.</p>
      * <p>And if the table has an identity, entities after the process don't have incremented values.
@@ -748,7 +783,7 @@ public abstract class BsWhiteSplitMultipleFkBaseBhv extends AbstractBehaviorWrit
     /**
      * Batch-update the entity list modified-only of same-set columns. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
-     * <span style="color: #FD4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
+     * <span style="color: #DD4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
      * <pre>
      * for (... : ...) {
      *     WhiteSplitMultipleFkBase whiteSplitMultipleFkBase = new WhiteSplitMultipleFkBase();
@@ -763,11 +798,11 @@ public abstract class BsWhiteSplitMultipleFkBaseBhv extends AbstractBehaviorWrit
      *     <span style="color: #3F7E5E">// (others are not updated: their values are kept)</span>
      *     whiteSplitMultipleFkBaseList.add(whiteSplitMultipleFkBase);
      * }
-     * whiteSplitMultipleFkBaseBhv.<span style="color: #FD4747">batchUpdate</span>(whiteSplitMultipleFkBaseList);
+     * whiteSplitMultipleFkBaseBhv.<span style="color: #DD4747">batchUpdate</span>(whiteSplitMultipleFkBaseList);
      * </pre>
      * @param whiteSplitMultipleFkBaseList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<WhiteSplitMultipleFkBase> whiteSplitMultipleFkBaseList) {
         UpdateOption<WhiteSplitMultipleFkBaseCB> op = createPlainUpdateOption();
@@ -796,16 +831,16 @@ public abstract class BsWhiteSplitMultipleFkBaseBhv extends AbstractBehaviorWrit
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * <pre>
      * <span style="color: #3F7E5E">// e.g. update two columns only</span>
-     * whiteSplitMultipleFkBaseBhv.<span style="color: #FD4747">batchUpdate</span>(whiteSplitMultipleFkBaseList, new SpecifyQuery<WhiteSplitMultipleFkBaseCB>() {
+     * whiteSplitMultipleFkBaseBhv.<span style="color: #DD4747">batchUpdate</span>(whiteSplitMultipleFkBaseList, new SpecifyQuery<WhiteSplitMultipleFkBaseCB>() {
      *     public void specify(WhiteSplitMultipleFkBaseCB cb) { <span style="color: #3F7E5E">// the two only updated</span>
-     *         cb.specify().<span style="color: #FD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
-     *         cb.specify().<span style="color: #FD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
+     *         cb.specify().<span style="color: #DD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
+     *         cb.specify().<span style="color: #DD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
      *     }
      * });
      * <span style="color: #3F7E5E">// e.g. update every column in the table</span>
-     * whiteSplitMultipleFkBaseBhv.<span style="color: #FD4747">batchUpdate</span>(whiteSplitMultipleFkBaseList, new SpecifyQuery<WhiteSplitMultipleFkBaseCB>() {
+     * whiteSplitMultipleFkBaseBhv.<span style="color: #DD4747">batchUpdate</span>(whiteSplitMultipleFkBaseList, new SpecifyQuery<WhiteSplitMultipleFkBaseCB>() {
      *     public void specify(WhiteSplitMultipleFkBaseCB cb) { <span style="color: #3F7E5E">// all columns are updated</span>
-     *         cb.specify().<span style="color: #FD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
+     *         cb.specify().<span style="color: #DD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
      *     }
      * });
      * </pre>
@@ -817,7 +852,7 @@ public abstract class BsWhiteSplitMultipleFkBaseBhv extends AbstractBehaviorWrit
      * @param whiteSplitMultipleFkBaseList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @param updateColumnSpec The specification of update columns. (NotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<WhiteSplitMultipleFkBase> whiteSplitMultipleFkBaseList, SpecifyQuery<WhiteSplitMultipleFkBaseCB> updateColumnSpec) {
         return doBatchUpdate(whiteSplitMultipleFkBaseList, createSpecifiedUpdateOption(updateColumnSpec));
@@ -833,7 +868,7 @@ public abstract class BsWhiteSplitMultipleFkBaseBhv extends AbstractBehaviorWrit
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * @param whiteSplitMultipleFkBaseList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of deleted count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchDelete(List<WhiteSplitMultipleFkBase> whiteSplitMultipleFkBaseList) {
         return doBatchDelete(whiteSplitMultipleFkBaseList, null);
@@ -862,7 +897,7 @@ public abstract class BsWhiteSplitMultipleFkBaseBhv extends AbstractBehaviorWrit
     /**
      * Insert the several entities by query (modified-only for fixed value).
      * <pre>
-     * whiteSplitMultipleFkBaseBhv.<span style="color: #FD4747">queryInsert</span>(new QueryInsertSetupper&lt;WhiteSplitMultipleFkBase, WhiteSplitMultipleFkBaseCB&gt;() {
+     * whiteSplitMultipleFkBaseBhv.<span style="color: #DD4747">queryInsert</span>(new QueryInsertSetupper&lt;WhiteSplitMultipleFkBase, WhiteSplitMultipleFkBaseCB&gt;() {
      *     public ConditionBean setup(whiteSplitMultipleFkBase entity, WhiteSplitMultipleFkBaseCB intoCB) {
      *         FooCB cb = FooCB();
      *         cb.setupSelect_Bar();
@@ -924,12 +959,12 @@ public abstract class BsWhiteSplitMultipleFkBaseBhv extends AbstractBehaviorWrit
      * <span style="color: #3F7E5E">//whiteSplitMultipleFkBase.setVersionNo(value);</span>
      * WhiteSplitMultipleFkBaseCB cb = new WhiteSplitMultipleFkBaseCB();
      * cb.query().setFoo...(value);
-     * whiteSplitMultipleFkBaseBhv.<span style="color: #FD4747">queryUpdate</span>(whiteSplitMultipleFkBase, cb);
+     * whiteSplitMultipleFkBaseBhv.<span style="color: #DD4747">queryUpdate</span>(whiteSplitMultipleFkBase, cb);
      * </pre>
      * @param whiteSplitMultipleFkBase The entity that contains update values. (NotNull, PrimaryKeyNullAllowed)
      * @param cb The condition-bean of WhiteSplitMultipleFkBase. (NotNull)
      * @return The updated count.
-     * @exception org.seasar.dbflute.exception.NonQueryUpdateNotAllowedException When the query has no condition.
+     * @exception NonQueryUpdateNotAllowedException When the query has no condition.
      */
     public int queryUpdate(WhiteSplitMultipleFkBase whiteSplitMultipleFkBase, WhiteSplitMultipleFkBaseCB cb) {
         return doQueryUpdate(whiteSplitMultipleFkBase, cb, null);
@@ -952,11 +987,11 @@ public abstract class BsWhiteSplitMultipleFkBaseBhv extends AbstractBehaviorWrit
      * <pre>
      * WhiteSplitMultipleFkBaseCB cb = new WhiteSplitMultipleFkBaseCB();
      * cb.query().setFoo...(value);
-     * whiteSplitMultipleFkBaseBhv.<span style="color: #FD4747">queryDelete</span>(whiteSplitMultipleFkBase, cb);
+     * whiteSplitMultipleFkBaseBhv.<span style="color: #DD4747">queryDelete</span>(whiteSplitMultipleFkBase, cb);
      * </pre>
      * @param cb The condition-bean of WhiteSplitMultipleFkBase. (NotNull)
      * @return The deleted count.
-     * @exception org.seasar.dbflute.exception.NonQueryDeleteNotAllowedException When the query has no condition.
+     * @exception NonQueryDeleteNotAllowedException When the query has no condition.
      */
     public int queryDelete(WhiteSplitMultipleFkBaseCB cb) {
         return doQueryDelete(cb, null);
@@ -992,12 +1027,12 @@ public abstract class BsWhiteSplitMultipleFkBaseBhv extends AbstractBehaviorWrit
      * InsertOption<WhiteSplitMultipleFkBaseCB> option = new InsertOption<WhiteSplitMultipleFkBaseCB>();
      * <span style="color: #3F7E5E">// you can insert by your values for common columns</span>
      * option.disableCommonColumnAutoSetup();
-     * whiteSplitMultipleFkBaseBhv.<span style="color: #FD4747">varyingInsert</span>(whiteSplitMultipleFkBase, option);
+     * whiteSplitMultipleFkBaseBhv.<span style="color: #DD4747">varyingInsert</span>(whiteSplitMultipleFkBase, option);
      * ... = whiteSplitMultipleFkBase.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * @param whiteSplitMultipleFkBase The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
      * @param option The option of insert for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingInsert(WhiteSplitMultipleFkBase whiteSplitMultipleFkBase, InsertOption<WhiteSplitMultipleFkBaseCB> option) {
         assertInsertOptionNotNull(option);
@@ -1013,25 +1048,25 @@ public abstract class BsWhiteSplitMultipleFkBaseBhv extends AbstractBehaviorWrit
      * whiteSplitMultipleFkBase.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * whiteSplitMultipleFkBase.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * whiteSplitMultipleFkBase.<span style="color: #FD4747">setVersionNo</span>(value);
+     * whiteSplitMultipleFkBase.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     <span style="color: #3F7E5E">// you can update by self calculation values</span>
      *     UpdateOption&lt;WhiteSplitMultipleFkBaseCB&gt; option = new UpdateOption&lt;WhiteSplitMultipleFkBaseCB&gt;();
      *     option.self(new SpecifyQuery&lt;WhiteSplitMultipleFkBaseCB&gt;() {
      *         public void specify(WhiteSplitMultipleFkBaseCB cb) {
-     *             cb.specify().<span style="color: #FD4747">columnXxxCount()</span>;
+     *             cb.specify().<span style="color: #DD4747">columnXxxCount()</span>;
      *         }
      *     }).plus(1); <span style="color: #3F7E5E">// XXX_COUNT = XXX_COUNT + 1</span>
-     *     whiteSplitMultipleFkBaseBhv.<span style="color: #FD4747">varyingUpdate</span>(whiteSplitMultipleFkBase, option);
+     *     whiteSplitMultipleFkBaseBhv.<span style="color: #DD4747">varyingUpdate</span>(whiteSplitMultipleFkBase, option);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param whiteSplitMultipleFkBase The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @param option The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingUpdate(WhiteSplitMultipleFkBase whiteSplitMultipleFkBase, UpdateOption<WhiteSplitMultipleFkBaseCB> option) {
         assertUpdateOptionNotNull(option);
@@ -1044,9 +1079,9 @@ public abstract class BsWhiteSplitMultipleFkBaseBhv extends AbstractBehaviorWrit
      * @param whiteSplitMultipleFkBase The entity of insert or update target. (NotNull)
      * @param insertOption The option of insert for varying requests. (NotNull)
      * @param updateOption The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingInsertOrUpdate(WhiteSplitMultipleFkBase whiteSplitMultipleFkBase, InsertOption<WhiteSplitMultipleFkBaseCB> insertOption, UpdateOption<WhiteSplitMultipleFkBaseCB> updateOption) {
         assertInsertOptionNotNull(insertOption); assertUpdateOptionNotNull(updateOption);
@@ -1059,8 +1094,8 @@ public abstract class BsWhiteSplitMultipleFkBaseBhv extends AbstractBehaviorWrit
      * Other specifications are same as delete(entity).
      * @param whiteSplitMultipleFkBase The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @param option The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void varyingDelete(WhiteSplitMultipleFkBase whiteSplitMultipleFkBase, DeleteOption<WhiteSplitMultipleFkBaseCB> option) {
         assertDeleteOptionNotNull(option);
@@ -1146,16 +1181,16 @@ public abstract class BsWhiteSplitMultipleFkBaseBhv extends AbstractBehaviorWrit
      * UpdateOption&lt;WhiteSplitMultipleFkBaseCB&gt; option = new UpdateOption&lt;WhiteSplitMultipleFkBaseCB&gt;();
      * option.self(new SpecifyQuery&lt;WhiteSplitMultipleFkBaseCB&gt;() {
      *     public void specify(WhiteSplitMultipleFkBaseCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFooCount()</span>;
+     *         cb.specify().<span style="color: #DD4747">columnFooCount()</span>;
      *     }
      * }).plus(1); <span style="color: #3F7E5E">// FOO_COUNT = FOO_COUNT + 1</span>
-     * whiteSplitMultipleFkBaseBhv.<span style="color: #FD4747">varyingQueryUpdate</span>(whiteSplitMultipleFkBase, cb, option);
+     * whiteSplitMultipleFkBaseBhv.<span style="color: #DD4747">varyingQueryUpdate</span>(whiteSplitMultipleFkBase, cb, option);
      * </pre>
      * @param whiteSplitMultipleFkBase The entity that contains update values. (NotNull) {PrimaryKeyNotRequired}
      * @param cb The condition-bean of WhiteSplitMultipleFkBase. (NotNull)
      * @param option The option of update for varying requests. (NotNull)
      * @return The updated count.
-     * @exception org.seasar.dbflute.exception.NonQueryUpdateNotAllowedException When the query has no condition (if not allowed).
+     * @exception NonQueryUpdateNotAllowedException When the query has no condition (if not allowed).
      */
     public int varyingQueryUpdate(WhiteSplitMultipleFkBase whiteSplitMultipleFkBase, WhiteSplitMultipleFkBaseCB cb, UpdateOption<WhiteSplitMultipleFkBaseCB> option) {
         assertUpdateOptionNotNull(option);
@@ -1169,7 +1204,7 @@ public abstract class BsWhiteSplitMultipleFkBaseBhv extends AbstractBehaviorWrit
      * @param cb The condition-bean of WhiteSplitMultipleFkBase. (NotNull)
      * @param option The option of delete for varying requests. (NotNull)
      * @return The deleted count.
-     * @exception org.seasar.dbflute.exception.NonQueryDeleteNotAllowedException When the query has no condition (if not allowed).
+     * @exception NonQueryDeleteNotAllowedException When the query has no condition (if not allowed).
      */
     public int varyingQueryDelete(WhiteSplitMultipleFkBaseCB cb, DeleteOption<WhiteSplitMultipleFkBaseCB> option) {
         assertDeleteOptionNotNull(option);

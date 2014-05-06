@@ -153,7 +153,7 @@ public abstract class AbstractBsVendorTheLongAndWindingTableAndColumnCQ extends 
      * {exists (select THE_LONG_AND_WINDING_TABLE_AND_COLUMN_ID from vendor_the_long_and_winding_table_and_column_ref where ...)} <br />
      * vendor_the_long_and_winding_table_and_column_ref by THE_LONG_AND_WINDING_TABLE_AND_COLUMN_ID, named 'vendorTheLongAndWindingTableAndColumnRefAsOne'.
      * <pre>
-     * cb.query().<span style="color: #FD4747">existsVendorTheLongAndWindingTableAndColumnRefList</span>(new SubQuery&lt;VendorTheLongAndWindingTableAndColumnRefCB&gt;() {
+     * cb.query().<span style="color: #DD4747">existsVendorTheLongAndWindingTableAndColumnRefList</span>(new SubQuery&lt;VendorTheLongAndWindingTableAndColumnRefCB&gt;() {
      *     public void query(VendorTheLongAndWindingTableAndColumnRefCB subCB) {
      *         subCB.query().setXxx...
      *     }
@@ -174,7 +174,7 @@ public abstract class AbstractBsVendorTheLongAndWindingTableAndColumnCQ extends 
      * {not exists (select THE_LONG_AND_WINDING_TABLE_AND_COLUMN_ID from vendor_the_long_and_winding_table_and_column_ref where ...)} <br />
      * vendor_the_long_and_winding_table_and_column_ref by THE_LONG_AND_WINDING_TABLE_AND_COLUMN_ID, named 'vendorTheLongAndWindingTableAndColumnRefAsOne'.
      * <pre>
-     * cb.query().<span style="color: #FD4747">notExistsVendorTheLongAndWindingTableAndColumnRefList</span>(new SubQuery&lt;VendorTheLongAndWindingTableAndColumnRefCB&gt;() {
+     * cb.query().<span style="color: #DD4747">notExistsVendorTheLongAndWindingTableAndColumnRefList</span>(new SubQuery&lt;VendorTheLongAndWindingTableAndColumnRefCB&gt;() {
      *     public void query(VendorTheLongAndWindingTableAndColumnRefCB subCB) {
      *         subCB.query().setXxx...
      *     }
@@ -231,12 +231,12 @@ public abstract class AbstractBsVendorTheLongAndWindingTableAndColumnCQ extends 
      * {FOO &lt;= (select max(BAR) from vendor_the_long_and_winding_table_and_column_ref where ...)} <br />
      * vendor_the_long_and_winding_table_and_column_ref by THE_LONG_AND_WINDING_TABLE_AND_COLUMN_ID, named 'vendorTheLongAndWindingTableAndColumnRefAsOne'.
      * <pre>
-     * cb.query().<span style="color: #FD4747">derivedVendorTheLongAndWindingTableAndColumnRefList()</span>.<span style="color: #FD4747">max</span>(new SubQuery&lt;VendorTheLongAndWindingTableAndColumnRefCB&gt;() {
+     * cb.query().<span style="color: #DD4747">derivedVendorTheLongAndWindingTableAndColumnRefList()</span>.<span style="color: #DD4747">max</span>(new SubQuery&lt;VendorTheLongAndWindingTableAndColumnRefCB&gt;() {
      *     public void query(VendorTheLongAndWindingTableAndColumnRefCB subCB) {
-     *         subCB.specify().<span style="color: #FD4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
+     *         subCB.specify().<span style="color: #DD4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
      *         subCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
      *     }
-     * }).<span style="color: #FD4747">greaterEqual</span>(123); <span style="color: #3F7E5E">// condition to derived column</span>
+     * }).<span style="color: #DD4747">greaterEqual</span>(123); <span style="color: #3F7E5E">// condition to derived column</span>
      * </pre>
      * @return The object to set up a function for referrer table. (NotNull)
      */
@@ -339,7 +339,7 @@ public abstract class AbstractBsVendorTheLongAndWindingTableAndColumnCQ extends 
     /**
      * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br />
      * THE_LONG_AND_WINDING_TABLE_AND_COLUMN_NAME: {UQ, NotNull, VARCHAR(180)} <br />
-     * <pre>e.g. setTheLongAndWindingTableAndColumnName_LikeSearch("xxx", new <span style="color: #FD4747">LikeSearchOption</span>().likeContain());</pre>
+     * <pre>e.g. setTheLongAndWindingTableAndColumnName_LikeSearch("xxx", new <span style="color: #DD4747">LikeSearchOption</span>().likeContain());</pre>
      * @param theLongAndWindingTableAndColumnName The value of theLongAndWindingTableAndColumnName as likeSearch. (NullAllowed: if null (or empty), no condition)
      * @param likeSearchOption The option of like-search. (NotNull)
      */
@@ -425,7 +425,7 @@ public abstract class AbstractBsVendorTheLongAndWindingTableAndColumnCQ extends 
     /**
      * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br />
      * SHORT_NAME: {NotNull, VARCHAR(200)} <br />
-     * <pre>e.g. setShortName_LikeSearch("xxx", new <span style="color: #FD4747">LikeSearchOption</span>().likeContain());</pre>
+     * <pre>e.g. setShortName_LikeSearch("xxx", new <span style="color: #DD4747">LikeSearchOption</span>().likeContain());</pre>
      * @param shortName The value of shortName as likeSearch. (NullAllowed: if null (or empty), no condition)
      * @param likeSearchOption The option of like-search. (NotNull)
      */
@@ -545,7 +545,7 @@ public abstract class AbstractBsVendorTheLongAndWindingTableAndColumnCQ extends 
      * Prepare ScalarCondition as equal. <br />
      * {where FOO = (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #FD4747">scalar_Equal()</span>.max(new SubQuery&lt;VendorTheLongAndWindingTableAndColumnCB&gt;() {
+     * cb.query().<span style="color: #DD4747">scalar_Equal()</span>.max(new SubQuery&lt;VendorTheLongAndWindingTableAndColumnCB&gt;() {
      *     public void query(VendorTheLongAndWindingTableAndColumnCB subCB) {
      *         subCB.specify().setXxx... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setYyy...
@@ -562,7 +562,7 @@ public abstract class AbstractBsVendorTheLongAndWindingTableAndColumnCQ extends 
      * Prepare ScalarCondition as equal. <br />
      * {where FOO &lt;&gt; (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #FD4747">scalar_NotEqual()</span>.max(new SubQuery&lt;VendorTheLongAndWindingTableAndColumnCB&gt;() {
+     * cb.query().<span style="color: #DD4747">scalar_NotEqual()</span>.max(new SubQuery&lt;VendorTheLongAndWindingTableAndColumnCB&gt;() {
      *     public void query(VendorTheLongAndWindingTableAndColumnCB subCB) {
      *         subCB.specify().setXxx... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setYyy...
@@ -579,7 +579,7 @@ public abstract class AbstractBsVendorTheLongAndWindingTableAndColumnCQ extends 
      * Prepare ScalarCondition as greaterThan. <br />
      * {where FOO &gt; (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #FD4747">scalar_GreaterThan()</span>.max(new SubQuery&lt;VendorTheLongAndWindingTableAndColumnCB&gt;() {
+     * cb.query().<span style="color: #DD4747">scalar_GreaterThan()</span>.max(new SubQuery&lt;VendorTheLongAndWindingTableAndColumnCB&gt;() {
      *     public void query(VendorTheLongAndWindingTableAndColumnCB subCB) {
      *         subCB.specify().setFoo... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setBar...
@@ -596,7 +596,7 @@ public abstract class AbstractBsVendorTheLongAndWindingTableAndColumnCQ extends 
      * Prepare ScalarCondition as lessThan. <br />
      * {where FOO &lt; (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #FD4747">scalar_LessThan()</span>.max(new SubQuery&lt;VendorTheLongAndWindingTableAndColumnCB&gt;() {
+     * cb.query().<span style="color: #DD4747">scalar_LessThan()</span>.max(new SubQuery&lt;VendorTheLongAndWindingTableAndColumnCB&gt;() {
      *     public void query(VendorTheLongAndWindingTableAndColumnCB subCB) {
      *         subCB.specify().setFoo... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setBar...
@@ -613,7 +613,7 @@ public abstract class AbstractBsVendorTheLongAndWindingTableAndColumnCQ extends 
      * Prepare ScalarCondition as greaterEqual. <br />
      * {where FOO &gt;= (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #FD4747">scalar_GreaterEqual()</span>.max(new SubQuery&lt;VendorTheLongAndWindingTableAndColumnCB&gt;() {
+     * cb.query().<span style="color: #DD4747">scalar_GreaterEqual()</span>.max(new SubQuery&lt;VendorTheLongAndWindingTableAndColumnCB&gt;() {
      *     public void query(VendorTheLongAndWindingTableAndColumnCB subCB) {
      *         subCB.specify().setFoo... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setBar...
@@ -630,7 +630,7 @@ public abstract class AbstractBsVendorTheLongAndWindingTableAndColumnCQ extends 
      * Prepare ScalarCondition as lessEqual. <br />
      * {where FOO &lt;= (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #FD4747">scalar_LessEqual()</span>.max(new SubQuery&lt;VendorTheLongAndWindingTableAndColumnCB&gt;() {
+     * cb.query().<span style="color: #DD4747">scalar_LessEqual()</span>.max(new SubQuery&lt;VendorTheLongAndWindingTableAndColumnCB&gt;() {
      *     public void query(VendorTheLongAndWindingTableAndColumnCB subCB) {
      *         subCB.specify().setFoo... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setBar...

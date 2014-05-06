@@ -386,7 +386,8 @@ public abstract class AbstractBsWhiteVariantRelationReferrerCQ extends AbstractC
     /**
      * InScope {in ('a', 'b')}. As VariantRelationMasterType. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br />
      * master type of variant relation (biz-many-to-one) <br />
-     * Foo or Bar or Qux
+     * Foo or Bar or Qux <br />
+     * The group elements:[FooCls, BarCls, QuxCls]
      */
     public void setMasterTypeCode_InScope_FooBarQux() {
         setMasterTypeCode_InScope_AsVariantRelationMasterType(CDef.VariantRelationMasterType.listOfFooBarQux());
@@ -429,7 +430,7 @@ public abstract class AbstractBsWhiteVariantRelationReferrerCQ extends AbstractC
      * Prepare ScalarCondition as equal. <br />
      * {where FOO = (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #FD4747">scalar_Equal()</span>.max(new SubQuery&lt;WhiteVariantRelationReferrerCB&gt;() {
+     * cb.query().<span style="color: #DD4747">scalar_Equal()</span>.max(new SubQuery&lt;WhiteVariantRelationReferrerCB&gt;() {
      *     public void query(WhiteVariantRelationReferrerCB subCB) {
      *         subCB.specify().setXxx... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setYyy...
@@ -446,7 +447,7 @@ public abstract class AbstractBsWhiteVariantRelationReferrerCQ extends AbstractC
      * Prepare ScalarCondition as equal. <br />
      * {where FOO &lt;&gt; (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #FD4747">scalar_NotEqual()</span>.max(new SubQuery&lt;WhiteVariantRelationReferrerCB&gt;() {
+     * cb.query().<span style="color: #DD4747">scalar_NotEqual()</span>.max(new SubQuery&lt;WhiteVariantRelationReferrerCB&gt;() {
      *     public void query(WhiteVariantRelationReferrerCB subCB) {
      *         subCB.specify().setXxx... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setYyy...
@@ -463,7 +464,7 @@ public abstract class AbstractBsWhiteVariantRelationReferrerCQ extends AbstractC
      * Prepare ScalarCondition as greaterThan. <br />
      * {where FOO &gt; (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #FD4747">scalar_GreaterThan()</span>.max(new SubQuery&lt;WhiteVariantRelationReferrerCB&gt;() {
+     * cb.query().<span style="color: #DD4747">scalar_GreaterThan()</span>.max(new SubQuery&lt;WhiteVariantRelationReferrerCB&gt;() {
      *     public void query(WhiteVariantRelationReferrerCB subCB) {
      *         subCB.specify().setFoo... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setBar...
@@ -480,7 +481,7 @@ public abstract class AbstractBsWhiteVariantRelationReferrerCQ extends AbstractC
      * Prepare ScalarCondition as lessThan. <br />
      * {where FOO &lt; (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #FD4747">scalar_LessThan()</span>.max(new SubQuery&lt;WhiteVariantRelationReferrerCB&gt;() {
+     * cb.query().<span style="color: #DD4747">scalar_LessThan()</span>.max(new SubQuery&lt;WhiteVariantRelationReferrerCB&gt;() {
      *     public void query(WhiteVariantRelationReferrerCB subCB) {
      *         subCB.specify().setFoo... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setBar...
@@ -497,7 +498,7 @@ public abstract class AbstractBsWhiteVariantRelationReferrerCQ extends AbstractC
      * Prepare ScalarCondition as greaterEqual. <br />
      * {where FOO &gt;= (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #FD4747">scalar_GreaterEqual()</span>.max(new SubQuery&lt;WhiteVariantRelationReferrerCB&gt;() {
+     * cb.query().<span style="color: #DD4747">scalar_GreaterEqual()</span>.max(new SubQuery&lt;WhiteVariantRelationReferrerCB&gt;() {
      *     public void query(WhiteVariantRelationReferrerCB subCB) {
      *         subCB.specify().setFoo... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setBar...
@@ -514,7 +515,7 @@ public abstract class AbstractBsWhiteVariantRelationReferrerCQ extends AbstractC
      * Prepare ScalarCondition as lessEqual. <br />
      * {where FOO &lt;= (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #FD4747">scalar_LessEqual()</span>.max(new SubQuery&lt;WhiteVariantRelationReferrerCB&gt;() {
+     * cb.query().<span style="color: #DD4747">scalar_LessEqual()</span>.max(new SubQuery&lt;WhiteVariantRelationReferrerCB&gt;() {
      *     public void query(WhiteVariantRelationReferrerCB subCB) {
      *         subCB.specify().setFoo... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setBar...

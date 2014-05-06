@@ -21,6 +21,7 @@ import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
 import org.seasar.dbflute.dbmeta.DBMeta;
+import org.seasar.dbflute.exception.*;
 import org.seasar.dbflute.outsidesql.executor.*;
 import com.example.dbflute.mysql.dbflute.exbhv.*;
 import com.example.dbflute.mysql.dbflute.exentity.*;
@@ -106,7 +107,7 @@ public abstract class BsWhiteAllInOneClsCompoundPkRefBhv extends AbstractBehavio
      * <pre>
      * WhiteAllInOneClsCompoundPkRefCB cb = new WhiteAllInOneClsCompoundPkRefCB();
      * cb.query().setFoo...(value);
-     * int count = whiteAllInOneClsCompoundPkRefBhv.<span style="color: #FD4747">selectCount</span>(cb);
+     * int count = whiteAllInOneClsCompoundPkRefBhv.<span style="color: #DD4747">selectCount</span>(cb);
      * </pre>
      * @param cb The condition-bean of WhiteAllInOneClsCompoundPkRef. (NotNull)
      * @return The count for the condition. (NotMinus)
@@ -134,12 +135,14 @@ public abstract class BsWhiteAllInOneClsCompoundPkRefBhv extends AbstractBehavio
     //                                                                       Entity Select
     //                                                                       =============
     /**
-     * Select the entity by the condition-bean.
+     * Select the entity by the condition-bean. <br />
+     * <span style="color: #AD4747; font-size: 120%">The return might be null if no data, so you should have null check.</span> <br />
+     * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, use selectEntityWithDeletedCheck().</span>
      * <pre>
      * WhiteAllInOneClsCompoundPkRefCB cb = new WhiteAllInOneClsCompoundPkRefCB();
      * cb.query().setFoo...(value);
-     * WhiteAllInOneClsCompoundPkRef whiteAllInOneClsCompoundPkRef = whiteAllInOneClsCompoundPkRefBhv.<span style="color: #FD4747">selectEntity</span>(cb);
-     * if (whiteAllInOneClsCompoundPkRef != null) {
+     * WhiteAllInOneClsCompoundPkRef whiteAllInOneClsCompoundPkRef = whiteAllInOneClsCompoundPkRefBhv.<span style="color: #DD4747">selectEntity</span>(cb);
+     * if (whiteAllInOneClsCompoundPkRef != null) { <span style="color: #3F7E5E">// null check</span>
      *     ... = whiteAllInOneClsCompoundPkRef.get...();
      * } else {
      *     ...
@@ -147,8 +150,8 @@ public abstract class BsWhiteAllInOneClsCompoundPkRefBhv extends AbstractBehavio
      * </pre>
      * @param cb The condition-bean of WhiteAllInOneClsCompoundPkRef. (NotNull)
      * @return The entity selected by the condition. (NullAllowed: if no data, it returns null)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteAllInOneClsCompoundPkRef selectEntity(WhiteAllInOneClsCompoundPkRefCB cb) {
         return doSelectEntity(cb, WhiteAllInOneClsCompoundPkRef.class);
@@ -166,18 +169,19 @@ public abstract class BsWhiteAllInOneClsCompoundPkRefBhv extends AbstractBehavio
     }
 
     /**
-     * Select the entity by the condition-bean with deleted check.
+     * Select the entity by the condition-bean with deleted check. <br />
+     * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, this method is good.</span>
      * <pre>
      * WhiteAllInOneClsCompoundPkRefCB cb = new WhiteAllInOneClsCompoundPkRefCB();
      * cb.query().setFoo...(value);
-     * WhiteAllInOneClsCompoundPkRef whiteAllInOneClsCompoundPkRef = whiteAllInOneClsCompoundPkRefBhv.<span style="color: #FD4747">selectEntityWithDeletedCheck</span>(cb);
+     * WhiteAllInOneClsCompoundPkRef whiteAllInOneClsCompoundPkRef = whiteAllInOneClsCompoundPkRefBhv.<span style="color: #DD4747">selectEntityWithDeletedCheck</span>(cb);
      * ... = whiteAllInOneClsCompoundPkRef.get...(); <span style="color: #3F7E5E">// the entity always be not null</span>
      * </pre>
      * @param cb The condition-bean of WhiteAllInOneClsCompoundPkRef. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteAllInOneClsCompoundPkRef selectEntityWithDeletedCheck(WhiteAllInOneClsCompoundPkRefCB cb) {
         return doSelectEntityWithDeletedCheck(cb, WhiteAllInOneClsCompoundPkRef.class);
@@ -200,8 +204,8 @@ public abstract class BsWhiteAllInOneClsCompoundPkRefBhv extends AbstractBehavio
      * @param barCode The one of primary key. (NotNull)
      * @param quxCode The one of primary key. (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteAllInOneClsCompoundPkRef selectByPKValue(String fooCode, String barCode, String quxCode) {
         return doSelectByPKValue(fooCode, barCode, quxCode, WhiteAllInOneClsCompoundPkRef.class);
@@ -217,9 +221,9 @@ public abstract class BsWhiteAllInOneClsCompoundPkRefBhv extends AbstractBehavio
      * @param barCode The one of primary key. (NotNull)
      * @param quxCode The one of primary key. (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteAllInOneClsCompoundPkRef selectByPKValueWithDeletedCheck(String fooCode, String barCode, String quxCode) {
         return doSelectByPKValueWithDeletedCheck(fooCode, barCode, quxCode, WhiteAllInOneClsCompoundPkRef.class);
@@ -245,14 +249,14 @@ public abstract class BsWhiteAllInOneClsCompoundPkRefBhv extends AbstractBehavio
      * WhiteAllInOneClsCompoundPkRefCB cb = new WhiteAllInOneClsCompoundPkRefCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * ListResultBean&lt;WhiteAllInOneClsCompoundPkRef&gt; whiteAllInOneClsCompoundPkRefList = whiteAllInOneClsCompoundPkRefBhv.<span style="color: #FD4747">selectList</span>(cb);
+     * ListResultBean&lt;WhiteAllInOneClsCompoundPkRef&gt; whiteAllInOneClsCompoundPkRefList = whiteAllInOneClsCompoundPkRefBhv.<span style="color: #DD4747">selectList</span>(cb);
      * for (WhiteAllInOneClsCompoundPkRef whiteAllInOneClsCompoundPkRef : whiteAllInOneClsCompoundPkRefList) {
      *     ... = whiteAllInOneClsCompoundPkRef.get...();
      * }
      * </pre>
      * @param cb The condition-bean of WhiteAllInOneClsCompoundPkRef. (NotNull)
      * @return The result bean of selected list. (NotNull: if no data, returns empty list)
-     * @exception org.seasar.dbflute.exception.DangerousResultSizeException When the result size is over the specified safety size.
+     * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public ListResultBean<WhiteAllInOneClsCompoundPkRef> selectList(WhiteAllInOneClsCompoundPkRefCB cb) {
         return doSelectList(cb, WhiteAllInOneClsCompoundPkRef.class);
@@ -280,8 +284,8 @@ public abstract class BsWhiteAllInOneClsCompoundPkRefBhv extends AbstractBehavio
      * WhiteAllInOneClsCompoundPkRefCB cb = new WhiteAllInOneClsCompoundPkRefCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * cb.<span style="color: #FD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
-     * PagingResultBean&lt;WhiteAllInOneClsCompoundPkRef&gt; page = whiteAllInOneClsCompoundPkRefBhv.<span style="color: #FD4747">selectPage</span>(cb);
+     * cb.<span style="color: #DD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
+     * PagingResultBean&lt;WhiteAllInOneClsCompoundPkRef&gt; page = whiteAllInOneClsCompoundPkRefBhv.<span style="color: #DD4747">selectPage</span>(cb);
      * int allRecordCount = page.getAllRecordCount();
      * int allPageCount = page.getAllPageCount();
      * boolean isExistPrePage = page.isExistPrePage();
@@ -293,7 +297,7 @@ public abstract class BsWhiteAllInOneClsCompoundPkRefBhv extends AbstractBehavio
      * </pre>
      * @param cb The condition-bean of WhiteAllInOneClsCompoundPkRef. (NotNull)
      * @return The result bean of selected page. (NotNull: if no data, returns bean as empty list)
-     * @exception org.seasar.dbflute.exception.DangerousResultSizeException When the result size is over the specified safety size.
+     * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public PagingResultBean<WhiteAllInOneClsCompoundPkRef> selectPage(WhiteAllInOneClsCompoundPkRefCB cb) {
         return doSelectPage(cb, WhiteAllInOneClsCompoundPkRef.class);
@@ -320,7 +324,7 @@ public abstract class BsWhiteAllInOneClsCompoundPkRefBhv extends AbstractBehavio
      * <pre>
      * WhiteAllInOneClsCompoundPkRefCB cb = new WhiteAllInOneClsCompoundPkRefCB();
      * cb.query().setFoo...(value);
-     * whiteAllInOneClsCompoundPkRefBhv.<span style="color: #FD4747">selectCursor</span>(cb, new EntityRowHandler&lt;WhiteAllInOneClsCompoundPkRef&gt;() {
+     * whiteAllInOneClsCompoundPkRefBhv.<span style="color: #DD4747">selectCursor</span>(cb, new EntityRowHandler&lt;WhiteAllInOneClsCompoundPkRef&gt;() {
      *     public void handle(WhiteAllInOneClsCompoundPkRef entity) {
      *         ... = entity.getFoo...();
      *     }
@@ -349,9 +353,9 @@ public abstract class BsWhiteAllInOneClsCompoundPkRefBhv extends AbstractBehavio
      * Select the scalar value derived by a function from uniquely-selected records. <br />
      * You should call a function method after this method called like as follows:
      * <pre>
-     * whiteAllInOneClsCompoundPkRefBhv.<span style="color: #FD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
+     * whiteAllInOneClsCompoundPkRefBhv.<span style="color: #DD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
      *     public void query(WhiteAllInOneClsCompoundPkRefCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
+     *         cb.specify().<span style="color: #DD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
      *         cb.query().setBarName_PrefixSearch("S");
      *     }
      * });
@@ -434,12 +438,12 @@ public abstract class BsWhiteAllInOneClsCompoundPkRefBhv extends AbstractBehavio
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
      * <span style="color: #3F7E5E">//whiteAllInOneClsCompoundPkRef.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//whiteAllInOneClsCompoundPkRef.set...;</span>
-     * whiteAllInOneClsCompoundPkRefBhv.<span style="color: #FD4747">insert</span>(whiteAllInOneClsCompoundPkRef);
+     * whiteAllInOneClsCompoundPkRefBhv.<span style="color: #DD4747">insert</span>(whiteAllInOneClsCompoundPkRef);
      * ... = whiteAllInOneClsCompoundPkRef.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * <p>While, when the entity is created by select, all columns are registered.</p>
      * @param whiteAllInOneClsCompoundPkRef The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insert(WhiteAllInOneClsCompoundPkRef whiteAllInOneClsCompoundPkRef) {
         doInsert(whiteAllInOneClsCompoundPkRef, null);
@@ -475,17 +479,17 @@ public abstract class BsWhiteAllInOneClsCompoundPkRefBhv extends AbstractBehavio
      * <span style="color: #3F7E5E">//whiteAllInOneClsCompoundPkRef.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//whiteAllInOneClsCompoundPkRef.set...;</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * whiteAllInOneClsCompoundPkRef.<span style="color: #FD4747">setVersionNo</span>(value);
+     * whiteAllInOneClsCompoundPkRef.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
-     *     whiteAllInOneClsCompoundPkRefBhv.<span style="color: #FD4747">update</span>(whiteAllInOneClsCompoundPkRef);
+     *     whiteAllInOneClsCompoundPkRefBhv.<span style="color: #DD4747">update</span>(whiteAllInOneClsCompoundPkRef);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param whiteAllInOneClsCompoundPkRef The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void update(final WhiteAllInOneClsCompoundPkRef whiteAllInOneClsCompoundPkRef) {
         doUpdate(whiteAllInOneClsCompoundPkRef, null);
@@ -535,11 +539,11 @@ public abstract class BsWhiteAllInOneClsCompoundPkRefBhv extends AbstractBehavio
     /**
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br />
-     * <p><span style="color: #FD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
+     * <p><span style="color: #DD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
      * @param whiteAllInOneClsCompoundPkRef The entity of insert or update target. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insertOrUpdate(WhiteAllInOneClsCompoundPkRef whiteAllInOneClsCompoundPkRef) {
         doInesrtOrUpdate(whiteAllInOneClsCompoundPkRef, null, null);
@@ -575,16 +579,16 @@ public abstract class BsWhiteAllInOneClsCompoundPkRefBhv extends AbstractBehavio
      * WhiteAllInOneClsCompoundPkRef whiteAllInOneClsCompoundPkRef = new WhiteAllInOneClsCompoundPkRef();
      * whiteAllInOneClsCompoundPkRef.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * whiteAllInOneClsCompoundPkRef.<span style="color: #FD4747">setVersionNo</span>(value);
+     * whiteAllInOneClsCompoundPkRef.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
-     *     whiteAllInOneClsCompoundPkRefBhv.<span style="color: #FD4747">delete</span>(whiteAllInOneClsCompoundPkRef);
+     *     whiteAllInOneClsCompoundPkRefBhv.<span style="color: #DD4747">delete</span>(whiteAllInOneClsCompoundPkRef);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param whiteAllInOneClsCompoundPkRef The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void delete(WhiteAllInOneClsCompoundPkRef whiteAllInOneClsCompoundPkRef) {
         doDelete(whiteAllInOneClsCompoundPkRef, null);
@@ -619,7 +623,7 @@ public abstract class BsWhiteAllInOneClsCompoundPkRefBhv extends AbstractBehavio
     /**
      * Batch-insert the entity list modified-only of same-set columns. (DefaultConstraintsEnabled) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
-     * <p><span style="color: #FD4747; font-size: 120%">The columns of least common multiple are registered like this:</span></p>
+     * <p><span style="color: #DD4747; font-size: 120%">The columns of least common multiple are registered like this:</span></p>
      * <pre>
      * for (... : ...) {
      *     WhiteAllInOneClsCompoundPkRef whiteAllInOneClsCompoundPkRef = new WhiteAllInOneClsCompoundPkRef();
@@ -632,7 +636,7 @@ public abstract class BsWhiteAllInOneClsCompoundPkRefBhv extends AbstractBehavio
      *     <span style="color: #3F7E5E">// columns not-called in all entities are registered as null or default value</span>
      *     whiteAllInOneClsCompoundPkRefList.add(whiteAllInOneClsCompoundPkRef);
      * }
-     * whiteAllInOneClsCompoundPkRefBhv.<span style="color: #FD4747">batchInsert</span>(whiteAllInOneClsCompoundPkRefList);
+     * whiteAllInOneClsCompoundPkRefBhv.<span style="color: #DD4747">batchInsert</span>(whiteAllInOneClsCompoundPkRefList);
      * </pre>
      * <p>While, when the entities are created by select, all columns are registered.</p>
      * <p>And if the table has an identity, entities after the process don't have incremented values.
@@ -666,7 +670,7 @@ public abstract class BsWhiteAllInOneClsCompoundPkRefBhv extends AbstractBehavio
     /**
      * Batch-update the entity list modified-only of same-set columns. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
-     * <span style="color: #FD4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
+     * <span style="color: #DD4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
      * <pre>
      * for (... : ...) {
      *     WhiteAllInOneClsCompoundPkRef whiteAllInOneClsCompoundPkRef = new WhiteAllInOneClsCompoundPkRef();
@@ -681,11 +685,11 @@ public abstract class BsWhiteAllInOneClsCompoundPkRefBhv extends AbstractBehavio
      *     <span style="color: #3F7E5E">// (others are not updated: their values are kept)</span>
      *     whiteAllInOneClsCompoundPkRefList.add(whiteAllInOneClsCompoundPkRef);
      * }
-     * whiteAllInOneClsCompoundPkRefBhv.<span style="color: #FD4747">batchUpdate</span>(whiteAllInOneClsCompoundPkRefList);
+     * whiteAllInOneClsCompoundPkRefBhv.<span style="color: #DD4747">batchUpdate</span>(whiteAllInOneClsCompoundPkRefList);
      * </pre>
      * @param whiteAllInOneClsCompoundPkRefList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<WhiteAllInOneClsCompoundPkRef> whiteAllInOneClsCompoundPkRefList) {
         UpdateOption<WhiteAllInOneClsCompoundPkRefCB> op = createPlainUpdateOption();
@@ -714,16 +718,16 @@ public abstract class BsWhiteAllInOneClsCompoundPkRefBhv extends AbstractBehavio
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * <pre>
      * <span style="color: #3F7E5E">// e.g. update two columns only</span>
-     * whiteAllInOneClsCompoundPkRefBhv.<span style="color: #FD4747">batchUpdate</span>(whiteAllInOneClsCompoundPkRefList, new SpecifyQuery<WhiteAllInOneClsCompoundPkRefCB>() {
+     * whiteAllInOneClsCompoundPkRefBhv.<span style="color: #DD4747">batchUpdate</span>(whiteAllInOneClsCompoundPkRefList, new SpecifyQuery<WhiteAllInOneClsCompoundPkRefCB>() {
      *     public void specify(WhiteAllInOneClsCompoundPkRefCB cb) { <span style="color: #3F7E5E">// the two only updated</span>
-     *         cb.specify().<span style="color: #FD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
-     *         cb.specify().<span style="color: #FD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
+     *         cb.specify().<span style="color: #DD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
+     *         cb.specify().<span style="color: #DD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
      *     }
      * });
      * <span style="color: #3F7E5E">// e.g. update every column in the table</span>
-     * whiteAllInOneClsCompoundPkRefBhv.<span style="color: #FD4747">batchUpdate</span>(whiteAllInOneClsCompoundPkRefList, new SpecifyQuery<WhiteAllInOneClsCompoundPkRefCB>() {
+     * whiteAllInOneClsCompoundPkRefBhv.<span style="color: #DD4747">batchUpdate</span>(whiteAllInOneClsCompoundPkRefList, new SpecifyQuery<WhiteAllInOneClsCompoundPkRefCB>() {
      *     public void specify(WhiteAllInOneClsCompoundPkRefCB cb) { <span style="color: #3F7E5E">// all columns are updated</span>
-     *         cb.specify().<span style="color: #FD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
+     *         cb.specify().<span style="color: #DD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
      *     }
      * });
      * </pre>
@@ -735,7 +739,7 @@ public abstract class BsWhiteAllInOneClsCompoundPkRefBhv extends AbstractBehavio
      * @param whiteAllInOneClsCompoundPkRefList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @param updateColumnSpec The specification of update columns. (NotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<WhiteAllInOneClsCompoundPkRef> whiteAllInOneClsCompoundPkRefList, SpecifyQuery<WhiteAllInOneClsCompoundPkRefCB> updateColumnSpec) {
         return doBatchUpdate(whiteAllInOneClsCompoundPkRefList, createSpecifiedUpdateOption(updateColumnSpec));
@@ -751,7 +755,7 @@ public abstract class BsWhiteAllInOneClsCompoundPkRefBhv extends AbstractBehavio
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * @param whiteAllInOneClsCompoundPkRefList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of deleted count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchDelete(List<WhiteAllInOneClsCompoundPkRef> whiteAllInOneClsCompoundPkRefList) {
         return doBatchDelete(whiteAllInOneClsCompoundPkRefList, null);
@@ -780,7 +784,7 @@ public abstract class BsWhiteAllInOneClsCompoundPkRefBhv extends AbstractBehavio
     /**
      * Insert the several entities by query (modified-only for fixed value).
      * <pre>
-     * whiteAllInOneClsCompoundPkRefBhv.<span style="color: #FD4747">queryInsert</span>(new QueryInsertSetupper&lt;WhiteAllInOneClsCompoundPkRef, WhiteAllInOneClsCompoundPkRefCB&gt;() {
+     * whiteAllInOneClsCompoundPkRefBhv.<span style="color: #DD4747">queryInsert</span>(new QueryInsertSetupper&lt;WhiteAllInOneClsCompoundPkRef, WhiteAllInOneClsCompoundPkRefCB&gt;() {
      *     public ConditionBean setup(whiteAllInOneClsCompoundPkRef entity, WhiteAllInOneClsCompoundPkRefCB intoCB) {
      *         FooCB cb = FooCB();
      *         cb.setupSelect_Bar();
@@ -842,12 +846,12 @@ public abstract class BsWhiteAllInOneClsCompoundPkRefBhv extends AbstractBehavio
      * <span style="color: #3F7E5E">//whiteAllInOneClsCompoundPkRef.setVersionNo(value);</span>
      * WhiteAllInOneClsCompoundPkRefCB cb = new WhiteAllInOneClsCompoundPkRefCB();
      * cb.query().setFoo...(value);
-     * whiteAllInOneClsCompoundPkRefBhv.<span style="color: #FD4747">queryUpdate</span>(whiteAllInOneClsCompoundPkRef, cb);
+     * whiteAllInOneClsCompoundPkRefBhv.<span style="color: #DD4747">queryUpdate</span>(whiteAllInOneClsCompoundPkRef, cb);
      * </pre>
      * @param whiteAllInOneClsCompoundPkRef The entity that contains update values. (NotNull, PrimaryKeyNullAllowed)
      * @param cb The condition-bean of WhiteAllInOneClsCompoundPkRef. (NotNull)
      * @return The updated count.
-     * @exception org.seasar.dbflute.exception.NonQueryUpdateNotAllowedException When the query has no condition.
+     * @exception NonQueryUpdateNotAllowedException When the query has no condition.
      */
     public int queryUpdate(WhiteAllInOneClsCompoundPkRef whiteAllInOneClsCompoundPkRef, WhiteAllInOneClsCompoundPkRefCB cb) {
         return doQueryUpdate(whiteAllInOneClsCompoundPkRef, cb, null);
@@ -870,11 +874,11 @@ public abstract class BsWhiteAllInOneClsCompoundPkRefBhv extends AbstractBehavio
      * <pre>
      * WhiteAllInOneClsCompoundPkRefCB cb = new WhiteAllInOneClsCompoundPkRefCB();
      * cb.query().setFoo...(value);
-     * whiteAllInOneClsCompoundPkRefBhv.<span style="color: #FD4747">queryDelete</span>(whiteAllInOneClsCompoundPkRef, cb);
+     * whiteAllInOneClsCompoundPkRefBhv.<span style="color: #DD4747">queryDelete</span>(whiteAllInOneClsCompoundPkRef, cb);
      * </pre>
      * @param cb The condition-bean of WhiteAllInOneClsCompoundPkRef. (NotNull)
      * @return The deleted count.
-     * @exception org.seasar.dbflute.exception.NonQueryDeleteNotAllowedException When the query has no condition.
+     * @exception NonQueryDeleteNotAllowedException When the query has no condition.
      */
     public int queryDelete(WhiteAllInOneClsCompoundPkRefCB cb) {
         return doQueryDelete(cb, null);
@@ -910,12 +914,12 @@ public abstract class BsWhiteAllInOneClsCompoundPkRefBhv extends AbstractBehavio
      * InsertOption<WhiteAllInOneClsCompoundPkRefCB> option = new InsertOption<WhiteAllInOneClsCompoundPkRefCB>();
      * <span style="color: #3F7E5E">// you can insert by your values for common columns</span>
      * option.disableCommonColumnAutoSetup();
-     * whiteAllInOneClsCompoundPkRefBhv.<span style="color: #FD4747">varyingInsert</span>(whiteAllInOneClsCompoundPkRef, option);
+     * whiteAllInOneClsCompoundPkRefBhv.<span style="color: #DD4747">varyingInsert</span>(whiteAllInOneClsCompoundPkRef, option);
      * ... = whiteAllInOneClsCompoundPkRef.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * @param whiteAllInOneClsCompoundPkRef The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
      * @param option The option of insert for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingInsert(WhiteAllInOneClsCompoundPkRef whiteAllInOneClsCompoundPkRef, InsertOption<WhiteAllInOneClsCompoundPkRefCB> option) {
         assertInsertOptionNotNull(option);
@@ -931,25 +935,25 @@ public abstract class BsWhiteAllInOneClsCompoundPkRefBhv extends AbstractBehavio
      * whiteAllInOneClsCompoundPkRef.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * whiteAllInOneClsCompoundPkRef.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * whiteAllInOneClsCompoundPkRef.<span style="color: #FD4747">setVersionNo</span>(value);
+     * whiteAllInOneClsCompoundPkRef.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     <span style="color: #3F7E5E">// you can update by self calculation values</span>
      *     UpdateOption&lt;WhiteAllInOneClsCompoundPkRefCB&gt; option = new UpdateOption&lt;WhiteAllInOneClsCompoundPkRefCB&gt;();
      *     option.self(new SpecifyQuery&lt;WhiteAllInOneClsCompoundPkRefCB&gt;() {
      *         public void specify(WhiteAllInOneClsCompoundPkRefCB cb) {
-     *             cb.specify().<span style="color: #FD4747">columnXxxCount()</span>;
+     *             cb.specify().<span style="color: #DD4747">columnXxxCount()</span>;
      *         }
      *     }).plus(1); <span style="color: #3F7E5E">// XXX_COUNT = XXX_COUNT + 1</span>
-     *     whiteAllInOneClsCompoundPkRefBhv.<span style="color: #FD4747">varyingUpdate</span>(whiteAllInOneClsCompoundPkRef, option);
+     *     whiteAllInOneClsCompoundPkRefBhv.<span style="color: #DD4747">varyingUpdate</span>(whiteAllInOneClsCompoundPkRef, option);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param whiteAllInOneClsCompoundPkRef The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @param option The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingUpdate(WhiteAllInOneClsCompoundPkRef whiteAllInOneClsCompoundPkRef, UpdateOption<WhiteAllInOneClsCompoundPkRefCB> option) {
         assertUpdateOptionNotNull(option);
@@ -962,9 +966,9 @@ public abstract class BsWhiteAllInOneClsCompoundPkRefBhv extends AbstractBehavio
      * @param whiteAllInOneClsCompoundPkRef The entity of insert or update target. (NotNull)
      * @param insertOption The option of insert for varying requests. (NotNull)
      * @param updateOption The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingInsertOrUpdate(WhiteAllInOneClsCompoundPkRef whiteAllInOneClsCompoundPkRef, InsertOption<WhiteAllInOneClsCompoundPkRefCB> insertOption, UpdateOption<WhiteAllInOneClsCompoundPkRefCB> updateOption) {
         assertInsertOptionNotNull(insertOption); assertUpdateOptionNotNull(updateOption);
@@ -977,8 +981,8 @@ public abstract class BsWhiteAllInOneClsCompoundPkRefBhv extends AbstractBehavio
      * Other specifications are same as delete(entity).
      * @param whiteAllInOneClsCompoundPkRef The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @param option The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void varyingDelete(WhiteAllInOneClsCompoundPkRef whiteAllInOneClsCompoundPkRef, DeleteOption<WhiteAllInOneClsCompoundPkRefCB> option) {
         assertDeleteOptionNotNull(option);
@@ -1064,16 +1068,16 @@ public abstract class BsWhiteAllInOneClsCompoundPkRefBhv extends AbstractBehavio
      * UpdateOption&lt;WhiteAllInOneClsCompoundPkRefCB&gt; option = new UpdateOption&lt;WhiteAllInOneClsCompoundPkRefCB&gt;();
      * option.self(new SpecifyQuery&lt;WhiteAllInOneClsCompoundPkRefCB&gt;() {
      *     public void specify(WhiteAllInOneClsCompoundPkRefCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFooCount()</span>;
+     *         cb.specify().<span style="color: #DD4747">columnFooCount()</span>;
      *     }
      * }).plus(1); <span style="color: #3F7E5E">// FOO_COUNT = FOO_COUNT + 1</span>
-     * whiteAllInOneClsCompoundPkRefBhv.<span style="color: #FD4747">varyingQueryUpdate</span>(whiteAllInOneClsCompoundPkRef, cb, option);
+     * whiteAllInOneClsCompoundPkRefBhv.<span style="color: #DD4747">varyingQueryUpdate</span>(whiteAllInOneClsCompoundPkRef, cb, option);
      * </pre>
      * @param whiteAllInOneClsCompoundPkRef The entity that contains update values. (NotNull) {PrimaryKeyNotRequired}
      * @param cb The condition-bean of WhiteAllInOneClsCompoundPkRef. (NotNull)
      * @param option The option of update for varying requests. (NotNull)
      * @return The updated count.
-     * @exception org.seasar.dbflute.exception.NonQueryUpdateNotAllowedException When the query has no condition (if not allowed).
+     * @exception NonQueryUpdateNotAllowedException When the query has no condition (if not allowed).
      */
     public int varyingQueryUpdate(WhiteAllInOneClsCompoundPkRef whiteAllInOneClsCompoundPkRef, WhiteAllInOneClsCompoundPkRefCB cb, UpdateOption<WhiteAllInOneClsCompoundPkRefCB> option) {
         assertUpdateOptionNotNull(option);
@@ -1087,7 +1091,7 @@ public abstract class BsWhiteAllInOneClsCompoundPkRefBhv extends AbstractBehavio
      * @param cb The condition-bean of WhiteAllInOneClsCompoundPkRef. (NotNull)
      * @param option The option of delete for varying requests. (NotNull)
      * @return The deleted count.
-     * @exception org.seasar.dbflute.exception.NonQueryDeleteNotAllowedException When the query has no condition (if not allowed).
+     * @exception NonQueryDeleteNotAllowedException When the query has no condition (if not allowed).
      */
     public int varyingQueryDelete(WhiteAllInOneClsCompoundPkRefCB cb, DeleteOption<WhiteAllInOneClsCompoundPkRefCB> option) {
         assertDeleteOptionNotNull(option);

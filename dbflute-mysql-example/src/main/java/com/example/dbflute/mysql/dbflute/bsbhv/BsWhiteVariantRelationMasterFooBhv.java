@@ -21,6 +21,7 @@ import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
 import org.seasar.dbflute.dbmeta.DBMeta;
+import org.seasar.dbflute.exception.*;
 import org.seasar.dbflute.outsidesql.executor.*;
 import com.example.dbflute.mysql.dbflute.exbhv.*;
 import com.example.dbflute.mysql.dbflute.exentity.*;
@@ -106,7 +107,7 @@ public abstract class BsWhiteVariantRelationMasterFooBhv extends AbstractBehavio
      * <pre>
      * WhiteVariantRelationMasterFooCB cb = new WhiteVariantRelationMasterFooCB();
      * cb.query().setFoo...(value);
-     * int count = whiteVariantRelationMasterFooBhv.<span style="color: #FD4747">selectCount</span>(cb);
+     * int count = whiteVariantRelationMasterFooBhv.<span style="color: #DD4747">selectCount</span>(cb);
      * </pre>
      * @param cb The condition-bean of WhiteVariantRelationMasterFoo. (NotNull)
      * @return The count for the condition. (NotMinus)
@@ -134,12 +135,14 @@ public abstract class BsWhiteVariantRelationMasterFooBhv extends AbstractBehavio
     //                                                                       Entity Select
     //                                                                       =============
     /**
-     * Select the entity by the condition-bean.
+     * Select the entity by the condition-bean. <br />
+     * <span style="color: #AD4747; font-size: 120%">The return might be null if no data, so you should have null check.</span> <br />
+     * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, use selectEntityWithDeletedCheck().</span>
      * <pre>
      * WhiteVariantRelationMasterFooCB cb = new WhiteVariantRelationMasterFooCB();
      * cb.query().setFoo...(value);
-     * WhiteVariantRelationMasterFoo whiteVariantRelationMasterFoo = whiteVariantRelationMasterFooBhv.<span style="color: #FD4747">selectEntity</span>(cb);
-     * if (whiteVariantRelationMasterFoo != null) {
+     * WhiteVariantRelationMasterFoo whiteVariantRelationMasterFoo = whiteVariantRelationMasterFooBhv.<span style="color: #DD4747">selectEntity</span>(cb);
+     * if (whiteVariantRelationMasterFoo != null) { <span style="color: #3F7E5E">// null check</span>
      *     ... = whiteVariantRelationMasterFoo.get...();
      * } else {
      *     ...
@@ -147,8 +150,8 @@ public abstract class BsWhiteVariantRelationMasterFooBhv extends AbstractBehavio
      * </pre>
      * @param cb The condition-bean of WhiteVariantRelationMasterFoo. (NotNull)
      * @return The entity selected by the condition. (NullAllowed: if no data, it returns null)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteVariantRelationMasterFoo selectEntity(WhiteVariantRelationMasterFooCB cb) {
         return doSelectEntity(cb, WhiteVariantRelationMasterFoo.class);
@@ -166,18 +169,19 @@ public abstract class BsWhiteVariantRelationMasterFooBhv extends AbstractBehavio
     }
 
     /**
-     * Select the entity by the condition-bean with deleted check.
+     * Select the entity by the condition-bean with deleted check. <br />
+     * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, this method is good.</span>
      * <pre>
      * WhiteVariantRelationMasterFooCB cb = new WhiteVariantRelationMasterFooCB();
      * cb.query().setFoo...(value);
-     * WhiteVariantRelationMasterFoo whiteVariantRelationMasterFoo = whiteVariantRelationMasterFooBhv.<span style="color: #FD4747">selectEntityWithDeletedCheck</span>(cb);
+     * WhiteVariantRelationMasterFoo whiteVariantRelationMasterFoo = whiteVariantRelationMasterFooBhv.<span style="color: #DD4747">selectEntityWithDeletedCheck</span>(cb);
      * ... = whiteVariantRelationMasterFoo.get...(); <span style="color: #3F7E5E">// the entity always be not null</span>
      * </pre>
      * @param cb The condition-bean of WhiteVariantRelationMasterFoo. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteVariantRelationMasterFoo selectEntityWithDeletedCheck(WhiteVariantRelationMasterFooCB cb) {
         return doSelectEntityWithDeletedCheck(cb, WhiteVariantRelationMasterFoo.class);
@@ -198,8 +202,8 @@ public abstract class BsWhiteVariantRelationMasterFooBhv extends AbstractBehavio
      * Select the entity by the primary-key value.
      * @param masterFooId The one of primary key. (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteVariantRelationMasterFoo selectByPKValue(Long masterFooId) {
         return doSelectByPKValue(masterFooId, WhiteVariantRelationMasterFoo.class);
@@ -213,9 +217,9 @@ public abstract class BsWhiteVariantRelationMasterFooBhv extends AbstractBehavio
      * Select the entity by the primary-key value with deleted check.
      * @param masterFooId The one of primary key. (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteVariantRelationMasterFoo selectByPKValueWithDeletedCheck(Long masterFooId) {
         return doSelectByPKValueWithDeletedCheck(masterFooId, WhiteVariantRelationMasterFoo.class);
@@ -241,14 +245,14 @@ public abstract class BsWhiteVariantRelationMasterFooBhv extends AbstractBehavio
      * WhiteVariantRelationMasterFooCB cb = new WhiteVariantRelationMasterFooCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * ListResultBean&lt;WhiteVariantRelationMasterFoo&gt; whiteVariantRelationMasterFooList = whiteVariantRelationMasterFooBhv.<span style="color: #FD4747">selectList</span>(cb);
+     * ListResultBean&lt;WhiteVariantRelationMasterFoo&gt; whiteVariantRelationMasterFooList = whiteVariantRelationMasterFooBhv.<span style="color: #DD4747">selectList</span>(cb);
      * for (WhiteVariantRelationMasterFoo whiteVariantRelationMasterFoo : whiteVariantRelationMasterFooList) {
      *     ... = whiteVariantRelationMasterFoo.get...();
      * }
      * </pre>
      * @param cb The condition-bean of WhiteVariantRelationMasterFoo. (NotNull)
      * @return The result bean of selected list. (NotNull: if no data, returns empty list)
-     * @exception org.seasar.dbflute.exception.DangerousResultSizeException When the result size is over the specified safety size.
+     * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public ListResultBean<WhiteVariantRelationMasterFoo> selectList(WhiteVariantRelationMasterFooCB cb) {
         return doSelectList(cb, WhiteVariantRelationMasterFoo.class);
@@ -276,8 +280,8 @@ public abstract class BsWhiteVariantRelationMasterFooBhv extends AbstractBehavio
      * WhiteVariantRelationMasterFooCB cb = new WhiteVariantRelationMasterFooCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * cb.<span style="color: #FD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
-     * PagingResultBean&lt;WhiteVariantRelationMasterFoo&gt; page = whiteVariantRelationMasterFooBhv.<span style="color: #FD4747">selectPage</span>(cb);
+     * cb.<span style="color: #DD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
+     * PagingResultBean&lt;WhiteVariantRelationMasterFoo&gt; page = whiteVariantRelationMasterFooBhv.<span style="color: #DD4747">selectPage</span>(cb);
      * int allRecordCount = page.getAllRecordCount();
      * int allPageCount = page.getAllPageCount();
      * boolean isExistPrePage = page.isExistPrePage();
@@ -289,7 +293,7 @@ public abstract class BsWhiteVariantRelationMasterFooBhv extends AbstractBehavio
      * </pre>
      * @param cb The condition-bean of WhiteVariantRelationMasterFoo. (NotNull)
      * @return The result bean of selected page. (NotNull: if no data, returns bean as empty list)
-     * @exception org.seasar.dbflute.exception.DangerousResultSizeException When the result size is over the specified safety size.
+     * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public PagingResultBean<WhiteVariantRelationMasterFoo> selectPage(WhiteVariantRelationMasterFooCB cb) {
         return doSelectPage(cb, WhiteVariantRelationMasterFoo.class);
@@ -316,7 +320,7 @@ public abstract class BsWhiteVariantRelationMasterFooBhv extends AbstractBehavio
      * <pre>
      * WhiteVariantRelationMasterFooCB cb = new WhiteVariantRelationMasterFooCB();
      * cb.query().setFoo...(value);
-     * whiteVariantRelationMasterFooBhv.<span style="color: #FD4747">selectCursor</span>(cb, new EntityRowHandler&lt;WhiteVariantRelationMasterFoo&gt;() {
+     * whiteVariantRelationMasterFooBhv.<span style="color: #DD4747">selectCursor</span>(cb, new EntityRowHandler&lt;WhiteVariantRelationMasterFoo&gt;() {
      *     public void handle(WhiteVariantRelationMasterFoo entity) {
      *         ... = entity.getFoo...();
      *     }
@@ -345,9 +349,9 @@ public abstract class BsWhiteVariantRelationMasterFooBhv extends AbstractBehavio
      * Select the scalar value derived by a function from uniquely-selected records. <br />
      * You should call a function method after this method called like as follows:
      * <pre>
-     * whiteVariantRelationMasterFooBhv.<span style="color: #FD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
+     * whiteVariantRelationMasterFooBhv.<span style="color: #DD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
      *     public void query(WhiteVariantRelationMasterFooCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
+     *         cb.specify().<span style="color: #DD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
      *         cb.query().setBarName_PrefixSearch("S");
      *     }
      * });
@@ -387,61 +391,92 @@ public abstract class BsWhiteVariantRelationMasterFooBhv extends AbstractBehavio
     //                                                                       Load Referrer
     //                                                                       =============
     /**
-     * {Refer to overload method that has an argument of the list of entity.}
-     * @param whiteVariantRelationMasterFoo The entity of whiteVariantRelationMasterFoo. (NotNull)
-     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
-     */
-    public void loadWhiteVariantRelationReferrerAsVariantList(WhiteVariantRelationMasterFoo whiteVariantRelationMasterFoo, ConditionBeanSetupper<WhiteVariantRelationReferrerCB> conditionBeanSetupper) {
-        xassLRArg(whiteVariantRelationMasterFoo, conditionBeanSetupper);
-        loadWhiteVariantRelationReferrerAsVariantList(xnewLRLs(whiteVariantRelationMasterFoo), conditionBeanSetupper);
-    }
-    /**
-     * Load referrer of whiteVariantRelationReferrerAsVariantList with the set-upper for condition-bean of referrer. <br />
+     * Load referrer of whiteVariantRelationReferrerAsVariantList by the set-upper of referrer. <br />
      * white_variant_relation_referrer by VARIANT_MASTER_ID, named 'whiteVariantRelationReferrerAsVariantList'.
      * <pre>
-     * whiteVariantRelationMasterFooBhv.<span style="color: #FD4747">loadWhiteVariantRelationReferrerAsVariantList</span>(whiteVariantRelationMasterFooList, new ConditionBeanSetupper&lt;WhiteVariantRelationReferrerCB&gt;() {
+     * whiteVariantRelationMasterFooBhv.<span style="color: #DD4747">loadWhiteVariantRelationReferrerAsVariantList</span>(whiteVariantRelationMasterFooList, new ConditionBeanSetupper&lt;WhiteVariantRelationReferrerCB&gt;() {
      *     public void setup(WhiteVariantRelationReferrerCB cb) {
      *         cb.setupSelect...();
      *         cb.query().setFoo...(value);
      *         cb.query().addOrderBy_Bar...(); <span style="color: #3F7E5E">// basically you should order referrer list</span>
      *     }
-     * });
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here by calling like '}).withNestedList(new ...)'</span>
      * for (WhiteVariantRelationMasterFoo whiteVariantRelationMasterFoo : whiteVariantRelationMasterFooList) {
-     *     ... = whiteVariantRelationMasterFoo.<span style="color: #FD4747">getWhiteVariantRelationReferrerAsVariantList()</span>;
+     *     ... = whiteVariantRelationMasterFoo.<span style="color: #DD4747">getWhiteVariantRelationReferrerAsVariantList()</span>;
      * }
      * </pre>
-     * About internal policy, the value of primary key(and others too) is treated as case-insensitive. <br />
-     * The condition-bean that the set-upper provides have settings before you touch it. It is as follows:
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
+     * <pre>
+     * cb.query().setVariantMasterId_InScope(pkList);
+     * cb.query().addOrderBy_VariantMasterId_Asc();
+     * </pre>
+     * @param whiteVariantRelationMasterFoo The entity of whiteVariantRelationMasterFoo. (NotNull)
+     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
+     */
+    public NestedReferrerLoader<WhiteVariantRelationReferrer> loadWhiteVariantRelationReferrerAsVariantList(WhiteVariantRelationMasterFoo whiteVariantRelationMasterFoo, ConditionBeanSetupper<WhiteVariantRelationReferrerCB> conditionBeanSetupper) {
+        xassLRArg(whiteVariantRelationMasterFoo, conditionBeanSetupper);
+        return loadWhiteVariantRelationReferrerAsVariantList(xnewLRLs(whiteVariantRelationMasterFoo), conditionBeanSetupper);
+    }
+
+    /**
+     * Load referrer of whiteVariantRelationReferrerAsVariantList by the set-upper of referrer. <br />
+     * white_variant_relation_referrer by VARIANT_MASTER_ID, named 'whiteVariantRelationReferrerAsVariantList'.
+     * <pre>
+     * whiteVariantRelationMasterFooBhv.<span style="color: #DD4747">loadWhiteVariantRelationReferrerAsVariantList</span>(whiteVariantRelationMasterFooList, new ConditionBeanSetupper&lt;WhiteVariantRelationReferrerCB&gt;() {
+     *     public void setup(WhiteVariantRelationReferrerCB cb) {
+     *         cb.setupSelect...();
+     *         cb.query().setFoo...(value);
+     *         cb.query().addOrderBy_Bar...(); <span style="color: #3F7E5E">// basically you should order referrer list</span>
+     *     }
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here by calling like '}).withNestedList(new ...)'</span>
+     * for (WhiteVariantRelationMasterFoo whiteVariantRelationMasterFoo : whiteVariantRelationMasterFooList) {
+     *     ... = whiteVariantRelationMasterFoo.<span style="color: #DD4747">getWhiteVariantRelationReferrerAsVariantList()</span>;
+     * }
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
      * <pre>
      * cb.query().setVariantMasterId_InScope(pkList);
      * cb.query().addOrderBy_VariantMasterId_Asc();
      * </pre>
      * @param whiteVariantRelationMasterFooList The entity list of whiteVariantRelationMasterFoo. (NotNull)
      * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public void loadWhiteVariantRelationReferrerAsVariantList(List<WhiteVariantRelationMasterFoo> whiteVariantRelationMasterFooList, ConditionBeanSetupper<WhiteVariantRelationReferrerCB> conditionBeanSetupper) {
+    public NestedReferrerLoader<WhiteVariantRelationReferrer> loadWhiteVariantRelationReferrerAsVariantList(List<WhiteVariantRelationMasterFoo> whiteVariantRelationMasterFooList, ConditionBeanSetupper<WhiteVariantRelationReferrerCB> conditionBeanSetupper) {
         xassLRArg(whiteVariantRelationMasterFooList, conditionBeanSetupper);
-        loadWhiteVariantRelationReferrerAsVariantList(whiteVariantRelationMasterFooList, new LoadReferrerOption<WhiteVariantRelationReferrerCB, WhiteVariantRelationReferrer>().xinit(conditionBeanSetupper));
+        return loadWhiteVariantRelationReferrerAsVariantList(whiteVariantRelationMasterFooList, new LoadReferrerOption<WhiteVariantRelationReferrerCB, WhiteVariantRelationReferrer>().xinit(conditionBeanSetupper));
     }
+
     /**
      * {Refer to overload method that has an argument of the list of entity.}
      * @param whiteVariantRelationMasterFoo The entity of whiteVariantRelationMasterFoo. (NotNull)
      * @param loadReferrerOption The option of load-referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public void loadWhiteVariantRelationReferrerAsVariantList(WhiteVariantRelationMasterFoo whiteVariantRelationMasterFoo, LoadReferrerOption<WhiteVariantRelationReferrerCB, WhiteVariantRelationReferrer> loadReferrerOption) {
+    public NestedReferrerLoader<WhiteVariantRelationReferrer> loadWhiteVariantRelationReferrerAsVariantList(WhiteVariantRelationMasterFoo whiteVariantRelationMasterFoo, LoadReferrerOption<WhiteVariantRelationReferrerCB, WhiteVariantRelationReferrer> loadReferrerOption) {
         xassLRArg(whiteVariantRelationMasterFoo, loadReferrerOption);
-        loadWhiteVariantRelationReferrerAsVariantList(xnewLRLs(whiteVariantRelationMasterFoo), loadReferrerOption);
+        return loadWhiteVariantRelationReferrerAsVariantList(xnewLRLs(whiteVariantRelationMasterFoo), loadReferrerOption);
     }
+
     /**
      * {Refer to overload method that has an argument of condition-bean setupper.}
      * @param whiteVariantRelationMasterFooList The entity list of whiteVariantRelationMasterFoo. (NotNull)
      * @param loadReferrerOption The option of load-referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public void loadWhiteVariantRelationReferrerAsVariantList(List<WhiteVariantRelationMasterFoo> whiteVariantRelationMasterFooList, LoadReferrerOption<WhiteVariantRelationReferrerCB, WhiteVariantRelationReferrer> loadReferrerOption) {
+    @SuppressWarnings("unchecked")
+    public NestedReferrerLoader<WhiteVariantRelationReferrer> loadWhiteVariantRelationReferrerAsVariantList(List<WhiteVariantRelationMasterFoo> whiteVariantRelationMasterFooList, LoadReferrerOption<WhiteVariantRelationReferrerCB, WhiteVariantRelationReferrer> loadReferrerOption) {
         xassLRArg(whiteVariantRelationMasterFooList, loadReferrerOption);
-        if (whiteVariantRelationMasterFooList.isEmpty()) { return; }
+        if (whiteVariantRelationMasterFooList.isEmpty()) { return (NestedReferrerLoader<WhiteVariantRelationReferrer>)EMPTY_LOADER; }
+        return doLoadWhiteVariantRelationReferrerAsVariantList(whiteVariantRelationMasterFooList, loadReferrerOption);
+    }
+
+    protected NestedReferrerLoader<WhiteVariantRelationReferrer> doLoadWhiteVariantRelationReferrerAsVariantList(List<WhiteVariantRelationMasterFoo> whiteVariantRelationMasterFooList, LoadReferrerOption<WhiteVariantRelationReferrerCB, WhiteVariantRelationReferrer> option) {
         final WhiteVariantRelationReferrerBhv referrerBhv = xgetBSFLR().select(WhiteVariantRelationReferrerBhv.class);
-        helpLoadReferrerInternally(whiteVariantRelationMasterFooList, loadReferrerOption, new InternalLoadReferrerCallback<WhiteVariantRelationMasterFoo, Long, WhiteVariantRelationReferrerCB, WhiteVariantRelationReferrer>() {
+        return helpLoadReferrerInternally(whiteVariantRelationMasterFooList, option, new InternalLoadReferrerCallback<WhiteVariantRelationMasterFoo, Long, WhiteVariantRelationReferrerCB, WhiteVariantRelationReferrer>() {
             public Long getPKVal(WhiteVariantRelationMasterFoo et)
             { return et.getMasterFooId(); }
             public void setRfLs(WhiteVariantRelationMasterFoo et, List<WhiteVariantRelationReferrer> ls)
@@ -490,12 +525,12 @@ public abstract class BsWhiteVariantRelationMasterFooBhv extends AbstractBehavio
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
      * <span style="color: #3F7E5E">//whiteVariantRelationMasterFoo.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//whiteVariantRelationMasterFoo.set...;</span>
-     * whiteVariantRelationMasterFooBhv.<span style="color: #FD4747">insert</span>(whiteVariantRelationMasterFoo);
+     * whiteVariantRelationMasterFooBhv.<span style="color: #DD4747">insert</span>(whiteVariantRelationMasterFoo);
      * ... = whiteVariantRelationMasterFoo.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * <p>While, when the entity is created by select, all columns are registered.</p>
      * @param whiteVariantRelationMasterFoo The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insert(WhiteVariantRelationMasterFoo whiteVariantRelationMasterFoo) {
         doInsert(whiteVariantRelationMasterFoo, null);
@@ -531,17 +566,17 @@ public abstract class BsWhiteVariantRelationMasterFooBhv extends AbstractBehavio
      * <span style="color: #3F7E5E">//whiteVariantRelationMasterFoo.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//whiteVariantRelationMasterFoo.set...;</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * whiteVariantRelationMasterFoo.<span style="color: #FD4747">setVersionNo</span>(value);
+     * whiteVariantRelationMasterFoo.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
-     *     whiteVariantRelationMasterFooBhv.<span style="color: #FD4747">update</span>(whiteVariantRelationMasterFoo);
+     *     whiteVariantRelationMasterFooBhv.<span style="color: #DD4747">update</span>(whiteVariantRelationMasterFoo);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param whiteVariantRelationMasterFoo The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void update(final WhiteVariantRelationMasterFoo whiteVariantRelationMasterFoo) {
         doUpdate(whiteVariantRelationMasterFoo, null);
@@ -591,11 +626,11 @@ public abstract class BsWhiteVariantRelationMasterFooBhv extends AbstractBehavio
     /**
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br />
-     * <p><span style="color: #FD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
+     * <p><span style="color: #DD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
      * @param whiteVariantRelationMasterFoo The entity of insert or update target. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insertOrUpdate(WhiteVariantRelationMasterFoo whiteVariantRelationMasterFoo) {
         doInesrtOrUpdate(whiteVariantRelationMasterFoo, null, null);
@@ -631,16 +666,16 @@ public abstract class BsWhiteVariantRelationMasterFooBhv extends AbstractBehavio
      * WhiteVariantRelationMasterFoo whiteVariantRelationMasterFoo = new WhiteVariantRelationMasterFoo();
      * whiteVariantRelationMasterFoo.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * whiteVariantRelationMasterFoo.<span style="color: #FD4747">setVersionNo</span>(value);
+     * whiteVariantRelationMasterFoo.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
-     *     whiteVariantRelationMasterFooBhv.<span style="color: #FD4747">delete</span>(whiteVariantRelationMasterFoo);
+     *     whiteVariantRelationMasterFooBhv.<span style="color: #DD4747">delete</span>(whiteVariantRelationMasterFoo);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param whiteVariantRelationMasterFoo The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void delete(WhiteVariantRelationMasterFoo whiteVariantRelationMasterFoo) {
         doDelete(whiteVariantRelationMasterFoo, null);
@@ -675,7 +710,7 @@ public abstract class BsWhiteVariantRelationMasterFooBhv extends AbstractBehavio
     /**
      * Batch-insert the entity list modified-only of same-set columns. (DefaultConstraintsEnabled) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
-     * <p><span style="color: #FD4747; font-size: 120%">The columns of least common multiple are registered like this:</span></p>
+     * <p><span style="color: #DD4747; font-size: 120%">The columns of least common multiple are registered like this:</span></p>
      * <pre>
      * for (... : ...) {
      *     WhiteVariantRelationMasterFoo whiteVariantRelationMasterFoo = new WhiteVariantRelationMasterFoo();
@@ -688,7 +723,7 @@ public abstract class BsWhiteVariantRelationMasterFooBhv extends AbstractBehavio
      *     <span style="color: #3F7E5E">// columns not-called in all entities are registered as null or default value</span>
      *     whiteVariantRelationMasterFooList.add(whiteVariantRelationMasterFoo);
      * }
-     * whiteVariantRelationMasterFooBhv.<span style="color: #FD4747">batchInsert</span>(whiteVariantRelationMasterFooList);
+     * whiteVariantRelationMasterFooBhv.<span style="color: #DD4747">batchInsert</span>(whiteVariantRelationMasterFooList);
      * </pre>
      * <p>While, when the entities are created by select, all columns are registered.</p>
      * <p>And if the table has an identity, entities after the process don't have incremented values.
@@ -722,7 +757,7 @@ public abstract class BsWhiteVariantRelationMasterFooBhv extends AbstractBehavio
     /**
      * Batch-update the entity list modified-only of same-set columns. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
-     * <span style="color: #FD4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
+     * <span style="color: #DD4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
      * <pre>
      * for (... : ...) {
      *     WhiteVariantRelationMasterFoo whiteVariantRelationMasterFoo = new WhiteVariantRelationMasterFoo();
@@ -737,11 +772,11 @@ public abstract class BsWhiteVariantRelationMasterFooBhv extends AbstractBehavio
      *     <span style="color: #3F7E5E">// (others are not updated: their values are kept)</span>
      *     whiteVariantRelationMasterFooList.add(whiteVariantRelationMasterFoo);
      * }
-     * whiteVariantRelationMasterFooBhv.<span style="color: #FD4747">batchUpdate</span>(whiteVariantRelationMasterFooList);
+     * whiteVariantRelationMasterFooBhv.<span style="color: #DD4747">batchUpdate</span>(whiteVariantRelationMasterFooList);
      * </pre>
      * @param whiteVariantRelationMasterFooList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<WhiteVariantRelationMasterFoo> whiteVariantRelationMasterFooList) {
         UpdateOption<WhiteVariantRelationMasterFooCB> op = createPlainUpdateOption();
@@ -770,16 +805,16 @@ public abstract class BsWhiteVariantRelationMasterFooBhv extends AbstractBehavio
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * <pre>
      * <span style="color: #3F7E5E">// e.g. update two columns only</span>
-     * whiteVariantRelationMasterFooBhv.<span style="color: #FD4747">batchUpdate</span>(whiteVariantRelationMasterFooList, new SpecifyQuery<WhiteVariantRelationMasterFooCB>() {
+     * whiteVariantRelationMasterFooBhv.<span style="color: #DD4747">batchUpdate</span>(whiteVariantRelationMasterFooList, new SpecifyQuery<WhiteVariantRelationMasterFooCB>() {
      *     public void specify(WhiteVariantRelationMasterFooCB cb) { <span style="color: #3F7E5E">// the two only updated</span>
-     *         cb.specify().<span style="color: #FD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
-     *         cb.specify().<span style="color: #FD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
+     *         cb.specify().<span style="color: #DD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
+     *         cb.specify().<span style="color: #DD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
      *     }
      * });
      * <span style="color: #3F7E5E">// e.g. update every column in the table</span>
-     * whiteVariantRelationMasterFooBhv.<span style="color: #FD4747">batchUpdate</span>(whiteVariantRelationMasterFooList, new SpecifyQuery<WhiteVariantRelationMasterFooCB>() {
+     * whiteVariantRelationMasterFooBhv.<span style="color: #DD4747">batchUpdate</span>(whiteVariantRelationMasterFooList, new SpecifyQuery<WhiteVariantRelationMasterFooCB>() {
      *     public void specify(WhiteVariantRelationMasterFooCB cb) { <span style="color: #3F7E5E">// all columns are updated</span>
-     *         cb.specify().<span style="color: #FD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
+     *         cb.specify().<span style="color: #DD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
      *     }
      * });
      * </pre>
@@ -791,7 +826,7 @@ public abstract class BsWhiteVariantRelationMasterFooBhv extends AbstractBehavio
      * @param whiteVariantRelationMasterFooList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @param updateColumnSpec The specification of update columns. (NotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<WhiteVariantRelationMasterFoo> whiteVariantRelationMasterFooList, SpecifyQuery<WhiteVariantRelationMasterFooCB> updateColumnSpec) {
         return doBatchUpdate(whiteVariantRelationMasterFooList, createSpecifiedUpdateOption(updateColumnSpec));
@@ -807,7 +842,7 @@ public abstract class BsWhiteVariantRelationMasterFooBhv extends AbstractBehavio
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * @param whiteVariantRelationMasterFooList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of deleted count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchDelete(List<WhiteVariantRelationMasterFoo> whiteVariantRelationMasterFooList) {
         return doBatchDelete(whiteVariantRelationMasterFooList, null);
@@ -836,7 +871,7 @@ public abstract class BsWhiteVariantRelationMasterFooBhv extends AbstractBehavio
     /**
      * Insert the several entities by query (modified-only for fixed value).
      * <pre>
-     * whiteVariantRelationMasterFooBhv.<span style="color: #FD4747">queryInsert</span>(new QueryInsertSetupper&lt;WhiteVariantRelationMasterFoo, WhiteVariantRelationMasterFooCB&gt;() {
+     * whiteVariantRelationMasterFooBhv.<span style="color: #DD4747">queryInsert</span>(new QueryInsertSetupper&lt;WhiteVariantRelationMasterFoo, WhiteVariantRelationMasterFooCB&gt;() {
      *     public ConditionBean setup(whiteVariantRelationMasterFoo entity, WhiteVariantRelationMasterFooCB intoCB) {
      *         FooCB cb = FooCB();
      *         cb.setupSelect_Bar();
@@ -898,12 +933,12 @@ public abstract class BsWhiteVariantRelationMasterFooBhv extends AbstractBehavio
      * <span style="color: #3F7E5E">//whiteVariantRelationMasterFoo.setVersionNo(value);</span>
      * WhiteVariantRelationMasterFooCB cb = new WhiteVariantRelationMasterFooCB();
      * cb.query().setFoo...(value);
-     * whiteVariantRelationMasterFooBhv.<span style="color: #FD4747">queryUpdate</span>(whiteVariantRelationMasterFoo, cb);
+     * whiteVariantRelationMasterFooBhv.<span style="color: #DD4747">queryUpdate</span>(whiteVariantRelationMasterFoo, cb);
      * </pre>
      * @param whiteVariantRelationMasterFoo The entity that contains update values. (NotNull, PrimaryKeyNullAllowed)
      * @param cb The condition-bean of WhiteVariantRelationMasterFoo. (NotNull)
      * @return The updated count.
-     * @exception org.seasar.dbflute.exception.NonQueryUpdateNotAllowedException When the query has no condition.
+     * @exception NonQueryUpdateNotAllowedException When the query has no condition.
      */
     public int queryUpdate(WhiteVariantRelationMasterFoo whiteVariantRelationMasterFoo, WhiteVariantRelationMasterFooCB cb) {
         return doQueryUpdate(whiteVariantRelationMasterFoo, cb, null);
@@ -926,11 +961,11 @@ public abstract class BsWhiteVariantRelationMasterFooBhv extends AbstractBehavio
      * <pre>
      * WhiteVariantRelationMasterFooCB cb = new WhiteVariantRelationMasterFooCB();
      * cb.query().setFoo...(value);
-     * whiteVariantRelationMasterFooBhv.<span style="color: #FD4747">queryDelete</span>(whiteVariantRelationMasterFoo, cb);
+     * whiteVariantRelationMasterFooBhv.<span style="color: #DD4747">queryDelete</span>(whiteVariantRelationMasterFoo, cb);
      * </pre>
      * @param cb The condition-bean of WhiteVariantRelationMasterFoo. (NotNull)
      * @return The deleted count.
-     * @exception org.seasar.dbflute.exception.NonQueryDeleteNotAllowedException When the query has no condition.
+     * @exception NonQueryDeleteNotAllowedException When the query has no condition.
      */
     public int queryDelete(WhiteVariantRelationMasterFooCB cb) {
         return doQueryDelete(cb, null);
@@ -966,12 +1001,12 @@ public abstract class BsWhiteVariantRelationMasterFooBhv extends AbstractBehavio
      * InsertOption<WhiteVariantRelationMasterFooCB> option = new InsertOption<WhiteVariantRelationMasterFooCB>();
      * <span style="color: #3F7E5E">// you can insert by your values for common columns</span>
      * option.disableCommonColumnAutoSetup();
-     * whiteVariantRelationMasterFooBhv.<span style="color: #FD4747">varyingInsert</span>(whiteVariantRelationMasterFoo, option);
+     * whiteVariantRelationMasterFooBhv.<span style="color: #DD4747">varyingInsert</span>(whiteVariantRelationMasterFoo, option);
      * ... = whiteVariantRelationMasterFoo.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * @param whiteVariantRelationMasterFoo The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
      * @param option The option of insert for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingInsert(WhiteVariantRelationMasterFoo whiteVariantRelationMasterFoo, InsertOption<WhiteVariantRelationMasterFooCB> option) {
         assertInsertOptionNotNull(option);
@@ -987,25 +1022,25 @@ public abstract class BsWhiteVariantRelationMasterFooBhv extends AbstractBehavio
      * whiteVariantRelationMasterFoo.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * whiteVariantRelationMasterFoo.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * whiteVariantRelationMasterFoo.<span style="color: #FD4747">setVersionNo</span>(value);
+     * whiteVariantRelationMasterFoo.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     <span style="color: #3F7E5E">// you can update by self calculation values</span>
      *     UpdateOption&lt;WhiteVariantRelationMasterFooCB&gt; option = new UpdateOption&lt;WhiteVariantRelationMasterFooCB&gt;();
      *     option.self(new SpecifyQuery&lt;WhiteVariantRelationMasterFooCB&gt;() {
      *         public void specify(WhiteVariantRelationMasterFooCB cb) {
-     *             cb.specify().<span style="color: #FD4747">columnXxxCount()</span>;
+     *             cb.specify().<span style="color: #DD4747">columnXxxCount()</span>;
      *         }
      *     }).plus(1); <span style="color: #3F7E5E">// XXX_COUNT = XXX_COUNT + 1</span>
-     *     whiteVariantRelationMasterFooBhv.<span style="color: #FD4747">varyingUpdate</span>(whiteVariantRelationMasterFoo, option);
+     *     whiteVariantRelationMasterFooBhv.<span style="color: #DD4747">varyingUpdate</span>(whiteVariantRelationMasterFoo, option);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param whiteVariantRelationMasterFoo The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @param option The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingUpdate(WhiteVariantRelationMasterFoo whiteVariantRelationMasterFoo, UpdateOption<WhiteVariantRelationMasterFooCB> option) {
         assertUpdateOptionNotNull(option);
@@ -1018,9 +1053,9 @@ public abstract class BsWhiteVariantRelationMasterFooBhv extends AbstractBehavio
      * @param whiteVariantRelationMasterFoo The entity of insert or update target. (NotNull)
      * @param insertOption The option of insert for varying requests. (NotNull)
      * @param updateOption The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingInsertOrUpdate(WhiteVariantRelationMasterFoo whiteVariantRelationMasterFoo, InsertOption<WhiteVariantRelationMasterFooCB> insertOption, UpdateOption<WhiteVariantRelationMasterFooCB> updateOption) {
         assertInsertOptionNotNull(insertOption); assertUpdateOptionNotNull(updateOption);
@@ -1033,8 +1068,8 @@ public abstract class BsWhiteVariantRelationMasterFooBhv extends AbstractBehavio
      * Other specifications are same as delete(entity).
      * @param whiteVariantRelationMasterFoo The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @param option The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void varyingDelete(WhiteVariantRelationMasterFoo whiteVariantRelationMasterFoo, DeleteOption<WhiteVariantRelationMasterFooCB> option) {
         assertDeleteOptionNotNull(option);
@@ -1120,16 +1155,16 @@ public abstract class BsWhiteVariantRelationMasterFooBhv extends AbstractBehavio
      * UpdateOption&lt;WhiteVariantRelationMasterFooCB&gt; option = new UpdateOption&lt;WhiteVariantRelationMasterFooCB&gt;();
      * option.self(new SpecifyQuery&lt;WhiteVariantRelationMasterFooCB&gt;() {
      *     public void specify(WhiteVariantRelationMasterFooCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFooCount()</span>;
+     *         cb.specify().<span style="color: #DD4747">columnFooCount()</span>;
      *     }
      * }).plus(1); <span style="color: #3F7E5E">// FOO_COUNT = FOO_COUNT + 1</span>
-     * whiteVariantRelationMasterFooBhv.<span style="color: #FD4747">varyingQueryUpdate</span>(whiteVariantRelationMasterFoo, cb, option);
+     * whiteVariantRelationMasterFooBhv.<span style="color: #DD4747">varyingQueryUpdate</span>(whiteVariantRelationMasterFoo, cb, option);
      * </pre>
      * @param whiteVariantRelationMasterFoo The entity that contains update values. (NotNull) {PrimaryKeyNotRequired}
      * @param cb The condition-bean of WhiteVariantRelationMasterFoo. (NotNull)
      * @param option The option of update for varying requests. (NotNull)
      * @return The updated count.
-     * @exception org.seasar.dbflute.exception.NonQueryUpdateNotAllowedException When the query has no condition (if not allowed).
+     * @exception NonQueryUpdateNotAllowedException When the query has no condition (if not allowed).
      */
     public int varyingQueryUpdate(WhiteVariantRelationMasterFoo whiteVariantRelationMasterFoo, WhiteVariantRelationMasterFooCB cb, UpdateOption<WhiteVariantRelationMasterFooCB> option) {
         assertUpdateOptionNotNull(option);
@@ -1143,7 +1178,7 @@ public abstract class BsWhiteVariantRelationMasterFooBhv extends AbstractBehavio
      * @param cb The condition-bean of WhiteVariantRelationMasterFoo. (NotNull)
      * @param option The option of delete for varying requests. (NotNull)
      * @return The deleted count.
-     * @exception org.seasar.dbflute.exception.NonQueryDeleteNotAllowedException When the query has no condition (if not allowed).
+     * @exception NonQueryDeleteNotAllowedException When the query has no condition (if not allowed).
      */
     public int varyingQueryDelete(WhiteVariantRelationMasterFooCB cb, DeleteOption<WhiteVariantRelationMasterFooCB> option) {
         assertDeleteOptionNotNull(option);

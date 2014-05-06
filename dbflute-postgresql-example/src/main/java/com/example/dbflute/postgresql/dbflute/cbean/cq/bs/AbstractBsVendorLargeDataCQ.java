@@ -138,7 +138,7 @@ public abstract class AbstractBsVendorLargeDataCQ extends AbstractConditionQuery
      * {exists (select large_data_id from vendor_large_data_ref where ...)} <br />
      * vendor_large_data_ref by large_data_id, named 'vendorLargeDataRefAsOne'.
      * <pre>
-     * cb.query().<span style="color: #FD4747">existsVendorLargeDataRefList</span>(new SubQuery&lt;VendorLargeDataRefCB&gt;() {
+     * cb.query().<span style="color: #DD4747">existsVendorLargeDataRefList</span>(new SubQuery&lt;VendorLargeDataRefCB&gt;() {
      *     public void query(VendorLargeDataRefCB subCB) {
      *         subCB.query().setXxx...
      *     }
@@ -159,7 +159,7 @@ public abstract class AbstractBsVendorLargeDataCQ extends AbstractConditionQuery
      * {not exists (select large_data_id from vendor_large_data_ref where ...)} <br />
      * vendor_large_data_ref by large_data_id, named 'vendorLargeDataRefAsOne'.
      * <pre>
-     * cb.query().<span style="color: #FD4747">notExistsVendorLargeDataRefList</span>(new SubQuery&lt;VendorLargeDataRefCB&gt;() {
+     * cb.query().<span style="color: #DD4747">notExistsVendorLargeDataRefList</span>(new SubQuery&lt;VendorLargeDataRefCB&gt;() {
      *     public void query(VendorLargeDataRefCB subCB) {
      *         subCB.query().setXxx...
      *     }
@@ -216,12 +216,12 @@ public abstract class AbstractBsVendorLargeDataCQ extends AbstractConditionQuery
      * {FOO &lt;= (select max(BAR) from vendor_large_data_ref where ...)} <br />
      * vendor_large_data_ref by large_data_id, named 'vendorLargeDataRefAsOne'.
      * <pre>
-     * cb.query().<span style="color: #FD4747">derivedVendorLargeDataRefList()</span>.<span style="color: #FD4747">max</span>(new SubQuery&lt;VendorLargeDataRefCB&gt;() {
+     * cb.query().<span style="color: #DD4747">derivedVendorLargeDataRefList()</span>.<span style="color: #DD4747">max</span>(new SubQuery&lt;VendorLargeDataRefCB&gt;() {
      *     public void query(VendorLargeDataRefCB subCB) {
-     *         subCB.specify().<span style="color: #FD4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
+     *         subCB.specify().<span style="color: #DD4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
      *         subCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
      *     }
-     * }).<span style="color: #FD4747">greaterEqual</span>(123); <span style="color: #3F7E5E">// condition to derived column</span>
+     * }).<span style="color: #DD4747">greaterEqual</span>(123); <span style="color: #3F7E5E">// condition to derived column</span>
      * </pre>
      * @return The object to set up a function for referrer table. (NotNull)
      */
@@ -324,7 +324,7 @@ public abstract class AbstractBsVendorLargeDataCQ extends AbstractConditionQuery
     /**
      * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br />
      * string_index: {IX, NotNull, varchar(200)} <br />
-     * <pre>e.g. setStringIndex_LikeSearch("xxx", new <span style="color: #FD4747">LikeSearchOption</span>().likeContain());</pre>
+     * <pre>e.g. setStringIndex_LikeSearch("xxx", new <span style="color: #DD4747">LikeSearchOption</span>().likeContain());</pre>
      * @param stringIndex The value of stringIndex as likeSearch. (NullAllowed: if null (or empty), no condition)
      * @param likeSearchOption The option of like-search. (NotNull)
      */
@@ -410,7 +410,7 @@ public abstract class AbstractBsVendorLargeDataCQ extends AbstractConditionQuery
     /**
      * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br />
      * string_no_index: {NotNull, varchar(200)} <br />
-     * <pre>e.g. setStringNoIndex_LikeSearch("xxx", new <span style="color: #FD4747">LikeSearchOption</span>().likeContain());</pre>
+     * <pre>e.g. setStringNoIndex_LikeSearch("xxx", new <span style="color: #DD4747">LikeSearchOption</span>().likeContain());</pre>
      * @param stringNoIndex The value of stringNoIndex as likeSearch. (NullAllowed: if null (or empty), no condition)
      * @param likeSearchOption The option of like-search. (NotNull)
      */
@@ -496,7 +496,7 @@ public abstract class AbstractBsVendorLargeDataCQ extends AbstractConditionQuery
     /**
      * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br />
      * string_unique_index: {UQ, NotNull, varchar(200)} <br />
-     * <pre>e.g. setStringUniqueIndex_LikeSearch("xxx", new <span style="color: #FD4747">LikeSearchOption</span>().likeContain());</pre>
+     * <pre>e.g. setStringUniqueIndex_LikeSearch("xxx", new <span style="color: #DD4747">LikeSearchOption</span>().likeContain());</pre>
      * @param stringUniqueIndex The value of stringUniqueIndex as likeSearch. (NullAllowed: if null (or empty), no condition)
      * @param likeSearchOption The option of like-search. (NotNull)
      */
@@ -798,7 +798,7 @@ public abstract class AbstractBsVendorLargeDataCQ extends AbstractConditionQuery
      * Prepare ScalarCondition as equal. <br />
      * {where FOO = (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #FD4747">scalar_Equal()</span>.max(new SubQuery&lt;VendorLargeDataCB&gt;() {
+     * cb.query().<span style="color: #DD4747">scalar_Equal()</span>.max(new SubQuery&lt;VendorLargeDataCB&gt;() {
      *     public void query(VendorLargeDataCB subCB) {
      *         subCB.specify().setXxx... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setYyy...
@@ -815,7 +815,7 @@ public abstract class AbstractBsVendorLargeDataCQ extends AbstractConditionQuery
      * Prepare ScalarCondition as equal. <br />
      * {where FOO &lt;&gt; (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #FD4747">scalar_NotEqual()</span>.max(new SubQuery&lt;VendorLargeDataCB&gt;() {
+     * cb.query().<span style="color: #DD4747">scalar_NotEqual()</span>.max(new SubQuery&lt;VendorLargeDataCB&gt;() {
      *     public void query(VendorLargeDataCB subCB) {
      *         subCB.specify().setXxx... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setYyy...
@@ -832,7 +832,7 @@ public abstract class AbstractBsVendorLargeDataCQ extends AbstractConditionQuery
      * Prepare ScalarCondition as greaterThan. <br />
      * {where FOO &gt; (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #FD4747">scalar_GreaterThan()</span>.max(new SubQuery&lt;VendorLargeDataCB&gt;() {
+     * cb.query().<span style="color: #DD4747">scalar_GreaterThan()</span>.max(new SubQuery&lt;VendorLargeDataCB&gt;() {
      *     public void query(VendorLargeDataCB subCB) {
      *         subCB.specify().setFoo... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setBar...
@@ -849,7 +849,7 @@ public abstract class AbstractBsVendorLargeDataCQ extends AbstractConditionQuery
      * Prepare ScalarCondition as lessThan. <br />
      * {where FOO &lt; (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #FD4747">scalar_LessThan()</span>.max(new SubQuery&lt;VendorLargeDataCB&gt;() {
+     * cb.query().<span style="color: #DD4747">scalar_LessThan()</span>.max(new SubQuery&lt;VendorLargeDataCB&gt;() {
      *     public void query(VendorLargeDataCB subCB) {
      *         subCB.specify().setFoo... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setBar...
@@ -866,7 +866,7 @@ public abstract class AbstractBsVendorLargeDataCQ extends AbstractConditionQuery
      * Prepare ScalarCondition as greaterEqual. <br />
      * {where FOO &gt;= (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #FD4747">scalar_GreaterEqual()</span>.max(new SubQuery&lt;VendorLargeDataCB&gt;() {
+     * cb.query().<span style="color: #DD4747">scalar_GreaterEqual()</span>.max(new SubQuery&lt;VendorLargeDataCB&gt;() {
      *     public void query(VendorLargeDataCB subCB) {
      *         subCB.specify().setFoo... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setBar...
@@ -883,7 +883,7 @@ public abstract class AbstractBsVendorLargeDataCQ extends AbstractConditionQuery
      * Prepare ScalarCondition as lessEqual. <br />
      * {where FOO &lt;= (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #FD4747">scalar_LessEqual()</span>.max(new SubQuery&lt;VendorLargeDataCB&gt;() {
+     * cb.query().<span style="color: #DD4747">scalar_LessEqual()</span>.max(new SubQuery&lt;VendorLargeDataCB&gt;() {
      *     public void query(VendorLargeDataCB subCB) {
      *         subCB.specify().setFoo... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setBar...

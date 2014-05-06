@@ -239,17 +239,17 @@ public abstract class BsWhiteDateAdjustment implements Entity, Serializable, Clo
     /**
      * Determine the object is equal with this. <br />
      * If primary-keys or columns of the other are same as this one, returns true.
-     * @param other The other entity. (NullAllowed: if null, returns false fixedly)
+     * @param obj The object as other entity. (NullAllowed: if null, returns false fixedly)
      * @return Comparing result.
      */
-    public boolean equals(Object other) {
-        if (other == null || !(other instanceof BsWhiteDateAdjustment)) { return false; }
-        BsWhiteDateAdjustment otherEntity = (BsWhiteDateAdjustment)other;
-        if (!xSV(getDateAdjustmentId(), otherEntity.getDateAdjustmentId())) { return false; }
+    public boolean equals(Object obj) {
+        if (obj == null || !(obj instanceof BsWhiteDateAdjustment)) { return false; }
+        BsWhiteDateAdjustment other = (BsWhiteDateAdjustment)obj;
+        if (!xSV(getDateAdjustmentId(), other.getDateAdjustmentId())) { return false; }
         return true;
     }
-    protected boolean xSV(Object value1, Object value2) { // isSameValue()
-        return InternalUtil.isSameValue(value1, value2);
+    protected boolean xSV(Object value1, Object value2) {
+        return FunCustodial.isSameValue(value1, value2);
     }
 
     /**
@@ -262,8 +262,8 @@ public abstract class BsWhiteDateAdjustment implements Entity, Serializable, Clo
         result = xCH(result, getDateAdjustmentId());
         return result;
     }
-    protected int xCH(int result, Object value) { // calculateHashcode()
-        return InternalUtil.calculateHashcode(result, value);
+    protected int xCH(int result, Object value) {
+        return FunCustodial.calculateHashcode(result, value);
     }
 
     /**
@@ -278,7 +278,7 @@ public abstract class BsWhiteDateAdjustment implements Entity, Serializable, Clo
      * @return The display string of all columns and relation existences. (NotNull)
      */
     public String toString() {
-        return buildDisplayString(InternalUtil.toClassTitle(this), true, true);
+        return buildDisplayString(FunCustodial.toClassTitle(this), true, true);
     }
 
     /**
@@ -322,7 +322,7 @@ public abstract class BsWhiteDateAdjustment implements Entity, Serializable, Clo
         return sb.toString();
     }
     protected String xfUD(Date date) { // formatUtilDate()
-        return InternalUtil.toString(date, xgDP());
+        return FunCustodial.toString(date, xgDP());
     }
     protected String xgDP() { // getDatePattern
         return "yyyy-MM-dd";

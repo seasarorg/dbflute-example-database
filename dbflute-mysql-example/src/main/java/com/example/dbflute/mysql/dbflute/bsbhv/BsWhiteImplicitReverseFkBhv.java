@@ -21,6 +21,7 @@ import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
 import org.seasar.dbflute.dbmeta.DBMeta;
+import org.seasar.dbflute.exception.*;
 import org.seasar.dbflute.outsidesql.executor.*;
 import com.example.dbflute.mysql.dbflute.exbhv.*;
 import com.example.dbflute.mysql.dbflute.exentity.*;
@@ -106,7 +107,7 @@ public abstract class BsWhiteImplicitReverseFkBhv extends AbstractBehaviorWritab
      * <pre>
      * WhiteImplicitReverseFkCB cb = new WhiteImplicitReverseFkCB();
      * cb.query().setFoo...(value);
-     * int count = whiteImplicitReverseFkBhv.<span style="color: #FD4747">selectCount</span>(cb);
+     * int count = whiteImplicitReverseFkBhv.<span style="color: #DD4747">selectCount</span>(cb);
      * </pre>
      * @param cb The condition-bean of WhiteImplicitReverseFk. (NotNull)
      * @return The count for the condition. (NotMinus)
@@ -134,12 +135,14 @@ public abstract class BsWhiteImplicitReverseFkBhv extends AbstractBehaviorWritab
     //                                                                       Entity Select
     //                                                                       =============
     /**
-     * Select the entity by the condition-bean.
+     * Select the entity by the condition-bean. <br />
+     * <span style="color: #AD4747; font-size: 120%">The return might be null if no data, so you should have null check.</span> <br />
+     * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, use selectEntityWithDeletedCheck().</span>
      * <pre>
      * WhiteImplicitReverseFkCB cb = new WhiteImplicitReverseFkCB();
      * cb.query().setFoo...(value);
-     * WhiteImplicitReverseFk whiteImplicitReverseFk = whiteImplicitReverseFkBhv.<span style="color: #FD4747">selectEntity</span>(cb);
-     * if (whiteImplicitReverseFk != null) {
+     * WhiteImplicitReverseFk whiteImplicitReverseFk = whiteImplicitReverseFkBhv.<span style="color: #DD4747">selectEntity</span>(cb);
+     * if (whiteImplicitReverseFk != null) { <span style="color: #3F7E5E">// null check</span>
      *     ... = whiteImplicitReverseFk.get...();
      * } else {
      *     ...
@@ -147,8 +150,8 @@ public abstract class BsWhiteImplicitReverseFkBhv extends AbstractBehaviorWritab
      * </pre>
      * @param cb The condition-bean of WhiteImplicitReverseFk. (NotNull)
      * @return The entity selected by the condition. (NullAllowed: if no data, it returns null)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteImplicitReverseFk selectEntity(WhiteImplicitReverseFkCB cb) {
         return doSelectEntity(cb, WhiteImplicitReverseFk.class);
@@ -166,18 +169,19 @@ public abstract class BsWhiteImplicitReverseFkBhv extends AbstractBehaviorWritab
     }
 
     /**
-     * Select the entity by the condition-bean with deleted check.
+     * Select the entity by the condition-bean with deleted check. <br />
+     * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, this method is good.</span>
      * <pre>
      * WhiteImplicitReverseFkCB cb = new WhiteImplicitReverseFkCB();
      * cb.query().setFoo...(value);
-     * WhiteImplicitReverseFk whiteImplicitReverseFk = whiteImplicitReverseFkBhv.<span style="color: #FD4747">selectEntityWithDeletedCheck</span>(cb);
+     * WhiteImplicitReverseFk whiteImplicitReverseFk = whiteImplicitReverseFkBhv.<span style="color: #DD4747">selectEntityWithDeletedCheck</span>(cb);
      * ... = whiteImplicitReverseFk.get...(); <span style="color: #3F7E5E">// the entity always be not null</span>
      * </pre>
      * @param cb The condition-bean of WhiteImplicitReverseFk. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteImplicitReverseFk selectEntityWithDeletedCheck(WhiteImplicitReverseFkCB cb) {
         return doSelectEntityWithDeletedCheck(cb, WhiteImplicitReverseFk.class);
@@ -198,8 +202,8 @@ public abstract class BsWhiteImplicitReverseFkBhv extends AbstractBehaviorWritab
      * Select the entity by the primary-key value.
      * @param whiteImplicitReverseFkId The one of primary key. (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteImplicitReverseFk selectByPKValue(Integer whiteImplicitReverseFkId) {
         return doSelectByPKValue(whiteImplicitReverseFkId, WhiteImplicitReverseFk.class);
@@ -213,9 +217,9 @@ public abstract class BsWhiteImplicitReverseFkBhv extends AbstractBehaviorWritab
      * Select the entity by the primary-key value with deleted check.
      * @param whiteImplicitReverseFkId The one of primary key. (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteImplicitReverseFk selectByPKValueWithDeletedCheck(Integer whiteImplicitReverseFkId) {
         return doSelectByPKValueWithDeletedCheck(whiteImplicitReverseFkId, WhiteImplicitReverseFk.class);
@@ -241,14 +245,14 @@ public abstract class BsWhiteImplicitReverseFkBhv extends AbstractBehaviorWritab
      * WhiteImplicitReverseFkCB cb = new WhiteImplicitReverseFkCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * ListResultBean&lt;WhiteImplicitReverseFk&gt; whiteImplicitReverseFkList = whiteImplicitReverseFkBhv.<span style="color: #FD4747">selectList</span>(cb);
+     * ListResultBean&lt;WhiteImplicitReverseFk&gt; whiteImplicitReverseFkList = whiteImplicitReverseFkBhv.<span style="color: #DD4747">selectList</span>(cb);
      * for (WhiteImplicitReverseFk whiteImplicitReverseFk : whiteImplicitReverseFkList) {
      *     ... = whiteImplicitReverseFk.get...();
      * }
      * </pre>
      * @param cb The condition-bean of WhiteImplicitReverseFk. (NotNull)
      * @return The result bean of selected list. (NotNull: if no data, returns empty list)
-     * @exception org.seasar.dbflute.exception.DangerousResultSizeException When the result size is over the specified safety size.
+     * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public ListResultBean<WhiteImplicitReverseFk> selectList(WhiteImplicitReverseFkCB cb) {
         return doSelectList(cb, WhiteImplicitReverseFk.class);
@@ -276,8 +280,8 @@ public abstract class BsWhiteImplicitReverseFkBhv extends AbstractBehaviorWritab
      * WhiteImplicitReverseFkCB cb = new WhiteImplicitReverseFkCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * cb.<span style="color: #FD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
-     * PagingResultBean&lt;WhiteImplicitReverseFk&gt; page = whiteImplicitReverseFkBhv.<span style="color: #FD4747">selectPage</span>(cb);
+     * cb.<span style="color: #DD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
+     * PagingResultBean&lt;WhiteImplicitReverseFk&gt; page = whiteImplicitReverseFkBhv.<span style="color: #DD4747">selectPage</span>(cb);
      * int allRecordCount = page.getAllRecordCount();
      * int allPageCount = page.getAllPageCount();
      * boolean isExistPrePage = page.isExistPrePage();
@@ -289,7 +293,7 @@ public abstract class BsWhiteImplicitReverseFkBhv extends AbstractBehaviorWritab
      * </pre>
      * @param cb The condition-bean of WhiteImplicitReverseFk. (NotNull)
      * @return The result bean of selected page. (NotNull: if no data, returns bean as empty list)
-     * @exception org.seasar.dbflute.exception.DangerousResultSizeException When the result size is over the specified safety size.
+     * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public PagingResultBean<WhiteImplicitReverseFk> selectPage(WhiteImplicitReverseFkCB cb) {
         return doSelectPage(cb, WhiteImplicitReverseFk.class);
@@ -316,7 +320,7 @@ public abstract class BsWhiteImplicitReverseFkBhv extends AbstractBehaviorWritab
      * <pre>
      * WhiteImplicitReverseFkCB cb = new WhiteImplicitReverseFkCB();
      * cb.query().setFoo...(value);
-     * whiteImplicitReverseFkBhv.<span style="color: #FD4747">selectCursor</span>(cb, new EntityRowHandler&lt;WhiteImplicitReverseFk&gt;() {
+     * whiteImplicitReverseFkBhv.<span style="color: #DD4747">selectCursor</span>(cb, new EntityRowHandler&lt;WhiteImplicitReverseFk&gt;() {
      *     public void handle(WhiteImplicitReverseFk entity) {
      *         ... = entity.getFoo...();
      *     }
@@ -345,9 +349,9 @@ public abstract class BsWhiteImplicitReverseFkBhv extends AbstractBehaviorWritab
      * Select the scalar value derived by a function from uniquely-selected records. <br />
      * You should call a function method after this method called like as follows:
      * <pre>
-     * whiteImplicitReverseFkBhv.<span style="color: #FD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
+     * whiteImplicitReverseFkBhv.<span style="color: #DD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
      *     public void query(WhiteImplicitReverseFkCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
+     *         cb.specify().<span style="color: #DD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
      *         cb.query().setBarName_PrefixSearch("S");
      *     }
      * });
@@ -387,62 +391,94 @@ public abstract class BsWhiteImplicitReverseFkBhv extends AbstractBehaviorWritab
     //                                                                       Load Referrer
     //                                                                       =============
     /**
-     * {Refer to overload method that has an argument of the list of entity.}
-     * @param whiteImplicitReverseFk The entity of whiteImplicitReverseFk. (NotNull)
-     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
-     */
-    public void loadWhiteImplicitReverseFkRefList(WhiteImplicitReverseFk whiteImplicitReverseFk, ConditionBeanSetupper<WhiteImplicitReverseFkRefCB> conditionBeanSetupper) {
-        xassLRArg(whiteImplicitReverseFk, conditionBeanSetupper);
-        loadWhiteImplicitReverseFkRefList(xnewLRLs(whiteImplicitReverseFk), conditionBeanSetupper);
-    }
-    /**
-     * Load referrer of whiteImplicitReverseFkRefList with the set-upper for condition-bean of referrer. <br />
+     * Load referrer of whiteImplicitReverseFkRefList by the set-upper of referrer. <br />
      * white_implicit_reverse_fk_ref by WHITE_IMPLICIT_REVERSE_FK_ID, named 'whiteImplicitReverseFkRefList'. <br />
      * This relation is auto-detected as implicit reverse FK.
      * <pre>
-     * whiteImplicitReverseFkBhv.<span style="color: #FD4747">loadWhiteImplicitReverseFkRefList</span>(whiteImplicitReverseFkList, new ConditionBeanSetupper&lt;WhiteImplicitReverseFkRefCB&gt;() {
+     * whiteImplicitReverseFkBhv.<span style="color: #DD4747">loadWhiteImplicitReverseFkRefList</span>(whiteImplicitReverseFkList, new ConditionBeanSetupper&lt;WhiteImplicitReverseFkRefCB&gt;() {
      *     public void setup(WhiteImplicitReverseFkRefCB cb) {
      *         cb.setupSelect...();
      *         cb.query().setFoo...(value);
      *         cb.query().addOrderBy_Bar...(); <span style="color: #3F7E5E">// basically you should order referrer list</span>
      *     }
-     * });
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here by calling like '}).withNestedList(new ...)'</span>
      * for (WhiteImplicitReverseFk whiteImplicitReverseFk : whiteImplicitReverseFkList) {
-     *     ... = whiteImplicitReverseFk.<span style="color: #FD4747">getWhiteImplicitReverseFkRefList()</span>;
+     *     ... = whiteImplicitReverseFk.<span style="color: #DD4747">getWhiteImplicitReverseFkRefList()</span>;
      * }
      * </pre>
-     * About internal policy, the value of primary key(and others too) is treated as case-insensitive. <br />
-     * The condition-bean that the set-upper provides have settings before you touch it. It is as follows:
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
+     * <pre>
+     * cb.query().setWhiteImplicitReverseFkId_InScope(pkList);
+     * cb.query().addOrderBy_WhiteImplicitReverseFkId_Asc();
+     * </pre>
+     * @param whiteImplicitReverseFk The entity of whiteImplicitReverseFk. (NotNull)
+     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
+     */
+    public NestedReferrerLoader<WhiteImplicitReverseFkRef> loadWhiteImplicitReverseFkRefList(WhiteImplicitReverseFk whiteImplicitReverseFk, ConditionBeanSetupper<WhiteImplicitReverseFkRefCB> conditionBeanSetupper) {
+        xassLRArg(whiteImplicitReverseFk, conditionBeanSetupper);
+        return loadWhiteImplicitReverseFkRefList(xnewLRLs(whiteImplicitReverseFk), conditionBeanSetupper);
+    }
+
+    /**
+     * Load referrer of whiteImplicitReverseFkRefList by the set-upper of referrer. <br />
+     * white_implicit_reverse_fk_ref by WHITE_IMPLICIT_REVERSE_FK_ID, named 'whiteImplicitReverseFkRefList'. <br />
+     * This relation is auto-detected as implicit reverse FK.
+     * <pre>
+     * whiteImplicitReverseFkBhv.<span style="color: #DD4747">loadWhiteImplicitReverseFkRefList</span>(whiteImplicitReverseFkList, new ConditionBeanSetupper&lt;WhiteImplicitReverseFkRefCB&gt;() {
+     *     public void setup(WhiteImplicitReverseFkRefCB cb) {
+     *         cb.setupSelect...();
+     *         cb.query().setFoo...(value);
+     *         cb.query().addOrderBy_Bar...(); <span style="color: #3F7E5E">// basically you should order referrer list</span>
+     *     }
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here by calling like '}).withNestedList(new ...)'</span>
+     * for (WhiteImplicitReverseFk whiteImplicitReverseFk : whiteImplicitReverseFkList) {
+     *     ... = whiteImplicitReverseFk.<span style="color: #DD4747">getWhiteImplicitReverseFkRefList()</span>;
+     * }
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
      * <pre>
      * cb.query().setWhiteImplicitReverseFkId_InScope(pkList);
      * cb.query().addOrderBy_WhiteImplicitReverseFkId_Asc();
      * </pre>
      * @param whiteImplicitReverseFkList The entity list of whiteImplicitReverseFk. (NotNull)
      * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public void loadWhiteImplicitReverseFkRefList(List<WhiteImplicitReverseFk> whiteImplicitReverseFkList, ConditionBeanSetupper<WhiteImplicitReverseFkRefCB> conditionBeanSetupper) {
+    public NestedReferrerLoader<WhiteImplicitReverseFkRef> loadWhiteImplicitReverseFkRefList(List<WhiteImplicitReverseFk> whiteImplicitReverseFkList, ConditionBeanSetupper<WhiteImplicitReverseFkRefCB> conditionBeanSetupper) {
         xassLRArg(whiteImplicitReverseFkList, conditionBeanSetupper);
-        loadWhiteImplicitReverseFkRefList(whiteImplicitReverseFkList, new LoadReferrerOption<WhiteImplicitReverseFkRefCB, WhiteImplicitReverseFkRef>().xinit(conditionBeanSetupper));
+        return loadWhiteImplicitReverseFkRefList(whiteImplicitReverseFkList, new LoadReferrerOption<WhiteImplicitReverseFkRefCB, WhiteImplicitReverseFkRef>().xinit(conditionBeanSetupper));
     }
+
     /**
      * {Refer to overload method that has an argument of the list of entity.}
      * @param whiteImplicitReverseFk The entity of whiteImplicitReverseFk. (NotNull)
      * @param loadReferrerOption The option of load-referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public void loadWhiteImplicitReverseFkRefList(WhiteImplicitReverseFk whiteImplicitReverseFk, LoadReferrerOption<WhiteImplicitReverseFkRefCB, WhiteImplicitReverseFkRef> loadReferrerOption) {
+    public NestedReferrerLoader<WhiteImplicitReverseFkRef> loadWhiteImplicitReverseFkRefList(WhiteImplicitReverseFk whiteImplicitReverseFk, LoadReferrerOption<WhiteImplicitReverseFkRefCB, WhiteImplicitReverseFkRef> loadReferrerOption) {
         xassLRArg(whiteImplicitReverseFk, loadReferrerOption);
-        loadWhiteImplicitReverseFkRefList(xnewLRLs(whiteImplicitReverseFk), loadReferrerOption);
+        return loadWhiteImplicitReverseFkRefList(xnewLRLs(whiteImplicitReverseFk), loadReferrerOption);
     }
+
     /**
      * {Refer to overload method that has an argument of condition-bean setupper.}
      * @param whiteImplicitReverseFkList The entity list of whiteImplicitReverseFk. (NotNull)
      * @param loadReferrerOption The option of load-referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public void loadWhiteImplicitReverseFkRefList(List<WhiteImplicitReverseFk> whiteImplicitReverseFkList, LoadReferrerOption<WhiteImplicitReverseFkRefCB, WhiteImplicitReverseFkRef> loadReferrerOption) {
+    @SuppressWarnings("unchecked")
+    public NestedReferrerLoader<WhiteImplicitReverseFkRef> loadWhiteImplicitReverseFkRefList(List<WhiteImplicitReverseFk> whiteImplicitReverseFkList, LoadReferrerOption<WhiteImplicitReverseFkRefCB, WhiteImplicitReverseFkRef> loadReferrerOption) {
         xassLRArg(whiteImplicitReverseFkList, loadReferrerOption);
-        if (whiteImplicitReverseFkList.isEmpty()) { return; }
+        if (whiteImplicitReverseFkList.isEmpty()) { return (NestedReferrerLoader<WhiteImplicitReverseFkRef>)EMPTY_LOADER; }
+        return doLoadWhiteImplicitReverseFkRefList(whiteImplicitReverseFkList, loadReferrerOption);
+    }
+
+    protected NestedReferrerLoader<WhiteImplicitReverseFkRef> doLoadWhiteImplicitReverseFkRefList(List<WhiteImplicitReverseFk> whiteImplicitReverseFkList, LoadReferrerOption<WhiteImplicitReverseFkRefCB, WhiteImplicitReverseFkRef> option) {
         final WhiteImplicitReverseFkRefBhv referrerBhv = xgetBSFLR().select(WhiteImplicitReverseFkRefBhv.class);
-        helpLoadReferrerInternally(whiteImplicitReverseFkList, loadReferrerOption, new InternalLoadReferrerCallback<WhiteImplicitReverseFk, Integer, WhiteImplicitReverseFkRefCB, WhiteImplicitReverseFkRef>() {
+        return helpLoadReferrerInternally(whiteImplicitReverseFkList, option, new InternalLoadReferrerCallback<WhiteImplicitReverseFk, Integer, WhiteImplicitReverseFkRefCB, WhiteImplicitReverseFkRef>() {
             public Integer getPKVal(WhiteImplicitReverseFk et)
             { return et.getWhiteImplicitReverseFkId(); }
             public void setRfLs(WhiteImplicitReverseFk et, List<WhiteImplicitReverseFkRef> ls)
@@ -517,12 +553,12 @@ public abstract class BsWhiteImplicitReverseFkBhv extends AbstractBehaviorWritab
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
      * <span style="color: #3F7E5E">//whiteImplicitReverseFk.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//whiteImplicitReverseFk.set...;</span>
-     * whiteImplicitReverseFkBhv.<span style="color: #FD4747">insert</span>(whiteImplicitReverseFk);
+     * whiteImplicitReverseFkBhv.<span style="color: #DD4747">insert</span>(whiteImplicitReverseFk);
      * ... = whiteImplicitReverseFk.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * <p>While, when the entity is created by select, all columns are registered.</p>
      * @param whiteImplicitReverseFk The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insert(WhiteImplicitReverseFk whiteImplicitReverseFk) {
         doInsert(whiteImplicitReverseFk, null);
@@ -558,17 +594,17 @@ public abstract class BsWhiteImplicitReverseFkBhv extends AbstractBehaviorWritab
      * <span style="color: #3F7E5E">//whiteImplicitReverseFk.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//whiteImplicitReverseFk.set...;</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * whiteImplicitReverseFk.<span style="color: #FD4747">setVersionNo</span>(value);
+     * whiteImplicitReverseFk.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
-     *     whiteImplicitReverseFkBhv.<span style="color: #FD4747">update</span>(whiteImplicitReverseFk);
+     *     whiteImplicitReverseFkBhv.<span style="color: #DD4747">update</span>(whiteImplicitReverseFk);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param whiteImplicitReverseFk The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void update(final WhiteImplicitReverseFk whiteImplicitReverseFk) {
         doUpdate(whiteImplicitReverseFk, null);
@@ -618,11 +654,11 @@ public abstract class BsWhiteImplicitReverseFkBhv extends AbstractBehaviorWritab
     /**
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br />
-     * <p><span style="color: #FD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
+     * <p><span style="color: #DD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
      * @param whiteImplicitReverseFk The entity of insert or update target. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insertOrUpdate(WhiteImplicitReverseFk whiteImplicitReverseFk) {
         doInesrtOrUpdate(whiteImplicitReverseFk, null, null);
@@ -658,16 +694,16 @@ public abstract class BsWhiteImplicitReverseFkBhv extends AbstractBehaviorWritab
      * WhiteImplicitReverseFk whiteImplicitReverseFk = new WhiteImplicitReverseFk();
      * whiteImplicitReverseFk.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * whiteImplicitReverseFk.<span style="color: #FD4747">setVersionNo</span>(value);
+     * whiteImplicitReverseFk.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
-     *     whiteImplicitReverseFkBhv.<span style="color: #FD4747">delete</span>(whiteImplicitReverseFk);
+     *     whiteImplicitReverseFkBhv.<span style="color: #DD4747">delete</span>(whiteImplicitReverseFk);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param whiteImplicitReverseFk The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void delete(WhiteImplicitReverseFk whiteImplicitReverseFk) {
         doDelete(whiteImplicitReverseFk, null);
@@ -702,7 +738,7 @@ public abstract class BsWhiteImplicitReverseFkBhv extends AbstractBehaviorWritab
     /**
      * Batch-insert the entity list modified-only of same-set columns. (DefaultConstraintsEnabled) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
-     * <p><span style="color: #FD4747; font-size: 120%">The columns of least common multiple are registered like this:</span></p>
+     * <p><span style="color: #DD4747; font-size: 120%">The columns of least common multiple are registered like this:</span></p>
      * <pre>
      * for (... : ...) {
      *     WhiteImplicitReverseFk whiteImplicitReverseFk = new WhiteImplicitReverseFk();
@@ -715,7 +751,7 @@ public abstract class BsWhiteImplicitReverseFkBhv extends AbstractBehaviorWritab
      *     <span style="color: #3F7E5E">// columns not-called in all entities are registered as null or default value</span>
      *     whiteImplicitReverseFkList.add(whiteImplicitReverseFk);
      * }
-     * whiteImplicitReverseFkBhv.<span style="color: #FD4747">batchInsert</span>(whiteImplicitReverseFkList);
+     * whiteImplicitReverseFkBhv.<span style="color: #DD4747">batchInsert</span>(whiteImplicitReverseFkList);
      * </pre>
      * <p>While, when the entities are created by select, all columns are registered.</p>
      * <p>And if the table has an identity, entities after the process don't have incremented values.
@@ -749,7 +785,7 @@ public abstract class BsWhiteImplicitReverseFkBhv extends AbstractBehaviorWritab
     /**
      * Batch-update the entity list modified-only of same-set columns. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
-     * <span style="color: #FD4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
+     * <span style="color: #DD4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
      * <pre>
      * for (... : ...) {
      *     WhiteImplicitReverseFk whiteImplicitReverseFk = new WhiteImplicitReverseFk();
@@ -764,11 +800,11 @@ public abstract class BsWhiteImplicitReverseFkBhv extends AbstractBehaviorWritab
      *     <span style="color: #3F7E5E">// (others are not updated: their values are kept)</span>
      *     whiteImplicitReverseFkList.add(whiteImplicitReverseFk);
      * }
-     * whiteImplicitReverseFkBhv.<span style="color: #FD4747">batchUpdate</span>(whiteImplicitReverseFkList);
+     * whiteImplicitReverseFkBhv.<span style="color: #DD4747">batchUpdate</span>(whiteImplicitReverseFkList);
      * </pre>
      * @param whiteImplicitReverseFkList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<WhiteImplicitReverseFk> whiteImplicitReverseFkList) {
         UpdateOption<WhiteImplicitReverseFkCB> op = createPlainUpdateOption();
@@ -797,16 +833,16 @@ public abstract class BsWhiteImplicitReverseFkBhv extends AbstractBehaviorWritab
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * <pre>
      * <span style="color: #3F7E5E">// e.g. update two columns only</span>
-     * whiteImplicitReverseFkBhv.<span style="color: #FD4747">batchUpdate</span>(whiteImplicitReverseFkList, new SpecifyQuery<WhiteImplicitReverseFkCB>() {
+     * whiteImplicitReverseFkBhv.<span style="color: #DD4747">batchUpdate</span>(whiteImplicitReverseFkList, new SpecifyQuery<WhiteImplicitReverseFkCB>() {
      *     public void specify(WhiteImplicitReverseFkCB cb) { <span style="color: #3F7E5E">// the two only updated</span>
-     *         cb.specify().<span style="color: #FD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
-     *         cb.specify().<span style="color: #FD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
+     *         cb.specify().<span style="color: #DD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
+     *         cb.specify().<span style="color: #DD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
      *     }
      * });
      * <span style="color: #3F7E5E">// e.g. update every column in the table</span>
-     * whiteImplicitReverseFkBhv.<span style="color: #FD4747">batchUpdate</span>(whiteImplicitReverseFkList, new SpecifyQuery<WhiteImplicitReverseFkCB>() {
+     * whiteImplicitReverseFkBhv.<span style="color: #DD4747">batchUpdate</span>(whiteImplicitReverseFkList, new SpecifyQuery<WhiteImplicitReverseFkCB>() {
      *     public void specify(WhiteImplicitReverseFkCB cb) { <span style="color: #3F7E5E">// all columns are updated</span>
-     *         cb.specify().<span style="color: #FD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
+     *         cb.specify().<span style="color: #DD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
      *     }
      * });
      * </pre>
@@ -818,7 +854,7 @@ public abstract class BsWhiteImplicitReverseFkBhv extends AbstractBehaviorWritab
      * @param whiteImplicitReverseFkList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @param updateColumnSpec The specification of update columns. (NotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<WhiteImplicitReverseFk> whiteImplicitReverseFkList, SpecifyQuery<WhiteImplicitReverseFkCB> updateColumnSpec) {
         return doBatchUpdate(whiteImplicitReverseFkList, createSpecifiedUpdateOption(updateColumnSpec));
@@ -834,7 +870,7 @@ public abstract class BsWhiteImplicitReverseFkBhv extends AbstractBehaviorWritab
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * @param whiteImplicitReverseFkList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of deleted count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchDelete(List<WhiteImplicitReverseFk> whiteImplicitReverseFkList) {
         return doBatchDelete(whiteImplicitReverseFkList, null);
@@ -863,7 +899,7 @@ public abstract class BsWhiteImplicitReverseFkBhv extends AbstractBehaviorWritab
     /**
      * Insert the several entities by query (modified-only for fixed value).
      * <pre>
-     * whiteImplicitReverseFkBhv.<span style="color: #FD4747">queryInsert</span>(new QueryInsertSetupper&lt;WhiteImplicitReverseFk, WhiteImplicitReverseFkCB&gt;() {
+     * whiteImplicitReverseFkBhv.<span style="color: #DD4747">queryInsert</span>(new QueryInsertSetupper&lt;WhiteImplicitReverseFk, WhiteImplicitReverseFkCB&gt;() {
      *     public ConditionBean setup(whiteImplicitReverseFk entity, WhiteImplicitReverseFkCB intoCB) {
      *         FooCB cb = FooCB();
      *         cb.setupSelect_Bar();
@@ -925,12 +961,12 @@ public abstract class BsWhiteImplicitReverseFkBhv extends AbstractBehaviorWritab
      * <span style="color: #3F7E5E">//whiteImplicitReverseFk.setVersionNo(value);</span>
      * WhiteImplicitReverseFkCB cb = new WhiteImplicitReverseFkCB();
      * cb.query().setFoo...(value);
-     * whiteImplicitReverseFkBhv.<span style="color: #FD4747">queryUpdate</span>(whiteImplicitReverseFk, cb);
+     * whiteImplicitReverseFkBhv.<span style="color: #DD4747">queryUpdate</span>(whiteImplicitReverseFk, cb);
      * </pre>
      * @param whiteImplicitReverseFk The entity that contains update values. (NotNull, PrimaryKeyNullAllowed)
      * @param cb The condition-bean of WhiteImplicitReverseFk. (NotNull)
      * @return The updated count.
-     * @exception org.seasar.dbflute.exception.NonQueryUpdateNotAllowedException When the query has no condition.
+     * @exception NonQueryUpdateNotAllowedException When the query has no condition.
      */
     public int queryUpdate(WhiteImplicitReverseFk whiteImplicitReverseFk, WhiteImplicitReverseFkCB cb) {
         return doQueryUpdate(whiteImplicitReverseFk, cb, null);
@@ -953,11 +989,11 @@ public abstract class BsWhiteImplicitReverseFkBhv extends AbstractBehaviorWritab
      * <pre>
      * WhiteImplicitReverseFkCB cb = new WhiteImplicitReverseFkCB();
      * cb.query().setFoo...(value);
-     * whiteImplicitReverseFkBhv.<span style="color: #FD4747">queryDelete</span>(whiteImplicitReverseFk, cb);
+     * whiteImplicitReverseFkBhv.<span style="color: #DD4747">queryDelete</span>(whiteImplicitReverseFk, cb);
      * </pre>
      * @param cb The condition-bean of WhiteImplicitReverseFk. (NotNull)
      * @return The deleted count.
-     * @exception org.seasar.dbflute.exception.NonQueryDeleteNotAllowedException When the query has no condition.
+     * @exception NonQueryDeleteNotAllowedException When the query has no condition.
      */
     public int queryDelete(WhiteImplicitReverseFkCB cb) {
         return doQueryDelete(cb, null);
@@ -993,12 +1029,12 @@ public abstract class BsWhiteImplicitReverseFkBhv extends AbstractBehaviorWritab
      * InsertOption<WhiteImplicitReverseFkCB> option = new InsertOption<WhiteImplicitReverseFkCB>();
      * <span style="color: #3F7E5E">// you can insert by your values for common columns</span>
      * option.disableCommonColumnAutoSetup();
-     * whiteImplicitReverseFkBhv.<span style="color: #FD4747">varyingInsert</span>(whiteImplicitReverseFk, option);
+     * whiteImplicitReverseFkBhv.<span style="color: #DD4747">varyingInsert</span>(whiteImplicitReverseFk, option);
      * ... = whiteImplicitReverseFk.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * @param whiteImplicitReverseFk The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
      * @param option The option of insert for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingInsert(WhiteImplicitReverseFk whiteImplicitReverseFk, InsertOption<WhiteImplicitReverseFkCB> option) {
         assertInsertOptionNotNull(option);
@@ -1014,25 +1050,25 @@ public abstract class BsWhiteImplicitReverseFkBhv extends AbstractBehaviorWritab
      * whiteImplicitReverseFk.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * whiteImplicitReverseFk.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * whiteImplicitReverseFk.<span style="color: #FD4747">setVersionNo</span>(value);
+     * whiteImplicitReverseFk.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     <span style="color: #3F7E5E">// you can update by self calculation values</span>
      *     UpdateOption&lt;WhiteImplicitReverseFkCB&gt; option = new UpdateOption&lt;WhiteImplicitReverseFkCB&gt;();
      *     option.self(new SpecifyQuery&lt;WhiteImplicitReverseFkCB&gt;() {
      *         public void specify(WhiteImplicitReverseFkCB cb) {
-     *             cb.specify().<span style="color: #FD4747">columnXxxCount()</span>;
+     *             cb.specify().<span style="color: #DD4747">columnXxxCount()</span>;
      *         }
      *     }).plus(1); <span style="color: #3F7E5E">// XXX_COUNT = XXX_COUNT + 1</span>
-     *     whiteImplicitReverseFkBhv.<span style="color: #FD4747">varyingUpdate</span>(whiteImplicitReverseFk, option);
+     *     whiteImplicitReverseFkBhv.<span style="color: #DD4747">varyingUpdate</span>(whiteImplicitReverseFk, option);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param whiteImplicitReverseFk The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @param option The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingUpdate(WhiteImplicitReverseFk whiteImplicitReverseFk, UpdateOption<WhiteImplicitReverseFkCB> option) {
         assertUpdateOptionNotNull(option);
@@ -1045,9 +1081,9 @@ public abstract class BsWhiteImplicitReverseFkBhv extends AbstractBehaviorWritab
      * @param whiteImplicitReverseFk The entity of insert or update target. (NotNull)
      * @param insertOption The option of insert for varying requests. (NotNull)
      * @param updateOption The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingInsertOrUpdate(WhiteImplicitReverseFk whiteImplicitReverseFk, InsertOption<WhiteImplicitReverseFkCB> insertOption, UpdateOption<WhiteImplicitReverseFkCB> updateOption) {
         assertInsertOptionNotNull(insertOption); assertUpdateOptionNotNull(updateOption);
@@ -1060,8 +1096,8 @@ public abstract class BsWhiteImplicitReverseFkBhv extends AbstractBehaviorWritab
      * Other specifications are same as delete(entity).
      * @param whiteImplicitReverseFk The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @param option The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void varyingDelete(WhiteImplicitReverseFk whiteImplicitReverseFk, DeleteOption<WhiteImplicitReverseFkCB> option) {
         assertDeleteOptionNotNull(option);
@@ -1147,16 +1183,16 @@ public abstract class BsWhiteImplicitReverseFkBhv extends AbstractBehaviorWritab
      * UpdateOption&lt;WhiteImplicitReverseFkCB&gt; option = new UpdateOption&lt;WhiteImplicitReverseFkCB&gt;();
      * option.self(new SpecifyQuery&lt;WhiteImplicitReverseFkCB&gt;() {
      *     public void specify(WhiteImplicitReverseFkCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFooCount()</span>;
+     *         cb.specify().<span style="color: #DD4747">columnFooCount()</span>;
      *     }
      * }).plus(1); <span style="color: #3F7E5E">// FOO_COUNT = FOO_COUNT + 1</span>
-     * whiteImplicitReverseFkBhv.<span style="color: #FD4747">varyingQueryUpdate</span>(whiteImplicitReverseFk, cb, option);
+     * whiteImplicitReverseFkBhv.<span style="color: #DD4747">varyingQueryUpdate</span>(whiteImplicitReverseFk, cb, option);
      * </pre>
      * @param whiteImplicitReverseFk The entity that contains update values. (NotNull) {PrimaryKeyNotRequired}
      * @param cb The condition-bean of WhiteImplicitReverseFk. (NotNull)
      * @param option The option of update for varying requests. (NotNull)
      * @return The updated count.
-     * @exception org.seasar.dbflute.exception.NonQueryUpdateNotAllowedException When the query has no condition (if not allowed).
+     * @exception NonQueryUpdateNotAllowedException When the query has no condition (if not allowed).
      */
     public int varyingQueryUpdate(WhiteImplicitReverseFk whiteImplicitReverseFk, WhiteImplicitReverseFkCB cb, UpdateOption<WhiteImplicitReverseFkCB> option) {
         assertUpdateOptionNotNull(option);
@@ -1170,7 +1206,7 @@ public abstract class BsWhiteImplicitReverseFkBhv extends AbstractBehaviorWritab
      * @param cb The condition-bean of WhiteImplicitReverseFk. (NotNull)
      * @param option The option of delete for varying requests. (NotNull)
      * @return The deleted count.
-     * @exception org.seasar.dbflute.exception.NonQueryDeleteNotAllowedException When the query has no condition (if not allowed).
+     * @exception NonQueryDeleteNotAllowedException When the query has no condition (if not allowed).
      */
     public int varyingQueryDelete(WhiteImplicitReverseFkCB cb, DeleteOption<WhiteImplicitReverseFkCB> option) {
         assertDeleteOptionNotNull(option);

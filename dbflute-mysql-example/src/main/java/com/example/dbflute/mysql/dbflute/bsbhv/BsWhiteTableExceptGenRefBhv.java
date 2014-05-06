@@ -21,6 +21,7 @@ import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
 import org.seasar.dbflute.dbmeta.DBMeta;
+import org.seasar.dbflute.exception.*;
 import org.seasar.dbflute.outsidesql.executor.*;
 import com.example.dbflute.mysql.dbflute.exbhv.*;
 import com.example.dbflute.mysql.dbflute.exentity.*;
@@ -106,7 +107,7 @@ public abstract class BsWhiteTableExceptGenRefBhv extends AbstractBehaviorWritab
      * <pre>
      * WhiteTableExceptGenRefCB cb = new WhiteTableExceptGenRefCB();
      * cb.query().setFoo...(value);
-     * int count = whiteTableExceptGenRefBhv.<span style="color: #FD4747">selectCount</span>(cb);
+     * int count = whiteTableExceptGenRefBhv.<span style="color: #DD4747">selectCount</span>(cb);
      * </pre>
      * @param cb The condition-bean of WhiteTableExceptGenRef. (NotNull)
      * @return The count for the condition. (NotMinus)
@@ -134,12 +135,14 @@ public abstract class BsWhiteTableExceptGenRefBhv extends AbstractBehaviorWritab
     //                                                                       Entity Select
     //                                                                       =============
     /**
-     * Select the entity by the condition-bean.
+     * Select the entity by the condition-bean. <br />
+     * <span style="color: #AD4747; font-size: 120%">The return might be null if no data, so you should have null check.</span> <br />
+     * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, use selectEntityWithDeletedCheck().</span>
      * <pre>
      * WhiteTableExceptGenRefCB cb = new WhiteTableExceptGenRefCB();
      * cb.query().setFoo...(value);
-     * WhiteTableExceptGenRef whiteTableExceptGenRef = whiteTableExceptGenRefBhv.<span style="color: #FD4747">selectEntity</span>(cb);
-     * if (whiteTableExceptGenRef != null) {
+     * WhiteTableExceptGenRef whiteTableExceptGenRef = whiteTableExceptGenRefBhv.<span style="color: #DD4747">selectEntity</span>(cb);
+     * if (whiteTableExceptGenRef != null) { <span style="color: #3F7E5E">// null check</span>
      *     ... = whiteTableExceptGenRef.get...();
      * } else {
      *     ...
@@ -147,8 +150,8 @@ public abstract class BsWhiteTableExceptGenRefBhv extends AbstractBehaviorWritab
      * </pre>
      * @param cb The condition-bean of WhiteTableExceptGenRef. (NotNull)
      * @return The entity selected by the condition. (NullAllowed: if no data, it returns null)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteTableExceptGenRef selectEntity(WhiteTableExceptGenRefCB cb) {
         return doSelectEntity(cb, WhiteTableExceptGenRef.class);
@@ -166,18 +169,19 @@ public abstract class BsWhiteTableExceptGenRefBhv extends AbstractBehaviorWritab
     }
 
     /**
-     * Select the entity by the condition-bean with deleted check.
+     * Select the entity by the condition-bean with deleted check. <br />
+     * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, this method is good.</span>
      * <pre>
      * WhiteTableExceptGenRefCB cb = new WhiteTableExceptGenRefCB();
      * cb.query().setFoo...(value);
-     * WhiteTableExceptGenRef whiteTableExceptGenRef = whiteTableExceptGenRefBhv.<span style="color: #FD4747">selectEntityWithDeletedCheck</span>(cb);
+     * WhiteTableExceptGenRef whiteTableExceptGenRef = whiteTableExceptGenRefBhv.<span style="color: #DD4747">selectEntityWithDeletedCheck</span>(cb);
      * ... = whiteTableExceptGenRef.get...(); <span style="color: #3F7E5E">// the entity always be not null</span>
      * </pre>
      * @param cb The condition-bean of WhiteTableExceptGenRef. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteTableExceptGenRef selectEntityWithDeletedCheck(WhiteTableExceptGenRefCB cb) {
         return doSelectEntityWithDeletedCheck(cb, WhiteTableExceptGenRef.class);
@@ -198,8 +202,8 @@ public abstract class BsWhiteTableExceptGenRefBhv extends AbstractBehaviorWritab
      * Select the entity by the primary-key value.
      * @param genRefId The one of primary key. (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteTableExceptGenRef selectByPKValue(Long genRefId) {
         return doSelectByPKValue(genRefId, WhiteTableExceptGenRef.class);
@@ -213,9 +217,9 @@ public abstract class BsWhiteTableExceptGenRefBhv extends AbstractBehaviorWritab
      * Select the entity by the primary-key value with deleted check.
      * @param genRefId The one of primary key. (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteTableExceptGenRef selectByPKValueWithDeletedCheck(Long genRefId) {
         return doSelectByPKValueWithDeletedCheck(genRefId, WhiteTableExceptGenRef.class);
@@ -241,14 +245,14 @@ public abstract class BsWhiteTableExceptGenRefBhv extends AbstractBehaviorWritab
      * WhiteTableExceptGenRefCB cb = new WhiteTableExceptGenRefCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * ListResultBean&lt;WhiteTableExceptGenRef&gt; whiteTableExceptGenRefList = whiteTableExceptGenRefBhv.<span style="color: #FD4747">selectList</span>(cb);
+     * ListResultBean&lt;WhiteTableExceptGenRef&gt; whiteTableExceptGenRefList = whiteTableExceptGenRefBhv.<span style="color: #DD4747">selectList</span>(cb);
      * for (WhiteTableExceptGenRef whiteTableExceptGenRef : whiteTableExceptGenRefList) {
      *     ... = whiteTableExceptGenRef.get...();
      * }
      * </pre>
      * @param cb The condition-bean of WhiteTableExceptGenRef. (NotNull)
      * @return The result bean of selected list. (NotNull: if no data, returns empty list)
-     * @exception org.seasar.dbflute.exception.DangerousResultSizeException When the result size is over the specified safety size.
+     * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public ListResultBean<WhiteTableExceptGenRef> selectList(WhiteTableExceptGenRefCB cb) {
         return doSelectList(cb, WhiteTableExceptGenRef.class);
@@ -276,8 +280,8 @@ public abstract class BsWhiteTableExceptGenRefBhv extends AbstractBehaviorWritab
      * WhiteTableExceptGenRefCB cb = new WhiteTableExceptGenRefCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * cb.<span style="color: #FD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
-     * PagingResultBean&lt;WhiteTableExceptGenRef&gt; page = whiteTableExceptGenRefBhv.<span style="color: #FD4747">selectPage</span>(cb);
+     * cb.<span style="color: #DD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
+     * PagingResultBean&lt;WhiteTableExceptGenRef&gt; page = whiteTableExceptGenRefBhv.<span style="color: #DD4747">selectPage</span>(cb);
      * int allRecordCount = page.getAllRecordCount();
      * int allPageCount = page.getAllPageCount();
      * boolean isExistPrePage = page.isExistPrePage();
@@ -289,7 +293,7 @@ public abstract class BsWhiteTableExceptGenRefBhv extends AbstractBehaviorWritab
      * </pre>
      * @param cb The condition-bean of WhiteTableExceptGenRef. (NotNull)
      * @return The result bean of selected page. (NotNull: if no data, returns bean as empty list)
-     * @exception org.seasar.dbflute.exception.DangerousResultSizeException When the result size is over the specified safety size.
+     * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public PagingResultBean<WhiteTableExceptGenRef> selectPage(WhiteTableExceptGenRefCB cb) {
         return doSelectPage(cb, WhiteTableExceptGenRef.class);
@@ -316,7 +320,7 @@ public abstract class BsWhiteTableExceptGenRefBhv extends AbstractBehaviorWritab
      * <pre>
      * WhiteTableExceptGenRefCB cb = new WhiteTableExceptGenRefCB();
      * cb.query().setFoo...(value);
-     * whiteTableExceptGenRefBhv.<span style="color: #FD4747">selectCursor</span>(cb, new EntityRowHandler&lt;WhiteTableExceptGenRef&gt;() {
+     * whiteTableExceptGenRefBhv.<span style="color: #DD4747">selectCursor</span>(cb, new EntityRowHandler&lt;WhiteTableExceptGenRef&gt;() {
      *     public void handle(WhiteTableExceptGenRef entity) {
      *         ... = entity.getFoo...();
      *     }
@@ -345,9 +349,9 @@ public abstract class BsWhiteTableExceptGenRefBhv extends AbstractBehaviorWritab
      * Select the scalar value derived by a function from uniquely-selected records. <br />
      * You should call a function method after this method called like as follows:
      * <pre>
-     * whiteTableExceptGenRefBhv.<span style="color: #FD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
+     * whiteTableExceptGenRefBhv.<span style="color: #DD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
      *     public void query(WhiteTableExceptGenRefCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
+     *         cb.specify().<span style="color: #DD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
      *         cb.query().setBarName_PrefixSearch("S");
      *     }
      * });
@@ -414,12 +418,12 @@ public abstract class BsWhiteTableExceptGenRefBhv extends AbstractBehaviorWritab
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
      * <span style="color: #3F7E5E">//whiteTableExceptGenRef.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//whiteTableExceptGenRef.set...;</span>
-     * whiteTableExceptGenRefBhv.<span style="color: #FD4747">insert</span>(whiteTableExceptGenRef);
+     * whiteTableExceptGenRefBhv.<span style="color: #DD4747">insert</span>(whiteTableExceptGenRef);
      * ... = whiteTableExceptGenRef.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * <p>While, when the entity is created by select, all columns are registered.</p>
      * @param whiteTableExceptGenRef The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insert(WhiteTableExceptGenRef whiteTableExceptGenRef) {
         doInsert(whiteTableExceptGenRef, null);
@@ -455,17 +459,17 @@ public abstract class BsWhiteTableExceptGenRefBhv extends AbstractBehaviorWritab
      * <span style="color: #3F7E5E">//whiteTableExceptGenRef.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//whiteTableExceptGenRef.set...;</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * whiteTableExceptGenRef.<span style="color: #FD4747">setVersionNo</span>(value);
+     * whiteTableExceptGenRef.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
-     *     whiteTableExceptGenRefBhv.<span style="color: #FD4747">update</span>(whiteTableExceptGenRef);
+     *     whiteTableExceptGenRefBhv.<span style="color: #DD4747">update</span>(whiteTableExceptGenRef);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param whiteTableExceptGenRef The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void update(final WhiteTableExceptGenRef whiteTableExceptGenRef) {
         doUpdate(whiteTableExceptGenRef, null);
@@ -515,11 +519,11 @@ public abstract class BsWhiteTableExceptGenRefBhv extends AbstractBehaviorWritab
     /**
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br />
-     * <p><span style="color: #FD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
+     * <p><span style="color: #DD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
      * @param whiteTableExceptGenRef The entity of insert or update target. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insertOrUpdate(WhiteTableExceptGenRef whiteTableExceptGenRef) {
         doInesrtOrUpdate(whiteTableExceptGenRef, null, null);
@@ -555,16 +559,16 @@ public abstract class BsWhiteTableExceptGenRefBhv extends AbstractBehaviorWritab
      * WhiteTableExceptGenRef whiteTableExceptGenRef = new WhiteTableExceptGenRef();
      * whiteTableExceptGenRef.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * whiteTableExceptGenRef.<span style="color: #FD4747">setVersionNo</span>(value);
+     * whiteTableExceptGenRef.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
-     *     whiteTableExceptGenRefBhv.<span style="color: #FD4747">delete</span>(whiteTableExceptGenRef);
+     *     whiteTableExceptGenRefBhv.<span style="color: #DD4747">delete</span>(whiteTableExceptGenRef);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param whiteTableExceptGenRef The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void delete(WhiteTableExceptGenRef whiteTableExceptGenRef) {
         doDelete(whiteTableExceptGenRef, null);
@@ -599,7 +603,7 @@ public abstract class BsWhiteTableExceptGenRefBhv extends AbstractBehaviorWritab
     /**
      * Batch-insert the entity list modified-only of same-set columns. (DefaultConstraintsEnabled) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
-     * <p><span style="color: #FD4747; font-size: 120%">The columns of least common multiple are registered like this:</span></p>
+     * <p><span style="color: #DD4747; font-size: 120%">The columns of least common multiple are registered like this:</span></p>
      * <pre>
      * for (... : ...) {
      *     WhiteTableExceptGenRef whiteTableExceptGenRef = new WhiteTableExceptGenRef();
@@ -612,7 +616,7 @@ public abstract class BsWhiteTableExceptGenRefBhv extends AbstractBehaviorWritab
      *     <span style="color: #3F7E5E">// columns not-called in all entities are registered as null or default value</span>
      *     whiteTableExceptGenRefList.add(whiteTableExceptGenRef);
      * }
-     * whiteTableExceptGenRefBhv.<span style="color: #FD4747">batchInsert</span>(whiteTableExceptGenRefList);
+     * whiteTableExceptGenRefBhv.<span style="color: #DD4747">batchInsert</span>(whiteTableExceptGenRefList);
      * </pre>
      * <p>While, when the entities are created by select, all columns are registered.</p>
      * <p>And if the table has an identity, entities after the process don't have incremented values.
@@ -646,7 +650,7 @@ public abstract class BsWhiteTableExceptGenRefBhv extends AbstractBehaviorWritab
     /**
      * Batch-update the entity list modified-only of same-set columns. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
-     * <span style="color: #FD4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
+     * <span style="color: #DD4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
      * <pre>
      * for (... : ...) {
      *     WhiteTableExceptGenRef whiteTableExceptGenRef = new WhiteTableExceptGenRef();
@@ -661,11 +665,11 @@ public abstract class BsWhiteTableExceptGenRefBhv extends AbstractBehaviorWritab
      *     <span style="color: #3F7E5E">// (others are not updated: their values are kept)</span>
      *     whiteTableExceptGenRefList.add(whiteTableExceptGenRef);
      * }
-     * whiteTableExceptGenRefBhv.<span style="color: #FD4747">batchUpdate</span>(whiteTableExceptGenRefList);
+     * whiteTableExceptGenRefBhv.<span style="color: #DD4747">batchUpdate</span>(whiteTableExceptGenRefList);
      * </pre>
      * @param whiteTableExceptGenRefList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<WhiteTableExceptGenRef> whiteTableExceptGenRefList) {
         UpdateOption<WhiteTableExceptGenRefCB> op = createPlainUpdateOption();
@@ -694,16 +698,16 @@ public abstract class BsWhiteTableExceptGenRefBhv extends AbstractBehaviorWritab
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * <pre>
      * <span style="color: #3F7E5E">// e.g. update two columns only</span>
-     * whiteTableExceptGenRefBhv.<span style="color: #FD4747">batchUpdate</span>(whiteTableExceptGenRefList, new SpecifyQuery<WhiteTableExceptGenRefCB>() {
+     * whiteTableExceptGenRefBhv.<span style="color: #DD4747">batchUpdate</span>(whiteTableExceptGenRefList, new SpecifyQuery<WhiteTableExceptGenRefCB>() {
      *     public void specify(WhiteTableExceptGenRefCB cb) { <span style="color: #3F7E5E">// the two only updated</span>
-     *         cb.specify().<span style="color: #FD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
-     *         cb.specify().<span style="color: #FD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
+     *         cb.specify().<span style="color: #DD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
+     *         cb.specify().<span style="color: #DD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
      *     }
      * });
      * <span style="color: #3F7E5E">// e.g. update every column in the table</span>
-     * whiteTableExceptGenRefBhv.<span style="color: #FD4747">batchUpdate</span>(whiteTableExceptGenRefList, new SpecifyQuery<WhiteTableExceptGenRefCB>() {
+     * whiteTableExceptGenRefBhv.<span style="color: #DD4747">batchUpdate</span>(whiteTableExceptGenRefList, new SpecifyQuery<WhiteTableExceptGenRefCB>() {
      *     public void specify(WhiteTableExceptGenRefCB cb) { <span style="color: #3F7E5E">// all columns are updated</span>
-     *         cb.specify().<span style="color: #FD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
+     *         cb.specify().<span style="color: #DD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
      *     }
      * });
      * </pre>
@@ -715,7 +719,7 @@ public abstract class BsWhiteTableExceptGenRefBhv extends AbstractBehaviorWritab
      * @param whiteTableExceptGenRefList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @param updateColumnSpec The specification of update columns. (NotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<WhiteTableExceptGenRef> whiteTableExceptGenRefList, SpecifyQuery<WhiteTableExceptGenRefCB> updateColumnSpec) {
         return doBatchUpdate(whiteTableExceptGenRefList, createSpecifiedUpdateOption(updateColumnSpec));
@@ -731,7 +735,7 @@ public abstract class BsWhiteTableExceptGenRefBhv extends AbstractBehaviorWritab
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * @param whiteTableExceptGenRefList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of deleted count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchDelete(List<WhiteTableExceptGenRef> whiteTableExceptGenRefList) {
         return doBatchDelete(whiteTableExceptGenRefList, null);
@@ -760,7 +764,7 @@ public abstract class BsWhiteTableExceptGenRefBhv extends AbstractBehaviorWritab
     /**
      * Insert the several entities by query (modified-only for fixed value).
      * <pre>
-     * whiteTableExceptGenRefBhv.<span style="color: #FD4747">queryInsert</span>(new QueryInsertSetupper&lt;WhiteTableExceptGenRef, WhiteTableExceptGenRefCB&gt;() {
+     * whiteTableExceptGenRefBhv.<span style="color: #DD4747">queryInsert</span>(new QueryInsertSetupper&lt;WhiteTableExceptGenRef, WhiteTableExceptGenRefCB&gt;() {
      *     public ConditionBean setup(whiteTableExceptGenRef entity, WhiteTableExceptGenRefCB intoCB) {
      *         FooCB cb = FooCB();
      *         cb.setupSelect_Bar();
@@ -822,12 +826,12 @@ public abstract class BsWhiteTableExceptGenRefBhv extends AbstractBehaviorWritab
      * <span style="color: #3F7E5E">//whiteTableExceptGenRef.setVersionNo(value);</span>
      * WhiteTableExceptGenRefCB cb = new WhiteTableExceptGenRefCB();
      * cb.query().setFoo...(value);
-     * whiteTableExceptGenRefBhv.<span style="color: #FD4747">queryUpdate</span>(whiteTableExceptGenRef, cb);
+     * whiteTableExceptGenRefBhv.<span style="color: #DD4747">queryUpdate</span>(whiteTableExceptGenRef, cb);
      * </pre>
      * @param whiteTableExceptGenRef The entity that contains update values. (NotNull, PrimaryKeyNullAllowed)
      * @param cb The condition-bean of WhiteTableExceptGenRef. (NotNull)
      * @return The updated count.
-     * @exception org.seasar.dbflute.exception.NonQueryUpdateNotAllowedException When the query has no condition.
+     * @exception NonQueryUpdateNotAllowedException When the query has no condition.
      */
     public int queryUpdate(WhiteTableExceptGenRef whiteTableExceptGenRef, WhiteTableExceptGenRefCB cb) {
         return doQueryUpdate(whiteTableExceptGenRef, cb, null);
@@ -850,11 +854,11 @@ public abstract class BsWhiteTableExceptGenRefBhv extends AbstractBehaviorWritab
      * <pre>
      * WhiteTableExceptGenRefCB cb = new WhiteTableExceptGenRefCB();
      * cb.query().setFoo...(value);
-     * whiteTableExceptGenRefBhv.<span style="color: #FD4747">queryDelete</span>(whiteTableExceptGenRef, cb);
+     * whiteTableExceptGenRefBhv.<span style="color: #DD4747">queryDelete</span>(whiteTableExceptGenRef, cb);
      * </pre>
      * @param cb The condition-bean of WhiteTableExceptGenRef. (NotNull)
      * @return The deleted count.
-     * @exception org.seasar.dbflute.exception.NonQueryDeleteNotAllowedException When the query has no condition.
+     * @exception NonQueryDeleteNotAllowedException When the query has no condition.
      */
     public int queryDelete(WhiteTableExceptGenRefCB cb) {
         return doQueryDelete(cb, null);
@@ -890,12 +894,12 @@ public abstract class BsWhiteTableExceptGenRefBhv extends AbstractBehaviorWritab
      * InsertOption<WhiteTableExceptGenRefCB> option = new InsertOption<WhiteTableExceptGenRefCB>();
      * <span style="color: #3F7E5E">// you can insert by your values for common columns</span>
      * option.disableCommonColumnAutoSetup();
-     * whiteTableExceptGenRefBhv.<span style="color: #FD4747">varyingInsert</span>(whiteTableExceptGenRef, option);
+     * whiteTableExceptGenRefBhv.<span style="color: #DD4747">varyingInsert</span>(whiteTableExceptGenRef, option);
      * ... = whiteTableExceptGenRef.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * @param whiteTableExceptGenRef The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
      * @param option The option of insert for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingInsert(WhiteTableExceptGenRef whiteTableExceptGenRef, InsertOption<WhiteTableExceptGenRefCB> option) {
         assertInsertOptionNotNull(option);
@@ -911,25 +915,25 @@ public abstract class BsWhiteTableExceptGenRefBhv extends AbstractBehaviorWritab
      * whiteTableExceptGenRef.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * whiteTableExceptGenRef.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * whiteTableExceptGenRef.<span style="color: #FD4747">setVersionNo</span>(value);
+     * whiteTableExceptGenRef.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     <span style="color: #3F7E5E">// you can update by self calculation values</span>
      *     UpdateOption&lt;WhiteTableExceptGenRefCB&gt; option = new UpdateOption&lt;WhiteTableExceptGenRefCB&gt;();
      *     option.self(new SpecifyQuery&lt;WhiteTableExceptGenRefCB&gt;() {
      *         public void specify(WhiteTableExceptGenRefCB cb) {
-     *             cb.specify().<span style="color: #FD4747">columnXxxCount()</span>;
+     *             cb.specify().<span style="color: #DD4747">columnXxxCount()</span>;
      *         }
      *     }).plus(1); <span style="color: #3F7E5E">// XXX_COUNT = XXX_COUNT + 1</span>
-     *     whiteTableExceptGenRefBhv.<span style="color: #FD4747">varyingUpdate</span>(whiteTableExceptGenRef, option);
+     *     whiteTableExceptGenRefBhv.<span style="color: #DD4747">varyingUpdate</span>(whiteTableExceptGenRef, option);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param whiteTableExceptGenRef The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @param option The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingUpdate(WhiteTableExceptGenRef whiteTableExceptGenRef, UpdateOption<WhiteTableExceptGenRefCB> option) {
         assertUpdateOptionNotNull(option);
@@ -942,9 +946,9 @@ public abstract class BsWhiteTableExceptGenRefBhv extends AbstractBehaviorWritab
      * @param whiteTableExceptGenRef The entity of insert or update target. (NotNull)
      * @param insertOption The option of insert for varying requests. (NotNull)
      * @param updateOption The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingInsertOrUpdate(WhiteTableExceptGenRef whiteTableExceptGenRef, InsertOption<WhiteTableExceptGenRefCB> insertOption, UpdateOption<WhiteTableExceptGenRefCB> updateOption) {
         assertInsertOptionNotNull(insertOption); assertUpdateOptionNotNull(updateOption);
@@ -957,8 +961,8 @@ public abstract class BsWhiteTableExceptGenRefBhv extends AbstractBehaviorWritab
      * Other specifications are same as delete(entity).
      * @param whiteTableExceptGenRef The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @param option The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void varyingDelete(WhiteTableExceptGenRef whiteTableExceptGenRef, DeleteOption<WhiteTableExceptGenRefCB> option) {
         assertDeleteOptionNotNull(option);
@@ -1044,16 +1048,16 @@ public abstract class BsWhiteTableExceptGenRefBhv extends AbstractBehaviorWritab
      * UpdateOption&lt;WhiteTableExceptGenRefCB&gt; option = new UpdateOption&lt;WhiteTableExceptGenRefCB&gt;();
      * option.self(new SpecifyQuery&lt;WhiteTableExceptGenRefCB&gt;() {
      *     public void specify(WhiteTableExceptGenRefCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFooCount()</span>;
+     *         cb.specify().<span style="color: #DD4747">columnFooCount()</span>;
      *     }
      * }).plus(1); <span style="color: #3F7E5E">// FOO_COUNT = FOO_COUNT + 1</span>
-     * whiteTableExceptGenRefBhv.<span style="color: #FD4747">varyingQueryUpdate</span>(whiteTableExceptGenRef, cb, option);
+     * whiteTableExceptGenRefBhv.<span style="color: #DD4747">varyingQueryUpdate</span>(whiteTableExceptGenRef, cb, option);
      * </pre>
      * @param whiteTableExceptGenRef The entity that contains update values. (NotNull) {PrimaryKeyNotRequired}
      * @param cb The condition-bean of WhiteTableExceptGenRef. (NotNull)
      * @param option The option of update for varying requests. (NotNull)
      * @return The updated count.
-     * @exception org.seasar.dbflute.exception.NonQueryUpdateNotAllowedException When the query has no condition (if not allowed).
+     * @exception NonQueryUpdateNotAllowedException When the query has no condition (if not allowed).
      */
     public int varyingQueryUpdate(WhiteTableExceptGenRef whiteTableExceptGenRef, WhiteTableExceptGenRefCB cb, UpdateOption<WhiteTableExceptGenRefCB> option) {
         assertUpdateOptionNotNull(option);
@@ -1067,7 +1071,7 @@ public abstract class BsWhiteTableExceptGenRefBhv extends AbstractBehaviorWritab
      * @param cb The condition-bean of WhiteTableExceptGenRef. (NotNull)
      * @param option The option of delete for varying requests. (NotNull)
      * @return The deleted count.
-     * @exception org.seasar.dbflute.exception.NonQueryDeleteNotAllowedException When the query has no condition (if not allowed).
+     * @exception NonQueryDeleteNotAllowedException When the query has no condition (if not allowed).
      */
     public int varyingQueryDelete(WhiteTableExceptGenRefCB cb, DeleteOption<WhiteTableExceptGenRefCB> option) {
         assertDeleteOptionNotNull(option);

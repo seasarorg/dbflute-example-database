@@ -21,6 +21,7 @@ import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
 import org.seasar.dbflute.dbmeta.DBMeta;
+import org.seasar.dbflute.exception.*;
 import org.seasar.dbflute.outsidesql.executor.*;
 import com.example.dbflute.mysql.dbflute.exbhv.*;
 import com.example.dbflute.mysql.dbflute.exentity.*;
@@ -106,7 +107,7 @@ public abstract class BsVendorConstraintNameAutoFooBhv extends AbstractBehaviorW
      * <pre>
      * VendorConstraintNameAutoFooCB cb = new VendorConstraintNameAutoFooCB();
      * cb.query().setFoo...(value);
-     * int count = vendorConstraintNameAutoFooBhv.<span style="color: #FD4747">selectCount</span>(cb);
+     * int count = vendorConstraintNameAutoFooBhv.<span style="color: #DD4747">selectCount</span>(cb);
      * </pre>
      * @param cb The condition-bean of VendorConstraintNameAutoFoo. (NotNull)
      * @return The count for the condition. (NotMinus)
@@ -134,12 +135,14 @@ public abstract class BsVendorConstraintNameAutoFooBhv extends AbstractBehaviorW
     //                                                                       Entity Select
     //                                                                       =============
     /**
-     * Select the entity by the condition-bean.
+     * Select the entity by the condition-bean. <br />
+     * <span style="color: #AD4747; font-size: 120%">The return might be null if no data, so you should have null check.</span> <br />
+     * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, use selectEntityWithDeletedCheck().</span>
      * <pre>
      * VendorConstraintNameAutoFooCB cb = new VendorConstraintNameAutoFooCB();
      * cb.query().setFoo...(value);
-     * VendorConstraintNameAutoFoo vendorConstraintNameAutoFoo = vendorConstraintNameAutoFooBhv.<span style="color: #FD4747">selectEntity</span>(cb);
-     * if (vendorConstraintNameAutoFoo != null) {
+     * VendorConstraintNameAutoFoo vendorConstraintNameAutoFoo = vendorConstraintNameAutoFooBhv.<span style="color: #DD4747">selectEntity</span>(cb);
+     * if (vendorConstraintNameAutoFoo != null) { <span style="color: #3F7E5E">// null check</span>
      *     ... = vendorConstraintNameAutoFoo.get...();
      * } else {
      *     ...
@@ -147,8 +150,8 @@ public abstract class BsVendorConstraintNameAutoFooBhv extends AbstractBehaviorW
      * </pre>
      * @param cb The condition-bean of VendorConstraintNameAutoFoo. (NotNull)
      * @return The entity selected by the condition. (NullAllowed: if no data, it returns null)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public VendorConstraintNameAutoFoo selectEntity(VendorConstraintNameAutoFooCB cb) {
         return doSelectEntity(cb, VendorConstraintNameAutoFoo.class);
@@ -166,18 +169,19 @@ public abstract class BsVendorConstraintNameAutoFooBhv extends AbstractBehaviorW
     }
 
     /**
-     * Select the entity by the condition-bean with deleted check.
+     * Select the entity by the condition-bean with deleted check. <br />
+     * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, this method is good.</span>
      * <pre>
      * VendorConstraintNameAutoFooCB cb = new VendorConstraintNameAutoFooCB();
      * cb.query().setFoo...(value);
-     * VendorConstraintNameAutoFoo vendorConstraintNameAutoFoo = vendorConstraintNameAutoFooBhv.<span style="color: #FD4747">selectEntityWithDeletedCheck</span>(cb);
+     * VendorConstraintNameAutoFoo vendorConstraintNameAutoFoo = vendorConstraintNameAutoFooBhv.<span style="color: #DD4747">selectEntityWithDeletedCheck</span>(cb);
      * ... = vendorConstraintNameAutoFoo.get...(); <span style="color: #3F7E5E">// the entity always be not null</span>
      * </pre>
      * @param cb The condition-bean of VendorConstraintNameAutoFoo. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public VendorConstraintNameAutoFoo selectEntityWithDeletedCheck(VendorConstraintNameAutoFooCB cb) {
         return doSelectEntityWithDeletedCheck(cb, VendorConstraintNameAutoFoo.class);
@@ -198,8 +202,8 @@ public abstract class BsVendorConstraintNameAutoFooBhv extends AbstractBehaviorW
      * Select the entity by the primary-key value.
      * @param constraintNameAutoFooId The one of primary key. (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public VendorConstraintNameAutoFoo selectByPKValue(Long constraintNameAutoFooId) {
         return doSelectByPKValue(constraintNameAutoFooId, VendorConstraintNameAutoFoo.class);
@@ -213,9 +217,9 @@ public abstract class BsVendorConstraintNameAutoFooBhv extends AbstractBehaviorW
      * Select the entity by the primary-key value with deleted check.
      * @param constraintNameAutoFooId The one of primary key. (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public VendorConstraintNameAutoFoo selectByPKValueWithDeletedCheck(Long constraintNameAutoFooId) {
         return doSelectByPKValueWithDeletedCheck(constraintNameAutoFooId, VendorConstraintNameAutoFoo.class);
@@ -241,14 +245,14 @@ public abstract class BsVendorConstraintNameAutoFooBhv extends AbstractBehaviorW
      * VendorConstraintNameAutoFooCB cb = new VendorConstraintNameAutoFooCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * ListResultBean&lt;VendorConstraintNameAutoFoo&gt; vendorConstraintNameAutoFooList = vendorConstraintNameAutoFooBhv.<span style="color: #FD4747">selectList</span>(cb);
+     * ListResultBean&lt;VendorConstraintNameAutoFoo&gt; vendorConstraintNameAutoFooList = vendorConstraintNameAutoFooBhv.<span style="color: #DD4747">selectList</span>(cb);
      * for (VendorConstraintNameAutoFoo vendorConstraintNameAutoFoo : vendorConstraintNameAutoFooList) {
      *     ... = vendorConstraintNameAutoFoo.get...();
      * }
      * </pre>
      * @param cb The condition-bean of VendorConstraintNameAutoFoo. (NotNull)
      * @return The result bean of selected list. (NotNull: if no data, returns empty list)
-     * @exception org.seasar.dbflute.exception.DangerousResultSizeException When the result size is over the specified safety size.
+     * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public ListResultBean<VendorConstraintNameAutoFoo> selectList(VendorConstraintNameAutoFooCB cb) {
         return doSelectList(cb, VendorConstraintNameAutoFoo.class);
@@ -276,8 +280,8 @@ public abstract class BsVendorConstraintNameAutoFooBhv extends AbstractBehaviorW
      * VendorConstraintNameAutoFooCB cb = new VendorConstraintNameAutoFooCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * cb.<span style="color: #FD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
-     * PagingResultBean&lt;VendorConstraintNameAutoFoo&gt; page = vendorConstraintNameAutoFooBhv.<span style="color: #FD4747">selectPage</span>(cb);
+     * cb.<span style="color: #DD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
+     * PagingResultBean&lt;VendorConstraintNameAutoFoo&gt; page = vendorConstraintNameAutoFooBhv.<span style="color: #DD4747">selectPage</span>(cb);
      * int allRecordCount = page.getAllRecordCount();
      * int allPageCount = page.getAllPageCount();
      * boolean isExistPrePage = page.isExistPrePage();
@@ -289,7 +293,7 @@ public abstract class BsVendorConstraintNameAutoFooBhv extends AbstractBehaviorW
      * </pre>
      * @param cb The condition-bean of VendorConstraintNameAutoFoo. (NotNull)
      * @return The result bean of selected page. (NotNull: if no data, returns bean as empty list)
-     * @exception org.seasar.dbflute.exception.DangerousResultSizeException When the result size is over the specified safety size.
+     * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public PagingResultBean<VendorConstraintNameAutoFoo> selectPage(VendorConstraintNameAutoFooCB cb) {
         return doSelectPage(cb, VendorConstraintNameAutoFoo.class);
@@ -316,7 +320,7 @@ public abstract class BsVendorConstraintNameAutoFooBhv extends AbstractBehaviorW
      * <pre>
      * VendorConstraintNameAutoFooCB cb = new VendorConstraintNameAutoFooCB();
      * cb.query().setFoo...(value);
-     * vendorConstraintNameAutoFooBhv.<span style="color: #FD4747">selectCursor</span>(cb, new EntityRowHandler&lt;VendorConstraintNameAutoFoo&gt;() {
+     * vendorConstraintNameAutoFooBhv.<span style="color: #DD4747">selectCursor</span>(cb, new EntityRowHandler&lt;VendorConstraintNameAutoFoo&gt;() {
      *     public void handle(VendorConstraintNameAutoFoo entity) {
      *         ... = entity.getFoo...();
      *     }
@@ -345,9 +349,9 @@ public abstract class BsVendorConstraintNameAutoFooBhv extends AbstractBehaviorW
      * Select the scalar value derived by a function from uniquely-selected records. <br />
      * You should call a function method after this method called like as follows:
      * <pre>
-     * vendorConstraintNameAutoFooBhv.<span style="color: #FD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
+     * vendorConstraintNameAutoFooBhv.<span style="color: #DD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
      *     public void query(VendorConstraintNameAutoFooCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
+     *         cb.specify().<span style="color: #DD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
      *         cb.query().setBarName_PrefixSearch("S");
      *     }
      * });
@@ -387,61 +391,92 @@ public abstract class BsVendorConstraintNameAutoFooBhv extends AbstractBehaviorW
     //                                                                       Load Referrer
     //                                                                       =============
     /**
-     * {Refer to overload method that has an argument of the list of entity.}
-     * @param vendorConstraintNameAutoFoo The entity of vendorConstraintNameAutoFoo. (NotNull)
-     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
-     */
-    public void loadVendorConstraintNameAutoRefList(VendorConstraintNameAutoFoo vendorConstraintNameAutoFoo, ConditionBeanSetupper<VendorConstraintNameAutoRefCB> conditionBeanSetupper) {
-        xassLRArg(vendorConstraintNameAutoFoo, conditionBeanSetupper);
-        loadVendorConstraintNameAutoRefList(xnewLRLs(vendorConstraintNameAutoFoo), conditionBeanSetupper);
-    }
-    /**
-     * Load referrer of vendorConstraintNameAutoRefList with the set-upper for condition-bean of referrer. <br />
+     * Load referrer of vendorConstraintNameAutoRefList by the set-upper of referrer. <br />
      * vendor_constraint_name_auto_ref by CONSTRAINT_NAME_AUTO_FOO_ID, named 'vendorConstraintNameAutoRefList'.
      * <pre>
-     * vendorConstraintNameAutoFooBhv.<span style="color: #FD4747">loadVendorConstraintNameAutoRefList</span>(vendorConstraintNameAutoFooList, new ConditionBeanSetupper&lt;VendorConstraintNameAutoRefCB&gt;() {
+     * vendorConstraintNameAutoFooBhv.<span style="color: #DD4747">loadVendorConstraintNameAutoRefList</span>(vendorConstraintNameAutoFooList, new ConditionBeanSetupper&lt;VendorConstraintNameAutoRefCB&gt;() {
      *     public void setup(VendorConstraintNameAutoRefCB cb) {
      *         cb.setupSelect...();
      *         cb.query().setFoo...(value);
      *         cb.query().addOrderBy_Bar...(); <span style="color: #3F7E5E">// basically you should order referrer list</span>
      *     }
-     * });
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here by calling like '}).withNestedList(new ...)'</span>
      * for (VendorConstraintNameAutoFoo vendorConstraintNameAutoFoo : vendorConstraintNameAutoFooList) {
-     *     ... = vendorConstraintNameAutoFoo.<span style="color: #FD4747">getVendorConstraintNameAutoRefList()</span>;
+     *     ... = vendorConstraintNameAutoFoo.<span style="color: #DD4747">getVendorConstraintNameAutoRefList()</span>;
      * }
      * </pre>
-     * About internal policy, the value of primary key(and others too) is treated as case-insensitive. <br />
-     * The condition-bean that the set-upper provides have settings before you touch it. It is as follows:
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
+     * <pre>
+     * cb.query().setConstraintNameAutoFooId_InScope(pkList);
+     * cb.query().addOrderBy_ConstraintNameAutoFooId_Asc();
+     * </pre>
+     * @param vendorConstraintNameAutoFoo The entity of vendorConstraintNameAutoFoo. (NotNull)
+     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
+     */
+    public NestedReferrerLoader<VendorConstraintNameAutoRef> loadVendorConstraintNameAutoRefList(VendorConstraintNameAutoFoo vendorConstraintNameAutoFoo, ConditionBeanSetupper<VendorConstraintNameAutoRefCB> conditionBeanSetupper) {
+        xassLRArg(vendorConstraintNameAutoFoo, conditionBeanSetupper);
+        return loadVendorConstraintNameAutoRefList(xnewLRLs(vendorConstraintNameAutoFoo), conditionBeanSetupper);
+    }
+
+    /**
+     * Load referrer of vendorConstraintNameAutoRefList by the set-upper of referrer. <br />
+     * vendor_constraint_name_auto_ref by CONSTRAINT_NAME_AUTO_FOO_ID, named 'vendorConstraintNameAutoRefList'.
+     * <pre>
+     * vendorConstraintNameAutoFooBhv.<span style="color: #DD4747">loadVendorConstraintNameAutoRefList</span>(vendorConstraintNameAutoFooList, new ConditionBeanSetupper&lt;VendorConstraintNameAutoRefCB&gt;() {
+     *     public void setup(VendorConstraintNameAutoRefCB cb) {
+     *         cb.setupSelect...();
+     *         cb.query().setFoo...(value);
+     *         cb.query().addOrderBy_Bar...(); <span style="color: #3F7E5E">// basically you should order referrer list</span>
+     *     }
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here by calling like '}).withNestedList(new ...)'</span>
+     * for (VendorConstraintNameAutoFoo vendorConstraintNameAutoFoo : vendorConstraintNameAutoFooList) {
+     *     ... = vendorConstraintNameAutoFoo.<span style="color: #DD4747">getVendorConstraintNameAutoRefList()</span>;
+     * }
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
      * <pre>
      * cb.query().setConstraintNameAutoFooId_InScope(pkList);
      * cb.query().addOrderBy_ConstraintNameAutoFooId_Asc();
      * </pre>
      * @param vendorConstraintNameAutoFooList The entity list of vendorConstraintNameAutoFoo. (NotNull)
      * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public void loadVendorConstraintNameAutoRefList(List<VendorConstraintNameAutoFoo> vendorConstraintNameAutoFooList, ConditionBeanSetupper<VendorConstraintNameAutoRefCB> conditionBeanSetupper) {
+    public NestedReferrerLoader<VendorConstraintNameAutoRef> loadVendorConstraintNameAutoRefList(List<VendorConstraintNameAutoFoo> vendorConstraintNameAutoFooList, ConditionBeanSetupper<VendorConstraintNameAutoRefCB> conditionBeanSetupper) {
         xassLRArg(vendorConstraintNameAutoFooList, conditionBeanSetupper);
-        loadVendorConstraintNameAutoRefList(vendorConstraintNameAutoFooList, new LoadReferrerOption<VendorConstraintNameAutoRefCB, VendorConstraintNameAutoRef>().xinit(conditionBeanSetupper));
+        return loadVendorConstraintNameAutoRefList(vendorConstraintNameAutoFooList, new LoadReferrerOption<VendorConstraintNameAutoRefCB, VendorConstraintNameAutoRef>().xinit(conditionBeanSetupper));
     }
+
     /**
      * {Refer to overload method that has an argument of the list of entity.}
      * @param vendorConstraintNameAutoFoo The entity of vendorConstraintNameAutoFoo. (NotNull)
      * @param loadReferrerOption The option of load-referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public void loadVendorConstraintNameAutoRefList(VendorConstraintNameAutoFoo vendorConstraintNameAutoFoo, LoadReferrerOption<VendorConstraintNameAutoRefCB, VendorConstraintNameAutoRef> loadReferrerOption) {
+    public NestedReferrerLoader<VendorConstraintNameAutoRef> loadVendorConstraintNameAutoRefList(VendorConstraintNameAutoFoo vendorConstraintNameAutoFoo, LoadReferrerOption<VendorConstraintNameAutoRefCB, VendorConstraintNameAutoRef> loadReferrerOption) {
         xassLRArg(vendorConstraintNameAutoFoo, loadReferrerOption);
-        loadVendorConstraintNameAutoRefList(xnewLRLs(vendorConstraintNameAutoFoo), loadReferrerOption);
+        return loadVendorConstraintNameAutoRefList(xnewLRLs(vendorConstraintNameAutoFoo), loadReferrerOption);
     }
+
     /**
      * {Refer to overload method that has an argument of condition-bean setupper.}
      * @param vendorConstraintNameAutoFooList The entity list of vendorConstraintNameAutoFoo. (NotNull)
      * @param loadReferrerOption The option of load-referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public void loadVendorConstraintNameAutoRefList(List<VendorConstraintNameAutoFoo> vendorConstraintNameAutoFooList, LoadReferrerOption<VendorConstraintNameAutoRefCB, VendorConstraintNameAutoRef> loadReferrerOption) {
+    @SuppressWarnings("unchecked")
+    public NestedReferrerLoader<VendorConstraintNameAutoRef> loadVendorConstraintNameAutoRefList(List<VendorConstraintNameAutoFoo> vendorConstraintNameAutoFooList, LoadReferrerOption<VendorConstraintNameAutoRefCB, VendorConstraintNameAutoRef> loadReferrerOption) {
         xassLRArg(vendorConstraintNameAutoFooList, loadReferrerOption);
-        if (vendorConstraintNameAutoFooList.isEmpty()) { return; }
+        if (vendorConstraintNameAutoFooList.isEmpty()) { return (NestedReferrerLoader<VendorConstraintNameAutoRef>)EMPTY_LOADER; }
+        return doLoadVendorConstraintNameAutoRefList(vendorConstraintNameAutoFooList, loadReferrerOption);
+    }
+
+    protected NestedReferrerLoader<VendorConstraintNameAutoRef> doLoadVendorConstraintNameAutoRefList(List<VendorConstraintNameAutoFoo> vendorConstraintNameAutoFooList, LoadReferrerOption<VendorConstraintNameAutoRefCB, VendorConstraintNameAutoRef> option) {
         final VendorConstraintNameAutoRefBhv referrerBhv = xgetBSFLR().select(VendorConstraintNameAutoRefBhv.class);
-        helpLoadReferrerInternally(vendorConstraintNameAutoFooList, loadReferrerOption, new InternalLoadReferrerCallback<VendorConstraintNameAutoFoo, Long, VendorConstraintNameAutoRefCB, VendorConstraintNameAutoRef>() {
+        return helpLoadReferrerInternally(vendorConstraintNameAutoFooList, option, new InternalLoadReferrerCallback<VendorConstraintNameAutoFoo, Long, VendorConstraintNameAutoRefCB, VendorConstraintNameAutoRef>() {
             public Long getPKVal(VendorConstraintNameAutoFoo et)
             { return et.getConstraintNameAutoFooId(); }
             public void setRfLs(VendorConstraintNameAutoFoo et, List<VendorConstraintNameAutoRef> ls)
@@ -501,12 +536,12 @@ public abstract class BsVendorConstraintNameAutoFooBhv extends AbstractBehaviorW
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
      * <span style="color: #3F7E5E">//vendorConstraintNameAutoFoo.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//vendorConstraintNameAutoFoo.set...;</span>
-     * vendorConstraintNameAutoFooBhv.<span style="color: #FD4747">insert</span>(vendorConstraintNameAutoFoo);
+     * vendorConstraintNameAutoFooBhv.<span style="color: #DD4747">insert</span>(vendorConstraintNameAutoFoo);
      * ... = vendorConstraintNameAutoFoo.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * <p>While, when the entity is created by select, all columns are registered.</p>
      * @param vendorConstraintNameAutoFoo The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insert(VendorConstraintNameAutoFoo vendorConstraintNameAutoFoo) {
         doInsert(vendorConstraintNameAutoFoo, null);
@@ -542,17 +577,17 @@ public abstract class BsVendorConstraintNameAutoFooBhv extends AbstractBehaviorW
      * <span style="color: #3F7E5E">//vendorConstraintNameAutoFoo.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//vendorConstraintNameAutoFoo.set...;</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * vendorConstraintNameAutoFoo.<span style="color: #FD4747">setVersionNo</span>(value);
+     * vendorConstraintNameAutoFoo.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
-     *     vendorConstraintNameAutoFooBhv.<span style="color: #FD4747">update</span>(vendorConstraintNameAutoFoo);
+     *     vendorConstraintNameAutoFooBhv.<span style="color: #DD4747">update</span>(vendorConstraintNameAutoFoo);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param vendorConstraintNameAutoFoo The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void update(final VendorConstraintNameAutoFoo vendorConstraintNameAutoFoo) {
         doUpdate(vendorConstraintNameAutoFoo, null);
@@ -602,11 +637,11 @@ public abstract class BsVendorConstraintNameAutoFooBhv extends AbstractBehaviorW
     /**
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br />
-     * <p><span style="color: #FD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
+     * <p><span style="color: #DD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
      * @param vendorConstraintNameAutoFoo The entity of insert or update target. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insertOrUpdate(VendorConstraintNameAutoFoo vendorConstraintNameAutoFoo) {
         doInesrtOrUpdate(vendorConstraintNameAutoFoo, null, null);
@@ -642,16 +677,16 @@ public abstract class BsVendorConstraintNameAutoFooBhv extends AbstractBehaviorW
      * VendorConstraintNameAutoFoo vendorConstraintNameAutoFoo = new VendorConstraintNameAutoFoo();
      * vendorConstraintNameAutoFoo.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * vendorConstraintNameAutoFoo.<span style="color: #FD4747">setVersionNo</span>(value);
+     * vendorConstraintNameAutoFoo.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
-     *     vendorConstraintNameAutoFooBhv.<span style="color: #FD4747">delete</span>(vendorConstraintNameAutoFoo);
+     *     vendorConstraintNameAutoFooBhv.<span style="color: #DD4747">delete</span>(vendorConstraintNameAutoFoo);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param vendorConstraintNameAutoFoo The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void delete(VendorConstraintNameAutoFoo vendorConstraintNameAutoFoo) {
         doDelete(vendorConstraintNameAutoFoo, null);
@@ -686,7 +721,7 @@ public abstract class BsVendorConstraintNameAutoFooBhv extends AbstractBehaviorW
     /**
      * Batch-insert the entity list modified-only of same-set columns. (DefaultConstraintsEnabled) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
-     * <p><span style="color: #FD4747; font-size: 120%">The columns of least common multiple are registered like this:</span></p>
+     * <p><span style="color: #DD4747; font-size: 120%">The columns of least common multiple are registered like this:</span></p>
      * <pre>
      * for (... : ...) {
      *     VendorConstraintNameAutoFoo vendorConstraintNameAutoFoo = new VendorConstraintNameAutoFoo();
@@ -699,7 +734,7 @@ public abstract class BsVendorConstraintNameAutoFooBhv extends AbstractBehaviorW
      *     <span style="color: #3F7E5E">// columns not-called in all entities are registered as null or default value</span>
      *     vendorConstraintNameAutoFooList.add(vendorConstraintNameAutoFoo);
      * }
-     * vendorConstraintNameAutoFooBhv.<span style="color: #FD4747">batchInsert</span>(vendorConstraintNameAutoFooList);
+     * vendorConstraintNameAutoFooBhv.<span style="color: #DD4747">batchInsert</span>(vendorConstraintNameAutoFooList);
      * </pre>
      * <p>While, when the entities are created by select, all columns are registered.</p>
      * <p>And if the table has an identity, entities after the process don't have incremented values.
@@ -733,7 +768,7 @@ public abstract class BsVendorConstraintNameAutoFooBhv extends AbstractBehaviorW
     /**
      * Batch-update the entity list modified-only of same-set columns. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
-     * <span style="color: #FD4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
+     * <span style="color: #DD4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
      * <pre>
      * for (... : ...) {
      *     VendorConstraintNameAutoFoo vendorConstraintNameAutoFoo = new VendorConstraintNameAutoFoo();
@@ -748,11 +783,11 @@ public abstract class BsVendorConstraintNameAutoFooBhv extends AbstractBehaviorW
      *     <span style="color: #3F7E5E">// (others are not updated: their values are kept)</span>
      *     vendorConstraintNameAutoFooList.add(vendorConstraintNameAutoFoo);
      * }
-     * vendorConstraintNameAutoFooBhv.<span style="color: #FD4747">batchUpdate</span>(vendorConstraintNameAutoFooList);
+     * vendorConstraintNameAutoFooBhv.<span style="color: #DD4747">batchUpdate</span>(vendorConstraintNameAutoFooList);
      * </pre>
      * @param vendorConstraintNameAutoFooList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<VendorConstraintNameAutoFoo> vendorConstraintNameAutoFooList) {
         UpdateOption<VendorConstraintNameAutoFooCB> op = createPlainUpdateOption();
@@ -781,16 +816,16 @@ public abstract class BsVendorConstraintNameAutoFooBhv extends AbstractBehaviorW
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * <pre>
      * <span style="color: #3F7E5E">// e.g. update two columns only</span>
-     * vendorConstraintNameAutoFooBhv.<span style="color: #FD4747">batchUpdate</span>(vendorConstraintNameAutoFooList, new SpecifyQuery<VendorConstraintNameAutoFooCB>() {
+     * vendorConstraintNameAutoFooBhv.<span style="color: #DD4747">batchUpdate</span>(vendorConstraintNameAutoFooList, new SpecifyQuery<VendorConstraintNameAutoFooCB>() {
      *     public void specify(VendorConstraintNameAutoFooCB cb) { <span style="color: #3F7E5E">// the two only updated</span>
-     *         cb.specify().<span style="color: #FD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
-     *         cb.specify().<span style="color: #FD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
+     *         cb.specify().<span style="color: #DD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
+     *         cb.specify().<span style="color: #DD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
      *     }
      * });
      * <span style="color: #3F7E5E">// e.g. update every column in the table</span>
-     * vendorConstraintNameAutoFooBhv.<span style="color: #FD4747">batchUpdate</span>(vendorConstraintNameAutoFooList, new SpecifyQuery<VendorConstraintNameAutoFooCB>() {
+     * vendorConstraintNameAutoFooBhv.<span style="color: #DD4747">batchUpdate</span>(vendorConstraintNameAutoFooList, new SpecifyQuery<VendorConstraintNameAutoFooCB>() {
      *     public void specify(VendorConstraintNameAutoFooCB cb) { <span style="color: #3F7E5E">// all columns are updated</span>
-     *         cb.specify().<span style="color: #FD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
+     *         cb.specify().<span style="color: #DD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
      *     }
      * });
      * </pre>
@@ -802,7 +837,7 @@ public abstract class BsVendorConstraintNameAutoFooBhv extends AbstractBehaviorW
      * @param vendorConstraintNameAutoFooList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @param updateColumnSpec The specification of update columns. (NotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<VendorConstraintNameAutoFoo> vendorConstraintNameAutoFooList, SpecifyQuery<VendorConstraintNameAutoFooCB> updateColumnSpec) {
         return doBatchUpdate(vendorConstraintNameAutoFooList, createSpecifiedUpdateOption(updateColumnSpec));
@@ -818,7 +853,7 @@ public abstract class BsVendorConstraintNameAutoFooBhv extends AbstractBehaviorW
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * @param vendorConstraintNameAutoFooList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of deleted count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchDelete(List<VendorConstraintNameAutoFoo> vendorConstraintNameAutoFooList) {
         return doBatchDelete(vendorConstraintNameAutoFooList, null);
@@ -847,7 +882,7 @@ public abstract class BsVendorConstraintNameAutoFooBhv extends AbstractBehaviorW
     /**
      * Insert the several entities by query (modified-only for fixed value).
      * <pre>
-     * vendorConstraintNameAutoFooBhv.<span style="color: #FD4747">queryInsert</span>(new QueryInsertSetupper&lt;VendorConstraintNameAutoFoo, VendorConstraintNameAutoFooCB&gt;() {
+     * vendorConstraintNameAutoFooBhv.<span style="color: #DD4747">queryInsert</span>(new QueryInsertSetupper&lt;VendorConstraintNameAutoFoo, VendorConstraintNameAutoFooCB&gt;() {
      *     public ConditionBean setup(vendorConstraintNameAutoFoo entity, VendorConstraintNameAutoFooCB intoCB) {
      *         FooCB cb = FooCB();
      *         cb.setupSelect_Bar();
@@ -909,12 +944,12 @@ public abstract class BsVendorConstraintNameAutoFooBhv extends AbstractBehaviorW
      * <span style="color: #3F7E5E">//vendorConstraintNameAutoFoo.setVersionNo(value);</span>
      * VendorConstraintNameAutoFooCB cb = new VendorConstraintNameAutoFooCB();
      * cb.query().setFoo...(value);
-     * vendorConstraintNameAutoFooBhv.<span style="color: #FD4747">queryUpdate</span>(vendorConstraintNameAutoFoo, cb);
+     * vendorConstraintNameAutoFooBhv.<span style="color: #DD4747">queryUpdate</span>(vendorConstraintNameAutoFoo, cb);
      * </pre>
      * @param vendorConstraintNameAutoFoo The entity that contains update values. (NotNull, PrimaryKeyNullAllowed)
      * @param cb The condition-bean of VendorConstraintNameAutoFoo. (NotNull)
      * @return The updated count.
-     * @exception org.seasar.dbflute.exception.NonQueryUpdateNotAllowedException When the query has no condition.
+     * @exception NonQueryUpdateNotAllowedException When the query has no condition.
      */
     public int queryUpdate(VendorConstraintNameAutoFoo vendorConstraintNameAutoFoo, VendorConstraintNameAutoFooCB cb) {
         return doQueryUpdate(vendorConstraintNameAutoFoo, cb, null);
@@ -937,11 +972,11 @@ public abstract class BsVendorConstraintNameAutoFooBhv extends AbstractBehaviorW
      * <pre>
      * VendorConstraintNameAutoFooCB cb = new VendorConstraintNameAutoFooCB();
      * cb.query().setFoo...(value);
-     * vendorConstraintNameAutoFooBhv.<span style="color: #FD4747">queryDelete</span>(vendorConstraintNameAutoFoo, cb);
+     * vendorConstraintNameAutoFooBhv.<span style="color: #DD4747">queryDelete</span>(vendorConstraintNameAutoFoo, cb);
      * </pre>
      * @param cb The condition-bean of VendorConstraintNameAutoFoo. (NotNull)
      * @return The deleted count.
-     * @exception org.seasar.dbflute.exception.NonQueryDeleteNotAllowedException When the query has no condition.
+     * @exception NonQueryDeleteNotAllowedException When the query has no condition.
      */
     public int queryDelete(VendorConstraintNameAutoFooCB cb) {
         return doQueryDelete(cb, null);
@@ -977,12 +1012,12 @@ public abstract class BsVendorConstraintNameAutoFooBhv extends AbstractBehaviorW
      * InsertOption<VendorConstraintNameAutoFooCB> option = new InsertOption<VendorConstraintNameAutoFooCB>();
      * <span style="color: #3F7E5E">// you can insert by your values for common columns</span>
      * option.disableCommonColumnAutoSetup();
-     * vendorConstraintNameAutoFooBhv.<span style="color: #FD4747">varyingInsert</span>(vendorConstraintNameAutoFoo, option);
+     * vendorConstraintNameAutoFooBhv.<span style="color: #DD4747">varyingInsert</span>(vendorConstraintNameAutoFoo, option);
      * ... = vendorConstraintNameAutoFoo.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * @param vendorConstraintNameAutoFoo The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
      * @param option The option of insert for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingInsert(VendorConstraintNameAutoFoo vendorConstraintNameAutoFoo, InsertOption<VendorConstraintNameAutoFooCB> option) {
         assertInsertOptionNotNull(option);
@@ -998,25 +1033,25 @@ public abstract class BsVendorConstraintNameAutoFooBhv extends AbstractBehaviorW
      * vendorConstraintNameAutoFoo.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * vendorConstraintNameAutoFoo.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * vendorConstraintNameAutoFoo.<span style="color: #FD4747">setVersionNo</span>(value);
+     * vendorConstraintNameAutoFoo.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     <span style="color: #3F7E5E">// you can update by self calculation values</span>
      *     UpdateOption&lt;VendorConstraintNameAutoFooCB&gt; option = new UpdateOption&lt;VendorConstraintNameAutoFooCB&gt;();
      *     option.self(new SpecifyQuery&lt;VendorConstraintNameAutoFooCB&gt;() {
      *         public void specify(VendorConstraintNameAutoFooCB cb) {
-     *             cb.specify().<span style="color: #FD4747">columnXxxCount()</span>;
+     *             cb.specify().<span style="color: #DD4747">columnXxxCount()</span>;
      *         }
      *     }).plus(1); <span style="color: #3F7E5E">// XXX_COUNT = XXX_COUNT + 1</span>
-     *     vendorConstraintNameAutoFooBhv.<span style="color: #FD4747">varyingUpdate</span>(vendorConstraintNameAutoFoo, option);
+     *     vendorConstraintNameAutoFooBhv.<span style="color: #DD4747">varyingUpdate</span>(vendorConstraintNameAutoFoo, option);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param vendorConstraintNameAutoFoo The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @param option The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingUpdate(VendorConstraintNameAutoFoo vendorConstraintNameAutoFoo, UpdateOption<VendorConstraintNameAutoFooCB> option) {
         assertUpdateOptionNotNull(option);
@@ -1029,9 +1064,9 @@ public abstract class BsVendorConstraintNameAutoFooBhv extends AbstractBehaviorW
      * @param vendorConstraintNameAutoFoo The entity of insert or update target. (NotNull)
      * @param insertOption The option of insert for varying requests. (NotNull)
      * @param updateOption The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingInsertOrUpdate(VendorConstraintNameAutoFoo vendorConstraintNameAutoFoo, InsertOption<VendorConstraintNameAutoFooCB> insertOption, UpdateOption<VendorConstraintNameAutoFooCB> updateOption) {
         assertInsertOptionNotNull(insertOption); assertUpdateOptionNotNull(updateOption);
@@ -1044,8 +1079,8 @@ public abstract class BsVendorConstraintNameAutoFooBhv extends AbstractBehaviorW
      * Other specifications are same as delete(entity).
      * @param vendorConstraintNameAutoFoo The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @param option The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void varyingDelete(VendorConstraintNameAutoFoo vendorConstraintNameAutoFoo, DeleteOption<VendorConstraintNameAutoFooCB> option) {
         assertDeleteOptionNotNull(option);
@@ -1131,16 +1166,16 @@ public abstract class BsVendorConstraintNameAutoFooBhv extends AbstractBehaviorW
      * UpdateOption&lt;VendorConstraintNameAutoFooCB&gt; option = new UpdateOption&lt;VendorConstraintNameAutoFooCB&gt;();
      * option.self(new SpecifyQuery&lt;VendorConstraintNameAutoFooCB&gt;() {
      *     public void specify(VendorConstraintNameAutoFooCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFooCount()</span>;
+     *         cb.specify().<span style="color: #DD4747">columnFooCount()</span>;
      *     }
      * }).plus(1); <span style="color: #3F7E5E">// FOO_COUNT = FOO_COUNT + 1</span>
-     * vendorConstraintNameAutoFooBhv.<span style="color: #FD4747">varyingQueryUpdate</span>(vendorConstraintNameAutoFoo, cb, option);
+     * vendorConstraintNameAutoFooBhv.<span style="color: #DD4747">varyingQueryUpdate</span>(vendorConstraintNameAutoFoo, cb, option);
      * </pre>
      * @param vendorConstraintNameAutoFoo The entity that contains update values. (NotNull) {PrimaryKeyNotRequired}
      * @param cb The condition-bean of VendorConstraintNameAutoFoo. (NotNull)
      * @param option The option of update for varying requests. (NotNull)
      * @return The updated count.
-     * @exception org.seasar.dbflute.exception.NonQueryUpdateNotAllowedException When the query has no condition (if not allowed).
+     * @exception NonQueryUpdateNotAllowedException When the query has no condition (if not allowed).
      */
     public int varyingQueryUpdate(VendorConstraintNameAutoFoo vendorConstraintNameAutoFoo, VendorConstraintNameAutoFooCB cb, UpdateOption<VendorConstraintNameAutoFooCB> option) {
         assertUpdateOptionNotNull(option);
@@ -1154,7 +1189,7 @@ public abstract class BsVendorConstraintNameAutoFooBhv extends AbstractBehaviorW
      * @param cb The condition-bean of VendorConstraintNameAutoFoo. (NotNull)
      * @param option The option of delete for varying requests. (NotNull)
      * @return The deleted count.
-     * @exception org.seasar.dbflute.exception.NonQueryDeleteNotAllowedException When the query has no condition (if not allowed).
+     * @exception NonQueryDeleteNotAllowedException When the query has no condition (if not allowed).
      */
     public int varyingQueryDelete(VendorConstraintNameAutoFooCB cb, DeleteOption<VendorConstraintNameAutoFooCB> option) {
         assertDeleteOptionNotNull(option);
