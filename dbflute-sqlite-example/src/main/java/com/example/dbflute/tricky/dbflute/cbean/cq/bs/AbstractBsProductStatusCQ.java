@@ -109,7 +109,7 @@ public abstract class AbstractBsProductStatusCQ extends AbstractConditionQuery {
     /**
      * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br />
      * PRODUCT_STATUS_CODE: {PK, NotNull, TEXT(2000000000, 10)} <br />
-     * <pre>e.g. setProductStatusCode_LikeSearch("xxx", new <span style="color: #FD4747">LikeSearchOption</span>().likeContain());</pre>
+     * <pre>e.g. setProductStatusCode_LikeSearch("xxx", new <span style="color: #DD4747">LikeSearchOption</span>().likeContain());</pre>
      * @param productStatusCode The value of productStatusCode as likeSearch. (NullAllowed: if null (or empty), no condition)
      * @param likeSearchOption The option of like-search. (NotNull)
      */
@@ -133,7 +133,7 @@ public abstract class AbstractBsProductStatusCQ extends AbstractConditionQuery {
      * {exists (select PRODUCT_STATUS_CODE from PRODUCT where ...)} <br />
      * PRODUCT by PRODUCT_STATUS_CODE, named 'productAsOne'.
      * <pre>
-     * cb.query().<span style="color: #FD4747">existsProductList</span>(new SubQuery&lt;ProductCB&gt;() {
+     * cb.query().<span style="color: #DD4747">existsProductList</span>(new SubQuery&lt;ProductCB&gt;() {
      *     public void query(ProductCB subCB) {
      *         subCB.query().setXxx...
      *     }
@@ -143,8 +143,9 @@ public abstract class AbstractBsProductStatusCQ extends AbstractConditionQuery {
      */
     public void existsProductList(SubQuery<ProductCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        ProductCB cb = new ProductCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String pp = keepProductStatusCode_ExistsReferrer_ProductList(cb.query()); // for saving query-value.
+        ProductCB cb = new ProductCB(); cb.xsetupForExistsReferrer(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepProductStatusCode_ExistsReferrer_ProductList(cb.query());
         registerExistsReferrer(cb.query(), "PRODUCT_STATUS_CODE", "PRODUCT_STATUS_CODE", pp, "productList");
     }
     public abstract String keepProductStatusCode_ExistsReferrer_ProductList(ProductCQ sq);
@@ -154,7 +155,7 @@ public abstract class AbstractBsProductStatusCQ extends AbstractConditionQuery {
      * {exists (select PRODUCT_STATUS_CODE from SUMMARY_PRODUCT where ...)} <br />
      * SUMMARY_PRODUCT by PRODUCT_STATUS_CODE, named 'summaryProductAsOne'.
      * <pre>
-     * cb.query().<span style="color: #FD4747">existsSummaryProductList</span>(new SubQuery&lt;SummaryProductCB&gt;() {
+     * cb.query().<span style="color: #DD4747">existsSummaryProductList</span>(new SubQuery&lt;SummaryProductCB&gt;() {
      *     public void query(SummaryProductCB subCB) {
      *         subCB.query().setXxx...
      *     }
@@ -164,8 +165,9 @@ public abstract class AbstractBsProductStatusCQ extends AbstractConditionQuery {
      */
     public void existsSummaryProductList(SubQuery<SummaryProductCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        SummaryProductCB cb = new SummaryProductCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String pp = keepProductStatusCode_ExistsReferrer_SummaryProductList(cb.query()); // for saving query-value.
+        SummaryProductCB cb = new SummaryProductCB(); cb.xsetupForExistsReferrer(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepProductStatusCode_ExistsReferrer_SummaryProductList(cb.query());
         registerExistsReferrer(cb.query(), "PRODUCT_STATUS_CODE", "PRODUCT_STATUS_CODE", pp, "summaryProductList");
     }
     public abstract String keepProductStatusCode_ExistsReferrer_SummaryProductList(SummaryProductCQ sq);
@@ -175,7 +177,7 @@ public abstract class AbstractBsProductStatusCQ extends AbstractConditionQuery {
      * {not exists (select PRODUCT_STATUS_CODE from PRODUCT where ...)} <br />
      * PRODUCT by PRODUCT_STATUS_CODE, named 'productAsOne'.
      * <pre>
-     * cb.query().<span style="color: #FD4747">notExistsProductList</span>(new SubQuery&lt;ProductCB&gt;() {
+     * cb.query().<span style="color: #DD4747">notExistsProductList</span>(new SubQuery&lt;ProductCB&gt;() {
      *     public void query(ProductCB subCB) {
      *         subCB.query().setXxx...
      *     }
@@ -185,8 +187,9 @@ public abstract class AbstractBsProductStatusCQ extends AbstractConditionQuery {
      */
     public void notExistsProductList(SubQuery<ProductCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        ProductCB cb = new ProductCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String pp = keepProductStatusCode_NotExistsReferrer_ProductList(cb.query()); // for saving query-value.
+        ProductCB cb = new ProductCB(); cb.xsetupForExistsReferrer(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepProductStatusCode_NotExistsReferrer_ProductList(cb.query());
         registerNotExistsReferrer(cb.query(), "PRODUCT_STATUS_CODE", "PRODUCT_STATUS_CODE", pp, "productList");
     }
     public abstract String keepProductStatusCode_NotExistsReferrer_ProductList(ProductCQ sq);
@@ -196,7 +199,7 @@ public abstract class AbstractBsProductStatusCQ extends AbstractConditionQuery {
      * {not exists (select PRODUCT_STATUS_CODE from SUMMARY_PRODUCT where ...)} <br />
      * SUMMARY_PRODUCT by PRODUCT_STATUS_CODE, named 'summaryProductAsOne'.
      * <pre>
-     * cb.query().<span style="color: #FD4747">notExistsSummaryProductList</span>(new SubQuery&lt;SummaryProductCB&gt;() {
+     * cb.query().<span style="color: #DD4747">notExistsSummaryProductList</span>(new SubQuery&lt;SummaryProductCB&gt;() {
      *     public void query(SummaryProductCB subCB) {
      *         subCB.query().setXxx...
      *     }
@@ -206,8 +209,9 @@ public abstract class AbstractBsProductStatusCQ extends AbstractConditionQuery {
      */
     public void notExistsSummaryProductList(SubQuery<SummaryProductCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        SummaryProductCB cb = new SummaryProductCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String pp = keepProductStatusCode_NotExistsReferrer_SummaryProductList(cb.query()); // for saving query-value.
+        SummaryProductCB cb = new SummaryProductCB(); cb.xsetupForExistsReferrer(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepProductStatusCode_NotExistsReferrer_SummaryProductList(cb.query());
         registerNotExistsReferrer(cb.query(), "PRODUCT_STATUS_CODE", "PRODUCT_STATUS_CODE", pp, "summaryProductList");
     }
     public abstract String keepProductStatusCode_NotExistsReferrer_SummaryProductList(SummaryProductCQ sq);
@@ -220,8 +224,9 @@ public abstract class AbstractBsProductStatusCQ extends AbstractConditionQuery {
      */
     public void inScopeProductList(SubQuery<ProductCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        ProductCB cb = new ProductCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String pp = keepProductStatusCode_InScopeRelation_ProductList(cb.query()); // for saving query-value.
+        ProductCB cb = new ProductCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepProductStatusCode_InScopeRelation_ProductList(cb.query());
         registerInScopeRelation(cb.query(), "PRODUCT_STATUS_CODE", "PRODUCT_STATUS_CODE", pp, "productList");
     }
     public abstract String keepProductStatusCode_InScopeRelation_ProductList(ProductCQ sq);
@@ -234,8 +239,9 @@ public abstract class AbstractBsProductStatusCQ extends AbstractConditionQuery {
      */
     public void inScopeSummaryProductList(SubQuery<SummaryProductCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        SummaryProductCB cb = new SummaryProductCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String pp = keepProductStatusCode_InScopeRelation_SummaryProductList(cb.query()); // for saving query-value.
+        SummaryProductCB cb = new SummaryProductCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepProductStatusCode_InScopeRelation_SummaryProductList(cb.query());
         registerInScopeRelation(cb.query(), "PRODUCT_STATUS_CODE", "PRODUCT_STATUS_CODE", pp, "summaryProductList");
     }
     public abstract String keepProductStatusCode_InScopeRelation_SummaryProductList(SummaryProductCQ sq);
@@ -248,8 +254,9 @@ public abstract class AbstractBsProductStatusCQ extends AbstractConditionQuery {
      */
     public void notInScopeProductList(SubQuery<ProductCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        ProductCB cb = new ProductCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String pp = keepProductStatusCode_NotInScopeRelation_ProductList(cb.query()); // for saving query-value.
+        ProductCB cb = new ProductCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepProductStatusCode_NotInScopeRelation_ProductList(cb.query());
         registerNotInScopeRelation(cb.query(), "PRODUCT_STATUS_CODE", "PRODUCT_STATUS_CODE", pp, "productList");
     }
     public abstract String keepProductStatusCode_NotInScopeRelation_ProductList(ProductCQ sq);
@@ -262,24 +269,27 @@ public abstract class AbstractBsProductStatusCQ extends AbstractConditionQuery {
      */
     public void notInScopeSummaryProductList(SubQuery<SummaryProductCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        SummaryProductCB cb = new SummaryProductCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String pp = keepProductStatusCode_NotInScopeRelation_SummaryProductList(cb.query()); // for saving query-value.
+        SummaryProductCB cb = new SummaryProductCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepProductStatusCode_NotInScopeRelation_SummaryProductList(cb.query());
         registerNotInScopeRelation(cb.query(), "PRODUCT_STATUS_CODE", "PRODUCT_STATUS_CODE", pp, "summaryProductList");
     }
     public abstract String keepProductStatusCode_NotInScopeRelation_SummaryProductList(SummaryProductCQ sq);
 
     public void xsderiveProductList(String fn, SubQuery<ProductCB> sq, String al, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        ProductCB cb = new ProductCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
-        String pp = keepProductStatusCode_SpecifyDerivedReferrer_ProductList(cb.query()); // for saving query-value.
+        ProductCB cb = new ProductCB(); cb.xsetupForDerivedReferrer(this);
+        try { lock(); sq.query(cb); } finally { unlock(); }
+        String pp = keepProductStatusCode_SpecifyDerivedReferrer_ProductList(cb.query());
         registerSpecifyDerivedReferrer(fn, cb.query(), "PRODUCT_STATUS_CODE", "PRODUCT_STATUS_CODE", pp, "productList", al, op);
     }
     public abstract String keepProductStatusCode_SpecifyDerivedReferrer_ProductList(ProductCQ sq);
 
     public void xsderiveSummaryProductList(String fn, SubQuery<SummaryProductCB> sq, String al, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        SummaryProductCB cb = new SummaryProductCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
-        String pp = keepProductStatusCode_SpecifyDerivedReferrer_SummaryProductList(cb.query()); // for saving query-value.
+        SummaryProductCB cb = new SummaryProductCB(); cb.xsetupForDerivedReferrer(this);
+        try { lock(); sq.query(cb); } finally { unlock(); }
+        String pp = keepProductStatusCode_SpecifyDerivedReferrer_SummaryProductList(cb.query());
         registerSpecifyDerivedReferrer(fn, cb.query(), "PRODUCT_STATUS_CODE", "PRODUCT_STATUS_CODE", pp, "summaryProductList", al, op);
     }
     public abstract String keepProductStatusCode_SpecifyDerivedReferrer_SummaryProductList(SummaryProductCQ sq);
@@ -289,12 +299,12 @@ public abstract class AbstractBsProductStatusCQ extends AbstractConditionQuery {
      * {FOO &lt;= (select max(BAR) from PRODUCT where ...)} <br />
      * PRODUCT by PRODUCT_STATUS_CODE, named 'productAsOne'.
      * <pre>
-     * cb.query().<span style="color: #FD4747">derivedProductList()</span>.<span style="color: #FD4747">max</span>(new SubQuery&lt;ProductCB&gt;() {
+     * cb.query().<span style="color: #DD4747">derivedProductList()</span>.<span style="color: #DD4747">max</span>(new SubQuery&lt;ProductCB&gt;() {
      *     public void query(ProductCB subCB) {
-     *         subCB.specify().<span style="color: #FD4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
+     *         subCB.specify().<span style="color: #DD4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
      *         subCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
      *     }
-     * }).<span style="color: #FD4747">greaterEqual</span>(123); <span style="color: #3F7E5E">// condition to derived column</span>
+     * }).<span style="color: #DD4747">greaterEqual</span>(123); <span style="color: #3F7E5E">// condition to derived column</span>
      * </pre>
      * @return The object to set up a function for referrer table. (NotNull)
      */
@@ -310,9 +320,9 @@ public abstract class AbstractBsProductStatusCQ extends AbstractConditionQuery {
     }
     public void xqderiveProductList(String fn, SubQuery<ProductCB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        ProductCB cb = new ProductCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
-        String sqpp = keepProductStatusCode_QueryDerivedReferrer_ProductList(cb.query()); // for saving query-value.
-        String prpp = keepProductStatusCode_QueryDerivedReferrer_ProductListParameter(vl);
+        ProductCB cb = new ProductCB(); cb.xsetupForDerivedReferrer(this);
+        try { lock(); sq.query(cb); } finally { unlock(); }
+        String sqpp = keepProductStatusCode_QueryDerivedReferrer_ProductList(cb.query()); String prpp = keepProductStatusCode_QueryDerivedReferrer_ProductListParameter(vl);
         registerQueryDerivedReferrer(fn, cb.query(), "PRODUCT_STATUS_CODE", "PRODUCT_STATUS_CODE", sqpp, "productList", rd, vl, prpp, op);
     }
     public abstract String keepProductStatusCode_QueryDerivedReferrer_ProductList(ProductCQ sq);
@@ -323,12 +333,12 @@ public abstract class AbstractBsProductStatusCQ extends AbstractConditionQuery {
      * {FOO &lt;= (select max(BAR) from SUMMARY_PRODUCT where ...)} <br />
      * SUMMARY_PRODUCT by PRODUCT_STATUS_CODE, named 'summaryProductAsOne'.
      * <pre>
-     * cb.query().<span style="color: #FD4747">derivedSummaryProductList()</span>.<span style="color: #FD4747">max</span>(new SubQuery&lt;SummaryProductCB&gt;() {
+     * cb.query().<span style="color: #DD4747">derivedSummaryProductList()</span>.<span style="color: #DD4747">max</span>(new SubQuery&lt;SummaryProductCB&gt;() {
      *     public void query(SummaryProductCB subCB) {
-     *         subCB.specify().<span style="color: #FD4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
+     *         subCB.specify().<span style="color: #DD4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
      *         subCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
      *     }
-     * }).<span style="color: #FD4747">greaterEqual</span>(123); <span style="color: #3F7E5E">// condition to derived column</span>
+     * }).<span style="color: #DD4747">greaterEqual</span>(123); <span style="color: #3F7E5E">// condition to derived column</span>
      * </pre>
      * @return The object to set up a function for referrer table. (NotNull)
      */
@@ -344,9 +354,9 @@ public abstract class AbstractBsProductStatusCQ extends AbstractConditionQuery {
     }
     public void xqderiveSummaryProductList(String fn, SubQuery<SummaryProductCB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        SummaryProductCB cb = new SummaryProductCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
-        String sqpp = keepProductStatusCode_QueryDerivedReferrer_SummaryProductList(cb.query()); // for saving query-value.
-        String prpp = keepProductStatusCode_QueryDerivedReferrer_SummaryProductListParameter(vl);
+        SummaryProductCB cb = new SummaryProductCB(); cb.xsetupForDerivedReferrer(this);
+        try { lock(); sq.query(cb); } finally { unlock(); }
+        String sqpp = keepProductStatusCode_QueryDerivedReferrer_SummaryProductList(cb.query()); String prpp = keepProductStatusCode_QueryDerivedReferrer_SummaryProductListParameter(vl);
         registerQueryDerivedReferrer(fn, cb.query(), "PRODUCT_STATUS_CODE", "PRODUCT_STATUS_CODE", sqpp, "summaryProductList", rd, vl, prpp, op);
     }
     public abstract String keepProductStatusCode_QueryDerivedReferrer_SummaryProductList(SummaryProductCQ sq);
@@ -431,7 +441,7 @@ public abstract class AbstractBsProductStatusCQ extends AbstractConditionQuery {
     /**
      * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br />
      * PRODUCT_STATUS_NAME: {NotNull, TEXT(2000000000, 10)} <br />
-     * <pre>e.g. setProductStatusName_LikeSearch("xxx", new <span style="color: #FD4747">LikeSearchOption</span>().likeContain());</pre>
+     * <pre>e.g. setProductStatusName_LikeSearch("xxx", new <span style="color: #DD4747">LikeSearchOption</span>().likeContain());</pre>
      * @param productStatusName The value of productStatusName as likeSearch. (NullAllowed: if null (or empty), no condition)
      * @param likeSearchOption The option of like-search. (NotNull)
      */
@@ -460,7 +470,7 @@ public abstract class AbstractBsProductStatusCQ extends AbstractConditionQuery {
      * Prepare ScalarCondition as equal. <br />
      * {where FOO = (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #FD4747">scalar_Equal()</span>.max(new SubQuery&lt;ProductStatusCB&gt;() {
+     * cb.query().<span style="color: #DD4747">scalar_Equal()</span>.max(new SubQuery&lt;ProductStatusCB&gt;() {
      *     public void query(ProductStatusCB subCB) {
      *         subCB.specify().setXxx... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setYyy...
@@ -477,7 +487,7 @@ public abstract class AbstractBsProductStatusCQ extends AbstractConditionQuery {
      * Prepare ScalarCondition as equal. <br />
      * {where FOO &lt;&gt; (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #FD4747">scalar_NotEqual()</span>.max(new SubQuery&lt;ProductStatusCB&gt;() {
+     * cb.query().<span style="color: #DD4747">scalar_NotEqual()</span>.max(new SubQuery&lt;ProductStatusCB&gt;() {
      *     public void query(ProductStatusCB subCB) {
      *         subCB.specify().setXxx... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setYyy...
@@ -494,7 +504,7 @@ public abstract class AbstractBsProductStatusCQ extends AbstractConditionQuery {
      * Prepare ScalarCondition as greaterThan. <br />
      * {where FOO &gt; (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #FD4747">scalar_GreaterThan()</span>.max(new SubQuery&lt;ProductStatusCB&gt;() {
+     * cb.query().<span style="color: #DD4747">scalar_GreaterThan()</span>.max(new SubQuery&lt;ProductStatusCB&gt;() {
      *     public void query(ProductStatusCB subCB) {
      *         subCB.specify().setFoo... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setBar...
@@ -511,7 +521,7 @@ public abstract class AbstractBsProductStatusCQ extends AbstractConditionQuery {
      * Prepare ScalarCondition as lessThan. <br />
      * {where FOO &lt; (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #FD4747">scalar_LessThan()</span>.max(new SubQuery&lt;ProductStatusCB&gt;() {
+     * cb.query().<span style="color: #DD4747">scalar_LessThan()</span>.max(new SubQuery&lt;ProductStatusCB&gt;() {
      *     public void query(ProductStatusCB subCB) {
      *         subCB.specify().setFoo... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setBar...
@@ -528,7 +538,7 @@ public abstract class AbstractBsProductStatusCQ extends AbstractConditionQuery {
      * Prepare ScalarCondition as greaterEqual. <br />
      * {where FOO &gt;= (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #FD4747">scalar_GreaterEqual()</span>.max(new SubQuery&lt;ProductStatusCB&gt;() {
+     * cb.query().<span style="color: #DD4747">scalar_GreaterEqual()</span>.max(new SubQuery&lt;ProductStatusCB&gt;() {
      *     public void query(ProductStatusCB subCB) {
      *         subCB.specify().setFoo... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setBar...
@@ -545,7 +555,7 @@ public abstract class AbstractBsProductStatusCQ extends AbstractConditionQuery {
      * Prepare ScalarCondition as lessEqual. <br />
      * {where FOO &lt;= (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #FD4747">scalar_LessEqual()</span>.max(new SubQuery&lt;ProductStatusCB&gt;() {
+     * cb.query().<span style="color: #DD4747">scalar_LessEqual()</span>.max(new SubQuery&lt;ProductStatusCB&gt;() {
      *     public void query(ProductStatusCB subCB) {
      *         subCB.specify().setFoo... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setBar...
@@ -581,9 +591,10 @@ public abstract class AbstractBsProductStatusCQ extends AbstractConditionQuery {
     //                                                                       =============
     public void xsmyselfDerive(String fn, SubQuery<ProductStatusCB> sq, String al, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        ProductStatusCB cb = new ProductStatusCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        ProductStatusCB cb = new ProductStatusCB(); cb.xsetupForDerivedReferrer(this);
+        try { lock(); sq.query(cb); } finally { unlock(); }
+        String pp = keepSpecifyMyselfDerived(cb.query());
         String pk = "PRODUCT_STATUS_CODE";
-        String pp = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
         registerSpecifyMyselfDerived(fn, cb.query(), pk, pk, pp, "myselfDerived", al, op);
     }
     public abstract String keepSpecifyMyselfDerived(ProductStatusCQ sq);
@@ -616,8 +627,9 @@ public abstract class AbstractBsProductStatusCQ extends AbstractConditionQuery {
      */
     public void myselfExists(SubQuery<ProductStatusCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        ProductStatusCB cb = new ProductStatusCB(); cb.xsetupForMyselfExists(this); subQuery.query(cb);
-        String pp = keepMyselfExists(cb.query()); // for saving query-value.
+        ProductStatusCB cb = new ProductStatusCB(); cb.xsetupForMyselfExists(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepMyselfExists(cb.query());
         registerMyselfExists(cb.query(), pp);
     }
     public abstract String keepMyselfExists(ProductStatusCQ sq);
@@ -631,11 +643,43 @@ public abstract class AbstractBsProductStatusCQ extends AbstractConditionQuery {
      */
     public void myselfInScope(SubQuery<ProductStatusCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        ProductStatusCB cb = new ProductStatusCB(); cb.xsetupForMyselfInScope(this); subQuery.query(cb);
-        String pp = keepMyselfInScope(cb.query()); // for saving query-value.
+        ProductStatusCB cb = new ProductStatusCB(); cb.xsetupForMyselfInScope(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepMyselfInScope(cb.query());
         registerMyselfInScope(cb.query(), pp);
     }
     public abstract String keepMyselfInScope(ProductStatusCQ sq);
+
+    // ===================================================================================
+    //                                                                          Compatible
+    //                                                                          ==========
+    /**
+     * Order along the list of manual values. #beforejava8 <br />
+     * This function with Union is unsupported! <br />
+     * The order values are bound (treated as bind parameter).
+     * <pre>
+     * MemberCB cb = new MemberCB();
+     * List&lt;CDef.MemberStatus&gt; orderValueList = new ArrayList&lt;CDef.MemberStatus&gt;();
+     * orderValueList.add(CDef.MemberStatus.Withdrawal);
+     * orderValueList.add(CDef.MemberStatus.Formalized);
+     * orderValueList.add(CDef.MemberStatus.Provisional);
+     * cb.query().addOrderBy_MemberStatusCode_Asc().<span style="color: #DD4747">withManualOrder(orderValueList)</span>;
+     * <span style="color: #3F7E5E">// order by </span>
+     * <span style="color: #3F7E5E">//   case</span>
+     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'WDL' then 0</span>
+     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'FML' then 1</span>
+     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'PRV' then 2</span>
+     * <span style="color: #3F7E5E">//     else 3</span>
+     * <span style="color: #3F7E5E">//   end asc, ...</span>
+     * </pre>
+     * @param orderValueList The list of order values for manual ordering. (NotNull)
+     */
+    public void withManualOrder(List<? extends Object> orderValueList) { // is user public!
+        assertObjectNotNull("withManualOrder(orderValueList)", orderValueList);
+        final ManualOrderBean manualOrderBean = new ManualOrderBean();
+        manualOrderBean.acceptOrderValueList(orderValueList);
+        withManualOrder(manualOrderBean);
+    }
 
     // ===================================================================================
     //                                                                       Very Internal

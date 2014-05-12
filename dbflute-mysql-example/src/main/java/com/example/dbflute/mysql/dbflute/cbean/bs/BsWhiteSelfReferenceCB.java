@@ -233,8 +233,8 @@ public class BsWhiteSelfReferenceCB extends AbstractConditionBean {
      * @param unionQuery The query of 'union'. (NotNull)
      */
     public void union(UnionQuery<WhiteSelfReferenceCB> unionQuery) {
-        final WhiteSelfReferenceCB cb = new WhiteSelfReferenceCB();
-        cb.xsetupForUnion(this); xsyncUQ(cb); unionQuery.query(cb); xsaveUCB(cb);
+        final WhiteSelfReferenceCB cb = new WhiteSelfReferenceCB(); cb.xsetupForUnion(this); xsyncUQ(cb); 
+        try { lock(); unionQuery.query(cb); } finally { unlock(); } xsaveUCB(cb);
         final WhiteSelfReferenceCQ cq = cb.query(); query().xsetUnionQuery(cq);
     }
 
@@ -252,8 +252,8 @@ public class BsWhiteSelfReferenceCB extends AbstractConditionBean {
      * @param unionQuery The query of 'union all'. (NotNull)
      */
     public void unionAll(UnionQuery<WhiteSelfReferenceCB> unionQuery) {
-        final WhiteSelfReferenceCB cb = new WhiteSelfReferenceCB();
-        cb.xsetupForUnion(this); xsyncUQ(cb); unionQuery.query(cb); xsaveUCB(cb);
+        final WhiteSelfReferenceCB cb = new WhiteSelfReferenceCB(); cb.xsetupForUnion(this); xsyncUQ(cb);
+        try { lock(); unionQuery.query(cb); } finally { unlock(); } xsaveUCB(cb);
         final WhiteSelfReferenceCQ cq = cb.query(); query().xsetUnionAllQuery(cq);
     }
 
@@ -278,6 +278,7 @@ public class BsWhiteSelfReferenceCB extends AbstractConditionBean {
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
     public WhiteSelfReferenceNss setupSelect_WhiteSelfReferenceSelf() {
+        assertSetupSelectPurpose("whiteSelfReferenceSelf");
         if (hasSpecifiedColumn()) { // if reverse call
             specify().columnParentId();
         }
@@ -305,6 +306,7 @@ public class BsWhiteSelfReferenceCB extends AbstractConditionBean {
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
     public WhiteSelfReferenceRefOneNss setupSelect_WhiteSelfReferenceRefOneByParentId() {
+        assertSetupSelectPurpose("whiteSelfReferenceRefOneByParentId");
         if (hasSpecifiedColumn()) { // if reverse call
             specify().columnParentId();
         }
@@ -332,6 +334,7 @@ public class BsWhiteSelfReferenceCB extends AbstractConditionBean {
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
     public WhiteSelfReferenceRefOneNss setupSelect_WhiteSelfReferenceRefOneAsOne() {
+        assertSetupSelectPurpose("whiteSelfReferenceRefOneAsOne");
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryWhiteSelfReferenceRefOneAsOne(); } });
         if (_nssWhiteSelfReferenceRefOneAsOne == null || !_nssWhiteSelfReferenceRefOneAsOne.hasConditionQuery()) { _nssWhiteSelfReferenceRefOneAsOne = new WhiteSelfReferenceRefOneNss(query().queryWhiteSelfReferenceRefOneAsOne()); }
         return _nssWhiteSelfReferenceRefOneAsOne;
@@ -514,8 +517,8 @@ public class BsWhiteSelfReferenceCB extends AbstractConditionBean {
 
     // [DBFlute-0.9.5.3]
     // ===================================================================================
-    //                                                                         ColumnQuery
-    //                                                                         ===========
+    //                                                                        Column Query
+    //                                                                        ============
     /**
      * Set up column-query. {column1 = column2}
      * <pre>
@@ -567,8 +570,8 @@ public class BsWhiteSelfReferenceCB extends AbstractConditionBean {
 
     // [DBFlute-0.9.6.3]
     // ===================================================================================
-    //                                                                        OrScopeQuery
-    //                                                                        ============
+    //                                                                       OrScope Query
+    //                                                                       =============
     /**
      * Set up the query for or-scope. <br />
      * (Same-column-and-same-condition-key conditions are allowed in or-scope)

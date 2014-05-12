@@ -22,6 +22,7 @@ import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
 import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.exception.*;
+import org.seasar.dbflute.optional.*;
 import org.seasar.dbflute.outsidesql.executor.*;
 import com.example.dbflute.mysql.dbflute.exbhv.*;
 import com.example.dbflute.mysql.dbflute.exentity.*;
@@ -135,7 +136,7 @@ public abstract class BsWhiteQuotedBhv extends AbstractBehaviorWritable {
     //                                                                       Entity Select
     //                                                                       =============
     /**
-     * Select the entity by the condition-bean. <br />
+     * Select the entity by the condition-bean. #beforejava8 <br />
      * <span style="color: #AD4747; font-size: 120%">The return might be null if no data, so you should have null check.</span> <br />
      * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, use selectEntityWithDeletedCheck().</span>
      * <pre>
@@ -161,6 +162,10 @@ public abstract class BsWhiteQuotedBhv extends AbstractBehaviorWritable {
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, WhiteQuotedCB>() {
             public List<ENTITY> callbackSelectList(WhiteQuotedCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
+    }
+
+    protected <ENTITY extends WhiteQuoted> OptionalEntity<ENTITY> doSelectOptionalEntity(WhiteQuotedCB cb, Class<ENTITY> tp) {
+        return createOptionalEntity(doSelectEntity(cb, tp), cb);
     }
 
     @Override
@@ -398,39 +403,12 @@ public abstract class BsWhiteQuotedBhv extends AbstractBehaviorWritable {
      *     public void setup(WhiteQuotedRefCB cb) {
      *         cb.setupSelect...();
      *         cb.query().setFoo...(value);
-     *         cb.query().addOrderBy_Bar...(); <span style="color: #3F7E5E">// basically you should order referrer list</span>
+     *         cb.query().addOrderBy_Bar...();
      *     }
-     * }); <span style="color: #3F7E5E">// you can load nested referrer from here by calling like '}).withNestedList(new ...)'</span>
-     * for (WhiteQuoted whiteQuoted : whiteQuotedList) {
-     *     ... = whiteQuoted.<span style="color: #DD4747">getWhiteQuotedRefList()</span>;
-     * }
-     * </pre>
-     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
-     * The condition-bean, which the set-upper provides, has settings before callback as follows:
-     * <pre>
-     * cb.query().setOrder_InScope(pkList);
-     * cb.query().addOrderBy_Order_Asc();
-     * </pre>
-     * @param whiteQuoted The entity of whiteQuoted. (NotNull)
-     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
-     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
-     */
-    public NestedReferrerLoader<WhiteQuotedRef> loadWhiteQuotedRefList(WhiteQuoted whiteQuoted, ConditionBeanSetupper<WhiteQuotedRefCB> conditionBeanSetupper) {
-        xassLRArg(whiteQuoted, conditionBeanSetupper);
-        return loadWhiteQuotedRefList(xnewLRLs(whiteQuoted), conditionBeanSetupper);
-    }
-
-    /**
-     * Load referrer of whiteQuotedRefList by the set-upper of referrer. <br />
-     * white_quoted_ref by ORDER, named 'whiteQuotedRefList'.
-     * <pre>
-     * whiteQuotedBhv.<span style="color: #DD4747">loadWhiteQuotedRefList</span>(whiteQuotedList, new ConditionBeanSetupper&lt;WhiteQuotedRefCB&gt;() {
-     *     public void setup(WhiteQuotedRefCB cb) {
-     *         cb.setupSelect...();
-     *         cb.query().setFoo...(value);
-     *         cb.query().addOrderBy_Bar...(); <span style="color: #3F7E5E">// basically you should order referrer list</span>
-     *     }
-     * }); <span style="color: #3F7E5E">// you can load nested referrer from here by calling like '}).withNestedList(new ...)'</span>
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
+     * <span style="color: #3F7E5E">//}).withNestedList(referrerList -&gt {</span>
+     * <span style="color: #3F7E5E">//    ...</span>
+     * <span style="color: #3F7E5E">//});</span>
      * for (WhiteQuoted whiteQuoted : whiteQuotedList) {
      *     ... = whiteQuoted.<span style="color: #DD4747">getWhiteQuotedRefList()</span>;
      * }
@@ -442,16 +420,47 @@ public abstract class BsWhiteQuotedBhv extends AbstractBehaviorWritable {
      * cb.query().addOrderBy_Order_Asc();
      * </pre>
      * @param whiteQuotedList The entity list of whiteQuoted. (NotNull)
-     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
+     * @param setupper The callback to set up referrer condition-bean for loading referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public NestedReferrerLoader<WhiteQuotedRef> loadWhiteQuotedRefList(List<WhiteQuoted> whiteQuotedList, ConditionBeanSetupper<WhiteQuotedRefCB> conditionBeanSetupper) {
-        xassLRArg(whiteQuotedList, conditionBeanSetupper);
-        return loadWhiteQuotedRefList(whiteQuotedList, new LoadReferrerOption<WhiteQuotedRefCB, WhiteQuotedRef>().xinit(conditionBeanSetupper));
+    public NestedReferrerLoader<WhiteQuotedRef> loadWhiteQuotedRefList(List<WhiteQuoted> whiteQuotedList, ConditionBeanSetupper<WhiteQuotedRefCB> setupper) {
+        xassLRArg(whiteQuotedList, setupper);
+        return doLoadWhiteQuotedRefList(whiteQuotedList, new LoadReferrerOption<WhiteQuotedRefCB, WhiteQuotedRef>().xinit(setupper));
     }
 
     /**
-     * {Refer to overload method that has an argument of the list of entity.}
+     * Load referrer of whiteQuotedRefList by the set-upper of referrer. <br />
+     * white_quoted_ref by ORDER, named 'whiteQuotedRefList'.
+     * <pre>
+     * whiteQuotedBhv.<span style="color: #DD4747">loadWhiteQuotedRefList</span>(whiteQuotedList, new ConditionBeanSetupper&lt;WhiteQuotedRefCB&gt;() {
+     *     public void setup(WhiteQuotedRefCB cb) {
+     *         cb.setupSelect...();
+     *         cb.query().setFoo...(value);
+     *         cb.query().addOrderBy_Bar...();
+     *     }
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
+     * <span style="color: #3F7E5E">//}).withNestedList(referrerList -&gt {</span>
+     * <span style="color: #3F7E5E">//    ...</span>
+     * <span style="color: #3F7E5E">//});</span>
+     * ... = whiteQuoted.<span style="color: #DD4747">getWhiteQuotedRefList()</span>;
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
+     * <pre>
+     * cb.query().setOrder_InScope(pkList);
+     * cb.query().addOrderBy_Order_Asc();
+     * </pre>
+     * @param whiteQuoted The entity of whiteQuoted. (NotNull)
+     * @param setupper The callback to set up referrer condition-bean for loading referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
+     */
+    public NestedReferrerLoader<WhiteQuotedRef> loadWhiteQuotedRefList(WhiteQuoted whiteQuoted, ConditionBeanSetupper<WhiteQuotedRefCB> setupper) {
+        xassLRArg(whiteQuoted, setupper);
+        return doLoadWhiteQuotedRefList(xnewLRLs(whiteQuoted), new LoadReferrerOption<WhiteQuotedRefCB, WhiteQuotedRef>().xinit(setupper));
+    }
+
+    /**
+     * {Refer to overload method that has an argument of the list of entity.} #beforejava8
      * @param whiteQuoted The entity of whiteQuoted. (NotNull)
      * @param loadReferrerOption The option of load-referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
@@ -462,7 +471,7 @@ public abstract class BsWhiteQuotedBhv extends AbstractBehaviorWritable {
     }
 
     /**
-     * {Refer to overload method that has an argument of condition-bean setupper.}
+     * {Refer to overload method that has an argument of condition-bean setupper.} #beforejava8
      * @param whiteQuotedList The entity list of whiteQuoted. (NotNull)
      * @param loadReferrerOption The option of load-referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)

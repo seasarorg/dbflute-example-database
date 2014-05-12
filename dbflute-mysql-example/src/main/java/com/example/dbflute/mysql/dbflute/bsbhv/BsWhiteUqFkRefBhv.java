@@ -22,6 +22,7 @@ import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
 import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.exception.*;
+import org.seasar.dbflute.optional.*;
 import org.seasar.dbflute.outsidesql.executor.*;
 import com.example.dbflute.mysql.dbflute.exbhv.*;
 import com.example.dbflute.mysql.dbflute.exentity.*;
@@ -135,7 +136,7 @@ public abstract class BsWhiteUqFkRefBhv extends AbstractBehaviorWritable {
     //                                                                       Entity Select
     //                                                                       =============
     /**
-     * Select the entity by the condition-bean. <br />
+     * Select the entity by the condition-bean. #beforejava8 <br />
      * <span style="color: #AD4747; font-size: 120%">The return might be null if no data, so you should have null check.</span> <br />
      * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, use selectEntityWithDeletedCheck().</span>
      * <pre>
@@ -161,6 +162,10 @@ public abstract class BsWhiteUqFkRefBhv extends AbstractBehaviorWritable {
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, WhiteUqFkRefCB>() {
             public List<ENTITY> callbackSelectList(WhiteUqFkRefCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
+    }
+
+    protected <ENTITY extends WhiteUqFkRef> OptionalEntity<ENTITY> doSelectOptionalEntity(WhiteUqFkRefCB cb, Class<ENTITY> tp) {
+        return createOptionalEntity(doSelectEntity(cb, tp), cb);
     }
 
     @Override
@@ -398,39 +403,12 @@ public abstract class BsWhiteUqFkRefBhv extends AbstractBehaviorWritable {
      *     public void setup(WhiteUqFkRefNestCB cb) {
      *         cb.setupSelect...();
      *         cb.query().setFoo...(value);
-     *         cb.query().addOrderBy_Bar...(); <span style="color: #3F7E5E">// basically you should order referrer list</span>
+     *         cb.query().addOrderBy_Bar...();
      *     }
-     * }); <span style="color: #3F7E5E">// you can load nested referrer from here by calling like '}).withNestedList(new ...)'</span>
-     * for (WhiteUqFkRef whiteUqFkRef : whiteUqFkRefList) {
-     *     ... = whiteUqFkRef.<span style="color: #DD4747">getWhiteUqFkRefNestList()</span>;
-     * }
-     * </pre>
-     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
-     * The condition-bean, which the set-upper provides, has settings before callback as follows:
-     * <pre>
-     * cb.query().set[ForeignKey]_InScope(pkList);
-     * cb.query().addOrderBy_[ForeignKey]_Asc();
-     * </pre>
-     * @param whiteUqFkRef The entity of whiteUqFkRef. (NotNull)
-     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
-     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
-     */
-    public NestedReferrerLoader<WhiteUqFkRefNest> loadWhiteUqFkRefNestList(WhiteUqFkRef whiteUqFkRef, ConditionBeanSetupper<WhiteUqFkRefNestCB> conditionBeanSetupper) {
-        xassLRArg(whiteUqFkRef, conditionBeanSetupper);
-        return loadWhiteUqFkRefNestList(xnewLRLs(whiteUqFkRef), conditionBeanSetupper);
-    }
-
-    /**
-     * Load referrer of whiteUqFkRefNestList by the set-upper of referrer. <br />
-     * white_uq_fk_ref_nest by COMPOUND_UQ_FIRST_CODE, COMPOUND_UQ_SECOND_CODE, named 'whiteUqFkRefNestList'.
-     * <pre>
-     * whiteUqFkRefBhv.<span style="color: #DD4747">loadWhiteUqFkRefNestList</span>(whiteUqFkRefList, new ConditionBeanSetupper&lt;WhiteUqFkRefNestCB&gt;() {
-     *     public void setup(WhiteUqFkRefNestCB cb) {
-     *         cb.setupSelect...();
-     *         cb.query().setFoo...(value);
-     *         cb.query().addOrderBy_Bar...(); <span style="color: #3F7E5E">// basically you should order referrer list</span>
-     *     }
-     * }); <span style="color: #3F7E5E">// you can load nested referrer from here by calling like '}).withNestedList(new ...)'</span>
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
+     * <span style="color: #3F7E5E">//}).withNestedList(referrerList -&gt {</span>
+     * <span style="color: #3F7E5E">//    ...</span>
+     * <span style="color: #3F7E5E">//});</span>
      * for (WhiteUqFkRef whiteUqFkRef : whiteUqFkRefList) {
      *     ... = whiteUqFkRef.<span style="color: #DD4747">getWhiteUqFkRefNestList()</span>;
      * }
@@ -442,16 +420,47 @@ public abstract class BsWhiteUqFkRefBhv extends AbstractBehaviorWritable {
      * cb.query().addOrderBy_[ForeignKey]_Asc();
      * </pre>
      * @param whiteUqFkRefList The entity list of whiteUqFkRef. (NotNull)
-     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
+     * @param setupper The callback to set up referrer condition-bean for loading referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public NestedReferrerLoader<WhiteUqFkRefNest> loadWhiteUqFkRefNestList(List<WhiteUqFkRef> whiteUqFkRefList, ConditionBeanSetupper<WhiteUqFkRefNestCB> conditionBeanSetupper) {
-        xassLRArg(whiteUqFkRefList, conditionBeanSetupper);
-        return loadWhiteUqFkRefNestList(whiteUqFkRefList, new LoadReferrerOption<WhiteUqFkRefNestCB, WhiteUqFkRefNest>().xinit(conditionBeanSetupper));
+    public NestedReferrerLoader<WhiteUqFkRefNest> loadWhiteUqFkRefNestList(List<WhiteUqFkRef> whiteUqFkRefList, ConditionBeanSetupper<WhiteUqFkRefNestCB> setupper) {
+        xassLRArg(whiteUqFkRefList, setupper);
+        return doLoadWhiteUqFkRefNestList(whiteUqFkRefList, new LoadReferrerOption<WhiteUqFkRefNestCB, WhiteUqFkRefNest>().xinit(setupper));
     }
 
     /**
-     * {Refer to overload method that has an argument of the list of entity.}
+     * Load referrer of whiteUqFkRefNestList by the set-upper of referrer. <br />
+     * white_uq_fk_ref_nest by COMPOUND_UQ_FIRST_CODE, COMPOUND_UQ_SECOND_CODE, named 'whiteUqFkRefNestList'.
+     * <pre>
+     * whiteUqFkRefBhv.<span style="color: #DD4747">loadWhiteUqFkRefNestList</span>(whiteUqFkRefList, new ConditionBeanSetupper&lt;WhiteUqFkRefNestCB&gt;() {
+     *     public void setup(WhiteUqFkRefNestCB cb) {
+     *         cb.setupSelect...();
+     *         cb.query().setFoo...(value);
+     *         cb.query().addOrderBy_Bar...();
+     *     }
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
+     * <span style="color: #3F7E5E">//}).withNestedList(referrerList -&gt {</span>
+     * <span style="color: #3F7E5E">//    ...</span>
+     * <span style="color: #3F7E5E">//});</span>
+     * ... = whiteUqFkRef.<span style="color: #DD4747">getWhiteUqFkRefNestList()</span>;
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
+     * <pre>
+     * cb.query().set[ForeignKey]_InScope(pkList);
+     * cb.query().addOrderBy_[ForeignKey]_Asc();
+     * </pre>
+     * @param whiteUqFkRef The entity of whiteUqFkRef. (NotNull)
+     * @param setupper The callback to set up referrer condition-bean for loading referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
+     */
+    public NestedReferrerLoader<WhiteUqFkRefNest> loadWhiteUqFkRefNestList(WhiteUqFkRef whiteUqFkRef, ConditionBeanSetupper<WhiteUqFkRefNestCB> setupper) {
+        xassLRArg(whiteUqFkRef, setupper);
+        return doLoadWhiteUqFkRefNestList(xnewLRLs(whiteUqFkRef), new LoadReferrerOption<WhiteUqFkRefNestCB, WhiteUqFkRefNest>().xinit(setupper));
+    }
+
+    /**
+     * {Refer to overload method that has an argument of the list of entity.} #beforejava8
      * @param whiteUqFkRef The entity of whiteUqFkRef. (NotNull)
      * @param loadReferrerOption The option of load-referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
@@ -462,7 +471,7 @@ public abstract class BsWhiteUqFkRefBhv extends AbstractBehaviorWritable {
     }
 
     /**
-     * {Refer to overload method that has an argument of condition-bean setupper.}
+     * {Refer to overload method that has an argument of condition-bean setupper.} #beforejava8
      * @param whiteUqFkRefList The entity list of whiteUqFkRef. (NotNull)
      * @param loadReferrerOption The option of load-referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)

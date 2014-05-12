@@ -176,8 +176,9 @@ public abstract class AbstractBsRegionCQ extends AbstractConditionQuery {
      */
     public void existsMemberAddressList(SubQuery<MemberAddressCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        MemberAddressCB cb = new MemberAddressCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String pp = keepRegionId_ExistsReferrer_MemberAddressList(cb.query()); // for saving query-value.
+        MemberAddressCB cb = new MemberAddressCB(); cb.xsetupForExistsReferrer(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepRegionId_ExistsReferrer_MemberAddressList(cb.query());
         registerExistsReferrer(cb.query(), "REGION_ID", "REGION_ID", pp, "memberAddressList");
     }
     public abstract String keepRegionId_ExistsReferrer_MemberAddressList(MemberAddressCQ sq);
@@ -197,8 +198,9 @@ public abstract class AbstractBsRegionCQ extends AbstractConditionQuery {
      */
     public void notExistsMemberAddressList(SubQuery<MemberAddressCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        MemberAddressCB cb = new MemberAddressCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String pp = keepRegionId_NotExistsReferrer_MemberAddressList(cb.query()); // for saving query-value.
+        MemberAddressCB cb = new MemberAddressCB(); cb.xsetupForExistsReferrer(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepRegionId_NotExistsReferrer_MemberAddressList(cb.query());
         registerNotExistsReferrer(cb.query(), "REGION_ID", "REGION_ID", pp, "memberAddressList");
     }
     public abstract String keepRegionId_NotExistsReferrer_MemberAddressList(MemberAddressCQ sq);
@@ -211,8 +213,9 @@ public abstract class AbstractBsRegionCQ extends AbstractConditionQuery {
      */
     public void inScopeMemberAddressList(SubQuery<MemberAddressCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        MemberAddressCB cb = new MemberAddressCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String pp = keepRegionId_InScopeRelation_MemberAddressList(cb.query()); // for saving query-value.
+        MemberAddressCB cb = new MemberAddressCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepRegionId_InScopeRelation_MemberAddressList(cb.query());
         registerInScopeRelation(cb.query(), "REGION_ID", "REGION_ID", pp, "memberAddressList");
     }
     public abstract String keepRegionId_InScopeRelation_MemberAddressList(MemberAddressCQ sq);
@@ -225,16 +228,18 @@ public abstract class AbstractBsRegionCQ extends AbstractConditionQuery {
      */
     public void notInScopeMemberAddressList(SubQuery<MemberAddressCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        MemberAddressCB cb = new MemberAddressCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String pp = keepRegionId_NotInScopeRelation_MemberAddressList(cb.query()); // for saving query-value.
+        MemberAddressCB cb = new MemberAddressCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepRegionId_NotInScopeRelation_MemberAddressList(cb.query());
         registerNotInScopeRelation(cb.query(), "REGION_ID", "REGION_ID", pp, "memberAddressList");
     }
     public abstract String keepRegionId_NotInScopeRelation_MemberAddressList(MemberAddressCQ sq);
 
     public void xsderiveMemberAddressList(String fn, SubQuery<MemberAddressCB> sq, String al, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        MemberAddressCB cb = new MemberAddressCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
-        String pp = keepRegionId_SpecifyDerivedReferrer_MemberAddressList(cb.query()); // for saving query-value.
+        MemberAddressCB cb = new MemberAddressCB(); cb.xsetupForDerivedReferrer(this);
+        try { lock(); sq.query(cb); } finally { unlock(); }
+        String pp = keepRegionId_SpecifyDerivedReferrer_MemberAddressList(cb.query());
         registerSpecifyDerivedReferrer(fn, cb.query(), "REGION_ID", "REGION_ID", pp, "memberAddressList", al, op);
     }
     public abstract String keepRegionId_SpecifyDerivedReferrer_MemberAddressList(MemberAddressCQ sq);
@@ -265,9 +270,9 @@ public abstract class AbstractBsRegionCQ extends AbstractConditionQuery {
     }
     public void xqderiveMemberAddressList(String fn, SubQuery<MemberAddressCB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        MemberAddressCB cb = new MemberAddressCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
-        String sqpp = keepRegionId_QueryDerivedReferrer_MemberAddressList(cb.query()); // for saving query-value.
-        String prpp = keepRegionId_QueryDerivedReferrer_MemberAddressListParameter(vl);
+        MemberAddressCB cb = new MemberAddressCB(); cb.xsetupForDerivedReferrer(this);
+        try { lock(); sq.query(cb); } finally { unlock(); }
+        String sqpp = keepRegionId_QueryDerivedReferrer_MemberAddressList(cb.query()); String prpp = keepRegionId_QueryDerivedReferrer_MemberAddressListParameter(vl);
         registerQueryDerivedReferrer(fn, cb.query(), "REGION_ID", "REGION_ID", sqpp, "memberAddressList", rd, vl, prpp, op);
     }
     public abstract String keepRegionId_QueryDerivedReferrer_MemberAddressList(MemberAddressCQ sq);
@@ -502,9 +507,10 @@ public abstract class AbstractBsRegionCQ extends AbstractConditionQuery {
     //                                                                       =============
     public void xsmyselfDerive(String fn, SubQuery<RegionCB> sq, String al, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        RegionCB cb = new RegionCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        RegionCB cb = new RegionCB(); cb.xsetupForDerivedReferrer(this);
+        try { lock(); sq.query(cb); } finally { unlock(); }
+        String pp = keepSpecifyMyselfDerived(cb.query());
         String pk = "REGION_ID";
-        String pp = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
         registerSpecifyMyselfDerived(fn, cb.query(), pk, pk, pp, "myselfDerived", al, op);
     }
     public abstract String keepSpecifyMyselfDerived(RegionCQ sq);
@@ -537,8 +543,9 @@ public abstract class AbstractBsRegionCQ extends AbstractConditionQuery {
      */
     public void myselfExists(SubQuery<RegionCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        RegionCB cb = new RegionCB(); cb.xsetupForMyselfExists(this); subQuery.query(cb);
-        String pp = keepMyselfExists(cb.query()); // for saving query-value.
+        RegionCB cb = new RegionCB(); cb.xsetupForMyselfExists(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepMyselfExists(cb.query());
         registerMyselfExists(cb.query(), pp);
     }
     public abstract String keepMyselfExists(RegionCQ sq);
@@ -552,8 +559,9 @@ public abstract class AbstractBsRegionCQ extends AbstractConditionQuery {
      */
     public void myselfInScope(SubQuery<RegionCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        RegionCB cb = new RegionCB(); cb.xsetupForMyselfInScope(this); subQuery.query(cb);
-        String pp = keepMyselfInScope(cb.query()); // for saving query-value.
+        RegionCB cb = new RegionCB(); cb.xsetupForMyselfInScope(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepMyselfInScope(cb.query());
         registerMyselfInScope(cb.query(), pp);
     }
     public abstract String keepMyselfInScope(RegionCQ sq);
@@ -586,6 +594,37 @@ public abstract class AbstractBsRegionCQ extends AbstractConditionQuery {
                     , String conditionValue
                     , org.seasar.dbflute.dbway.WayOfMySQL.FullTextSearchModifier modifier) {
         xdoMatchForMySQL(textColumnList, conditionValue, modifier);
+    }
+
+    // ===================================================================================
+    //                                                                          Compatible
+    //                                                                          ==========
+    /**
+     * Order along the list of manual values. #beforejava8 <br />
+     * This function with Union is unsupported! <br />
+     * The order values are bound (treated as bind parameter).
+     * <pre>
+     * MemberCB cb = new MemberCB();
+     * List&lt;CDef.MemberStatus&gt; orderValueList = new ArrayList&lt;CDef.MemberStatus&gt;();
+     * orderValueList.add(CDef.MemberStatus.Withdrawal);
+     * orderValueList.add(CDef.MemberStatus.Formalized);
+     * orderValueList.add(CDef.MemberStatus.Provisional);
+     * cb.query().addOrderBy_MemberStatusCode_Asc().<span style="color: #DD4747">withManualOrder(orderValueList)</span>;
+     * <span style="color: #3F7E5E">// order by </span>
+     * <span style="color: #3F7E5E">//   case</span>
+     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'WDL' then 0</span>
+     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'FML' then 1</span>
+     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'PRV' then 2</span>
+     * <span style="color: #3F7E5E">//     else 3</span>
+     * <span style="color: #3F7E5E">//   end asc, ...</span>
+     * </pre>
+     * @param orderValueList The list of order values for manual ordering. (NotNull)
+     */
+    public void withManualOrder(List<? extends Object> orderValueList) { // is user public!
+        assertObjectNotNull("withManualOrder(orderValueList)", orderValueList);
+        final ManualOrderBean manualOrderBean = new ManualOrderBean();
+        manualOrderBean.acceptOrderValueList(orderValueList);
+        withManualOrder(manualOrderBean);
     }
 
     // ===================================================================================

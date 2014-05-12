@@ -163,8 +163,9 @@ public abstract class AbstractBsWhitePgReservCQ extends AbstractConditionQuery {
      */
     public void existsWhitePgReservRefList(SubQuery<WhitePgReservRefCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        WhitePgReservRefCB cb = new WhitePgReservRefCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String pp = keepClassSynonym_ExistsReferrer_WhitePgReservRefList(cb.query()); // for saving query-value.
+        WhitePgReservRefCB cb = new WhitePgReservRefCB(); cb.xsetupForExistsReferrer(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepClassSynonym_ExistsReferrer_WhitePgReservRefList(cb.query());
         registerExistsReferrer(cb.query(), "CLASS", "CLASS", pp, "whitePgReservRefList");
     }
     public abstract String keepClassSynonym_ExistsReferrer_WhitePgReservRefList(WhitePgReservRefCQ sq);
@@ -184,8 +185,9 @@ public abstract class AbstractBsWhitePgReservCQ extends AbstractConditionQuery {
      */
     public void notExistsWhitePgReservRefList(SubQuery<WhitePgReservRefCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        WhitePgReservRefCB cb = new WhitePgReservRefCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String pp = keepClassSynonym_NotExistsReferrer_WhitePgReservRefList(cb.query()); // for saving query-value.
+        WhitePgReservRefCB cb = new WhitePgReservRefCB(); cb.xsetupForExistsReferrer(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepClassSynonym_NotExistsReferrer_WhitePgReservRefList(cb.query());
         registerNotExistsReferrer(cb.query(), "CLASS", "CLASS", pp, "whitePgReservRefList");
     }
     public abstract String keepClassSynonym_NotExistsReferrer_WhitePgReservRefList(WhitePgReservRefCQ sq);
@@ -198,8 +200,9 @@ public abstract class AbstractBsWhitePgReservCQ extends AbstractConditionQuery {
      */
     public void inScopeWhitePgReservRefList(SubQuery<WhitePgReservRefCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        WhitePgReservRefCB cb = new WhitePgReservRefCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String pp = keepClassSynonym_InScopeRelation_WhitePgReservRefList(cb.query()); // for saving query-value.
+        WhitePgReservRefCB cb = new WhitePgReservRefCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepClassSynonym_InScopeRelation_WhitePgReservRefList(cb.query());
         registerInScopeRelation(cb.query(), "CLASS", "CLASS", pp, "whitePgReservRefList");
     }
     public abstract String keepClassSynonym_InScopeRelation_WhitePgReservRefList(WhitePgReservRefCQ sq);
@@ -212,16 +215,18 @@ public abstract class AbstractBsWhitePgReservCQ extends AbstractConditionQuery {
      */
     public void notInScopeWhitePgReservRefList(SubQuery<WhitePgReservRefCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        WhitePgReservRefCB cb = new WhitePgReservRefCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String pp = keepClassSynonym_NotInScopeRelation_WhitePgReservRefList(cb.query()); // for saving query-value.
+        WhitePgReservRefCB cb = new WhitePgReservRefCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepClassSynonym_NotInScopeRelation_WhitePgReservRefList(cb.query());
         registerNotInScopeRelation(cb.query(), "CLASS", "CLASS", pp, "whitePgReservRefList");
     }
     public abstract String keepClassSynonym_NotInScopeRelation_WhitePgReservRefList(WhitePgReservRefCQ sq);
 
     public void xsderiveWhitePgReservRefList(String fn, SubQuery<WhitePgReservRefCB> sq, String al, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        WhitePgReservRefCB cb = new WhitePgReservRefCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
-        String pp = keepClassSynonym_SpecifyDerivedReferrer_WhitePgReservRefList(cb.query()); // for saving query-value.
+        WhitePgReservRefCB cb = new WhitePgReservRefCB(); cb.xsetupForDerivedReferrer(this);
+        try { lock(); sq.query(cb); } finally { unlock(); }
+        String pp = keepClassSynonym_SpecifyDerivedReferrer_WhitePgReservRefList(cb.query());
         registerSpecifyDerivedReferrer(fn, cb.query(), "CLASS", "CLASS", pp, "whitePgReservRefList", al, op);
     }
     public abstract String keepClassSynonym_SpecifyDerivedReferrer_WhitePgReservRefList(WhitePgReservRefCQ sq);
@@ -252,9 +257,9 @@ public abstract class AbstractBsWhitePgReservCQ extends AbstractConditionQuery {
     }
     public void xqderiveWhitePgReservRefList(String fn, SubQuery<WhitePgReservRefCB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        WhitePgReservRefCB cb = new WhitePgReservRefCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
-        String sqpp = keepClassSynonym_QueryDerivedReferrer_WhitePgReservRefList(cb.query()); // for saving query-value.
-        String prpp = keepClassSynonym_QueryDerivedReferrer_WhitePgReservRefListParameter(vl);
+        WhitePgReservRefCB cb = new WhitePgReservRefCB(); cb.xsetupForDerivedReferrer(this);
+        try { lock(); sq.query(cb); } finally { unlock(); }
+        String sqpp = keepClassSynonym_QueryDerivedReferrer_WhitePgReservRefList(cb.query()); String prpp = keepClassSynonym_QueryDerivedReferrer_WhitePgReservRefListParameter(vl);
         registerQueryDerivedReferrer(fn, cb.query(), "CLASS", "CLASS", sqpp, "whitePgReservRefList", rd, vl, prpp, op);
     }
     public abstract String keepClassSynonym_QueryDerivedReferrer_WhitePgReservRefList(WhitePgReservRefCQ sq);
@@ -2344,9 +2349,10 @@ public abstract class AbstractBsWhitePgReservCQ extends AbstractConditionQuery {
     //                                                                       =============
     public void xsmyselfDerive(String fn, SubQuery<WhitePgReservCB> sq, String al, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        WhitePgReservCB cb = new WhitePgReservCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        WhitePgReservCB cb = new WhitePgReservCB(); cb.xsetupForDerivedReferrer(this);
+        try { lock(); sq.query(cb); } finally { unlock(); }
+        String pp = keepSpecifyMyselfDerived(cb.query());
         String pk = "CLASS";
-        String pp = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
         registerSpecifyMyselfDerived(fn, cb.query(), pk, pk, pp, "myselfDerived", al, op);
     }
     public abstract String keepSpecifyMyselfDerived(WhitePgReservCQ sq);
@@ -2379,8 +2385,9 @@ public abstract class AbstractBsWhitePgReservCQ extends AbstractConditionQuery {
      */
     public void myselfExists(SubQuery<WhitePgReservCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        WhitePgReservCB cb = new WhitePgReservCB(); cb.xsetupForMyselfExists(this); subQuery.query(cb);
-        String pp = keepMyselfExists(cb.query()); // for saving query-value.
+        WhitePgReservCB cb = new WhitePgReservCB(); cb.xsetupForMyselfExists(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepMyselfExists(cb.query());
         registerMyselfExists(cb.query(), pp);
     }
     public abstract String keepMyselfExists(WhitePgReservCQ sq);
@@ -2394,8 +2401,9 @@ public abstract class AbstractBsWhitePgReservCQ extends AbstractConditionQuery {
      */
     public void myselfInScope(SubQuery<WhitePgReservCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        WhitePgReservCB cb = new WhitePgReservCB(); cb.xsetupForMyselfInScope(this); subQuery.query(cb);
-        String pp = keepMyselfInScope(cb.query()); // for saving query-value.
+        WhitePgReservCB cb = new WhitePgReservCB(); cb.xsetupForMyselfInScope(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepMyselfInScope(cb.query());
         registerMyselfInScope(cb.query(), pp);
     }
     public abstract String keepMyselfInScope(WhitePgReservCQ sq);
@@ -2428,6 +2436,37 @@ public abstract class AbstractBsWhitePgReservCQ extends AbstractConditionQuery {
                     , String conditionValue
                     , org.seasar.dbflute.dbway.WayOfMySQL.FullTextSearchModifier modifier) {
         xdoMatchForMySQL(textColumnList, conditionValue, modifier);
+    }
+
+    // ===================================================================================
+    //                                                                          Compatible
+    //                                                                          ==========
+    /**
+     * Order along the list of manual values. #beforejava8 <br />
+     * This function with Union is unsupported! <br />
+     * The order values are bound (treated as bind parameter).
+     * <pre>
+     * MemberCB cb = new MemberCB();
+     * List&lt;CDef.MemberStatus&gt; orderValueList = new ArrayList&lt;CDef.MemberStatus&gt;();
+     * orderValueList.add(CDef.MemberStatus.Withdrawal);
+     * orderValueList.add(CDef.MemberStatus.Formalized);
+     * orderValueList.add(CDef.MemberStatus.Provisional);
+     * cb.query().addOrderBy_MemberStatusCode_Asc().<span style="color: #DD4747">withManualOrder(orderValueList)</span>;
+     * <span style="color: #3F7E5E">// order by </span>
+     * <span style="color: #3F7E5E">//   case</span>
+     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'WDL' then 0</span>
+     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'FML' then 1</span>
+     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'PRV' then 2</span>
+     * <span style="color: #3F7E5E">//     else 3</span>
+     * <span style="color: #3F7E5E">//   end asc, ...</span>
+     * </pre>
+     * @param orderValueList The list of order values for manual ordering. (NotNull)
+     */
+    public void withManualOrder(List<? extends Object> orderValueList) { // is user public!
+        assertObjectNotNull("withManualOrder(orderValueList)", orderValueList);
+        final ManualOrderBean manualOrderBean = new ManualOrderBean();
+        manualOrderBean.acceptOrderValueList(orderValueList);
+        withManualOrder(manualOrderBean);
     }
 
     // ===================================================================================

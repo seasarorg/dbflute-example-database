@@ -233,8 +233,8 @@ public class BsWhiteImplicitReverseFkCB extends AbstractConditionBean {
      * @param unionQuery The query of 'union'. (NotNull)
      */
     public void union(UnionQuery<WhiteImplicitReverseFkCB> unionQuery) {
-        final WhiteImplicitReverseFkCB cb = new WhiteImplicitReverseFkCB();
-        cb.xsetupForUnion(this); xsyncUQ(cb); unionQuery.query(cb); xsaveUCB(cb);
+        final WhiteImplicitReverseFkCB cb = new WhiteImplicitReverseFkCB(); cb.xsetupForUnion(this); xsyncUQ(cb); 
+        try { lock(); unionQuery.query(cb); } finally { unlock(); } xsaveUCB(cb);
         final WhiteImplicitReverseFkCQ cq = cb.query(); query().xsetUnionQuery(cq);
     }
 
@@ -252,8 +252,8 @@ public class BsWhiteImplicitReverseFkCB extends AbstractConditionBean {
      * @param unionQuery The query of 'union all'. (NotNull)
      */
     public void unionAll(UnionQuery<WhiteImplicitReverseFkCB> unionQuery) {
-        final WhiteImplicitReverseFkCB cb = new WhiteImplicitReverseFkCB();
-        cb.xsetupForUnion(this); xsyncUQ(cb); unionQuery.query(cb); xsaveUCB(cb);
+        final WhiteImplicitReverseFkCB cb = new WhiteImplicitReverseFkCB(); cb.xsetupForUnion(this); xsyncUQ(cb);
+        try { lock(); unionQuery.query(cb); } finally { unlock(); } xsaveUCB(cb);
         final WhiteImplicitReverseFkCQ cq = cb.query(); query().xsetUnionAllQuery(cq);
     }
 
@@ -279,6 +279,7 @@ public class BsWhiteImplicitReverseFkCB extends AbstractConditionBean {
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
     public WhiteImplicitReverseFkRefNss setupSelect_WhiteImplicitReverseFkRefWithImplicitReverseFK(final java.util.Date targetDate) {
+        assertSetupSelectPurpose("whiteImplicitReverseFkRefWithImplicitReverseFK");
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryWhiteImplicitReverseFkRefWithImplicitReverseFK(targetDate); } });
         if (_nssWhiteImplicitReverseFkRefWithImplicitReverseFK == null || !_nssWhiteImplicitReverseFkRefWithImplicitReverseFK.hasConditionQuery())
         { _nssWhiteImplicitReverseFkRefWithImplicitReverseFK = new WhiteImplicitReverseFkRefNss(query().queryWhiteImplicitReverseFkRefWithImplicitReverseFK(targetDate)); }
@@ -303,6 +304,7 @@ public class BsWhiteImplicitReverseFkCB extends AbstractConditionBean {
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
     public WhiteImplicitReverseFkSuppressNss setupSelect_WhiteImplicitReverseFkSuppressSuppressImplicitReverseFK(final java.util.Date targetDate) {
+        assertSetupSelectPurpose("whiteImplicitReverseFkSuppressSuppressImplicitReverseFK");
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryWhiteImplicitReverseFkSuppressSuppressImplicitReverseFK(targetDate); } });
         if (_nssWhiteImplicitReverseFkSuppressSuppressImplicitReverseFK == null || !_nssWhiteImplicitReverseFkSuppressSuppressImplicitReverseFK.hasConditionQuery())
         { _nssWhiteImplicitReverseFkSuppressSuppressImplicitReverseFK = new WhiteImplicitReverseFkSuppressNss(query().queryWhiteImplicitReverseFkSuppressSuppressImplicitReverseFK(targetDate)); }
@@ -495,8 +497,8 @@ public class BsWhiteImplicitReverseFkCB extends AbstractConditionBean {
 
     // [DBFlute-0.9.5.3]
     // ===================================================================================
-    //                                                                         ColumnQuery
-    //                                                                         ===========
+    //                                                                        Column Query
+    //                                                                        ============
     /**
      * Set up column-query. {column1 = column2}
      * <pre>
@@ -548,8 +550,8 @@ public class BsWhiteImplicitReverseFkCB extends AbstractConditionBean {
 
     // [DBFlute-0.9.6.3]
     // ===================================================================================
-    //                                                                        OrScopeQuery
-    //                                                                        ============
+    //                                                                       OrScope Query
+    //                                                                       =============
     /**
      * Set up the query for or-scope. <br />
      * (Same-column-and-same-condition-key conditions are allowed in or-scope)

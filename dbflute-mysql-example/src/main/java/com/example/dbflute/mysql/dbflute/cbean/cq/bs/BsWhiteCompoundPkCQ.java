@@ -417,8 +417,9 @@ public class BsWhiteCompoundPkCQ extends AbstractBsWhiteCompoundPkCQ {
      */
     public void existsWhiteCompoundPkRefList(SubQuery<WhiteCompoundPkRefCB> subQuery) {
         assertObjectNotNull("subQuery<WhiteCompoundPkRefCB>", subQuery);
-        WhiteCompoundPkRefCB cb = new WhiteCompoundPkRefCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String pp = keepTwoOrMorePk_ExistsReferrer_WhiteCompoundPkRefList(cb.query()); // for saving query-value.
+        WhiteCompoundPkRefCB cb = new WhiteCompoundPkRefCB(); cb.xsetupForExistsReferrer(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepTwoOrMorePk_ExistsReferrer_WhiteCompoundPkRefList(cb.query());
         registerExistsReferrer(cb.query(), "PK_FIRST_ID, PK_SECOND_ID", "REF_FIRST_ID, REF_SECOND_ID", pp, "whiteCompoundPkRefList");
     }
     protected Map<String, WhiteCompoundPkRefCQ> _twoOrMorePk_ExistsReferrer_WhiteCompoundPkRefListMap;
@@ -436,8 +437,9 @@ public class BsWhiteCompoundPkCQ extends AbstractBsWhiteCompoundPkCQ {
      */
     public void existsWhiteCompoundPkRefManyToPKList(SubQuery<WhiteCompoundPkRefManyCB> subQuery) {
         assertObjectNotNull("subQuery<WhiteCompoundPkRefManyCB>", subQuery);
-        WhiteCompoundPkRefManyCB cb = new WhiteCompoundPkRefManyCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String pp = keepTwoOrMorePk_ExistsReferrer_WhiteCompoundPkRefManyToPKList(cb.query()); // for saving query-value.
+        WhiteCompoundPkRefManyCB cb = new WhiteCompoundPkRefManyCB(); cb.xsetupForExistsReferrer(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepTwoOrMorePk_ExistsReferrer_WhiteCompoundPkRefManyToPKList(cb.query());
         registerExistsReferrer(cb.query(), "PK_FIRST_ID, PK_SECOND_ID", "REF_MANY_FIRST_ID, REF_MANY_SECOND_ID", pp, "whiteCompoundPkRefManyToPKList");
     }
     protected Map<String, WhiteCompoundPkRefManyCQ> _twoOrMorePk_ExistsReferrer_WhiteCompoundPkRefManyToPKListMap;
@@ -455,8 +457,9 @@ public class BsWhiteCompoundPkCQ extends AbstractBsWhiteCompoundPkCQ {
      */
     public void notExistsWhiteCompoundPkRefList(SubQuery<WhiteCompoundPkRefCB> subQuery) {
         assertObjectNotNull("subQuery<WhiteCompoundPkRefCB>", subQuery);
-        WhiteCompoundPkRefCB cb = new WhiteCompoundPkRefCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String pp = keepTwoOrMorePk_NotExistsReferrer_WhiteCompoundPkRefList(cb.query()); // for saving query-value.
+        WhiteCompoundPkRefCB cb = new WhiteCompoundPkRefCB(); cb.xsetupForExistsReferrer(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepTwoOrMorePk_NotExistsReferrer_WhiteCompoundPkRefList(cb.query());
         registerNotExistsReferrer(cb.query(), "PK_FIRST_ID, PK_SECOND_ID", "REF_FIRST_ID, REF_SECOND_ID", pp, "whiteCompoundPkRefList");
     }
     protected Map<String, WhiteCompoundPkRefCQ> _twoOrMorePk_NotExistsReferrer_WhiteCompoundPkRefListMap;
@@ -474,8 +477,9 @@ public class BsWhiteCompoundPkCQ extends AbstractBsWhiteCompoundPkCQ {
      */
     public void notExistsWhiteCompoundPkRefManyToPKList(SubQuery<WhiteCompoundPkRefManyCB> subQuery) {
         assertObjectNotNull("subQuery<WhiteCompoundPkRefManyCB>", subQuery);
-        WhiteCompoundPkRefManyCB cb = new WhiteCompoundPkRefManyCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String pp = keepTwoOrMorePk_NotExistsReferrer_WhiteCompoundPkRefManyToPKList(cb.query()); // for saving query-value.
+        WhiteCompoundPkRefManyCB cb = new WhiteCompoundPkRefManyCB(); cb.xsetupForExistsReferrer(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepTwoOrMorePk_NotExistsReferrer_WhiteCompoundPkRefManyToPKList(cb.query());
         registerNotExistsReferrer(cb.query(), "PK_FIRST_ID, PK_SECOND_ID", "REF_MANY_FIRST_ID, REF_MANY_SECOND_ID", pp, "whiteCompoundPkRefManyToPKList");
     }
     protected Map<String, WhiteCompoundPkRefManyCQ> _twoOrMorePk_NotExistsReferrer_WhiteCompoundPkRefManyToPKListMap;
@@ -491,8 +495,9 @@ public class BsWhiteCompoundPkCQ extends AbstractBsWhiteCompoundPkCQ {
     //                                            ========================================
     public void xsderiveWhiteCompoundPkRefList(String fn, SubQuery<WhiteCompoundPkRefCB> sq, String al, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteCompoundPkRefCB cb = new WhiteCompoundPkRefCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
-        String pp = keepTwoOrMorePk_SpecifyDerivedReferrer_WhiteCompoundPkRefList(cb.query()); // for saving query-value.
+        WhiteCompoundPkRefCB cb = new WhiteCompoundPkRefCB(); cb.xsetupForDerivedReferrer(this);
+        try { lock(); sq.query(cb); } finally { unlock(); }
+        String pp = keepTwoOrMorePk_SpecifyDerivedReferrer_WhiteCompoundPkRefList(cb.query());
         registerSpecifyDerivedReferrer(fn, cb.query(), "PK_FIRST_ID, PK_SECOND_ID", "REF_FIRST_ID, REF_SECOND_ID", pp, "whiteCompoundPkRefList", al, op);
     }
     protected Map<String, WhiteCompoundPkRefCQ> _twoOrMorePk_SpecifyDerivedReferrer_WhiteCompoundPkRefListMap;
@@ -505,8 +510,9 @@ public class BsWhiteCompoundPkCQ extends AbstractBsWhiteCompoundPkCQ {
 
     public void xsderiveWhiteCompoundPkRefManyToPKList(String fn, SubQuery<WhiteCompoundPkRefManyCB> sq, String al, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteCompoundPkRefManyCB cb = new WhiteCompoundPkRefManyCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
-        String pp = keepTwoOrMorePk_SpecifyDerivedReferrer_WhiteCompoundPkRefManyToPKList(cb.query()); // for saving query-value.
+        WhiteCompoundPkRefManyCB cb = new WhiteCompoundPkRefManyCB(); cb.xsetupForDerivedReferrer(this);
+        try { lock(); sq.query(cb); } finally { unlock(); }
+        String pp = keepTwoOrMorePk_SpecifyDerivedReferrer_WhiteCompoundPkRefManyToPKList(cb.query());
         registerSpecifyDerivedReferrer(fn, cb.query(), "PK_FIRST_ID, PK_SECOND_ID", "REF_MANY_FIRST_ID, REF_MANY_SECOND_ID", pp, "whiteCompoundPkRefManyToPKList", al, op);
     }
     protected Map<String, WhiteCompoundPkRefManyCQ> _twoOrMorePk_SpecifyDerivedReferrer_WhiteCompoundPkRefManyToPKListMap;
@@ -546,9 +552,9 @@ public class BsWhiteCompoundPkCQ extends AbstractBsWhiteCompoundPkCQ {
     }
     public void xqderiveWhiteCompoundPkRefList(String fn, SubQuery<WhiteCompoundPkRefCB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteCompoundPkRefCB cb = new WhiteCompoundPkRefCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
-        String sqpp = keepTwoOrMorePk_QueryDerivedReferrer_WhiteCompoundPkRefList(cb.query()); // for saving query-value.
-        String prpp = keepTwoOrMorePk_QueryDerivedReferrer_WhiteCompoundPkRefListParameter(vl);
+        WhiteCompoundPkRefCB cb = new WhiteCompoundPkRefCB(); cb.xsetupForDerivedReferrer(this);
+        try { lock(); sq.query(cb); } finally { unlock(); }
+        String sqpp = keepTwoOrMorePk_QueryDerivedReferrer_WhiteCompoundPkRefList(cb.query()); String prpp = keepTwoOrMorePk_QueryDerivedReferrer_WhiteCompoundPkRefListParameter(vl);
         registerQueryDerivedReferrer(fn, cb.query(), "PK_FIRST_ID, PK_SECOND_ID", "REF_FIRST_ID, REF_SECOND_ID", sqpp, "whiteCompoundPkRefList", rd, vl, prpp, op);
     }
     protected Map<String, WhiteCompoundPkRefCQ> _twoOrMorePk_QueryDerivedReferrer_WhiteCompoundPkRefListMap;
@@ -592,9 +598,9 @@ public class BsWhiteCompoundPkCQ extends AbstractBsWhiteCompoundPkCQ {
     }
     public void xqderiveWhiteCompoundPkRefManyToPKList(String fn, SubQuery<WhiteCompoundPkRefManyCB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteCompoundPkRefManyCB cb = new WhiteCompoundPkRefManyCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
-        String sqpp = keepTwoOrMorePkToPK_QueryDerivedReferrer_WhiteCompoundPkRefManyToPKList(cb.query()); // for saving query-value.
-        String prpp = keepTwoOrMorePkToPK_QueryDerivedReferrer_WhiteCompoundPkRefManyToPKListParameter(vl);
+        WhiteCompoundPkRefManyCB cb = new WhiteCompoundPkRefManyCB(); cb.xsetupForDerivedReferrer(this);
+        try { lock(); sq.query(cb); } finally { unlock(); }
+        String sqpp = keepTwoOrMorePkToPK_QueryDerivedReferrer_WhiteCompoundPkRefManyToPKList(cb.query()); String prpp = keepTwoOrMorePkToPK_QueryDerivedReferrer_WhiteCompoundPkRefManyToPKListParameter(vl);
         registerQueryDerivedReferrer(fn, cb.query(), "PK_FIRST_ID, PK_SECOND_ID", "REF_MANY_FIRST_ID, REF_MANY_SECOND_ID", sqpp, "whiteCompoundPkRefManyToPKList", rd, vl, prpp, op);
     }
     protected Map<String, WhiteCompoundPkRefManyCQ> _twoOrMorePkToPK_QueryDerivedReferrer_WhiteCompoundPkRefManyToPKListMap;

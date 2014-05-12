@@ -6,6 +6,8 @@ import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
 import org.seasar.dbflute.dbmeta.DBMeta;
+import org.seasar.dbflute.exception.*;
+import org.seasar.dbflute.optional.*;
 import org.seasar.dbflute.outsidesql.executor.*;
 import com.example.dbflute.db2.dbflute.exbhv.*;
 import com.example.dbflute.db2.dbflute.exentity.*;
@@ -91,7 +93,7 @@ public abstract class BsAliasExceptBhv extends AbstractBehaviorWritable {
      * <pre>
      * AliasExceptCB cb = new AliasExceptCB();
      * cb.query().setFoo...(value);
-     * int count = aliasExceptBhv.<span style="color: #FD4747">selectCount</span>(cb);
+     * int count = aliasExceptBhv.<span style="color: #DD4747">selectCount</span>(cb);
      * </pre>
      * @param cb The condition-bean of AliasExcept. (NotNull)
      * @return The count for the condition. (NotMinus)
@@ -119,12 +121,14 @@ public abstract class BsAliasExceptBhv extends AbstractBehaviorWritable {
     //                                                                       Entity Select
     //                                                                       =============
     /**
-     * Select the entity by the condition-bean.
+     * Select the entity by the condition-bean. #beforejava8 <br />
+     * <span style="color: #AD4747; font-size: 120%">The return might be null if no data, so you should have null check.</span> <br />
+     * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, use selectEntityWithDeletedCheck().</span>
      * <pre>
      * AliasExceptCB cb = new AliasExceptCB();
      * cb.query().setFoo...(value);
-     * AliasExcept aliasExcept = aliasExceptBhv.<span style="color: #FD4747">selectEntity</span>(cb);
-     * if (aliasExcept != null) {
+     * AliasExcept aliasExcept = aliasExceptBhv.<span style="color: #DD4747">selectEntity</span>(cb);
+     * if (aliasExcept != null) { <span style="color: #3F7E5E">// null check</span>
      *     ... = aliasExcept.get...();
      * } else {
      *     ...
@@ -132,8 +136,8 @@ public abstract class BsAliasExceptBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of AliasExcept. (NotNull)
      * @return The entity selected by the condition. (NullAllowed: if no data, it returns null)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public AliasExcept selectEntity(AliasExceptCB cb) {
         return doSelectEntity(cb, AliasExcept.class);
@@ -145,24 +149,29 @@ public abstract class BsAliasExceptBhv extends AbstractBehaviorWritable {
             public List<ENTITY> callbackSelectList(AliasExceptCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
+    protected <ENTITY extends AliasExcept> OptionalEntity<ENTITY> doSelectOptionalEntity(AliasExceptCB cb, Class<ENTITY> tp) {
+        return createOptionalEntity(doSelectEntity(cb, tp), cb);
+    }
+
     @Override
     protected Entity doReadEntity(ConditionBean cb) {
         return selectEntity(downcast(cb));
     }
 
     /**
-     * Select the entity by the condition-bean with deleted check.
+     * Select the entity by the condition-bean with deleted check. <br />
+     * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, this method is good.</span>
      * <pre>
      * AliasExceptCB cb = new AliasExceptCB();
      * cb.query().setFoo...(value);
-     * AliasExcept aliasExcept = aliasExceptBhv.<span style="color: #FD4747">selectEntityWithDeletedCheck</span>(cb);
+     * AliasExcept aliasExcept = aliasExceptBhv.<span style="color: #DD4747">selectEntityWithDeletedCheck</span>(cb);
      * ... = aliasExcept.get...(); <span style="color: #3F7E5E">// the entity always be not null</span>
      * </pre>
      * @param cb The condition-bean of AliasExcept. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public AliasExcept selectEntityWithDeletedCheck(AliasExceptCB cb) {
         return doSelectEntityWithDeletedCheck(cb, AliasExcept.class);
@@ -183,8 +192,8 @@ public abstract class BsAliasExceptBhv extends AbstractBehaviorWritable {
      * Select the entity by the primary-key value.
      * @param exceptId The one of primary key. (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public AliasExcept selectByPKValue(Long exceptId) {
         return doSelectByPKValue(exceptId, AliasExcept.class);
@@ -198,9 +207,9 @@ public abstract class BsAliasExceptBhv extends AbstractBehaviorWritable {
      * Select the entity by the primary-key value with deleted check.
      * @param exceptId The one of primary key. (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public AliasExcept selectByPKValueWithDeletedCheck(Long exceptId) {
         return doSelectByPKValueWithDeletedCheck(exceptId, AliasExcept.class);
@@ -226,14 +235,14 @@ public abstract class BsAliasExceptBhv extends AbstractBehaviorWritable {
      * AliasExceptCB cb = new AliasExceptCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * ListResultBean&lt;AliasExcept&gt; aliasExceptList = aliasExceptBhv.<span style="color: #FD4747">selectList</span>(cb);
+     * ListResultBean&lt;AliasExcept&gt; aliasExceptList = aliasExceptBhv.<span style="color: #DD4747">selectList</span>(cb);
      * for (AliasExcept aliasExcept : aliasExceptList) {
      *     ... = aliasExcept.get...();
      * }
      * </pre>
      * @param cb The condition-bean of AliasExcept. (NotNull)
      * @return The result bean of selected list. (NotNull: if no data, returns empty list)
-     * @exception org.seasar.dbflute.exception.DangerousResultSizeException When the result size is over the specified safety size.
+     * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public ListResultBean<AliasExcept> selectList(AliasExceptCB cb) {
         return doSelectList(cb, AliasExcept.class);
@@ -261,8 +270,8 @@ public abstract class BsAliasExceptBhv extends AbstractBehaviorWritable {
      * AliasExceptCB cb = new AliasExceptCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * cb.<span style="color: #FD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
-     * PagingResultBean&lt;AliasExcept&gt; page = aliasExceptBhv.<span style="color: #FD4747">selectPage</span>(cb);
+     * cb.<span style="color: #DD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
+     * PagingResultBean&lt;AliasExcept&gt; page = aliasExceptBhv.<span style="color: #DD4747">selectPage</span>(cb);
      * int allRecordCount = page.getAllRecordCount();
      * int allPageCount = page.getAllPageCount();
      * boolean isExistPrePage = page.isExistPrePage();
@@ -274,7 +283,7 @@ public abstract class BsAliasExceptBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of AliasExcept. (NotNull)
      * @return The result bean of selected page. (NotNull: if no data, returns bean as empty list)
-     * @exception org.seasar.dbflute.exception.DangerousResultSizeException When the result size is over the specified safety size.
+     * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public PagingResultBean<AliasExcept> selectPage(AliasExceptCB cb) {
         return doSelectPage(cb, AliasExcept.class);
@@ -301,7 +310,7 @@ public abstract class BsAliasExceptBhv extends AbstractBehaviorWritable {
      * <pre>
      * AliasExceptCB cb = new AliasExceptCB();
      * cb.query().setFoo...(value);
-     * aliasExceptBhv.<span style="color: #FD4747">selectCursor</span>(cb, new EntityRowHandler&lt;AliasExcept&gt;() {
+     * aliasExceptBhv.<span style="color: #DD4747">selectCursor</span>(cb, new EntityRowHandler&lt;AliasExcept&gt;() {
      *     public void handle(AliasExcept entity) {
      *         ... = entity.getFoo...();
      *     }
@@ -330,9 +339,9 @@ public abstract class BsAliasExceptBhv extends AbstractBehaviorWritable {
      * Select the scalar value derived by a function from uniquely-selected records. <br />
      * You should call a function method after this method called like as follows:
      * <pre>
-     * aliasExceptBhv.<span style="color: #FD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
+     * aliasExceptBhv.<span style="color: #DD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
      *     public void query(AliasExceptCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
+     *         cb.specify().<span style="color: #DD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
      *         cb.query().setBarName_PrefixSearch("S");
      *     }
      * });
@@ -372,61 +381,96 @@ public abstract class BsAliasExceptBhv extends AbstractBehaviorWritable {
     //                                                                       Load Referrer
     //                                                                       =============
     /**
-     * {Refer to overload method that has an argument of the list of entity.}
-     * @param aliasExcept The entity of aliasExcept. (NotNull)
-     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
-     */
-    public void loadAliasRefExceptList(AliasExcept aliasExcept, ConditionBeanSetupper<AliasRefExceptCB> conditionBeanSetupper) {
-        xassLRArg(aliasExcept, conditionBeanSetupper);
-        loadAliasRefExceptList(xnewLRLs(aliasExcept), conditionBeanSetupper);
-    }
-    /**
-     * Load referrer of aliasRefExceptList with the set-upper for condition-bean of referrer. <br />
+     * Load referrer of aliasRefExceptList by the set-upper of referrer. <br />
      * ALIAS_REF_EXCEPT by EXCEPT_ID, named 'aliasRefExceptList'.
      * <pre>
-     * aliasExceptBhv.<span style="color: #FD4747">loadAliasRefExceptList</span>(aliasExceptList, new ConditionBeanSetupper&lt;AliasRefExceptCB&gt;() {
+     * aliasExceptBhv.<span style="color: #DD4747">loadAliasRefExceptList</span>(aliasExceptList, new ConditionBeanSetupper&lt;AliasRefExceptCB&gt;() {
      *     public void setup(AliasRefExceptCB cb) {
      *         cb.setupSelect...();
      *         cb.query().setFoo...(value);
-     *         cb.query().addOrderBy_Bar...(); <span style="color: #3F7E5E">// basically you should order referrer list</span>
+     *         cb.query().addOrderBy_Bar...();
      *     }
-     * });
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
+     * <span style="color: #3F7E5E">//}).withNestedList(referrerList -&gt {</span>
+     * <span style="color: #3F7E5E">//    ...</span>
+     * <span style="color: #3F7E5E">//});</span>
      * for (AliasExcept aliasExcept : aliasExceptList) {
-     *     ... = aliasExcept.<span style="color: #FD4747">getAliasRefExceptList()</span>;
+     *     ... = aliasExcept.<span style="color: #DD4747">getAliasRefExceptList()</span>;
      * }
      * </pre>
-     * About internal policy, the value of primary key(and others too) is treated as case-insensitive. <br />
-     * The condition-bean that the set-upper provides have settings before you touch it. It is as follows:
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
      * <pre>
      * cb.query().setExceptId_InScope(pkList);
      * cb.query().addOrderBy_ExceptId_Asc();
      * </pre>
      * @param aliasExceptList The entity list of aliasExcept. (NotNull)
-     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
+     * @param setupper The callback to set up referrer condition-bean for loading referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public void loadAliasRefExceptList(List<AliasExcept> aliasExceptList, ConditionBeanSetupper<AliasRefExceptCB> conditionBeanSetupper) {
-        xassLRArg(aliasExceptList, conditionBeanSetupper);
-        loadAliasRefExceptList(aliasExceptList, new LoadReferrerOption<AliasRefExceptCB, AliasRefExcept>().xinit(conditionBeanSetupper));
+    public NestedReferrerLoader<AliasRefExcept> loadAliasRefExceptList(List<AliasExcept> aliasExceptList, ConditionBeanSetupper<AliasRefExceptCB> setupper) {
+        xassLRArg(aliasExceptList, setupper);
+        return doLoadAliasRefExceptList(aliasExceptList, new LoadReferrerOption<AliasRefExceptCB, AliasRefExcept>().xinit(setupper));
     }
+
     /**
-     * {Refer to overload method that has an argument of the list of entity.}
+     * Load referrer of aliasRefExceptList by the set-upper of referrer. <br />
+     * ALIAS_REF_EXCEPT by EXCEPT_ID, named 'aliasRefExceptList'.
+     * <pre>
+     * aliasExceptBhv.<span style="color: #DD4747">loadAliasRefExceptList</span>(aliasExceptList, new ConditionBeanSetupper&lt;AliasRefExceptCB&gt;() {
+     *     public void setup(AliasRefExceptCB cb) {
+     *         cb.setupSelect...();
+     *         cb.query().setFoo...(value);
+     *         cb.query().addOrderBy_Bar...();
+     *     }
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
+     * <span style="color: #3F7E5E">//}).withNestedList(referrerList -&gt {</span>
+     * <span style="color: #3F7E5E">//    ...</span>
+     * <span style="color: #3F7E5E">//});</span>
+     * ... = aliasExcept.<span style="color: #DD4747">getAliasRefExceptList()</span>;
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
+     * <pre>
+     * cb.query().setExceptId_InScope(pkList);
+     * cb.query().addOrderBy_ExceptId_Asc();
+     * </pre>
+     * @param aliasExcept The entity of aliasExcept. (NotNull)
+     * @param setupper The callback to set up referrer condition-bean for loading referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
+     */
+    public NestedReferrerLoader<AliasRefExcept> loadAliasRefExceptList(AliasExcept aliasExcept, ConditionBeanSetupper<AliasRefExceptCB> setupper) {
+        xassLRArg(aliasExcept, setupper);
+        return doLoadAliasRefExceptList(xnewLRLs(aliasExcept), new LoadReferrerOption<AliasRefExceptCB, AliasRefExcept>().xinit(setupper));
+    }
+
+    /**
+     * {Refer to overload method that has an argument of the list of entity.} #beforejava8
      * @param aliasExcept The entity of aliasExcept. (NotNull)
      * @param loadReferrerOption The option of load-referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public void loadAliasRefExceptList(AliasExcept aliasExcept, LoadReferrerOption<AliasRefExceptCB, AliasRefExcept> loadReferrerOption) {
+    public NestedReferrerLoader<AliasRefExcept> loadAliasRefExceptList(AliasExcept aliasExcept, LoadReferrerOption<AliasRefExceptCB, AliasRefExcept> loadReferrerOption) {
         xassLRArg(aliasExcept, loadReferrerOption);
-        loadAliasRefExceptList(xnewLRLs(aliasExcept), loadReferrerOption);
+        return loadAliasRefExceptList(xnewLRLs(aliasExcept), loadReferrerOption);
     }
+
     /**
-     * {Refer to overload method that has an argument of condition-bean setupper.}
+     * {Refer to overload method that has an argument of condition-bean setupper.} #beforejava8
      * @param aliasExceptList The entity list of aliasExcept. (NotNull)
      * @param loadReferrerOption The option of load-referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public void loadAliasRefExceptList(List<AliasExcept> aliasExceptList, LoadReferrerOption<AliasRefExceptCB, AliasRefExcept> loadReferrerOption) {
+    @SuppressWarnings("unchecked")
+    public NestedReferrerLoader<AliasRefExcept> loadAliasRefExceptList(List<AliasExcept> aliasExceptList, LoadReferrerOption<AliasRefExceptCB, AliasRefExcept> loadReferrerOption) {
         xassLRArg(aliasExceptList, loadReferrerOption);
-        if (aliasExceptList.isEmpty()) { return; }
+        if (aliasExceptList.isEmpty()) { return (NestedReferrerLoader<AliasRefExcept>)EMPTY_LOADER; }
+        return doLoadAliasRefExceptList(aliasExceptList, loadReferrerOption);
+    }
+
+    protected NestedReferrerLoader<AliasRefExcept> doLoadAliasRefExceptList(List<AliasExcept> aliasExceptList, LoadReferrerOption<AliasRefExceptCB, AliasRefExcept> option) {
         final AliasRefExceptBhv referrerBhv = xgetBSFLR().select(AliasRefExceptBhv.class);
-        helpLoadReferrerInternally(aliasExceptList, loadReferrerOption, new InternalLoadReferrerCallback<AliasExcept, Long, AliasRefExceptCB, AliasRefExcept>() {
+        return helpLoadReferrerInternally(aliasExceptList, option, new InternalLoadReferrerCallback<AliasExcept, Long, AliasRefExceptCB, AliasRefExcept>() {
             public Long getPKVal(AliasExcept et)
             { return et.getExceptId(); }
             public void setRfLs(AliasExcept et, List<AliasRefExcept> ls)
@@ -475,12 +519,12 @@ public abstract class BsAliasExceptBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
      * <span style="color: #3F7E5E">//aliasExcept.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//aliasExcept.set...;</span>
-     * aliasExceptBhv.<span style="color: #FD4747">insert</span>(aliasExcept);
+     * aliasExceptBhv.<span style="color: #DD4747">insert</span>(aliasExcept);
      * ... = aliasExcept.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * <p>While, when the entity is created by select, all columns are registered.</p>
      * @param aliasExcept The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insert(AliasExcept aliasExcept) {
         doInsert(aliasExcept, null);
@@ -516,17 +560,17 @@ public abstract class BsAliasExceptBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">//aliasExcept.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//aliasExcept.set...;</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * aliasExcept.<span style="color: #FD4747">setVersionNo</span>(value);
+     * aliasExcept.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
-     *     aliasExceptBhv.<span style="color: #FD4747">update</span>(aliasExcept);
+     *     aliasExceptBhv.<span style="color: #DD4747">update</span>(aliasExcept);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param aliasExcept The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void update(final AliasExcept aliasExcept) {
         doUpdate(aliasExcept, null);
@@ -576,11 +620,11 @@ public abstract class BsAliasExceptBhv extends AbstractBehaviorWritable {
     /**
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br />
-     * <p><span style="color: #FD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
+     * <p><span style="color: #DD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
      * @param aliasExcept The entity of insert or update target. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insertOrUpdate(AliasExcept aliasExcept) {
         doInesrtOrUpdate(aliasExcept, null, null);
@@ -616,16 +660,16 @@ public abstract class BsAliasExceptBhv extends AbstractBehaviorWritable {
      * AliasExcept aliasExcept = new AliasExcept();
      * aliasExcept.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * aliasExcept.<span style="color: #FD4747">setVersionNo</span>(value);
+     * aliasExcept.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
-     *     aliasExceptBhv.<span style="color: #FD4747">delete</span>(aliasExcept);
+     *     aliasExceptBhv.<span style="color: #DD4747">delete</span>(aliasExcept);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param aliasExcept The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void delete(AliasExcept aliasExcept) {
         doDelete(aliasExcept, null);
@@ -660,7 +704,7 @@ public abstract class BsAliasExceptBhv extends AbstractBehaviorWritable {
     /**
      * Batch-insert the entity list modified-only of same-set columns. (DefaultConstraintsEnabled) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
-     * <p><span style="color: #FD4747; font-size: 120%">The columns of least common multiple are registered like this:</span></p>
+     * <p><span style="color: #DD4747; font-size: 120%">The columns of least common multiple are registered like this:</span></p>
      * <pre>
      * for (... : ...) {
      *     AliasExcept aliasExcept = new AliasExcept();
@@ -673,7 +717,7 @@ public abstract class BsAliasExceptBhv extends AbstractBehaviorWritable {
      *     <span style="color: #3F7E5E">// columns not-called in all entities are registered as null or default value</span>
      *     aliasExceptList.add(aliasExcept);
      * }
-     * aliasExceptBhv.<span style="color: #FD4747">batchInsert</span>(aliasExceptList);
+     * aliasExceptBhv.<span style="color: #DD4747">batchInsert</span>(aliasExceptList);
      * </pre>
      * <p>While, when the entities are created by select, all columns are registered.</p>
      * <p>And if the table has an identity, entities after the process don't have incremented values.
@@ -707,7 +751,7 @@ public abstract class BsAliasExceptBhv extends AbstractBehaviorWritable {
     /**
      * Batch-update the entity list modified-only of same-set columns. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
-     * <span style="color: #FD4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
+     * <span style="color: #DD4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
      * <pre>
      * for (... : ...) {
      *     AliasExcept aliasExcept = new AliasExcept();
@@ -722,11 +766,11 @@ public abstract class BsAliasExceptBhv extends AbstractBehaviorWritable {
      *     <span style="color: #3F7E5E">// (others are not updated: their values are kept)</span>
      *     aliasExceptList.add(aliasExcept);
      * }
-     * aliasExceptBhv.<span style="color: #FD4747">batchUpdate</span>(aliasExceptList);
+     * aliasExceptBhv.<span style="color: #DD4747">batchUpdate</span>(aliasExceptList);
      * </pre>
      * @param aliasExceptList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<AliasExcept> aliasExceptList) {
         UpdateOption<AliasExceptCB> op = createPlainUpdateOption();
@@ -755,16 +799,16 @@ public abstract class BsAliasExceptBhv extends AbstractBehaviorWritable {
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * <pre>
      * <span style="color: #3F7E5E">// e.g. update two columns only</span>
-     * aliasExceptBhv.<span style="color: #FD4747">batchUpdate</span>(aliasExceptList, new SpecifyQuery<AliasExceptCB>() {
+     * aliasExceptBhv.<span style="color: #DD4747">batchUpdate</span>(aliasExceptList, new SpecifyQuery<AliasExceptCB>() {
      *     public void specify(AliasExceptCB cb) { <span style="color: #3F7E5E">// the two only updated</span>
-     *         cb.specify().<span style="color: #FD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
-     *         cb.specify().<span style="color: #FD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
+     *         cb.specify().<span style="color: #DD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
+     *         cb.specify().<span style="color: #DD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
      *     }
      * });
      * <span style="color: #3F7E5E">// e.g. update every column in the table</span>
-     * aliasExceptBhv.<span style="color: #FD4747">batchUpdate</span>(aliasExceptList, new SpecifyQuery<AliasExceptCB>() {
+     * aliasExceptBhv.<span style="color: #DD4747">batchUpdate</span>(aliasExceptList, new SpecifyQuery<AliasExceptCB>() {
      *     public void specify(AliasExceptCB cb) { <span style="color: #3F7E5E">// all columns are updated</span>
-     *         cb.specify().<span style="color: #FD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
+     *         cb.specify().<span style="color: #DD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
      *     }
      * });
      * </pre>
@@ -776,7 +820,7 @@ public abstract class BsAliasExceptBhv extends AbstractBehaviorWritable {
      * @param aliasExceptList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @param updateColumnSpec The specification of update columns. (NotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<AliasExcept> aliasExceptList, SpecifyQuery<AliasExceptCB> updateColumnSpec) {
         return doBatchUpdate(aliasExceptList, createSpecifiedUpdateOption(updateColumnSpec));
@@ -792,7 +836,7 @@ public abstract class BsAliasExceptBhv extends AbstractBehaviorWritable {
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * @param aliasExceptList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of deleted count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchDelete(List<AliasExcept> aliasExceptList) {
         return doBatchDelete(aliasExceptList, null);
@@ -821,7 +865,7 @@ public abstract class BsAliasExceptBhv extends AbstractBehaviorWritable {
     /**
      * Insert the several entities by query (modified-only for fixed value).
      * <pre>
-     * aliasExceptBhv.<span style="color: #FD4747">queryInsert</span>(new QueryInsertSetupper&lt;AliasExcept, AliasExceptCB&gt;() {
+     * aliasExceptBhv.<span style="color: #DD4747">queryInsert</span>(new QueryInsertSetupper&lt;AliasExcept, AliasExceptCB&gt;() {
      *     public ConditionBean setup(aliasExcept entity, AliasExceptCB intoCB) {
      *         FooCB cb = FooCB();
      *         cb.setupSelect_Bar();
@@ -883,12 +927,12 @@ public abstract class BsAliasExceptBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">//aliasExcept.setVersionNo(value);</span>
      * AliasExceptCB cb = new AliasExceptCB();
      * cb.query().setFoo...(value);
-     * aliasExceptBhv.<span style="color: #FD4747">queryUpdate</span>(aliasExcept, cb);
+     * aliasExceptBhv.<span style="color: #DD4747">queryUpdate</span>(aliasExcept, cb);
      * </pre>
      * @param aliasExcept The entity that contains update values. (NotNull, PrimaryKeyNullAllowed)
      * @param cb The condition-bean of AliasExcept. (NotNull)
      * @return The updated count.
-     * @exception org.seasar.dbflute.exception.NonQueryUpdateNotAllowedException When the query has no condition.
+     * @exception NonQueryUpdateNotAllowedException When the query has no condition.
      */
     public int queryUpdate(AliasExcept aliasExcept, AliasExceptCB cb) {
         return doQueryUpdate(aliasExcept, cb, null);
@@ -911,11 +955,11 @@ public abstract class BsAliasExceptBhv extends AbstractBehaviorWritable {
      * <pre>
      * AliasExceptCB cb = new AliasExceptCB();
      * cb.query().setFoo...(value);
-     * aliasExceptBhv.<span style="color: #FD4747">queryDelete</span>(aliasExcept, cb);
+     * aliasExceptBhv.<span style="color: #DD4747">queryDelete</span>(aliasExcept, cb);
      * </pre>
      * @param cb The condition-bean of AliasExcept. (NotNull)
      * @return The deleted count.
-     * @exception org.seasar.dbflute.exception.NonQueryDeleteNotAllowedException When the query has no condition.
+     * @exception NonQueryDeleteNotAllowedException When the query has no condition.
      */
     public int queryDelete(AliasExceptCB cb) {
         return doQueryDelete(cb, null);
@@ -951,12 +995,12 @@ public abstract class BsAliasExceptBhv extends AbstractBehaviorWritable {
      * InsertOption<AliasExceptCB> option = new InsertOption<AliasExceptCB>();
      * <span style="color: #3F7E5E">// you can insert by your values for common columns</span>
      * option.disableCommonColumnAutoSetup();
-     * aliasExceptBhv.<span style="color: #FD4747">varyingInsert</span>(aliasExcept, option);
+     * aliasExceptBhv.<span style="color: #DD4747">varyingInsert</span>(aliasExcept, option);
      * ... = aliasExcept.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * @param aliasExcept The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
      * @param option The option of insert for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingInsert(AliasExcept aliasExcept, InsertOption<AliasExceptCB> option) {
         assertInsertOptionNotNull(option);
@@ -972,25 +1016,25 @@ public abstract class BsAliasExceptBhv extends AbstractBehaviorWritable {
      * aliasExcept.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * aliasExcept.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * aliasExcept.<span style="color: #FD4747">setVersionNo</span>(value);
+     * aliasExcept.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     <span style="color: #3F7E5E">// you can update by self calculation values</span>
      *     UpdateOption&lt;AliasExceptCB&gt; option = new UpdateOption&lt;AliasExceptCB&gt;();
      *     option.self(new SpecifyQuery&lt;AliasExceptCB&gt;() {
      *         public void specify(AliasExceptCB cb) {
-     *             cb.specify().<span style="color: #FD4747">columnXxxCount()</span>;
+     *             cb.specify().<span style="color: #DD4747">columnXxxCount()</span>;
      *         }
      *     }).plus(1); <span style="color: #3F7E5E">// XXX_COUNT = XXX_COUNT + 1</span>
-     *     aliasExceptBhv.<span style="color: #FD4747">varyingUpdate</span>(aliasExcept, option);
+     *     aliasExceptBhv.<span style="color: #DD4747">varyingUpdate</span>(aliasExcept, option);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param aliasExcept The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @param option The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingUpdate(AliasExcept aliasExcept, UpdateOption<AliasExceptCB> option) {
         assertUpdateOptionNotNull(option);
@@ -1003,9 +1047,9 @@ public abstract class BsAliasExceptBhv extends AbstractBehaviorWritable {
      * @param aliasExcept The entity of insert or update target. (NotNull)
      * @param insertOption The option of insert for varying requests. (NotNull)
      * @param updateOption The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingInsertOrUpdate(AliasExcept aliasExcept, InsertOption<AliasExceptCB> insertOption, UpdateOption<AliasExceptCB> updateOption) {
         assertInsertOptionNotNull(insertOption); assertUpdateOptionNotNull(updateOption);
@@ -1018,8 +1062,8 @@ public abstract class BsAliasExceptBhv extends AbstractBehaviorWritable {
      * Other specifications are same as delete(entity).
      * @param aliasExcept The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @param option The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void varyingDelete(AliasExcept aliasExcept, DeleteOption<AliasExceptCB> option) {
         assertDeleteOptionNotNull(option);
@@ -1105,16 +1149,16 @@ public abstract class BsAliasExceptBhv extends AbstractBehaviorWritable {
      * UpdateOption&lt;AliasExceptCB&gt; option = new UpdateOption&lt;AliasExceptCB&gt;();
      * option.self(new SpecifyQuery&lt;AliasExceptCB&gt;() {
      *     public void specify(AliasExceptCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFooCount()</span>;
+     *         cb.specify().<span style="color: #DD4747">columnFooCount()</span>;
      *     }
      * }).plus(1); <span style="color: #3F7E5E">// FOO_COUNT = FOO_COUNT + 1</span>
-     * aliasExceptBhv.<span style="color: #FD4747">varyingQueryUpdate</span>(aliasExcept, cb, option);
+     * aliasExceptBhv.<span style="color: #DD4747">varyingQueryUpdate</span>(aliasExcept, cb, option);
      * </pre>
      * @param aliasExcept The entity that contains update values. (NotNull) {PrimaryKeyNotRequired}
      * @param cb The condition-bean of AliasExcept. (NotNull)
      * @param option The option of update for varying requests. (NotNull)
      * @return The updated count.
-     * @exception org.seasar.dbflute.exception.NonQueryUpdateNotAllowedException When the query has no condition (if not allowed).
+     * @exception NonQueryUpdateNotAllowedException When the query has no condition (if not allowed).
      */
     public int varyingQueryUpdate(AliasExcept aliasExcept, AliasExceptCB cb, UpdateOption<AliasExceptCB> option) {
         assertUpdateOptionNotNull(option);
@@ -1128,7 +1172,7 @@ public abstract class BsAliasExceptBhv extends AbstractBehaviorWritable {
      * @param cb The condition-bean of AliasExcept. (NotNull)
      * @param option The option of delete for varying requests. (NotNull)
      * @return The deleted count.
-     * @exception org.seasar.dbflute.exception.NonQueryDeleteNotAllowedException When the query has no condition (if not allowed).
+     * @exception NonQueryDeleteNotAllowedException When the query has no condition (if not allowed).
      */
     public int varyingQueryDelete(AliasExceptCB cb, DeleteOption<AliasExceptCB> option) {
         assertDeleteOptionNotNull(option);

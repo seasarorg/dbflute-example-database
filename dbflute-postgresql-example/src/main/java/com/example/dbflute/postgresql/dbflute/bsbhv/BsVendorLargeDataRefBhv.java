@@ -7,6 +7,7 @@ import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
 import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.exception.*;
+import org.seasar.dbflute.optional.*;
 import org.seasar.dbflute.outsidesql.executor.*;
 import com.example.dbflute.postgresql.dbflute.exbhv.*;
 import com.example.dbflute.postgresql.dbflute.exentity.*;
@@ -120,7 +121,7 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
     //                                                                       Entity Select
     //                                                                       =============
     /**
-     * Select the entity by the condition-bean. <br />
+     * Select the entity by the condition-bean. #beforejava8 <br />
      * <span style="color: #AD4747; font-size: 120%">The return might be null if no data, so you should have null check.</span> <br />
      * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, use selectEntityWithDeletedCheck().</span>
      * <pre>
@@ -146,6 +147,10 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, VendorLargeDataRefCB>() {
             public List<ENTITY> callbackSelectList(VendorLargeDataRefCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
+    }
+
+    protected <ENTITY extends VendorLargeDataRef> OptionalEntity<ENTITY> doSelectOptionalEntity(VendorLargeDataRefCB cb, Class<ENTITY> tp) {
+        return createOptionalEntity(doSelectEntity(cb, tp), cb);
     }
 
     @Override
@@ -383,39 +388,12 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
      *     public void setup(VendorLargeDataRefCB cb) {
      *         cb.setupSelect...();
      *         cb.query().setFoo...(value);
-     *         cb.query().addOrderBy_Bar...(); <span style="color: #3F7E5E">// basically you should order referrer list</span>
+     *         cb.query().addOrderBy_Bar...();
      *     }
-     * }); <span style="color: #3F7E5E">// you can load nested referrer from here by calling like '}).withNestedList(new ...)'</span>
-     * for (VendorLargeDataRef vendorLargeDataRef : vendorLargeDataRefList) {
-     *     ... = vendorLargeDataRef.<span style="color: #DD4747">getVendorLargeDataRefSelfList()</span>;
-     * }
-     * </pre>
-     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
-     * The condition-bean, which the set-upper provides, has settings before callback as follows:
-     * <pre>
-     * cb.query().setSelfParentId_InScope(pkList);
-     * cb.query().addOrderBy_SelfParentId_Asc();
-     * </pre>
-     * @param vendorLargeDataRef The entity of vendorLargeDataRef. (NotNull)
-     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
-     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
-     */
-    public NestedReferrerLoader<VendorLargeDataRef> loadVendorLargeDataRefSelfList(VendorLargeDataRef vendorLargeDataRef, ConditionBeanSetupper<VendorLargeDataRefCB> conditionBeanSetupper) {
-        xassLRArg(vendorLargeDataRef, conditionBeanSetupper);
-        return loadVendorLargeDataRefSelfList(xnewLRLs(vendorLargeDataRef), conditionBeanSetupper);
-    }
-
-    /**
-     * Load referrer of vendorLargeDataRefSelfList by the set-upper of referrer. <br />
-     * vendor_large_data_ref by self_parent_id, named 'vendorLargeDataRefSelfList'.
-     * <pre>
-     * vendorLargeDataRefBhv.<span style="color: #DD4747">loadVendorLargeDataRefSelfList</span>(vendorLargeDataRefList, new ConditionBeanSetupper&lt;VendorLargeDataRefCB&gt;() {
-     *     public void setup(VendorLargeDataRefCB cb) {
-     *         cb.setupSelect...();
-     *         cb.query().setFoo...(value);
-     *         cb.query().addOrderBy_Bar...(); <span style="color: #3F7E5E">// basically you should order referrer list</span>
-     *     }
-     * }); <span style="color: #3F7E5E">// you can load nested referrer from here by calling like '}).withNestedList(new ...)'</span>
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
+     * <span style="color: #3F7E5E">//}).withNestedList(referrerList -&gt {</span>
+     * <span style="color: #3F7E5E">//    ...</span>
+     * <span style="color: #3F7E5E">//});</span>
      * for (VendorLargeDataRef vendorLargeDataRef : vendorLargeDataRefList) {
      *     ... = vendorLargeDataRef.<span style="color: #DD4747">getVendorLargeDataRefSelfList()</span>;
      * }
@@ -427,16 +405,47 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
      * cb.query().addOrderBy_SelfParentId_Asc();
      * </pre>
      * @param vendorLargeDataRefList The entity list of vendorLargeDataRef. (NotNull)
-     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
+     * @param setupper The callback to set up referrer condition-bean for loading referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public NestedReferrerLoader<VendorLargeDataRef> loadVendorLargeDataRefSelfList(List<VendorLargeDataRef> vendorLargeDataRefList, ConditionBeanSetupper<VendorLargeDataRefCB> conditionBeanSetupper) {
-        xassLRArg(vendorLargeDataRefList, conditionBeanSetupper);
-        return loadVendorLargeDataRefSelfList(vendorLargeDataRefList, new LoadReferrerOption<VendorLargeDataRefCB, VendorLargeDataRef>().xinit(conditionBeanSetupper));
+    public NestedReferrerLoader<VendorLargeDataRef> loadVendorLargeDataRefSelfList(List<VendorLargeDataRef> vendorLargeDataRefList, ConditionBeanSetupper<VendorLargeDataRefCB> setupper) {
+        xassLRArg(vendorLargeDataRefList, setupper);
+        return doLoadVendorLargeDataRefSelfList(vendorLargeDataRefList, new LoadReferrerOption<VendorLargeDataRefCB, VendorLargeDataRef>().xinit(setupper));
     }
 
     /**
-     * {Refer to overload method that has an argument of the list of entity.}
+     * Load referrer of vendorLargeDataRefSelfList by the set-upper of referrer. <br />
+     * vendor_large_data_ref by self_parent_id, named 'vendorLargeDataRefSelfList'.
+     * <pre>
+     * vendorLargeDataRefBhv.<span style="color: #DD4747">loadVendorLargeDataRefSelfList</span>(vendorLargeDataRefList, new ConditionBeanSetupper&lt;VendorLargeDataRefCB&gt;() {
+     *     public void setup(VendorLargeDataRefCB cb) {
+     *         cb.setupSelect...();
+     *         cb.query().setFoo...(value);
+     *         cb.query().addOrderBy_Bar...();
+     *     }
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
+     * <span style="color: #3F7E5E">//}).withNestedList(referrerList -&gt {</span>
+     * <span style="color: #3F7E5E">//    ...</span>
+     * <span style="color: #3F7E5E">//});</span>
+     * ... = vendorLargeDataRef.<span style="color: #DD4747">getVendorLargeDataRefSelfList()</span>;
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
+     * <pre>
+     * cb.query().setSelfParentId_InScope(pkList);
+     * cb.query().addOrderBy_SelfParentId_Asc();
+     * </pre>
+     * @param vendorLargeDataRef The entity of vendorLargeDataRef. (NotNull)
+     * @param setupper The callback to set up referrer condition-bean for loading referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
+     */
+    public NestedReferrerLoader<VendorLargeDataRef> loadVendorLargeDataRefSelfList(VendorLargeDataRef vendorLargeDataRef, ConditionBeanSetupper<VendorLargeDataRefCB> setupper) {
+        xassLRArg(vendorLargeDataRef, setupper);
+        return doLoadVendorLargeDataRefSelfList(xnewLRLs(vendorLargeDataRef), new LoadReferrerOption<VendorLargeDataRefCB, VendorLargeDataRef>().xinit(setupper));
+    }
+
+    /**
+     * {Refer to overload method that has an argument of the list of entity.} #beforejava8
      * @param vendorLargeDataRef The entity of vendorLargeDataRef. (NotNull)
      * @param loadReferrerOption The option of load-referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
@@ -447,7 +456,7 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
     }
 
     /**
-     * {Refer to overload method that has an argument of condition-bean setupper.}
+     * {Refer to overload method that has an argument of condition-bean setupper.} #beforejava8
      * @param vendorLargeDataRefList The entity list of vendorLargeDataRef. (NotNull)
      * @param loadReferrerOption The option of load-referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)

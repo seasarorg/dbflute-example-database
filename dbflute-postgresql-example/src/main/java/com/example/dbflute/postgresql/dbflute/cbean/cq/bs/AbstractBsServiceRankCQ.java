@@ -143,8 +143,9 @@ public abstract class AbstractBsServiceRankCQ extends AbstractConditionQuery {
      */
     public void existsMemberServiceList(SubQuery<MemberServiceCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        MemberServiceCB cb = new MemberServiceCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String pp = keepServiceRankCode_ExistsReferrer_MemberServiceList(cb.query()); // for saving query-value.
+        MemberServiceCB cb = new MemberServiceCB(); cb.xsetupForExistsReferrer(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepServiceRankCode_ExistsReferrer_MemberServiceList(cb.query());
         registerExistsReferrer(cb.query(), "service_rank_code", "service_rank_code", pp, "memberServiceList");
     }
     public abstract String keepServiceRankCode_ExistsReferrer_MemberServiceList(MemberServiceCQ sq);
@@ -164,8 +165,9 @@ public abstract class AbstractBsServiceRankCQ extends AbstractConditionQuery {
      */
     public void notExistsMemberServiceList(SubQuery<MemberServiceCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        MemberServiceCB cb = new MemberServiceCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String pp = keepServiceRankCode_NotExistsReferrer_MemberServiceList(cb.query()); // for saving query-value.
+        MemberServiceCB cb = new MemberServiceCB(); cb.xsetupForExistsReferrer(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepServiceRankCode_NotExistsReferrer_MemberServiceList(cb.query());
         registerNotExistsReferrer(cb.query(), "service_rank_code", "service_rank_code", pp, "memberServiceList");
     }
     public abstract String keepServiceRankCode_NotExistsReferrer_MemberServiceList(MemberServiceCQ sq);
@@ -178,8 +180,9 @@ public abstract class AbstractBsServiceRankCQ extends AbstractConditionQuery {
      */
     public void inScopeMemberServiceList(SubQuery<MemberServiceCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        MemberServiceCB cb = new MemberServiceCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String pp = keepServiceRankCode_InScopeRelation_MemberServiceList(cb.query()); // for saving query-value.
+        MemberServiceCB cb = new MemberServiceCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepServiceRankCode_InScopeRelation_MemberServiceList(cb.query());
         registerInScopeRelation(cb.query(), "service_rank_code", "service_rank_code", pp, "memberServiceList");
     }
     public abstract String keepServiceRankCode_InScopeRelation_MemberServiceList(MemberServiceCQ sq);
@@ -192,16 +195,18 @@ public abstract class AbstractBsServiceRankCQ extends AbstractConditionQuery {
      */
     public void notInScopeMemberServiceList(SubQuery<MemberServiceCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        MemberServiceCB cb = new MemberServiceCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String pp = keepServiceRankCode_NotInScopeRelation_MemberServiceList(cb.query()); // for saving query-value.
+        MemberServiceCB cb = new MemberServiceCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepServiceRankCode_NotInScopeRelation_MemberServiceList(cb.query());
         registerNotInScopeRelation(cb.query(), "service_rank_code", "service_rank_code", pp, "memberServiceList");
     }
     public abstract String keepServiceRankCode_NotInScopeRelation_MemberServiceList(MemberServiceCQ sq);
 
     public void xsderiveMemberServiceList(String fn, SubQuery<MemberServiceCB> sq, String al, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        MemberServiceCB cb = new MemberServiceCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
-        String pp = keepServiceRankCode_SpecifyDerivedReferrer_MemberServiceList(cb.query()); // for saving query-value.
+        MemberServiceCB cb = new MemberServiceCB(); cb.xsetupForDerivedReferrer(this);
+        try { lock(); sq.query(cb); } finally { unlock(); }
+        String pp = keepServiceRankCode_SpecifyDerivedReferrer_MemberServiceList(cb.query());
         registerSpecifyDerivedReferrer(fn, cb.query(), "service_rank_code", "service_rank_code", pp, "memberServiceList", al, op);
     }
     public abstract String keepServiceRankCode_SpecifyDerivedReferrer_MemberServiceList(MemberServiceCQ sq);
@@ -232,9 +237,9 @@ public abstract class AbstractBsServiceRankCQ extends AbstractConditionQuery {
     }
     public void xqderiveMemberServiceList(String fn, SubQuery<MemberServiceCB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        MemberServiceCB cb = new MemberServiceCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
-        String sqpp = keepServiceRankCode_QueryDerivedReferrer_MemberServiceList(cb.query()); // for saving query-value.
-        String prpp = keepServiceRankCode_QueryDerivedReferrer_MemberServiceListParameter(vl);
+        MemberServiceCB cb = new MemberServiceCB(); cb.xsetupForDerivedReferrer(this);
+        try { lock(); sq.query(cb); } finally { unlock(); }
+        String sqpp = keepServiceRankCode_QueryDerivedReferrer_MemberServiceList(cb.query()); String prpp = keepServiceRankCode_QueryDerivedReferrer_MemberServiceListParameter(vl);
         registerQueryDerivedReferrer(fn, cb.query(), "service_rank_code", "service_rank_code", sqpp, "memberServiceList", rd, vl, prpp, op);
     }
     public abstract String keepServiceRankCode_QueryDerivedReferrer_MemberServiceList(MemberServiceCQ sq);
@@ -825,9 +830,10 @@ public abstract class AbstractBsServiceRankCQ extends AbstractConditionQuery {
     //                                                                       =============
     public void xsmyselfDerive(String fn, SubQuery<ServiceRankCB> sq, String al, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        ServiceRankCB cb = new ServiceRankCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        ServiceRankCB cb = new ServiceRankCB(); cb.xsetupForDerivedReferrer(this);
+        try { lock(); sq.query(cb); } finally { unlock(); }
+        String pp = keepSpecifyMyselfDerived(cb.query());
         String pk = "service_rank_code";
-        String pp = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
         registerSpecifyMyselfDerived(fn, cb.query(), pk, pk, pp, "myselfDerived", al, op);
     }
     public abstract String keepSpecifyMyselfDerived(ServiceRankCQ sq);
@@ -860,8 +866,9 @@ public abstract class AbstractBsServiceRankCQ extends AbstractConditionQuery {
      */
     public void myselfExists(SubQuery<ServiceRankCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        ServiceRankCB cb = new ServiceRankCB(); cb.xsetupForMyselfExists(this); subQuery.query(cb);
-        String pp = keepMyselfExists(cb.query()); // for saving query-value.
+        ServiceRankCB cb = new ServiceRankCB(); cb.xsetupForMyselfExists(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepMyselfExists(cb.query());
         registerMyselfExists(cb.query(), pp);
     }
     public abstract String keepMyselfExists(ServiceRankCQ sq);
@@ -875,8 +882,9 @@ public abstract class AbstractBsServiceRankCQ extends AbstractConditionQuery {
      */
     public void myselfInScope(SubQuery<ServiceRankCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        ServiceRankCB cb = new ServiceRankCB(); cb.xsetupForMyselfInScope(this); subQuery.query(cb);
-        String pp = keepMyselfInScope(cb.query()); // for saving query-value.
+        ServiceRankCB cb = new ServiceRankCB(); cb.xsetupForMyselfInScope(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepMyselfInScope(cb.query());
         registerMyselfInScope(cb.query(), pp);
     }
     public abstract String keepMyselfInScope(ServiceRankCQ sq);
@@ -916,6 +924,37 @@ public abstract class AbstractBsServiceRankCQ extends AbstractConditionQuery {
     @Override
     protected org.seasar.dbflute.dbway.ExtensionOperand xgetPostgreSQLMatchOperand() {
         return DBFluteConfig.getInstance().getFullTextSearchOperand();
+    }
+
+    // ===================================================================================
+    //                                                                          Compatible
+    //                                                                          ==========
+    /**
+     * Order along the list of manual values. #beforejava8 <br />
+     * This function with Union is unsupported! <br />
+     * The order values are bound (treated as bind parameter).
+     * <pre>
+     * MemberCB cb = new MemberCB();
+     * List&lt;CDef.MemberStatus&gt; orderValueList = new ArrayList&lt;CDef.MemberStatus&gt;();
+     * orderValueList.add(CDef.MemberStatus.Withdrawal);
+     * orderValueList.add(CDef.MemberStatus.Formalized);
+     * orderValueList.add(CDef.MemberStatus.Provisional);
+     * cb.query().addOrderBy_MemberStatusCode_Asc().<span style="color: #DD4747">withManualOrder(orderValueList)</span>;
+     * <span style="color: #3F7E5E">// order by </span>
+     * <span style="color: #3F7E5E">//   case</span>
+     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'WDL' then 0</span>
+     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'FML' then 1</span>
+     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'PRV' then 2</span>
+     * <span style="color: #3F7E5E">//     else 3</span>
+     * <span style="color: #3F7E5E">//   end asc, ...</span>
+     * </pre>
+     * @param orderValueList The list of order values for manual ordering. (NotNull)
+     */
+    public void withManualOrder(List<? extends Object> orderValueList) { // is user public!
+        assertObjectNotNull("withManualOrder(orderValueList)", orderValueList);
+        final ManualOrderBean manualOrderBean = new ManualOrderBean();
+        manualOrderBean.acceptOrderValueList(orderValueList);
+        withManualOrder(manualOrderBean);
     }
 
     // ===================================================================================

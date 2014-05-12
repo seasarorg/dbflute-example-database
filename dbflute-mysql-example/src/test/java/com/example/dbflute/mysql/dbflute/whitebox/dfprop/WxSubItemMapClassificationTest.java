@@ -1,7 +1,9 @@
 package com.example.dbflute.mysql.dbflute.whitebox.dfprop;
 
+import java.util.List;
 import java.util.Map;
 
+import org.seasar.dbflute.helper.mapstring.MapListString;
 import org.seasar.dbflute.unit.core.PlainTestCase;
 
 import com.example.dbflute.mysql.dbflute.allcommon.CDef;
@@ -20,23 +22,22 @@ public class WxSubItemMapClassificationTest extends PlainTestCase {
             Map<String, Object> subItemMap = CDef.SubItemImplicit.Foo.subItemMap();
             assertEquals("value1<tag>", CDef.SubItemImplicit.Foo.regularStringItem());
             assertEquals("value1<tag>", subItemMap.get("regularStringItem"));
-            // TODO jflute
-            //Object value2 = subItemMap.get("key2");
-            //MapListString mapListString = new MapListString();
-            //List<Object> list = mapListString.generateList((String) value2);
-            //assertEquals("aa", list.get(0));
-            //assertEquals("bb", list.get(1));
-            //assertEquals("cc", list.get(2));
+            Object value2 = subItemMap.get("listItem");
+            log(value2);
+            MapListString mapListString = new MapListString();
+            List<Object> list = mapListString.generateList((String) value2);
+            assertEquals("aa", list.get(0));
+            assertEquals("bb", list.get(1));
+            assertEquals("cc", list.get(2));
         }
         {
-            // TODO jflute
-            //Map<String, Object> subItemMap = CDef.SubItemImplicit.Bar.subItemMap();
-            //Object value1 = subItemMap.get("key1");
-            //MapListString mapListString = new MapListString();
-            //Map<String, Object> map = mapListString.generateMap((String) value1);
-            //assertEquals("value11", map.get("key11"));
-            //Object value2 = subItemMap.get("key2");
-            //assertNull(value2);
+            Map<String, Object> subItemMap = CDef.SubItemImplicit.Bar.subItemMap();
+            Object value1 = subItemMap.get("mapItem");
+            MapListString mapListString = new MapListString();
+            Map<String, Object> map = mapListString.generateMap((String) value1);
+            assertEquals("value11", map.get("key11"));
+            Object value2 = subItemMap.get("key2");
+            assertNull(value2);
         }
     }
 

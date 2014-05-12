@@ -163,8 +163,9 @@ public abstract class AbstractBsWhiteQuotedCQ extends AbstractConditionQuery {
      */
     public void existsWhiteQuotedRefList(SubQuery<WhiteQuotedRefCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        WhiteQuotedRefCB cb = new WhiteQuotedRefCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String pp = keepSelect_ExistsReferrer_WhiteQuotedRefList(cb.query()); // for saving query-value.
+        WhiteQuotedRefCB cb = new WhiteQuotedRefCB(); cb.xsetupForExistsReferrer(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepSelect_ExistsReferrer_WhiteQuotedRefList(cb.query());
         registerExistsReferrer(cb.query(), "SELECT", "ORDER", pp, "whiteQuotedRefList");
     }
     public abstract String keepSelect_ExistsReferrer_WhiteQuotedRefList(WhiteQuotedRefCQ sq);
@@ -184,8 +185,9 @@ public abstract class AbstractBsWhiteQuotedCQ extends AbstractConditionQuery {
      */
     public void notExistsWhiteQuotedRefList(SubQuery<WhiteQuotedRefCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        WhiteQuotedRefCB cb = new WhiteQuotedRefCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String pp = keepSelect_NotExistsReferrer_WhiteQuotedRefList(cb.query()); // for saving query-value.
+        WhiteQuotedRefCB cb = new WhiteQuotedRefCB(); cb.xsetupForExistsReferrer(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepSelect_NotExistsReferrer_WhiteQuotedRefList(cb.query());
         registerNotExistsReferrer(cb.query(), "SELECT", "ORDER", pp, "whiteQuotedRefList");
     }
     public abstract String keepSelect_NotExistsReferrer_WhiteQuotedRefList(WhiteQuotedRefCQ sq);
@@ -198,8 +200,9 @@ public abstract class AbstractBsWhiteQuotedCQ extends AbstractConditionQuery {
      */
     public void inScopeWhiteQuotedRefList(SubQuery<WhiteQuotedRefCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        WhiteQuotedRefCB cb = new WhiteQuotedRefCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String pp = keepSelect_InScopeRelation_WhiteQuotedRefList(cb.query()); // for saving query-value.
+        WhiteQuotedRefCB cb = new WhiteQuotedRefCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepSelect_InScopeRelation_WhiteQuotedRefList(cb.query());
         registerInScopeRelation(cb.query(), "SELECT", "ORDER", pp, "whiteQuotedRefList");
     }
     public abstract String keepSelect_InScopeRelation_WhiteQuotedRefList(WhiteQuotedRefCQ sq);
@@ -212,16 +215,18 @@ public abstract class AbstractBsWhiteQuotedCQ extends AbstractConditionQuery {
      */
     public void notInScopeWhiteQuotedRefList(SubQuery<WhiteQuotedRefCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        WhiteQuotedRefCB cb = new WhiteQuotedRefCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String pp = keepSelect_NotInScopeRelation_WhiteQuotedRefList(cb.query()); // for saving query-value.
+        WhiteQuotedRefCB cb = new WhiteQuotedRefCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepSelect_NotInScopeRelation_WhiteQuotedRefList(cb.query());
         registerNotInScopeRelation(cb.query(), "SELECT", "ORDER", pp, "whiteQuotedRefList");
     }
     public abstract String keepSelect_NotInScopeRelation_WhiteQuotedRefList(WhiteQuotedRefCQ sq);
 
     public void xsderiveWhiteQuotedRefList(String fn, SubQuery<WhiteQuotedRefCB> sq, String al, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteQuotedRefCB cb = new WhiteQuotedRefCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
-        String pp = keepSelect_SpecifyDerivedReferrer_WhiteQuotedRefList(cb.query()); // for saving query-value.
+        WhiteQuotedRefCB cb = new WhiteQuotedRefCB(); cb.xsetupForDerivedReferrer(this);
+        try { lock(); sq.query(cb); } finally { unlock(); }
+        String pp = keepSelect_SpecifyDerivedReferrer_WhiteQuotedRefList(cb.query());
         registerSpecifyDerivedReferrer(fn, cb.query(), "SELECT", "ORDER", pp, "whiteQuotedRefList", al, op);
     }
     public abstract String keepSelect_SpecifyDerivedReferrer_WhiteQuotedRefList(WhiteQuotedRefCQ sq);
@@ -252,9 +257,9 @@ public abstract class AbstractBsWhiteQuotedCQ extends AbstractConditionQuery {
     }
     public void xqderiveWhiteQuotedRefList(String fn, SubQuery<WhiteQuotedRefCB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteQuotedRefCB cb = new WhiteQuotedRefCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
-        String sqpp = keepSelect_QueryDerivedReferrer_WhiteQuotedRefList(cb.query()); // for saving query-value.
-        String prpp = keepSelect_QueryDerivedReferrer_WhiteQuotedRefListParameter(vl);
+        WhiteQuotedRefCB cb = new WhiteQuotedRefCB(); cb.xsetupForDerivedReferrer(this);
+        try { lock(); sq.query(cb); } finally { unlock(); }
+        String sqpp = keepSelect_QueryDerivedReferrer_WhiteQuotedRefList(cb.query()); String prpp = keepSelect_QueryDerivedReferrer_WhiteQuotedRefListParameter(vl);
         registerQueryDerivedReferrer(fn, cb.query(), "SELECT", "ORDER", sqpp, "whiteQuotedRefList", rd, vl, prpp, op);
     }
     public abstract String keepSelect_QueryDerivedReferrer_WhiteQuotedRefList(WhiteQuotedRefCQ sq);
@@ -507,9 +512,10 @@ public abstract class AbstractBsWhiteQuotedCQ extends AbstractConditionQuery {
     //                                                                       =============
     public void xsmyselfDerive(String fn, SubQuery<WhiteQuotedCB> sq, String al, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteQuotedCB cb = new WhiteQuotedCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        WhiteQuotedCB cb = new WhiteQuotedCB(); cb.xsetupForDerivedReferrer(this);
+        try { lock(); sq.query(cb); } finally { unlock(); }
+        String pp = keepSpecifyMyselfDerived(cb.query());
         String pk = "SELECT";
-        String pp = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
         registerSpecifyMyselfDerived(fn, cb.query(), pk, pk, pp, "myselfDerived", al, op);
     }
     public abstract String keepSpecifyMyselfDerived(WhiteQuotedCQ sq);
@@ -542,8 +548,9 @@ public abstract class AbstractBsWhiteQuotedCQ extends AbstractConditionQuery {
      */
     public void myselfExists(SubQuery<WhiteQuotedCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        WhiteQuotedCB cb = new WhiteQuotedCB(); cb.xsetupForMyselfExists(this); subQuery.query(cb);
-        String pp = keepMyselfExists(cb.query()); // for saving query-value.
+        WhiteQuotedCB cb = new WhiteQuotedCB(); cb.xsetupForMyselfExists(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepMyselfExists(cb.query());
         registerMyselfExists(cb.query(), pp);
     }
     public abstract String keepMyselfExists(WhiteQuotedCQ sq);
@@ -557,8 +564,9 @@ public abstract class AbstractBsWhiteQuotedCQ extends AbstractConditionQuery {
      */
     public void myselfInScope(SubQuery<WhiteQuotedCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        WhiteQuotedCB cb = new WhiteQuotedCB(); cb.xsetupForMyselfInScope(this); subQuery.query(cb);
-        String pp = keepMyselfInScope(cb.query()); // for saving query-value.
+        WhiteQuotedCB cb = new WhiteQuotedCB(); cb.xsetupForMyselfInScope(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepMyselfInScope(cb.query());
         registerMyselfInScope(cb.query(), pp);
     }
     public abstract String keepMyselfInScope(WhiteQuotedCQ sq);
@@ -591,6 +599,37 @@ public abstract class AbstractBsWhiteQuotedCQ extends AbstractConditionQuery {
                     , String conditionValue
                     , org.seasar.dbflute.dbway.WayOfMySQL.FullTextSearchModifier modifier) {
         xdoMatchForMySQL(textColumnList, conditionValue, modifier);
+    }
+
+    // ===================================================================================
+    //                                                                          Compatible
+    //                                                                          ==========
+    /**
+     * Order along the list of manual values. #beforejava8 <br />
+     * This function with Union is unsupported! <br />
+     * The order values are bound (treated as bind parameter).
+     * <pre>
+     * MemberCB cb = new MemberCB();
+     * List&lt;CDef.MemberStatus&gt; orderValueList = new ArrayList&lt;CDef.MemberStatus&gt;();
+     * orderValueList.add(CDef.MemberStatus.Withdrawal);
+     * orderValueList.add(CDef.MemberStatus.Formalized);
+     * orderValueList.add(CDef.MemberStatus.Provisional);
+     * cb.query().addOrderBy_MemberStatusCode_Asc().<span style="color: #DD4747">withManualOrder(orderValueList)</span>;
+     * <span style="color: #3F7E5E">// order by </span>
+     * <span style="color: #3F7E5E">//   case</span>
+     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'WDL' then 0</span>
+     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'FML' then 1</span>
+     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'PRV' then 2</span>
+     * <span style="color: #3F7E5E">//     else 3</span>
+     * <span style="color: #3F7E5E">//   end asc, ...</span>
+     * </pre>
+     * @param orderValueList The list of order values for manual ordering. (NotNull)
+     */
+    public void withManualOrder(List<? extends Object> orderValueList) { // is user public!
+        assertObjectNotNull("withManualOrder(orderValueList)", orderValueList);
+        final ManualOrderBean manualOrderBean = new ManualOrderBean();
+        manualOrderBean.acceptOrderValueList(orderValueList);
+        withManualOrder(manualOrderBean);
     }
 
     // ===================================================================================

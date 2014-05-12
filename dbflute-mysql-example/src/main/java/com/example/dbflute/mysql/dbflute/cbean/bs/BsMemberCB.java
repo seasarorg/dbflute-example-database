@@ -233,8 +233,8 @@ public class BsMemberCB extends AbstractConditionBean {
      * @param unionQuery The query of 'union'. (NotNull)
      */
     public void union(UnionQuery<MemberCB> unionQuery) {
-        final MemberCB cb = new MemberCB();
-        cb.xsetupForUnion(this); xsyncUQ(cb); unionQuery.query(cb); xsaveUCB(cb);
+        final MemberCB cb = new MemberCB(); cb.xsetupForUnion(this); xsyncUQ(cb); 
+        try { lock(); unionQuery.query(cb); } finally { unlock(); } xsaveUCB(cb);
         final MemberCQ cq = cb.query(); query().xsetUnionQuery(cq);
     }
 
@@ -252,8 +252,8 @@ public class BsMemberCB extends AbstractConditionBean {
      * @param unionQuery The query of 'union all'. (NotNull)
      */
     public void unionAll(UnionQuery<MemberCB> unionQuery) {
-        final MemberCB cb = new MemberCB();
-        cb.xsetupForUnion(this); xsyncUQ(cb); unionQuery.query(cb); xsaveUCB(cb);
+        final MemberCB cb = new MemberCB(); cb.xsetupForUnion(this); xsyncUQ(cb);
+        try { lock(); unionQuery.query(cb); } finally { unlock(); } xsaveUCB(cb);
         final MemberCQ cq = cb.query(); query().xsetUnionAllQuery(cq);
     }
 
@@ -278,6 +278,7 @@ public class BsMemberCB extends AbstractConditionBean {
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
     public MemberStatusNss setupSelect_MemberStatus() {
+        assertSetupSelectPurpose("memberStatus");
         if (hasSpecifiedColumn()) { // if reverse call
             specify().columnMemberStatusCode();
         }
@@ -305,6 +306,7 @@ public class BsMemberCB extends AbstractConditionBean {
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
     public MemberAddressNss setupSelect_MemberAddressAsValid(final java.util.Date targetDate) {
+        assertSetupSelectPurpose("memberAddressAsValid");
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryMemberAddressAsValid(targetDate); } });
         if (_nssMemberAddressAsValid == null || !_nssMemberAddressAsValid.hasConditionQuery())
         { _nssMemberAddressAsValid = new MemberAddressNss(query().queryMemberAddressAsValid(targetDate)); }
@@ -329,6 +331,7 @@ public class BsMemberCB extends AbstractConditionBean {
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
     public MemberAddressNss setupSelect_MemberAddressAsValidBefore(final java.util.Date targetDate) {
+        assertSetupSelectPurpose("memberAddressAsValidBefore");
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryMemberAddressAsValidBefore(targetDate); } });
         if (_nssMemberAddressAsValidBefore == null || !_nssMemberAddressAsValidBefore.hasConditionQuery())
         { _nssMemberAddressAsValidBefore = new MemberAddressNss(query().queryMemberAddressAsValidBefore(targetDate)); }
@@ -353,6 +356,7 @@ public class BsMemberCB extends AbstractConditionBean {
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
     public MemberLoginNss setupSelect_MemberLoginAsLoginStatus(final com.example.dbflute.mysql.dbflute.allcommon.CDef.MemberStatus statusCode) {
+        assertSetupSelectPurpose("memberLoginAsLoginStatus");
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryMemberLoginAsLoginStatus(statusCode); } });
         if (_nssMemberLoginAsLoginStatus == null || !_nssMemberLoginAsLoginStatus.hasConditionQuery())
         { _nssMemberLoginAsLoginStatus = new MemberLoginNss(query().queryMemberLoginAsLoginStatus(statusCode)); }
@@ -378,6 +382,7 @@ public class BsMemberCB extends AbstractConditionBean {
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
     public MemberAddressNss setupSelect_MemberAddressAsIfComment(final java.util.Date targetDate, final com.example.dbflute.mysql.dbflute.allcommon.CDef.Region region) {
+        assertSetupSelectPurpose("memberAddressAsIfComment");
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryMemberAddressAsIfComment(targetDate, region); } });
         if (_nssMemberAddressAsIfComment == null || !_nssMemberAddressAsIfComment.hasConditionQuery())
         { _nssMemberAddressAsIfComment = new MemberAddressNss(query().queryMemberAddressAsIfComment(targetDate, region)); }
@@ -402,6 +407,7 @@ public class BsMemberCB extends AbstractConditionBean {
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
     public MemberAddressNss setupSelect_MemberAddressAsOnlyOneDate(final java.util.Date targetDate) {
+        assertSetupSelectPurpose("memberAddressAsOnlyOneDate");
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryMemberAddressAsOnlyOneDate(targetDate); } });
         if (_nssMemberAddressAsOnlyOneDate == null || !_nssMemberAddressAsOnlyOneDate.hasConditionQuery())
         { _nssMemberAddressAsOnlyOneDate = new MemberAddressNss(query().queryMemberAddressAsOnlyOneDate(targetDate)); }
@@ -425,6 +431,7 @@ public class BsMemberCB extends AbstractConditionBean {
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
     public MemberLoginNss setupSelect_MemberLoginAsLocalForeignOverTest() {
+        assertSetupSelectPurpose("memberLoginAsLocalForeignOverTest");
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryMemberLoginAsLocalForeignOverTest(); } });
         if (_nssMemberLoginAsLocalForeignOverTest == null || !_nssMemberLoginAsLocalForeignOverTest.hasConditionQuery())
         { _nssMemberLoginAsLocalForeignOverTest = new MemberLoginNss(query().queryMemberLoginAsLocalForeignOverTest()); }
@@ -448,6 +455,7 @@ public class BsMemberCB extends AbstractConditionBean {
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
     public MemberLoginNss setupSelect_MemberLoginAsForeignForeignEachOverTest() {
+        assertSetupSelectPurpose("memberLoginAsForeignForeignEachOverTest");
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryMemberLoginAsForeignForeignEachOverTest(); } });
         if (_nssMemberLoginAsForeignForeignEachOverTest == null || !_nssMemberLoginAsForeignForeignEachOverTest.hasConditionQuery())
         { _nssMemberLoginAsForeignForeignEachOverTest = new MemberLoginNss(query().queryMemberLoginAsForeignForeignEachOverTest()); }
@@ -471,6 +479,7 @@ public class BsMemberCB extends AbstractConditionBean {
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
     public MemberLoginNss setupSelect_MemberLoginAsForeignForeignOptimizedBasicOverTest() {
+        assertSetupSelectPurpose("memberLoginAsForeignForeignOptimizedBasicOverTest");
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryMemberLoginAsForeignForeignOptimizedBasicOverTest(); } });
         if (_nssMemberLoginAsForeignForeignOptimizedBasicOverTest == null || !_nssMemberLoginAsForeignForeignOptimizedBasicOverTest.hasConditionQuery())
         { _nssMemberLoginAsForeignForeignOptimizedBasicOverTest = new MemberLoginNss(query().queryMemberLoginAsForeignForeignOptimizedBasicOverTest()); }
@@ -494,6 +503,7 @@ public class BsMemberCB extends AbstractConditionBean {
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
     public MemberLoginNss setupSelect_MemberLoginAsForeignForeignOptimizedMarkOverTest() {
+        assertSetupSelectPurpose("memberLoginAsForeignForeignOptimizedMarkOverTest");
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryMemberLoginAsForeignForeignOptimizedMarkOverTest(); } });
         if (_nssMemberLoginAsForeignForeignOptimizedMarkOverTest == null || !_nssMemberLoginAsForeignForeignOptimizedMarkOverTest.hasConditionQuery())
         { _nssMemberLoginAsForeignForeignOptimizedMarkOverTest = new MemberLoginNss(query().queryMemberLoginAsForeignForeignOptimizedMarkOverTest()); }
@@ -518,6 +528,7 @@ public class BsMemberCB extends AbstractConditionBean {
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
     public MemberLoginNss setupSelect_MemberLoginAsForeignForeignOptimizedPartOverTest(final String memberName) {
+        assertSetupSelectPurpose("memberLoginAsForeignForeignOptimizedPartOverTest");
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryMemberLoginAsForeignForeignOptimizedPartOverTest(memberName); } });
         if (_nssMemberLoginAsForeignForeignOptimizedPartOverTest == null || !_nssMemberLoginAsForeignForeignOptimizedPartOverTest.hasConditionQuery())
         { _nssMemberLoginAsForeignForeignOptimizedPartOverTest = new MemberLoginNss(query().queryMemberLoginAsForeignForeignOptimizedPartOverTest(memberName)); }
@@ -541,6 +552,7 @@ public class BsMemberCB extends AbstractConditionBean {
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
     public MemberLoginNss setupSelect_MemberLoginAsForeignForeignOptimizedWholeOverTest() {
+        assertSetupSelectPurpose("memberLoginAsForeignForeignOptimizedWholeOverTest");
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryMemberLoginAsForeignForeignOptimizedWholeOverTest(); } });
         if (_nssMemberLoginAsForeignForeignOptimizedWholeOverTest == null || !_nssMemberLoginAsForeignForeignOptimizedWholeOverTest.hasConditionQuery())
         { _nssMemberLoginAsForeignForeignOptimizedWholeOverTest = new MemberLoginNss(query().queryMemberLoginAsForeignForeignOptimizedWholeOverTest()); }
@@ -565,6 +577,7 @@ public class BsMemberCB extends AbstractConditionBean {
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
     public MemberLoginNss setupSelect_MemberLoginAsForeignForeignParameterOverTest(final java.util.Date targetDate) {
+        assertSetupSelectPurpose("memberLoginAsForeignForeignParameterOverTest");
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryMemberLoginAsForeignForeignParameterOverTest(targetDate); } });
         if (_nssMemberLoginAsForeignForeignParameterOverTest == null || !_nssMemberLoginAsForeignForeignParameterOverTest.hasConditionQuery())
         { _nssMemberLoginAsForeignForeignParameterOverTest = new MemberLoginNss(query().queryMemberLoginAsForeignForeignParameterOverTest(targetDate)); }
@@ -588,6 +601,7 @@ public class BsMemberCB extends AbstractConditionBean {
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
     public MemberLoginNss setupSelect_MemberLoginAsForeignForeignVariousOverTest() {
+        assertSetupSelectPurpose("memberLoginAsForeignForeignVariousOverTest");
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryMemberLoginAsForeignForeignVariousOverTest(); } });
         if (_nssMemberLoginAsForeignForeignVariousOverTest == null || !_nssMemberLoginAsForeignForeignVariousOverTest.hasConditionQuery())
         { _nssMemberLoginAsForeignForeignVariousOverTest = new MemberLoginNss(query().queryMemberLoginAsForeignForeignVariousOverTest()); }
@@ -611,6 +625,7 @@ public class BsMemberCB extends AbstractConditionBean {
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
     public MemberLoginNss setupSelect_MemberLoginAsReferrerOverTest() {
+        assertSetupSelectPurpose("memberLoginAsReferrerOverTest");
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryMemberLoginAsReferrerOverTest(); } });
         if (_nssMemberLoginAsReferrerOverTest == null || !_nssMemberLoginAsReferrerOverTest.hasConditionQuery())
         { _nssMemberLoginAsReferrerOverTest = new MemberLoginNss(query().queryMemberLoginAsReferrerOverTest()); }
@@ -634,6 +649,7 @@ public class BsMemberCB extends AbstractConditionBean {
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
     public MemberLoginNss setupSelect_MemberLoginAsReferrerForeignOverTest() {
+        assertSetupSelectPurpose("memberLoginAsReferrerForeignOverTest");
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryMemberLoginAsReferrerForeignOverTest(); } });
         if (_nssMemberLoginAsReferrerForeignOverTest == null || !_nssMemberLoginAsReferrerForeignOverTest.hasConditionQuery())
         { _nssMemberLoginAsReferrerForeignOverTest = new MemberLoginNss(query().queryMemberLoginAsReferrerForeignOverTest()); }
@@ -658,6 +674,7 @@ public class BsMemberCB extends AbstractConditionBean {
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
     public MemberAddressNss setupSelect_MemberAddressAsFormattedBasic(final java.util.Date targetDate) {
+        assertSetupSelectPurpose("memberAddressAsFormattedBasic");
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryMemberAddressAsFormattedBasic(targetDate); } });
         if (_nssMemberAddressAsFormattedBasic == null || !_nssMemberAddressAsFormattedBasic.hasConditionQuery())
         { _nssMemberAddressAsFormattedBasic = new MemberAddressNss(query().queryMemberAddressAsFormattedBasic(targetDate)); }
@@ -682,6 +699,7 @@ public class BsMemberCB extends AbstractConditionBean {
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
     public MemberAddressNss setupSelect_MemberAddressAsFormattedLong(final java.util.Date targetDate) {
+        assertSetupSelectPurpose("memberAddressAsFormattedLong");
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryMemberAddressAsFormattedLong(targetDate); } });
         if (_nssMemberAddressAsFormattedLong == null || !_nssMemberAddressAsFormattedLong.hasConditionQuery())
         { _nssMemberAddressAsFormattedLong = new MemberAddressNss(query().queryMemberAddressAsFormattedLong(targetDate)); }
@@ -705,6 +723,7 @@ public class BsMemberCB extends AbstractConditionBean {
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
     public MemberLoginNss setupSelect_MemberLoginAsFormattedMany() {
+        assertSetupSelectPurpose("memberLoginAsFormattedMany");
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryMemberLoginAsFormattedMany(); } });
         if (_nssMemberLoginAsFormattedMany == null || !_nssMemberLoginAsFormattedMany.hasConditionQuery())
         { _nssMemberLoginAsFormattedMany = new MemberLoginNss(query().queryMemberLoginAsFormattedMany()); }
@@ -728,6 +747,7 @@ public class BsMemberCB extends AbstractConditionBean {
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
     public MemberLoginNss setupSelect_MemberLoginAsLatest() {
+        assertSetupSelectPurpose("memberLoginAsLatest");
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryMemberLoginAsLatest(); } });
         if (_nssMemberLoginAsLatest == null || !_nssMemberLoginAsLatest.hasConditionQuery())
         { _nssMemberLoginAsLatest = new MemberLoginNss(query().queryMemberLoginAsLatest()); }
@@ -751,6 +771,7 @@ public class BsMemberCB extends AbstractConditionBean {
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
     public MemberLoginNss setupSelect_MemberLoginAsOldest() {
+        assertSetupSelectPurpose("memberLoginAsOldest");
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryMemberLoginAsOldest(); } });
         if (_nssMemberLoginAsOldest == null || !_nssMemberLoginAsOldest.hasConditionQuery())
         { _nssMemberLoginAsOldest = new MemberLoginNss(query().queryMemberLoginAsOldest()); }
@@ -775,6 +796,7 @@ public class BsMemberCB extends AbstractConditionBean {
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
     public MemberSecurityNss setupSelect_MemberSecurityAsOne() {
+        assertSetupSelectPurpose("memberSecurityAsOne");
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryMemberSecurityAsOne(); } });
         if (_nssMemberSecurityAsOne == null || !_nssMemberSecurityAsOne.hasConditionQuery()) { _nssMemberSecurityAsOne = new MemberSecurityNss(query().queryMemberSecurityAsOne()); }
         return _nssMemberSecurityAsOne;
@@ -798,6 +820,7 @@ public class BsMemberCB extends AbstractConditionBean {
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
     public MemberServiceNss setupSelect_MemberServiceAsOne() {
+        assertSetupSelectPurpose("memberServiceAsOne");
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryMemberServiceAsOne(); } });
         if (_nssMemberServiceAsOne == null || !_nssMemberServiceAsOne.hasConditionQuery()) { _nssMemberServiceAsOne = new MemberServiceNss(query().queryMemberServiceAsOne()); }
         return _nssMemberServiceAsOne;
@@ -821,6 +844,7 @@ public class BsMemberCB extends AbstractConditionBean {
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
     public MemberWithdrawalNss setupSelect_MemberWithdrawalAsOne() {
+        assertSetupSelectPurpose("memberWithdrawalAsOne");
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryMemberWithdrawalAsOne(); } });
         if (_nssMemberWithdrawalAsOne == null || !_nssMemberWithdrawalAsOne.hasConditionQuery()) { _nssMemberWithdrawalAsOne = new MemberWithdrawalNss(query().queryMemberWithdrawalAsOne()); }
         return _nssMemberWithdrawalAsOne;
@@ -1739,8 +1763,8 @@ public class BsMemberCB extends AbstractConditionBean {
 
     // [DBFlute-0.9.5.3]
     // ===================================================================================
-    //                                                                         ColumnQuery
-    //                                                                         ===========
+    //                                                                        Column Query
+    //                                                                        ============
     /**
      * Set up column-query. {column1 = column2}
      * <pre>
@@ -1792,8 +1816,8 @@ public class BsMemberCB extends AbstractConditionBean {
 
     // [DBFlute-0.9.6.3]
     // ===================================================================================
-    //                                                                        OrScopeQuery
-    //                                                                        ============
+    //                                                                       OrScope Query
+    //                                                                       =============
     /**
      * Set up the query for or-scope. <br />
      * (Same-column-and-same-condition-key conditions are allowed in or-scope)

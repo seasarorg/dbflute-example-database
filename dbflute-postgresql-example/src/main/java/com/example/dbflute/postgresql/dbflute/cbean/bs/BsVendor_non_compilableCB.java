@@ -218,8 +218,8 @@ public class BsVendor_non_compilableCB extends AbstractConditionBean {
      * @param unionQuery The query of 'union'. (NotNull)
      */
     public void union(UnionQuery<Vendor_non_compilableCB> unionQuery) {
-        final Vendor_non_compilableCB cb = new Vendor_non_compilableCB();
-        cb.xsetupForUnion(this); xsyncUQ(cb); unionQuery.query(cb); xsaveUCB(cb);
+        final Vendor_non_compilableCB cb = new Vendor_non_compilableCB(); cb.xsetupForUnion(this); xsyncUQ(cb); 
+        try { lock(); unionQuery.query(cb); } finally { unlock(); } xsaveUCB(cb);
         final Vendor_non_compilableCQ cq = cb.query(); query().xsetUnionQuery(cq);
     }
 
@@ -237,8 +237,8 @@ public class BsVendor_non_compilableCB extends AbstractConditionBean {
      * @param unionQuery The query of 'union all'. (NotNull)
      */
     public void unionAll(UnionQuery<Vendor_non_compilableCB> unionQuery) {
-        final Vendor_non_compilableCB cb = new Vendor_non_compilableCB();
-        cb.xsetupForUnion(this); xsyncUQ(cb); unionQuery.query(cb); xsaveUCB(cb);
+        final Vendor_non_compilableCB cb = new Vendor_non_compilableCB(); cb.xsetupForUnion(this); xsyncUQ(cb);
+        try { lock(); unionQuery.query(cb); } finally { unlock(); } xsaveUCB(cb);
         final Vendor_non_compilableCQ cq = cb.query(); query().xsetUnionAllQuery(cq);
     }
 
@@ -277,6 +277,7 @@ public class BsVendor_non_compilableCB extends AbstractConditionBean {
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
     public Vendor_non_compilableNss setupSelect_Vendor_non_compilableSelf() {
+        assertSetupSelectPurpose("vendor_non_compilableSelf");
         if (hasSpecifiedColumn()) { // if reverse call
             specify().columnParent_id();
         }
@@ -414,8 +415,8 @@ public class BsVendor_non_compilableCB extends AbstractConditionBean {
 
     // [DBFlute-0.9.5.3]
     // ===================================================================================
-    //                                                                         ColumnQuery
-    //                                                                         ===========
+    //                                                                        Column Query
+    //                                                                        ============
     /**
      * Set up column-query. {column1 = column2}
      * <pre>
@@ -467,8 +468,8 @@ public class BsVendor_non_compilableCB extends AbstractConditionBean {
 
     // [DBFlute-0.9.6.3]
     // ===================================================================================
-    //                                                                        OrScopeQuery
-    //                                                                        ============
+    //                                                                       OrScope Query
+    //                                                                       =============
     /**
      * Set up the query for or-scope. <br />
      * (Same-column-and-same-condition-key conditions are allowed in or-scope)

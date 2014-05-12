@@ -7,6 +7,7 @@ import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
 import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.exception.*;
+import org.seasar.dbflute.optional.*;
 import org.seasar.dbflute.outsidesql.executor.*;
 import com.example.dbflute.postgresql.dbflute.exbhv.*;
 import com.example.dbflute.postgresql.dbflute.exentity.*;
@@ -120,7 +121,7 @@ public abstract class BsVendorUuidBarBhv extends AbstractBehaviorWritable {
     //                                                                       Entity Select
     //                                                                       =============
     /**
-     * Select the entity by the condition-bean. <br />
+     * Select the entity by the condition-bean. #beforejava8 <br />
      * <span style="color: #AD4747; font-size: 120%">The return might be null if no data, so you should have null check.</span> <br />
      * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, use selectEntityWithDeletedCheck().</span>
      * <pre>
@@ -146,6 +147,10 @@ public abstract class BsVendorUuidBarBhv extends AbstractBehaviorWritable {
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, VendorUuidBarCB>() {
             public List<ENTITY> callbackSelectList(VendorUuidBarCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
+    }
+
+    protected <ENTITY extends VendorUuidBar> OptionalEntity<ENTITY> doSelectOptionalEntity(VendorUuidBarCB cb, Class<ENTITY> tp) {
+        return createOptionalEntity(doSelectEntity(cb, tp), cb);
     }
 
     @Override
@@ -383,39 +388,12 @@ public abstract class BsVendorUuidBarBhv extends AbstractBehaviorWritable {
      *     public void setup(VendorUuidFooCB cb) {
      *         cb.setupSelect...();
      *         cb.query().setFoo...(value);
-     *         cb.query().addOrderBy_Bar...(); <span style="color: #3F7E5E">// basically you should order referrer list</span>
+     *         cb.query().addOrderBy_Bar...();
      *     }
-     * }); <span style="color: #3F7E5E">// you can load nested referrer from here by calling like '}).withNestedList(new ...)'</span>
-     * for (VendorUuidBar vendorUuidBar : vendorUuidBarList) {
-     *     ... = vendorUuidBar.<span style="color: #DD4747">getVendorUuidFooList()</span>;
-     * }
-     * </pre>
-     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
-     * The condition-bean, which the set-upper provides, has settings before callback as follows:
-     * <pre>
-     * cb.query().setBarId_InScope(pkList);
-     * cb.query().addOrderBy_BarId_Asc();
-     * </pre>
-     * @param vendorUuidBar The entity of vendorUuidBar. (NotNull)
-     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
-     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
-     */
-    public NestedReferrerLoader<VendorUuidFoo> loadVendorUuidFooList(VendorUuidBar vendorUuidBar, ConditionBeanSetupper<VendorUuidFooCB> conditionBeanSetupper) {
-        xassLRArg(vendorUuidBar, conditionBeanSetupper);
-        return loadVendorUuidFooList(xnewLRLs(vendorUuidBar), conditionBeanSetupper);
-    }
-
-    /**
-     * Load referrer of vendorUuidFooList by the set-upper of referrer. <br />
-     * vendor_uuid_foo by bar_id, named 'vendorUuidFooList'.
-     * <pre>
-     * vendorUuidBarBhv.<span style="color: #DD4747">loadVendorUuidFooList</span>(vendorUuidBarList, new ConditionBeanSetupper&lt;VendorUuidFooCB&gt;() {
-     *     public void setup(VendorUuidFooCB cb) {
-     *         cb.setupSelect...();
-     *         cb.query().setFoo...(value);
-     *         cb.query().addOrderBy_Bar...(); <span style="color: #3F7E5E">// basically you should order referrer list</span>
-     *     }
-     * }); <span style="color: #3F7E5E">// you can load nested referrer from here by calling like '}).withNestedList(new ...)'</span>
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
+     * <span style="color: #3F7E5E">//}).withNestedList(referrerList -&gt {</span>
+     * <span style="color: #3F7E5E">//    ...</span>
+     * <span style="color: #3F7E5E">//});</span>
      * for (VendorUuidBar vendorUuidBar : vendorUuidBarList) {
      *     ... = vendorUuidBar.<span style="color: #DD4747">getVendorUuidFooList()</span>;
      * }
@@ -427,16 +405,47 @@ public abstract class BsVendorUuidBarBhv extends AbstractBehaviorWritable {
      * cb.query().addOrderBy_BarId_Asc();
      * </pre>
      * @param vendorUuidBarList The entity list of vendorUuidBar. (NotNull)
-     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
+     * @param setupper The callback to set up referrer condition-bean for loading referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public NestedReferrerLoader<VendorUuidFoo> loadVendorUuidFooList(List<VendorUuidBar> vendorUuidBarList, ConditionBeanSetupper<VendorUuidFooCB> conditionBeanSetupper) {
-        xassLRArg(vendorUuidBarList, conditionBeanSetupper);
-        return loadVendorUuidFooList(vendorUuidBarList, new LoadReferrerOption<VendorUuidFooCB, VendorUuidFoo>().xinit(conditionBeanSetupper));
+    public NestedReferrerLoader<VendorUuidFoo> loadVendorUuidFooList(List<VendorUuidBar> vendorUuidBarList, ConditionBeanSetupper<VendorUuidFooCB> setupper) {
+        xassLRArg(vendorUuidBarList, setupper);
+        return doLoadVendorUuidFooList(vendorUuidBarList, new LoadReferrerOption<VendorUuidFooCB, VendorUuidFoo>().xinit(setupper));
     }
 
     /**
-     * {Refer to overload method that has an argument of the list of entity.}
+     * Load referrer of vendorUuidFooList by the set-upper of referrer. <br />
+     * vendor_uuid_foo by bar_id, named 'vendorUuidFooList'.
+     * <pre>
+     * vendorUuidBarBhv.<span style="color: #DD4747">loadVendorUuidFooList</span>(vendorUuidBarList, new ConditionBeanSetupper&lt;VendorUuidFooCB&gt;() {
+     *     public void setup(VendorUuidFooCB cb) {
+     *         cb.setupSelect...();
+     *         cb.query().setFoo...(value);
+     *         cb.query().addOrderBy_Bar...();
+     *     }
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
+     * <span style="color: #3F7E5E">//}).withNestedList(referrerList -&gt {</span>
+     * <span style="color: #3F7E5E">//    ...</span>
+     * <span style="color: #3F7E5E">//});</span>
+     * ... = vendorUuidBar.<span style="color: #DD4747">getVendorUuidFooList()</span>;
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
+     * <pre>
+     * cb.query().setBarId_InScope(pkList);
+     * cb.query().addOrderBy_BarId_Asc();
+     * </pre>
+     * @param vendorUuidBar The entity of vendorUuidBar. (NotNull)
+     * @param setupper The callback to set up referrer condition-bean for loading referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
+     */
+    public NestedReferrerLoader<VendorUuidFoo> loadVendorUuidFooList(VendorUuidBar vendorUuidBar, ConditionBeanSetupper<VendorUuidFooCB> setupper) {
+        xassLRArg(vendorUuidBar, setupper);
+        return doLoadVendorUuidFooList(xnewLRLs(vendorUuidBar), new LoadReferrerOption<VendorUuidFooCB, VendorUuidFoo>().xinit(setupper));
+    }
+
+    /**
+     * {Refer to overload method that has an argument of the list of entity.} #beforejava8
      * @param vendorUuidBar The entity of vendorUuidBar. (NotNull)
      * @param loadReferrerOption The option of load-referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
@@ -447,7 +456,7 @@ public abstract class BsVendorUuidBarBhv extends AbstractBehaviorWritable {
     }
 
     /**
-     * {Refer to overload method that has an argument of condition-bean setupper.}
+     * {Refer to overload method that has an argument of condition-bean setupper.} #beforejava8
      * @param vendorUuidBarList The entity list of vendorUuidBar. (NotNull)
      * @param loadReferrerOption The option of load-referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)

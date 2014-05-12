@@ -233,8 +233,8 @@ public class BsPurchaseCB extends AbstractConditionBean {
      * @param unionQuery The query of 'union'. (NotNull)
      */
     public void union(UnionQuery<PurchaseCB> unionQuery) {
-        final PurchaseCB cb = new PurchaseCB();
-        cb.xsetupForUnion(this); xsyncUQ(cb); unionQuery.query(cb); xsaveUCB(cb);
+        final PurchaseCB cb = new PurchaseCB(); cb.xsetupForUnion(this); xsyncUQ(cb); 
+        try { lock(); unionQuery.query(cb); } finally { unlock(); } xsaveUCB(cb);
         final PurchaseCQ cq = cb.query(); query().xsetUnionQuery(cq);
     }
 
@@ -252,8 +252,8 @@ public class BsPurchaseCB extends AbstractConditionBean {
      * @param unionQuery The query of 'union all'. (NotNull)
      */
     public void unionAll(UnionQuery<PurchaseCB> unionQuery) {
-        final PurchaseCB cb = new PurchaseCB();
-        cb.xsetupForUnion(this); xsyncUQ(cb); unionQuery.query(cb); xsaveUCB(cb);
+        final PurchaseCB cb = new PurchaseCB(); cb.xsetupForUnion(this); xsyncUQ(cb);
+        try { lock(); unionQuery.query(cb); } finally { unlock(); } xsaveUCB(cb);
         final PurchaseCQ cq = cb.query(); query().xsetUnionAllQuery(cq);
     }
 
@@ -278,6 +278,7 @@ public class BsPurchaseCB extends AbstractConditionBean {
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
     public MemberNss setupSelect_Member() {
+        assertSetupSelectPurpose("member");
         if (hasSpecifiedColumn()) { // if reverse call
             specify().columnMemberId();
         }
@@ -304,6 +305,7 @@ public class BsPurchaseCB extends AbstractConditionBean {
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
     public ProductNss setupSelect_Product() {
+        assertSetupSelectPurpose("product");
         if (hasSpecifiedColumn()) { // if reverse call
             specify().columnProductId();
         }
@@ -330,6 +332,7 @@ public class BsPurchaseCB extends AbstractConditionBean {
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
     public SummaryProductNss setupSelect_SummaryProduct() {
+        assertSetupSelectPurpose("summaryProduct");
         if (hasSpecifiedColumn()) { // if reverse call
             specify().columnProductId();
         }
@@ -356,6 +359,7 @@ public class BsPurchaseCB extends AbstractConditionBean {
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
     public SummaryWithdrawalNss setupSelect_SummaryWithdrawal() {
+        assertSetupSelectPurpose("summaryWithdrawal");
         if (hasSpecifiedColumn()) { // if reverse call
             specify().columnMemberId();
         }
@@ -382,6 +386,7 @@ public class BsPurchaseCB extends AbstractConditionBean {
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
     public WhiteNoPkRelationNss setupSelect_WhiteNoPkRelation() {
+        assertSetupSelectPurpose("whiteNoPkRelation");
         if (hasSpecifiedColumn()) { // if reverse call
             specify().columnProductId();
         }
@@ -408,6 +413,7 @@ public class BsPurchaseCB extends AbstractConditionBean {
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
     public PurchaseNss setupSelect_PurchaseSelf() {
+        assertSetupSelectPurpose("purchaseSelf");
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryPurchaseSelf(); } });
         if (_nssPurchaseSelf == null || !_nssPurchaseSelf.hasConditionQuery())
         { _nssPurchaseSelf = new PurchaseNss(query().queryPurchaseSelf()); }
@@ -432,6 +438,7 @@ public class BsPurchaseCB extends AbstractConditionBean {
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
     public MemberAddressNss setupSelect_MemberAddressAsSkipRelation(final java.util.Date targetDate) {
+        assertSetupSelectPurpose("memberAddressAsSkipRelation");
         if (hasSpecifiedColumn()) { // if reverse call
             specify().columnMemberId();
         }
@@ -459,6 +466,7 @@ public class BsPurchaseCB extends AbstractConditionBean {
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
     public WhitePurchaseReferrerNss setupSelect_WhitePurchaseReferrerAsOne() {
+        assertSetupSelectPurpose("whitePurchaseReferrerAsOne");
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryWhitePurchaseReferrerAsOne(); } });
         if (_nssWhitePurchaseReferrerAsOne == null || !_nssWhitePurchaseReferrerAsOne.hasConditionQuery()) { _nssWhitePurchaseReferrerAsOne = new WhitePurchaseReferrerNss(query().queryWhitePurchaseReferrerAsOne()); }
         return _nssWhitePurchaseReferrerAsOne;
@@ -482,6 +490,7 @@ public class BsPurchaseCB extends AbstractConditionBean {
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
     public PurchaseNss setupSelect_PurchaseSelfAsOne() {
+        assertSetupSelectPurpose("purchaseSelfAsOne");
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryPurchaseSelfAsOne(); } });
         if (_nssPurchaseSelfAsOne == null || !_nssPurchaseSelfAsOne.hasConditionQuery()) { _nssPurchaseSelfAsOne = new PurchaseNss(query().queryPurchaseSelfAsOne()); }
         return _nssPurchaseSelfAsOne;
@@ -858,8 +867,8 @@ public class BsPurchaseCB extends AbstractConditionBean {
 
     // [DBFlute-0.9.5.3]
     // ===================================================================================
-    //                                                                         ColumnQuery
-    //                                                                         ===========
+    //                                                                        Column Query
+    //                                                                        ============
     /**
      * Set up column-query. {column1 = column2}
      * <pre>
@@ -911,8 +920,8 @@ public class BsPurchaseCB extends AbstractConditionBean {
 
     // [DBFlute-0.9.6.3]
     // ===================================================================================
-    //                                                                        OrScopeQuery
-    //                                                                        ============
+    //                                                                       OrScope Query
+    //                                                                       =============
     /**
      * Set up the query for or-scope. <br />
      * (Same-column-and-same-condition-key conditions are allowed in or-scope)

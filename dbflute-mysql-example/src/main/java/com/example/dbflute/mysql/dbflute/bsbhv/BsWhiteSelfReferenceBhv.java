@@ -22,6 +22,7 @@ import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
 import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.exception.*;
+import org.seasar.dbflute.optional.*;
 import org.seasar.dbflute.outsidesql.executor.*;
 import com.example.dbflute.mysql.dbflute.exbhv.*;
 import com.example.dbflute.mysql.dbflute.exentity.*;
@@ -135,7 +136,7 @@ public abstract class BsWhiteSelfReferenceBhv extends AbstractBehaviorWritable {
     //                                                                       Entity Select
     //                                                                       =============
     /**
-     * Select the entity by the condition-bean. <br />
+     * Select the entity by the condition-bean. #beforejava8 <br />
      * <span style="color: #AD4747; font-size: 120%">The return might be null if no data, so you should have null check.</span> <br />
      * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, use selectEntityWithDeletedCheck().</span>
      * <pre>
@@ -161,6 +162,10 @@ public abstract class BsWhiteSelfReferenceBhv extends AbstractBehaviorWritable {
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, WhiteSelfReferenceCB>() {
             public List<ENTITY> callbackSelectList(WhiteSelfReferenceCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
+    }
+
+    protected <ENTITY extends WhiteSelfReference> OptionalEntity<ENTITY> doSelectOptionalEntity(WhiteSelfReferenceCB cb, Class<ENTITY> tp) {
+        return createOptionalEntity(doSelectEntity(cb, tp), cb);
     }
 
     @Override
@@ -398,39 +403,12 @@ public abstract class BsWhiteSelfReferenceBhv extends AbstractBehaviorWritable {
      *     public void setup(WhiteSelfReferenceCB cb) {
      *         cb.setupSelect...();
      *         cb.query().setFoo...(value);
-     *         cb.query().addOrderBy_Bar...(); <span style="color: #3F7E5E">// basically you should order referrer list</span>
+     *         cb.query().addOrderBy_Bar...();
      *     }
-     * }); <span style="color: #3F7E5E">// you can load nested referrer from here by calling like '}).withNestedList(new ...)'</span>
-     * for (WhiteSelfReference whiteSelfReference : whiteSelfReferenceList) {
-     *     ... = whiteSelfReference.<span style="color: #DD4747">getWhiteSelfReferenceSelfList()</span>;
-     * }
-     * </pre>
-     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
-     * The condition-bean, which the set-upper provides, has settings before callback as follows:
-     * <pre>
-     * cb.query().setParentId_InScope(pkList);
-     * cb.query().addOrderBy_ParentId_Asc();
-     * </pre>
-     * @param whiteSelfReference The entity of whiteSelfReference. (NotNull)
-     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
-     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
-     */
-    public NestedReferrerLoader<WhiteSelfReference> loadWhiteSelfReferenceSelfList(WhiteSelfReference whiteSelfReference, ConditionBeanSetupper<WhiteSelfReferenceCB> conditionBeanSetupper) {
-        xassLRArg(whiteSelfReference, conditionBeanSetupper);
-        return loadWhiteSelfReferenceSelfList(xnewLRLs(whiteSelfReference), conditionBeanSetupper);
-    }
-
-    /**
-     * Load referrer of whiteSelfReferenceSelfList by the set-upper of referrer. <br />
-     * white_self_reference by PARENT_ID, named 'whiteSelfReferenceSelfList'.
-     * <pre>
-     * whiteSelfReferenceBhv.<span style="color: #DD4747">loadWhiteSelfReferenceSelfList</span>(whiteSelfReferenceList, new ConditionBeanSetupper&lt;WhiteSelfReferenceCB&gt;() {
-     *     public void setup(WhiteSelfReferenceCB cb) {
-     *         cb.setupSelect...();
-     *         cb.query().setFoo...(value);
-     *         cb.query().addOrderBy_Bar...(); <span style="color: #3F7E5E">// basically you should order referrer list</span>
-     *     }
-     * }); <span style="color: #3F7E5E">// you can load nested referrer from here by calling like '}).withNestedList(new ...)'</span>
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
+     * <span style="color: #3F7E5E">//}).withNestedList(referrerList -&gt {</span>
+     * <span style="color: #3F7E5E">//    ...</span>
+     * <span style="color: #3F7E5E">//});</span>
      * for (WhiteSelfReference whiteSelfReference : whiteSelfReferenceList) {
      *     ... = whiteSelfReference.<span style="color: #DD4747">getWhiteSelfReferenceSelfList()</span>;
      * }
@@ -442,16 +420,47 @@ public abstract class BsWhiteSelfReferenceBhv extends AbstractBehaviorWritable {
      * cb.query().addOrderBy_ParentId_Asc();
      * </pre>
      * @param whiteSelfReferenceList The entity list of whiteSelfReference. (NotNull)
-     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
+     * @param setupper The callback to set up referrer condition-bean for loading referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public NestedReferrerLoader<WhiteSelfReference> loadWhiteSelfReferenceSelfList(List<WhiteSelfReference> whiteSelfReferenceList, ConditionBeanSetupper<WhiteSelfReferenceCB> conditionBeanSetupper) {
-        xassLRArg(whiteSelfReferenceList, conditionBeanSetupper);
-        return loadWhiteSelfReferenceSelfList(whiteSelfReferenceList, new LoadReferrerOption<WhiteSelfReferenceCB, WhiteSelfReference>().xinit(conditionBeanSetupper));
+    public NestedReferrerLoader<WhiteSelfReference> loadWhiteSelfReferenceSelfList(List<WhiteSelfReference> whiteSelfReferenceList, ConditionBeanSetupper<WhiteSelfReferenceCB> setupper) {
+        xassLRArg(whiteSelfReferenceList, setupper);
+        return doLoadWhiteSelfReferenceSelfList(whiteSelfReferenceList, new LoadReferrerOption<WhiteSelfReferenceCB, WhiteSelfReference>().xinit(setupper));
     }
 
     /**
-     * {Refer to overload method that has an argument of the list of entity.}
+     * Load referrer of whiteSelfReferenceSelfList by the set-upper of referrer. <br />
+     * white_self_reference by PARENT_ID, named 'whiteSelfReferenceSelfList'.
+     * <pre>
+     * whiteSelfReferenceBhv.<span style="color: #DD4747">loadWhiteSelfReferenceSelfList</span>(whiteSelfReferenceList, new ConditionBeanSetupper&lt;WhiteSelfReferenceCB&gt;() {
+     *     public void setup(WhiteSelfReferenceCB cb) {
+     *         cb.setupSelect...();
+     *         cb.query().setFoo...(value);
+     *         cb.query().addOrderBy_Bar...();
+     *     }
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
+     * <span style="color: #3F7E5E">//}).withNestedList(referrerList -&gt {</span>
+     * <span style="color: #3F7E5E">//    ...</span>
+     * <span style="color: #3F7E5E">//});</span>
+     * ... = whiteSelfReference.<span style="color: #DD4747">getWhiteSelfReferenceSelfList()</span>;
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
+     * <pre>
+     * cb.query().setParentId_InScope(pkList);
+     * cb.query().addOrderBy_ParentId_Asc();
+     * </pre>
+     * @param whiteSelfReference The entity of whiteSelfReference. (NotNull)
+     * @param setupper The callback to set up referrer condition-bean for loading referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
+     */
+    public NestedReferrerLoader<WhiteSelfReference> loadWhiteSelfReferenceSelfList(WhiteSelfReference whiteSelfReference, ConditionBeanSetupper<WhiteSelfReferenceCB> setupper) {
+        xassLRArg(whiteSelfReference, setupper);
+        return doLoadWhiteSelfReferenceSelfList(xnewLRLs(whiteSelfReference), new LoadReferrerOption<WhiteSelfReferenceCB, WhiteSelfReference>().xinit(setupper));
+    }
+
+    /**
+     * {Refer to overload method that has an argument of the list of entity.} #beforejava8
      * @param whiteSelfReference The entity of whiteSelfReference. (NotNull)
      * @param loadReferrerOption The option of load-referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
@@ -462,7 +471,7 @@ public abstract class BsWhiteSelfReferenceBhv extends AbstractBehaviorWritable {
     }
 
     /**
-     * {Refer to overload method that has an argument of condition-bean setupper.}
+     * {Refer to overload method that has an argument of condition-bean setupper.} #beforejava8
      * @param whiteSelfReferenceList The entity list of whiteSelfReference. (NotNull)
      * @param loadReferrerOption The option of load-referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)

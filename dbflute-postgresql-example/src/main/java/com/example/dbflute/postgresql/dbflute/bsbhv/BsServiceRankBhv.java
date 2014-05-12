@@ -7,6 +7,7 @@ import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
 import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.exception.*;
+import org.seasar.dbflute.optional.*;
 import org.seasar.dbflute.outsidesql.executor.*;
 import com.example.dbflute.postgresql.dbflute.exbhv.*;
 import com.example.dbflute.postgresql.dbflute.exentity.*;
@@ -120,7 +121,7 @@ public abstract class BsServiceRankBhv extends AbstractBehaviorWritable {
     //                                                                       Entity Select
     //                                                                       =============
     /**
-     * Select the entity by the condition-bean. <br />
+     * Select the entity by the condition-bean. #beforejava8 <br />
      * <span style="color: #AD4747; font-size: 120%">The return might be null if no data, so you should have null check.</span> <br />
      * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, use selectEntityWithDeletedCheck().</span>
      * <pre>
@@ -146,6 +147,10 @@ public abstract class BsServiceRankBhv extends AbstractBehaviorWritable {
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, ServiceRankCB>() {
             public List<ENTITY> callbackSelectList(ServiceRankCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
+    }
+
+    protected <ENTITY extends ServiceRank> OptionalEntity<ENTITY> doSelectOptionalEntity(ServiceRankCB cb, Class<ENTITY> tp) {
+        return createOptionalEntity(doSelectEntity(cb, tp), cb);
     }
 
     @Override
@@ -383,39 +388,12 @@ public abstract class BsServiceRankBhv extends AbstractBehaviorWritable {
      *     public void setup(MemberServiceCB cb) {
      *         cb.setupSelect...();
      *         cb.query().setFoo...(value);
-     *         cb.query().addOrderBy_Bar...(); <span style="color: #3F7E5E">// basically you should order referrer list</span>
+     *         cb.query().addOrderBy_Bar...();
      *     }
-     * }); <span style="color: #3F7E5E">// you can load nested referrer from here by calling like '}).withNestedList(new ...)'</span>
-     * for (ServiceRank serviceRank : serviceRankList) {
-     *     ... = serviceRank.<span style="color: #DD4747">getMemberServiceList()</span>;
-     * }
-     * </pre>
-     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
-     * The condition-bean, which the set-upper provides, has settings before callback as follows:
-     * <pre>
-     * cb.query().setServiceRankCode_InScope(pkList);
-     * cb.query().addOrderBy_ServiceRankCode_Asc();
-     * </pre>
-     * @param serviceRank The entity of serviceRank. (NotNull)
-     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
-     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
-     */
-    public NestedReferrerLoader<MemberService> loadMemberServiceList(ServiceRank serviceRank, ConditionBeanSetupper<MemberServiceCB> conditionBeanSetupper) {
-        xassLRArg(serviceRank, conditionBeanSetupper);
-        return loadMemberServiceList(xnewLRLs(serviceRank), conditionBeanSetupper);
-    }
-
-    /**
-     * Load referrer of memberServiceList by the set-upper of referrer. <br />
-     * (会員サービス)member_service by service_rank_code, named 'memberServiceList'.
-     * <pre>
-     * serviceRankBhv.<span style="color: #DD4747">loadMemberServiceList</span>(serviceRankList, new ConditionBeanSetupper&lt;MemberServiceCB&gt;() {
-     *     public void setup(MemberServiceCB cb) {
-     *         cb.setupSelect...();
-     *         cb.query().setFoo...(value);
-     *         cb.query().addOrderBy_Bar...(); <span style="color: #3F7E5E">// basically you should order referrer list</span>
-     *     }
-     * }); <span style="color: #3F7E5E">// you can load nested referrer from here by calling like '}).withNestedList(new ...)'</span>
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
+     * <span style="color: #3F7E5E">//}).withNestedList(referrerList -&gt {</span>
+     * <span style="color: #3F7E5E">//    ...</span>
+     * <span style="color: #3F7E5E">//});</span>
      * for (ServiceRank serviceRank : serviceRankList) {
      *     ... = serviceRank.<span style="color: #DD4747">getMemberServiceList()</span>;
      * }
@@ -427,16 +405,47 @@ public abstract class BsServiceRankBhv extends AbstractBehaviorWritable {
      * cb.query().addOrderBy_ServiceRankCode_Asc();
      * </pre>
      * @param serviceRankList The entity list of serviceRank. (NotNull)
-     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
+     * @param setupper The callback to set up referrer condition-bean for loading referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public NestedReferrerLoader<MemberService> loadMemberServiceList(List<ServiceRank> serviceRankList, ConditionBeanSetupper<MemberServiceCB> conditionBeanSetupper) {
-        xassLRArg(serviceRankList, conditionBeanSetupper);
-        return loadMemberServiceList(serviceRankList, new LoadReferrerOption<MemberServiceCB, MemberService>().xinit(conditionBeanSetupper));
+    public NestedReferrerLoader<MemberService> loadMemberServiceList(List<ServiceRank> serviceRankList, ConditionBeanSetupper<MemberServiceCB> setupper) {
+        xassLRArg(serviceRankList, setupper);
+        return doLoadMemberServiceList(serviceRankList, new LoadReferrerOption<MemberServiceCB, MemberService>().xinit(setupper));
     }
 
     /**
-     * {Refer to overload method that has an argument of the list of entity.}
+     * Load referrer of memberServiceList by the set-upper of referrer. <br />
+     * (会員サービス)member_service by service_rank_code, named 'memberServiceList'.
+     * <pre>
+     * serviceRankBhv.<span style="color: #DD4747">loadMemberServiceList</span>(serviceRankList, new ConditionBeanSetupper&lt;MemberServiceCB&gt;() {
+     *     public void setup(MemberServiceCB cb) {
+     *         cb.setupSelect...();
+     *         cb.query().setFoo...(value);
+     *         cb.query().addOrderBy_Bar...();
+     *     }
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
+     * <span style="color: #3F7E5E">//}).withNestedList(referrerList -&gt {</span>
+     * <span style="color: #3F7E5E">//    ...</span>
+     * <span style="color: #3F7E5E">//});</span>
+     * ... = serviceRank.<span style="color: #DD4747">getMemberServiceList()</span>;
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
+     * <pre>
+     * cb.query().setServiceRankCode_InScope(pkList);
+     * cb.query().addOrderBy_ServiceRankCode_Asc();
+     * </pre>
+     * @param serviceRank The entity of serviceRank. (NotNull)
+     * @param setupper The callback to set up referrer condition-bean for loading referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
+     */
+    public NestedReferrerLoader<MemberService> loadMemberServiceList(ServiceRank serviceRank, ConditionBeanSetupper<MemberServiceCB> setupper) {
+        xassLRArg(serviceRank, setupper);
+        return doLoadMemberServiceList(xnewLRLs(serviceRank), new LoadReferrerOption<MemberServiceCB, MemberService>().xinit(setupper));
+    }
+
+    /**
+     * {Refer to overload method that has an argument of the list of entity.} #beforejava8
      * @param serviceRank The entity of serviceRank. (NotNull)
      * @param loadReferrerOption The option of load-referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
@@ -447,7 +456,7 @@ public abstract class BsServiceRankBhv extends AbstractBehaviorWritable {
     }
 
     /**
-     * {Refer to overload method that has an argument of condition-bean setupper.}
+     * {Refer to overload method that has an argument of condition-bean setupper.} #beforejava8
      * @param serviceRankList The entity list of serviceRank. (NotNull)
      * @param loadReferrerOption The option of load-referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)

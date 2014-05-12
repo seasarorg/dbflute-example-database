@@ -235,8 +235,8 @@ public class BsWhiteAllInOneClsElementCB extends AbstractConditionBean {
      * @param unionQuery The query of 'union'. (NotNull)
      */
     public void union(UnionQuery<WhiteAllInOneClsElementCB> unionQuery) {
-        final WhiteAllInOneClsElementCB cb = new WhiteAllInOneClsElementCB();
-        cb.xsetupForUnion(this); xsyncUQ(cb); unionQuery.query(cb); xsaveUCB(cb);
+        final WhiteAllInOneClsElementCB cb = new WhiteAllInOneClsElementCB(); cb.xsetupForUnion(this); xsyncUQ(cb); 
+        try { lock(); unionQuery.query(cb); } finally { unlock(); } xsaveUCB(cb);
         final WhiteAllInOneClsElementCQ cq = cb.query(); query().xsetUnionQuery(cq);
     }
 
@@ -254,8 +254,8 @@ public class BsWhiteAllInOneClsElementCB extends AbstractConditionBean {
      * @param unionQuery The query of 'union all'. (NotNull)
      */
     public void unionAll(UnionQuery<WhiteAllInOneClsElementCB> unionQuery) {
-        final WhiteAllInOneClsElementCB cb = new WhiteAllInOneClsElementCB();
-        cb.xsetupForUnion(this); xsyncUQ(cb); unionQuery.query(cb); xsaveUCB(cb);
+        final WhiteAllInOneClsElementCB cb = new WhiteAllInOneClsElementCB(); cb.xsetupForUnion(this); xsyncUQ(cb);
+        try { lock(); unionQuery.query(cb); } finally { unlock(); } xsaveUCB(cb);
         final WhiteAllInOneClsElementCQ cq = cb.query(); query().xsetUnionAllQuery(cq);
     }
 
@@ -280,6 +280,7 @@ public class BsWhiteAllInOneClsElementCB extends AbstractConditionBean {
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
     public WhiteAllInOneClsCategoryNss setupSelect_WhiteAllInOneClsCategory() {
+        assertSetupSelectPurpose("whiteAllInOneClsCategory");
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryWhiteAllInOneClsCategory(); } });
         if (_nssWhiteAllInOneClsCategory == null || !_nssWhiteAllInOneClsCategory.hasConditionQuery())
         { _nssWhiteAllInOneClsCategory = new WhiteAllInOneClsCategoryNss(query().queryWhiteAllInOneClsCategory()); }
@@ -386,8 +387,8 @@ public class BsWhiteAllInOneClsElementCB extends AbstractConditionBean {
 
     // [DBFlute-0.9.5.3]
     // ===================================================================================
-    //                                                                         ColumnQuery
-    //                                                                         ===========
+    //                                                                        Column Query
+    //                                                                        ============
     /**
      * Set up column-query. {column1 = column2}
      * <pre>
@@ -439,8 +440,8 @@ public class BsWhiteAllInOneClsElementCB extends AbstractConditionBean {
 
     // [DBFlute-0.9.6.3]
     // ===================================================================================
-    //                                                                        OrScopeQuery
-    //                                                                        ============
+    //                                                                       OrScope Query
+    //                                                                       =============
     /**
      * Set up the query for or-scope. <br />
      * (Same-column-and-same-condition-key conditions are allowed in or-scope)

@@ -7,6 +7,7 @@ import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
 import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.exception.*;
+import org.seasar.dbflute.optional.*;
 import org.seasar.dbflute.outsidesql.executor.*;
 import com.example.dbflute.postgresql.dbflute.exbhv.*;
 import com.example.dbflute.postgresql.dbflute.exentity.*;
@@ -120,7 +121,7 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
     //                                                                       Entity Select
     //                                                                       =============
     /**
-     * Select the entity by the condition-bean. <br />
+     * Select the entity by the condition-bean. #beforejava8 <br />
      * <span style="color: #AD4747; font-size: 120%">The return might be null if no data, so you should have null check.</span> <br />
      * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, use selectEntityWithDeletedCheck().</span>
      * <pre>
@@ -146,6 +147,10 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, Vendor_non_compilableCB>() {
             public List<ENTITY> callbackSelectList(Vendor_non_compilableCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
+    }
+
+    protected <ENTITY extends Vendor_non_compilable> OptionalEntity<ENTITY> doSelectOptionalEntity(Vendor_non_compilableCB cb, Class<ENTITY> tp) {
+        return createOptionalEntity(doSelectEntity(cb, tp), cb);
     }
 
     @Override
@@ -383,39 +388,12 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
      *     public void setup(Vendor_non_compilableCB cb) {
      *         cb.setupSelect...();
      *         cb.query().setFoo...(value);
-     *         cb.query().addOrderBy_Bar...(); <span style="color: #3F7E5E">// basically you should order referrer list</span>
+     *         cb.query().addOrderBy_Bar...();
      *     }
-     * }); <span style="color: #3F7E5E">// you can load nested referrer from here by calling like '}).withNestedList(new ...)'</span>
-     * for (Vendor_non_compilable vendor_non_compilable : vendor_non_compilableList) {
-     *     ... = vendor_non_compilable.<span style="color: #DD4747">getVendor_non_compilableSelfList()</span>;
-     * }
-     * </pre>
-     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
-     * The condition-bean, which the set-upper provides, has settings before callback as follows:
-     * <pre>
-     * cb.query().setParent_id_InScope(pkList);
-     * cb.query().addOrderBy_Parent_id_Asc();
-     * </pre>
-     * @param vendor_non_compilable The entity of vendor_non_compilable. (NotNull)
-     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
-     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
-     */
-    public NestedReferrerLoader<Vendor_non_compilable> loadVendor_non_compilableSelfList(Vendor_non_compilable vendor_non_compilable, ConditionBeanSetupper<Vendor_non_compilableCB> conditionBeanSetupper) {
-        xassLRArg(vendor_non_compilable, conditionBeanSetupper);
-        return loadVendor_non_compilableSelfList(xnewLRLs(vendor_non_compilable), conditionBeanSetupper);
-    }
-
-    /**
-     * Load referrer of vendor_non_compilableSelfList by the set-upper of referrer. <br />
-     * VENDOR-NON COMPILABLE by PARENT-ID, named 'vendor_non_compilableSelfList'.
-     * <pre>
-     * vendor_non_compilableBhv.<span style="color: #DD4747">loadVendor_non_compilableSelfList</span>(vendor_non_compilableList, new ConditionBeanSetupper&lt;Vendor_non_compilableCB&gt;() {
-     *     public void setup(Vendor_non_compilableCB cb) {
-     *         cb.setupSelect...();
-     *         cb.query().setFoo...(value);
-     *         cb.query().addOrderBy_Bar...(); <span style="color: #3F7E5E">// basically you should order referrer list</span>
-     *     }
-     * }); <span style="color: #3F7E5E">// you can load nested referrer from here by calling like '}).withNestedList(new ...)'</span>
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
+     * <span style="color: #3F7E5E">//}).withNestedList(referrerList -&gt {</span>
+     * <span style="color: #3F7E5E">//    ...</span>
+     * <span style="color: #3F7E5E">//});</span>
      * for (Vendor_non_compilable vendor_non_compilable : vendor_non_compilableList) {
      *     ... = vendor_non_compilable.<span style="color: #DD4747">getVendor_non_compilableSelfList()</span>;
      * }
@@ -427,16 +405,47 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
      * cb.query().addOrderBy_Parent_id_Asc();
      * </pre>
      * @param vendor_non_compilableList The entity list of vendor_non_compilable. (NotNull)
-     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
+     * @param setupper The callback to set up referrer condition-bean for loading referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public NestedReferrerLoader<Vendor_non_compilable> loadVendor_non_compilableSelfList(List<Vendor_non_compilable> vendor_non_compilableList, ConditionBeanSetupper<Vendor_non_compilableCB> conditionBeanSetupper) {
-        xassLRArg(vendor_non_compilableList, conditionBeanSetupper);
-        return loadVendor_non_compilableSelfList(vendor_non_compilableList, new LoadReferrerOption<Vendor_non_compilableCB, Vendor_non_compilable>().xinit(conditionBeanSetupper));
+    public NestedReferrerLoader<Vendor_non_compilable> loadVendor_non_compilableSelfList(List<Vendor_non_compilable> vendor_non_compilableList, ConditionBeanSetupper<Vendor_non_compilableCB> setupper) {
+        xassLRArg(vendor_non_compilableList, setupper);
+        return doLoadVendor_non_compilableSelfList(vendor_non_compilableList, new LoadReferrerOption<Vendor_non_compilableCB, Vendor_non_compilable>().xinit(setupper));
     }
 
     /**
-     * {Refer to overload method that has an argument of the list of entity.}
+     * Load referrer of vendor_non_compilableSelfList by the set-upper of referrer. <br />
+     * VENDOR-NON COMPILABLE by PARENT-ID, named 'vendor_non_compilableSelfList'.
+     * <pre>
+     * vendor_non_compilableBhv.<span style="color: #DD4747">loadVendor_non_compilableSelfList</span>(vendor_non_compilableList, new ConditionBeanSetupper&lt;Vendor_non_compilableCB&gt;() {
+     *     public void setup(Vendor_non_compilableCB cb) {
+     *         cb.setupSelect...();
+     *         cb.query().setFoo...(value);
+     *         cb.query().addOrderBy_Bar...();
+     *     }
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
+     * <span style="color: #3F7E5E">//}).withNestedList(referrerList -&gt {</span>
+     * <span style="color: #3F7E5E">//    ...</span>
+     * <span style="color: #3F7E5E">//});</span>
+     * ... = vendor_non_compilable.<span style="color: #DD4747">getVendor_non_compilableSelfList()</span>;
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
+     * <pre>
+     * cb.query().setParent_id_InScope(pkList);
+     * cb.query().addOrderBy_Parent_id_Asc();
+     * </pre>
+     * @param vendor_non_compilable The entity of vendor_non_compilable. (NotNull)
+     * @param setupper The callback to set up referrer condition-bean for loading referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
+     */
+    public NestedReferrerLoader<Vendor_non_compilable> loadVendor_non_compilableSelfList(Vendor_non_compilable vendor_non_compilable, ConditionBeanSetupper<Vendor_non_compilableCB> setupper) {
+        xassLRArg(vendor_non_compilable, setupper);
+        return doLoadVendor_non_compilableSelfList(xnewLRLs(vendor_non_compilable), new LoadReferrerOption<Vendor_non_compilableCB, Vendor_non_compilable>().xinit(setupper));
+    }
+
+    /**
+     * {Refer to overload method that has an argument of the list of entity.} #beforejava8
      * @param vendor_non_compilable The entity of vendor_non_compilable. (NotNull)
      * @param loadReferrerOption The option of load-referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
@@ -447,7 +456,7 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
     }
 
     /**
-     * {Refer to overload method that has an argument of condition-bean setupper.}
+     * {Refer to overload method that has an argument of condition-bean setupper.} #beforejava8
      * @param vendor_non_compilableList The entity list of vendor_non_compilable. (NotNull)
      * @param loadReferrerOption The option of load-referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)

@@ -22,6 +22,7 @@ import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
 import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.exception.*;
+import org.seasar.dbflute.optional.*;
 import org.seasar.dbflute.outsidesql.executor.*;
 import com.example.dbflute.mysql.dbflute.exbhv.*;
 import com.example.dbflute.mysql.dbflute.exentity.*;
@@ -135,7 +136,7 @@ public abstract class BsWhiteCompoundPkBhv extends AbstractBehaviorWritable {
     //                                                                       Entity Select
     //                                                                       =============
     /**
-     * Select the entity by the condition-bean. <br />
+     * Select the entity by the condition-bean. #beforejava8 <br />
      * <span style="color: #AD4747; font-size: 120%">The return might be null if no data, so you should have null check.</span> <br />
      * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, use selectEntityWithDeletedCheck().</span>
      * <pre>
@@ -161,6 +162,10 @@ public abstract class BsWhiteCompoundPkBhv extends AbstractBehaviorWritable {
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, WhiteCompoundPkCB>() {
             public List<ENTITY> callbackSelectList(WhiteCompoundPkCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
+    }
+
+    protected <ENTITY extends WhiteCompoundPk> OptionalEntity<ENTITY> doSelectOptionalEntity(WhiteCompoundPkCB cb, Class<ENTITY> tp) {
+        return createOptionalEntity(doSelectEntity(cb, tp), cb);
     }
 
     @Override
@@ -400,39 +405,12 @@ public abstract class BsWhiteCompoundPkBhv extends AbstractBehaviorWritable {
      *     public void setup(WhiteCompoundPkRefCB cb) {
      *         cb.setupSelect...();
      *         cb.query().setFoo...(value);
-     *         cb.query().addOrderBy_Bar...(); <span style="color: #3F7E5E">// basically you should order referrer list</span>
+     *         cb.query().addOrderBy_Bar...();
      *     }
-     * }); <span style="color: #3F7E5E">// you can load nested referrer from here by calling like '}).withNestedList(new ...)'</span>
-     * for (WhiteCompoundPk whiteCompoundPk : whiteCompoundPkList) {
-     *     ... = whiteCompoundPk.<span style="color: #DD4747">getWhiteCompoundPkRefList()</span>;
-     * }
-     * </pre>
-     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
-     * The condition-bean, which the set-upper provides, has settings before callback as follows:
-     * <pre>
-     * cb.query().set[ForeignKey]_InScope(pkList);
-     * cb.query().addOrderBy_[ForeignKey]_Asc();
-     * </pre>
-     * @param whiteCompoundPk The entity of whiteCompoundPk. (NotNull)
-     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
-     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
-     */
-    public NestedReferrerLoader<WhiteCompoundPkRef> loadWhiteCompoundPkRefList(WhiteCompoundPk whiteCompoundPk, ConditionBeanSetupper<WhiteCompoundPkRefCB> conditionBeanSetupper) {
-        xassLRArg(whiteCompoundPk, conditionBeanSetupper);
-        return loadWhiteCompoundPkRefList(xnewLRLs(whiteCompoundPk), conditionBeanSetupper);
-    }
-
-    /**
-     * Load referrer of whiteCompoundPkRefList by the set-upper of referrer. <br />
-     * white_compound_pk_ref by REF_FIRST_ID, REF_SECOND_ID, named 'whiteCompoundPkRefList'.
-     * <pre>
-     * whiteCompoundPkBhv.<span style="color: #DD4747">loadWhiteCompoundPkRefList</span>(whiteCompoundPkList, new ConditionBeanSetupper&lt;WhiteCompoundPkRefCB&gt;() {
-     *     public void setup(WhiteCompoundPkRefCB cb) {
-     *         cb.setupSelect...();
-     *         cb.query().setFoo...(value);
-     *         cb.query().addOrderBy_Bar...(); <span style="color: #3F7E5E">// basically you should order referrer list</span>
-     *     }
-     * }); <span style="color: #3F7E5E">// you can load nested referrer from here by calling like '}).withNestedList(new ...)'</span>
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
+     * <span style="color: #3F7E5E">//}).withNestedList(referrerList -&gt {</span>
+     * <span style="color: #3F7E5E">//    ...</span>
+     * <span style="color: #3F7E5E">//});</span>
      * for (WhiteCompoundPk whiteCompoundPk : whiteCompoundPkList) {
      *     ... = whiteCompoundPk.<span style="color: #DD4747">getWhiteCompoundPkRefList()</span>;
      * }
@@ -444,16 +422,47 @@ public abstract class BsWhiteCompoundPkBhv extends AbstractBehaviorWritable {
      * cb.query().addOrderBy_[ForeignKey]_Asc();
      * </pre>
      * @param whiteCompoundPkList The entity list of whiteCompoundPk. (NotNull)
-     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
+     * @param setupper The callback to set up referrer condition-bean for loading referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public NestedReferrerLoader<WhiteCompoundPkRef> loadWhiteCompoundPkRefList(List<WhiteCompoundPk> whiteCompoundPkList, ConditionBeanSetupper<WhiteCompoundPkRefCB> conditionBeanSetupper) {
-        xassLRArg(whiteCompoundPkList, conditionBeanSetupper);
-        return loadWhiteCompoundPkRefList(whiteCompoundPkList, new LoadReferrerOption<WhiteCompoundPkRefCB, WhiteCompoundPkRef>().xinit(conditionBeanSetupper));
+    public NestedReferrerLoader<WhiteCompoundPkRef> loadWhiteCompoundPkRefList(List<WhiteCompoundPk> whiteCompoundPkList, ConditionBeanSetupper<WhiteCompoundPkRefCB> setupper) {
+        xassLRArg(whiteCompoundPkList, setupper);
+        return doLoadWhiteCompoundPkRefList(whiteCompoundPkList, new LoadReferrerOption<WhiteCompoundPkRefCB, WhiteCompoundPkRef>().xinit(setupper));
     }
 
     /**
-     * {Refer to overload method that has an argument of the list of entity.}
+     * Load referrer of whiteCompoundPkRefList by the set-upper of referrer. <br />
+     * white_compound_pk_ref by REF_FIRST_ID, REF_SECOND_ID, named 'whiteCompoundPkRefList'.
+     * <pre>
+     * whiteCompoundPkBhv.<span style="color: #DD4747">loadWhiteCompoundPkRefList</span>(whiteCompoundPkList, new ConditionBeanSetupper&lt;WhiteCompoundPkRefCB&gt;() {
+     *     public void setup(WhiteCompoundPkRefCB cb) {
+     *         cb.setupSelect...();
+     *         cb.query().setFoo...(value);
+     *         cb.query().addOrderBy_Bar...();
+     *     }
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
+     * <span style="color: #3F7E5E">//}).withNestedList(referrerList -&gt {</span>
+     * <span style="color: #3F7E5E">//    ...</span>
+     * <span style="color: #3F7E5E">//});</span>
+     * ... = whiteCompoundPk.<span style="color: #DD4747">getWhiteCompoundPkRefList()</span>;
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
+     * <pre>
+     * cb.query().set[ForeignKey]_InScope(pkList);
+     * cb.query().addOrderBy_[ForeignKey]_Asc();
+     * </pre>
+     * @param whiteCompoundPk The entity of whiteCompoundPk. (NotNull)
+     * @param setupper The callback to set up referrer condition-bean for loading referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
+     */
+    public NestedReferrerLoader<WhiteCompoundPkRef> loadWhiteCompoundPkRefList(WhiteCompoundPk whiteCompoundPk, ConditionBeanSetupper<WhiteCompoundPkRefCB> setupper) {
+        xassLRArg(whiteCompoundPk, setupper);
+        return doLoadWhiteCompoundPkRefList(xnewLRLs(whiteCompoundPk), new LoadReferrerOption<WhiteCompoundPkRefCB, WhiteCompoundPkRef>().xinit(setupper));
+    }
+
+    /**
+     * {Refer to overload method that has an argument of the list of entity.} #beforejava8
      * @param whiteCompoundPk The entity of whiteCompoundPk. (NotNull)
      * @param loadReferrerOption The option of load-referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
@@ -464,7 +473,7 @@ public abstract class BsWhiteCompoundPkBhv extends AbstractBehaviorWritable {
     }
 
     /**
-     * {Refer to overload method that has an argument of condition-bean setupper.}
+     * {Refer to overload method that has an argument of condition-bean setupper.} #beforejava8
      * @param whiteCompoundPkList The entity list of whiteCompoundPk. (NotNull)
      * @param loadReferrerOption The option of load-referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
@@ -532,39 +541,12 @@ public abstract class BsWhiteCompoundPkBhv extends AbstractBehaviorWritable {
      *     public void setup(WhiteCompoundPkRefManyCB cb) {
      *         cb.setupSelect...();
      *         cb.query().setFoo...(value);
-     *         cb.query().addOrderBy_Bar...(); <span style="color: #3F7E5E">// basically you should order referrer list</span>
+     *         cb.query().addOrderBy_Bar...();
      *     }
-     * }); <span style="color: #3F7E5E">// you can load nested referrer from here by calling like '}).withNestedList(new ...)'</span>
-     * for (WhiteCompoundPk whiteCompoundPk : whiteCompoundPkList) {
-     *     ... = whiteCompoundPk.<span style="color: #DD4747">getWhiteCompoundPkRefManyToPKList()</span>;
-     * }
-     * </pre>
-     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
-     * The condition-bean, which the set-upper provides, has settings before callback as follows:
-     * <pre>
-     * cb.query().set[ForeignKey]_InScope(pkList);
-     * cb.query().addOrderBy_[ForeignKey]_Asc();
-     * </pre>
-     * @param whiteCompoundPk The entity of whiteCompoundPk. (NotNull)
-     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
-     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
-     */
-    public NestedReferrerLoader<WhiteCompoundPkRefMany> loadWhiteCompoundPkRefManyToPKList(WhiteCompoundPk whiteCompoundPk, ConditionBeanSetupper<WhiteCompoundPkRefManyCB> conditionBeanSetupper) {
-        xassLRArg(whiteCompoundPk, conditionBeanSetupper);
-        return loadWhiteCompoundPkRefManyToPKList(xnewLRLs(whiteCompoundPk), conditionBeanSetupper);
-    }
-
-    /**
-     * Load referrer of whiteCompoundPkRefManyToPKList by the set-upper of referrer. <br />
-     * white_compound_pk_ref_many by REF_MANY_FIRST_ID, REF_MANY_SECOND_ID, named 'whiteCompoundPkRefManyToPKList'.
-     * <pre>
-     * whiteCompoundPkBhv.<span style="color: #DD4747">loadWhiteCompoundPkRefManyToPKList</span>(whiteCompoundPkList, new ConditionBeanSetupper&lt;WhiteCompoundPkRefManyCB&gt;() {
-     *     public void setup(WhiteCompoundPkRefManyCB cb) {
-     *         cb.setupSelect...();
-     *         cb.query().setFoo...(value);
-     *         cb.query().addOrderBy_Bar...(); <span style="color: #3F7E5E">// basically you should order referrer list</span>
-     *     }
-     * }); <span style="color: #3F7E5E">// you can load nested referrer from here by calling like '}).withNestedList(new ...)'</span>
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
+     * <span style="color: #3F7E5E">//}).withNestedList(referrerList -&gt {</span>
+     * <span style="color: #3F7E5E">//    ...</span>
+     * <span style="color: #3F7E5E">//});</span>
      * for (WhiteCompoundPk whiteCompoundPk : whiteCompoundPkList) {
      *     ... = whiteCompoundPk.<span style="color: #DD4747">getWhiteCompoundPkRefManyToPKList()</span>;
      * }
@@ -576,16 +558,47 @@ public abstract class BsWhiteCompoundPkBhv extends AbstractBehaviorWritable {
      * cb.query().addOrderBy_[ForeignKey]_Asc();
      * </pre>
      * @param whiteCompoundPkList The entity list of whiteCompoundPk. (NotNull)
-     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
+     * @param setupper The callback to set up referrer condition-bean for loading referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public NestedReferrerLoader<WhiteCompoundPkRefMany> loadWhiteCompoundPkRefManyToPKList(List<WhiteCompoundPk> whiteCompoundPkList, ConditionBeanSetupper<WhiteCompoundPkRefManyCB> conditionBeanSetupper) {
-        xassLRArg(whiteCompoundPkList, conditionBeanSetupper);
-        return loadWhiteCompoundPkRefManyToPKList(whiteCompoundPkList, new LoadReferrerOption<WhiteCompoundPkRefManyCB, WhiteCompoundPkRefMany>().xinit(conditionBeanSetupper));
+    public NestedReferrerLoader<WhiteCompoundPkRefMany> loadWhiteCompoundPkRefManyToPKList(List<WhiteCompoundPk> whiteCompoundPkList, ConditionBeanSetupper<WhiteCompoundPkRefManyCB> setupper) {
+        xassLRArg(whiteCompoundPkList, setupper);
+        return doLoadWhiteCompoundPkRefManyToPKList(whiteCompoundPkList, new LoadReferrerOption<WhiteCompoundPkRefManyCB, WhiteCompoundPkRefMany>().xinit(setupper));
     }
 
     /**
-     * {Refer to overload method that has an argument of the list of entity.}
+     * Load referrer of whiteCompoundPkRefManyToPKList by the set-upper of referrer. <br />
+     * white_compound_pk_ref_many by REF_MANY_FIRST_ID, REF_MANY_SECOND_ID, named 'whiteCompoundPkRefManyToPKList'.
+     * <pre>
+     * whiteCompoundPkBhv.<span style="color: #DD4747">loadWhiteCompoundPkRefManyToPKList</span>(whiteCompoundPkList, new ConditionBeanSetupper&lt;WhiteCompoundPkRefManyCB&gt;() {
+     *     public void setup(WhiteCompoundPkRefManyCB cb) {
+     *         cb.setupSelect...();
+     *         cb.query().setFoo...(value);
+     *         cb.query().addOrderBy_Bar...();
+     *     }
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
+     * <span style="color: #3F7E5E">//}).withNestedList(referrerList -&gt {</span>
+     * <span style="color: #3F7E5E">//    ...</span>
+     * <span style="color: #3F7E5E">//});</span>
+     * ... = whiteCompoundPk.<span style="color: #DD4747">getWhiteCompoundPkRefManyToPKList()</span>;
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
+     * <pre>
+     * cb.query().set[ForeignKey]_InScope(pkList);
+     * cb.query().addOrderBy_[ForeignKey]_Asc();
+     * </pre>
+     * @param whiteCompoundPk The entity of whiteCompoundPk. (NotNull)
+     * @param setupper The callback to set up referrer condition-bean for loading referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
+     */
+    public NestedReferrerLoader<WhiteCompoundPkRefMany> loadWhiteCompoundPkRefManyToPKList(WhiteCompoundPk whiteCompoundPk, ConditionBeanSetupper<WhiteCompoundPkRefManyCB> setupper) {
+        xassLRArg(whiteCompoundPk, setupper);
+        return doLoadWhiteCompoundPkRefManyToPKList(xnewLRLs(whiteCompoundPk), new LoadReferrerOption<WhiteCompoundPkRefManyCB, WhiteCompoundPkRefMany>().xinit(setupper));
+    }
+
+    /**
+     * {Refer to overload method that has an argument of the list of entity.} #beforejava8
      * @param whiteCompoundPk The entity of whiteCompoundPk. (NotNull)
      * @param loadReferrerOption The option of load-referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
@@ -596,7 +609,7 @@ public abstract class BsWhiteCompoundPkBhv extends AbstractBehaviorWritable {
     }
 
     /**
-     * {Refer to overload method that has an argument of condition-bean setupper.}
+     * {Refer to overload method that has an argument of condition-bean setupper.} #beforejava8
      * @param whiteCompoundPkList The entity list of whiteCompoundPk. (NotNull)
      * @param loadReferrerOption The option of load-referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)

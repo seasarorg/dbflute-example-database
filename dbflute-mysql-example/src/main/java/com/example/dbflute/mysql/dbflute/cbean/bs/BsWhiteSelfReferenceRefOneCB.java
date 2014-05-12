@@ -233,8 +233,8 @@ public class BsWhiteSelfReferenceRefOneCB extends AbstractConditionBean {
      * @param unionQuery The query of 'union'. (NotNull)
      */
     public void union(UnionQuery<WhiteSelfReferenceRefOneCB> unionQuery) {
-        final WhiteSelfReferenceRefOneCB cb = new WhiteSelfReferenceRefOneCB();
-        cb.xsetupForUnion(this); xsyncUQ(cb); unionQuery.query(cb); xsaveUCB(cb);
+        final WhiteSelfReferenceRefOneCB cb = new WhiteSelfReferenceRefOneCB(); cb.xsetupForUnion(this); xsyncUQ(cb); 
+        try { lock(); unionQuery.query(cb); } finally { unlock(); } xsaveUCB(cb);
         final WhiteSelfReferenceRefOneCQ cq = cb.query(); query().xsetUnionQuery(cq);
     }
 
@@ -252,8 +252,8 @@ public class BsWhiteSelfReferenceRefOneCB extends AbstractConditionBean {
      * @param unionQuery The query of 'union all'. (NotNull)
      */
     public void unionAll(UnionQuery<WhiteSelfReferenceRefOneCB> unionQuery) {
-        final WhiteSelfReferenceRefOneCB cb = new WhiteSelfReferenceRefOneCB();
-        cb.xsetupForUnion(this); xsyncUQ(cb); unionQuery.query(cb); xsaveUCB(cb);
+        final WhiteSelfReferenceRefOneCB cb = new WhiteSelfReferenceRefOneCB(); cb.xsetupForUnion(this); xsyncUQ(cb);
+        try { lock(); unionQuery.query(cb); } finally { unlock(); } xsaveUCB(cb);
         final WhiteSelfReferenceRefOneCQ cq = cb.query(); query().xsetUnionAllQuery(cq);
     }
 
@@ -278,6 +278,7 @@ public class BsWhiteSelfReferenceRefOneCB extends AbstractConditionBean {
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
     public WhiteSelfReferenceNss setupSelect_WhiteSelfReference() {
+        assertSetupSelectPurpose("whiteSelfReference");
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryWhiteSelfReference(); } });
         if (_nssWhiteSelfReference == null || !_nssWhiteSelfReference.hasConditionQuery())
         { _nssWhiteSelfReference = new WhiteSelfReferenceNss(query().queryWhiteSelfReference()); }
@@ -301,6 +302,7 @@ public class BsWhiteSelfReferenceRefOneCB extends AbstractConditionBean {
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
     public WhiteSelfReferenceNss setupSelect_WhiteSelfReferenceAsDirectParent() {
+        assertSetupSelectPurpose("whiteSelfReferenceAsDirectParent");
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryWhiteSelfReferenceAsDirectParent(); } });
         if (_nssWhiteSelfReferenceAsDirectParent == null || !_nssWhiteSelfReferenceAsDirectParent.hasConditionQuery())
         { _nssWhiteSelfReferenceAsDirectParent = new WhiteSelfReferenceNss(query().queryWhiteSelfReferenceAsDirectParent()); }
@@ -449,8 +451,8 @@ public class BsWhiteSelfReferenceRefOneCB extends AbstractConditionBean {
 
     // [DBFlute-0.9.5.3]
     // ===================================================================================
-    //                                                                         ColumnQuery
-    //                                                                         ===========
+    //                                                                        Column Query
+    //                                                                        ============
     /**
      * Set up column-query. {column1 = column2}
      * <pre>
@@ -502,8 +504,8 @@ public class BsWhiteSelfReferenceRefOneCB extends AbstractConditionBean {
 
     // [DBFlute-0.9.6.3]
     // ===================================================================================
-    //                                                                        OrScopeQuery
-    //                                                                        ============
+    //                                                                       OrScope Query
+    //                                                                       =============
     /**
      * Set up the query for or-scope. <br />
      * (Same-column-and-same-condition-key conditions are allowed in or-scope)

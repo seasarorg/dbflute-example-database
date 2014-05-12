@@ -164,8 +164,9 @@ public abstract class AbstractBsWhiteSelfReferenceRefOneCQ extends AbstractCondi
      */
     public void existsWhiteSelfReferenceByParentIdList(SubQuery<WhiteSelfReferenceCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        WhiteSelfReferenceCB cb = new WhiteSelfReferenceCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String pp = keepSelfReferenceId_ExistsReferrer_WhiteSelfReferenceByParentIdList(cb.query()); // for saving query-value.
+        WhiteSelfReferenceCB cb = new WhiteSelfReferenceCB(); cb.xsetupForExistsReferrer(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepSelfReferenceId_ExistsReferrer_WhiteSelfReferenceByParentIdList(cb.query());
         registerExistsReferrer(cb.query(), "SELF_REFERENCE_ID", "PARENT_ID", pp, "whiteSelfReferenceByParentIdList");
     }
     public abstract String keepSelfReferenceId_ExistsReferrer_WhiteSelfReferenceByParentIdList(WhiteSelfReferenceCQ sq);
@@ -186,8 +187,9 @@ public abstract class AbstractBsWhiteSelfReferenceRefOneCQ extends AbstractCondi
      */
     public void notExistsWhiteSelfReferenceByParentIdList(SubQuery<WhiteSelfReferenceCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        WhiteSelfReferenceCB cb = new WhiteSelfReferenceCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String pp = keepSelfReferenceId_NotExistsReferrer_WhiteSelfReferenceByParentIdList(cb.query()); // for saving query-value.
+        WhiteSelfReferenceCB cb = new WhiteSelfReferenceCB(); cb.xsetupForExistsReferrer(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepSelfReferenceId_NotExistsReferrer_WhiteSelfReferenceByParentIdList(cb.query());
         registerNotExistsReferrer(cb.query(), "SELF_REFERENCE_ID", "PARENT_ID", pp, "whiteSelfReferenceByParentIdList");
     }
     public abstract String keepSelfReferenceId_NotExistsReferrer_WhiteSelfReferenceByParentIdList(WhiteSelfReferenceCQ sq);
@@ -200,8 +202,9 @@ public abstract class AbstractBsWhiteSelfReferenceRefOneCQ extends AbstractCondi
      */
     public void inScopeWhiteSelfReference(SubQuery<WhiteSelfReferenceCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        WhiteSelfReferenceCB cb = new WhiteSelfReferenceCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String pp = keepSelfReferenceId_InScopeRelation_WhiteSelfReference(cb.query()); // for saving query-value.
+        WhiteSelfReferenceCB cb = new WhiteSelfReferenceCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepSelfReferenceId_InScopeRelation_WhiteSelfReference(cb.query());
         registerInScopeRelation(cb.query(), "SELF_REFERENCE_ID", "SELF_REFERENCE_ID", pp, "whiteSelfReference");
     }
     public abstract String keepSelfReferenceId_InScopeRelation_WhiteSelfReference(WhiteSelfReferenceCQ sq);
@@ -215,8 +218,9 @@ public abstract class AbstractBsWhiteSelfReferenceRefOneCQ extends AbstractCondi
      */
     public void inScopeWhiteSelfReferenceByParentIdList(SubQuery<WhiteSelfReferenceCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        WhiteSelfReferenceCB cb = new WhiteSelfReferenceCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String pp = keepSelfReferenceId_InScopeRelation_WhiteSelfReferenceByParentIdList(cb.query()); // for saving query-value.
+        WhiteSelfReferenceCB cb = new WhiteSelfReferenceCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepSelfReferenceId_InScopeRelation_WhiteSelfReferenceByParentIdList(cb.query());
         registerInScopeRelation(cb.query(), "SELF_REFERENCE_ID", "PARENT_ID", pp, "whiteSelfReferenceByParentIdList");
     }
     public abstract String keepSelfReferenceId_InScopeRelation_WhiteSelfReferenceByParentIdList(WhiteSelfReferenceCQ sq);
@@ -229,8 +233,9 @@ public abstract class AbstractBsWhiteSelfReferenceRefOneCQ extends AbstractCondi
      */
     public void notInScopeWhiteSelfReference(SubQuery<WhiteSelfReferenceCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        WhiteSelfReferenceCB cb = new WhiteSelfReferenceCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String pp = keepSelfReferenceId_NotInScopeRelation_WhiteSelfReference(cb.query()); // for saving query-value.
+        WhiteSelfReferenceCB cb = new WhiteSelfReferenceCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepSelfReferenceId_NotInScopeRelation_WhiteSelfReference(cb.query());
         registerNotInScopeRelation(cb.query(), "SELF_REFERENCE_ID", "SELF_REFERENCE_ID", pp, "whiteSelfReference");
     }
     public abstract String keepSelfReferenceId_NotInScopeRelation_WhiteSelfReference(WhiteSelfReferenceCQ sq);
@@ -244,16 +249,18 @@ public abstract class AbstractBsWhiteSelfReferenceRefOneCQ extends AbstractCondi
      */
     public void notInScopeWhiteSelfReferenceByParentIdList(SubQuery<WhiteSelfReferenceCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        WhiteSelfReferenceCB cb = new WhiteSelfReferenceCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String pp = keepSelfReferenceId_NotInScopeRelation_WhiteSelfReferenceByParentIdList(cb.query()); // for saving query-value.
+        WhiteSelfReferenceCB cb = new WhiteSelfReferenceCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepSelfReferenceId_NotInScopeRelation_WhiteSelfReferenceByParentIdList(cb.query());
         registerNotInScopeRelation(cb.query(), "SELF_REFERENCE_ID", "PARENT_ID", pp, "whiteSelfReferenceByParentIdList");
     }
     public abstract String keepSelfReferenceId_NotInScopeRelation_WhiteSelfReferenceByParentIdList(WhiteSelfReferenceCQ sq);
 
     public void xsderiveWhiteSelfReferenceByParentIdList(String fn, SubQuery<WhiteSelfReferenceCB> sq, String al, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteSelfReferenceCB cb = new WhiteSelfReferenceCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
-        String pp = keepSelfReferenceId_SpecifyDerivedReferrer_WhiteSelfReferenceByParentIdList(cb.query()); // for saving query-value.
+        WhiteSelfReferenceCB cb = new WhiteSelfReferenceCB(); cb.xsetupForDerivedReferrer(this);
+        try { lock(); sq.query(cb); } finally { unlock(); }
+        String pp = keepSelfReferenceId_SpecifyDerivedReferrer_WhiteSelfReferenceByParentIdList(cb.query());
         registerSpecifyDerivedReferrer(fn, cb.query(), "SELF_REFERENCE_ID", "PARENT_ID", pp, "whiteSelfReferenceByParentIdList", al, op);
     }
     public abstract String keepSelfReferenceId_SpecifyDerivedReferrer_WhiteSelfReferenceByParentIdList(WhiteSelfReferenceCQ sq);
@@ -285,9 +292,9 @@ public abstract class AbstractBsWhiteSelfReferenceRefOneCQ extends AbstractCondi
     }
     public void xqderiveWhiteSelfReferenceByParentIdList(String fn, SubQuery<WhiteSelfReferenceCB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteSelfReferenceCB cb = new WhiteSelfReferenceCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
-        String sqpp = keepSelfReferenceId_QueryDerivedReferrer_WhiteSelfReferenceByParentIdList(cb.query()); // for saving query-value.
-        String prpp = keepSelfReferenceId_QueryDerivedReferrer_WhiteSelfReferenceByParentIdListParameter(vl);
+        WhiteSelfReferenceCB cb = new WhiteSelfReferenceCB(); cb.xsetupForDerivedReferrer(this);
+        try { lock(); sq.query(cb); } finally { unlock(); }
+        String sqpp = keepSelfReferenceId_QueryDerivedReferrer_WhiteSelfReferenceByParentIdList(cb.query()); String prpp = keepSelfReferenceId_QueryDerivedReferrer_WhiteSelfReferenceByParentIdListParameter(vl);
         registerQueryDerivedReferrer(fn, cb.query(), "SELF_REFERENCE_ID", "PARENT_ID", sqpp, "whiteSelfReferenceByParentIdList", rd, vl, prpp, op);
     }
     public abstract String keepSelfReferenceId_QueryDerivedReferrer_WhiteSelfReferenceByParentIdList(WhiteSelfReferenceCQ sq);
@@ -522,9 +529,10 @@ public abstract class AbstractBsWhiteSelfReferenceRefOneCQ extends AbstractCondi
     //                                                                       =============
     public void xsmyselfDerive(String fn, SubQuery<WhiteSelfReferenceRefOneCB> sq, String al, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteSelfReferenceRefOneCB cb = new WhiteSelfReferenceRefOneCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        WhiteSelfReferenceRefOneCB cb = new WhiteSelfReferenceRefOneCB(); cb.xsetupForDerivedReferrer(this);
+        try { lock(); sq.query(cb); } finally { unlock(); }
+        String pp = keepSpecifyMyselfDerived(cb.query());
         String pk = "SELF_REFERENCE_ID";
-        String pp = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
         registerSpecifyMyselfDerived(fn, cb.query(), pk, pk, pp, "myselfDerived", al, op);
     }
     public abstract String keepSpecifyMyselfDerived(WhiteSelfReferenceRefOneCQ sq);
@@ -557,8 +565,9 @@ public abstract class AbstractBsWhiteSelfReferenceRefOneCQ extends AbstractCondi
      */
     public void myselfExists(SubQuery<WhiteSelfReferenceRefOneCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        WhiteSelfReferenceRefOneCB cb = new WhiteSelfReferenceRefOneCB(); cb.xsetupForMyselfExists(this); subQuery.query(cb);
-        String pp = keepMyselfExists(cb.query()); // for saving query-value.
+        WhiteSelfReferenceRefOneCB cb = new WhiteSelfReferenceRefOneCB(); cb.xsetupForMyselfExists(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepMyselfExists(cb.query());
         registerMyselfExists(cb.query(), pp);
     }
     public abstract String keepMyselfExists(WhiteSelfReferenceRefOneCQ sq);
@@ -572,8 +581,9 @@ public abstract class AbstractBsWhiteSelfReferenceRefOneCQ extends AbstractCondi
      */
     public void myselfInScope(SubQuery<WhiteSelfReferenceRefOneCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        WhiteSelfReferenceRefOneCB cb = new WhiteSelfReferenceRefOneCB(); cb.xsetupForMyselfInScope(this); subQuery.query(cb);
-        String pp = keepMyselfInScope(cb.query()); // for saving query-value.
+        WhiteSelfReferenceRefOneCB cb = new WhiteSelfReferenceRefOneCB(); cb.xsetupForMyselfInScope(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepMyselfInScope(cb.query());
         registerMyselfInScope(cb.query(), pp);
     }
     public abstract String keepMyselfInScope(WhiteSelfReferenceRefOneCQ sq);
@@ -606,6 +616,37 @@ public abstract class AbstractBsWhiteSelfReferenceRefOneCQ extends AbstractCondi
                     , String conditionValue
                     , org.seasar.dbflute.dbway.WayOfMySQL.FullTextSearchModifier modifier) {
         xdoMatchForMySQL(textColumnList, conditionValue, modifier);
+    }
+
+    // ===================================================================================
+    //                                                                          Compatible
+    //                                                                          ==========
+    /**
+     * Order along the list of manual values. #beforejava8 <br />
+     * This function with Union is unsupported! <br />
+     * The order values are bound (treated as bind parameter).
+     * <pre>
+     * MemberCB cb = new MemberCB();
+     * List&lt;CDef.MemberStatus&gt; orderValueList = new ArrayList&lt;CDef.MemberStatus&gt;();
+     * orderValueList.add(CDef.MemberStatus.Withdrawal);
+     * orderValueList.add(CDef.MemberStatus.Formalized);
+     * orderValueList.add(CDef.MemberStatus.Provisional);
+     * cb.query().addOrderBy_MemberStatusCode_Asc().<span style="color: #DD4747">withManualOrder(orderValueList)</span>;
+     * <span style="color: #3F7E5E">// order by </span>
+     * <span style="color: #3F7E5E">//   case</span>
+     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'WDL' then 0</span>
+     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'FML' then 1</span>
+     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'PRV' then 2</span>
+     * <span style="color: #3F7E5E">//     else 3</span>
+     * <span style="color: #3F7E5E">//   end asc, ...</span>
+     * </pre>
+     * @param orderValueList The list of order values for manual ordering. (NotNull)
+     */
+    public void withManualOrder(List<? extends Object> orderValueList) { // is user public!
+        assertObjectNotNull("withManualOrder(orderValueList)", orderValueList);
+        final ManualOrderBean manualOrderBean = new ManualOrderBean();
+        manualOrderBean.acceptOrderValueList(orderValueList);
+        withManualOrder(manualOrderBean);
     }
 
     // ===================================================================================

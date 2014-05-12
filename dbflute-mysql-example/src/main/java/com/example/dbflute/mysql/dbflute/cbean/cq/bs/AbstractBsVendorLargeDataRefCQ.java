@@ -163,8 +163,9 @@ public abstract class AbstractBsVendorLargeDataRefCQ extends AbstractConditionQu
      */
     public void existsVendorLargeDataRefSelfList(SubQuery<VendorLargeDataRefCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        VendorLargeDataRefCB cb = new VendorLargeDataRefCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String pp = keepLargeDataRefId_ExistsReferrer_VendorLargeDataRefSelfList(cb.query()); // for saving query-value.
+        VendorLargeDataRefCB cb = new VendorLargeDataRefCB(); cb.xsetupForExistsReferrer(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepLargeDataRefId_ExistsReferrer_VendorLargeDataRefSelfList(cb.query());
         registerExistsReferrer(cb.query(), "LARGE_DATA_REF_ID", "SELF_PARENT_ID", pp, "vendorLargeDataRefSelfList");
     }
     public abstract String keepLargeDataRefId_ExistsReferrer_VendorLargeDataRefSelfList(VendorLargeDataRefCQ sq);
@@ -184,8 +185,9 @@ public abstract class AbstractBsVendorLargeDataRefCQ extends AbstractConditionQu
      */
     public void notExistsVendorLargeDataRefSelfList(SubQuery<VendorLargeDataRefCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        VendorLargeDataRefCB cb = new VendorLargeDataRefCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String pp = keepLargeDataRefId_NotExistsReferrer_VendorLargeDataRefSelfList(cb.query()); // for saving query-value.
+        VendorLargeDataRefCB cb = new VendorLargeDataRefCB(); cb.xsetupForExistsReferrer(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepLargeDataRefId_NotExistsReferrer_VendorLargeDataRefSelfList(cb.query());
         registerNotExistsReferrer(cb.query(), "LARGE_DATA_REF_ID", "SELF_PARENT_ID", pp, "vendorLargeDataRefSelfList");
     }
     public abstract String keepLargeDataRefId_NotExistsReferrer_VendorLargeDataRefSelfList(VendorLargeDataRefCQ sq);
@@ -198,8 +200,9 @@ public abstract class AbstractBsVendorLargeDataRefCQ extends AbstractConditionQu
      */
     public void inScopeVendorLargeDataRefSelfList(SubQuery<VendorLargeDataRefCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        VendorLargeDataRefCB cb = new VendorLargeDataRefCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String pp = keepLargeDataRefId_InScopeRelation_VendorLargeDataRefSelfList(cb.query()); // for saving query-value.
+        VendorLargeDataRefCB cb = new VendorLargeDataRefCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepLargeDataRefId_InScopeRelation_VendorLargeDataRefSelfList(cb.query());
         registerInScopeRelation(cb.query(), "LARGE_DATA_REF_ID", "SELF_PARENT_ID", pp, "vendorLargeDataRefSelfList");
     }
     public abstract String keepLargeDataRefId_InScopeRelation_VendorLargeDataRefSelfList(VendorLargeDataRefCQ sq);
@@ -212,16 +215,18 @@ public abstract class AbstractBsVendorLargeDataRefCQ extends AbstractConditionQu
      */
     public void notInScopeVendorLargeDataRefSelfList(SubQuery<VendorLargeDataRefCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        VendorLargeDataRefCB cb = new VendorLargeDataRefCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String pp = keepLargeDataRefId_NotInScopeRelation_VendorLargeDataRefSelfList(cb.query()); // for saving query-value.
+        VendorLargeDataRefCB cb = new VendorLargeDataRefCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepLargeDataRefId_NotInScopeRelation_VendorLargeDataRefSelfList(cb.query());
         registerNotInScopeRelation(cb.query(), "LARGE_DATA_REF_ID", "SELF_PARENT_ID", pp, "vendorLargeDataRefSelfList");
     }
     public abstract String keepLargeDataRefId_NotInScopeRelation_VendorLargeDataRefSelfList(VendorLargeDataRefCQ sq);
 
     public void xsderiveVendorLargeDataRefSelfList(String fn, SubQuery<VendorLargeDataRefCB> sq, String al, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        VendorLargeDataRefCB cb = new VendorLargeDataRefCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
-        String pp = keepLargeDataRefId_SpecifyDerivedReferrer_VendorLargeDataRefSelfList(cb.query()); // for saving query-value.
+        VendorLargeDataRefCB cb = new VendorLargeDataRefCB(); cb.xsetupForDerivedReferrer(this);
+        try { lock(); sq.query(cb); } finally { unlock(); }
+        String pp = keepLargeDataRefId_SpecifyDerivedReferrer_VendorLargeDataRefSelfList(cb.query());
         registerSpecifyDerivedReferrer(fn, cb.query(), "LARGE_DATA_REF_ID", "SELF_PARENT_ID", pp, "vendorLargeDataRefSelfList", al, op);
     }
     public abstract String keepLargeDataRefId_SpecifyDerivedReferrer_VendorLargeDataRefSelfList(VendorLargeDataRefCQ sq);
@@ -252,9 +257,9 @@ public abstract class AbstractBsVendorLargeDataRefCQ extends AbstractConditionQu
     }
     public void xqderiveVendorLargeDataRefSelfList(String fn, SubQuery<VendorLargeDataRefCB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        VendorLargeDataRefCB cb = new VendorLargeDataRefCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
-        String sqpp = keepLargeDataRefId_QueryDerivedReferrer_VendorLargeDataRefSelfList(cb.query()); // for saving query-value.
-        String prpp = keepLargeDataRefId_QueryDerivedReferrer_VendorLargeDataRefSelfListParameter(vl);
+        VendorLargeDataRefCB cb = new VendorLargeDataRefCB(); cb.xsetupForDerivedReferrer(this);
+        try { lock(); sq.query(cb); } finally { unlock(); }
+        String sqpp = keepLargeDataRefId_QueryDerivedReferrer_VendorLargeDataRefSelfList(cb.query()); String prpp = keepLargeDataRefId_QueryDerivedReferrer_VendorLargeDataRefSelfListParameter(vl);
         registerQueryDerivedReferrer(fn, cb.query(), "LARGE_DATA_REF_ID", "SELF_PARENT_ID", sqpp, "vendorLargeDataRefSelfList", rd, vl, prpp, op);
     }
     public abstract String keepLargeDataRefId_QueryDerivedReferrer_VendorLargeDataRefSelfList(VendorLargeDataRefCQ sq);
@@ -371,8 +376,9 @@ public abstract class AbstractBsVendorLargeDataRefCQ extends AbstractConditionQu
      */
     public void inScopeVendorLargeData(SubQuery<VendorLargeDataCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        VendorLargeDataCB cb = new VendorLargeDataCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String pp = keepLargeDataId_InScopeRelation_VendorLargeData(cb.query()); // for saving query-value.
+        VendorLargeDataCB cb = new VendorLargeDataCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepLargeDataId_InScopeRelation_VendorLargeData(cb.query());
         registerInScopeRelation(cb.query(), "LARGE_DATA_ID", "LARGE_DATA_ID", pp, "vendorLargeData");
     }
     public abstract String keepLargeDataId_InScopeRelation_VendorLargeData(VendorLargeDataCQ sq);
@@ -385,8 +391,9 @@ public abstract class AbstractBsVendorLargeDataRefCQ extends AbstractConditionQu
      */
     public void notInScopeVendorLargeData(SubQuery<VendorLargeDataCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        VendorLargeDataCB cb = new VendorLargeDataCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String pp = keepLargeDataId_NotInScopeRelation_VendorLargeData(cb.query()); // for saving query-value.
+        VendorLargeDataCB cb = new VendorLargeDataCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepLargeDataId_NotInScopeRelation_VendorLargeData(cb.query());
         registerNotInScopeRelation(cb.query(), "LARGE_DATA_ID", "LARGE_DATA_ID", pp, "vendorLargeData");
     }
     public abstract String keepLargeDataId_NotInScopeRelation_VendorLargeData(VendorLargeDataCQ sq);
@@ -1000,8 +1007,9 @@ public abstract class AbstractBsVendorLargeDataRefCQ extends AbstractConditionQu
      */
     public void inScopeVendorLargeDataRefSelf(SubQuery<VendorLargeDataRefCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        VendorLargeDataRefCB cb = new VendorLargeDataRefCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String pp = keepSelfParentId_InScopeRelation_VendorLargeDataRefSelf(cb.query()); // for saving query-value.
+        VendorLargeDataRefCB cb = new VendorLargeDataRefCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepSelfParentId_InScopeRelation_VendorLargeDataRefSelf(cb.query());
         registerInScopeRelation(cb.query(), "SELF_PARENT_ID", "LARGE_DATA_REF_ID", pp, "vendorLargeDataRefSelf");
     }
     public abstract String keepSelfParentId_InScopeRelation_VendorLargeDataRefSelf(VendorLargeDataRefCQ sq);
@@ -1014,8 +1022,9 @@ public abstract class AbstractBsVendorLargeDataRefCQ extends AbstractConditionQu
      */
     public void notInScopeVendorLargeDataRefSelf(SubQuery<VendorLargeDataRefCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        VendorLargeDataRefCB cb = new VendorLargeDataRefCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String pp = keepSelfParentId_NotInScopeRelation_VendorLargeDataRefSelf(cb.query()); // for saving query-value.
+        VendorLargeDataRefCB cb = new VendorLargeDataRefCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepSelfParentId_NotInScopeRelation_VendorLargeDataRefSelf(cb.query());
         registerNotInScopeRelation(cb.query(), "SELF_PARENT_ID", "LARGE_DATA_REF_ID", pp, "vendorLargeDataRefSelf");
     }
     public abstract String keepSelfParentId_NotInScopeRelation_VendorLargeDataRefSelf(VendorLargeDataRefCQ sq);
@@ -1163,9 +1172,10 @@ public abstract class AbstractBsVendorLargeDataRefCQ extends AbstractConditionQu
     //                                                                       =============
     public void xsmyselfDerive(String fn, SubQuery<VendorLargeDataRefCB> sq, String al, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        VendorLargeDataRefCB cb = new VendorLargeDataRefCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        VendorLargeDataRefCB cb = new VendorLargeDataRefCB(); cb.xsetupForDerivedReferrer(this);
+        try { lock(); sq.query(cb); } finally { unlock(); }
+        String pp = keepSpecifyMyselfDerived(cb.query());
         String pk = "LARGE_DATA_REF_ID";
-        String pp = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
         registerSpecifyMyselfDerived(fn, cb.query(), pk, pk, pp, "myselfDerived", al, op);
     }
     public abstract String keepSpecifyMyselfDerived(VendorLargeDataRefCQ sq);
@@ -1198,8 +1208,9 @@ public abstract class AbstractBsVendorLargeDataRefCQ extends AbstractConditionQu
      */
     public void myselfExists(SubQuery<VendorLargeDataRefCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        VendorLargeDataRefCB cb = new VendorLargeDataRefCB(); cb.xsetupForMyselfExists(this); subQuery.query(cb);
-        String pp = keepMyselfExists(cb.query()); // for saving query-value.
+        VendorLargeDataRefCB cb = new VendorLargeDataRefCB(); cb.xsetupForMyselfExists(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepMyselfExists(cb.query());
         registerMyselfExists(cb.query(), pp);
     }
     public abstract String keepMyselfExists(VendorLargeDataRefCQ sq);
@@ -1213,8 +1224,9 @@ public abstract class AbstractBsVendorLargeDataRefCQ extends AbstractConditionQu
      */
     public void myselfInScope(SubQuery<VendorLargeDataRefCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        VendorLargeDataRefCB cb = new VendorLargeDataRefCB(); cb.xsetupForMyselfInScope(this); subQuery.query(cb);
-        String pp = keepMyselfInScope(cb.query()); // for saving query-value.
+        VendorLargeDataRefCB cb = new VendorLargeDataRefCB(); cb.xsetupForMyselfInScope(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepMyselfInScope(cb.query());
         registerMyselfInScope(cb.query(), pp);
     }
     public abstract String keepMyselfInScope(VendorLargeDataRefCQ sq);
@@ -1247,6 +1259,37 @@ public abstract class AbstractBsVendorLargeDataRefCQ extends AbstractConditionQu
                     , String conditionValue
                     , org.seasar.dbflute.dbway.WayOfMySQL.FullTextSearchModifier modifier) {
         xdoMatchForMySQL(textColumnList, conditionValue, modifier);
+    }
+
+    // ===================================================================================
+    //                                                                          Compatible
+    //                                                                          ==========
+    /**
+     * Order along the list of manual values. #beforejava8 <br />
+     * This function with Union is unsupported! <br />
+     * The order values are bound (treated as bind parameter).
+     * <pre>
+     * MemberCB cb = new MemberCB();
+     * List&lt;CDef.MemberStatus&gt; orderValueList = new ArrayList&lt;CDef.MemberStatus&gt;();
+     * orderValueList.add(CDef.MemberStatus.Withdrawal);
+     * orderValueList.add(CDef.MemberStatus.Formalized);
+     * orderValueList.add(CDef.MemberStatus.Provisional);
+     * cb.query().addOrderBy_MemberStatusCode_Asc().<span style="color: #DD4747">withManualOrder(orderValueList)</span>;
+     * <span style="color: #3F7E5E">// order by </span>
+     * <span style="color: #3F7E5E">//   case</span>
+     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'WDL' then 0</span>
+     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'FML' then 1</span>
+     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'PRV' then 2</span>
+     * <span style="color: #3F7E5E">//     else 3</span>
+     * <span style="color: #3F7E5E">//   end asc, ...</span>
+     * </pre>
+     * @param orderValueList The list of order values for manual ordering. (NotNull)
+     */
+    public void withManualOrder(List<? extends Object> orderValueList) { // is user public!
+        assertObjectNotNull("withManualOrder(orderValueList)", orderValueList);
+        final ManualOrderBean manualOrderBean = new ManualOrderBean();
+        manualOrderBean.acceptOrderValueList(orderValueList);
+        withManualOrder(manualOrderBean);
     }
 
     // ===================================================================================

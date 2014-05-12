@@ -259,8 +259,9 @@ public abstract class AbstractBsWhiteCompoundPkCQ extends AbstractConditionQuery
      */
     public void inScopeWhiteCompoundReferredPrimary(SubQuery<WhiteCompoundReferredPrimaryCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        WhiteCompoundReferredPrimaryCB cb = new WhiteCompoundReferredPrimaryCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String pp = keepPkSecondId_InScopeRelation_WhiteCompoundReferredPrimary(cb.query()); // for saving query-value.
+        WhiteCompoundReferredPrimaryCB cb = new WhiteCompoundReferredPrimaryCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepPkSecondId_InScopeRelation_WhiteCompoundReferredPrimary(cb.query());
         registerInScopeRelation(cb.query(), "PK_SECOND_ID", "REFERRED_ID", pp, "whiteCompoundReferredPrimary");
     }
     public abstract String keepPkSecondId_InScopeRelation_WhiteCompoundReferredPrimary(WhiteCompoundReferredPrimaryCQ sq);
@@ -273,8 +274,9 @@ public abstract class AbstractBsWhiteCompoundPkCQ extends AbstractConditionQuery
      */
     public void notInScopeWhiteCompoundReferredPrimary(SubQuery<WhiteCompoundReferredPrimaryCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        WhiteCompoundReferredPrimaryCB cb = new WhiteCompoundReferredPrimaryCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String pp = keepPkSecondId_NotInScopeRelation_WhiteCompoundReferredPrimary(cb.query()); // for saving query-value.
+        WhiteCompoundReferredPrimaryCB cb = new WhiteCompoundReferredPrimaryCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepPkSecondId_NotInScopeRelation_WhiteCompoundReferredPrimary(cb.query());
         registerNotInScopeRelation(cb.query(), "PK_SECOND_ID", "REFERRED_ID", pp, "whiteCompoundReferredPrimary");
     }
     public abstract String keepPkSecondId_NotInScopeRelation_WhiteCompoundReferredPrimary(WhiteCompoundReferredPrimaryCQ sq);
@@ -476,8 +478,9 @@ public abstract class AbstractBsWhiteCompoundPkCQ extends AbstractConditionQuery
      */
     public void inScopeWhiteCompoundReferredNormally(SubQuery<WhiteCompoundReferredNormallyCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        WhiteCompoundReferredNormallyCB cb = new WhiteCompoundReferredNormallyCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String pp = keepReferredId_InScopeRelation_WhiteCompoundReferredNormally(cb.query()); // for saving query-value.
+        WhiteCompoundReferredNormallyCB cb = new WhiteCompoundReferredNormallyCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepReferredId_InScopeRelation_WhiteCompoundReferredNormally(cb.query());
         registerInScopeRelation(cb.query(), "REFERRED_ID", "REFERRED_ID", pp, "whiteCompoundReferredNormally");
     }
     public abstract String keepReferredId_InScopeRelation_WhiteCompoundReferredNormally(WhiteCompoundReferredNormallyCQ sq);
@@ -490,8 +493,9 @@ public abstract class AbstractBsWhiteCompoundPkCQ extends AbstractConditionQuery
      */
     public void notInScopeWhiteCompoundReferredNormally(SubQuery<WhiteCompoundReferredNormallyCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        WhiteCompoundReferredNormallyCB cb = new WhiteCompoundReferredNormallyCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String pp = keepReferredId_NotInScopeRelation_WhiteCompoundReferredNormally(cb.query()); // for saving query-value.
+        WhiteCompoundReferredNormallyCB cb = new WhiteCompoundReferredNormallyCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepReferredId_NotInScopeRelation_WhiteCompoundReferredNormally(cb.query());
         registerNotInScopeRelation(cb.query(), "REFERRED_ID", "REFERRED_ID", pp, "whiteCompoundReferredNormally");
     }
     public abstract String keepReferredId_NotInScopeRelation_WhiteCompoundReferredNormally(WhiteCompoundReferredNormallyCQ sq);
@@ -527,6 +531,37 @@ public abstract class AbstractBsWhiteCompoundPkCQ extends AbstractConditionQuery
                     , String conditionValue
                     , org.seasar.dbflute.dbway.WayOfMySQL.FullTextSearchModifier modifier) {
         xdoMatchForMySQL(textColumnList, conditionValue, modifier);
+    }
+
+    // ===================================================================================
+    //                                                                          Compatible
+    //                                                                          ==========
+    /**
+     * Order along the list of manual values. #beforejava8 <br />
+     * This function with Union is unsupported! <br />
+     * The order values are bound (treated as bind parameter).
+     * <pre>
+     * MemberCB cb = new MemberCB();
+     * List&lt;CDef.MemberStatus&gt; orderValueList = new ArrayList&lt;CDef.MemberStatus&gt;();
+     * orderValueList.add(CDef.MemberStatus.Withdrawal);
+     * orderValueList.add(CDef.MemberStatus.Formalized);
+     * orderValueList.add(CDef.MemberStatus.Provisional);
+     * cb.query().addOrderBy_MemberStatusCode_Asc().<span style="color: #DD4747">withManualOrder(orderValueList)</span>;
+     * <span style="color: #3F7E5E">// order by </span>
+     * <span style="color: #3F7E5E">//   case</span>
+     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'WDL' then 0</span>
+     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'FML' then 1</span>
+     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'PRV' then 2</span>
+     * <span style="color: #3F7E5E">//     else 3</span>
+     * <span style="color: #3F7E5E">//   end asc, ...</span>
+     * </pre>
+     * @param orderValueList The list of order values for manual ordering. (NotNull)
+     */
+    public void withManualOrder(List<? extends Object> orderValueList) { // is user public!
+        assertObjectNotNull("withManualOrder(orderValueList)", orderValueList);
+        final ManualOrderBean manualOrderBean = new ManualOrderBean();
+        manualOrderBean.acceptOrderValueList(orderValueList);
+        withManualOrder(manualOrderBean);
     }
 
     // ===================================================================================

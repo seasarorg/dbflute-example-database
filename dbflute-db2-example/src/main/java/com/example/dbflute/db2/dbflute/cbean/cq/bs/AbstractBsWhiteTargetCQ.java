@@ -151,7 +151,7 @@ public abstract class AbstractBsWhiteTargetCQ extends AbstractConditionQuery {
      * {exists (select TARGET_ID from WHITE_REF_TARGET where ...)} <br />
      * WHITE_REF_TARGET by TARGET_ID, named 'whiteRefTargetAsOne'.
      * <pre>
-     * cb.query().<span style="color: #FD4747">existsWhiteRefTargetList</span>(new SubQuery&lt;WhiteRefTargetCB&gt;() {
+     * cb.query().<span style="color: #DD4747">existsWhiteRefTargetList</span>(new SubQuery&lt;WhiteRefTargetCB&gt;() {
      *     public void query(WhiteRefTargetCB subCB) {
      *         subCB.query().setXxx...
      *     }
@@ -161,8 +161,9 @@ public abstract class AbstractBsWhiteTargetCQ extends AbstractConditionQuery {
      */
     public void existsWhiteRefTargetList(SubQuery<WhiteRefTargetCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        WhiteRefTargetCB cb = new WhiteRefTargetCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String pp = keepTargetId_ExistsReferrer_WhiteRefTargetList(cb.query()); // for saving query-value.
+        WhiteRefTargetCB cb = new WhiteRefTargetCB(); cb.xsetupForExistsReferrer(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepTargetId_ExistsReferrer_WhiteRefTargetList(cb.query());
         registerExistsReferrer(cb.query(), "TARGET_ID", "TARGET_ID", pp, "whiteRefTargetList");
     }
     public abstract String keepTargetId_ExistsReferrer_WhiteRefTargetList(WhiteRefTargetCQ sq);
@@ -172,7 +173,7 @@ public abstract class AbstractBsWhiteTargetCQ extends AbstractConditionQuery {
      * {not exists (select TARGET_ID from WHITE_REF_TARGET where ...)} <br />
      * WHITE_REF_TARGET by TARGET_ID, named 'whiteRefTargetAsOne'.
      * <pre>
-     * cb.query().<span style="color: #FD4747">notExistsWhiteRefTargetList</span>(new SubQuery&lt;WhiteRefTargetCB&gt;() {
+     * cb.query().<span style="color: #DD4747">notExistsWhiteRefTargetList</span>(new SubQuery&lt;WhiteRefTargetCB&gt;() {
      *     public void query(WhiteRefTargetCB subCB) {
      *         subCB.query().setXxx...
      *     }
@@ -182,8 +183,9 @@ public abstract class AbstractBsWhiteTargetCQ extends AbstractConditionQuery {
      */
     public void notExistsWhiteRefTargetList(SubQuery<WhiteRefTargetCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        WhiteRefTargetCB cb = new WhiteRefTargetCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String pp = keepTargetId_NotExistsReferrer_WhiteRefTargetList(cb.query()); // for saving query-value.
+        WhiteRefTargetCB cb = new WhiteRefTargetCB(); cb.xsetupForExistsReferrer(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepTargetId_NotExistsReferrer_WhiteRefTargetList(cb.query());
         registerNotExistsReferrer(cb.query(), "TARGET_ID", "TARGET_ID", pp, "whiteRefTargetList");
     }
     public abstract String keepTargetId_NotExistsReferrer_WhiteRefTargetList(WhiteRefTargetCQ sq);
@@ -196,8 +198,9 @@ public abstract class AbstractBsWhiteTargetCQ extends AbstractConditionQuery {
      */
     public void inScopeWhiteRefTargetList(SubQuery<WhiteRefTargetCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        WhiteRefTargetCB cb = new WhiteRefTargetCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String pp = keepTargetId_InScopeRelation_WhiteRefTargetList(cb.query()); // for saving query-value.
+        WhiteRefTargetCB cb = new WhiteRefTargetCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepTargetId_InScopeRelation_WhiteRefTargetList(cb.query());
         registerInScopeRelation(cb.query(), "TARGET_ID", "TARGET_ID", pp, "whiteRefTargetList");
     }
     public abstract String keepTargetId_InScopeRelation_WhiteRefTargetList(WhiteRefTargetCQ sq);
@@ -210,16 +213,18 @@ public abstract class AbstractBsWhiteTargetCQ extends AbstractConditionQuery {
      */
     public void notInScopeWhiteRefTargetList(SubQuery<WhiteRefTargetCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        WhiteRefTargetCB cb = new WhiteRefTargetCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String pp = keepTargetId_NotInScopeRelation_WhiteRefTargetList(cb.query()); // for saving query-value.
+        WhiteRefTargetCB cb = new WhiteRefTargetCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepTargetId_NotInScopeRelation_WhiteRefTargetList(cb.query());
         registerNotInScopeRelation(cb.query(), "TARGET_ID", "TARGET_ID", pp, "whiteRefTargetList");
     }
     public abstract String keepTargetId_NotInScopeRelation_WhiteRefTargetList(WhiteRefTargetCQ sq);
 
     public void xsderiveWhiteRefTargetList(String fn, SubQuery<WhiteRefTargetCB> sq, String al, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteRefTargetCB cb = new WhiteRefTargetCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
-        String pp = keepTargetId_SpecifyDerivedReferrer_WhiteRefTargetList(cb.query()); // for saving query-value.
+        WhiteRefTargetCB cb = new WhiteRefTargetCB(); cb.xsetupForDerivedReferrer(this);
+        try { lock(); sq.query(cb); } finally { unlock(); }
+        String pp = keepTargetId_SpecifyDerivedReferrer_WhiteRefTargetList(cb.query());
         registerSpecifyDerivedReferrer(fn, cb.query(), "TARGET_ID", "TARGET_ID", pp, "whiteRefTargetList", al, op);
     }
     public abstract String keepTargetId_SpecifyDerivedReferrer_WhiteRefTargetList(WhiteRefTargetCQ sq);
@@ -229,12 +234,12 @@ public abstract class AbstractBsWhiteTargetCQ extends AbstractConditionQuery {
      * {FOO &lt;= (select max(BAR) from WHITE_REF_TARGET where ...)} <br />
      * WHITE_REF_TARGET by TARGET_ID, named 'whiteRefTargetAsOne'.
      * <pre>
-     * cb.query().<span style="color: #FD4747">derivedWhiteRefTargetList()</span>.<span style="color: #FD4747">max</span>(new SubQuery&lt;WhiteRefTargetCB&gt;() {
+     * cb.query().<span style="color: #DD4747">derivedWhiteRefTargetList()</span>.<span style="color: #DD4747">max</span>(new SubQuery&lt;WhiteRefTargetCB&gt;() {
      *     public void query(WhiteRefTargetCB subCB) {
-     *         subCB.specify().<span style="color: #FD4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
+     *         subCB.specify().<span style="color: #DD4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
      *         subCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
      *     }
-     * }).<span style="color: #FD4747">greaterEqual</span>(123); <span style="color: #3F7E5E">// condition to derived column</span>
+     * }).<span style="color: #DD4747">greaterEqual</span>(123); <span style="color: #3F7E5E">// condition to derived column</span>
      * </pre>
      * @return The object to set up a function for referrer table. (NotNull)
      */
@@ -250,9 +255,9 @@ public abstract class AbstractBsWhiteTargetCQ extends AbstractConditionQuery {
     }
     public void xqderiveWhiteRefTargetList(String fn, SubQuery<WhiteRefTargetCB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteRefTargetCB cb = new WhiteRefTargetCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
-        String sqpp = keepTargetId_QueryDerivedReferrer_WhiteRefTargetList(cb.query()); // for saving query-value.
-        String prpp = keepTargetId_QueryDerivedReferrer_WhiteRefTargetListParameter(vl);
+        WhiteRefTargetCB cb = new WhiteRefTargetCB(); cb.xsetupForDerivedReferrer(this);
+        try { lock(); sq.query(cb); } finally { unlock(); }
+        String sqpp = keepTargetId_QueryDerivedReferrer_WhiteRefTargetList(cb.query()); String prpp = keepTargetId_QueryDerivedReferrer_WhiteRefTargetListParameter(vl);
         registerQueryDerivedReferrer(fn, cb.query(), "TARGET_ID", "TARGET_ID", sqpp, "whiteRefTargetList", rd, vl, prpp, op);
     }
     public abstract String keepTargetId_QueryDerivedReferrer_WhiteRefTargetList(WhiteRefTargetCQ sq);
@@ -337,7 +342,7 @@ public abstract class AbstractBsWhiteTargetCQ extends AbstractConditionQuery {
     /**
      * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br />
      * TARGET_NAME: {VARCHAR(256)} <br />
-     * <pre>e.g. setTargetName_LikeSearch("xxx", new <span style="color: #FD4747">LikeSearchOption</span>().likeContain());</pre>
+     * <pre>e.g. setTargetName_LikeSearch("xxx", new <span style="color: #DD4747">LikeSearchOption</span>().likeContain());</pre>
      * @param targetName The value of targetName as likeSearch. (NullAllowed: if null (or empty), no condition)
      * @param likeSearchOption The option of like-search. (NotNull)
      */
@@ -384,7 +389,7 @@ public abstract class AbstractBsWhiteTargetCQ extends AbstractConditionQuery {
      * Prepare ScalarCondition as equal. <br />
      * {where FOO = (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #FD4747">scalar_Equal()</span>.max(new SubQuery&lt;WhiteTargetCB&gt;() {
+     * cb.query().<span style="color: #DD4747">scalar_Equal()</span>.max(new SubQuery&lt;WhiteTargetCB&gt;() {
      *     public void query(WhiteTargetCB subCB) {
      *         subCB.specify().setXxx... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setYyy...
@@ -401,7 +406,7 @@ public abstract class AbstractBsWhiteTargetCQ extends AbstractConditionQuery {
      * Prepare ScalarCondition as equal. <br />
      * {where FOO &lt;&gt; (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #FD4747">scalar_NotEqual()</span>.max(new SubQuery&lt;WhiteTargetCB&gt;() {
+     * cb.query().<span style="color: #DD4747">scalar_NotEqual()</span>.max(new SubQuery&lt;WhiteTargetCB&gt;() {
      *     public void query(WhiteTargetCB subCB) {
      *         subCB.specify().setXxx... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setYyy...
@@ -418,7 +423,7 @@ public abstract class AbstractBsWhiteTargetCQ extends AbstractConditionQuery {
      * Prepare ScalarCondition as greaterThan. <br />
      * {where FOO &gt; (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #FD4747">scalar_GreaterThan()</span>.max(new SubQuery&lt;WhiteTargetCB&gt;() {
+     * cb.query().<span style="color: #DD4747">scalar_GreaterThan()</span>.max(new SubQuery&lt;WhiteTargetCB&gt;() {
      *     public void query(WhiteTargetCB subCB) {
      *         subCB.specify().setFoo... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setBar...
@@ -435,7 +440,7 @@ public abstract class AbstractBsWhiteTargetCQ extends AbstractConditionQuery {
      * Prepare ScalarCondition as lessThan. <br />
      * {where FOO &lt; (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #FD4747">scalar_LessThan()</span>.max(new SubQuery&lt;WhiteTargetCB&gt;() {
+     * cb.query().<span style="color: #DD4747">scalar_LessThan()</span>.max(new SubQuery&lt;WhiteTargetCB&gt;() {
      *     public void query(WhiteTargetCB subCB) {
      *         subCB.specify().setFoo... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setBar...
@@ -452,7 +457,7 @@ public abstract class AbstractBsWhiteTargetCQ extends AbstractConditionQuery {
      * Prepare ScalarCondition as greaterEqual. <br />
      * {where FOO &gt;= (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #FD4747">scalar_GreaterEqual()</span>.max(new SubQuery&lt;WhiteTargetCB&gt;() {
+     * cb.query().<span style="color: #DD4747">scalar_GreaterEqual()</span>.max(new SubQuery&lt;WhiteTargetCB&gt;() {
      *     public void query(WhiteTargetCB subCB) {
      *         subCB.specify().setFoo... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setBar...
@@ -469,7 +474,7 @@ public abstract class AbstractBsWhiteTargetCQ extends AbstractConditionQuery {
      * Prepare ScalarCondition as lessEqual. <br />
      * {where FOO &lt;= (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #FD4747">scalar_LessEqual()</span>.max(new SubQuery&lt;WhiteTargetCB&gt;() {
+     * cb.query().<span style="color: #DD4747">scalar_LessEqual()</span>.max(new SubQuery&lt;WhiteTargetCB&gt;() {
      *     public void query(WhiteTargetCB subCB) {
      *         subCB.specify().setFoo... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setBar...
@@ -505,9 +510,10 @@ public abstract class AbstractBsWhiteTargetCQ extends AbstractConditionQuery {
     //                                                                       =============
     public void xsmyselfDerive(String fn, SubQuery<WhiteTargetCB> sq, String al, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteTargetCB cb = new WhiteTargetCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        WhiteTargetCB cb = new WhiteTargetCB(); cb.xsetupForDerivedReferrer(this);
+        try { lock(); sq.query(cb); } finally { unlock(); }
+        String pp = keepSpecifyMyselfDerived(cb.query());
         String pk = "TARGET_ID";
-        String pp = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
         registerSpecifyMyselfDerived(fn, cb.query(), pk, pk, pp, "myselfDerived", al, op);
     }
     public abstract String keepSpecifyMyselfDerived(WhiteTargetCQ sq);
@@ -540,8 +546,9 @@ public abstract class AbstractBsWhiteTargetCQ extends AbstractConditionQuery {
      */
     public void myselfExists(SubQuery<WhiteTargetCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        WhiteTargetCB cb = new WhiteTargetCB(); cb.xsetupForMyselfExists(this); subQuery.query(cb);
-        String pp = keepMyselfExists(cb.query()); // for saving query-value.
+        WhiteTargetCB cb = new WhiteTargetCB(); cb.xsetupForMyselfExists(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepMyselfExists(cb.query());
         registerMyselfExists(cb.query(), pp);
     }
     public abstract String keepMyselfExists(WhiteTargetCQ sq);
@@ -555,11 +562,43 @@ public abstract class AbstractBsWhiteTargetCQ extends AbstractConditionQuery {
      */
     public void myselfInScope(SubQuery<WhiteTargetCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        WhiteTargetCB cb = new WhiteTargetCB(); cb.xsetupForMyselfInScope(this); subQuery.query(cb);
-        String pp = keepMyselfInScope(cb.query()); // for saving query-value.
+        WhiteTargetCB cb = new WhiteTargetCB(); cb.xsetupForMyselfInScope(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepMyselfInScope(cb.query());
         registerMyselfInScope(cb.query(), pp);
     }
     public abstract String keepMyselfInScope(WhiteTargetCQ sq);
+
+    // ===================================================================================
+    //                                                                          Compatible
+    //                                                                          ==========
+    /**
+     * Order along the list of manual values. #beforejava8 <br />
+     * This function with Union is unsupported! <br />
+     * The order values are bound (treated as bind parameter).
+     * <pre>
+     * MemberCB cb = new MemberCB();
+     * List&lt;CDef.MemberStatus&gt; orderValueList = new ArrayList&lt;CDef.MemberStatus&gt;();
+     * orderValueList.add(CDef.MemberStatus.Withdrawal);
+     * orderValueList.add(CDef.MemberStatus.Formalized);
+     * orderValueList.add(CDef.MemberStatus.Provisional);
+     * cb.query().addOrderBy_MemberStatusCode_Asc().<span style="color: #DD4747">withManualOrder(orderValueList)</span>;
+     * <span style="color: #3F7E5E">// order by </span>
+     * <span style="color: #3F7E5E">//   case</span>
+     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'WDL' then 0</span>
+     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'FML' then 1</span>
+     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'PRV' then 2</span>
+     * <span style="color: #3F7E5E">//     else 3</span>
+     * <span style="color: #3F7E5E">//   end asc, ...</span>
+     * </pre>
+     * @param orderValueList The list of order values for manual ordering. (NotNull)
+     */
+    public void withManualOrder(List<? extends Object> orderValueList) { // is user public!
+        assertObjectNotNull("withManualOrder(orderValueList)", orderValueList);
+        final ManualOrderBean manualOrderBean = new ManualOrderBean();
+        manualOrderBean.acceptOrderValueList(orderValueList);
+        withManualOrder(manualOrderBean);
+    }
 
     // ===================================================================================
     //                                                                       Very Internal

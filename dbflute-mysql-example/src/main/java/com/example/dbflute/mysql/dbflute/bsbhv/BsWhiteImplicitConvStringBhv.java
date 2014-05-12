@@ -22,6 +22,7 @@ import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
 import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.exception.*;
+import org.seasar.dbflute.optional.*;
 import org.seasar.dbflute.outsidesql.executor.*;
 import com.example.dbflute.mysql.dbflute.exbhv.*;
 import com.example.dbflute.mysql.dbflute.exentity.*;
@@ -135,7 +136,7 @@ public abstract class BsWhiteImplicitConvStringBhv extends AbstractBehaviorWrita
     //                                                                       Entity Select
     //                                                                       =============
     /**
-     * Select the entity by the condition-bean. <br />
+     * Select the entity by the condition-bean. #beforejava8 <br />
      * <span style="color: #AD4747; font-size: 120%">The return might be null if no data, so you should have null check.</span> <br />
      * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, use selectEntityWithDeletedCheck().</span>
      * <pre>
@@ -161,6 +162,10 @@ public abstract class BsWhiteImplicitConvStringBhv extends AbstractBehaviorWrita
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, WhiteImplicitConvStringCB>() {
             public List<ENTITY> callbackSelectList(WhiteImplicitConvStringCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
+    }
+
+    protected <ENTITY extends WhiteImplicitConvString> OptionalEntity<ENTITY> doSelectOptionalEntity(WhiteImplicitConvStringCB cb, Class<ENTITY> tp) {
+        return createOptionalEntity(doSelectEntity(cb, tp), cb);
     }
 
     @Override
@@ -398,39 +403,12 @@ public abstract class BsWhiteImplicitConvStringBhv extends AbstractBehaviorWrita
      *     public void setup(WhiteImplicitConvIntegerCB cb) {
      *         cb.setupSelect...();
      *         cb.query().setFoo...(value);
-     *         cb.query().addOrderBy_Bar...(); <span style="color: #3F7E5E">// basically you should order referrer list</span>
+     *         cb.query().addOrderBy_Bar...();
      *     }
-     * }); <span style="color: #3F7E5E">// you can load nested referrer from here by calling like '}).withNestedList(new ...)'</span>
-     * for (WhiteImplicitConvString whiteImplicitConvString : whiteImplicitConvStringList) {
-     *     ... = whiteImplicitConvString.<span style="color: #DD4747">getWhiteImplicitConvIntegerList()</span>;
-     * }
-     * </pre>
-     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
-     * The condition-bean, which the set-upper provides, has settings before callback as follows:
-     * <pre>
-     * cb.query().setImplicitConvStringId_InScope(pkList);
-     * cb.query().addOrderBy_ImplicitConvStringId_Asc();
-     * </pre>
-     * @param whiteImplicitConvString The entity of whiteImplicitConvString. (NotNull)
-     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
-     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
-     */
-    public NestedReferrerLoader<WhiteImplicitConvInteger> loadWhiteImplicitConvIntegerList(WhiteImplicitConvString whiteImplicitConvString, ConditionBeanSetupper<WhiteImplicitConvIntegerCB> conditionBeanSetupper) {
-        xassLRArg(whiteImplicitConvString, conditionBeanSetupper);
-        return loadWhiteImplicitConvIntegerList(xnewLRLs(whiteImplicitConvString), conditionBeanSetupper);
-    }
-
-    /**
-     * Load referrer of whiteImplicitConvIntegerList by the set-upper of referrer. <br />
-     * white_implicit_conv_integer by IMPLICIT_CONV_STRING_ID, named 'whiteImplicitConvIntegerList'.
-     * <pre>
-     * whiteImplicitConvStringBhv.<span style="color: #DD4747">loadWhiteImplicitConvIntegerList</span>(whiteImplicitConvStringList, new ConditionBeanSetupper&lt;WhiteImplicitConvIntegerCB&gt;() {
-     *     public void setup(WhiteImplicitConvIntegerCB cb) {
-     *         cb.setupSelect...();
-     *         cb.query().setFoo...(value);
-     *         cb.query().addOrderBy_Bar...(); <span style="color: #3F7E5E">// basically you should order referrer list</span>
-     *     }
-     * }); <span style="color: #3F7E5E">// you can load nested referrer from here by calling like '}).withNestedList(new ...)'</span>
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
+     * <span style="color: #3F7E5E">//}).withNestedList(referrerList -&gt {</span>
+     * <span style="color: #3F7E5E">//    ...</span>
+     * <span style="color: #3F7E5E">//});</span>
      * for (WhiteImplicitConvString whiteImplicitConvString : whiteImplicitConvStringList) {
      *     ... = whiteImplicitConvString.<span style="color: #DD4747">getWhiteImplicitConvIntegerList()</span>;
      * }
@@ -442,16 +420,47 @@ public abstract class BsWhiteImplicitConvStringBhv extends AbstractBehaviorWrita
      * cb.query().addOrderBy_ImplicitConvStringId_Asc();
      * </pre>
      * @param whiteImplicitConvStringList The entity list of whiteImplicitConvString. (NotNull)
-     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
+     * @param setupper The callback to set up referrer condition-bean for loading referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public NestedReferrerLoader<WhiteImplicitConvInteger> loadWhiteImplicitConvIntegerList(List<WhiteImplicitConvString> whiteImplicitConvStringList, ConditionBeanSetupper<WhiteImplicitConvIntegerCB> conditionBeanSetupper) {
-        xassLRArg(whiteImplicitConvStringList, conditionBeanSetupper);
-        return loadWhiteImplicitConvIntegerList(whiteImplicitConvStringList, new LoadReferrerOption<WhiteImplicitConvIntegerCB, WhiteImplicitConvInteger>().xinit(conditionBeanSetupper));
+    public NestedReferrerLoader<WhiteImplicitConvInteger> loadWhiteImplicitConvIntegerList(List<WhiteImplicitConvString> whiteImplicitConvStringList, ConditionBeanSetupper<WhiteImplicitConvIntegerCB> setupper) {
+        xassLRArg(whiteImplicitConvStringList, setupper);
+        return doLoadWhiteImplicitConvIntegerList(whiteImplicitConvStringList, new LoadReferrerOption<WhiteImplicitConvIntegerCB, WhiteImplicitConvInteger>().xinit(setupper));
     }
 
     /**
-     * {Refer to overload method that has an argument of the list of entity.}
+     * Load referrer of whiteImplicitConvIntegerList by the set-upper of referrer. <br />
+     * white_implicit_conv_integer by IMPLICIT_CONV_STRING_ID, named 'whiteImplicitConvIntegerList'.
+     * <pre>
+     * whiteImplicitConvStringBhv.<span style="color: #DD4747">loadWhiteImplicitConvIntegerList</span>(whiteImplicitConvStringList, new ConditionBeanSetupper&lt;WhiteImplicitConvIntegerCB&gt;() {
+     *     public void setup(WhiteImplicitConvIntegerCB cb) {
+     *         cb.setupSelect...();
+     *         cb.query().setFoo...(value);
+     *         cb.query().addOrderBy_Bar...();
+     *     }
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
+     * <span style="color: #3F7E5E">//}).withNestedList(referrerList -&gt {</span>
+     * <span style="color: #3F7E5E">//    ...</span>
+     * <span style="color: #3F7E5E">//});</span>
+     * ... = whiteImplicitConvString.<span style="color: #DD4747">getWhiteImplicitConvIntegerList()</span>;
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
+     * <pre>
+     * cb.query().setImplicitConvStringId_InScope(pkList);
+     * cb.query().addOrderBy_ImplicitConvStringId_Asc();
+     * </pre>
+     * @param whiteImplicitConvString The entity of whiteImplicitConvString. (NotNull)
+     * @param setupper The callback to set up referrer condition-bean for loading referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
+     */
+    public NestedReferrerLoader<WhiteImplicitConvInteger> loadWhiteImplicitConvIntegerList(WhiteImplicitConvString whiteImplicitConvString, ConditionBeanSetupper<WhiteImplicitConvIntegerCB> setupper) {
+        xassLRArg(whiteImplicitConvString, setupper);
+        return doLoadWhiteImplicitConvIntegerList(xnewLRLs(whiteImplicitConvString), new LoadReferrerOption<WhiteImplicitConvIntegerCB, WhiteImplicitConvInteger>().xinit(setupper));
+    }
+
+    /**
+     * {Refer to overload method that has an argument of the list of entity.} #beforejava8
      * @param whiteImplicitConvString The entity of whiteImplicitConvString. (NotNull)
      * @param loadReferrerOption The option of load-referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
@@ -462,7 +471,7 @@ public abstract class BsWhiteImplicitConvStringBhv extends AbstractBehaviorWrita
     }
 
     /**
-     * {Refer to overload method that has an argument of condition-bean setupper.}
+     * {Refer to overload method that has an argument of condition-bean setupper.} #beforejava8
      * @param whiteImplicitConvStringList The entity list of whiteImplicitConvString. (NotNull)
      * @param loadReferrerOption The option of load-referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
@@ -503,39 +512,12 @@ public abstract class BsWhiteImplicitConvStringBhv extends AbstractBehaviorWrita
      *     public void setup(WhiteImplicitConvNumericCB cb) {
      *         cb.setupSelect...();
      *         cb.query().setFoo...(value);
-     *         cb.query().addOrderBy_Bar...(); <span style="color: #3F7E5E">// basically you should order referrer list</span>
+     *         cb.query().addOrderBy_Bar...();
      *     }
-     * }); <span style="color: #3F7E5E">// you can load nested referrer from here by calling like '}).withNestedList(new ...)'</span>
-     * for (WhiteImplicitConvString whiteImplicitConvString : whiteImplicitConvStringList) {
-     *     ... = whiteImplicitConvString.<span style="color: #DD4747">getWhiteImplicitConvNumericList()</span>;
-     * }
-     * </pre>
-     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
-     * The condition-bean, which the set-upper provides, has settings before callback as follows:
-     * <pre>
-     * cb.query().setImplicitConvStringId_InScope(pkList);
-     * cb.query().addOrderBy_ImplicitConvStringId_Asc();
-     * </pre>
-     * @param whiteImplicitConvString The entity of whiteImplicitConvString. (NotNull)
-     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
-     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
-     */
-    public NestedReferrerLoader<WhiteImplicitConvNumeric> loadWhiteImplicitConvNumericList(WhiteImplicitConvString whiteImplicitConvString, ConditionBeanSetupper<WhiteImplicitConvNumericCB> conditionBeanSetupper) {
-        xassLRArg(whiteImplicitConvString, conditionBeanSetupper);
-        return loadWhiteImplicitConvNumericList(xnewLRLs(whiteImplicitConvString), conditionBeanSetupper);
-    }
-
-    /**
-     * Load referrer of whiteImplicitConvNumericList by the set-upper of referrer. <br />
-     * white_implicit_conv_numeric by IMPLICIT_CONV_STRING_ID, named 'whiteImplicitConvNumericList'.
-     * <pre>
-     * whiteImplicitConvStringBhv.<span style="color: #DD4747">loadWhiteImplicitConvNumericList</span>(whiteImplicitConvStringList, new ConditionBeanSetupper&lt;WhiteImplicitConvNumericCB&gt;() {
-     *     public void setup(WhiteImplicitConvNumericCB cb) {
-     *         cb.setupSelect...();
-     *         cb.query().setFoo...(value);
-     *         cb.query().addOrderBy_Bar...(); <span style="color: #3F7E5E">// basically you should order referrer list</span>
-     *     }
-     * }); <span style="color: #3F7E5E">// you can load nested referrer from here by calling like '}).withNestedList(new ...)'</span>
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
+     * <span style="color: #3F7E5E">//}).withNestedList(referrerList -&gt {</span>
+     * <span style="color: #3F7E5E">//    ...</span>
+     * <span style="color: #3F7E5E">//});</span>
      * for (WhiteImplicitConvString whiteImplicitConvString : whiteImplicitConvStringList) {
      *     ... = whiteImplicitConvString.<span style="color: #DD4747">getWhiteImplicitConvNumericList()</span>;
      * }
@@ -547,16 +529,47 @@ public abstract class BsWhiteImplicitConvStringBhv extends AbstractBehaviorWrita
      * cb.query().addOrderBy_ImplicitConvStringId_Asc();
      * </pre>
      * @param whiteImplicitConvStringList The entity list of whiteImplicitConvString. (NotNull)
-     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
+     * @param setupper The callback to set up referrer condition-bean for loading referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public NestedReferrerLoader<WhiteImplicitConvNumeric> loadWhiteImplicitConvNumericList(List<WhiteImplicitConvString> whiteImplicitConvStringList, ConditionBeanSetupper<WhiteImplicitConvNumericCB> conditionBeanSetupper) {
-        xassLRArg(whiteImplicitConvStringList, conditionBeanSetupper);
-        return loadWhiteImplicitConvNumericList(whiteImplicitConvStringList, new LoadReferrerOption<WhiteImplicitConvNumericCB, WhiteImplicitConvNumeric>().xinit(conditionBeanSetupper));
+    public NestedReferrerLoader<WhiteImplicitConvNumeric> loadWhiteImplicitConvNumericList(List<WhiteImplicitConvString> whiteImplicitConvStringList, ConditionBeanSetupper<WhiteImplicitConvNumericCB> setupper) {
+        xassLRArg(whiteImplicitConvStringList, setupper);
+        return doLoadWhiteImplicitConvNumericList(whiteImplicitConvStringList, new LoadReferrerOption<WhiteImplicitConvNumericCB, WhiteImplicitConvNumeric>().xinit(setupper));
     }
 
     /**
-     * {Refer to overload method that has an argument of the list of entity.}
+     * Load referrer of whiteImplicitConvNumericList by the set-upper of referrer. <br />
+     * white_implicit_conv_numeric by IMPLICIT_CONV_STRING_ID, named 'whiteImplicitConvNumericList'.
+     * <pre>
+     * whiteImplicitConvStringBhv.<span style="color: #DD4747">loadWhiteImplicitConvNumericList</span>(whiteImplicitConvStringList, new ConditionBeanSetupper&lt;WhiteImplicitConvNumericCB&gt;() {
+     *     public void setup(WhiteImplicitConvNumericCB cb) {
+     *         cb.setupSelect...();
+     *         cb.query().setFoo...(value);
+     *         cb.query().addOrderBy_Bar...();
+     *     }
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
+     * <span style="color: #3F7E5E">//}).withNestedList(referrerList -&gt {</span>
+     * <span style="color: #3F7E5E">//    ...</span>
+     * <span style="color: #3F7E5E">//});</span>
+     * ... = whiteImplicitConvString.<span style="color: #DD4747">getWhiteImplicitConvNumericList()</span>;
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
+     * <pre>
+     * cb.query().setImplicitConvStringId_InScope(pkList);
+     * cb.query().addOrderBy_ImplicitConvStringId_Asc();
+     * </pre>
+     * @param whiteImplicitConvString The entity of whiteImplicitConvString. (NotNull)
+     * @param setupper The callback to set up referrer condition-bean for loading referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
+     */
+    public NestedReferrerLoader<WhiteImplicitConvNumeric> loadWhiteImplicitConvNumericList(WhiteImplicitConvString whiteImplicitConvString, ConditionBeanSetupper<WhiteImplicitConvNumericCB> setupper) {
+        xassLRArg(whiteImplicitConvString, setupper);
+        return doLoadWhiteImplicitConvNumericList(xnewLRLs(whiteImplicitConvString), new LoadReferrerOption<WhiteImplicitConvNumericCB, WhiteImplicitConvNumeric>().xinit(setupper));
+    }
+
+    /**
+     * {Refer to overload method that has an argument of the list of entity.} #beforejava8
      * @param whiteImplicitConvString The entity of whiteImplicitConvString. (NotNull)
      * @param loadReferrerOption The option of load-referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
@@ -567,7 +580,7 @@ public abstract class BsWhiteImplicitConvStringBhv extends AbstractBehaviorWrita
     }
 
     /**
-     * {Refer to overload method that has an argument of condition-bean setupper.}
+     * {Refer to overload method that has an argument of condition-bean setupper.} #beforejava8
      * @param whiteImplicitConvStringList The entity list of whiteImplicitConvString. (NotNull)
      * @param loadReferrerOption The option of load-referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)

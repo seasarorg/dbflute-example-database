@@ -244,8 +244,9 @@ public abstract class AbstractBsWhiteSameNameRefCQ extends AbstractConditionQuer
      */
     public void inScopeWhiteSameName(SubQuery<WhiteSameNameCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        WhiteSameNameCB cb = new WhiteSameNameCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String pp = keepSameNameId_InScopeRelation_WhiteSameName(cb.query()); // for saving query-value.
+        WhiteSameNameCB cb = new WhiteSameNameCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepSameNameId_InScopeRelation_WhiteSameName(cb.query());
         registerInScopeRelation(cb.query(), "same_name_id", "same_name_id", pp, "whiteSameName");
     }
     public abstract String keepSameNameId_InScopeRelation_WhiteSameName(WhiteSameNameCQ sq);
@@ -258,8 +259,9 @@ public abstract class AbstractBsWhiteSameNameRefCQ extends AbstractConditionQuer
      */
     public void notInScopeWhiteSameName(SubQuery<WhiteSameNameCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        WhiteSameNameCB cb = new WhiteSameNameCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String pp = keepSameNameId_NotInScopeRelation_WhiteSameName(cb.query()); // for saving query-value.
+        WhiteSameNameCB cb = new WhiteSameNameCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepSameNameId_NotInScopeRelation_WhiteSameName(cb.query());
         registerNotInScopeRelation(cb.query(), "same_name_id", "same_name_id", pp, "whiteSameName");
     }
     public abstract String keepSameNameId_NotInScopeRelation_WhiteSameName(WhiteSameNameCQ sq);
@@ -486,9 +488,10 @@ public abstract class AbstractBsWhiteSameNameRefCQ extends AbstractConditionQuer
     //                                                                       =============
     public void xsmyselfDerive(String fn, SubQuery<WhiteSameNameRefCB> sq, String al, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteSameNameRefCB cb = new WhiteSameNameRefCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        WhiteSameNameRefCB cb = new WhiteSameNameRefCB(); cb.xsetupForDerivedReferrer(this);
+        try { lock(); sq.query(cb); } finally { unlock(); }
+        String pp = keepSpecifyMyselfDerived(cb.query());
         String pk = "same_name_ref_id";
-        String pp = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
         registerSpecifyMyselfDerived(fn, cb.query(), pk, pk, pp, "myselfDerived", al, op);
     }
     public abstract String keepSpecifyMyselfDerived(WhiteSameNameRefCQ sq);
@@ -521,8 +524,9 @@ public abstract class AbstractBsWhiteSameNameRefCQ extends AbstractConditionQuer
      */
     public void myselfExists(SubQuery<WhiteSameNameRefCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        WhiteSameNameRefCB cb = new WhiteSameNameRefCB(); cb.xsetupForMyselfExists(this); subQuery.query(cb);
-        String pp = keepMyselfExists(cb.query()); // for saving query-value.
+        WhiteSameNameRefCB cb = new WhiteSameNameRefCB(); cb.xsetupForMyselfExists(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepMyselfExists(cb.query());
         registerMyselfExists(cb.query(), pp);
     }
     public abstract String keepMyselfExists(WhiteSameNameRefCQ sq);
@@ -536,8 +540,9 @@ public abstract class AbstractBsWhiteSameNameRefCQ extends AbstractConditionQuer
      */
     public void myselfInScope(SubQuery<WhiteSameNameRefCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        WhiteSameNameRefCB cb = new WhiteSameNameRefCB(); cb.xsetupForMyselfInScope(this); subQuery.query(cb);
-        String pp = keepMyselfInScope(cb.query()); // for saving query-value.
+        WhiteSameNameRefCB cb = new WhiteSameNameRefCB(); cb.xsetupForMyselfInScope(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepMyselfInScope(cb.query());
         registerMyselfInScope(cb.query(), pp);
     }
     public abstract String keepMyselfInScope(WhiteSameNameRefCQ sq);
@@ -577,6 +582,37 @@ public abstract class AbstractBsWhiteSameNameRefCQ extends AbstractConditionQuer
     @Override
     protected org.seasar.dbflute.dbway.ExtensionOperand xgetPostgreSQLMatchOperand() {
         return DBFluteConfig.getInstance().getFullTextSearchOperand();
+    }
+
+    // ===================================================================================
+    //                                                                          Compatible
+    //                                                                          ==========
+    /**
+     * Order along the list of manual values. #beforejava8 <br />
+     * This function with Union is unsupported! <br />
+     * The order values are bound (treated as bind parameter).
+     * <pre>
+     * MemberCB cb = new MemberCB();
+     * List&lt;CDef.MemberStatus&gt; orderValueList = new ArrayList&lt;CDef.MemberStatus&gt;();
+     * orderValueList.add(CDef.MemberStatus.Withdrawal);
+     * orderValueList.add(CDef.MemberStatus.Formalized);
+     * orderValueList.add(CDef.MemberStatus.Provisional);
+     * cb.query().addOrderBy_MemberStatusCode_Asc().<span style="color: #DD4747">withManualOrder(orderValueList)</span>;
+     * <span style="color: #3F7E5E">// order by </span>
+     * <span style="color: #3F7E5E">//   case</span>
+     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'WDL' then 0</span>
+     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'FML' then 1</span>
+     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'PRV' then 2</span>
+     * <span style="color: #3F7E5E">//     else 3</span>
+     * <span style="color: #3F7E5E">//   end asc, ...</span>
+     * </pre>
+     * @param orderValueList The list of order values for manual ordering. (NotNull)
+     */
+    public void withManualOrder(List<? extends Object> orderValueList) { // is user public!
+        assertObjectNotNull("withManualOrder(orderValueList)", orderValueList);
+        final ManualOrderBean manualOrderBean = new ManualOrderBean();
+        manualOrderBean.acceptOrderValueList(orderValueList);
+        withManualOrder(manualOrderBean);
     }
 
     // ===================================================================================

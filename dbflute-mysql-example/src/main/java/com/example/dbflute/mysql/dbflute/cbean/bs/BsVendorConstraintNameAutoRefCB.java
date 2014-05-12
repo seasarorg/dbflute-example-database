@@ -233,8 +233,8 @@ public class BsVendorConstraintNameAutoRefCB extends AbstractConditionBean {
      * @param unionQuery The query of 'union'. (NotNull)
      */
     public void union(UnionQuery<VendorConstraintNameAutoRefCB> unionQuery) {
-        final VendorConstraintNameAutoRefCB cb = new VendorConstraintNameAutoRefCB();
-        cb.xsetupForUnion(this); xsyncUQ(cb); unionQuery.query(cb); xsaveUCB(cb);
+        final VendorConstraintNameAutoRefCB cb = new VendorConstraintNameAutoRefCB(); cb.xsetupForUnion(this); xsyncUQ(cb); 
+        try { lock(); unionQuery.query(cb); } finally { unlock(); } xsaveUCB(cb);
         final VendorConstraintNameAutoRefCQ cq = cb.query(); query().xsetUnionQuery(cq);
     }
 
@@ -252,8 +252,8 @@ public class BsVendorConstraintNameAutoRefCB extends AbstractConditionBean {
      * @param unionQuery The query of 'union all'. (NotNull)
      */
     public void unionAll(UnionQuery<VendorConstraintNameAutoRefCB> unionQuery) {
-        final VendorConstraintNameAutoRefCB cb = new VendorConstraintNameAutoRefCB();
-        cb.xsetupForUnion(this); xsyncUQ(cb); unionQuery.query(cb); xsaveUCB(cb);
+        final VendorConstraintNameAutoRefCB cb = new VendorConstraintNameAutoRefCB(); cb.xsetupForUnion(this); xsyncUQ(cb);
+        try { lock(); unionQuery.query(cb); } finally { unlock(); } xsaveUCB(cb);
         final VendorConstraintNameAutoRefCQ cq = cb.query(); query().xsetUnionAllQuery(cq);
     }
 
@@ -278,6 +278,7 @@ public class BsVendorConstraintNameAutoRefCB extends AbstractConditionBean {
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
     public VendorConstraintNameAutoFooNss setupSelect_VendorConstraintNameAutoFoo() {
+        assertSetupSelectPurpose("vendorConstraintNameAutoFoo");
         if (hasSpecifiedColumn()) { // if reverse call
             specify().columnConstraintNameAutoFooId();
         }
@@ -304,6 +305,7 @@ public class BsVendorConstraintNameAutoRefCB extends AbstractConditionBean {
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
     public VendorConstraintNameAutoBarNss setupSelect_VendorConstraintNameAutoBar() {
+        assertSetupSelectPurpose("vendorConstraintNameAutoBar");
         if (hasSpecifiedColumn()) { // if reverse call
             specify().columnConstraintNameAutoBarId();
         }
@@ -330,6 +332,7 @@ public class BsVendorConstraintNameAutoRefCB extends AbstractConditionBean {
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
     public VendorConstraintNameAutoQuxNss setupSelect_VendorConstraintNameAutoQux() {
+        assertSetupSelectPurpose("vendorConstraintNameAutoQux");
         if (hasSpecifiedColumn()) { // if reverse call
             specify().columnConstraintNameAutoQuxId();
         }
@@ -514,8 +517,8 @@ public class BsVendorConstraintNameAutoRefCB extends AbstractConditionBean {
 
     // [DBFlute-0.9.5.3]
     // ===================================================================================
-    //                                                                         ColumnQuery
-    //                                                                         ===========
+    //                                                                        Column Query
+    //                                                                        ============
     /**
      * Set up column-query. {column1 = column2}
      * <pre>
@@ -567,8 +570,8 @@ public class BsVendorConstraintNameAutoRefCB extends AbstractConditionBean {
 
     // [DBFlute-0.9.6.3]
     // ===================================================================================
-    //                                                                        OrScopeQuery
-    //                                                                        ============
+    //                                                                       OrScope Query
+    //                                                                       =============
     /**
      * Set up the query for or-scope. <br />
      * (Same-column-and-same-condition-key conditions are allowed in or-scope)

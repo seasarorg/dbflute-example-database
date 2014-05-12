@@ -22,6 +22,7 @@ import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
 import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.exception.*;
+import org.seasar.dbflute.optional.*;
 import org.seasar.dbflute.outsidesql.executor.*;
 import com.example.dbflute.mysql.dbflute.exbhv.*;
 import com.example.dbflute.mysql.dbflute.exentity.*;
@@ -135,7 +136,7 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
     //                                                                       Entity Select
     //                                                                       =============
     /**
-     * Select the entity by the condition-bean. <br />
+     * Select the entity by the condition-bean. #beforejava8 <br />
      * <span style="color: #AD4747; font-size: 120%">The return might be null if no data, so you should have null check.</span> <br />
      * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, use selectEntityWithDeletedCheck().</span>
      * <pre>
@@ -161,6 +162,10 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, WhiteAllInOneClsCategoryCB>() {
             public List<ENTITY> callbackSelectList(WhiteAllInOneClsCategoryCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
+    }
+
+    protected <ENTITY extends WhiteAllInOneClsCategory> OptionalEntity<ENTITY> doSelectOptionalEntity(WhiteAllInOneClsCategoryCB cb, Class<ENTITY> tp) {
+        return createOptionalEntity(doSelectEntity(cb, tp), cb);
     }
 
     @Override
@@ -398,39 +403,12 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
      *     public void setup(WhiteAllInOneClsElementCB cb) {
      *         cb.setupSelect...();
      *         cb.query().setFoo...(value);
-     *         cb.query().addOrderBy_Bar...(); <span style="color: #3F7E5E">// basically you should order referrer list</span>
+     *         cb.query().addOrderBy_Bar...();
      *     }
-     * }); <span style="color: #3F7E5E">// you can load nested referrer from here by calling like '}).withNestedList(new ...)'</span>
-     * for (WhiteAllInOneClsCategory whiteAllInOneClsCategory : whiteAllInOneClsCategoryList) {
-     *     ... = whiteAllInOneClsCategory.<span style="color: #DD4747">getWhiteAllInOneClsElementList()</span>;
-     * }
-     * </pre>
-     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
-     * The condition-bean, which the set-upper provides, has settings before callback as follows:
-     * <pre>
-     * cb.query().setClsCategoryCode_InScope(pkList);
-     * cb.query().addOrderBy_ClsCategoryCode_Asc();
-     * </pre>
-     * @param whiteAllInOneClsCategory The entity of whiteAllInOneClsCategory. (NotNull)
-     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
-     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
-     */
-    public NestedReferrerLoader<WhiteAllInOneClsElement> loadWhiteAllInOneClsElementList(WhiteAllInOneClsCategory whiteAllInOneClsCategory, ConditionBeanSetupper<WhiteAllInOneClsElementCB> conditionBeanSetupper) {
-        xassLRArg(whiteAllInOneClsCategory, conditionBeanSetupper);
-        return loadWhiteAllInOneClsElementList(xnewLRLs(whiteAllInOneClsCategory), conditionBeanSetupper);
-    }
-
-    /**
-     * Load referrer of whiteAllInOneClsElementList by the set-upper of referrer. <br />
-     * white_all_in_one_cls_element by CLS_CATEGORY_CODE, named 'whiteAllInOneClsElementList'.
-     * <pre>
-     * whiteAllInOneClsCategoryBhv.<span style="color: #DD4747">loadWhiteAllInOneClsElementList</span>(whiteAllInOneClsCategoryList, new ConditionBeanSetupper&lt;WhiteAllInOneClsElementCB&gt;() {
-     *     public void setup(WhiteAllInOneClsElementCB cb) {
-     *         cb.setupSelect...();
-     *         cb.query().setFoo...(value);
-     *         cb.query().addOrderBy_Bar...(); <span style="color: #3F7E5E">// basically you should order referrer list</span>
-     *     }
-     * }); <span style="color: #3F7E5E">// you can load nested referrer from here by calling like '}).withNestedList(new ...)'</span>
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
+     * <span style="color: #3F7E5E">//}).withNestedList(referrerList -&gt {</span>
+     * <span style="color: #3F7E5E">//    ...</span>
+     * <span style="color: #3F7E5E">//});</span>
      * for (WhiteAllInOneClsCategory whiteAllInOneClsCategory : whiteAllInOneClsCategoryList) {
      *     ... = whiteAllInOneClsCategory.<span style="color: #DD4747">getWhiteAllInOneClsElementList()</span>;
      * }
@@ -442,16 +420,47 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
      * cb.query().addOrderBy_ClsCategoryCode_Asc();
      * </pre>
      * @param whiteAllInOneClsCategoryList The entity list of whiteAllInOneClsCategory. (NotNull)
-     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
+     * @param setupper The callback to set up referrer condition-bean for loading referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public NestedReferrerLoader<WhiteAllInOneClsElement> loadWhiteAllInOneClsElementList(List<WhiteAllInOneClsCategory> whiteAllInOneClsCategoryList, ConditionBeanSetupper<WhiteAllInOneClsElementCB> conditionBeanSetupper) {
-        xassLRArg(whiteAllInOneClsCategoryList, conditionBeanSetupper);
-        return loadWhiteAllInOneClsElementList(whiteAllInOneClsCategoryList, new LoadReferrerOption<WhiteAllInOneClsElementCB, WhiteAllInOneClsElement>().xinit(conditionBeanSetupper));
+    public NestedReferrerLoader<WhiteAllInOneClsElement> loadWhiteAllInOneClsElementList(List<WhiteAllInOneClsCategory> whiteAllInOneClsCategoryList, ConditionBeanSetupper<WhiteAllInOneClsElementCB> setupper) {
+        xassLRArg(whiteAllInOneClsCategoryList, setupper);
+        return doLoadWhiteAllInOneClsElementList(whiteAllInOneClsCategoryList, new LoadReferrerOption<WhiteAllInOneClsElementCB, WhiteAllInOneClsElement>().xinit(setupper));
     }
 
     /**
-     * {Refer to overload method that has an argument of the list of entity.}
+     * Load referrer of whiteAllInOneClsElementList by the set-upper of referrer. <br />
+     * white_all_in_one_cls_element by CLS_CATEGORY_CODE, named 'whiteAllInOneClsElementList'.
+     * <pre>
+     * whiteAllInOneClsCategoryBhv.<span style="color: #DD4747">loadWhiteAllInOneClsElementList</span>(whiteAllInOneClsCategoryList, new ConditionBeanSetupper&lt;WhiteAllInOneClsElementCB&gt;() {
+     *     public void setup(WhiteAllInOneClsElementCB cb) {
+     *         cb.setupSelect...();
+     *         cb.query().setFoo...(value);
+     *         cb.query().addOrderBy_Bar...();
+     *     }
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
+     * <span style="color: #3F7E5E">//}).withNestedList(referrerList -&gt {</span>
+     * <span style="color: #3F7E5E">//    ...</span>
+     * <span style="color: #3F7E5E">//});</span>
+     * ... = whiteAllInOneClsCategory.<span style="color: #DD4747">getWhiteAllInOneClsElementList()</span>;
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
+     * <pre>
+     * cb.query().setClsCategoryCode_InScope(pkList);
+     * cb.query().addOrderBy_ClsCategoryCode_Asc();
+     * </pre>
+     * @param whiteAllInOneClsCategory The entity of whiteAllInOneClsCategory. (NotNull)
+     * @param setupper The callback to set up referrer condition-bean for loading referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
+     */
+    public NestedReferrerLoader<WhiteAllInOneClsElement> loadWhiteAllInOneClsElementList(WhiteAllInOneClsCategory whiteAllInOneClsCategory, ConditionBeanSetupper<WhiteAllInOneClsElementCB> setupper) {
+        xassLRArg(whiteAllInOneClsCategory, setupper);
+        return doLoadWhiteAllInOneClsElementList(xnewLRLs(whiteAllInOneClsCategory), new LoadReferrerOption<WhiteAllInOneClsElementCB, WhiteAllInOneClsElement>().xinit(setupper));
+    }
+
+    /**
+     * {Refer to overload method that has an argument of the list of entity.} #beforejava8
      * @param whiteAllInOneClsCategory The entity of whiteAllInOneClsCategory. (NotNull)
      * @param loadReferrerOption The option of load-referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
@@ -462,7 +471,7 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
     }
 
     /**
-     * {Refer to overload method that has an argument of condition-bean setupper.}
+     * {Refer to overload method that has an argument of condition-bean setupper.} #beforejava8
      * @param whiteAllInOneClsCategoryList The entity list of whiteAllInOneClsCategory. (NotNull)
      * @param loadReferrerOption The option of load-referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)

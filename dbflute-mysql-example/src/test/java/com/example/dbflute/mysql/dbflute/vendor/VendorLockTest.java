@@ -24,9 +24,11 @@ import org.seasar.dbflute.util.DfCollectionUtil;
 import com.example.dbflute.mysql.dbflute.cbean.MemberCB;
 import com.example.dbflute.mysql.dbflute.cbean.PurchaseCB;
 import com.example.dbflute.mysql.dbflute.exbhv.MemberBhv;
+import com.example.dbflute.mysql.dbflute.exbhv.MemberLoginBhv;
 import com.example.dbflute.mysql.dbflute.exbhv.MemberStatusBhv;
 import com.example.dbflute.mysql.dbflute.exbhv.PurchaseBhv;
 import com.example.dbflute.mysql.dbflute.exentity.Member;
+import com.example.dbflute.mysql.dbflute.exentity.MemberLogin;
 import com.example.dbflute.mysql.dbflute.exentity.MemberStatus;
 import com.example.dbflute.mysql.dbflute.exentity.Purchase;
 import com.example.dbflute.mysql.unit.UnitContainerTestCase;
@@ -42,6 +44,7 @@ public class VendorLockTest extends UnitContainerTestCase {
     //                                                                           =========
     private MemberBhv memberBhv;
     private MemberStatusBhv memberStatusBhv;
+    private MemberLoginBhv memberLoginBhv;
     private PurchaseBhv purchaseBhv;
 
     // ===================================================================================
@@ -201,6 +204,66 @@ public class VendorLockTest extends UnitContainerTestCase {
                         purchase.setPurchaseCount(9);
                         purchase.setPaymentCompleteFlg_True();
                         purchaseBhv.insert(purchase); // wait
+                    }
+                }, 2);
+            }
+        }, new CannonballOption().threadCount(2));
+    }
+
+    public void test_insert_ForeignLockWait_reverse() throws Exception {
+        final int memberId = 7;
+        cannonball(new CannonballRun() {
+            public void drive(CannonballCar car) {
+                car.projectA(new CannonballProjectA() {
+                    public void plan(CannonballDragon dragon) {
+                        Purchase purchase = new Purchase();
+                        purchase.setMemberId(memberId);
+                        purchase.setProductId(1);
+                        purchase.setPurchaseDatetime(currentTimestamp());
+                        purchase.setPurchasePrice(123);
+                        purchase.setPurchaseCount(9);
+                        purchase.setPaymentCompleteFlg_True();
+                        purchaseBhv.insert(purchase);
+                    }
+                }, 1);
+                car.projectA(new CannonballProjectA() {
+                    public void plan(CannonballDragon dragon) {
+                        dragon.expectOvertime(); // update waits for insert lock
+                        Member member = new Member();
+                        member.setMemberId(memberId);
+                        member.setMemberName("lock1");
+                        memberBhv.updateNonstrict(member); // wait
+                    }
+                }, 2);
+            }
+        }, new CannonballOption().threadCount(2));
+    }
+
+    public void test_insert_ForeignLockWait_branch_NotWait() throws Exception {
+        final int memberId = 7;
+        cannonball(new CannonballRun() {
+            public void drive(CannonballCar car) {
+                car.projectA(new CannonballProjectA() {
+                    public void plan(CannonballDragon dragon) {
+                        Purchase purchase = new Purchase();
+                        purchase.setMemberId(memberId);
+                        purchase.setProductId(1);
+                        purchase.setPurchaseDatetime(currentTimestamp());
+                        purchase.setPurchasePrice(123);
+                        purchase.setPurchaseCount(9);
+                        purchase.setPaymentCompleteFlg_True();
+                        purchaseBhv.insert(purchase);
+                    }
+                }, 1);
+                car.projectA(new CannonballProjectA() {
+                    public void plan(CannonballDragon dragon) {
+                        dragon.expectNormallyDone();
+                        MemberLogin login = new MemberLogin();
+                        login.setMemberId(3);
+                        login.setLoginMemberStatusCode_正式会員();
+                        login.setMobileLoginFlg_True();
+                        login.setLoginDatetime(currentTimestamp());
+                        memberLoginBhv.insert(login);
                     }
                 }, 2);
             }

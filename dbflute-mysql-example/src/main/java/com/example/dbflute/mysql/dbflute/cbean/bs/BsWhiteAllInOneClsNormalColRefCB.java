@@ -237,8 +237,8 @@ public class BsWhiteAllInOneClsNormalColRefCB extends AbstractConditionBean {
      * @param unionQuery The query of 'union'. (NotNull)
      */
     public void union(UnionQuery<WhiteAllInOneClsNormalColRefCB> unionQuery) {
-        final WhiteAllInOneClsNormalColRefCB cb = new WhiteAllInOneClsNormalColRefCB();
-        cb.xsetupForUnion(this); xsyncUQ(cb); unionQuery.query(cb); xsaveUCB(cb);
+        final WhiteAllInOneClsNormalColRefCB cb = new WhiteAllInOneClsNormalColRefCB(); cb.xsetupForUnion(this); xsyncUQ(cb); 
+        try { lock(); unionQuery.query(cb); } finally { unlock(); } xsaveUCB(cb);
         final WhiteAllInOneClsNormalColRefCQ cq = cb.query(); query().xsetUnionQuery(cq);
     }
 
@@ -256,8 +256,8 @@ public class BsWhiteAllInOneClsNormalColRefCB extends AbstractConditionBean {
      * @param unionQuery The query of 'union all'. (NotNull)
      */
     public void unionAll(UnionQuery<WhiteAllInOneClsNormalColRefCB> unionQuery) {
-        final WhiteAllInOneClsNormalColRefCB cb = new WhiteAllInOneClsNormalColRefCB();
-        cb.xsetupForUnion(this); xsyncUQ(cb); unionQuery.query(cb); xsaveUCB(cb);
+        final WhiteAllInOneClsNormalColRefCB cb = new WhiteAllInOneClsNormalColRefCB(); cb.xsetupForUnion(this); xsyncUQ(cb);
+        try { lock(); unionQuery.query(cb); } finally { unlock(); } xsaveUCB(cb);
         final WhiteAllInOneClsNormalColRefCQ cq = cb.query(); query().xsetUnionAllQuery(cq);
     }
 
@@ -282,6 +282,7 @@ public class BsWhiteAllInOneClsNormalColRefCB extends AbstractConditionBean {
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
     public WhiteAllInOneClsElementNss setupSelect_WhiteAllInOneClsElementAsFoo() {
+        assertSetupSelectPurpose("whiteAllInOneClsElementAsFoo");
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryWhiteAllInOneClsElementAsFoo(); } });
         if (_nssWhiteAllInOneClsElementAsFoo == null || !_nssWhiteAllInOneClsElementAsFoo.hasConditionQuery())
         { _nssWhiteAllInOneClsElementAsFoo = new WhiteAllInOneClsElementNss(query().queryWhiteAllInOneClsElementAsFoo()); }
@@ -305,6 +306,7 @@ public class BsWhiteAllInOneClsNormalColRefCB extends AbstractConditionBean {
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
     public WhiteAllInOneClsElementNss setupSelect_WhiteAllInOneClsElementAsBar() {
+        assertSetupSelectPurpose("whiteAllInOneClsElementAsBar");
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryWhiteAllInOneClsElementAsBar(); } });
         if (_nssWhiteAllInOneClsElementAsBar == null || !_nssWhiteAllInOneClsElementAsBar.hasConditionQuery())
         { _nssWhiteAllInOneClsElementAsBar = new WhiteAllInOneClsElementNss(query().queryWhiteAllInOneClsElementAsBar()); }
@@ -434,8 +436,8 @@ public class BsWhiteAllInOneClsNormalColRefCB extends AbstractConditionBean {
 
     // [DBFlute-0.9.5.3]
     // ===================================================================================
-    //                                                                         ColumnQuery
-    //                                                                         ===========
+    //                                                                        Column Query
+    //                                                                        ============
     /**
      * Set up column-query. {column1 = column2}
      * <pre>
@@ -487,8 +489,8 @@ public class BsWhiteAllInOneClsNormalColRefCB extends AbstractConditionBean {
 
     // [DBFlute-0.9.6.3]
     // ===================================================================================
-    //                                                                        OrScopeQuery
-    //                                                                        ============
+    //                                                                       OrScope Query
+    //                                                                       =============
     /**
      * Set up the query for or-scope. <br />
      * (Same-column-and-same-condition-key conditions are allowed in or-scope)

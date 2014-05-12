@@ -235,8 +235,8 @@ public class BsWhiteCompoundPkCB extends AbstractConditionBean {
      * @param unionQuery The query of 'union'. (NotNull)
      */
     public void union(UnionQuery<WhiteCompoundPkCB> unionQuery) {
-        final WhiteCompoundPkCB cb = new WhiteCompoundPkCB();
-        cb.xsetupForUnion(this); xsyncUQ(cb); unionQuery.query(cb); xsaveUCB(cb);
+        final WhiteCompoundPkCB cb = new WhiteCompoundPkCB(); cb.xsetupForUnion(this); xsyncUQ(cb); 
+        try { lock(); unionQuery.query(cb); } finally { unlock(); } xsaveUCB(cb);
         final WhiteCompoundPkCQ cq = cb.query(); query().xsetUnionQuery(cq);
     }
 
@@ -254,8 +254,8 @@ public class BsWhiteCompoundPkCB extends AbstractConditionBean {
      * @param unionQuery The query of 'union all'. (NotNull)
      */
     public void unionAll(UnionQuery<WhiteCompoundPkCB> unionQuery) {
-        final WhiteCompoundPkCB cb = new WhiteCompoundPkCB();
-        cb.xsetupForUnion(this); xsyncUQ(cb); unionQuery.query(cb); xsaveUCB(cb);
+        final WhiteCompoundPkCB cb = new WhiteCompoundPkCB(); cb.xsetupForUnion(this); xsyncUQ(cb);
+        try { lock(); unionQuery.query(cb); } finally { unlock(); } xsaveUCB(cb);
         final WhiteCompoundPkCQ cq = cb.query(); query().xsetUnionAllQuery(cq);
     }
 
@@ -280,6 +280,7 @@ public class BsWhiteCompoundPkCB extends AbstractConditionBean {
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
     public WhiteCompoundReferredNormallyNss setupSelect_WhiteCompoundReferredNormally() {
+        assertSetupSelectPurpose("whiteCompoundReferredNormally");
         if (hasSpecifiedColumn()) { // if reverse call
             specify().columnReferredId();
         }
@@ -306,6 +307,7 @@ public class BsWhiteCompoundPkCB extends AbstractConditionBean {
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
     public WhiteCompoundReferredPrimaryNss setupSelect_WhiteCompoundReferredPrimary() {
+        assertSetupSelectPurpose("whiteCompoundReferredPrimary");
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryWhiteCompoundReferredPrimary(); } });
         if (_nssWhiteCompoundReferredPrimary == null || !_nssWhiteCompoundReferredPrimary.hasConditionQuery())
         { _nssWhiteCompoundReferredPrimary = new WhiteCompoundReferredPrimaryNss(query().queryWhiteCompoundReferredPrimary()); }
@@ -329,6 +331,7 @@ public class BsWhiteCompoundPkCB extends AbstractConditionBean {
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
     public WhiteCompoundPkRefManyNss setupSelect_WhiteCompoundPkRefManyAsMax() {
+        assertSetupSelectPurpose("whiteCompoundPkRefManyAsMax");
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryWhiteCompoundPkRefManyAsMax(); } });
         if (_nssWhiteCompoundPkRefManyAsMax == null || !_nssWhiteCompoundPkRefManyAsMax.hasConditionQuery())
         { _nssWhiteCompoundPkRefManyAsMax = new WhiteCompoundPkRefManyNss(query().queryWhiteCompoundPkRefManyAsMax()); }
@@ -352,6 +355,7 @@ public class BsWhiteCompoundPkCB extends AbstractConditionBean {
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
     public WhiteCompoundPkRefManyNss setupSelect_WhiteCompoundPkRefManyAsMin() {
+        assertSetupSelectPurpose("whiteCompoundPkRefManyAsMin");
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryWhiteCompoundPkRefManyAsMin(); } });
         if (_nssWhiteCompoundPkRefManyAsMin == null || !_nssWhiteCompoundPkRefManyAsMin.hasConditionQuery())
         { _nssWhiteCompoundPkRefManyAsMin = new WhiteCompoundPkRefManyNss(query().queryWhiteCompoundPkRefManyAsMin()); }
@@ -568,8 +572,8 @@ public class BsWhiteCompoundPkCB extends AbstractConditionBean {
 
     // [DBFlute-0.9.5.3]
     // ===================================================================================
-    //                                                                         ColumnQuery
-    //                                                                         ===========
+    //                                                                        Column Query
+    //                                                                        ============
     /**
      * Set up column-query. {column1 = column2}
      * <pre>
@@ -621,8 +625,8 @@ public class BsWhiteCompoundPkCB extends AbstractConditionBean {
 
     // [DBFlute-0.9.6.3]
     // ===================================================================================
-    //                                                                        OrScopeQuery
-    //                                                                        ============
+    //                                                                       OrScope Query
+    //                                                                       =============
     /**
      * Set up the query for or-scope. <br />
      * (Same-column-and-same-condition-key conditions are allowed in or-scope)

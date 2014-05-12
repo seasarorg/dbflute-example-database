@@ -35,6 +35,10 @@ public class ImplementedCommonColumnAutoSetupper implements CommonColumnAutoSetu
         if (isInternalDebugEnabled()) {
             logSettingUp(entity, "INSERT");
         }
+        doHandleCommonColumnOfInsertIfNeeds(entity);
+    }
+
+    protected void doHandleCommonColumnOfInsertIfNeeds(EntityDefinedCommonColumn entity) {
 
         final java.sql.Timestamp tableNameRegisterDatetime = org.seasar.dbflute.AccessContext.getAccessTimestampOnThread();
         entity.setTableNameRegisterDatetime(tableNameRegisterDatetime);
@@ -66,6 +70,10 @@ public class ImplementedCommonColumnAutoSetupper implements CommonColumnAutoSetu
         if (isInternalDebugEnabled()) {
             logSettingUp(entity, "UPDATE");
         }
+        doHandleCommonColumnOfUpdateIfNeeds(entity);
+    }
+
+    protected void doHandleCommonColumnOfUpdateIfNeeds(EntityDefinedCommonColumn entity) {
 
         final java.sql.Timestamp tableNameUpdateDatetime = org.seasar.dbflute.AccessContext.getAccessTimestampOnThread();
         entity.setTableNameUpdateDatetime(tableNameUpdateDatetime);

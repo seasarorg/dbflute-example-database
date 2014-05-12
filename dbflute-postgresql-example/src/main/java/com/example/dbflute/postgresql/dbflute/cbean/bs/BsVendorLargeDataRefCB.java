@@ -218,8 +218,8 @@ public class BsVendorLargeDataRefCB extends AbstractConditionBean {
      * @param unionQuery The query of 'union'. (NotNull)
      */
     public void union(UnionQuery<VendorLargeDataRefCB> unionQuery) {
-        final VendorLargeDataRefCB cb = new VendorLargeDataRefCB();
-        cb.xsetupForUnion(this); xsyncUQ(cb); unionQuery.query(cb); xsaveUCB(cb);
+        final VendorLargeDataRefCB cb = new VendorLargeDataRefCB(); cb.xsetupForUnion(this); xsyncUQ(cb); 
+        try { lock(); unionQuery.query(cb); } finally { unlock(); } xsaveUCB(cb);
         final VendorLargeDataRefCQ cq = cb.query(); query().xsetUnionQuery(cq);
     }
 
@@ -237,8 +237,8 @@ public class BsVendorLargeDataRefCB extends AbstractConditionBean {
      * @param unionQuery The query of 'union all'. (NotNull)
      */
     public void unionAll(UnionQuery<VendorLargeDataRefCB> unionQuery) {
-        final VendorLargeDataRefCB cb = new VendorLargeDataRefCB();
-        cb.xsetupForUnion(this); xsyncUQ(cb); unionQuery.query(cb); xsaveUCB(cb);
+        final VendorLargeDataRefCB cb = new VendorLargeDataRefCB(); cb.xsetupForUnion(this); xsyncUQ(cb);
+        try { lock(); unionQuery.query(cb); } finally { unlock(); } xsaveUCB(cb);
         final VendorLargeDataRefCQ cq = cb.query(); query().xsetUnionAllQuery(cq);
     }
 
@@ -277,6 +277,7 @@ public class BsVendorLargeDataRefCB extends AbstractConditionBean {
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
     public VendorLargeDataNss setupSelect_VendorLargeData() {
+        assertSetupSelectPurpose("vendorLargeData");
         if (hasSpecifiedColumn()) { // if reverse call
             specify().columnLargeDataId();
         }
@@ -303,6 +304,7 @@ public class BsVendorLargeDataRefCB extends AbstractConditionBean {
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
     public VendorLargeDataRefNss setupSelect_VendorLargeDataRefSelf() {
+        assertSetupSelectPurpose("vendorLargeDataRefSelf");
         if (hasSpecifiedColumn()) { // if reverse call
             specify().columnSelfParentId();
         }
@@ -496,8 +498,8 @@ public class BsVendorLargeDataRefCB extends AbstractConditionBean {
 
     // [DBFlute-0.9.5.3]
     // ===================================================================================
-    //                                                                         ColumnQuery
-    //                                                                         ===========
+    //                                                                        Column Query
+    //                                                                        ============
     /**
      * Set up column-query. {column1 = column2}
      * <pre>
@@ -549,8 +551,8 @@ public class BsVendorLargeDataRefCB extends AbstractConditionBean {
 
     // [DBFlute-0.9.6.3]
     // ===================================================================================
-    //                                                                        OrScopeQuery
-    //                                                                        ============
+    //                                                                       OrScope Query
+    //                                                                       =============
     /**
      * Set up the query for or-scope. <br />
      * (Same-column-and-same-condition-key conditions are allowed in or-scope)

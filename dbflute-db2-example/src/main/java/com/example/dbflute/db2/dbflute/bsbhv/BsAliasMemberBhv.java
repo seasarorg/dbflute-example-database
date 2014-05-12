@@ -6,6 +6,8 @@ import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
 import org.seasar.dbflute.dbmeta.DBMeta;
+import org.seasar.dbflute.exception.*;
+import org.seasar.dbflute.optional.*;
 import org.seasar.dbflute.outsidesql.executor.*;
 import com.example.dbflute.db2.dbflute.exbhv.*;
 import com.example.dbflute.db2.dbflute.exentity.*;
@@ -91,7 +93,7 @@ public abstract class BsAliasMemberBhv extends AbstractBehaviorWritable {
      * <pre>
      * AliasMemberCB cb = new AliasMemberCB();
      * cb.query().setFoo...(value);
-     * int count = aliasMemberBhv.<span style="color: #FD4747">selectCount</span>(cb);
+     * int count = aliasMemberBhv.<span style="color: #DD4747">selectCount</span>(cb);
      * </pre>
      * @param cb The condition-bean of AliasMember. (NotNull)
      * @return The count for the condition. (NotMinus)
@@ -119,12 +121,14 @@ public abstract class BsAliasMemberBhv extends AbstractBehaviorWritable {
     //                                                                       Entity Select
     //                                                                       =============
     /**
-     * Select the entity by the condition-bean.
+     * Select the entity by the condition-bean. #beforejava8 <br />
+     * <span style="color: #AD4747; font-size: 120%">The return might be null if no data, so you should have null check.</span> <br />
+     * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, use selectEntityWithDeletedCheck().</span>
      * <pre>
      * AliasMemberCB cb = new AliasMemberCB();
      * cb.query().setFoo...(value);
-     * AliasMember aliasMember = aliasMemberBhv.<span style="color: #FD4747">selectEntity</span>(cb);
-     * if (aliasMember != null) {
+     * AliasMember aliasMember = aliasMemberBhv.<span style="color: #DD4747">selectEntity</span>(cb);
+     * if (aliasMember != null) { <span style="color: #3F7E5E">// null check</span>
      *     ... = aliasMember.get...();
      * } else {
      *     ...
@@ -132,8 +136,8 @@ public abstract class BsAliasMemberBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of AliasMember. (NotNull)
      * @return The entity selected by the condition. (NullAllowed: if no data, it returns null)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public AliasMember selectEntity(AliasMemberCB cb) {
         return doSelectEntity(cb, AliasMember.class);
@@ -145,24 +149,29 @@ public abstract class BsAliasMemberBhv extends AbstractBehaviorWritable {
             public List<ENTITY> callbackSelectList(AliasMemberCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
+    protected <ENTITY extends AliasMember> OptionalEntity<ENTITY> doSelectOptionalEntity(AliasMemberCB cb, Class<ENTITY> tp) {
+        return createOptionalEntity(doSelectEntity(cb, tp), cb);
+    }
+
     @Override
     protected Entity doReadEntity(ConditionBean cb) {
         return selectEntity(downcast(cb));
     }
 
     /**
-     * Select the entity by the condition-bean with deleted check.
+     * Select the entity by the condition-bean with deleted check. <br />
+     * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, this method is good.</span>
      * <pre>
      * AliasMemberCB cb = new AliasMemberCB();
      * cb.query().setFoo...(value);
-     * AliasMember aliasMember = aliasMemberBhv.<span style="color: #FD4747">selectEntityWithDeletedCheck</span>(cb);
+     * AliasMember aliasMember = aliasMemberBhv.<span style="color: #DD4747">selectEntityWithDeletedCheck</span>(cb);
      * ... = aliasMember.get...(); <span style="color: #3F7E5E">// the entity always be not null</span>
      * </pre>
      * @param cb The condition-bean of AliasMember. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public AliasMember selectEntityWithDeletedCheck(AliasMemberCB cb) {
         return doSelectEntityWithDeletedCheck(cb, AliasMember.class);
@@ -183,8 +192,8 @@ public abstract class BsAliasMemberBhv extends AbstractBehaviorWritable {
      * Select the entity by the primary-key value.
      * @param memberId The one of primary key. (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public AliasMember selectByPKValue(Integer memberId) {
         return doSelectByPKValue(memberId, AliasMember.class);
@@ -198,9 +207,9 @@ public abstract class BsAliasMemberBhv extends AbstractBehaviorWritable {
      * Select the entity by the primary-key value with deleted check.
      * @param memberId The one of primary key. (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public AliasMember selectByPKValueWithDeletedCheck(Integer memberId) {
         return doSelectByPKValueWithDeletedCheck(memberId, AliasMember.class);
@@ -226,14 +235,14 @@ public abstract class BsAliasMemberBhv extends AbstractBehaviorWritable {
      * AliasMemberCB cb = new AliasMemberCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * ListResultBean&lt;AliasMember&gt; aliasMemberList = aliasMemberBhv.<span style="color: #FD4747">selectList</span>(cb);
+     * ListResultBean&lt;AliasMember&gt; aliasMemberList = aliasMemberBhv.<span style="color: #DD4747">selectList</span>(cb);
      * for (AliasMember aliasMember : aliasMemberList) {
      *     ... = aliasMember.get...();
      * }
      * </pre>
      * @param cb The condition-bean of AliasMember. (NotNull)
      * @return The result bean of selected list. (NotNull: if no data, returns empty list)
-     * @exception org.seasar.dbflute.exception.DangerousResultSizeException When the result size is over the specified safety size.
+     * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public ListResultBean<AliasMember> selectList(AliasMemberCB cb) {
         return doSelectList(cb, AliasMember.class);
@@ -261,8 +270,8 @@ public abstract class BsAliasMemberBhv extends AbstractBehaviorWritable {
      * AliasMemberCB cb = new AliasMemberCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * cb.<span style="color: #FD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
-     * PagingResultBean&lt;AliasMember&gt; page = aliasMemberBhv.<span style="color: #FD4747">selectPage</span>(cb);
+     * cb.<span style="color: #DD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
+     * PagingResultBean&lt;AliasMember&gt; page = aliasMemberBhv.<span style="color: #DD4747">selectPage</span>(cb);
      * int allRecordCount = page.getAllRecordCount();
      * int allPageCount = page.getAllPageCount();
      * boolean isExistPrePage = page.isExistPrePage();
@@ -274,7 +283,7 @@ public abstract class BsAliasMemberBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of AliasMember. (NotNull)
      * @return The result bean of selected page. (NotNull: if no data, returns bean as empty list)
-     * @exception org.seasar.dbflute.exception.DangerousResultSizeException When the result size is over the specified safety size.
+     * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public PagingResultBean<AliasMember> selectPage(AliasMemberCB cb) {
         return doSelectPage(cb, AliasMember.class);
@@ -301,7 +310,7 @@ public abstract class BsAliasMemberBhv extends AbstractBehaviorWritable {
      * <pre>
      * AliasMemberCB cb = new AliasMemberCB();
      * cb.query().setFoo...(value);
-     * aliasMemberBhv.<span style="color: #FD4747">selectCursor</span>(cb, new EntityRowHandler&lt;AliasMember&gt;() {
+     * aliasMemberBhv.<span style="color: #DD4747">selectCursor</span>(cb, new EntityRowHandler&lt;AliasMember&gt;() {
      *     public void handle(AliasMember entity) {
      *         ... = entity.getFoo...();
      *     }
@@ -330,9 +339,9 @@ public abstract class BsAliasMemberBhv extends AbstractBehaviorWritable {
      * Select the scalar value derived by a function from uniquely-selected records. <br />
      * You should call a function method after this method called like as follows:
      * <pre>
-     * aliasMemberBhv.<span style="color: #FD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
+     * aliasMemberBhv.<span style="color: #DD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
      *     public void query(AliasMemberCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
+     *         cb.specify().<span style="color: #DD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
      *         cb.query().setBarName_PrefixSearch("S");
      *     }
      * });
@@ -372,61 +381,96 @@ public abstract class BsAliasMemberBhv extends AbstractBehaviorWritable {
     //                                                                       Load Referrer
     //                                                                       =============
     /**
-     * {Refer to overload method that has an argument of the list of entity.}
-     * @param aliasMember The entity of aliasMember. (NotNull)
-     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
-     */
-    public void loadAliasMemberLoginList(AliasMember aliasMember, ConditionBeanSetupper<AliasMemberLoginCB> conditionBeanSetupper) {
-        xassLRArg(aliasMember, conditionBeanSetupper);
-        loadAliasMemberLoginList(xnewLRLs(aliasMember), conditionBeanSetupper);
-    }
-    /**
-     * Load referrer of aliasMemberLoginList with the set-upper for condition-bean of referrer. <br />
+     * Load referrer of aliasMemberLoginList by the set-upper of referrer. <br />
      * ALIAS_MEMBER_LOGIN by MEMBER_ID, named 'aliasMemberLoginList'.
      * <pre>
-     * aliasMemberBhv.<span style="color: #FD4747">loadAliasMemberLoginList</span>(aliasMemberList, new ConditionBeanSetupper&lt;AliasMemberLoginCB&gt;() {
+     * aliasMemberBhv.<span style="color: #DD4747">loadAliasMemberLoginList</span>(aliasMemberList, new ConditionBeanSetupper&lt;AliasMemberLoginCB&gt;() {
      *     public void setup(AliasMemberLoginCB cb) {
      *         cb.setupSelect...();
      *         cb.query().setFoo...(value);
-     *         cb.query().addOrderBy_Bar...(); <span style="color: #3F7E5E">// basically you should order referrer list</span>
+     *         cb.query().addOrderBy_Bar...();
      *     }
-     * });
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
+     * <span style="color: #3F7E5E">//}).withNestedList(referrerList -&gt {</span>
+     * <span style="color: #3F7E5E">//    ...</span>
+     * <span style="color: #3F7E5E">//});</span>
      * for (AliasMember aliasMember : aliasMemberList) {
-     *     ... = aliasMember.<span style="color: #FD4747">getAliasMemberLoginList()</span>;
+     *     ... = aliasMember.<span style="color: #DD4747">getAliasMemberLoginList()</span>;
      * }
      * </pre>
-     * About internal policy, the value of primary key(and others too) is treated as case-insensitive. <br />
-     * The condition-bean that the set-upper provides have settings before you touch it. It is as follows:
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
      * <pre>
      * cb.query().setMemberId_InScope(pkList);
      * cb.query().addOrderBy_MemberId_Asc();
      * </pre>
      * @param aliasMemberList The entity list of aliasMember. (NotNull)
-     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
+     * @param setupper The callback to set up referrer condition-bean for loading referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public void loadAliasMemberLoginList(List<AliasMember> aliasMemberList, ConditionBeanSetupper<AliasMemberLoginCB> conditionBeanSetupper) {
-        xassLRArg(aliasMemberList, conditionBeanSetupper);
-        loadAliasMemberLoginList(aliasMemberList, new LoadReferrerOption<AliasMemberLoginCB, AliasMemberLogin>().xinit(conditionBeanSetupper));
+    public NestedReferrerLoader<AliasMemberLogin> loadAliasMemberLoginList(List<AliasMember> aliasMemberList, ConditionBeanSetupper<AliasMemberLoginCB> setupper) {
+        xassLRArg(aliasMemberList, setupper);
+        return doLoadAliasMemberLoginList(aliasMemberList, new LoadReferrerOption<AliasMemberLoginCB, AliasMemberLogin>().xinit(setupper));
     }
+
     /**
-     * {Refer to overload method that has an argument of the list of entity.}
+     * Load referrer of aliasMemberLoginList by the set-upper of referrer. <br />
+     * ALIAS_MEMBER_LOGIN by MEMBER_ID, named 'aliasMemberLoginList'.
+     * <pre>
+     * aliasMemberBhv.<span style="color: #DD4747">loadAliasMemberLoginList</span>(aliasMemberList, new ConditionBeanSetupper&lt;AliasMemberLoginCB&gt;() {
+     *     public void setup(AliasMemberLoginCB cb) {
+     *         cb.setupSelect...();
+     *         cb.query().setFoo...(value);
+     *         cb.query().addOrderBy_Bar...();
+     *     }
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
+     * <span style="color: #3F7E5E">//}).withNestedList(referrerList -&gt {</span>
+     * <span style="color: #3F7E5E">//    ...</span>
+     * <span style="color: #3F7E5E">//});</span>
+     * ... = aliasMember.<span style="color: #DD4747">getAliasMemberLoginList()</span>;
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
+     * <pre>
+     * cb.query().setMemberId_InScope(pkList);
+     * cb.query().addOrderBy_MemberId_Asc();
+     * </pre>
+     * @param aliasMember The entity of aliasMember. (NotNull)
+     * @param setupper The callback to set up referrer condition-bean for loading referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
+     */
+    public NestedReferrerLoader<AliasMemberLogin> loadAliasMemberLoginList(AliasMember aliasMember, ConditionBeanSetupper<AliasMemberLoginCB> setupper) {
+        xassLRArg(aliasMember, setupper);
+        return doLoadAliasMemberLoginList(xnewLRLs(aliasMember), new LoadReferrerOption<AliasMemberLoginCB, AliasMemberLogin>().xinit(setupper));
+    }
+
+    /**
+     * {Refer to overload method that has an argument of the list of entity.} #beforejava8
      * @param aliasMember The entity of aliasMember. (NotNull)
      * @param loadReferrerOption The option of load-referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public void loadAliasMemberLoginList(AliasMember aliasMember, LoadReferrerOption<AliasMemberLoginCB, AliasMemberLogin> loadReferrerOption) {
+    public NestedReferrerLoader<AliasMemberLogin> loadAliasMemberLoginList(AliasMember aliasMember, LoadReferrerOption<AliasMemberLoginCB, AliasMemberLogin> loadReferrerOption) {
         xassLRArg(aliasMember, loadReferrerOption);
-        loadAliasMemberLoginList(xnewLRLs(aliasMember), loadReferrerOption);
+        return loadAliasMemberLoginList(xnewLRLs(aliasMember), loadReferrerOption);
     }
+
     /**
-     * {Refer to overload method that has an argument of condition-bean setupper.}
+     * {Refer to overload method that has an argument of condition-bean setupper.} #beforejava8
      * @param aliasMemberList The entity list of aliasMember. (NotNull)
      * @param loadReferrerOption The option of load-referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public void loadAliasMemberLoginList(List<AliasMember> aliasMemberList, LoadReferrerOption<AliasMemberLoginCB, AliasMemberLogin> loadReferrerOption) {
+    @SuppressWarnings("unchecked")
+    public NestedReferrerLoader<AliasMemberLogin> loadAliasMemberLoginList(List<AliasMember> aliasMemberList, LoadReferrerOption<AliasMemberLoginCB, AliasMemberLogin> loadReferrerOption) {
         xassLRArg(aliasMemberList, loadReferrerOption);
-        if (aliasMemberList.isEmpty()) { return; }
+        if (aliasMemberList.isEmpty()) { return (NestedReferrerLoader<AliasMemberLogin>)EMPTY_LOADER; }
+        return doLoadAliasMemberLoginList(aliasMemberList, loadReferrerOption);
+    }
+
+    protected NestedReferrerLoader<AliasMemberLogin> doLoadAliasMemberLoginList(List<AliasMember> aliasMemberList, LoadReferrerOption<AliasMemberLoginCB, AliasMemberLogin> option) {
         final AliasMemberLoginBhv referrerBhv = xgetBSFLR().select(AliasMemberLoginBhv.class);
-        helpLoadReferrerInternally(aliasMemberList, loadReferrerOption, new InternalLoadReferrerCallback<AliasMember, Integer, AliasMemberLoginCB, AliasMemberLogin>() {
+        return helpLoadReferrerInternally(aliasMemberList, option, new InternalLoadReferrerCallback<AliasMember, Integer, AliasMemberLoginCB, AliasMemberLogin>() {
             public Integer getPKVal(AliasMember et)
             { return et.getMemberId(); }
             public void setRfLs(AliasMember et, List<AliasMemberLogin> ls)
@@ -499,12 +543,12 @@ public abstract class BsAliasMemberBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
      * <span style="color: #3F7E5E">//aliasMember.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//aliasMember.set...;</span>
-     * aliasMemberBhv.<span style="color: #FD4747">insert</span>(aliasMember);
+     * aliasMemberBhv.<span style="color: #DD4747">insert</span>(aliasMember);
      * ... = aliasMember.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * <p>While, when the entity is created by select, all columns are registered.</p>
      * @param aliasMember The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insert(AliasMember aliasMember) {
         doInsert(aliasMember, null);
@@ -540,17 +584,17 @@ public abstract class BsAliasMemberBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">//aliasMember.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//aliasMember.set...;</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * aliasMember.<span style="color: #FD4747">setVersionNo</span>(value);
+     * aliasMember.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
-     *     aliasMemberBhv.<span style="color: #FD4747">update</span>(aliasMember);
+     *     aliasMemberBhv.<span style="color: #DD4747">update</span>(aliasMember);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param aliasMember The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyUpdatedException When the entity has already been updated.
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyUpdatedException When the entity has already been updated.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void update(final AliasMember aliasMember) {
         doUpdate(aliasMember, null);
@@ -604,12 +648,12 @@ public abstract class BsAliasMemberBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">// you don't need to set a value of exclusive control column</span>
      * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
      * <span style="color: #3F7E5E">//aliasMember.setVersionNo(value);</span>
-     * aliasMemberBhv.<span style="color: #FD4747">updateNonstrict</span>(aliasMember);
+     * aliasMemberBhv.<span style="color: #DD4747">updateNonstrict</span>(aliasMember);
      * </pre>
      * @param aliasMember The entity of update target. (NotNull, PrimaryKeyNotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void updateNonstrict(final AliasMember aliasMember) {
         doUpdateNonstrict(aliasMember, null);
@@ -631,11 +675,11 @@ public abstract class BsAliasMemberBhv extends AbstractBehaviorWritable {
     /**
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, ExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br />
-     * <p><span style="color: #FD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
+     * <p><span style="color: #DD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
      * @param aliasMember The entity of insert or update target. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyUpdatedException When the entity has already been updated.
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyUpdatedException When the entity has already been updated.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insertOrUpdate(AliasMember aliasMember) {
         doInesrtOrUpdate(aliasMember, null, null);
@@ -663,11 +707,11 @@ public abstract class BsAliasMemberBhv extends AbstractBehaviorWritable {
     /**
      * Insert or update the entity non-strictly modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() }
-     * <p><span style="color: #FD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
+     * <p><span style="color: #DD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
      * @param aliasMember The entity of insert or update target. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insertOrUpdateNonstrict(AliasMember aliasMember) {
         doInesrtOrUpdateNonstrict(aliasMember, null, null);
@@ -696,16 +740,16 @@ public abstract class BsAliasMemberBhv extends AbstractBehaviorWritable {
      * AliasMember aliasMember = new AliasMember();
      * aliasMember.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * aliasMember.<span style="color: #FD4747">setVersionNo</span>(value);
+     * aliasMember.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
-     *     aliasMemberBhv.<span style="color: #FD4747">delete</span>(aliasMember);
+     *     aliasMemberBhv.<span style="color: #DD4747">delete</span>(aliasMember);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param aliasMember The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyUpdatedException When the entity has already been updated.
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyUpdatedException When the entity has already been updated.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void delete(AliasMember aliasMember) {
         doDelete(aliasMember, null);
@@ -737,11 +781,11 @@ public abstract class BsAliasMemberBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">// you don't need to set a value of exclusive control column</span>
      * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
      * <span style="color: #3F7E5E">//aliasMember.setVersionNo(value);</span>
-     * aliasMemberBhv.<span style="color: #FD4747">deleteNonstrict</span>(aliasMember);
+     * aliasMemberBhv.<span style="color: #DD4747">deleteNonstrict</span>(aliasMember);
      * </pre>
      * @param aliasMember The entity of delete target. (NotNull, PrimaryKeyNotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void deleteNonstrict(AliasMember aliasMember) {
         doDeleteNonstrict(aliasMember, null);
@@ -762,11 +806,11 @@ public abstract class BsAliasMemberBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">// you don't need to set a value of exclusive control column</span>
      * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
      * <span style="color: #3F7E5E">//aliasMember.setVersionNo(value);</span>
-     * aliasMemberBhv.<span style="color: #FD4747">deleteNonstrictIgnoreDeleted</span>(aliasMember);
+     * aliasMemberBhv.<span style="color: #DD4747">deleteNonstrictIgnoreDeleted</span>(aliasMember);
      * <span style="color: #3F7E5E">// if the target entity doesn't exist, no exception</span>
      * </pre>
      * @param aliasMember The entity of delete target. (NotNull, PrimaryKeyNotNull)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void deleteNonstrictIgnoreDeleted(AliasMember aliasMember) {
         doDeleteNonstrictIgnoreDeleted(aliasMember, null);
@@ -791,7 +835,7 @@ public abstract class BsAliasMemberBhv extends AbstractBehaviorWritable {
     /**
      * Batch-insert the entity list modified-only of same-set columns. (DefaultConstraintsEnabled) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
-     * <p><span style="color: #FD4747; font-size: 120%">The columns of least common multiple are registered like this:</span></p>
+     * <p><span style="color: #DD4747; font-size: 120%">The columns of least common multiple are registered like this:</span></p>
      * <pre>
      * for (... : ...) {
      *     AliasMember aliasMember = new AliasMember();
@@ -804,7 +848,7 @@ public abstract class BsAliasMemberBhv extends AbstractBehaviorWritable {
      *     <span style="color: #3F7E5E">// columns not-called in all entities are registered as null or default value</span>
      *     aliasMemberList.add(aliasMember);
      * }
-     * aliasMemberBhv.<span style="color: #FD4747">batchInsert</span>(aliasMemberList);
+     * aliasMemberBhv.<span style="color: #DD4747">batchInsert</span>(aliasMemberList);
      * </pre>
      * <p>While, when the entities are created by select, all columns are registered.</p>
      * <p>And if the table has an identity, entities after the process don't have incremented values.
@@ -838,7 +882,7 @@ public abstract class BsAliasMemberBhv extends AbstractBehaviorWritable {
     /**
      * Batch-update the entity list modified-only of same-set columns. (ExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
-     * <span style="color: #FD4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
+     * <span style="color: #DD4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
      * <pre>
      * for (... : ...) {
      *     AliasMember aliasMember = new AliasMember();
@@ -853,11 +897,11 @@ public abstract class BsAliasMemberBhv extends AbstractBehaviorWritable {
      *     <span style="color: #3F7E5E">// (others are not updated: their values are kept)</span>
      *     aliasMemberList.add(aliasMember);
      * }
-     * aliasMemberBhv.<span style="color: #FD4747">batchUpdate</span>(aliasMemberList);
+     * aliasMemberBhv.<span style="color: #DD4747">batchUpdate</span>(aliasMemberList);
      * </pre>
      * @param aliasMemberList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.BatchEntityAlreadyUpdatedException When the entity has already been updated. This exception extends EntityAlreadyUpdatedException.
+     * @exception BatchEntityAlreadyUpdatedException When the entity has already been updated. This exception extends EntityAlreadyUpdatedException.
      */
     public int[] batchUpdate(List<AliasMember> aliasMemberList) {
         UpdateOption<AliasMemberCB> op = createPlainUpdateOption();
@@ -886,16 +930,16 @@ public abstract class BsAliasMemberBhv extends AbstractBehaviorWritable {
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * <pre>
      * <span style="color: #3F7E5E">// e.g. update two columns only</span>
-     * aliasMemberBhv.<span style="color: #FD4747">batchUpdate</span>(aliasMemberList, new SpecifyQuery<AliasMemberCB>() {
+     * aliasMemberBhv.<span style="color: #DD4747">batchUpdate</span>(aliasMemberList, new SpecifyQuery<AliasMemberCB>() {
      *     public void specify(AliasMemberCB cb) { <span style="color: #3F7E5E">// the two only updated</span>
-     *         cb.specify().<span style="color: #FD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
-     *         cb.specify().<span style="color: #FD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
+     *         cb.specify().<span style="color: #DD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
+     *         cb.specify().<span style="color: #DD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
      *     }
      * });
      * <span style="color: #3F7E5E">// e.g. update every column in the table</span>
-     * aliasMemberBhv.<span style="color: #FD4747">batchUpdate</span>(aliasMemberList, new SpecifyQuery<AliasMemberCB>() {
+     * aliasMemberBhv.<span style="color: #DD4747">batchUpdate</span>(aliasMemberList, new SpecifyQuery<AliasMemberCB>() {
      *     public void specify(AliasMemberCB cb) { <span style="color: #3F7E5E">// all columns are updated</span>
-     *         cb.specify().<span style="color: #FD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
+     *         cb.specify().<span style="color: #DD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
      *     }
      * });
      * </pre>
@@ -907,7 +951,7 @@ public abstract class BsAliasMemberBhv extends AbstractBehaviorWritable {
      * @param aliasMemberList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @param updateColumnSpec The specification of update columns. (NotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.BatchEntityAlreadyUpdatedException When the entity has already been updated. This exception extends EntityAlreadyUpdatedException.
+     * @exception BatchEntityAlreadyUpdatedException When the entity has already been updated. This exception extends EntityAlreadyUpdatedException.
      */
     public int[] batchUpdate(List<AliasMember> aliasMemberList, SpecifyQuery<AliasMemberCB> updateColumnSpec) {
         return doBatchUpdate(aliasMemberList, createSpecifiedUpdateOption(updateColumnSpec));
@@ -916,7 +960,7 @@ public abstract class BsAliasMemberBhv extends AbstractBehaviorWritable {
     /**
      * Batch-update the entity list non-strictly modified-only of same-set columns. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
-     * <span style="color: #FD4747; font-size: 140%">You should specify same-set columns to all entities like this:</span>
+     * <span style="color: #DD4747; font-size: 140%">You should specify same-set columns to all entities like this:</span>
      * <pre>
      * for (... : ...) {
      *     AliasMember aliasMember = new AliasMember();
@@ -931,11 +975,11 @@ public abstract class BsAliasMemberBhv extends AbstractBehaviorWritable {
      *     <span style="color: #3F7E5E">// (others are not updated: their values are kept)</span>
      *     aliasMemberList.add(aliasMember);
      * }
-     * aliasMemberBhv.<span style="color: #FD4747">batchUpdate</span>(aliasMemberList);
+     * aliasMemberBhv.<span style="color: #DD4747">batchUpdate</span>(aliasMemberList);
      * </pre>
      * @param aliasMemberList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdateNonstrict(List<AliasMember> aliasMemberList) {
         UpdateOption<AliasMemberCB> option = createPlainUpdateOption();
@@ -953,16 +997,16 @@ public abstract class BsAliasMemberBhv extends AbstractBehaviorWritable {
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * <pre>
      * <span style="color: #3F7E5E">// e.g. update two columns only</span>
-     * aliasMemberBhv.<span style="color: #FD4747">batchUpdateNonstrict</span>(aliasMemberList, new SpecifyQuery<AliasMemberCB>() {
+     * aliasMemberBhv.<span style="color: #DD4747">batchUpdateNonstrict</span>(aliasMemberList, new SpecifyQuery<AliasMemberCB>() {
      *     public void specify(AliasMemberCB cb) { <span style="color: #3F7E5E">// the two only updated</span>
-     *         cb.specify().<span style="color: #FD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
-     *         cb.specify().<span style="color: #FD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
+     *         cb.specify().<span style="color: #DD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
+     *         cb.specify().<span style="color: #DD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
      *     }
      * });
      * <span style="color: #3F7E5E">// e.g. update every column in the table</span>
-     * aliasMemberBhv.<span style="color: #FD4747">batchUpdateNonstrict</span>(aliasMemberList, new SpecifyQuery<AliasMemberCB>() {
+     * aliasMemberBhv.<span style="color: #DD4747">batchUpdateNonstrict</span>(aliasMemberList, new SpecifyQuery<AliasMemberCB>() {
      *     public void specify(AliasMemberCB cb) { <span style="color: #3F7E5E">// all columns are updated</span>
-     *         cb.specify().<span style="color: #FD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
+     *         cb.specify().<span style="color: #DD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
      *     }
      * });
      * </pre>
@@ -973,7 +1017,7 @@ public abstract class BsAliasMemberBhv extends AbstractBehaviorWritable {
      * @param aliasMemberList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @param updateColumnSpec The specification of update columns. (NotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdateNonstrict(List<AliasMember> aliasMemberList, SpecifyQuery<AliasMemberCB> updateColumnSpec) {
         return doBatchUpdateNonstrict(aliasMemberList, createSpecifiedUpdateOption(updateColumnSpec));
@@ -990,7 +1034,7 @@ public abstract class BsAliasMemberBhv extends AbstractBehaviorWritable {
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * @param aliasMemberList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of deleted count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.BatchEntityAlreadyUpdatedException When the entity has already been updated. This exception extends EntityAlreadyUpdatedException.
+     * @exception BatchEntityAlreadyUpdatedException When the entity has already been updated. This exception extends EntityAlreadyUpdatedException.
      */
     public int[] batchDelete(List<AliasMember> aliasMemberList) {
         return doBatchDelete(aliasMemberList, null);
@@ -1013,7 +1057,7 @@ public abstract class BsAliasMemberBhv extends AbstractBehaviorWritable {
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * @param aliasMemberList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of deleted count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchDeleteNonstrict(List<AliasMember> aliasMemberList) {
         return doBatchDeleteNonstrict(aliasMemberList, null);
@@ -1037,7 +1081,7 @@ public abstract class BsAliasMemberBhv extends AbstractBehaviorWritable {
     /**
      * Insert the several entities by query (modified-only for fixed value).
      * <pre>
-     * aliasMemberBhv.<span style="color: #FD4747">queryInsert</span>(new QueryInsertSetupper&lt;AliasMember, AliasMemberCB&gt;() {
+     * aliasMemberBhv.<span style="color: #DD4747">queryInsert</span>(new QueryInsertSetupper&lt;AliasMember, AliasMemberCB&gt;() {
      *     public ConditionBean setup(aliasMember entity, AliasMemberCB intoCB) {
      *         FooCB cb = FooCB();
      *         cb.setupSelect_Bar();
@@ -1099,12 +1143,12 @@ public abstract class BsAliasMemberBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">//aliasMember.setVersionNo(value);</span>
      * AliasMemberCB cb = new AliasMemberCB();
      * cb.query().setFoo...(value);
-     * aliasMemberBhv.<span style="color: #FD4747">queryUpdate</span>(aliasMember, cb);
+     * aliasMemberBhv.<span style="color: #DD4747">queryUpdate</span>(aliasMember, cb);
      * </pre>
      * @param aliasMember The entity that contains update values. (NotNull, PrimaryKeyNullAllowed)
      * @param cb The condition-bean of AliasMember. (NotNull)
      * @return The updated count.
-     * @exception org.seasar.dbflute.exception.NonQueryUpdateNotAllowedException When the query has no condition.
+     * @exception NonQueryUpdateNotAllowedException When the query has no condition.
      */
     public int queryUpdate(AliasMember aliasMember, AliasMemberCB cb) {
         return doQueryUpdate(aliasMember, cb, null);
@@ -1127,11 +1171,11 @@ public abstract class BsAliasMemberBhv extends AbstractBehaviorWritable {
      * <pre>
      * AliasMemberCB cb = new AliasMemberCB();
      * cb.query().setFoo...(value);
-     * aliasMemberBhv.<span style="color: #FD4747">queryDelete</span>(aliasMember, cb);
+     * aliasMemberBhv.<span style="color: #DD4747">queryDelete</span>(aliasMember, cb);
      * </pre>
      * @param cb The condition-bean of AliasMember. (NotNull)
      * @return The deleted count.
-     * @exception org.seasar.dbflute.exception.NonQueryDeleteNotAllowedException When the query has no condition.
+     * @exception NonQueryDeleteNotAllowedException When the query has no condition.
      */
     public int queryDelete(AliasMemberCB cb) {
         return doQueryDelete(cb, null);
@@ -1167,12 +1211,12 @@ public abstract class BsAliasMemberBhv extends AbstractBehaviorWritable {
      * InsertOption<AliasMemberCB> option = new InsertOption<AliasMemberCB>();
      * <span style="color: #3F7E5E">// you can insert by your values for common columns</span>
      * option.disableCommonColumnAutoSetup();
-     * aliasMemberBhv.<span style="color: #FD4747">varyingInsert</span>(aliasMember, option);
+     * aliasMemberBhv.<span style="color: #DD4747">varyingInsert</span>(aliasMember, option);
      * ... = aliasMember.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * @param aliasMember The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
      * @param option The option of insert for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingInsert(AliasMember aliasMember, InsertOption<AliasMemberCB> option) {
         assertInsertOptionNotNull(option);
@@ -1188,25 +1232,25 @@ public abstract class BsAliasMemberBhv extends AbstractBehaviorWritable {
      * aliasMember.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * aliasMember.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * aliasMember.<span style="color: #FD4747">setVersionNo</span>(value);
+     * aliasMember.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     <span style="color: #3F7E5E">// you can update by self calculation values</span>
      *     UpdateOption&lt;AliasMemberCB&gt; option = new UpdateOption&lt;AliasMemberCB&gt;();
      *     option.self(new SpecifyQuery&lt;AliasMemberCB&gt;() {
      *         public void specify(AliasMemberCB cb) {
-     *             cb.specify().<span style="color: #FD4747">columnXxxCount()</span>;
+     *             cb.specify().<span style="color: #DD4747">columnXxxCount()</span>;
      *         }
      *     }).plus(1); <span style="color: #3F7E5E">// XXX_COUNT = XXX_COUNT + 1</span>
-     *     aliasMemberBhv.<span style="color: #FD4747">varyingUpdate</span>(aliasMember, option);
+     *     aliasMemberBhv.<span style="color: #DD4747">varyingUpdate</span>(aliasMember, option);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param aliasMember The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @param option The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyUpdatedException When the entity has already been updated.
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyUpdatedException When the entity has already been updated.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingUpdate(AliasMember aliasMember, UpdateOption<AliasMemberCB> option) {
         assertUpdateOptionNotNull(option);
@@ -1228,16 +1272,16 @@ public abstract class BsAliasMemberBhv extends AbstractBehaviorWritable {
      * UpdateOption&lt;AliasMemberCB&gt; option = new UpdateOption&lt;AliasMemberCB&gt;();
      * option.self(new SpecifyQuery&lt;AliasMemberCB&gt;() {
      *     public void specify(AliasMemberCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFooCount()</span>;
+     *         cb.specify().<span style="color: #DD4747">columnFooCount()</span>;
      *     }
      * }).plus(1); <span style="color: #3F7E5E">// FOO_COUNT = FOO_COUNT + 1</span>
-     * aliasMemberBhv.<span style="color: #FD4747">varyingUpdateNonstrict</span>(aliasMember, option);
+     * aliasMemberBhv.<span style="color: #DD4747">varyingUpdateNonstrict</span>(aliasMember, option);
      * </pre>
      * @param aliasMember The entity of update target. (NotNull, PrimaryKeyNotNull)
      * @param option The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingUpdateNonstrict(AliasMember aliasMember, UpdateOption<AliasMemberCB> option) {
         assertUpdateOptionNotNull(option);
@@ -1250,9 +1294,9 @@ public abstract class BsAliasMemberBhv extends AbstractBehaviorWritable {
      * @param aliasMember The entity of insert or update target. (NotNull)
      * @param insertOption The option of insert for varying requests. (NotNull)
      * @param updateOption The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyUpdatedException When the entity has already been updated.
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyUpdatedException When the entity has already been updated.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingInsertOrUpdate(AliasMember aliasMember, InsertOption<AliasMemberCB> insertOption, UpdateOption<AliasMemberCB> updateOption) {
         assertInsertOptionNotNull(insertOption); assertUpdateOptionNotNull(updateOption);
@@ -1265,9 +1309,9 @@ public abstract class BsAliasMemberBhv extends AbstractBehaviorWritable {
      * @param aliasMember The entity of insert or update target. (NotNull)
      * @param insertOption The option of insert for varying requests. (NotNull)
      * @param updateOption The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingInsertOrUpdateNonstrict(AliasMember aliasMember, InsertOption<AliasMemberCB> insertOption, UpdateOption<AliasMemberCB> updateOption) {
         assertInsertOptionNotNull(insertOption); assertUpdateOptionNotNull(updateOption);
@@ -1280,8 +1324,8 @@ public abstract class BsAliasMemberBhv extends AbstractBehaviorWritable {
      * Other specifications are same as delete(entity).
      * @param aliasMember The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @param option The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyUpdatedException When the entity has already been updated.
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyUpdatedException When the entity has already been updated.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void varyingDelete(AliasMember aliasMember, DeleteOption<AliasMemberCB> option) {
         assertDeleteOptionNotNull(option);
@@ -1294,8 +1338,8 @@ public abstract class BsAliasMemberBhv extends AbstractBehaviorWritable {
      * Other specifications are same as deleteNonstrict(entity).
      * @param aliasMember The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @param option The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void varyingDeleteNonstrict(AliasMember aliasMember, DeleteOption<AliasMemberCB> option) {
         assertDeleteOptionNotNull(option);
@@ -1408,16 +1452,16 @@ public abstract class BsAliasMemberBhv extends AbstractBehaviorWritable {
      * UpdateOption&lt;AliasMemberCB&gt; option = new UpdateOption&lt;AliasMemberCB&gt;();
      * option.self(new SpecifyQuery&lt;AliasMemberCB&gt;() {
      *     public void specify(AliasMemberCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFooCount()</span>;
+     *         cb.specify().<span style="color: #DD4747">columnFooCount()</span>;
      *     }
      * }).plus(1); <span style="color: #3F7E5E">// FOO_COUNT = FOO_COUNT + 1</span>
-     * aliasMemberBhv.<span style="color: #FD4747">varyingQueryUpdate</span>(aliasMember, cb, option);
+     * aliasMemberBhv.<span style="color: #DD4747">varyingQueryUpdate</span>(aliasMember, cb, option);
      * </pre>
      * @param aliasMember The entity that contains update values. (NotNull) {PrimaryKeyNotRequired}
      * @param cb The condition-bean of AliasMember. (NotNull)
      * @param option The option of update for varying requests. (NotNull)
      * @return The updated count.
-     * @exception org.seasar.dbflute.exception.NonQueryUpdateNotAllowedException When the query has no condition (if not allowed).
+     * @exception NonQueryUpdateNotAllowedException When the query has no condition (if not allowed).
      */
     public int varyingQueryUpdate(AliasMember aliasMember, AliasMemberCB cb, UpdateOption<AliasMemberCB> option) {
         assertUpdateOptionNotNull(option);
@@ -1431,7 +1475,7 @@ public abstract class BsAliasMemberBhv extends AbstractBehaviorWritable {
      * @param cb The condition-bean of AliasMember. (NotNull)
      * @param option The option of delete for varying requests. (NotNull)
      * @return The deleted count.
-     * @exception org.seasar.dbflute.exception.NonQueryDeleteNotAllowedException When the query has no condition (if not allowed).
+     * @exception NonQueryDeleteNotAllowedException When the query has no condition (if not allowed).
      */
     public int varyingQueryDelete(AliasMemberCB cb, DeleteOption<AliasMemberCB> option) {
         assertDeleteOptionNotNull(option);

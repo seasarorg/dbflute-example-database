@@ -124,12 +124,12 @@
             javaType="String" name="LOGIN_MEMBER_STATUS_CODE"
             required="true" size="3" type="CHAR"/>
         <foreign-key foreignSchema="exampledb.$$NoNameSchema$$"
-            foreignTable="member" name="FK_MEMBER_LOGIN_MEMBER">
-            <reference foreign="MEMBER_ID" local="MEMBER_ID"/>
-        </foreign-key>
-        <foreign-key foreignSchema="exampledb.$$NoNameSchema$$"
             foreignTable="member_status" name="FK_MEMBER_LOGIN_MEMBER_STATUS">
             <reference foreign="MEMBER_STATUS_CODE" local="LOGIN_MEMBER_STATUS_CODE"/>
+        </foreign-key>
+        <foreign-key foreignSchema="exampledb.$$NoNameSchema$$"
+            foreignTable="member" name="FK_MEMBER_LOGIN_MEMBER">
+            <reference foreign="MEMBER_ID" local="MEMBER_ID"/>
         </foreign-key>
         <unique name="MEMBER_ID">
             <unique-column name="MEMBER_ID" position="1"/>
@@ -637,12 +637,12 @@
         <column comment="" dbType="VARCHAR" javaType="String"
             name="CONSTRAINT_NAME_AUTO_UNIQUE" required="true" size="50" type="VARCHAR"/>
         <foreign-key foreignSchema="exampledb.$$NoNameSchema$$"
-            foreignTable="vendor_constraint_name_auto_foo" name="vendor_constraint_name_auto_ref_ibfk_1">
-            <reference foreign="CONSTRAINT_NAME_AUTO_FOO_ID" local="CONSTRAINT_NAME_AUTO_FOO_ID"/>
-        </foreign-key>
-        <foreign-key foreignSchema="exampledb.$$NoNameSchema$$"
             foreignTable="vendor_constraint_name_auto_bar" name="vendor_constraint_name_auto_ref_ibfk_2">
             <reference foreign="CONSTRAINT_NAME_AUTO_BAR_ID" local="CONSTRAINT_NAME_AUTO_BAR_ID"/>
+        </foreign-key>
+        <foreign-key foreignSchema="exampledb.$$NoNameSchema$$"
+            foreignTable="vendor_constraint_name_auto_foo" name="vendor_constraint_name_auto_ref_ibfk_1">
+            <reference foreign="CONSTRAINT_NAME_AUTO_FOO_ID" local="CONSTRAINT_NAME_AUTO_FOO_ID"/>
         </foreign-key>
         <foreign-key foreignSchema="exampledb.$$NoNameSchema$$"
             foreignTable="vendor_constraint_name_auto_qux" name="vendor_constraint_name_auto_ref_ibfk_3">

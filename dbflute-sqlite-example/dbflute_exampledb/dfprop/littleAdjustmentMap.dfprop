@@ -29,6 +29,11 @@
 # *The line that starts with '#' means comment-out.
 #
 map:{
+    ; isCDefToStringReturnsName = true
+    ; isCompatibleInsertColumnNotNullOnly = true
+    ; isCompatibleBatchInsertDefaultEveryColumn = true
+    ; isCompatibleBatchUpdateDefaultEveryColumn = true
+
     # /- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # o isAvailableAddingSchemaToTableSqlName (NotRequired - Default 'false')
     #   [true]
@@ -200,10 +205,5 @@ map:{
     #
     #; quoteTableNameList = list:{}
     # - - - - - - - - - -/
-
-    ; isCDefToStringReturnsName = true
-    ; isCompatibleInsertColumnNotNullOnly = true
-    ; isCompatibleBatchInsertDefaultEveryColumn = true
-    ; isCompatibleBatchUpdateDefaultEveryColumn = true
 }
 # ----------------/

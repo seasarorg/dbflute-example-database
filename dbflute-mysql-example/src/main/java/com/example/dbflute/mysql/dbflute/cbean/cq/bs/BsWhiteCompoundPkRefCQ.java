@@ -294,8 +294,9 @@ public class BsWhiteCompoundPkRefCQ extends AbstractBsWhiteCompoundPkRefCQ {
      */
     public void existsWhiteCompoundPkRefNestByQuxMultipleIdList(SubQuery<WhiteCompoundPkRefNestCB> subQuery) {
         assertObjectNotNull("subQuery<WhiteCompoundPkRefNestCB>", subQuery);
-        WhiteCompoundPkRefNestCB cb = new WhiteCompoundPkRefNestCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String pp = keepTwoOrMorePk_ExistsReferrer_WhiteCompoundPkRefNestByQuxMultipleIdList(cb.query()); // for saving query-value.
+        WhiteCompoundPkRefNestCB cb = new WhiteCompoundPkRefNestCB(); cb.xsetupForExistsReferrer(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepTwoOrMorePk_ExistsReferrer_WhiteCompoundPkRefNestByQuxMultipleIdList(cb.query());
         registerExistsReferrer(cb.query(), "MULTIPLE_FIRST_ID, MULTIPLE_SECOND_ID", "BAR_MULTIPLE_ID, QUX_MULTIPLE_ID", pp, "whiteCompoundPkRefNestByQuxMultipleIdList");
     }
     protected Map<String, WhiteCompoundPkRefNestCQ> _twoOrMorePk_ExistsReferrer_WhiteCompoundPkRefNestByQuxMultipleIdListMap;
@@ -313,8 +314,9 @@ public class BsWhiteCompoundPkRefCQ extends AbstractBsWhiteCompoundPkRefCQ {
      */
     public void existsWhiteCompoundPkRefNestByFooMultipleIdList(SubQuery<WhiteCompoundPkRefNestCB> subQuery) {
         assertObjectNotNull("subQuery<WhiteCompoundPkRefNestCB>", subQuery);
-        WhiteCompoundPkRefNestCB cb = new WhiteCompoundPkRefNestCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String pp = keepTwoOrMorePk_ExistsReferrer_WhiteCompoundPkRefNestByFooMultipleIdList(cb.query()); // for saving query-value.
+        WhiteCompoundPkRefNestCB cb = new WhiteCompoundPkRefNestCB(); cb.xsetupForExistsReferrer(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepTwoOrMorePk_ExistsReferrer_WhiteCompoundPkRefNestByFooMultipleIdList(cb.query());
         registerExistsReferrer(cb.query(), "MULTIPLE_FIRST_ID, MULTIPLE_SECOND_ID", "FOO_MULTIPLE_ID, BAR_MULTIPLE_ID", pp, "whiteCompoundPkRefNestByFooMultipleIdList");
     }
     protected Map<String, WhiteCompoundPkRefNestCQ> _twoOrMorePk_ExistsReferrer_WhiteCompoundPkRefNestByFooMultipleIdListMap;
@@ -332,8 +334,9 @@ public class BsWhiteCompoundPkRefCQ extends AbstractBsWhiteCompoundPkRefCQ {
      */
     public void notExistsWhiteCompoundPkRefNestByQuxMultipleIdList(SubQuery<WhiteCompoundPkRefNestCB> subQuery) {
         assertObjectNotNull("subQuery<WhiteCompoundPkRefNestCB>", subQuery);
-        WhiteCompoundPkRefNestCB cb = new WhiteCompoundPkRefNestCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String pp = keepTwoOrMorePk_NotExistsReferrer_WhiteCompoundPkRefNestByQuxMultipleIdList(cb.query()); // for saving query-value.
+        WhiteCompoundPkRefNestCB cb = new WhiteCompoundPkRefNestCB(); cb.xsetupForExistsReferrer(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepTwoOrMorePk_NotExistsReferrer_WhiteCompoundPkRefNestByQuxMultipleIdList(cb.query());
         registerNotExistsReferrer(cb.query(), "MULTIPLE_FIRST_ID, MULTIPLE_SECOND_ID", "BAR_MULTIPLE_ID, QUX_MULTIPLE_ID", pp, "whiteCompoundPkRefNestByQuxMultipleIdList");
     }
     protected Map<String, WhiteCompoundPkRefNestCQ> _twoOrMorePk_NotExistsReferrer_WhiteCompoundPkRefNestByQuxMultipleIdListMap;
@@ -351,8 +354,9 @@ public class BsWhiteCompoundPkRefCQ extends AbstractBsWhiteCompoundPkRefCQ {
      */
     public void notExistsWhiteCompoundPkRefNestByFooMultipleIdList(SubQuery<WhiteCompoundPkRefNestCB> subQuery) {
         assertObjectNotNull("subQuery<WhiteCompoundPkRefNestCB>", subQuery);
-        WhiteCompoundPkRefNestCB cb = new WhiteCompoundPkRefNestCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String pp = keepTwoOrMorePk_NotExistsReferrer_WhiteCompoundPkRefNestByFooMultipleIdList(cb.query()); // for saving query-value.
+        WhiteCompoundPkRefNestCB cb = new WhiteCompoundPkRefNestCB(); cb.xsetupForExistsReferrer(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepTwoOrMorePk_NotExistsReferrer_WhiteCompoundPkRefNestByFooMultipleIdList(cb.query());
         registerNotExistsReferrer(cb.query(), "MULTIPLE_FIRST_ID, MULTIPLE_SECOND_ID", "FOO_MULTIPLE_ID, BAR_MULTIPLE_ID", pp, "whiteCompoundPkRefNestByFooMultipleIdList");
     }
     protected Map<String, WhiteCompoundPkRefNestCQ> _twoOrMorePk_NotExistsReferrer_WhiteCompoundPkRefNestByFooMultipleIdListMap;
@@ -368,8 +372,9 @@ public class BsWhiteCompoundPkRefCQ extends AbstractBsWhiteCompoundPkRefCQ {
     //                                            ========================================
     public void xsderiveWhiteCompoundPkRefNestByQuxMultipleIdList(String fn, SubQuery<WhiteCompoundPkRefNestCB> sq, String al, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteCompoundPkRefNestCB cb = new WhiteCompoundPkRefNestCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
-        String pp = keepTwoOrMorePk_SpecifyDerivedReferrer_WhiteCompoundPkRefNestByQuxMultipleIdList(cb.query()); // for saving query-value.
+        WhiteCompoundPkRefNestCB cb = new WhiteCompoundPkRefNestCB(); cb.xsetupForDerivedReferrer(this);
+        try { lock(); sq.query(cb); } finally { unlock(); }
+        String pp = keepTwoOrMorePk_SpecifyDerivedReferrer_WhiteCompoundPkRefNestByQuxMultipleIdList(cb.query());
         registerSpecifyDerivedReferrer(fn, cb.query(), "MULTIPLE_FIRST_ID, MULTIPLE_SECOND_ID", "BAR_MULTIPLE_ID, QUX_MULTIPLE_ID", pp, "whiteCompoundPkRefNestByQuxMultipleIdList", al, op);
     }
     protected Map<String, WhiteCompoundPkRefNestCQ> _twoOrMorePk_SpecifyDerivedReferrer_WhiteCompoundPkRefNestByQuxMultipleIdListMap;
@@ -382,8 +387,9 @@ public class BsWhiteCompoundPkRefCQ extends AbstractBsWhiteCompoundPkRefCQ {
 
     public void xsderiveWhiteCompoundPkRefNestByFooMultipleIdList(String fn, SubQuery<WhiteCompoundPkRefNestCB> sq, String al, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteCompoundPkRefNestCB cb = new WhiteCompoundPkRefNestCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
-        String pp = keepTwoOrMorePk_SpecifyDerivedReferrer_WhiteCompoundPkRefNestByFooMultipleIdList(cb.query()); // for saving query-value.
+        WhiteCompoundPkRefNestCB cb = new WhiteCompoundPkRefNestCB(); cb.xsetupForDerivedReferrer(this);
+        try { lock(); sq.query(cb); } finally { unlock(); }
+        String pp = keepTwoOrMorePk_SpecifyDerivedReferrer_WhiteCompoundPkRefNestByFooMultipleIdList(cb.query());
         registerSpecifyDerivedReferrer(fn, cb.query(), "MULTIPLE_FIRST_ID, MULTIPLE_SECOND_ID", "FOO_MULTIPLE_ID, BAR_MULTIPLE_ID", pp, "whiteCompoundPkRefNestByFooMultipleIdList", al, op);
     }
     protected Map<String, WhiteCompoundPkRefNestCQ> _twoOrMorePk_SpecifyDerivedReferrer_WhiteCompoundPkRefNestByFooMultipleIdListMap;
@@ -423,9 +429,9 @@ public class BsWhiteCompoundPkRefCQ extends AbstractBsWhiteCompoundPkRefCQ {
     }
     public void xqderiveWhiteCompoundPkRefNestByQuxMultipleIdList(String fn, SubQuery<WhiteCompoundPkRefNestCB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteCompoundPkRefNestCB cb = new WhiteCompoundPkRefNestCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
-        String sqpp = keepTwoOrMorePk_QueryDerivedReferrer_WhiteCompoundPkRefNestByQuxMultipleIdList(cb.query()); // for saving query-value.
-        String prpp = keepTwoOrMorePk_QueryDerivedReferrer_WhiteCompoundPkRefNestByQuxMultipleIdListParameter(vl);
+        WhiteCompoundPkRefNestCB cb = new WhiteCompoundPkRefNestCB(); cb.xsetupForDerivedReferrer(this);
+        try { lock(); sq.query(cb); } finally { unlock(); }
+        String sqpp = keepTwoOrMorePk_QueryDerivedReferrer_WhiteCompoundPkRefNestByQuxMultipleIdList(cb.query()); String prpp = keepTwoOrMorePk_QueryDerivedReferrer_WhiteCompoundPkRefNestByQuxMultipleIdListParameter(vl);
         registerQueryDerivedReferrer(fn, cb.query(), "MULTIPLE_FIRST_ID, MULTIPLE_SECOND_ID", "BAR_MULTIPLE_ID, QUX_MULTIPLE_ID", sqpp, "whiteCompoundPkRefNestByQuxMultipleIdList", rd, vl, prpp, op);
     }
     protected Map<String, WhiteCompoundPkRefNestCQ> _twoOrMorePk_QueryDerivedReferrer_WhiteCompoundPkRefNestByQuxMultipleIdListMap;
@@ -469,9 +475,9 @@ public class BsWhiteCompoundPkRefCQ extends AbstractBsWhiteCompoundPkRefCQ {
     }
     public void xqderiveWhiteCompoundPkRefNestByFooMultipleIdList(String fn, SubQuery<WhiteCompoundPkRefNestCB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteCompoundPkRefNestCB cb = new WhiteCompoundPkRefNestCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
-        String sqpp = keepTwoOrMorePk_QueryDerivedReferrer_WhiteCompoundPkRefNestByFooMultipleIdList(cb.query()); // for saving query-value.
-        String prpp = keepTwoOrMorePk_QueryDerivedReferrer_WhiteCompoundPkRefNestByFooMultipleIdListParameter(vl);
+        WhiteCompoundPkRefNestCB cb = new WhiteCompoundPkRefNestCB(); cb.xsetupForDerivedReferrer(this);
+        try { lock(); sq.query(cb); } finally { unlock(); }
+        String sqpp = keepTwoOrMorePk_QueryDerivedReferrer_WhiteCompoundPkRefNestByFooMultipleIdList(cb.query()); String prpp = keepTwoOrMorePk_QueryDerivedReferrer_WhiteCompoundPkRefNestByFooMultipleIdListParameter(vl);
         registerQueryDerivedReferrer(fn, cb.query(), "MULTIPLE_FIRST_ID, MULTIPLE_SECOND_ID", "FOO_MULTIPLE_ID, BAR_MULTIPLE_ID", sqpp, "whiteCompoundPkRefNestByFooMultipleIdList", rd, vl, prpp, op);
     }
     protected Map<String, WhiteCompoundPkRefNestCQ> _twoOrMorePk_QueryDerivedReferrer_WhiteCompoundPkRefNestByFooMultipleIdListMap;

@@ -163,8 +163,9 @@ public abstract class AbstractBsWhiteSplitMultipleFkNextCQ extends AbstractCondi
      */
     public void existsWhiteSplitMultipleFkBaseList(SubQuery<WhiteSplitMultipleFkBaseCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        WhiteSplitMultipleFkBaseCB cb = new WhiteSplitMultipleFkBaseCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String pp = keepNextId_ExistsReferrer_WhiteSplitMultipleFkBaseList(cb.query()); // for saving query-value.
+        WhiteSplitMultipleFkBaseCB cb = new WhiteSplitMultipleFkBaseCB(); cb.xsetupForExistsReferrer(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepNextId_ExistsReferrer_WhiteSplitMultipleFkBaseList(cb.query());
         registerExistsReferrer(cb.query(), "NEXT_ID", "NEXT_ID", pp, "whiteSplitMultipleFkBaseList");
     }
     public abstract String keepNextId_ExistsReferrer_WhiteSplitMultipleFkBaseList(WhiteSplitMultipleFkBaseCQ sq);
@@ -184,8 +185,9 @@ public abstract class AbstractBsWhiteSplitMultipleFkNextCQ extends AbstractCondi
      */
     public void notExistsWhiteSplitMultipleFkBaseList(SubQuery<WhiteSplitMultipleFkBaseCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        WhiteSplitMultipleFkBaseCB cb = new WhiteSplitMultipleFkBaseCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String pp = keepNextId_NotExistsReferrer_WhiteSplitMultipleFkBaseList(cb.query()); // for saving query-value.
+        WhiteSplitMultipleFkBaseCB cb = new WhiteSplitMultipleFkBaseCB(); cb.xsetupForExistsReferrer(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepNextId_NotExistsReferrer_WhiteSplitMultipleFkBaseList(cb.query());
         registerNotExistsReferrer(cb.query(), "NEXT_ID", "NEXT_ID", pp, "whiteSplitMultipleFkBaseList");
     }
     public abstract String keepNextId_NotExistsReferrer_WhiteSplitMultipleFkBaseList(WhiteSplitMultipleFkBaseCQ sq);
@@ -198,8 +200,9 @@ public abstract class AbstractBsWhiteSplitMultipleFkNextCQ extends AbstractCondi
      */
     public void inScopeWhiteSplitMultipleFkBaseList(SubQuery<WhiteSplitMultipleFkBaseCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        WhiteSplitMultipleFkBaseCB cb = new WhiteSplitMultipleFkBaseCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String pp = keepNextId_InScopeRelation_WhiteSplitMultipleFkBaseList(cb.query()); // for saving query-value.
+        WhiteSplitMultipleFkBaseCB cb = new WhiteSplitMultipleFkBaseCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepNextId_InScopeRelation_WhiteSplitMultipleFkBaseList(cb.query());
         registerInScopeRelation(cb.query(), "NEXT_ID", "NEXT_ID", pp, "whiteSplitMultipleFkBaseList");
     }
     public abstract String keepNextId_InScopeRelation_WhiteSplitMultipleFkBaseList(WhiteSplitMultipleFkBaseCQ sq);
@@ -212,16 +215,18 @@ public abstract class AbstractBsWhiteSplitMultipleFkNextCQ extends AbstractCondi
      */
     public void notInScopeWhiteSplitMultipleFkBaseList(SubQuery<WhiteSplitMultipleFkBaseCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        WhiteSplitMultipleFkBaseCB cb = new WhiteSplitMultipleFkBaseCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String pp = keepNextId_NotInScopeRelation_WhiteSplitMultipleFkBaseList(cb.query()); // for saving query-value.
+        WhiteSplitMultipleFkBaseCB cb = new WhiteSplitMultipleFkBaseCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepNextId_NotInScopeRelation_WhiteSplitMultipleFkBaseList(cb.query());
         registerNotInScopeRelation(cb.query(), "NEXT_ID", "NEXT_ID", pp, "whiteSplitMultipleFkBaseList");
     }
     public abstract String keepNextId_NotInScopeRelation_WhiteSplitMultipleFkBaseList(WhiteSplitMultipleFkBaseCQ sq);
 
     public void xsderiveWhiteSplitMultipleFkBaseList(String fn, SubQuery<WhiteSplitMultipleFkBaseCB> sq, String al, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteSplitMultipleFkBaseCB cb = new WhiteSplitMultipleFkBaseCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
-        String pp = keepNextId_SpecifyDerivedReferrer_WhiteSplitMultipleFkBaseList(cb.query()); // for saving query-value.
+        WhiteSplitMultipleFkBaseCB cb = new WhiteSplitMultipleFkBaseCB(); cb.xsetupForDerivedReferrer(this);
+        try { lock(); sq.query(cb); } finally { unlock(); }
+        String pp = keepNextId_SpecifyDerivedReferrer_WhiteSplitMultipleFkBaseList(cb.query());
         registerSpecifyDerivedReferrer(fn, cb.query(), "NEXT_ID", "NEXT_ID", pp, "whiteSplitMultipleFkBaseList", al, op);
     }
     public abstract String keepNextId_SpecifyDerivedReferrer_WhiteSplitMultipleFkBaseList(WhiteSplitMultipleFkBaseCQ sq);
@@ -252,9 +257,9 @@ public abstract class AbstractBsWhiteSplitMultipleFkNextCQ extends AbstractCondi
     }
     public void xqderiveWhiteSplitMultipleFkBaseList(String fn, SubQuery<WhiteSplitMultipleFkBaseCB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteSplitMultipleFkBaseCB cb = new WhiteSplitMultipleFkBaseCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
-        String sqpp = keepNextId_QueryDerivedReferrer_WhiteSplitMultipleFkBaseList(cb.query()); // for saving query-value.
-        String prpp = keepNextId_QueryDerivedReferrer_WhiteSplitMultipleFkBaseListParameter(vl);
+        WhiteSplitMultipleFkBaseCB cb = new WhiteSplitMultipleFkBaseCB(); cb.xsetupForDerivedReferrer(this);
+        try { lock(); sq.query(cb); } finally { unlock(); }
+        String sqpp = keepNextId_QueryDerivedReferrer_WhiteSplitMultipleFkBaseList(cb.query()); String prpp = keepNextId_QueryDerivedReferrer_WhiteSplitMultipleFkBaseListParameter(vl);
         registerQueryDerivedReferrer(fn, cb.query(), "NEXT_ID", "NEXT_ID", sqpp, "whiteSplitMultipleFkBaseList", rd, vl, prpp, op);
     }
     public abstract String keepNextId_QueryDerivedReferrer_WhiteSplitMultipleFkBaseList(WhiteSplitMultipleFkBaseCQ sq);
@@ -489,9 +494,10 @@ public abstract class AbstractBsWhiteSplitMultipleFkNextCQ extends AbstractCondi
     //                                                                       =============
     public void xsmyselfDerive(String fn, SubQuery<WhiteSplitMultipleFkNextCB> sq, String al, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteSplitMultipleFkNextCB cb = new WhiteSplitMultipleFkNextCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        WhiteSplitMultipleFkNextCB cb = new WhiteSplitMultipleFkNextCB(); cb.xsetupForDerivedReferrer(this);
+        try { lock(); sq.query(cb); } finally { unlock(); }
+        String pp = keepSpecifyMyselfDerived(cb.query());
         String pk = "NEXT_ID";
-        String pp = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
         registerSpecifyMyselfDerived(fn, cb.query(), pk, pk, pp, "myselfDerived", al, op);
     }
     public abstract String keepSpecifyMyselfDerived(WhiteSplitMultipleFkNextCQ sq);
@@ -524,8 +530,9 @@ public abstract class AbstractBsWhiteSplitMultipleFkNextCQ extends AbstractCondi
      */
     public void myselfExists(SubQuery<WhiteSplitMultipleFkNextCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        WhiteSplitMultipleFkNextCB cb = new WhiteSplitMultipleFkNextCB(); cb.xsetupForMyselfExists(this); subQuery.query(cb);
-        String pp = keepMyselfExists(cb.query()); // for saving query-value.
+        WhiteSplitMultipleFkNextCB cb = new WhiteSplitMultipleFkNextCB(); cb.xsetupForMyselfExists(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepMyselfExists(cb.query());
         registerMyselfExists(cb.query(), pp);
     }
     public abstract String keepMyselfExists(WhiteSplitMultipleFkNextCQ sq);
@@ -539,8 +546,9 @@ public abstract class AbstractBsWhiteSplitMultipleFkNextCQ extends AbstractCondi
      */
     public void myselfInScope(SubQuery<WhiteSplitMultipleFkNextCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        WhiteSplitMultipleFkNextCB cb = new WhiteSplitMultipleFkNextCB(); cb.xsetupForMyselfInScope(this); subQuery.query(cb);
-        String pp = keepMyselfInScope(cb.query()); // for saving query-value.
+        WhiteSplitMultipleFkNextCB cb = new WhiteSplitMultipleFkNextCB(); cb.xsetupForMyselfInScope(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepMyselfInScope(cb.query());
         registerMyselfInScope(cb.query(), pp);
     }
     public abstract String keepMyselfInScope(WhiteSplitMultipleFkNextCQ sq);
@@ -573,6 +581,37 @@ public abstract class AbstractBsWhiteSplitMultipleFkNextCQ extends AbstractCondi
                     , String conditionValue
                     , org.seasar.dbflute.dbway.WayOfMySQL.FullTextSearchModifier modifier) {
         xdoMatchForMySQL(textColumnList, conditionValue, modifier);
+    }
+
+    // ===================================================================================
+    //                                                                          Compatible
+    //                                                                          ==========
+    /**
+     * Order along the list of manual values. #beforejava8 <br />
+     * This function with Union is unsupported! <br />
+     * The order values are bound (treated as bind parameter).
+     * <pre>
+     * MemberCB cb = new MemberCB();
+     * List&lt;CDef.MemberStatus&gt; orderValueList = new ArrayList&lt;CDef.MemberStatus&gt;();
+     * orderValueList.add(CDef.MemberStatus.Withdrawal);
+     * orderValueList.add(CDef.MemberStatus.Formalized);
+     * orderValueList.add(CDef.MemberStatus.Provisional);
+     * cb.query().addOrderBy_MemberStatusCode_Asc().<span style="color: #DD4747">withManualOrder(orderValueList)</span>;
+     * <span style="color: #3F7E5E">// order by </span>
+     * <span style="color: #3F7E5E">//   case</span>
+     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'WDL' then 0</span>
+     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'FML' then 1</span>
+     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'PRV' then 2</span>
+     * <span style="color: #3F7E5E">//     else 3</span>
+     * <span style="color: #3F7E5E">//   end asc, ...</span>
+     * </pre>
+     * @param orderValueList The list of order values for manual ordering. (NotNull)
+     */
+    public void withManualOrder(List<? extends Object> orderValueList) { // is user public!
+        assertObjectNotNull("withManualOrder(orderValueList)", orderValueList);
+        final ManualOrderBean manualOrderBean = new ManualOrderBean();
+        manualOrderBean.acceptOrderValueList(orderValueList);
+        withManualOrder(manualOrderBean);
     }
 
     // ===================================================================================

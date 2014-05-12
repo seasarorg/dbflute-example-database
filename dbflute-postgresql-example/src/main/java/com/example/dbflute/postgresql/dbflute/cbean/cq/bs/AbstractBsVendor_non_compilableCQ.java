@@ -148,8 +148,9 @@ public abstract class AbstractBsVendor_non_compilableCQ extends AbstractConditio
      */
     public void existsVendor_non_compilableSelfList(SubQuery<Vendor_non_compilableCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        Vendor_non_compilableCB cb = new Vendor_non_compilableCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String pp = keepNon_compilable_id_ExistsReferrer_Vendor_non_compilableSelfList(cb.query()); // for saving query-value.
+        Vendor_non_compilableCB cb = new Vendor_non_compilableCB(); cb.xsetupForExistsReferrer(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepNon_compilable_id_ExistsReferrer_Vendor_non_compilableSelfList(cb.query());
         registerExistsReferrer(cb.query(), "NON-COMPILABLE ID", "PARENT-ID", pp, "vendor_non_compilableSelfList");
     }
     public abstract String keepNon_compilable_id_ExistsReferrer_Vendor_non_compilableSelfList(Vendor_non_compilableCQ sq);
@@ -169,8 +170,9 @@ public abstract class AbstractBsVendor_non_compilableCQ extends AbstractConditio
      */
     public void notExistsVendor_non_compilableSelfList(SubQuery<Vendor_non_compilableCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        Vendor_non_compilableCB cb = new Vendor_non_compilableCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String pp = keepNon_compilable_id_NotExistsReferrer_Vendor_non_compilableSelfList(cb.query()); // for saving query-value.
+        Vendor_non_compilableCB cb = new Vendor_non_compilableCB(); cb.xsetupForExistsReferrer(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepNon_compilable_id_NotExistsReferrer_Vendor_non_compilableSelfList(cb.query());
         registerNotExistsReferrer(cb.query(), "NON-COMPILABLE ID", "PARENT-ID", pp, "vendor_non_compilableSelfList");
     }
     public abstract String keepNon_compilable_id_NotExistsReferrer_Vendor_non_compilableSelfList(Vendor_non_compilableCQ sq);
@@ -183,8 +185,9 @@ public abstract class AbstractBsVendor_non_compilableCQ extends AbstractConditio
      */
     public void inScopeVendor_non_compilableSelfList(SubQuery<Vendor_non_compilableCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        Vendor_non_compilableCB cb = new Vendor_non_compilableCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String pp = keepNon_compilable_id_InScopeRelation_Vendor_non_compilableSelfList(cb.query()); // for saving query-value.
+        Vendor_non_compilableCB cb = new Vendor_non_compilableCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepNon_compilable_id_InScopeRelation_Vendor_non_compilableSelfList(cb.query());
         registerInScopeRelation(cb.query(), "NON-COMPILABLE ID", "PARENT-ID", pp, "vendor_non_compilableSelfList");
     }
     public abstract String keepNon_compilable_id_InScopeRelation_Vendor_non_compilableSelfList(Vendor_non_compilableCQ sq);
@@ -197,16 +200,18 @@ public abstract class AbstractBsVendor_non_compilableCQ extends AbstractConditio
      */
     public void notInScopeVendor_non_compilableSelfList(SubQuery<Vendor_non_compilableCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        Vendor_non_compilableCB cb = new Vendor_non_compilableCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String pp = keepNon_compilable_id_NotInScopeRelation_Vendor_non_compilableSelfList(cb.query()); // for saving query-value.
+        Vendor_non_compilableCB cb = new Vendor_non_compilableCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepNon_compilable_id_NotInScopeRelation_Vendor_non_compilableSelfList(cb.query());
         registerNotInScopeRelation(cb.query(), "NON-COMPILABLE ID", "PARENT-ID", pp, "vendor_non_compilableSelfList");
     }
     public abstract String keepNon_compilable_id_NotInScopeRelation_Vendor_non_compilableSelfList(Vendor_non_compilableCQ sq);
 
     public void xsderiveVendor_non_compilableSelfList(String fn, SubQuery<Vendor_non_compilableCB> sq, String al, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        Vendor_non_compilableCB cb = new Vendor_non_compilableCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
-        String pp = keepNon_compilable_id_SpecifyDerivedReferrer_Vendor_non_compilableSelfList(cb.query()); // for saving query-value.
+        Vendor_non_compilableCB cb = new Vendor_non_compilableCB(); cb.xsetupForDerivedReferrer(this);
+        try { lock(); sq.query(cb); } finally { unlock(); }
+        String pp = keepNon_compilable_id_SpecifyDerivedReferrer_Vendor_non_compilableSelfList(cb.query());
         registerSpecifyDerivedReferrer(fn, cb.query(), "NON-COMPILABLE ID", "PARENT-ID", pp, "vendor_non_compilableSelfList", al, op);
     }
     public abstract String keepNon_compilable_id_SpecifyDerivedReferrer_Vendor_non_compilableSelfList(Vendor_non_compilableCQ sq);
@@ -237,9 +242,9 @@ public abstract class AbstractBsVendor_non_compilableCQ extends AbstractConditio
     }
     public void xqderiveVendor_non_compilableSelfList(String fn, SubQuery<Vendor_non_compilableCB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        Vendor_non_compilableCB cb = new Vendor_non_compilableCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
-        String sqpp = keepNon_compilable_id_QueryDerivedReferrer_Vendor_non_compilableSelfList(cb.query()); // for saving query-value.
-        String prpp = keepNon_compilable_id_QueryDerivedReferrer_Vendor_non_compilableSelfListParameter(vl);
+        Vendor_non_compilableCB cb = new Vendor_non_compilableCB(); cb.xsetupForDerivedReferrer(this);
+        try { lock(); sq.query(cb); } finally { unlock(); }
+        String sqpp = keepNon_compilable_id_QueryDerivedReferrer_Vendor_non_compilableSelfList(cb.query()); String prpp = keepNon_compilable_id_QueryDerivedReferrer_Vendor_non_compilableSelfListParameter(vl);
         registerQueryDerivedReferrer(fn, cb.query(), "NON-COMPILABLE ID", "PARENT-ID", sqpp, "vendor_non_compilableSelfList", rd, vl, prpp, op);
     }
     public abstract String keepNon_compilable_id_QueryDerivedReferrer_Vendor_non_compilableSelfList(Vendor_non_compilableCQ sq);
@@ -460,8 +465,9 @@ public abstract class AbstractBsVendor_non_compilableCQ extends AbstractConditio
      */
     public void inScopeVendor_non_compilableSelf(SubQuery<Vendor_non_compilableCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        Vendor_non_compilableCB cb = new Vendor_non_compilableCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String pp = keepParent_id_InScopeRelation_Vendor_non_compilableSelf(cb.query()); // for saving query-value.
+        Vendor_non_compilableCB cb = new Vendor_non_compilableCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepParent_id_InScopeRelation_Vendor_non_compilableSelf(cb.query());
         registerInScopeRelation(cb.query(), "PARENT-ID", "NON-COMPILABLE ID", pp, "vendor_non_compilableSelf");
     }
     public abstract String keepParent_id_InScopeRelation_Vendor_non_compilableSelf(Vendor_non_compilableCQ sq);
@@ -474,8 +480,9 @@ public abstract class AbstractBsVendor_non_compilableCQ extends AbstractConditio
      */
     public void notInScopeVendor_non_compilableSelf(SubQuery<Vendor_non_compilableCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        Vendor_non_compilableCB cb = new Vendor_non_compilableCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String pp = keepParent_id_NotInScopeRelation_Vendor_non_compilableSelf(cb.query()); // for saving query-value.
+        Vendor_non_compilableCB cb = new Vendor_non_compilableCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepParent_id_NotInScopeRelation_Vendor_non_compilableSelf(cb.query());
         registerNotInScopeRelation(cb.query(), "PARENT-ID", "NON-COMPILABLE ID", pp, "vendor_non_compilableSelf");
     }
     public abstract String keepParent_id_NotInScopeRelation_Vendor_non_compilableSelf(Vendor_non_compilableCQ sq);
@@ -623,9 +630,10 @@ public abstract class AbstractBsVendor_non_compilableCQ extends AbstractConditio
     //                                                                       =============
     public void xsmyselfDerive(String fn, SubQuery<Vendor_non_compilableCB> sq, String al, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        Vendor_non_compilableCB cb = new Vendor_non_compilableCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        Vendor_non_compilableCB cb = new Vendor_non_compilableCB(); cb.xsetupForDerivedReferrer(this);
+        try { lock(); sq.query(cb); } finally { unlock(); }
+        String pp = keepSpecifyMyselfDerived(cb.query());
         String pk = "NON-COMPILABLE ID";
-        String pp = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
         registerSpecifyMyselfDerived(fn, cb.query(), pk, pk, pp, "myselfDerived", al, op);
     }
     public abstract String keepSpecifyMyselfDerived(Vendor_non_compilableCQ sq);
@@ -658,8 +666,9 @@ public abstract class AbstractBsVendor_non_compilableCQ extends AbstractConditio
      */
     public void myselfExists(SubQuery<Vendor_non_compilableCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        Vendor_non_compilableCB cb = new Vendor_non_compilableCB(); cb.xsetupForMyselfExists(this); subQuery.query(cb);
-        String pp = keepMyselfExists(cb.query()); // for saving query-value.
+        Vendor_non_compilableCB cb = new Vendor_non_compilableCB(); cb.xsetupForMyselfExists(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepMyselfExists(cb.query());
         registerMyselfExists(cb.query(), pp);
     }
     public abstract String keepMyselfExists(Vendor_non_compilableCQ sq);
@@ -673,8 +682,9 @@ public abstract class AbstractBsVendor_non_compilableCQ extends AbstractConditio
      */
     public void myselfInScope(SubQuery<Vendor_non_compilableCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        Vendor_non_compilableCB cb = new Vendor_non_compilableCB(); cb.xsetupForMyselfInScope(this); subQuery.query(cb);
-        String pp = keepMyselfInScope(cb.query()); // for saving query-value.
+        Vendor_non_compilableCB cb = new Vendor_non_compilableCB(); cb.xsetupForMyselfInScope(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepMyselfInScope(cb.query());
         registerMyselfInScope(cb.query(), pp);
     }
     public abstract String keepMyselfInScope(Vendor_non_compilableCQ sq);
@@ -714,6 +724,37 @@ public abstract class AbstractBsVendor_non_compilableCQ extends AbstractConditio
     @Override
     protected org.seasar.dbflute.dbway.ExtensionOperand xgetPostgreSQLMatchOperand() {
         return DBFluteConfig.getInstance().getFullTextSearchOperand();
+    }
+
+    // ===================================================================================
+    //                                                                          Compatible
+    //                                                                          ==========
+    /**
+     * Order along the list of manual values. #beforejava8 <br />
+     * This function with Union is unsupported! <br />
+     * The order values are bound (treated as bind parameter).
+     * <pre>
+     * MemberCB cb = new MemberCB();
+     * List&lt;CDef.MemberStatus&gt; orderValueList = new ArrayList&lt;CDef.MemberStatus&gt;();
+     * orderValueList.add(CDef.MemberStatus.Withdrawal);
+     * orderValueList.add(CDef.MemberStatus.Formalized);
+     * orderValueList.add(CDef.MemberStatus.Provisional);
+     * cb.query().addOrderBy_MemberStatusCode_Asc().<span style="color: #DD4747">withManualOrder(orderValueList)</span>;
+     * <span style="color: #3F7E5E">// order by </span>
+     * <span style="color: #3F7E5E">//   case</span>
+     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'WDL' then 0</span>
+     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'FML' then 1</span>
+     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'PRV' then 2</span>
+     * <span style="color: #3F7E5E">//     else 3</span>
+     * <span style="color: #3F7E5E">//   end asc, ...</span>
+     * </pre>
+     * @param orderValueList The list of order values for manual ordering. (NotNull)
+     */
+    public void withManualOrder(List<? extends Object> orderValueList) { // is user public!
+        assertObjectNotNull("withManualOrder(orderValueList)", orderValueList);
+        final ManualOrderBean manualOrderBean = new ManualOrderBean();
+        manualOrderBean.acceptOrderValueList(orderValueList);
+        withManualOrder(manualOrderBean);
     }
 
     // ===================================================================================

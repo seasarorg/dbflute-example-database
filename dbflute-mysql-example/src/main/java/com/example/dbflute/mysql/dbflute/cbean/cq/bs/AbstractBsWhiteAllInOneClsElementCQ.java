@@ -151,8 +151,9 @@ public abstract class AbstractBsWhiteAllInOneClsElementCQ extends AbstractCondit
      */
     public void inScopeWhiteAllInOneClsCategory(SubQuery<WhiteAllInOneClsCategoryCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        WhiteAllInOneClsCategoryCB cb = new WhiteAllInOneClsCategoryCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String pp = keepClsCategoryCode_InScopeRelation_WhiteAllInOneClsCategory(cb.query()); // for saving query-value.
+        WhiteAllInOneClsCategoryCB cb = new WhiteAllInOneClsCategoryCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepClsCategoryCode_InScopeRelation_WhiteAllInOneClsCategory(cb.query());
         registerInScopeRelation(cb.query(), "CLS_CATEGORY_CODE", "CLS_CATEGORY_CODE", pp, "whiteAllInOneClsCategory");
     }
     public abstract String keepClsCategoryCode_InScopeRelation_WhiteAllInOneClsCategory(WhiteAllInOneClsCategoryCQ sq);
@@ -165,8 +166,9 @@ public abstract class AbstractBsWhiteAllInOneClsElementCQ extends AbstractCondit
      */
     public void notInScopeWhiteAllInOneClsCategory(SubQuery<WhiteAllInOneClsCategoryCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        WhiteAllInOneClsCategoryCB cb = new WhiteAllInOneClsCategoryCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String pp = keepClsCategoryCode_NotInScopeRelation_WhiteAllInOneClsCategory(cb.query()); // for saving query-value.
+        WhiteAllInOneClsCategoryCB cb = new WhiteAllInOneClsCategoryCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepClsCategoryCode_NotInScopeRelation_WhiteAllInOneClsCategory(cb.query());
         registerNotInScopeRelation(cb.query(), "CLS_CATEGORY_CODE", "CLS_CATEGORY_CODE", pp, "whiteAllInOneClsCategory");
     }
     public abstract String keepClsCategoryCode_NotInScopeRelation_WhiteAllInOneClsCategory(WhiteAllInOneClsCategoryCQ sq);
@@ -484,6 +486,37 @@ public abstract class AbstractBsWhiteAllInOneClsElementCQ extends AbstractCondit
                     , String conditionValue
                     , org.seasar.dbflute.dbway.WayOfMySQL.FullTextSearchModifier modifier) {
         xdoMatchForMySQL(textColumnList, conditionValue, modifier);
+    }
+
+    // ===================================================================================
+    //                                                                          Compatible
+    //                                                                          ==========
+    /**
+     * Order along the list of manual values. #beforejava8 <br />
+     * This function with Union is unsupported! <br />
+     * The order values are bound (treated as bind parameter).
+     * <pre>
+     * MemberCB cb = new MemberCB();
+     * List&lt;CDef.MemberStatus&gt; orderValueList = new ArrayList&lt;CDef.MemberStatus&gt;();
+     * orderValueList.add(CDef.MemberStatus.Withdrawal);
+     * orderValueList.add(CDef.MemberStatus.Formalized);
+     * orderValueList.add(CDef.MemberStatus.Provisional);
+     * cb.query().addOrderBy_MemberStatusCode_Asc().<span style="color: #DD4747">withManualOrder(orderValueList)</span>;
+     * <span style="color: #3F7E5E">// order by </span>
+     * <span style="color: #3F7E5E">//   case</span>
+     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'WDL' then 0</span>
+     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'FML' then 1</span>
+     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'PRV' then 2</span>
+     * <span style="color: #3F7E5E">//     else 3</span>
+     * <span style="color: #3F7E5E">//   end asc, ...</span>
+     * </pre>
+     * @param orderValueList The list of order values for manual ordering. (NotNull)
+     */
+    public void withManualOrder(List<? extends Object> orderValueList) { // is user public!
+        assertObjectNotNull("withManualOrder(orderValueList)", orderValueList);
+        final ManualOrderBean manualOrderBean = new ManualOrderBean();
+        manualOrderBean.acceptOrderValueList(orderValueList);
+        withManualOrder(manualOrderBean);
     }
 
     // ===================================================================================

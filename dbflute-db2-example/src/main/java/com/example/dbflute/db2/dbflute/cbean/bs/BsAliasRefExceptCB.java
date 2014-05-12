@@ -209,7 +209,7 @@ public class BsAliasRefExceptCB extends AbstractConditionBean {
      * You don't need to call SetupSelect in union-query,
      * because it inherits calls before. (Don't call SetupSelect after here)
      * <pre>
-     * cb.query().<span style="color: #FD4747">union</span>(new UnionQuery&lt;AliasRefExceptCB&gt;() {
+     * cb.query().<span style="color: #DD4747">union</span>(new UnionQuery&lt;AliasRefExceptCB&gt;() {
      *     public void query(AliasRefExceptCB unionCB) {
      *         unionCB.query().setXxx...
      *     }
@@ -218,8 +218,8 @@ public class BsAliasRefExceptCB extends AbstractConditionBean {
      * @param unionQuery The query of 'union'. (NotNull)
      */
     public void union(UnionQuery<AliasRefExceptCB> unionQuery) {
-        final AliasRefExceptCB cb = new AliasRefExceptCB();
-        cb.xsetupForUnion(this); xsyncUQ(cb); unionQuery.query(cb); xsaveUCB(cb);
+        final AliasRefExceptCB cb = new AliasRefExceptCB(); cb.xsetupForUnion(this); xsyncUQ(cb); 
+        try { lock(); unionQuery.query(cb); } finally { unlock(); } xsaveUCB(cb);
         final AliasRefExceptCQ cq = cb.query(); query().xsetUnionQuery(cq);
     }
 
@@ -228,7 +228,7 @@ public class BsAliasRefExceptCB extends AbstractConditionBean {
      * You don't need to call SetupSelect in union-query,
      * because it inherits calls before. (Don't call SetupSelect after here)
      * <pre>
-     * cb.query().<span style="color: #FD4747">unionAll</span>(new UnionQuery&lt;AliasRefExceptCB&gt;() {
+     * cb.query().<span style="color: #DD4747">unionAll</span>(new UnionQuery&lt;AliasRefExceptCB&gt;() {
      *     public void query(AliasRefExceptCB unionCB) {
      *         unionCB.query().setXxx...
      *     }
@@ -237,8 +237,8 @@ public class BsAliasRefExceptCB extends AbstractConditionBean {
      * @param unionQuery The query of 'union all'. (NotNull)
      */
     public void unionAll(UnionQuery<AliasRefExceptCB> unionQuery) {
-        final AliasRefExceptCB cb = new AliasRefExceptCB();
-        cb.xsetupForUnion(this); xsyncUQ(cb); unionQuery.query(cb); xsaveUCB(cb);
+        final AliasRefExceptCB cb = new AliasRefExceptCB(); cb.xsetupForUnion(this); xsyncUQ(cb);
+        try { lock(); unionQuery.query(cb); } finally { unlock(); } xsaveUCB(cb);
         final AliasRefExceptCQ cq = cb.query(); query().xsetUnionAllQuery(cq);
     }
 
@@ -273,14 +273,15 @@ public class BsAliasRefExceptCB extends AbstractConditionBean {
      * ALIAS_EXCEPT by my EXCEPT_ID, named 'aliasExcept'.
      * <pre>
      * AliasRefExceptCB cb = new AliasRefExceptCB();
-     * cb.<span style="color: #FD4747">setupSelect_AliasExcept()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
+     * cb.<span style="color: #DD4747">setupSelect_AliasExcept()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
      * cb.query().setFoo...(value);
      * AliasRefExcept aliasRefExcept = aliasRefExceptBhv.selectEntityWithDeletedCheck(cb);
-     * ... = aliasRefExcept.<span style="color: #FD4747">getAliasExcept()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
+     * ... = aliasRefExcept.<span style="color: #DD4747">getAliasExcept()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
      * </pre>
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
     public AliasExceptNss setupSelect_AliasExcept() {
+        assertSetupSelectPurpose("aliasExcept");
         if (hasSpecifiedColumn()) { // if reverse call
             specify().columnExceptId();
         }
@@ -393,19 +394,19 @@ public class BsAliasRefExceptCB extends AbstractConditionBean {
 
     // [DBFlute-0.9.5.3]
     // ===================================================================================
-    //                                                                         ColumnQuery
-    //                                                                         ===========
+    //                                                                        Column Query
+    //                                                                        ============
     /**
      * Set up column-query. {column1 = column2}
      * <pre>
      * <span style="color: #3F7E5E">// where FOO &lt; BAR</span>
-     * cb.<span style="color: #FD4747">columnQuery</span>(new SpecifyQuery&lt;AliasRefExceptCB&gt;() {
+     * cb.<span style="color: #DD4747">columnQuery</span>(new SpecifyQuery&lt;AliasRefExceptCB&gt;() {
      *     public void query(AliasRefExceptCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFoo()</span>; <span style="color: #3F7E5E">// left column</span>
+     *         cb.specify().<span style="color: #DD4747">columnFoo()</span>; <span style="color: #3F7E5E">// left column</span>
      *     }
      * }).lessThan(new SpecifyQuery&lt;AliasRefExceptCB&gt;() {
      *     public void query(AliasRefExceptCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnBar()</span>; <span style="color: #3F7E5E">// right column</span>
+     *         cb.specify().<span style="color: #DD4747">columnBar()</span>; <span style="color: #3F7E5E">// right column</span>
      *     }
      * }); <span style="color: #3F7E5E">// you can calculate for right column like '}).plus(3);'</span>
      * </pre>
@@ -446,14 +447,14 @@ public class BsAliasRefExceptCB extends AbstractConditionBean {
 
     // [DBFlute-0.9.6.3]
     // ===================================================================================
-    //                                                                        OrScopeQuery
-    //                                                                        ============
+    //                                                                       OrScope Query
+    //                                                                       =============
     /**
      * Set up the query for or-scope. <br />
      * (Same-column-and-same-condition-key conditions are allowed in or-scope)
      * <pre>
      * <span style="color: #3F7E5E">// where (FOO = '...' or BAR = '...')</span>
-     * cb.<span style="color: #FD4747">orScopeQuery</span>(new OrQuery&lt;AliasRefExceptCB&gt;() {
+     * cb.<span style="color: #DD4747">orScopeQuery</span>(new OrQuery&lt;AliasRefExceptCB&gt;() {
      *     public void query(AliasRefExceptCB orCB) {
      *         orCB.query().setFOO_Equal...
      *         orCB.query().setBAR_Equal...
@@ -471,10 +472,10 @@ public class BsAliasRefExceptCB extends AbstractConditionBean {
      * (However nested or-scope query and as-or-split of like-search in and-part are unsupported)
      * <pre>
      * <span style="color: #3F7E5E">// where (FOO = '...' or (BAR = '...' and QUX = '...'))</span>
-     * cb.<span style="color: #FD4747">orScopeQuery</span>(new OrQuery&lt;AliasRefExceptCB&gt;() {
+     * cb.<span style="color: #DD4747">orScopeQuery</span>(new OrQuery&lt;AliasRefExceptCB&gt;() {
      *     public void query(AliasRefExceptCB orCB) {
      *         orCB.query().setFOO_Equal...
-     *         orCB.<span style="color: #FD4747">orScopeQueryAndPart</span>(new AndQuery&lt;AliasRefExceptCB&gt;() {
+     *         orCB.<span style="color: #DD4747">orScopeQueryAndPart</span>(new AndQuery&lt;AliasRefExceptCB&gt;() {
      *             public void query(AliasRefExceptCB andCB) {
      *                 andCB.query().setBar_...
      *                 andCB.query().setQux_...

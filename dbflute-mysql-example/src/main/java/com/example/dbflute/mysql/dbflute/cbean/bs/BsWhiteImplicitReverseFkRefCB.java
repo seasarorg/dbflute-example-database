@@ -233,8 +233,8 @@ public class BsWhiteImplicitReverseFkRefCB extends AbstractConditionBean {
      * @param unionQuery The query of 'union'. (NotNull)
      */
     public void union(UnionQuery<WhiteImplicitReverseFkRefCB> unionQuery) {
-        final WhiteImplicitReverseFkRefCB cb = new WhiteImplicitReverseFkRefCB();
-        cb.xsetupForUnion(this); xsyncUQ(cb); unionQuery.query(cb); xsaveUCB(cb);
+        final WhiteImplicitReverseFkRefCB cb = new WhiteImplicitReverseFkRefCB(); cb.xsetupForUnion(this); xsyncUQ(cb); 
+        try { lock(); unionQuery.query(cb); } finally { unlock(); } xsaveUCB(cb);
         final WhiteImplicitReverseFkRefCQ cq = cb.query(); query().xsetUnionQuery(cq);
     }
 
@@ -252,8 +252,8 @@ public class BsWhiteImplicitReverseFkRefCB extends AbstractConditionBean {
      * @param unionQuery The query of 'union all'. (NotNull)
      */
     public void unionAll(UnionQuery<WhiteImplicitReverseFkRefCB> unionQuery) {
-        final WhiteImplicitReverseFkRefCB cb = new WhiteImplicitReverseFkRefCB();
-        cb.xsetupForUnion(this); xsyncUQ(cb); unionQuery.query(cb); xsaveUCB(cb);
+        final WhiteImplicitReverseFkRefCB cb = new WhiteImplicitReverseFkRefCB(); cb.xsetupForUnion(this); xsyncUQ(cb);
+        try { lock(); unionQuery.query(cb); } finally { unlock(); } xsaveUCB(cb);
         final WhiteImplicitReverseFkRefCQ cq = cb.query(); query().xsetUnionAllQuery(cq);
     }
 
@@ -279,6 +279,7 @@ public class BsWhiteImplicitReverseFkRefCB extends AbstractConditionBean {
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
     public WhiteImplicitReverseFkNss setupSelect_WhiteImplicitReverseFk() {
+        assertSetupSelectPurpose("whiteImplicitReverseFk");
         if (hasSpecifiedColumn()) { // if reverse call
             specify().columnWhiteImplicitReverseFkId();
         }
@@ -402,8 +403,8 @@ public class BsWhiteImplicitReverseFkRefCB extends AbstractConditionBean {
 
     // [DBFlute-0.9.5.3]
     // ===================================================================================
-    //                                                                         ColumnQuery
-    //                                                                         ===========
+    //                                                                        Column Query
+    //                                                                        ============
     /**
      * Set up column-query. {column1 = column2}
      * <pre>
@@ -455,8 +456,8 @@ public class BsWhiteImplicitReverseFkRefCB extends AbstractConditionBean {
 
     // [DBFlute-0.9.6.3]
     // ===================================================================================
-    //                                                                        OrScopeQuery
-    //                                                                        ============
+    //                                                                       OrScope Query
+    //                                                                       =============
     /**
      * Set up the query for or-scope. <br />
      * (Same-column-and-same-condition-key conditions are allowed in or-scope)
