@@ -37,7 +37,7 @@ public class BsWhiteUqFkRefCQ extends AbstractBsWhiteUqFkRefCQ {
      * Prepare InlineView query. <br />
      * {select ... from ... left outer join (select * from WHITE_UQ_FK_REF) where FOO = [value] ...}
      * <pre>
-     * cb.query().queryMemberStatus().<span style="color: #FD4747">inline()</span>.setFoo...;
+     * cb.query().queryMemberStatus().<span style="color: #DD4747">inline()</span>.setFoo...;
      * </pre>
      * @return The condition-query for InlineView query. (NotNull)
      */
@@ -60,7 +60,7 @@ public class BsWhiteUqFkRefCQ extends AbstractBsWhiteUqFkRefCQ {
      * Prepare OnClause query. <br />
      * {select ... from ... left outer join WHITE_UQ_FK_REF on ... and FOO = [value] ...}
      * <pre>
-     * cb.query().queryMemberStatus().<span style="color: #FD4747">on()</span>.setFoo...;
+     * cb.query().queryMemberStatus().<span style="color: #DD4747">on()</span>.setFoo...;
      * </pre>
      * @return The condition-query for OnClause query. (NotNull)
      * @throws IllegalConditionBeanOperationException When this condition-query is base query.
@@ -221,9 +221,9 @@ public class BsWhiteUqFkRefCQ extends AbstractBsWhiteUqFkRefCQ {
      *     public void query(PurchaseCB subCB) {
      *         subCB.specify().columnPurchaseDatetime();
      *     }
-     * }, <span style="color: #FD4747">aliasName</span>);
+     * }, <span style="color: #DD4747">aliasName</span>);
      * <span style="color: #3F7E5E">// order by [alias-name] asc</span>
-     * cb.<span style="color: #FD4747">addSpecifiedDerivedOrderBy_Asc</span>(<span style="color: #FD4747">aliasName</span>);
+     * cb.<span style="color: #DD4747">addSpecifiedDerivedOrderBy_Asc</span>(<span style="color: #DD4747">aliasName</span>);
      * </pre>
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
@@ -238,9 +238,9 @@ public class BsWhiteUqFkRefCQ extends AbstractBsWhiteUqFkRefCQ {
      *     public void query(PurchaseCB subCB) {
      *         subCB.specify().columnPurchaseDatetime();
      *     }
-     * }, <span style="color: #FD4747">aliasName</span>);
+     * }, <span style="color: #DD4747">aliasName</span>);
      * <span style="color: #3F7E5E">// order by [alias-name] desc</span>
-     * cb.<span style="color: #FD4747">addSpecifiedDerivedOrderBy_Desc</span>(<span style="color: #FD4747">aliasName</span>);
+     * cb.<span style="color: #DD4747">addSpecifiedDerivedOrderBy_Desc</span>(<span style="color: #DD4747">aliasName</span>);
      * </pre>
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
@@ -406,8 +406,9 @@ public class BsWhiteUqFkRefCQ extends AbstractBsWhiteUqFkRefCQ {
      */
     public void existsWhiteUqFkRefNestList(SubQuery<WhiteUqFkRefNestCB> subQuery) {
         assertObjectNotNull("subQuery<WhiteUqFkRefNestCB>", subQuery);
-        WhiteUqFkRefNestCB cb = new WhiteUqFkRefNestCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String pp = keepTwoOrMorePk_ExistsReferrer_WhiteUqFkRefNestList(cb.query()); // for saving query-value.
+        WhiteUqFkRefNestCB cb = new WhiteUqFkRefNestCB(); cb.xsetupForExistsReferrer(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepTwoOrMorePk_ExistsReferrer_WhiteUqFkRefNestList(cb.query());
         registerExistsReferrer(cb.query(), "COMPOUND_UQ_FIRST_CODE, COMPOUND_UQ_SECOND_CODE", "COMPOUND_UQ_FIRST_CODE, COMPOUND_UQ_SECOND_CODE", pp, "whiteUqFkRefNestList");
     }
     protected Map<String, WhiteUqFkRefNestCQ> _twoOrMorePk_ExistsReferrer_WhiteUqFkRefNestListMap;
@@ -425,8 +426,9 @@ public class BsWhiteUqFkRefCQ extends AbstractBsWhiteUqFkRefCQ {
      */
     public void notExistsWhiteUqFkRefNestList(SubQuery<WhiteUqFkRefNestCB> subQuery) {
         assertObjectNotNull("subQuery<WhiteUqFkRefNestCB>", subQuery);
-        WhiteUqFkRefNestCB cb = new WhiteUqFkRefNestCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String pp = keepTwoOrMorePk_NotExistsReferrer_WhiteUqFkRefNestList(cb.query()); // for saving query-value.
+        WhiteUqFkRefNestCB cb = new WhiteUqFkRefNestCB(); cb.xsetupForExistsReferrer(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepTwoOrMorePk_NotExistsReferrer_WhiteUqFkRefNestList(cb.query());
         registerNotExistsReferrer(cb.query(), "COMPOUND_UQ_FIRST_CODE, COMPOUND_UQ_SECOND_CODE", "COMPOUND_UQ_FIRST_CODE, COMPOUND_UQ_SECOND_CODE", pp, "whiteUqFkRefNestList");
     }
     protected Map<String, WhiteUqFkRefNestCQ> _twoOrMorePk_NotExistsReferrer_WhiteUqFkRefNestListMap;
@@ -442,8 +444,9 @@ public class BsWhiteUqFkRefCQ extends AbstractBsWhiteUqFkRefCQ {
     //                                            ========================================
     public void xsderiveWhiteUqFkRefNestList(String fn, SubQuery<WhiteUqFkRefNestCB> sq, String al, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteUqFkRefNestCB cb = new WhiteUqFkRefNestCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
-        String pp = keepTwoOrMorePk_SpecifyDerivedReferrer_WhiteUqFkRefNestList(cb.query()); // for saving query-value.
+        WhiteUqFkRefNestCB cb = new WhiteUqFkRefNestCB(); cb.xsetupForDerivedReferrer(this);
+        try { lock(); sq.query(cb); } finally { unlock(); }
+        String pp = keepTwoOrMorePk_SpecifyDerivedReferrer_WhiteUqFkRefNestList(cb.query());
         registerSpecifyDerivedReferrer(fn, cb.query(), "COMPOUND_UQ_FIRST_CODE, COMPOUND_UQ_SECOND_CODE", "COMPOUND_UQ_FIRST_CODE, COMPOUND_UQ_SECOND_CODE", pp, "whiteUqFkRefNestList", al, op);
     }
     protected Map<String, WhiteUqFkRefNestCQ> _twoOrMorePk_SpecifyDerivedReferrer_WhiteUqFkRefNestListMap;
@@ -462,12 +465,12 @@ public class BsWhiteUqFkRefCQ extends AbstractBsWhiteUqFkRefCQ {
      * {FOO &lt;= (select max(BAR) from WHITE_UQ_FK_REF_NEST where ...)} <br />
      * WHITE_UQ_FK_REF_NEST by COMPOUND_UQ_FIRST_CODE, COMPOUND_UQ_SECOND_CODE, named 'whiteUqFkRefNestAsOne'.
      * <pre>
-     * cb.query().<span style="color: #FD4747">derivedWhiteUqFkRefNestList()</span>.<span style="color: #FD4747">max</span>(new SubQuery&lt;WhiteUqFkRefNestCB&gt;() {
+     * cb.query().<span style="color: #DD4747">derivedWhiteUqFkRefNestList()</span>.<span style="color: #DD4747">max</span>(new SubQuery&lt;WhiteUqFkRefNestCB&gt;() {
      *     public void query(WhiteUqFkRefNestCB subCB) {
-     *         subCB.specify().<span style="color: #FD4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
+     *         subCB.specify().<span style="color: #DD4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
      *         subCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
      *     }
-     * }).<span style="color: #FD4747">greaterEqual</span>(123); <span style="color: #3F7E5E">// condition to derived column</span>
+     * }).<span style="color: #DD4747">greaterEqual</span>(123); <span style="color: #3F7E5E">// condition to derived column</span>
      * </pre>
      * @return The object to set up a function for referrer table. (NotNull)
      */
@@ -483,9 +486,9 @@ public class BsWhiteUqFkRefCQ extends AbstractBsWhiteUqFkRefCQ {
     }
     public void xqderiveWhiteUqFkRefNestList(String fn, SubQuery<WhiteUqFkRefNestCB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteUqFkRefNestCB cb = new WhiteUqFkRefNestCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
-        String sqpp = keepTwoOrMorePk_QueryDerivedReferrer_WhiteUqFkRefNestList(cb.query()); // for saving query-value.
-        String prpp = keepTwoOrMorePk_QueryDerivedReferrer_WhiteUqFkRefNestListParameter(vl);
+        WhiteUqFkRefNestCB cb = new WhiteUqFkRefNestCB(); cb.xsetupForDerivedReferrer(this);
+        try { lock(); sq.query(cb); } finally { unlock(); }
+        String sqpp = keepTwoOrMorePk_QueryDerivedReferrer_WhiteUqFkRefNestList(cb.query()); String prpp = keepTwoOrMorePk_QueryDerivedReferrer_WhiteUqFkRefNestListParameter(vl);
         registerQueryDerivedReferrer(fn, cb.query(), "COMPOUND_UQ_FIRST_CODE, COMPOUND_UQ_SECOND_CODE", "COMPOUND_UQ_FIRST_CODE, COMPOUND_UQ_SECOND_CODE", sqpp, "whiteUqFkRefNestList", rd, vl, prpp, op);
     }
     protected Map<String, WhiteUqFkRefNestCQ> _twoOrMorePk_QueryDerivedReferrer_WhiteUqFkRefNestListMap;

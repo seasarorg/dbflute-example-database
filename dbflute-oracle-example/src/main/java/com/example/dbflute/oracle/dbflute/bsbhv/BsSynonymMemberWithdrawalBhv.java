@@ -6,6 +6,8 @@ import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
 import org.seasar.dbflute.dbmeta.DBMeta;
+import org.seasar.dbflute.exception.*;
+import org.seasar.dbflute.optional.*;
 import org.seasar.dbflute.outsidesql.executor.*;
 import com.example.dbflute.oracle.dbflute.exbhv.*;
 import com.example.dbflute.oracle.dbflute.exentity.*;
@@ -91,7 +93,7 @@ public abstract class BsSynonymMemberWithdrawalBhv extends AbstractBehaviorWrita
      * <pre>
      * SynonymMemberWithdrawalCB cb = new SynonymMemberWithdrawalCB();
      * cb.query().setFoo...(value);
-     * int count = synonymMemberWithdrawalBhv.<span style="color: #FD4747">selectCount</span>(cb);
+     * int count = synonymMemberWithdrawalBhv.<span style="color: #DD4747">selectCount</span>(cb);
      * </pre>
      * @param cb The condition-bean of SynonymMemberWithdrawal. (NotNull)
      * @return The count for the condition. (NotMinus)
@@ -119,12 +121,14 @@ public abstract class BsSynonymMemberWithdrawalBhv extends AbstractBehaviorWrita
     //                                                                       Entity Select
     //                                                                       =============
     /**
-     * Select the entity by the condition-bean.
+     * Select the entity by the condition-bean. #beforejava8 <br />
+     * <span style="color: #AD4747; font-size: 120%">The return might be null if no data, so you should have null check.</span> <br />
+     * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, use selectEntityWithDeletedCheck().</span>
      * <pre>
      * SynonymMemberWithdrawalCB cb = new SynonymMemberWithdrawalCB();
      * cb.query().setFoo...(value);
-     * SynonymMemberWithdrawal synonymMemberWithdrawal = synonymMemberWithdrawalBhv.<span style="color: #FD4747">selectEntity</span>(cb);
-     * if (synonymMemberWithdrawal != null) {
+     * SynonymMemberWithdrawal synonymMemberWithdrawal = synonymMemberWithdrawalBhv.<span style="color: #DD4747">selectEntity</span>(cb);
+     * if (synonymMemberWithdrawal != null) { <span style="color: #3F7E5E">// null check</span>
      *     ... = synonymMemberWithdrawal.get...();
      * } else {
      *     ...
@@ -132,8 +136,8 @@ public abstract class BsSynonymMemberWithdrawalBhv extends AbstractBehaviorWrita
      * </pre>
      * @param cb The condition-bean of SynonymMemberWithdrawal. (NotNull)
      * @return The entity selected by the condition. (NullAllowed: if no data, it returns null)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public SynonymMemberWithdrawal selectEntity(SynonymMemberWithdrawalCB cb) {
         return doSelectEntity(cb, SynonymMemberWithdrawal.class);
@@ -145,24 +149,29 @@ public abstract class BsSynonymMemberWithdrawalBhv extends AbstractBehaviorWrita
             public List<ENTITY> callbackSelectList(SynonymMemberWithdrawalCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
+    protected <ENTITY extends SynonymMemberWithdrawal> OptionalEntity<ENTITY> doSelectOptionalEntity(SynonymMemberWithdrawalCB cb, Class<ENTITY> tp) {
+        return createOptionalEntity(doSelectEntity(cb, tp), cb);
+    }
+
     @Override
     protected Entity doReadEntity(ConditionBean cb) {
         return selectEntity(downcast(cb));
     }
 
     /**
-     * Select the entity by the condition-bean with deleted check.
+     * Select the entity by the condition-bean with deleted check. <br />
+     * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, this method is good.</span>
      * <pre>
      * SynonymMemberWithdrawalCB cb = new SynonymMemberWithdrawalCB();
      * cb.query().setFoo...(value);
-     * SynonymMemberWithdrawal synonymMemberWithdrawal = synonymMemberWithdrawalBhv.<span style="color: #FD4747">selectEntityWithDeletedCheck</span>(cb);
+     * SynonymMemberWithdrawal synonymMemberWithdrawal = synonymMemberWithdrawalBhv.<span style="color: #DD4747">selectEntityWithDeletedCheck</span>(cb);
      * ... = synonymMemberWithdrawal.get...(); <span style="color: #3F7E5E">// the entity always be not null</span>
      * </pre>
      * @param cb The condition-bean of SynonymMemberWithdrawal. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public SynonymMemberWithdrawal selectEntityWithDeletedCheck(SynonymMemberWithdrawalCB cb) {
         return doSelectEntityWithDeletedCheck(cb, SynonymMemberWithdrawal.class);
@@ -183,8 +192,8 @@ public abstract class BsSynonymMemberWithdrawalBhv extends AbstractBehaviorWrita
      * Select the entity by the primary-key value.
      * @param memberId The one of primary key. (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public SynonymMemberWithdrawal selectByPKValue(Long memberId) {
         return doSelectByPKValue(memberId, SynonymMemberWithdrawal.class);
@@ -198,9 +207,9 @@ public abstract class BsSynonymMemberWithdrawalBhv extends AbstractBehaviorWrita
      * Select the entity by the primary-key value with deleted check.
      * @param memberId The one of primary key. (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public SynonymMemberWithdrawal selectByPKValueWithDeletedCheck(Long memberId) {
         return doSelectByPKValueWithDeletedCheck(memberId, SynonymMemberWithdrawal.class);
@@ -226,14 +235,14 @@ public abstract class BsSynonymMemberWithdrawalBhv extends AbstractBehaviorWrita
      * SynonymMemberWithdrawalCB cb = new SynonymMemberWithdrawalCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * ListResultBean&lt;SynonymMemberWithdrawal&gt; synonymMemberWithdrawalList = synonymMemberWithdrawalBhv.<span style="color: #FD4747">selectList</span>(cb);
+     * ListResultBean&lt;SynonymMemberWithdrawal&gt; synonymMemberWithdrawalList = synonymMemberWithdrawalBhv.<span style="color: #DD4747">selectList</span>(cb);
      * for (SynonymMemberWithdrawal synonymMemberWithdrawal : synonymMemberWithdrawalList) {
      *     ... = synonymMemberWithdrawal.get...();
      * }
      * </pre>
      * @param cb The condition-bean of SynonymMemberWithdrawal. (NotNull)
      * @return The result bean of selected list. (NotNull: if no data, returns empty list)
-     * @exception org.seasar.dbflute.exception.DangerousResultSizeException When the result size is over the specified safety size.
+     * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public ListResultBean<SynonymMemberWithdrawal> selectList(SynonymMemberWithdrawalCB cb) {
         return doSelectList(cb, SynonymMemberWithdrawal.class);
@@ -261,8 +270,8 @@ public abstract class BsSynonymMemberWithdrawalBhv extends AbstractBehaviorWrita
      * SynonymMemberWithdrawalCB cb = new SynonymMemberWithdrawalCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * cb.<span style="color: #FD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
-     * PagingResultBean&lt;SynonymMemberWithdrawal&gt; page = synonymMemberWithdrawalBhv.<span style="color: #FD4747">selectPage</span>(cb);
+     * cb.<span style="color: #DD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
+     * PagingResultBean&lt;SynonymMemberWithdrawal&gt; page = synonymMemberWithdrawalBhv.<span style="color: #DD4747">selectPage</span>(cb);
      * int allRecordCount = page.getAllRecordCount();
      * int allPageCount = page.getAllPageCount();
      * boolean isExistPrePage = page.isExistPrePage();
@@ -274,7 +283,7 @@ public abstract class BsSynonymMemberWithdrawalBhv extends AbstractBehaviorWrita
      * </pre>
      * @param cb The condition-bean of SynonymMemberWithdrawal. (NotNull)
      * @return The result bean of selected page. (NotNull: if no data, returns bean as empty list)
-     * @exception org.seasar.dbflute.exception.DangerousResultSizeException When the result size is over the specified safety size.
+     * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public PagingResultBean<SynonymMemberWithdrawal> selectPage(SynonymMemberWithdrawalCB cb) {
         return doSelectPage(cb, SynonymMemberWithdrawal.class);
@@ -301,7 +310,7 @@ public abstract class BsSynonymMemberWithdrawalBhv extends AbstractBehaviorWrita
      * <pre>
      * SynonymMemberWithdrawalCB cb = new SynonymMemberWithdrawalCB();
      * cb.query().setFoo...(value);
-     * synonymMemberWithdrawalBhv.<span style="color: #FD4747">selectCursor</span>(cb, new EntityRowHandler&lt;SynonymMemberWithdrawal&gt;() {
+     * synonymMemberWithdrawalBhv.<span style="color: #DD4747">selectCursor</span>(cb, new EntityRowHandler&lt;SynonymMemberWithdrawal&gt;() {
      *     public void handle(SynonymMemberWithdrawal entity) {
      *         ... = entity.getFoo...();
      *     }
@@ -330,9 +339,9 @@ public abstract class BsSynonymMemberWithdrawalBhv extends AbstractBehaviorWrita
      * Select the scalar value derived by a function from uniquely-selected records. <br />
      * You should call a function method after this method called like as follows:
      * <pre>
-     * synonymMemberWithdrawalBhv.<span style="color: #FD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
+     * synonymMemberWithdrawalBhv.<span style="color: #DD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
      *     public void query(SynonymMemberWithdrawalCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
+     *         cb.specify().<span style="color: #DD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
      *         cb.query().setBarName_PrefixSearch("S");
      *     }
      * });
@@ -451,12 +460,12 @@ public abstract class BsSynonymMemberWithdrawalBhv extends AbstractBehaviorWrita
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
      * <span style="color: #3F7E5E">//synonymMemberWithdrawal.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//synonymMemberWithdrawal.set...;</span>
-     * synonymMemberWithdrawalBhv.<span style="color: #FD4747">insert</span>(synonymMemberWithdrawal);
+     * synonymMemberWithdrawalBhv.<span style="color: #DD4747">insert</span>(synonymMemberWithdrawal);
      * ... = synonymMemberWithdrawal.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * <p>While, when the entity is created by select, all columns are registered.</p>
      * @param synonymMemberWithdrawal The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insert(SynonymMemberWithdrawal synonymMemberWithdrawal) {
         doInsert(synonymMemberWithdrawal, null);
@@ -492,17 +501,17 @@ public abstract class BsSynonymMemberWithdrawalBhv extends AbstractBehaviorWrita
      * <span style="color: #3F7E5E">//synonymMemberWithdrawal.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//synonymMemberWithdrawal.set...;</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * synonymMemberWithdrawal.<span style="color: #FD4747">setVersionNo</span>(value);
+     * synonymMemberWithdrawal.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
-     *     synonymMemberWithdrawalBhv.<span style="color: #FD4747">update</span>(synonymMemberWithdrawal);
+     *     synonymMemberWithdrawalBhv.<span style="color: #DD4747">update</span>(synonymMemberWithdrawal);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param synonymMemberWithdrawal The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyUpdatedException When the entity has already been updated.
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyUpdatedException When the entity has already been updated.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void update(final SynonymMemberWithdrawal synonymMemberWithdrawal) {
         doUpdate(synonymMemberWithdrawal, null);
@@ -556,12 +565,12 @@ public abstract class BsSynonymMemberWithdrawalBhv extends AbstractBehaviorWrita
      * <span style="color: #3F7E5E">// you don't need to set a value of exclusive control column</span>
      * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
      * <span style="color: #3F7E5E">//synonymMemberWithdrawal.setVersionNo(value);</span>
-     * synonymMemberWithdrawalBhv.<span style="color: #FD4747">updateNonstrict</span>(synonymMemberWithdrawal);
+     * synonymMemberWithdrawalBhv.<span style="color: #DD4747">updateNonstrict</span>(synonymMemberWithdrawal);
      * </pre>
      * @param synonymMemberWithdrawal The entity of update target. (NotNull, PrimaryKeyNotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void updateNonstrict(final SynonymMemberWithdrawal synonymMemberWithdrawal) {
         doUpdateNonstrict(synonymMemberWithdrawal, null);
@@ -583,11 +592,11 @@ public abstract class BsSynonymMemberWithdrawalBhv extends AbstractBehaviorWrita
     /**
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, ExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br />
-     * <p><span style="color: #FD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
+     * <p><span style="color: #DD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
      * @param synonymMemberWithdrawal The entity of insert or update target. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyUpdatedException When the entity has already been updated.
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyUpdatedException When the entity has already been updated.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insertOrUpdate(SynonymMemberWithdrawal synonymMemberWithdrawal) {
         doInesrtOrUpdate(synonymMemberWithdrawal, null, null);
@@ -615,11 +624,11 @@ public abstract class BsSynonymMemberWithdrawalBhv extends AbstractBehaviorWrita
     /**
      * Insert or update the entity non-strictly modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() }
-     * <p><span style="color: #FD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
+     * <p><span style="color: #DD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
      * @param synonymMemberWithdrawal The entity of insert or update target. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insertOrUpdateNonstrict(SynonymMemberWithdrawal synonymMemberWithdrawal) {
         doInesrtOrUpdateNonstrict(synonymMemberWithdrawal, null, null);
@@ -648,16 +657,16 @@ public abstract class BsSynonymMemberWithdrawalBhv extends AbstractBehaviorWrita
      * SynonymMemberWithdrawal synonymMemberWithdrawal = new SynonymMemberWithdrawal();
      * synonymMemberWithdrawal.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * synonymMemberWithdrawal.<span style="color: #FD4747">setVersionNo</span>(value);
+     * synonymMemberWithdrawal.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
-     *     synonymMemberWithdrawalBhv.<span style="color: #FD4747">delete</span>(synonymMemberWithdrawal);
+     *     synonymMemberWithdrawalBhv.<span style="color: #DD4747">delete</span>(synonymMemberWithdrawal);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param synonymMemberWithdrawal The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyUpdatedException When the entity has already been updated.
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyUpdatedException When the entity has already been updated.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void delete(SynonymMemberWithdrawal synonymMemberWithdrawal) {
         doDelete(synonymMemberWithdrawal, null);
@@ -689,11 +698,11 @@ public abstract class BsSynonymMemberWithdrawalBhv extends AbstractBehaviorWrita
      * <span style="color: #3F7E5E">// you don't need to set a value of exclusive control column</span>
      * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
      * <span style="color: #3F7E5E">//synonymMemberWithdrawal.setVersionNo(value);</span>
-     * synonymMemberWithdrawalBhv.<span style="color: #FD4747">deleteNonstrict</span>(synonymMemberWithdrawal);
+     * synonymMemberWithdrawalBhv.<span style="color: #DD4747">deleteNonstrict</span>(synonymMemberWithdrawal);
      * </pre>
      * @param synonymMemberWithdrawal The entity of delete target. (NotNull, PrimaryKeyNotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void deleteNonstrict(SynonymMemberWithdrawal synonymMemberWithdrawal) {
         doDeleteNonstrict(synonymMemberWithdrawal, null);
@@ -714,11 +723,11 @@ public abstract class BsSynonymMemberWithdrawalBhv extends AbstractBehaviorWrita
      * <span style="color: #3F7E5E">// you don't need to set a value of exclusive control column</span>
      * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
      * <span style="color: #3F7E5E">//synonymMemberWithdrawal.setVersionNo(value);</span>
-     * synonymMemberWithdrawalBhv.<span style="color: #FD4747">deleteNonstrictIgnoreDeleted</span>(synonymMemberWithdrawal);
+     * synonymMemberWithdrawalBhv.<span style="color: #DD4747">deleteNonstrictIgnoreDeleted</span>(synonymMemberWithdrawal);
      * <span style="color: #3F7E5E">// if the target entity doesn't exist, no exception</span>
      * </pre>
      * @param synonymMemberWithdrawal The entity of delete target. (NotNull, PrimaryKeyNotNull)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void deleteNonstrictIgnoreDeleted(SynonymMemberWithdrawal synonymMemberWithdrawal) {
         doDeleteNonstrictIgnoreDeleted(synonymMemberWithdrawal, null);
@@ -743,7 +752,7 @@ public abstract class BsSynonymMemberWithdrawalBhv extends AbstractBehaviorWrita
     /**
      * Batch-insert the entity list modified-only of same-set columns. (DefaultConstraintsEnabled) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
-     * <p><span style="color: #FD4747; font-size: 120%">The columns of least common multiple are registered like this:</span></p>
+     * <p><span style="color: #DD4747; font-size: 120%">The columns of least common multiple are registered like this:</span></p>
      * <pre>
      * for (... : ...) {
      *     SynonymMemberWithdrawal synonymMemberWithdrawal = new SynonymMemberWithdrawal();
@@ -756,7 +765,7 @@ public abstract class BsSynonymMemberWithdrawalBhv extends AbstractBehaviorWrita
      *     <span style="color: #3F7E5E">// columns not-called in all entities are registered as null or default value</span>
      *     synonymMemberWithdrawalList.add(synonymMemberWithdrawal);
      * }
-     * synonymMemberWithdrawalBhv.<span style="color: #FD4747">batchInsert</span>(synonymMemberWithdrawalList);
+     * synonymMemberWithdrawalBhv.<span style="color: #DD4747">batchInsert</span>(synonymMemberWithdrawalList);
      * </pre>
      * <p>While, when the entities are created by select, all columns are registered.</p>
      * <p>And if the table has an identity, entities after the process don't have incremented values.
@@ -790,7 +799,7 @@ public abstract class BsSynonymMemberWithdrawalBhv extends AbstractBehaviorWrita
     /**
      * Batch-update the entity list modified-only of same-set columns. (ExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
-     * <span style="color: #FD4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
+     * <span style="color: #DD4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
      * <pre>
      * for (... : ...) {
      *     SynonymMemberWithdrawal synonymMemberWithdrawal = new SynonymMemberWithdrawal();
@@ -805,11 +814,11 @@ public abstract class BsSynonymMemberWithdrawalBhv extends AbstractBehaviorWrita
      *     <span style="color: #3F7E5E">// (others are not updated: their values are kept)</span>
      *     synonymMemberWithdrawalList.add(synonymMemberWithdrawal);
      * }
-     * synonymMemberWithdrawalBhv.<span style="color: #FD4747">batchUpdate</span>(synonymMemberWithdrawalList);
+     * synonymMemberWithdrawalBhv.<span style="color: #DD4747">batchUpdate</span>(synonymMemberWithdrawalList);
      * </pre>
      * @param synonymMemberWithdrawalList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.BatchEntityAlreadyUpdatedException When the entity has already been updated. This exception extends EntityAlreadyUpdatedException.
+     * @exception BatchEntityAlreadyUpdatedException When the entity has already been updated. This exception extends EntityAlreadyUpdatedException.
      */
     public int[] batchUpdate(List<SynonymMemberWithdrawal> synonymMemberWithdrawalList) {
         UpdateOption<SynonymMemberWithdrawalCB> op = createPlainUpdateOption();
@@ -838,16 +847,16 @@ public abstract class BsSynonymMemberWithdrawalBhv extends AbstractBehaviorWrita
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * <pre>
      * <span style="color: #3F7E5E">// e.g. update two columns only</span>
-     * synonymMemberWithdrawalBhv.<span style="color: #FD4747">batchUpdate</span>(synonymMemberWithdrawalList, new SpecifyQuery<SynonymMemberWithdrawalCB>() {
+     * synonymMemberWithdrawalBhv.<span style="color: #DD4747">batchUpdate</span>(synonymMemberWithdrawalList, new SpecifyQuery<SynonymMemberWithdrawalCB>() {
      *     public void specify(SynonymMemberWithdrawalCB cb) { <span style="color: #3F7E5E">// the two only updated</span>
-     *         cb.specify().<span style="color: #FD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
-     *         cb.specify().<span style="color: #FD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
+     *         cb.specify().<span style="color: #DD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
+     *         cb.specify().<span style="color: #DD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
      *     }
      * });
      * <span style="color: #3F7E5E">// e.g. update every column in the table</span>
-     * synonymMemberWithdrawalBhv.<span style="color: #FD4747">batchUpdate</span>(synonymMemberWithdrawalList, new SpecifyQuery<SynonymMemberWithdrawalCB>() {
+     * synonymMemberWithdrawalBhv.<span style="color: #DD4747">batchUpdate</span>(synonymMemberWithdrawalList, new SpecifyQuery<SynonymMemberWithdrawalCB>() {
      *     public void specify(SynonymMemberWithdrawalCB cb) { <span style="color: #3F7E5E">// all columns are updated</span>
-     *         cb.specify().<span style="color: #FD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
+     *         cb.specify().<span style="color: #DD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
      *     }
      * });
      * </pre>
@@ -859,7 +868,7 @@ public abstract class BsSynonymMemberWithdrawalBhv extends AbstractBehaviorWrita
      * @param synonymMemberWithdrawalList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @param updateColumnSpec The specification of update columns. (NotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.BatchEntityAlreadyUpdatedException When the entity has already been updated. This exception extends EntityAlreadyUpdatedException.
+     * @exception BatchEntityAlreadyUpdatedException When the entity has already been updated. This exception extends EntityAlreadyUpdatedException.
      */
     public int[] batchUpdate(List<SynonymMemberWithdrawal> synonymMemberWithdrawalList, SpecifyQuery<SynonymMemberWithdrawalCB> updateColumnSpec) {
         return doBatchUpdate(synonymMemberWithdrawalList, createSpecifiedUpdateOption(updateColumnSpec));
@@ -868,7 +877,7 @@ public abstract class BsSynonymMemberWithdrawalBhv extends AbstractBehaviorWrita
     /**
      * Batch-update the entity list non-strictly modified-only of same-set columns. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
-     * <span style="color: #FD4747; font-size: 140%">You should specify same-set columns to all entities like this:</span>
+     * <span style="color: #DD4747; font-size: 140%">You should specify same-set columns to all entities like this:</span>
      * <pre>
      * for (... : ...) {
      *     SynonymMemberWithdrawal synonymMemberWithdrawal = new SynonymMemberWithdrawal();
@@ -883,11 +892,11 @@ public abstract class BsSynonymMemberWithdrawalBhv extends AbstractBehaviorWrita
      *     <span style="color: #3F7E5E">// (others are not updated: their values are kept)</span>
      *     synonymMemberWithdrawalList.add(synonymMemberWithdrawal);
      * }
-     * synonymMemberWithdrawalBhv.<span style="color: #FD4747">batchUpdate</span>(synonymMemberWithdrawalList);
+     * synonymMemberWithdrawalBhv.<span style="color: #DD4747">batchUpdate</span>(synonymMemberWithdrawalList);
      * </pre>
      * @param synonymMemberWithdrawalList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdateNonstrict(List<SynonymMemberWithdrawal> synonymMemberWithdrawalList) {
         UpdateOption<SynonymMemberWithdrawalCB> option = createPlainUpdateOption();
@@ -905,16 +914,16 @@ public abstract class BsSynonymMemberWithdrawalBhv extends AbstractBehaviorWrita
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * <pre>
      * <span style="color: #3F7E5E">// e.g. update two columns only</span>
-     * synonymMemberWithdrawalBhv.<span style="color: #FD4747">batchUpdateNonstrict</span>(synonymMemberWithdrawalList, new SpecifyQuery<SynonymMemberWithdrawalCB>() {
+     * synonymMemberWithdrawalBhv.<span style="color: #DD4747">batchUpdateNonstrict</span>(synonymMemberWithdrawalList, new SpecifyQuery<SynonymMemberWithdrawalCB>() {
      *     public void specify(SynonymMemberWithdrawalCB cb) { <span style="color: #3F7E5E">// the two only updated</span>
-     *         cb.specify().<span style="color: #FD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
-     *         cb.specify().<span style="color: #FD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
+     *         cb.specify().<span style="color: #DD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
+     *         cb.specify().<span style="color: #DD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
      *     }
      * });
      * <span style="color: #3F7E5E">// e.g. update every column in the table</span>
-     * synonymMemberWithdrawalBhv.<span style="color: #FD4747">batchUpdateNonstrict</span>(synonymMemberWithdrawalList, new SpecifyQuery<SynonymMemberWithdrawalCB>() {
+     * synonymMemberWithdrawalBhv.<span style="color: #DD4747">batchUpdateNonstrict</span>(synonymMemberWithdrawalList, new SpecifyQuery<SynonymMemberWithdrawalCB>() {
      *     public void specify(SynonymMemberWithdrawalCB cb) { <span style="color: #3F7E5E">// all columns are updated</span>
-     *         cb.specify().<span style="color: #FD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
+     *         cb.specify().<span style="color: #DD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
      *     }
      * });
      * </pre>
@@ -925,7 +934,7 @@ public abstract class BsSynonymMemberWithdrawalBhv extends AbstractBehaviorWrita
      * @param synonymMemberWithdrawalList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @param updateColumnSpec The specification of update columns. (NotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdateNonstrict(List<SynonymMemberWithdrawal> synonymMemberWithdrawalList, SpecifyQuery<SynonymMemberWithdrawalCB> updateColumnSpec) {
         return doBatchUpdateNonstrict(synonymMemberWithdrawalList, createSpecifiedUpdateOption(updateColumnSpec));
@@ -942,7 +951,7 @@ public abstract class BsSynonymMemberWithdrawalBhv extends AbstractBehaviorWrita
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * @param synonymMemberWithdrawalList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of deleted count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.BatchEntityAlreadyUpdatedException When the entity has already been updated. This exception extends EntityAlreadyUpdatedException.
+     * @exception BatchEntityAlreadyUpdatedException When the entity has already been updated. This exception extends EntityAlreadyUpdatedException.
      */
     public int[] batchDelete(List<SynonymMemberWithdrawal> synonymMemberWithdrawalList) {
         return doBatchDelete(synonymMemberWithdrawalList, null);
@@ -965,7 +974,7 @@ public abstract class BsSynonymMemberWithdrawalBhv extends AbstractBehaviorWrita
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * @param synonymMemberWithdrawalList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of deleted count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchDeleteNonstrict(List<SynonymMemberWithdrawal> synonymMemberWithdrawalList) {
         return doBatchDeleteNonstrict(synonymMemberWithdrawalList, null);
@@ -989,7 +998,7 @@ public abstract class BsSynonymMemberWithdrawalBhv extends AbstractBehaviorWrita
     /**
      * Insert the several entities by query (modified-only for fixed value).
      * <pre>
-     * synonymMemberWithdrawalBhv.<span style="color: #FD4747">queryInsert</span>(new QueryInsertSetupper&lt;SynonymMemberWithdrawal, SynonymMemberWithdrawalCB&gt;() {
+     * synonymMemberWithdrawalBhv.<span style="color: #DD4747">queryInsert</span>(new QueryInsertSetupper&lt;SynonymMemberWithdrawal, SynonymMemberWithdrawalCB&gt;() {
      *     public ConditionBean setup(synonymMemberWithdrawal entity, SynonymMemberWithdrawalCB intoCB) {
      *         FooCB cb = FooCB();
      *         cb.setupSelect_Bar();
@@ -1051,12 +1060,12 @@ public abstract class BsSynonymMemberWithdrawalBhv extends AbstractBehaviorWrita
      * <span style="color: #3F7E5E">//synonymMemberWithdrawal.setVersionNo(value);</span>
      * SynonymMemberWithdrawalCB cb = new SynonymMemberWithdrawalCB();
      * cb.query().setFoo...(value);
-     * synonymMemberWithdrawalBhv.<span style="color: #FD4747">queryUpdate</span>(synonymMemberWithdrawal, cb);
+     * synonymMemberWithdrawalBhv.<span style="color: #DD4747">queryUpdate</span>(synonymMemberWithdrawal, cb);
      * </pre>
      * @param synonymMemberWithdrawal The entity that contains update values. (NotNull, PrimaryKeyNullAllowed)
      * @param cb The condition-bean of SynonymMemberWithdrawal. (NotNull)
      * @return The updated count.
-     * @exception org.seasar.dbflute.exception.NonQueryUpdateNotAllowedException When the query has no condition.
+     * @exception NonQueryUpdateNotAllowedException When the query has no condition.
      */
     public int queryUpdate(SynonymMemberWithdrawal synonymMemberWithdrawal, SynonymMemberWithdrawalCB cb) {
         return doQueryUpdate(synonymMemberWithdrawal, cb, null);
@@ -1079,11 +1088,11 @@ public abstract class BsSynonymMemberWithdrawalBhv extends AbstractBehaviorWrita
      * <pre>
      * SynonymMemberWithdrawalCB cb = new SynonymMemberWithdrawalCB();
      * cb.query().setFoo...(value);
-     * synonymMemberWithdrawalBhv.<span style="color: #FD4747">queryDelete</span>(synonymMemberWithdrawal, cb);
+     * synonymMemberWithdrawalBhv.<span style="color: #DD4747">queryDelete</span>(synonymMemberWithdrawal, cb);
      * </pre>
      * @param cb The condition-bean of SynonymMemberWithdrawal. (NotNull)
      * @return The deleted count.
-     * @exception org.seasar.dbflute.exception.NonQueryDeleteNotAllowedException When the query has no condition.
+     * @exception NonQueryDeleteNotAllowedException When the query has no condition.
      */
     public int queryDelete(SynonymMemberWithdrawalCB cb) {
         return doQueryDelete(cb, null);
@@ -1119,12 +1128,12 @@ public abstract class BsSynonymMemberWithdrawalBhv extends AbstractBehaviorWrita
      * InsertOption<SynonymMemberWithdrawalCB> option = new InsertOption<SynonymMemberWithdrawalCB>();
      * <span style="color: #3F7E5E">// you can insert by your values for common columns</span>
      * option.disableCommonColumnAutoSetup();
-     * synonymMemberWithdrawalBhv.<span style="color: #FD4747">varyingInsert</span>(synonymMemberWithdrawal, option);
+     * synonymMemberWithdrawalBhv.<span style="color: #DD4747">varyingInsert</span>(synonymMemberWithdrawal, option);
      * ... = synonymMemberWithdrawal.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * @param synonymMemberWithdrawal The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
      * @param option The option of insert for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingInsert(SynonymMemberWithdrawal synonymMemberWithdrawal, InsertOption<SynonymMemberWithdrawalCB> option) {
         assertInsertOptionNotNull(option);
@@ -1140,25 +1149,25 @@ public abstract class BsSynonymMemberWithdrawalBhv extends AbstractBehaviorWrita
      * synonymMemberWithdrawal.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * synonymMemberWithdrawal.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * synonymMemberWithdrawal.<span style="color: #FD4747">setVersionNo</span>(value);
+     * synonymMemberWithdrawal.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     <span style="color: #3F7E5E">// you can update by self calculation values</span>
      *     UpdateOption&lt;SynonymMemberWithdrawalCB&gt; option = new UpdateOption&lt;SynonymMemberWithdrawalCB&gt;();
      *     option.self(new SpecifyQuery&lt;SynonymMemberWithdrawalCB&gt;() {
      *         public void specify(SynonymMemberWithdrawalCB cb) {
-     *             cb.specify().<span style="color: #FD4747">columnXxxCount()</span>;
+     *             cb.specify().<span style="color: #DD4747">columnXxxCount()</span>;
      *         }
      *     }).plus(1); <span style="color: #3F7E5E">// XXX_COUNT = XXX_COUNT + 1</span>
-     *     synonymMemberWithdrawalBhv.<span style="color: #FD4747">varyingUpdate</span>(synonymMemberWithdrawal, option);
+     *     synonymMemberWithdrawalBhv.<span style="color: #DD4747">varyingUpdate</span>(synonymMemberWithdrawal, option);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param synonymMemberWithdrawal The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @param option The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyUpdatedException When the entity has already been updated.
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyUpdatedException When the entity has already been updated.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingUpdate(SynonymMemberWithdrawal synonymMemberWithdrawal, UpdateOption<SynonymMemberWithdrawalCB> option) {
         assertUpdateOptionNotNull(option);
@@ -1180,16 +1189,16 @@ public abstract class BsSynonymMemberWithdrawalBhv extends AbstractBehaviorWrita
      * UpdateOption&lt;SynonymMemberWithdrawalCB&gt; option = new UpdateOption&lt;SynonymMemberWithdrawalCB&gt;();
      * option.self(new SpecifyQuery&lt;SynonymMemberWithdrawalCB&gt;() {
      *     public void specify(SynonymMemberWithdrawalCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFooCount()</span>;
+     *         cb.specify().<span style="color: #DD4747">columnFooCount()</span>;
      *     }
      * }).plus(1); <span style="color: #3F7E5E">// FOO_COUNT = FOO_COUNT + 1</span>
-     * synonymMemberWithdrawalBhv.<span style="color: #FD4747">varyingUpdateNonstrict</span>(synonymMemberWithdrawal, option);
+     * synonymMemberWithdrawalBhv.<span style="color: #DD4747">varyingUpdateNonstrict</span>(synonymMemberWithdrawal, option);
      * </pre>
      * @param synonymMemberWithdrawal The entity of update target. (NotNull, PrimaryKeyNotNull)
      * @param option The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingUpdateNonstrict(SynonymMemberWithdrawal synonymMemberWithdrawal, UpdateOption<SynonymMemberWithdrawalCB> option) {
         assertUpdateOptionNotNull(option);
@@ -1202,9 +1211,9 @@ public abstract class BsSynonymMemberWithdrawalBhv extends AbstractBehaviorWrita
      * @param synonymMemberWithdrawal The entity of insert or update target. (NotNull)
      * @param insertOption The option of insert for varying requests. (NotNull)
      * @param updateOption The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyUpdatedException When the entity has already been updated.
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyUpdatedException When the entity has already been updated.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingInsertOrUpdate(SynonymMemberWithdrawal synonymMemberWithdrawal, InsertOption<SynonymMemberWithdrawalCB> insertOption, UpdateOption<SynonymMemberWithdrawalCB> updateOption) {
         assertInsertOptionNotNull(insertOption); assertUpdateOptionNotNull(updateOption);
@@ -1217,9 +1226,9 @@ public abstract class BsSynonymMemberWithdrawalBhv extends AbstractBehaviorWrita
      * @param synonymMemberWithdrawal The entity of insert or update target. (NotNull)
      * @param insertOption The option of insert for varying requests. (NotNull)
      * @param updateOption The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingInsertOrUpdateNonstrict(SynonymMemberWithdrawal synonymMemberWithdrawal, InsertOption<SynonymMemberWithdrawalCB> insertOption, UpdateOption<SynonymMemberWithdrawalCB> updateOption) {
         assertInsertOptionNotNull(insertOption); assertUpdateOptionNotNull(updateOption);
@@ -1232,8 +1241,8 @@ public abstract class BsSynonymMemberWithdrawalBhv extends AbstractBehaviorWrita
      * Other specifications are same as delete(entity).
      * @param synonymMemberWithdrawal The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @param option The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyUpdatedException When the entity has already been updated.
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyUpdatedException When the entity has already been updated.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void varyingDelete(SynonymMemberWithdrawal synonymMemberWithdrawal, DeleteOption<SynonymMemberWithdrawalCB> option) {
         assertDeleteOptionNotNull(option);
@@ -1246,8 +1255,8 @@ public abstract class BsSynonymMemberWithdrawalBhv extends AbstractBehaviorWrita
      * Other specifications are same as deleteNonstrict(entity).
      * @param synonymMemberWithdrawal The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @param option The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void varyingDeleteNonstrict(SynonymMemberWithdrawal synonymMemberWithdrawal, DeleteOption<SynonymMemberWithdrawalCB> option) {
         assertDeleteOptionNotNull(option);
@@ -1360,16 +1369,16 @@ public abstract class BsSynonymMemberWithdrawalBhv extends AbstractBehaviorWrita
      * UpdateOption&lt;SynonymMemberWithdrawalCB&gt; option = new UpdateOption&lt;SynonymMemberWithdrawalCB&gt;();
      * option.self(new SpecifyQuery&lt;SynonymMemberWithdrawalCB&gt;() {
      *     public void specify(SynonymMemberWithdrawalCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFooCount()</span>;
+     *         cb.specify().<span style="color: #DD4747">columnFooCount()</span>;
      *     }
      * }).plus(1); <span style="color: #3F7E5E">// FOO_COUNT = FOO_COUNT + 1</span>
-     * synonymMemberWithdrawalBhv.<span style="color: #FD4747">varyingQueryUpdate</span>(synonymMemberWithdrawal, cb, option);
+     * synonymMemberWithdrawalBhv.<span style="color: #DD4747">varyingQueryUpdate</span>(synonymMemberWithdrawal, cb, option);
      * </pre>
      * @param synonymMemberWithdrawal The entity that contains update values. (NotNull) {PrimaryKeyNotRequired}
      * @param cb The condition-bean of SynonymMemberWithdrawal. (NotNull)
      * @param option The option of update for varying requests. (NotNull)
      * @return The updated count.
-     * @exception org.seasar.dbflute.exception.NonQueryUpdateNotAllowedException When the query has no condition (if not allowed).
+     * @exception NonQueryUpdateNotAllowedException When the query has no condition (if not allowed).
      */
     public int varyingQueryUpdate(SynonymMemberWithdrawal synonymMemberWithdrawal, SynonymMemberWithdrawalCB cb, UpdateOption<SynonymMemberWithdrawalCB> option) {
         assertUpdateOptionNotNull(option);
@@ -1383,7 +1392,7 @@ public abstract class BsSynonymMemberWithdrawalBhv extends AbstractBehaviorWrita
      * @param cb The condition-bean of SynonymMemberWithdrawal. (NotNull)
      * @param option The option of delete for varying requests. (NotNull)
      * @return The deleted count.
-     * @exception org.seasar.dbflute.exception.NonQueryDeleteNotAllowedException When the query has no condition (if not allowed).
+     * @exception NonQueryDeleteNotAllowedException When the query has no condition (if not allowed).
      */
     public int varyingQueryDelete(SynonymMemberWithdrawalCB cb, DeleteOption<SynonymMemberWithdrawalCB> option) {
         assertDeleteOptionNotNull(option);

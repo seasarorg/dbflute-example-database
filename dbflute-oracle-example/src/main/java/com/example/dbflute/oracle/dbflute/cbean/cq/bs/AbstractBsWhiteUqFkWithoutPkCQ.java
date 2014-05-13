@@ -109,7 +109,7 @@ public abstract class AbstractBsWhiteUqFkWithoutPkCQ extends AbstractConditionQu
     /**
      * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br />
      * UQ_FK_CODE: {UQ, NotNull, CHAR(3)} <br />
-     * <pre>e.g. setUqFkCode_LikeSearch("xxx", new <span style="color: #FD4747">LikeSearchOption</span>().likeContain());</pre>
+     * <pre>e.g. setUqFkCode_LikeSearch("xxx", new <span style="color: #DD4747">LikeSearchOption</span>().likeContain());</pre>
      * @param uqFkCode The value of uqFkCode as likeSearch. (NullAllowed: if null (or empty), no condition)
      * @param likeSearchOption The option of like-search. (NotNull)
      */
@@ -133,7 +133,7 @@ public abstract class AbstractBsWhiteUqFkWithoutPkCQ extends AbstractConditionQu
      * {exists (select FK_TO_UQ_CODE from WHITE_UQ_FK_WITHOUT_PK_REF where ...)} <br />
      * WHITE_UQ_FK_WITHOUT_PK_REF by FK_TO_UQ_CODE, named 'whiteUqFkWithoutPkRefAsOne'.
      * <pre>
-     * cb.query().<span style="color: #FD4747">existsWhiteUqFkWithoutPkRefList</span>(new SubQuery&lt;WhiteUqFkWithoutPkRefCB&gt;() {
+     * cb.query().<span style="color: #DD4747">existsWhiteUqFkWithoutPkRefList</span>(new SubQuery&lt;WhiteUqFkWithoutPkRefCB&gt;() {
      *     public void query(WhiteUqFkWithoutPkRefCB subCB) {
      *         subCB.query().setXxx...
      *     }
@@ -143,8 +143,9 @@ public abstract class AbstractBsWhiteUqFkWithoutPkCQ extends AbstractConditionQu
      */
     public void existsWhiteUqFkWithoutPkRefList(SubQuery<WhiteUqFkWithoutPkRefCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        WhiteUqFkWithoutPkRefCB cb = new WhiteUqFkWithoutPkRefCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String pp = keepUqFkCode_ExistsReferrer_WhiteUqFkWithoutPkRefList(cb.query()); // for saving query-value.
+        WhiteUqFkWithoutPkRefCB cb = new WhiteUqFkWithoutPkRefCB(); cb.xsetupForExistsReferrer(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepUqFkCode_ExistsReferrer_WhiteUqFkWithoutPkRefList(cb.query());
         registerExistsReferrer(cb.query(), "UQ_FK_CODE", "FK_TO_UQ_CODE", pp, "whiteUqFkWithoutPkRefList");
     }
     public abstract String keepUqFkCode_ExistsReferrer_WhiteUqFkWithoutPkRefList(WhiteUqFkWithoutPkRefCQ sq);
@@ -154,7 +155,7 @@ public abstract class AbstractBsWhiteUqFkWithoutPkCQ extends AbstractConditionQu
      * {not exists (select FK_TO_UQ_CODE from WHITE_UQ_FK_WITHOUT_PK_REF where ...)} <br />
      * WHITE_UQ_FK_WITHOUT_PK_REF by FK_TO_UQ_CODE, named 'whiteUqFkWithoutPkRefAsOne'.
      * <pre>
-     * cb.query().<span style="color: #FD4747">notExistsWhiteUqFkWithoutPkRefList</span>(new SubQuery&lt;WhiteUqFkWithoutPkRefCB&gt;() {
+     * cb.query().<span style="color: #DD4747">notExistsWhiteUqFkWithoutPkRefList</span>(new SubQuery&lt;WhiteUqFkWithoutPkRefCB&gt;() {
      *     public void query(WhiteUqFkWithoutPkRefCB subCB) {
      *         subCB.query().setXxx...
      *     }
@@ -164,8 +165,9 @@ public abstract class AbstractBsWhiteUqFkWithoutPkCQ extends AbstractConditionQu
      */
     public void notExistsWhiteUqFkWithoutPkRefList(SubQuery<WhiteUqFkWithoutPkRefCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        WhiteUqFkWithoutPkRefCB cb = new WhiteUqFkWithoutPkRefCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String pp = keepUqFkCode_NotExistsReferrer_WhiteUqFkWithoutPkRefList(cb.query()); // for saving query-value.
+        WhiteUqFkWithoutPkRefCB cb = new WhiteUqFkWithoutPkRefCB(); cb.xsetupForExistsReferrer(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepUqFkCode_NotExistsReferrer_WhiteUqFkWithoutPkRefList(cb.query());
         registerNotExistsReferrer(cb.query(), "UQ_FK_CODE", "FK_TO_UQ_CODE", pp, "whiteUqFkWithoutPkRefList");
     }
     public abstract String keepUqFkCode_NotExistsReferrer_WhiteUqFkWithoutPkRefList(WhiteUqFkWithoutPkRefCQ sq);
@@ -178,8 +180,9 @@ public abstract class AbstractBsWhiteUqFkWithoutPkCQ extends AbstractConditionQu
      */
     public void inScopeWhiteUqFkWithoutPkRefList(SubQuery<WhiteUqFkWithoutPkRefCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        WhiteUqFkWithoutPkRefCB cb = new WhiteUqFkWithoutPkRefCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String pp = keepUqFkCode_InScopeRelation_WhiteUqFkWithoutPkRefList(cb.query()); // for saving query-value.
+        WhiteUqFkWithoutPkRefCB cb = new WhiteUqFkWithoutPkRefCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepUqFkCode_InScopeRelation_WhiteUqFkWithoutPkRefList(cb.query());
         registerInScopeRelation(cb.query(), "UQ_FK_CODE", "FK_TO_UQ_CODE", pp, "whiteUqFkWithoutPkRefList");
     }
     public abstract String keepUqFkCode_InScopeRelation_WhiteUqFkWithoutPkRefList(WhiteUqFkWithoutPkRefCQ sq);
@@ -192,16 +195,18 @@ public abstract class AbstractBsWhiteUqFkWithoutPkCQ extends AbstractConditionQu
      */
     public void notInScopeWhiteUqFkWithoutPkRefList(SubQuery<WhiteUqFkWithoutPkRefCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        WhiteUqFkWithoutPkRefCB cb = new WhiteUqFkWithoutPkRefCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String pp = keepUqFkCode_NotInScopeRelation_WhiteUqFkWithoutPkRefList(cb.query()); // for saving query-value.
+        WhiteUqFkWithoutPkRefCB cb = new WhiteUqFkWithoutPkRefCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepUqFkCode_NotInScopeRelation_WhiteUqFkWithoutPkRefList(cb.query());
         registerNotInScopeRelation(cb.query(), "UQ_FK_CODE", "FK_TO_UQ_CODE", pp, "whiteUqFkWithoutPkRefList");
     }
     public abstract String keepUqFkCode_NotInScopeRelation_WhiteUqFkWithoutPkRefList(WhiteUqFkWithoutPkRefCQ sq);
 
     public void xsderiveWhiteUqFkWithoutPkRefList(String fn, SubQuery<WhiteUqFkWithoutPkRefCB> sq, String al, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteUqFkWithoutPkRefCB cb = new WhiteUqFkWithoutPkRefCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
-        String pp = keepUqFkCode_SpecifyDerivedReferrer_WhiteUqFkWithoutPkRefList(cb.query()); // for saving query-value.
+        WhiteUqFkWithoutPkRefCB cb = new WhiteUqFkWithoutPkRefCB(); cb.xsetupForDerivedReferrer(this);
+        try { lock(); sq.query(cb); } finally { unlock(); }
+        String pp = keepUqFkCode_SpecifyDerivedReferrer_WhiteUqFkWithoutPkRefList(cb.query());
         registerSpecifyDerivedReferrer(fn, cb.query(), "UQ_FK_CODE", "FK_TO_UQ_CODE", pp, "whiteUqFkWithoutPkRefList", al, op);
     }
     public abstract String keepUqFkCode_SpecifyDerivedReferrer_WhiteUqFkWithoutPkRefList(WhiteUqFkWithoutPkRefCQ sq);
@@ -211,12 +216,12 @@ public abstract class AbstractBsWhiteUqFkWithoutPkCQ extends AbstractConditionQu
      * {FOO &lt;= (select max(BAR) from WHITE_UQ_FK_WITHOUT_PK_REF where ...)} <br />
      * WHITE_UQ_FK_WITHOUT_PK_REF by FK_TO_UQ_CODE, named 'whiteUqFkWithoutPkRefAsOne'.
      * <pre>
-     * cb.query().<span style="color: #FD4747">derivedWhiteUqFkWithoutPkRefList()</span>.<span style="color: #FD4747">max</span>(new SubQuery&lt;WhiteUqFkWithoutPkRefCB&gt;() {
+     * cb.query().<span style="color: #DD4747">derivedWhiteUqFkWithoutPkRefList()</span>.<span style="color: #DD4747">max</span>(new SubQuery&lt;WhiteUqFkWithoutPkRefCB&gt;() {
      *     public void query(WhiteUqFkWithoutPkRefCB subCB) {
-     *         subCB.specify().<span style="color: #FD4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
+     *         subCB.specify().<span style="color: #DD4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
      *         subCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
      *     }
-     * }).<span style="color: #FD4747">greaterEqual</span>(123); <span style="color: #3F7E5E">// condition to derived column</span>
+     * }).<span style="color: #DD4747">greaterEqual</span>(123); <span style="color: #3F7E5E">// condition to derived column</span>
      * </pre>
      * @return The object to set up a function for referrer table. (NotNull)
      */
@@ -232,9 +237,9 @@ public abstract class AbstractBsWhiteUqFkWithoutPkCQ extends AbstractConditionQu
     }
     public void xqderiveWhiteUqFkWithoutPkRefList(String fn, SubQuery<WhiteUqFkWithoutPkRefCB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteUqFkWithoutPkRefCB cb = new WhiteUqFkWithoutPkRefCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
-        String sqpp = keepUqFkCode_QueryDerivedReferrer_WhiteUqFkWithoutPkRefList(cb.query()); // for saving query-value.
-        String prpp = keepUqFkCode_QueryDerivedReferrer_WhiteUqFkWithoutPkRefListParameter(vl);
+        WhiteUqFkWithoutPkRefCB cb = new WhiteUqFkWithoutPkRefCB(); cb.xsetupForDerivedReferrer(this);
+        try { lock(); sq.query(cb); } finally { unlock(); }
+        String sqpp = keepUqFkCode_QueryDerivedReferrer_WhiteUqFkWithoutPkRefList(cb.query()); String prpp = keepUqFkCode_QueryDerivedReferrer_WhiteUqFkWithoutPkRefListParameter(vl);
         registerQueryDerivedReferrer(fn, cb.query(), "UQ_FK_CODE", "FK_TO_UQ_CODE", sqpp, "whiteUqFkWithoutPkRefList", rd, vl, prpp, op);
     }
     public abstract String keepUqFkCode_QueryDerivedReferrer_WhiteUqFkWithoutPkRefList(WhiteUqFkWithoutPkRefCQ sq);
@@ -307,7 +312,7 @@ public abstract class AbstractBsWhiteUqFkWithoutPkCQ extends AbstractConditionQu
     /**
      * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br />
      * UQ_FK_NAME: {NotNull, VARCHAR2(64)} <br />
-     * <pre>e.g. setUqFkName_LikeSearch("xxx", new <span style="color: #FD4747">LikeSearchOption</span>().likeContain());</pre>
+     * <pre>e.g. setUqFkName_LikeSearch("xxx", new <span style="color: #DD4747">LikeSearchOption</span>().likeContain());</pre>
      * @param uqFkName The value of uqFkName as likeSearch. (NullAllowed: if null (or empty), no condition)
      * @param likeSearchOption The option of like-search. (NotNull)
      */
@@ -360,6 +365,37 @@ public abstract class AbstractBsWhiteUqFkWithoutPkCQ extends AbstractConditionQu
     @Override
     protected LikeSearchOption xcreateMatchLikeSearch() {
         return new OracleMatchLikeSearch();
+    }
+
+    // ===================================================================================
+    //                                                                          Compatible
+    //                                                                          ==========
+    /**
+     * Order along the list of manual values. #beforejava8 <br />
+     * This function with Union is unsupported! <br />
+     * The order values are bound (treated as bind parameter).
+     * <pre>
+     * MemberCB cb = new MemberCB();
+     * List&lt;CDef.MemberStatus&gt; orderValueList = new ArrayList&lt;CDef.MemberStatus&gt;();
+     * orderValueList.add(CDef.MemberStatus.Withdrawal);
+     * orderValueList.add(CDef.MemberStatus.Formalized);
+     * orderValueList.add(CDef.MemberStatus.Provisional);
+     * cb.query().addOrderBy_MemberStatusCode_Asc().<span style="color: #DD4747">withManualOrder(orderValueList)</span>;
+     * <span style="color: #3F7E5E">// order by </span>
+     * <span style="color: #3F7E5E">//   case</span>
+     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'WDL' then 0</span>
+     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'FML' then 1</span>
+     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'PRV' then 2</span>
+     * <span style="color: #3F7E5E">//     else 3</span>
+     * <span style="color: #3F7E5E">//   end asc, ...</span>
+     * </pre>
+     * @param orderValueList The list of order values for manual ordering. (NotNull)
+     */
+    public void withManualOrder(List<? extends Object> orderValueList) { // is user public!
+        assertObjectNotNull("withManualOrder(orderValueList)", orderValueList);
+        final ManualOrderBean manualOrderBean = new ManualOrderBean();
+        manualOrderBean.acceptOrderValueList(orderValueList);
+        withManualOrder(manualOrderBean);
     }
 
     // ===================================================================================

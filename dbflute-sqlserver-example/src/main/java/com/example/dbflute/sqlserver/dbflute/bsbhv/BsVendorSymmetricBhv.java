@@ -6,6 +6,8 @@ import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
 import org.seasar.dbflute.dbmeta.DBMeta;
+import org.seasar.dbflute.exception.*;
+import org.seasar.dbflute.optional.*;
 import org.seasar.dbflute.outsidesql.executor.*;
 import com.example.dbflute.sqlserver.dbflute.exbhv.*;
 import com.example.dbflute.sqlserver.dbflute.exentity.*;
@@ -92,7 +94,7 @@ public abstract class BsVendorSymmetricBhv extends AbstractBehaviorWritable {
      * <pre>
      * VendorSymmetricCB cb = new VendorSymmetricCB();
      * cb.query().setFoo...(value);
-     * int count = vendorSymmetricBhv.<span style="color: #FD4747">selectCount</span>(cb);
+     * int count = vendorSymmetricBhv.<span style="color: #DD4747">selectCount</span>(cb);
      * </pre>
      * @param cb The condition-bean of VendorSymmetric. (NotNull)
      * @return The count for the condition. (NotMinus)
@@ -120,12 +122,14 @@ public abstract class BsVendorSymmetricBhv extends AbstractBehaviorWritable {
     //                                                                       Entity Select
     //                                                                       =============
     /**
-     * Select the entity by the condition-bean.
+     * Select the entity by the condition-bean. #beforejava8 <br />
+     * <span style="color: #AD4747; font-size: 120%">The return might be null if no data, so you should have null check.</span> <br />
+     * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, use selectEntityWithDeletedCheck().</span>
      * <pre>
      * VendorSymmetricCB cb = new VendorSymmetricCB();
      * cb.query().setFoo...(value);
-     * VendorSymmetric vendorSymmetric = vendorSymmetricBhv.<span style="color: #FD4747">selectEntity</span>(cb);
-     * if (vendorSymmetric != null) {
+     * VendorSymmetric vendorSymmetric = vendorSymmetricBhv.<span style="color: #DD4747">selectEntity</span>(cb);
+     * if (vendorSymmetric != null) { <span style="color: #3F7E5E">// null check</span>
      *     ... = vendorSymmetric.get...();
      * } else {
      *     ...
@@ -133,8 +137,8 @@ public abstract class BsVendorSymmetricBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of VendorSymmetric. (NotNull)
      * @return The entity selected by the condition. (NullAllowed: if no data, it returns null)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public VendorSymmetric selectEntity(VendorSymmetricCB cb) {
         return doSelectEntity(cb, VendorSymmetric.class);
@@ -146,24 +150,29 @@ public abstract class BsVendorSymmetricBhv extends AbstractBehaviorWritable {
             public List<ENTITY> callbackSelectList(VendorSymmetricCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
+    protected <ENTITY extends VendorSymmetric> OptionalEntity<ENTITY> doSelectOptionalEntity(VendorSymmetricCB cb, Class<ENTITY> tp) {
+        return createOptionalEntity(doSelectEntity(cb, tp), cb);
+    }
+
     @Override
     protected Entity doReadEntity(ConditionBean cb) {
         return selectEntity(downcast(cb));
     }
 
     /**
-     * Select the entity by the condition-bean with deleted check.
+     * Select the entity by the condition-bean with deleted check. <br />
+     * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, this method is good.</span>
      * <pre>
      * VendorSymmetricCB cb = new VendorSymmetricCB();
      * cb.query().setFoo...(value);
-     * VendorSymmetric vendorSymmetric = vendorSymmetricBhv.<span style="color: #FD4747">selectEntityWithDeletedCheck</span>(cb);
+     * VendorSymmetric vendorSymmetric = vendorSymmetricBhv.<span style="color: #DD4747">selectEntityWithDeletedCheck</span>(cb);
      * ... = vendorSymmetric.get...(); <span style="color: #3F7E5E">// the entity always be not null</span>
      * </pre>
      * @param cb The condition-bean of VendorSymmetric. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public VendorSymmetric selectEntityWithDeletedCheck(VendorSymmetricCB cb) {
         return doSelectEntityWithDeletedCheck(cb, VendorSymmetric.class);
@@ -184,8 +193,8 @@ public abstract class BsVendorSymmetricBhv extends AbstractBehaviorWritable {
      * Select the entity by the primary-key value.
      * @param vendorSymmetricId The one of primary key. (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public VendorSymmetric selectByPKValue(Long vendorSymmetricId) {
         return doSelectByPKValue(vendorSymmetricId, VendorSymmetric.class);
@@ -199,9 +208,9 @@ public abstract class BsVendorSymmetricBhv extends AbstractBehaviorWritable {
      * Select the entity by the primary-key value with deleted check.
      * @param vendorSymmetricId The one of primary key. (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public VendorSymmetric selectByPKValueWithDeletedCheck(Long vendorSymmetricId) {
         return doSelectByPKValueWithDeletedCheck(vendorSymmetricId, VendorSymmetric.class);
@@ -227,14 +236,14 @@ public abstract class BsVendorSymmetricBhv extends AbstractBehaviorWritable {
      * VendorSymmetricCB cb = new VendorSymmetricCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * ListResultBean&lt;VendorSymmetric&gt; vendorSymmetricList = vendorSymmetricBhv.<span style="color: #FD4747">selectList</span>(cb);
+     * ListResultBean&lt;VendorSymmetric&gt; vendorSymmetricList = vendorSymmetricBhv.<span style="color: #DD4747">selectList</span>(cb);
      * for (VendorSymmetric vendorSymmetric : vendorSymmetricList) {
      *     ... = vendorSymmetric.get...();
      * }
      * </pre>
      * @param cb The condition-bean of VendorSymmetric. (NotNull)
      * @return The result bean of selected list. (NotNull: if no data, returns empty list)
-     * @exception org.seasar.dbflute.exception.DangerousResultSizeException When the result size is over the specified safety size.
+     * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public ListResultBean<VendorSymmetric> selectList(VendorSymmetricCB cb) {
         return doSelectList(cb, VendorSymmetric.class);
@@ -262,8 +271,8 @@ public abstract class BsVendorSymmetricBhv extends AbstractBehaviorWritable {
      * VendorSymmetricCB cb = new VendorSymmetricCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * cb.<span style="color: #FD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
-     * PagingResultBean&lt;VendorSymmetric&gt; page = vendorSymmetricBhv.<span style="color: #FD4747">selectPage</span>(cb);
+     * cb.<span style="color: #DD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
+     * PagingResultBean&lt;VendorSymmetric&gt; page = vendorSymmetricBhv.<span style="color: #DD4747">selectPage</span>(cb);
      * int allRecordCount = page.getAllRecordCount();
      * int allPageCount = page.getAllPageCount();
      * boolean isExistPrePage = page.isExistPrePage();
@@ -275,7 +284,7 @@ public abstract class BsVendorSymmetricBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of VendorSymmetric. (NotNull)
      * @return The result bean of selected page. (NotNull: if no data, returns bean as empty list)
-     * @exception org.seasar.dbflute.exception.DangerousResultSizeException When the result size is over the specified safety size.
+     * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public PagingResultBean<VendorSymmetric> selectPage(VendorSymmetricCB cb) {
         return doSelectPage(cb, VendorSymmetric.class);
@@ -302,7 +311,7 @@ public abstract class BsVendorSymmetricBhv extends AbstractBehaviorWritable {
      * <pre>
      * VendorSymmetricCB cb = new VendorSymmetricCB();
      * cb.query().setFoo...(value);
-     * vendorSymmetricBhv.<span style="color: #FD4747">selectCursor</span>(cb, new EntityRowHandler&lt;VendorSymmetric&gt;() {
+     * vendorSymmetricBhv.<span style="color: #DD4747">selectCursor</span>(cb, new EntityRowHandler&lt;VendorSymmetric&gt;() {
      *     public void handle(VendorSymmetric entity) {
      *         ... = entity.getFoo...();
      *     }
@@ -331,9 +340,9 @@ public abstract class BsVendorSymmetricBhv extends AbstractBehaviorWritable {
      * Select the scalar value derived by a function from uniquely-selected records. <br />
      * You should call a function method after this method called like as follows:
      * <pre>
-     * vendorSymmetricBhv.<span style="color: #FD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
+     * vendorSymmetricBhv.<span style="color: #DD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
      *     public void query(VendorSymmetricCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
+     *         cb.specify().<span style="color: #DD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
      *         cb.query().setBarName_PrefixSearch("S");
      *     }
      * });
@@ -400,12 +409,12 @@ public abstract class BsVendorSymmetricBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
      * <span style="color: #3F7E5E">//vendorSymmetric.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//vendorSymmetric.set...;</span>
-     * vendorSymmetricBhv.<span style="color: #FD4747">insert</span>(vendorSymmetric);
+     * vendorSymmetricBhv.<span style="color: #DD4747">insert</span>(vendorSymmetric);
      * ... = vendorSymmetric.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * <p>While, when the entity is created by select, all columns are registered.</p>
      * @param vendorSymmetric The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insert(VendorSymmetric vendorSymmetric) {
         doInsert(vendorSymmetric, null);
@@ -441,17 +450,17 @@ public abstract class BsVendorSymmetricBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">//vendorSymmetric.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//vendorSymmetric.set...;</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * vendorSymmetric.<span style="color: #FD4747">setVersionNo</span>(value);
+     * vendorSymmetric.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
-     *     vendorSymmetricBhv.<span style="color: #FD4747">update</span>(vendorSymmetric);
+     *     vendorSymmetricBhv.<span style="color: #DD4747">update</span>(vendorSymmetric);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param vendorSymmetric The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void update(final VendorSymmetric vendorSymmetric) {
         doUpdate(vendorSymmetric, null);
@@ -501,11 +510,11 @@ public abstract class BsVendorSymmetricBhv extends AbstractBehaviorWritable {
     /**
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br />
-     * <p><span style="color: #FD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
+     * <p><span style="color: #DD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
      * @param vendorSymmetric The entity of insert or update target. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insertOrUpdate(VendorSymmetric vendorSymmetric) {
         doInesrtOrUpdate(vendorSymmetric, null, null);
@@ -541,16 +550,16 @@ public abstract class BsVendorSymmetricBhv extends AbstractBehaviorWritable {
      * VendorSymmetric vendorSymmetric = new VendorSymmetric();
      * vendorSymmetric.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * vendorSymmetric.<span style="color: #FD4747">setVersionNo</span>(value);
+     * vendorSymmetric.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
-     *     vendorSymmetricBhv.<span style="color: #FD4747">delete</span>(vendorSymmetric);
+     *     vendorSymmetricBhv.<span style="color: #DD4747">delete</span>(vendorSymmetric);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param vendorSymmetric The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void delete(VendorSymmetric vendorSymmetric) {
         doDelete(vendorSymmetric, null);
@@ -585,7 +594,7 @@ public abstract class BsVendorSymmetricBhv extends AbstractBehaviorWritable {
     /**
      * Batch-insert the entity list modified-only of same-set columns. (DefaultConstraintsEnabled) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
-     * <p><span style="color: #FD4747; font-size: 120%">The columns of least common multiple are registered like this:</span></p>
+     * <p><span style="color: #DD4747; font-size: 120%">The columns of least common multiple are registered like this:</span></p>
      * <pre>
      * for (... : ...) {
      *     VendorSymmetric vendorSymmetric = new VendorSymmetric();
@@ -598,7 +607,7 @@ public abstract class BsVendorSymmetricBhv extends AbstractBehaviorWritable {
      *     <span style="color: #3F7E5E">// columns not-called in all entities are registered as null or default value</span>
      *     vendorSymmetricList.add(vendorSymmetric);
      * }
-     * vendorSymmetricBhv.<span style="color: #FD4747">batchInsert</span>(vendorSymmetricList);
+     * vendorSymmetricBhv.<span style="color: #DD4747">batchInsert</span>(vendorSymmetricList);
      * </pre>
      * <p>While, when the entities are created by select, all columns are registered.</p>
      * <p>And if the table has an identity, entities after the process don't have incremented values.
@@ -632,7 +641,7 @@ public abstract class BsVendorSymmetricBhv extends AbstractBehaviorWritable {
     /**
      * Batch-update the entity list modified-only of same-set columns. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
-     * <span style="color: #FD4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
+     * <span style="color: #DD4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
      * <pre>
      * for (... : ...) {
      *     VendorSymmetric vendorSymmetric = new VendorSymmetric();
@@ -647,11 +656,11 @@ public abstract class BsVendorSymmetricBhv extends AbstractBehaviorWritable {
      *     <span style="color: #3F7E5E">// (others are not updated: their values are kept)</span>
      *     vendorSymmetricList.add(vendorSymmetric);
      * }
-     * vendorSymmetricBhv.<span style="color: #FD4747">batchUpdate</span>(vendorSymmetricList);
+     * vendorSymmetricBhv.<span style="color: #DD4747">batchUpdate</span>(vendorSymmetricList);
      * </pre>
      * @param vendorSymmetricList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<VendorSymmetric> vendorSymmetricList) {
         UpdateOption<VendorSymmetricCB> op = createPlainUpdateOption();
@@ -680,16 +689,16 @@ public abstract class BsVendorSymmetricBhv extends AbstractBehaviorWritable {
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * <pre>
      * <span style="color: #3F7E5E">// e.g. update two columns only</span>
-     * vendorSymmetricBhv.<span style="color: #FD4747">batchUpdate</span>(vendorSymmetricList, new SpecifyQuery<VendorSymmetricCB>() {
+     * vendorSymmetricBhv.<span style="color: #DD4747">batchUpdate</span>(vendorSymmetricList, new SpecifyQuery<VendorSymmetricCB>() {
      *     public void specify(VendorSymmetricCB cb) { <span style="color: #3F7E5E">// the two only updated</span>
-     *         cb.specify().<span style="color: #FD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
-     *         cb.specify().<span style="color: #FD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
+     *         cb.specify().<span style="color: #DD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
+     *         cb.specify().<span style="color: #DD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
      *     }
      * });
      * <span style="color: #3F7E5E">// e.g. update every column in the table</span>
-     * vendorSymmetricBhv.<span style="color: #FD4747">batchUpdate</span>(vendorSymmetricList, new SpecifyQuery<VendorSymmetricCB>() {
+     * vendorSymmetricBhv.<span style="color: #DD4747">batchUpdate</span>(vendorSymmetricList, new SpecifyQuery<VendorSymmetricCB>() {
      *     public void specify(VendorSymmetricCB cb) { <span style="color: #3F7E5E">// all columns are updated</span>
-     *         cb.specify().<span style="color: #FD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
+     *         cb.specify().<span style="color: #DD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
      *     }
      * });
      * </pre>
@@ -701,7 +710,7 @@ public abstract class BsVendorSymmetricBhv extends AbstractBehaviorWritable {
      * @param vendorSymmetricList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @param updateColumnSpec The specification of update columns. (NotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<VendorSymmetric> vendorSymmetricList, SpecifyQuery<VendorSymmetricCB> updateColumnSpec) {
         return doBatchUpdate(vendorSymmetricList, createSpecifiedUpdateOption(updateColumnSpec));
@@ -717,7 +726,7 @@ public abstract class BsVendorSymmetricBhv extends AbstractBehaviorWritable {
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * @param vendorSymmetricList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of deleted count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchDelete(List<VendorSymmetric> vendorSymmetricList) {
         return doBatchDelete(vendorSymmetricList, null);
@@ -746,7 +755,7 @@ public abstract class BsVendorSymmetricBhv extends AbstractBehaviorWritable {
     /**
      * Insert the several entities by query (modified-only for fixed value).
      * <pre>
-     * vendorSymmetricBhv.<span style="color: #FD4747">queryInsert</span>(new QueryInsertSetupper&lt;VendorSymmetric, VendorSymmetricCB&gt;() {
+     * vendorSymmetricBhv.<span style="color: #DD4747">queryInsert</span>(new QueryInsertSetupper&lt;VendorSymmetric, VendorSymmetricCB&gt;() {
      *     public ConditionBean setup(vendorSymmetric entity, VendorSymmetricCB intoCB) {
      *         FooCB cb = FooCB();
      *         cb.setupSelect_Bar();
@@ -808,12 +817,12 @@ public abstract class BsVendorSymmetricBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">//vendorSymmetric.setVersionNo(value);</span>
      * VendorSymmetricCB cb = new VendorSymmetricCB();
      * cb.query().setFoo...(value);
-     * vendorSymmetricBhv.<span style="color: #FD4747">queryUpdate</span>(vendorSymmetric, cb);
+     * vendorSymmetricBhv.<span style="color: #DD4747">queryUpdate</span>(vendorSymmetric, cb);
      * </pre>
      * @param vendorSymmetric The entity that contains update values. (NotNull, PrimaryKeyNullAllowed)
      * @param cb The condition-bean of VendorSymmetric. (NotNull)
      * @return The updated count.
-     * @exception org.seasar.dbflute.exception.NonQueryUpdateNotAllowedException When the query has no condition.
+     * @exception NonQueryUpdateNotAllowedException When the query has no condition.
      */
     public int queryUpdate(VendorSymmetric vendorSymmetric, VendorSymmetricCB cb) {
         return doQueryUpdate(vendorSymmetric, cb, null);
@@ -836,11 +845,11 @@ public abstract class BsVendorSymmetricBhv extends AbstractBehaviorWritable {
      * <pre>
      * VendorSymmetricCB cb = new VendorSymmetricCB();
      * cb.query().setFoo...(value);
-     * vendorSymmetricBhv.<span style="color: #FD4747">queryDelete</span>(vendorSymmetric, cb);
+     * vendorSymmetricBhv.<span style="color: #DD4747">queryDelete</span>(vendorSymmetric, cb);
      * </pre>
      * @param cb The condition-bean of VendorSymmetric. (NotNull)
      * @return The deleted count.
-     * @exception org.seasar.dbflute.exception.NonQueryDeleteNotAllowedException When the query has no condition.
+     * @exception NonQueryDeleteNotAllowedException When the query has no condition.
      */
     public int queryDelete(VendorSymmetricCB cb) {
         return doQueryDelete(cb, null);
@@ -876,12 +885,12 @@ public abstract class BsVendorSymmetricBhv extends AbstractBehaviorWritable {
      * InsertOption<VendorSymmetricCB> option = new InsertOption<VendorSymmetricCB>();
      * <span style="color: #3F7E5E">// you can insert by your values for common columns</span>
      * option.disableCommonColumnAutoSetup();
-     * vendorSymmetricBhv.<span style="color: #FD4747">varyingInsert</span>(vendorSymmetric, option);
+     * vendorSymmetricBhv.<span style="color: #DD4747">varyingInsert</span>(vendorSymmetric, option);
      * ... = vendorSymmetric.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * @param vendorSymmetric The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
      * @param option The option of insert for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingInsert(VendorSymmetric vendorSymmetric, InsertOption<VendorSymmetricCB> option) {
         assertInsertOptionNotNull(option);
@@ -897,25 +906,25 @@ public abstract class BsVendorSymmetricBhv extends AbstractBehaviorWritable {
      * vendorSymmetric.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * vendorSymmetric.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * vendorSymmetric.<span style="color: #FD4747">setVersionNo</span>(value);
+     * vendorSymmetric.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     <span style="color: #3F7E5E">// you can update by self calculation values</span>
      *     UpdateOption&lt;VendorSymmetricCB&gt; option = new UpdateOption&lt;VendorSymmetricCB&gt;();
      *     option.self(new SpecifyQuery&lt;VendorSymmetricCB&gt;() {
      *         public void specify(VendorSymmetricCB cb) {
-     *             cb.specify().<span style="color: #FD4747">columnXxxCount()</span>;
+     *             cb.specify().<span style="color: #DD4747">columnXxxCount()</span>;
      *         }
      *     }).plus(1); <span style="color: #3F7E5E">// XXX_COUNT = XXX_COUNT + 1</span>
-     *     vendorSymmetricBhv.<span style="color: #FD4747">varyingUpdate</span>(vendorSymmetric, option);
+     *     vendorSymmetricBhv.<span style="color: #DD4747">varyingUpdate</span>(vendorSymmetric, option);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param vendorSymmetric The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @param option The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingUpdate(VendorSymmetric vendorSymmetric, UpdateOption<VendorSymmetricCB> option) {
         assertUpdateOptionNotNull(option);
@@ -928,9 +937,9 @@ public abstract class BsVendorSymmetricBhv extends AbstractBehaviorWritable {
      * @param vendorSymmetric The entity of insert or update target. (NotNull)
      * @param insertOption The option of insert for varying requests. (NotNull)
      * @param updateOption The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingInsertOrUpdate(VendorSymmetric vendorSymmetric, InsertOption<VendorSymmetricCB> insertOption, UpdateOption<VendorSymmetricCB> updateOption) {
         assertInsertOptionNotNull(insertOption); assertUpdateOptionNotNull(updateOption);
@@ -943,8 +952,8 @@ public abstract class BsVendorSymmetricBhv extends AbstractBehaviorWritable {
      * Other specifications are same as delete(entity).
      * @param vendorSymmetric The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @param option The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void varyingDelete(VendorSymmetric vendorSymmetric, DeleteOption<VendorSymmetricCB> option) {
         assertDeleteOptionNotNull(option);
@@ -1030,16 +1039,16 @@ public abstract class BsVendorSymmetricBhv extends AbstractBehaviorWritable {
      * UpdateOption&lt;VendorSymmetricCB&gt; option = new UpdateOption&lt;VendorSymmetricCB&gt;();
      * option.self(new SpecifyQuery&lt;VendorSymmetricCB&gt;() {
      *     public void specify(VendorSymmetricCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFooCount()</span>;
+     *         cb.specify().<span style="color: #DD4747">columnFooCount()</span>;
      *     }
      * }).plus(1); <span style="color: #3F7E5E">// FOO_COUNT = FOO_COUNT + 1</span>
-     * vendorSymmetricBhv.<span style="color: #FD4747">varyingQueryUpdate</span>(vendorSymmetric, cb, option);
+     * vendorSymmetricBhv.<span style="color: #DD4747">varyingQueryUpdate</span>(vendorSymmetric, cb, option);
      * </pre>
      * @param vendorSymmetric The entity that contains update values. (NotNull) {PrimaryKeyNotRequired}
      * @param cb The condition-bean of VendorSymmetric. (NotNull)
      * @param option The option of update for varying requests. (NotNull)
      * @return The updated count.
-     * @exception org.seasar.dbflute.exception.NonQueryUpdateNotAllowedException When the query has no condition (if not allowed).
+     * @exception NonQueryUpdateNotAllowedException When the query has no condition (if not allowed).
      */
     public int varyingQueryUpdate(VendorSymmetric vendorSymmetric, VendorSymmetricCB cb, UpdateOption<VendorSymmetricCB> option) {
         assertUpdateOptionNotNull(option);
@@ -1053,7 +1062,7 @@ public abstract class BsVendorSymmetricBhv extends AbstractBehaviorWritable {
      * @param cb The condition-bean of VendorSymmetric. (NotNull)
      * @param option The option of delete for varying requests. (NotNull)
      * @return The deleted count.
-     * @exception org.seasar.dbflute.exception.NonQueryDeleteNotAllowedException When the query has no condition (if not allowed).
+     * @exception NonQueryDeleteNotAllowedException When the query has no condition (if not allowed).
      */
     public int varyingQueryDelete(VendorSymmetricCB cb, DeleteOption<VendorSymmetricCB> option) {
         assertDeleteOptionNotNull(option);

@@ -200,7 +200,7 @@ public abstract class AbstractBsWhiteUqFkWithoutPkRefCQ extends AbstractConditio
     /**
      * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br />
      * FK_TO_UQ_CODE: {NotNull, CHAR(3), FK to WHITE_UQ_FK_WITHOUT_PK} <br />
-     * <pre>e.g. setFkToUqCode_LikeSearch("xxx", new <span style="color: #FD4747">LikeSearchOption</span>().likeContain());</pre>
+     * <pre>e.g. setFkToUqCode_LikeSearch("xxx", new <span style="color: #DD4747">LikeSearchOption</span>().likeContain());</pre>
      * @param fkToUqCode The value of fkToUqCode as likeSearch. (NullAllowed: if null (or empty), no condition)
      * @param likeSearchOption The option of like-search. (NotNull)
      */
@@ -227,8 +227,9 @@ public abstract class AbstractBsWhiteUqFkWithoutPkRefCQ extends AbstractConditio
      */
     public void inScopeWhiteUqFkWithoutPk(SubQuery<WhiteUqFkWithoutPkCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        WhiteUqFkWithoutPkCB cb = new WhiteUqFkWithoutPkCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String pp = keepFkToUqCode_InScopeRelation_WhiteUqFkWithoutPk(cb.query()); // for saving query-value.
+        WhiteUqFkWithoutPkCB cb = new WhiteUqFkWithoutPkCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepFkToUqCode_InScopeRelation_WhiteUqFkWithoutPk(cb.query());
         registerInScopeRelation(cb.query(), "FK_TO_UQ_CODE", "UQ_FK_CODE", pp, "whiteUqFkWithoutPk");
     }
     public abstract String keepFkToUqCode_InScopeRelation_WhiteUqFkWithoutPk(WhiteUqFkWithoutPkCQ sq);
@@ -241,8 +242,9 @@ public abstract class AbstractBsWhiteUqFkWithoutPkRefCQ extends AbstractConditio
      */
     public void notInScopeWhiteUqFkWithoutPk(SubQuery<WhiteUqFkWithoutPkCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        WhiteUqFkWithoutPkCB cb = new WhiteUqFkWithoutPkCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String pp = keepFkToUqCode_NotInScopeRelation_WhiteUqFkWithoutPk(cb.query()); // for saving query-value.
+        WhiteUqFkWithoutPkCB cb = new WhiteUqFkWithoutPkCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepFkToUqCode_NotInScopeRelation_WhiteUqFkWithoutPk(cb.query());
         registerNotInScopeRelation(cb.query(), "FK_TO_UQ_CODE", "UQ_FK_CODE", pp, "whiteUqFkWithoutPk");
     }
     public abstract String keepFkToUqCode_NotInScopeRelation_WhiteUqFkWithoutPk(WhiteUqFkWithoutPkCQ sq);
@@ -281,6 +283,37 @@ public abstract class AbstractBsWhiteUqFkWithoutPkRefCQ extends AbstractConditio
     @Override
     protected LikeSearchOption xcreateMatchLikeSearch() {
         return new OracleMatchLikeSearch();
+    }
+
+    // ===================================================================================
+    //                                                                          Compatible
+    //                                                                          ==========
+    /**
+     * Order along the list of manual values. #beforejava8 <br />
+     * This function with Union is unsupported! <br />
+     * The order values are bound (treated as bind parameter).
+     * <pre>
+     * MemberCB cb = new MemberCB();
+     * List&lt;CDef.MemberStatus&gt; orderValueList = new ArrayList&lt;CDef.MemberStatus&gt;();
+     * orderValueList.add(CDef.MemberStatus.Withdrawal);
+     * orderValueList.add(CDef.MemberStatus.Formalized);
+     * orderValueList.add(CDef.MemberStatus.Provisional);
+     * cb.query().addOrderBy_MemberStatusCode_Asc().<span style="color: #DD4747">withManualOrder(orderValueList)</span>;
+     * <span style="color: #3F7E5E">// order by </span>
+     * <span style="color: #3F7E5E">//   case</span>
+     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'WDL' then 0</span>
+     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'FML' then 1</span>
+     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'PRV' then 2</span>
+     * <span style="color: #3F7E5E">//     else 3</span>
+     * <span style="color: #3F7E5E">//   end asc, ...</span>
+     * </pre>
+     * @param orderValueList The list of order values for manual ordering. (NotNull)
+     */
+    public void withManualOrder(List<? extends Object> orderValueList) { // is user public!
+        assertObjectNotNull("withManualOrder(orderValueList)", orderValueList);
+        final ManualOrderBean manualOrderBean = new ManualOrderBean();
+        manualOrderBean.acceptOrderValueList(orderValueList);
+        withManualOrder(manualOrderBean);
     }
 
     // ===================================================================================

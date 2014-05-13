@@ -244,8 +244,9 @@ public abstract class AbstractBsSynonymRefExceptCQ extends AbstractConditionQuer
      */
     public void inScopeSynonymExcept(SubQuery<SynonymExceptCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        SynonymExceptCB cb = new SynonymExceptCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String pp = keepExceptId_InScopeRelation_SynonymExcept(cb.query()); // for saving query-value.
+        SynonymExceptCB cb = new SynonymExceptCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepExceptId_InScopeRelation_SynonymExcept(cb.query());
         registerInScopeRelation(cb.query(), "EXCEPT_ID", "EXCEPT_ID", pp, "synonymExcept");
     }
     public abstract String keepExceptId_InScopeRelation_SynonymExcept(SynonymExceptCQ sq);
@@ -258,8 +259,9 @@ public abstract class AbstractBsSynonymRefExceptCQ extends AbstractConditionQuer
      */
     public void notInScopeSynonymExcept(SubQuery<SynonymExceptCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        SynonymExceptCB cb = new SynonymExceptCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String pp = keepExceptId_NotInScopeRelation_SynonymExcept(cb.query()); // for saving query-value.
+        SynonymExceptCB cb = new SynonymExceptCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepExceptId_NotInScopeRelation_SynonymExcept(cb.query());
         registerNotInScopeRelation(cb.query(), "EXCEPT_ID", "EXCEPT_ID", pp, "synonymExcept");
     }
     public abstract String keepExceptId_NotInScopeRelation_SynonymExcept(SynonymExceptCQ sq);
@@ -274,7 +276,7 @@ public abstract class AbstractBsSynonymRefExceptCQ extends AbstractConditionQuer
      * Prepare ScalarCondition as equal. <br />
      * {where FOO = (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #FD4747">scalar_Equal()</span>.max(new SubQuery&lt;SynonymRefExceptCB&gt;() {
+     * cb.query().<span style="color: #DD4747">scalar_Equal()</span>.max(new SubQuery&lt;SynonymRefExceptCB&gt;() {
      *     public void query(SynonymRefExceptCB subCB) {
      *         subCB.specify().setXxx... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setYyy...
@@ -291,7 +293,7 @@ public abstract class AbstractBsSynonymRefExceptCQ extends AbstractConditionQuer
      * Prepare ScalarCondition as equal. <br />
      * {where FOO &lt;&gt; (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #FD4747">scalar_NotEqual()</span>.max(new SubQuery&lt;SynonymRefExceptCB&gt;() {
+     * cb.query().<span style="color: #DD4747">scalar_NotEqual()</span>.max(new SubQuery&lt;SynonymRefExceptCB&gt;() {
      *     public void query(SynonymRefExceptCB subCB) {
      *         subCB.specify().setXxx... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setYyy...
@@ -308,7 +310,7 @@ public abstract class AbstractBsSynonymRefExceptCQ extends AbstractConditionQuer
      * Prepare ScalarCondition as greaterThan. <br />
      * {where FOO &gt; (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #FD4747">scalar_GreaterThan()</span>.max(new SubQuery&lt;SynonymRefExceptCB&gt;() {
+     * cb.query().<span style="color: #DD4747">scalar_GreaterThan()</span>.max(new SubQuery&lt;SynonymRefExceptCB&gt;() {
      *     public void query(SynonymRefExceptCB subCB) {
      *         subCB.specify().setFoo... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setBar...
@@ -325,7 +327,7 @@ public abstract class AbstractBsSynonymRefExceptCQ extends AbstractConditionQuer
      * Prepare ScalarCondition as lessThan. <br />
      * {where FOO &lt; (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #FD4747">scalar_LessThan()</span>.max(new SubQuery&lt;SynonymRefExceptCB&gt;() {
+     * cb.query().<span style="color: #DD4747">scalar_LessThan()</span>.max(new SubQuery&lt;SynonymRefExceptCB&gt;() {
      *     public void query(SynonymRefExceptCB subCB) {
      *         subCB.specify().setFoo... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setBar...
@@ -342,7 +344,7 @@ public abstract class AbstractBsSynonymRefExceptCQ extends AbstractConditionQuer
      * Prepare ScalarCondition as greaterEqual. <br />
      * {where FOO &gt;= (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #FD4747">scalar_GreaterEqual()</span>.max(new SubQuery&lt;SynonymRefExceptCB&gt;() {
+     * cb.query().<span style="color: #DD4747">scalar_GreaterEqual()</span>.max(new SubQuery&lt;SynonymRefExceptCB&gt;() {
      *     public void query(SynonymRefExceptCB subCB) {
      *         subCB.specify().setFoo... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setBar...
@@ -359,7 +361,7 @@ public abstract class AbstractBsSynonymRefExceptCQ extends AbstractConditionQuer
      * Prepare ScalarCondition as lessEqual. <br />
      * {where FOO &lt;= (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #FD4747">scalar_LessEqual()</span>.max(new SubQuery&lt;SynonymRefExceptCB&gt;() {
+     * cb.query().<span style="color: #DD4747">scalar_LessEqual()</span>.max(new SubQuery&lt;SynonymRefExceptCB&gt;() {
      *     public void query(SynonymRefExceptCB subCB) {
      *         subCB.specify().setFoo... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setBar...
@@ -395,9 +397,10 @@ public abstract class AbstractBsSynonymRefExceptCQ extends AbstractConditionQuer
     //                                                                       =============
     public void xsmyselfDerive(String fn, SubQuery<SynonymRefExceptCB> sq, String al, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        SynonymRefExceptCB cb = new SynonymRefExceptCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        SynonymRefExceptCB cb = new SynonymRefExceptCB(); cb.xsetupForDerivedReferrer(this);
+        try { lock(); sq.query(cb); } finally { unlock(); }
+        String pp = keepSpecifyMyselfDerived(cb.query());
         String pk = "REF_EXCEPT_ID";
-        String pp = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
         registerSpecifyMyselfDerived(fn, cb.query(), pk, pk, pp, "myselfDerived", al, op);
     }
     public abstract String keepSpecifyMyselfDerived(SynonymRefExceptCQ sq);
@@ -430,8 +433,9 @@ public abstract class AbstractBsSynonymRefExceptCQ extends AbstractConditionQuer
      */
     public void myselfExists(SubQuery<SynonymRefExceptCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        SynonymRefExceptCB cb = new SynonymRefExceptCB(); cb.xsetupForMyselfExists(this); subQuery.query(cb);
-        String pp = keepMyselfExists(cb.query()); // for saving query-value.
+        SynonymRefExceptCB cb = new SynonymRefExceptCB(); cb.xsetupForMyselfExists(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepMyselfExists(cb.query());
         registerMyselfExists(cb.query(), pp);
     }
     public abstract String keepMyselfExists(SynonymRefExceptCQ sq);
@@ -445,8 +449,9 @@ public abstract class AbstractBsSynonymRefExceptCQ extends AbstractConditionQuer
      */
     public void myselfInScope(SubQuery<SynonymRefExceptCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        SynonymRefExceptCB cb = new SynonymRefExceptCB(); cb.xsetupForMyselfInScope(this); subQuery.query(cb);
-        String pp = keepMyselfInScope(cb.query()); // for saving query-value.
+        SynonymRefExceptCB cb = new SynonymRefExceptCB(); cb.xsetupForMyselfInScope(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepMyselfInScope(cb.query());
         registerMyselfInScope(cb.query(), pp);
     }
     public abstract String keepMyselfInScope(SynonymRefExceptCQ sq);
@@ -482,6 +487,37 @@ public abstract class AbstractBsSynonymRefExceptCQ extends AbstractConditionQuer
     @Override
     protected LikeSearchOption xcreateMatchLikeSearch() {
         return new OracleMatchLikeSearch();
+    }
+
+    // ===================================================================================
+    //                                                                          Compatible
+    //                                                                          ==========
+    /**
+     * Order along the list of manual values. #beforejava8 <br />
+     * This function with Union is unsupported! <br />
+     * The order values are bound (treated as bind parameter).
+     * <pre>
+     * MemberCB cb = new MemberCB();
+     * List&lt;CDef.MemberStatus&gt; orderValueList = new ArrayList&lt;CDef.MemberStatus&gt;();
+     * orderValueList.add(CDef.MemberStatus.Withdrawal);
+     * orderValueList.add(CDef.MemberStatus.Formalized);
+     * orderValueList.add(CDef.MemberStatus.Provisional);
+     * cb.query().addOrderBy_MemberStatusCode_Asc().<span style="color: #DD4747">withManualOrder(orderValueList)</span>;
+     * <span style="color: #3F7E5E">// order by </span>
+     * <span style="color: #3F7E5E">//   case</span>
+     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'WDL' then 0</span>
+     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'FML' then 1</span>
+     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'PRV' then 2</span>
+     * <span style="color: #3F7E5E">//     else 3</span>
+     * <span style="color: #3F7E5E">//   end asc, ...</span>
+     * </pre>
+     * @param orderValueList The list of order values for manual ordering. (NotNull)
+     */
+    public void withManualOrder(List<? extends Object> orderValueList) { // is user public!
+        assertObjectNotNull("withManualOrder(orderValueList)", orderValueList);
+        final ManualOrderBean manualOrderBean = new ManualOrderBean();
+        manualOrderBean.acceptOrderValueList(orderValueList);
+        withManualOrder(manualOrderBean);
     }
 
     // ===================================================================================

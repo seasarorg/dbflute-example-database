@@ -32,13 +32,13 @@ import com.example.dbflute.oracle.dbflute.exentity.*;
  *     
  * 
  * [foreign table]
- *     MEMBER_VENDOR_SYNONYM, MEMBER_STATUS, SYNONYM_MEMBER, VENDOR_SYNONYM_MEMBER
+ *     MEMBER_STATUS, MEMBER_VENDOR_SYNONYM, SYNONYM_MEMBER, VENDOR_SYNONYM_MEMBER
  * 
  * [referrer table]
  *     
  * 
  * [foreign property]
- *     memberVendorSynonym, memberStatus, synonymMember, vendorSynonymMember
+ *     memberStatus, memberVendorSynonym, synonymMember, vendorSynonymMember
  * 
  * [referrer property]
  *     
@@ -156,7 +156,7 @@ public abstract class BsSynonymMemberLogin implements Entity, Serializable, Clon
      * @param cdef The instance of classification definition (as ENUM type). (NullAllowed: if null, null value is set to the column)
      */
     public void setMobileLoginFlgAsFlg(CDef.Flg cdef) {
-        setMobileLoginFlg(cdef != null ? InternalUtil.toNumber(cdef.code(), Integer.class) : null);
+        setMobileLoginFlg(cdef != null ? FunCustodial.toNumber(cdef.code(), Integer.class) : null);
     }
 
     /**
@@ -305,25 +305,6 @@ public abstract class BsSynonymMemberLogin implements Entity, Serializable, Clon
     // ===================================================================================
     //                                                                    Foreign Property
     //                                                                    ================
-    /** (会員)MEMBER_VENDOR_SYNONYM by my MEMBER_ID, named 'memberVendorSynonym'. */
-    protected MemberVendorSynonym _memberVendorSynonym;
-
-    /**
-     * (会員)MEMBER_VENDOR_SYNONYM by my MEMBER_ID, named 'memberVendorSynonym'.
-     * @return The entity of foreign property 'memberVendorSynonym'. (NullAllowed: when e.g. null FK column, no setupSelect)
-     */
-    public MemberVendorSynonym getMemberVendorSynonym() {
-        return _memberVendorSynonym;
-    }
-
-    /**
-     * (会員)MEMBER_VENDOR_SYNONYM by my MEMBER_ID, named 'memberVendorSynonym'.
-     * @param memberVendorSynonym The entity of foreign property 'memberVendorSynonym'. (NullAllowed)
-     */
-    public void setMemberVendorSynonym(MemberVendorSynonym memberVendorSynonym) {
-        _memberVendorSynonym = memberVendorSynonym;
-    }
-
     /** (会員ステータス)MEMBER_STATUS by my LOGIN_MEMBER_STATUS_CODE, named 'memberStatus'. */
     protected MemberStatus _memberStatus;
 
@@ -341,6 +322,25 @@ public abstract class BsSynonymMemberLogin implements Entity, Serializable, Clon
      */
     public void setMemberStatus(MemberStatus memberStatus) {
         _memberStatus = memberStatus;
+    }
+
+    /** (会員)MEMBER_VENDOR_SYNONYM by my MEMBER_ID, named 'memberVendorSynonym'. */
+    protected MemberVendorSynonym _memberVendorSynonym;
+
+    /**
+     * (会員)MEMBER_VENDOR_SYNONYM by my MEMBER_ID, named 'memberVendorSynonym'.
+     * @return The entity of foreign property 'memberVendorSynonym'. (NullAllowed: when e.g. null FK column, no setupSelect)
+     */
+    public MemberVendorSynonym getMemberVendorSynonym() {
+        return _memberVendorSynonym;
+    }
+
+    /**
+     * (会員)MEMBER_VENDOR_SYNONYM by my MEMBER_ID, named 'memberVendorSynonym'.
+     * @param memberVendorSynonym The entity of foreign property 'memberVendorSynonym'. (NullAllowed)
+     */
+    public void setMemberVendorSynonym(MemberVendorSynonym memberVendorSynonym) {
+        _memberVendorSynonym = memberVendorSynonym;
     }
 
     /** (会員)SYNONYM_MEMBER by my MEMBER_ID, named 'synonymMember'. */
@@ -439,17 +439,17 @@ public abstract class BsSynonymMemberLogin implements Entity, Serializable, Clon
     /**
      * Determine the object is equal with this. <br />
      * If primary-keys or columns of the other are same as this one, returns true.
-     * @param other The other entity. (NullAllowed: if null, returns false fixedly)
+     * @param obj The object as other entity. (NullAllowed: if null, returns false fixedly)
      * @return Comparing result.
      */
-    public boolean equals(Object other) {
-        if (other == null || !(other instanceof BsSynonymMemberLogin)) { return false; }
-        BsSynonymMemberLogin otherEntity = (BsSynonymMemberLogin)other;
-        if (!xSV(getMemberLoginId(), otherEntity.getMemberLoginId())) { return false; }
+    public boolean equals(Object obj) {
+        if (obj == null || !(obj instanceof BsSynonymMemberLogin)) { return false; }
+        BsSynonymMemberLogin other = (BsSynonymMemberLogin)obj;
+        if (!xSV(getMemberLoginId(), other.getMemberLoginId())) { return false; }
         return true;
     }
-    protected boolean xSV(Object value1, Object value2) { // isSameValue()
-        return InternalUtil.isSameValue(value1, value2);
+    protected boolean xSV(Object value1, Object value2) {
+        return FunCustodial.isSameValue(value1, value2);
     }
 
     /**
@@ -462,8 +462,8 @@ public abstract class BsSynonymMemberLogin implements Entity, Serializable, Clon
         result = xCH(result, getMemberLoginId());
         return result;
     }
-    protected int xCH(int result, Object value) { // calculateHashcode()
-        return InternalUtil.calculateHashcode(result, value);
+    protected int xCH(int result, Object value) {
+        return FunCustodial.calculateHashcode(result, value);
     }
 
     /**
@@ -478,7 +478,7 @@ public abstract class BsSynonymMemberLogin implements Entity, Serializable, Clon
      * @return The display string of all columns and relation existences. (NotNull)
      */
     public String toString() {
-        return buildDisplayString(InternalUtil.toClassTitle(this), true, true);
+        return buildDisplayString(FunCustodial.toClassTitle(this), true, true);
     }
 
     /**
@@ -488,10 +488,10 @@ public abstract class BsSynonymMemberLogin implements Entity, Serializable, Clon
         StringBuilder sb = new StringBuilder();
         sb.append(toString());
         String l = "\n  ";
-        if (_memberVendorSynonym != null)
-        { sb.append(l).append(xbRDS(_memberVendorSynonym, "memberVendorSynonym")); }
         if (_memberStatus != null)
         { sb.append(l).append(xbRDS(_memberStatus, "memberStatus")); }
+        if (_memberVendorSynonym != null)
+        { sb.append(l).append(xbRDS(_memberVendorSynonym, "memberVendorSynonym")); }
         if (_synonymMember != null)
         { sb.append(l).append(xbRDS(_synonymMember, "synonymMember")); }
         if (_vendorSynonymMember != null)
@@ -528,7 +528,7 @@ public abstract class BsSynonymMemberLogin implements Entity, Serializable, Clon
         return sb.toString();
     }
     protected String xfUD(Date date) { // formatUtilDate()
-        return InternalUtil.toString(date, xgDP());
+        return FunCustodial.toString(date, xgDP());
     }
     protected String xgDP() { // getDatePattern
         return "yyyy-MM-dd HH:mm:ss"; // time parts for Oracle only
@@ -536,8 +536,8 @@ public abstract class BsSynonymMemberLogin implements Entity, Serializable, Clon
     protected String buildRelationString() {
         StringBuilder sb = new StringBuilder();
         String c = ",";
-        if (_memberVendorSynonym != null) { sb.append(c).append("memberVendorSynonym"); }
         if (_memberStatus != null) { sb.append(c).append("memberStatus"); }
+        if (_memberVendorSynonym != null) { sb.append(c).append("memberVendorSynonym"); }
         if (_synonymMember != null) { sb.append(c).append("synonymMember"); }
         if (_vendorSynonymMember != null) { sb.append(c).append("vendorSynonymMember"); }
         if (sb.length() > c.length()) {
@@ -648,6 +648,6 @@ public abstract class BsSynonymMemberLogin implements Entity, Serializable, Clon
     }
 
     protected void checkImplicitSet(String columnDbName, CDef.DefMeta meta, Object value) {
-        InternalUtil.checkImplicitSet(this, columnDbName, meta, value);
+        FunCustodial.checkImplicitSet(this, columnDbName, meta, value);
     }
 }

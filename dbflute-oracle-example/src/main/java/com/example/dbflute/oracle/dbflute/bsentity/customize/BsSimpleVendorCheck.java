@@ -317,46 +317,46 @@ public abstract class BsSimpleVendorCheck implements Entity, Serializable, Clone
     /**
      * Determine the object is equal with this. <br />
      * If primary-keys or columns of the other are same as this one, returns true.
-     * @param other The other entity. (NullAllowed: if null, returns false fixedly)
+     * @param obj The object as other entity. (NullAllowed: if null, returns false fixedly)
      * @return Comparing result.
      */
-    public boolean equals(Object other) {
-        if (other == null || !(other instanceof BsSimpleVendorCheck)) { return false; }
-        BsSimpleVendorCheck otherEntity = (BsSimpleVendorCheck)other;
-        if (!xSV(getVendorCheckId(), otherEntity.getVendorCheckId())) { return false; }
-        if (!xSV(getTypeOfChar(), otherEntity.getTypeOfChar())) { return false; }
-        if (!xSV(getTypeOfNchar(), otherEntity.getTypeOfNchar())) { return false; }
-        if (!xSV(getTypeOfVarchar2(), otherEntity.getTypeOfVarchar2())) { return false; }
-        if (!xSV(getTypeOfVarchar2Max(), otherEntity.getTypeOfVarchar2Max())) { return false; }
-        if (!xSV(getTypeOfNvarchar2(), otherEntity.getTypeOfNvarchar2())) { return false; }
-        if (!xSV(getTypeOfClob(), otherEntity.getTypeOfClob())) { return false; }
-        if (!xSV(getTypeOfNclob(), otherEntity.getTypeOfNclob())) { return false; }
-        if (!xSV(getTypeOfLong(), otherEntity.getTypeOfLong())) { return false; }
-        if (!xSV(getTypeOfInteger(), otherEntity.getTypeOfInteger())) { return false; }
-        if (!xSV(getTypeOfNumberInteger(), otherEntity.getTypeOfNumberInteger())) { return false; }
-        if (!xSV(getTypeOfNumberBigint(), otherEntity.getTypeOfNumberBigint())) { return false; }
-        if (!xSV(getTypeOfNumberDecimal(), otherEntity.getTypeOfNumberDecimal())) { return false; }
-        if (!xSV(getTypeOfNumberIntegerMin(), otherEntity.getTypeOfNumberIntegerMin())) { return false; }
-        if (!xSV(getTypeOfNumberIntegerMax(), otherEntity.getTypeOfNumberIntegerMax())) { return false; }
-        if (!xSV(getTypeOfNumberBigintMin(), otherEntity.getTypeOfNumberBigintMin())) { return false; }
-        if (!xSV(getTypeOfNumberBigintMax(), otherEntity.getTypeOfNumberBigintMax())) { return false; }
-        if (!xSV(getTypeOfNumberSuperintMin(), otherEntity.getTypeOfNumberSuperintMin())) { return false; }
-        if (!xSV(getTypeOfNumberSuperintMax(), otherEntity.getTypeOfNumberSuperintMax())) { return false; }
-        if (!xSV(getTypeOfNumberMaxdecimal(), otherEntity.getTypeOfNumberMaxdecimal())) { return false; }
-        if (!xSV(getTypeOfBinaryFloat(), otherEntity.getTypeOfBinaryFloat())) { return false; }
-        if (!xSV(getTypeOfBinaryDouble(), otherEntity.getTypeOfBinaryDouble())) { return false; }
-        if (!xSV(getTypeOfDate(), otherEntity.getTypeOfDate())) { return false; }
-        if (!xSV(getTypeOfTimestamp(), otherEntity.getTypeOfTimestamp())) { return false; }
-        if (!xSV(getTypeOfIntervalYearToMonth(), otherEntity.getTypeOfIntervalYearToMonth())) { return false; }
-        if (!xSV(getTypeOfIntervalDayToSecond(), otherEntity.getTypeOfIntervalDayToSecond())) { return false; }
-        if (!xSV(getTypeOfBlob(), otherEntity.getTypeOfBlob())) { return false; }
-        if (!xSV(getTypeOfRaw(), otherEntity.getTypeOfRaw())) { return false; }
-        if (!xSV(getTypeOfBfile(), otherEntity.getTypeOfBfile())) { return false; }
-        if (!xSV(getTypeOfRowid(), otherEntity.getTypeOfRowid())) { return false; }
+    public boolean equals(Object obj) {
+        if (obj == null || !(obj instanceof BsSimpleVendorCheck)) { return false; }
+        BsSimpleVendorCheck other = (BsSimpleVendorCheck)obj;
+        if (!xSV(getVendorCheckId(), other.getVendorCheckId())) { return false; }
+        if (!xSV(getTypeOfChar(), other.getTypeOfChar())) { return false; }
+        if (!xSV(getTypeOfNchar(), other.getTypeOfNchar())) { return false; }
+        if (!xSV(getTypeOfVarchar2(), other.getTypeOfVarchar2())) { return false; }
+        if (!xSV(getTypeOfVarchar2Max(), other.getTypeOfVarchar2Max())) { return false; }
+        if (!xSV(getTypeOfNvarchar2(), other.getTypeOfNvarchar2())) { return false; }
+        if (!xSV(getTypeOfClob(), other.getTypeOfClob())) { return false; }
+        if (!xSV(getTypeOfNclob(), other.getTypeOfNclob())) { return false; }
+        if (!xSV(getTypeOfLong(), other.getTypeOfLong())) { return false; }
+        if (!xSV(getTypeOfInteger(), other.getTypeOfInteger())) { return false; }
+        if (!xSV(getTypeOfNumberInteger(), other.getTypeOfNumberInteger())) { return false; }
+        if (!xSV(getTypeOfNumberBigint(), other.getTypeOfNumberBigint())) { return false; }
+        if (!xSV(getTypeOfNumberDecimal(), other.getTypeOfNumberDecimal())) { return false; }
+        if (!xSV(getTypeOfNumberIntegerMin(), other.getTypeOfNumberIntegerMin())) { return false; }
+        if (!xSV(getTypeOfNumberIntegerMax(), other.getTypeOfNumberIntegerMax())) { return false; }
+        if (!xSV(getTypeOfNumberBigintMin(), other.getTypeOfNumberBigintMin())) { return false; }
+        if (!xSV(getTypeOfNumberBigintMax(), other.getTypeOfNumberBigintMax())) { return false; }
+        if (!xSV(getTypeOfNumberSuperintMin(), other.getTypeOfNumberSuperintMin())) { return false; }
+        if (!xSV(getTypeOfNumberSuperintMax(), other.getTypeOfNumberSuperintMax())) { return false; }
+        if (!xSV(getTypeOfNumberMaxdecimal(), other.getTypeOfNumberMaxdecimal())) { return false; }
+        if (!xSV(getTypeOfBinaryFloat(), other.getTypeOfBinaryFloat())) { return false; }
+        if (!xSV(getTypeOfBinaryDouble(), other.getTypeOfBinaryDouble())) { return false; }
+        if (!xSV(getTypeOfDate(), other.getTypeOfDate())) { return false; }
+        if (!xSV(getTypeOfTimestamp(), other.getTypeOfTimestamp())) { return false; }
+        if (!xSV(getTypeOfIntervalYearToMonth(), other.getTypeOfIntervalYearToMonth())) { return false; }
+        if (!xSV(getTypeOfIntervalDayToSecond(), other.getTypeOfIntervalDayToSecond())) { return false; }
+        if (!xSV(getTypeOfBlob(), other.getTypeOfBlob())) { return false; }
+        if (!xSV(getTypeOfRaw(), other.getTypeOfRaw())) { return false; }
+        if (!xSV(getTypeOfBfile(), other.getTypeOfBfile())) { return false; }
+        if (!xSV(getTypeOfRowid(), other.getTypeOfRowid())) { return false; }
         return true;
     }
-    protected boolean xSV(Object value1, Object value2) { // isSameValue()
-        return InternalUtil.isSameValue(value1, value2);
+    protected boolean xSV(Object value1, Object value2) {
+        return FunCustodial.isSameValue(value1, value2);
     }
 
     /**
@@ -398,8 +398,8 @@ public abstract class BsSimpleVendorCheck implements Entity, Serializable, Clone
         result = xCH(result, getTypeOfRowid());
         return result;
     }
-    protected int xCH(int result, Object value) { // calculateHashcode()
-        return InternalUtil.calculateHashcode(result, value);
+    protected int xCH(int result, Object value) {
+        return FunCustodial.calculateHashcode(result, value);
     }
 
     /**
@@ -414,7 +414,7 @@ public abstract class BsSimpleVendorCheck implements Entity, Serializable, Clone
      * @return The display string of all columns and relation existences. (NotNull)
      */
     public String toString() {
-        return buildDisplayString(InternalUtil.toClassTitle(this), true, true);
+        return buildDisplayString(FunCustodial.toClassTitle(this), true, true);
     }
 
     /**
@@ -477,13 +477,13 @@ public abstract class BsSimpleVendorCheck implements Entity, Serializable, Clone
         return sb.toString();
     }
     protected String xfUD(Date date) { // formatUtilDate()
-        return InternalUtil.toString(date, xgDP());
+        return FunCustodial.toString(date, xgDP());
     }
     protected String xgDP() { // getDatePattern
         return "yyyy-MM-dd HH:mm:ss"; // time parts for Oracle only
     }
     protected String xfBA(byte[] bytes) { // formatByteArray()
-        return InternalUtil.toString(bytes);
+        return FunCustodial.toString(bytes);
     }
     protected String buildRelationString() {
         return "";

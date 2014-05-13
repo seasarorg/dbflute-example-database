@@ -6,6 +6,8 @@ import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
 import org.seasar.dbflute.dbmeta.DBMeta;
+import org.seasar.dbflute.exception.*;
+import org.seasar.dbflute.optional.*;
 import org.seasar.dbflute.outsidesql.executor.*;
 import com.example.dbflute.oracle.dbflute.exbhv.*;
 import com.example.dbflute.oracle.dbflute.exentity.*;
@@ -91,7 +93,7 @@ public abstract class BsSynonymNextSameNameFkBhv extends AbstractBehaviorWritabl
      * <pre>
      * SynonymNextSameNameFkCB cb = new SynonymNextSameNameFkCB();
      * cb.query().setFoo...(value);
-     * int count = synonymNextSameNameFkBhv.<span style="color: #FD4747">selectCount</span>(cb);
+     * int count = synonymNextSameNameFkBhv.<span style="color: #DD4747">selectCount</span>(cb);
      * </pre>
      * @param cb The condition-bean of SynonymNextSameNameFk. (NotNull)
      * @return The count for the condition. (NotMinus)
@@ -119,12 +121,14 @@ public abstract class BsSynonymNextSameNameFkBhv extends AbstractBehaviorWritabl
     //                                                                       Entity Select
     //                                                                       =============
     /**
-     * Select the entity by the condition-bean.
+     * Select the entity by the condition-bean. #beforejava8 <br />
+     * <span style="color: #AD4747; font-size: 120%">The return might be null if no data, so you should have null check.</span> <br />
+     * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, use selectEntityWithDeletedCheck().</span>
      * <pre>
      * SynonymNextSameNameFkCB cb = new SynonymNextSameNameFkCB();
      * cb.query().setFoo...(value);
-     * SynonymNextSameNameFk synonymNextSameNameFk = synonymNextSameNameFkBhv.<span style="color: #FD4747">selectEntity</span>(cb);
-     * if (synonymNextSameNameFk != null) {
+     * SynonymNextSameNameFk synonymNextSameNameFk = synonymNextSameNameFkBhv.<span style="color: #DD4747">selectEntity</span>(cb);
+     * if (synonymNextSameNameFk != null) { <span style="color: #3F7E5E">// null check</span>
      *     ... = synonymNextSameNameFk.get...();
      * } else {
      *     ...
@@ -132,8 +136,8 @@ public abstract class BsSynonymNextSameNameFkBhv extends AbstractBehaviorWritabl
      * </pre>
      * @param cb The condition-bean of SynonymNextSameNameFk. (NotNull)
      * @return The entity selected by the condition. (NullAllowed: if no data, it returns null)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public SynonymNextSameNameFk selectEntity(SynonymNextSameNameFkCB cb) {
         return doSelectEntity(cb, SynonymNextSameNameFk.class);
@@ -145,24 +149,29 @@ public abstract class BsSynonymNextSameNameFkBhv extends AbstractBehaviorWritabl
             public List<ENTITY> callbackSelectList(SynonymNextSameNameFkCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
+    protected <ENTITY extends SynonymNextSameNameFk> OptionalEntity<ENTITY> doSelectOptionalEntity(SynonymNextSameNameFkCB cb, Class<ENTITY> tp) {
+        return createOptionalEntity(doSelectEntity(cb, tp), cb);
+    }
+
     @Override
     protected Entity doReadEntity(ConditionBean cb) {
         return selectEntity(downcast(cb));
     }
 
     /**
-     * Select the entity by the condition-bean with deleted check.
+     * Select the entity by the condition-bean with deleted check. <br />
+     * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, this method is good.</span>
      * <pre>
      * SynonymNextSameNameFkCB cb = new SynonymNextSameNameFkCB();
      * cb.query().setFoo...(value);
-     * SynonymNextSameNameFk synonymNextSameNameFk = synonymNextSameNameFkBhv.<span style="color: #FD4747">selectEntityWithDeletedCheck</span>(cb);
+     * SynonymNextSameNameFk synonymNextSameNameFk = synonymNextSameNameFkBhv.<span style="color: #DD4747">selectEntityWithDeletedCheck</span>(cb);
      * ... = synonymNextSameNameFk.get...(); <span style="color: #3F7E5E">// the entity always be not null</span>
      * </pre>
      * @param cb The condition-bean of SynonymNextSameNameFk. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public SynonymNextSameNameFk selectEntityWithDeletedCheck(SynonymNextSameNameFkCB cb) {
         return doSelectEntityWithDeletedCheck(cb, SynonymNextSameNameFk.class);
@@ -183,8 +192,8 @@ public abstract class BsSynonymNextSameNameFkBhv extends AbstractBehaviorWritabl
      * Select the entity by the primary-key value.
      * @param refId The one of primary key. (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public SynonymNextSameNameFk selectByPKValue(Long refId) {
         return doSelectByPKValue(refId, SynonymNextSameNameFk.class);
@@ -198,9 +207,9 @@ public abstract class BsSynonymNextSameNameFkBhv extends AbstractBehaviorWritabl
      * Select the entity by the primary-key value with deleted check.
      * @param refId The one of primary key. (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public SynonymNextSameNameFk selectByPKValueWithDeletedCheck(Long refId) {
         return doSelectByPKValueWithDeletedCheck(refId, SynonymNextSameNameFk.class);
@@ -226,14 +235,14 @@ public abstract class BsSynonymNextSameNameFkBhv extends AbstractBehaviorWritabl
      * SynonymNextSameNameFkCB cb = new SynonymNextSameNameFkCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * ListResultBean&lt;SynonymNextSameNameFk&gt; synonymNextSameNameFkList = synonymNextSameNameFkBhv.<span style="color: #FD4747">selectList</span>(cb);
+     * ListResultBean&lt;SynonymNextSameNameFk&gt; synonymNextSameNameFkList = synonymNextSameNameFkBhv.<span style="color: #DD4747">selectList</span>(cb);
      * for (SynonymNextSameNameFk synonymNextSameNameFk : synonymNextSameNameFkList) {
      *     ... = synonymNextSameNameFk.get...();
      * }
      * </pre>
      * @param cb The condition-bean of SynonymNextSameNameFk. (NotNull)
      * @return The result bean of selected list. (NotNull: if no data, returns empty list)
-     * @exception org.seasar.dbflute.exception.DangerousResultSizeException When the result size is over the specified safety size.
+     * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public ListResultBean<SynonymNextSameNameFk> selectList(SynonymNextSameNameFkCB cb) {
         return doSelectList(cb, SynonymNextSameNameFk.class);
@@ -261,8 +270,8 @@ public abstract class BsSynonymNextSameNameFkBhv extends AbstractBehaviorWritabl
      * SynonymNextSameNameFkCB cb = new SynonymNextSameNameFkCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * cb.<span style="color: #FD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
-     * PagingResultBean&lt;SynonymNextSameNameFk&gt; page = synonymNextSameNameFkBhv.<span style="color: #FD4747">selectPage</span>(cb);
+     * cb.<span style="color: #DD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
+     * PagingResultBean&lt;SynonymNextSameNameFk&gt; page = synonymNextSameNameFkBhv.<span style="color: #DD4747">selectPage</span>(cb);
      * int allRecordCount = page.getAllRecordCount();
      * int allPageCount = page.getAllPageCount();
      * boolean isExistPrePage = page.isExistPrePage();
@@ -274,7 +283,7 @@ public abstract class BsSynonymNextSameNameFkBhv extends AbstractBehaviorWritabl
      * </pre>
      * @param cb The condition-bean of SynonymNextSameNameFk. (NotNull)
      * @return The result bean of selected page. (NotNull: if no data, returns bean as empty list)
-     * @exception org.seasar.dbflute.exception.DangerousResultSizeException When the result size is over the specified safety size.
+     * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public PagingResultBean<SynonymNextSameNameFk> selectPage(SynonymNextSameNameFkCB cb) {
         return doSelectPage(cb, SynonymNextSameNameFk.class);
@@ -301,7 +310,7 @@ public abstract class BsSynonymNextSameNameFkBhv extends AbstractBehaviorWritabl
      * <pre>
      * SynonymNextSameNameFkCB cb = new SynonymNextSameNameFkCB();
      * cb.query().setFoo...(value);
-     * synonymNextSameNameFkBhv.<span style="color: #FD4747">selectCursor</span>(cb, new EntityRowHandler&lt;SynonymNextSameNameFk&gt;() {
+     * synonymNextSameNameFkBhv.<span style="color: #DD4747">selectCursor</span>(cb, new EntityRowHandler&lt;SynonymNextSameNameFk&gt;() {
      *     public void handle(SynonymNextSameNameFk entity) {
      *         ... = entity.getFoo...();
      *     }
@@ -330,9 +339,9 @@ public abstract class BsSynonymNextSameNameFkBhv extends AbstractBehaviorWritabl
      * Select the scalar value derived by a function from uniquely-selected records. <br />
      * You should call a function method after this method called like as follows:
      * <pre>
-     * synonymNextSameNameFkBhv.<span style="color: #FD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
+     * synonymNextSameNameFkBhv.<span style="color: #DD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
      *     public void query(SynonymNextSameNameFkCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
+     *         cb.specify().<span style="color: #DD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
      *         cb.query().setBarName_PrefixSearch("S");
      *     }
      * });
@@ -399,12 +408,12 @@ public abstract class BsSynonymNextSameNameFkBhv extends AbstractBehaviorWritabl
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
      * <span style="color: #3F7E5E">//synonymNextSameNameFk.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//synonymNextSameNameFk.set...;</span>
-     * synonymNextSameNameFkBhv.<span style="color: #FD4747">insert</span>(synonymNextSameNameFk);
+     * synonymNextSameNameFkBhv.<span style="color: #DD4747">insert</span>(synonymNextSameNameFk);
      * ... = synonymNextSameNameFk.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * <p>While, when the entity is created by select, all columns are registered.</p>
      * @param synonymNextSameNameFk The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insert(SynonymNextSameNameFk synonymNextSameNameFk) {
         doInsert(synonymNextSameNameFk, null);
@@ -440,17 +449,17 @@ public abstract class BsSynonymNextSameNameFkBhv extends AbstractBehaviorWritabl
      * <span style="color: #3F7E5E">//synonymNextSameNameFk.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//synonymNextSameNameFk.set...;</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * synonymNextSameNameFk.<span style="color: #FD4747">setVersionNo</span>(value);
+     * synonymNextSameNameFk.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
-     *     synonymNextSameNameFkBhv.<span style="color: #FD4747">update</span>(synonymNextSameNameFk);
+     *     synonymNextSameNameFkBhv.<span style="color: #DD4747">update</span>(synonymNextSameNameFk);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param synonymNextSameNameFk The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void update(final SynonymNextSameNameFk synonymNextSameNameFk) {
         doUpdate(synonymNextSameNameFk, null);
@@ -500,11 +509,11 @@ public abstract class BsSynonymNextSameNameFkBhv extends AbstractBehaviorWritabl
     /**
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br />
-     * <p><span style="color: #FD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
+     * <p><span style="color: #DD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
      * @param synonymNextSameNameFk The entity of insert or update target. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insertOrUpdate(SynonymNextSameNameFk synonymNextSameNameFk) {
         doInesrtOrUpdate(synonymNextSameNameFk, null, null);
@@ -540,16 +549,16 @@ public abstract class BsSynonymNextSameNameFkBhv extends AbstractBehaviorWritabl
      * SynonymNextSameNameFk synonymNextSameNameFk = new SynonymNextSameNameFk();
      * synonymNextSameNameFk.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * synonymNextSameNameFk.<span style="color: #FD4747">setVersionNo</span>(value);
+     * synonymNextSameNameFk.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
-     *     synonymNextSameNameFkBhv.<span style="color: #FD4747">delete</span>(synonymNextSameNameFk);
+     *     synonymNextSameNameFkBhv.<span style="color: #DD4747">delete</span>(synonymNextSameNameFk);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param synonymNextSameNameFk The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void delete(SynonymNextSameNameFk synonymNextSameNameFk) {
         doDelete(synonymNextSameNameFk, null);
@@ -584,7 +593,7 @@ public abstract class BsSynonymNextSameNameFkBhv extends AbstractBehaviorWritabl
     /**
      * Batch-insert the entity list modified-only of same-set columns. (DefaultConstraintsEnabled) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
-     * <p><span style="color: #FD4747; font-size: 120%">The columns of least common multiple are registered like this:</span></p>
+     * <p><span style="color: #DD4747; font-size: 120%">The columns of least common multiple are registered like this:</span></p>
      * <pre>
      * for (... : ...) {
      *     SynonymNextSameNameFk synonymNextSameNameFk = new SynonymNextSameNameFk();
@@ -597,7 +606,7 @@ public abstract class BsSynonymNextSameNameFkBhv extends AbstractBehaviorWritabl
      *     <span style="color: #3F7E5E">// columns not-called in all entities are registered as null or default value</span>
      *     synonymNextSameNameFkList.add(synonymNextSameNameFk);
      * }
-     * synonymNextSameNameFkBhv.<span style="color: #FD4747">batchInsert</span>(synonymNextSameNameFkList);
+     * synonymNextSameNameFkBhv.<span style="color: #DD4747">batchInsert</span>(synonymNextSameNameFkList);
      * </pre>
      * <p>While, when the entities are created by select, all columns are registered.</p>
      * <p>And if the table has an identity, entities after the process don't have incremented values.
@@ -631,7 +640,7 @@ public abstract class BsSynonymNextSameNameFkBhv extends AbstractBehaviorWritabl
     /**
      * Batch-update the entity list modified-only of same-set columns. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
-     * <span style="color: #FD4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
+     * <span style="color: #DD4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
      * <pre>
      * for (... : ...) {
      *     SynonymNextSameNameFk synonymNextSameNameFk = new SynonymNextSameNameFk();
@@ -646,11 +655,11 @@ public abstract class BsSynonymNextSameNameFkBhv extends AbstractBehaviorWritabl
      *     <span style="color: #3F7E5E">// (others are not updated: their values are kept)</span>
      *     synonymNextSameNameFkList.add(synonymNextSameNameFk);
      * }
-     * synonymNextSameNameFkBhv.<span style="color: #FD4747">batchUpdate</span>(synonymNextSameNameFkList);
+     * synonymNextSameNameFkBhv.<span style="color: #DD4747">batchUpdate</span>(synonymNextSameNameFkList);
      * </pre>
      * @param synonymNextSameNameFkList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<SynonymNextSameNameFk> synonymNextSameNameFkList) {
         UpdateOption<SynonymNextSameNameFkCB> op = createPlainUpdateOption();
@@ -679,16 +688,16 @@ public abstract class BsSynonymNextSameNameFkBhv extends AbstractBehaviorWritabl
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * <pre>
      * <span style="color: #3F7E5E">// e.g. update two columns only</span>
-     * synonymNextSameNameFkBhv.<span style="color: #FD4747">batchUpdate</span>(synonymNextSameNameFkList, new SpecifyQuery<SynonymNextSameNameFkCB>() {
+     * synonymNextSameNameFkBhv.<span style="color: #DD4747">batchUpdate</span>(synonymNextSameNameFkList, new SpecifyQuery<SynonymNextSameNameFkCB>() {
      *     public void specify(SynonymNextSameNameFkCB cb) { <span style="color: #3F7E5E">// the two only updated</span>
-     *         cb.specify().<span style="color: #FD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
-     *         cb.specify().<span style="color: #FD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
+     *         cb.specify().<span style="color: #DD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
+     *         cb.specify().<span style="color: #DD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
      *     }
      * });
      * <span style="color: #3F7E5E">// e.g. update every column in the table</span>
-     * synonymNextSameNameFkBhv.<span style="color: #FD4747">batchUpdate</span>(synonymNextSameNameFkList, new SpecifyQuery<SynonymNextSameNameFkCB>() {
+     * synonymNextSameNameFkBhv.<span style="color: #DD4747">batchUpdate</span>(synonymNextSameNameFkList, new SpecifyQuery<SynonymNextSameNameFkCB>() {
      *     public void specify(SynonymNextSameNameFkCB cb) { <span style="color: #3F7E5E">// all columns are updated</span>
-     *         cb.specify().<span style="color: #FD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
+     *         cb.specify().<span style="color: #DD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
      *     }
      * });
      * </pre>
@@ -700,7 +709,7 @@ public abstract class BsSynonymNextSameNameFkBhv extends AbstractBehaviorWritabl
      * @param synonymNextSameNameFkList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @param updateColumnSpec The specification of update columns. (NotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<SynonymNextSameNameFk> synonymNextSameNameFkList, SpecifyQuery<SynonymNextSameNameFkCB> updateColumnSpec) {
         return doBatchUpdate(synonymNextSameNameFkList, createSpecifiedUpdateOption(updateColumnSpec));
@@ -716,7 +725,7 @@ public abstract class BsSynonymNextSameNameFkBhv extends AbstractBehaviorWritabl
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * @param synonymNextSameNameFkList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of deleted count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchDelete(List<SynonymNextSameNameFk> synonymNextSameNameFkList) {
         return doBatchDelete(synonymNextSameNameFkList, null);
@@ -745,7 +754,7 @@ public abstract class BsSynonymNextSameNameFkBhv extends AbstractBehaviorWritabl
     /**
      * Insert the several entities by query (modified-only for fixed value).
      * <pre>
-     * synonymNextSameNameFkBhv.<span style="color: #FD4747">queryInsert</span>(new QueryInsertSetupper&lt;SynonymNextSameNameFk, SynonymNextSameNameFkCB&gt;() {
+     * synonymNextSameNameFkBhv.<span style="color: #DD4747">queryInsert</span>(new QueryInsertSetupper&lt;SynonymNextSameNameFk, SynonymNextSameNameFkCB&gt;() {
      *     public ConditionBean setup(synonymNextSameNameFk entity, SynonymNextSameNameFkCB intoCB) {
      *         FooCB cb = FooCB();
      *         cb.setupSelect_Bar();
@@ -807,12 +816,12 @@ public abstract class BsSynonymNextSameNameFkBhv extends AbstractBehaviorWritabl
      * <span style="color: #3F7E5E">//synonymNextSameNameFk.setVersionNo(value);</span>
      * SynonymNextSameNameFkCB cb = new SynonymNextSameNameFkCB();
      * cb.query().setFoo...(value);
-     * synonymNextSameNameFkBhv.<span style="color: #FD4747">queryUpdate</span>(synonymNextSameNameFk, cb);
+     * synonymNextSameNameFkBhv.<span style="color: #DD4747">queryUpdate</span>(synonymNextSameNameFk, cb);
      * </pre>
      * @param synonymNextSameNameFk The entity that contains update values. (NotNull, PrimaryKeyNullAllowed)
      * @param cb The condition-bean of SynonymNextSameNameFk. (NotNull)
      * @return The updated count.
-     * @exception org.seasar.dbflute.exception.NonQueryUpdateNotAllowedException When the query has no condition.
+     * @exception NonQueryUpdateNotAllowedException When the query has no condition.
      */
     public int queryUpdate(SynonymNextSameNameFk synonymNextSameNameFk, SynonymNextSameNameFkCB cb) {
         return doQueryUpdate(synonymNextSameNameFk, cb, null);
@@ -835,11 +844,11 @@ public abstract class BsSynonymNextSameNameFkBhv extends AbstractBehaviorWritabl
      * <pre>
      * SynonymNextSameNameFkCB cb = new SynonymNextSameNameFkCB();
      * cb.query().setFoo...(value);
-     * synonymNextSameNameFkBhv.<span style="color: #FD4747">queryDelete</span>(synonymNextSameNameFk, cb);
+     * synonymNextSameNameFkBhv.<span style="color: #DD4747">queryDelete</span>(synonymNextSameNameFk, cb);
      * </pre>
      * @param cb The condition-bean of SynonymNextSameNameFk. (NotNull)
      * @return The deleted count.
-     * @exception org.seasar.dbflute.exception.NonQueryDeleteNotAllowedException When the query has no condition.
+     * @exception NonQueryDeleteNotAllowedException When the query has no condition.
      */
     public int queryDelete(SynonymNextSameNameFkCB cb) {
         return doQueryDelete(cb, null);
@@ -875,12 +884,12 @@ public abstract class BsSynonymNextSameNameFkBhv extends AbstractBehaviorWritabl
      * InsertOption<SynonymNextSameNameFkCB> option = new InsertOption<SynonymNextSameNameFkCB>();
      * <span style="color: #3F7E5E">// you can insert by your values for common columns</span>
      * option.disableCommonColumnAutoSetup();
-     * synonymNextSameNameFkBhv.<span style="color: #FD4747">varyingInsert</span>(synonymNextSameNameFk, option);
+     * synonymNextSameNameFkBhv.<span style="color: #DD4747">varyingInsert</span>(synonymNextSameNameFk, option);
      * ... = synonymNextSameNameFk.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * @param synonymNextSameNameFk The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
      * @param option The option of insert for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingInsert(SynonymNextSameNameFk synonymNextSameNameFk, InsertOption<SynonymNextSameNameFkCB> option) {
         assertInsertOptionNotNull(option);
@@ -896,25 +905,25 @@ public abstract class BsSynonymNextSameNameFkBhv extends AbstractBehaviorWritabl
      * synonymNextSameNameFk.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * synonymNextSameNameFk.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * synonymNextSameNameFk.<span style="color: #FD4747">setVersionNo</span>(value);
+     * synonymNextSameNameFk.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     <span style="color: #3F7E5E">// you can update by self calculation values</span>
      *     UpdateOption&lt;SynonymNextSameNameFkCB&gt; option = new UpdateOption&lt;SynonymNextSameNameFkCB&gt;();
      *     option.self(new SpecifyQuery&lt;SynonymNextSameNameFkCB&gt;() {
      *         public void specify(SynonymNextSameNameFkCB cb) {
-     *             cb.specify().<span style="color: #FD4747">columnXxxCount()</span>;
+     *             cb.specify().<span style="color: #DD4747">columnXxxCount()</span>;
      *         }
      *     }).plus(1); <span style="color: #3F7E5E">// XXX_COUNT = XXX_COUNT + 1</span>
-     *     synonymNextSameNameFkBhv.<span style="color: #FD4747">varyingUpdate</span>(synonymNextSameNameFk, option);
+     *     synonymNextSameNameFkBhv.<span style="color: #DD4747">varyingUpdate</span>(synonymNextSameNameFk, option);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param synonymNextSameNameFk The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @param option The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingUpdate(SynonymNextSameNameFk synonymNextSameNameFk, UpdateOption<SynonymNextSameNameFkCB> option) {
         assertUpdateOptionNotNull(option);
@@ -927,9 +936,9 @@ public abstract class BsSynonymNextSameNameFkBhv extends AbstractBehaviorWritabl
      * @param synonymNextSameNameFk The entity of insert or update target. (NotNull)
      * @param insertOption The option of insert for varying requests. (NotNull)
      * @param updateOption The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingInsertOrUpdate(SynonymNextSameNameFk synonymNextSameNameFk, InsertOption<SynonymNextSameNameFkCB> insertOption, UpdateOption<SynonymNextSameNameFkCB> updateOption) {
         assertInsertOptionNotNull(insertOption); assertUpdateOptionNotNull(updateOption);
@@ -942,8 +951,8 @@ public abstract class BsSynonymNextSameNameFkBhv extends AbstractBehaviorWritabl
      * Other specifications are same as delete(entity).
      * @param synonymNextSameNameFk The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @param option The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void varyingDelete(SynonymNextSameNameFk synonymNextSameNameFk, DeleteOption<SynonymNextSameNameFkCB> option) {
         assertDeleteOptionNotNull(option);
@@ -1029,16 +1038,16 @@ public abstract class BsSynonymNextSameNameFkBhv extends AbstractBehaviorWritabl
      * UpdateOption&lt;SynonymNextSameNameFkCB&gt; option = new UpdateOption&lt;SynonymNextSameNameFkCB&gt;();
      * option.self(new SpecifyQuery&lt;SynonymNextSameNameFkCB&gt;() {
      *     public void specify(SynonymNextSameNameFkCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFooCount()</span>;
+     *         cb.specify().<span style="color: #DD4747">columnFooCount()</span>;
      *     }
      * }).plus(1); <span style="color: #3F7E5E">// FOO_COUNT = FOO_COUNT + 1</span>
-     * synonymNextSameNameFkBhv.<span style="color: #FD4747">varyingQueryUpdate</span>(synonymNextSameNameFk, cb, option);
+     * synonymNextSameNameFkBhv.<span style="color: #DD4747">varyingQueryUpdate</span>(synonymNextSameNameFk, cb, option);
      * </pre>
      * @param synonymNextSameNameFk The entity that contains update values. (NotNull) {PrimaryKeyNotRequired}
      * @param cb The condition-bean of SynonymNextSameNameFk. (NotNull)
      * @param option The option of update for varying requests. (NotNull)
      * @return The updated count.
-     * @exception org.seasar.dbflute.exception.NonQueryUpdateNotAllowedException When the query has no condition (if not allowed).
+     * @exception NonQueryUpdateNotAllowedException When the query has no condition (if not allowed).
      */
     public int varyingQueryUpdate(SynonymNextSameNameFk synonymNextSameNameFk, SynonymNextSameNameFkCB cb, UpdateOption<SynonymNextSameNameFkCB> option) {
         assertUpdateOptionNotNull(option);
@@ -1052,7 +1061,7 @@ public abstract class BsSynonymNextSameNameFkBhv extends AbstractBehaviorWritabl
      * @param cb The condition-bean of SynonymNextSameNameFk. (NotNull)
      * @param option The option of delete for varying requests. (NotNull)
      * @return The deleted count.
-     * @exception org.seasar.dbflute.exception.NonQueryDeleteNotAllowedException When the query has no condition (if not allowed).
+     * @exception NonQueryDeleteNotAllowedException When the query has no condition (if not allowed).
      */
     public int varyingQueryDelete(SynonymNextSameNameFkCB cb, DeleteOption<SynonymNextSameNameFkCB> option) {
         assertDeleteOptionNotNull(option);

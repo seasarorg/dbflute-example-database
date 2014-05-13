@@ -209,7 +209,7 @@ public class BsMemberServiceCB extends AbstractConditionBean {
      * You don't need to call SetupSelect in union-query,
      * because it inherits calls before. (Don't call SetupSelect after here)
      * <pre>
-     * cb.query().<span style="color: #FD4747">union</span>(new UnionQuery&lt;MemberServiceCB&gt;() {
+     * cb.query().<span style="color: #DD4747">union</span>(new UnionQuery&lt;MemberServiceCB&gt;() {
      *     public void query(MemberServiceCB unionCB) {
      *         unionCB.query().setXxx...
      *     }
@@ -218,8 +218,8 @@ public class BsMemberServiceCB extends AbstractConditionBean {
      * @param unionQuery The query of 'union'. (NotNull)
      */
     public void union(UnionQuery<MemberServiceCB> unionQuery) {
-        final MemberServiceCB cb = new MemberServiceCB();
-        cb.xsetupForUnion(this); xsyncUQ(cb); unionQuery.query(cb); xsaveUCB(cb);
+        final MemberServiceCB cb = new MemberServiceCB(); cb.xsetupForUnion(this); xsyncUQ(cb); 
+        try { lock(); unionQuery.query(cb); } finally { unlock(); } xsaveUCB(cb);
         final MemberServiceCQ cq = cb.query(); query().xsetUnionQuery(cq);
     }
 
@@ -228,7 +228,7 @@ public class BsMemberServiceCB extends AbstractConditionBean {
      * You don't need to call SetupSelect in union-query,
      * because it inherits calls before. (Don't call SetupSelect after here)
      * <pre>
-     * cb.query().<span style="color: #FD4747">unionAll</span>(new UnionQuery&lt;MemberServiceCB&gt;() {
+     * cb.query().<span style="color: #DD4747">unionAll</span>(new UnionQuery&lt;MemberServiceCB&gt;() {
      *     public void query(MemberServiceCB unionCB) {
      *         unionCB.query().setXxx...
      *     }
@@ -237,8 +237,8 @@ public class BsMemberServiceCB extends AbstractConditionBean {
      * @param unionQuery The query of 'union all'. (NotNull)
      */
     public void unionAll(UnionQuery<MemberServiceCB> unionQuery) {
-        final MemberServiceCB cb = new MemberServiceCB();
-        cb.xsetupForUnion(this); xsyncUQ(cb); unionQuery.query(cb); xsaveUCB(cb);
+        final MemberServiceCB cb = new MemberServiceCB(); cb.xsetupForUnion(this); xsyncUQ(cb);
+        try { lock(); unionQuery.query(cb); } finally { unlock(); } xsaveUCB(cb);
         final MemberServiceCQ cq = cb.query(); query().xsetUnionAllQuery(cq);
     }
 
@@ -271,14 +271,15 @@ public class BsMemberServiceCB extends AbstractConditionBean {
      * (会員)MEMBER by my MEMBER_ID, named 'member'.
      * <pre>
      * MemberServiceCB cb = new MemberServiceCB();
-     * cb.<span style="color: #FD4747">setupSelect_Member()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
+     * cb.<span style="color: #DD4747">setupSelect_Member()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
      * cb.query().setFoo...(value);
      * MemberService memberService = memberServiceBhv.selectEntityWithDeletedCheck(cb);
-     * ... = memberService.<span style="color: #FD4747">getMember()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
+     * ... = memberService.<span style="color: #DD4747">getMember()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
      * </pre>
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
     public MemberNss setupSelect_Member() {
+        assertSetupSelectPurpose("member");
         if (hasSpecifiedColumn()) { // if reverse call
             specify().columnMemberId();
         }
@@ -297,14 +298,15 @@ public class BsMemberServiceCB extends AbstractConditionBean {
      * SERVICE_RANK by my SERVICE_RANK_CODE, named 'serviceRank'.
      * <pre>
      * MemberServiceCB cb = new MemberServiceCB();
-     * cb.<span style="color: #FD4747">setupSelect_ServiceRank()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
+     * cb.<span style="color: #DD4747">setupSelect_ServiceRank()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
      * cb.query().setFoo...(value);
      * MemberService memberService = memberServiceBhv.selectEntityWithDeletedCheck(cb);
-     * ... = memberService.<span style="color: #FD4747">getServiceRank()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
+     * ... = memberService.<span style="color: #DD4747">getServiceRank()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
      * </pre>
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
     public ServiceRankNss setupSelect_ServiceRank() {
+        assertSetupSelectPurpose("serviceRank");
         if (hasSpecifiedColumn()) { // if reverse call
             specify().columnServiceRankCode();
         }
@@ -488,19 +490,19 @@ public class BsMemberServiceCB extends AbstractConditionBean {
 
     // [DBFlute-0.9.5.3]
     // ===================================================================================
-    //                                                                         ColumnQuery
-    //                                                                         ===========
+    //                                                                        Column Query
+    //                                                                        ============
     /**
      * Set up column-query. {column1 = column2}
      * <pre>
      * <span style="color: #3F7E5E">// where FOO &lt; BAR</span>
-     * cb.<span style="color: #FD4747">columnQuery</span>(new SpecifyQuery&lt;MemberServiceCB&gt;() {
+     * cb.<span style="color: #DD4747">columnQuery</span>(new SpecifyQuery&lt;MemberServiceCB&gt;() {
      *     public void query(MemberServiceCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFoo()</span>; <span style="color: #3F7E5E">// left column</span>
+     *         cb.specify().<span style="color: #DD4747">columnFoo()</span>; <span style="color: #3F7E5E">// left column</span>
      *     }
      * }).lessThan(new SpecifyQuery&lt;MemberServiceCB&gt;() {
      *     public void query(MemberServiceCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnBar()</span>; <span style="color: #3F7E5E">// right column</span>
+     *         cb.specify().<span style="color: #DD4747">columnBar()</span>; <span style="color: #3F7E5E">// right column</span>
      *     }
      * }); <span style="color: #3F7E5E">// you can calculate for right column like '}).plus(3);'</span>
      * </pre>
@@ -541,14 +543,14 @@ public class BsMemberServiceCB extends AbstractConditionBean {
 
     // [DBFlute-0.9.6.3]
     // ===================================================================================
-    //                                                                        OrScopeQuery
-    //                                                                        ============
+    //                                                                       OrScope Query
+    //                                                                       =============
     /**
      * Set up the query for or-scope. <br />
      * (Same-column-and-same-condition-key conditions are allowed in or-scope)
      * <pre>
      * <span style="color: #3F7E5E">// where (FOO = '...' or BAR = '...')</span>
-     * cb.<span style="color: #FD4747">orScopeQuery</span>(new OrQuery&lt;MemberServiceCB&gt;() {
+     * cb.<span style="color: #DD4747">orScopeQuery</span>(new OrQuery&lt;MemberServiceCB&gt;() {
      *     public void query(MemberServiceCB orCB) {
      *         orCB.query().setFOO_Equal...
      *         orCB.query().setBAR_Equal...
@@ -566,10 +568,10 @@ public class BsMemberServiceCB extends AbstractConditionBean {
      * (However nested or-scope query and as-or-split of like-search in and-part are unsupported)
      * <pre>
      * <span style="color: #3F7E5E">// where (FOO = '...' or (BAR = '...' and QUX = '...'))</span>
-     * cb.<span style="color: #FD4747">orScopeQuery</span>(new OrQuery&lt;MemberServiceCB&gt;() {
+     * cb.<span style="color: #DD4747">orScopeQuery</span>(new OrQuery&lt;MemberServiceCB&gt;() {
      *     public void query(MemberServiceCB orCB) {
      *         orCB.query().setFOO_Equal...
-     *         orCB.<span style="color: #FD4747">orScopeQueryAndPart</span>(new AndQuery&lt;MemberServiceCB&gt;() {
+     *         orCB.<span style="color: #DD4747">orScopeQueryAndPart</span>(new AndQuery&lt;MemberServiceCB&gt;() {
      *             public void query(MemberServiceCB andCB) {
      *                 andCB.query().setBar_...
      *                 andCB.query().setQux_...

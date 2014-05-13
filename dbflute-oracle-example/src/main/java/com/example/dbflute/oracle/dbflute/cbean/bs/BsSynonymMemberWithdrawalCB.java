@@ -209,7 +209,7 @@ public class BsSynonymMemberWithdrawalCB extends AbstractConditionBean {
      * You don't need to call SetupSelect in union-query,
      * because it inherits calls before. (Don't call SetupSelect after here)
      * <pre>
-     * cb.query().<span style="color: #FD4747">union</span>(new UnionQuery&lt;SynonymMemberWithdrawalCB&gt;() {
+     * cb.query().<span style="color: #DD4747">union</span>(new UnionQuery&lt;SynonymMemberWithdrawalCB&gt;() {
      *     public void query(SynonymMemberWithdrawalCB unionCB) {
      *         unionCB.query().setXxx...
      *     }
@@ -218,8 +218,8 @@ public class BsSynonymMemberWithdrawalCB extends AbstractConditionBean {
      * @param unionQuery The query of 'union'. (NotNull)
      */
     public void union(UnionQuery<SynonymMemberWithdrawalCB> unionQuery) {
-        final SynonymMemberWithdrawalCB cb = new SynonymMemberWithdrawalCB();
-        cb.xsetupForUnion(this); xsyncUQ(cb); unionQuery.query(cb); xsaveUCB(cb);
+        final SynonymMemberWithdrawalCB cb = new SynonymMemberWithdrawalCB(); cb.xsetupForUnion(this); xsyncUQ(cb); 
+        try { lock(); unionQuery.query(cb); } finally { unlock(); } xsaveUCB(cb);
         final SynonymMemberWithdrawalCQ cq = cb.query(); query().xsetUnionQuery(cq);
     }
 
@@ -228,7 +228,7 @@ public class BsSynonymMemberWithdrawalCB extends AbstractConditionBean {
      * You don't need to call SetupSelect in union-query,
      * because it inherits calls before. (Don't call SetupSelect after here)
      * <pre>
-     * cb.query().<span style="color: #FD4747">unionAll</span>(new UnionQuery&lt;SynonymMemberWithdrawalCB&gt;() {
+     * cb.query().<span style="color: #DD4747">unionAll</span>(new UnionQuery&lt;SynonymMemberWithdrawalCB&gt;() {
      *     public void query(SynonymMemberWithdrawalCB unionCB) {
      *         unionCB.query().setXxx...
      *     }
@@ -237,8 +237,8 @@ public class BsSynonymMemberWithdrawalCB extends AbstractConditionBean {
      * @param unionQuery The query of 'union all'. (NotNull)
      */
     public void unionAll(UnionQuery<SynonymMemberWithdrawalCB> unionQuery) {
-        final SynonymMemberWithdrawalCB cb = new SynonymMemberWithdrawalCB();
-        cb.xsetupForUnion(this); xsyncUQ(cb); unionQuery.query(cb); xsaveUCB(cb);
+        final SynonymMemberWithdrawalCB cb = new SynonymMemberWithdrawalCB(); cb.xsetupForUnion(this); xsyncUQ(cb);
+        try { lock(); unionQuery.query(cb); } finally { unlock(); } xsaveUCB(cb);
         final SynonymMemberWithdrawalCQ cq = cb.query(); query().xsetUnionAllQuery(cq);
     }
 
@@ -271,14 +271,15 @@ public class BsSynonymMemberWithdrawalCB extends AbstractConditionBean {
      * (会員)MEMBER_VENDOR_SYNONYM by my MEMBER_ID, named 'memberVendorSynonym'.
      * <pre>
      * SynonymMemberWithdrawalCB cb = new SynonymMemberWithdrawalCB();
-     * cb.<span style="color: #FD4747">setupSelect_MemberVendorSynonym()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
+     * cb.<span style="color: #DD4747">setupSelect_MemberVendorSynonym()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
      * cb.query().setFoo...(value);
      * SynonymMemberWithdrawal synonymMemberWithdrawal = synonymMemberWithdrawalBhv.selectEntityWithDeletedCheck(cb);
-     * ... = synonymMemberWithdrawal.<span style="color: #FD4747">getMemberVendorSynonym()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
+     * ... = synonymMemberWithdrawal.<span style="color: #DD4747">getMemberVendorSynonym()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
      * </pre>
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
     public MemberVendorSynonymNss setupSelect_MemberVendorSynonym() {
+        assertSetupSelectPurpose("memberVendorSynonym");
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryMemberVendorSynonym(); } });
         if (_nssMemberVendorSynonym == null || !_nssMemberVendorSynonym.hasConditionQuery())
         { _nssMemberVendorSynonym = new MemberVendorSynonymNss(query().queryMemberVendorSynonym()); }
@@ -294,14 +295,15 @@ public class BsSynonymMemberWithdrawalCB extends AbstractConditionBean {
      * WITHDRAWAL_REASON by my WITHDRAWAL_REASON_CODE, named 'withdrawalReason'.
      * <pre>
      * SynonymMemberWithdrawalCB cb = new SynonymMemberWithdrawalCB();
-     * cb.<span style="color: #FD4747">setupSelect_WithdrawalReason()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
+     * cb.<span style="color: #DD4747">setupSelect_WithdrawalReason()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
      * cb.query().setFoo...(value);
      * SynonymMemberWithdrawal synonymMemberWithdrawal = synonymMemberWithdrawalBhv.selectEntityWithDeletedCheck(cb);
-     * ... = synonymMemberWithdrawal.<span style="color: #FD4747">getWithdrawalReason()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
+     * ... = synonymMemberWithdrawal.<span style="color: #DD4747">getWithdrawalReason()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
      * </pre>
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
     public WithdrawalReasonNss setupSelect_WithdrawalReason() {
+        assertSetupSelectPurpose("withdrawalReason");
         if (hasSpecifiedColumn()) { // if reverse call
             specify().columnWithdrawalReasonCode();
         }
@@ -320,14 +322,15 @@ public class BsSynonymMemberWithdrawalCB extends AbstractConditionBean {
      * (会員)SYNONYM_MEMBER by my MEMBER_ID, named 'synonymMember'.
      * <pre>
      * SynonymMemberWithdrawalCB cb = new SynonymMemberWithdrawalCB();
-     * cb.<span style="color: #FD4747">setupSelect_SynonymMember()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
+     * cb.<span style="color: #DD4747">setupSelect_SynonymMember()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
      * cb.query().setFoo...(value);
      * SynonymMemberWithdrawal synonymMemberWithdrawal = synonymMemberWithdrawalBhv.selectEntityWithDeletedCheck(cb);
-     * ... = synonymMemberWithdrawal.<span style="color: #FD4747">getSynonymMember()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
+     * ... = synonymMemberWithdrawal.<span style="color: #DD4747">getSynonymMember()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
      * </pre>
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
     public SynonymMemberNss setupSelect_SynonymMember() {
+        assertSetupSelectPurpose("synonymMember");
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().querySynonymMember(); } });
         if (_nssSynonymMember == null || !_nssSynonymMember.hasConditionQuery())
         { _nssSynonymMember = new SynonymMemberNss(query().querySynonymMember()); }
@@ -343,14 +346,15 @@ public class BsSynonymMemberWithdrawalCB extends AbstractConditionBean {
      * (会員)VENDOR_SYNONYM_MEMBER by my MEMBER_ID, named 'vendorSynonymMember'.
      * <pre>
      * SynonymMemberWithdrawalCB cb = new SynonymMemberWithdrawalCB();
-     * cb.<span style="color: #FD4747">setupSelect_VendorSynonymMember()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
+     * cb.<span style="color: #DD4747">setupSelect_VendorSynonymMember()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
      * cb.query().setFoo...(value);
      * SynonymMemberWithdrawal synonymMemberWithdrawal = synonymMemberWithdrawalBhv.selectEntityWithDeletedCheck(cb);
-     * ... = synonymMemberWithdrawal.<span style="color: #FD4747">getVendorSynonymMember()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
+     * ... = synonymMemberWithdrawal.<span style="color: #DD4747">getVendorSynonymMember()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
      * </pre>
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
     public VendorSynonymMemberNss setupSelect_VendorSynonymMember() {
+        assertSetupSelectPurpose("vendorSynonymMember");
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryVendorSynonymMember(); } });
         if (_nssVendorSynonymMember == null || !_nssVendorSynonymMember.hasConditionQuery())
         { _nssVendorSynonymMember = new VendorSynonymMemberNss(query().queryVendorSynonymMember()); }
@@ -571,19 +575,19 @@ public class BsSynonymMemberWithdrawalCB extends AbstractConditionBean {
 
     // [DBFlute-0.9.5.3]
     // ===================================================================================
-    //                                                                         ColumnQuery
-    //                                                                         ===========
+    //                                                                        Column Query
+    //                                                                        ============
     /**
      * Set up column-query. {column1 = column2}
      * <pre>
      * <span style="color: #3F7E5E">// where FOO &lt; BAR</span>
-     * cb.<span style="color: #FD4747">columnQuery</span>(new SpecifyQuery&lt;SynonymMemberWithdrawalCB&gt;() {
+     * cb.<span style="color: #DD4747">columnQuery</span>(new SpecifyQuery&lt;SynonymMemberWithdrawalCB&gt;() {
      *     public void query(SynonymMemberWithdrawalCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFoo()</span>; <span style="color: #3F7E5E">// left column</span>
+     *         cb.specify().<span style="color: #DD4747">columnFoo()</span>; <span style="color: #3F7E5E">// left column</span>
      *     }
      * }).lessThan(new SpecifyQuery&lt;SynonymMemberWithdrawalCB&gt;() {
      *     public void query(SynonymMemberWithdrawalCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnBar()</span>; <span style="color: #3F7E5E">// right column</span>
+     *         cb.specify().<span style="color: #DD4747">columnBar()</span>; <span style="color: #3F7E5E">// right column</span>
      *     }
      * }); <span style="color: #3F7E5E">// you can calculate for right column like '}).plus(3);'</span>
      * </pre>
@@ -624,14 +628,14 @@ public class BsSynonymMemberWithdrawalCB extends AbstractConditionBean {
 
     // [DBFlute-0.9.6.3]
     // ===================================================================================
-    //                                                                        OrScopeQuery
-    //                                                                        ============
+    //                                                                       OrScope Query
+    //                                                                       =============
     /**
      * Set up the query for or-scope. <br />
      * (Same-column-and-same-condition-key conditions are allowed in or-scope)
      * <pre>
      * <span style="color: #3F7E5E">// where (FOO = '...' or BAR = '...')</span>
-     * cb.<span style="color: #FD4747">orScopeQuery</span>(new OrQuery&lt;SynonymMemberWithdrawalCB&gt;() {
+     * cb.<span style="color: #DD4747">orScopeQuery</span>(new OrQuery&lt;SynonymMemberWithdrawalCB&gt;() {
      *     public void query(SynonymMemberWithdrawalCB orCB) {
      *         orCB.query().setFOO_Equal...
      *         orCB.query().setBAR_Equal...
@@ -649,10 +653,10 @@ public class BsSynonymMemberWithdrawalCB extends AbstractConditionBean {
      * (However nested or-scope query and as-or-split of like-search in and-part are unsupported)
      * <pre>
      * <span style="color: #3F7E5E">// where (FOO = '...' or (BAR = '...' and QUX = '...'))</span>
-     * cb.<span style="color: #FD4747">orScopeQuery</span>(new OrQuery&lt;SynonymMemberWithdrawalCB&gt;() {
+     * cb.<span style="color: #DD4747">orScopeQuery</span>(new OrQuery&lt;SynonymMemberWithdrawalCB&gt;() {
      *     public void query(SynonymMemberWithdrawalCB orCB) {
      *         orCB.query().setFOO_Equal...
-     *         orCB.<span style="color: #FD4747">orScopeQueryAndPart</span>(new AndQuery&lt;SynonymMemberWithdrawalCB&gt;() {
+     *         orCB.<span style="color: #DD4747">orScopeQueryAndPart</span>(new AndQuery&lt;SynonymMemberWithdrawalCB&gt;() {
      *             public void query(SynonymMemberWithdrawalCB andCB) {
      *                 andCB.query().setBar_...
      *                 andCB.query().setQux_...

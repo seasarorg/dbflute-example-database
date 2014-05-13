@@ -6,6 +6,8 @@ import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
 import org.seasar.dbflute.dbmeta.DBMeta;
+import org.seasar.dbflute.exception.*;
+import org.seasar.dbflute.optional.*;
 import org.seasar.dbflute.outsidesql.executor.*;
 import com.example.dbflute.oracle.dbflute.exbhv.*;
 import com.example.dbflute.oracle.dbflute.exentity.*;
@@ -91,7 +93,7 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
      * <pre>
      * NextSchemaProductStatusCB cb = new NextSchemaProductStatusCB();
      * cb.query().setFoo...(value);
-     * int count = nextSchemaProductStatusBhv.<span style="color: #FD4747">selectCount</span>(cb);
+     * int count = nextSchemaProductStatusBhv.<span style="color: #DD4747">selectCount</span>(cb);
      * </pre>
      * @param cb The condition-bean of NextSchemaProductStatus. (NotNull)
      * @return The count for the condition. (NotMinus)
@@ -119,12 +121,14 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
     //                                                                       Entity Select
     //                                                                       =============
     /**
-     * Select the entity by the condition-bean.
+     * Select the entity by the condition-bean. #beforejava8 <br />
+     * <span style="color: #AD4747; font-size: 120%">The return might be null if no data, so you should have null check.</span> <br />
+     * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, use selectEntityWithDeletedCheck().</span>
      * <pre>
      * NextSchemaProductStatusCB cb = new NextSchemaProductStatusCB();
      * cb.query().setFoo...(value);
-     * NextSchemaProductStatus nextSchemaProductStatus = nextSchemaProductStatusBhv.<span style="color: #FD4747">selectEntity</span>(cb);
-     * if (nextSchemaProductStatus != null) {
+     * NextSchemaProductStatus nextSchemaProductStatus = nextSchemaProductStatusBhv.<span style="color: #DD4747">selectEntity</span>(cb);
+     * if (nextSchemaProductStatus != null) { <span style="color: #3F7E5E">// null check</span>
      *     ... = nextSchemaProductStatus.get...();
      * } else {
      *     ...
@@ -132,8 +136,8 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
      * </pre>
      * @param cb The condition-bean of NextSchemaProductStatus. (NotNull)
      * @return The entity selected by the condition. (NullAllowed: if no data, it returns null)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public NextSchemaProductStatus selectEntity(NextSchemaProductStatusCB cb) {
         return doSelectEntity(cb, NextSchemaProductStatus.class);
@@ -145,24 +149,29 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
             public List<ENTITY> callbackSelectList(NextSchemaProductStatusCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
+    protected <ENTITY extends NextSchemaProductStatus> OptionalEntity<ENTITY> doSelectOptionalEntity(NextSchemaProductStatusCB cb, Class<ENTITY> tp) {
+        return createOptionalEntity(doSelectEntity(cb, tp), cb);
+    }
+
     @Override
     protected Entity doReadEntity(ConditionBean cb) {
         return selectEntity(downcast(cb));
     }
 
     /**
-     * Select the entity by the condition-bean with deleted check.
+     * Select the entity by the condition-bean with deleted check. <br />
+     * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, this method is good.</span>
      * <pre>
      * NextSchemaProductStatusCB cb = new NextSchemaProductStatusCB();
      * cb.query().setFoo...(value);
-     * NextSchemaProductStatus nextSchemaProductStatus = nextSchemaProductStatusBhv.<span style="color: #FD4747">selectEntityWithDeletedCheck</span>(cb);
+     * NextSchemaProductStatus nextSchemaProductStatus = nextSchemaProductStatusBhv.<span style="color: #DD4747">selectEntityWithDeletedCheck</span>(cb);
      * ... = nextSchemaProductStatus.get...(); <span style="color: #3F7E5E">// the entity always be not null</span>
      * </pre>
      * @param cb The condition-bean of NextSchemaProductStatus. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public NextSchemaProductStatus selectEntityWithDeletedCheck(NextSchemaProductStatusCB cb) {
         return doSelectEntityWithDeletedCheck(cb, NextSchemaProductStatus.class);
@@ -183,8 +192,8 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
      * Select the entity by the primary-key value.
      * @param productStatusCode The one of primary key. (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public NextSchemaProductStatus selectByPKValue(String productStatusCode) {
         return doSelectByPKValue(productStatusCode, NextSchemaProductStatus.class);
@@ -198,9 +207,9 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
      * Select the entity by the primary-key value with deleted check.
      * @param productStatusCode The one of primary key. (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public NextSchemaProductStatus selectByPKValueWithDeletedCheck(String productStatusCode) {
         return doSelectByPKValueWithDeletedCheck(productStatusCode, NextSchemaProductStatus.class);
@@ -226,14 +235,14 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
      * NextSchemaProductStatusCB cb = new NextSchemaProductStatusCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * ListResultBean&lt;NextSchemaProductStatus&gt; nextSchemaProductStatusList = nextSchemaProductStatusBhv.<span style="color: #FD4747">selectList</span>(cb);
+     * ListResultBean&lt;NextSchemaProductStatus&gt; nextSchemaProductStatusList = nextSchemaProductStatusBhv.<span style="color: #DD4747">selectList</span>(cb);
      * for (NextSchemaProductStatus nextSchemaProductStatus : nextSchemaProductStatusList) {
      *     ... = nextSchemaProductStatus.get...();
      * }
      * </pre>
      * @param cb The condition-bean of NextSchemaProductStatus. (NotNull)
      * @return The result bean of selected list. (NotNull: if no data, returns empty list)
-     * @exception org.seasar.dbflute.exception.DangerousResultSizeException When the result size is over the specified safety size.
+     * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public ListResultBean<NextSchemaProductStatus> selectList(NextSchemaProductStatusCB cb) {
         return doSelectList(cb, NextSchemaProductStatus.class);
@@ -261,8 +270,8 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
      * NextSchemaProductStatusCB cb = new NextSchemaProductStatusCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * cb.<span style="color: #FD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
-     * PagingResultBean&lt;NextSchemaProductStatus&gt; page = nextSchemaProductStatusBhv.<span style="color: #FD4747">selectPage</span>(cb);
+     * cb.<span style="color: #DD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
+     * PagingResultBean&lt;NextSchemaProductStatus&gt; page = nextSchemaProductStatusBhv.<span style="color: #DD4747">selectPage</span>(cb);
      * int allRecordCount = page.getAllRecordCount();
      * int allPageCount = page.getAllPageCount();
      * boolean isExistPrePage = page.isExistPrePage();
@@ -274,7 +283,7 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
      * </pre>
      * @param cb The condition-bean of NextSchemaProductStatus. (NotNull)
      * @return The result bean of selected page. (NotNull: if no data, returns bean as empty list)
-     * @exception org.seasar.dbflute.exception.DangerousResultSizeException When the result size is over the specified safety size.
+     * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public PagingResultBean<NextSchemaProductStatus> selectPage(NextSchemaProductStatusCB cb) {
         return doSelectPage(cb, NextSchemaProductStatus.class);
@@ -301,7 +310,7 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
      * <pre>
      * NextSchemaProductStatusCB cb = new NextSchemaProductStatusCB();
      * cb.query().setFoo...(value);
-     * nextSchemaProductStatusBhv.<span style="color: #FD4747">selectCursor</span>(cb, new EntityRowHandler&lt;NextSchemaProductStatus&gt;() {
+     * nextSchemaProductStatusBhv.<span style="color: #DD4747">selectCursor</span>(cb, new EntityRowHandler&lt;NextSchemaProductStatus&gt;() {
      *     public void handle(NextSchemaProductStatus entity) {
      *         ... = entity.getFoo...();
      *     }
@@ -330,9 +339,9 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
      * Select the scalar value derived by a function from uniquely-selected records. <br />
      * You should call a function method after this method called like as follows:
      * <pre>
-     * nextSchemaProductStatusBhv.<span style="color: #FD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
+     * nextSchemaProductStatusBhv.<span style="color: #DD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
      *     public void query(NextSchemaProductStatusCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
+     *         cb.specify().<span style="color: #DD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
      *         cb.query().setBarName_PrefixSearch("S");
      *     }
      * });
@@ -372,61 +381,96 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
     //                                                                       Load Referrer
     //                                                                       =============
     /**
-     * {Refer to overload method that has an argument of the list of entity.}
-     * @param nextSchemaProductStatus The entity of nextSchemaProductStatus. (NotNull)
-     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
-     */
-    public void loadWhiteRefNextTargetList(NextSchemaProductStatus nextSchemaProductStatus, ConditionBeanSetupper<WhiteRefNextTargetCB> conditionBeanSetupper) {
-        xassLRArg(nextSchemaProductStatus, conditionBeanSetupper);
-        loadWhiteRefNextTargetList(xnewLRLs(nextSchemaProductStatus), conditionBeanSetupper);
-    }
-    /**
-     * Load referrer of whiteRefNextTargetList with the set-upper for condition-bean of referrer. <br />
+     * Load referrer of whiteRefNextTargetList by the set-upper of referrer. <br />
      * WHITE_REF_NEXT_TARGET by NEXT_TARGET_CODE, named 'whiteRefNextTargetList'.
      * <pre>
-     * nextSchemaProductStatusBhv.<span style="color: #FD4747">loadWhiteRefNextTargetList</span>(nextSchemaProductStatusList, new ConditionBeanSetupper&lt;WhiteRefNextTargetCB&gt;() {
+     * nextSchemaProductStatusBhv.<span style="color: #DD4747">loadWhiteRefNextTargetList</span>(nextSchemaProductStatusList, new ConditionBeanSetupper&lt;WhiteRefNextTargetCB&gt;() {
      *     public void setup(WhiteRefNextTargetCB cb) {
      *         cb.setupSelect...();
      *         cb.query().setFoo...(value);
-     *         cb.query().addOrderBy_Bar...(); <span style="color: #3F7E5E">// basically you should order referrer list</span>
+     *         cb.query().addOrderBy_Bar...();
      *     }
-     * });
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
+     * <span style="color: #3F7E5E">//}).withNestedList(referrerList -&gt {</span>
+     * <span style="color: #3F7E5E">//    ...</span>
+     * <span style="color: #3F7E5E">//});</span>
      * for (NextSchemaProductStatus nextSchemaProductStatus : nextSchemaProductStatusList) {
-     *     ... = nextSchemaProductStatus.<span style="color: #FD4747">getWhiteRefNextTargetList()</span>;
+     *     ... = nextSchemaProductStatus.<span style="color: #DD4747">getWhiteRefNextTargetList()</span>;
      * }
      * </pre>
-     * About internal policy, the value of primary key(and others too) is treated as case-insensitive. <br />
-     * The condition-bean that the set-upper provides have settings before you touch it. It is as follows:
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
      * <pre>
      * cb.query().setNextTargetCode_InScope(pkList);
      * cb.query().addOrderBy_NextTargetCode_Asc();
      * </pre>
      * @param nextSchemaProductStatusList The entity list of nextSchemaProductStatus. (NotNull)
-     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
+     * @param setupper The callback to set up referrer condition-bean for loading referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public void loadWhiteRefNextTargetList(List<NextSchemaProductStatus> nextSchemaProductStatusList, ConditionBeanSetupper<WhiteRefNextTargetCB> conditionBeanSetupper) {
-        xassLRArg(nextSchemaProductStatusList, conditionBeanSetupper);
-        loadWhiteRefNextTargetList(nextSchemaProductStatusList, new LoadReferrerOption<WhiteRefNextTargetCB, WhiteRefNextTarget>().xinit(conditionBeanSetupper));
+    public NestedReferrerLoader<WhiteRefNextTarget> loadWhiteRefNextTargetList(List<NextSchemaProductStatus> nextSchemaProductStatusList, ConditionBeanSetupper<WhiteRefNextTargetCB> setupper) {
+        xassLRArg(nextSchemaProductStatusList, setupper);
+        return doLoadWhiteRefNextTargetList(nextSchemaProductStatusList, new LoadReferrerOption<WhiteRefNextTargetCB, WhiteRefNextTarget>().xinit(setupper));
     }
+
     /**
-     * {Refer to overload method that has an argument of the list of entity.}
+     * Load referrer of whiteRefNextTargetList by the set-upper of referrer. <br />
+     * WHITE_REF_NEXT_TARGET by NEXT_TARGET_CODE, named 'whiteRefNextTargetList'.
+     * <pre>
+     * nextSchemaProductStatusBhv.<span style="color: #DD4747">loadWhiteRefNextTargetList</span>(nextSchemaProductStatusList, new ConditionBeanSetupper&lt;WhiteRefNextTargetCB&gt;() {
+     *     public void setup(WhiteRefNextTargetCB cb) {
+     *         cb.setupSelect...();
+     *         cb.query().setFoo...(value);
+     *         cb.query().addOrderBy_Bar...();
+     *     }
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
+     * <span style="color: #3F7E5E">//}).withNestedList(referrerList -&gt {</span>
+     * <span style="color: #3F7E5E">//    ...</span>
+     * <span style="color: #3F7E5E">//});</span>
+     * ... = nextSchemaProductStatus.<span style="color: #DD4747">getWhiteRefNextTargetList()</span>;
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
+     * <pre>
+     * cb.query().setNextTargetCode_InScope(pkList);
+     * cb.query().addOrderBy_NextTargetCode_Asc();
+     * </pre>
+     * @param nextSchemaProductStatus The entity of nextSchemaProductStatus. (NotNull)
+     * @param setupper The callback to set up referrer condition-bean for loading referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
+     */
+    public NestedReferrerLoader<WhiteRefNextTarget> loadWhiteRefNextTargetList(NextSchemaProductStatus nextSchemaProductStatus, ConditionBeanSetupper<WhiteRefNextTargetCB> setupper) {
+        xassLRArg(nextSchemaProductStatus, setupper);
+        return doLoadWhiteRefNextTargetList(xnewLRLs(nextSchemaProductStatus), new LoadReferrerOption<WhiteRefNextTargetCB, WhiteRefNextTarget>().xinit(setupper));
+    }
+
+    /**
+     * {Refer to overload method that has an argument of the list of entity.} #beforejava8
      * @param nextSchemaProductStatus The entity of nextSchemaProductStatus. (NotNull)
      * @param loadReferrerOption The option of load-referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public void loadWhiteRefNextTargetList(NextSchemaProductStatus nextSchemaProductStatus, LoadReferrerOption<WhiteRefNextTargetCB, WhiteRefNextTarget> loadReferrerOption) {
+    public NestedReferrerLoader<WhiteRefNextTarget> loadWhiteRefNextTargetList(NextSchemaProductStatus nextSchemaProductStatus, LoadReferrerOption<WhiteRefNextTargetCB, WhiteRefNextTarget> loadReferrerOption) {
         xassLRArg(nextSchemaProductStatus, loadReferrerOption);
-        loadWhiteRefNextTargetList(xnewLRLs(nextSchemaProductStatus), loadReferrerOption);
+        return loadWhiteRefNextTargetList(xnewLRLs(nextSchemaProductStatus), loadReferrerOption);
     }
+
     /**
-     * {Refer to overload method that has an argument of condition-bean setupper.}
+     * {Refer to overload method that has an argument of condition-bean setupper.} #beforejava8
      * @param nextSchemaProductStatusList The entity list of nextSchemaProductStatus. (NotNull)
      * @param loadReferrerOption The option of load-referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public void loadWhiteRefNextTargetList(List<NextSchemaProductStatus> nextSchemaProductStatusList, LoadReferrerOption<WhiteRefNextTargetCB, WhiteRefNextTarget> loadReferrerOption) {
+    @SuppressWarnings("unchecked")
+    public NestedReferrerLoader<WhiteRefNextTarget> loadWhiteRefNextTargetList(List<NextSchemaProductStatus> nextSchemaProductStatusList, LoadReferrerOption<WhiteRefNextTargetCB, WhiteRefNextTarget> loadReferrerOption) {
         xassLRArg(nextSchemaProductStatusList, loadReferrerOption);
-        if (nextSchemaProductStatusList.isEmpty()) { return; }
+        if (nextSchemaProductStatusList.isEmpty()) { return (NestedReferrerLoader<WhiteRefNextTarget>)EMPTY_LOADER; }
+        return doLoadWhiteRefNextTargetList(nextSchemaProductStatusList, loadReferrerOption);
+    }
+
+    protected NestedReferrerLoader<WhiteRefNextTarget> doLoadWhiteRefNextTargetList(List<NextSchemaProductStatus> nextSchemaProductStatusList, LoadReferrerOption<WhiteRefNextTargetCB, WhiteRefNextTarget> option) {
         final WhiteRefNextTargetBhv referrerBhv = xgetBSFLR().select(WhiteRefNextTargetBhv.class);
-        helpLoadReferrerInternally(nextSchemaProductStatusList, loadReferrerOption, new InternalLoadReferrerCallback<NextSchemaProductStatus, String, WhiteRefNextTargetCB, WhiteRefNextTarget>() {
+        return helpLoadReferrerInternally(nextSchemaProductStatusList, option, new InternalLoadReferrerCallback<NextSchemaProductStatus, String, WhiteRefNextTargetCB, WhiteRefNextTarget>() {
             public String getPKVal(NextSchemaProductStatus et)
             { return et.getProductStatusCode(); }
             public void setRfLs(NextSchemaProductStatus et, List<WhiteRefNextTarget> ls)
@@ -445,61 +489,96 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
     }
 
     /**
-     * {Refer to overload method that has an argument of the list of entity.}
-     * @param nextSchemaProductStatus The entity of nextSchemaProductStatus. (NotNull)
-     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
-     */
-    public void loadNextSchemaProductList(NextSchemaProductStatus nextSchemaProductStatus, ConditionBeanSetupper<NextSchemaProductCB> conditionBeanSetupper) {
-        xassLRArg(nextSchemaProductStatus, conditionBeanSetupper);
-        loadNextSchemaProductList(xnewLRLs(nextSchemaProductStatus), conditionBeanSetupper);
-    }
-    /**
-     * Load referrer of nextSchemaProductList with the set-upper for condition-bean of referrer. <br />
+     * Load referrer of nextSchemaProductList by the set-upper of referrer. <br />
      * (隣のスキーマ)NEXT_SCHEMA_PRODUCT by PRODUCT_STATUS_CODE, named 'nextSchemaProductList'.
      * <pre>
-     * nextSchemaProductStatusBhv.<span style="color: #FD4747">loadNextSchemaProductList</span>(nextSchemaProductStatusList, new ConditionBeanSetupper&lt;NextSchemaProductCB&gt;() {
+     * nextSchemaProductStatusBhv.<span style="color: #DD4747">loadNextSchemaProductList</span>(nextSchemaProductStatusList, new ConditionBeanSetupper&lt;NextSchemaProductCB&gt;() {
      *     public void setup(NextSchemaProductCB cb) {
      *         cb.setupSelect...();
      *         cb.query().setFoo...(value);
-     *         cb.query().addOrderBy_Bar...(); <span style="color: #3F7E5E">// basically you should order referrer list</span>
+     *         cb.query().addOrderBy_Bar...();
      *     }
-     * });
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
+     * <span style="color: #3F7E5E">//}).withNestedList(referrerList -&gt {</span>
+     * <span style="color: #3F7E5E">//    ...</span>
+     * <span style="color: #3F7E5E">//});</span>
      * for (NextSchemaProductStatus nextSchemaProductStatus : nextSchemaProductStatusList) {
-     *     ... = nextSchemaProductStatus.<span style="color: #FD4747">getNextSchemaProductList()</span>;
+     *     ... = nextSchemaProductStatus.<span style="color: #DD4747">getNextSchemaProductList()</span>;
      * }
      * </pre>
-     * About internal policy, the value of primary key(and others too) is treated as case-insensitive. <br />
-     * The condition-bean that the set-upper provides have settings before you touch it. It is as follows:
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
      * <pre>
      * cb.query().setProductStatusCode_InScope(pkList);
      * cb.query().addOrderBy_ProductStatusCode_Asc();
      * </pre>
      * @param nextSchemaProductStatusList The entity list of nextSchemaProductStatus. (NotNull)
-     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
+     * @param setupper The callback to set up referrer condition-bean for loading referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public void loadNextSchemaProductList(List<NextSchemaProductStatus> nextSchemaProductStatusList, ConditionBeanSetupper<NextSchemaProductCB> conditionBeanSetupper) {
-        xassLRArg(nextSchemaProductStatusList, conditionBeanSetupper);
-        loadNextSchemaProductList(nextSchemaProductStatusList, new LoadReferrerOption<NextSchemaProductCB, NextSchemaProduct>().xinit(conditionBeanSetupper));
+    public NestedReferrerLoader<NextSchemaProduct> loadNextSchemaProductList(List<NextSchemaProductStatus> nextSchemaProductStatusList, ConditionBeanSetupper<NextSchemaProductCB> setupper) {
+        xassLRArg(nextSchemaProductStatusList, setupper);
+        return doLoadNextSchemaProductList(nextSchemaProductStatusList, new LoadReferrerOption<NextSchemaProductCB, NextSchemaProduct>().xinit(setupper));
     }
+
     /**
-     * {Refer to overload method that has an argument of the list of entity.}
+     * Load referrer of nextSchemaProductList by the set-upper of referrer. <br />
+     * (隣のスキーマ)NEXT_SCHEMA_PRODUCT by PRODUCT_STATUS_CODE, named 'nextSchemaProductList'.
+     * <pre>
+     * nextSchemaProductStatusBhv.<span style="color: #DD4747">loadNextSchemaProductList</span>(nextSchemaProductStatusList, new ConditionBeanSetupper&lt;NextSchemaProductCB&gt;() {
+     *     public void setup(NextSchemaProductCB cb) {
+     *         cb.setupSelect...();
+     *         cb.query().setFoo...(value);
+     *         cb.query().addOrderBy_Bar...();
+     *     }
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
+     * <span style="color: #3F7E5E">//}).withNestedList(referrerList -&gt {</span>
+     * <span style="color: #3F7E5E">//    ...</span>
+     * <span style="color: #3F7E5E">//});</span>
+     * ... = nextSchemaProductStatus.<span style="color: #DD4747">getNextSchemaProductList()</span>;
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
+     * <pre>
+     * cb.query().setProductStatusCode_InScope(pkList);
+     * cb.query().addOrderBy_ProductStatusCode_Asc();
+     * </pre>
+     * @param nextSchemaProductStatus The entity of nextSchemaProductStatus. (NotNull)
+     * @param setupper The callback to set up referrer condition-bean for loading referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
+     */
+    public NestedReferrerLoader<NextSchemaProduct> loadNextSchemaProductList(NextSchemaProductStatus nextSchemaProductStatus, ConditionBeanSetupper<NextSchemaProductCB> setupper) {
+        xassLRArg(nextSchemaProductStatus, setupper);
+        return doLoadNextSchemaProductList(xnewLRLs(nextSchemaProductStatus), new LoadReferrerOption<NextSchemaProductCB, NextSchemaProduct>().xinit(setupper));
+    }
+
+    /**
+     * {Refer to overload method that has an argument of the list of entity.} #beforejava8
      * @param nextSchemaProductStatus The entity of nextSchemaProductStatus. (NotNull)
      * @param loadReferrerOption The option of load-referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public void loadNextSchemaProductList(NextSchemaProductStatus nextSchemaProductStatus, LoadReferrerOption<NextSchemaProductCB, NextSchemaProduct> loadReferrerOption) {
+    public NestedReferrerLoader<NextSchemaProduct> loadNextSchemaProductList(NextSchemaProductStatus nextSchemaProductStatus, LoadReferrerOption<NextSchemaProductCB, NextSchemaProduct> loadReferrerOption) {
         xassLRArg(nextSchemaProductStatus, loadReferrerOption);
-        loadNextSchemaProductList(xnewLRLs(nextSchemaProductStatus), loadReferrerOption);
+        return loadNextSchemaProductList(xnewLRLs(nextSchemaProductStatus), loadReferrerOption);
     }
+
     /**
-     * {Refer to overload method that has an argument of condition-bean setupper.}
+     * {Refer to overload method that has an argument of condition-bean setupper.} #beforejava8
      * @param nextSchemaProductStatusList The entity list of nextSchemaProductStatus. (NotNull)
      * @param loadReferrerOption The option of load-referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public void loadNextSchemaProductList(List<NextSchemaProductStatus> nextSchemaProductStatusList, LoadReferrerOption<NextSchemaProductCB, NextSchemaProduct> loadReferrerOption) {
+    @SuppressWarnings("unchecked")
+    public NestedReferrerLoader<NextSchemaProduct> loadNextSchemaProductList(List<NextSchemaProductStatus> nextSchemaProductStatusList, LoadReferrerOption<NextSchemaProductCB, NextSchemaProduct> loadReferrerOption) {
         xassLRArg(nextSchemaProductStatusList, loadReferrerOption);
-        if (nextSchemaProductStatusList.isEmpty()) { return; }
+        if (nextSchemaProductStatusList.isEmpty()) { return (NestedReferrerLoader<NextSchemaProduct>)EMPTY_LOADER; }
+        return doLoadNextSchemaProductList(nextSchemaProductStatusList, loadReferrerOption);
+    }
+
+    protected NestedReferrerLoader<NextSchemaProduct> doLoadNextSchemaProductList(List<NextSchemaProductStatus> nextSchemaProductStatusList, LoadReferrerOption<NextSchemaProductCB, NextSchemaProduct> option) {
         final NextSchemaProductBhv referrerBhv = xgetBSFLR().select(NextSchemaProductBhv.class);
-        helpLoadReferrerInternally(nextSchemaProductStatusList, loadReferrerOption, new InternalLoadReferrerCallback<NextSchemaProductStatus, String, NextSchemaProductCB, NextSchemaProduct>() {
+        return helpLoadReferrerInternally(nextSchemaProductStatusList, option, new InternalLoadReferrerCallback<NextSchemaProductStatus, String, NextSchemaProductCB, NextSchemaProduct>() {
             public String getPKVal(NextSchemaProductStatus et)
             { return et.getProductStatusCode(); }
             public void setRfLs(NextSchemaProductStatus et, List<NextSchemaProduct> ls)
@@ -559,12 +638,12 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
      * <span style="color: #3F7E5E">//nextSchemaProductStatus.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//nextSchemaProductStatus.set...;</span>
-     * nextSchemaProductStatusBhv.<span style="color: #FD4747">insert</span>(nextSchemaProductStatus);
+     * nextSchemaProductStatusBhv.<span style="color: #DD4747">insert</span>(nextSchemaProductStatus);
      * ... = nextSchemaProductStatus.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * <p>While, when the entity is created by select, all columns are registered.</p>
      * @param nextSchemaProductStatus The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insert(NextSchemaProductStatus nextSchemaProductStatus) {
         doInsert(nextSchemaProductStatus, null);
@@ -600,17 +679,17 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
      * <span style="color: #3F7E5E">//nextSchemaProductStatus.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//nextSchemaProductStatus.set...;</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * nextSchemaProductStatus.<span style="color: #FD4747">setVersionNo</span>(value);
+     * nextSchemaProductStatus.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
-     *     nextSchemaProductStatusBhv.<span style="color: #FD4747">update</span>(nextSchemaProductStatus);
+     *     nextSchemaProductStatusBhv.<span style="color: #DD4747">update</span>(nextSchemaProductStatus);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param nextSchemaProductStatus The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void update(final NextSchemaProductStatus nextSchemaProductStatus) {
         doUpdate(nextSchemaProductStatus, null);
@@ -660,11 +739,11 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
     /**
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br />
-     * <p><span style="color: #FD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
+     * <p><span style="color: #DD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
      * @param nextSchemaProductStatus The entity of insert or update target. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insertOrUpdate(NextSchemaProductStatus nextSchemaProductStatus) {
         doInesrtOrUpdate(nextSchemaProductStatus, null, null);
@@ -700,16 +779,16 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
      * NextSchemaProductStatus nextSchemaProductStatus = new NextSchemaProductStatus();
      * nextSchemaProductStatus.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * nextSchemaProductStatus.<span style="color: #FD4747">setVersionNo</span>(value);
+     * nextSchemaProductStatus.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
-     *     nextSchemaProductStatusBhv.<span style="color: #FD4747">delete</span>(nextSchemaProductStatus);
+     *     nextSchemaProductStatusBhv.<span style="color: #DD4747">delete</span>(nextSchemaProductStatus);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param nextSchemaProductStatus The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void delete(NextSchemaProductStatus nextSchemaProductStatus) {
         doDelete(nextSchemaProductStatus, null);
@@ -744,7 +823,7 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
     /**
      * Batch-insert the entity list modified-only of same-set columns. (DefaultConstraintsEnabled) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
-     * <p><span style="color: #FD4747; font-size: 120%">The columns of least common multiple are registered like this:</span></p>
+     * <p><span style="color: #DD4747; font-size: 120%">The columns of least common multiple are registered like this:</span></p>
      * <pre>
      * for (... : ...) {
      *     NextSchemaProductStatus nextSchemaProductStatus = new NextSchemaProductStatus();
@@ -757,7 +836,7 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
      *     <span style="color: #3F7E5E">// columns not-called in all entities are registered as null or default value</span>
      *     nextSchemaProductStatusList.add(nextSchemaProductStatus);
      * }
-     * nextSchemaProductStatusBhv.<span style="color: #FD4747">batchInsert</span>(nextSchemaProductStatusList);
+     * nextSchemaProductStatusBhv.<span style="color: #DD4747">batchInsert</span>(nextSchemaProductStatusList);
      * </pre>
      * <p>While, when the entities are created by select, all columns are registered.</p>
      * <p>And if the table has an identity, entities after the process don't have incremented values.
@@ -791,7 +870,7 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
     /**
      * Batch-update the entity list modified-only of same-set columns. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
-     * <span style="color: #FD4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
+     * <span style="color: #DD4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
      * <pre>
      * for (... : ...) {
      *     NextSchemaProductStatus nextSchemaProductStatus = new NextSchemaProductStatus();
@@ -806,11 +885,11 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
      *     <span style="color: #3F7E5E">// (others are not updated: their values are kept)</span>
      *     nextSchemaProductStatusList.add(nextSchemaProductStatus);
      * }
-     * nextSchemaProductStatusBhv.<span style="color: #FD4747">batchUpdate</span>(nextSchemaProductStatusList);
+     * nextSchemaProductStatusBhv.<span style="color: #DD4747">batchUpdate</span>(nextSchemaProductStatusList);
      * </pre>
      * @param nextSchemaProductStatusList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<NextSchemaProductStatus> nextSchemaProductStatusList) {
         UpdateOption<NextSchemaProductStatusCB> op = createPlainUpdateOption();
@@ -839,16 +918,16 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * <pre>
      * <span style="color: #3F7E5E">// e.g. update two columns only</span>
-     * nextSchemaProductStatusBhv.<span style="color: #FD4747">batchUpdate</span>(nextSchemaProductStatusList, new SpecifyQuery<NextSchemaProductStatusCB>() {
+     * nextSchemaProductStatusBhv.<span style="color: #DD4747">batchUpdate</span>(nextSchemaProductStatusList, new SpecifyQuery<NextSchemaProductStatusCB>() {
      *     public void specify(NextSchemaProductStatusCB cb) { <span style="color: #3F7E5E">// the two only updated</span>
-     *         cb.specify().<span style="color: #FD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
-     *         cb.specify().<span style="color: #FD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
+     *         cb.specify().<span style="color: #DD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
+     *         cb.specify().<span style="color: #DD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
      *     }
      * });
      * <span style="color: #3F7E5E">// e.g. update every column in the table</span>
-     * nextSchemaProductStatusBhv.<span style="color: #FD4747">batchUpdate</span>(nextSchemaProductStatusList, new SpecifyQuery<NextSchemaProductStatusCB>() {
+     * nextSchemaProductStatusBhv.<span style="color: #DD4747">batchUpdate</span>(nextSchemaProductStatusList, new SpecifyQuery<NextSchemaProductStatusCB>() {
      *     public void specify(NextSchemaProductStatusCB cb) { <span style="color: #3F7E5E">// all columns are updated</span>
-     *         cb.specify().<span style="color: #FD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
+     *         cb.specify().<span style="color: #DD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
      *     }
      * });
      * </pre>
@@ -860,7 +939,7 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
      * @param nextSchemaProductStatusList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @param updateColumnSpec The specification of update columns. (NotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<NextSchemaProductStatus> nextSchemaProductStatusList, SpecifyQuery<NextSchemaProductStatusCB> updateColumnSpec) {
         return doBatchUpdate(nextSchemaProductStatusList, createSpecifiedUpdateOption(updateColumnSpec));
@@ -876,7 +955,7 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * @param nextSchemaProductStatusList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of deleted count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchDelete(List<NextSchemaProductStatus> nextSchemaProductStatusList) {
         return doBatchDelete(nextSchemaProductStatusList, null);
@@ -905,7 +984,7 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
     /**
      * Insert the several entities by query (modified-only for fixed value).
      * <pre>
-     * nextSchemaProductStatusBhv.<span style="color: #FD4747">queryInsert</span>(new QueryInsertSetupper&lt;NextSchemaProductStatus, NextSchemaProductStatusCB&gt;() {
+     * nextSchemaProductStatusBhv.<span style="color: #DD4747">queryInsert</span>(new QueryInsertSetupper&lt;NextSchemaProductStatus, NextSchemaProductStatusCB&gt;() {
      *     public ConditionBean setup(nextSchemaProductStatus entity, NextSchemaProductStatusCB intoCB) {
      *         FooCB cb = FooCB();
      *         cb.setupSelect_Bar();
@@ -967,12 +1046,12 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
      * <span style="color: #3F7E5E">//nextSchemaProductStatus.setVersionNo(value);</span>
      * NextSchemaProductStatusCB cb = new NextSchemaProductStatusCB();
      * cb.query().setFoo...(value);
-     * nextSchemaProductStatusBhv.<span style="color: #FD4747">queryUpdate</span>(nextSchemaProductStatus, cb);
+     * nextSchemaProductStatusBhv.<span style="color: #DD4747">queryUpdate</span>(nextSchemaProductStatus, cb);
      * </pre>
      * @param nextSchemaProductStatus The entity that contains update values. (NotNull, PrimaryKeyNullAllowed)
      * @param cb The condition-bean of NextSchemaProductStatus. (NotNull)
      * @return The updated count.
-     * @exception org.seasar.dbflute.exception.NonQueryUpdateNotAllowedException When the query has no condition.
+     * @exception NonQueryUpdateNotAllowedException When the query has no condition.
      */
     public int queryUpdate(NextSchemaProductStatus nextSchemaProductStatus, NextSchemaProductStatusCB cb) {
         return doQueryUpdate(nextSchemaProductStatus, cb, null);
@@ -995,11 +1074,11 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
      * <pre>
      * NextSchemaProductStatusCB cb = new NextSchemaProductStatusCB();
      * cb.query().setFoo...(value);
-     * nextSchemaProductStatusBhv.<span style="color: #FD4747">queryDelete</span>(nextSchemaProductStatus, cb);
+     * nextSchemaProductStatusBhv.<span style="color: #DD4747">queryDelete</span>(nextSchemaProductStatus, cb);
      * </pre>
      * @param cb The condition-bean of NextSchemaProductStatus. (NotNull)
      * @return The deleted count.
-     * @exception org.seasar.dbflute.exception.NonQueryDeleteNotAllowedException When the query has no condition.
+     * @exception NonQueryDeleteNotAllowedException When the query has no condition.
      */
     public int queryDelete(NextSchemaProductStatusCB cb) {
         return doQueryDelete(cb, null);
@@ -1035,12 +1114,12 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
      * InsertOption<NextSchemaProductStatusCB> option = new InsertOption<NextSchemaProductStatusCB>();
      * <span style="color: #3F7E5E">// you can insert by your values for common columns</span>
      * option.disableCommonColumnAutoSetup();
-     * nextSchemaProductStatusBhv.<span style="color: #FD4747">varyingInsert</span>(nextSchemaProductStatus, option);
+     * nextSchemaProductStatusBhv.<span style="color: #DD4747">varyingInsert</span>(nextSchemaProductStatus, option);
      * ... = nextSchemaProductStatus.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * @param nextSchemaProductStatus The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
      * @param option The option of insert for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingInsert(NextSchemaProductStatus nextSchemaProductStatus, InsertOption<NextSchemaProductStatusCB> option) {
         assertInsertOptionNotNull(option);
@@ -1056,25 +1135,25 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
      * nextSchemaProductStatus.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * nextSchemaProductStatus.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * nextSchemaProductStatus.<span style="color: #FD4747">setVersionNo</span>(value);
+     * nextSchemaProductStatus.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     <span style="color: #3F7E5E">// you can update by self calculation values</span>
      *     UpdateOption&lt;NextSchemaProductStatusCB&gt; option = new UpdateOption&lt;NextSchemaProductStatusCB&gt;();
      *     option.self(new SpecifyQuery&lt;NextSchemaProductStatusCB&gt;() {
      *         public void specify(NextSchemaProductStatusCB cb) {
-     *             cb.specify().<span style="color: #FD4747">columnXxxCount()</span>;
+     *             cb.specify().<span style="color: #DD4747">columnXxxCount()</span>;
      *         }
      *     }).plus(1); <span style="color: #3F7E5E">// XXX_COUNT = XXX_COUNT + 1</span>
-     *     nextSchemaProductStatusBhv.<span style="color: #FD4747">varyingUpdate</span>(nextSchemaProductStatus, option);
+     *     nextSchemaProductStatusBhv.<span style="color: #DD4747">varyingUpdate</span>(nextSchemaProductStatus, option);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param nextSchemaProductStatus The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @param option The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingUpdate(NextSchemaProductStatus nextSchemaProductStatus, UpdateOption<NextSchemaProductStatusCB> option) {
         assertUpdateOptionNotNull(option);
@@ -1087,9 +1166,9 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
      * @param nextSchemaProductStatus The entity of insert or update target. (NotNull)
      * @param insertOption The option of insert for varying requests. (NotNull)
      * @param updateOption The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingInsertOrUpdate(NextSchemaProductStatus nextSchemaProductStatus, InsertOption<NextSchemaProductStatusCB> insertOption, UpdateOption<NextSchemaProductStatusCB> updateOption) {
         assertInsertOptionNotNull(insertOption); assertUpdateOptionNotNull(updateOption);
@@ -1102,8 +1181,8 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
      * Other specifications are same as delete(entity).
      * @param nextSchemaProductStatus The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @param option The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void varyingDelete(NextSchemaProductStatus nextSchemaProductStatus, DeleteOption<NextSchemaProductStatusCB> option) {
         assertDeleteOptionNotNull(option);
@@ -1189,16 +1268,16 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
      * UpdateOption&lt;NextSchemaProductStatusCB&gt; option = new UpdateOption&lt;NextSchemaProductStatusCB&gt;();
      * option.self(new SpecifyQuery&lt;NextSchemaProductStatusCB&gt;() {
      *     public void specify(NextSchemaProductStatusCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFooCount()</span>;
+     *         cb.specify().<span style="color: #DD4747">columnFooCount()</span>;
      *     }
      * }).plus(1); <span style="color: #3F7E5E">// FOO_COUNT = FOO_COUNT + 1</span>
-     * nextSchemaProductStatusBhv.<span style="color: #FD4747">varyingQueryUpdate</span>(nextSchemaProductStatus, cb, option);
+     * nextSchemaProductStatusBhv.<span style="color: #DD4747">varyingQueryUpdate</span>(nextSchemaProductStatus, cb, option);
      * </pre>
      * @param nextSchemaProductStatus The entity that contains update values. (NotNull) {PrimaryKeyNotRequired}
      * @param cb The condition-bean of NextSchemaProductStatus. (NotNull)
      * @param option The option of update for varying requests. (NotNull)
      * @return The updated count.
-     * @exception org.seasar.dbflute.exception.NonQueryUpdateNotAllowedException When the query has no condition (if not allowed).
+     * @exception NonQueryUpdateNotAllowedException When the query has no condition (if not allowed).
      */
     public int varyingQueryUpdate(NextSchemaProductStatus nextSchemaProductStatus, NextSchemaProductStatusCB cb, UpdateOption<NextSchemaProductStatusCB> option) {
         assertUpdateOptionNotNull(option);
@@ -1212,7 +1291,7 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
      * @param cb The condition-bean of NextSchemaProductStatus. (NotNull)
      * @param option The option of delete for varying requests. (NotNull)
      * @return The deleted count.
-     * @exception org.seasar.dbflute.exception.NonQueryDeleteNotAllowedException When the query has no condition (if not allowed).
+     * @exception NonQueryDeleteNotAllowedException When the query has no condition (if not allowed).
      */
     public int varyingQueryDelete(NextSchemaProductStatusCB cb, DeleteOption<NextSchemaProductStatusCB> option) {
         assertDeleteOptionNotNull(option);

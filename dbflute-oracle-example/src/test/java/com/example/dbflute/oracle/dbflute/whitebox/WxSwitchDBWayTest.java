@@ -32,6 +32,15 @@ public class WxSwitchDBWayTest extends UnitContainerTestCase {
     private MemberBhv memberBhv;
 
     // ===================================================================================
+    //                                                                             Setting
+    //                                                                             =======
+    @Override
+    public void tearDown() throws Exception {
+        DBCurrent.getInstance().currentDBDef().lock();
+        super.tearDown();
+    }
+
+    // ===================================================================================
     //                                                                       ConditionBean
     //                                                                       =============
     public void test_LikeSearch_WildCard_DoubleByte_ConditionBean_default() {
@@ -61,7 +70,7 @@ public class WxSwitchDBWayTest extends UnitContainerTestCase {
     public void test_LikeSearch_WildCard_DoubleByte_ConditionBean_suppress_query() {
         // ## Arrange ##
         DBDef currentDBDef = DBCurrent.getInstance().currentDBDef();
-        DBWay original = switchDBWay(currentDBDef);
+        DBWay original = switchOracleDBWay(currentDBDef);
         final Set<SqlLogInfo> logInfoSet = new HashSet<SqlLogInfo>();
         CallbackContext.setSqlLogHandlerOnThread(new SqlLogHandler() {
             public void handle(SqlLogInfo info) {
@@ -81,14 +90,14 @@ public class WxSwitchDBWayTest extends UnitContainerTestCase {
             assertTrue(sql.contains("100％ジュー|%ス||和歌|_山＿テ"));
         } finally {
             CallbackContext.clearCallbackContextOnThread();
-            currentDBDef.switchDBWay(original);
+            backToDefaultDBWay(currentDBDef, original);
         }
     }
 
     public void test_LikeSearch_WildCard_DoubleByte_ConditionBean_suppress_select() {
         // ## Arrange ##
         DBDef currentDBDef = DBCurrent.getInstance().currentDBDef();
-        DBWay original = switchDBWay(currentDBDef);
+        DBWay original = switchOracleDBWay(currentDBDef);
         try {
             String keyword = "100％ジュース|和歌山＿テ";
             String expectedMemberName = "果汁" + keyword + "スト";
@@ -131,7 +140,7 @@ public class WxSwitchDBWayTest extends UnitContainerTestCase {
             assertNotNull(memberList);
             assertEquals(2, memberList.size());// このキーワードにHITする人は１人しかいない
         } finally {
-            currentDBDef.switchDBWay(original);
+            backToDefaultDBWay(currentDBDef, original);
         }
     }
 
@@ -165,7 +174,7 @@ public class WxSwitchDBWayTest extends UnitContainerTestCase {
     public void test_LikeSearch_WildCard_DoubleByte_suppress_OutsideSql() {
         // ## Arrange ##
         DBDef currentDBDef = DBCurrent.getInstance().currentDBDef();
-        DBWay original = switchDBWay(currentDBDef);
+        DBWay original = switchOracleDBWay(currentDBDef);
         final Set<SqlLogInfo> logInfoSet = new HashSet<SqlLogInfo>();
         CallbackContext.setSqlLogHandlerOnThread(new SqlLogHandler() {
             public void handle(SqlLogInfo info) {
@@ -185,15 +194,16 @@ public class WxSwitchDBWayTest extends UnitContainerTestCase {
             assertTrue(sql.contains("100％ジュー|%ス||和歌|_山＿テ"));
         } finally {
             CallbackContext.clearCallbackContextOnThread();
-            currentDBDef.switchDBWay(original);
+            backToDefaultDBWay(currentDBDef, original);
         }
     }
 
     // ===================================================================================
     //                                                                       Assist Helper
     //                                                                       =============
-    protected DBWay switchDBWay(DBDef currentDBDef) {
+    protected DBWay switchOracleDBWay(DBDef currentDBDef) {
         DBWay original = currentDBDef.dbway();
+        currentDBDef.unlock();
         currentDBDef.switchDBWay(new WayOfOracle() {
             private static final long serialVersionUID = 1L;
 
@@ -203,6 +213,13 @@ public class WxSwitchDBWayTest extends UnitContainerTestCase {
                 return DfCollectionUtil.emptyList();
             }
         });
+        return original;
+    }
+
+    protected DBWay backToDefaultDBWay(DBDef currentDBDef, DBWay defaultDBWay) {
+        DBWay original = currentDBDef.dbway();
+        currentDBDef.unlock();
+        currentDBDef.switchDBWay(defaultDBWay);
         return original;
     }
 }

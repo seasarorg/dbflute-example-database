@@ -6,6 +6,8 @@ import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
 import org.seasar.dbflute.dbmeta.DBMeta;
+import org.seasar.dbflute.exception.*;
+import org.seasar.dbflute.optional.*;
 import org.seasar.dbflute.outsidesql.executor.*;
 import com.example.dbflute.oracle.dbflute.exbhv.*;
 import com.example.dbflute.oracle.dbflute.exentity.*;
@@ -91,7 +93,7 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
      * <pre>
      * SynonymNextLinkSynonymCB cb = new SynonymNextLinkSynonymCB();
      * cb.query().setFoo...(value);
-     * int count = synonymNextLinkSynonymBhv.<span style="color: #FD4747">selectCount</span>(cb);
+     * int count = synonymNextLinkSynonymBhv.<span style="color: #DD4747">selectCount</span>(cb);
      * </pre>
      * @param cb The condition-bean of SynonymNextLinkSynonym. (NotNull)
      * @return The count for the condition. (NotMinus)
@@ -119,12 +121,14 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
     //                                                                       Entity Select
     //                                                                       =============
     /**
-     * Select the entity by the condition-bean.
+     * Select the entity by the condition-bean. #beforejava8 <br />
+     * <span style="color: #AD4747; font-size: 120%">The return might be null if no data, so you should have null check.</span> <br />
+     * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, use selectEntityWithDeletedCheck().</span>
      * <pre>
      * SynonymNextLinkSynonymCB cb = new SynonymNextLinkSynonymCB();
      * cb.query().setFoo...(value);
-     * SynonymNextLinkSynonym synonymNextLinkSynonym = synonymNextLinkSynonymBhv.<span style="color: #FD4747">selectEntity</span>(cb);
-     * if (synonymNextLinkSynonym != null) {
+     * SynonymNextLinkSynonym synonymNextLinkSynonym = synonymNextLinkSynonymBhv.<span style="color: #DD4747">selectEntity</span>(cb);
+     * if (synonymNextLinkSynonym != null) { <span style="color: #3F7E5E">// null check</span>
      *     ... = synonymNextLinkSynonym.get...();
      * } else {
      *     ...
@@ -132,8 +136,8 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
      * </pre>
      * @param cb The condition-bean of SynonymNextLinkSynonym. (NotNull)
      * @return The entity selected by the condition. (NullAllowed: if no data, it returns null)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public SynonymNextLinkSynonym selectEntity(SynonymNextLinkSynonymCB cb) {
         return doSelectEntity(cb, SynonymNextLinkSynonym.class);
@@ -145,24 +149,29 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
             public List<ENTITY> callbackSelectList(SynonymNextLinkSynonymCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
+    protected <ENTITY extends SynonymNextLinkSynonym> OptionalEntity<ENTITY> doSelectOptionalEntity(SynonymNextLinkSynonymCB cb, Class<ENTITY> tp) {
+        return createOptionalEntity(doSelectEntity(cb, tp), cb);
+    }
+
     @Override
     protected Entity doReadEntity(ConditionBean cb) {
         return selectEntity(downcast(cb));
     }
 
     /**
-     * Select the entity by the condition-bean with deleted check.
+     * Select the entity by the condition-bean with deleted check. <br />
+     * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, this method is good.</span>
      * <pre>
      * SynonymNextLinkSynonymCB cb = new SynonymNextLinkSynonymCB();
      * cb.query().setFoo...(value);
-     * SynonymNextLinkSynonym synonymNextLinkSynonym = synonymNextLinkSynonymBhv.<span style="color: #FD4747">selectEntityWithDeletedCheck</span>(cb);
+     * SynonymNextLinkSynonym synonymNextLinkSynonym = synonymNextLinkSynonymBhv.<span style="color: #DD4747">selectEntityWithDeletedCheck</span>(cb);
      * ... = synonymNextLinkSynonym.get...(); <span style="color: #3F7E5E">// the entity always be not null</span>
      * </pre>
      * @param cb The condition-bean of SynonymNextLinkSynonym. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public SynonymNextLinkSynonym selectEntityWithDeletedCheck(SynonymNextLinkSynonymCB cb) {
         return doSelectEntityWithDeletedCheck(cb, SynonymNextLinkSynonym.class);
@@ -183,8 +192,8 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
      * Select the entity by the primary-key value.
      * @param productId The one of primary key. (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public SynonymNextLinkSynonym selectByPKValue(Long productId) {
         return doSelectByPKValue(productId, SynonymNextLinkSynonym.class);
@@ -198,9 +207,9 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
      * Select the entity by the primary-key value with deleted check.
      * @param productId The one of primary key. (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public SynonymNextLinkSynonym selectByPKValueWithDeletedCheck(Long productId) {
         return doSelectByPKValueWithDeletedCheck(productId, SynonymNextLinkSynonym.class);
@@ -226,14 +235,14 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
      * SynonymNextLinkSynonymCB cb = new SynonymNextLinkSynonymCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * ListResultBean&lt;SynonymNextLinkSynonym&gt; synonymNextLinkSynonymList = synonymNextLinkSynonymBhv.<span style="color: #FD4747">selectList</span>(cb);
+     * ListResultBean&lt;SynonymNextLinkSynonym&gt; synonymNextLinkSynonymList = synonymNextLinkSynonymBhv.<span style="color: #DD4747">selectList</span>(cb);
      * for (SynonymNextLinkSynonym synonymNextLinkSynonym : synonymNextLinkSynonymList) {
      *     ... = synonymNextLinkSynonym.get...();
      * }
      * </pre>
      * @param cb The condition-bean of SynonymNextLinkSynonym. (NotNull)
      * @return The result bean of selected list. (NotNull: if no data, returns empty list)
-     * @exception org.seasar.dbflute.exception.DangerousResultSizeException When the result size is over the specified safety size.
+     * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public ListResultBean<SynonymNextLinkSynonym> selectList(SynonymNextLinkSynonymCB cb) {
         return doSelectList(cb, SynonymNextLinkSynonym.class);
@@ -261,8 +270,8 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
      * SynonymNextLinkSynonymCB cb = new SynonymNextLinkSynonymCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * cb.<span style="color: #FD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
-     * PagingResultBean&lt;SynonymNextLinkSynonym&gt; page = synonymNextLinkSynonymBhv.<span style="color: #FD4747">selectPage</span>(cb);
+     * cb.<span style="color: #DD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
+     * PagingResultBean&lt;SynonymNextLinkSynonym&gt; page = synonymNextLinkSynonymBhv.<span style="color: #DD4747">selectPage</span>(cb);
      * int allRecordCount = page.getAllRecordCount();
      * int allPageCount = page.getAllPageCount();
      * boolean isExistPrePage = page.isExistPrePage();
@@ -274,7 +283,7 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
      * </pre>
      * @param cb The condition-bean of SynonymNextLinkSynonym. (NotNull)
      * @return The result bean of selected page. (NotNull: if no data, returns bean as empty list)
-     * @exception org.seasar.dbflute.exception.DangerousResultSizeException When the result size is over the specified safety size.
+     * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public PagingResultBean<SynonymNextLinkSynonym> selectPage(SynonymNextLinkSynonymCB cb) {
         return doSelectPage(cb, SynonymNextLinkSynonym.class);
@@ -301,7 +310,7 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
      * <pre>
      * SynonymNextLinkSynonymCB cb = new SynonymNextLinkSynonymCB();
      * cb.query().setFoo...(value);
-     * synonymNextLinkSynonymBhv.<span style="color: #FD4747">selectCursor</span>(cb, new EntityRowHandler&lt;SynonymNextLinkSynonym&gt;() {
+     * synonymNextLinkSynonymBhv.<span style="color: #DD4747">selectCursor</span>(cb, new EntityRowHandler&lt;SynonymNextLinkSynonym&gt;() {
      *     public void handle(SynonymNextLinkSynonym entity) {
      *         ... = entity.getFoo...();
      *     }
@@ -330,9 +339,9 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
      * Select the scalar value derived by a function from uniquely-selected records. <br />
      * You should call a function method after this method called like as follows:
      * <pre>
-     * synonymNextLinkSynonymBhv.<span style="color: #FD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
+     * synonymNextLinkSynonymBhv.<span style="color: #DD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
      *     public void query(SynonymNextLinkSynonymCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
+     *         cb.specify().<span style="color: #DD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
      *         cb.query().setBarName_PrefixSearch("S");
      *     }
      * });
@@ -399,12 +408,12 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
      * <span style="color: #3F7E5E">//synonymNextLinkSynonym.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//synonymNextLinkSynonym.set...;</span>
-     * synonymNextLinkSynonymBhv.<span style="color: #FD4747">insert</span>(synonymNextLinkSynonym);
+     * synonymNextLinkSynonymBhv.<span style="color: #DD4747">insert</span>(synonymNextLinkSynonym);
      * ... = synonymNextLinkSynonym.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * <p>While, when the entity is created by select, all columns are registered.</p>
      * @param synonymNextLinkSynonym The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insert(SynonymNextLinkSynonym synonymNextLinkSynonym) {
         doInsert(synonymNextLinkSynonym, null);
@@ -440,17 +449,17 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
      * <span style="color: #3F7E5E">//synonymNextLinkSynonym.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//synonymNextLinkSynonym.set...;</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * synonymNextLinkSynonym.<span style="color: #FD4747">setVersionNo</span>(value);
+     * synonymNextLinkSynonym.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
-     *     synonymNextLinkSynonymBhv.<span style="color: #FD4747">update</span>(synonymNextLinkSynonym);
+     *     synonymNextLinkSynonymBhv.<span style="color: #DD4747">update</span>(synonymNextLinkSynonym);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param synonymNextLinkSynonym The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyUpdatedException When the entity has already been updated.
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyUpdatedException When the entity has already been updated.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void update(final SynonymNextLinkSynonym synonymNextLinkSynonym) {
         doUpdate(synonymNextLinkSynonym, null);
@@ -504,12 +513,12 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
      * <span style="color: #3F7E5E">// you don't need to set a value of exclusive control column</span>
      * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
      * <span style="color: #3F7E5E">//synonymNextLinkSynonym.setVersionNo(value);</span>
-     * synonymNextLinkSynonymBhv.<span style="color: #FD4747">updateNonstrict</span>(synonymNextLinkSynonym);
+     * synonymNextLinkSynonymBhv.<span style="color: #DD4747">updateNonstrict</span>(synonymNextLinkSynonym);
      * </pre>
      * @param synonymNextLinkSynonym The entity of update target. (NotNull, PrimaryKeyNotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void updateNonstrict(final SynonymNextLinkSynonym synonymNextLinkSynonym) {
         doUpdateNonstrict(synonymNextLinkSynonym, null);
@@ -531,11 +540,11 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
     /**
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, ExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br />
-     * <p><span style="color: #FD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
+     * <p><span style="color: #DD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
      * @param synonymNextLinkSynonym The entity of insert or update target. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyUpdatedException When the entity has already been updated.
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyUpdatedException When the entity has already been updated.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insertOrUpdate(SynonymNextLinkSynonym synonymNextLinkSynonym) {
         doInesrtOrUpdate(synonymNextLinkSynonym, null, null);
@@ -563,11 +572,11 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
     /**
      * Insert or update the entity non-strictly modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() }
-     * <p><span style="color: #FD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
+     * <p><span style="color: #DD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
      * @param synonymNextLinkSynonym The entity of insert or update target. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insertOrUpdateNonstrict(SynonymNextLinkSynonym synonymNextLinkSynonym) {
         doInesrtOrUpdateNonstrict(synonymNextLinkSynonym, null, null);
@@ -596,16 +605,16 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
      * SynonymNextLinkSynonym synonymNextLinkSynonym = new SynonymNextLinkSynonym();
      * synonymNextLinkSynonym.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * synonymNextLinkSynonym.<span style="color: #FD4747">setVersionNo</span>(value);
+     * synonymNextLinkSynonym.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
-     *     synonymNextLinkSynonymBhv.<span style="color: #FD4747">delete</span>(synonymNextLinkSynonym);
+     *     synonymNextLinkSynonymBhv.<span style="color: #DD4747">delete</span>(synonymNextLinkSynonym);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param synonymNextLinkSynonym The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyUpdatedException When the entity has already been updated.
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyUpdatedException When the entity has already been updated.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void delete(SynonymNextLinkSynonym synonymNextLinkSynonym) {
         doDelete(synonymNextLinkSynonym, null);
@@ -637,11 +646,11 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
      * <span style="color: #3F7E5E">// you don't need to set a value of exclusive control column</span>
      * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
      * <span style="color: #3F7E5E">//synonymNextLinkSynonym.setVersionNo(value);</span>
-     * synonymNextLinkSynonymBhv.<span style="color: #FD4747">deleteNonstrict</span>(synonymNextLinkSynonym);
+     * synonymNextLinkSynonymBhv.<span style="color: #DD4747">deleteNonstrict</span>(synonymNextLinkSynonym);
      * </pre>
      * @param synonymNextLinkSynonym The entity of delete target. (NotNull, PrimaryKeyNotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void deleteNonstrict(SynonymNextLinkSynonym synonymNextLinkSynonym) {
         doDeleteNonstrict(synonymNextLinkSynonym, null);
@@ -662,11 +671,11 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
      * <span style="color: #3F7E5E">// you don't need to set a value of exclusive control column</span>
      * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
      * <span style="color: #3F7E5E">//synonymNextLinkSynonym.setVersionNo(value);</span>
-     * synonymNextLinkSynonymBhv.<span style="color: #FD4747">deleteNonstrictIgnoreDeleted</span>(synonymNextLinkSynonym);
+     * synonymNextLinkSynonymBhv.<span style="color: #DD4747">deleteNonstrictIgnoreDeleted</span>(synonymNextLinkSynonym);
      * <span style="color: #3F7E5E">// if the target entity doesn't exist, no exception</span>
      * </pre>
      * @param synonymNextLinkSynonym The entity of delete target. (NotNull, PrimaryKeyNotNull)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void deleteNonstrictIgnoreDeleted(SynonymNextLinkSynonym synonymNextLinkSynonym) {
         doDeleteNonstrictIgnoreDeleted(synonymNextLinkSynonym, null);
@@ -691,7 +700,7 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
     /**
      * Batch-insert the entity list modified-only of same-set columns. (DefaultConstraintsEnabled) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
-     * <p><span style="color: #FD4747; font-size: 120%">The columns of least common multiple are registered like this:</span></p>
+     * <p><span style="color: #DD4747; font-size: 120%">The columns of least common multiple are registered like this:</span></p>
      * <pre>
      * for (... : ...) {
      *     SynonymNextLinkSynonym synonymNextLinkSynonym = new SynonymNextLinkSynonym();
@@ -704,7 +713,7 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
      *     <span style="color: #3F7E5E">// columns not-called in all entities are registered as null or default value</span>
      *     synonymNextLinkSynonymList.add(synonymNextLinkSynonym);
      * }
-     * synonymNextLinkSynonymBhv.<span style="color: #FD4747">batchInsert</span>(synonymNextLinkSynonymList);
+     * synonymNextLinkSynonymBhv.<span style="color: #DD4747">batchInsert</span>(synonymNextLinkSynonymList);
      * </pre>
      * <p>While, when the entities are created by select, all columns are registered.</p>
      * <p>And if the table has an identity, entities after the process don't have incremented values.
@@ -738,7 +747,7 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
     /**
      * Batch-update the entity list modified-only of same-set columns. (ExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
-     * <span style="color: #FD4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
+     * <span style="color: #DD4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
      * <pre>
      * for (... : ...) {
      *     SynonymNextLinkSynonym synonymNextLinkSynonym = new SynonymNextLinkSynonym();
@@ -753,11 +762,11 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
      *     <span style="color: #3F7E5E">// (others are not updated: their values are kept)</span>
      *     synonymNextLinkSynonymList.add(synonymNextLinkSynonym);
      * }
-     * synonymNextLinkSynonymBhv.<span style="color: #FD4747">batchUpdate</span>(synonymNextLinkSynonymList);
+     * synonymNextLinkSynonymBhv.<span style="color: #DD4747">batchUpdate</span>(synonymNextLinkSynonymList);
      * </pre>
      * @param synonymNextLinkSynonymList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.BatchEntityAlreadyUpdatedException When the entity has already been updated. This exception extends EntityAlreadyUpdatedException.
+     * @exception BatchEntityAlreadyUpdatedException When the entity has already been updated. This exception extends EntityAlreadyUpdatedException.
      */
     public int[] batchUpdate(List<SynonymNextLinkSynonym> synonymNextLinkSynonymList) {
         UpdateOption<SynonymNextLinkSynonymCB> op = createPlainUpdateOption();
@@ -786,16 +795,16 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * <pre>
      * <span style="color: #3F7E5E">// e.g. update two columns only</span>
-     * synonymNextLinkSynonymBhv.<span style="color: #FD4747">batchUpdate</span>(synonymNextLinkSynonymList, new SpecifyQuery<SynonymNextLinkSynonymCB>() {
+     * synonymNextLinkSynonymBhv.<span style="color: #DD4747">batchUpdate</span>(synonymNextLinkSynonymList, new SpecifyQuery<SynonymNextLinkSynonymCB>() {
      *     public void specify(SynonymNextLinkSynonymCB cb) { <span style="color: #3F7E5E">// the two only updated</span>
-     *         cb.specify().<span style="color: #FD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
-     *         cb.specify().<span style="color: #FD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
+     *         cb.specify().<span style="color: #DD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
+     *         cb.specify().<span style="color: #DD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
      *     }
      * });
      * <span style="color: #3F7E5E">// e.g. update every column in the table</span>
-     * synonymNextLinkSynonymBhv.<span style="color: #FD4747">batchUpdate</span>(synonymNextLinkSynonymList, new SpecifyQuery<SynonymNextLinkSynonymCB>() {
+     * synonymNextLinkSynonymBhv.<span style="color: #DD4747">batchUpdate</span>(synonymNextLinkSynonymList, new SpecifyQuery<SynonymNextLinkSynonymCB>() {
      *     public void specify(SynonymNextLinkSynonymCB cb) { <span style="color: #3F7E5E">// all columns are updated</span>
-     *         cb.specify().<span style="color: #FD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
+     *         cb.specify().<span style="color: #DD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
      *     }
      * });
      * </pre>
@@ -807,7 +816,7 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
      * @param synonymNextLinkSynonymList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @param updateColumnSpec The specification of update columns. (NotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.BatchEntityAlreadyUpdatedException When the entity has already been updated. This exception extends EntityAlreadyUpdatedException.
+     * @exception BatchEntityAlreadyUpdatedException When the entity has already been updated. This exception extends EntityAlreadyUpdatedException.
      */
     public int[] batchUpdate(List<SynonymNextLinkSynonym> synonymNextLinkSynonymList, SpecifyQuery<SynonymNextLinkSynonymCB> updateColumnSpec) {
         return doBatchUpdate(synonymNextLinkSynonymList, createSpecifiedUpdateOption(updateColumnSpec));
@@ -816,7 +825,7 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
     /**
      * Batch-update the entity list non-strictly modified-only of same-set columns. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
-     * <span style="color: #FD4747; font-size: 140%">You should specify same-set columns to all entities like this:</span>
+     * <span style="color: #DD4747; font-size: 140%">You should specify same-set columns to all entities like this:</span>
      * <pre>
      * for (... : ...) {
      *     SynonymNextLinkSynonym synonymNextLinkSynonym = new SynonymNextLinkSynonym();
@@ -831,11 +840,11 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
      *     <span style="color: #3F7E5E">// (others are not updated: their values are kept)</span>
      *     synonymNextLinkSynonymList.add(synonymNextLinkSynonym);
      * }
-     * synonymNextLinkSynonymBhv.<span style="color: #FD4747">batchUpdate</span>(synonymNextLinkSynonymList);
+     * synonymNextLinkSynonymBhv.<span style="color: #DD4747">batchUpdate</span>(synonymNextLinkSynonymList);
      * </pre>
      * @param synonymNextLinkSynonymList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdateNonstrict(List<SynonymNextLinkSynonym> synonymNextLinkSynonymList) {
         UpdateOption<SynonymNextLinkSynonymCB> option = createPlainUpdateOption();
@@ -853,16 +862,16 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * <pre>
      * <span style="color: #3F7E5E">// e.g. update two columns only</span>
-     * synonymNextLinkSynonymBhv.<span style="color: #FD4747">batchUpdateNonstrict</span>(synonymNextLinkSynonymList, new SpecifyQuery<SynonymNextLinkSynonymCB>() {
+     * synonymNextLinkSynonymBhv.<span style="color: #DD4747">batchUpdateNonstrict</span>(synonymNextLinkSynonymList, new SpecifyQuery<SynonymNextLinkSynonymCB>() {
      *     public void specify(SynonymNextLinkSynonymCB cb) { <span style="color: #3F7E5E">// the two only updated</span>
-     *         cb.specify().<span style="color: #FD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
-     *         cb.specify().<span style="color: #FD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
+     *         cb.specify().<span style="color: #DD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
+     *         cb.specify().<span style="color: #DD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
      *     }
      * });
      * <span style="color: #3F7E5E">// e.g. update every column in the table</span>
-     * synonymNextLinkSynonymBhv.<span style="color: #FD4747">batchUpdateNonstrict</span>(synonymNextLinkSynonymList, new SpecifyQuery<SynonymNextLinkSynonymCB>() {
+     * synonymNextLinkSynonymBhv.<span style="color: #DD4747">batchUpdateNonstrict</span>(synonymNextLinkSynonymList, new SpecifyQuery<SynonymNextLinkSynonymCB>() {
      *     public void specify(SynonymNextLinkSynonymCB cb) { <span style="color: #3F7E5E">// all columns are updated</span>
-     *         cb.specify().<span style="color: #FD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
+     *         cb.specify().<span style="color: #DD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
      *     }
      * });
      * </pre>
@@ -873,7 +882,7 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
      * @param synonymNextLinkSynonymList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @param updateColumnSpec The specification of update columns. (NotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdateNonstrict(List<SynonymNextLinkSynonym> synonymNextLinkSynonymList, SpecifyQuery<SynonymNextLinkSynonymCB> updateColumnSpec) {
         return doBatchUpdateNonstrict(synonymNextLinkSynonymList, createSpecifiedUpdateOption(updateColumnSpec));
@@ -890,7 +899,7 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * @param synonymNextLinkSynonymList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of deleted count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.BatchEntityAlreadyUpdatedException When the entity has already been updated. This exception extends EntityAlreadyUpdatedException.
+     * @exception BatchEntityAlreadyUpdatedException When the entity has already been updated. This exception extends EntityAlreadyUpdatedException.
      */
     public int[] batchDelete(List<SynonymNextLinkSynonym> synonymNextLinkSynonymList) {
         return doBatchDelete(synonymNextLinkSynonymList, null);
@@ -913,7 +922,7 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * @param synonymNextLinkSynonymList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of deleted count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchDeleteNonstrict(List<SynonymNextLinkSynonym> synonymNextLinkSynonymList) {
         return doBatchDeleteNonstrict(synonymNextLinkSynonymList, null);
@@ -937,7 +946,7 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
     /**
      * Insert the several entities by query (modified-only for fixed value).
      * <pre>
-     * synonymNextLinkSynonymBhv.<span style="color: #FD4747">queryInsert</span>(new QueryInsertSetupper&lt;SynonymNextLinkSynonym, SynonymNextLinkSynonymCB&gt;() {
+     * synonymNextLinkSynonymBhv.<span style="color: #DD4747">queryInsert</span>(new QueryInsertSetupper&lt;SynonymNextLinkSynonym, SynonymNextLinkSynonymCB&gt;() {
      *     public ConditionBean setup(synonymNextLinkSynonym entity, SynonymNextLinkSynonymCB intoCB) {
      *         FooCB cb = FooCB();
      *         cb.setupSelect_Bar();
@@ -999,12 +1008,12 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
      * <span style="color: #3F7E5E">//synonymNextLinkSynonym.setVersionNo(value);</span>
      * SynonymNextLinkSynonymCB cb = new SynonymNextLinkSynonymCB();
      * cb.query().setFoo...(value);
-     * synonymNextLinkSynonymBhv.<span style="color: #FD4747">queryUpdate</span>(synonymNextLinkSynonym, cb);
+     * synonymNextLinkSynonymBhv.<span style="color: #DD4747">queryUpdate</span>(synonymNextLinkSynonym, cb);
      * </pre>
      * @param synonymNextLinkSynonym The entity that contains update values. (NotNull, PrimaryKeyNullAllowed)
      * @param cb The condition-bean of SynonymNextLinkSynonym. (NotNull)
      * @return The updated count.
-     * @exception org.seasar.dbflute.exception.NonQueryUpdateNotAllowedException When the query has no condition.
+     * @exception NonQueryUpdateNotAllowedException When the query has no condition.
      */
     public int queryUpdate(SynonymNextLinkSynonym synonymNextLinkSynonym, SynonymNextLinkSynonymCB cb) {
         return doQueryUpdate(synonymNextLinkSynonym, cb, null);
@@ -1027,11 +1036,11 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
      * <pre>
      * SynonymNextLinkSynonymCB cb = new SynonymNextLinkSynonymCB();
      * cb.query().setFoo...(value);
-     * synonymNextLinkSynonymBhv.<span style="color: #FD4747">queryDelete</span>(synonymNextLinkSynonym, cb);
+     * synonymNextLinkSynonymBhv.<span style="color: #DD4747">queryDelete</span>(synonymNextLinkSynonym, cb);
      * </pre>
      * @param cb The condition-bean of SynonymNextLinkSynonym. (NotNull)
      * @return The deleted count.
-     * @exception org.seasar.dbflute.exception.NonQueryDeleteNotAllowedException When the query has no condition.
+     * @exception NonQueryDeleteNotAllowedException When the query has no condition.
      */
     public int queryDelete(SynonymNextLinkSynonymCB cb) {
         return doQueryDelete(cb, null);
@@ -1067,12 +1076,12 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
      * InsertOption<SynonymNextLinkSynonymCB> option = new InsertOption<SynonymNextLinkSynonymCB>();
      * <span style="color: #3F7E5E">// you can insert by your values for common columns</span>
      * option.disableCommonColumnAutoSetup();
-     * synonymNextLinkSynonymBhv.<span style="color: #FD4747">varyingInsert</span>(synonymNextLinkSynonym, option);
+     * synonymNextLinkSynonymBhv.<span style="color: #DD4747">varyingInsert</span>(synonymNextLinkSynonym, option);
      * ... = synonymNextLinkSynonym.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * @param synonymNextLinkSynonym The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
      * @param option The option of insert for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingInsert(SynonymNextLinkSynonym synonymNextLinkSynonym, InsertOption<SynonymNextLinkSynonymCB> option) {
         assertInsertOptionNotNull(option);
@@ -1088,25 +1097,25 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
      * synonymNextLinkSynonym.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * synonymNextLinkSynonym.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * synonymNextLinkSynonym.<span style="color: #FD4747">setVersionNo</span>(value);
+     * synonymNextLinkSynonym.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     <span style="color: #3F7E5E">// you can update by self calculation values</span>
      *     UpdateOption&lt;SynonymNextLinkSynonymCB&gt; option = new UpdateOption&lt;SynonymNextLinkSynonymCB&gt;();
      *     option.self(new SpecifyQuery&lt;SynonymNextLinkSynonymCB&gt;() {
      *         public void specify(SynonymNextLinkSynonymCB cb) {
-     *             cb.specify().<span style="color: #FD4747">columnXxxCount()</span>;
+     *             cb.specify().<span style="color: #DD4747">columnXxxCount()</span>;
      *         }
      *     }).plus(1); <span style="color: #3F7E5E">// XXX_COUNT = XXX_COUNT + 1</span>
-     *     synonymNextLinkSynonymBhv.<span style="color: #FD4747">varyingUpdate</span>(synonymNextLinkSynonym, option);
+     *     synonymNextLinkSynonymBhv.<span style="color: #DD4747">varyingUpdate</span>(synonymNextLinkSynonym, option);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param synonymNextLinkSynonym The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @param option The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyUpdatedException When the entity has already been updated.
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyUpdatedException When the entity has already been updated.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingUpdate(SynonymNextLinkSynonym synonymNextLinkSynonym, UpdateOption<SynonymNextLinkSynonymCB> option) {
         assertUpdateOptionNotNull(option);
@@ -1128,16 +1137,16 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
      * UpdateOption&lt;SynonymNextLinkSynonymCB&gt; option = new UpdateOption&lt;SynonymNextLinkSynonymCB&gt;();
      * option.self(new SpecifyQuery&lt;SynonymNextLinkSynonymCB&gt;() {
      *     public void specify(SynonymNextLinkSynonymCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFooCount()</span>;
+     *         cb.specify().<span style="color: #DD4747">columnFooCount()</span>;
      *     }
      * }).plus(1); <span style="color: #3F7E5E">// FOO_COUNT = FOO_COUNT + 1</span>
-     * synonymNextLinkSynonymBhv.<span style="color: #FD4747">varyingUpdateNonstrict</span>(synonymNextLinkSynonym, option);
+     * synonymNextLinkSynonymBhv.<span style="color: #DD4747">varyingUpdateNonstrict</span>(synonymNextLinkSynonym, option);
      * </pre>
      * @param synonymNextLinkSynonym The entity of update target. (NotNull, PrimaryKeyNotNull)
      * @param option The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingUpdateNonstrict(SynonymNextLinkSynonym synonymNextLinkSynonym, UpdateOption<SynonymNextLinkSynonymCB> option) {
         assertUpdateOptionNotNull(option);
@@ -1150,9 +1159,9 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
      * @param synonymNextLinkSynonym The entity of insert or update target. (NotNull)
      * @param insertOption The option of insert for varying requests. (NotNull)
      * @param updateOption The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyUpdatedException When the entity has already been updated.
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyUpdatedException When the entity has already been updated.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingInsertOrUpdate(SynonymNextLinkSynonym synonymNextLinkSynonym, InsertOption<SynonymNextLinkSynonymCB> insertOption, UpdateOption<SynonymNextLinkSynonymCB> updateOption) {
         assertInsertOptionNotNull(insertOption); assertUpdateOptionNotNull(updateOption);
@@ -1165,9 +1174,9 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
      * @param synonymNextLinkSynonym The entity of insert or update target. (NotNull)
      * @param insertOption The option of insert for varying requests. (NotNull)
      * @param updateOption The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingInsertOrUpdateNonstrict(SynonymNextLinkSynonym synonymNextLinkSynonym, InsertOption<SynonymNextLinkSynonymCB> insertOption, UpdateOption<SynonymNextLinkSynonymCB> updateOption) {
         assertInsertOptionNotNull(insertOption); assertUpdateOptionNotNull(updateOption);
@@ -1180,8 +1189,8 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
      * Other specifications are same as delete(entity).
      * @param synonymNextLinkSynonym The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @param option The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyUpdatedException When the entity has already been updated.
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyUpdatedException When the entity has already been updated.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void varyingDelete(SynonymNextLinkSynonym synonymNextLinkSynonym, DeleteOption<SynonymNextLinkSynonymCB> option) {
         assertDeleteOptionNotNull(option);
@@ -1194,8 +1203,8 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
      * Other specifications are same as deleteNonstrict(entity).
      * @param synonymNextLinkSynonym The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @param option The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void varyingDeleteNonstrict(SynonymNextLinkSynonym synonymNextLinkSynonym, DeleteOption<SynonymNextLinkSynonymCB> option) {
         assertDeleteOptionNotNull(option);
@@ -1308,16 +1317,16 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
      * UpdateOption&lt;SynonymNextLinkSynonymCB&gt; option = new UpdateOption&lt;SynonymNextLinkSynonymCB&gt;();
      * option.self(new SpecifyQuery&lt;SynonymNextLinkSynonymCB&gt;() {
      *     public void specify(SynonymNextLinkSynonymCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFooCount()</span>;
+     *         cb.specify().<span style="color: #DD4747">columnFooCount()</span>;
      *     }
      * }).plus(1); <span style="color: #3F7E5E">// FOO_COUNT = FOO_COUNT + 1</span>
-     * synonymNextLinkSynonymBhv.<span style="color: #FD4747">varyingQueryUpdate</span>(synonymNextLinkSynonym, cb, option);
+     * synonymNextLinkSynonymBhv.<span style="color: #DD4747">varyingQueryUpdate</span>(synonymNextLinkSynonym, cb, option);
      * </pre>
      * @param synonymNextLinkSynonym The entity that contains update values. (NotNull) {PrimaryKeyNotRequired}
      * @param cb The condition-bean of SynonymNextLinkSynonym. (NotNull)
      * @param option The option of update for varying requests. (NotNull)
      * @return The updated count.
-     * @exception org.seasar.dbflute.exception.NonQueryUpdateNotAllowedException When the query has no condition (if not allowed).
+     * @exception NonQueryUpdateNotAllowedException When the query has no condition (if not allowed).
      */
     public int varyingQueryUpdate(SynonymNextLinkSynonym synonymNextLinkSynonym, SynonymNextLinkSynonymCB cb, UpdateOption<SynonymNextLinkSynonymCB> option) {
         assertUpdateOptionNotNull(option);
@@ -1331,7 +1340,7 @@ public abstract class BsSynonymNextLinkSynonymBhv extends AbstractBehaviorWritab
      * @param cb The condition-bean of SynonymNextLinkSynonym. (NotNull)
      * @param option The option of delete for varying requests. (NotNull)
      * @return The deleted count.
-     * @exception org.seasar.dbflute.exception.NonQueryDeleteNotAllowedException When the query has no condition (if not allowed).
+     * @exception NonQueryDeleteNotAllowedException When the query has no condition (if not allowed).
      */
     public int varyingQueryDelete(SynonymNextLinkSynonymCB cb, DeleteOption<SynonymNextLinkSynonymCB> option) {
         assertDeleteOptionNotNull(option);

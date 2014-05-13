@@ -6,6 +6,8 @@ import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
 import org.seasar.dbflute.dbmeta.DBMeta;
+import org.seasar.dbflute.exception.*;
+import org.seasar.dbflute.optional.*;
 import org.seasar.dbflute.outsidesql.executor.*;
 import com.example.dbflute.oracle.dbflute.exbhv.*;
 import com.example.dbflute.oracle.dbflute.exentity.*;
@@ -91,7 +93,7 @@ public abstract class BsVendorLargeName901234567890Bhv extends AbstractBehaviorW
      * <pre>
      * VendorLargeName901234567890CB cb = new VendorLargeName901234567890CB();
      * cb.query().setFoo...(value);
-     * int count = vendorLargeName901234567890Bhv.<span style="color: #FD4747">selectCount</span>(cb);
+     * int count = vendorLargeName901234567890Bhv.<span style="color: #DD4747">selectCount</span>(cb);
      * </pre>
      * @param cb The condition-bean of VendorLargeName901234567890. (NotNull)
      * @return The count for the condition. (NotMinus)
@@ -119,12 +121,14 @@ public abstract class BsVendorLargeName901234567890Bhv extends AbstractBehaviorW
     //                                                                       Entity Select
     //                                                                       =============
     /**
-     * Select the entity by the condition-bean.
+     * Select the entity by the condition-bean. #beforejava8 <br />
+     * <span style="color: #AD4747; font-size: 120%">The return might be null if no data, so you should have null check.</span> <br />
+     * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, use selectEntityWithDeletedCheck().</span>
      * <pre>
      * VendorLargeName901234567890CB cb = new VendorLargeName901234567890CB();
      * cb.query().setFoo...(value);
-     * VendorLargeName901234567890 vendorLargeName901234567890 = vendorLargeName901234567890Bhv.<span style="color: #FD4747">selectEntity</span>(cb);
-     * if (vendorLargeName901234567890 != null) {
+     * VendorLargeName901234567890 vendorLargeName901234567890 = vendorLargeName901234567890Bhv.<span style="color: #DD4747">selectEntity</span>(cb);
+     * if (vendorLargeName901234567890 != null) { <span style="color: #3F7E5E">// null check</span>
      *     ... = vendorLargeName901234567890.get...();
      * } else {
      *     ...
@@ -132,8 +136,8 @@ public abstract class BsVendorLargeName901234567890Bhv extends AbstractBehaviorW
      * </pre>
      * @param cb The condition-bean of VendorLargeName901234567890. (NotNull)
      * @return The entity selected by the condition. (NullAllowed: if no data, it returns null)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public VendorLargeName901234567890 selectEntity(VendorLargeName901234567890CB cb) {
         return doSelectEntity(cb, VendorLargeName901234567890.class);
@@ -145,24 +149,29 @@ public abstract class BsVendorLargeName901234567890Bhv extends AbstractBehaviorW
             public List<ENTITY> callbackSelectList(VendorLargeName901234567890CB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
+    protected <ENTITY extends VendorLargeName901234567890> OptionalEntity<ENTITY> doSelectOptionalEntity(VendorLargeName901234567890CB cb, Class<ENTITY> tp) {
+        return createOptionalEntity(doSelectEntity(cb, tp), cb);
+    }
+
     @Override
     protected Entity doReadEntity(ConditionBean cb) {
         return selectEntity(downcast(cb));
     }
 
     /**
-     * Select the entity by the condition-bean with deleted check.
+     * Select the entity by the condition-bean with deleted check. <br />
+     * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, this method is good.</span>
      * <pre>
      * VendorLargeName901234567890CB cb = new VendorLargeName901234567890CB();
      * cb.query().setFoo...(value);
-     * VendorLargeName901234567890 vendorLargeName901234567890 = vendorLargeName901234567890Bhv.<span style="color: #FD4747">selectEntityWithDeletedCheck</span>(cb);
+     * VendorLargeName901234567890 vendorLargeName901234567890 = vendorLargeName901234567890Bhv.<span style="color: #DD4747">selectEntityWithDeletedCheck</span>(cb);
      * ... = vendorLargeName901234567890.get...(); <span style="color: #3F7E5E">// the entity always be not null</span>
      * </pre>
      * @param cb The condition-bean of VendorLargeName901234567890. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public VendorLargeName901234567890 selectEntityWithDeletedCheck(VendorLargeName901234567890CB cb) {
         return doSelectEntityWithDeletedCheck(cb, VendorLargeName901234567890.class);
@@ -183,8 +192,8 @@ public abstract class BsVendorLargeName901234567890Bhv extends AbstractBehaviorW
      * Select the entity by the primary-key value.
      * @param vendorLargeName901234567Id The one of primary key. (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public VendorLargeName901234567890 selectByPKValue(Long vendorLargeName901234567Id) {
         return doSelectByPKValue(vendorLargeName901234567Id, VendorLargeName901234567890.class);
@@ -198,9 +207,9 @@ public abstract class BsVendorLargeName901234567890Bhv extends AbstractBehaviorW
      * Select the entity by the primary-key value with deleted check.
      * @param vendorLargeName901234567Id The one of primary key. (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public VendorLargeName901234567890 selectByPKValueWithDeletedCheck(Long vendorLargeName901234567Id) {
         return doSelectByPKValueWithDeletedCheck(vendorLargeName901234567Id, VendorLargeName901234567890.class);
@@ -226,14 +235,14 @@ public abstract class BsVendorLargeName901234567890Bhv extends AbstractBehaviorW
      * VendorLargeName901234567890CB cb = new VendorLargeName901234567890CB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * ListResultBean&lt;VendorLargeName901234567890&gt; vendorLargeName901234567890List = vendorLargeName901234567890Bhv.<span style="color: #FD4747">selectList</span>(cb);
+     * ListResultBean&lt;VendorLargeName901234567890&gt; vendorLargeName901234567890List = vendorLargeName901234567890Bhv.<span style="color: #DD4747">selectList</span>(cb);
      * for (VendorLargeName901234567890 vendorLargeName901234567890 : vendorLargeName901234567890List) {
      *     ... = vendorLargeName901234567890.get...();
      * }
      * </pre>
      * @param cb The condition-bean of VendorLargeName901234567890. (NotNull)
      * @return The result bean of selected list. (NotNull: if no data, returns empty list)
-     * @exception org.seasar.dbflute.exception.DangerousResultSizeException When the result size is over the specified safety size.
+     * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public ListResultBean<VendorLargeName901234567890> selectList(VendorLargeName901234567890CB cb) {
         return doSelectList(cb, VendorLargeName901234567890.class);
@@ -261,8 +270,8 @@ public abstract class BsVendorLargeName901234567890Bhv extends AbstractBehaviorW
      * VendorLargeName901234567890CB cb = new VendorLargeName901234567890CB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * cb.<span style="color: #FD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
-     * PagingResultBean&lt;VendorLargeName901234567890&gt; page = vendorLargeName901234567890Bhv.<span style="color: #FD4747">selectPage</span>(cb);
+     * cb.<span style="color: #DD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
+     * PagingResultBean&lt;VendorLargeName901234567890&gt; page = vendorLargeName901234567890Bhv.<span style="color: #DD4747">selectPage</span>(cb);
      * int allRecordCount = page.getAllRecordCount();
      * int allPageCount = page.getAllPageCount();
      * boolean isExistPrePage = page.isExistPrePage();
@@ -274,7 +283,7 @@ public abstract class BsVendorLargeName901234567890Bhv extends AbstractBehaviorW
      * </pre>
      * @param cb The condition-bean of VendorLargeName901234567890. (NotNull)
      * @return The result bean of selected page. (NotNull: if no data, returns bean as empty list)
-     * @exception org.seasar.dbflute.exception.DangerousResultSizeException When the result size is over the specified safety size.
+     * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public PagingResultBean<VendorLargeName901234567890> selectPage(VendorLargeName901234567890CB cb) {
         return doSelectPage(cb, VendorLargeName901234567890.class);
@@ -301,7 +310,7 @@ public abstract class BsVendorLargeName901234567890Bhv extends AbstractBehaviorW
      * <pre>
      * VendorLargeName901234567890CB cb = new VendorLargeName901234567890CB();
      * cb.query().setFoo...(value);
-     * vendorLargeName901234567890Bhv.<span style="color: #FD4747">selectCursor</span>(cb, new EntityRowHandler&lt;VendorLargeName901234567890&gt;() {
+     * vendorLargeName901234567890Bhv.<span style="color: #DD4747">selectCursor</span>(cb, new EntityRowHandler&lt;VendorLargeName901234567890&gt;() {
      *     public void handle(VendorLargeName901234567890 entity) {
      *         ... = entity.getFoo...();
      *     }
@@ -330,9 +339,9 @@ public abstract class BsVendorLargeName901234567890Bhv extends AbstractBehaviorW
      * Select the scalar value derived by a function from uniquely-selected records. <br />
      * You should call a function method after this method called like as follows:
      * <pre>
-     * vendorLargeName901234567890Bhv.<span style="color: #FD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
+     * vendorLargeName901234567890Bhv.<span style="color: #DD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
      *     public void query(VendorLargeName901234567890CB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
+     *         cb.specify().<span style="color: #DD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
      *         cb.query().setBarName_PrefixSearch("S");
      *     }
      * });
@@ -372,61 +381,96 @@ public abstract class BsVendorLargeName901234567890Bhv extends AbstractBehaviorW
     //                                                                       Load Referrer
     //                                                                       =============
     /**
-     * {Refer to overload method that has an argument of the list of entity.}
-     * @param vendorLargeName901234567890 The entity of vendorLargeName901234567890. (NotNull)
-     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
-     */
-    public void loadVendorLargeName90123456RefList(VendorLargeName901234567890 vendorLargeName901234567890, ConditionBeanSetupper<VendorLargeName90123456RefCB> conditionBeanSetupper) {
-        xassLRArg(vendorLargeName901234567890, conditionBeanSetupper);
-        loadVendorLargeName90123456RefList(xnewLRLs(vendorLargeName901234567890), conditionBeanSetupper);
-    }
-    /**
-     * Load referrer of vendorLargeName90123456RefList with the set-upper for condition-bean of referrer. <br />
+     * Load referrer of vendorLargeName90123456RefList by the set-upper of referrer. <br />
      * VENDOR_LARGE_NAME_90123456_REF by VENDOR_LARGE_NAME_901234567_ID, named 'vendorLargeName90123456RefList'.
      * <pre>
-     * vendorLargeName901234567890Bhv.<span style="color: #FD4747">loadVendorLargeName90123456RefList</span>(vendorLargeName901234567890List, new ConditionBeanSetupper&lt;VendorLargeName90123456RefCB&gt;() {
+     * vendorLargeName901234567890Bhv.<span style="color: #DD4747">loadVendorLargeName90123456RefList</span>(vendorLargeName901234567890List, new ConditionBeanSetupper&lt;VendorLargeName90123456RefCB&gt;() {
      *     public void setup(VendorLargeName90123456RefCB cb) {
      *         cb.setupSelect...();
      *         cb.query().setFoo...(value);
-     *         cb.query().addOrderBy_Bar...(); <span style="color: #3F7E5E">// basically you should order referrer list</span>
+     *         cb.query().addOrderBy_Bar...();
      *     }
-     * });
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
+     * <span style="color: #3F7E5E">//}).withNestedList(referrerList -&gt {</span>
+     * <span style="color: #3F7E5E">//    ...</span>
+     * <span style="color: #3F7E5E">//});</span>
      * for (VendorLargeName901234567890 vendorLargeName901234567890 : vendorLargeName901234567890List) {
-     *     ... = vendorLargeName901234567890.<span style="color: #FD4747">getVendorLargeName90123456RefList()</span>;
+     *     ... = vendorLargeName901234567890.<span style="color: #DD4747">getVendorLargeName90123456RefList()</span>;
      * }
      * </pre>
-     * About internal policy, the value of primary key(and others too) is treated as case-insensitive. <br />
-     * The condition-bean that the set-upper provides have settings before you touch it. It is as follows:
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
      * <pre>
      * cb.query().setVendorLargeName901234567Id_InScope(pkList);
      * cb.query().addOrderBy_VendorLargeName901234567Id_Asc();
      * </pre>
      * @param vendorLargeName901234567890List The entity list of vendorLargeName901234567890. (NotNull)
-     * @param conditionBeanSetupper The instance of referrer condition-bean set-upper for registering referrer condition. (NotNull)
+     * @param setupper The callback to set up referrer condition-bean for loading referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public void loadVendorLargeName90123456RefList(List<VendorLargeName901234567890> vendorLargeName901234567890List, ConditionBeanSetupper<VendorLargeName90123456RefCB> conditionBeanSetupper) {
-        xassLRArg(vendorLargeName901234567890List, conditionBeanSetupper);
-        loadVendorLargeName90123456RefList(vendorLargeName901234567890List, new LoadReferrerOption<VendorLargeName90123456RefCB, VendorLargeName90123456Ref>().xinit(conditionBeanSetupper));
+    public NestedReferrerLoader<VendorLargeName90123456Ref> loadVendorLargeName90123456RefList(List<VendorLargeName901234567890> vendorLargeName901234567890List, ConditionBeanSetupper<VendorLargeName90123456RefCB> setupper) {
+        xassLRArg(vendorLargeName901234567890List, setupper);
+        return doLoadVendorLargeName90123456RefList(vendorLargeName901234567890List, new LoadReferrerOption<VendorLargeName90123456RefCB, VendorLargeName90123456Ref>().xinit(setupper));
     }
+
     /**
-     * {Refer to overload method that has an argument of the list of entity.}
+     * Load referrer of vendorLargeName90123456RefList by the set-upper of referrer. <br />
+     * VENDOR_LARGE_NAME_90123456_REF by VENDOR_LARGE_NAME_901234567_ID, named 'vendorLargeName90123456RefList'.
+     * <pre>
+     * vendorLargeName901234567890Bhv.<span style="color: #DD4747">loadVendorLargeName90123456RefList</span>(vendorLargeName901234567890List, new ConditionBeanSetupper&lt;VendorLargeName90123456RefCB&gt;() {
+     *     public void setup(VendorLargeName90123456RefCB cb) {
+     *         cb.setupSelect...();
+     *         cb.query().setFoo...(value);
+     *         cb.query().addOrderBy_Bar...();
+     *     }
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
+     * <span style="color: #3F7E5E">//}).withNestedList(referrerList -&gt {</span>
+     * <span style="color: #3F7E5E">//    ...</span>
+     * <span style="color: #3F7E5E">//});</span>
+     * ... = vendorLargeName901234567890.<span style="color: #DD4747">getVendorLargeName90123456RefList()</span>;
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
+     * <pre>
+     * cb.query().setVendorLargeName901234567Id_InScope(pkList);
+     * cb.query().addOrderBy_VendorLargeName901234567Id_Asc();
+     * </pre>
+     * @param vendorLargeName901234567890 The entity of vendorLargeName901234567890. (NotNull)
+     * @param setupper The callback to set up referrer condition-bean for loading referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
+     */
+    public NestedReferrerLoader<VendorLargeName90123456Ref> loadVendorLargeName90123456RefList(VendorLargeName901234567890 vendorLargeName901234567890, ConditionBeanSetupper<VendorLargeName90123456RefCB> setupper) {
+        xassLRArg(vendorLargeName901234567890, setupper);
+        return doLoadVendorLargeName90123456RefList(xnewLRLs(vendorLargeName901234567890), new LoadReferrerOption<VendorLargeName90123456RefCB, VendorLargeName90123456Ref>().xinit(setupper));
+    }
+
+    /**
+     * {Refer to overload method that has an argument of the list of entity.} #beforejava8
      * @param vendorLargeName901234567890 The entity of vendorLargeName901234567890. (NotNull)
      * @param loadReferrerOption The option of load-referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public void loadVendorLargeName90123456RefList(VendorLargeName901234567890 vendorLargeName901234567890, LoadReferrerOption<VendorLargeName90123456RefCB, VendorLargeName90123456Ref> loadReferrerOption) {
+    public NestedReferrerLoader<VendorLargeName90123456Ref> loadVendorLargeName90123456RefList(VendorLargeName901234567890 vendorLargeName901234567890, LoadReferrerOption<VendorLargeName90123456RefCB, VendorLargeName90123456Ref> loadReferrerOption) {
         xassLRArg(vendorLargeName901234567890, loadReferrerOption);
-        loadVendorLargeName90123456RefList(xnewLRLs(vendorLargeName901234567890), loadReferrerOption);
+        return loadVendorLargeName90123456RefList(xnewLRLs(vendorLargeName901234567890), loadReferrerOption);
     }
+
     /**
-     * {Refer to overload method that has an argument of condition-bean setupper.}
+     * {Refer to overload method that has an argument of condition-bean setupper.} #beforejava8
      * @param vendorLargeName901234567890List The entity list of vendorLargeName901234567890. (NotNull)
      * @param loadReferrerOption The option of load-referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public void loadVendorLargeName90123456RefList(List<VendorLargeName901234567890> vendorLargeName901234567890List, LoadReferrerOption<VendorLargeName90123456RefCB, VendorLargeName90123456Ref> loadReferrerOption) {
+    @SuppressWarnings("unchecked")
+    public NestedReferrerLoader<VendorLargeName90123456Ref> loadVendorLargeName90123456RefList(List<VendorLargeName901234567890> vendorLargeName901234567890List, LoadReferrerOption<VendorLargeName90123456RefCB, VendorLargeName90123456Ref> loadReferrerOption) {
         xassLRArg(vendorLargeName901234567890List, loadReferrerOption);
-        if (vendorLargeName901234567890List.isEmpty()) { return; }
+        if (vendorLargeName901234567890List.isEmpty()) { return (NestedReferrerLoader<VendorLargeName90123456Ref>)EMPTY_LOADER; }
+        return doLoadVendorLargeName90123456RefList(vendorLargeName901234567890List, loadReferrerOption);
+    }
+
+    protected NestedReferrerLoader<VendorLargeName90123456Ref> doLoadVendorLargeName90123456RefList(List<VendorLargeName901234567890> vendorLargeName901234567890List, LoadReferrerOption<VendorLargeName90123456RefCB, VendorLargeName90123456Ref> option) {
         final VendorLargeName90123456RefBhv referrerBhv = xgetBSFLR().select(VendorLargeName90123456RefBhv.class);
-        helpLoadReferrerInternally(vendorLargeName901234567890List, loadReferrerOption, new InternalLoadReferrerCallback<VendorLargeName901234567890, Long, VendorLargeName90123456RefCB, VendorLargeName90123456Ref>() {
+        return helpLoadReferrerInternally(vendorLargeName901234567890List, option, new InternalLoadReferrerCallback<VendorLargeName901234567890, Long, VendorLargeName90123456RefCB, VendorLargeName90123456Ref>() {
             public Long getPKVal(VendorLargeName901234567890 et)
             { return et.getVendorLargeName901234567Id(); }
             public void setRfLs(VendorLargeName901234567890 et, List<VendorLargeName90123456Ref> ls)
@@ -475,12 +519,12 @@ public abstract class BsVendorLargeName901234567890Bhv extends AbstractBehaviorW
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
      * <span style="color: #3F7E5E">//vendorLargeName901234567890.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//vendorLargeName901234567890.set...;</span>
-     * vendorLargeName901234567890Bhv.<span style="color: #FD4747">insert</span>(vendorLargeName901234567890);
+     * vendorLargeName901234567890Bhv.<span style="color: #DD4747">insert</span>(vendorLargeName901234567890);
      * ... = vendorLargeName901234567890.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * <p>While, when the entity is created by select, all columns are registered.</p>
      * @param vendorLargeName901234567890 The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insert(VendorLargeName901234567890 vendorLargeName901234567890) {
         doInsert(vendorLargeName901234567890, null);
@@ -516,17 +560,17 @@ public abstract class BsVendorLargeName901234567890Bhv extends AbstractBehaviorW
      * <span style="color: #3F7E5E">//vendorLargeName901234567890.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//vendorLargeName901234567890.set...;</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * vendorLargeName901234567890.<span style="color: #FD4747">setVersionNo</span>(value);
+     * vendorLargeName901234567890.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
-     *     vendorLargeName901234567890Bhv.<span style="color: #FD4747">update</span>(vendorLargeName901234567890);
+     *     vendorLargeName901234567890Bhv.<span style="color: #DD4747">update</span>(vendorLargeName901234567890);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param vendorLargeName901234567890 The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void update(final VendorLargeName901234567890 vendorLargeName901234567890) {
         doUpdate(vendorLargeName901234567890, null);
@@ -576,11 +620,11 @@ public abstract class BsVendorLargeName901234567890Bhv extends AbstractBehaviorW
     /**
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br />
-     * <p><span style="color: #FD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
+     * <p><span style="color: #DD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
      * @param vendorLargeName901234567890 The entity of insert or update target. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insertOrUpdate(VendorLargeName901234567890 vendorLargeName901234567890) {
         doInesrtOrUpdate(vendorLargeName901234567890, null, null);
@@ -616,16 +660,16 @@ public abstract class BsVendorLargeName901234567890Bhv extends AbstractBehaviorW
      * VendorLargeName901234567890 vendorLargeName901234567890 = new VendorLargeName901234567890();
      * vendorLargeName901234567890.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * vendorLargeName901234567890.<span style="color: #FD4747">setVersionNo</span>(value);
+     * vendorLargeName901234567890.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
-     *     vendorLargeName901234567890Bhv.<span style="color: #FD4747">delete</span>(vendorLargeName901234567890);
+     *     vendorLargeName901234567890Bhv.<span style="color: #DD4747">delete</span>(vendorLargeName901234567890);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param vendorLargeName901234567890 The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void delete(VendorLargeName901234567890 vendorLargeName901234567890) {
         doDelete(vendorLargeName901234567890, null);
@@ -660,7 +704,7 @@ public abstract class BsVendorLargeName901234567890Bhv extends AbstractBehaviorW
     /**
      * Batch-insert the entity list modified-only of same-set columns. (DefaultConstraintsEnabled) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
-     * <p><span style="color: #FD4747; font-size: 120%">The columns of least common multiple are registered like this:</span></p>
+     * <p><span style="color: #DD4747; font-size: 120%">The columns of least common multiple are registered like this:</span></p>
      * <pre>
      * for (... : ...) {
      *     VendorLargeName901234567890 vendorLargeName901234567890 = new VendorLargeName901234567890();
@@ -673,7 +717,7 @@ public abstract class BsVendorLargeName901234567890Bhv extends AbstractBehaviorW
      *     <span style="color: #3F7E5E">// columns not-called in all entities are registered as null or default value</span>
      *     vendorLargeName901234567890List.add(vendorLargeName901234567890);
      * }
-     * vendorLargeName901234567890Bhv.<span style="color: #FD4747">batchInsert</span>(vendorLargeName901234567890List);
+     * vendorLargeName901234567890Bhv.<span style="color: #DD4747">batchInsert</span>(vendorLargeName901234567890List);
      * </pre>
      * <p>While, when the entities are created by select, all columns are registered.</p>
      * <p>And if the table has an identity, entities after the process don't have incremented values.
@@ -707,7 +751,7 @@ public abstract class BsVendorLargeName901234567890Bhv extends AbstractBehaviorW
     /**
      * Batch-update the entity list modified-only of same-set columns. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
-     * <span style="color: #FD4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
+     * <span style="color: #DD4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
      * <pre>
      * for (... : ...) {
      *     VendorLargeName901234567890 vendorLargeName901234567890 = new VendorLargeName901234567890();
@@ -722,11 +766,11 @@ public abstract class BsVendorLargeName901234567890Bhv extends AbstractBehaviorW
      *     <span style="color: #3F7E5E">// (others are not updated: their values are kept)</span>
      *     vendorLargeName901234567890List.add(vendorLargeName901234567890);
      * }
-     * vendorLargeName901234567890Bhv.<span style="color: #FD4747">batchUpdate</span>(vendorLargeName901234567890List);
+     * vendorLargeName901234567890Bhv.<span style="color: #DD4747">batchUpdate</span>(vendorLargeName901234567890List);
      * </pre>
      * @param vendorLargeName901234567890List The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<VendorLargeName901234567890> vendorLargeName901234567890List) {
         UpdateOption<VendorLargeName901234567890CB> op = createPlainUpdateOption();
@@ -755,16 +799,16 @@ public abstract class BsVendorLargeName901234567890Bhv extends AbstractBehaviorW
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * <pre>
      * <span style="color: #3F7E5E">// e.g. update two columns only</span>
-     * vendorLargeName901234567890Bhv.<span style="color: #FD4747">batchUpdate</span>(vendorLargeName901234567890List, new SpecifyQuery<VendorLargeName901234567890CB>() {
+     * vendorLargeName901234567890Bhv.<span style="color: #DD4747">batchUpdate</span>(vendorLargeName901234567890List, new SpecifyQuery<VendorLargeName901234567890CB>() {
      *     public void specify(VendorLargeName901234567890CB cb) { <span style="color: #3F7E5E">// the two only updated</span>
-     *         cb.specify().<span style="color: #FD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
-     *         cb.specify().<span style="color: #FD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
+     *         cb.specify().<span style="color: #DD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
+     *         cb.specify().<span style="color: #DD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
      *     }
      * });
      * <span style="color: #3F7E5E">// e.g. update every column in the table</span>
-     * vendorLargeName901234567890Bhv.<span style="color: #FD4747">batchUpdate</span>(vendorLargeName901234567890List, new SpecifyQuery<VendorLargeName901234567890CB>() {
+     * vendorLargeName901234567890Bhv.<span style="color: #DD4747">batchUpdate</span>(vendorLargeName901234567890List, new SpecifyQuery<VendorLargeName901234567890CB>() {
      *     public void specify(VendorLargeName901234567890CB cb) { <span style="color: #3F7E5E">// all columns are updated</span>
-     *         cb.specify().<span style="color: #FD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
+     *         cb.specify().<span style="color: #DD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
      *     }
      * });
      * </pre>
@@ -776,7 +820,7 @@ public abstract class BsVendorLargeName901234567890Bhv extends AbstractBehaviorW
      * @param vendorLargeName901234567890List The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @param updateColumnSpec The specification of update columns. (NotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<VendorLargeName901234567890> vendorLargeName901234567890List, SpecifyQuery<VendorLargeName901234567890CB> updateColumnSpec) {
         return doBatchUpdate(vendorLargeName901234567890List, createSpecifiedUpdateOption(updateColumnSpec));
@@ -792,7 +836,7 @@ public abstract class BsVendorLargeName901234567890Bhv extends AbstractBehaviorW
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * @param vendorLargeName901234567890List The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of deleted count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchDelete(List<VendorLargeName901234567890> vendorLargeName901234567890List) {
         return doBatchDelete(vendorLargeName901234567890List, null);
@@ -821,7 +865,7 @@ public abstract class BsVendorLargeName901234567890Bhv extends AbstractBehaviorW
     /**
      * Insert the several entities by query (modified-only for fixed value).
      * <pre>
-     * vendorLargeName901234567890Bhv.<span style="color: #FD4747">queryInsert</span>(new QueryInsertSetupper&lt;VendorLargeName901234567890, VendorLargeName901234567890CB&gt;() {
+     * vendorLargeName901234567890Bhv.<span style="color: #DD4747">queryInsert</span>(new QueryInsertSetupper&lt;VendorLargeName901234567890, VendorLargeName901234567890CB&gt;() {
      *     public ConditionBean setup(vendorLargeName901234567890 entity, VendorLargeName901234567890CB intoCB) {
      *         FooCB cb = FooCB();
      *         cb.setupSelect_Bar();
@@ -883,12 +927,12 @@ public abstract class BsVendorLargeName901234567890Bhv extends AbstractBehaviorW
      * <span style="color: #3F7E5E">//vendorLargeName901234567890.setVersionNo(value);</span>
      * VendorLargeName901234567890CB cb = new VendorLargeName901234567890CB();
      * cb.query().setFoo...(value);
-     * vendorLargeName901234567890Bhv.<span style="color: #FD4747">queryUpdate</span>(vendorLargeName901234567890, cb);
+     * vendorLargeName901234567890Bhv.<span style="color: #DD4747">queryUpdate</span>(vendorLargeName901234567890, cb);
      * </pre>
      * @param vendorLargeName901234567890 The entity that contains update values. (NotNull, PrimaryKeyNullAllowed)
      * @param cb The condition-bean of VendorLargeName901234567890. (NotNull)
      * @return The updated count.
-     * @exception org.seasar.dbflute.exception.NonQueryUpdateNotAllowedException When the query has no condition.
+     * @exception NonQueryUpdateNotAllowedException When the query has no condition.
      */
     public int queryUpdate(VendorLargeName901234567890 vendorLargeName901234567890, VendorLargeName901234567890CB cb) {
         return doQueryUpdate(vendorLargeName901234567890, cb, null);
@@ -911,11 +955,11 @@ public abstract class BsVendorLargeName901234567890Bhv extends AbstractBehaviorW
      * <pre>
      * VendorLargeName901234567890CB cb = new VendorLargeName901234567890CB();
      * cb.query().setFoo...(value);
-     * vendorLargeName901234567890Bhv.<span style="color: #FD4747">queryDelete</span>(vendorLargeName901234567890, cb);
+     * vendorLargeName901234567890Bhv.<span style="color: #DD4747">queryDelete</span>(vendorLargeName901234567890, cb);
      * </pre>
      * @param cb The condition-bean of VendorLargeName901234567890. (NotNull)
      * @return The deleted count.
-     * @exception org.seasar.dbflute.exception.NonQueryDeleteNotAllowedException When the query has no condition.
+     * @exception NonQueryDeleteNotAllowedException When the query has no condition.
      */
     public int queryDelete(VendorLargeName901234567890CB cb) {
         return doQueryDelete(cb, null);
@@ -951,12 +995,12 @@ public abstract class BsVendorLargeName901234567890Bhv extends AbstractBehaviorW
      * InsertOption<VendorLargeName901234567890CB> option = new InsertOption<VendorLargeName901234567890CB>();
      * <span style="color: #3F7E5E">// you can insert by your values for common columns</span>
      * option.disableCommonColumnAutoSetup();
-     * vendorLargeName901234567890Bhv.<span style="color: #FD4747">varyingInsert</span>(vendorLargeName901234567890, option);
+     * vendorLargeName901234567890Bhv.<span style="color: #DD4747">varyingInsert</span>(vendorLargeName901234567890, option);
      * ... = vendorLargeName901234567890.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * @param vendorLargeName901234567890 The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
      * @param option The option of insert for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingInsert(VendorLargeName901234567890 vendorLargeName901234567890, InsertOption<VendorLargeName901234567890CB> option) {
         assertInsertOptionNotNull(option);
@@ -972,25 +1016,25 @@ public abstract class BsVendorLargeName901234567890Bhv extends AbstractBehaviorW
      * vendorLargeName901234567890.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * vendorLargeName901234567890.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * vendorLargeName901234567890.<span style="color: #FD4747">setVersionNo</span>(value);
+     * vendorLargeName901234567890.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     <span style="color: #3F7E5E">// you can update by self calculation values</span>
      *     UpdateOption&lt;VendorLargeName901234567890CB&gt; option = new UpdateOption&lt;VendorLargeName901234567890CB&gt;();
      *     option.self(new SpecifyQuery&lt;VendorLargeName901234567890CB&gt;() {
      *         public void specify(VendorLargeName901234567890CB cb) {
-     *             cb.specify().<span style="color: #FD4747">columnXxxCount()</span>;
+     *             cb.specify().<span style="color: #DD4747">columnXxxCount()</span>;
      *         }
      *     }).plus(1); <span style="color: #3F7E5E">// XXX_COUNT = XXX_COUNT + 1</span>
-     *     vendorLargeName901234567890Bhv.<span style="color: #FD4747">varyingUpdate</span>(vendorLargeName901234567890, option);
+     *     vendorLargeName901234567890Bhv.<span style="color: #DD4747">varyingUpdate</span>(vendorLargeName901234567890, option);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param vendorLargeName901234567890 The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @param option The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingUpdate(VendorLargeName901234567890 vendorLargeName901234567890, UpdateOption<VendorLargeName901234567890CB> option) {
         assertUpdateOptionNotNull(option);
@@ -1003,9 +1047,9 @@ public abstract class BsVendorLargeName901234567890Bhv extends AbstractBehaviorW
      * @param vendorLargeName901234567890 The entity of insert or update target. (NotNull)
      * @param insertOption The option of insert for varying requests. (NotNull)
      * @param updateOption The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingInsertOrUpdate(VendorLargeName901234567890 vendorLargeName901234567890, InsertOption<VendorLargeName901234567890CB> insertOption, UpdateOption<VendorLargeName901234567890CB> updateOption) {
         assertInsertOptionNotNull(insertOption); assertUpdateOptionNotNull(updateOption);
@@ -1018,8 +1062,8 @@ public abstract class BsVendorLargeName901234567890Bhv extends AbstractBehaviorW
      * Other specifications are same as delete(entity).
      * @param vendorLargeName901234567890 The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @param option The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void varyingDelete(VendorLargeName901234567890 vendorLargeName901234567890, DeleteOption<VendorLargeName901234567890CB> option) {
         assertDeleteOptionNotNull(option);
@@ -1105,16 +1149,16 @@ public abstract class BsVendorLargeName901234567890Bhv extends AbstractBehaviorW
      * UpdateOption&lt;VendorLargeName901234567890CB&gt; option = new UpdateOption&lt;VendorLargeName901234567890CB&gt;();
      * option.self(new SpecifyQuery&lt;VendorLargeName901234567890CB&gt;() {
      *     public void specify(VendorLargeName901234567890CB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFooCount()</span>;
+     *         cb.specify().<span style="color: #DD4747">columnFooCount()</span>;
      *     }
      * }).plus(1); <span style="color: #3F7E5E">// FOO_COUNT = FOO_COUNT + 1</span>
-     * vendorLargeName901234567890Bhv.<span style="color: #FD4747">varyingQueryUpdate</span>(vendorLargeName901234567890, cb, option);
+     * vendorLargeName901234567890Bhv.<span style="color: #DD4747">varyingQueryUpdate</span>(vendorLargeName901234567890, cb, option);
      * </pre>
      * @param vendorLargeName901234567890 The entity that contains update values. (NotNull) {PrimaryKeyNotRequired}
      * @param cb The condition-bean of VendorLargeName901234567890. (NotNull)
      * @param option The option of update for varying requests. (NotNull)
      * @return The updated count.
-     * @exception org.seasar.dbflute.exception.NonQueryUpdateNotAllowedException When the query has no condition (if not allowed).
+     * @exception NonQueryUpdateNotAllowedException When the query has no condition (if not allowed).
      */
     public int varyingQueryUpdate(VendorLargeName901234567890 vendorLargeName901234567890, VendorLargeName901234567890CB cb, UpdateOption<VendorLargeName901234567890CB> option) {
         assertUpdateOptionNotNull(option);
@@ -1128,7 +1172,7 @@ public abstract class BsVendorLargeName901234567890Bhv extends AbstractBehaviorW
      * @param cb The condition-bean of VendorLargeName901234567890. (NotNull)
      * @param option The option of delete for varying requests. (NotNull)
      * @return The deleted count.
-     * @exception org.seasar.dbflute.exception.NonQueryDeleteNotAllowedException When the query has no condition (if not allowed).
+     * @exception NonQueryDeleteNotAllowedException When the query has no condition (if not allowed).
      */
     public int varyingQueryDelete(VendorLargeName901234567890CB cb, DeleteOption<VendorLargeName901234567890CB> option) {
         assertDeleteOptionNotNull(option);

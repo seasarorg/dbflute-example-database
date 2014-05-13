@@ -203,7 +203,7 @@ public class BsWhiteUqFkWithoutPkRefCB extends AbstractConditionBean {
      * You don't need to call SetupSelect in union-query,
      * because it inherits calls before. (Don't call SetupSelect after here)
      * <pre>
-     * cb.query().<span style="color: #FD4747">union</span>(new UnionQuery&lt;WhiteUqFkWithoutPkRefCB&gt;() {
+     * cb.query().<span style="color: #DD4747">union</span>(new UnionQuery&lt;WhiteUqFkWithoutPkRefCB&gt;() {
      *     public void query(WhiteUqFkWithoutPkRefCB unionCB) {
      *         unionCB.query().setXxx...
      *     }
@@ -212,8 +212,8 @@ public class BsWhiteUqFkWithoutPkRefCB extends AbstractConditionBean {
      * @param unionQuery The query of 'union'. (NotNull)
      */
     public void union(UnionQuery<WhiteUqFkWithoutPkRefCB> unionQuery) {
-        final WhiteUqFkWithoutPkRefCB cb = new WhiteUqFkWithoutPkRefCB();
-        cb.xsetupForUnion(this); xsyncUQ(cb); unionQuery.query(cb); xsaveUCB(cb);
+        final WhiteUqFkWithoutPkRefCB cb = new WhiteUqFkWithoutPkRefCB(); cb.xsetupForUnion(this); xsyncUQ(cb); 
+        try { lock(); unionQuery.query(cb); } finally { unlock(); } xsaveUCB(cb);
         final WhiteUqFkWithoutPkRefCQ cq = cb.query(); query().xsetUnionQuery(cq);
     }
 
@@ -222,7 +222,7 @@ public class BsWhiteUqFkWithoutPkRefCB extends AbstractConditionBean {
      * You don't need to call SetupSelect in union-query,
      * because it inherits calls before. (Don't call SetupSelect after here)
      * <pre>
-     * cb.query().<span style="color: #FD4747">unionAll</span>(new UnionQuery&lt;WhiteUqFkWithoutPkRefCB&gt;() {
+     * cb.query().<span style="color: #DD4747">unionAll</span>(new UnionQuery&lt;WhiteUqFkWithoutPkRefCB&gt;() {
      *     public void query(WhiteUqFkWithoutPkRefCB unionCB) {
      *         unionCB.query().setXxx...
      *     }
@@ -231,8 +231,8 @@ public class BsWhiteUqFkWithoutPkRefCB extends AbstractConditionBean {
      * @param unionQuery The query of 'union all'. (NotNull)
      */
     public void unionAll(UnionQuery<WhiteUqFkWithoutPkRefCB> unionQuery) {
-        final WhiteUqFkWithoutPkRefCB cb = new WhiteUqFkWithoutPkRefCB();
-        cb.xsetupForUnion(this); xsyncUQ(cb); unionQuery.query(cb); xsaveUCB(cb);
+        final WhiteUqFkWithoutPkRefCB cb = new WhiteUqFkWithoutPkRefCB(); cb.xsetupForUnion(this); xsyncUQ(cb);
+        try { lock(); unionQuery.query(cb); } finally { unlock(); } xsaveUCB(cb);
         final WhiteUqFkWithoutPkRefCQ cq = cb.query(); query().xsetUnionAllQuery(cq);
     }
 
@@ -265,14 +265,15 @@ public class BsWhiteUqFkWithoutPkRefCB extends AbstractConditionBean {
      * WHITE_UQ_FK_WITHOUT_PK by my FK_TO_UQ_CODE, named 'whiteUqFkWithoutPk'.
      * <pre>
      * WhiteUqFkWithoutPkRefCB cb = new WhiteUqFkWithoutPkRefCB();
-     * cb.<span style="color: #FD4747">setupSelect_WhiteUqFkWithoutPk()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
+     * cb.<span style="color: #DD4747">setupSelect_WhiteUqFkWithoutPk()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
      * cb.query().setFoo...(value);
      * WhiteUqFkWithoutPkRef whiteUqFkWithoutPkRef = whiteUqFkWithoutPkRefBhv.selectEntityWithDeletedCheck(cb);
-     * ... = whiteUqFkWithoutPkRef.<span style="color: #FD4747">getWhiteUqFkWithoutPk()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
+     * ... = whiteUqFkWithoutPkRef.<span style="color: #DD4747">getWhiteUqFkWithoutPk()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
      * </pre>
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
     public WhiteUqFkWithoutPkNss setupSelect_WhiteUqFkWithoutPk() {
+        assertSetupSelectPurpose("whiteUqFkWithoutPk");
         if (hasSpecifiedColumn()) { // if reverse call
             specify().columnFkToUqCode();
         }
@@ -374,19 +375,19 @@ public class BsWhiteUqFkWithoutPkRefCB extends AbstractConditionBean {
 
     // [DBFlute-0.9.5.3]
     // ===================================================================================
-    //                                                                         ColumnQuery
-    //                                                                         ===========
+    //                                                                        Column Query
+    //                                                                        ============
     /**
      * Set up column-query. {column1 = column2}
      * <pre>
      * <span style="color: #3F7E5E">// where FOO &lt; BAR</span>
-     * cb.<span style="color: #FD4747">columnQuery</span>(new SpecifyQuery&lt;WhiteUqFkWithoutPkRefCB&gt;() {
+     * cb.<span style="color: #DD4747">columnQuery</span>(new SpecifyQuery&lt;WhiteUqFkWithoutPkRefCB&gt;() {
      *     public void query(WhiteUqFkWithoutPkRefCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFoo()</span>; <span style="color: #3F7E5E">// left column</span>
+     *         cb.specify().<span style="color: #DD4747">columnFoo()</span>; <span style="color: #3F7E5E">// left column</span>
      *     }
      * }).lessThan(new SpecifyQuery&lt;WhiteUqFkWithoutPkRefCB&gt;() {
      *     public void query(WhiteUqFkWithoutPkRefCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnBar()</span>; <span style="color: #3F7E5E">// right column</span>
+     *         cb.specify().<span style="color: #DD4747">columnBar()</span>; <span style="color: #3F7E5E">// right column</span>
      *     }
      * }); <span style="color: #3F7E5E">// you can calculate for right column like '}).plus(3);'</span>
      * </pre>
@@ -427,14 +428,14 @@ public class BsWhiteUqFkWithoutPkRefCB extends AbstractConditionBean {
 
     // [DBFlute-0.9.6.3]
     // ===================================================================================
-    //                                                                        OrScopeQuery
-    //                                                                        ============
+    //                                                                       OrScope Query
+    //                                                                       =============
     /**
      * Set up the query for or-scope. <br />
      * (Same-column-and-same-condition-key conditions are allowed in or-scope)
      * <pre>
      * <span style="color: #3F7E5E">// where (FOO = '...' or BAR = '...')</span>
-     * cb.<span style="color: #FD4747">orScopeQuery</span>(new OrQuery&lt;WhiteUqFkWithoutPkRefCB&gt;() {
+     * cb.<span style="color: #DD4747">orScopeQuery</span>(new OrQuery&lt;WhiteUqFkWithoutPkRefCB&gt;() {
      *     public void query(WhiteUqFkWithoutPkRefCB orCB) {
      *         orCB.query().setFOO_Equal...
      *         orCB.query().setBAR_Equal...
@@ -452,10 +453,10 @@ public class BsWhiteUqFkWithoutPkRefCB extends AbstractConditionBean {
      * (However nested or-scope query and as-or-split of like-search in and-part are unsupported)
      * <pre>
      * <span style="color: #3F7E5E">// where (FOO = '...' or (BAR = '...' and QUX = '...'))</span>
-     * cb.<span style="color: #FD4747">orScopeQuery</span>(new OrQuery&lt;WhiteUqFkWithoutPkRefCB&gt;() {
+     * cb.<span style="color: #DD4747">orScopeQuery</span>(new OrQuery&lt;WhiteUqFkWithoutPkRefCB&gt;() {
      *     public void query(WhiteUqFkWithoutPkRefCB orCB) {
      *         orCB.query().setFOO_Equal...
-     *         orCB.<span style="color: #FD4747">orScopeQueryAndPart</span>(new AndQuery&lt;WhiteUqFkWithoutPkRefCB&gt;() {
+     *         orCB.<span style="color: #DD4747">orScopeQueryAndPart</span>(new AndQuery&lt;WhiteUqFkWithoutPkRefCB&gt;() {
      *             public void query(WhiteUqFkWithoutPkRefCB andCB) {
      *                 andCB.query().setBar_...
      *                 andCB.query().setQux_...

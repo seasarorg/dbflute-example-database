@@ -178,17 +178,17 @@ public abstract class BsWhiteDiffWorld implements Entity, Serializable, Cloneabl
     /**
      * Determine the object is equal with this. <br />
      * If primary-keys or columns of the other are same as this one, returns true.
-     * @param other The other entity. (NullAllowed: if null, returns false fixedly)
+     * @param obj The object as other entity. (NullAllowed: if null, returns false fixedly)
      * @return Comparing result.
      */
-    public boolean equals(Object other) {
-        if (other == null || !(other instanceof BsWhiteDiffWorld)) { return false; }
-        BsWhiteDiffWorld otherEntity = (BsWhiteDiffWorld)other;
-        if (!xSV(getDiffWorldId(), otherEntity.getDiffWorldId())) { return false; }
+    public boolean equals(Object obj) {
+        if (obj == null || !(obj instanceof BsWhiteDiffWorld)) { return false; }
+        BsWhiteDiffWorld other = (BsWhiteDiffWorld)obj;
+        if (!xSV(getDiffWorldId(), other.getDiffWorldId())) { return false; }
         return true;
     }
-    protected boolean xSV(Object value1, Object value2) { // isSameValue()
-        return InternalUtil.isSameValue(value1, value2);
+    protected boolean xSV(Object value1, Object value2) {
+        return FunCustodial.isSameValue(value1, value2);
     }
 
     /**
@@ -201,8 +201,8 @@ public abstract class BsWhiteDiffWorld implements Entity, Serializable, Cloneabl
         result = xCH(result, getDiffWorldId());
         return result;
     }
-    protected int xCH(int result, Object value) { // calculateHashcode()
-        return InternalUtil.calculateHashcode(result, value);
+    protected int xCH(int result, Object value) {
+        return FunCustodial.calculateHashcode(result, value);
     }
 
     /**
@@ -217,7 +217,7 @@ public abstract class BsWhiteDiffWorld implements Entity, Serializable, Cloneabl
      * @return The display string of all columns and relation existences. (NotNull)
      */
     public String toString() {
-        return buildDisplayString(InternalUtil.toClassTitle(this), true, true);
+        return buildDisplayString(FunCustodial.toClassTitle(this), true, true);
     }
 
     /**

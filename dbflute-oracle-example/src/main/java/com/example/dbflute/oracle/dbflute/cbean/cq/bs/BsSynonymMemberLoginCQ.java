@@ -35,7 +35,7 @@ public class BsSynonymMemberLoginCQ extends AbstractBsSynonymMemberLoginCQ {
      * Prepare InlineView query. <br />
      * {select ... from ... left outer join (select * from SYNONYM_MEMBER_LOGIN) where FOO = [value] ...}
      * <pre>
-     * cb.query().queryMemberStatus().<span style="color: #FD4747">inline()</span>.setFoo...;
+     * cb.query().queryMemberStatus().<span style="color: #DD4747">inline()</span>.setFoo...;
      * </pre>
      * @return The condition-query for InlineView query. (NotNull)
      */
@@ -58,7 +58,7 @@ public class BsSynonymMemberLoginCQ extends AbstractBsSynonymMemberLoginCQ {
      * Prepare OnClause query. <br />
      * {select ... from ... left outer join SYNONYM_MEMBER_LOGIN on ... and FOO = [value] ...}
      * <pre>
-     * cb.query().queryMemberStatus().<span style="color: #FD4747">on()</span>.setFoo...;
+     * cb.query().queryMemberStatus().<span style="color: #DD4747">on()</span>.setFoo...;
      * </pre>
      * @return The condition-query for OnClause query. (NotNull)
      * @throws IllegalConditionBeanOperationException When this condition-query is base query.
@@ -219,9 +219,9 @@ public class BsSynonymMemberLoginCQ extends AbstractBsSynonymMemberLoginCQ {
      *     public void query(PurchaseCB subCB) {
      *         subCB.specify().columnPurchaseDatetime();
      *     }
-     * }, <span style="color: #FD4747">aliasName</span>);
+     * }, <span style="color: #DD4747">aliasName</span>);
      * <span style="color: #3F7E5E">// order by [alias-name] asc</span>
-     * cb.<span style="color: #FD4747">addSpecifiedDerivedOrderBy_Asc</span>(<span style="color: #FD4747">aliasName</span>);
+     * cb.<span style="color: #DD4747">addSpecifiedDerivedOrderBy_Asc</span>(<span style="color: #DD4747">aliasName</span>);
      * </pre>
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
@@ -236,9 +236,9 @@ public class BsSynonymMemberLoginCQ extends AbstractBsSynonymMemberLoginCQ {
      *     public void query(PurchaseCB subCB) {
      *         subCB.specify().columnPurchaseDatetime();
      *     }
-     * }, <span style="color: #FD4747">aliasName</span>);
+     * }, <span style="color: #DD4747">aliasName</span>);
      * <span style="color: #3F7E5E">// order by [alias-name] desc</span>
-     * cb.<span style="color: #FD4747">addSpecifiedDerivedOrderBy_Desc</span>(<span style="color: #FD4747">aliasName</span>);
+     * cb.<span style="color: #DD4747">addSpecifiedDerivedOrderBy_Desc</span>(<span style="color: #DD4747">aliasName</span>);
      * </pre>
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
@@ -252,11 +252,11 @@ public class BsSynonymMemberLoginCQ extends AbstractBsSynonymMemberLoginCQ {
     protected void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
         SynonymMemberLoginCQ bq = (SynonymMemberLoginCQ)bqs;
         SynonymMemberLoginCQ uq = (SynonymMemberLoginCQ)uqs;
-        if (bq.hasConditionQueryMemberVendorSynonym()) {
-            uq.queryMemberVendorSynonym().reflectRelationOnUnionQuery(bq.queryMemberVendorSynonym(), uq.queryMemberVendorSynonym());
-        }
         if (bq.hasConditionQueryMemberStatus()) {
             uq.queryMemberStatus().reflectRelationOnUnionQuery(bq.queryMemberStatus(), uq.queryMemberStatus());
+        }
+        if (bq.hasConditionQueryMemberVendorSynonym()) {
+            uq.queryMemberVendorSynonym().reflectRelationOnUnionQuery(bq.queryMemberVendorSynonym(), uq.queryMemberVendorSynonym());
         }
         if (bq.hasConditionQuerySynonymMember()) {
             uq.querySynonymMember().reflectRelationOnUnionQuery(bq.querySynonymMember(), uq.querySynonymMember());
@@ -269,40 +269,6 @@ public class BsSynonymMemberLoginCQ extends AbstractBsSynonymMemberLoginCQ {
     // ===================================================================================
     //                                                                       Foreign Query
     //                                                                       =============
-    /**
-     * Get the condition-query for relation table. <br />
-     * (会員)MEMBER_VENDOR_SYNONYM by my MEMBER_ID, named 'memberVendorSynonym'.
-     * @return The instance of condition-query. (NotNull)
-     */
-    public MemberVendorSynonymCQ queryMemberVendorSynonym() {
-        return getConditionQueryMemberVendorSynonym();
-    }
-    protected MemberVendorSynonymCQ _conditionQueryMemberVendorSynonym;
-    public MemberVendorSynonymCQ getConditionQueryMemberVendorSynonym() {
-        if (_conditionQueryMemberVendorSynonym == null) {
-            _conditionQueryMemberVendorSynonym = xcreateQueryMemberVendorSynonym();
-            xsetupOuterJoinMemberVendorSynonym();
-        }
-        return _conditionQueryMemberVendorSynonym;
-    }
-    protected MemberVendorSynonymCQ xcreateQueryMemberVendorSynonym() {
-        String nrp = resolveNextRelationPath("SYNONYM_MEMBER_LOGIN", "memberVendorSynonym");
-        String jan = resolveJoinAliasName(nrp, xgetNextNestLevel());
-        MemberVendorSynonymCQ cq = new MemberVendorSynonymCQ(this, xgetSqlClause(), jan, xgetNextNestLevel());
-        cq.xsetBaseCB(_baseCB);
-        cq.xsetForeignPropertyName("memberVendorSynonym");
-        cq.xsetRelationPath(nrp); return cq;
-    }
-    protected void xsetupOuterJoinMemberVendorSynonym() {
-        MemberVendorSynonymCQ cq = getConditionQueryMemberVendorSynonym();
-        Map<String, String> joinOnMap = newLinkedHashMapSized(4);
-        joinOnMap.put("MEMBER_ID", "MEMBER_ID");
-        registerOuterJoin(cq, joinOnMap, "memberVendorSynonym");
-    }
-    public boolean hasConditionQueryMemberVendorSynonym() {
-        return _conditionQueryMemberVendorSynonym != null;
-    }
-
     /**
      * Get the condition-query for relation table. <br />
      * (会員ステータス)MEMBER_STATUS by my LOGIN_MEMBER_STATUS_CODE, named 'memberStatus'.
@@ -335,6 +301,40 @@ public class BsSynonymMemberLoginCQ extends AbstractBsSynonymMemberLoginCQ {
     }
     public boolean hasConditionQueryMemberStatus() {
         return _conditionQueryMemberStatus != null;
+    }
+
+    /**
+     * Get the condition-query for relation table. <br />
+     * (会員)MEMBER_VENDOR_SYNONYM by my MEMBER_ID, named 'memberVendorSynonym'.
+     * @return The instance of condition-query. (NotNull)
+     */
+    public MemberVendorSynonymCQ queryMemberVendorSynonym() {
+        return getConditionQueryMemberVendorSynonym();
+    }
+    protected MemberVendorSynonymCQ _conditionQueryMemberVendorSynonym;
+    public MemberVendorSynonymCQ getConditionQueryMemberVendorSynonym() {
+        if (_conditionQueryMemberVendorSynonym == null) {
+            _conditionQueryMemberVendorSynonym = xcreateQueryMemberVendorSynonym();
+            xsetupOuterJoinMemberVendorSynonym();
+        }
+        return _conditionQueryMemberVendorSynonym;
+    }
+    protected MemberVendorSynonymCQ xcreateQueryMemberVendorSynonym() {
+        String nrp = resolveNextRelationPath("SYNONYM_MEMBER_LOGIN", "memberVendorSynonym");
+        String jan = resolveJoinAliasName(nrp, xgetNextNestLevel());
+        MemberVendorSynonymCQ cq = new MemberVendorSynonymCQ(this, xgetSqlClause(), jan, xgetNextNestLevel());
+        cq.xsetBaseCB(_baseCB);
+        cq.xsetForeignPropertyName("memberVendorSynonym");
+        cq.xsetRelationPath(nrp); return cq;
+    }
+    protected void xsetupOuterJoinMemberVendorSynonym() {
+        MemberVendorSynonymCQ cq = getConditionQueryMemberVendorSynonym();
+        Map<String, String> joinOnMap = newLinkedHashMapSized(4);
+        joinOnMap.put("MEMBER_ID", "MEMBER_ID");
+        registerOuterJoin(cq, joinOnMap, "memberVendorSynonym");
+    }
+    public boolean hasConditionQueryMemberVendorSynonym() {
+        return _conditionQueryMemberVendorSynonym != null;
     }
 
     /**

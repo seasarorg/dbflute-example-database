@@ -6,6 +6,8 @@ import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
 import org.seasar.dbflute.dbmeta.DBMeta;
+import org.seasar.dbflute.exception.*;
+import org.seasar.dbflute.optional.*;
 import org.seasar.dbflute.outsidesql.executor.*;
 import com.example.dbflute.oracle.dbflute.exbhv.*;
 import com.example.dbflute.oracle.dbflute.exentity.*;
@@ -91,7 +93,7 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
      * <pre>
      * SynonymProductCB cb = new SynonymProductCB();
      * cb.query().setFoo...(value);
-     * int count = synonymProductBhv.<span style="color: #FD4747">selectCount</span>(cb);
+     * int count = synonymProductBhv.<span style="color: #DD4747">selectCount</span>(cb);
      * </pre>
      * @param cb The condition-bean of SynonymProduct. (NotNull)
      * @return The count for the condition. (NotMinus)
@@ -119,12 +121,14 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
     //                                                                       Entity Select
     //                                                                       =============
     /**
-     * Select the entity by the condition-bean.
+     * Select the entity by the condition-bean. #beforejava8 <br />
+     * <span style="color: #AD4747; font-size: 120%">The return might be null if no data, so you should have null check.</span> <br />
+     * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, use selectEntityWithDeletedCheck().</span>
      * <pre>
      * SynonymProductCB cb = new SynonymProductCB();
      * cb.query().setFoo...(value);
-     * SynonymProduct synonymProduct = synonymProductBhv.<span style="color: #FD4747">selectEntity</span>(cb);
-     * if (synonymProduct != null) {
+     * SynonymProduct synonymProduct = synonymProductBhv.<span style="color: #DD4747">selectEntity</span>(cb);
+     * if (synonymProduct != null) { <span style="color: #3F7E5E">// null check</span>
      *     ... = synonymProduct.get...();
      * } else {
      *     ...
@@ -132,8 +136,8 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of SynonymProduct. (NotNull)
      * @return The entity selected by the condition. (NullAllowed: if no data, it returns null)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public SynonymProduct selectEntity(SynonymProductCB cb) {
         return doSelectEntity(cb, SynonymProduct.class);
@@ -145,24 +149,29 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
             public List<ENTITY> callbackSelectList(SynonymProductCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
+    protected <ENTITY extends SynonymProduct> OptionalEntity<ENTITY> doSelectOptionalEntity(SynonymProductCB cb, Class<ENTITY> tp) {
+        return createOptionalEntity(doSelectEntity(cb, tp), cb);
+    }
+
     @Override
     protected Entity doReadEntity(ConditionBean cb) {
         return selectEntity(downcast(cb));
     }
 
     /**
-     * Select the entity by the condition-bean with deleted check.
+     * Select the entity by the condition-bean with deleted check. <br />
+     * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, this method is good.</span>
      * <pre>
      * SynonymProductCB cb = new SynonymProductCB();
      * cb.query().setFoo...(value);
-     * SynonymProduct synonymProduct = synonymProductBhv.<span style="color: #FD4747">selectEntityWithDeletedCheck</span>(cb);
+     * SynonymProduct synonymProduct = synonymProductBhv.<span style="color: #DD4747">selectEntityWithDeletedCheck</span>(cb);
      * ... = synonymProduct.get...(); <span style="color: #3F7E5E">// the entity always be not null</span>
      * </pre>
      * @param cb The condition-bean of SynonymProduct. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public SynonymProduct selectEntityWithDeletedCheck(SynonymProductCB cb) {
         return doSelectEntityWithDeletedCheck(cb, SynonymProduct.class);
@@ -183,8 +192,8 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
      * Select the entity by the primary-key value.
      * @param productId The one of primary key. (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public SynonymProduct selectByPKValue(Long productId) {
         return doSelectByPKValue(productId, SynonymProduct.class);
@@ -198,9 +207,9 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
      * Select the entity by the primary-key value with deleted check.
      * @param productId The one of primary key. (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public SynonymProduct selectByPKValueWithDeletedCheck(Long productId) {
         return doSelectByPKValueWithDeletedCheck(productId, SynonymProduct.class);
@@ -226,14 +235,14 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
      * SynonymProductCB cb = new SynonymProductCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * ListResultBean&lt;SynonymProduct&gt; synonymProductList = synonymProductBhv.<span style="color: #FD4747">selectList</span>(cb);
+     * ListResultBean&lt;SynonymProduct&gt; synonymProductList = synonymProductBhv.<span style="color: #DD4747">selectList</span>(cb);
      * for (SynonymProduct synonymProduct : synonymProductList) {
      *     ... = synonymProduct.get...();
      * }
      * </pre>
      * @param cb The condition-bean of SynonymProduct. (NotNull)
      * @return The result bean of selected list. (NotNull: if no data, returns empty list)
-     * @exception org.seasar.dbflute.exception.DangerousResultSizeException When the result size is over the specified safety size.
+     * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public ListResultBean<SynonymProduct> selectList(SynonymProductCB cb) {
         return doSelectList(cb, SynonymProduct.class);
@@ -261,8 +270,8 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
      * SynonymProductCB cb = new SynonymProductCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * cb.<span style="color: #FD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
-     * PagingResultBean&lt;SynonymProduct&gt; page = synonymProductBhv.<span style="color: #FD4747">selectPage</span>(cb);
+     * cb.<span style="color: #DD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
+     * PagingResultBean&lt;SynonymProduct&gt; page = synonymProductBhv.<span style="color: #DD4747">selectPage</span>(cb);
      * int allRecordCount = page.getAllRecordCount();
      * int allPageCount = page.getAllPageCount();
      * boolean isExistPrePage = page.isExistPrePage();
@@ -274,7 +283,7 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of SynonymProduct. (NotNull)
      * @return The result bean of selected page. (NotNull: if no data, returns bean as empty list)
-     * @exception org.seasar.dbflute.exception.DangerousResultSizeException When the result size is over the specified safety size.
+     * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public PagingResultBean<SynonymProduct> selectPage(SynonymProductCB cb) {
         return doSelectPage(cb, SynonymProduct.class);
@@ -301,7 +310,7 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
      * <pre>
      * SynonymProductCB cb = new SynonymProductCB();
      * cb.query().setFoo...(value);
-     * synonymProductBhv.<span style="color: #FD4747">selectCursor</span>(cb, new EntityRowHandler&lt;SynonymProduct&gt;() {
+     * synonymProductBhv.<span style="color: #DD4747">selectCursor</span>(cb, new EntityRowHandler&lt;SynonymProduct&gt;() {
      *     public void handle(SynonymProduct entity) {
      *         ... = entity.getFoo...();
      *     }
@@ -330,9 +339,9 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
      * Select the scalar value derived by a function from uniquely-selected records. <br />
      * You should call a function method after this method called like as follows:
      * <pre>
-     * synonymProductBhv.<span style="color: #FD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
+     * synonymProductBhv.<span style="color: #DD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
      *     public void query(SynonymProductCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
+     *         cb.specify().<span style="color: #DD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
      *         cb.query().setBarName_PrefixSearch("S");
      *     }
      * });
@@ -423,12 +432,12 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
      * <span style="color: #3F7E5E">//synonymProduct.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//synonymProduct.set...;</span>
-     * synonymProductBhv.<span style="color: #FD4747">insert</span>(synonymProduct);
+     * synonymProductBhv.<span style="color: #DD4747">insert</span>(synonymProduct);
      * ... = synonymProduct.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * <p>While, when the entity is created by select, all columns are registered.</p>
      * @param synonymProduct The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insert(SynonymProduct synonymProduct) {
         doInsert(synonymProduct, null);
@@ -464,17 +473,17 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">//synonymProduct.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//synonymProduct.set...;</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * synonymProduct.<span style="color: #FD4747">setVersionNo</span>(value);
+     * synonymProduct.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
-     *     synonymProductBhv.<span style="color: #FD4747">update</span>(synonymProduct);
+     *     synonymProductBhv.<span style="color: #DD4747">update</span>(synonymProduct);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param synonymProduct The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyUpdatedException When the entity has already been updated.
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyUpdatedException When the entity has already been updated.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void update(final SynonymProduct synonymProduct) {
         doUpdate(synonymProduct, null);
@@ -528,12 +537,12 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">// you don't need to set a value of exclusive control column</span>
      * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
      * <span style="color: #3F7E5E">//synonymProduct.setVersionNo(value);</span>
-     * synonymProductBhv.<span style="color: #FD4747">updateNonstrict</span>(synonymProduct);
+     * synonymProductBhv.<span style="color: #DD4747">updateNonstrict</span>(synonymProduct);
      * </pre>
      * @param synonymProduct The entity of update target. (NotNull, PrimaryKeyNotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void updateNonstrict(final SynonymProduct synonymProduct) {
         doUpdateNonstrict(synonymProduct, null);
@@ -555,11 +564,11 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
     /**
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, ExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br />
-     * <p><span style="color: #FD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
+     * <p><span style="color: #DD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
      * @param synonymProduct The entity of insert or update target. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyUpdatedException When the entity has already been updated.
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyUpdatedException When the entity has already been updated.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insertOrUpdate(SynonymProduct synonymProduct) {
         doInesrtOrUpdate(synonymProduct, null, null);
@@ -587,11 +596,11 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
     /**
      * Insert or update the entity non-strictly modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() }
-     * <p><span style="color: #FD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
+     * <p><span style="color: #DD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
      * @param synonymProduct The entity of insert or update target. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insertOrUpdateNonstrict(SynonymProduct synonymProduct) {
         doInesrtOrUpdateNonstrict(synonymProduct, null, null);
@@ -620,16 +629,16 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
      * SynonymProduct synonymProduct = new SynonymProduct();
      * synonymProduct.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * synonymProduct.<span style="color: #FD4747">setVersionNo</span>(value);
+     * synonymProduct.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
-     *     synonymProductBhv.<span style="color: #FD4747">delete</span>(synonymProduct);
+     *     synonymProductBhv.<span style="color: #DD4747">delete</span>(synonymProduct);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param synonymProduct The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyUpdatedException When the entity has already been updated.
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyUpdatedException When the entity has already been updated.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void delete(SynonymProduct synonymProduct) {
         doDelete(synonymProduct, null);
@@ -661,11 +670,11 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">// you don't need to set a value of exclusive control column</span>
      * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
      * <span style="color: #3F7E5E">//synonymProduct.setVersionNo(value);</span>
-     * synonymProductBhv.<span style="color: #FD4747">deleteNonstrict</span>(synonymProduct);
+     * synonymProductBhv.<span style="color: #DD4747">deleteNonstrict</span>(synonymProduct);
      * </pre>
      * @param synonymProduct The entity of delete target. (NotNull, PrimaryKeyNotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void deleteNonstrict(SynonymProduct synonymProduct) {
         doDeleteNonstrict(synonymProduct, null);
@@ -686,11 +695,11 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">// you don't need to set a value of exclusive control column</span>
      * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
      * <span style="color: #3F7E5E">//synonymProduct.setVersionNo(value);</span>
-     * synonymProductBhv.<span style="color: #FD4747">deleteNonstrictIgnoreDeleted</span>(synonymProduct);
+     * synonymProductBhv.<span style="color: #DD4747">deleteNonstrictIgnoreDeleted</span>(synonymProduct);
      * <span style="color: #3F7E5E">// if the target entity doesn't exist, no exception</span>
      * </pre>
      * @param synonymProduct The entity of delete target. (NotNull, PrimaryKeyNotNull)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void deleteNonstrictIgnoreDeleted(SynonymProduct synonymProduct) {
         doDeleteNonstrictIgnoreDeleted(synonymProduct, null);
@@ -715,7 +724,7 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
     /**
      * Batch-insert the entity list modified-only of same-set columns. (DefaultConstraintsEnabled) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
-     * <p><span style="color: #FD4747; font-size: 120%">The columns of least common multiple are registered like this:</span></p>
+     * <p><span style="color: #DD4747; font-size: 120%">The columns of least common multiple are registered like this:</span></p>
      * <pre>
      * for (... : ...) {
      *     SynonymProduct synonymProduct = new SynonymProduct();
@@ -728,7 +737,7 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
      *     <span style="color: #3F7E5E">// columns not-called in all entities are registered as null or default value</span>
      *     synonymProductList.add(synonymProduct);
      * }
-     * synonymProductBhv.<span style="color: #FD4747">batchInsert</span>(synonymProductList);
+     * synonymProductBhv.<span style="color: #DD4747">batchInsert</span>(synonymProductList);
      * </pre>
      * <p>While, when the entities are created by select, all columns are registered.</p>
      * <p>And if the table has an identity, entities after the process don't have incremented values.
@@ -762,7 +771,7 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
     /**
      * Batch-update the entity list modified-only of same-set columns. (ExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
-     * <span style="color: #FD4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
+     * <span style="color: #DD4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
      * <pre>
      * for (... : ...) {
      *     SynonymProduct synonymProduct = new SynonymProduct();
@@ -777,11 +786,11 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
      *     <span style="color: #3F7E5E">// (others are not updated: their values are kept)</span>
      *     synonymProductList.add(synonymProduct);
      * }
-     * synonymProductBhv.<span style="color: #FD4747">batchUpdate</span>(synonymProductList);
+     * synonymProductBhv.<span style="color: #DD4747">batchUpdate</span>(synonymProductList);
      * </pre>
      * @param synonymProductList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.BatchEntityAlreadyUpdatedException When the entity has already been updated. This exception extends EntityAlreadyUpdatedException.
+     * @exception BatchEntityAlreadyUpdatedException When the entity has already been updated. This exception extends EntityAlreadyUpdatedException.
      */
     public int[] batchUpdate(List<SynonymProduct> synonymProductList) {
         UpdateOption<SynonymProductCB> op = createPlainUpdateOption();
@@ -810,16 +819,16 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * <pre>
      * <span style="color: #3F7E5E">// e.g. update two columns only</span>
-     * synonymProductBhv.<span style="color: #FD4747">batchUpdate</span>(synonymProductList, new SpecifyQuery<SynonymProductCB>() {
+     * synonymProductBhv.<span style="color: #DD4747">batchUpdate</span>(synonymProductList, new SpecifyQuery<SynonymProductCB>() {
      *     public void specify(SynonymProductCB cb) { <span style="color: #3F7E5E">// the two only updated</span>
-     *         cb.specify().<span style="color: #FD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
-     *         cb.specify().<span style="color: #FD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
+     *         cb.specify().<span style="color: #DD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
+     *         cb.specify().<span style="color: #DD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
      *     }
      * });
      * <span style="color: #3F7E5E">// e.g. update every column in the table</span>
-     * synonymProductBhv.<span style="color: #FD4747">batchUpdate</span>(synonymProductList, new SpecifyQuery<SynonymProductCB>() {
+     * synonymProductBhv.<span style="color: #DD4747">batchUpdate</span>(synonymProductList, new SpecifyQuery<SynonymProductCB>() {
      *     public void specify(SynonymProductCB cb) { <span style="color: #3F7E5E">// all columns are updated</span>
-     *         cb.specify().<span style="color: #FD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
+     *         cb.specify().<span style="color: #DD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
      *     }
      * });
      * </pre>
@@ -831,7 +840,7 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
      * @param synonymProductList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @param updateColumnSpec The specification of update columns. (NotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.BatchEntityAlreadyUpdatedException When the entity has already been updated. This exception extends EntityAlreadyUpdatedException.
+     * @exception BatchEntityAlreadyUpdatedException When the entity has already been updated. This exception extends EntityAlreadyUpdatedException.
      */
     public int[] batchUpdate(List<SynonymProduct> synonymProductList, SpecifyQuery<SynonymProductCB> updateColumnSpec) {
         return doBatchUpdate(synonymProductList, createSpecifiedUpdateOption(updateColumnSpec));
@@ -840,7 +849,7 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
     /**
      * Batch-update the entity list non-strictly modified-only of same-set columns. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
-     * <span style="color: #FD4747; font-size: 140%">You should specify same-set columns to all entities like this:</span>
+     * <span style="color: #DD4747; font-size: 140%">You should specify same-set columns to all entities like this:</span>
      * <pre>
      * for (... : ...) {
      *     SynonymProduct synonymProduct = new SynonymProduct();
@@ -855,11 +864,11 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
      *     <span style="color: #3F7E5E">// (others are not updated: their values are kept)</span>
      *     synonymProductList.add(synonymProduct);
      * }
-     * synonymProductBhv.<span style="color: #FD4747">batchUpdate</span>(synonymProductList);
+     * synonymProductBhv.<span style="color: #DD4747">batchUpdate</span>(synonymProductList);
      * </pre>
      * @param synonymProductList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdateNonstrict(List<SynonymProduct> synonymProductList) {
         UpdateOption<SynonymProductCB> option = createPlainUpdateOption();
@@ -877,16 +886,16 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * <pre>
      * <span style="color: #3F7E5E">// e.g. update two columns only</span>
-     * synonymProductBhv.<span style="color: #FD4747">batchUpdateNonstrict</span>(synonymProductList, new SpecifyQuery<SynonymProductCB>() {
+     * synonymProductBhv.<span style="color: #DD4747">batchUpdateNonstrict</span>(synonymProductList, new SpecifyQuery<SynonymProductCB>() {
      *     public void specify(SynonymProductCB cb) { <span style="color: #3F7E5E">// the two only updated</span>
-     *         cb.specify().<span style="color: #FD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
-     *         cb.specify().<span style="color: #FD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
+     *         cb.specify().<span style="color: #DD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
+     *         cb.specify().<span style="color: #DD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
      *     }
      * });
      * <span style="color: #3F7E5E">// e.g. update every column in the table</span>
-     * synonymProductBhv.<span style="color: #FD4747">batchUpdateNonstrict</span>(synonymProductList, new SpecifyQuery<SynonymProductCB>() {
+     * synonymProductBhv.<span style="color: #DD4747">batchUpdateNonstrict</span>(synonymProductList, new SpecifyQuery<SynonymProductCB>() {
      *     public void specify(SynonymProductCB cb) { <span style="color: #3F7E5E">// all columns are updated</span>
-     *         cb.specify().<span style="color: #FD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
+     *         cb.specify().<span style="color: #DD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
      *     }
      * });
      * </pre>
@@ -897,7 +906,7 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
      * @param synonymProductList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @param updateColumnSpec The specification of update columns. (NotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdateNonstrict(List<SynonymProduct> synonymProductList, SpecifyQuery<SynonymProductCB> updateColumnSpec) {
         return doBatchUpdateNonstrict(synonymProductList, createSpecifiedUpdateOption(updateColumnSpec));
@@ -914,7 +923,7 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * @param synonymProductList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of deleted count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.BatchEntityAlreadyUpdatedException When the entity has already been updated. This exception extends EntityAlreadyUpdatedException.
+     * @exception BatchEntityAlreadyUpdatedException When the entity has already been updated. This exception extends EntityAlreadyUpdatedException.
      */
     public int[] batchDelete(List<SynonymProduct> synonymProductList) {
         return doBatchDelete(synonymProductList, null);
@@ -937,7 +946,7 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * @param synonymProductList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of deleted count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchDeleteNonstrict(List<SynonymProduct> synonymProductList) {
         return doBatchDeleteNonstrict(synonymProductList, null);
@@ -961,7 +970,7 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
     /**
      * Insert the several entities by query (modified-only for fixed value).
      * <pre>
-     * synonymProductBhv.<span style="color: #FD4747">queryInsert</span>(new QueryInsertSetupper&lt;SynonymProduct, SynonymProductCB&gt;() {
+     * synonymProductBhv.<span style="color: #DD4747">queryInsert</span>(new QueryInsertSetupper&lt;SynonymProduct, SynonymProductCB&gt;() {
      *     public ConditionBean setup(synonymProduct entity, SynonymProductCB intoCB) {
      *         FooCB cb = FooCB();
      *         cb.setupSelect_Bar();
@@ -1023,12 +1032,12 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">//synonymProduct.setVersionNo(value);</span>
      * SynonymProductCB cb = new SynonymProductCB();
      * cb.query().setFoo...(value);
-     * synonymProductBhv.<span style="color: #FD4747">queryUpdate</span>(synonymProduct, cb);
+     * synonymProductBhv.<span style="color: #DD4747">queryUpdate</span>(synonymProduct, cb);
      * </pre>
      * @param synonymProduct The entity that contains update values. (NotNull, PrimaryKeyNullAllowed)
      * @param cb The condition-bean of SynonymProduct. (NotNull)
      * @return The updated count.
-     * @exception org.seasar.dbflute.exception.NonQueryUpdateNotAllowedException When the query has no condition.
+     * @exception NonQueryUpdateNotAllowedException When the query has no condition.
      */
     public int queryUpdate(SynonymProduct synonymProduct, SynonymProductCB cb) {
         return doQueryUpdate(synonymProduct, cb, null);
@@ -1051,11 +1060,11 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
      * <pre>
      * SynonymProductCB cb = new SynonymProductCB();
      * cb.query().setFoo...(value);
-     * synonymProductBhv.<span style="color: #FD4747">queryDelete</span>(synonymProduct, cb);
+     * synonymProductBhv.<span style="color: #DD4747">queryDelete</span>(synonymProduct, cb);
      * </pre>
      * @param cb The condition-bean of SynonymProduct. (NotNull)
      * @return The deleted count.
-     * @exception org.seasar.dbflute.exception.NonQueryDeleteNotAllowedException When the query has no condition.
+     * @exception NonQueryDeleteNotAllowedException When the query has no condition.
      */
     public int queryDelete(SynonymProductCB cb) {
         return doQueryDelete(cb, null);
@@ -1091,12 +1100,12 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
      * InsertOption<SynonymProductCB> option = new InsertOption<SynonymProductCB>();
      * <span style="color: #3F7E5E">// you can insert by your values for common columns</span>
      * option.disableCommonColumnAutoSetup();
-     * synonymProductBhv.<span style="color: #FD4747">varyingInsert</span>(synonymProduct, option);
+     * synonymProductBhv.<span style="color: #DD4747">varyingInsert</span>(synonymProduct, option);
      * ... = synonymProduct.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * @param synonymProduct The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
      * @param option The option of insert for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingInsert(SynonymProduct synonymProduct, InsertOption<SynonymProductCB> option) {
         assertInsertOptionNotNull(option);
@@ -1112,25 +1121,25 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
      * synonymProduct.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * synonymProduct.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * synonymProduct.<span style="color: #FD4747">setVersionNo</span>(value);
+     * synonymProduct.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     <span style="color: #3F7E5E">// you can update by self calculation values</span>
      *     UpdateOption&lt;SynonymProductCB&gt; option = new UpdateOption&lt;SynonymProductCB&gt;();
      *     option.self(new SpecifyQuery&lt;SynonymProductCB&gt;() {
      *         public void specify(SynonymProductCB cb) {
-     *             cb.specify().<span style="color: #FD4747">columnXxxCount()</span>;
+     *             cb.specify().<span style="color: #DD4747">columnXxxCount()</span>;
      *         }
      *     }).plus(1); <span style="color: #3F7E5E">// XXX_COUNT = XXX_COUNT + 1</span>
-     *     synonymProductBhv.<span style="color: #FD4747">varyingUpdate</span>(synonymProduct, option);
+     *     synonymProductBhv.<span style="color: #DD4747">varyingUpdate</span>(synonymProduct, option);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param synonymProduct The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @param option The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyUpdatedException When the entity has already been updated.
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyUpdatedException When the entity has already been updated.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingUpdate(SynonymProduct synonymProduct, UpdateOption<SynonymProductCB> option) {
         assertUpdateOptionNotNull(option);
@@ -1152,16 +1161,16 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
      * UpdateOption&lt;SynonymProductCB&gt; option = new UpdateOption&lt;SynonymProductCB&gt;();
      * option.self(new SpecifyQuery&lt;SynonymProductCB&gt;() {
      *     public void specify(SynonymProductCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFooCount()</span>;
+     *         cb.specify().<span style="color: #DD4747">columnFooCount()</span>;
      *     }
      * }).plus(1); <span style="color: #3F7E5E">// FOO_COUNT = FOO_COUNT + 1</span>
-     * synonymProductBhv.<span style="color: #FD4747">varyingUpdateNonstrict</span>(synonymProduct, option);
+     * synonymProductBhv.<span style="color: #DD4747">varyingUpdateNonstrict</span>(synonymProduct, option);
      * </pre>
      * @param synonymProduct The entity of update target. (NotNull, PrimaryKeyNotNull)
      * @param option The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingUpdateNonstrict(SynonymProduct synonymProduct, UpdateOption<SynonymProductCB> option) {
         assertUpdateOptionNotNull(option);
@@ -1174,9 +1183,9 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
      * @param synonymProduct The entity of insert or update target. (NotNull)
      * @param insertOption The option of insert for varying requests. (NotNull)
      * @param updateOption The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyUpdatedException When the entity has already been updated.
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyUpdatedException When the entity has already been updated.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingInsertOrUpdate(SynonymProduct synonymProduct, InsertOption<SynonymProductCB> insertOption, UpdateOption<SynonymProductCB> updateOption) {
         assertInsertOptionNotNull(insertOption); assertUpdateOptionNotNull(updateOption);
@@ -1189,9 +1198,9 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
      * @param synonymProduct The entity of insert or update target. (NotNull)
      * @param insertOption The option of insert for varying requests. (NotNull)
      * @param updateOption The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingInsertOrUpdateNonstrict(SynonymProduct synonymProduct, InsertOption<SynonymProductCB> insertOption, UpdateOption<SynonymProductCB> updateOption) {
         assertInsertOptionNotNull(insertOption); assertUpdateOptionNotNull(updateOption);
@@ -1204,8 +1213,8 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
      * Other specifications are same as delete(entity).
      * @param synonymProduct The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @param option The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyUpdatedException When the entity has already been updated.
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyUpdatedException When the entity has already been updated.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void varyingDelete(SynonymProduct synonymProduct, DeleteOption<SynonymProductCB> option) {
         assertDeleteOptionNotNull(option);
@@ -1218,8 +1227,8 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
      * Other specifications are same as deleteNonstrict(entity).
      * @param synonymProduct The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @param option The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void varyingDeleteNonstrict(SynonymProduct synonymProduct, DeleteOption<SynonymProductCB> option) {
         assertDeleteOptionNotNull(option);
@@ -1332,16 +1341,16 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
      * UpdateOption&lt;SynonymProductCB&gt; option = new UpdateOption&lt;SynonymProductCB&gt;();
      * option.self(new SpecifyQuery&lt;SynonymProductCB&gt;() {
      *     public void specify(SynonymProductCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFooCount()</span>;
+     *         cb.specify().<span style="color: #DD4747">columnFooCount()</span>;
      *     }
      * }).plus(1); <span style="color: #3F7E5E">// FOO_COUNT = FOO_COUNT + 1</span>
-     * synonymProductBhv.<span style="color: #FD4747">varyingQueryUpdate</span>(synonymProduct, cb, option);
+     * synonymProductBhv.<span style="color: #DD4747">varyingQueryUpdate</span>(synonymProduct, cb, option);
      * </pre>
      * @param synonymProduct The entity that contains update values. (NotNull) {PrimaryKeyNotRequired}
      * @param cb The condition-bean of SynonymProduct. (NotNull)
      * @param option The option of update for varying requests. (NotNull)
      * @return The updated count.
-     * @exception org.seasar.dbflute.exception.NonQueryUpdateNotAllowedException When the query has no condition (if not allowed).
+     * @exception NonQueryUpdateNotAllowedException When the query has no condition (if not allowed).
      */
     public int varyingQueryUpdate(SynonymProduct synonymProduct, SynonymProductCB cb, UpdateOption<SynonymProductCB> option) {
         assertUpdateOptionNotNull(option);
@@ -1355,7 +1364,7 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
      * @param cb The condition-bean of SynonymProduct. (NotNull)
      * @param option The option of delete for varying requests. (NotNull)
      * @return The deleted count.
-     * @exception org.seasar.dbflute.exception.NonQueryDeleteNotAllowedException When the query has no condition (if not allowed).
+     * @exception NonQueryDeleteNotAllowedException When the query has no condition (if not allowed).
      */
     public int varyingQueryDelete(SynonymProductCB cb, DeleteOption<SynonymProductCB> option) {
         assertDeleteOptionNotNull(option);

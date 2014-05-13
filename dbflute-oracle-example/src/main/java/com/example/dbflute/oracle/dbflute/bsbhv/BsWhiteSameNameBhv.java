@@ -6,6 +6,8 @@ import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
 import org.seasar.dbflute.dbmeta.DBMeta;
+import org.seasar.dbflute.exception.*;
+import org.seasar.dbflute.optional.*;
 import org.seasar.dbflute.outsidesql.executor.*;
 import com.example.dbflute.oracle.dbflute.exbhv.*;
 import com.example.dbflute.oracle.dbflute.exentity.*;
@@ -91,7 +93,7 @@ public abstract class BsWhiteSameNameBhv extends AbstractBehaviorWritable {
      * <pre>
      * WhiteSameNameCB cb = new WhiteSameNameCB();
      * cb.query().setFoo...(value);
-     * int count = whiteSameNameBhv.<span style="color: #FD4747">selectCount</span>(cb);
+     * int count = whiteSameNameBhv.<span style="color: #DD4747">selectCount</span>(cb);
      * </pre>
      * @param cb The condition-bean of WhiteSameName. (NotNull)
      * @return The count for the condition. (NotMinus)
@@ -119,12 +121,14 @@ public abstract class BsWhiteSameNameBhv extends AbstractBehaviorWritable {
     //                                                                       Entity Select
     //                                                                       =============
     /**
-     * Select the entity by the condition-bean.
+     * Select the entity by the condition-bean. #beforejava8 <br />
+     * <span style="color: #AD4747; font-size: 120%">The return might be null if no data, so you should have null check.</span> <br />
+     * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, use selectEntityWithDeletedCheck().</span>
      * <pre>
      * WhiteSameNameCB cb = new WhiteSameNameCB();
      * cb.query().setFoo...(value);
-     * WhiteSameName whiteSameName = whiteSameNameBhv.<span style="color: #FD4747">selectEntity</span>(cb);
-     * if (whiteSameName != null) {
+     * WhiteSameName whiteSameName = whiteSameNameBhv.<span style="color: #DD4747">selectEntity</span>(cb);
+     * if (whiteSameName != null) { <span style="color: #3F7E5E">// null check</span>
      *     ... = whiteSameName.get...();
      * } else {
      *     ...
@@ -132,8 +136,8 @@ public abstract class BsWhiteSameNameBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of WhiteSameName. (NotNull)
      * @return The entity selected by the condition. (NullAllowed: if no data, it returns null)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteSameName selectEntity(WhiteSameNameCB cb) {
         return doSelectEntity(cb, WhiteSameName.class);
@@ -145,24 +149,29 @@ public abstract class BsWhiteSameNameBhv extends AbstractBehaviorWritable {
             public List<ENTITY> callbackSelectList(WhiteSameNameCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
+    protected <ENTITY extends WhiteSameName> OptionalEntity<ENTITY> doSelectOptionalEntity(WhiteSameNameCB cb, Class<ENTITY> tp) {
+        return createOptionalEntity(doSelectEntity(cb, tp), cb);
+    }
+
     @Override
     protected Entity doReadEntity(ConditionBean cb) {
         return selectEntity(downcast(cb));
     }
 
     /**
-     * Select the entity by the condition-bean with deleted check.
+     * Select the entity by the condition-bean with deleted check. <br />
+     * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, this method is good.</span>
      * <pre>
      * WhiteSameNameCB cb = new WhiteSameNameCB();
      * cb.query().setFoo...(value);
-     * WhiteSameName whiteSameName = whiteSameNameBhv.<span style="color: #FD4747">selectEntityWithDeletedCheck</span>(cb);
+     * WhiteSameName whiteSameName = whiteSameNameBhv.<span style="color: #DD4747">selectEntityWithDeletedCheck</span>(cb);
      * ... = whiteSameName.get...(); <span style="color: #3F7E5E">// the entity always be not null</span>
      * </pre>
      * @param cb The condition-bean of WhiteSameName. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteSameName selectEntityWithDeletedCheck(WhiteSameNameCB cb) {
         return doSelectEntityWithDeletedCheck(cb, WhiteSameName.class);
@@ -183,8 +192,8 @@ public abstract class BsWhiteSameNameBhv extends AbstractBehaviorWritable {
      * Select the entity by the primary-key value.
      * @param sameNameId The one of primary key. (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteSameName selectByPKValue(Long sameNameId) {
         return doSelectByPKValue(sameNameId, WhiteSameName.class);
@@ -198,9 +207,9 @@ public abstract class BsWhiteSameNameBhv extends AbstractBehaviorWritable {
      * Select the entity by the primary-key value with deleted check.
      * @param sameNameId The one of primary key. (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteSameName selectByPKValueWithDeletedCheck(Long sameNameId) {
         return doSelectByPKValueWithDeletedCheck(sameNameId, WhiteSameName.class);
@@ -226,14 +235,14 @@ public abstract class BsWhiteSameNameBhv extends AbstractBehaviorWritable {
      * WhiteSameNameCB cb = new WhiteSameNameCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * ListResultBean&lt;WhiteSameName&gt; whiteSameNameList = whiteSameNameBhv.<span style="color: #FD4747">selectList</span>(cb);
+     * ListResultBean&lt;WhiteSameName&gt; whiteSameNameList = whiteSameNameBhv.<span style="color: #DD4747">selectList</span>(cb);
      * for (WhiteSameName whiteSameName : whiteSameNameList) {
      *     ... = whiteSameName.get...();
      * }
      * </pre>
      * @param cb The condition-bean of WhiteSameName. (NotNull)
      * @return The result bean of selected list. (NotNull: if no data, returns empty list)
-     * @exception org.seasar.dbflute.exception.DangerousResultSizeException When the result size is over the specified safety size.
+     * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public ListResultBean<WhiteSameName> selectList(WhiteSameNameCB cb) {
         return doSelectList(cb, WhiteSameName.class);
@@ -261,8 +270,8 @@ public abstract class BsWhiteSameNameBhv extends AbstractBehaviorWritable {
      * WhiteSameNameCB cb = new WhiteSameNameCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * cb.<span style="color: #FD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
-     * PagingResultBean&lt;WhiteSameName&gt; page = whiteSameNameBhv.<span style="color: #FD4747">selectPage</span>(cb);
+     * cb.<span style="color: #DD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
+     * PagingResultBean&lt;WhiteSameName&gt; page = whiteSameNameBhv.<span style="color: #DD4747">selectPage</span>(cb);
      * int allRecordCount = page.getAllRecordCount();
      * int allPageCount = page.getAllPageCount();
      * boolean isExistPrePage = page.isExistPrePage();
@@ -274,7 +283,7 @@ public abstract class BsWhiteSameNameBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of WhiteSameName. (NotNull)
      * @return The result bean of selected page. (NotNull: if no data, returns bean as empty list)
-     * @exception org.seasar.dbflute.exception.DangerousResultSizeException When the result size is over the specified safety size.
+     * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public PagingResultBean<WhiteSameName> selectPage(WhiteSameNameCB cb) {
         return doSelectPage(cb, WhiteSameName.class);
@@ -301,7 +310,7 @@ public abstract class BsWhiteSameNameBhv extends AbstractBehaviorWritable {
      * <pre>
      * WhiteSameNameCB cb = new WhiteSameNameCB();
      * cb.query().setFoo...(value);
-     * whiteSameNameBhv.<span style="color: #FD4747">selectCursor</span>(cb, new EntityRowHandler&lt;WhiteSameName&gt;() {
+     * whiteSameNameBhv.<span style="color: #DD4747">selectCursor</span>(cb, new EntityRowHandler&lt;WhiteSameName&gt;() {
      *     public void handle(WhiteSameName entity) {
      *         ... = entity.getFoo...();
      *     }
@@ -330,9 +339,9 @@ public abstract class BsWhiteSameNameBhv extends AbstractBehaviorWritable {
      * Select the scalar value derived by a function from uniquely-selected records. <br />
      * You should call a function method after this method called like as follows:
      * <pre>
-     * whiteSameNameBhv.<span style="color: #FD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
+     * whiteSameNameBhv.<span style="color: #DD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
      *     public void query(WhiteSameNameCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
+     *         cb.specify().<span style="color: #DD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
      *         cb.query().setBarName_PrefixSearch("S");
      *     }
      * });
@@ -399,12 +408,12 @@ public abstract class BsWhiteSameNameBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
      * <span style="color: #3F7E5E">//whiteSameName.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//whiteSameName.set...;</span>
-     * whiteSameNameBhv.<span style="color: #FD4747">insert</span>(whiteSameName);
+     * whiteSameNameBhv.<span style="color: #DD4747">insert</span>(whiteSameName);
      * ... = whiteSameName.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * <p>While, when the entity is created by select, all columns are registered.</p>
      * @param whiteSameName The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insert(WhiteSameName whiteSameName) {
         doInsert(whiteSameName, null);
@@ -440,17 +449,17 @@ public abstract class BsWhiteSameNameBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">//whiteSameName.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//whiteSameName.set...;</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * whiteSameName.<span style="color: #FD4747">setVersionNo</span>(value);
+     * whiteSameName.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
-     *     whiteSameNameBhv.<span style="color: #FD4747">update</span>(whiteSameName);
+     *     whiteSameNameBhv.<span style="color: #DD4747">update</span>(whiteSameName);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param whiteSameName The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void update(final WhiteSameName whiteSameName) {
         doUpdate(whiteSameName, null);
@@ -500,11 +509,11 @@ public abstract class BsWhiteSameNameBhv extends AbstractBehaviorWritable {
     /**
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br />
-     * <p><span style="color: #FD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
+     * <p><span style="color: #DD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
      * @param whiteSameName The entity of insert or update target. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insertOrUpdate(WhiteSameName whiteSameName) {
         doInesrtOrUpdate(whiteSameName, null, null);
@@ -540,16 +549,16 @@ public abstract class BsWhiteSameNameBhv extends AbstractBehaviorWritable {
      * WhiteSameName whiteSameName = new WhiteSameName();
      * whiteSameName.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * whiteSameName.<span style="color: #FD4747">setVersionNo</span>(value);
+     * whiteSameName.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
-     *     whiteSameNameBhv.<span style="color: #FD4747">delete</span>(whiteSameName);
+     *     whiteSameNameBhv.<span style="color: #DD4747">delete</span>(whiteSameName);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param whiteSameName The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void delete(WhiteSameName whiteSameName) {
         doDelete(whiteSameName, null);
@@ -584,7 +593,7 @@ public abstract class BsWhiteSameNameBhv extends AbstractBehaviorWritable {
     /**
      * Batch-insert the entity list modified-only of same-set columns. (DefaultConstraintsEnabled) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
-     * <p><span style="color: #FD4747; font-size: 120%">The columns of least common multiple are registered like this:</span></p>
+     * <p><span style="color: #DD4747; font-size: 120%">The columns of least common multiple are registered like this:</span></p>
      * <pre>
      * for (... : ...) {
      *     WhiteSameName whiteSameName = new WhiteSameName();
@@ -597,7 +606,7 @@ public abstract class BsWhiteSameNameBhv extends AbstractBehaviorWritable {
      *     <span style="color: #3F7E5E">// columns not-called in all entities are registered as null or default value</span>
      *     whiteSameNameList.add(whiteSameName);
      * }
-     * whiteSameNameBhv.<span style="color: #FD4747">batchInsert</span>(whiteSameNameList);
+     * whiteSameNameBhv.<span style="color: #DD4747">batchInsert</span>(whiteSameNameList);
      * </pre>
      * <p>While, when the entities are created by select, all columns are registered.</p>
      * <p>And if the table has an identity, entities after the process don't have incremented values.
@@ -631,7 +640,7 @@ public abstract class BsWhiteSameNameBhv extends AbstractBehaviorWritable {
     /**
      * Batch-update the entity list modified-only of same-set columns. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
-     * <span style="color: #FD4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
+     * <span style="color: #DD4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
      * <pre>
      * for (... : ...) {
      *     WhiteSameName whiteSameName = new WhiteSameName();
@@ -646,11 +655,11 @@ public abstract class BsWhiteSameNameBhv extends AbstractBehaviorWritable {
      *     <span style="color: #3F7E5E">// (others are not updated: their values are kept)</span>
      *     whiteSameNameList.add(whiteSameName);
      * }
-     * whiteSameNameBhv.<span style="color: #FD4747">batchUpdate</span>(whiteSameNameList);
+     * whiteSameNameBhv.<span style="color: #DD4747">batchUpdate</span>(whiteSameNameList);
      * </pre>
      * @param whiteSameNameList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<WhiteSameName> whiteSameNameList) {
         UpdateOption<WhiteSameNameCB> op = createPlainUpdateOption();
@@ -679,16 +688,16 @@ public abstract class BsWhiteSameNameBhv extends AbstractBehaviorWritable {
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * <pre>
      * <span style="color: #3F7E5E">// e.g. update two columns only</span>
-     * whiteSameNameBhv.<span style="color: #FD4747">batchUpdate</span>(whiteSameNameList, new SpecifyQuery<WhiteSameNameCB>() {
+     * whiteSameNameBhv.<span style="color: #DD4747">batchUpdate</span>(whiteSameNameList, new SpecifyQuery<WhiteSameNameCB>() {
      *     public void specify(WhiteSameNameCB cb) { <span style="color: #3F7E5E">// the two only updated</span>
-     *         cb.specify().<span style="color: #FD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
-     *         cb.specify().<span style="color: #FD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
+     *         cb.specify().<span style="color: #DD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
+     *         cb.specify().<span style="color: #DD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
      *     }
      * });
      * <span style="color: #3F7E5E">// e.g. update every column in the table</span>
-     * whiteSameNameBhv.<span style="color: #FD4747">batchUpdate</span>(whiteSameNameList, new SpecifyQuery<WhiteSameNameCB>() {
+     * whiteSameNameBhv.<span style="color: #DD4747">batchUpdate</span>(whiteSameNameList, new SpecifyQuery<WhiteSameNameCB>() {
      *     public void specify(WhiteSameNameCB cb) { <span style="color: #3F7E5E">// all columns are updated</span>
-     *         cb.specify().<span style="color: #FD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
+     *         cb.specify().<span style="color: #DD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
      *     }
      * });
      * </pre>
@@ -700,7 +709,7 @@ public abstract class BsWhiteSameNameBhv extends AbstractBehaviorWritable {
      * @param whiteSameNameList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @param updateColumnSpec The specification of update columns. (NotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<WhiteSameName> whiteSameNameList, SpecifyQuery<WhiteSameNameCB> updateColumnSpec) {
         return doBatchUpdate(whiteSameNameList, createSpecifiedUpdateOption(updateColumnSpec));
@@ -716,7 +725,7 @@ public abstract class BsWhiteSameNameBhv extends AbstractBehaviorWritable {
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * @param whiteSameNameList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of deleted count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchDelete(List<WhiteSameName> whiteSameNameList) {
         return doBatchDelete(whiteSameNameList, null);
@@ -745,7 +754,7 @@ public abstract class BsWhiteSameNameBhv extends AbstractBehaviorWritable {
     /**
      * Insert the several entities by query (modified-only for fixed value).
      * <pre>
-     * whiteSameNameBhv.<span style="color: #FD4747">queryInsert</span>(new QueryInsertSetupper&lt;WhiteSameName, WhiteSameNameCB&gt;() {
+     * whiteSameNameBhv.<span style="color: #DD4747">queryInsert</span>(new QueryInsertSetupper&lt;WhiteSameName, WhiteSameNameCB&gt;() {
      *     public ConditionBean setup(whiteSameName entity, WhiteSameNameCB intoCB) {
      *         FooCB cb = FooCB();
      *         cb.setupSelect_Bar();
@@ -807,12 +816,12 @@ public abstract class BsWhiteSameNameBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">//whiteSameName.setVersionNo(value);</span>
      * WhiteSameNameCB cb = new WhiteSameNameCB();
      * cb.query().setFoo...(value);
-     * whiteSameNameBhv.<span style="color: #FD4747">queryUpdate</span>(whiteSameName, cb);
+     * whiteSameNameBhv.<span style="color: #DD4747">queryUpdate</span>(whiteSameName, cb);
      * </pre>
      * @param whiteSameName The entity that contains update values. (NotNull, PrimaryKeyNullAllowed)
      * @param cb The condition-bean of WhiteSameName. (NotNull)
      * @return The updated count.
-     * @exception org.seasar.dbflute.exception.NonQueryUpdateNotAllowedException When the query has no condition.
+     * @exception NonQueryUpdateNotAllowedException When the query has no condition.
      */
     public int queryUpdate(WhiteSameName whiteSameName, WhiteSameNameCB cb) {
         return doQueryUpdate(whiteSameName, cb, null);
@@ -835,11 +844,11 @@ public abstract class BsWhiteSameNameBhv extends AbstractBehaviorWritable {
      * <pre>
      * WhiteSameNameCB cb = new WhiteSameNameCB();
      * cb.query().setFoo...(value);
-     * whiteSameNameBhv.<span style="color: #FD4747">queryDelete</span>(whiteSameName, cb);
+     * whiteSameNameBhv.<span style="color: #DD4747">queryDelete</span>(whiteSameName, cb);
      * </pre>
      * @param cb The condition-bean of WhiteSameName. (NotNull)
      * @return The deleted count.
-     * @exception org.seasar.dbflute.exception.NonQueryDeleteNotAllowedException When the query has no condition.
+     * @exception NonQueryDeleteNotAllowedException When the query has no condition.
      */
     public int queryDelete(WhiteSameNameCB cb) {
         return doQueryDelete(cb, null);
@@ -875,12 +884,12 @@ public abstract class BsWhiteSameNameBhv extends AbstractBehaviorWritable {
      * InsertOption<WhiteSameNameCB> option = new InsertOption<WhiteSameNameCB>();
      * <span style="color: #3F7E5E">// you can insert by your values for common columns</span>
      * option.disableCommonColumnAutoSetup();
-     * whiteSameNameBhv.<span style="color: #FD4747">varyingInsert</span>(whiteSameName, option);
+     * whiteSameNameBhv.<span style="color: #DD4747">varyingInsert</span>(whiteSameName, option);
      * ... = whiteSameName.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * @param whiteSameName The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
      * @param option The option of insert for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingInsert(WhiteSameName whiteSameName, InsertOption<WhiteSameNameCB> option) {
         assertInsertOptionNotNull(option);
@@ -896,25 +905,25 @@ public abstract class BsWhiteSameNameBhv extends AbstractBehaviorWritable {
      * whiteSameName.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * whiteSameName.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * whiteSameName.<span style="color: #FD4747">setVersionNo</span>(value);
+     * whiteSameName.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     <span style="color: #3F7E5E">// you can update by self calculation values</span>
      *     UpdateOption&lt;WhiteSameNameCB&gt; option = new UpdateOption&lt;WhiteSameNameCB&gt;();
      *     option.self(new SpecifyQuery&lt;WhiteSameNameCB&gt;() {
      *         public void specify(WhiteSameNameCB cb) {
-     *             cb.specify().<span style="color: #FD4747">columnXxxCount()</span>;
+     *             cb.specify().<span style="color: #DD4747">columnXxxCount()</span>;
      *         }
      *     }).plus(1); <span style="color: #3F7E5E">// XXX_COUNT = XXX_COUNT + 1</span>
-     *     whiteSameNameBhv.<span style="color: #FD4747">varyingUpdate</span>(whiteSameName, option);
+     *     whiteSameNameBhv.<span style="color: #DD4747">varyingUpdate</span>(whiteSameName, option);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param whiteSameName The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @param option The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingUpdate(WhiteSameName whiteSameName, UpdateOption<WhiteSameNameCB> option) {
         assertUpdateOptionNotNull(option);
@@ -927,9 +936,9 @@ public abstract class BsWhiteSameNameBhv extends AbstractBehaviorWritable {
      * @param whiteSameName The entity of insert or update target. (NotNull)
      * @param insertOption The option of insert for varying requests. (NotNull)
      * @param updateOption The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingInsertOrUpdate(WhiteSameName whiteSameName, InsertOption<WhiteSameNameCB> insertOption, UpdateOption<WhiteSameNameCB> updateOption) {
         assertInsertOptionNotNull(insertOption); assertUpdateOptionNotNull(updateOption);
@@ -942,8 +951,8 @@ public abstract class BsWhiteSameNameBhv extends AbstractBehaviorWritable {
      * Other specifications are same as delete(entity).
      * @param whiteSameName The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @param option The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void varyingDelete(WhiteSameName whiteSameName, DeleteOption<WhiteSameNameCB> option) {
         assertDeleteOptionNotNull(option);
@@ -1029,16 +1038,16 @@ public abstract class BsWhiteSameNameBhv extends AbstractBehaviorWritable {
      * UpdateOption&lt;WhiteSameNameCB&gt; option = new UpdateOption&lt;WhiteSameNameCB&gt;();
      * option.self(new SpecifyQuery&lt;WhiteSameNameCB&gt;() {
      *     public void specify(WhiteSameNameCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFooCount()</span>;
+     *         cb.specify().<span style="color: #DD4747">columnFooCount()</span>;
      *     }
      * }).plus(1); <span style="color: #3F7E5E">// FOO_COUNT = FOO_COUNT + 1</span>
-     * whiteSameNameBhv.<span style="color: #FD4747">varyingQueryUpdate</span>(whiteSameName, cb, option);
+     * whiteSameNameBhv.<span style="color: #DD4747">varyingQueryUpdate</span>(whiteSameName, cb, option);
      * </pre>
      * @param whiteSameName The entity that contains update values. (NotNull) {PrimaryKeyNotRequired}
      * @param cb The condition-bean of WhiteSameName. (NotNull)
      * @param option The option of update for varying requests. (NotNull)
      * @return The updated count.
-     * @exception org.seasar.dbflute.exception.NonQueryUpdateNotAllowedException When the query has no condition (if not allowed).
+     * @exception NonQueryUpdateNotAllowedException When the query has no condition (if not allowed).
      */
     public int varyingQueryUpdate(WhiteSameName whiteSameName, WhiteSameNameCB cb, UpdateOption<WhiteSameNameCB> option) {
         assertUpdateOptionNotNull(option);
@@ -1052,7 +1061,7 @@ public abstract class BsWhiteSameNameBhv extends AbstractBehaviorWritable {
      * @param cb The condition-bean of WhiteSameName. (NotNull)
      * @param option The option of delete for varying requests. (NotNull)
      * @return The deleted count.
-     * @exception org.seasar.dbflute.exception.NonQueryDeleteNotAllowedException When the query has no condition (if not allowed).
+     * @exception NonQueryDeleteNotAllowedException When the query has no condition (if not allowed).
      */
     public int varyingQueryDelete(WhiteSameNameCB cb, DeleteOption<WhiteSameNameCB> option) {
         assertDeleteOptionNotNull(option);

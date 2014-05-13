@@ -6,6 +6,8 @@ import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
 import org.seasar.dbflute.dbmeta.DBMeta;
+import org.seasar.dbflute.exception.*;
+import org.seasar.dbflute.optional.*;
 import org.seasar.dbflute.outsidesql.executor.*;
 import com.example.dbflute.sqlserver.dbflute.exbhv.*;
 import com.example.dbflute.sqlserver.dbflute.exentity.*;
@@ -91,7 +93,7 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorWritable {
      * <pre>
      * SummaryProductCB cb = new SummaryProductCB();
      * cb.query().setFoo...(value);
-     * int count = summaryProductBhv.<span style="color: #FD4747">selectCount</span>(cb);
+     * int count = summaryProductBhv.<span style="color: #DD4747">selectCount</span>(cb);
      * </pre>
      * @param cb The condition-bean of SummaryProduct. (NotNull)
      * @return The count for the condition. (NotMinus)
@@ -119,12 +121,14 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorWritable {
     //                                                                       Entity Select
     //                                                                       =============
     /**
-     * Select the entity by the condition-bean.
+     * Select the entity by the condition-bean. #beforejava8 <br />
+     * <span style="color: #AD4747; font-size: 120%">The return might be null if no data, so you should have null check.</span> <br />
+     * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, use selectEntityWithDeletedCheck().</span>
      * <pre>
      * SummaryProductCB cb = new SummaryProductCB();
      * cb.query().setFoo...(value);
-     * SummaryProduct summaryProduct = summaryProductBhv.<span style="color: #FD4747">selectEntity</span>(cb);
-     * if (summaryProduct != null) {
+     * SummaryProduct summaryProduct = summaryProductBhv.<span style="color: #DD4747">selectEntity</span>(cb);
+     * if (summaryProduct != null) { <span style="color: #3F7E5E">// null check</span>
      *     ... = summaryProduct.get...();
      * } else {
      *     ...
@@ -132,8 +136,8 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of SummaryProduct. (NotNull)
      * @return The entity selected by the condition. (NullAllowed: if no data, it returns null)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public SummaryProduct selectEntity(SummaryProductCB cb) {
         return doSelectEntity(cb, SummaryProduct.class);
@@ -145,24 +149,29 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorWritable {
             public List<ENTITY> callbackSelectList(SummaryProductCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
+    protected <ENTITY extends SummaryProduct> OptionalEntity<ENTITY> doSelectOptionalEntity(SummaryProductCB cb, Class<ENTITY> tp) {
+        return createOptionalEntity(doSelectEntity(cb, tp), cb);
+    }
+
     @Override
     protected Entity doReadEntity(ConditionBean cb) {
         return selectEntity(downcast(cb));
     }
 
     /**
-     * Select the entity by the condition-bean with deleted check.
+     * Select the entity by the condition-bean with deleted check. <br />
+     * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, this method is good.</span>
      * <pre>
      * SummaryProductCB cb = new SummaryProductCB();
      * cb.query().setFoo...(value);
-     * SummaryProduct summaryProduct = summaryProductBhv.<span style="color: #FD4747">selectEntityWithDeletedCheck</span>(cb);
+     * SummaryProduct summaryProduct = summaryProductBhv.<span style="color: #DD4747">selectEntityWithDeletedCheck</span>(cb);
      * ... = summaryProduct.get...(); <span style="color: #3F7E5E">// the entity always be not null</span>
      * </pre>
      * @param cb The condition-bean of SummaryProduct. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public SummaryProduct selectEntityWithDeletedCheck(SummaryProductCB cb) {
         return doSelectEntityWithDeletedCheck(cb, SummaryProduct.class);
@@ -183,8 +192,8 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorWritable {
      * Select the entity by the primary-key value.
      * @param productId The one of primary key. (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public SummaryProduct selectByPKValue(Integer productId) {
         return doSelectByPKValue(productId, SummaryProduct.class);
@@ -198,9 +207,9 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorWritable {
      * Select the entity by the primary-key value with deleted check.
      * @param productId The one of primary key. (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public SummaryProduct selectByPKValueWithDeletedCheck(Integer productId) {
         return doSelectByPKValueWithDeletedCheck(productId, SummaryProduct.class);
@@ -226,14 +235,14 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorWritable {
      * SummaryProductCB cb = new SummaryProductCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * ListResultBean&lt;SummaryProduct&gt; summaryProductList = summaryProductBhv.<span style="color: #FD4747">selectList</span>(cb);
+     * ListResultBean&lt;SummaryProduct&gt; summaryProductList = summaryProductBhv.<span style="color: #DD4747">selectList</span>(cb);
      * for (SummaryProduct summaryProduct : summaryProductList) {
      *     ... = summaryProduct.get...();
      * }
      * </pre>
      * @param cb The condition-bean of SummaryProduct. (NotNull)
      * @return The result bean of selected list. (NotNull: if no data, returns empty list)
-     * @exception org.seasar.dbflute.exception.DangerousResultSizeException When the result size is over the specified safety size.
+     * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public ListResultBean<SummaryProduct> selectList(SummaryProductCB cb) {
         return doSelectList(cb, SummaryProduct.class);
@@ -261,8 +270,8 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorWritable {
      * SummaryProductCB cb = new SummaryProductCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * cb.<span style="color: #FD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
-     * PagingResultBean&lt;SummaryProduct&gt; page = summaryProductBhv.<span style="color: #FD4747">selectPage</span>(cb);
+     * cb.<span style="color: #DD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
+     * PagingResultBean&lt;SummaryProduct&gt; page = summaryProductBhv.<span style="color: #DD4747">selectPage</span>(cb);
      * int allRecordCount = page.getAllRecordCount();
      * int allPageCount = page.getAllPageCount();
      * boolean isExistPrePage = page.isExistPrePage();
@@ -274,7 +283,7 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of SummaryProduct. (NotNull)
      * @return The result bean of selected page. (NotNull: if no data, returns bean as empty list)
-     * @exception org.seasar.dbflute.exception.DangerousResultSizeException When the result size is over the specified safety size.
+     * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public PagingResultBean<SummaryProduct> selectPage(SummaryProductCB cb) {
         return doSelectPage(cb, SummaryProduct.class);
@@ -301,7 +310,7 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorWritable {
      * <pre>
      * SummaryProductCB cb = new SummaryProductCB();
      * cb.query().setFoo...(value);
-     * summaryProductBhv.<span style="color: #FD4747">selectCursor</span>(cb, new EntityRowHandler&lt;SummaryProduct&gt;() {
+     * summaryProductBhv.<span style="color: #DD4747">selectCursor</span>(cb, new EntityRowHandler&lt;SummaryProduct&gt;() {
      *     public void handle(SummaryProduct entity) {
      *         ... = entity.getFoo...();
      *     }
@@ -330,9 +339,9 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorWritable {
      * Select the scalar value derived by a function from uniquely-selected records. <br />
      * You should call a function method after this method called like as follows:
      * <pre>
-     * summaryProductBhv.<span style="color: #FD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
+     * summaryProductBhv.<span style="color: #DD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
      *     public void query(SummaryProductCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
+     *         cb.specify().<span style="color: #DD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
      *         cb.query().setBarName_PrefixSearch("S");
      *     }
      * });
@@ -399,12 +408,12 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
      * <span style="color: #3F7E5E">//summaryProduct.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//summaryProduct.set...;</span>
-     * summaryProductBhv.<span style="color: #FD4747">insert</span>(summaryProduct);
+     * summaryProductBhv.<span style="color: #DD4747">insert</span>(summaryProduct);
      * ... = summaryProduct.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * <p>While, when the entity is created by select, all columns are registered.</p>
      * @param summaryProduct The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insert(SummaryProduct summaryProduct) {
         doInsert(summaryProduct, null);
@@ -440,17 +449,17 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">//summaryProduct.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//summaryProduct.set...;</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * summaryProduct.<span style="color: #FD4747">setVersionNo</span>(value);
+     * summaryProduct.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
-     *     summaryProductBhv.<span style="color: #FD4747">update</span>(summaryProduct);
+     *     summaryProductBhv.<span style="color: #DD4747">update</span>(summaryProduct);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param summaryProduct The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void update(final SummaryProduct summaryProduct) {
         doUpdate(summaryProduct, null);
@@ -500,11 +509,11 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorWritable {
     /**
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br />
-     * <p><span style="color: #FD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
+     * <p><span style="color: #DD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
      * @param summaryProduct The entity of insert or update target. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insertOrUpdate(SummaryProduct summaryProduct) {
         doInesrtOrUpdate(summaryProduct, null, null);
@@ -540,16 +549,16 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorWritable {
      * SummaryProduct summaryProduct = new SummaryProduct();
      * summaryProduct.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * summaryProduct.<span style="color: #FD4747">setVersionNo</span>(value);
+     * summaryProduct.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
-     *     summaryProductBhv.<span style="color: #FD4747">delete</span>(summaryProduct);
+     *     summaryProductBhv.<span style="color: #DD4747">delete</span>(summaryProduct);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param summaryProduct The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void delete(SummaryProduct summaryProduct) {
         doDelete(summaryProduct, null);
@@ -584,7 +593,7 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorWritable {
     /**
      * Batch-insert the entity list modified-only of same-set columns. (DefaultConstraintsEnabled) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
-     * <p><span style="color: #FD4747; font-size: 120%">The columns of least common multiple are registered like this:</span></p>
+     * <p><span style="color: #DD4747; font-size: 120%">The columns of least common multiple are registered like this:</span></p>
      * <pre>
      * for (... : ...) {
      *     SummaryProduct summaryProduct = new SummaryProduct();
@@ -597,7 +606,7 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorWritable {
      *     <span style="color: #3F7E5E">// columns not-called in all entities are registered as null or default value</span>
      *     summaryProductList.add(summaryProduct);
      * }
-     * summaryProductBhv.<span style="color: #FD4747">batchInsert</span>(summaryProductList);
+     * summaryProductBhv.<span style="color: #DD4747">batchInsert</span>(summaryProductList);
      * </pre>
      * <p>While, when the entities are created by select, all columns are registered.</p>
      * <p>And if the table has an identity, entities after the process don't have incremented values.
@@ -631,7 +640,7 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorWritable {
     /**
      * Batch-update the entity list modified-only of same-set columns. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
-     * <span style="color: #FD4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
+     * <span style="color: #DD4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
      * <pre>
      * for (... : ...) {
      *     SummaryProduct summaryProduct = new SummaryProduct();
@@ -646,11 +655,11 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorWritable {
      *     <span style="color: #3F7E5E">// (others are not updated: their values are kept)</span>
      *     summaryProductList.add(summaryProduct);
      * }
-     * summaryProductBhv.<span style="color: #FD4747">batchUpdate</span>(summaryProductList);
+     * summaryProductBhv.<span style="color: #DD4747">batchUpdate</span>(summaryProductList);
      * </pre>
      * @param summaryProductList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<SummaryProduct> summaryProductList) {
         UpdateOption<SummaryProductCB> op = createPlainUpdateOption();
@@ -679,16 +688,16 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorWritable {
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * <pre>
      * <span style="color: #3F7E5E">// e.g. update two columns only</span>
-     * summaryProductBhv.<span style="color: #FD4747">batchUpdate</span>(summaryProductList, new SpecifyQuery<SummaryProductCB>() {
+     * summaryProductBhv.<span style="color: #DD4747">batchUpdate</span>(summaryProductList, new SpecifyQuery<SummaryProductCB>() {
      *     public void specify(SummaryProductCB cb) { <span style="color: #3F7E5E">// the two only updated</span>
-     *         cb.specify().<span style="color: #FD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
-     *         cb.specify().<span style="color: #FD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
+     *         cb.specify().<span style="color: #DD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
+     *         cb.specify().<span style="color: #DD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
      *     }
      * });
      * <span style="color: #3F7E5E">// e.g. update every column in the table</span>
-     * summaryProductBhv.<span style="color: #FD4747">batchUpdate</span>(summaryProductList, new SpecifyQuery<SummaryProductCB>() {
+     * summaryProductBhv.<span style="color: #DD4747">batchUpdate</span>(summaryProductList, new SpecifyQuery<SummaryProductCB>() {
      *     public void specify(SummaryProductCB cb) { <span style="color: #3F7E5E">// all columns are updated</span>
-     *         cb.specify().<span style="color: #FD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
+     *         cb.specify().<span style="color: #DD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
      *     }
      * });
      * </pre>
@@ -700,7 +709,7 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorWritable {
      * @param summaryProductList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @param updateColumnSpec The specification of update columns. (NotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<SummaryProduct> summaryProductList, SpecifyQuery<SummaryProductCB> updateColumnSpec) {
         return doBatchUpdate(summaryProductList, createSpecifiedUpdateOption(updateColumnSpec));
@@ -716,7 +725,7 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorWritable {
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * @param summaryProductList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of deleted count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchDelete(List<SummaryProduct> summaryProductList) {
         return doBatchDelete(summaryProductList, null);
@@ -745,7 +754,7 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorWritable {
     /**
      * Insert the several entities by query (modified-only for fixed value).
      * <pre>
-     * summaryProductBhv.<span style="color: #FD4747">queryInsert</span>(new QueryInsertSetupper&lt;SummaryProduct, SummaryProductCB&gt;() {
+     * summaryProductBhv.<span style="color: #DD4747">queryInsert</span>(new QueryInsertSetupper&lt;SummaryProduct, SummaryProductCB&gt;() {
      *     public ConditionBean setup(summaryProduct entity, SummaryProductCB intoCB) {
      *         FooCB cb = FooCB();
      *         cb.setupSelect_Bar();
@@ -807,12 +816,12 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">//summaryProduct.setVersionNo(value);</span>
      * SummaryProductCB cb = new SummaryProductCB();
      * cb.query().setFoo...(value);
-     * summaryProductBhv.<span style="color: #FD4747">queryUpdate</span>(summaryProduct, cb);
+     * summaryProductBhv.<span style="color: #DD4747">queryUpdate</span>(summaryProduct, cb);
      * </pre>
      * @param summaryProduct The entity that contains update values. (NotNull, PrimaryKeyNullAllowed)
      * @param cb The condition-bean of SummaryProduct. (NotNull)
      * @return The updated count.
-     * @exception org.seasar.dbflute.exception.NonQueryUpdateNotAllowedException When the query has no condition.
+     * @exception NonQueryUpdateNotAllowedException When the query has no condition.
      */
     public int queryUpdate(SummaryProduct summaryProduct, SummaryProductCB cb) {
         return doQueryUpdate(summaryProduct, cb, null);
@@ -835,11 +844,11 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorWritable {
      * <pre>
      * SummaryProductCB cb = new SummaryProductCB();
      * cb.query().setFoo...(value);
-     * summaryProductBhv.<span style="color: #FD4747">queryDelete</span>(summaryProduct, cb);
+     * summaryProductBhv.<span style="color: #DD4747">queryDelete</span>(summaryProduct, cb);
      * </pre>
      * @param cb The condition-bean of SummaryProduct. (NotNull)
      * @return The deleted count.
-     * @exception org.seasar.dbflute.exception.NonQueryDeleteNotAllowedException When the query has no condition.
+     * @exception NonQueryDeleteNotAllowedException When the query has no condition.
      */
     public int queryDelete(SummaryProductCB cb) {
         return doQueryDelete(cb, null);
@@ -875,12 +884,12 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorWritable {
      * InsertOption<SummaryProductCB> option = new InsertOption<SummaryProductCB>();
      * <span style="color: #3F7E5E">// you can insert by your values for common columns</span>
      * option.disableCommonColumnAutoSetup();
-     * summaryProductBhv.<span style="color: #FD4747">varyingInsert</span>(summaryProduct, option);
+     * summaryProductBhv.<span style="color: #DD4747">varyingInsert</span>(summaryProduct, option);
      * ... = summaryProduct.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * @param summaryProduct The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
      * @param option The option of insert for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingInsert(SummaryProduct summaryProduct, InsertOption<SummaryProductCB> option) {
         assertInsertOptionNotNull(option);
@@ -896,25 +905,25 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorWritable {
      * summaryProduct.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * summaryProduct.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * summaryProduct.<span style="color: #FD4747">setVersionNo</span>(value);
+     * summaryProduct.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     <span style="color: #3F7E5E">// you can update by self calculation values</span>
      *     UpdateOption&lt;SummaryProductCB&gt; option = new UpdateOption&lt;SummaryProductCB&gt;();
      *     option.self(new SpecifyQuery&lt;SummaryProductCB&gt;() {
      *         public void specify(SummaryProductCB cb) {
-     *             cb.specify().<span style="color: #FD4747">columnXxxCount()</span>;
+     *             cb.specify().<span style="color: #DD4747">columnXxxCount()</span>;
      *         }
      *     }).plus(1); <span style="color: #3F7E5E">// XXX_COUNT = XXX_COUNT + 1</span>
-     *     summaryProductBhv.<span style="color: #FD4747">varyingUpdate</span>(summaryProduct, option);
+     *     summaryProductBhv.<span style="color: #DD4747">varyingUpdate</span>(summaryProduct, option);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param summaryProduct The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @param option The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingUpdate(SummaryProduct summaryProduct, UpdateOption<SummaryProductCB> option) {
         assertUpdateOptionNotNull(option);
@@ -927,9 +936,9 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorWritable {
      * @param summaryProduct The entity of insert or update target. (NotNull)
      * @param insertOption The option of insert for varying requests. (NotNull)
      * @param updateOption The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingInsertOrUpdate(SummaryProduct summaryProduct, InsertOption<SummaryProductCB> insertOption, UpdateOption<SummaryProductCB> updateOption) {
         assertInsertOptionNotNull(insertOption); assertUpdateOptionNotNull(updateOption);
@@ -942,8 +951,8 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorWritable {
      * Other specifications are same as delete(entity).
      * @param summaryProduct The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @param option The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void varyingDelete(SummaryProduct summaryProduct, DeleteOption<SummaryProductCB> option) {
         assertDeleteOptionNotNull(option);
@@ -1029,16 +1038,16 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorWritable {
      * UpdateOption&lt;SummaryProductCB&gt; option = new UpdateOption&lt;SummaryProductCB&gt;();
      * option.self(new SpecifyQuery&lt;SummaryProductCB&gt;() {
      *     public void specify(SummaryProductCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFooCount()</span>;
+     *         cb.specify().<span style="color: #DD4747">columnFooCount()</span>;
      *     }
      * }).plus(1); <span style="color: #3F7E5E">// FOO_COUNT = FOO_COUNT + 1</span>
-     * summaryProductBhv.<span style="color: #FD4747">varyingQueryUpdate</span>(summaryProduct, cb, option);
+     * summaryProductBhv.<span style="color: #DD4747">varyingQueryUpdate</span>(summaryProduct, cb, option);
      * </pre>
      * @param summaryProduct The entity that contains update values. (NotNull) {PrimaryKeyNotRequired}
      * @param cb The condition-bean of SummaryProduct. (NotNull)
      * @param option The option of update for varying requests. (NotNull)
      * @return The updated count.
-     * @exception org.seasar.dbflute.exception.NonQueryUpdateNotAllowedException When the query has no condition (if not allowed).
+     * @exception NonQueryUpdateNotAllowedException When the query has no condition (if not allowed).
      */
     public int varyingQueryUpdate(SummaryProduct summaryProduct, SummaryProductCB cb, UpdateOption<SummaryProductCB> option) {
         assertUpdateOptionNotNull(option);
@@ -1052,7 +1061,7 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorWritable {
      * @param cb The condition-bean of SummaryProduct. (NotNull)
      * @param option The option of delete for varying requests. (NotNull)
      * @return The deleted count.
-     * @exception org.seasar.dbflute.exception.NonQueryDeleteNotAllowedException When the query has no condition (if not allowed).
+     * @exception NonQueryDeleteNotAllowedException When the query has no condition (if not allowed).
      */
     public int varyingQueryDelete(SummaryProductCB cb, DeleteOption<SummaryProductCB> option) {
         assertDeleteOptionNotNull(option);

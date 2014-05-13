@@ -6,6 +6,8 @@ import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
 import org.seasar.dbflute.dbmeta.DBMeta;
+import org.seasar.dbflute.exception.*;
+import org.seasar.dbflute.optional.*;
 import org.seasar.dbflute.outsidesql.executor.*;
 import com.example.dbflute.oracle.dbflute.exbhv.*;
 import com.example.dbflute.oracle.dbflute.exentity.*;
@@ -91,7 +93,7 @@ public abstract class BsWhiteRefNextTargetBhv extends AbstractBehaviorWritable {
      * <pre>
      * WhiteRefNextTargetCB cb = new WhiteRefNextTargetCB();
      * cb.query().setFoo...(value);
-     * int count = whiteRefNextTargetBhv.<span style="color: #FD4747">selectCount</span>(cb);
+     * int count = whiteRefNextTargetBhv.<span style="color: #DD4747">selectCount</span>(cb);
      * </pre>
      * @param cb The condition-bean of WhiteRefNextTarget. (NotNull)
      * @return The count for the condition. (NotMinus)
@@ -119,12 +121,14 @@ public abstract class BsWhiteRefNextTargetBhv extends AbstractBehaviorWritable {
     //                                                                       Entity Select
     //                                                                       =============
     /**
-     * Select the entity by the condition-bean.
+     * Select the entity by the condition-bean. #beforejava8 <br />
+     * <span style="color: #AD4747; font-size: 120%">The return might be null if no data, so you should have null check.</span> <br />
+     * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, use selectEntityWithDeletedCheck().</span>
      * <pre>
      * WhiteRefNextTargetCB cb = new WhiteRefNextTargetCB();
      * cb.query().setFoo...(value);
-     * WhiteRefNextTarget whiteRefNextTarget = whiteRefNextTargetBhv.<span style="color: #FD4747">selectEntity</span>(cb);
-     * if (whiteRefNextTarget != null) {
+     * WhiteRefNextTarget whiteRefNextTarget = whiteRefNextTargetBhv.<span style="color: #DD4747">selectEntity</span>(cb);
+     * if (whiteRefNextTarget != null) { <span style="color: #3F7E5E">// null check</span>
      *     ... = whiteRefNextTarget.get...();
      * } else {
      *     ...
@@ -132,8 +136,8 @@ public abstract class BsWhiteRefNextTargetBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of WhiteRefNextTarget. (NotNull)
      * @return The entity selected by the condition. (NullAllowed: if no data, it returns null)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteRefNextTarget selectEntity(WhiteRefNextTargetCB cb) {
         return doSelectEntity(cb, WhiteRefNextTarget.class);
@@ -145,24 +149,29 @@ public abstract class BsWhiteRefNextTargetBhv extends AbstractBehaviorWritable {
             public List<ENTITY> callbackSelectList(WhiteRefNextTargetCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
+    protected <ENTITY extends WhiteRefNextTarget> OptionalEntity<ENTITY> doSelectOptionalEntity(WhiteRefNextTargetCB cb, Class<ENTITY> tp) {
+        return createOptionalEntity(doSelectEntity(cb, tp), cb);
+    }
+
     @Override
     protected Entity doReadEntity(ConditionBean cb) {
         return selectEntity(downcast(cb));
     }
 
     /**
-     * Select the entity by the condition-bean with deleted check.
+     * Select the entity by the condition-bean with deleted check. <br />
+     * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, this method is good.</span>
      * <pre>
      * WhiteRefNextTargetCB cb = new WhiteRefNextTargetCB();
      * cb.query().setFoo...(value);
-     * WhiteRefNextTarget whiteRefNextTarget = whiteRefNextTargetBhv.<span style="color: #FD4747">selectEntityWithDeletedCheck</span>(cb);
+     * WhiteRefNextTarget whiteRefNextTarget = whiteRefNextTargetBhv.<span style="color: #DD4747">selectEntityWithDeletedCheck</span>(cb);
      * ... = whiteRefNextTarget.get...(); <span style="color: #3F7E5E">// the entity always be not null</span>
      * </pre>
      * @param cb The condition-bean of WhiteRefNextTarget. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteRefNextTarget selectEntityWithDeletedCheck(WhiteRefNextTargetCB cb) {
         return doSelectEntityWithDeletedCheck(cb, WhiteRefNextTarget.class);
@@ -183,8 +192,8 @@ public abstract class BsWhiteRefNextTargetBhv extends AbstractBehaviorWritable {
      * Select the entity by the primary-key value.
      * @param refNextTargetId The one of primary key. (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteRefNextTarget selectByPKValue(Long refNextTargetId) {
         return doSelectByPKValue(refNextTargetId, WhiteRefNextTarget.class);
@@ -198,9 +207,9 @@ public abstract class BsWhiteRefNextTargetBhv extends AbstractBehaviorWritable {
      * Select the entity by the primary-key value with deleted check.
      * @param refNextTargetId The one of primary key. (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteRefNextTarget selectByPKValueWithDeletedCheck(Long refNextTargetId) {
         return doSelectByPKValueWithDeletedCheck(refNextTargetId, WhiteRefNextTarget.class);
@@ -226,14 +235,14 @@ public abstract class BsWhiteRefNextTargetBhv extends AbstractBehaviorWritable {
      * WhiteRefNextTargetCB cb = new WhiteRefNextTargetCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * ListResultBean&lt;WhiteRefNextTarget&gt; whiteRefNextTargetList = whiteRefNextTargetBhv.<span style="color: #FD4747">selectList</span>(cb);
+     * ListResultBean&lt;WhiteRefNextTarget&gt; whiteRefNextTargetList = whiteRefNextTargetBhv.<span style="color: #DD4747">selectList</span>(cb);
      * for (WhiteRefNextTarget whiteRefNextTarget : whiteRefNextTargetList) {
      *     ... = whiteRefNextTarget.get...();
      * }
      * </pre>
      * @param cb The condition-bean of WhiteRefNextTarget. (NotNull)
      * @return The result bean of selected list. (NotNull: if no data, returns empty list)
-     * @exception org.seasar.dbflute.exception.DangerousResultSizeException When the result size is over the specified safety size.
+     * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public ListResultBean<WhiteRefNextTarget> selectList(WhiteRefNextTargetCB cb) {
         return doSelectList(cb, WhiteRefNextTarget.class);
@@ -261,8 +270,8 @@ public abstract class BsWhiteRefNextTargetBhv extends AbstractBehaviorWritable {
      * WhiteRefNextTargetCB cb = new WhiteRefNextTargetCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * cb.<span style="color: #FD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
-     * PagingResultBean&lt;WhiteRefNextTarget&gt; page = whiteRefNextTargetBhv.<span style="color: #FD4747">selectPage</span>(cb);
+     * cb.<span style="color: #DD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
+     * PagingResultBean&lt;WhiteRefNextTarget&gt; page = whiteRefNextTargetBhv.<span style="color: #DD4747">selectPage</span>(cb);
      * int allRecordCount = page.getAllRecordCount();
      * int allPageCount = page.getAllPageCount();
      * boolean isExistPrePage = page.isExistPrePage();
@@ -274,7 +283,7 @@ public abstract class BsWhiteRefNextTargetBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of WhiteRefNextTarget. (NotNull)
      * @return The result bean of selected page. (NotNull: if no data, returns bean as empty list)
-     * @exception org.seasar.dbflute.exception.DangerousResultSizeException When the result size is over the specified safety size.
+     * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public PagingResultBean<WhiteRefNextTarget> selectPage(WhiteRefNextTargetCB cb) {
         return doSelectPage(cb, WhiteRefNextTarget.class);
@@ -301,7 +310,7 @@ public abstract class BsWhiteRefNextTargetBhv extends AbstractBehaviorWritable {
      * <pre>
      * WhiteRefNextTargetCB cb = new WhiteRefNextTargetCB();
      * cb.query().setFoo...(value);
-     * whiteRefNextTargetBhv.<span style="color: #FD4747">selectCursor</span>(cb, new EntityRowHandler&lt;WhiteRefNextTarget&gt;() {
+     * whiteRefNextTargetBhv.<span style="color: #DD4747">selectCursor</span>(cb, new EntityRowHandler&lt;WhiteRefNextTarget&gt;() {
      *     public void handle(WhiteRefNextTarget entity) {
      *         ... = entity.getFoo...();
      *     }
@@ -330,9 +339,9 @@ public abstract class BsWhiteRefNextTargetBhv extends AbstractBehaviorWritable {
      * Select the scalar value derived by a function from uniquely-selected records. <br />
      * You should call a function method after this method called like as follows:
      * <pre>
-     * whiteRefNextTargetBhv.<span style="color: #FD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
+     * whiteRefNextTargetBhv.<span style="color: #DD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
      *     public void query(WhiteRefNextTargetCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
+     *         cb.specify().<span style="color: #DD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
      *         cb.query().setBarName_PrefixSearch("S");
      *     }
      * });
@@ -412,12 +421,12 @@ public abstract class BsWhiteRefNextTargetBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
      * <span style="color: #3F7E5E">//whiteRefNextTarget.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//whiteRefNextTarget.set...;</span>
-     * whiteRefNextTargetBhv.<span style="color: #FD4747">insert</span>(whiteRefNextTarget);
+     * whiteRefNextTargetBhv.<span style="color: #DD4747">insert</span>(whiteRefNextTarget);
      * ... = whiteRefNextTarget.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * <p>While, when the entity is created by select, all columns are registered.</p>
      * @param whiteRefNextTarget The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insert(WhiteRefNextTarget whiteRefNextTarget) {
         doInsert(whiteRefNextTarget, null);
@@ -453,17 +462,17 @@ public abstract class BsWhiteRefNextTargetBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">//whiteRefNextTarget.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//whiteRefNextTarget.set...;</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * whiteRefNextTarget.<span style="color: #FD4747">setVersionNo</span>(value);
+     * whiteRefNextTarget.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
-     *     whiteRefNextTargetBhv.<span style="color: #FD4747">update</span>(whiteRefNextTarget);
+     *     whiteRefNextTargetBhv.<span style="color: #DD4747">update</span>(whiteRefNextTarget);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param whiteRefNextTarget The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void update(final WhiteRefNextTarget whiteRefNextTarget) {
         doUpdate(whiteRefNextTarget, null);
@@ -513,11 +522,11 @@ public abstract class BsWhiteRefNextTargetBhv extends AbstractBehaviorWritable {
     /**
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br />
-     * <p><span style="color: #FD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
+     * <p><span style="color: #DD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
      * @param whiteRefNextTarget The entity of insert or update target. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insertOrUpdate(WhiteRefNextTarget whiteRefNextTarget) {
         doInesrtOrUpdate(whiteRefNextTarget, null, null);
@@ -553,16 +562,16 @@ public abstract class BsWhiteRefNextTargetBhv extends AbstractBehaviorWritable {
      * WhiteRefNextTarget whiteRefNextTarget = new WhiteRefNextTarget();
      * whiteRefNextTarget.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * whiteRefNextTarget.<span style="color: #FD4747">setVersionNo</span>(value);
+     * whiteRefNextTarget.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
-     *     whiteRefNextTargetBhv.<span style="color: #FD4747">delete</span>(whiteRefNextTarget);
+     *     whiteRefNextTargetBhv.<span style="color: #DD4747">delete</span>(whiteRefNextTarget);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param whiteRefNextTarget The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void delete(WhiteRefNextTarget whiteRefNextTarget) {
         doDelete(whiteRefNextTarget, null);
@@ -597,7 +606,7 @@ public abstract class BsWhiteRefNextTargetBhv extends AbstractBehaviorWritable {
     /**
      * Batch-insert the entity list modified-only of same-set columns. (DefaultConstraintsEnabled) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
-     * <p><span style="color: #FD4747; font-size: 120%">The columns of least common multiple are registered like this:</span></p>
+     * <p><span style="color: #DD4747; font-size: 120%">The columns of least common multiple are registered like this:</span></p>
      * <pre>
      * for (... : ...) {
      *     WhiteRefNextTarget whiteRefNextTarget = new WhiteRefNextTarget();
@@ -610,7 +619,7 @@ public abstract class BsWhiteRefNextTargetBhv extends AbstractBehaviorWritable {
      *     <span style="color: #3F7E5E">// columns not-called in all entities are registered as null or default value</span>
      *     whiteRefNextTargetList.add(whiteRefNextTarget);
      * }
-     * whiteRefNextTargetBhv.<span style="color: #FD4747">batchInsert</span>(whiteRefNextTargetList);
+     * whiteRefNextTargetBhv.<span style="color: #DD4747">batchInsert</span>(whiteRefNextTargetList);
      * </pre>
      * <p>While, when the entities are created by select, all columns are registered.</p>
      * <p>And if the table has an identity, entities after the process don't have incremented values.
@@ -644,7 +653,7 @@ public abstract class BsWhiteRefNextTargetBhv extends AbstractBehaviorWritable {
     /**
      * Batch-update the entity list modified-only of same-set columns. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
-     * <span style="color: #FD4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
+     * <span style="color: #DD4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
      * <pre>
      * for (... : ...) {
      *     WhiteRefNextTarget whiteRefNextTarget = new WhiteRefNextTarget();
@@ -659,11 +668,11 @@ public abstract class BsWhiteRefNextTargetBhv extends AbstractBehaviorWritable {
      *     <span style="color: #3F7E5E">// (others are not updated: their values are kept)</span>
      *     whiteRefNextTargetList.add(whiteRefNextTarget);
      * }
-     * whiteRefNextTargetBhv.<span style="color: #FD4747">batchUpdate</span>(whiteRefNextTargetList);
+     * whiteRefNextTargetBhv.<span style="color: #DD4747">batchUpdate</span>(whiteRefNextTargetList);
      * </pre>
      * @param whiteRefNextTargetList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<WhiteRefNextTarget> whiteRefNextTargetList) {
         UpdateOption<WhiteRefNextTargetCB> op = createPlainUpdateOption();
@@ -692,16 +701,16 @@ public abstract class BsWhiteRefNextTargetBhv extends AbstractBehaviorWritable {
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * <pre>
      * <span style="color: #3F7E5E">// e.g. update two columns only</span>
-     * whiteRefNextTargetBhv.<span style="color: #FD4747">batchUpdate</span>(whiteRefNextTargetList, new SpecifyQuery<WhiteRefNextTargetCB>() {
+     * whiteRefNextTargetBhv.<span style="color: #DD4747">batchUpdate</span>(whiteRefNextTargetList, new SpecifyQuery<WhiteRefNextTargetCB>() {
      *     public void specify(WhiteRefNextTargetCB cb) { <span style="color: #3F7E5E">// the two only updated</span>
-     *         cb.specify().<span style="color: #FD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
-     *         cb.specify().<span style="color: #FD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
+     *         cb.specify().<span style="color: #DD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
+     *         cb.specify().<span style="color: #DD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
      *     }
      * });
      * <span style="color: #3F7E5E">// e.g. update every column in the table</span>
-     * whiteRefNextTargetBhv.<span style="color: #FD4747">batchUpdate</span>(whiteRefNextTargetList, new SpecifyQuery<WhiteRefNextTargetCB>() {
+     * whiteRefNextTargetBhv.<span style="color: #DD4747">batchUpdate</span>(whiteRefNextTargetList, new SpecifyQuery<WhiteRefNextTargetCB>() {
      *     public void specify(WhiteRefNextTargetCB cb) { <span style="color: #3F7E5E">// all columns are updated</span>
-     *         cb.specify().<span style="color: #FD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
+     *         cb.specify().<span style="color: #DD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
      *     }
      * });
      * </pre>
@@ -713,7 +722,7 @@ public abstract class BsWhiteRefNextTargetBhv extends AbstractBehaviorWritable {
      * @param whiteRefNextTargetList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @param updateColumnSpec The specification of update columns. (NotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<WhiteRefNextTarget> whiteRefNextTargetList, SpecifyQuery<WhiteRefNextTargetCB> updateColumnSpec) {
         return doBatchUpdate(whiteRefNextTargetList, createSpecifiedUpdateOption(updateColumnSpec));
@@ -729,7 +738,7 @@ public abstract class BsWhiteRefNextTargetBhv extends AbstractBehaviorWritable {
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * @param whiteRefNextTargetList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of deleted count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchDelete(List<WhiteRefNextTarget> whiteRefNextTargetList) {
         return doBatchDelete(whiteRefNextTargetList, null);
@@ -758,7 +767,7 @@ public abstract class BsWhiteRefNextTargetBhv extends AbstractBehaviorWritable {
     /**
      * Insert the several entities by query (modified-only for fixed value).
      * <pre>
-     * whiteRefNextTargetBhv.<span style="color: #FD4747">queryInsert</span>(new QueryInsertSetupper&lt;WhiteRefNextTarget, WhiteRefNextTargetCB&gt;() {
+     * whiteRefNextTargetBhv.<span style="color: #DD4747">queryInsert</span>(new QueryInsertSetupper&lt;WhiteRefNextTarget, WhiteRefNextTargetCB&gt;() {
      *     public ConditionBean setup(whiteRefNextTarget entity, WhiteRefNextTargetCB intoCB) {
      *         FooCB cb = FooCB();
      *         cb.setupSelect_Bar();
@@ -820,12 +829,12 @@ public abstract class BsWhiteRefNextTargetBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">//whiteRefNextTarget.setVersionNo(value);</span>
      * WhiteRefNextTargetCB cb = new WhiteRefNextTargetCB();
      * cb.query().setFoo...(value);
-     * whiteRefNextTargetBhv.<span style="color: #FD4747">queryUpdate</span>(whiteRefNextTarget, cb);
+     * whiteRefNextTargetBhv.<span style="color: #DD4747">queryUpdate</span>(whiteRefNextTarget, cb);
      * </pre>
      * @param whiteRefNextTarget The entity that contains update values. (NotNull, PrimaryKeyNullAllowed)
      * @param cb The condition-bean of WhiteRefNextTarget. (NotNull)
      * @return The updated count.
-     * @exception org.seasar.dbflute.exception.NonQueryUpdateNotAllowedException When the query has no condition.
+     * @exception NonQueryUpdateNotAllowedException When the query has no condition.
      */
     public int queryUpdate(WhiteRefNextTarget whiteRefNextTarget, WhiteRefNextTargetCB cb) {
         return doQueryUpdate(whiteRefNextTarget, cb, null);
@@ -848,11 +857,11 @@ public abstract class BsWhiteRefNextTargetBhv extends AbstractBehaviorWritable {
      * <pre>
      * WhiteRefNextTargetCB cb = new WhiteRefNextTargetCB();
      * cb.query().setFoo...(value);
-     * whiteRefNextTargetBhv.<span style="color: #FD4747">queryDelete</span>(whiteRefNextTarget, cb);
+     * whiteRefNextTargetBhv.<span style="color: #DD4747">queryDelete</span>(whiteRefNextTarget, cb);
      * </pre>
      * @param cb The condition-bean of WhiteRefNextTarget. (NotNull)
      * @return The deleted count.
-     * @exception org.seasar.dbflute.exception.NonQueryDeleteNotAllowedException When the query has no condition.
+     * @exception NonQueryDeleteNotAllowedException When the query has no condition.
      */
     public int queryDelete(WhiteRefNextTargetCB cb) {
         return doQueryDelete(cb, null);
@@ -888,12 +897,12 @@ public abstract class BsWhiteRefNextTargetBhv extends AbstractBehaviorWritable {
      * InsertOption<WhiteRefNextTargetCB> option = new InsertOption<WhiteRefNextTargetCB>();
      * <span style="color: #3F7E5E">// you can insert by your values for common columns</span>
      * option.disableCommonColumnAutoSetup();
-     * whiteRefNextTargetBhv.<span style="color: #FD4747">varyingInsert</span>(whiteRefNextTarget, option);
+     * whiteRefNextTargetBhv.<span style="color: #DD4747">varyingInsert</span>(whiteRefNextTarget, option);
      * ... = whiteRefNextTarget.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * @param whiteRefNextTarget The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
      * @param option The option of insert for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingInsert(WhiteRefNextTarget whiteRefNextTarget, InsertOption<WhiteRefNextTargetCB> option) {
         assertInsertOptionNotNull(option);
@@ -909,25 +918,25 @@ public abstract class BsWhiteRefNextTargetBhv extends AbstractBehaviorWritable {
      * whiteRefNextTarget.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * whiteRefNextTarget.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * whiteRefNextTarget.<span style="color: #FD4747">setVersionNo</span>(value);
+     * whiteRefNextTarget.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     <span style="color: #3F7E5E">// you can update by self calculation values</span>
      *     UpdateOption&lt;WhiteRefNextTargetCB&gt; option = new UpdateOption&lt;WhiteRefNextTargetCB&gt;();
      *     option.self(new SpecifyQuery&lt;WhiteRefNextTargetCB&gt;() {
      *         public void specify(WhiteRefNextTargetCB cb) {
-     *             cb.specify().<span style="color: #FD4747">columnXxxCount()</span>;
+     *             cb.specify().<span style="color: #DD4747">columnXxxCount()</span>;
      *         }
      *     }).plus(1); <span style="color: #3F7E5E">// XXX_COUNT = XXX_COUNT + 1</span>
-     *     whiteRefNextTargetBhv.<span style="color: #FD4747">varyingUpdate</span>(whiteRefNextTarget, option);
+     *     whiteRefNextTargetBhv.<span style="color: #DD4747">varyingUpdate</span>(whiteRefNextTarget, option);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param whiteRefNextTarget The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @param option The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingUpdate(WhiteRefNextTarget whiteRefNextTarget, UpdateOption<WhiteRefNextTargetCB> option) {
         assertUpdateOptionNotNull(option);
@@ -940,9 +949,9 @@ public abstract class BsWhiteRefNextTargetBhv extends AbstractBehaviorWritable {
      * @param whiteRefNextTarget The entity of insert or update target. (NotNull)
      * @param insertOption The option of insert for varying requests. (NotNull)
      * @param updateOption The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingInsertOrUpdate(WhiteRefNextTarget whiteRefNextTarget, InsertOption<WhiteRefNextTargetCB> insertOption, UpdateOption<WhiteRefNextTargetCB> updateOption) {
         assertInsertOptionNotNull(insertOption); assertUpdateOptionNotNull(updateOption);
@@ -955,8 +964,8 @@ public abstract class BsWhiteRefNextTargetBhv extends AbstractBehaviorWritable {
      * Other specifications are same as delete(entity).
      * @param whiteRefNextTarget The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @param option The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void varyingDelete(WhiteRefNextTarget whiteRefNextTarget, DeleteOption<WhiteRefNextTargetCB> option) {
         assertDeleteOptionNotNull(option);
@@ -1042,16 +1051,16 @@ public abstract class BsWhiteRefNextTargetBhv extends AbstractBehaviorWritable {
      * UpdateOption&lt;WhiteRefNextTargetCB&gt; option = new UpdateOption&lt;WhiteRefNextTargetCB&gt;();
      * option.self(new SpecifyQuery&lt;WhiteRefNextTargetCB&gt;() {
      *     public void specify(WhiteRefNextTargetCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFooCount()</span>;
+     *         cb.specify().<span style="color: #DD4747">columnFooCount()</span>;
      *     }
      * }).plus(1); <span style="color: #3F7E5E">// FOO_COUNT = FOO_COUNT + 1</span>
-     * whiteRefNextTargetBhv.<span style="color: #FD4747">varyingQueryUpdate</span>(whiteRefNextTarget, cb, option);
+     * whiteRefNextTargetBhv.<span style="color: #DD4747">varyingQueryUpdate</span>(whiteRefNextTarget, cb, option);
      * </pre>
      * @param whiteRefNextTarget The entity that contains update values. (NotNull) {PrimaryKeyNotRequired}
      * @param cb The condition-bean of WhiteRefNextTarget. (NotNull)
      * @param option The option of update for varying requests. (NotNull)
      * @return The updated count.
-     * @exception org.seasar.dbflute.exception.NonQueryUpdateNotAllowedException When the query has no condition (if not allowed).
+     * @exception NonQueryUpdateNotAllowedException When the query has no condition (if not allowed).
      */
     public int varyingQueryUpdate(WhiteRefNextTarget whiteRefNextTarget, WhiteRefNextTargetCB cb, UpdateOption<WhiteRefNextTargetCB> option) {
         assertUpdateOptionNotNull(option);
@@ -1065,7 +1074,7 @@ public abstract class BsWhiteRefNextTargetBhv extends AbstractBehaviorWritable {
      * @param cb The condition-bean of WhiteRefNextTarget. (NotNull)
      * @param option The option of delete for varying requests. (NotNull)
      * @return The deleted count.
-     * @exception org.seasar.dbflute.exception.NonQueryDeleteNotAllowedException When the query has no condition (if not allowed).
+     * @exception NonQueryDeleteNotAllowedException When the query has no condition (if not allowed).
      */
     public int varyingQueryDelete(WhiteRefNextTargetCB cb, DeleteOption<WhiteRefNextTargetCB> option) {
         assertDeleteOptionNotNull(option);

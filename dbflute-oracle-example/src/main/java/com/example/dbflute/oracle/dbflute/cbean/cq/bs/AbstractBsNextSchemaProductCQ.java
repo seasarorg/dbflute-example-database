@@ -212,7 +212,7 @@ public abstract class AbstractBsNextSchemaProductCQ extends AbstractConditionQue
     /**
      * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br />
      * (隣の商品名称)PRODUCT_NAME: {NotNull, VARCHAR2(50)} <br />
-     * <pre>e.g. setProductName_LikeSearch("xxx", new <span style="color: #FD4747">LikeSearchOption</span>().likeContain());</pre>
+     * <pre>e.g. setProductName_LikeSearch("xxx", new <span style="color: #DD4747">LikeSearchOption</span>().likeContain());</pre>
      * @param productName The value of productName as likeSearch. (NullAllowed: if null (or empty), no condition)
      * @param likeSearchOption The option of like-search. (NotNull)
      */
@@ -298,7 +298,7 @@ public abstract class AbstractBsNextSchemaProductCQ extends AbstractConditionQue
     /**
      * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br />
      * PRODUCT_HANDLE_CODE: {NotNull, VARCHAR2(100)} <br />
-     * <pre>e.g. setProductHandleCode_LikeSearch("xxx", new <span style="color: #FD4747">LikeSearchOption</span>().likeContain());</pre>
+     * <pre>e.g. setProductHandleCode_LikeSearch("xxx", new <span style="color: #DD4747">LikeSearchOption</span>().likeContain());</pre>
      * @param productHandleCode The value of productHandleCode as likeSearch. (NullAllowed: if null (or empty), no condition)
      * @param likeSearchOption The option of like-search. (NotNull)
      */
@@ -384,7 +384,7 @@ public abstract class AbstractBsNextSchemaProductCQ extends AbstractConditionQue
     /**
      * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br />
      * PRODUCT_STATUS_CODE: {NotNull, CHAR(3), FK to NEXT_SCHEMA_PRODUCT_STATUS} <br />
-     * <pre>e.g. setProductStatusCode_LikeSearch("xxx", new <span style="color: #FD4747">LikeSearchOption</span>().likeContain());</pre>
+     * <pre>e.g. setProductStatusCode_LikeSearch("xxx", new <span style="color: #DD4747">LikeSearchOption</span>().likeContain());</pre>
      * @param productStatusCode The value of productStatusCode as likeSearch. (NullAllowed: if null (or empty), no condition)
      * @param likeSearchOption The option of like-search. (NotNull)
      */
@@ -411,8 +411,9 @@ public abstract class AbstractBsNextSchemaProductCQ extends AbstractConditionQue
      */
     public void inScopeNextSchemaProductStatus(SubQuery<NextSchemaProductStatusCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        NextSchemaProductStatusCB cb = new NextSchemaProductStatusCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String pp = keepProductStatusCode_InScopeRelation_NextSchemaProductStatus(cb.query()); // for saving query-value.
+        NextSchemaProductStatusCB cb = new NextSchemaProductStatusCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepProductStatusCode_InScopeRelation_NextSchemaProductStatus(cb.query());
         registerInScopeRelation(cb.query(), "PRODUCT_STATUS_CODE", "PRODUCT_STATUS_CODE", pp, "nextSchemaProductStatus");
     }
     public abstract String keepProductStatusCode_InScopeRelation_NextSchemaProductStatus(NextSchemaProductStatusCQ sq);
@@ -425,8 +426,9 @@ public abstract class AbstractBsNextSchemaProductCQ extends AbstractConditionQue
      */
     public void notInScopeNextSchemaProductStatus(SubQuery<NextSchemaProductStatusCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        NextSchemaProductStatusCB cb = new NextSchemaProductStatusCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String pp = keepProductStatusCode_NotInScopeRelation_NextSchemaProductStatus(cb.query()); // for saving query-value.
+        NextSchemaProductStatusCB cb = new NextSchemaProductStatusCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepProductStatusCode_NotInScopeRelation_NextSchemaProductStatus(cb.query());
         registerNotInScopeRelation(cb.query(), "PRODUCT_STATUS_CODE", "PRODUCT_STATUS_CODE", pp, "nextSchemaProductStatus");
     }
     public abstract String keepProductStatusCode_NotInScopeRelation_NextSchemaProductStatus(NextSchemaProductStatusCQ sq);
@@ -558,7 +560,7 @@ public abstract class AbstractBsNextSchemaProductCQ extends AbstractConditionQue
      * Prepare ScalarCondition as equal. <br />
      * {where FOO = (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #FD4747">scalar_Equal()</span>.max(new SubQuery&lt;NextSchemaProductCB&gt;() {
+     * cb.query().<span style="color: #DD4747">scalar_Equal()</span>.max(new SubQuery&lt;NextSchemaProductCB&gt;() {
      *     public void query(NextSchemaProductCB subCB) {
      *         subCB.specify().setXxx... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setYyy...
@@ -575,7 +577,7 @@ public abstract class AbstractBsNextSchemaProductCQ extends AbstractConditionQue
      * Prepare ScalarCondition as equal. <br />
      * {where FOO &lt;&gt; (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #FD4747">scalar_NotEqual()</span>.max(new SubQuery&lt;NextSchemaProductCB&gt;() {
+     * cb.query().<span style="color: #DD4747">scalar_NotEqual()</span>.max(new SubQuery&lt;NextSchemaProductCB&gt;() {
      *     public void query(NextSchemaProductCB subCB) {
      *         subCB.specify().setXxx... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setYyy...
@@ -592,7 +594,7 @@ public abstract class AbstractBsNextSchemaProductCQ extends AbstractConditionQue
      * Prepare ScalarCondition as greaterThan. <br />
      * {where FOO &gt; (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #FD4747">scalar_GreaterThan()</span>.max(new SubQuery&lt;NextSchemaProductCB&gt;() {
+     * cb.query().<span style="color: #DD4747">scalar_GreaterThan()</span>.max(new SubQuery&lt;NextSchemaProductCB&gt;() {
      *     public void query(NextSchemaProductCB subCB) {
      *         subCB.specify().setFoo... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setBar...
@@ -609,7 +611,7 @@ public abstract class AbstractBsNextSchemaProductCQ extends AbstractConditionQue
      * Prepare ScalarCondition as lessThan. <br />
      * {where FOO &lt; (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #FD4747">scalar_LessThan()</span>.max(new SubQuery&lt;NextSchemaProductCB&gt;() {
+     * cb.query().<span style="color: #DD4747">scalar_LessThan()</span>.max(new SubQuery&lt;NextSchemaProductCB&gt;() {
      *     public void query(NextSchemaProductCB subCB) {
      *         subCB.specify().setFoo... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setBar...
@@ -626,7 +628,7 @@ public abstract class AbstractBsNextSchemaProductCQ extends AbstractConditionQue
      * Prepare ScalarCondition as greaterEqual. <br />
      * {where FOO &gt;= (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #FD4747">scalar_GreaterEqual()</span>.max(new SubQuery&lt;NextSchemaProductCB&gt;() {
+     * cb.query().<span style="color: #DD4747">scalar_GreaterEqual()</span>.max(new SubQuery&lt;NextSchemaProductCB&gt;() {
      *     public void query(NextSchemaProductCB subCB) {
      *         subCB.specify().setFoo... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setBar...
@@ -643,7 +645,7 @@ public abstract class AbstractBsNextSchemaProductCQ extends AbstractConditionQue
      * Prepare ScalarCondition as lessEqual. <br />
      * {where FOO &lt;= (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #FD4747">scalar_LessEqual()</span>.max(new SubQuery&lt;NextSchemaProductCB&gt;() {
+     * cb.query().<span style="color: #DD4747">scalar_LessEqual()</span>.max(new SubQuery&lt;NextSchemaProductCB&gt;() {
      *     public void query(NextSchemaProductCB subCB) {
      *         subCB.specify().setFoo... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setBar...
@@ -679,9 +681,10 @@ public abstract class AbstractBsNextSchemaProductCQ extends AbstractConditionQue
     //                                                                       =============
     public void xsmyselfDerive(String fn, SubQuery<NextSchemaProductCB> sq, String al, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        NextSchemaProductCB cb = new NextSchemaProductCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        NextSchemaProductCB cb = new NextSchemaProductCB(); cb.xsetupForDerivedReferrer(this);
+        try { lock(); sq.query(cb); } finally { unlock(); }
+        String pp = keepSpecifyMyselfDerived(cb.query());
         String pk = "PRODUCT_ID";
-        String pp = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
         registerSpecifyMyselfDerived(fn, cb.query(), pk, pk, pp, "myselfDerived", al, op);
     }
     public abstract String keepSpecifyMyselfDerived(NextSchemaProductCQ sq);
@@ -714,8 +717,9 @@ public abstract class AbstractBsNextSchemaProductCQ extends AbstractConditionQue
      */
     public void myselfExists(SubQuery<NextSchemaProductCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        NextSchemaProductCB cb = new NextSchemaProductCB(); cb.xsetupForMyselfExists(this); subQuery.query(cb);
-        String pp = keepMyselfExists(cb.query()); // for saving query-value.
+        NextSchemaProductCB cb = new NextSchemaProductCB(); cb.xsetupForMyselfExists(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepMyselfExists(cb.query());
         registerMyselfExists(cb.query(), pp);
     }
     public abstract String keepMyselfExists(NextSchemaProductCQ sq);
@@ -729,8 +733,9 @@ public abstract class AbstractBsNextSchemaProductCQ extends AbstractConditionQue
      */
     public void myselfInScope(SubQuery<NextSchemaProductCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        NextSchemaProductCB cb = new NextSchemaProductCB(); cb.xsetupForMyselfInScope(this); subQuery.query(cb);
-        String pp = keepMyselfInScope(cb.query()); // for saving query-value.
+        NextSchemaProductCB cb = new NextSchemaProductCB(); cb.xsetupForMyselfInScope(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepMyselfInScope(cb.query());
         registerMyselfInScope(cb.query(), pp);
     }
     public abstract String keepMyselfInScope(NextSchemaProductCQ sq);
@@ -766,6 +771,37 @@ public abstract class AbstractBsNextSchemaProductCQ extends AbstractConditionQue
     @Override
     protected LikeSearchOption xcreateMatchLikeSearch() {
         return new OracleMatchLikeSearch();
+    }
+
+    // ===================================================================================
+    //                                                                          Compatible
+    //                                                                          ==========
+    /**
+     * Order along the list of manual values. #beforejava8 <br />
+     * This function with Union is unsupported! <br />
+     * The order values are bound (treated as bind parameter).
+     * <pre>
+     * MemberCB cb = new MemberCB();
+     * List&lt;CDef.MemberStatus&gt; orderValueList = new ArrayList&lt;CDef.MemberStatus&gt;();
+     * orderValueList.add(CDef.MemberStatus.Withdrawal);
+     * orderValueList.add(CDef.MemberStatus.Formalized);
+     * orderValueList.add(CDef.MemberStatus.Provisional);
+     * cb.query().addOrderBy_MemberStatusCode_Asc().<span style="color: #DD4747">withManualOrder(orderValueList)</span>;
+     * <span style="color: #3F7E5E">// order by </span>
+     * <span style="color: #3F7E5E">//   case</span>
+     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'WDL' then 0</span>
+     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'FML' then 1</span>
+     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'PRV' then 2</span>
+     * <span style="color: #3F7E5E">//     else 3</span>
+     * <span style="color: #3F7E5E">//   end asc, ...</span>
+     * </pre>
+     * @param orderValueList The list of order values for manual ordering. (NotNull)
+     */
+    public void withManualOrder(List<? extends Object> orderValueList) { // is user public!
+        assertObjectNotNull("withManualOrder(orderValueList)", orderValueList);
+        final ManualOrderBean manualOrderBean = new ManualOrderBean();
+        manualOrderBean.acceptOrderValueList(orderValueList);
+        withManualOrder(manualOrderBean);
     }
 
     // ===================================================================================

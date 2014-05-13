@@ -198,17 +198,17 @@ public abstract class BsVendorLargeName901234567890 implements Entity, Serializa
     /**
      * Determine the object is equal with this. <br />
      * If primary-keys or columns of the other are same as this one, returns true.
-     * @param other The other entity. (NullAllowed: if null, returns false fixedly)
+     * @param obj The object as other entity. (NullAllowed: if null, returns false fixedly)
      * @return Comparing result.
      */
-    public boolean equals(Object other) {
-        if (other == null || !(other instanceof BsVendorLargeName901234567890)) { return false; }
-        BsVendorLargeName901234567890 otherEntity = (BsVendorLargeName901234567890)other;
-        if (!xSV(getVendorLargeName901234567Id(), otherEntity.getVendorLargeName901234567Id())) { return false; }
+    public boolean equals(Object obj) {
+        if (obj == null || !(obj instanceof BsVendorLargeName901234567890)) { return false; }
+        BsVendorLargeName901234567890 other = (BsVendorLargeName901234567890)obj;
+        if (!xSV(getVendorLargeName901234567Id(), other.getVendorLargeName901234567Id())) { return false; }
         return true;
     }
-    protected boolean xSV(Object value1, Object value2) { // isSameValue()
-        return InternalUtil.isSameValue(value1, value2);
+    protected boolean xSV(Object value1, Object value2) {
+        return FunCustodial.isSameValue(value1, value2);
     }
 
     /**
@@ -221,8 +221,8 @@ public abstract class BsVendorLargeName901234567890 implements Entity, Serializa
         result = xCH(result, getVendorLargeName901234567Id());
         return result;
     }
-    protected int xCH(int result, Object value) { // calculateHashcode()
-        return InternalUtil.calculateHashcode(result, value);
+    protected int xCH(int result, Object value) {
+        return FunCustodial.calculateHashcode(result, value);
     }
 
     /**
@@ -237,7 +237,7 @@ public abstract class BsVendorLargeName901234567890 implements Entity, Serializa
      * @return The display string of all columns and relation existences. (NotNull)
      */
     public String toString() {
-        return buildDisplayString(InternalUtil.toClassTitle(this), true, true);
+        return buildDisplayString(FunCustodial.toClassTitle(this), true, true);
     }
 
     /**

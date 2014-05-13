@@ -109,7 +109,7 @@ public abstract class AbstractBsNextSchemaProductStatusCQ extends AbstractCondit
     /**
      * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br />
      * PRODUCT_STATUS_CODE: {PK, NotNull, CHAR(3)} <br />
-     * <pre>e.g. setProductStatusCode_LikeSearch("xxx", new <span style="color: #FD4747">LikeSearchOption</span>().likeContain());</pre>
+     * <pre>e.g. setProductStatusCode_LikeSearch("xxx", new <span style="color: #DD4747">LikeSearchOption</span>().likeContain());</pre>
      * @param productStatusCode The value of productStatusCode as likeSearch. (NullAllowed: if null (or empty), no condition)
      * @param likeSearchOption The option of like-search. (NotNull)
      */
@@ -133,7 +133,7 @@ public abstract class AbstractBsNextSchemaProductStatusCQ extends AbstractCondit
      * {exists (select NEXT_TARGET_CODE from WHITE_REF_NEXT_TARGET where ...)} <br />
      * WHITE_REF_NEXT_TARGET by NEXT_TARGET_CODE, named 'whiteRefNextTargetAsOne'.
      * <pre>
-     * cb.query().<span style="color: #FD4747">existsWhiteRefNextTargetList</span>(new SubQuery&lt;WhiteRefNextTargetCB&gt;() {
+     * cb.query().<span style="color: #DD4747">existsWhiteRefNextTargetList</span>(new SubQuery&lt;WhiteRefNextTargetCB&gt;() {
      *     public void query(WhiteRefNextTargetCB subCB) {
      *         subCB.query().setXxx...
      *     }
@@ -143,8 +143,9 @@ public abstract class AbstractBsNextSchemaProductStatusCQ extends AbstractCondit
      */
     public void existsWhiteRefNextTargetList(SubQuery<WhiteRefNextTargetCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        WhiteRefNextTargetCB cb = new WhiteRefNextTargetCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String pp = keepProductStatusCode_ExistsReferrer_WhiteRefNextTargetList(cb.query()); // for saving query-value.
+        WhiteRefNextTargetCB cb = new WhiteRefNextTargetCB(); cb.xsetupForExistsReferrer(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepProductStatusCode_ExistsReferrer_WhiteRefNextTargetList(cb.query());
         registerExistsReferrer(cb.query(), "PRODUCT_STATUS_CODE", "NEXT_TARGET_CODE", pp, "whiteRefNextTargetList");
     }
     public abstract String keepProductStatusCode_ExistsReferrer_WhiteRefNextTargetList(WhiteRefNextTargetCQ sq);
@@ -154,7 +155,7 @@ public abstract class AbstractBsNextSchemaProductStatusCQ extends AbstractCondit
      * {exists (select PRODUCT_STATUS_CODE from NEXT_SCHEMA_PRODUCT where ...)} <br />
      * (隣のスキーマ)NEXT_SCHEMA_PRODUCT by PRODUCT_STATUS_CODE, named 'nextSchemaProductAsOne'.
      * <pre>
-     * cb.query().<span style="color: #FD4747">existsNextSchemaProductList</span>(new SubQuery&lt;NextSchemaProductCB&gt;() {
+     * cb.query().<span style="color: #DD4747">existsNextSchemaProductList</span>(new SubQuery&lt;NextSchemaProductCB&gt;() {
      *     public void query(NextSchemaProductCB subCB) {
      *         subCB.query().setXxx...
      *     }
@@ -164,8 +165,9 @@ public abstract class AbstractBsNextSchemaProductStatusCQ extends AbstractCondit
      */
     public void existsNextSchemaProductList(SubQuery<NextSchemaProductCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        NextSchemaProductCB cb = new NextSchemaProductCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String pp = keepProductStatusCode_ExistsReferrer_NextSchemaProductList(cb.query()); // for saving query-value.
+        NextSchemaProductCB cb = new NextSchemaProductCB(); cb.xsetupForExistsReferrer(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepProductStatusCode_ExistsReferrer_NextSchemaProductList(cb.query());
         registerExistsReferrer(cb.query(), "PRODUCT_STATUS_CODE", "PRODUCT_STATUS_CODE", pp, "nextSchemaProductList");
     }
     public abstract String keepProductStatusCode_ExistsReferrer_NextSchemaProductList(NextSchemaProductCQ sq);
@@ -175,7 +177,7 @@ public abstract class AbstractBsNextSchemaProductStatusCQ extends AbstractCondit
      * {not exists (select NEXT_TARGET_CODE from WHITE_REF_NEXT_TARGET where ...)} <br />
      * WHITE_REF_NEXT_TARGET by NEXT_TARGET_CODE, named 'whiteRefNextTargetAsOne'.
      * <pre>
-     * cb.query().<span style="color: #FD4747">notExistsWhiteRefNextTargetList</span>(new SubQuery&lt;WhiteRefNextTargetCB&gt;() {
+     * cb.query().<span style="color: #DD4747">notExistsWhiteRefNextTargetList</span>(new SubQuery&lt;WhiteRefNextTargetCB&gt;() {
      *     public void query(WhiteRefNextTargetCB subCB) {
      *         subCB.query().setXxx...
      *     }
@@ -185,8 +187,9 @@ public abstract class AbstractBsNextSchemaProductStatusCQ extends AbstractCondit
      */
     public void notExistsWhiteRefNextTargetList(SubQuery<WhiteRefNextTargetCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        WhiteRefNextTargetCB cb = new WhiteRefNextTargetCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String pp = keepProductStatusCode_NotExistsReferrer_WhiteRefNextTargetList(cb.query()); // for saving query-value.
+        WhiteRefNextTargetCB cb = new WhiteRefNextTargetCB(); cb.xsetupForExistsReferrer(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepProductStatusCode_NotExistsReferrer_WhiteRefNextTargetList(cb.query());
         registerNotExistsReferrer(cb.query(), "PRODUCT_STATUS_CODE", "NEXT_TARGET_CODE", pp, "whiteRefNextTargetList");
     }
     public abstract String keepProductStatusCode_NotExistsReferrer_WhiteRefNextTargetList(WhiteRefNextTargetCQ sq);
@@ -196,7 +199,7 @@ public abstract class AbstractBsNextSchemaProductStatusCQ extends AbstractCondit
      * {not exists (select PRODUCT_STATUS_CODE from NEXT_SCHEMA_PRODUCT where ...)} <br />
      * (隣のスキーマ)NEXT_SCHEMA_PRODUCT by PRODUCT_STATUS_CODE, named 'nextSchemaProductAsOne'.
      * <pre>
-     * cb.query().<span style="color: #FD4747">notExistsNextSchemaProductList</span>(new SubQuery&lt;NextSchemaProductCB&gt;() {
+     * cb.query().<span style="color: #DD4747">notExistsNextSchemaProductList</span>(new SubQuery&lt;NextSchemaProductCB&gt;() {
      *     public void query(NextSchemaProductCB subCB) {
      *         subCB.query().setXxx...
      *     }
@@ -206,8 +209,9 @@ public abstract class AbstractBsNextSchemaProductStatusCQ extends AbstractCondit
      */
     public void notExistsNextSchemaProductList(SubQuery<NextSchemaProductCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        NextSchemaProductCB cb = new NextSchemaProductCB(); cb.xsetupForExistsReferrer(this); subQuery.query(cb);
-        String pp = keepProductStatusCode_NotExistsReferrer_NextSchemaProductList(cb.query()); // for saving query-value.
+        NextSchemaProductCB cb = new NextSchemaProductCB(); cb.xsetupForExistsReferrer(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepProductStatusCode_NotExistsReferrer_NextSchemaProductList(cb.query());
         registerNotExistsReferrer(cb.query(), "PRODUCT_STATUS_CODE", "PRODUCT_STATUS_CODE", pp, "nextSchemaProductList");
     }
     public abstract String keepProductStatusCode_NotExistsReferrer_NextSchemaProductList(NextSchemaProductCQ sq);
@@ -220,8 +224,9 @@ public abstract class AbstractBsNextSchemaProductStatusCQ extends AbstractCondit
      */
     public void inScopeWhiteRefNextTargetList(SubQuery<WhiteRefNextTargetCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        WhiteRefNextTargetCB cb = new WhiteRefNextTargetCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String pp = keepProductStatusCode_InScopeRelation_WhiteRefNextTargetList(cb.query()); // for saving query-value.
+        WhiteRefNextTargetCB cb = new WhiteRefNextTargetCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepProductStatusCode_InScopeRelation_WhiteRefNextTargetList(cb.query());
         registerInScopeRelation(cb.query(), "PRODUCT_STATUS_CODE", "NEXT_TARGET_CODE", pp, "whiteRefNextTargetList");
     }
     public abstract String keepProductStatusCode_InScopeRelation_WhiteRefNextTargetList(WhiteRefNextTargetCQ sq);
@@ -234,8 +239,9 @@ public abstract class AbstractBsNextSchemaProductStatusCQ extends AbstractCondit
      */
     public void inScopeNextSchemaProductList(SubQuery<NextSchemaProductCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        NextSchemaProductCB cb = new NextSchemaProductCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String pp = keepProductStatusCode_InScopeRelation_NextSchemaProductList(cb.query()); // for saving query-value.
+        NextSchemaProductCB cb = new NextSchemaProductCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepProductStatusCode_InScopeRelation_NextSchemaProductList(cb.query());
         registerInScopeRelation(cb.query(), "PRODUCT_STATUS_CODE", "PRODUCT_STATUS_CODE", pp, "nextSchemaProductList");
     }
     public abstract String keepProductStatusCode_InScopeRelation_NextSchemaProductList(NextSchemaProductCQ sq);
@@ -248,8 +254,9 @@ public abstract class AbstractBsNextSchemaProductStatusCQ extends AbstractCondit
      */
     public void notInScopeWhiteRefNextTargetList(SubQuery<WhiteRefNextTargetCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        WhiteRefNextTargetCB cb = new WhiteRefNextTargetCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String pp = keepProductStatusCode_NotInScopeRelation_WhiteRefNextTargetList(cb.query()); // for saving query-value.
+        WhiteRefNextTargetCB cb = new WhiteRefNextTargetCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepProductStatusCode_NotInScopeRelation_WhiteRefNextTargetList(cb.query());
         registerNotInScopeRelation(cb.query(), "PRODUCT_STATUS_CODE", "NEXT_TARGET_CODE", pp, "whiteRefNextTargetList");
     }
     public abstract String keepProductStatusCode_NotInScopeRelation_WhiteRefNextTargetList(WhiteRefNextTargetCQ sq);
@@ -262,24 +269,27 @@ public abstract class AbstractBsNextSchemaProductStatusCQ extends AbstractCondit
      */
     public void notInScopeNextSchemaProductList(SubQuery<NextSchemaProductCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        NextSchemaProductCB cb = new NextSchemaProductCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String pp = keepProductStatusCode_NotInScopeRelation_NextSchemaProductList(cb.query()); // for saving query-value.
+        NextSchemaProductCB cb = new NextSchemaProductCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepProductStatusCode_NotInScopeRelation_NextSchemaProductList(cb.query());
         registerNotInScopeRelation(cb.query(), "PRODUCT_STATUS_CODE", "PRODUCT_STATUS_CODE", pp, "nextSchemaProductList");
     }
     public abstract String keepProductStatusCode_NotInScopeRelation_NextSchemaProductList(NextSchemaProductCQ sq);
 
     public void xsderiveWhiteRefNextTargetList(String fn, SubQuery<WhiteRefNextTargetCB> sq, String al, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteRefNextTargetCB cb = new WhiteRefNextTargetCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
-        String pp = keepProductStatusCode_SpecifyDerivedReferrer_WhiteRefNextTargetList(cb.query()); // for saving query-value.
+        WhiteRefNextTargetCB cb = new WhiteRefNextTargetCB(); cb.xsetupForDerivedReferrer(this);
+        try { lock(); sq.query(cb); } finally { unlock(); }
+        String pp = keepProductStatusCode_SpecifyDerivedReferrer_WhiteRefNextTargetList(cb.query());
         registerSpecifyDerivedReferrer(fn, cb.query(), "PRODUCT_STATUS_CODE", "NEXT_TARGET_CODE", pp, "whiteRefNextTargetList", al, op);
     }
     public abstract String keepProductStatusCode_SpecifyDerivedReferrer_WhiteRefNextTargetList(WhiteRefNextTargetCQ sq);
 
     public void xsderiveNextSchemaProductList(String fn, SubQuery<NextSchemaProductCB> sq, String al, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        NextSchemaProductCB cb = new NextSchemaProductCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
-        String pp = keepProductStatusCode_SpecifyDerivedReferrer_NextSchemaProductList(cb.query()); // for saving query-value.
+        NextSchemaProductCB cb = new NextSchemaProductCB(); cb.xsetupForDerivedReferrer(this);
+        try { lock(); sq.query(cb); } finally { unlock(); }
+        String pp = keepProductStatusCode_SpecifyDerivedReferrer_NextSchemaProductList(cb.query());
         registerSpecifyDerivedReferrer(fn, cb.query(), "PRODUCT_STATUS_CODE", "PRODUCT_STATUS_CODE", pp, "nextSchemaProductList", al, op);
     }
     public abstract String keepProductStatusCode_SpecifyDerivedReferrer_NextSchemaProductList(NextSchemaProductCQ sq);
@@ -289,12 +299,12 @@ public abstract class AbstractBsNextSchemaProductStatusCQ extends AbstractCondit
      * {FOO &lt;= (select max(BAR) from WHITE_REF_NEXT_TARGET where ...)} <br />
      * WHITE_REF_NEXT_TARGET by NEXT_TARGET_CODE, named 'whiteRefNextTargetAsOne'.
      * <pre>
-     * cb.query().<span style="color: #FD4747">derivedWhiteRefNextTargetList()</span>.<span style="color: #FD4747">max</span>(new SubQuery&lt;WhiteRefNextTargetCB&gt;() {
+     * cb.query().<span style="color: #DD4747">derivedWhiteRefNextTargetList()</span>.<span style="color: #DD4747">max</span>(new SubQuery&lt;WhiteRefNextTargetCB&gt;() {
      *     public void query(WhiteRefNextTargetCB subCB) {
-     *         subCB.specify().<span style="color: #FD4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
+     *         subCB.specify().<span style="color: #DD4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
      *         subCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
      *     }
-     * }).<span style="color: #FD4747">greaterEqual</span>(123); <span style="color: #3F7E5E">// condition to derived column</span>
+     * }).<span style="color: #DD4747">greaterEqual</span>(123); <span style="color: #3F7E5E">// condition to derived column</span>
      * </pre>
      * @return The object to set up a function for referrer table. (NotNull)
      */
@@ -310,9 +320,9 @@ public abstract class AbstractBsNextSchemaProductStatusCQ extends AbstractCondit
     }
     public void xqderiveWhiteRefNextTargetList(String fn, SubQuery<WhiteRefNextTargetCB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        WhiteRefNextTargetCB cb = new WhiteRefNextTargetCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
-        String sqpp = keepProductStatusCode_QueryDerivedReferrer_WhiteRefNextTargetList(cb.query()); // for saving query-value.
-        String prpp = keepProductStatusCode_QueryDerivedReferrer_WhiteRefNextTargetListParameter(vl);
+        WhiteRefNextTargetCB cb = new WhiteRefNextTargetCB(); cb.xsetupForDerivedReferrer(this);
+        try { lock(); sq.query(cb); } finally { unlock(); }
+        String sqpp = keepProductStatusCode_QueryDerivedReferrer_WhiteRefNextTargetList(cb.query()); String prpp = keepProductStatusCode_QueryDerivedReferrer_WhiteRefNextTargetListParameter(vl);
         registerQueryDerivedReferrer(fn, cb.query(), "PRODUCT_STATUS_CODE", "NEXT_TARGET_CODE", sqpp, "whiteRefNextTargetList", rd, vl, prpp, op);
     }
     public abstract String keepProductStatusCode_QueryDerivedReferrer_WhiteRefNextTargetList(WhiteRefNextTargetCQ sq);
@@ -323,12 +333,12 @@ public abstract class AbstractBsNextSchemaProductStatusCQ extends AbstractCondit
      * {FOO &lt;= (select max(BAR) from NEXT_SCHEMA_PRODUCT where ...)} <br />
      * (隣のスキーマ)NEXT_SCHEMA_PRODUCT by PRODUCT_STATUS_CODE, named 'nextSchemaProductAsOne'.
      * <pre>
-     * cb.query().<span style="color: #FD4747">derivedNextSchemaProductList()</span>.<span style="color: #FD4747">max</span>(new SubQuery&lt;NextSchemaProductCB&gt;() {
+     * cb.query().<span style="color: #DD4747">derivedNextSchemaProductList()</span>.<span style="color: #DD4747">max</span>(new SubQuery&lt;NextSchemaProductCB&gt;() {
      *     public void query(NextSchemaProductCB subCB) {
-     *         subCB.specify().<span style="color: #FD4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
+     *         subCB.specify().<span style="color: #DD4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
      *         subCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
      *     }
-     * }).<span style="color: #FD4747">greaterEqual</span>(123); <span style="color: #3F7E5E">// condition to derived column</span>
+     * }).<span style="color: #DD4747">greaterEqual</span>(123); <span style="color: #3F7E5E">// condition to derived column</span>
      * </pre>
      * @return The object to set up a function for referrer table. (NotNull)
      */
@@ -344,9 +354,9 @@ public abstract class AbstractBsNextSchemaProductStatusCQ extends AbstractCondit
     }
     public void xqderiveNextSchemaProductList(String fn, SubQuery<NextSchemaProductCB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        NextSchemaProductCB cb = new NextSchemaProductCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
-        String sqpp = keepProductStatusCode_QueryDerivedReferrer_NextSchemaProductList(cb.query()); // for saving query-value.
-        String prpp = keepProductStatusCode_QueryDerivedReferrer_NextSchemaProductListParameter(vl);
+        NextSchemaProductCB cb = new NextSchemaProductCB(); cb.xsetupForDerivedReferrer(this);
+        try { lock(); sq.query(cb); } finally { unlock(); }
+        String sqpp = keepProductStatusCode_QueryDerivedReferrer_NextSchemaProductList(cb.query()); String prpp = keepProductStatusCode_QueryDerivedReferrer_NextSchemaProductListParameter(vl);
         registerQueryDerivedReferrer(fn, cb.query(), "PRODUCT_STATUS_CODE", "PRODUCT_STATUS_CODE", sqpp, "nextSchemaProductList", rd, vl, prpp, op);
     }
     public abstract String keepProductStatusCode_QueryDerivedReferrer_NextSchemaProductList(NextSchemaProductCQ sq);
@@ -431,7 +441,7 @@ public abstract class AbstractBsNextSchemaProductStatusCQ extends AbstractCondit
     /**
      * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br />
      * PRODUCT_STATUS_NAME: {UQ, NotNull, VARCHAR2(50)} <br />
-     * <pre>e.g. setProductStatusName_LikeSearch("xxx", new <span style="color: #FD4747">LikeSearchOption</span>().likeContain());</pre>
+     * <pre>e.g. setProductStatusName_LikeSearch("xxx", new <span style="color: #DD4747">LikeSearchOption</span>().likeContain());</pre>
      * @param productStatusName The value of productStatusName as likeSearch. (NullAllowed: if null (or empty), no condition)
      * @param likeSearchOption The option of like-search. (NotNull)
      */
@@ -460,7 +470,7 @@ public abstract class AbstractBsNextSchemaProductStatusCQ extends AbstractCondit
      * Prepare ScalarCondition as equal. <br />
      * {where FOO = (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #FD4747">scalar_Equal()</span>.max(new SubQuery&lt;NextSchemaProductStatusCB&gt;() {
+     * cb.query().<span style="color: #DD4747">scalar_Equal()</span>.max(new SubQuery&lt;NextSchemaProductStatusCB&gt;() {
      *     public void query(NextSchemaProductStatusCB subCB) {
      *         subCB.specify().setXxx... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setYyy...
@@ -477,7 +487,7 @@ public abstract class AbstractBsNextSchemaProductStatusCQ extends AbstractCondit
      * Prepare ScalarCondition as equal. <br />
      * {where FOO &lt;&gt; (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #FD4747">scalar_NotEqual()</span>.max(new SubQuery&lt;NextSchemaProductStatusCB&gt;() {
+     * cb.query().<span style="color: #DD4747">scalar_NotEqual()</span>.max(new SubQuery&lt;NextSchemaProductStatusCB&gt;() {
      *     public void query(NextSchemaProductStatusCB subCB) {
      *         subCB.specify().setXxx... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setYyy...
@@ -494,7 +504,7 @@ public abstract class AbstractBsNextSchemaProductStatusCQ extends AbstractCondit
      * Prepare ScalarCondition as greaterThan. <br />
      * {where FOO &gt; (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #FD4747">scalar_GreaterThan()</span>.max(new SubQuery&lt;NextSchemaProductStatusCB&gt;() {
+     * cb.query().<span style="color: #DD4747">scalar_GreaterThan()</span>.max(new SubQuery&lt;NextSchemaProductStatusCB&gt;() {
      *     public void query(NextSchemaProductStatusCB subCB) {
      *         subCB.specify().setFoo... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setBar...
@@ -511,7 +521,7 @@ public abstract class AbstractBsNextSchemaProductStatusCQ extends AbstractCondit
      * Prepare ScalarCondition as lessThan. <br />
      * {where FOO &lt; (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #FD4747">scalar_LessThan()</span>.max(new SubQuery&lt;NextSchemaProductStatusCB&gt;() {
+     * cb.query().<span style="color: #DD4747">scalar_LessThan()</span>.max(new SubQuery&lt;NextSchemaProductStatusCB&gt;() {
      *     public void query(NextSchemaProductStatusCB subCB) {
      *         subCB.specify().setFoo... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setBar...
@@ -528,7 +538,7 @@ public abstract class AbstractBsNextSchemaProductStatusCQ extends AbstractCondit
      * Prepare ScalarCondition as greaterEqual. <br />
      * {where FOO &gt;= (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #FD4747">scalar_GreaterEqual()</span>.max(new SubQuery&lt;NextSchemaProductStatusCB&gt;() {
+     * cb.query().<span style="color: #DD4747">scalar_GreaterEqual()</span>.max(new SubQuery&lt;NextSchemaProductStatusCB&gt;() {
      *     public void query(NextSchemaProductStatusCB subCB) {
      *         subCB.specify().setFoo... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setBar...
@@ -545,7 +555,7 @@ public abstract class AbstractBsNextSchemaProductStatusCQ extends AbstractCondit
      * Prepare ScalarCondition as lessEqual. <br />
      * {where FOO &lt;= (select max(BAR) from ...)
      * <pre>
-     * cb.query().<span style="color: #FD4747">scalar_LessEqual()</span>.max(new SubQuery&lt;NextSchemaProductStatusCB&gt;() {
+     * cb.query().<span style="color: #DD4747">scalar_LessEqual()</span>.max(new SubQuery&lt;NextSchemaProductStatusCB&gt;() {
      *     public void query(NextSchemaProductStatusCB subCB) {
      *         subCB.specify().setFoo... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setBar...
@@ -581,9 +591,10 @@ public abstract class AbstractBsNextSchemaProductStatusCQ extends AbstractCondit
     //                                                                       =============
     public void xsmyselfDerive(String fn, SubQuery<NextSchemaProductStatusCB> sq, String al, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        NextSchemaProductStatusCB cb = new NextSchemaProductStatusCB(); cb.xsetupForDerivedReferrer(this); sq.query(cb);
+        NextSchemaProductStatusCB cb = new NextSchemaProductStatusCB(); cb.xsetupForDerivedReferrer(this);
+        try { lock(); sq.query(cb); } finally { unlock(); }
+        String pp = keepSpecifyMyselfDerived(cb.query());
         String pk = "PRODUCT_STATUS_CODE";
-        String pp = keepSpecifyMyselfDerived(cb.query()); // for saving query-value.
         registerSpecifyMyselfDerived(fn, cb.query(), pk, pk, pp, "myselfDerived", al, op);
     }
     public abstract String keepSpecifyMyselfDerived(NextSchemaProductStatusCQ sq);
@@ -616,8 +627,9 @@ public abstract class AbstractBsNextSchemaProductStatusCQ extends AbstractCondit
      */
     public void myselfExists(SubQuery<NextSchemaProductStatusCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        NextSchemaProductStatusCB cb = new NextSchemaProductStatusCB(); cb.xsetupForMyselfExists(this); subQuery.query(cb);
-        String pp = keepMyselfExists(cb.query()); // for saving query-value.
+        NextSchemaProductStatusCB cb = new NextSchemaProductStatusCB(); cb.xsetupForMyselfExists(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepMyselfExists(cb.query());
         registerMyselfExists(cb.query(), pp);
     }
     public abstract String keepMyselfExists(NextSchemaProductStatusCQ sq);
@@ -631,8 +643,9 @@ public abstract class AbstractBsNextSchemaProductStatusCQ extends AbstractCondit
      */
     public void myselfInScope(SubQuery<NextSchemaProductStatusCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
-        NextSchemaProductStatusCB cb = new NextSchemaProductStatusCB(); cb.xsetupForMyselfInScope(this); subQuery.query(cb);
-        String pp = keepMyselfInScope(cb.query()); // for saving query-value.
+        NextSchemaProductStatusCB cb = new NextSchemaProductStatusCB(); cb.xsetupForMyselfInScope(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepMyselfInScope(cb.query());
         registerMyselfInScope(cb.query(), pp);
     }
     public abstract String keepMyselfInScope(NextSchemaProductStatusCQ sq);
@@ -668,6 +681,37 @@ public abstract class AbstractBsNextSchemaProductStatusCQ extends AbstractCondit
     @Override
     protected LikeSearchOption xcreateMatchLikeSearch() {
         return new OracleMatchLikeSearch();
+    }
+
+    // ===================================================================================
+    //                                                                          Compatible
+    //                                                                          ==========
+    /**
+     * Order along the list of manual values. #beforejava8 <br />
+     * This function with Union is unsupported! <br />
+     * The order values are bound (treated as bind parameter).
+     * <pre>
+     * MemberCB cb = new MemberCB();
+     * List&lt;CDef.MemberStatus&gt; orderValueList = new ArrayList&lt;CDef.MemberStatus&gt;();
+     * orderValueList.add(CDef.MemberStatus.Withdrawal);
+     * orderValueList.add(CDef.MemberStatus.Formalized);
+     * orderValueList.add(CDef.MemberStatus.Provisional);
+     * cb.query().addOrderBy_MemberStatusCode_Asc().<span style="color: #DD4747">withManualOrder(orderValueList)</span>;
+     * <span style="color: #3F7E5E">// order by </span>
+     * <span style="color: #3F7E5E">//   case</span>
+     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'WDL' then 0</span>
+     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'FML' then 1</span>
+     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'PRV' then 2</span>
+     * <span style="color: #3F7E5E">//     else 3</span>
+     * <span style="color: #3F7E5E">//   end asc, ...</span>
+     * </pre>
+     * @param orderValueList The list of order values for manual ordering. (NotNull)
+     */
+    public void withManualOrder(List<? extends Object> orderValueList) { // is user public!
+        assertObjectNotNull("withManualOrder(orderValueList)", orderValueList);
+        final ManualOrderBean manualOrderBean = new ManualOrderBean();
+        manualOrderBean.acceptOrderValueList(orderValueList);
+        withManualOrder(manualOrderBean);
     }
 
     // ===================================================================================

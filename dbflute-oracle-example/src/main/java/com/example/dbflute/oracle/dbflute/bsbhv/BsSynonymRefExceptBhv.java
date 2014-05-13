@@ -6,6 +6,8 @@ import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
 import org.seasar.dbflute.dbmeta.DBMeta;
+import org.seasar.dbflute.exception.*;
+import org.seasar.dbflute.optional.*;
 import org.seasar.dbflute.outsidesql.executor.*;
 import com.example.dbflute.oracle.dbflute.exbhv.*;
 import com.example.dbflute.oracle.dbflute.exentity.*;
@@ -91,7 +93,7 @@ public abstract class BsSynonymRefExceptBhv extends AbstractBehaviorWritable {
      * <pre>
      * SynonymRefExceptCB cb = new SynonymRefExceptCB();
      * cb.query().setFoo...(value);
-     * int count = synonymRefExceptBhv.<span style="color: #FD4747">selectCount</span>(cb);
+     * int count = synonymRefExceptBhv.<span style="color: #DD4747">selectCount</span>(cb);
      * </pre>
      * @param cb The condition-bean of SynonymRefExcept. (NotNull)
      * @return The count for the condition. (NotMinus)
@@ -119,12 +121,14 @@ public abstract class BsSynonymRefExceptBhv extends AbstractBehaviorWritable {
     //                                                                       Entity Select
     //                                                                       =============
     /**
-     * Select the entity by the condition-bean.
+     * Select the entity by the condition-bean. #beforejava8 <br />
+     * <span style="color: #AD4747; font-size: 120%">The return might be null if no data, so you should have null check.</span> <br />
+     * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, use selectEntityWithDeletedCheck().</span>
      * <pre>
      * SynonymRefExceptCB cb = new SynonymRefExceptCB();
      * cb.query().setFoo...(value);
-     * SynonymRefExcept synonymRefExcept = synonymRefExceptBhv.<span style="color: #FD4747">selectEntity</span>(cb);
-     * if (synonymRefExcept != null) {
+     * SynonymRefExcept synonymRefExcept = synonymRefExceptBhv.<span style="color: #DD4747">selectEntity</span>(cb);
+     * if (synonymRefExcept != null) { <span style="color: #3F7E5E">// null check</span>
      *     ... = synonymRefExcept.get...();
      * } else {
      *     ...
@@ -132,8 +136,8 @@ public abstract class BsSynonymRefExceptBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of SynonymRefExcept. (NotNull)
      * @return The entity selected by the condition. (NullAllowed: if no data, it returns null)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public SynonymRefExcept selectEntity(SynonymRefExceptCB cb) {
         return doSelectEntity(cb, SynonymRefExcept.class);
@@ -145,24 +149,29 @@ public abstract class BsSynonymRefExceptBhv extends AbstractBehaviorWritable {
             public List<ENTITY> callbackSelectList(SynonymRefExceptCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
+    protected <ENTITY extends SynonymRefExcept> OptionalEntity<ENTITY> doSelectOptionalEntity(SynonymRefExceptCB cb, Class<ENTITY> tp) {
+        return createOptionalEntity(doSelectEntity(cb, tp), cb);
+    }
+
     @Override
     protected Entity doReadEntity(ConditionBean cb) {
         return selectEntity(downcast(cb));
     }
 
     /**
-     * Select the entity by the condition-bean with deleted check.
+     * Select the entity by the condition-bean with deleted check. <br />
+     * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, this method is good.</span>
      * <pre>
      * SynonymRefExceptCB cb = new SynonymRefExceptCB();
      * cb.query().setFoo...(value);
-     * SynonymRefExcept synonymRefExcept = synonymRefExceptBhv.<span style="color: #FD4747">selectEntityWithDeletedCheck</span>(cb);
+     * SynonymRefExcept synonymRefExcept = synonymRefExceptBhv.<span style="color: #DD4747">selectEntityWithDeletedCheck</span>(cb);
      * ... = synonymRefExcept.get...(); <span style="color: #3F7E5E">// the entity always be not null</span>
      * </pre>
      * @param cb The condition-bean of SynonymRefExcept. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public SynonymRefExcept selectEntityWithDeletedCheck(SynonymRefExceptCB cb) {
         return doSelectEntityWithDeletedCheck(cb, SynonymRefExcept.class);
@@ -183,8 +192,8 @@ public abstract class BsSynonymRefExceptBhv extends AbstractBehaviorWritable {
      * Select the entity by the primary-key value.
      * @param refExceptId The one of primary key. (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public SynonymRefExcept selectByPKValue(Long refExceptId) {
         return doSelectByPKValue(refExceptId, SynonymRefExcept.class);
@@ -198,9 +207,9 @@ public abstract class BsSynonymRefExceptBhv extends AbstractBehaviorWritable {
      * Select the entity by the primary-key value with deleted check.
      * @param refExceptId The one of primary key. (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public SynonymRefExcept selectByPKValueWithDeletedCheck(Long refExceptId) {
         return doSelectByPKValueWithDeletedCheck(refExceptId, SynonymRefExcept.class);
@@ -226,14 +235,14 @@ public abstract class BsSynonymRefExceptBhv extends AbstractBehaviorWritable {
      * SynonymRefExceptCB cb = new SynonymRefExceptCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * ListResultBean&lt;SynonymRefExcept&gt; synonymRefExceptList = synonymRefExceptBhv.<span style="color: #FD4747">selectList</span>(cb);
+     * ListResultBean&lt;SynonymRefExcept&gt; synonymRefExceptList = synonymRefExceptBhv.<span style="color: #DD4747">selectList</span>(cb);
      * for (SynonymRefExcept synonymRefExcept : synonymRefExceptList) {
      *     ... = synonymRefExcept.get...();
      * }
      * </pre>
      * @param cb The condition-bean of SynonymRefExcept. (NotNull)
      * @return The result bean of selected list. (NotNull: if no data, returns empty list)
-     * @exception org.seasar.dbflute.exception.DangerousResultSizeException When the result size is over the specified safety size.
+     * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public ListResultBean<SynonymRefExcept> selectList(SynonymRefExceptCB cb) {
         return doSelectList(cb, SynonymRefExcept.class);
@@ -261,8 +270,8 @@ public abstract class BsSynonymRefExceptBhv extends AbstractBehaviorWritable {
      * SynonymRefExceptCB cb = new SynonymRefExceptCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * cb.<span style="color: #FD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
-     * PagingResultBean&lt;SynonymRefExcept&gt; page = synonymRefExceptBhv.<span style="color: #FD4747">selectPage</span>(cb);
+     * cb.<span style="color: #DD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
+     * PagingResultBean&lt;SynonymRefExcept&gt; page = synonymRefExceptBhv.<span style="color: #DD4747">selectPage</span>(cb);
      * int allRecordCount = page.getAllRecordCount();
      * int allPageCount = page.getAllPageCount();
      * boolean isExistPrePage = page.isExistPrePage();
@@ -274,7 +283,7 @@ public abstract class BsSynonymRefExceptBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of SynonymRefExcept. (NotNull)
      * @return The result bean of selected page. (NotNull: if no data, returns bean as empty list)
-     * @exception org.seasar.dbflute.exception.DangerousResultSizeException When the result size is over the specified safety size.
+     * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public PagingResultBean<SynonymRefExcept> selectPage(SynonymRefExceptCB cb) {
         return doSelectPage(cb, SynonymRefExcept.class);
@@ -301,7 +310,7 @@ public abstract class BsSynonymRefExceptBhv extends AbstractBehaviorWritable {
      * <pre>
      * SynonymRefExceptCB cb = new SynonymRefExceptCB();
      * cb.query().setFoo...(value);
-     * synonymRefExceptBhv.<span style="color: #FD4747">selectCursor</span>(cb, new EntityRowHandler&lt;SynonymRefExcept&gt;() {
+     * synonymRefExceptBhv.<span style="color: #DD4747">selectCursor</span>(cb, new EntityRowHandler&lt;SynonymRefExcept&gt;() {
      *     public void handle(SynonymRefExcept entity) {
      *         ... = entity.getFoo...();
      *     }
@@ -330,9 +339,9 @@ public abstract class BsSynonymRefExceptBhv extends AbstractBehaviorWritable {
      * Select the scalar value derived by a function from uniquely-selected records. <br />
      * You should call a function method after this method called like as follows:
      * <pre>
-     * synonymRefExceptBhv.<span style="color: #FD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
+     * synonymRefExceptBhv.<span style="color: #DD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
      *     public void query(SynonymRefExceptCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
+     *         cb.specify().<span style="color: #DD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
      *         cb.query().setBarName_PrefixSearch("S");
      *     }
      * });
@@ -412,12 +421,12 @@ public abstract class BsSynonymRefExceptBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
      * <span style="color: #3F7E5E">//synonymRefExcept.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//synonymRefExcept.set...;</span>
-     * synonymRefExceptBhv.<span style="color: #FD4747">insert</span>(synonymRefExcept);
+     * synonymRefExceptBhv.<span style="color: #DD4747">insert</span>(synonymRefExcept);
      * ... = synonymRefExcept.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * <p>While, when the entity is created by select, all columns are registered.</p>
      * @param synonymRefExcept The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insert(SynonymRefExcept synonymRefExcept) {
         doInsert(synonymRefExcept, null);
@@ -453,17 +462,17 @@ public abstract class BsSynonymRefExceptBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">//synonymRefExcept.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//synonymRefExcept.set...;</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * synonymRefExcept.<span style="color: #FD4747">setVersionNo</span>(value);
+     * synonymRefExcept.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
-     *     synonymRefExceptBhv.<span style="color: #FD4747">update</span>(synonymRefExcept);
+     *     synonymRefExceptBhv.<span style="color: #DD4747">update</span>(synonymRefExcept);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param synonymRefExcept The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void update(final SynonymRefExcept synonymRefExcept) {
         doUpdate(synonymRefExcept, null);
@@ -513,11 +522,11 @@ public abstract class BsSynonymRefExceptBhv extends AbstractBehaviorWritable {
     /**
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br />
-     * <p><span style="color: #FD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
+     * <p><span style="color: #DD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
      * @param synonymRefExcept The entity of insert or update target. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insertOrUpdate(SynonymRefExcept synonymRefExcept) {
         doInesrtOrUpdate(synonymRefExcept, null, null);
@@ -553,16 +562,16 @@ public abstract class BsSynonymRefExceptBhv extends AbstractBehaviorWritable {
      * SynonymRefExcept synonymRefExcept = new SynonymRefExcept();
      * synonymRefExcept.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * synonymRefExcept.<span style="color: #FD4747">setVersionNo</span>(value);
+     * synonymRefExcept.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
-     *     synonymRefExceptBhv.<span style="color: #FD4747">delete</span>(synonymRefExcept);
+     *     synonymRefExceptBhv.<span style="color: #DD4747">delete</span>(synonymRefExcept);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param synonymRefExcept The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void delete(SynonymRefExcept synonymRefExcept) {
         doDelete(synonymRefExcept, null);
@@ -597,7 +606,7 @@ public abstract class BsSynonymRefExceptBhv extends AbstractBehaviorWritable {
     /**
      * Batch-insert the entity list modified-only of same-set columns. (DefaultConstraintsEnabled) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
-     * <p><span style="color: #FD4747; font-size: 120%">The columns of least common multiple are registered like this:</span></p>
+     * <p><span style="color: #DD4747; font-size: 120%">The columns of least common multiple are registered like this:</span></p>
      * <pre>
      * for (... : ...) {
      *     SynonymRefExcept synonymRefExcept = new SynonymRefExcept();
@@ -610,7 +619,7 @@ public abstract class BsSynonymRefExceptBhv extends AbstractBehaviorWritable {
      *     <span style="color: #3F7E5E">// columns not-called in all entities are registered as null or default value</span>
      *     synonymRefExceptList.add(synonymRefExcept);
      * }
-     * synonymRefExceptBhv.<span style="color: #FD4747">batchInsert</span>(synonymRefExceptList);
+     * synonymRefExceptBhv.<span style="color: #DD4747">batchInsert</span>(synonymRefExceptList);
      * </pre>
      * <p>While, when the entities are created by select, all columns are registered.</p>
      * <p>And if the table has an identity, entities after the process don't have incremented values.
@@ -644,7 +653,7 @@ public abstract class BsSynonymRefExceptBhv extends AbstractBehaviorWritable {
     /**
      * Batch-update the entity list modified-only of same-set columns. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
-     * <span style="color: #FD4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
+     * <span style="color: #DD4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
      * <pre>
      * for (... : ...) {
      *     SynonymRefExcept synonymRefExcept = new SynonymRefExcept();
@@ -659,11 +668,11 @@ public abstract class BsSynonymRefExceptBhv extends AbstractBehaviorWritable {
      *     <span style="color: #3F7E5E">// (others are not updated: their values are kept)</span>
      *     synonymRefExceptList.add(synonymRefExcept);
      * }
-     * synonymRefExceptBhv.<span style="color: #FD4747">batchUpdate</span>(synonymRefExceptList);
+     * synonymRefExceptBhv.<span style="color: #DD4747">batchUpdate</span>(synonymRefExceptList);
      * </pre>
      * @param synonymRefExceptList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<SynonymRefExcept> synonymRefExceptList) {
         UpdateOption<SynonymRefExceptCB> op = createPlainUpdateOption();
@@ -692,16 +701,16 @@ public abstract class BsSynonymRefExceptBhv extends AbstractBehaviorWritable {
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * <pre>
      * <span style="color: #3F7E5E">// e.g. update two columns only</span>
-     * synonymRefExceptBhv.<span style="color: #FD4747">batchUpdate</span>(synonymRefExceptList, new SpecifyQuery<SynonymRefExceptCB>() {
+     * synonymRefExceptBhv.<span style="color: #DD4747">batchUpdate</span>(synonymRefExceptList, new SpecifyQuery<SynonymRefExceptCB>() {
      *     public void specify(SynonymRefExceptCB cb) { <span style="color: #3F7E5E">// the two only updated</span>
-     *         cb.specify().<span style="color: #FD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
-     *         cb.specify().<span style="color: #FD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
+     *         cb.specify().<span style="color: #DD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
+     *         cb.specify().<span style="color: #DD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
      *     }
      * });
      * <span style="color: #3F7E5E">// e.g. update every column in the table</span>
-     * synonymRefExceptBhv.<span style="color: #FD4747">batchUpdate</span>(synonymRefExceptList, new SpecifyQuery<SynonymRefExceptCB>() {
+     * synonymRefExceptBhv.<span style="color: #DD4747">batchUpdate</span>(synonymRefExceptList, new SpecifyQuery<SynonymRefExceptCB>() {
      *     public void specify(SynonymRefExceptCB cb) { <span style="color: #3F7E5E">// all columns are updated</span>
-     *         cb.specify().<span style="color: #FD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
+     *         cb.specify().<span style="color: #DD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
      *     }
      * });
      * </pre>
@@ -713,7 +722,7 @@ public abstract class BsSynonymRefExceptBhv extends AbstractBehaviorWritable {
      * @param synonymRefExceptList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @param updateColumnSpec The specification of update columns. (NotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<SynonymRefExcept> synonymRefExceptList, SpecifyQuery<SynonymRefExceptCB> updateColumnSpec) {
         return doBatchUpdate(synonymRefExceptList, createSpecifiedUpdateOption(updateColumnSpec));
@@ -729,7 +738,7 @@ public abstract class BsSynonymRefExceptBhv extends AbstractBehaviorWritable {
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * @param synonymRefExceptList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of deleted count. (NotNull, EmptyAllowed)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchDelete(List<SynonymRefExcept> synonymRefExceptList) {
         return doBatchDelete(synonymRefExceptList, null);
@@ -758,7 +767,7 @@ public abstract class BsSynonymRefExceptBhv extends AbstractBehaviorWritable {
     /**
      * Insert the several entities by query (modified-only for fixed value).
      * <pre>
-     * synonymRefExceptBhv.<span style="color: #FD4747">queryInsert</span>(new QueryInsertSetupper&lt;SynonymRefExcept, SynonymRefExceptCB&gt;() {
+     * synonymRefExceptBhv.<span style="color: #DD4747">queryInsert</span>(new QueryInsertSetupper&lt;SynonymRefExcept, SynonymRefExceptCB&gt;() {
      *     public ConditionBean setup(synonymRefExcept entity, SynonymRefExceptCB intoCB) {
      *         FooCB cb = FooCB();
      *         cb.setupSelect_Bar();
@@ -820,12 +829,12 @@ public abstract class BsSynonymRefExceptBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">//synonymRefExcept.setVersionNo(value);</span>
      * SynonymRefExceptCB cb = new SynonymRefExceptCB();
      * cb.query().setFoo...(value);
-     * synonymRefExceptBhv.<span style="color: #FD4747">queryUpdate</span>(synonymRefExcept, cb);
+     * synonymRefExceptBhv.<span style="color: #DD4747">queryUpdate</span>(synonymRefExcept, cb);
      * </pre>
      * @param synonymRefExcept The entity that contains update values. (NotNull, PrimaryKeyNullAllowed)
      * @param cb The condition-bean of SynonymRefExcept. (NotNull)
      * @return The updated count.
-     * @exception org.seasar.dbflute.exception.NonQueryUpdateNotAllowedException When the query has no condition.
+     * @exception NonQueryUpdateNotAllowedException When the query has no condition.
      */
     public int queryUpdate(SynonymRefExcept synonymRefExcept, SynonymRefExceptCB cb) {
         return doQueryUpdate(synonymRefExcept, cb, null);
@@ -848,11 +857,11 @@ public abstract class BsSynonymRefExceptBhv extends AbstractBehaviorWritable {
      * <pre>
      * SynonymRefExceptCB cb = new SynonymRefExceptCB();
      * cb.query().setFoo...(value);
-     * synonymRefExceptBhv.<span style="color: #FD4747">queryDelete</span>(synonymRefExcept, cb);
+     * synonymRefExceptBhv.<span style="color: #DD4747">queryDelete</span>(synonymRefExcept, cb);
      * </pre>
      * @param cb The condition-bean of SynonymRefExcept. (NotNull)
      * @return The deleted count.
-     * @exception org.seasar.dbflute.exception.NonQueryDeleteNotAllowedException When the query has no condition.
+     * @exception NonQueryDeleteNotAllowedException When the query has no condition.
      */
     public int queryDelete(SynonymRefExceptCB cb) {
         return doQueryDelete(cb, null);
@@ -888,12 +897,12 @@ public abstract class BsSynonymRefExceptBhv extends AbstractBehaviorWritable {
      * InsertOption<SynonymRefExceptCB> option = new InsertOption<SynonymRefExceptCB>();
      * <span style="color: #3F7E5E">// you can insert by your values for common columns</span>
      * option.disableCommonColumnAutoSetup();
-     * synonymRefExceptBhv.<span style="color: #FD4747">varyingInsert</span>(synonymRefExcept, option);
+     * synonymRefExceptBhv.<span style="color: #DD4747">varyingInsert</span>(synonymRefExcept, option);
      * ... = synonymRefExcept.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * @param synonymRefExcept The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
      * @param option The option of insert for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingInsert(SynonymRefExcept synonymRefExcept, InsertOption<SynonymRefExceptCB> option) {
         assertInsertOptionNotNull(option);
@@ -909,25 +918,25 @@ public abstract class BsSynonymRefExceptBhv extends AbstractBehaviorWritable {
      * synonymRefExcept.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * synonymRefExcept.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * synonymRefExcept.<span style="color: #FD4747">setVersionNo</span>(value);
+     * synonymRefExcept.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     <span style="color: #3F7E5E">// you can update by self calculation values</span>
      *     UpdateOption&lt;SynonymRefExceptCB&gt; option = new UpdateOption&lt;SynonymRefExceptCB&gt;();
      *     option.self(new SpecifyQuery&lt;SynonymRefExceptCB&gt;() {
      *         public void specify(SynonymRefExceptCB cb) {
-     *             cb.specify().<span style="color: #FD4747">columnXxxCount()</span>;
+     *             cb.specify().<span style="color: #DD4747">columnXxxCount()</span>;
      *         }
      *     }).plus(1); <span style="color: #3F7E5E">// XXX_COUNT = XXX_COUNT + 1</span>
-     *     synonymRefExceptBhv.<span style="color: #FD4747">varyingUpdate</span>(synonymRefExcept, option);
+     *     synonymRefExceptBhv.<span style="color: #DD4747">varyingUpdate</span>(synonymRefExcept, option);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
      * @param synonymRefExcept The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @param option The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingUpdate(SynonymRefExcept synonymRefExcept, UpdateOption<SynonymRefExceptCB> option) {
         assertUpdateOptionNotNull(option);
@@ -940,9 +949,9 @@ public abstract class BsSynonymRefExceptBhv extends AbstractBehaviorWritable {
      * @param synonymRefExcept The entity of insert or update target. (NotNull)
      * @param insertOption The option of insert for varying requests. (NotNull)
      * @param updateOption The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void varyingInsertOrUpdate(SynonymRefExcept synonymRefExcept, InsertOption<SynonymRefExceptCB> insertOption, UpdateOption<SynonymRefExceptCB> updateOption) {
         assertInsertOptionNotNull(insertOption); assertUpdateOptionNotNull(updateOption);
@@ -955,8 +964,8 @@ public abstract class BsSynonymRefExceptBhv extends AbstractBehaviorWritable {
      * Other specifications are same as delete(entity).
      * @param synonymRefExcept The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @param option The option of update for varying requests. (NotNull)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
      */
     public void varyingDelete(SynonymRefExcept synonymRefExcept, DeleteOption<SynonymRefExceptCB> option) {
         assertDeleteOptionNotNull(option);
@@ -1042,16 +1051,16 @@ public abstract class BsSynonymRefExceptBhv extends AbstractBehaviorWritable {
      * UpdateOption&lt;SynonymRefExceptCB&gt; option = new UpdateOption&lt;SynonymRefExceptCB&gt;();
      * option.self(new SpecifyQuery&lt;SynonymRefExceptCB&gt;() {
      *     public void specify(SynonymRefExceptCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFooCount()</span>;
+     *         cb.specify().<span style="color: #DD4747">columnFooCount()</span>;
      *     }
      * }).plus(1); <span style="color: #3F7E5E">// FOO_COUNT = FOO_COUNT + 1</span>
-     * synonymRefExceptBhv.<span style="color: #FD4747">varyingQueryUpdate</span>(synonymRefExcept, cb, option);
+     * synonymRefExceptBhv.<span style="color: #DD4747">varyingQueryUpdate</span>(synonymRefExcept, cb, option);
      * </pre>
      * @param synonymRefExcept The entity that contains update values. (NotNull) {PrimaryKeyNotRequired}
      * @param cb The condition-bean of SynonymRefExcept. (NotNull)
      * @param option The option of update for varying requests. (NotNull)
      * @return The updated count.
-     * @exception org.seasar.dbflute.exception.NonQueryUpdateNotAllowedException When the query has no condition (if not allowed).
+     * @exception NonQueryUpdateNotAllowedException When the query has no condition (if not allowed).
      */
     public int varyingQueryUpdate(SynonymRefExcept synonymRefExcept, SynonymRefExceptCB cb, UpdateOption<SynonymRefExceptCB> option) {
         assertUpdateOptionNotNull(option);
@@ -1065,7 +1074,7 @@ public abstract class BsSynonymRefExceptBhv extends AbstractBehaviorWritable {
      * @param cb The condition-bean of SynonymRefExcept. (NotNull)
      * @param option The option of delete for varying requests. (NotNull)
      * @return The deleted count.
-     * @exception org.seasar.dbflute.exception.NonQueryDeleteNotAllowedException When the query has no condition (if not allowed).
+     * @exception NonQueryDeleteNotAllowedException When the query has no condition (if not allowed).
      */
     public int varyingQueryDelete(SynonymRefExceptCB cb, DeleteOption<SynonymRefExceptCB> option) {
         assertDeleteOptionNotNull(option);

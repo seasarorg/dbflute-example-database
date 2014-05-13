@@ -6,6 +6,8 @@ import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
 import org.seasar.dbflute.dbmeta.DBMeta;
+import org.seasar.dbflute.exception.*;
+import org.seasar.dbflute.optional.*;
 import org.seasar.dbflute.outsidesql.executor.*;
 import com.example.dbflute.oracle.dbflute.exbhv.*;
 import com.example.dbflute.oracle.dbflute.exentity.*;
@@ -91,7 +93,7 @@ public abstract class BsWhiteUqFkWithoutPkRefBhv extends AbstractBehaviorReadabl
      * <pre>
      * WhiteUqFkWithoutPkRefCB cb = new WhiteUqFkWithoutPkRefCB();
      * cb.query().setFoo...(value);
-     * int count = whiteUqFkWithoutPkRefBhv.<span style="color: #FD4747">selectCount</span>(cb);
+     * int count = whiteUqFkWithoutPkRefBhv.<span style="color: #DD4747">selectCount</span>(cb);
      * </pre>
      * @param cb The condition-bean of WhiteUqFkWithoutPkRef. (NotNull)
      * @return The count for the condition. (NotMinus)
@@ -119,12 +121,14 @@ public abstract class BsWhiteUqFkWithoutPkRefBhv extends AbstractBehaviorReadabl
     //                                                                       Entity Select
     //                                                                       =============
     /**
-     * Select the entity by the condition-bean.
+     * Select the entity by the condition-bean. #beforejava8 <br />
+     * <span style="color: #AD4747; font-size: 120%">The return might be null if no data, so you should have null check.</span> <br />
+     * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, use selectEntityWithDeletedCheck().</span>
      * <pre>
      * WhiteUqFkWithoutPkRefCB cb = new WhiteUqFkWithoutPkRefCB();
      * cb.query().setFoo...(value);
-     * WhiteUqFkWithoutPkRef whiteUqFkWithoutPkRef = whiteUqFkWithoutPkRefBhv.<span style="color: #FD4747">selectEntity</span>(cb);
-     * if (whiteUqFkWithoutPkRef != null) {
+     * WhiteUqFkWithoutPkRef whiteUqFkWithoutPkRef = whiteUqFkWithoutPkRefBhv.<span style="color: #DD4747">selectEntity</span>(cb);
+     * if (whiteUqFkWithoutPkRef != null) { <span style="color: #3F7E5E">// null check</span>
      *     ... = whiteUqFkWithoutPkRef.get...();
      * } else {
      *     ...
@@ -132,8 +136,8 @@ public abstract class BsWhiteUqFkWithoutPkRefBhv extends AbstractBehaviorReadabl
      * </pre>
      * @param cb The condition-bean of WhiteUqFkWithoutPkRef. (NotNull)
      * @return The entity selected by the condition. (NullAllowed: if no data, it returns null)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteUqFkWithoutPkRef selectEntity(WhiteUqFkWithoutPkRefCB cb) {
         return doSelectEntity(cb, WhiteUqFkWithoutPkRef.class);
@@ -145,24 +149,29 @@ public abstract class BsWhiteUqFkWithoutPkRefBhv extends AbstractBehaviorReadabl
             public List<ENTITY> callbackSelectList(WhiteUqFkWithoutPkRefCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
+    protected <ENTITY extends WhiteUqFkWithoutPkRef> OptionalEntity<ENTITY> doSelectOptionalEntity(WhiteUqFkWithoutPkRefCB cb, Class<ENTITY> tp) {
+        return createOptionalEntity(doSelectEntity(cb, tp), cb);
+    }
+
     @Override
     protected Entity doReadEntity(ConditionBean cb) {
         return selectEntity(downcast(cb));
     }
 
     /**
-     * Select the entity by the condition-bean with deleted check.
+     * Select the entity by the condition-bean with deleted check. <br />
+     * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, this method is good.</span>
      * <pre>
      * WhiteUqFkWithoutPkRefCB cb = new WhiteUqFkWithoutPkRefCB();
      * cb.query().setFoo...(value);
-     * WhiteUqFkWithoutPkRef whiteUqFkWithoutPkRef = whiteUqFkWithoutPkRefBhv.<span style="color: #FD4747">selectEntityWithDeletedCheck</span>(cb);
+     * WhiteUqFkWithoutPkRef whiteUqFkWithoutPkRef = whiteUqFkWithoutPkRefBhv.<span style="color: #DD4747">selectEntityWithDeletedCheck</span>(cb);
      * ... = whiteUqFkWithoutPkRef.get...(); <span style="color: #3F7E5E">// the entity always be not null</span>
      * </pre>
      * @param cb The condition-bean of WhiteUqFkWithoutPkRef. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteUqFkWithoutPkRef selectEntityWithDeletedCheck(WhiteUqFkWithoutPkRefCB cb) {
         return doSelectEntityWithDeletedCheck(cb, WhiteUqFkWithoutPkRef.class);
@@ -188,14 +197,14 @@ public abstract class BsWhiteUqFkWithoutPkRefBhv extends AbstractBehaviorReadabl
      * WhiteUqFkWithoutPkRefCB cb = new WhiteUqFkWithoutPkRefCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * ListResultBean&lt;WhiteUqFkWithoutPkRef&gt; whiteUqFkWithoutPkRefList = whiteUqFkWithoutPkRefBhv.<span style="color: #FD4747">selectList</span>(cb);
+     * ListResultBean&lt;WhiteUqFkWithoutPkRef&gt; whiteUqFkWithoutPkRefList = whiteUqFkWithoutPkRefBhv.<span style="color: #DD4747">selectList</span>(cb);
      * for (WhiteUqFkWithoutPkRef whiteUqFkWithoutPkRef : whiteUqFkWithoutPkRefList) {
      *     ... = whiteUqFkWithoutPkRef.get...();
      * }
      * </pre>
      * @param cb The condition-bean of WhiteUqFkWithoutPkRef. (NotNull)
      * @return The result bean of selected list. (NotNull: if no data, returns empty list)
-     * @exception org.seasar.dbflute.exception.DangerousResultSizeException When the result size is over the specified safety size.
+     * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public ListResultBean<WhiteUqFkWithoutPkRef> selectList(WhiteUqFkWithoutPkRefCB cb) {
         return doSelectList(cb, WhiteUqFkWithoutPkRef.class);
@@ -223,8 +232,8 @@ public abstract class BsWhiteUqFkWithoutPkRefBhv extends AbstractBehaviorReadabl
      * WhiteUqFkWithoutPkRefCB cb = new WhiteUqFkWithoutPkRefCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * cb.<span style="color: #FD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
-     * PagingResultBean&lt;WhiteUqFkWithoutPkRef&gt; page = whiteUqFkWithoutPkRefBhv.<span style="color: #FD4747">selectPage</span>(cb);
+     * cb.<span style="color: #DD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
+     * PagingResultBean&lt;WhiteUqFkWithoutPkRef&gt; page = whiteUqFkWithoutPkRefBhv.<span style="color: #DD4747">selectPage</span>(cb);
      * int allRecordCount = page.getAllRecordCount();
      * int allPageCount = page.getAllPageCount();
      * boolean isExistPrePage = page.isExistPrePage();
@@ -236,7 +245,7 @@ public abstract class BsWhiteUqFkWithoutPkRefBhv extends AbstractBehaviorReadabl
      * </pre>
      * @param cb The condition-bean of WhiteUqFkWithoutPkRef. (NotNull)
      * @return The result bean of selected page. (NotNull: if no data, returns bean as empty list)
-     * @exception org.seasar.dbflute.exception.DangerousResultSizeException When the result size is over the specified safety size.
+     * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public PagingResultBean<WhiteUqFkWithoutPkRef> selectPage(WhiteUqFkWithoutPkRefCB cb) {
         return doSelectPage(cb, WhiteUqFkWithoutPkRef.class);
@@ -263,7 +272,7 @@ public abstract class BsWhiteUqFkWithoutPkRefBhv extends AbstractBehaviorReadabl
      * <pre>
      * WhiteUqFkWithoutPkRefCB cb = new WhiteUqFkWithoutPkRefCB();
      * cb.query().setFoo...(value);
-     * whiteUqFkWithoutPkRefBhv.<span style="color: #FD4747">selectCursor</span>(cb, new EntityRowHandler&lt;WhiteUqFkWithoutPkRef&gt;() {
+     * whiteUqFkWithoutPkRefBhv.<span style="color: #DD4747">selectCursor</span>(cb, new EntityRowHandler&lt;WhiteUqFkWithoutPkRef&gt;() {
      *     public void handle(WhiteUqFkWithoutPkRef entity) {
      *         ... = entity.getFoo...();
      *     }
@@ -292,9 +301,9 @@ public abstract class BsWhiteUqFkWithoutPkRefBhv extends AbstractBehaviorReadabl
      * Select the scalar value derived by a function from uniquely-selected records. <br />
      * You should call a function method after this method called like as follows:
      * <pre>
-     * whiteUqFkWithoutPkRefBhv.<span style="color: #FD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
+     * whiteUqFkWithoutPkRefBhv.<span style="color: #DD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
      *     public void query(WhiteUqFkWithoutPkRefCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
+     *         cb.specify().<span style="color: #DD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
      *         cb.query().setBarName_PrefixSearch("S");
      *     }
      * });

@@ -197,22 +197,22 @@ public abstract class BsCorgeBean implements Entity, Serializable, Cloneable {
     /**
      * Determine the object is equal with this. <br />
      * If primary-keys or columns of the other are same as this one, returns true.
-     * @param other The other entity. (NullAllowed: if null, returns false fixedly)
+     * @param obj The object as other entity. (NullAllowed: if null, returns false fixedly)
      * @return Comparing result.
      */
-    public boolean equals(Object other) {
-        if (other == null || !(other instanceof BsCorgeBean)) { return false; }
-        BsCorgeBean otherEntity = (BsCorgeBean)other;
-        if (!xSV(getCorgeId(), otherEntity.getCorgeId())) { return false; }
-        if (!xSV(getCorgeName(), otherEntity.getCorgeName())) { return false; }
-        if (!xSV(getCorgeDecimal(), otherEntity.getCorgeDecimal())) { return false; }
-        if (!xSV(getCorgeDate(), otherEntity.getCorgeDate())) { return false; }
-        if (!xSV(getCorgeTimestamp(), otherEntity.getCorgeTimestamp())) { return false; }
-        if (!xSV(getCorgeClob(), otherEntity.getCorgeClob())) { return false; }
+    public boolean equals(Object obj) {
+        if (obj == null || !(obj instanceof BsCorgeBean)) { return false; }
+        BsCorgeBean other = (BsCorgeBean)obj;
+        if (!xSV(getCorgeId(), other.getCorgeId())) { return false; }
+        if (!xSV(getCorgeName(), other.getCorgeName())) { return false; }
+        if (!xSV(getCorgeDecimal(), other.getCorgeDecimal())) { return false; }
+        if (!xSV(getCorgeDate(), other.getCorgeDate())) { return false; }
+        if (!xSV(getCorgeTimestamp(), other.getCorgeTimestamp())) { return false; }
+        if (!xSV(getCorgeClob(), other.getCorgeClob())) { return false; }
         return true;
     }
-    protected boolean xSV(Object value1, Object value2) { // isSameValue()
-        return InternalUtil.isSameValue(value1, value2);
+    protected boolean xSV(Object value1, Object value2) {
+        return FunCustodial.isSameValue(value1, value2);
     }
 
     /**
@@ -230,8 +230,8 @@ public abstract class BsCorgeBean implements Entity, Serializable, Cloneable {
         result = xCH(result, getCorgeClob());
         return result;
     }
-    protected int xCH(int result, Object value) { // calculateHashcode()
-        return InternalUtil.calculateHashcode(result, value);
+    protected int xCH(int result, Object value) {
+        return FunCustodial.calculateHashcode(result, value);
     }
 
     /**
@@ -246,7 +246,7 @@ public abstract class BsCorgeBean implements Entity, Serializable, Cloneable {
      * @return The display string of all columns and relation existences. (NotNull)
      */
     public String toString() {
-        return buildDisplayString(InternalUtil.toClassTitle(this), true, true);
+        return buildDisplayString(FunCustodial.toClassTitle(this), true, true);
     }
 
     /**
@@ -285,7 +285,7 @@ public abstract class BsCorgeBean implements Entity, Serializable, Cloneable {
         return sb.toString();
     }
     protected String xfUD(Date date) { // formatUtilDate()
-        return InternalUtil.toString(date, xgDP());
+        return FunCustodial.toString(date, xgDP());
     }
     protected String xgDP() { // getDatePattern
         return "yyyy-MM-dd HH:mm:ss"; // time parts for Oracle only

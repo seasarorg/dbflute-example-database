@@ -6,6 +6,8 @@ import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
 import org.seasar.dbflute.dbmeta.DBMeta;
+import org.seasar.dbflute.exception.*;
+import org.seasar.dbflute.optional.*;
 import org.seasar.dbflute.outsidesql.executor.*;
 import com.example.dbflute.oracle.dbflute.exbhv.*;
 import com.example.dbflute.oracle.dbflute.exentity.*;
@@ -91,7 +93,7 @@ public abstract class BsSummaryMemberPurchaseBhv extends AbstractBehaviorReadabl
      * <pre>
      * SummaryMemberPurchaseCB cb = new SummaryMemberPurchaseCB();
      * cb.query().setFoo...(value);
-     * int count = summaryMemberPurchaseBhv.<span style="color: #FD4747">selectCount</span>(cb);
+     * int count = summaryMemberPurchaseBhv.<span style="color: #DD4747">selectCount</span>(cb);
      * </pre>
      * @param cb The condition-bean of SummaryMemberPurchase. (NotNull)
      * @return The count for the condition. (NotMinus)
@@ -119,12 +121,14 @@ public abstract class BsSummaryMemberPurchaseBhv extends AbstractBehaviorReadabl
     //                                                                       Entity Select
     //                                                                       =============
     /**
-     * Select the entity by the condition-bean.
+     * Select the entity by the condition-bean. #beforejava8 <br />
+     * <span style="color: #AD4747; font-size: 120%">The return might be null if no data, so you should have null check.</span> <br />
+     * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, use selectEntityWithDeletedCheck().</span>
      * <pre>
      * SummaryMemberPurchaseCB cb = new SummaryMemberPurchaseCB();
      * cb.query().setFoo...(value);
-     * SummaryMemberPurchase summaryMemberPurchase = summaryMemberPurchaseBhv.<span style="color: #FD4747">selectEntity</span>(cb);
-     * if (summaryMemberPurchase != null) {
+     * SummaryMemberPurchase summaryMemberPurchase = summaryMemberPurchaseBhv.<span style="color: #DD4747">selectEntity</span>(cb);
+     * if (summaryMemberPurchase != null) { <span style="color: #3F7E5E">// null check</span>
      *     ... = summaryMemberPurchase.get...();
      * } else {
      *     ...
@@ -132,8 +136,8 @@ public abstract class BsSummaryMemberPurchaseBhv extends AbstractBehaviorReadabl
      * </pre>
      * @param cb The condition-bean of SummaryMemberPurchase. (NotNull)
      * @return The entity selected by the condition. (NullAllowed: if no data, it returns null)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public SummaryMemberPurchase selectEntity(SummaryMemberPurchaseCB cb) {
         return doSelectEntity(cb, SummaryMemberPurchase.class);
@@ -145,24 +149,29 @@ public abstract class BsSummaryMemberPurchaseBhv extends AbstractBehaviorReadabl
             public List<ENTITY> callbackSelectList(SummaryMemberPurchaseCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
+    protected <ENTITY extends SummaryMemberPurchase> OptionalEntity<ENTITY> doSelectOptionalEntity(SummaryMemberPurchaseCB cb, Class<ENTITY> tp) {
+        return createOptionalEntity(doSelectEntity(cb, tp), cb);
+    }
+
     @Override
     protected Entity doReadEntity(ConditionBean cb) {
         return selectEntity(downcast(cb));
     }
 
     /**
-     * Select the entity by the condition-bean with deleted check.
+     * Select the entity by the condition-bean with deleted check. <br />
+     * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, this method is good.</span>
      * <pre>
      * SummaryMemberPurchaseCB cb = new SummaryMemberPurchaseCB();
      * cb.query().setFoo...(value);
-     * SummaryMemberPurchase summaryMemberPurchase = summaryMemberPurchaseBhv.<span style="color: #FD4747">selectEntityWithDeletedCheck</span>(cb);
+     * SummaryMemberPurchase summaryMemberPurchase = summaryMemberPurchaseBhv.<span style="color: #DD4747">selectEntityWithDeletedCheck</span>(cb);
      * ... = summaryMemberPurchase.get...(); <span style="color: #3F7E5E">// the entity always be not null</span>
      * </pre>
      * @param cb The condition-bean of SummaryMemberPurchase. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception org.seasar.dbflute.exception.EntityAlreadyDeletedException When the entity has already been deleted. (not found)
-     * @exception org.seasar.dbflute.exception.EntityDuplicatedException When the entity has been duplicated.
-     * @exception org.seasar.dbflute.exception.SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public SummaryMemberPurchase selectEntityWithDeletedCheck(SummaryMemberPurchaseCB cb) {
         return doSelectEntityWithDeletedCheck(cb, SummaryMemberPurchase.class);
@@ -188,14 +197,14 @@ public abstract class BsSummaryMemberPurchaseBhv extends AbstractBehaviorReadabl
      * SummaryMemberPurchaseCB cb = new SummaryMemberPurchaseCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * ListResultBean&lt;SummaryMemberPurchase&gt; summaryMemberPurchaseList = summaryMemberPurchaseBhv.<span style="color: #FD4747">selectList</span>(cb);
+     * ListResultBean&lt;SummaryMemberPurchase&gt; summaryMemberPurchaseList = summaryMemberPurchaseBhv.<span style="color: #DD4747">selectList</span>(cb);
      * for (SummaryMemberPurchase summaryMemberPurchase : summaryMemberPurchaseList) {
      *     ... = summaryMemberPurchase.get...();
      * }
      * </pre>
      * @param cb The condition-bean of SummaryMemberPurchase. (NotNull)
      * @return The result bean of selected list. (NotNull: if no data, returns empty list)
-     * @exception org.seasar.dbflute.exception.DangerousResultSizeException When the result size is over the specified safety size.
+     * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public ListResultBean<SummaryMemberPurchase> selectList(SummaryMemberPurchaseCB cb) {
         return doSelectList(cb, SummaryMemberPurchase.class);
@@ -223,8 +232,8 @@ public abstract class BsSummaryMemberPurchaseBhv extends AbstractBehaviorReadabl
      * SummaryMemberPurchaseCB cb = new SummaryMemberPurchaseCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * cb.<span style="color: #FD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
-     * PagingResultBean&lt;SummaryMemberPurchase&gt; page = summaryMemberPurchaseBhv.<span style="color: #FD4747">selectPage</span>(cb);
+     * cb.<span style="color: #DD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
+     * PagingResultBean&lt;SummaryMemberPurchase&gt; page = summaryMemberPurchaseBhv.<span style="color: #DD4747">selectPage</span>(cb);
      * int allRecordCount = page.getAllRecordCount();
      * int allPageCount = page.getAllPageCount();
      * boolean isExistPrePage = page.isExistPrePage();
@@ -236,7 +245,7 @@ public abstract class BsSummaryMemberPurchaseBhv extends AbstractBehaviorReadabl
      * </pre>
      * @param cb The condition-bean of SummaryMemberPurchase. (NotNull)
      * @return The result bean of selected page. (NotNull: if no data, returns bean as empty list)
-     * @exception org.seasar.dbflute.exception.DangerousResultSizeException When the result size is over the specified safety size.
+     * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public PagingResultBean<SummaryMemberPurchase> selectPage(SummaryMemberPurchaseCB cb) {
         return doSelectPage(cb, SummaryMemberPurchase.class);
@@ -263,7 +272,7 @@ public abstract class BsSummaryMemberPurchaseBhv extends AbstractBehaviorReadabl
      * <pre>
      * SummaryMemberPurchaseCB cb = new SummaryMemberPurchaseCB();
      * cb.query().setFoo...(value);
-     * summaryMemberPurchaseBhv.<span style="color: #FD4747">selectCursor</span>(cb, new EntityRowHandler&lt;SummaryMemberPurchase&gt;() {
+     * summaryMemberPurchaseBhv.<span style="color: #DD4747">selectCursor</span>(cb, new EntityRowHandler&lt;SummaryMemberPurchase&gt;() {
      *     public void handle(SummaryMemberPurchase entity) {
      *         ... = entity.getFoo...();
      *     }
@@ -292,9 +301,9 @@ public abstract class BsSummaryMemberPurchaseBhv extends AbstractBehaviorReadabl
      * Select the scalar value derived by a function from uniquely-selected records. <br />
      * You should call a function method after this method called like as follows:
      * <pre>
-     * summaryMemberPurchaseBhv.<span style="color: #FD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
+     * summaryMemberPurchaseBhv.<span style="color: #DD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
      *     public void query(SummaryMemberPurchaseCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
+     *         cb.specify().<span style="color: #DD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
      *         cb.query().setBarName_PrefixSearch("S");
      *     }
      * });

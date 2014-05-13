@@ -209,7 +209,7 @@ public class BsWhiteRefTargetCB extends AbstractConditionBean {
      * You don't need to call SetupSelect in union-query,
      * because it inherits calls before. (Don't call SetupSelect after here)
      * <pre>
-     * cb.query().<span style="color: #FD4747">union</span>(new UnionQuery&lt;WhiteRefTargetCB&gt;() {
+     * cb.query().<span style="color: #DD4747">union</span>(new UnionQuery&lt;WhiteRefTargetCB&gt;() {
      *     public void query(WhiteRefTargetCB unionCB) {
      *         unionCB.query().setXxx...
      *     }
@@ -218,8 +218,8 @@ public class BsWhiteRefTargetCB extends AbstractConditionBean {
      * @param unionQuery The query of 'union'. (NotNull)
      */
     public void union(UnionQuery<WhiteRefTargetCB> unionQuery) {
-        final WhiteRefTargetCB cb = new WhiteRefTargetCB();
-        cb.xsetupForUnion(this); xsyncUQ(cb); unionQuery.query(cb); xsaveUCB(cb);
+        final WhiteRefTargetCB cb = new WhiteRefTargetCB(); cb.xsetupForUnion(this); xsyncUQ(cb); 
+        try { lock(); unionQuery.query(cb); } finally { unlock(); } xsaveUCB(cb);
         final WhiteRefTargetCQ cq = cb.query(); query().xsetUnionQuery(cq);
     }
 
@@ -228,7 +228,7 @@ public class BsWhiteRefTargetCB extends AbstractConditionBean {
      * You don't need to call SetupSelect in union-query,
      * because it inherits calls before. (Don't call SetupSelect after here)
      * <pre>
-     * cb.query().<span style="color: #FD4747">unionAll</span>(new UnionQuery&lt;WhiteRefTargetCB&gt;() {
+     * cb.query().<span style="color: #DD4747">unionAll</span>(new UnionQuery&lt;WhiteRefTargetCB&gt;() {
      *     public void query(WhiteRefTargetCB unionCB) {
      *         unionCB.query().setXxx...
      *     }
@@ -237,8 +237,8 @@ public class BsWhiteRefTargetCB extends AbstractConditionBean {
      * @param unionQuery The query of 'union all'. (NotNull)
      */
     public void unionAll(UnionQuery<WhiteRefTargetCB> unionQuery) {
-        final WhiteRefTargetCB cb = new WhiteRefTargetCB();
-        cb.xsetupForUnion(this); xsyncUQ(cb); unionQuery.query(cb); xsaveUCB(cb);
+        final WhiteRefTargetCB cb = new WhiteRefTargetCB(); cb.xsetupForUnion(this); xsyncUQ(cb);
+        try { lock(); unionQuery.query(cb); } finally { unlock(); } xsaveUCB(cb);
         final WhiteRefTargetCQ cq = cb.query(); query().xsetUnionAllQuery(cq);
     }
 
@@ -271,14 +271,15 @@ public class BsWhiteRefTargetCB extends AbstractConditionBean {
      * WHITE_TARGET by my TARGET_ID, named 'whiteTarget'.
      * <pre>
      * WhiteRefTargetCB cb = new WhiteRefTargetCB();
-     * cb.<span style="color: #FD4747">setupSelect_WhiteTarget()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
+     * cb.<span style="color: #DD4747">setupSelect_WhiteTarget()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
      * cb.query().setFoo...(value);
      * WhiteRefTarget whiteRefTarget = whiteRefTargetBhv.selectEntityWithDeletedCheck(cb);
-     * ... = whiteRefTarget.<span style="color: #FD4747">getWhiteTarget()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
+     * ... = whiteRefTarget.<span style="color: #DD4747">getWhiteTarget()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
      * </pre>
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
     public WhiteTargetNss setupSelect_WhiteTarget() {
+        assertSetupSelectPurpose("whiteTarget");
         if (hasSpecifiedColumn()) { // if reverse call
             specify().columnTargetId();
         }
@@ -391,19 +392,19 @@ public class BsWhiteRefTargetCB extends AbstractConditionBean {
 
     // [DBFlute-0.9.5.3]
     // ===================================================================================
-    //                                                                         ColumnQuery
-    //                                                                         ===========
+    //                                                                        Column Query
+    //                                                                        ============
     /**
      * Set up column-query. {column1 = column2}
      * <pre>
      * <span style="color: #3F7E5E">// where FOO &lt; BAR</span>
-     * cb.<span style="color: #FD4747">columnQuery</span>(new SpecifyQuery&lt;WhiteRefTargetCB&gt;() {
+     * cb.<span style="color: #DD4747">columnQuery</span>(new SpecifyQuery&lt;WhiteRefTargetCB&gt;() {
      *     public void query(WhiteRefTargetCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFoo()</span>; <span style="color: #3F7E5E">// left column</span>
+     *         cb.specify().<span style="color: #DD4747">columnFoo()</span>; <span style="color: #3F7E5E">// left column</span>
      *     }
      * }).lessThan(new SpecifyQuery&lt;WhiteRefTargetCB&gt;() {
      *     public void query(WhiteRefTargetCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnBar()</span>; <span style="color: #3F7E5E">// right column</span>
+     *         cb.specify().<span style="color: #DD4747">columnBar()</span>; <span style="color: #3F7E5E">// right column</span>
      *     }
      * }); <span style="color: #3F7E5E">// you can calculate for right column like '}).plus(3);'</span>
      * </pre>
@@ -444,14 +445,14 @@ public class BsWhiteRefTargetCB extends AbstractConditionBean {
 
     // [DBFlute-0.9.6.3]
     // ===================================================================================
-    //                                                                        OrScopeQuery
-    //                                                                        ============
+    //                                                                       OrScope Query
+    //                                                                       =============
     /**
      * Set up the query for or-scope. <br />
      * (Same-column-and-same-condition-key conditions are allowed in or-scope)
      * <pre>
      * <span style="color: #3F7E5E">// where (FOO = '...' or BAR = '...')</span>
-     * cb.<span style="color: #FD4747">orScopeQuery</span>(new OrQuery&lt;WhiteRefTargetCB&gt;() {
+     * cb.<span style="color: #DD4747">orScopeQuery</span>(new OrQuery&lt;WhiteRefTargetCB&gt;() {
      *     public void query(WhiteRefTargetCB orCB) {
      *         orCB.query().setFOO_Equal...
      *         orCB.query().setBAR_Equal...
@@ -469,10 +470,10 @@ public class BsWhiteRefTargetCB extends AbstractConditionBean {
      * (However nested or-scope query and as-or-split of like-search in and-part are unsupported)
      * <pre>
      * <span style="color: #3F7E5E">// where (FOO = '...' or (BAR = '...' and QUX = '...'))</span>
-     * cb.<span style="color: #FD4747">orScopeQuery</span>(new OrQuery&lt;WhiteRefTargetCB&gt;() {
+     * cb.<span style="color: #DD4747">orScopeQuery</span>(new OrQuery&lt;WhiteRefTargetCB&gt;() {
      *     public void query(WhiteRefTargetCB orCB) {
      *         orCB.query().setFOO_Equal...
-     *         orCB.<span style="color: #FD4747">orScopeQueryAndPart</span>(new AndQuery&lt;WhiteRefTargetCB&gt;() {
+     *         orCB.<span style="color: #DD4747">orScopeQueryAndPart</span>(new AndQuery&lt;WhiteRefTargetCB&gt;() {
      *             public void query(WhiteRefTargetCB andCB) {
      *                 andCB.query().setBar_...
      *                 andCB.query().setQux_...
