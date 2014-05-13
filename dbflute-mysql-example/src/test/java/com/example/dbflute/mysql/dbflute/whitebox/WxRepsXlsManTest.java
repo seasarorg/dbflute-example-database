@@ -16,7 +16,7 @@ import com.example.dbflute.mysql.unit.UnitContainerTestCase;
  * @author jflute
  * @since 0.9.7.5 (2010/10/23 Saturday)
  */
-public class WxRepsXlsConvertStringTest extends UnitContainerTestCase {
+public class WxRepsXlsManTest extends UnitContainerTestCase {
 
     // ===================================================================================
     //                                                                           Attribute
@@ -35,7 +35,7 @@ public class WxRepsXlsConvertStringTest extends UnitContainerTestCase {
 
         // ## Assert ##
         assertNotSame(0, xlsManList.size());
-        assertEquals(14, xlsManList.size());
+        assertEquals(15, xlsManList.size());
         for (WhiteXlsMan vendorXlsMan : xlsManList) {
             log(vendorXlsMan);
         }
@@ -44,7 +44,7 @@ public class WxRepsXlsConvertStringTest extends UnitContainerTestCase {
         assertEquals("case sensitive", xlsManList.get(2).getStringConverted());
         assertEquals(null, xlsManList.get(3).getStringConverted()); // NullValue to null
         assertEquals("", xlsManList.get(4).getStringConverted()); // converted to ""
-        assertEquals("", xlsManList.get(5).getStringConverted()); // trimmed and converted to ""
+        assertEquals(" ", xlsManList.get(5).getStringConverted()); // not trimmed
         assertEquals("null", xlsManList.get(6).getStringConverted());
         assertEquals("quoted", xlsManList.get(7).getStringConverted()); // "" to quoted
         assertEquals("before\nafter", xlsManList.get(8).getStringConverted()); // "\n" to line
@@ -70,5 +70,7 @@ public class WxRepsXlsConvertStringTest extends UnitContainerTestCase {
         Timestamp timestampLastDay = xlsManList.get(13).getTimestampConverted();
         log("timestampLastDay: " + timestampLastDay);
         assertTrue(new HandyDate(timestampLastDay).isDay_MonthLastDay());
+
+        assertEquals("   foo   bar   ", xlsManList.get(14).getStringConverted()); // not trimmed
     }
 }

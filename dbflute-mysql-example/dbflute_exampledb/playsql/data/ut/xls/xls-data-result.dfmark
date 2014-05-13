@@ -59,4 +59,4 @@ data-directory: playsql/data/ut/xls
   WHITE_LOAD_DATA (2)
 
 [92-whitebox-xlsman.xls]
-  WHITE_XLS_MAN (14)
+  WHITE_XLS_MAN (15)
