@@ -91,8 +91,20 @@ public class WhiteVariantRelationReferrerDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnVariantMasterId = cci("VARIANT_MASTER_ID", "VARIANT_MASTER_ID", null, null, true, "variantMasterId", Long.class, false, false, "BIGINT", 19, 0, null, false, null, null, "whiteVariantRelationMasterFooAsVariant,whiteVariantRelationMasterBarAsVariant,whiteVariantRelationMasterQuxAsVariantByQue,whiteVariantRelationMasterCorgeAsVariantByQuxType", null, null);
     protected final ColumnInfo _columnMasterTypeCode = cci("MASTER_TYPE_CODE", "MASTER_TYPE_CODE", null, null, true, "masterTypeCode", String.class, false, false, "CHAR", 3, 0, null, false, null, null, null, null, CDef.DefMeta.VariantRelationMasterType);
 
+    /**
+     * REFERRER_ID: {PK, NotNull, BIGINT(19)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnReferrerId() { return _columnReferrerId; }
+    /**
+     * VARIANT_MASTER_ID: {NotNull, BIGINT(19), FK to WHITE_VARIANT_RELATION_MASTER_FOO}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnVariantMasterId() { return _columnVariantMasterId; }
+    /**
+     * MASTER_TYPE_CODE: {NotNull, CHAR(3), classification=VariantRelationMasterType}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnMasterTypeCode() { return _columnMasterTypeCode; }
 
     protected List<ColumnInfo> ccil() {
@@ -121,21 +133,37 @@ public class WhiteVariantRelationReferrerDbm extends AbstractDBMeta {
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------
+    /**
+     * white_variant_relation_master_foo by my VARIANT_MASTER_ID, named 'whiteVariantRelationMasterFooAsVariant'.
+     * @return The information object of foreign property. (NotNull)
+     */
     public ForeignInfo foreignWhiteVariantRelationMasterFooAsVariant() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnVariantMasterId(), WhiteVariantRelationMasterFooDbm.getInstance().columnMasterFooId());
-        return cfi("FK_WHITE_VARIANT_RELATION_FOO", "whiteVariantRelationMasterFooAsVariant", this, WhiteVariantRelationMasterFooDbm.getInstance(), mp, 0, false, false, false, true, "$$localAlias$$.MASTER_TYPE_CODE = 'FOO'", null, false, "whiteVariantRelationReferrerAsVariantList");
+        return cfi("FK_WHITE_VARIANT_RELATION_FOO", "whiteVariantRelationMasterFooAsVariant", this, WhiteVariantRelationMasterFooDbm.getInstance(), mp, 0, null, false, false, false, true, "$$localAlias$$.MASTER_TYPE_CODE = 'FOO'", null, false, "whiteVariantRelationReferrerAsVariantList");
     }
+    /**
+     * white_variant_relation_master_bar by my VARIANT_MASTER_ID, named 'whiteVariantRelationMasterBarAsVariant'.
+     * @return The information object of foreign property. (NotNull)
+     */
     public ForeignInfo foreignWhiteVariantRelationMasterBarAsVariant() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnVariantMasterId(), WhiteVariantRelationMasterBarDbm.getInstance().columnMasterBarId());
-        return cfi("FK_WHITE_VARIANT_RELATION_BAR", "whiteVariantRelationMasterBarAsVariant", this, WhiteVariantRelationMasterBarDbm.getInstance(), mp, 1, false, false, false, true, "$$localAlias$$.MASTER_TYPE_CODE = 'BAR'", null, false, "whiteVariantRelationReferrerAsVariantList");
+        return cfi("FK_WHITE_VARIANT_RELATION_BAR", "whiteVariantRelationMasterBarAsVariant", this, WhiteVariantRelationMasterBarDbm.getInstance(), mp, 1, null, false, false, false, true, "$$localAlias$$.MASTER_TYPE_CODE = 'BAR'", null, false, "whiteVariantRelationReferrerAsVariantList");
     }
+    /**
+     * white_variant_relation_master_qux by my VARIANT_MASTER_ID, named 'whiteVariantRelationMasterQuxAsVariantByQue'.
+     * @return The information object of foreign property. (NotNull)
+     */
     public ForeignInfo foreignWhiteVariantRelationMasterQuxAsVariantByQue() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnVariantMasterId(), WhiteVariantRelationMasterQuxDbm.getInstance().columnMasterQuxId());
-        return cfi("FK_WHITE_VARIANT_RELATION_QUX", "whiteVariantRelationMasterQuxAsVariantByQue", this, WhiteVariantRelationMasterQuxDbm.getInstance(), mp, 2, false, false, false, true, "$$localAlias$$.MASTER_TYPE_CODE = 'QUX'\n     and $$foreignAlias$$.QUX_TYPE_CODE = 'Que'", null, false, null);
+        return cfi("FK_WHITE_VARIANT_RELATION_QUX", "whiteVariantRelationMasterQuxAsVariantByQue", this, WhiteVariantRelationMasterQuxDbm.getInstance(), mp, 2, null, false, false, false, true, "$$localAlias$$.MASTER_TYPE_CODE = 'QUX'\n     and $$foreignAlias$$.QUX_TYPE_CODE = 'Que'", null, false, null);
     }
+    /**
+     * white_variant_relation_master_corge by my VARIANT_MASTER_ID, named 'whiteVariantRelationMasterCorgeAsVariantByQuxType'.
+     * @return The information object of foreign property. (NotNull)
+     */
     public ForeignInfo foreignWhiteVariantRelationMasterCorgeAsVariantByQuxType() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnVariantMasterId(), WhiteVariantRelationMasterCorgeDbm.getInstance().columnMasterCorgeId());
-        return cfi("FK_WHITE_VARIANT_RELATION_CORGE", "whiteVariantRelationMasterCorgeAsVariantByQuxType", this, WhiteVariantRelationMasterCorgeDbm.getInstance(), mp, 3, false, false, false, true, "$$localAlias$$.MASTER_TYPE_CODE = 'CORGE'\n     and $$foreignAlias$$.CORGE_TYPE_CODE = /*$$locationBase$$.parameterMapWhiteVariantRelationMasterCorgeAsVariantByQuxType.quxType*/null", newArrayList("quxType"), false, null);
+        return cfi("FK_WHITE_VARIANT_RELATION_CORGE", "whiteVariantRelationMasterCorgeAsVariantByQuxType", this, WhiteVariantRelationMasterCorgeDbm.getInstance(), mp, 3, null, false, false, false, true, "$$localAlias$$.MASTER_TYPE_CODE = 'CORGE'\n     and $$foreignAlias$$.CORGE_TYPE_CODE = /*$$locationBase$$.parameterMapWhiteVariantRelationMasterCorgeAsVariantByQuxType.quxType*/null", newArrayList("quxType"), false, null);
     }
 
     // -----------------------------------------------------

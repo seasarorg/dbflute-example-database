@@ -37,8 +37,8 @@ public abstract class AbstractBsWhiteDbCommentCQ extends AbstractConditionQuery 
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public AbstractBsWhiteDbCommentCQ(ConditionQuery childQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
-        super(childQuery, sqlClause, aliasName, nestLevel);
+    public AbstractBsWhiteDbCommentCQ(ConditionQuery referrerQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
+        super(referrerQuery, sqlClause, aliasName, nestLevel);
     }
 
     // ===================================================================================

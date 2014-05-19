@@ -40,9 +40,9 @@ public class WhiteSuppressDefCheckCIQ extends AbstractBsWhiteSuppressDefCheckCQ 
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public WhiteSuppressDefCheckCIQ(ConditionQuery childQuery, SqlClause sqlClause
+    public WhiteSuppressDefCheckCIQ(ConditionQuery referrerQuery, SqlClause sqlClause
                         , String aliasName, int nestLevel, BsWhiteSuppressDefCheckCQ myCQ) {
-        super(childQuery, sqlClause, aliasName, nestLevel);
+        super(referrerQuery, sqlClause, aliasName, nestLevel);
         _myCQ = myCQ;
         _foreignPropertyName = _myCQ.xgetForeignPropertyName(); // accept foreign property name
         _relationPath = _myCQ.xgetRelationPath(); // accept relation path

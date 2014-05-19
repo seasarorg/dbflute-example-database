@@ -37,8 +37,8 @@ public abstract class AbstractBsWhiteSelfReferenceRefOneCQ extends AbstractCondi
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public AbstractBsWhiteSelfReferenceRefOneCQ(ConditionQuery childQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
-        super(childQuery, sqlClause, aliasName, nestLevel);
+    public AbstractBsWhiteSelfReferenceRefOneCQ(ConditionQuery referrerQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
+        super(referrerQuery, sqlClause, aliasName, nestLevel);
     }
 
     // ===================================================================================

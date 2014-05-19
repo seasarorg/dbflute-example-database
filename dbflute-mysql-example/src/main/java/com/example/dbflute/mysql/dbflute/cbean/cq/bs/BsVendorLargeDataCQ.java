@@ -39,8 +39,8 @@ public class BsVendorLargeDataCQ extends AbstractBsVendorLargeDataCQ {
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public BsVendorLargeDataCQ(ConditionQuery childQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
-        super(childQuery, sqlClause, aliasName, nestLevel);
+    public BsVendorLargeDataCQ(ConditionQuery referrerQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
+        super(referrerQuery, sqlClause, aliasName, nestLevel);
     }
 
     // ===================================================================================

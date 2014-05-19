@@ -81,7 +81,15 @@ public class WhiteSelfReferenceRefOneDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnSelfReferenceId = cci("SELF_REFERENCE_ID", "SELF_REFERENCE_ID", null, null, true, "selfReferenceId", Long.class, true, false, "DECIMAL", 16, 0, null, false, null, null, "whiteSelfReference,whiteSelfReferenceAsDirectParent", "whiteSelfReferenceByParentIdList", null);
     protected final ColumnInfo _columnSelfReferenceRefOneName = cci("SELF_REFERENCE_REF_ONE_NAME", "SELF_REFERENCE_REF_ONE_NAME", null, null, true, "selfReferenceRefOneName", String.class, false, false, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
 
+    /**
+     * SELF_REFERENCE_ID: {PK, NotNull, DECIMAL(16), FK to white_self_reference}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnSelfReferenceId() { return _columnSelfReferenceId; }
+    /**
+     * SELF_REFERENCE_REF_ONE_NAME: {NotNull, VARCHAR(200)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnSelfReferenceRefOneName() { return _columnSelfReferenceRefOneName; }
 
     protected List<ColumnInfo> ccil() {
@@ -109,18 +117,31 @@ public class WhiteSelfReferenceRefOneDbm extends AbstractDBMeta {
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------
+    /**
+     * white_self_reference by my SELF_REFERENCE_ID, named 'whiteSelfReference'.
+     * @return The information object of foreign property. (NotNull)
+     */
     public ForeignInfo foreignWhiteSelfReference() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnSelfReferenceId(), WhiteSelfReferenceDbm.getInstance().columnSelfReferenceId());
-        return cfi("FK_WHITE_SELF_REFERENCE_REF_ONE", "whiteSelfReference", this, WhiteSelfReferenceDbm.getInstance(), mp, 0, true, false, false, false, null, null, false, "whiteSelfReferenceRefOneAsOne");
+        return cfi("FK_WHITE_SELF_REFERENCE_REF_ONE", "whiteSelfReference", this, WhiteSelfReferenceDbm.getInstance(), mp, 0, null, true, false, false, false, null, null, false, "whiteSelfReferenceRefOneAsOne");
     }
+    /**
+     * white_self_reference by my SELF_REFERENCE_ID, named 'whiteSelfReferenceAsDirectParent'.
+     * @return The information object of foreign property. (NotNull)
+     */
     public ForeignInfo foreignWhiteSelfReferenceAsDirectParent() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnSelfReferenceId(), WhiteSelfReferenceDbm.getInstance().columnParentId());
-        return cfi("FK_WHITE_SELF_REFERENCE_REF_ONE_DIRECT_PARENT", "whiteSelfReferenceAsDirectParent", this, WhiteSelfReferenceDbm.getInstance(), mp, 1, true, true, false, true, "1=1", null, false, null);
+        return cfi("FK_WHITE_SELF_REFERENCE_REF_ONE_DIRECT_PARENT", "whiteSelfReferenceAsDirectParent", this, WhiteSelfReferenceDbm.getInstance(), mp, 1, null, true, true, false, true, "1=1", null, false, null);
     }
 
     // -----------------------------------------------------
     //                                     Referrer Property
     //                                     -----------------
+    /**
+     * white_self_reference by PARENT_ID, named 'whiteSelfReferenceByParentIdList'. <br />
+     * This relation is auto-detected as implicit reverse FK.
+     * @return The information object of referrer property. (NotNull)
+     */
     public ReferrerInfo referrerWhiteSelfReferenceByParentIdList() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnSelfReferenceId(), WhiteSelfReferenceDbm.getInstance().columnParentId());
         return cri("FK_white_self_reference_white_self_reference_ref_one_IMPLICIT", "whiteSelfReferenceByParentIdList", this, WhiteSelfReferenceDbm.getInstance(), mp, false, "whiteSelfReferenceRefOneByParentId");

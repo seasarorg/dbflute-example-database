@@ -105,11 +105,35 @@ public class VendorConstraintNameAutoRefDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnConstraintNameAutoCorgeId = cci("CONSTRAINT_NAME_AUTO_CORGE_ID", "CONSTRAINT_NAME_AUTO_CORGE_ID", null, null, true, "constraintNameAutoCorgeId", Long.class, false, false, "DECIMAL", 16, 0, null, false, null, null, null, null, null);
     protected final ColumnInfo _columnConstraintNameAutoUnique = cci("CONSTRAINT_NAME_AUTO_UNIQUE", "CONSTRAINT_NAME_AUTO_UNIQUE", null, null, true, "constraintNameAutoUnique", String.class, false, false, "VARCHAR", 50, 0, null, false, null, null, null, null, null);
 
+    /**
+     * CONSTRAINT_NAME_AUTO_REF_ID: {PK, NotNull, DECIMAL(16)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnConstraintNameAutoRefId() { return _columnConstraintNameAutoRefId; }
+    /**
+     * CONSTRAINT_NAME_AUTO_FOO_ID: {IX, NotNull, DECIMAL(16), FK to vendor_constraint_name_auto_foo}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnConstraintNameAutoFooId() { return _columnConstraintNameAutoFooId; }
+    /**
+     * CONSTRAINT_NAME_AUTO_BAR_ID: {IX, NotNull, DECIMAL(16), FK to vendor_constraint_name_auto_bar}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnConstraintNameAutoBarId() { return _columnConstraintNameAutoBarId; }
+    /**
+     * CONSTRAINT_NAME_AUTO_QUX_ID: {IX, NotNull, DECIMAL(16), FK to vendor_constraint_name_auto_qux}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnConstraintNameAutoQuxId() { return _columnConstraintNameAutoQuxId; }
+    /**
+     * CONSTRAINT_NAME_AUTO_CORGE_ID: {NotNull, DECIMAL(16)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnConstraintNameAutoCorgeId() { return _columnConstraintNameAutoCorgeId; }
+    /**
+     * CONSTRAINT_NAME_AUTO_UNIQUE: {UQ, NotNull, VARCHAR(50)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnConstraintNameAutoUnique() { return _columnConstraintNameAutoUnique; }
 
     protected List<ColumnInfo> ccil() {
@@ -141,17 +165,29 @@ public class VendorConstraintNameAutoRefDbm extends AbstractDBMeta {
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------
+    /**
+     * vendor_constraint_name_auto_foo by my CONSTRAINT_NAME_AUTO_FOO_ID, named 'vendorConstraintNameAutoFoo'.
+     * @return The information object of foreign property. (NotNull)
+     */
     public ForeignInfo foreignVendorConstraintNameAutoFoo() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnConstraintNameAutoFooId(), VendorConstraintNameAutoFooDbm.getInstance().columnConstraintNameAutoFooId());
-        return cfi("vendor_constraint_name_auto_ref_ibfk_1", "vendorConstraintNameAutoFoo", this, VendorConstraintNameAutoFooDbm.getInstance(), mp, 0, false, false, false, false, null, null, false, "vendorConstraintNameAutoRefList");
+        return cfi("vendor_constraint_name_auto_ref_ibfk_1", "vendorConstraintNameAutoFoo", this, VendorConstraintNameAutoFooDbm.getInstance(), mp, 0, null, false, false, false, false, null, null, false, "vendorConstraintNameAutoRefList");
     }
+    /**
+     * vendor_constraint_name_auto_bar by my CONSTRAINT_NAME_AUTO_BAR_ID, named 'vendorConstraintNameAutoBar'.
+     * @return The information object of foreign property. (NotNull)
+     */
     public ForeignInfo foreignVendorConstraintNameAutoBar() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnConstraintNameAutoBarId(), VendorConstraintNameAutoBarDbm.getInstance().columnConstraintNameAutoBarId());
-        return cfi("vendor_constraint_name_auto_ref_ibfk_2", "vendorConstraintNameAutoBar", this, VendorConstraintNameAutoBarDbm.getInstance(), mp, 1, false, false, false, false, null, null, false, "vendorConstraintNameAutoRefList");
+        return cfi("vendor_constraint_name_auto_ref_ibfk_2", "vendorConstraintNameAutoBar", this, VendorConstraintNameAutoBarDbm.getInstance(), mp, 1, null, false, false, false, false, null, null, false, "vendorConstraintNameAutoRefList");
     }
+    /**
+     * vendor_constraint_name_auto_qux by my CONSTRAINT_NAME_AUTO_QUX_ID, named 'vendorConstraintNameAutoQux'.
+     * @return The information object of foreign property. (NotNull)
+     */
     public ForeignInfo foreignVendorConstraintNameAutoQux() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnConstraintNameAutoQuxId(), VendorConstraintNameAutoQuxDbm.getInstance().columnConstraintNameAutoQuxId());
-        return cfi("vendor_constraint_name_auto_ref_ibfk_3", "vendorConstraintNameAutoQux", this, VendorConstraintNameAutoQuxDbm.getInstance(), mp, 2, false, false, false, false, null, null, false, "vendorConstraintNameAutoRefList");
+        return cfi("vendor_constraint_name_auto_ref_ibfk_3", "vendorConstraintNameAutoQux", this, VendorConstraintNameAutoQuxDbm.getInstance(), mp, 2, null, false, false, false, false, null, null, false, "vendorConstraintNameAutoRefList");
     }
 
     // -----------------------------------------------------

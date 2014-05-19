@@ -81,7 +81,15 @@ public class WhiteUqFkWithoutPkRefDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnUqFkRefId = cci("UQ_FK_REF_ID", "UQ_FK_REF_ID", null, null, true, "uqFkRefId", Long.class, false, false, "DECIMAL", 16, 0, null, false, null, null, null, null, null);
     protected final ColumnInfo _columnFkToUqCode = cci("FK_TO_UQ_CODE", "FK_TO_UQ_CODE", null, null, true, "fkToUqCode", String.class, false, false, "CHAR", 3, 0, null, false, null, null, "whiteUqFkWithoutPk", null, null);
 
+    /**
+     * UQ_FK_REF_ID: {NotNull, DECIMAL(16)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnUqFkRefId() { return _columnUqFkRefId; }
+    /**
+     * FK_TO_UQ_CODE: {IX, NotNull, CHAR(3), FK to white_uq_fk_without_pk}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnFkToUqCode() { return _columnFkToUqCode; }
 
     protected List<ColumnInfo> ccil() {
@@ -111,9 +119,13 @@ public class WhiteUqFkWithoutPkRefDbm extends AbstractDBMeta {
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------
+    /**
+     * white_uq_fk_without_pk by my FK_TO_UQ_CODE, named 'whiteUqFkWithoutPk'.
+     * @return The information object of foreign property. (NotNull)
+     */
     public ForeignInfo foreignWhiteUqFkWithoutPk() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnFkToUqCode(), WhiteUqFkWithoutPkDbm.getInstance().columnUqFkCode());
-        return cfi("FK_WHITE_UQ_FK_WITHOUT_PK_REF", "whiteUqFkWithoutPk", this, WhiteUqFkWithoutPkDbm.getInstance(), mp, 0, false, false, false, false, null, null, false, "whiteUqFkWithoutPkRefList");
+        return cfi("FK_WHITE_UQ_FK_WITHOUT_PK_REF", "whiteUqFkWithoutPk", this, WhiteUqFkWithoutPkDbm.getInstance(), mp, 0, null, false, false, false, false, null, null, false, "whiteUqFkWithoutPkRefList");
     }
 
     // -----------------------------------------------------

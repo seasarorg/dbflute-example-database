@@ -40,9 +40,9 @@ public class WhiteImplicitReverseFkCIQ extends AbstractBsWhiteImplicitReverseFkC
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public WhiteImplicitReverseFkCIQ(ConditionQuery childQuery, SqlClause sqlClause
+    public WhiteImplicitReverseFkCIQ(ConditionQuery referrerQuery, SqlClause sqlClause
                         , String aliasName, int nestLevel, BsWhiteImplicitReverseFkCQ myCQ) {
-        super(childQuery, sqlClause, aliasName, nestLevel);
+        super(referrerQuery, sqlClause, aliasName, nestLevel);
         _myCQ = myCQ;
         _foreignPropertyName = _myCQ.xgetForeignPropertyName(); // accept foreign property name
         _relationPath = _myCQ.xgetRelationPath(); // accept relation path

@@ -81,7 +81,15 @@ public class WhiteColumnExceptGenOnlyDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnGenOnlyId = cci("GEN_ONLY_ID", "GEN_ONLY_ID", null, null, true, "genOnlyId", Long.class, true, false, "DECIMAL", 16, 0, null, false, null, null, null, null, null);
     protected final ColumnInfo _columnGenOnlyName = cci("GEN_ONLY_NAME", "GEN_ONLY_NAME", null, null, true, "genOnlyName", String.class, false, false, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
 
+    /**
+     * GEN_ONLY_ID: {PK, NotNull, DECIMAL(16)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnGenOnlyId() { return _columnGenOnlyId; }
+    /**
+     * GEN_ONLY_NAME: {NotNull, VARCHAR(200)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnGenOnlyName() { return _columnGenOnlyName; }
 
     protected List<ColumnInfo> ccil() {

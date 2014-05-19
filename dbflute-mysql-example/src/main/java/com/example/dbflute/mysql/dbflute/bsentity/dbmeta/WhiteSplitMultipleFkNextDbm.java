@@ -81,7 +81,15 @@ public class WhiteSplitMultipleFkNextDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnNextId = cci("NEXT_ID", "NEXT_ID", null, null, true, "nextId", Long.class, true, false, "BIGINT", 19, 0, null, false, null, null, null, "whiteSplitMultipleFkBaseList", null);
     protected final ColumnInfo _columnSecondCode = cci("SECOND_CODE", "SECOND_CODE", null, null, true, "secondCode", String.class, false, false, "CHAR", 3, 0, null, false, null, null, null, null, null);
 
+    /**
+     * NEXT_ID: {PK, NotNull, BIGINT(19)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnNextId() { return _columnNextId; }
+    /**
+     * SECOND_CODE: {NotNull, CHAR(3)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnSecondCode() { return _columnSecondCode; }
 
     protected List<ColumnInfo> ccil() {
@@ -113,6 +121,10 @@ public class WhiteSplitMultipleFkNextDbm extends AbstractDBMeta {
     // -----------------------------------------------------
     //                                     Referrer Property
     //                                     -----------------
+    /**
+     * white_split_multiple_fk_base by NEXT_ID, named 'whiteSplitMultipleFkBaseList'.
+     * @return The information object of referrer property. (NotNull)
+     */
     public ReferrerInfo referrerWhiteSplitMultipleFkBaseList() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnNextId(), WhiteSplitMultipleFkBaseDbm.getInstance().columnNextId());
         return cri("FK_WHITE_SPLIT_MULTIPLE_FK_NEXT", "whiteSplitMultipleFkBaseList", this, WhiteSplitMultipleFkBaseDbm.getInstance(), mp, false, "whiteSplitMultipleFkNext");

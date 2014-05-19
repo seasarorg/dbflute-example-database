@@ -91,8 +91,20 @@ public class WhiteVariantRelationMasterCorgeDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnMasterCorgeName = cci("MASTER_CORGE_NAME", "MASTER_CORGE_NAME", null, null, true, "masterCorgeName", String.class, false, false, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
     protected final ColumnInfo _columnCorgeTypeCode = cci("CORGE_TYPE_CODE", "CORGE_TYPE_CODE", null, null, true, "corgeTypeCode", String.class, false, false, "CHAR", 3, 0, null, false, null, null, null, null, CDef.DefMeta.VariantRelationQuxType);
 
+    /**
+     * MASTER_CORGE_ID: {PK, NotNull, BIGINT(19)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnMasterCorgeId() { return _columnMasterCorgeId; }
+    /**
+     * MASTER_CORGE_NAME: {NotNull, VARCHAR(200)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnMasterCorgeName() { return _columnMasterCorgeName; }
+    /**
+     * CORGE_TYPE_CODE: {NotNull, CHAR(3), classification=VariantRelationQuxType}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnCorgeTypeCode() { return _columnCorgeTypeCode; }
 
     protected List<ColumnInfo> ccil() {

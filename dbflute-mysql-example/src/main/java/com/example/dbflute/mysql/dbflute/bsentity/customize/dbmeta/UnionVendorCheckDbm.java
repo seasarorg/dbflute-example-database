@@ -115,12 +115,40 @@ public class UnionVendorCheckDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnTypeOfBoolean = cci("TYPE_OF_BOOLEAN", "TYPE_OF_BOOLEAN", null, null, false, "typeOfBoolean", Integer.class, false, false, "TINYINT", 4, 0, null, false, null, null, null, null, CDef.DefMeta.BooleanFlg);
     protected final ColumnInfo _columnTypeOfBlob = cci("TYPE_OF_BLOB", "TYPE_OF_BLOB", null, null, false, "typeOfBlob", byte[].class, false, false, "BLOB", 65535, 0, null, false, null, null, null, null, null);
 
+    /**
+     * VENDOR_CHECK_ID: {DECIMAL(16)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnVendorCheckId() { return _columnVendorCheckId; }
+    /**
+     * TYPE_OF_TEXT: {VARCHAR(65535)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfText() { return _columnTypeOfText; }
+    /**
+     * TYPE_OF_NUMERIC_DECIMAL: {DECIMAL(5, 3)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfNumericDecimal() { return _columnTypeOfNumericDecimal; }
+    /**
+     * TYPE_OF_NUMERIC_INTEGER: {DECIMAL(5)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfNumericInteger() { return _columnTypeOfNumericInteger; }
+    /**
+     * TYPE_OF_NUMERIC_BIGINT: {DECIMAL(12)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfNumericBigint() { return _columnTypeOfNumericBigint; }
+    /**
+     * TYPE_OF_BOOLEAN: {TINYINT(4), classification=BooleanFlg}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfBoolean() { return _columnTypeOfBoolean; }
+    /**
+     * TYPE_OF_BLOB: {BLOB(65535)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfBlob() { return _columnTypeOfBlob; }
 
     protected List<ColumnInfo> ccil() {

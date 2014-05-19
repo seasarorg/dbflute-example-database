@@ -93,9 +93,25 @@ public class VendorTheLongAndWindingTableAndColumnRefDbm extends AbstractDBMeta 
     protected final ColumnInfo _columnTheLongAndWindingTableAndColumnRefDate = cci("THE_LONG_AND_WINDING_TABLE_AND_COLUMN_REF_DATE", "THE_LONG_AND_WINDING_TABLE_AND_COLUMN_REF_DATE", null, null, true, "theLongAndWindingTableAndColumnRefDate", java.util.Date.class, false, false, "DATE", 10, 0, null, false, null, null, null, null, null);
     protected final ColumnInfo _columnShortDate = cci("SHORT_DATE", "SHORT_DATE", null, null, true, "shortDate", java.util.Date.class, false, false, "DATE", 10, 0, null, false, null, null, null, null, null);
 
+    /**
+     * THE_LONG_AND_WINDING_TABLE_AND_COLUMN_REF_ID: {PK, NotNull, BIGINT(19)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTheLongAndWindingTableAndColumnRefId() { return _columnTheLongAndWindingTableAndColumnRefId; }
+    /**
+     * THE_LONG_AND_WINDING_TABLE_AND_COLUMN_ID: {IX, NotNull, BIGINT(19), FK to vendor_the_long_and_winding_table_and_column}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTheLongAndWindingTableAndColumnId() { return _columnTheLongAndWindingTableAndColumnId; }
+    /**
+     * THE_LONG_AND_WINDING_TABLE_AND_COLUMN_REF_DATE: {NotNull, DATE(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTheLongAndWindingTableAndColumnRefDate() { return _columnTheLongAndWindingTableAndColumnRefDate; }
+    /**
+     * SHORT_DATE: {NotNull, DATE(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnShortDate() { return _columnShortDate; }
 
     protected List<ColumnInfo> ccil() {
@@ -125,9 +141,13 @@ public class VendorTheLongAndWindingTableAndColumnRefDbm extends AbstractDBMeta 
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------
+    /**
+     * vendor_the_long_and_winding_table_and_column by my THE_LONG_AND_WINDING_TABLE_AND_COLUMN_ID, named 'vendorTheLongAndWindingTableAndColumn'.
+     * @return The information object of foreign property. (NotNull)
+     */
     public ForeignInfo foreignVendorTheLongAndWindingTableAndColumn() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnTheLongAndWindingTableAndColumnId(), VendorTheLongAndWindingTableAndColumnDbm.getInstance().columnTheLongAndWindingTableAndColumnId());
-        return cfi("FK_VENDOR_THE_LONG_AND_WINDING_TABLE_AND_COLUMN_REF", "vendorTheLongAndWindingTableAndColumn", this, VendorTheLongAndWindingTableAndColumnDbm.getInstance(), mp, 0, false, false, false, false, null, null, false, "vendorTheLongAndWindingTableAndColumnRefList");
+        return cfi("FK_VENDOR_THE_LONG_AND_WINDING_TABLE_AND_COLUMN_REF", "vendorTheLongAndWindingTableAndColumn", this, VendorTheLongAndWindingTableAndColumnDbm.getInstance(), mp, 0, null, false, false, false, false, null, null, false, "vendorTheLongAndWindingTableAndColumnRefList");
     }
 
     // -----------------------------------------------------

@@ -85,7 +85,15 @@ public class WhiteEscapedDfpropDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnEscapedDfpropCode = cci("ESCAPED_DFPROP_CODE", "ESCAPED_DFPROP_CODE", null, null, true, "escapedDfpropCode", String.class, true, false, "CHAR", 3, 0, null, false, null, null, null, null, CDef.DefMeta.EscapedDfpropCls);
     protected final ColumnInfo _columnEscapedDfpropName = cci("ESCAPED_DFPROP_NAME", "ESCAPED_DFPROP_NAME", null, null, false, "escapedDfpropName", String.class, false, false, "VARCHAR", 20, 0, null, false, null, null, null, null, null);
 
+    /**
+     * ESCAPED_DFPROP_CODE: {PK, NotNull, CHAR(3), classification=EscapedDfpropCls}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnEscapedDfpropCode() { return _columnEscapedDfpropCode; }
+    /**
+     * ESCAPED_DFPROP_NAME: {VARCHAR(20)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnEscapedDfpropName() { return _columnEscapedDfpropName; }
 
     protected List<ColumnInfo> ccil() {

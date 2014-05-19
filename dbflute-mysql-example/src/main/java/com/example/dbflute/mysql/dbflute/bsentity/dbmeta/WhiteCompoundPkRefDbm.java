@@ -99,10 +99,30 @@ public class WhiteCompoundPkRefDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnRefSecondId = cci("REF_SECOND_ID", "REF_SECOND_ID", null, null, true, "refSecondId", Integer.class, false, false, "INT", 10, 0, null, false, null, null, "whiteCompoundPk", null, null);
     protected final ColumnInfo _columnRefName = cci("REF_NAME", "REF_NAME", null, null, true, "refName", String.class, false, false, "VARCHAR", 50, 0, null, false, null, null, null, null, null);
 
+    /**
+     * MULTIPLE_FIRST_ID: {PK, NotNull, INT(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnMultipleFirstId() { return _columnMultipleFirstId; }
+    /**
+     * MULTIPLE_SECOND_ID: {PK, NotNull, INT(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnMultipleSecondId() { return _columnMultipleSecondId; }
+    /**
+     * REF_FIRST_ID: {IX, NotNull, INT(10), FK to white_compound_pk}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnRefFirstId() { return _columnRefFirstId; }
+    /**
+     * REF_SECOND_ID: {IX+, NotNull, INT(10), FK to white_compound_pk}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnRefSecondId() { return _columnRefSecondId; }
+    /**
+     * REF_NAME: {NotNull, VARCHAR(50)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnRefName() { return _columnRefName; }
 
     protected List<ColumnInfo> ccil() {
@@ -138,22 +158,34 @@ public class WhiteCompoundPkRefDbm extends AbstractDBMeta {
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------
+    /**
+     * white_compound_pk by my REF_FIRST_ID, REF_SECOND_ID, named 'whiteCompoundPk'.
+     * @return The information object of foreign property. (NotNull)
+     */
     public ForeignInfo foreignWhiteCompoundPk() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMapSized(4);
         mp.put(columnRefFirstId(), WhiteCompoundPkDbm.getInstance().columnPkFirstId());
         mp.put(columnRefSecondId(), WhiteCompoundPkDbm.getInstance().columnPkSecondId());
-        return cfi("FK_WHITE_COMPOUND_PK_REF", "whiteCompoundPk", this, WhiteCompoundPkDbm.getInstance(), mp, 0, false, false, false, false, null, null, false, "whiteCompoundPkRefList");
+        return cfi("FK_WHITE_COMPOUND_PK_REF", "whiteCompoundPk", this, WhiteCompoundPkDbm.getInstance(), mp, 0, null, false, false, false, false, null, null, false, "whiteCompoundPkRefList");
     }
 
     // -----------------------------------------------------
     //                                     Referrer Property
     //                                     -----------------
+    /**
+     * white_compound_pk_ref_nest by BAR_MULTIPLE_ID, QUX_MULTIPLE_ID, named 'whiteCompoundPkRefNestByQuxMultipleIdList'.
+     * @return The information object of referrer property. (NotNull)
+     */
     public ReferrerInfo referrerWhiteCompoundPkRefNestByQuxMultipleIdList() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMapSized(4);
         mp.put(columnMultipleFirstId(), WhiteCompoundPkRefNestDbm.getInstance().columnBarMultipleId());
         mp.put(columnMultipleSecondId(), WhiteCompoundPkRefNestDbm.getInstance().columnQuxMultipleId());
         return cri("FK_WHITE_COMPOUND_PK_REF_NEST_BAR_QUX", "whiteCompoundPkRefNestByQuxMultipleIdList", this, WhiteCompoundPkRefNestDbm.getInstance(), mp, false, "whiteCompoundPkRefByQuxMultipleId");
     }
+    /**
+     * white_compound_pk_ref_nest by FOO_MULTIPLE_ID, BAR_MULTIPLE_ID, named 'whiteCompoundPkRefNestByFooMultipleIdList'.
+     * @return The information object of referrer property. (NotNull)
+     */
     public ReferrerInfo referrerWhiteCompoundPkRefNestByFooMultipleIdList() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMapSized(4);
         mp.put(columnMultipleFirstId(), WhiteCompoundPkRefNestDbm.getInstance().columnFooMultipleId());

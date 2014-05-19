@@ -39,8 +39,8 @@ public class BsWhiteColumnExceptGenOnlyCQ extends AbstractBsWhiteColumnExceptGen
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public BsWhiteColumnExceptGenOnlyCQ(ConditionQuery childQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
-        super(childQuery, sqlClause, aliasName, nestLevel);
+    public BsWhiteColumnExceptGenOnlyCQ(ConditionQuery referrerQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
+        super(referrerQuery, sqlClause, aliasName, nestLevel);
     }
 
     // ===================================================================================

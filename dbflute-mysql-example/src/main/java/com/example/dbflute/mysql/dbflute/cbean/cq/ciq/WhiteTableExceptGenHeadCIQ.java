@@ -40,9 +40,9 @@ public class WhiteTableExceptGenHeadCIQ extends AbstractBsWhiteTableExceptGenHea
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public WhiteTableExceptGenHeadCIQ(ConditionQuery childQuery, SqlClause sqlClause
+    public WhiteTableExceptGenHeadCIQ(ConditionQuery referrerQuery, SqlClause sqlClause
                         , String aliasName, int nestLevel, BsWhiteTableExceptGenHeadCQ myCQ) {
-        super(childQuery, sqlClause, aliasName, nestLevel);
+        super(referrerQuery, sqlClause, aliasName, nestLevel);
         _myCQ = myCQ;
         _foreignPropertyName = _myCQ.xgetForeignPropertyName(); // accept foreign property name
         _relationPath = _myCQ.xgetRelationPath(); // accept relation path

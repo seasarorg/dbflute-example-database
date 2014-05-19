@@ -81,7 +81,15 @@ public class WhiteSuppressDefCheckDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnDefCheckId = cci("DEF_CHECK_ID", "DEF_CHECK_ID", null, null, true, "defCheckId", Long.class, true, false, "BIGINT", 19, 0, null, false, null, null, null, null, null);
     protected final ColumnInfo _columnDefCheckName = cci("DEF_CHECK_NAME", "DEF_CHECK_NAME", null, null, true, "defCheckName", String.class, false, false, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
 
+    /**
+     * DEF_CHECK_ID: {PK, NotNull, BIGINT(19)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnDefCheckId() { return _columnDefCheckId; }
+    /**
+     * DEF_CHECK_NAME: {NotNull, VARCHAR(200)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnDefCheckName() { return _columnDefCheckName; }
 
     protected List<ColumnInfo> ccil() {

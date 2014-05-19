@@ -87,8 +87,20 @@ public class WhiteAllInOneClsCategoryDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnClsCategoryName = cci("CLS_CATEGORY_NAME", "CLS_CATEGORY_NAME", null, null, true, "clsCategoryName", String.class, false, false, "VARCHAR", 20, 0, null, false, null, null, null, null, null);
     protected final ColumnInfo _columnDescription = cci("DESCRIPTION", "DESCRIPTION", null, null, true, "description", String.class, false, false, "VARCHAR", 50, 0, null, false, null, null, null, null, null);
 
+    /**
+     * CLS_CATEGORY_CODE: {PK, NotNull, CHAR(3)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnClsCategoryCode() { return _columnClsCategoryCode; }
+    /**
+     * CLS_CATEGORY_NAME: {NotNull, VARCHAR(20)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnClsCategoryName() { return _columnClsCategoryName; }
+    /**
+     * DESCRIPTION: {NotNull, VARCHAR(50)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnDescription() { return _columnDescription; }
 
     protected List<ColumnInfo> ccil() {
@@ -121,6 +133,10 @@ public class WhiteAllInOneClsCategoryDbm extends AbstractDBMeta {
     // -----------------------------------------------------
     //                                     Referrer Property
     //                                     -----------------
+    /**
+     * white_all_in_one_cls_element by CLS_CATEGORY_CODE, named 'whiteAllInOneClsElementList'.
+     * @return The information object of referrer property. (NotNull)
+     */
     public ReferrerInfo referrerWhiteAllInOneClsElementList() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnClsCategoryCode(), WhiteAllInOneClsElementDbm.getInstance().columnClsCategoryCode());
         return cri("FK_WHITE_ALL_IN_ONE_CLS_ELEMENT_CATEGORY", "whiteAllInOneClsElementList", this, WhiteAllInOneClsElementDbm.getInstance(), mp, false, "whiteAllInOneClsCategory");

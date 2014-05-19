@@ -39,8 +39,8 @@ public class BsWhiteSplitMultipleFkRefCQ extends AbstractBsWhiteSplitMultipleFkR
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public BsWhiteSplitMultipleFkRefCQ(ConditionQuery childQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
-        super(childQuery, sqlClause, aliasName, nestLevel);
+    public BsWhiteSplitMultipleFkRefCQ(ConditionQuery referrerQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
+        super(referrerQuery, sqlClause, aliasName, nestLevel);
     }
 
     // ===================================================================================

@@ -111,12 +111,40 @@ public class VendorLargeDataDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnNumericIntegerIndex = cci("NUMERIC_INTEGER_INDEX", "NUMERIC_INTEGER_INDEX", null, null, true, "numericIntegerIndex", Integer.class, false, false, "DECIMAL", 8, 0, null, false, null, null, null, null, null);
     protected final ColumnInfo _columnNumericIntegerNoIndex = cci("NUMERIC_INTEGER_NO_INDEX", "NUMERIC_INTEGER_NO_INDEX", null, null, true, "numericIntegerNoIndex", Integer.class, false, false, "DECIMAL", 8, 0, null, false, null, null, null, null, null);
 
+    /**
+     * LARGE_DATA_ID: {PK, NotNull, BIGINT(19)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnLargeDataId() { return _columnLargeDataId; }
+    /**
+     * STRING_INDEX: {IX, NotNull, VARCHAR(180)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnStringIndex() { return _columnStringIndex; }
+    /**
+     * STRING_NO_INDEX: {NotNull, VARCHAR(180)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnStringNoIndex() { return _columnStringNoIndex; }
+    /**
+     * STRING_UNIQUE_INDEX: {UQ, NotNull, VARCHAR(180)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnStringUniqueIndex() { return _columnStringUniqueIndex; }
+    /**
+     * INTFLG_INDEX: {NotNull, INT(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnIntflgIndex() { return _columnIntflgIndex; }
+    /**
+     * NUMERIC_INTEGER_INDEX: {IX, NotNull, DECIMAL(8)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnNumericIntegerIndex() { return _columnNumericIntegerIndex; }
+    /**
+     * NUMERIC_INTEGER_NO_INDEX: {NotNull, DECIMAL(8)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnNumericIntegerNoIndex() { return _columnNumericIntegerNoIndex; }
 
     protected List<ColumnInfo> ccil() {
@@ -153,6 +181,10 @@ public class VendorLargeDataDbm extends AbstractDBMeta {
     // -----------------------------------------------------
     //                                     Referrer Property
     //                                     -----------------
+    /**
+     * vendor_large_data_ref by LARGE_DATA_ID, named 'vendorLargeDataRefList'.
+     * @return The information object of referrer property. (NotNull)
+     */
     public ReferrerInfo referrerVendorLargeDataRefList() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnLargeDataId(), VendorLargeDataRefDbm.getInstance().columnLargeDataId());
         return cri("FK_VENDOR_LARGE_DATA_REF_DATA", "vendorLargeDataRefList", this, VendorLargeDataRefDbm.getInstance(), mp, false, "vendorLargeData");

@@ -40,9 +40,9 @@ public class WhiteAllInOneClsElementCIQ extends AbstractBsWhiteAllInOneClsElemen
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public WhiteAllInOneClsElementCIQ(ConditionQuery childQuery, SqlClause sqlClause
+    public WhiteAllInOneClsElementCIQ(ConditionQuery referrerQuery, SqlClause sqlClause
                         , String aliasName, int nestLevel, BsWhiteAllInOneClsElementCQ myCQ) {
-        super(childQuery, sqlClause, aliasName, nestLevel);
+        super(referrerQuery, sqlClause, aliasName, nestLevel);
         _myCQ = myCQ;
         _foreignPropertyName = _myCQ.xgetForeignPropertyName(); // accept foreign property name
         _relationPath = _myCQ.xgetRelationPath(); // accept relation path

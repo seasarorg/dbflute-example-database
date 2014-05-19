@@ -87,8 +87,20 @@ public class WhiteXlsManDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnStringConverted = cci("STRING_CONVERTED", "STRING_CONVERTED", null, null, false, "stringConverted", String.class, false, false, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
     protected final ColumnInfo _columnTimestampConverted = cci("TIMESTAMP_CONVERTED", "TIMESTAMP_CONVERTED", null, null, false, "timestampConverted", java.sql.Timestamp.class, false, false, "DATETIME", 19, 0, null, false, null, null, null, null, null);
 
+    /**
+     * XLS_MAN_ID: {PK, ID, NotNull, BIGINT(19)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnXlsManId() { return _columnXlsManId; }
+    /**
+     * STRING_CONVERTED: {VARCHAR(200)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnStringConverted() { return _columnStringConverted; }
+    /**
+     * TIMESTAMP_CONVERTED: {DATETIME(19)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTimestampConverted() { return _columnTimestampConverted; }
 
     protected List<ColumnInfo> ccil() {

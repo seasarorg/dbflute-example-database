@@ -99,10 +99,30 @@ public class WhiteUqFkRefDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnCompoundUqFirstCode = cci("COMPOUND_UQ_FIRST_CODE", "COMPOUND_UQ_FIRST_CODE", null, null, true, "compoundUqFirstCode", String.class, false, false, "CHAR", 3, 0, null, false, null, null, null, "whiteUqFkRefNestList", null);
     protected final ColumnInfo _columnCompoundUqSecondCode = cci("COMPOUND_UQ_SECOND_CODE", "COMPOUND_UQ_SECOND_CODE", null, null, true, "compoundUqSecondCode", String.class, false, false, "CHAR", 3, 0, null, false, null, null, null, "whiteUqFkRefNestList", null);
 
+    /**
+     * UQ_FK_REF_ID: {PK, NotNull, DECIMAL(16)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnUqFkRefId() { return _columnUqFkRefId; }
+    /**
+     * FK_TO_PK_ID: {IX, NotNull, DECIMAL(16), FK to white_uq_fk}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnFkToPkId() { return _columnFkToPkId; }
+    /**
+     * FK_TO_UQ_CODE: {IX, NotNull, CHAR(3), FK to white_uq_fk}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnFkToUqCode() { return _columnFkToUqCode; }
+    /**
+     * COMPOUND_UQ_FIRST_CODE: {UQ, NotNull, CHAR(3)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnCompoundUqFirstCode() { return _columnCompoundUqFirstCode; }
+    /**
+     * COMPOUND_UQ_SECOND_CODE: {UQ+, NotNull, CHAR(3)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnCompoundUqSecondCode() { return _columnCompoundUqSecondCode; }
 
     protected List<ColumnInfo> ccil() {
@@ -133,18 +153,30 @@ public class WhiteUqFkRefDbm extends AbstractDBMeta {
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------
+    /**
+     * white_uq_fk by my FK_TO_PK_ID, named 'whiteUqFkByFkToPkId'.
+     * @return The information object of foreign property. (NotNull)
+     */
     public ForeignInfo foreignWhiteUqFkByFkToPkId() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnFkToPkId(), WhiteUqFkDbm.getInstance().columnUqFkId());
-        return cfi("FK_WHITE_UQ_FK_REF_PK", "whiteUqFkByFkToPkId", this, WhiteUqFkDbm.getInstance(), mp, 0, false, false, false, false, null, null, false, "whiteUqFkRefByFkToPkIdList");
+        return cfi("FK_WHITE_UQ_FK_REF_PK", "whiteUqFkByFkToPkId", this, WhiteUqFkDbm.getInstance(), mp, 0, null, false, false, false, false, null, null, false, "whiteUqFkRefByFkToPkIdList");
     }
+    /**
+     * white_uq_fk by my FK_TO_UQ_CODE, named 'whiteUqFkByFkToUqCode'.
+     * @return The information object of foreign property. (NotNull)
+     */
     public ForeignInfo foreignWhiteUqFkByFkToUqCode() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnFkToUqCode(), WhiteUqFkDbm.getInstance().columnUqFkCode());
-        return cfi("FK_WHITE_UQ_FK_REF_UQ", "whiteUqFkByFkToUqCode", this, WhiteUqFkDbm.getInstance(), mp, 1, false, false, false, false, null, null, false, "whiteUqFkRefByFkToUqCodeList");
+        return cfi("FK_WHITE_UQ_FK_REF_UQ", "whiteUqFkByFkToUqCode", this, WhiteUqFkDbm.getInstance(), mp, 1, null, false, false, false, false, null, null, false, "whiteUqFkRefByFkToUqCodeList");
     }
 
     // -----------------------------------------------------
     //                                     Referrer Property
     //                                     -----------------
+    /**
+     * white_uq_fk_ref_nest by COMPOUND_UQ_FIRST_CODE, COMPOUND_UQ_SECOND_CODE, named 'whiteUqFkRefNestList'.
+     * @return The information object of referrer property. (NotNull)
+     */
     public ReferrerInfo referrerWhiteUqFkRefNestList() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMapSized(4);
         mp.put(columnCompoundUqFirstCode(), WhiteUqFkRefNestDbm.getInstance().columnCompoundUqFirstCode());

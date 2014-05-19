@@ -87,8 +87,20 @@ public class WhiteNoPkDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnNoPkName = cci("NO_PK_NAME", "NO_PK_NAME", null, null, false, "noPkName", String.class, false, false, "VARCHAR", 32, 0, null, false, null, null, null, null, null);
     protected final ColumnInfo _columnNoPkInteger = cci("NO_PK_INTEGER", "NO_PK_INTEGER", null, null, false, "noPkInteger", Integer.class, false, false, "INT", 10, 0, null, false, null, null, null, null, null);
 
+    /**
+     * NO_PK_ID: {NotNull, DECIMAL(16)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnNoPkId() { return _columnNoPkId; }
+    /**
+     * NO_PK_NAME: {VARCHAR(32)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnNoPkName() { return _columnNoPkName; }
+    /**
+     * NO_PK_INTEGER: {INT(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnNoPkInteger() { return _columnNoPkInteger; }
 
     protected List<ColumnInfo> ccil() {

@@ -93,9 +93,25 @@ public class WhiteAllInOneClsElementDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnClsElementName = cci("CLS_ELEMENT_NAME", "CLS_ELEMENT_NAME", null, null, true, "clsElementName", String.class, false, false, "VARCHAR", 20, 0, null, false, null, null, null, null, null);
     protected final ColumnInfo _columnAttributeExp = cci("ATTRIBUTE_EXP", "ATTRIBUTE_EXP", null, null, true, "attributeExp", String.class, false, false, "TEXT", 65535, 0, null, false, null, null, null, null, null);
 
+    /**
+     * CLS_CATEGORY_CODE: {PK, NotNull, CHAR(3), FK to white_all_in_one_cls_category}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnClsCategoryCode() { return _columnClsCategoryCode; }
+    /**
+     * CLS_ELEMENT_CODE: {PK, NotNull, CHAR(3)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnClsElementCode() { return _columnClsElementCode; }
+    /**
+     * CLS_ELEMENT_NAME: {NotNull, VARCHAR(20)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnClsElementName() { return _columnClsElementName; }
+    /**
+     * ATTRIBUTE_EXP: {NotNull, TEXT(65535)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnAttributeExp() { return _columnAttributeExp; }
 
     protected List<ColumnInfo> ccil() {
@@ -130,9 +146,13 @@ public class WhiteAllInOneClsElementDbm extends AbstractDBMeta {
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------
+    /**
+     * white_all_in_one_cls_category by my CLS_CATEGORY_CODE, named 'whiteAllInOneClsCategory'.
+     * @return The information object of foreign property. (NotNull)
+     */
     public ForeignInfo foreignWhiteAllInOneClsCategory() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnClsCategoryCode(), WhiteAllInOneClsCategoryDbm.getInstance().columnClsCategoryCode());
-        return cfi("FK_WHITE_ALL_IN_ONE_CLS_ELEMENT_CATEGORY", "whiteAllInOneClsCategory", this, WhiteAllInOneClsCategoryDbm.getInstance(), mp, 0, false, false, false, false, null, null, false, "whiteAllInOneClsElementList");
+        return cfi("FK_WHITE_ALL_IN_ONE_CLS_ELEMENT_CATEGORY", "whiteAllInOneClsCategory", this, WhiteAllInOneClsCategoryDbm.getInstance(), mp, 0, null, false, false, false, false, null, null, false, "whiteAllInOneClsElementList");
     }
 
     // -----------------------------------------------------

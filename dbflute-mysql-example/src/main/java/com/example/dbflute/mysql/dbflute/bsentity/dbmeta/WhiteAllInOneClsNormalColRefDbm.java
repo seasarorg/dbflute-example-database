@@ -93,9 +93,25 @@ public class WhiteAllInOneClsNormalColRefDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnBarCode = cci("BAR_CODE", "BAR_CODE", null, null, true, "barCode", String.class, true, false, "CHAR", 3, 0, null, false, null, null, "whiteAllInOneClsElementAsBar", null, null);
     protected final ColumnInfo _columnQuxCode = cci("QUX_CODE", "QUX_CODE", null, null, true, "quxCode", String.class, true, false, "CHAR", 3, 0, null, false, null, null, null, null, null);
 
+    /**
+     * CLS_REF_ID: {NotNull, INT(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnClsRefId() { return _columnClsRefId; }
+    /**
+     * FOO_CODE: {PK, UQ, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnFooCode() { return _columnFooCode; }
+    /**
+     * BAR_CODE: {PK, UQ+, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnBarCode() { return _columnBarCode; }
+    /**
+     * QUX_CODE: {PK, UQ+, NotNull, CHAR(3)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnQuxCode() { return _columnQuxCode; }
 
     protected List<ColumnInfo> ccil() {
@@ -131,13 +147,21 @@ public class WhiteAllInOneClsNormalColRefDbm extends AbstractDBMeta {
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------
+    /**
+     * white_all_in_one_cls_element by my FOO_CODE, named 'whiteAllInOneClsElementAsFoo'.
+     * @return The information object of foreign property. (NotNull)
+     */
     public ForeignInfo foreignWhiteAllInOneClsElementAsFoo() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnFooCode(), WhiteAllInOneClsElementDbm.getInstance().columnClsElementCode());
-        return cfi("FK_WHITE_ALL_IN_ONE_CLS_NORMAL_COL_REF_FOO_TEST", "whiteAllInOneClsElementAsFoo", this, WhiteAllInOneClsElementDbm.getInstance(), mp, 0, false, false, false, true, "$$foreignAlias$$.CLS_CATEGORY_CODE = 'FOO'", null, false, null);
+        return cfi("FK_WHITE_ALL_IN_ONE_CLS_NORMAL_COL_REF_FOO_TEST", "whiteAllInOneClsElementAsFoo", this, WhiteAllInOneClsElementDbm.getInstance(), mp, 0, null, false, false, false, true, "$$foreignAlias$$.CLS_CATEGORY_CODE = 'FOO'", null, false, null);
     }
+    /**
+     * white_all_in_one_cls_element by my BAR_CODE, named 'whiteAllInOneClsElementAsBar'.
+     * @return The information object of foreign property. (NotNull)
+     */
     public ForeignInfo foreignWhiteAllInOneClsElementAsBar() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnBarCode(), WhiteAllInOneClsElementDbm.getInstance().columnClsElementCode());
-        return cfi("FK_WHITE_ALL_IN_ONE_CLS_NORMAL_COL_REF_BAR_TEST", "whiteAllInOneClsElementAsBar", this, WhiteAllInOneClsElementDbm.getInstance(), mp, 1, false, false, false, true, "$$foreignAlias$$.CLS_CATEGORY_CODE = 'BAR'", null, false, null);
+        return cfi("FK_WHITE_ALL_IN_ONE_CLS_NORMAL_COL_REF_BAR_TEST", "whiteAllInOneClsElementAsBar", this, WhiteAllInOneClsElementDbm.getInstance(), mp, 1, null, false, false, false, true, "$$foreignAlias$$.CLS_CATEGORY_CODE = 'BAR'", null, false, null);
     }
 
     // -----------------------------------------------------

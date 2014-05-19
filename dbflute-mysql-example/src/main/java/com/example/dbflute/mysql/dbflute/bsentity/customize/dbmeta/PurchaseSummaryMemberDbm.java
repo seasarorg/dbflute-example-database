@@ -99,10 +99,30 @@ public class PurchaseSummaryMemberDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnFormalizedDatetime = cci("FORMALIZED_DATETIME", "FORMALIZED_DATETIME", null, "正式会員日時", false, "formalizedDatetime", java.sql.Timestamp.class, false, false, "DATETIME", 19, 0, null, false, null, "会員が正式に確定した日時。一度確定したら更新されない。\n仮会員のときはnull。", null, null, null);
     protected final ColumnInfo _columnPurchaseSummary = cci("PURCHASE_SUMMARY", "PURCHASE_SUMMARY", null, null, false, "purchaseSummary", java.math.BigDecimal.class, false, false, "DECIMAL", 32, 0, null, false, null, "// sum of purchase count", null, null, null);
 
+    /**
+     * (会員ID)MEMBER_ID: {INT(11), refers to member.MEMBER_ID}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnMemberId() { return _columnMemberId; }
+    /**
+     * (会員名称)MEMBER_NAME: {VARCHAR(180), refers to member.MEMBER_NAME}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnMemberName() { return _columnMemberName; }
+    /**
+     * (生年月日)BIRTHDATE: {DATE(10), refers to member.BIRTHDATE}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnBirthdate() { return _columnBirthdate; }
+    /**
+     * (正式会員日時)FORMALIZED_DATETIME: {DATETIME(19), refers to member.FORMALIZED_DATETIME}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnFormalizedDatetime() { return _columnFormalizedDatetime; }
+    /**
+     * PURCHASE_SUMMARY: {DECIMAL(32)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnPurchaseSummary() { return _columnPurchaseSummary; }
 
     protected List<ColumnInfo> ccil() {

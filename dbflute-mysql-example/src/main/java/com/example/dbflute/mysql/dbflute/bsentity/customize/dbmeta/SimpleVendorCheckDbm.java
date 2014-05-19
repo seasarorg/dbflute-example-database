@@ -115,12 +115,40 @@ public class SimpleVendorCheckDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnTypeOfBoolean = cci("TYPE_OF_BOOLEAN", "TYPE_OF_BOOLEAN", null, null, false, "typeOfBoolean", Boolean.class, false, false, "TINYINT", 1, 0, null, false, null, null, null, null, CDef.DefMeta.BooleanFlg);
     protected final ColumnInfo _columnTypeOfBlob = cci("TYPE_OF_BLOB", "TYPE_OF_BLOB", null, null, false, "typeOfBlob", byte[].class, false, false, "BLOB", 65535, 0, null, false, null, null, null, null, null);
 
+    /**
+     * VENDOR_CHECK_ID: {DECIMAL(16), refers to vendor_check.VENDOR_CHECK_ID}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnVendorCheckId() { return _columnVendorCheckId; }
+    /**
+     * TYPE_OF_TEXT: {VARCHAR(16383), refers to vendor_check.TYPE_OF_TEXT}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfText() { return _columnTypeOfText; }
+    /**
+     * TYPE_OF_NUMERIC_DECIMAL: {DECIMAL(5, 3), refers to vendor_check.TYPE_OF_NUMERIC_DECIMAL}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfNumericDecimal() { return _columnTypeOfNumericDecimal; }
+    /**
+     * TYPE_OF_NUMERIC_INTEGER: {DECIMAL(5), refers to vendor_check.TYPE_OF_NUMERIC_INTEGER}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfNumericInteger() { return _columnTypeOfNumericInteger; }
+    /**
+     * TYPE_OF_NUMERIC_BIGINT: {DECIMAL(12), refers to vendor_check.TYPE_OF_NUMERIC_BIGINT}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfNumericBigint() { return _columnTypeOfNumericBigint; }
+    /**
+     * TYPE_OF_BOOLEAN: {TINYINT(1), refers to vendor_check.TYPE_OF_BOOLEAN, classification=BooleanFlg}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfBoolean() { return _columnTypeOfBoolean; }
+    /**
+     * TYPE_OF_BLOB: {BLOB(65535), refers to vendor_check.TYPE_OF_BLOB}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfBlob() { return _columnTypeOfBlob; }
 
     protected List<ColumnInfo> ccil() {

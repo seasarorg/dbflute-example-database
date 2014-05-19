@@ -259,36 +259,160 @@ public class VendorCheckDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnTypeOfEnum = cci("TYPE_OF_ENUM", "TYPE_OF_ENUM", null, null, false, "typeOfEnum", String.class, false, false, "ENUM", 6, 0, null, false, null, null, null, null, null);
     protected final ColumnInfo _columnTypeOfSet = cci("TYPE_OF_SET", "TYPE_OF_SET", null, null, false, "typeOfSet", String.class, false, false, "SET", 15, 0, null, false, null, null, null, null, null);
 
+    /**
+     * VENDOR_CHECK_ID: {PK, NotNull, DECIMAL(16)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnVendorCheckId() { return _columnVendorCheckId; }
+    /**
+     * TYPE_OF_CHAR: {CHAR(3)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfChar() { return _columnTypeOfChar; }
+    /**
+     * TYPE_OF_VARCHAR: {VARCHAR(200)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfVarchar() { return _columnTypeOfVarchar; }
+    /**
+     * TYPE_OF_TEXT: {TEXT(65535)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfText() { return _columnTypeOfText; }
+    /**
+     * TYPE_OF_TINYTEXT: {TINYTEXT(255)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfTinytext() { return _columnTypeOfTinytext; }
+    /**
+     * TYPE_OF_MEDIUMTEXT: {MEDIUMTEXT(16777215)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfMediumtext() { return _columnTypeOfMediumtext; }
+    /**
+     * TYPE_OF_LONGTEXT: {LONGTEXT(2147483647)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfLongtext() { return _columnTypeOfLongtext; }
+    /**
+     * TYPE_OF_NUMERIC_DECIMAL: {DECIMAL(5, 3)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfNumericDecimal() { return _columnTypeOfNumericDecimal; }
+    /**
+     * TYPE_OF_NUMERIC_INTEGER: {DECIMAL(5)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfNumericInteger() { return _columnTypeOfNumericInteger; }
+    /**
+     * TYPE_OF_NUMERIC_BIGINT: {DECIMAL(12)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfNumericBigint() { return _columnTypeOfNumericBigint; }
+    /**
+     * TYPE_OF_DECIMAL_DECIMAL: {DECIMAL(5, 3)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfDecimalDecimal() { return _columnTypeOfDecimalDecimal; }
+    /**
+     * TYPE_OF_DECIMAL_INTEGER: {DECIMAL(5)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfDecimalInteger() { return _columnTypeOfDecimalInteger; }
+    /**
+     * TYPE_OF_DECIMAL_BIGINT: {DECIMAL(12)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfDecimalBigint() { return _columnTypeOfDecimalBigint; }
+    /**
+     * TYPE_OF_INTEGER: {INT(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfInteger() { return _columnTypeOfInteger; }
+    /**
+     * TYPE_OF_BIGINT: {BIGINT(19)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfBigint() { return _columnTypeOfBigint; }
+    /**
+     * TYPE_OF_FLOAT: {FLOAT(12)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfFloat() { return _columnTypeOfFloat; }
+    /**
+     * TYPE_OF_DOUBLE: {DOUBLE(22)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfDouble() { return _columnTypeOfDouble; }
+    /**
+     * TYPE_OF_DATE: {DATE(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfDate() { return _columnTypeOfDate; }
+    /**
+     * TYPE_OF_DATETIME: {DATETIME(19)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfDatetime() { return _columnTypeOfDatetime; }
+    /**
+     * TYPE_OF_TIMESTAMP: {NotNull, TIMESTAMP(19), default=[CURRENT_TIMESTAMP]}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfTimestamp() { return _columnTypeOfTimestamp; }
+    /**
+     * TYPE_OF_TIME: {TIME(8)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfTime() { return _columnTypeOfTime; }
+    /**
+     * TYPE_OF_YEAR: {YEAR}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfYear() { return _columnTypeOfYear; }
+    /**
+     * TYPE_OF_BOOLEAN: {BIT, classification=BooleanFlg}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfBoolean() { return _columnTypeOfBoolean; }
+    /**
+     * TYPE_OF_BLOB: {BLOB(65535)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfBlob() { return _columnTypeOfBlob; }
+    /**
+     * TYPE_OF_TINYBLOB: {TINYBLOB(255)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfTinyblob() { return _columnTypeOfTinyblob; }
+    /**
+     * TYPE_OF_MEDIUMBLOB: {MEDIUMBLOB(16777215)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfMediumblob() { return _columnTypeOfMediumblob; }
+    /**
+     * TYPE_OF_LONGBLOB: {LONGBLOB(2147483647)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfLongblob() { return _columnTypeOfLongblob; }
+    /**
+     * TYPE_OF_BINARY: {BINARY(1)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfBinary() { return _columnTypeOfBinary; }
+    /**
+     * TYPE_OF_VARBINARY: {VARBINARY(1000)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfVarbinary() { return _columnTypeOfVarbinary; }
+    /**
+     * TYPE_OF_ENUM: {ENUM(6)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfEnum() { return _columnTypeOfEnum; }
+    /**
+     * TYPE_OF_SET: {SET(15)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfSet() { return _columnTypeOfSet; }
 
     protected List<ColumnInfo> ccil() {

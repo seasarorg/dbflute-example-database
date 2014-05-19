@@ -85,7 +85,15 @@ public class WhiteEscapedJavaDocDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnEscapedJavaDocCode = cci("ESCAPED_JAVA_DOC_CODE", "ESCAPED_JAVA_DOC_CODE", null, null, true, "escapedJavaDocCode", String.class, true, false, "CHAR", 3, 0, null, false, null, null, null, null, CDef.DefMeta.EscapedJavaDocCls);
     protected final ColumnInfo _columnEscapedJavaDocName = cci("ESCAPED_JAVA_DOC_NAME", "ESCAPED_JAVA_DOC_NAME", null, null, false, "escapedJavaDocName", String.class, false, false, "VARCHAR", 20, 0, null, false, null, null, null, null, null);
 
+    /**
+     * ESCAPED_JAVA_DOC_CODE: {PK, NotNull, CHAR(3), classification=EscapedJavaDocCls}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnEscapedJavaDocCode() { return _columnEscapedJavaDocCode; }
+    /**
+     * ESCAPED_JAVA_DOC_NAME: {VARCHAR(20)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnEscapedJavaDocName() { return _columnEscapedJavaDocName; }
 
     protected List<ColumnInfo> ccil() {

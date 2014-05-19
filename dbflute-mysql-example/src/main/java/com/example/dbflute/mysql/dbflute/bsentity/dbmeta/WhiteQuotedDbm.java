@@ -81,7 +81,15 @@ public class WhiteQuotedDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnSelect = cci("SELECT", "`SELECT`", null, null, true, "select", Integer.class, true, false, "INT", 10, 0, null, false, null, null, null, "whiteQuotedRefList", null);
     protected final ColumnInfo _columnFrom = cci("FROM", "`FROM`", null, null, false, "from", String.class, false, false, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
 
+    /**
+     * SELECT: {PK, NotNull, INT(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnSelect() { return _columnSelect; }
+    /**
+     * FROM: {VARCHAR(200)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnFrom() { return _columnFrom; }
 
     protected List<ColumnInfo> ccil() {
@@ -113,6 +121,10 @@ public class WhiteQuotedDbm extends AbstractDBMeta {
     // -----------------------------------------------------
     //                                     Referrer Property
     //                                     -----------------
+    /**
+     * white_quoted_ref by ORDER, named 'whiteQuotedRefList'.
+     * @return The information object of referrer property. (NotNull)
+     */
     public ReferrerInfo referrerWhiteQuotedRefList() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnSelect(), WhiteQuotedRefDbm.getInstance().columnOrder());
         return cri("FK_WHITE_QUOTED_REF", "whiteQuotedRefList", this, WhiteQuotedRefDbm.getInstance(), mp, false, "whiteQuoted");

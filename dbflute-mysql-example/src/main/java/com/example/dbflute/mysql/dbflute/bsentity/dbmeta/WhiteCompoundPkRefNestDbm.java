@@ -99,10 +99,30 @@ public class WhiteCompoundPkRefNestDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnQuxMultipleId = cci("QUX_MULTIPLE_ID", "QUX_MULTIPLE_ID", null, null, true, "quxMultipleId", Integer.class, false, false, "INT", 10, 0, null, false, null, null, "whiteCompoundPkRefByQuxMultipleId", null, null);
     protected final ColumnInfo _columnNestName = cci("NEST_NAME", "NEST_NAME", null, null, true, "nestName", String.class, false, false, "VARCHAR", 50, 0, null, false, null, null, null, null, null);
 
+    /**
+     * COMPOUND_PK_REF_NEST_ID: {PK, NotNull, INT(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnCompoundPkRefNestId() { return _columnCompoundPkRefNestId; }
+    /**
+     * FOO_MULTIPLE_ID: {IX, NotNull, INT(10), FK to white_compound_pk_ref}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnFooMultipleId() { return _columnFooMultipleId; }
+    /**
+     * BAR_MULTIPLE_ID: {IX, NotNull, INT(10), FK to white_compound_pk_ref}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnBarMultipleId() { return _columnBarMultipleId; }
+    /**
+     * QUX_MULTIPLE_ID: {IX+, NotNull, INT(10), FK to white_compound_pk_ref}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnQuxMultipleId() { return _columnQuxMultipleId; }
+    /**
+     * NEST_NAME: {NotNull, VARCHAR(50)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnNestName() { return _columnNestName; }
 
     protected List<ColumnInfo> ccil() {
@@ -133,17 +153,25 @@ public class WhiteCompoundPkRefNestDbm extends AbstractDBMeta {
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------
+    /**
+     * white_compound_pk_ref by my BAR_MULTIPLE_ID, QUX_MULTIPLE_ID, named 'whiteCompoundPkRefByQuxMultipleId'.
+     * @return The information object of foreign property. (NotNull)
+     */
     public ForeignInfo foreignWhiteCompoundPkRefByQuxMultipleId() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMapSized(4);
         mp.put(columnBarMultipleId(), WhiteCompoundPkRefDbm.getInstance().columnMultipleFirstId());
         mp.put(columnQuxMultipleId(), WhiteCompoundPkRefDbm.getInstance().columnMultipleSecondId());
-        return cfi("FK_WHITE_COMPOUND_PK_REF_NEST_BAR_QUX", "whiteCompoundPkRefByQuxMultipleId", this, WhiteCompoundPkRefDbm.getInstance(), mp, 0, false, false, false, false, null, null, false, "whiteCompoundPkRefNestByQuxMultipleIdList");
+        return cfi("FK_WHITE_COMPOUND_PK_REF_NEST_BAR_QUX", "whiteCompoundPkRefByQuxMultipleId", this, WhiteCompoundPkRefDbm.getInstance(), mp, 0, null, false, false, false, false, null, null, false, "whiteCompoundPkRefNestByQuxMultipleIdList");
     }
+    /**
+     * white_compound_pk_ref by my FOO_MULTIPLE_ID, BAR_MULTIPLE_ID, named 'whiteCompoundPkRefByFooMultipleId'.
+     * @return The information object of foreign property. (NotNull)
+     */
     public ForeignInfo foreignWhiteCompoundPkRefByFooMultipleId() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMapSized(4);
         mp.put(columnFooMultipleId(), WhiteCompoundPkRefDbm.getInstance().columnMultipleFirstId());
         mp.put(columnBarMultipleId(), WhiteCompoundPkRefDbm.getInstance().columnMultipleSecondId());
-        return cfi("FK_WHITE_COMPOUND_PK_REF_NEST_FOO_BAR", "whiteCompoundPkRefByFooMultipleId", this, WhiteCompoundPkRefDbm.getInstance(), mp, 1, false, false, false, false, null, null, false, "whiteCompoundPkRefNestByFooMultipleIdList");
+        return cfi("FK_WHITE_COMPOUND_PK_REF_NEST_FOO_BAR", "whiteCompoundPkRefByFooMultipleId", this, WhiteCompoundPkRefDbm.getInstance(), mp, 1, null, false, false, false, false, null, null, false, "whiteCompoundPkRefNestByFooMultipleIdList");
     }
 
     // -----------------------------------------------------

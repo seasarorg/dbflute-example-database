@@ -135,16 +135,60 @@ public class WhiteDateAdjustmentDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnAdjustedPlainLong = cci("ADJUSTED_PLAIN_LONG", "ADJUSTED_PLAIN_LONG", null, null, false, "adjustedPlainLong", Long.class, false, false, "BIGINT", 19, 0, null, false, null, null, null, null, null);
     protected final ColumnInfo _columnAdjustedString = cci("ADJUSTED_STRING", "ADJUSTED_STRING", null, null, false, "adjustedString", String.class, false, false, "VARCHAR", 32, 0, null, false, null, null, null, null, null);
 
+    /**
+     * DATE_ADJUSTMENT_ID: {PK, NotNull, BIGINT(19)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnDateAdjustmentId() { return _columnDateAdjustmentId; }
+    /**
+     * (adjusted)ADJUSTED_DATE: {DATE(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnAdjustedDate() { return _columnAdjustedDate; }
+    /**
+     * ADJUSTED_DATETIME: {DATETIME(19)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnAdjustedDatetime() { return _columnAdjustedDatetime; }
+    /**
+     * ADJUSTED_TIME: {TIME(8)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnAdjustedTime() { return _columnAdjustedTime; }
+    /**
+     * ADJUSTED_INTEGER: {INT(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnAdjustedInteger() { return _columnAdjustedInteger; }
+    /**
+     * (adjusted)ADJUSTED_NAMED_STRING_LONG: {BIGINT(19)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnAdjustedNamedStringLong() { return _columnAdjustedNamedStringLong; }
+    /**
+     * (adjusted)ADJUSTED_NAMED_TYPED_LONG: {BIGINT(19)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnAdjustedNamedTypedLong() { return _columnAdjustedNamedTypedLong; }
+    /**
+     * (adjusted)ADJUSTED_PINPOINT_STRING_LONG: {BIGINT(19)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnAdjustedPinpointStringLong() { return _columnAdjustedPinpointStringLong; }
+    /**
+     * (adjusted)ADJUSTED_PINPOINT_TYPED_LONG: {BIGINT(19)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnAdjustedPinpointTypedLong() { return _columnAdjustedPinpointTypedLong; }
+    /**
+     * ADJUSTED_PLAIN_LONG: {BIGINT(19)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnAdjustedPlainLong() { return _columnAdjustedPlainLong; }
+    /**
+     * ADJUSTED_STRING: {VARCHAR(32)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnAdjustedString() { return _columnAdjustedString; }
 
     protected List<ColumnInfo> ccil() {

@@ -81,7 +81,15 @@ public class WhiteUqFkWithoutPkDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnUqFkCode = cci("UQ_FK_CODE", "UQ_FK_CODE", null, null, true, "uqFkCode", String.class, false, false, "CHAR", 3, 0, null, false, null, null, null, "whiteUqFkWithoutPkRefList", null);
     protected final ColumnInfo _columnUqFkName = cci("UQ_FK_NAME", "UQ_FK_NAME", null, null, true, "uqFkName", String.class, false, false, "VARCHAR", 64, 0, null, false, null, null, null, null, null);
 
+    /**
+     * UQ_FK_CODE: {UQ, NotNull, CHAR(3)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnUqFkCode() { return _columnUqFkCode; }
+    /**
+     * UQ_FK_NAME: {NotNull, VARCHAR(64)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnUqFkName() { return _columnUqFkName; }
 
     protected List<ColumnInfo> ccil() {
@@ -115,6 +123,10 @@ public class WhiteUqFkWithoutPkDbm extends AbstractDBMeta {
     // -----------------------------------------------------
     //                                     Referrer Property
     //                                     -----------------
+    /**
+     * white_uq_fk_without_pk_ref by FK_TO_UQ_CODE, named 'whiteUqFkWithoutPkRefList'.
+     * @return The information object of referrer property. (NotNull)
+     */
     public ReferrerInfo referrerWhiteUqFkWithoutPkRefList() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnUqFkCode(), WhiteUqFkWithoutPkRefDbm.getInstance().columnFkToUqCode());
         return cri("FK_WHITE_UQ_FK_WITHOUT_PK_REF", "whiteUqFkWithoutPkRefList", this, WhiteUqFkWithoutPkRefDbm.getInstance(), mp, false, "whiteUqFkWithoutPk");

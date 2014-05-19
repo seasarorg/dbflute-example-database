@@ -40,9 +40,9 @@ public class WhiteVariantRelationMasterBarCIQ extends AbstractBsWhiteVariantRela
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public WhiteVariantRelationMasterBarCIQ(ConditionQuery childQuery, SqlClause sqlClause
+    public WhiteVariantRelationMasterBarCIQ(ConditionQuery referrerQuery, SqlClause sqlClause
                         , String aliasName, int nestLevel, BsWhiteVariantRelationMasterBarCQ myCQ) {
-        super(childQuery, sqlClause, aliasName, nestLevel);
+        super(referrerQuery, sqlClause, aliasName, nestLevel);
         _myCQ = myCQ;
         _foreignPropertyName = _myCQ.xgetForeignPropertyName(); // accept foreign property name
         _relationPath = _myCQ.xgetRelationPath(); // accept relation path

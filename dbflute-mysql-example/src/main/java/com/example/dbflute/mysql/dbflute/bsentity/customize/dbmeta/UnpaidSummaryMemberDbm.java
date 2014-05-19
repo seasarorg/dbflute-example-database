@@ -93,9 +93,25 @@ public class UnpaidSummaryMemberDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnUnpaidPriceSummary = cci("UNPAID_PRICE_SUMMARY", "UNPAID_PRICE_SUMMARY", null, null, false, "unpaidPriceSummary", java.math.BigDecimal.class, false, false, "DECIMAL", 32, 0, null, false, null, null, null, null, null);
     protected final ColumnInfo _columnStatusName = cci("STATUS_NAME", "STATUS_NAME", null, "会員ステータス名称", false, "statusName", String.class, false, false, "VARCHAR", 50, 0, null, false, null, null, null, null, null);
 
+    /**
+     * (会員ID)UNPAID_MAN_ID: {PK, INT(11), refers to member.MEMBER_ID}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnUnpaidManId() { return _columnUnpaidManId; }
+    /**
+     * (会員名称)UNPAID_MAN_NAME: {VARCHAR(180), refers to member.MEMBER_NAME}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnUnpaidManName() { return _columnUnpaidManName; }
+    /**
+     * UNPAID_PRICE_SUMMARY: {DECIMAL(32)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnUnpaidPriceSummary() { return _columnUnpaidPriceSummary; }
+    /**
+     * (会員ステータス名称)STATUS_NAME: {VARCHAR(50), refers to member_status.MEMBER_STATUS_NAME}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnStatusName() { return _columnStatusName; }
 
     protected List<ColumnInfo> ccil() {

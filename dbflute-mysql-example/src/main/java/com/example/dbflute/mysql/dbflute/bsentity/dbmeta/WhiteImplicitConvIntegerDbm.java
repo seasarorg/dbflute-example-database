@@ -93,9 +93,25 @@ public class WhiteImplicitConvIntegerDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnImplicitConvStringId = cci("IMPLICIT_CONV_STRING_ID", "IMPLICIT_CONV_STRING_ID", null, null, true, "implicitConvStringId", Integer.class, false, false, "INT", 10, 0, null, false, null, null, "whiteImplicitConvString", null, null);
     protected final ColumnInfo _columnImplicitConvName = cci("IMPLICIT_CONV_NAME", "IMPLICIT_CONV_NAME", null, null, true, "implicitConvName", String.class, false, false, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
 
+    /**
+     * IMPLICIT_CONV_INTEGER_ID: {PK, NotNull, INT(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnImplicitConvIntegerId() { return _columnImplicitConvIntegerId; }
+    /**
+     * IMPLICIT_CONV_NUMERIC_ID: {NotNull, INT(10), FK to WHITE_IMPLICIT_CONV_NUMERIC}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnImplicitConvNumericId() { return _columnImplicitConvNumericId; }
+    /**
+     * IMPLICIT_CONV_STRING_ID: {NotNull, INT(10), FK to WHITE_IMPLICIT_CONV_STRING}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnImplicitConvStringId() { return _columnImplicitConvStringId; }
+    /**
+     * IMPLICIT_CONV_NAME: {NotNull, VARCHAR(200)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnImplicitConvName() { return _columnImplicitConvName; }
 
     protected List<ColumnInfo> ccil() {
@@ -125,22 +141,38 @@ public class WhiteImplicitConvIntegerDbm extends AbstractDBMeta {
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------
+    /**
+     * white_implicit_conv_numeric by my IMPLICIT_CONV_NUMERIC_ID, named 'whiteImplicitConvNumeric'.
+     * @return The information object of foreign property. (NotNull)
+     */
     public ForeignInfo foreignWhiteImplicitConvNumeric() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnImplicitConvNumericId(), WhiteImplicitConvNumericDbm.getInstance().columnImplicitConvNumericId());
-        return cfi("FK_WHITE_IMPLICIT_CONV_INTEGER_NUMERIC", "whiteImplicitConvNumeric", this, WhiteImplicitConvNumericDbm.getInstance(), mp, 0, false, false, false, true, null, null, false, "whiteImplicitConvIntegerList");
+        return cfi("FK_WHITE_IMPLICIT_CONV_INTEGER_NUMERIC", "whiteImplicitConvNumeric", this, WhiteImplicitConvNumericDbm.getInstance(), mp, 0, null, false, false, false, true, null, null, false, "whiteImplicitConvIntegerList");
     }
+    /**
+     * white_implicit_conv_string by my IMPLICIT_CONV_STRING_ID, named 'whiteImplicitConvString'.
+     * @return The information object of foreign property. (NotNull)
+     */
     public ForeignInfo foreignWhiteImplicitConvString() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnImplicitConvStringId(), WhiteImplicitConvStringDbm.getInstance().columnImplicitConvStringId());
-        return cfi("FK_WHITE_IMPLICIT_CONV_INTEGER_STRING", "whiteImplicitConvString", this, WhiteImplicitConvStringDbm.getInstance(), mp, 1, false, false, false, true, null, null, false, "whiteImplicitConvIntegerList");
+        return cfi("FK_WHITE_IMPLICIT_CONV_INTEGER_STRING", "whiteImplicitConvString", this, WhiteImplicitConvStringDbm.getInstance(), mp, 1, null, false, false, false, true, null, null, false, "whiteImplicitConvIntegerList");
     }
 
     // -----------------------------------------------------
     //                                     Referrer Property
     //                                     -----------------
+    /**
+     * white_implicit_conv_numeric by IMPLICIT_CONV_INTEGER_ID, named 'whiteImplicitConvNumericList'.
+     * @return The information object of referrer property. (NotNull)
+     */
     public ReferrerInfo referrerWhiteImplicitConvNumericList() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnImplicitConvIntegerId(), WhiteImplicitConvNumericDbm.getInstance().columnImplicitConvIntegerId());
         return cri("FK_WHITE_IMPLICIT_CONV_NUMERIC_INTEGER", "whiteImplicitConvNumericList", this, WhiteImplicitConvNumericDbm.getInstance(), mp, false, "whiteImplicitConvInteger");
     }
+    /**
+     * white_implicit_conv_string by IMPLICIT_CONV_INTEGER_ID, named 'whiteImplicitConvStringList'.
+     * @return The information object of referrer property. (NotNull)
+     */
     public ReferrerInfo referrerWhiteImplicitConvStringList() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnImplicitConvIntegerId(), WhiteImplicitConvStringDbm.getInstance().columnImplicitConvIntegerId());
         return cri("FK_WHITE_IMPLICIT_CONV_STRING_INTEGER", "whiteImplicitConvStringList", this, WhiteImplicitConvStringDbm.getInstance(), mp, false, "whiteImplicitConvInteger");

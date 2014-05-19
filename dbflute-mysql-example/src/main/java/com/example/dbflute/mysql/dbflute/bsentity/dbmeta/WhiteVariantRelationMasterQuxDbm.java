@@ -91,8 +91,20 @@ public class WhiteVariantRelationMasterQuxDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnMasterQuxName = cci("MASTER_QUX_NAME", "MASTER_QUX_NAME", null, null, true, "masterQuxName", String.class, false, false, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
     protected final ColumnInfo _columnQuxTypeCode = cci("QUX_TYPE_CODE", "QUX_TYPE_CODE", null, null, true, "quxTypeCode", String.class, false, false, "CHAR", 3, 0, null, false, null, null, null, null, CDef.DefMeta.VariantRelationQuxType);
 
+    /**
+     * MASTER_QUX_ID: {PK, NotNull, BIGINT(19)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnMasterQuxId() { return _columnMasterQuxId; }
+    /**
+     * MASTER_QUX_NAME: {NotNull, VARCHAR(200)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnMasterQuxName() { return _columnMasterQuxName; }
+    /**
+     * QUX_TYPE_CODE: {NotNull, CHAR(3), classification=VariantRelationQuxType}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnQuxTypeCode() { return _columnQuxTypeCode; }
 
     protected List<ColumnInfo> ccil() {

@@ -99,10 +99,30 @@ public class WhitePointTypeMappingDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnPointTypeMappingSaleDate = cci("POINT_TYPE_MAPPING_SALE_DATE", "POINT_TYPE_MAPPING_SALE_DATE", null, null, false, "pointTypeMappingSaleDate", com.example.dbflute.mysql.mytype.MySaleDate.class, false, false, "BIGINT", 19, 0, null, false, null, null, null, null, null);
     protected final ColumnInfo _columnPointTypeMappingWantedDatetime = cci("POINT_TYPE_MAPPING_WANTED_DATETIME", "POINT_TYPE_MAPPING_WANTED_DATETIME", null, null, false, "pointTypeMappingWantedDatetime", java.util.Date.class, false, false, "DATETIME", 19, 0, null, false, null, null, null, null, null);
 
+    /**
+     * POINT_TYPE_MAPPING_ID: {PK, NotNull, DECIMAL(16)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnPointTypeMappingId() { return _columnPointTypeMappingId; }
+    /**
+     * POINT_TYPE_MAPPING_MEMBER_NAME: {VARCHAR(32)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnPointTypeMappingMemberName() { return _columnPointTypeMappingMemberName; }
+    /**
+     * POINT_TYPE_MAPPING_PRICE_COUNT: {INT(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnPointTypeMappingPriceCount() { return _columnPointTypeMappingPriceCount; }
+    /**
+     * POINT_TYPE_MAPPING_SALE_DATE: {BIGINT(19)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnPointTypeMappingSaleDate() { return _columnPointTypeMappingSaleDate; }
+    /**
+     * POINT_TYPE_MAPPING_WANTED_DATETIME: {DATETIME(19)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnPointTypeMappingWantedDatetime() { return _columnPointTypeMappingWantedDatetime; }
 
     protected List<ColumnInfo> ccil() {

@@ -93,9 +93,25 @@ public class VendorTheLongAndWindingTableAndColumnDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnShortName = cci("SHORT_NAME", "SHORT_NAME", null, null, true, "shortName", String.class, false, false, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
     protected final ColumnInfo _columnShortSize = cci("SHORT_SIZE", "SHORT_SIZE", null, null, true, "shortSize", Integer.class, false, false, "INT", 10, 0, null, false, null, null, null, null, null);
 
+    /**
+     * THE_LONG_AND_WINDING_TABLE_AND_COLUMN_ID: {PK, NotNull, BIGINT(19)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTheLongAndWindingTableAndColumnId() { return _columnTheLongAndWindingTableAndColumnId; }
+    /**
+     * THE_LONG_AND_WINDING_TABLE_AND_COLUMN_NAME: {UQ, NotNull, VARCHAR(180)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTheLongAndWindingTableAndColumnName() { return _columnTheLongAndWindingTableAndColumnName; }
+    /**
+     * SHORT_NAME: {NotNull, VARCHAR(200)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnShortName() { return _columnShortName; }
+    /**
+     * SHORT_SIZE: {NotNull, INT(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnShortSize() { return _columnShortSize; }
 
     protected List<ColumnInfo> ccil() {
@@ -129,6 +145,10 @@ public class VendorTheLongAndWindingTableAndColumnDbm extends AbstractDBMeta {
     // -----------------------------------------------------
     //                                     Referrer Property
     //                                     -----------------
+    /**
+     * vendor_the_long_and_winding_table_and_column_ref by THE_LONG_AND_WINDING_TABLE_AND_COLUMN_ID, named 'vendorTheLongAndWindingTableAndColumnRefList'.
+     * @return The information object of referrer property. (NotNull)
+     */
     public ReferrerInfo referrerVendorTheLongAndWindingTableAndColumnRefList() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnTheLongAndWindingTableAndColumnId(), VendorTheLongAndWindingTableAndColumnRefDbm.getInstance().columnTheLongAndWindingTableAndColumnId());
         return cri("FK_VENDOR_THE_LONG_AND_WINDING_TABLE_AND_COLUMN_REF", "vendorTheLongAndWindingTableAndColumnRefList", this, VendorTheLongAndWindingTableAndColumnRefDbm.getInstance(), mp, false, "vendorTheLongAndWindingTableAndColumn");

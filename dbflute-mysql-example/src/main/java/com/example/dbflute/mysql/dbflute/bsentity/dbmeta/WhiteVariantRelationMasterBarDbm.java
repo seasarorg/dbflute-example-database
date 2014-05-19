@@ -81,7 +81,15 @@ public class WhiteVariantRelationMasterBarDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnMasterBarId = cci("MASTER_BAR_ID", "MASTER_BAR_ID", null, null, true, "masterBarId", Long.class, true, false, "BIGINT", 19, 0, null, false, null, null, null, "whiteVariantRelationReferrerAsVariantList", null);
     protected final ColumnInfo _columnMasterBarName = cci("MASTER_BAR_NAME", "MASTER_BAR_NAME", null, null, true, "masterBarName", String.class, false, false, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
 
+    /**
+     * MASTER_BAR_ID: {PK, NotNull, BIGINT(19)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnMasterBarId() { return _columnMasterBarId; }
+    /**
+     * MASTER_BAR_NAME: {NotNull, VARCHAR(200)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnMasterBarName() { return _columnMasterBarName; }
 
     protected List<ColumnInfo> ccil() {
@@ -113,6 +121,10 @@ public class WhiteVariantRelationMasterBarDbm extends AbstractDBMeta {
     // -----------------------------------------------------
     //                                     Referrer Property
     //                                     -----------------
+    /**
+     * white_variant_relation_referrer by VARIANT_MASTER_ID, named 'whiteVariantRelationReferrerAsVariantList'.
+     * @return The information object of referrer property. (NotNull)
+     */
     public ReferrerInfo referrerWhiteVariantRelationReferrerAsVariantList() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnMasterBarId(), WhiteVariantRelationReferrerDbm.getInstance().columnVariantMasterId());
         return cri("FK_WHITE_VARIANT_RELATION_BAR", "whiteVariantRelationReferrerAsVariantList", this, WhiteVariantRelationReferrerDbm.getInstance(), mp, false, "whiteVariantRelationMasterBarAsVariant");

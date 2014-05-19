@@ -81,7 +81,15 @@ public class WhiteQuotedRefDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnWhere = cci("WHERE", "`WHERE`", null, null, true, "where", Integer.class, true, false, "INT", 10, 0, null, false, null, null, null, null, null);
     protected final ColumnInfo _columnOrder = cci("ORDER", "`ORDER`", null, null, false, "order", Integer.class, false, false, "INT", 10, 0, null, false, null, null, "whiteQuoted", null, null);
 
+    /**
+     * WHERE: {PK, NotNull, INT(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnWhere() { return _columnWhere; }
+    /**
+     * ORDER: {IX, INT(10), FK to white_quoted}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnOrder() { return _columnOrder; }
 
     protected List<ColumnInfo> ccil() {
@@ -109,9 +117,13 @@ public class WhiteQuotedRefDbm extends AbstractDBMeta {
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------
+    /**
+     * white_quoted by my ORDER, named 'whiteQuoted'.
+     * @return The information object of foreign property. (NotNull)
+     */
     public ForeignInfo foreignWhiteQuoted() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnOrder(), WhiteQuotedDbm.getInstance().columnSelect());
-        return cfi("FK_WHITE_QUOTED_REF", "whiteQuoted", this, WhiteQuotedDbm.getInstance(), mp, 0, false, false, false, false, null, null, false, "whiteQuotedRefList");
+        return cfi("FK_WHITE_QUOTED_REF", "whiteQuoted", this, WhiteQuotedDbm.getInstance(), mp, 0, null, false, false, false, false, null, null, false, "whiteQuotedRefList");
     }
 
     // -----------------------------------------------------

@@ -99,10 +99,30 @@ public class WhiteDelimiterDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnStringNonConverted = cci("STRING_NON_CONVERTED", "STRING_NON_CONVERTED", null, null, false, "stringNonConverted", String.class, false, false, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
     protected final ColumnInfo _columnDateDefault = cci("DATE_DEFAULT", "DATE_DEFAULT", null, null, true, "dateDefault", java.util.Date.class, false, false, "DATE", 10, 0, null, false, null, null, null, null, null);
 
+    /**
+     * DELIMITER_ID: {PK, ID, NotNull, BIGINT(19)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnDelimiterId() { return _columnDelimiterId; }
+    /**
+     * NUMBER_NULLABLE: {INT(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnNumberNullable() { return _columnNumberNullable; }
+    /**
+     * STRING_CONVERTED: {VARCHAR(200)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnStringConverted() { return _columnStringConverted; }
+    /**
+     * STRING_NON_CONVERTED: {VARCHAR(200)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnStringNonConverted() { return _columnStringNonConverted; }
+    /**
+     * DATE_DEFAULT: {NotNull, DATE(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnDateDefault() { return _columnDateDefault; }
 
     protected List<ColumnInfo> ccil() {

@@ -149,17 +149,65 @@ public class PurchaseDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnUpdateUser = cci("UPDATE_USER", "UPDATE_USER", null, null, true, "updateUser", String.class, false, false, "VARCHAR", 200, 0, null, true, null, null, null, null, null);
     protected final ColumnInfo _columnVersionNo = cci("VERSION_NO", "VERSION_NO", null, null, true, "versionNo", Long.class, false, false, "BIGINT", 19, 0, null, false, OptimisticLockType.VERSION_NO, null, null, null, null);
 
+    /**
+     * (購入ID)PURCHASE_ID: {PK, ID, NotNull, BIGINT(19), FK to PURCHASE}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnPurchaseId() { return _columnPurchaseId; }
+    /**
+     * (会員ID)MEMBER_ID: {UQ, IX, NotNull, INT(10), FK to member}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnMemberId() { return _columnMemberId; }
+    /**
+     * (商品ID)PRODUCT_ID: {UQ+, IX, NotNull, INT(10), FK to product}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnProductId() { return _columnProductId; }
+    /**
+     * (購入日時)PURCHASE_DATETIME: {UQ+, IX, NotNull, DATETIME(19)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnPurchaseDatetime() { return _columnPurchaseDatetime; }
+    /**
+     * (購入数量)PURCHASE_COUNT: {NotNull, INT(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnPurchaseCount() { return _columnPurchaseCount; }
+    /**
+     * (購入価格)PURCHASE_PRICE: {IX, NotNull, INT(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnPurchasePrice() { return _columnPurchasePrice; }
+    /**
+     * (支払完了フラグ)PAYMENT_COMPLETE_FLG: {NotNull, INT(10), classification=Flg}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnPaymentCompleteFlg() { return _columnPaymentCompleteFlg; }
+    /**
+     * REGISTER_DATETIME: {NotNull, DATETIME(19)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnRegisterDatetime() { return _columnRegisterDatetime; }
+    /**
+     * REGISTER_USER: {NotNull, VARCHAR(200)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnRegisterUser() { return _columnRegisterUser; }
+    /**
+     * UPDATE_DATETIME: {NotNull, DATETIME(19)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnUpdateDatetime() { return _columnUpdateDatetime; }
+    /**
+     * UPDATE_USER: {NotNull, VARCHAR(200)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnUpdateUser() { return _columnUpdateUser; }
+    /**
+     * VERSION_NO: {NotNull, BIGINT(19)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnVersionNo() { return _columnVersionNo; }
 
     protected List<ColumnInfo> ccil() {
@@ -197,41 +245,77 @@ public class PurchaseDbm extends AbstractDBMeta {
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------
+    /**
+     * (会員)member by my MEMBER_ID, named 'member'.
+     * @return The information object of foreign property. (NotNull)
+     */
     public ForeignInfo foreignMember() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnMemberId(), MemberDbm.getInstance().columnMemberId());
-        return cfi("FK_PURCHASE_MEMBER", "member", this, MemberDbm.getInstance(), mp, 0, false, false, false, false, null, null, false, "purchaseList");
+        return cfi("FK_PURCHASE_MEMBER", "member", this, MemberDbm.getInstance(), mp, 0, null, false, false, false, false, null, null, false, "purchaseList");
     }
+    /**
+     * (商品)product by my PRODUCT_ID, named 'product'.
+     * @return The information object of foreign property. (NotNull)
+     */
     public ForeignInfo foreignProduct() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnProductId(), ProductDbm.getInstance().columnProductId());
-        return cfi("FK_PURCHASE_PRODUCT", "product", this, ProductDbm.getInstance(), mp, 1, false, false, false, false, null, null, false, "purchaseList");
+        return cfi("FK_PURCHASE_PRODUCT", "product", this, ProductDbm.getInstance(), mp, 1, null, false, false, false, false, null, null, false, "purchaseList");
     }
+    /**
+     * (VIEW)summary_product by my PRODUCT_ID, named 'summaryProduct'.
+     * @return The information object of foreign property. (NotNull)
+     */
     public ForeignInfo foreignSummaryProduct() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnProductId(), SummaryProductDbm.getInstance().columnProductId());
-        return cfi("FK_PURCHASE_SUMMARY_PRODUCT", "summaryProduct", this, SummaryProductDbm.getInstance(), mp, 2, false, false, false, true, null, null, false, "purchaseList");
+        return cfi("FK_PURCHASE_SUMMARY_PRODUCT", "summaryProduct", this, SummaryProductDbm.getInstance(), mp, 2, null, false, false, false, true, null, null, false, "purchaseList");
     }
+    /**
+     * (VIEW)summary_withdrawal by my MEMBER_ID, named 'summaryWithdrawal'.
+     * @return The information object of foreign property. (NotNull)
+     */
     public ForeignInfo foreignSummaryWithdrawal() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnMemberId(), SummaryWithdrawalDbm.getInstance().columnMemberId());
-        return cfi("FK_PURCHASE_SUMMARY_WITHDRAWAL", "summaryWithdrawal", this, SummaryWithdrawalDbm.getInstance(), mp, 3, false, false, false, true, null, null, false, null);
+        return cfi("FK_PURCHASE_SUMMARY_WITHDRAWAL", "summaryWithdrawal", this, SummaryWithdrawalDbm.getInstance(), mp, 3, null, false, false, false, true, null, null, false, null);
     }
+    /**
+     * (VIEW)white_no_pk_relation by my PRODUCT_ID, named 'whiteNoPkRelation'.
+     * @return The information object of foreign property. (NotNull)
+     */
     public ForeignInfo foreignWhiteNoPkRelation() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnProductId(), WhiteNoPkRelationDbm.getInstance().columnProductId());
-        return cfi("FK_PURCHASE_NO_PK_RELATION", "whiteNoPkRelation", this, WhiteNoPkRelationDbm.getInstance(), mp, 4, false, false, false, true, null, null, false, null);
+        return cfi("FK_PURCHASE_NO_PK_RELATION", "whiteNoPkRelation", this, WhiteNoPkRelationDbm.getInstance(), mp, 4, null, false, false, false, true, null, null, false, null);
     }
+    /**
+     * (購入)purchase by my PURCHASE_ID, named 'purchaseSelf'.
+     * @return The information object of foreign property. (NotNull)
+     */
     public ForeignInfo foreignPurchaseSelf() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnPurchaseId(), PurchaseDbm.getInstance().columnPurchaseId());
-        return cfi("FK_PURCHASE_PURCHASE_SELF", "purchaseSelf", this, PurchaseDbm.getInstance(), mp, 5, true, false, false, true, null, null, false, "purchaseSelfAsOne");
+        return cfi("FK_PURCHASE_PURCHASE_SELF", "purchaseSelf", this, PurchaseDbm.getInstance(), mp, 5, null, true, false, false, true, null, null, false, "purchaseSelfAsOne");
     }
+    /**
+     * (会員住所情報)member_address by my MEMBER_ID, named 'memberAddressAsSkipRelation'.
+     * @return The information object of foreign property. (NotNull)
+     */
     public ForeignInfo foreignMemberAddressAsSkipRelation() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnMemberId(), MemberAddressDbm.getInstance().columnMemberId());
-        return cfi("FK_PURCHASE_MEMBER_ADDRESS_VALID", "memberAddressAsSkipRelation", this, MemberAddressDbm.getInstance(), mp, 6, false, false, false, true, "$$foreignAlias$$.VALID_BEGIN_DATE <= /*$$locationBase$$.parameterMapMemberAddressAsSkipRelation.targetDate*/null\n     and $$foreignAlias$$.VALID_END_DATE >= /*$$locationBase$$.parameterMapMemberAddressAsSkipRelation.targetDate*/null", newArrayList("targetDate"), false, null);
+        return cfi("FK_PURCHASE_MEMBER_ADDRESS_VALID", "memberAddressAsSkipRelation", this, MemberAddressDbm.getInstance(), mp, 6, null, false, false, false, true, "$$foreignAlias$$.VALID_BEGIN_DATE <= /*$$locationBase$$.parameterMapMemberAddressAsSkipRelation.targetDate*/null\n     and $$foreignAlias$$.VALID_END_DATE >= /*$$locationBase$$.parameterMapMemberAddressAsSkipRelation.targetDate*/null", newArrayList("targetDate"), false, null);
     }
+    /**
+     * white_purchase_referrer by PURCHASE_REFERRER_ID, named 'whitePurchaseReferrerAsOne'.
+     * @return The information object of foreign property(referrer-as-one). (NotNull)
+     */
     public ForeignInfo foreignWhitePurchaseReferrerAsOne() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnPurchaseId(), WhitePurchaseReferrerDbm.getInstance().columnPurchaseReferrerId());
-        return cfi("FK_WHITE_PURCHASE_REFERRER", "whitePurchaseReferrerAsOne", this, WhitePurchaseReferrerDbm.getInstance(), mp, 7, true, false, true, false, null, null, false, "purchase");
+        return cfi("FK_WHITE_PURCHASE_REFERRER", "whitePurchaseReferrerAsOne", this, WhitePurchaseReferrerDbm.getInstance(), mp, 7, null, true, false, true, false, null, null, false, "purchase");
     }
+    /**
+     * (購入)purchase by PURCHASE_ID, named 'purchaseSelfAsOne'.
+     * @return The information object of foreign property(referrer-as-one). (NotNull)
+     */
     public ForeignInfo foreignPurchaseSelfAsOne() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnPurchaseId(), PurchaseDbm.getInstance().columnPurchaseId());
-        return cfi("FK_PURCHASE_PURCHASE_SELF", "purchaseSelfAsOne", this, PurchaseDbm.getInstance(), mp, 8, true, false, true, true, null, null, false, "purchaseSelf");
+        return cfi("FK_PURCHASE_PURCHASE_SELF", "purchaseSelfAsOne", this, PurchaseDbm.getInstance(), mp, 8, null, true, false, true, true, null, null, false, "purchaseSelf");
     }
 
     // -----------------------------------------------------

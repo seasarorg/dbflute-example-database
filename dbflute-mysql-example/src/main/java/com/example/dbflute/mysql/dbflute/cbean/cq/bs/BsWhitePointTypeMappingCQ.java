@@ -39,8 +39,8 @@ public class BsWhitePointTypeMappingCQ extends AbstractBsWhitePointTypeMappingCQ
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public BsWhitePointTypeMappingCQ(ConditionQuery childQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
-        super(childQuery, sqlClause, aliasName, nestLevel);
+    public BsWhitePointTypeMappingCQ(ConditionQuery referrerQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
+        super(referrerQuery, sqlClause, aliasName, nestLevel);
     }
 
     // ===================================================================================

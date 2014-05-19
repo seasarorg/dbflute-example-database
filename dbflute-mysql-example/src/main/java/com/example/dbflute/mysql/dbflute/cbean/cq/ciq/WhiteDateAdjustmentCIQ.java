@@ -40,9 +40,9 @@ public class WhiteDateAdjustmentCIQ extends AbstractBsWhiteDateAdjustmentCQ {
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public WhiteDateAdjustmentCIQ(ConditionQuery childQuery, SqlClause sqlClause
+    public WhiteDateAdjustmentCIQ(ConditionQuery referrerQuery, SqlClause sqlClause
                         , String aliasName, int nestLevel, BsWhiteDateAdjustmentCQ myCQ) {
-        super(childQuery, sqlClause, aliasName, nestLevel);
+        super(referrerQuery, sqlClause, aliasName, nestLevel);
         _myCQ = myCQ;
         _foreignPropertyName = _myCQ.xgetForeignPropertyName(); // accept foreign property name
         _relationPath = _myCQ.xgetRelationPath(); // accept relation path

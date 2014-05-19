@@ -123,14 +123,50 @@ public class VendorLargeDataRefDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnNullableDecimalNoIndex = cci("NULLABLE_DECIMAL_NO_INDEX", "NULLABLE_DECIMAL_NO_INDEX", null, null, false, "nullableDecimalNoIndex", java.math.BigDecimal.class, false, false, "DECIMAL", 12, 3, null, false, null, null, null, null, null);
     protected final ColumnInfo _columnSelfParentId = cci("SELF_PARENT_ID", "SELF_PARENT_ID", null, null, false, "selfParentId", Long.class, false, false, "BIGINT", 19, 0, null, false, null, null, "vendorLargeDataRefSelf", null, null);
 
+    /**
+     * LARGE_DATA_REF_ID: {PK, NotNull, BIGINT(19)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnLargeDataRefId() { return _columnLargeDataRefId; }
+    /**
+     * LARGE_DATA_ID: {IX, NotNull, BIGINT(19), FK to vendor_large_data}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnLargeDataId() { return _columnLargeDataId; }
+    /**
+     * DATE_INDEX: {IX, NotNull, DATE(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnDateIndex() { return _columnDateIndex; }
+    /**
+     * DATE_NO_INDEX: {NotNull, DATE(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnDateNoIndex() { return _columnDateNoIndex; }
+    /**
+     * TIMESTAMP_INDEX: {IX, NotNull, DATETIME(19)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTimestampIndex() { return _columnTimestampIndex; }
+    /**
+     * TIMESTAMP_NO_INDEX: {NotNull, DATETIME(19)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTimestampNoIndex() { return _columnTimestampNoIndex; }
+    /**
+     * NULLABLE_DECIMAL_INDEX: {IX, DECIMAL(12, 3)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnNullableDecimalIndex() { return _columnNullableDecimalIndex; }
+    /**
+     * NULLABLE_DECIMAL_NO_INDEX: {DECIMAL(12, 3)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnNullableDecimalNoIndex() { return _columnNullableDecimalNoIndex; }
+    /**
+     * SELF_PARENT_ID: {IX, BIGINT(19), FK to vendor_large_data_ref}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnSelfParentId() { return _columnSelfParentId; }
 
     protected List<ColumnInfo> ccil() {
@@ -165,18 +201,30 @@ public class VendorLargeDataRefDbm extends AbstractDBMeta {
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------
+    /**
+     * vendor_large_data by my LARGE_DATA_ID, named 'vendorLargeData'.
+     * @return The information object of foreign property. (NotNull)
+     */
     public ForeignInfo foreignVendorLargeData() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnLargeDataId(), VendorLargeDataDbm.getInstance().columnLargeDataId());
-        return cfi("FK_VENDOR_LARGE_DATA_REF_DATA", "vendorLargeData", this, VendorLargeDataDbm.getInstance(), mp, 0, false, false, false, false, null, null, false, "vendorLargeDataRefList");
+        return cfi("FK_VENDOR_LARGE_DATA_REF_DATA", "vendorLargeData", this, VendorLargeDataDbm.getInstance(), mp, 0, null, false, false, false, false, null, null, false, "vendorLargeDataRefList");
     }
+    /**
+     * vendor_large_data_ref by my SELF_PARENT_ID, named 'vendorLargeDataRefSelf'.
+     * @return The information object of foreign property. (NotNull)
+     */
     public ForeignInfo foreignVendorLargeDataRefSelf() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnSelfParentId(), VendorLargeDataRefDbm.getInstance().columnLargeDataRefId());
-        return cfi("FK_VENDOR_LARGE_DATA_REF_SELF", "vendorLargeDataRefSelf", this, VendorLargeDataRefDbm.getInstance(), mp, 1, false, false, false, false, null, null, false, "vendorLargeDataRefSelfList");
+        return cfi("FK_VENDOR_LARGE_DATA_REF_SELF", "vendorLargeDataRefSelf", this, VendorLargeDataRefDbm.getInstance(), mp, 1, null, false, false, false, false, null, null, false, "vendorLargeDataRefSelfList");
     }
 
     // -----------------------------------------------------
     //                                     Referrer Property
     //                                     -----------------
+    /**
+     * vendor_large_data_ref by SELF_PARENT_ID, named 'vendorLargeDataRefSelfList'.
+     * @return The information object of referrer property. (NotNull)
+     */
     public ReferrerInfo referrerVendorLargeDataRefSelfList() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnLargeDataRefId(), VendorLargeDataRefDbm.getInstance().columnSelfParentId());
         return cri("FK_VENDOR_LARGE_DATA_REF_SELF", "vendorLargeDataRefSelfList", this, VendorLargeDataRefDbm.getInstance(), mp, false, "vendorLargeDataRefSelf");

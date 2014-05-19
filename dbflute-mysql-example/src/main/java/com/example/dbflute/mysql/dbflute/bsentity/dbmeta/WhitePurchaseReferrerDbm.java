@@ -81,7 +81,15 @@ public class WhitePurchaseReferrerDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnPurchaseReferrerId = cci("PURCHASE_REFERRER_ID", "PURCHASE_REFERRER_ID", null, null, true, "purchaseReferrerId", Long.class, true, true, "BIGINT", 19, 0, null, false, null, null, "purchase", null, null);
     protected final ColumnInfo _columnPurchaseReferrerName = cci("PURCHASE_REFERRER_NAME", "PURCHASE_REFERRER_NAME", null, null, true, "purchaseReferrerName", String.class, false, false, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
 
+    /**
+     * PURCHASE_REFERRER_ID: {PK, ID, NotNull, BIGINT(19), FK to purchase}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnPurchaseReferrerId() { return _columnPurchaseReferrerId; }
+    /**
+     * PURCHASE_REFERRER_NAME: {NotNull, VARCHAR(200)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnPurchaseReferrerName() { return _columnPurchaseReferrerName; }
 
     protected List<ColumnInfo> ccil() {
@@ -109,9 +117,13 @@ public class WhitePurchaseReferrerDbm extends AbstractDBMeta {
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------
+    /**
+     * (購入)purchase by my PURCHASE_REFERRER_ID, named 'purchase'.
+     * @return The information object of foreign property. (NotNull)
+     */
     public ForeignInfo foreignPurchase() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnPurchaseReferrerId(), PurchaseDbm.getInstance().columnPurchaseId());
-        return cfi("FK_WHITE_PURCHASE_REFERRER", "purchase", this, PurchaseDbm.getInstance(), mp, 0, true, false, false, false, null, null, false, "whitePurchaseReferrerAsOne");
+        return cfi("FK_WHITE_PURCHASE_REFERRER", "purchase", this, PurchaseDbm.getInstance(), mp, 0, null, true, false, false, false, null, null, false, "whitePurchaseReferrerAsOne");
     }
 
     // -----------------------------------------------------

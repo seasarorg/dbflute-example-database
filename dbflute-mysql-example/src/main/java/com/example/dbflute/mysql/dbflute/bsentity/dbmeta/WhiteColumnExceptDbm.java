@@ -81,7 +81,15 @@ public class WhiteColumnExceptDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnExceptColumnId = cci("EXCEPT_COLUMN_ID", "EXCEPT_COLUMN_ID", null, null, true, "exceptColumnId", Long.class, true, false, "DECIMAL", 16, 0, null, false, null, null, null, null, null);
     protected final ColumnInfo _columnColumnExceptTest = cci("COLUMN_EXCEPT_TEST", "COLUMN_EXCEPT_TEST", null, null, false, "columnExceptTest", Integer.class, false, false, "INT", 10, 0, null, false, null, null, null, null, null);
 
+    /**
+     * EXCEPT_COLUMN_ID: {PK, NotNull, DECIMAL(16)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnExceptColumnId() { return _columnExceptColumnId; }
+    /**
+     * COLUMN_EXCEPT_TEST: {INT(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnColumnExceptTest() { return _columnColumnExceptTest; }
 
     protected List<ColumnInfo> ccil() {

@@ -81,7 +81,15 @@ public class WhiteCompoundReferredNormallyDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnReferredId = cci("REFERRED_ID", "REFERRED_ID", null, null, true, "referredId", Integer.class, true, false, "INT", 10, 0, null, false, null, null, null, "whiteCompoundPkList", null);
     protected final ColumnInfo _columnReferredName = cci("REFERRED_NAME", "REFERRED_NAME", null, null, true, "referredName", String.class, false, false, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
 
+    /**
+     * REFERRED_ID: {PK, NotNull, INT(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnReferredId() { return _columnReferredId; }
+    /**
+     * REFERRED_NAME: {NotNull, VARCHAR(200)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnReferredName() { return _columnReferredName; }
 
     protected List<ColumnInfo> ccil() {
@@ -113,6 +121,10 @@ public class WhiteCompoundReferredNormallyDbm extends AbstractDBMeta {
     // -----------------------------------------------------
     //                                     Referrer Property
     //                                     -----------------
+    /**
+     * white_compound_pk by REFERRED_ID, named 'whiteCompoundPkList'.
+     * @return The information object of referrer property. (NotNull)
+     */
     public ReferrerInfo referrerWhiteCompoundPkList() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnReferredId(), WhiteCompoundPkDbm.getInstance().columnReferredId());
         return cri("FK_WHITE_COMPOUND_PK_REFERRED_NORMALLY_TEST", "whiteCompoundPkList", this, WhiteCompoundPkDbm.getInstance(), mp, false, "whiteCompoundReferredNormally");

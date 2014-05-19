@@ -39,8 +39,8 @@ public class BsWhiteTableExceptGenHeadCQ extends AbstractBsWhiteTableExceptGenHe
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public BsWhiteTableExceptGenHeadCQ(ConditionQuery childQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
-        super(childQuery, sqlClause, aliasName, nestLevel);
+    public BsWhiteTableExceptGenHeadCQ(ConditionQuery referrerQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
+        super(referrerQuery, sqlClause, aliasName, nestLevel);
     }
 
     // ===================================================================================

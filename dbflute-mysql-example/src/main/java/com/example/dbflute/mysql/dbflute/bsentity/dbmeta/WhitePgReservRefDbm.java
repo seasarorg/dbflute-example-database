@@ -81,7 +81,15 @@ public class WhitePgReservRefDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnRefId = cci("REF_ID", "REF_ID", null, null, true, "refId", Integer.class, true, false, "INT", 10, 0, null, false, null, null, null, null, null);
     protected final ColumnInfo _columnClassSynonym = cci("CLASS", "CLASS", "CLASS_SYNONYM", "(using DBFlute synonym)", false, "classSynonym", Integer.class, false, false, "INT", 10, 0, null, false, null, null, "whitePgReserv", null, null);
 
+    /**
+     * REF_ID: {PK, NotNull, INT(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnRefId() { return _columnRefId; }
+    /**
+     * ((using DBFlute synonym))CLASS: {IX, INT(10), FK to white_pg_reserv}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnClassSynonym() { return _columnClassSynonym; }
 
     protected List<ColumnInfo> ccil() {
@@ -109,9 +117,13 @@ public class WhitePgReservRefDbm extends AbstractDBMeta {
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------
+    /**
+     * white_pg_reserv by my CLASS, named 'whitePgReserv'.
+     * @return The information object of foreign property. (NotNull)
+     */
     public ForeignInfo foreignWhitePgReserv() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnClassSynonym(), WhitePgReservDbm.getInstance().columnClassSynonym());
-        return cfi("FK_WHITE_PG_RESERV_REF_CLASS", "whitePgReserv", this, WhitePgReservDbm.getInstance(), mp, 0, false, false, false, false, null, null, false, "whitePgReservRefList");
+        return cfi("FK_WHITE_PG_RESERV_REF_CLASS", "whitePgReserv", this, WhitePgReservDbm.getInstance(), mp, 0, null, false, false, false, false, null, null, false, "whitePgReservRefList");
     }
 
     // -----------------------------------------------------

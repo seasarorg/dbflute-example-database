@@ -85,7 +85,15 @@ public class WhiteDeprecatedClsElementDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnDeprecatedClsElementCode = cci("DEPRECATED_CLS_ELEMENT_CODE", "DEPRECATED_CLS_ELEMENT_CODE", null, null, true, "deprecatedClsElementCode", String.class, true, false, "CHAR", 3, 0, null, false, null, null, null, null, CDef.DefMeta.DeprecatedMapCollaborationType);
     protected final ColumnInfo _columnDeprecatedClsElementName = cci("DEPRECATED_CLS_ELEMENT_NAME", "DEPRECATED_CLS_ELEMENT_NAME", null, null, false, "deprecatedClsElementName", String.class, false, false, "VARCHAR", 20, 0, null, false, null, null, null, null, null);
 
+    /**
+     * DEPRECATED_CLS_ELEMENT_CODE: {PK, NotNull, CHAR(3), classification=DeprecatedMapCollaborationType}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnDeprecatedClsElementCode() { return _columnDeprecatedClsElementCode; }
+    /**
+     * DEPRECATED_CLS_ELEMENT_NAME: {VARCHAR(20)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnDeprecatedClsElementName() { return _columnDeprecatedClsElementName; }
 
     protected List<ColumnInfo> ccil() {

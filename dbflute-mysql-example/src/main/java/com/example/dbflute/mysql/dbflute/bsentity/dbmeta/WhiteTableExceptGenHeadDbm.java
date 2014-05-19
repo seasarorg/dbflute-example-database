@@ -87,8 +87,20 @@ public class WhiteTableExceptGenHeadDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnGenHeadName = cci("GEN_HEAD_NAME", "GEN_HEAD_NAME", null, null, true, "genHeadName", String.class, false, false, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
     protected final ColumnInfo _columnNometaId = cci("NOMETA_ID", "NOMETA_ID", null, null, false, "nometaId", Long.class, false, false, "DECIMAL", 16, 0, null, false, null, null, null, null, null);
 
+    /**
+     * GEN_HEAD_ID: {PK, NotNull, DECIMAL(16)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnGenHeadId() { return _columnGenHeadId; }
+    /**
+     * GEN_HEAD_NAME: {NotNull, VARCHAR(200)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnGenHeadName() { return _columnGenHeadName; }
+    /**
+     * NOMETA_ID: {IX, DECIMAL(16)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnNometaId() { return _columnNometaId; }
 
     protected List<ColumnInfo> ccil() {

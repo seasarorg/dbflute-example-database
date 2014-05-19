@@ -81,7 +81,15 @@ public class WhiteMyselfDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnMyselfId = cci("MYSELF_ID", "MYSELF_ID", null, null, true, "myselfId", Integer.class, true, false, "INT", 10, 0, null, false, null, null, null, "whiteMyselfCheckList", null);
     protected final ColumnInfo _columnMyselfName = cci("MYSELF_NAME", "MYSELF_NAME", null, null, true, "myselfName", String.class, false, false, "VARCHAR", 80, 0, null, false, null, null, null, null, null);
 
+    /**
+     * MYSELF_ID: {PK, NotNull, INT(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnMyselfId() { return _columnMyselfId; }
+    /**
+     * MYSELF_NAME: {NotNull, VARCHAR(80)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnMyselfName() { return _columnMyselfName; }
 
     protected List<ColumnInfo> ccil() {
@@ -113,6 +121,10 @@ public class WhiteMyselfDbm extends AbstractDBMeta {
     // -----------------------------------------------------
     //                                     Referrer Property
     //                                     -----------------
+    /**
+     * white_myself_check by MYSELF_ID, named 'whiteMyselfCheckList'.
+     * @return The information object of referrer property. (NotNull)
+     */
     public ReferrerInfo referrerWhiteMyselfCheckList() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnMyselfId(), WhiteMyselfCheckDbm.getInstance().columnMyselfId());
         return cri("FK_WHITE_MYSELF_CHECK_SELF", "whiteMyselfCheckList", this, WhiteMyselfCheckDbm.getInstance(), mp, false, "whiteMyself");

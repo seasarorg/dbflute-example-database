@@ -85,7 +85,15 @@ public class WhiteLineSepCommentDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnLineSepCommentCode = cci("LINE_SEP_COMMENT_CODE", "LINE_SEP_COMMENT_CODE", null, null, true, "lineSepCommentCode", String.class, true, false, "CHAR", 3, 0, null, false, null, null, null, null, CDef.DefMeta.LineSepCommentCls);
     protected final ColumnInfo _columnLineSepCommentName = cci("LINE_SEP_COMMENT_NAME", "LINE_SEP_COMMENT_NAME", null, null, false, "lineSepCommentName", String.class, false, false, "VARCHAR", 20, 0, null, false, null, null, null, null, null);
 
+    /**
+     * LINE_SEP_COMMENT_CODE: {PK, NotNull, CHAR(3), classification=LineSepCommentCls}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnLineSepCommentCode() { return _columnLineSepCommentCode; }
+    /**
+     * LINE_SEP_COMMENT_NAME: {VARCHAR(20)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnLineSepCommentName() { return _columnLineSepCommentName; }
 
     protected List<ColumnInfo> ccil() {

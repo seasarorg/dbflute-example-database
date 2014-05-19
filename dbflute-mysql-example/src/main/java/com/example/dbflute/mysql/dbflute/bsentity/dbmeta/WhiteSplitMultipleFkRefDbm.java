@@ -87,8 +87,20 @@ public class WhiteSplitMultipleFkRefDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnSecondCode = cci("SECOND_CODE", "SECOND_CODE", null, null, true, "secondCode", String.class, true, false, "CHAR", 3, 0, null, false, null, null, null, null, null);
     protected final ColumnInfo _columnRefName = cci("REF_NAME", "REF_NAME", null, null, true, "refName", String.class, false, false, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
 
+    /**
+     * FIRST_ID: {PK, NotNull, INT(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnFirstId() { return _columnFirstId; }
+    /**
+     * SECOND_CODE: {PK, NotNull, CHAR(3)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnSecondCode() { return _columnSecondCode; }
+    /**
+     * REF_NAME: {NotNull, VARCHAR(200)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnRefName() { return _columnRefName; }
 
     protected List<ColumnInfo> ccil() {

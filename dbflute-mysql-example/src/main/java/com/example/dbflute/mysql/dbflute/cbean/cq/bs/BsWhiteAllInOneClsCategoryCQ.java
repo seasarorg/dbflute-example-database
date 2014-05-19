@@ -39,8 +39,8 @@ public class BsWhiteAllInOneClsCategoryCQ extends AbstractBsWhiteAllInOneClsCate
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public BsWhiteAllInOneClsCategoryCQ(ConditionQuery childQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
-        super(childQuery, sqlClause, aliasName, nestLevel);
+    public BsWhiteAllInOneClsCategoryCQ(ConditionQuery referrerQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
+        super(referrerQuery, sqlClause, aliasName, nestLevel);
     }
 
     // ===================================================================================

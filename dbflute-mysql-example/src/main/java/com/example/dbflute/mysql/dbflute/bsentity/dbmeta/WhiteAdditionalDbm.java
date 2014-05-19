@@ -97,9 +97,25 @@ public class WhiteAdditionalDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnFooDate = cci("foo_date", "foo_date", null, null, false, "fooDate", java.util.Date.class, false, false, "UnknownType", null, null, null, false, null, null, null, null, null);
     protected final ColumnInfo _columnRegisterDatetime = cci("register_datetime", "register_datetime", null, null, false, "registerDatetime", java.sql.Timestamp.class, false, false, "DATETIME", null, null, "CURRENT_TIMESTAMP", false, null, null, null, null, null);
 
+    /**
+     * foo_id: {PK, ID, NotNull, INTEGER}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnFooId() { return _columnFooId; }
+    /**
+     * (Mr.FOO's name)foo_name: {NotNull, UnknownType(123)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnFooName() { return _columnFooName; }
+    /**
+     * foo_date: {UnknownType}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnFooDate() { return _columnFooDate; }
+    /**
+     * register_datetime: {DATETIME, default=[CURRENT_TIMESTAMP]}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnRegisterDatetime() { return _columnRegisterDatetime; }
 
     protected List<ColumnInfo> ccil() {

@@ -87,8 +87,20 @@ public class WhiteMyselfCheckDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnMyselfCheckName = cci("MYSELF_CHECK_NAME", "MYSELF_CHECK_NAME", null, null, true, "myselfCheckName", String.class, false, false, "VARCHAR", 80, 0, null, false, null, null, null, null, null);
     protected final ColumnInfo _columnMyselfId = cci("MYSELF_ID", "MYSELF_ID", null, null, false, "myselfId", Integer.class, false, false, "INT", 10, 0, null, false, null, null, "whiteMyself", null, null);
 
+    /**
+     * MYSELF_CHECK_ID: {PK, NotNull, INT(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnMyselfCheckId() { return _columnMyselfCheckId; }
+    /**
+     * MYSELF_CHECK_NAME: {NotNull, VARCHAR(80)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnMyselfCheckName() { return _columnMyselfCheckName; }
+    /**
+     * MYSELF_ID: {IX, INT(10), FK to white_myself}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnMyselfId() { return _columnMyselfId; }
 
     protected List<ColumnInfo> ccil() {
@@ -117,9 +129,13 @@ public class WhiteMyselfCheckDbm extends AbstractDBMeta {
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------
+    /**
+     * white_myself by my MYSELF_ID, named 'whiteMyself'.
+     * @return The information object of foreign property. (NotNull)
+     */
     public ForeignInfo foreignWhiteMyself() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnMyselfId(), WhiteMyselfDbm.getInstance().columnMyselfId());
-        return cfi("FK_WHITE_MYSELF_CHECK_SELF", "whiteMyself", this, WhiteMyselfDbm.getInstance(), mp, 0, false, false, false, false, null, null, false, "whiteMyselfCheckList");
+        return cfi("FK_WHITE_MYSELF_CHECK_SELF", "whiteMyself", this, WhiteMyselfDbm.getInstance(), mp, 0, null, false, false, false, false, null, null, false, "whiteMyselfCheckList");
     }
 
     // -----------------------------------------------------

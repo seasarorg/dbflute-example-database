@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>exampledb sync check</title>
+	<style type="text/css">
+* {
+	margin: 0;
+	padding: 0;
+}
+body {
+	font-family: Verdana, "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Meiryo, "メイリオ", "MS P Gothic", "MS Pゴシック", sans-serif;
+	font-size: 80%;
+	margin: 1em 1.5em;
+	background-color: #ffffee;
+}
+
+/* heading */
+h1 {
+	font-size: 1.5em;
+	border-bottom: 2px solid #af0000;
+	border-top: 2px solid #af0000;
+}
+h2 {
+	margin-top: 2em;
+	border-bottom: 2px solid #af0000;
+	border-left: 10px solid #af0000;
+	text-indent: 1em;
+	font-size: 1.6em;
+}
+h3 {
+	width: 14em;
+	margin: 0.8em 0;
+	padding-left: 1.8em;
+	border-bottom: solid 1px #333;
+	color: #555;
+	font-size: 1.2em;
+}
+h4 {
+	margin: 1em 0em;
+	font-size: 1em;
+	font-weight: normal;
+	display: list-item;
+}
+h5 {
+	width: 11em;
+	font-size: 80%;
+	border-bottom: solid 1px #333;
+	text-indent: 0.3em;
+	color: #555;
+}
+
+/* total info */
+.updatedate {
+	text-align: right;
+}
+.mainschema {
+	text-align: right;
+}
+.navilinkarea {
+	text-align: right;
+}
+.sisterlink {
+	margin-top: 0.6em;
+	font-size: 110%;
+}
+.sistersublink {
+	margin-top: 0.6em;
+	font-size: 80%;
+}
+
+/* history info */
+.table-content {
+	margin: 0 6em;
+}
+.column-content {
+	margin: 0.5em 1em 0.5em 3em;
+	line-height: 1.4em;
+}
+
+div.change-table-content {
+	margin-left: 3em;
+}
+
+dl.column-content dt {
+	display: list-item;
+}
+dl.column-content dd {
+	margin: 0 4em;
+}
+dl.column-content dd span {
+	display: block;
+	float: left;
+	width: 6em;
+	margin-right: 1.5em;
+	border-right: dotted 2px #333;
+	font-weight: bold;
+	font-size: 80%;
+	color: #555;
+}
+
+span.dt {
+	font-size: 80%;
+}
+p.comment {
+	margin-left: 23em;
+}
+p.tablecount {
+	margin-left: 23em;
+}
+	</style>
+</head>
+
+<body>
+<h1>SyncCheck for exampledb (mysql)</h1>
+<div class="navilinkarea">
+</div>
+
+<div class="section">
+	<h2><span class="dt">Diff Date: </span>2014/05/20 00:27:47</h2>
+	<p class="tablecount"><span class="dt">table count: </span>15&nbsp;-&gt;&nbsp;85</p>
+
+	<h3>Add Table</h3>
+	<ul class="table-content">
+		<li>SUMMARY_PRODUCT</li>
+		<li>SUMMARY_WITHDRAWAL</li>
+		<li>VENDOR_CHECK</li>
+		<li>VENDOR_CONSTRAINT_NAME_AUTO_BAR</li>
+		<li>VENDOR_CONSTRAINT_NAME_AUTO_FOO</li>
+		<li>VENDOR_CONSTRAINT_NAME_AUTO_QUX</li>
+		<li>VENDOR_CONSTRAINT_NAME_AUTO_REF</li>
+		<li>VENDOR_LARGE_DATA</li>
+		<li>VENDOR_LARGE_DATA_REF</li>
+		<li>VENDOR_THE_LONG_AND_WINDING_TABLE_AND_COLUMN</li>
+		<li>VENDOR_THE_LONG_AND_WINDING_TABLE_AND_COLUMN_REF</li>
+		<li>WHITE_ALL_IN_ONE_CLS_CATEGORY</li>
+		<li>WHITE_ALL_IN_ONE_CLS_COMPOUND_PK_REF</li>
+		<li>WHITE_ALL_IN_ONE_CLS_ELEMENT</li>
+		<li>WHITE_ALL_IN_ONE_CLS_NORMAL_COL_REF</li>
+		<li>WHITE_BINARY</li>
+		<li>WHITE_COLUMN_EXCEPT</li>
+		<li>WHITE_COLUMN_EXCEPT_GEN_ONLY</li>
+		<li>WHITE_COMPOUND_PK</li>
+		<li>WHITE_COMPOUND_PK_REF</li>
+		<li>WHITE_COMPOUND_PK_REF_MANY</li>
+		<li>WHITE_COMPOUND_PK_REF_NEST</li>
+		<li>WHITE_COMPOUND_REFERRED_NORMALLY</li>
+		<li>WHITE_COMPOUND_REFERRED_PRIMARY</li>
+		<li>WHITE_DATE_ADJUSTMENT</li>
+		<li>WHITE_DB_COMMENT</li>
+		<li>WHITE_DELIMITER</li>
+		<li>WHITE_DEPRECATED_CLS_ELEMENT</li>
+		<li>WHITE_ESCAPED_DFPROP</li>
+		<li>WHITE_ESCAPED_JAVA_DOC</li>
+		<li>WHITE_IMPLICIT_CONV_INTEGER</li>
+		<li>WHITE_IMPLICIT_CONV_NUMERIC</li>
+		<li>WHITE_IMPLICIT_CONV_STRING</li>
+		<li>WHITE_IMPLICIT_REVERSE_FK</li>
+		<li>WHITE_IMPLICIT_REVERSE_FK_REF</li>
+		<li>WHITE_IMPLICIT_REVERSE_FK_SUPPRESS</li>
+		<li>WHITE_LINE_SEP_COMMENT</li>
+		<li>WHITE_LOAD_DATA</li>
+		<li>WHITE_MYSELF</li>
+		<li>WHITE_MYSELF_CHECK</li>
+		<li>WHITE_NO_PK</li>
+		<li>WHITE_NO_PK_RELATION</li>
+		<li>WHITE_PG_RESERV</li>
+		<li>WHITE_PG_RESERV_REF</li>
+		<li>WHITE_POINT_TYPE_MAPPING</li>
+		<li>WHITE_PURCHASE_REFERRER</li>
+		<li>WHITE_QUOTED</li>
+		<li>WHITE_QUOTED_REF</li>
+		<li>WHITE_SELF_REFERENCE</li>
+		<li>WHITE_SELF_REFERENCE_REF_ONE</li>
+		<li>WHITE_SPLIT_MULTIPLE_FK_BASE</li>
+		<li>WHITE_SPLIT_MULTIPLE_FK_CHILD</li>
+		<li>WHITE_SPLIT_MULTIPLE_FK_NEXT</li>
+		<li>WHITE_SPLIT_MULTIPLE_FK_REF</li>
+		<li>WHITE_SUPPRESS_DEF_CHECK</li>
+		<li>WHITE_TABLE_EXCEPT_GEN_HEAD</li>
+		<li>WHITE_TABLE_EXCEPT_GEN_ONLY</li>
+		<li>WHITE_TABLE_EXCEPT_GEN_REF</li>
+		<li>WHITE_TABLE_EXCEPT_NOMETA</li>
+		<li>WHITE_UQ_FK</li>
+		<li>WHITE_UQ_FK_REF</li>
+		<li>WHITE_UQ_FK_REF_NEST</li>
+		<li>WHITE_UQ_FK_WITHOUT_PK</li>
+		<li>WHITE_UQ_FK_WITHOUT_PK_REF</li>
+		<li>WHITE_VARIANT_RELATION_MASTER_BAR</li>
+		<li>WHITE_VARIANT_RELATION_MASTER_CORGE</li>
+		<li>WHITE_VARIANT_RELATION_MASTER_FOO</li>
+		<li>WHITE_VARIANT_RELATION_MASTER_QUX</li>
+		<li>WHITE_VARIANT_RELATION_REFERRER</li>
+		<li>WHITE_XLS_MAN</li>
+	</ul>
+	<h3>Add Procedure</h3>
+	<ul class="table-content">
+		<li>exampledb.SP_IN_OUT_PARAMETER</li>
+		<li>exampledb.SP_NO_PARAMETER</li>
+		<li>exampledb.SP_RETURN_RESULT_SET</li>
+		<li>exampledb.SP_RETURN_RESULT_SET_MORE</li>
+		<li>exampledb.SP_RETURN_RESULT_SET_WITH</li>
+		<li>exampledb.SP_TRANSACTION_INHERIT</li>
+		<li>exampledb.SP_VARIOUS_TYPE_PARAMETER</li>
+	</ul>
+</div>
+
+</body>
+</html>

@@ -75,6 +75,10 @@ public class VendorCheckDecimalSumDbm extends AbstractDBMeta {
     //                                                                         ===========
     protected final ColumnInfo _columnDecimalDigitSum = cci("DECIMAL_DIGIT_SUM", "DECIMAL_DIGIT_SUM", null, null, false, "decimalDigitSum", java.math.BigDecimal.class, false, false, "DECIMAL", 27, 3, null, false, null, null, null, null, null);
 
+    /**
+     * DECIMAL_DIGIT_SUM: {DECIMAL(27, 3)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnDecimalDigitSum() { return _columnDecimalDigitSum; }
 
     protected List<ColumnInfo> ccil() {

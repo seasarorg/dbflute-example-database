@@ -39,8 +39,8 @@ public class BsWhiteImplicitReverseFkSuppressCQ extends AbstractBsWhiteImplicitR
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public BsWhiteImplicitReverseFkSuppressCQ(ConditionQuery childQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
-        super(childQuery, sqlClause, aliasName, nestLevel);
+    public BsWhiteImplicitReverseFkSuppressCQ(ConditionQuery referrerQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
+        super(referrerQuery, sqlClause, aliasName, nestLevel);
     }
 
     // ===================================================================================

@@ -81,7 +81,15 @@ public class WhiteLoadDataDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnLoadDataId = cci("LOAD_DATA_ID", "LOAD_DATA_ID", null, null, true, "loadDataId", Long.class, true, false, "BIGINT", 19, 0, null, false, null, null, null, null, null);
     protected final ColumnInfo _columnLoadDataName = cci("LOAD_DATA_NAME", "LOAD_DATA_NAME", null, null, true, "loadDataName", String.class, false, false, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
 
+    /**
+     * LOAD_DATA_ID: {PK, NotNull, BIGINT(19)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnLoadDataId() { return _columnLoadDataId; }
+    /**
+     * LOAD_DATA_NAME: {NotNull, VARCHAR(200)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnLoadDataName() { return _columnLoadDataName; }
 
     protected List<ColumnInfo> ccil() {

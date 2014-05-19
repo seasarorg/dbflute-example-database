@@ -40,9 +40,9 @@ public class WhiteColumnExceptGenOnlyCIQ extends AbstractBsWhiteColumnExceptGenO
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public WhiteColumnExceptGenOnlyCIQ(ConditionQuery childQuery, SqlClause sqlClause
+    public WhiteColumnExceptGenOnlyCIQ(ConditionQuery referrerQuery, SqlClause sqlClause
                         , String aliasName, int nestLevel, BsWhiteColumnExceptGenOnlyCQ myCQ) {
-        super(childQuery, sqlClause, aliasName, nestLevel);
+        super(referrerQuery, sqlClause, aliasName, nestLevel);
         _myCQ = myCQ;
         _foreignPropertyName = _myCQ.xgetForeignPropertyName(); // accept foreign property name
         _relationPath = _myCQ.xgetRelationPath(); // accept relation path

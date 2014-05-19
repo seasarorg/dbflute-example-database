@@ -93,9 +93,25 @@ public class WhiteSplitMultipleFkBaseDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnNextId = cci("NEXT_ID", "NEXT_ID", null, null, true, "nextId", Long.class, false, false, "BIGINT", 19, 0, null, false, null, null, "whiteSplitMultipleFkNext", null, null);
     protected final ColumnInfo _columnSplitName = cci("SPLIT_NAME", "SPLIT_NAME", null, null, true, "splitName", String.class, false, false, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
 
+    /**
+     * BASE_ID: {PK, NotNull, BIGINT(19)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnBaseId() { return _columnBaseId; }
+    /**
+     * FIRST_ID: {NotNull, INT(10), FK to WHITE_SPLIT_MULTIPLE_FK_REF}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnFirstId() { return _columnFirstId; }
+    /**
+     * NEXT_ID: {IX, NotNull, BIGINT(19), FK to white_split_multiple_fk_next}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnNextId() { return _columnNextId; }
+    /**
+     * SPLIT_NAME: {NotNull, VARCHAR(200)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnSplitName() { return _columnSplitName; }
 
     protected List<ColumnInfo> ccil() {
@@ -125,18 +141,30 @@ public class WhiteSplitMultipleFkBaseDbm extends AbstractDBMeta {
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------
+    /**
+     * white_split_multiple_fk_next by my NEXT_ID, named 'whiteSplitMultipleFkNext'.
+     * @return The information object of foreign property. (NotNull)
+     */
     public ForeignInfo foreignWhiteSplitMultipleFkNext() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnNextId(), WhiteSplitMultipleFkNextDbm.getInstance().columnNextId());
-        return cfi("FK_WHITE_SPLIT_MULTIPLE_FK_NEXT", "whiteSplitMultipleFkNext", this, WhiteSplitMultipleFkNextDbm.getInstance(), mp, 0, false, false, false, false, null, null, false, "whiteSplitMultipleFkBaseList");
+        return cfi("FK_WHITE_SPLIT_MULTIPLE_FK_NEXT", "whiteSplitMultipleFkNext", this, WhiteSplitMultipleFkNextDbm.getInstance(), mp, 0, null, false, false, false, false, null, null, false, "whiteSplitMultipleFkBaseList");
     }
+    /**
+     * white_split_multiple_fk_ref by my FIRST_ID, named 'whiteSplitMultipleFkRefAsSplitMultipleFkTest'.
+     * @return The information object of foreign property. (NotNull)
+     */
     public ForeignInfo foreignWhiteSplitMultipleFkRefAsSplitMultipleFkTest() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnFirstId(), WhiteSplitMultipleFkRefDbm.getInstance().columnFirstId());
-        return cfi("FK_WHITE_SPLIT_MULTIPLE_FK", "whiteSplitMultipleFkRefAsSplitMultipleFkTest", this, WhiteSplitMultipleFkRefDbm.getInstance(), mp, 1, false, false, false, true, "$$over($localTable.whiteSplitMultipleFkNext)$$.SECOND_CODE = $$foreignAlias$$.SECOND_CODE", null, false, null);
+        return cfi("FK_WHITE_SPLIT_MULTIPLE_FK", "whiteSplitMultipleFkRefAsSplitMultipleFkTest", this, WhiteSplitMultipleFkRefDbm.getInstance(), mp, 1, null, false, false, false, true, "$$over($localTable.whiteSplitMultipleFkNext)$$.SECOND_CODE = $$foreignAlias$$.SECOND_CODE", null, false, null);
     }
 
     // -----------------------------------------------------
     //                                     Referrer Property
     //                                     -----------------
+    /**
+     * white_split_multiple_fk_child by BASE_ID, named 'whiteSplitMultipleFkChildList'.
+     * @return The information object of referrer property. (NotNull)
+     */
     public ReferrerInfo referrerWhiteSplitMultipleFkChildList() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnBaseId(), WhiteSplitMultipleFkChildDbm.getInstance().columnBaseId());
         return cri("FK_WHITE_SPLIT_MULTIPLE_FK_BASE", "whiteSplitMultipleFkChildList", this, WhiteSplitMultipleFkChildDbm.getInstance(), mp, false, "whiteSplitMultipleFkBase");

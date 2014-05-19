@@ -93,9 +93,25 @@ public class WhiteImplicitReverseFkSuppressDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnValidBeginDate = cci("VALID_BEGIN_DATE", "VALID_BEGIN_DATE", null, null, true, "validBeginDate", java.util.Date.class, false, false, "DATE", 10, 0, null, false, null, null, null, null, null);
     protected final ColumnInfo _columnValidEndDate = cci("VALID_END_DATE", "VALID_END_DATE", null, null, true, "validEndDate", java.util.Date.class, false, false, "DATE", 10, 0, null, false, null, null, null, null, null);
 
+    /**
+     * WHITE_IMPLICIT_REVERSE_FK_SUPPRESS_ID: {PK, ID, NotNull, INT(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnWhiteImplicitReverseFkSuppressId() { return _columnWhiteImplicitReverseFkSuppressId; }
+    /**
+     * WHITE_IMPLICIT_REVERSE_FK_ID: {UQ, NotNull, INT(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnWhiteImplicitReverseFkId() { return _columnWhiteImplicitReverseFkId; }
+    /**
+     * VALID_BEGIN_DATE: {UQ+, NotNull, DATE(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnValidBeginDate() { return _columnValidBeginDate; }
+    /**
+     * VALID_END_DATE: {NotNull, DATE(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnValidEndDate() { return _columnValidEndDate; }
 
     protected List<ColumnInfo> ccil() {

@@ -1,0 +1,5 @@
+map:{
+	; url			= jdbc:mysql://localhost:43306/examplesyncdb?characterEncoding=UTF-8
+	; user			= examplesyncdb
+	; password		= examplesyncdb
+}

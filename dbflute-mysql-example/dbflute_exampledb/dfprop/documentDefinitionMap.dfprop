@@ -186,12 +186,13 @@ map:{
     #   o user: The database user name. (Required)
     #   o password: The database password. (NotRequired - Default '')
     #
-    #; schemaSyncCheckMap = map:{
-    #    ; url = jdbc:...
-    #    ; schema = EXAMPLEDB
-    #    ; user = exampuser
-    #    ; password = exampword
-    #}
+    ; schemaSyncCheckMap = map:{
+        ; url = jdbc:mysql://localhost:43306/examplesyncdb?characterEncoding=UTF-8
+        ; schema =
+        ; user = examplesyncdb
+        ; password = examplesyncdb
+        ; isSuppressCraftDiff = true
+    }
     # - - - - - - - - - -/
 
     # /- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

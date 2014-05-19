@@ -189,25 +189,105 @@ public class WhitePgReservDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnType = cci("TYPE", "TYPE", null, null, false, "type", String.class, false, false, "CHAR", 3, 0, null, false, null, null, null, null, null);
     protected final ColumnInfo _columnReservName = cci("RESERV_NAME", "RESERV_NAME", null, null, true, "reservName", String.class, false, false, "VARCHAR", 32, 0, null, false, null, null, null, null, null);
 
+    /**
+     * ((using DBFlute synonym))CLASS: {PK, NotNull, INT(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnClassSynonym() { return _columnClassSynonym; }
+    /**
+     * ((using DBFlute synonym))CASE: {INT(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnCaseSynonym() { return _columnCaseSynonym; }
+    /**
+     * ((using DBFlute synonym))PACKAGE: {INT(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnPackageSynonym() { return _columnPackageSynonym; }
+    /**
+     * ((using DBFlute synonym))DEFAULT: {INT(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnDefaultSynonym() { return _columnDefaultSynonym; }
+    /**
+     * ((using DBFlute synonym))NEW: {INT(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnNewSynonym() { return _columnNewSynonym; }
+    /**
+     * ((using DBFlute synonym))NATIVE: {INT(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnNativeSynonym() { return _columnNativeSynonym; }
+    /**
+     * ((using DBFlute synonym))VOID: {INT(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnVoidSynonym() { return _columnVoidSynonym; }
+    /**
+     * ((using DBFlute synonym))PUBLIC: {INT(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnPublicSynonym() { return _columnPublicSynonym; }
+    /**
+     * ((using DBFlute synonym))PROTECTED: {INT(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnProtectedSynonym() { return _columnProtectedSynonym; }
+    /**
+     * ((using DBFlute synonym))PRIVATE: {INT(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnPrivateSynonym() { return _columnPrivateSynonym; }
+    /**
+     * ((using DBFlute synonym))INTERFACE: {INT(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnInterfaceSynonym() { return _columnInterfaceSynonym; }
+    /**
+     * ((using DBFlute synonym))ABSTRACT: {INT(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnAbstractSynonym() { return _columnAbstractSynonym; }
+    /**
+     * ((using DBFlute synonym))FINAL: {INT(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnFinalSynonym() { return _columnFinalSynonym; }
+    /**
+     * ((using DBFlute synonym))FINALLY: {INT(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnFinallySynonym() { return _columnFinallySynonym; }
+    /**
+     * ((using DBFlute synonym))RETURN: {INT(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnReturnSynonym() { return _columnReturnSynonym; }
+    /**
+     * ((using DBFlute synonym))DOUBLE: {INT(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnDoubleSynonym() { return _columnDoubleSynonym; }
+    /**
+     * ((using DBFlute synonym))FLOAT: {INT(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnFloatSynonym() { return _columnFloatSynonym; }
+    /**
+     * ((using DBFlute synonym))SHORT: {INT(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnShortSynonym() { return _columnShortSynonym; }
+    /**
+     * TYPE: {CHAR(3)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnType() { return _columnType; }
+    /**
+     * RESERV_NAME: {NotNull, VARCHAR(32)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnReservName() { return _columnReservName; }
 
     protected List<ColumnInfo> ccil() {
@@ -257,6 +337,10 @@ public class WhitePgReservDbm extends AbstractDBMeta {
     // -----------------------------------------------------
     //                                     Referrer Property
     //                                     -----------------
+    /**
+     * white_pg_reserv_ref by CLASS, named 'whitePgReservRefList'.
+     * @return The information object of referrer property. (NotNull)
+     */
     public ReferrerInfo referrerWhitePgReservRefList() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnClassSynonym(), WhitePgReservRefDbm.getInstance().columnClassSynonym());
         return cri("FK_WHITE_PG_RESERV_REF_CLASS", "whitePgReservRefList", this, WhitePgReservRefDbm.getInstance(), mp, false, "whitePgReserv");

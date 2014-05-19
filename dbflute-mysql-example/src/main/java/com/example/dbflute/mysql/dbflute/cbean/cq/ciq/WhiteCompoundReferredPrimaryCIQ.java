@@ -40,9 +40,9 @@ public class WhiteCompoundReferredPrimaryCIQ extends AbstractBsWhiteCompoundRefe
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public WhiteCompoundReferredPrimaryCIQ(ConditionQuery childQuery, SqlClause sqlClause
+    public WhiteCompoundReferredPrimaryCIQ(ConditionQuery referrerQuery, SqlClause sqlClause
                         , String aliasName, int nestLevel, BsWhiteCompoundReferredPrimaryCQ myCQ) {
-        super(childQuery, sqlClause, aliasName, nestLevel);
+        super(referrerQuery, sqlClause, aliasName, nestLevel);
         _myCQ = myCQ;
         _foreignPropertyName = _myCQ.xgetForeignPropertyName(); // accept foreign property name
         _relationPath = _myCQ.xgetRelationPath(); // accept relation path

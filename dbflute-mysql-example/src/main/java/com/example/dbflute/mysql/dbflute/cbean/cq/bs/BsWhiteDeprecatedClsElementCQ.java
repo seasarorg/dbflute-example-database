@@ -39,8 +39,8 @@ public class BsWhiteDeprecatedClsElementCQ extends AbstractBsWhiteDeprecatedClsE
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public BsWhiteDeprecatedClsElementCQ(ConditionQuery childQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
-        super(childQuery, sqlClause, aliasName, nestLevel);
+    public BsWhiteDeprecatedClsElementCQ(ConditionQuery referrerQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
+        super(referrerQuery, sqlClause, aliasName, nestLevel);
     }
 
     // ===================================================================================

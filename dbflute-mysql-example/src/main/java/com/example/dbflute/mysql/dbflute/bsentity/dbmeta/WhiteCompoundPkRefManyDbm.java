@@ -111,12 +111,40 @@ public class WhiteCompoundPkRefManyDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnRefManyName = cci("REF_MANY_NAME", "REF_MANY_NAME", null, null, true, "refManyName", String.class, false, false, "VARCHAR", 50, 0, null, false, null, null, null, null, null);
     protected final ColumnInfo _columnRefManyDatetime = cci("REF_MANY_DATETIME", "REF_MANY_DATETIME", null, null, true, "refManyDatetime", java.sql.Timestamp.class, false, false, "DATETIME", 19, 0, null, false, null, null, null, null, null);
 
+    /**
+     * MULTIPLE_FIRST_ID: {PK, NotNull, INT(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnMultipleFirstId() { return _columnMultipleFirstId; }
+    /**
+     * MULTIPLE_SECOND_ID: {PK, NotNull, INT(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnMultipleSecondId() { return _columnMultipleSecondId; }
+    /**
+     * REF_MANY_FIRST_ID: {NotNull, INT(10), FK to WHITE_COMPOUND_PK}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnRefManyFirstId() { return _columnRefManyFirstId; }
+    /**
+     * REF_MANY_SECOND_ID: {NotNull, INT(10), FK to WHITE_COMPOUND_PK}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnRefManySecondId() { return _columnRefManySecondId; }
+    /**
+     * REF_MANY_CODE: {NotNull, CHAR(3)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnRefManyCode() { return _columnRefManyCode; }
+    /**
+     * REF_MANY_NAME: {NotNull, VARCHAR(50)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnRefManyName() { return _columnRefManyName; }
+    /**
+     * REF_MANY_DATETIME: {NotNull, DATETIME(19)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnRefManyDatetime() { return _columnRefManyDatetime; }
 
     protected List<ColumnInfo> ccil() {
@@ -154,11 +182,15 @@ public class WhiteCompoundPkRefManyDbm extends AbstractDBMeta {
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------
+    /**
+     * white_compound_pk by my REF_MANY_FIRST_ID, REF_MANY_SECOND_ID, named 'whiteCompoundPkToPK'.
+     * @return The information object of foreign property. (NotNull)
+     */
     public ForeignInfo foreignWhiteCompoundPkToPK() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMapSized(4);
         mp.put(columnRefManyFirstId(), WhiteCompoundPkDbm.getInstance().columnPkFirstId());
         mp.put(columnRefManySecondId(), WhiteCompoundPkDbm.getInstance().columnPkSecondId());
-        return cfi("FK_WHITE_COMPOUND_PK_REF_MANY_TO_ONE_TEST", "whiteCompoundPkToPK", this, WhiteCompoundPkDbm.getInstance(), mp, 0, false, false, false, true, "$$localAlias$$.REF_MANY_CODE = 'TPK'", null, false, "whiteCompoundPkRefManyToPKList");
+        return cfi("FK_WHITE_COMPOUND_PK_REF_MANY_TO_ONE_TEST", "whiteCompoundPkToPK", this, WhiteCompoundPkDbm.getInstance(), mp, 0, null, false, false, false, true, "$$localAlias$$.REF_MANY_CODE = 'TPK'", null, false, "whiteCompoundPkRefManyToPKList");
     }
 
     // -----------------------------------------------------

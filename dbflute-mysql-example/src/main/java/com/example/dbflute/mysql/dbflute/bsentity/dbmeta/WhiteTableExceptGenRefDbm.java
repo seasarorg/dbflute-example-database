@@ -87,8 +87,20 @@ public class WhiteTableExceptGenRefDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnGenRefName = cci("GEN_REF_NAME", "GEN_REF_NAME", null, null, true, "genRefName", String.class, false, false, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
     protected final ColumnInfo _columnGenOnlyId = cci("GEN_ONLY_ID", "GEN_ONLY_ID", null, null, false, "genOnlyId", Long.class, false, false, "DECIMAL", 16, 0, null, false, null, null, null, null, null);
 
+    /**
+     * GEN_REF_ID: {PK, NotNull, DECIMAL(16)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnGenRefId() { return _columnGenRefId; }
+    /**
+     * GEN_REF_NAME: {NotNull, VARCHAR(200)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnGenRefName() { return _columnGenRefName; }
+    /**
+     * GEN_ONLY_ID: {IX, DECIMAL(16)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnGenOnlyId() { return _columnGenOnlyId; }
 
     protected List<ColumnInfo> ccil() {

@@ -93,9 +93,25 @@ public class WhiteImplicitReverseFkRefDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnValidBeginDate = cci("VALID_BEGIN_DATE", "VALID_BEGIN_DATE", null, null, true, "validBeginDate", java.util.Date.class, false, false, "DATE", 10, 0, null, false, null, null, null, null, null);
     protected final ColumnInfo _columnValidEndDate = cci("VALID_END_DATE", "VALID_END_DATE", null, null, true, "validEndDate", java.util.Date.class, false, false, "DATE", 10, 0, null, false, null, null, null, null, null);
 
+    /**
+     * WHITE_IMPLICIT_REVERSE_FK_REF_ID: {PK, ID, NotNull, INT(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnWhiteImplicitReverseFkRefId() { return _columnWhiteImplicitReverseFkRefId; }
+    /**
+     * WHITE_IMPLICIT_REVERSE_FK_ID: {UQ, NotNull, INT(10), FK to white_implicit_reverse_fk}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnWhiteImplicitReverseFkId() { return _columnWhiteImplicitReverseFkId; }
+    /**
+     * VALID_BEGIN_DATE: {UQ+, NotNull, DATE(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnValidBeginDate() { return _columnValidBeginDate; }
+    /**
+     * VALID_END_DATE: {NotNull, DATE(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnValidEndDate() { return _columnValidEndDate; }
 
     protected List<ColumnInfo> ccil() {
@@ -125,9 +141,14 @@ public class WhiteImplicitReverseFkRefDbm extends AbstractDBMeta {
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------
+    /**
+     * white_implicit_reverse_fk by my WHITE_IMPLICIT_REVERSE_FK_ID, named 'whiteImplicitReverseFk'. <br />
+     * This relation is auto-detected as implicit reverse FK.
+     * @return The information object of foreign property. (NotNull)
+     */
     public ForeignInfo foreignWhiteImplicitReverseFk() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnWhiteImplicitReverseFkId(), WhiteImplicitReverseFkDbm.getInstance().columnWhiteImplicitReverseFkId());
-        return cfi("FK_white_implicit_reverse_fk_ref_white_implicit_reverse_fk_IMPLICIT", "whiteImplicitReverseFk", this, WhiteImplicitReverseFkDbm.getInstance(), mp, 0, false, false, false, true, null, null, false, "whiteImplicitReverseFkRefList");
+        return cfi("FK_white_implicit_reverse_fk_ref_white_implicit_reverse_fk_IMPLICIT", "whiteImplicitReverseFk", this, WhiteImplicitReverseFkDbm.getInstance(), mp, 0, null, false, false, false, true, null, null, false, "whiteImplicitReverseFkRefList");
     }
 
     // -----------------------------------------------------

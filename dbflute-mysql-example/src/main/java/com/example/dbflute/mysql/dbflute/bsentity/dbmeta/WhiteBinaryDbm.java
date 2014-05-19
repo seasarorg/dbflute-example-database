@@ -87,8 +87,20 @@ public class WhiteBinaryDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnBinaryData = cci("BINARY_DATA", "BINARY_DATA", null, null, false, "binaryData", byte[].class, false, false, "BINARY", 1, 0, null, false, null, null, null, null, null);
     protected final ColumnInfo _columnBlobData = cci("BLOB_DATA", "BLOB_DATA", null, null, false, "blobData", byte[].class, false, false, "BLOB", 65535, 0, null, false, null, null, null, null, null);
 
+    /**
+     * BINARY_ID: {PK, ID, NotNull, BIGINT(19)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnBinaryId() { return _columnBinaryId; }
+    /**
+     * BINARY_DATA: {BINARY(1)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnBinaryData() { return _columnBinaryData; }
+    /**
+     * BLOB_DATA: {BLOB(65535)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnBlobData() { return _columnBlobData; }
 
     protected List<ColumnInfo> ccil() {

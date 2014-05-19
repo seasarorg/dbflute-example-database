@@ -40,9 +40,9 @@ public class VendorConstraintNameAutoFooCIQ extends AbstractBsVendorConstraintNa
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public VendorConstraintNameAutoFooCIQ(ConditionQuery childQuery, SqlClause sqlClause
+    public VendorConstraintNameAutoFooCIQ(ConditionQuery referrerQuery, SqlClause sqlClause
                         , String aliasName, int nestLevel, BsVendorConstraintNameAutoFooCQ myCQ) {
-        super(childQuery, sqlClause, aliasName, nestLevel);
+        super(referrerQuery, sqlClause, aliasName, nestLevel);
         _myCQ = myCQ;
         _foreignPropertyName = _myCQ.xgetForeignPropertyName(); // accept foreign property name
         _relationPath = _myCQ.xgetRelationPath(); // accept relation path
