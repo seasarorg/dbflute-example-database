@@ -117,6 +117,11 @@ public class DBMetaInstanceHandler implements DBMetaProvider {
         tmpMap.put("white_split_multiple_fk_next", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteSplitMultipleFkNextDbm");
         tmpMap.put("white_split_multiple_fk_ref", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteSplitMultipleFkRefDbm");
         tmpMap.put("white_suppress_def_check", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteSuppressDefCheckDbm");
+        tmpMap.put("white_suppress_join_sq", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteSuppressJoinSqDbm");
+        tmpMap.put("white_suppress_join_sq_many", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteSuppressJoinSqManyDbm");
+        tmpMap.put("white_suppress_join_sq_many_one", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteSuppressJoinSqManyOneDbm");
+        tmpMap.put("white_suppress_join_sq_one", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteSuppressJoinSqOneDbm");
+        tmpMap.put("white_suppress_join_sq_one_addi", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteSuppressJoinSqOneAddiDbm");
         tmpMap.put("white_table_except_gen_head", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteTableExceptGenHeadDbm");
         tmpMap.put("white_table_except_gen_ref", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteTableExceptGenRefDbm");
         tmpMap.put("white_uq_fk", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteUqFkDbm");

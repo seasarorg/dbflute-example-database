@@ -1,4 +1,42 @@
 map:{
+    ; 2014/05/27 22:16:09 = map:{
+        ; diffDate = 2014/05/27 22:16:09
+        ; tableCount = map:{
+            ; next = 93
+            ; previous = 92
+        }
+        ; tableDiff = map:{
+            ; white_suppress_join_sq_one_addi = map:{
+                ; tableName = white_suppress_join_sq_one_addi
+                ; diffType = ADD
+            }
+        }
+    }
+    ; 2014/05/27 22:14:06 = map:{
+        ; diffDate = 2014/05/27 22:14:06
+        ; tableCount = map:{
+            ; next = 92
+            ; previous = 88
+        }
+        ; tableDiff = map:{
+            ; white_suppress_join_sq = map:{
+                ; tableName = white_suppress_join_sq
+                ; diffType = ADD
+            }
+            ; white_suppress_join_sq_many = map:{
+                ; tableName = white_suppress_join_sq_many
+                ; diffType = ADD
+            }
+            ; white_suppress_join_sq_many_one = map:{
+                ; tableName = white_suppress_join_sq_many_one
+                ; diffType = ADD
+            }
+            ; white_suppress_join_sq_one = map:{
+                ; tableName = white_suppress_join_sq_one
+                ; diffType = ADD
+            }
+        }
+    }
     ; 2014/05/21 00:10:27 = map:{
         ; diffDate = 2014/05/21 00:10:27
         ; tableDiff = map:{

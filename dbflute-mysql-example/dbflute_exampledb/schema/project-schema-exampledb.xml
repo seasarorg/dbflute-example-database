@@ -1431,6 +1431,69 @@
         <column comment="" dbType="VARCHAR" javaType="String"
             name="DEF_CHECK_NAME" required="true" size="200" type="VARCHAR"/>
     </table>
+    <table name="white_suppress_join_sq"
+        schema="exampledb.$$NoNameSchema$$" type="TABLE">
+        <column comment="" dbType="INT" javaType="Integer"
+            name="SUPPRESS_JOIN_SQ_ID" pkName="PRIMARY"
+            primaryKey="true" required="true" size="10" type="INTEGER"/>
+        <column comment="" dbType="VARCHAR" javaType="String"
+            name="SUPPRESS_JOIN_SQ_NAME" required="true" size="200" type="VARCHAR"/>
+    </table>
+    <table name="white_suppress_join_sq_many"
+        schema="exampledb.$$NoNameSchema$$" type="TABLE">
+        <column comment="" dbType="INT" javaType="Integer"
+            name="MANY_ID" required="true" size="10" type="INTEGER"/>
+        <column comment="" dbType="VARCHAR" javaType="String"
+            name="MANY_NAME" required="true" size="200" type="VARCHAR"/>
+        <column comment="" dbType="INT" javaType="Integer"
+            name="SUPPRESS_JOIN_SQ_ID" pkName="PRIMARY"
+            primaryKey="true" required="true" size="10" type="INTEGER"/>
+        <column comment="" dbType="INT" javaType="Integer"
+            name="MANY_ONE_ID" required="true" size="10" type="INTEGER"/>
+        <foreign-key foreignSchema="exampledb.$$NoNameSchema$$"
+            foreignTable="white_suppress_join_sq_many_one" name="FK_WHITE_SUPPRESS_JOIN_SQ_MANY_ONE">
+            <reference foreign="MANY_ONE_ID" local="MANY_ONE_ID"/>
+        </foreign-key>
+        <foreign-key foreignSchema="exampledb.$$NoNameSchema$$"
+            foreignTable="white_suppress_join_sq" name="FK_WHITE_SUPPRESS_JOIN_SQ_MANY">
+            <reference foreign="SUPPRESS_JOIN_SQ_ID" local="SUPPRESS_JOIN_SQ_ID"/>
+        </foreign-key>
+        <index name="FK_WHITE_SUPPRESS_JOIN_SQ_MANY_ONE">
+            <index-column name="MANY_ONE_ID" position="1"/>
+        </index>
+    </table>
+    <table name="white_suppress_join_sq_many_one"
+        schema="exampledb.$$NoNameSchema$$" type="TABLE">
+        <column comment="" dbType="INT" javaType="Integer"
+            name="MANY_ONE_ID" pkName="PRIMARY" primaryKey="true"
+            required="true" size="10" type="INTEGER"/>
+        <column comment="" dbType="VARCHAR" javaType="String"
+            name="MANY_ONE_NAME" required="true" size="200" type="VARCHAR"/>
+    </table>
+    <table name="white_suppress_join_sq_one"
+        schema="exampledb.$$NoNameSchema$$" type="TABLE">
+        <column comment="" dbType="INT" javaType="Integer" name="ONE_ID"
+            pkName="PRIMARY" primaryKey="true" required="true" size="10" type="INTEGER"/>
+        <column comment="" dbType="VARCHAR" javaType="String"
+            name="ONE_NAME" required="true" size="200" type="VARCHAR"/>
+        <column comment="" dbType="INT" javaType="Integer"
+            name="SUPPRESS_JOIN_SQ_ID" required="true" size="10" type="INTEGER"/>
+        <foreign-key foreignSchema="exampledb.$$NoNameSchema$$"
+            foreignTable="white_suppress_join_sq" name="FK_WHITE_SUPPRESS_JOIN_SQ_ONE">
+            <reference foreign="SUPPRESS_JOIN_SQ_ID" local="SUPPRESS_JOIN_SQ_ID"/>
+        </foreign-key>
+        <unique name="SUPPRESS_JOIN_SQ_ID">
+            <unique-column name="SUPPRESS_JOIN_SQ_ID" position="1"/>
+        </unique>
+    </table>
+    <table name="white_suppress_join_sq_one_addi"
+        schema="exampledb.$$NoNameSchema$$" type="TABLE">
+        <column comment="" dbType="INT" javaType="Integer"
+            name="ONE_ADDI_ID" pkName="PRIMARY" primaryKey="true"
+            required="true" size="10" type="INTEGER"/>
+        <column comment="" dbType="VARCHAR" javaType="String"
+            name="ONE_ADDI_NAME" required="true" size="200" type="VARCHAR"/>
+    </table>
     <table name="white_table_except_gen_head"
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="DECIMAL" javaType="Long"
