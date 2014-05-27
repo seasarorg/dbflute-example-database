@@ -48,13 +48,14 @@ public class WhitePurchaseReferrerDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgPurchaseReferrerId(), "purchaseReferrerId");
         setupEpg(_epgMap, new EpgPurchaseReferrerName(), "purchaseReferrerName");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgPurchaseReferrerId implements PropertyGateway {
         public Object read(Entity et) { return ((WhitePurchaseReferrer)et).getPurchaseReferrerId(); }
         public void write(Entity et, Object vl) { ((WhitePurchaseReferrer)et).setPurchaseReferrerId(ctl(vl)); }
@@ -63,6 +64,22 @@ public class WhitePurchaseReferrerDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((WhitePurchaseReferrer)et).getPurchaseReferrerName(); }
         public void write(Entity et, Object vl) { ((WhitePurchaseReferrer)et).setPurchaseReferrerName((String)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
+
+    // -----------------------------------------------------
+    //                                      Foreign Property
+    //                                      ----------------
+    protected final Map<String, PropertyGateway> _efpgMap = newHashMap();
+    {
+        setupEfpg(_efpgMap, new EfpgPurchase(), "purchase");
+    }
+    public class EfpgPurchase implements PropertyGateway {
+        public Object read(Entity et) { return ((WhitePurchaseReferrer)et).getPurchase(); }
+        public void write(Entity et, Object vl) { ((WhitePurchaseReferrer)et).setPurchase((Purchase)vl); }
+    }
+    public PropertyGateway findForeignPropertyGateway(String prop)
+    { return doFindEfpg(_efpgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -78,8 +95,8 @@ public class WhitePurchaseReferrerDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnPurchaseReferrerId = cci("PURCHASE_REFERRER_ID", "PURCHASE_REFERRER_ID", null, null, true, "purchaseReferrerId", Long.class, true, true, "BIGINT", 19, 0, null, false, null, null, "purchase", null, null);
-    protected final ColumnInfo _columnPurchaseReferrerName = cci("PURCHASE_REFERRER_NAME", "PURCHASE_REFERRER_NAME", null, null, true, "purchaseReferrerName", String.class, false, false, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnPurchaseReferrerId = cci("PURCHASE_REFERRER_ID", "PURCHASE_REFERRER_ID", null, null, Long.class, "purchaseReferrerId", null, true, true, true, "BIGINT", 19, 0, null, false, null, null, "purchase", null, null);
+    protected final ColumnInfo _columnPurchaseReferrerName = cci("PURCHASE_REFERRER_NAME", "PURCHASE_REFERRER_NAME", null, null, String.class, "purchaseReferrerName", null, false, false, true, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
 
     /**
      * PURCHASE_REFERRER_ID: {PK, ID, NotNull, BIGINT(19), FK to purchase}
@@ -114,6 +131,8 @@ public class WhitePurchaseReferrerDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

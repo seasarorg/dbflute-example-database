@@ -48,6 +48,9 @@ public class WhiteCompoundPkDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgPkFirstId(), "pkFirstId");
@@ -55,8 +58,6 @@ public class WhiteCompoundPkDbm extends AbstractDBMeta {
         setupEpg(_epgMap, new EpgPkName(), "pkName");
         setupEpg(_epgMap, new EpgReferredId(), "referredId");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgPkFirstId implements PropertyGateway {
         public Object read(Entity et) { return ((WhiteCompoundPk)et).getPkFirstId(); }
         public void write(Entity et, Object vl) { ((WhiteCompoundPk)et).setPkFirstId(cti(vl)); }
@@ -73,6 +74,37 @@ public class WhiteCompoundPkDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((WhiteCompoundPk)et).getReferredId(); }
         public void write(Entity et, Object vl) { ((WhiteCompoundPk)et).setReferredId(cti(vl)); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
+
+    // -----------------------------------------------------
+    //                                      Foreign Property
+    //                                      ----------------
+    protected final Map<String, PropertyGateway> _efpgMap = newHashMap();
+    {
+        setupEfpg(_efpgMap, new EfpgWhiteCompoundReferredNormally(), "whiteCompoundReferredNormally");
+        setupEfpg(_efpgMap, new EfpgWhiteCompoundReferredPrimary(), "whiteCompoundReferredPrimary");
+        setupEfpg(_efpgMap, new EfpgWhiteCompoundPkRefManyAsMax(), "whiteCompoundPkRefManyAsMax");
+        setupEfpg(_efpgMap, new EfpgWhiteCompoundPkRefManyAsMin(), "whiteCompoundPkRefManyAsMin");
+    }
+    public class EfpgWhiteCompoundReferredNormally implements PropertyGateway {
+        public Object read(Entity et) { return ((WhiteCompoundPk)et).getWhiteCompoundReferredNormally(); }
+        public void write(Entity et, Object vl) { ((WhiteCompoundPk)et).setWhiteCompoundReferredNormally((WhiteCompoundReferredNormally)vl); }
+    }
+    public class EfpgWhiteCompoundReferredPrimary implements PropertyGateway {
+        public Object read(Entity et) { return ((WhiteCompoundPk)et).getWhiteCompoundReferredPrimary(); }
+        public void write(Entity et, Object vl) { ((WhiteCompoundPk)et).setWhiteCompoundReferredPrimary((WhiteCompoundReferredPrimary)vl); }
+    }
+    public class EfpgWhiteCompoundPkRefManyAsMax implements PropertyGateway {
+        public Object read(Entity et) { return ((WhiteCompoundPk)et).getWhiteCompoundPkRefManyAsMax(); }
+        public void write(Entity et, Object vl) { ((WhiteCompoundPk)et).setWhiteCompoundPkRefManyAsMax((WhiteCompoundPkRefMany)vl); }
+    }
+    public class EfpgWhiteCompoundPkRefManyAsMin implements PropertyGateway {
+        public Object read(Entity et) { return ((WhiteCompoundPk)et).getWhiteCompoundPkRefManyAsMin(); }
+        public void write(Entity et, Object vl) { ((WhiteCompoundPk)et).setWhiteCompoundPkRefManyAsMin((WhiteCompoundPkRefMany)vl); }
+    }
+    public PropertyGateway findForeignPropertyGateway(String prop)
+    { return doFindEfpg(_efpgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -88,18 +120,18 @@ public class WhiteCompoundPkDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnPkFirstId = cci("PK_FIRST_ID", "PK_FIRST_ID", null, null, true, "pkFirstId", Integer.class, true, false, "INT", 10, 0, null, false, null, null, "whiteCompoundPkRefManyAsMax,whiteCompoundPkRefManyAsMin", "whiteCompoundPkRefList,whiteCompoundPkRefManyToPKList", null);
-    protected final ColumnInfo _columnPkSecondId = cci("PK_SECOND_ID", "PK_SECOND_ID", null, null, true, "pkSecondId", Integer.class, true, false, "INT", 10, 0, null, false, null, null, "whiteCompoundReferredPrimary,whiteCompoundPkRefManyAsMax,whiteCompoundPkRefManyAsMin", "whiteCompoundPkRefList,whiteCompoundPkRefManyToPKList", null);
-    protected final ColumnInfo _columnPkName = cci("PK_NAME", "PK_NAME", null, null, true, "pkName", String.class, false, false, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnReferredId = cci("REFERRED_ID", "REFERRED_ID", null, null, true, "referredId", Integer.class, false, false, "INT", 10, 0, null, false, null, null, "whiteCompoundReferredNormally", null, null);
+    protected final ColumnInfo _columnPkFirstId = cci("PK_FIRST_ID", "PK_FIRST_ID", null, null, Integer.class, "pkFirstId", null, true, false, true, "INT", 10, 0, null, false, null, null, "whiteCompoundPkRefManyAsMax,whiteCompoundPkRefManyAsMin", "whiteCompoundPkRefList,whiteCompoundPkRefManyToPKList", null);
+    protected final ColumnInfo _columnPkSecondId = cci("PK_SECOND_ID", "PK_SECOND_ID", null, null, Integer.class, "pkSecondId", null, true, false, true, "INT", 10, 0, null, false, null, null, "whiteCompoundReferredPrimary,whiteCompoundPkRefManyAsMax,whiteCompoundPkRefManyAsMin", "whiteCompoundPkRefList,whiteCompoundPkRefManyToPKList", null);
+    protected final ColumnInfo _columnPkName = cci("PK_NAME", "PK_NAME", null, null, String.class, "pkName", null, false, false, true, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnReferredId = cci("REFERRED_ID", "REFERRED_ID", null, null, Integer.class, "referredId", null, false, false, true, "INT", 10, 0, null, false, null, null, "whiteCompoundReferredNormally", null, null);
 
     /**
-     * PK_FIRST_ID: {PK, UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_PK_REF_MANY}
+     * PK_FIRST_ID: {PK, +UQ, NotNull, INT(10), FK to WHITE_COMPOUND_PK_REF_MANY}
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnPkFirstId() { return _columnPkFirstId; }
     /**
-     * PK_SECOND_ID: {PK, UQ, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_PRIMARY}
+     * PK_SECOND_ID: {PK, UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_PRIMARY}
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnPkSecondId() { return _columnPkSecondId; }
@@ -109,7 +141,7 @@ public class WhiteCompoundPkDbm extends AbstractDBMeta {
      */
     public ColumnInfo columnPkName() { return _columnPkName; }
     /**
-     * REFERRED_ID: {UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_NORMALLY}
+     * REFERRED_ID: {+UQ, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_NORMALLY}
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnReferredId() { return _columnReferredId; }
@@ -143,6 +175,8 @@ public class WhiteCompoundPkDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

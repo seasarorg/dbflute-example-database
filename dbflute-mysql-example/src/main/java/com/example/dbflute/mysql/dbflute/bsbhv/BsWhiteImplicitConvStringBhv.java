@@ -184,7 +184,7 @@ public abstract class BsWhiteImplicitConvStringBhv extends AbstractBehaviorWrita
      * </pre>
      * @param cb The condition-bean of WhiteImplicitConvString. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -205,39 +205,42 @@ public abstract class BsWhiteImplicitConvStringBhv extends AbstractBehaviorWrita
 
     /**
      * Select the entity by the primary-key value.
-     * @param implicitConvStringId The one of primary key. (NotNull)
+     * @param implicitConvStringId : PK, NotNull, VARCHAR(10). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteImplicitConvString selectByPKValue(String implicitConvStringId) {
-        return doSelectByPKValue(implicitConvStringId, WhiteImplicitConvString.class);
+        return doSelectByPK(implicitConvStringId, WhiteImplicitConvString.class);
     }
 
-    protected <ENTITY extends WhiteImplicitConvString> ENTITY doSelectByPKValue(String implicitConvStringId, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(implicitConvStringId), entityType);
+    protected <ENTITY extends WhiteImplicitConvString> ENTITY doSelectByPK(String implicitConvStringId, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(implicitConvStringId), entityType);
+    }
+
+    protected <ENTITY extends WhiteImplicitConvString> OptionalEntity<ENTITY> doSelectOptionalByPK(String implicitConvStringId, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(implicitConvStringId, entityType), implicitConvStringId);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param implicitConvStringId The one of primary key. (NotNull)
+     * @param implicitConvStringId : PK, NotNull, VARCHAR(10). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteImplicitConvString selectByPKValueWithDeletedCheck(String implicitConvStringId) {
-        return doSelectByPKValueWithDeletedCheck(implicitConvStringId, WhiteImplicitConvString.class);
+        return doSelectByPKWithDeletedCheck(implicitConvStringId, WhiteImplicitConvString.class);
     }
 
-    protected <ENTITY extends WhiteImplicitConvString> ENTITY doSelectByPKValueWithDeletedCheck(String implicitConvStringId, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(implicitConvStringId), entityType);
+    protected <ENTITY extends WhiteImplicitConvString> ENTITY doSelectByPKWithDeletedCheck(String implicitConvStringId, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(implicitConvStringId), entityType);
     }
 
-    private WhiteImplicitConvStringCB buildPKCB(String implicitConvStringId) {
+    protected WhiteImplicitConvStringCB xprepareCBAsPK(String implicitConvStringId) {
         assertObjectNotNull("implicitConvStringId", implicitConvStringId);
-        WhiteImplicitConvStringCB cb = newMyConditionBean();
-        cb.query().setImplicitConvStringId_Equal(implicitConvStringId);
+        WhiteImplicitConvStringCB cb = newMyConditionBean(); cb.acceptPrimaryKey(implicitConvStringId);
         return cb;
     }
 
@@ -623,7 +626,8 @@ public abstract class BsWhiteImplicitConvStringBhv extends AbstractBehaviorWrita
      */
     public List<WhiteImplicitConvInteger> pulloutWhiteImplicitConvInteger(List<WhiteImplicitConvString> whiteImplicitConvStringList) {
         return helpPulloutInternally(whiteImplicitConvStringList, new InternalPulloutCallback<WhiteImplicitConvString, WhiteImplicitConvInteger>() {
-            public WhiteImplicitConvInteger getFr(WhiteImplicitConvString et) { return et.getWhiteImplicitConvInteger(); }
+            public WhiteImplicitConvInteger getFr(WhiteImplicitConvString et)
+            { return et.getWhiteImplicitConvInteger(); }
             public boolean hasRf() { return true; }
             public void setRfLs(WhiteImplicitConvInteger et, List<WhiteImplicitConvString> ls)
             { et.setWhiteImplicitConvStringList(ls); }
@@ -636,7 +640,8 @@ public abstract class BsWhiteImplicitConvStringBhv extends AbstractBehaviorWrita
      */
     public List<WhiteImplicitConvNumeric> pulloutWhiteImplicitConvNumeric(List<WhiteImplicitConvString> whiteImplicitConvStringList) {
         return helpPulloutInternally(whiteImplicitConvStringList, new InternalPulloutCallback<WhiteImplicitConvString, WhiteImplicitConvNumeric>() {
-            public WhiteImplicitConvNumeric getFr(WhiteImplicitConvString et) { return et.getWhiteImplicitConvNumeric(); }
+            public WhiteImplicitConvNumeric getFr(WhiteImplicitConvString et)
+            { return et.getWhiteImplicitConvNumeric(); }
             public boolean hasRf() { return true; }
             public void setRfLs(WhiteImplicitConvNumeric et, List<WhiteImplicitConvString> ls)
             { et.setWhiteImplicitConvStringList(ls); }

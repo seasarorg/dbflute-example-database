@@ -48,13 +48,14 @@ public class WhiteEscapedDfpropDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgEscapedDfpropCode(), "escapedDfpropCode");
         setupEpg(_epgMap, new EpgEscapedDfpropName(), "escapedDfpropName");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public class EpgEscapedDfpropCode implements PropertyGateway {
         public Object read(Entity et) { return ((WhiteEscapedDfprop)et).getEscapedDfpropCode(); }
         public void write(Entity et, Object vl) {
@@ -67,6 +68,8 @@ public class WhiteEscapedDfpropDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((WhiteEscapedDfprop)et).getEscapedDfpropName(); }
         public void write(Entity et, Object vl) { ((WhiteEscapedDfprop)et).setEscapedDfpropName((String)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -82,8 +85,8 @@ public class WhiteEscapedDfpropDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnEscapedDfpropCode = cci("ESCAPED_DFPROP_CODE", "ESCAPED_DFPROP_CODE", null, null, true, "escapedDfpropCode", String.class, true, false, "CHAR", 3, 0, null, false, null, null, null, null, CDef.DefMeta.EscapedDfpropCls);
-    protected final ColumnInfo _columnEscapedDfpropName = cci("ESCAPED_DFPROP_NAME", "ESCAPED_DFPROP_NAME", null, null, false, "escapedDfpropName", String.class, false, false, "VARCHAR", 20, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnEscapedDfpropCode = cci("ESCAPED_DFPROP_CODE", "ESCAPED_DFPROP_CODE", null, null, String.class, "escapedDfpropCode", null, true, false, true, "CHAR", 3, 0, null, false, null, null, null, null, CDef.DefMeta.EscapedDfpropCls);
+    protected final ColumnInfo _columnEscapedDfpropName = cci("ESCAPED_DFPROP_NAME", "ESCAPED_DFPROP_NAME", null, null, String.class, "escapedDfpropName", null, false, false, false, "VARCHAR", 20, 0, null, false, null, null, null, null, null);
 
     /**
      * ESCAPED_DFPROP_CODE: {PK, NotNull, CHAR(3), classification=EscapedDfpropCls}
@@ -118,6 +121,8 @@ public class WhiteEscapedDfpropDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

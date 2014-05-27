@@ -48,6 +48,9 @@ public class WhiteAllInOneClsNormalColRefDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgClsRefId(), "clsRefId");
@@ -55,8 +58,6 @@ public class WhiteAllInOneClsNormalColRefDbm extends AbstractDBMeta {
         setupEpg(_epgMap, new EpgBarCode(), "barCode");
         setupEpg(_epgMap, new EpgQuxCode(), "quxCode");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgClsRefId implements PropertyGateway {
         public Object read(Entity et) { return ((WhiteAllInOneClsNormalColRef)et).getClsRefId(); }
         public void write(Entity et, Object vl) { ((WhiteAllInOneClsNormalColRef)et).setClsRefId(cti(vl)); }
@@ -73,6 +74,27 @@ public class WhiteAllInOneClsNormalColRefDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((WhiteAllInOneClsNormalColRef)et).getQuxCode(); }
         public void write(Entity et, Object vl) { ((WhiteAllInOneClsNormalColRef)et).setQuxCode((String)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
+
+    // -----------------------------------------------------
+    //                                      Foreign Property
+    //                                      ----------------
+    protected final Map<String, PropertyGateway> _efpgMap = newHashMap();
+    {
+        setupEfpg(_efpgMap, new EfpgWhiteAllInOneClsElementAsFoo(), "whiteAllInOneClsElementAsFoo");
+        setupEfpg(_efpgMap, new EfpgWhiteAllInOneClsElementAsBar(), "whiteAllInOneClsElementAsBar");
+    }
+    public class EfpgWhiteAllInOneClsElementAsFoo implements PropertyGateway {
+        public Object read(Entity et) { return ((WhiteAllInOneClsNormalColRef)et).getWhiteAllInOneClsElementAsFoo(); }
+        public void write(Entity et, Object vl) { ((WhiteAllInOneClsNormalColRef)et).setWhiteAllInOneClsElementAsFoo((WhiteAllInOneClsElement)vl); }
+    }
+    public class EfpgWhiteAllInOneClsElementAsBar implements PropertyGateway {
+        public Object read(Entity et) { return ((WhiteAllInOneClsNormalColRef)et).getWhiteAllInOneClsElementAsBar(); }
+        public void write(Entity et, Object vl) { ((WhiteAllInOneClsNormalColRef)et).setWhiteAllInOneClsElementAsBar((WhiteAllInOneClsElement)vl); }
+    }
+    public PropertyGateway findForeignPropertyGateway(String prop)
+    { return doFindEfpg(_efpgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -88,10 +110,10 @@ public class WhiteAllInOneClsNormalColRefDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnClsRefId = cci("CLS_REF_ID", "CLS_REF_ID", null, null, true, "clsRefId", Integer.class, false, false, "INT", 10, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnFooCode = cci("FOO_CODE", "FOO_CODE", null, null, true, "fooCode", String.class, true, false, "CHAR", 3, 0, null, false, null, null, "whiteAllInOneClsElementAsFoo", null, null);
-    protected final ColumnInfo _columnBarCode = cci("BAR_CODE", "BAR_CODE", null, null, true, "barCode", String.class, true, false, "CHAR", 3, 0, null, false, null, null, "whiteAllInOneClsElementAsBar", null, null);
-    protected final ColumnInfo _columnQuxCode = cci("QUX_CODE", "QUX_CODE", null, null, true, "quxCode", String.class, true, false, "CHAR", 3, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnClsRefId = cci("CLS_REF_ID", "CLS_REF_ID", null, null, Integer.class, "clsRefId", null, false, false, true, "INT", 10, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnFooCode = cci("FOO_CODE", "FOO_CODE", null, null, String.class, "fooCode", null, true, false, true, "CHAR", 3, 0, null, false, null, null, "whiteAllInOneClsElementAsFoo", null, null);
+    protected final ColumnInfo _columnBarCode = cci("BAR_CODE", "BAR_CODE", null, null, String.class, "barCode", null, true, false, true, "CHAR", 3, 0, null, false, null, null, "whiteAllInOneClsElementAsBar", null, null);
+    protected final ColumnInfo _columnQuxCode = cci("QUX_CODE", "QUX_CODE", null, null, String.class, "quxCode", null, true, false, true, "CHAR", 3, 0, null, false, null, null, null, null, null);
 
     /**
      * CLS_REF_ID: {NotNull, INT(10)}
@@ -99,17 +121,17 @@ public class WhiteAllInOneClsNormalColRefDbm extends AbstractDBMeta {
      */
     public ColumnInfo columnClsRefId() { return _columnClsRefId; }
     /**
-     * FOO_CODE: {PK, UQ, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT}
+     * FOO_CODE: {PK, UQ+, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT}
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnFooCode() { return _columnFooCode; }
     /**
-     * BAR_CODE: {PK, UQ+, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT}
+     * BAR_CODE: {PK, +UQ, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT}
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnBarCode() { return _columnBarCode; }
     /**
-     * QUX_CODE: {PK, UQ+, NotNull, CHAR(3)}
+     * QUX_CODE: {PK, +UQ, NotNull, CHAR(3)}
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnQuxCode() { return _columnQuxCode; }
@@ -144,6 +166,8 @@ public class WhiteAllInOneClsNormalColRefDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

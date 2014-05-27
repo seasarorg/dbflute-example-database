@@ -92,10 +92,14 @@ public class BsWhiteLineSepCommentCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                 PrimaryKey Handling
     //                                                                 ===================
+    /**
+     * Accept the query condition of primary key as equal.
+     * @param lineSepCommentCode : PK, NotNull, CHAR(3), classification=LineSepCommentCls. (NotNull)
+     */
     public void acceptPrimaryKey(String lineSepCommentCode) {
         assertObjectNotNull("lineSepCommentCode", lineSepCommentCode);
         BsWhiteLineSepCommentCB cb = this;
-        cb.query().setLineSepCommentCode_Equal(lineSepCommentCode);
+        cb.query().setLineSepCommentCode_Equal(lineSepCommentCode);;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {
@@ -408,6 +412,11 @@ public class BsWhiteLineSepCommentCB extends AbstractConditionBean {
      */
     public void orScopeQuery(OrQuery<WhiteLineSepCommentCB> orQuery) {
         xorSQ((WhiteLineSepCommentCB)this, orQuery);
+    }
+
+    @Override
+    protected HpCBPurpose xhandleOrSQPurposeChange() {
+        return null; // means no check
     }
 
     /**

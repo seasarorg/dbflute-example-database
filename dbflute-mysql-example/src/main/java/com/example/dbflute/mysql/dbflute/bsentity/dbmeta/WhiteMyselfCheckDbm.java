@@ -48,14 +48,15 @@ public class WhiteMyselfCheckDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgMyselfCheckId(), "myselfCheckId");
         setupEpg(_epgMap, new EpgMyselfCheckName(), "myselfCheckName");
         setupEpg(_epgMap, new EpgMyselfId(), "myselfId");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgMyselfCheckId implements PropertyGateway {
         public Object read(Entity et) { return ((WhiteMyselfCheck)et).getMyselfCheckId(); }
         public void write(Entity et, Object vl) { ((WhiteMyselfCheck)et).setMyselfCheckId(cti(vl)); }
@@ -68,6 +69,22 @@ public class WhiteMyselfCheckDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((WhiteMyselfCheck)et).getMyselfId(); }
         public void write(Entity et, Object vl) { ((WhiteMyselfCheck)et).setMyselfId(cti(vl)); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
+
+    // -----------------------------------------------------
+    //                                      Foreign Property
+    //                                      ----------------
+    protected final Map<String, PropertyGateway> _efpgMap = newHashMap();
+    {
+        setupEfpg(_efpgMap, new EfpgWhiteMyself(), "whiteMyself");
+    }
+    public class EfpgWhiteMyself implements PropertyGateway {
+        public Object read(Entity et) { return ((WhiteMyselfCheck)et).getWhiteMyself(); }
+        public void write(Entity et, Object vl) { ((WhiteMyselfCheck)et).setWhiteMyself((WhiteMyself)vl); }
+    }
+    public PropertyGateway findForeignPropertyGateway(String prop)
+    { return doFindEfpg(_efpgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -83,9 +100,9 @@ public class WhiteMyselfCheckDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnMyselfCheckId = cci("MYSELF_CHECK_ID", "MYSELF_CHECK_ID", null, null, true, "myselfCheckId", Integer.class, true, false, "INT", 10, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnMyselfCheckName = cci("MYSELF_CHECK_NAME", "MYSELF_CHECK_NAME", null, null, true, "myselfCheckName", String.class, false, false, "VARCHAR", 80, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnMyselfId = cci("MYSELF_ID", "MYSELF_ID", null, null, false, "myselfId", Integer.class, false, false, "INT", 10, 0, null, false, null, null, "whiteMyself", null, null);
+    protected final ColumnInfo _columnMyselfCheckId = cci("MYSELF_CHECK_ID", "MYSELF_CHECK_ID", null, null, Integer.class, "myselfCheckId", null, true, false, true, "INT", 10, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnMyselfCheckName = cci("MYSELF_CHECK_NAME", "MYSELF_CHECK_NAME", null, null, String.class, "myselfCheckName", null, false, false, true, "VARCHAR", 80, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnMyselfId = cci("MYSELF_ID", "MYSELF_ID", null, null, Integer.class, "myselfId", null, false, false, false, "INT", 10, 0, null, false, null, null, "whiteMyself", null, null);
 
     /**
      * MYSELF_CHECK_ID: {PK, NotNull, INT(10)}
@@ -126,6 +143,8 @@ public class WhiteMyselfCheckDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

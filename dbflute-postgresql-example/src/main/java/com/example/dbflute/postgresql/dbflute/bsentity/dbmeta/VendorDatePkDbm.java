@@ -33,13 +33,14 @@ public class VendorDatePkDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgFooDate(), "fooDate");
         setupEpg(_epgMap, new EpgFooName(), "fooName");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgFooDate implements PropertyGateway {
         public Object read(Entity et) { return ((VendorDatePk)et).getFooDate(); }
         public void write(Entity et, Object vl) { ((VendorDatePk)et).setFooDate((java.util.Date)vl); }
@@ -48,6 +49,8 @@ public class VendorDatePkDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((VendorDatePk)et).getFooName(); }
         public void write(Entity et, Object vl) { ((VendorDatePk)et).setFooName((String)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -63,10 +66,18 @@ public class VendorDatePkDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnFooDate = cci("foo_date", "foo_date", null, null, true, "fooDate", java.util.Date.class, true, false, "date", 13, 0, null, false, null, null, null, "vendorDateFkList", null);
-    protected final ColumnInfo _columnFooName = cci("foo_name", "foo_name", null, null, true, "fooName", String.class, false, false, "varchar", 2147483647, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnFooDate = cci("foo_date", "foo_date", null, null, java.util.Date.class, "fooDate", null, true, false, true, "date", 13, 0, null, false, null, null, null, "vendorDateFkList", null);
+    protected final ColumnInfo _columnFooName = cci("foo_name", "foo_name", null, null, String.class, "fooName", null, false, false, true, "varchar", 2147483647, 0, null, false, null, null, null, null, null);
 
+    /**
+     * foo_date: {PK, NotNull, date(13)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnFooDate() { return _columnFooDate; }
+    /**
+     * foo_name: {NotNull, varchar(2147483647)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnFooName() { return _columnFooName; }
 
     protected List<ColumnInfo> ccil() {
@@ -91,6 +102,8 @@ public class VendorDatePkDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------
@@ -98,6 +111,10 @@ public class VendorDatePkDbm extends AbstractDBMeta {
     // -----------------------------------------------------
     //                                     Referrer Property
     //                                     -----------------
+    /**
+     * vendor_date_fk by bar_date, named 'vendorDateFkList'.
+     * @return The information object of referrer property. (NotNull)
+     */
     public ReferrerInfo referrerVendorDateFkList() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnFooDate(), VendorDateFkDbm.getInstance().columnBarDate());
         return cri("fk_vendor_date_fk_pk", "vendorDateFkList", this, VendorDateFkDbm.getInstance(), mp, false, "vendorDatePk");

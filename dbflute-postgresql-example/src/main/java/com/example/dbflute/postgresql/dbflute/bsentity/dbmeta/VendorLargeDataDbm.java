@@ -33,6 +33,9 @@ public class VendorLargeDataDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgLargeDataId(), "largeDataId");
@@ -43,8 +46,6 @@ public class VendorLargeDataDbm extends AbstractDBMeta {
         setupEpg(_epgMap, new EpgNumericIntegerIndex(), "numericIntegerIndex");
         setupEpg(_epgMap, new EpgNumericIntegerNoIndex(), "numericIntegerNoIndex");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgLargeDataId implements PropertyGateway {
         public Object read(Entity et) { return ((VendorLargeData)et).getLargeDataId(); }
         public void write(Entity et, Object vl) { ((VendorLargeData)et).setLargeDataId(ctl(vl)); }
@@ -73,6 +74,8 @@ public class VendorLargeDataDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((VendorLargeData)et).getNumericIntegerNoIndex(); }
         public void write(Entity et, Object vl) { ((VendorLargeData)et).setNumericIntegerNoIndex(cti(vl)); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -88,20 +91,48 @@ public class VendorLargeDataDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnLargeDataId = cci("large_data_id", "large_data_id", null, null, true, "largeDataId", Long.class, true, false, "int8", 19, 0, null, false, null, null, null, "vendorLargeDataRefList", null);
-    protected final ColumnInfo _columnStringIndex = cci("string_index", "string_index", null, null, true, "stringIndex", String.class, false, false, "varchar", 200, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnStringNoIndex = cci("string_no_index", "string_no_index", null, null, true, "stringNoIndex", String.class, false, false, "varchar", 200, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnStringUniqueIndex = cci("string_unique_index", "string_unique_index", null, null, true, "stringUniqueIndex", String.class, false, false, "varchar", 200, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnIntflgIndex = cci("intflg_index", "intflg_index", null, null, true, "intflgIndex", Integer.class, false, false, "int4", 10, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnNumericIntegerIndex = cci("numeric_integer_index", "numeric_integer_index", null, null, true, "numericIntegerIndex", Integer.class, false, false, "numeric", 8, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnNumericIntegerNoIndex = cci("numeric_integer_no_index", "numeric_integer_no_index", null, null, true, "numericIntegerNoIndex", Integer.class, false, false, "numeric", 8, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnLargeDataId = cci("large_data_id", "large_data_id", null, null, Long.class, "largeDataId", null, true, false, true, "int8", 19, 0, null, false, null, null, null, "vendorLargeDataRefList", null);
+    protected final ColumnInfo _columnStringIndex = cci("string_index", "string_index", null, null, String.class, "stringIndex", null, false, false, true, "varchar", 200, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnStringNoIndex = cci("string_no_index", "string_no_index", null, null, String.class, "stringNoIndex", null, false, false, true, "varchar", 200, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnStringUniqueIndex = cci("string_unique_index", "string_unique_index", null, null, String.class, "stringUniqueIndex", null, false, false, true, "varchar", 200, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnIntflgIndex = cci("intflg_index", "intflg_index", null, null, Integer.class, "intflgIndex", null, false, false, true, "int4", 10, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnNumericIntegerIndex = cci("numeric_integer_index", "numeric_integer_index", null, null, Integer.class, "numericIntegerIndex", null, false, false, true, "numeric", 8, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnNumericIntegerNoIndex = cci("numeric_integer_no_index", "numeric_integer_no_index", null, null, Integer.class, "numericIntegerNoIndex", null, false, false, true, "numeric", 8, 0, null, false, null, null, null, null, null);
 
+    /**
+     * large_data_id: {PK, NotNull, int8(19)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnLargeDataId() { return _columnLargeDataId; }
+    /**
+     * string_index: {IX, NotNull, varchar(200)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnStringIndex() { return _columnStringIndex; }
+    /**
+     * string_no_index: {NotNull, varchar(200)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnStringNoIndex() { return _columnStringNoIndex; }
+    /**
+     * string_unique_index: {UQ, NotNull, varchar(200)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnStringUniqueIndex() { return _columnStringUniqueIndex; }
+    /**
+     * intflg_index: {NotNull, int4(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnIntflgIndex() { return _columnIntflgIndex; }
+    /**
+     * numeric_integer_index: {IX, NotNull, numeric(8)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnNumericIntegerIndex() { return _columnNumericIntegerIndex; }
+    /**
+     * numeric_integer_no_index: {NotNull, numeric(8)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnNumericIntegerNoIndex() { return _columnNumericIntegerNoIndex; }
 
     protected List<ColumnInfo> ccil() {
@@ -131,6 +162,8 @@ public class VendorLargeDataDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------
@@ -138,6 +171,10 @@ public class VendorLargeDataDbm extends AbstractDBMeta {
     // -----------------------------------------------------
     //                                     Referrer Property
     //                                     -----------------
+    /**
+     * vendor_large_data_ref by large_data_id, named 'vendorLargeDataRefList'.
+     * @return The information object of referrer property. (NotNull)
+     */
     public ReferrerInfo referrerVendorLargeDataRefList() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnLargeDataId(), VendorLargeDataRefDbm.getInstance().columnLargeDataId());
         return cri("fk_vendor_large_data_ref_data", "vendorLargeDataRefList", this, VendorLargeDataRefDbm.getInstance(), mp, false, "vendorLargeData");

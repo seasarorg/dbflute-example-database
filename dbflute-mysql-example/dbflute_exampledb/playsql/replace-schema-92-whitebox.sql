@@ -1,5 +1,26 @@
 
 -- /= = = = = = = = = = = = = = = = = = = = = =
+-- for the test of only one-to-one table
+-- = = = = = = = = = =/
+CREATE TABLE WHITE_ONLY_ONE_TO_ONE_FROM(
+    FROM_ID BIGINT AUTO_INCREMENT NOT NULL,
+    FROM_NAME VARCHAR(200) NOT NULL,
+    PRIMARY KEY (FROM_ID)
+);
+
+CREATE TABLE WHITE_ONLY_ONE_TO_ONE_TO(
+    TO_ID BIGINT AUTO_INCREMENT NOT NULL,
+    TO_NAME VARCHAR(200) NOT NULL,
+    FROM_ID BIGINT NOT NULL,
+    PRIMARY KEY (TO_ID),
+    UNIQUE (FROM_ID)
+);
+
+ALTER TABLE WHITE_ONLY_ONE_TO_ONE_TO ADD CONSTRAINT FK_WHITE_ONLY_ONE_TO_ONE_TO_FROM
+	FOREIGN KEY (FROM_ID)
+	REFERENCES WHITE_ONLY_ONE_TO_ONE_FROM (FROM_ID);
+
+-- /= = = = = = = = = = = = = = = = = = = = = =
 -- for the test of over relation, referrer over
 -- = = = = = = = = = =/
 CREATE TABLE WHITE_PURCHASE_REFERRER(
@@ -431,6 +452,18 @@ CREATE TABLE WHITE_POINT_TYPE_MAPPING (
 	POINT_TYPE_MAPPING_SALE_DATE BIGINT,
 	POINT_TYPE_MAPPING_WANTED_DATETIME DATETIME,
 	PRIMARY KEY (POINT_TYPE_MAPPING_ID)
+) ;
+
+-- /= = = = = = = = = = = = = = = = = = = = = = = =
+-- for the test of include query of condition-bean 
+-- = = = = = = = = = =/
+CREATE TABLE WHITE_INCLUDE_QUERY (
+	INCLUDE_QUERY_ID BIGINT AUTO_INCREMENT NOT NULL,
+	INCLUDE_QUERY_INTEGER INTEGER,
+	INCLUDE_QUERY_VARCHAR VARCHAR(100),
+	INCLUDE_QUERY_DATE DATE,
+	INCLUDE_QUERY_DATETIME DATETIME,
+	PRIMARY KEY (INCLUDE_QUERY_ID)
 ) ;
 
 -- /= = = = = = = = = = = = = = = = = = = = = = = = = =

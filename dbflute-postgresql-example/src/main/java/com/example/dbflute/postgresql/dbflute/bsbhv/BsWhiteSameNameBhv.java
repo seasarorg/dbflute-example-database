@@ -169,7 +169,7 @@ public abstract class BsWhiteSameNameBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of WhiteSameName. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -190,39 +190,42 @@ public abstract class BsWhiteSameNameBhv extends AbstractBehaviorWritable {
 
     /**
      * Select the entity by the primary-key value.
-     * @param sameNameId The one of primary key. (NotNull)
+     * @param sameNameId : PK, NotNull, int8(19). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteSameName selectByPKValue(Long sameNameId) {
-        return doSelectByPKValue(sameNameId, WhiteSameName.class);
+        return doSelectByPK(sameNameId, WhiteSameName.class);
     }
 
-    protected <ENTITY extends WhiteSameName> ENTITY doSelectByPKValue(Long sameNameId, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(sameNameId), entityType);
+    protected <ENTITY extends WhiteSameName> ENTITY doSelectByPK(Long sameNameId, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(sameNameId), entityType);
+    }
+
+    protected <ENTITY extends WhiteSameName> OptionalEntity<ENTITY> doSelectOptionalByPK(Long sameNameId, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(sameNameId, entityType), sameNameId);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param sameNameId The one of primary key. (NotNull)
+     * @param sameNameId : PK, NotNull, int8(19). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteSameName selectByPKValueWithDeletedCheck(Long sameNameId) {
-        return doSelectByPKValueWithDeletedCheck(sameNameId, WhiteSameName.class);
+        return doSelectByPKWithDeletedCheck(sameNameId, WhiteSameName.class);
     }
 
-    protected <ENTITY extends WhiteSameName> ENTITY doSelectByPKValueWithDeletedCheck(Long sameNameId, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(sameNameId), entityType);
+    protected <ENTITY extends WhiteSameName> ENTITY doSelectByPKWithDeletedCheck(Long sameNameId, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(sameNameId), entityType);
     }
 
-    private WhiteSameNameCB buildPKCB(Long sameNameId) {
+    protected WhiteSameNameCB xprepareCBAsPK(Long sameNameId) {
         assertObjectNotNull("sameNameId", sameNameId);
-        WhiteSameNameCB cb = newMyConditionBean();
-        cb.query().setSameNameId_Equal(sameNameId);
+        WhiteSameNameCB cb = newMyConditionBean(); cb.acceptPrimaryKey(sameNameId);
         return cb;
     }
 
@@ -498,7 +501,8 @@ public abstract class BsWhiteSameNameBhv extends AbstractBehaviorWritable {
      */
     public List<NextSchemaProduct> pulloutNextSchemaProduct(List<WhiteSameName> whiteSameNameList) {
         return helpPulloutInternally(whiteSameNameList, new InternalPulloutCallback<WhiteSameName, NextSchemaProduct>() {
-            public NextSchemaProduct getFr(WhiteSameName et) { return et.getNextSchemaProduct(); }
+            public NextSchemaProduct getFr(WhiteSameName et)
+            { return et.getNextSchemaProduct(); }
             public boolean hasRf() { return true; }
             public void setRfLs(NextSchemaProduct et, List<WhiteSameName> ls)
             { et.setWhiteSameNameList(ls); }

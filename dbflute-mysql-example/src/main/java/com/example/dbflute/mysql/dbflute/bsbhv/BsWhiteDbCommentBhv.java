@@ -184,7 +184,7 @@ public abstract class BsWhiteDbCommentBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of WhiteDbComment. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -205,39 +205,42 @@ public abstract class BsWhiteDbCommentBhv extends AbstractBehaviorWritable {
 
     /**
      * Select the entity by the primary-key value.
-     * @param dbCommentCode The one of primary key. (NotNull)
+     * @param dbCommentCode (Normal): PK, NotNull, CHAR(3). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteDbComment selectByPKValue(String dbCommentCode) {
-        return doSelectByPKValue(dbCommentCode, WhiteDbComment.class);
+        return doSelectByPK(dbCommentCode, WhiteDbComment.class);
     }
 
-    protected <ENTITY extends WhiteDbComment> ENTITY doSelectByPKValue(String dbCommentCode, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(dbCommentCode), entityType);
+    protected <ENTITY extends WhiteDbComment> ENTITY doSelectByPK(String dbCommentCode, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(dbCommentCode), entityType);
+    }
+
+    protected <ENTITY extends WhiteDbComment> OptionalEntity<ENTITY> doSelectOptionalByPK(String dbCommentCode, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(dbCommentCode, entityType), dbCommentCode);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param dbCommentCode The one of primary key. (NotNull)
+     * @param dbCommentCode (Normal): PK, NotNull, CHAR(3). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteDbComment selectByPKValueWithDeletedCheck(String dbCommentCode) {
-        return doSelectByPKValueWithDeletedCheck(dbCommentCode, WhiteDbComment.class);
+        return doSelectByPKWithDeletedCheck(dbCommentCode, WhiteDbComment.class);
     }
 
-    protected <ENTITY extends WhiteDbComment> ENTITY doSelectByPKValueWithDeletedCheck(String dbCommentCode, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(dbCommentCode), entityType);
+    protected <ENTITY extends WhiteDbComment> ENTITY doSelectByPKWithDeletedCheck(String dbCommentCode, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(dbCommentCode), entityType);
     }
 
-    private WhiteDbCommentCB buildPKCB(String dbCommentCode) {
+    protected WhiteDbCommentCB xprepareCBAsPK(String dbCommentCode) {
         assertObjectNotNull("dbCommentCode", dbCommentCode);
-        WhiteDbCommentCB cb = newMyConditionBean();
-        cb.query().setDbCommentCode_Equal(dbCommentCode);
+        WhiteDbCommentCB cb = newMyConditionBean(); cb.acceptPrimaryKey(dbCommentCode);
         return cb;
     }
 

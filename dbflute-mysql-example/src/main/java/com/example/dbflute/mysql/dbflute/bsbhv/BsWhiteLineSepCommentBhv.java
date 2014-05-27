@@ -184,7 +184,7 @@ public abstract class BsWhiteLineSepCommentBhv extends AbstractBehaviorWritable 
      * </pre>
      * @param cb The condition-bean of WhiteLineSepComment. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -205,39 +205,42 @@ public abstract class BsWhiteLineSepCommentBhv extends AbstractBehaviorWritable 
 
     /**
      * Select the entity by the primary-key value.
-     * @param lineSepCommentCode The one of primary key. (NotNull)
+     * @param lineSepCommentCode : PK, NotNull, CHAR(3), classification=LineSepCommentCls. (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteLineSepComment selectByPKValue(String lineSepCommentCode) {
-        return doSelectByPKValue(lineSepCommentCode, WhiteLineSepComment.class);
+        return doSelectByPK(lineSepCommentCode, WhiteLineSepComment.class);
     }
 
-    protected <ENTITY extends WhiteLineSepComment> ENTITY doSelectByPKValue(String lineSepCommentCode, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(lineSepCommentCode), entityType);
+    protected <ENTITY extends WhiteLineSepComment> ENTITY doSelectByPK(String lineSepCommentCode, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(lineSepCommentCode), entityType);
+    }
+
+    protected <ENTITY extends WhiteLineSepComment> OptionalEntity<ENTITY> doSelectOptionalByPK(String lineSepCommentCode, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(lineSepCommentCode, entityType), lineSepCommentCode);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param lineSepCommentCode The one of primary key. (NotNull)
+     * @param lineSepCommentCode : PK, NotNull, CHAR(3), classification=LineSepCommentCls. (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteLineSepComment selectByPKValueWithDeletedCheck(String lineSepCommentCode) {
-        return doSelectByPKValueWithDeletedCheck(lineSepCommentCode, WhiteLineSepComment.class);
+        return doSelectByPKWithDeletedCheck(lineSepCommentCode, WhiteLineSepComment.class);
     }
 
-    protected <ENTITY extends WhiteLineSepComment> ENTITY doSelectByPKValueWithDeletedCheck(String lineSepCommentCode, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(lineSepCommentCode), entityType);
+    protected <ENTITY extends WhiteLineSepComment> ENTITY doSelectByPKWithDeletedCheck(String lineSepCommentCode, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(lineSepCommentCode), entityType);
     }
 
-    private WhiteLineSepCommentCB buildPKCB(String lineSepCommentCode) {
+    protected WhiteLineSepCommentCB xprepareCBAsPK(String lineSepCommentCode) {
         assertObjectNotNull("lineSepCommentCode", lineSepCommentCode);
-        WhiteLineSepCommentCB cb = newMyConditionBean();
-        cb.query().setLineSepCommentCode_Equal(lineSepCommentCode);
+        WhiteLineSepCommentCB cb = newMyConditionBean(); cb.acceptPrimaryKey(lineSepCommentCode);
         return cb;
     }
 

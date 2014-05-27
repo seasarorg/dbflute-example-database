@@ -93,10 +93,14 @@ public class BsWhiteImplicitConvIntegerCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                 PrimaryKey Handling
     //                                                                 ===================
+    /**
+     * Accept the query condition of primary key as equal.
+     * @param implicitConvIntegerId : PK, NotNull, INT(10). (NotNull)
+     */
     public void acceptPrimaryKey(Integer implicitConvIntegerId) {
         assertObjectNotNull("implicitConvIntegerId", implicitConvIntegerId);
         BsWhiteImplicitConvIntegerCB cb = this;
-        cb.query().setImplicitConvIntegerId_Equal(implicitConvIntegerId);
+        cb.query().setImplicitConvIntegerId_Equal(implicitConvIntegerId);;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {
@@ -565,6 +569,11 @@ public class BsWhiteImplicitConvIntegerCB extends AbstractConditionBean {
      */
     public void orScopeQuery(OrQuery<WhiteImplicitConvIntegerCB> orQuery) {
         xorSQ((WhiteImplicitConvIntegerCB)this, orQuery);
+    }
+
+    @Override
+    protected HpCBPurpose xhandleOrSQPurposeChange() {
+        return null; // means no check
     }
 
     /**

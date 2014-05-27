@@ -353,7 +353,7 @@ public class BsWhiteImplicitConvNumericCQ extends AbstractBsWhiteImplicitConvNum
     // ===================================================================================
     //                                                                         Union Query
     //                                                                         ===========
-    protected void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
+    public void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
         WhiteImplicitConvNumericCQ bq = (WhiteImplicitConvNumericCQ)bqs;
         WhiteImplicitConvNumericCQ uq = (WhiteImplicitConvNumericCQ)uqs;
         if (bq.hasConditionQueryWhiteImplicitConvInteger()) {

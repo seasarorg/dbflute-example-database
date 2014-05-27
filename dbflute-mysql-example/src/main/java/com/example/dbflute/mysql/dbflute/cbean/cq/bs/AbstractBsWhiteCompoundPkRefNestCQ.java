@@ -165,7 +165,7 @@ public abstract class AbstractBsWhiteCompoundPkRefNestCQ extends AbstractConditi
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
-     * FOO_MULTIPLE_ID: {IX, NotNull, INT(10), FK to white_compound_pk_ref}
+     * FOO_MULTIPLE_ID: {IX+, NotNull, INT(10), FK to white_compound_pk_ref}
      * @param fooMultipleId The value of fooMultipleId as equal. (NullAllowed: if null, no condition)
      */
     public void setFooMultipleId_Equal(Integer fooMultipleId) {
@@ -178,7 +178,7 @@ public abstract class AbstractBsWhiteCompoundPkRefNestCQ extends AbstractConditi
 
     /**
      * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br />
-     * FOO_MULTIPLE_ID: {IX, NotNull, INT(10), FK to white_compound_pk_ref}
+     * FOO_MULTIPLE_ID: {IX+, NotNull, INT(10), FK to white_compound_pk_ref}
      * @param fooMultipleId The value of fooMultipleId as greaterThan. (NullAllowed: if null, no condition)
      */
     public void setFooMultipleId_GreaterThan(Integer fooMultipleId) {
@@ -187,7 +187,7 @@ public abstract class AbstractBsWhiteCompoundPkRefNestCQ extends AbstractConditi
 
     /**
      * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br />
-     * FOO_MULTIPLE_ID: {IX, NotNull, INT(10), FK to white_compound_pk_ref}
+     * FOO_MULTIPLE_ID: {IX+, NotNull, INT(10), FK to white_compound_pk_ref}
      * @param fooMultipleId The value of fooMultipleId as lessThan. (NullAllowed: if null, no condition)
      */
     public void setFooMultipleId_LessThan(Integer fooMultipleId) {
@@ -196,7 +196,7 @@ public abstract class AbstractBsWhiteCompoundPkRefNestCQ extends AbstractConditi
 
     /**
      * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br />
-     * FOO_MULTIPLE_ID: {IX, NotNull, INT(10), FK to white_compound_pk_ref}
+     * FOO_MULTIPLE_ID: {IX+, NotNull, INT(10), FK to white_compound_pk_ref}
      * @param fooMultipleId The value of fooMultipleId as greaterEqual. (NullAllowed: if null, no condition)
      */
     public void setFooMultipleId_GreaterEqual(Integer fooMultipleId) {
@@ -205,7 +205,7 @@ public abstract class AbstractBsWhiteCompoundPkRefNestCQ extends AbstractConditi
 
     /**
      * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br />
-     * FOO_MULTIPLE_ID: {IX, NotNull, INT(10), FK to white_compound_pk_ref}
+     * FOO_MULTIPLE_ID: {IX+, NotNull, INT(10), FK to white_compound_pk_ref}
      * @param fooMultipleId The value of fooMultipleId as lessEqual. (NullAllowed: if null, no condition)
      */
     public void setFooMultipleId_LessEqual(Integer fooMultipleId) {
@@ -216,7 +216,7 @@ public abstract class AbstractBsWhiteCompoundPkRefNestCQ extends AbstractConditi
      * RangeOf with various options. (versatile) <br />
      * {(default) minNumber &lt;= column &lt;= maxNumber} <br />
      * And NullIgnored, OnlyOnceRegistered. <br />
-     * FOO_MULTIPLE_ID: {IX, NotNull, INT(10), FK to white_compound_pk_ref}
+     * FOO_MULTIPLE_ID: {IX+, NotNull, INT(10), FK to white_compound_pk_ref}
      * @param minNumber The min number of fooMultipleId. (NullAllowed: if null, no from-condition)
      * @param maxNumber The max number of fooMultipleId. (NullAllowed: if null, no to-condition)
      * @param rangeOfOption The option of range-of. (NotNull)
@@ -227,7 +227,7 @@ public abstract class AbstractBsWhiteCompoundPkRefNestCQ extends AbstractConditi
 
     /**
      * InScope {in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br />
-     * FOO_MULTIPLE_ID: {IX, NotNull, INT(10), FK to white_compound_pk_ref}
+     * FOO_MULTIPLE_ID: {IX+, NotNull, INT(10), FK to white_compound_pk_ref}
      * @param fooMultipleIdList The collection of fooMultipleId as inScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setFooMultipleId_InScope(Collection<Integer> fooMultipleIdList) {
@@ -240,7 +240,7 @@ public abstract class AbstractBsWhiteCompoundPkRefNestCQ extends AbstractConditi
 
     /**
      * NotInScope {not in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br />
-     * FOO_MULTIPLE_ID: {IX, NotNull, INT(10), FK to white_compound_pk_ref}
+     * FOO_MULTIPLE_ID: {IX+, NotNull, INT(10), FK to white_compound_pk_ref}
      * @param fooMultipleIdList The collection of fooMultipleId as notInScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setFooMultipleId_NotInScope(Collection<Integer> fooMultipleIdList) {
@@ -256,7 +256,7 @@ public abstract class AbstractBsWhiteCompoundPkRefNestCQ extends AbstractConditi
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
-     * BAR_MULTIPLE_ID: {IX, NotNull, INT(10), FK to white_compound_pk_ref}
+     * BAR_MULTIPLE_ID: {IX+, NotNull, INT(10), FK to white_compound_pk_ref}
      * @param barMultipleId The value of barMultipleId as equal. (NullAllowed: if null, no condition)
      */
     public void setBarMultipleId_Equal(Integer barMultipleId) {
@@ -269,7 +269,7 @@ public abstract class AbstractBsWhiteCompoundPkRefNestCQ extends AbstractConditi
 
     /**
      * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br />
-     * BAR_MULTIPLE_ID: {IX, NotNull, INT(10), FK to white_compound_pk_ref}
+     * BAR_MULTIPLE_ID: {IX+, NotNull, INT(10), FK to white_compound_pk_ref}
      * @param barMultipleId The value of barMultipleId as greaterThan. (NullAllowed: if null, no condition)
      */
     public void setBarMultipleId_GreaterThan(Integer barMultipleId) {
@@ -278,7 +278,7 @@ public abstract class AbstractBsWhiteCompoundPkRefNestCQ extends AbstractConditi
 
     /**
      * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br />
-     * BAR_MULTIPLE_ID: {IX, NotNull, INT(10), FK to white_compound_pk_ref}
+     * BAR_MULTIPLE_ID: {IX+, NotNull, INT(10), FK to white_compound_pk_ref}
      * @param barMultipleId The value of barMultipleId as lessThan. (NullAllowed: if null, no condition)
      */
     public void setBarMultipleId_LessThan(Integer barMultipleId) {
@@ -287,7 +287,7 @@ public abstract class AbstractBsWhiteCompoundPkRefNestCQ extends AbstractConditi
 
     /**
      * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br />
-     * BAR_MULTIPLE_ID: {IX, NotNull, INT(10), FK to white_compound_pk_ref}
+     * BAR_MULTIPLE_ID: {IX+, NotNull, INT(10), FK to white_compound_pk_ref}
      * @param barMultipleId The value of barMultipleId as greaterEqual. (NullAllowed: if null, no condition)
      */
     public void setBarMultipleId_GreaterEqual(Integer barMultipleId) {
@@ -296,7 +296,7 @@ public abstract class AbstractBsWhiteCompoundPkRefNestCQ extends AbstractConditi
 
     /**
      * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br />
-     * BAR_MULTIPLE_ID: {IX, NotNull, INT(10), FK to white_compound_pk_ref}
+     * BAR_MULTIPLE_ID: {IX+, NotNull, INT(10), FK to white_compound_pk_ref}
      * @param barMultipleId The value of barMultipleId as lessEqual. (NullAllowed: if null, no condition)
      */
     public void setBarMultipleId_LessEqual(Integer barMultipleId) {
@@ -307,7 +307,7 @@ public abstract class AbstractBsWhiteCompoundPkRefNestCQ extends AbstractConditi
      * RangeOf with various options. (versatile) <br />
      * {(default) minNumber &lt;= column &lt;= maxNumber} <br />
      * And NullIgnored, OnlyOnceRegistered. <br />
-     * BAR_MULTIPLE_ID: {IX, NotNull, INT(10), FK to white_compound_pk_ref}
+     * BAR_MULTIPLE_ID: {IX+, NotNull, INT(10), FK to white_compound_pk_ref}
      * @param minNumber The min number of barMultipleId. (NullAllowed: if null, no from-condition)
      * @param maxNumber The max number of barMultipleId. (NullAllowed: if null, no to-condition)
      * @param rangeOfOption The option of range-of. (NotNull)
@@ -318,7 +318,7 @@ public abstract class AbstractBsWhiteCompoundPkRefNestCQ extends AbstractConditi
 
     /**
      * InScope {in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br />
-     * BAR_MULTIPLE_ID: {IX, NotNull, INT(10), FK to white_compound_pk_ref}
+     * BAR_MULTIPLE_ID: {IX+, NotNull, INT(10), FK to white_compound_pk_ref}
      * @param barMultipleIdList The collection of barMultipleId as inScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setBarMultipleId_InScope(Collection<Integer> barMultipleIdList) {
@@ -331,7 +331,7 @@ public abstract class AbstractBsWhiteCompoundPkRefNestCQ extends AbstractConditi
 
     /**
      * NotInScope {not in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br />
-     * BAR_MULTIPLE_ID: {IX, NotNull, INT(10), FK to white_compound_pk_ref}
+     * BAR_MULTIPLE_ID: {IX+, NotNull, INT(10), FK to white_compound_pk_ref}
      * @param barMultipleIdList The collection of barMultipleId as notInScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setBarMultipleId_NotInScope(Collection<Integer> barMultipleIdList) {
@@ -347,7 +347,7 @@ public abstract class AbstractBsWhiteCompoundPkRefNestCQ extends AbstractConditi
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
-     * QUX_MULTIPLE_ID: {IX+, NotNull, INT(10), FK to white_compound_pk_ref}
+     * QUX_MULTIPLE_ID: {NotNull, INT(10), FK to white_compound_pk_ref}
      * @param quxMultipleId The value of quxMultipleId as equal. (NullAllowed: if null, no condition)
      */
     public void setQuxMultipleId_Equal(Integer quxMultipleId) {
@@ -360,7 +360,7 @@ public abstract class AbstractBsWhiteCompoundPkRefNestCQ extends AbstractConditi
 
     /**
      * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br />
-     * QUX_MULTIPLE_ID: {IX+, NotNull, INT(10), FK to white_compound_pk_ref}
+     * QUX_MULTIPLE_ID: {NotNull, INT(10), FK to white_compound_pk_ref}
      * @param quxMultipleId The value of quxMultipleId as greaterThan. (NullAllowed: if null, no condition)
      */
     public void setQuxMultipleId_GreaterThan(Integer quxMultipleId) {
@@ -369,7 +369,7 @@ public abstract class AbstractBsWhiteCompoundPkRefNestCQ extends AbstractConditi
 
     /**
      * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br />
-     * QUX_MULTIPLE_ID: {IX+, NotNull, INT(10), FK to white_compound_pk_ref}
+     * QUX_MULTIPLE_ID: {NotNull, INT(10), FK to white_compound_pk_ref}
      * @param quxMultipleId The value of quxMultipleId as lessThan. (NullAllowed: if null, no condition)
      */
     public void setQuxMultipleId_LessThan(Integer quxMultipleId) {
@@ -378,7 +378,7 @@ public abstract class AbstractBsWhiteCompoundPkRefNestCQ extends AbstractConditi
 
     /**
      * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br />
-     * QUX_MULTIPLE_ID: {IX+, NotNull, INT(10), FK to white_compound_pk_ref}
+     * QUX_MULTIPLE_ID: {NotNull, INT(10), FK to white_compound_pk_ref}
      * @param quxMultipleId The value of quxMultipleId as greaterEqual. (NullAllowed: if null, no condition)
      */
     public void setQuxMultipleId_GreaterEqual(Integer quxMultipleId) {
@@ -387,7 +387,7 @@ public abstract class AbstractBsWhiteCompoundPkRefNestCQ extends AbstractConditi
 
     /**
      * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br />
-     * QUX_MULTIPLE_ID: {IX+, NotNull, INT(10), FK to white_compound_pk_ref}
+     * QUX_MULTIPLE_ID: {NotNull, INT(10), FK to white_compound_pk_ref}
      * @param quxMultipleId The value of quxMultipleId as lessEqual. (NullAllowed: if null, no condition)
      */
     public void setQuxMultipleId_LessEqual(Integer quxMultipleId) {
@@ -398,7 +398,7 @@ public abstract class AbstractBsWhiteCompoundPkRefNestCQ extends AbstractConditi
      * RangeOf with various options. (versatile) <br />
      * {(default) minNumber &lt;= column &lt;= maxNumber} <br />
      * And NullIgnored, OnlyOnceRegistered. <br />
-     * QUX_MULTIPLE_ID: {IX+, NotNull, INT(10), FK to white_compound_pk_ref}
+     * QUX_MULTIPLE_ID: {NotNull, INT(10), FK to white_compound_pk_ref}
      * @param minNumber The min number of quxMultipleId. (NullAllowed: if null, no from-condition)
      * @param maxNumber The max number of quxMultipleId. (NullAllowed: if null, no to-condition)
      * @param rangeOfOption The option of range-of. (NotNull)
@@ -409,7 +409,7 @@ public abstract class AbstractBsWhiteCompoundPkRefNestCQ extends AbstractConditi
 
     /**
      * InScope {in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br />
-     * QUX_MULTIPLE_ID: {IX+, NotNull, INT(10), FK to white_compound_pk_ref}
+     * QUX_MULTIPLE_ID: {NotNull, INT(10), FK to white_compound_pk_ref}
      * @param quxMultipleIdList The collection of quxMultipleId as inScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setQuxMultipleId_InScope(Collection<Integer> quxMultipleIdList) {
@@ -422,7 +422,7 @@ public abstract class AbstractBsWhiteCompoundPkRefNestCQ extends AbstractConditi
 
     /**
      * NotInScope {not in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br />
-     * QUX_MULTIPLE_ID: {IX+, NotNull, INT(10), FK to white_compound_pk_ref}
+     * QUX_MULTIPLE_ID: {NotNull, INT(10), FK to white_compound_pk_ref}
      * @param quxMultipleIdList The collection of quxMultipleId as notInScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setQuxMultipleId_NotInScope(Collection<Integer> quxMultipleIdList) {
@@ -659,7 +659,7 @@ public abstract class AbstractBsWhiteCompoundPkRefNestCQ extends AbstractConditi
     public abstract String keepSpecifyMyselfDerived(WhiteCompoundPkRefNestCQ sq);
 
     /**
-     * Prepare for (Query)MyselfDerived (SubQuery).
+     * Prepare for (Query)MyselfDerived (correlated sub-query).
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<WhiteCompoundPkRefNestCB> myselfDerived() {
@@ -681,8 +681,8 @@ public abstract class AbstractBsWhiteCompoundPkRefNestCQ extends AbstractConditi
     //                                                                        MyselfExists
     //                                                                        ============
     /**
-     * Prepare for MyselfExists (SubQuery).
-     * @param subQuery The implementation of sub query. (NotNull)
+     * Prepare for MyselfExists (correlated sub-query).
+     * @param subQuery The implementation of sub-query. (NotNull)
      */
     public void myselfExists(SubQuery<WhiteCompoundPkRefNestCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
@@ -697,8 +697,8 @@ public abstract class AbstractBsWhiteCompoundPkRefNestCQ extends AbstractConditi
     //                                                                       MyselfInScope
     //                                                                       =============
     /**
-     * Prepare for MyselfInScope (SubQuery).
-     * @param subQuery The implementation of sub query. (NotNull)
+     * Prepare for MyselfInScope (sub-query).
+     * @param subQuery The implementation of sub-query. (NotNull)
      */
     public void myselfInScope(SubQuery<WhiteCompoundPkRefNestCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);

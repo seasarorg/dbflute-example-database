@@ -184,7 +184,7 @@ public abstract class BsWhiteUqFkWithoutPkRefBhv extends AbstractBehaviorReadabl
      * </pre>
      * @param cb The condition-bean of WhiteUqFkWithoutPkRef. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -364,7 +364,8 @@ public abstract class BsWhiteUqFkWithoutPkRefBhv extends AbstractBehaviorReadabl
      */
     public List<WhiteUqFkWithoutPk> pulloutWhiteUqFkWithoutPk(List<WhiteUqFkWithoutPkRef> whiteUqFkWithoutPkRefList) {
         return helpPulloutInternally(whiteUqFkWithoutPkRefList, new InternalPulloutCallback<WhiteUqFkWithoutPkRef, WhiteUqFkWithoutPk>() {
-            public WhiteUqFkWithoutPk getFr(WhiteUqFkWithoutPkRef et) { return et.getWhiteUqFkWithoutPk(); }
+            public WhiteUqFkWithoutPk getFr(WhiteUqFkWithoutPkRef et)
+            { return et.getWhiteUqFkWithoutPk(); }
             public boolean hasRf() { return true; }
             public void setRfLs(WhiteUqFkWithoutPk et, List<WhiteUqFkWithoutPkRef> ls)
             { et.setWhiteUqFkWithoutPkRefList(ls); }

@@ -184,7 +184,7 @@ public abstract class BsWhiteTableExceptGenRefBhv extends AbstractBehaviorWritab
      * </pre>
      * @param cb The condition-bean of WhiteTableExceptGenRef. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -205,39 +205,42 @@ public abstract class BsWhiteTableExceptGenRefBhv extends AbstractBehaviorWritab
 
     /**
      * Select the entity by the primary-key value.
-     * @param genRefId The one of primary key. (NotNull)
+     * @param genRefId : PK, NotNull, DECIMAL(16). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteTableExceptGenRef selectByPKValue(Long genRefId) {
-        return doSelectByPKValue(genRefId, WhiteTableExceptGenRef.class);
+        return doSelectByPK(genRefId, WhiteTableExceptGenRef.class);
     }
 
-    protected <ENTITY extends WhiteTableExceptGenRef> ENTITY doSelectByPKValue(Long genRefId, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(genRefId), entityType);
+    protected <ENTITY extends WhiteTableExceptGenRef> ENTITY doSelectByPK(Long genRefId, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(genRefId), entityType);
+    }
+
+    protected <ENTITY extends WhiteTableExceptGenRef> OptionalEntity<ENTITY> doSelectOptionalByPK(Long genRefId, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(genRefId, entityType), genRefId);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param genRefId The one of primary key. (NotNull)
+     * @param genRefId : PK, NotNull, DECIMAL(16). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteTableExceptGenRef selectByPKValueWithDeletedCheck(Long genRefId) {
-        return doSelectByPKValueWithDeletedCheck(genRefId, WhiteTableExceptGenRef.class);
+        return doSelectByPKWithDeletedCheck(genRefId, WhiteTableExceptGenRef.class);
     }
 
-    protected <ENTITY extends WhiteTableExceptGenRef> ENTITY doSelectByPKValueWithDeletedCheck(Long genRefId, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(genRefId), entityType);
+    protected <ENTITY extends WhiteTableExceptGenRef> ENTITY doSelectByPKWithDeletedCheck(Long genRefId, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(genRefId), entityType);
     }
 
-    private WhiteTableExceptGenRefCB buildPKCB(Long genRefId) {
+    protected WhiteTableExceptGenRefCB xprepareCBAsPK(Long genRefId) {
         assertObjectNotNull("genRefId", genRefId);
-        WhiteTableExceptGenRefCB cb = newMyConditionBean();
-        cb.query().setGenRefId_Equal(genRefId);
+        WhiteTableExceptGenRefCB cb = newMyConditionBean(); cb.acceptPrimaryKey(genRefId);
         return cb;
     }
 

@@ -450,7 +450,7 @@ public abstract class AbstractBsWhiteLineSepCommentCQ extends AbstractConditionQ
     public abstract String keepSpecifyMyselfDerived(WhiteLineSepCommentCQ sq);
 
     /**
-     * Prepare for (Query)MyselfDerived (SubQuery).
+     * Prepare for (Query)MyselfDerived (correlated sub-query).
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<WhiteLineSepCommentCB> myselfDerived() {
@@ -472,8 +472,8 @@ public abstract class AbstractBsWhiteLineSepCommentCQ extends AbstractConditionQ
     //                                                                        MyselfExists
     //                                                                        ============
     /**
-     * Prepare for MyselfExists (SubQuery).
-     * @param subQuery The implementation of sub query. (NotNull)
+     * Prepare for MyselfExists (correlated sub-query).
+     * @param subQuery The implementation of sub-query. (NotNull)
      */
     public void myselfExists(SubQuery<WhiteLineSepCommentCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
@@ -488,8 +488,8 @@ public abstract class AbstractBsWhiteLineSepCommentCQ extends AbstractConditionQ
     //                                                                       MyselfInScope
     //                                                                       =============
     /**
-     * Prepare for MyselfInScope (SubQuery).
-     * @param subQuery The implementation of sub query. (NotNull)
+     * Prepare for MyselfInScope (sub-query).
+     * @param subQuery The implementation of sub-query. (NotNull)
      */
     public void myselfInScope(SubQuery<WhiteLineSepCommentCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);

@@ -92,10 +92,14 @@ public class BsWhiteCompoundReferredPrimaryCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                 PrimaryKey Handling
     //                                                                 ===================
+    /**
+     * Accept the query condition of primary key as equal.
+     * @param referredId : PK, NotNull, INT(10). (NotNull)
+     */
     public void acceptPrimaryKey(Integer referredId) {
         assertObjectNotNull("referredId", referredId);
         BsWhiteCompoundReferredPrimaryCB cb = this;
-        cb.query().setReferredId_Equal(referredId);
+        cb.query().setReferredId_Equal(referredId);;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {
@@ -428,6 +432,11 @@ public class BsWhiteCompoundReferredPrimaryCB extends AbstractConditionBean {
      */
     public void orScopeQuery(OrQuery<WhiteCompoundReferredPrimaryCB> orQuery) {
         xorSQ((WhiteCompoundReferredPrimaryCB)this, orQuery);
+    }
+
+    @Override
+    protected HpCBPurpose xhandleOrSQPurposeChange() {
+        return null; // means no check
     }
 
     /**

@@ -92,10 +92,25 @@ public class BsWhiteImplicitReverseFkSuppressCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                 PrimaryKey Handling
     //                                                                 ===================
+    /**
+     * Accept the query condition of primary key as equal.
+     * @param whiteImplicitReverseFkSuppressId : PK, ID, NotNull, INT(10). (NotNull)
+     */
     public void acceptPrimaryKey(Integer whiteImplicitReverseFkSuppressId) {
         assertObjectNotNull("whiteImplicitReverseFkSuppressId", whiteImplicitReverseFkSuppressId);
         BsWhiteImplicitReverseFkSuppressCB cb = this;
-        cb.query().setWhiteImplicitReverseFkSuppressId_Equal(whiteImplicitReverseFkSuppressId);
+        cb.query().setWhiteImplicitReverseFkSuppressId_Equal(whiteImplicitReverseFkSuppressId);;
+    }
+
+    /**
+     * Accept the query condition of unique key as equal.
+     * @param whiteImplicitReverseFkId : UQ+, NotNull, INT(10). (NotNull)
+     * @param validBeginDate : +UQ, NotNull, DATE(10). (NotNull)
+     */
+    public void acceptUniqueOf(Integer whiteImplicitReverseFkId, java.util.Date validBeginDate) {
+        assertObjectNotNull("whiteImplicitReverseFkId", whiteImplicitReverseFkId);assertObjectNotNull("validBeginDate", validBeginDate);
+        BsWhiteImplicitReverseFkSuppressCB cb = this;
+        cb.query().setWhiteImplicitReverseFkId_Equal(whiteImplicitReverseFkId);;cb.query().setValidBeginDate_Equal(validBeginDate);;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {
@@ -311,12 +326,12 @@ public class BsWhiteImplicitReverseFkSuppressCB extends AbstractConditionBean {
          */
         public HpSpecifiedColumn columnWhiteImplicitReverseFkSuppressId() { return doColumn("WHITE_IMPLICIT_REVERSE_FK_SUPPRESS_ID"); }
         /**
-         * WHITE_IMPLICIT_REVERSE_FK_ID: {UQ, NotNull, INT(10)}
+         * WHITE_IMPLICIT_REVERSE_FK_ID: {UQ+, NotNull, INT(10)}
          * @return The information object of specified column. (NotNull)
          */
         public HpSpecifiedColumn columnWhiteImplicitReverseFkId() { return doColumn("WHITE_IMPLICIT_REVERSE_FK_ID"); }
         /**
-         * VALID_BEGIN_DATE: {UQ+, NotNull, DATE(10)}
+         * VALID_BEGIN_DATE: {+UQ, NotNull, DATE(10)}
          * @return The information object of specified column. (NotNull)
          */
         public HpSpecifiedColumn columnValidBeginDate() { return doColumn("VALID_BEGIN_DATE"); }
@@ -418,6 +433,11 @@ public class BsWhiteImplicitReverseFkSuppressCB extends AbstractConditionBean {
      */
     public void orScopeQuery(OrQuery<WhiteImplicitReverseFkSuppressCB> orQuery) {
         xorSQ((WhiteImplicitReverseFkSuppressCB)this, orQuery);
+    }
+
+    @Override
+    protected HpCBPurpose xhandleOrSQPurposeChange() {
+        return null; // means no check
     }
 
     /**

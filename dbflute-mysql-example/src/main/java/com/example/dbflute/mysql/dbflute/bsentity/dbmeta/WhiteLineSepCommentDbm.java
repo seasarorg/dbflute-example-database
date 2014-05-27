@@ -48,13 +48,14 @@ public class WhiteLineSepCommentDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgLineSepCommentCode(), "lineSepCommentCode");
         setupEpg(_epgMap, new EpgLineSepCommentName(), "lineSepCommentName");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public class EpgLineSepCommentCode implements PropertyGateway {
         public Object read(Entity et) { return ((WhiteLineSepComment)et).getLineSepCommentCode(); }
         public void write(Entity et, Object vl) {
@@ -67,6 +68,8 @@ public class WhiteLineSepCommentDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((WhiteLineSepComment)et).getLineSepCommentName(); }
         public void write(Entity et, Object vl) { ((WhiteLineSepComment)et).setLineSepCommentName((String)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -82,8 +85,8 @@ public class WhiteLineSepCommentDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnLineSepCommentCode = cci("LINE_SEP_COMMENT_CODE", "LINE_SEP_COMMENT_CODE", null, null, true, "lineSepCommentCode", String.class, true, false, "CHAR", 3, 0, null, false, null, null, null, null, CDef.DefMeta.LineSepCommentCls);
-    protected final ColumnInfo _columnLineSepCommentName = cci("LINE_SEP_COMMENT_NAME", "LINE_SEP_COMMENT_NAME", null, null, false, "lineSepCommentName", String.class, false, false, "VARCHAR", 20, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnLineSepCommentCode = cci("LINE_SEP_COMMENT_CODE", "LINE_SEP_COMMENT_CODE", null, null, String.class, "lineSepCommentCode", null, true, false, true, "CHAR", 3, 0, null, false, null, null, null, null, CDef.DefMeta.LineSepCommentCls);
+    protected final ColumnInfo _columnLineSepCommentName = cci("LINE_SEP_COMMENT_NAME", "LINE_SEP_COMMENT_NAME", null, null, String.class, "lineSepCommentName", null, false, false, false, "VARCHAR", 20, 0, null, false, null, null, null, null, null);
 
     /**
      * LINE_SEP_COMMENT_CODE: {PK, NotNull, CHAR(3), classification=LineSepCommentCls}
@@ -118,6 +121,8 @@ public class WhiteLineSepCommentDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

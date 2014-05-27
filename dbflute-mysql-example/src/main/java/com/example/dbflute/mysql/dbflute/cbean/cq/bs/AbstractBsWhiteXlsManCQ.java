@@ -492,7 +492,7 @@ public abstract class AbstractBsWhiteXlsManCQ extends AbstractConditionQuery {
     public abstract String keepSpecifyMyselfDerived(WhiteXlsManCQ sq);
 
     /**
-     * Prepare for (Query)MyselfDerived (SubQuery).
+     * Prepare for (Query)MyselfDerived (correlated sub-query).
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<WhiteXlsManCB> myselfDerived() {
@@ -514,8 +514,8 @@ public abstract class AbstractBsWhiteXlsManCQ extends AbstractConditionQuery {
     //                                                                        MyselfExists
     //                                                                        ============
     /**
-     * Prepare for MyselfExists (SubQuery).
-     * @param subQuery The implementation of sub query. (NotNull)
+     * Prepare for MyselfExists (correlated sub-query).
+     * @param subQuery The implementation of sub-query. (NotNull)
      */
     public void myselfExists(SubQuery<WhiteXlsManCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
@@ -530,8 +530,8 @@ public abstract class AbstractBsWhiteXlsManCQ extends AbstractConditionQuery {
     //                                                                       MyselfInScope
     //                                                                       =============
     /**
-     * Prepare for MyselfInScope (SubQuery).
-     * @param subQuery The implementation of sub query. (NotNull)
+     * Prepare for MyselfInScope (sub-query).
+     * @param subQuery The implementation of sub-query. (NotNull)
      */
     public void myselfInScope(SubQuery<WhiteXlsManCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);

@@ -48,6 +48,9 @@ public class VendorTheLongAndWindingTableAndColumnDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgTheLongAndWindingTableAndColumnId(), "theLongAndWindingTableAndColumnId");
@@ -55,8 +58,6 @@ public class VendorTheLongAndWindingTableAndColumnDbm extends AbstractDBMeta {
         setupEpg(_epgMap, new EpgShortName(), "shortName");
         setupEpg(_epgMap, new EpgShortSize(), "shortSize");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgTheLongAndWindingTableAndColumnId implements PropertyGateway {
         public Object read(Entity et) { return ((VendorTheLongAndWindingTableAndColumn)et).getTheLongAndWindingTableAndColumnId(); }
         public void write(Entity et, Object vl) { ((VendorTheLongAndWindingTableAndColumn)et).setTheLongAndWindingTableAndColumnId(ctl(vl)); }
@@ -73,6 +74,8 @@ public class VendorTheLongAndWindingTableAndColumnDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((VendorTheLongAndWindingTableAndColumn)et).getShortSize(); }
         public void write(Entity et, Object vl) { ((VendorTheLongAndWindingTableAndColumn)et).setShortSize(cti(vl)); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -88,10 +91,10 @@ public class VendorTheLongAndWindingTableAndColumnDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnTheLongAndWindingTableAndColumnId = cci("THE_LONG_AND_WINDING_TABLE_AND_COLUMN_ID", "THE_LONG_AND_WINDING_TABLE_AND_COLUMN_ID", null, null, true, "theLongAndWindingTableAndColumnId", Long.class, true, false, "BIGINT", 19, 0, null, false, null, null, null, "vendorTheLongAndWindingTableAndColumnRefList", null);
-    protected final ColumnInfo _columnTheLongAndWindingTableAndColumnName = cci("THE_LONG_AND_WINDING_TABLE_AND_COLUMN_NAME", "THE_LONG_AND_WINDING_TABLE_AND_COLUMN_NAME", null, null, true, "theLongAndWindingTableAndColumnName", String.class, false, false, "VARCHAR", 180, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnShortName = cci("SHORT_NAME", "SHORT_NAME", null, null, true, "shortName", String.class, false, false, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnShortSize = cci("SHORT_SIZE", "SHORT_SIZE", null, null, true, "shortSize", Integer.class, false, false, "INT", 10, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTheLongAndWindingTableAndColumnId = cci("THE_LONG_AND_WINDING_TABLE_AND_COLUMN_ID", "THE_LONG_AND_WINDING_TABLE_AND_COLUMN_ID", null, null, Long.class, "theLongAndWindingTableAndColumnId", null, true, false, true, "BIGINT", 19, 0, null, false, null, null, null, "vendorTheLongAndWindingTableAndColumnRefList", null);
+    protected final ColumnInfo _columnTheLongAndWindingTableAndColumnName = cci("THE_LONG_AND_WINDING_TABLE_AND_COLUMN_NAME", "THE_LONG_AND_WINDING_TABLE_AND_COLUMN_NAME", null, null, String.class, "theLongAndWindingTableAndColumnName", null, false, false, true, "VARCHAR", 180, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnShortName = cci("SHORT_NAME", "SHORT_NAME", null, null, String.class, "shortName", null, false, false, true, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnShortSize = cci("SHORT_SIZE", "SHORT_SIZE", null, null, Integer.class, "shortSize", null, false, false, true, "INT", 10, 0, null, false, null, null, null, null, null);
 
     /**
      * THE_LONG_AND_WINDING_TABLE_AND_COLUMN_ID: {PK, NotNull, BIGINT(19)}
@@ -138,6 +141,8 @@ public class VendorTheLongAndWindingTableAndColumnDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

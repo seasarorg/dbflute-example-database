@@ -33,14 +33,15 @@ public class VendorUuidFooDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgFooId(), "fooId");
         setupEpg(_epgMap, new EpgFooName(), "fooName");
         setupEpg(_epgMap, new EpgBarId(), "barId");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgFooId implements PropertyGateway {
         public Object read(Entity et) { return ((VendorUuidFoo)et).getFooId(); }
         public void write(Entity et, Object vl) { ((VendorUuidFoo)et).setFooId((java.util.UUID)vl); }
@@ -53,6 +54,22 @@ public class VendorUuidFooDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((VendorUuidFoo)et).getBarId(); }
         public void write(Entity et, Object vl) { ((VendorUuidFoo)et).setBarId((java.util.UUID)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
+
+    // -----------------------------------------------------
+    //                                      Foreign Property
+    //                                      ----------------
+    protected final Map<String, PropertyGateway> _efpgMap = newHashMap();
+    {
+        setupEfpg(_efpgMap, new EfpgVendorUuidBar(), "vendorUuidBar");
+    }
+    public class EfpgVendorUuidBar implements PropertyGateway {
+        public Object read(Entity et) { return ((VendorUuidFoo)et).getVendorUuidBar(); }
+        public void write(Entity et, Object vl) { ((VendorUuidFoo)et).setVendorUuidBar((VendorUuidBar)vl); }
+    }
+    public PropertyGateway findForeignPropertyGateway(String prop)
+    { return doFindEfpg(_efpgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -68,12 +85,24 @@ public class VendorUuidFooDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnFooId = cci("foo_id", "foo_id", null, null, true, "fooId", java.util.UUID.class, true, false, "uuid", 2147483647, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnFooName = cci("foo_name", "foo_name", null, null, true, "fooName", String.class, false, false, "varchar", 2147483647, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnBarId = cci("bar_id", "bar_id", null, null, true, "barId", java.util.UUID.class, false, false, "uuid", 2147483647, 0, null, false, null, null, "vendorUuidBar", null, null);
+    protected final ColumnInfo _columnFooId = cci("foo_id", "foo_id", null, null, java.util.UUID.class, "fooId", null, true, false, true, "uuid", 2147483647, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnFooName = cci("foo_name", "foo_name", null, null, String.class, "fooName", null, false, false, true, "varchar", 2147483647, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnBarId = cci("bar_id", "bar_id", null, null, java.util.UUID.class, "barId", null, false, false, true, "uuid", 2147483647, 0, null, false, null, null, "vendorUuidBar", null, null);
 
+    /**
+     * foo_id: {PK, NotNull, uuid(2147483647)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnFooId() { return _columnFooId; }
+    /**
+     * foo_name: {NotNull, varchar(2147483647)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnFooName() { return _columnFooName; }
+    /**
+     * bar_id: {NotNull, uuid(2147483647), FK to vendor_uuid_bar}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnBarId() { return _columnBarId; }
 
     protected List<ColumnInfo> ccil() {
@@ -99,12 +128,18 @@ public class VendorUuidFooDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------
+    /**
+     * vendor_uuid_bar by my bar_id, named 'vendorUuidBar'.
+     * @return The information object of foreign property. (NotNull)
+     */
     public ForeignInfo foreignVendorUuidBar() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnBarId(), VendorUuidBarDbm.getInstance().columnBarId());
-        return cfi("fk_vendor_uuid_foo_bar", "vendorUuidBar", this, VendorUuidBarDbm.getInstance(), mp, 0, false, false, false, false, null, null, false, "vendorUuidFooList");
+        return cfi("fk_vendor_uuid_foo_bar", "vendorUuidBar", this, VendorUuidBarDbm.getInstance(), mp, 0, null, false, false, false, false, null, null, false, "vendorUuidFooList");
     }
 
     // -----------------------------------------------------

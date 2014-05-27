@@ -266,7 +266,7 @@ public abstract class AbstractBsWhiteSelfReferenceRefOneCQ extends AbstractCondi
     public abstract String keepSelfReferenceId_SpecifyDerivedReferrer_WhiteSelfReferenceByParentIdList(WhiteSelfReferenceCQ sq);
 
     /**
-     * Prepare for (Query)DerivedReferrer. <br />
+     * Prepare for (Query)DerivedReferrer (correlated sub-query). <br />
      * {FOO &lt;= (select max(BAR) from white_self_reference where ...)} <br />
      * white_self_reference by PARENT_ID, named 'whiteSelfReferenceAsOne'. <br />
      * This relation is auto-detected as implicit reverse FK.
@@ -538,7 +538,7 @@ public abstract class AbstractBsWhiteSelfReferenceRefOneCQ extends AbstractCondi
     public abstract String keepSpecifyMyselfDerived(WhiteSelfReferenceRefOneCQ sq);
 
     /**
-     * Prepare for (Query)MyselfDerived (SubQuery).
+     * Prepare for (Query)MyselfDerived (correlated sub-query).
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<WhiteSelfReferenceRefOneCB> myselfDerived() {
@@ -560,8 +560,8 @@ public abstract class AbstractBsWhiteSelfReferenceRefOneCQ extends AbstractCondi
     //                                                                        MyselfExists
     //                                                                        ============
     /**
-     * Prepare for MyselfExists (SubQuery).
-     * @param subQuery The implementation of sub query. (NotNull)
+     * Prepare for MyselfExists (correlated sub-query).
+     * @param subQuery The implementation of sub-query. (NotNull)
      */
     public void myselfExists(SubQuery<WhiteSelfReferenceRefOneCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
@@ -576,8 +576,8 @@ public abstract class AbstractBsWhiteSelfReferenceRefOneCQ extends AbstractCondi
     //                                                                       MyselfInScope
     //                                                                       =============
     /**
-     * Prepare for MyselfInScope (SubQuery).
-     * @param subQuery The implementation of sub query. (NotNull)
+     * Prepare for MyselfInScope (sub-query).
+     * @param subQuery The implementation of sub-query. (NotNull)
      */
     public void myselfInScope(SubQuery<WhiteSelfReferenceRefOneCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);

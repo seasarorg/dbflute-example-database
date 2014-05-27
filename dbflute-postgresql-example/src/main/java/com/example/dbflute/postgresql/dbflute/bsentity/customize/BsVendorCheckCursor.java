@@ -198,6 +198,9 @@ public abstract class BsVendorCheckCursor implements Entity, Serializable, Clone
     // -----------------------------------------------------
     //                                              Internal
     //                                              --------
+    /** The unique-driven properties for this entity. (NotNull) */
+    protected final EntityUniqueDrivenProperties __uniqueDrivenProperties = newUniqueDrivenProperties();
+
     /** The modified properties for this entity. (NotNull) */
     protected final EntityModifiedProperties __modifiedProperties = newModifiedProperties();
 
@@ -239,6 +242,17 @@ public abstract class BsVendorCheckCursor implements Entity, Serializable, Clone
      */
     public boolean hasPrimaryKeyValue() {
         return false;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Set<String> uniqueDrivenProperties() {
+        return __uniqueDrivenProperties.getPropertyNames();
+    }
+
+    protected EntityUniqueDrivenProperties newUniqueDrivenProperties() {
+        return new EntityUniqueDrivenProperties();
     }
 
     // ===================================================================================
@@ -337,8 +351,8 @@ public abstract class BsVendorCheckCursor implements Entity, Serializable, Clone
         if (!xSV(getTypeOfXml(), other.getTypeOfXml())) { return false; }
         return true;
     }
-    protected boolean xSV(Object value1, Object value2) {
-        return FunCustodial.isSameValue(value1, value2);
+    protected boolean xSV(Object v1, Object v2) {
+        return FunCustodial.isSameValue(v1, v2);
     }
 
     /**
@@ -346,39 +360,39 @@ public abstract class BsVendorCheckCursor implements Entity, Serializable, Clone
      * @return The hash-code from primary-key or columns.
      */
     public int hashCode() {
-        int result = 17;
-        result = xCH(result, getTableDbName());
-        result = xCH(result, getVendorCheckId());
-        result = xCH(result, getTypeOfChar());
-        result = xCH(result, getTypeOfVarchar());
-        result = xCH(result, getTypeOfVcArray());
-        result = xCH(result, getTypeOfText());
-        result = xCH(result, getTypeOfNumericInteger());
-        result = xCH(result, getTypeOfNumericBigint());
-        result = xCH(result, getTypeOfNumericDecimal());
-        result = xCH(result, getTypeOfDecimal());
-        result = xCH(result, getTypeOfInt8());
-        result = xCH(result, getTypeOfIntArray());
-        result = xCH(result, getTypeOfInt4());
-        result = xCH(result, getTypeOfBigint());
-        result = xCH(result, getTypeOfReal());
-        result = xCH(result, getTypeOfFloat());
-        result = xCH(result, getTypeOfMoney());
-        result = xCH(result, getTypeOfDate());
-        result = xCH(result, getTypeOfTimestamp());
-        result = xCH(result, getTypeOfTime());
-        result = xCH(result, getTypeOfTimetz());
-        result = xCH(result, getTypeOfInterval());
-        result = xCH(result, getTypeOfBool());
-        result = xCH(result, getTypeOfBit());
-        result = xCH(result, getTypeOfBytea());
-        result = xCH(result, getTypeOfOid());
-        result = xCH(result, getTypeOfUuid());
-        result = xCH(result, getTypeOfXml());
-        return result;
+        int hs = 17;
+        hs = xCH(hs, getTableDbName());
+        hs = xCH(hs, getVendorCheckId());
+        hs = xCH(hs, getTypeOfChar());
+        hs = xCH(hs, getTypeOfVarchar());
+        hs = xCH(hs, getTypeOfVcArray());
+        hs = xCH(hs, getTypeOfText());
+        hs = xCH(hs, getTypeOfNumericInteger());
+        hs = xCH(hs, getTypeOfNumericBigint());
+        hs = xCH(hs, getTypeOfNumericDecimal());
+        hs = xCH(hs, getTypeOfDecimal());
+        hs = xCH(hs, getTypeOfInt8());
+        hs = xCH(hs, getTypeOfIntArray());
+        hs = xCH(hs, getTypeOfInt4());
+        hs = xCH(hs, getTypeOfBigint());
+        hs = xCH(hs, getTypeOfReal());
+        hs = xCH(hs, getTypeOfFloat());
+        hs = xCH(hs, getTypeOfMoney());
+        hs = xCH(hs, getTypeOfDate());
+        hs = xCH(hs, getTypeOfTimestamp());
+        hs = xCH(hs, getTypeOfTime());
+        hs = xCH(hs, getTypeOfTimetz());
+        hs = xCH(hs, getTypeOfInterval());
+        hs = xCH(hs, getTypeOfBool());
+        hs = xCH(hs, getTypeOfBit());
+        hs = xCH(hs, getTypeOfBytea());
+        hs = xCH(hs, getTypeOfOid());
+        hs = xCH(hs, getTypeOfUuid());
+        hs = xCH(hs, getTypeOfXml());
+        return hs;
     }
-    protected int xCH(int result, Object value) {
-        return FunCustodial.calculateHashcode(result, value);
+    protected int xCH(int hs, Object vl) {
+        return FunCustodial.calculateHashcode(hs, vl);
     }
 
     /**
@@ -418,36 +432,36 @@ public abstract class BsVendorCheckCursor implements Entity, Serializable, Clone
     }
     protected String buildColumnString() {
         StringBuilder sb = new StringBuilder();
-        String delimiter = ", ";
-        sb.append(delimiter).append(getVendorCheckId());
-        sb.append(delimiter).append(getTypeOfChar());
-        sb.append(delimiter).append(getTypeOfVarchar());
-        sb.append(delimiter).append(getTypeOfVcArray());
-        sb.append(delimiter).append(getTypeOfText());
-        sb.append(delimiter).append(getTypeOfNumericInteger());
-        sb.append(delimiter).append(getTypeOfNumericBigint());
-        sb.append(delimiter).append(getTypeOfNumericDecimal());
-        sb.append(delimiter).append(getTypeOfDecimal());
-        sb.append(delimiter).append(getTypeOfInt8());
-        sb.append(delimiter).append(getTypeOfIntArray());
-        sb.append(delimiter).append(getTypeOfInt4());
-        sb.append(delimiter).append(getTypeOfBigint());
-        sb.append(delimiter).append(getTypeOfReal());
-        sb.append(delimiter).append(getTypeOfFloat());
-        sb.append(delimiter).append(getTypeOfMoney());
-        sb.append(delimiter).append(xfUD(getTypeOfDate()));
-        sb.append(delimiter).append(getTypeOfTimestamp());
-        sb.append(delimiter).append(getTypeOfTime());
-        sb.append(delimiter).append(getTypeOfTimetz());
-        sb.append(delimiter).append(getTypeOfInterval());
-        sb.append(delimiter).append(getTypeOfBool());
-        sb.append(delimiter).append(getTypeOfBit());
-        sb.append(delimiter).append(xfBA(getTypeOfBytea()));
-        sb.append(delimiter).append(xfBA(getTypeOfOid()));
-        sb.append(delimiter).append(getTypeOfUuid());
-        sb.append(delimiter).append(getTypeOfXml());
-        if (sb.length() > delimiter.length()) {
-            sb.delete(0, delimiter.length());
+        String dm = ", ";
+        sb.append(dm).append(getVendorCheckId());
+        sb.append(dm).append(getTypeOfChar());
+        sb.append(dm).append(getTypeOfVarchar());
+        sb.append(dm).append(getTypeOfVcArray());
+        sb.append(dm).append(getTypeOfText());
+        sb.append(dm).append(getTypeOfNumericInteger());
+        sb.append(dm).append(getTypeOfNumericBigint());
+        sb.append(dm).append(getTypeOfNumericDecimal());
+        sb.append(dm).append(getTypeOfDecimal());
+        sb.append(dm).append(getTypeOfInt8());
+        sb.append(dm).append(getTypeOfIntArray());
+        sb.append(dm).append(getTypeOfInt4());
+        sb.append(dm).append(getTypeOfBigint());
+        sb.append(dm).append(getTypeOfReal());
+        sb.append(dm).append(getTypeOfFloat());
+        sb.append(dm).append(getTypeOfMoney());
+        sb.append(dm).append(xfUD(getTypeOfDate()));
+        sb.append(dm).append(getTypeOfTimestamp());
+        sb.append(dm).append(getTypeOfTime());
+        sb.append(dm).append(getTypeOfTimetz());
+        sb.append(dm).append(getTypeOfInterval());
+        sb.append(dm).append(getTypeOfBool());
+        sb.append(dm).append(getTypeOfBit());
+        sb.append(dm).append(xfBA(getTypeOfBytea()));
+        sb.append(dm).append(xfBA(getTypeOfOid()));
+        sb.append(dm).append(getTypeOfUuid());
+        sb.append(dm).append(getTypeOfXml());
+        if (sb.length() > dm.length()) {
+            sb.delete(0, dm.length());
         }
         sb.insert(0, "{").append("}");
         return sb.toString();

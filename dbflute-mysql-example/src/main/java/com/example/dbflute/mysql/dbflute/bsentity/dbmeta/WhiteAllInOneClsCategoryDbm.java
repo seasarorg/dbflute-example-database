@@ -48,14 +48,15 @@ public class WhiteAllInOneClsCategoryDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgClsCategoryCode(), "clsCategoryCode");
         setupEpg(_epgMap, new EpgClsCategoryName(), "clsCategoryName");
         setupEpg(_epgMap, new EpgDescription(), "description");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgClsCategoryCode implements PropertyGateway {
         public Object read(Entity et) { return ((WhiteAllInOneClsCategory)et).getClsCategoryCode(); }
         public void write(Entity et, Object vl) { ((WhiteAllInOneClsCategory)et).setClsCategoryCode((String)vl); }
@@ -68,6 +69,8 @@ public class WhiteAllInOneClsCategoryDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((WhiteAllInOneClsCategory)et).getDescription(); }
         public void write(Entity et, Object vl) { ((WhiteAllInOneClsCategory)et).setDescription((String)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -83,9 +86,9 @@ public class WhiteAllInOneClsCategoryDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnClsCategoryCode = cci("CLS_CATEGORY_CODE", "CLS_CATEGORY_CODE", null, null, true, "clsCategoryCode", String.class, true, false, "CHAR", 3, 0, null, false, null, null, null, "whiteAllInOneClsElementList", null);
-    protected final ColumnInfo _columnClsCategoryName = cci("CLS_CATEGORY_NAME", "CLS_CATEGORY_NAME", null, null, true, "clsCategoryName", String.class, false, false, "VARCHAR", 20, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnDescription = cci("DESCRIPTION", "DESCRIPTION", null, null, true, "description", String.class, false, false, "VARCHAR", 50, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnClsCategoryCode = cci("CLS_CATEGORY_CODE", "CLS_CATEGORY_CODE", null, null, String.class, "clsCategoryCode", null, true, false, true, "CHAR", 3, 0, null, false, null, null, null, "whiteAllInOneClsElementList", null);
+    protected final ColumnInfo _columnClsCategoryName = cci("CLS_CATEGORY_NAME", "CLS_CATEGORY_NAME", null, null, String.class, "clsCategoryName", null, false, false, true, "VARCHAR", 20, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnDescription = cci("DESCRIPTION", "DESCRIPTION", null, null, String.class, "description", null, false, false, true, "VARCHAR", 50, 0, null, false, null, null, null, null, null);
 
     /**
      * CLS_CATEGORY_CODE: {PK, NotNull, CHAR(3)}
@@ -126,6 +129,8 @@ public class WhiteAllInOneClsCategoryDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

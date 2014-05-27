@@ -310,7 +310,7 @@ public abstract class AbstractBsWhiteImplicitConvStringCQ extends AbstractCondit
     public abstract String keepImplicitConvStringId_SpecifyDerivedReferrer_WhiteImplicitConvNumericList(WhiteImplicitConvNumericCQ sq);
 
     /**
-     * Prepare for (Query)DerivedReferrer. <br />
+     * Prepare for (Query)DerivedReferrer (correlated sub-query). <br />
      * {FOO &lt;= (select max(BAR) from white_implicit_conv_integer where ...)} <br />
      * white_implicit_conv_integer by IMPLICIT_CONV_STRING_ID, named 'whiteImplicitConvIntegerAsOne'.
      * <pre>
@@ -344,7 +344,7 @@ public abstract class AbstractBsWhiteImplicitConvStringCQ extends AbstractCondit
     public abstract String keepImplicitConvStringId_QueryDerivedReferrer_WhiteImplicitConvIntegerListParameter(Object vl);
 
     /**
-     * Prepare for (Query)DerivedReferrer. <br />
+     * Prepare for (Query)DerivedReferrer (correlated sub-query). <br />
      * {FOO &lt;= (select max(BAR) from white_implicit_conv_numeric where ...)} <br />
      * white_implicit_conv_numeric by IMPLICIT_CONV_STRING_ID, named 'whiteImplicitConvNumericAsOne'.
      * <pre>
@@ -847,7 +847,7 @@ public abstract class AbstractBsWhiteImplicitConvStringCQ extends AbstractCondit
     public abstract String keepSpecifyMyselfDerived(WhiteImplicitConvStringCQ sq);
 
     /**
-     * Prepare for (Query)MyselfDerived (SubQuery).
+     * Prepare for (Query)MyselfDerived (correlated sub-query).
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<WhiteImplicitConvStringCB> myselfDerived() {
@@ -869,8 +869,8 @@ public abstract class AbstractBsWhiteImplicitConvStringCQ extends AbstractCondit
     //                                                                        MyselfExists
     //                                                                        ============
     /**
-     * Prepare for MyselfExists (SubQuery).
-     * @param subQuery The implementation of sub query. (NotNull)
+     * Prepare for MyselfExists (correlated sub-query).
+     * @param subQuery The implementation of sub-query. (NotNull)
      */
     public void myselfExists(SubQuery<WhiteImplicitConvStringCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
@@ -885,8 +885,8 @@ public abstract class AbstractBsWhiteImplicitConvStringCQ extends AbstractCondit
     //                                                                       MyselfInScope
     //                                                                       =============
     /**
-     * Prepare for MyselfInScope (SubQuery).
-     * @param subQuery The implementation of sub query. (NotNull)
+     * Prepare for MyselfInScope (sub-query).
+     * @param subQuery The implementation of sub-query. (NotNull)
      */
     public void myselfInScope(SubQuery<WhiteImplicitConvStringCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);

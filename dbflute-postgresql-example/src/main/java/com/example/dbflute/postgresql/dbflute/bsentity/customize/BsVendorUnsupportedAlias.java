@@ -83,6 +83,9 @@ public abstract class BsVendorUnsupportedAlias implements Entity, Serializable, 
     // -----------------------------------------------------
     //                                              Internal
     //                                              --------
+    /** The unique-driven properties for this entity. (NotNull) */
+    protected final EntityUniqueDrivenProperties __uniqueDrivenProperties = newUniqueDrivenProperties();
+
     /** The modified properties for this entity. (NotNull) */
     protected final EntityModifiedProperties __modifiedProperties = newModifiedProperties();
 
@@ -124,6 +127,17 @@ public abstract class BsVendorUnsupportedAlias implements Entity, Serializable, 
      */
     public boolean hasPrimaryKeyValue() {
         return false;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Set<String> uniqueDrivenProperties() {
+        return __uniqueDrivenProperties.getPropertyNames();
+    }
+
+    protected EntityUniqueDrivenProperties newUniqueDrivenProperties() {
+        return new EntityUniqueDrivenProperties();
     }
 
     // ===================================================================================
@@ -199,8 +213,8 @@ public abstract class BsVendorUnsupportedAlias implements Entity, Serializable, 
         if (!xSV(getDollar$exists(), other.getDollar$exists())) { return false; }
         return true;
     }
-    protected boolean xSV(Object value1, Object value2) {
-        return FunCustodial.isSameValue(value1, value2);
+    protected boolean xSV(Object v1, Object v2) {
+        return FunCustodial.isSameValue(v1, v2);
     }
 
     /**
@@ -208,16 +222,16 @@ public abstract class BsVendorUnsupportedAlias implements Entity, Serializable, 
      * @return The hash-code from primary-key or columns.
      */
     public int hashCode() {
-        int result = 17;
-        result = xCH(result, getTableDbName());
-        result = xCH(result, getVendorCheckId());
-        result = xCH(result, getHyphen_exists());
-        result = xCH(result, getSpace_exists());
-        result = xCH(result, getDollar$exists());
-        return result;
+        int hs = 17;
+        hs = xCH(hs, getTableDbName());
+        hs = xCH(hs, getVendorCheckId());
+        hs = xCH(hs, getHyphen_exists());
+        hs = xCH(hs, getSpace_exists());
+        hs = xCH(hs, getDollar$exists());
+        return hs;
     }
-    protected int xCH(int result, Object value) {
-        return FunCustodial.calculateHashcode(result, value);
+    protected int xCH(int hs, Object vl) {
+        return FunCustodial.calculateHashcode(hs, vl);
     }
 
     /**
@@ -257,13 +271,13 @@ public abstract class BsVendorUnsupportedAlias implements Entity, Serializable, 
     }
     protected String buildColumnString() {
         StringBuilder sb = new StringBuilder();
-        String delimiter = ", ";
-        sb.append(delimiter).append(getVendorCheckId());
-        sb.append(delimiter).append(getHyphen_exists());
-        sb.append(delimiter).append(getSpace_exists());
-        sb.append(delimiter).append(xfUD(getDollar$exists()));
-        if (sb.length() > delimiter.length()) {
-            sb.delete(0, delimiter.length());
+        String dm = ", ";
+        sb.append(dm).append(getVendorCheckId());
+        sb.append(dm).append(getHyphen_exists());
+        sb.append(dm).append(getSpace_exists());
+        sb.append(dm).append(xfUD(getDollar$exists()));
+        if (sb.length() > dm.length()) {
+            sb.delete(0, dm.length());
         }
         sb.insert(0, "{").append("}");
         return sb.toString();

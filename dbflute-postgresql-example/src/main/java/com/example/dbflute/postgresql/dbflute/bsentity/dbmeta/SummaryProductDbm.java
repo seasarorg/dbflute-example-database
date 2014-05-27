@@ -33,6 +33,9 @@ public class SummaryProductDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgProductId(), "productId");
@@ -40,8 +43,6 @@ public class SummaryProductDbm extends AbstractDBMeta {
         setupEpg(_epgMap, new EpgProductStatusCode(), "productStatusCode");
         setupEpg(_epgMap, new EpgLatestPurchaseDatetime(), "latestPurchaseDatetime");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgProductId implements PropertyGateway {
         public Object read(Entity et) { return ((SummaryProduct)et).getProductId(); }
         public void write(Entity et, Object vl) { ((SummaryProduct)et).setProductId(cti(vl)); }
@@ -58,6 +59,8 @@ public class SummaryProductDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((SummaryProduct)et).getLatestPurchaseDatetime(); }
         public void write(Entity et, Object vl) { ((SummaryProduct)et).setLatestPurchaseDatetime((java.sql.Timestamp)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -73,14 +76,30 @@ public class SummaryProductDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnProductId = cci("product_id", "product_id", null, null, false, "productId", Integer.class, false, false, "int4", 10, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnProductName = cci("product_name", "product_name", null, null, false, "productName", String.class, false, false, "varchar", 50, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnProductStatusCode = cci("product_status_code", "product_status_code", null, null, false, "productStatusCode", String.class, false, false, "bpchar", 3, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnLatestPurchaseDatetime = cci("latest_purchase_datetime", "latest_purchase_datetime", null, null, false, "latestPurchaseDatetime", java.sql.Timestamp.class, false, false, "timestamp", 29, 6, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnProductId = cci("product_id", "product_id", null, null, Integer.class, "productId", null, false, false, false, "int4", 10, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnProductName = cci("product_name", "product_name", null, null, String.class, "productName", null, false, false, false, "varchar", 50, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnProductStatusCode = cci("product_status_code", "product_status_code", null, null, String.class, "productStatusCode", null, false, false, false, "bpchar", 3, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnLatestPurchaseDatetime = cci("latest_purchase_datetime", "latest_purchase_datetime", null, null, java.sql.Timestamp.class, "latestPurchaseDatetime", null, false, false, false, "timestamp", 29, 6, null, false, null, null, null, null, null);
 
+    /**
+     * product_id: {int4(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnProductId() { return _columnProductId; }
+    /**
+     * product_name: {varchar(50)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnProductName() { return _columnProductName; }
+    /**
+     * product_status_code: {bpchar(3)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnProductStatusCode() { return _columnProductStatusCode; }
+    /**
+     * latest_purchase_datetime: {timestamp(29, 6)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnLatestPurchaseDatetime() { return _columnLatestPurchaseDatetime; }
 
     protected List<ColumnInfo> ccil() {
@@ -109,6 +128,8 @@ public class SummaryProductDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

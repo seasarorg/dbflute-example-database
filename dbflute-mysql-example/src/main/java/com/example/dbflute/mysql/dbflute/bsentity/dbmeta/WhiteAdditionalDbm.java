@@ -48,6 +48,9 @@ public class WhiteAdditionalDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgFooId(), "fooId");
@@ -55,8 +58,6 @@ public class WhiteAdditionalDbm extends AbstractDBMeta {
         setupEpg(_epgMap, new EpgFooDate(), "fooDate");
         setupEpg(_epgMap, new EpgRegisterDatetime(), "registerDatetime");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgFooId implements PropertyGateway {
         public Object read(Entity et) { return ((WhiteAdditional)et).getFooId(); }
         public void write(Entity et, Object vl) { ((WhiteAdditional)et).setFooId(cti(vl)); }
@@ -73,6 +74,8 @@ public class WhiteAdditionalDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((WhiteAdditional)et).getRegisterDatetime(); }
         public void write(Entity et, Object vl) { ((WhiteAdditional)et).setRegisterDatetime((java.sql.Timestamp)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -92,10 +95,10 @@ public class WhiteAdditionalDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnFooId = cci("foo_id", "foo_id", null, null, true, "fooId", Integer.class, true, true, "INTEGER", null, null, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnFooName = cci("foo_name", "foo_name", null, "Mr.FOO's name", true, "fooName", String.class, false, false, "UnknownType", 123, 0, null, false, null, "It's joke!", null, null, null);
-    protected final ColumnInfo _columnFooDate = cci("foo_date", "foo_date", null, null, false, "fooDate", java.util.Date.class, false, false, "UnknownType", null, null, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnRegisterDatetime = cci("register_datetime", "register_datetime", null, null, false, "registerDatetime", java.sql.Timestamp.class, false, false, "DATETIME", null, null, "CURRENT_TIMESTAMP", false, null, null, null, null, null);
+    protected final ColumnInfo _columnFooId = cci("foo_id", "foo_id", null, null, Integer.class, "fooId", null, true, true, true, "INTEGER", null, null, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnFooName = cci("foo_name", "foo_name", null, "Mr.FOO's name", String.class, "fooName", null, false, false, true, "UnknownType", 123, 0, null, false, null, "It's joke!", null, null, null);
+    protected final ColumnInfo _columnFooDate = cci("foo_date", "foo_date", null, null, java.util.Date.class, "fooDate", null, false, false, false, "UnknownType", null, null, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnRegisterDatetime = cci("register_datetime", "register_datetime", null, null, java.sql.Timestamp.class, "registerDatetime", null, false, false, false, "DATETIME", null, null, "CURRENT_TIMESTAMP", false, null, null, null, null, null);
 
     /**
      * foo_id: {PK, ID, NotNull, INTEGER}
@@ -142,6 +145,8 @@ public class WhiteAdditionalDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

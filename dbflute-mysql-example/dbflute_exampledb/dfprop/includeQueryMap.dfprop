@@ -96,5 +96,15 @@ map:{
         ; !FromTo = map:{ $$ALL$$ = list:{ $$CommonColumn$$ } }
         ; !DateFromTo = map:{ $$ALL$$ = list:{ $$CommonColumn$$ } }
     }
+    ; $MEMBER = map:{
+        ; MEMBER_ACCOUNT(String) = list:{ !NotInScope ; !PrefixSearch ; !NotLikeSearch }
+    }
+    ; $WHITE_INCLUDE_QUERY = map:{
+        ; INCLUDE_QUERY_INTEGER(Number) = list:{}
+        ; INCLUDE_QUERY_INTEGER(OrderBy) = list:{}
+        ; INCLUDE_QUERY_VARCHAR(String) = list:{ !PrefixSearch ; !LikeSearch ; !NotLikeSearch }
+        ; INCLUDE_QUERY_DATE(Date) = list:{}
+        ; INCLUDE_QUERY_DATETIME(Date) = list:{ !GreaterThan ; !GreaterEqual ; !LessThan ; !LessEqual }
+    }
 }
 # ----------------/

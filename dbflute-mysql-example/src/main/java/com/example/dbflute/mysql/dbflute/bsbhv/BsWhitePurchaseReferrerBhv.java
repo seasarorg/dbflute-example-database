@@ -184,7 +184,7 @@ public abstract class BsWhitePurchaseReferrerBhv extends AbstractBehaviorWritabl
      * </pre>
      * @param cb The condition-bean of WhitePurchaseReferrer. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -205,39 +205,42 @@ public abstract class BsWhitePurchaseReferrerBhv extends AbstractBehaviorWritabl
 
     /**
      * Select the entity by the primary-key value.
-     * @param purchaseReferrerId The one of primary key. (NotNull)
+     * @param purchaseReferrerId : PK, ID, NotNull, BIGINT(19), FK to purchase. (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhitePurchaseReferrer selectByPKValue(Long purchaseReferrerId) {
-        return doSelectByPKValue(purchaseReferrerId, WhitePurchaseReferrer.class);
+        return doSelectByPK(purchaseReferrerId, WhitePurchaseReferrer.class);
     }
 
-    protected <ENTITY extends WhitePurchaseReferrer> ENTITY doSelectByPKValue(Long purchaseReferrerId, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(purchaseReferrerId), entityType);
+    protected <ENTITY extends WhitePurchaseReferrer> ENTITY doSelectByPK(Long purchaseReferrerId, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(purchaseReferrerId), entityType);
+    }
+
+    protected <ENTITY extends WhitePurchaseReferrer> OptionalEntity<ENTITY> doSelectOptionalByPK(Long purchaseReferrerId, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(purchaseReferrerId, entityType), purchaseReferrerId);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param purchaseReferrerId The one of primary key. (NotNull)
+     * @param purchaseReferrerId : PK, ID, NotNull, BIGINT(19), FK to purchase. (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhitePurchaseReferrer selectByPKValueWithDeletedCheck(Long purchaseReferrerId) {
-        return doSelectByPKValueWithDeletedCheck(purchaseReferrerId, WhitePurchaseReferrer.class);
+        return doSelectByPKWithDeletedCheck(purchaseReferrerId, WhitePurchaseReferrer.class);
     }
 
-    protected <ENTITY extends WhitePurchaseReferrer> ENTITY doSelectByPKValueWithDeletedCheck(Long purchaseReferrerId, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(purchaseReferrerId), entityType);
+    protected <ENTITY extends WhitePurchaseReferrer> ENTITY doSelectByPKWithDeletedCheck(Long purchaseReferrerId, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(purchaseReferrerId), entityType);
     }
 
-    private WhitePurchaseReferrerCB buildPKCB(Long purchaseReferrerId) {
+    protected WhitePurchaseReferrerCB xprepareCBAsPK(Long purchaseReferrerId) {
         assertObjectNotNull("purchaseReferrerId", purchaseReferrerId);
-        WhitePurchaseReferrerCB cb = newMyConditionBean();
-        cb.query().setPurchaseReferrerId_Equal(purchaseReferrerId);
+        WhitePurchaseReferrerCB cb = newMyConditionBean(); cb.acceptPrimaryKey(purchaseReferrerId);
         return cb;
     }
 
@@ -402,7 +405,8 @@ public abstract class BsWhitePurchaseReferrerBhv extends AbstractBehaviorWritabl
      */
     public List<Purchase> pulloutPurchase(List<WhitePurchaseReferrer> whitePurchaseReferrerList) {
         return helpPulloutInternally(whitePurchaseReferrerList, new InternalPulloutCallback<WhitePurchaseReferrer, Purchase>() {
-            public Purchase getFr(WhitePurchaseReferrer et) { return et.getPurchase(); }
+            public Purchase getFr(WhitePurchaseReferrer et)
+            { return et.getPurchase(); }
             public boolean hasRf() { return true; }
             public void setRfLs(Purchase et, List<WhitePurchaseReferrer> ls)
             { if (!ls.isEmpty()) { et.setWhitePurchaseReferrerAsOne(ls.get(0)); } }

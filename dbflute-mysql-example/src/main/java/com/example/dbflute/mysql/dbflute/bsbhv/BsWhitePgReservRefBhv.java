@@ -184,7 +184,7 @@ public abstract class BsWhitePgReservRefBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of WhitePgReservRef. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -205,39 +205,42 @@ public abstract class BsWhitePgReservRefBhv extends AbstractBehaviorWritable {
 
     /**
      * Select the entity by the primary-key value.
-     * @param refId The one of primary key. (NotNull)
+     * @param refId : PK, NotNull, INT(10). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhitePgReservRef selectByPKValue(Integer refId) {
-        return doSelectByPKValue(refId, WhitePgReservRef.class);
+        return doSelectByPK(refId, WhitePgReservRef.class);
     }
 
-    protected <ENTITY extends WhitePgReservRef> ENTITY doSelectByPKValue(Integer refId, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(refId), entityType);
+    protected <ENTITY extends WhitePgReservRef> ENTITY doSelectByPK(Integer refId, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(refId), entityType);
+    }
+
+    protected <ENTITY extends WhitePgReservRef> OptionalEntity<ENTITY> doSelectOptionalByPK(Integer refId, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(refId, entityType), refId);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param refId The one of primary key. (NotNull)
+     * @param refId : PK, NotNull, INT(10). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhitePgReservRef selectByPKValueWithDeletedCheck(Integer refId) {
-        return doSelectByPKValueWithDeletedCheck(refId, WhitePgReservRef.class);
+        return doSelectByPKWithDeletedCheck(refId, WhitePgReservRef.class);
     }
 
-    protected <ENTITY extends WhitePgReservRef> ENTITY doSelectByPKValueWithDeletedCheck(Integer refId, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(refId), entityType);
+    protected <ENTITY extends WhitePgReservRef> ENTITY doSelectByPKWithDeletedCheck(Integer refId, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(refId), entityType);
     }
 
-    private WhitePgReservRefCB buildPKCB(Integer refId) {
+    protected WhitePgReservRefCB xprepareCBAsPK(Integer refId) {
         assertObjectNotNull("refId", refId);
-        WhitePgReservRefCB cb = newMyConditionBean();
-        cb.query().setRefId_Equal(refId);
+        WhitePgReservRefCB cb = newMyConditionBean(); cb.acceptPrimaryKey(refId);
         return cb;
     }
 
@@ -402,7 +405,8 @@ public abstract class BsWhitePgReservRefBhv extends AbstractBehaviorWritable {
      */
     public List<WhitePgReserv> pulloutWhitePgReserv(List<WhitePgReservRef> whitePgReservRefList) {
         return helpPulloutInternally(whitePgReservRefList, new InternalPulloutCallback<WhitePgReservRef, WhitePgReserv>() {
-            public WhitePgReserv getFr(WhitePgReservRef et) { return et.getWhitePgReserv(); }
+            public WhitePgReserv getFr(WhitePgReservRef et)
+            { return et.getWhitePgReserv(); }
             public boolean hasRf() { return true; }
             public void setRfLs(WhitePgReserv et, List<WhitePgReservRef> ls)
             { et.setWhitePgReservRefList(ls); }

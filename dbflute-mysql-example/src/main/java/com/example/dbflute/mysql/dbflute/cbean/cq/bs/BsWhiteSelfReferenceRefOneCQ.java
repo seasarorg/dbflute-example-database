@@ -240,7 +240,7 @@ public class BsWhiteSelfReferenceRefOneCQ extends AbstractBsWhiteSelfReferenceRe
     // ===================================================================================
     //                                                                         Union Query
     //                                                                         ===========
-    protected void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
+    public void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
         WhiteSelfReferenceRefOneCQ bq = (WhiteSelfReferenceRefOneCQ)bqs;
         WhiteSelfReferenceRefOneCQ uq = (WhiteSelfReferenceRefOneCQ)uqs;
         if (bq.hasConditionQueryWhiteSelfReference()) {

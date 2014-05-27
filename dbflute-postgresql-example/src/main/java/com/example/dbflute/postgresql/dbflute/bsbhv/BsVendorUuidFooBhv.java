@@ -169,7 +169,7 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of VendorUuidFoo. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -190,39 +190,42 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
 
     /**
      * Select the entity by the primary-key value.
-     * @param fooId The one of primary key. (NotNull)
+     * @param fooId : PK, NotNull, uuid(2147483647). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public VendorUuidFoo selectByPKValue(java.util.UUID fooId) {
-        return doSelectByPKValue(fooId, VendorUuidFoo.class);
+        return doSelectByPK(fooId, VendorUuidFoo.class);
     }
 
-    protected <ENTITY extends VendorUuidFoo> ENTITY doSelectByPKValue(java.util.UUID fooId, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(fooId), entityType);
+    protected <ENTITY extends VendorUuidFoo> ENTITY doSelectByPK(java.util.UUID fooId, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(fooId), entityType);
+    }
+
+    protected <ENTITY extends VendorUuidFoo> OptionalEntity<ENTITY> doSelectOptionalByPK(java.util.UUID fooId, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(fooId, entityType), fooId);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param fooId The one of primary key. (NotNull)
+     * @param fooId : PK, NotNull, uuid(2147483647). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public VendorUuidFoo selectByPKValueWithDeletedCheck(java.util.UUID fooId) {
-        return doSelectByPKValueWithDeletedCheck(fooId, VendorUuidFoo.class);
+        return doSelectByPKWithDeletedCheck(fooId, VendorUuidFoo.class);
     }
 
-    protected <ENTITY extends VendorUuidFoo> ENTITY doSelectByPKValueWithDeletedCheck(java.util.UUID fooId, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(fooId), entityType);
+    protected <ENTITY extends VendorUuidFoo> ENTITY doSelectByPKWithDeletedCheck(java.util.UUID fooId, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(fooId), entityType);
     }
 
-    private VendorUuidFooCB buildPKCB(java.util.UUID fooId) {
+    protected VendorUuidFooCB xprepareCBAsPK(java.util.UUID fooId) {
         assertObjectNotNull("fooId", fooId);
-        VendorUuidFooCB cb = newMyConditionBean();
-        cb.query().setFooId_Equal(fooId);
+        VendorUuidFooCB cb = newMyConditionBean(); cb.acceptPrimaryKey(fooId);
         return cb;
     }
 
@@ -387,7 +390,8 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
      */
     public List<VendorUuidBar> pulloutVendorUuidBar(List<VendorUuidFoo> vendorUuidFooList) {
         return helpPulloutInternally(vendorUuidFooList, new InternalPulloutCallback<VendorUuidFoo, VendorUuidBar>() {
-            public VendorUuidBar getFr(VendorUuidFoo et) { return et.getVendorUuidBar(); }
+            public VendorUuidBar getFr(VendorUuidFoo et)
+            { return et.getVendorUuidBar(); }
             public boolean hasRf() { return true; }
             public void setRfLs(VendorUuidBar et, List<VendorUuidFoo> ls)
             { et.setVendorUuidFooList(ls); }

@@ -169,7 +169,7 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
      * </pre>
      * @param cb The condition-bean of Vendor_non_compilable. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -190,39 +190,42 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
 
     /**
      * Select the entity by the primary-key value.
-     * @param non_compilable_id The one of primary key. (NotNull)
+     * @param non_compilable_id : PK, NotNull, int4(10). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public Vendor_non_compilable selectByPKValue(Integer non_compilable_id) {
-        return doSelectByPKValue(non_compilable_id, Vendor_non_compilable.class);
+        return doSelectByPK(non_compilable_id, Vendor_non_compilable.class);
     }
 
-    protected <ENTITY extends Vendor_non_compilable> ENTITY doSelectByPKValue(Integer non_compilable_id, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(non_compilable_id), entityType);
+    protected <ENTITY extends Vendor_non_compilable> ENTITY doSelectByPK(Integer non_compilable_id, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(non_compilable_id), entityType);
+    }
+
+    protected <ENTITY extends Vendor_non_compilable> OptionalEntity<ENTITY> doSelectOptionalByPK(Integer non_compilable_id, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(non_compilable_id, entityType), non_compilable_id);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param non_compilable_id The one of primary key. (NotNull)
+     * @param non_compilable_id : PK, NotNull, int4(10). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public Vendor_non_compilable selectByPKValueWithDeletedCheck(Integer non_compilable_id) {
-        return doSelectByPKValueWithDeletedCheck(non_compilable_id, Vendor_non_compilable.class);
+        return doSelectByPKWithDeletedCheck(non_compilable_id, Vendor_non_compilable.class);
     }
 
-    protected <ENTITY extends Vendor_non_compilable> ENTITY doSelectByPKValueWithDeletedCheck(Integer non_compilable_id, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(non_compilable_id), entityType);
+    protected <ENTITY extends Vendor_non_compilable> ENTITY doSelectByPKWithDeletedCheck(Integer non_compilable_id, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(non_compilable_id), entityType);
     }
 
-    private Vendor_non_compilableCB buildPKCB(Integer non_compilable_id) {
+    protected Vendor_non_compilableCB xprepareCBAsPK(Integer non_compilable_id) {
         assertObjectNotNull("non_compilable_id", non_compilable_id);
-        Vendor_non_compilableCB cb = newMyConditionBean();
-        cb.query().setNon_compilable_id_Equal(non_compilable_id);
+        Vendor_non_compilableCB cb = newMyConditionBean(); cb.acceptPrimaryKey(non_compilable_id);
         return cb;
     }
 
@@ -498,7 +501,8 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
      */
     public List<Vendor_non_compilable> pulloutVendor_non_compilableSelf(List<Vendor_non_compilable> vendor_non_compilableList) {
         return helpPulloutInternally(vendor_non_compilableList, new InternalPulloutCallback<Vendor_non_compilable, Vendor_non_compilable>() {
-            public Vendor_non_compilable getFr(Vendor_non_compilable et) { return et.getVendor_non_compilableSelf(); }
+            public Vendor_non_compilable getFr(Vendor_non_compilable et)
+            { return et.getVendor_non_compilableSelf(); }
             public boolean hasRf() { return true; }
             public void setRfLs(Vendor_non_compilable et, List<Vendor_non_compilable> ls)
             { et.setVendor_non_compilableSelfList(ls); }

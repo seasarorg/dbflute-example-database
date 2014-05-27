@@ -48,6 +48,9 @@ public class PurchaseDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgPurchaseId(), "purchaseId");
@@ -63,8 +66,6 @@ public class PurchaseDbm extends AbstractDBMeta {
         setupEpg(_epgMap, new EpgUpdateUser(), "updateUser");
         setupEpg(_epgMap, new EpgVersionNo(), "versionNo");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgPurchaseId implements PropertyGateway {
         public Object read(Entity et) { return ((Purchase)et).getPurchaseId(); }
         public void write(Entity et, Object vl) { ((Purchase)et).setPurchaseId(ctl(vl)); }
@@ -117,6 +118,64 @@ public class PurchaseDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((Purchase)et).getVersionNo(); }
         public void write(Entity et, Object vl) { ((Purchase)et).setVersionNo(ctl(vl)); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
+
+    // -----------------------------------------------------
+    //                                      Foreign Property
+    //                                      ----------------
+    protected final Map<String, PropertyGateway> _efpgMap = newHashMap();
+    {
+        setupEfpg(_efpgMap, new EfpgMember(), "member");
+        setupEfpg(_efpgMap, new EfpgProduct(), "product");
+        setupEfpg(_efpgMap, new EfpgSummaryProduct(), "summaryProduct");
+        setupEfpg(_efpgMap, new EfpgSummaryWithdrawal(), "summaryWithdrawal");
+        setupEfpg(_efpgMap, new EfpgWhiteNoPkRelation(), "whiteNoPkRelation");
+        setupEfpg(_efpgMap, new EfpgPurchaseSelf(), "purchaseSelf");
+        setupEfpg(_efpgMap, new EfpgMemberAddressAsSkipRelation(), "memberAddressAsSkipRelation");
+    }
+    public class EfpgMember implements PropertyGateway {
+        public Object read(Entity et) { return ((Purchase)et).getMember(); }
+        public void write(Entity et, Object vl) { ((Purchase)et).setMember((Member)vl); }
+    }
+    public class EfpgProduct implements PropertyGateway {
+        public Object read(Entity et) { return ((Purchase)et).getProduct(); }
+        public void write(Entity et, Object vl) { ((Purchase)et).setProduct((Product)vl); }
+    }
+    public class EfpgSummaryProduct implements PropertyGateway {
+        public Object read(Entity et) { return ((Purchase)et).getSummaryProduct(); }
+        public void write(Entity et, Object vl) { ((Purchase)et).setSummaryProduct((SummaryProduct)vl); }
+    }
+    public class EfpgSummaryWithdrawal implements PropertyGateway {
+        public Object read(Entity et) { return ((Purchase)et).getSummaryWithdrawal(); }
+        public void write(Entity et, Object vl) { ((Purchase)et).setSummaryWithdrawal((SummaryWithdrawal)vl); }
+    }
+    public class EfpgWhiteNoPkRelation implements PropertyGateway {
+        public Object read(Entity et) { return ((Purchase)et).getWhiteNoPkRelation(); }
+        public void write(Entity et, Object vl) { ((Purchase)et).setWhiteNoPkRelation((WhiteNoPkRelation)vl); }
+    }
+    public class EfpgPurchaseSelf implements PropertyGateway {
+        public Object read(Entity et) { return ((Purchase)et).getPurchaseSelf(); }
+        public void write(Entity et, Object vl) { ((Purchase)et).setPurchaseSelf((Purchase)vl); }
+    }
+    public class EfpgMemberAddressAsSkipRelation implements PropertyGateway {
+        public Object read(Entity et) { return ((Purchase)et).getMemberAddressAsSkipRelation(); }
+        public void write(Entity et, Object vl) { ((Purchase)et).setMemberAddressAsSkipRelation((MemberAddress)vl); }
+    }
+    {
+        setupEfpg(_efpgMap, new EfpgWhitePurchaseReferrerAsOne(), "whitePurchaseReferrerAsOne");
+        setupEfpg(_efpgMap, new EfpgPurchaseSelfAsOne(), "purchaseSelfAsOne");
+    }
+    public class EfpgWhitePurchaseReferrerAsOne implements PropertyGateway {
+        public Object read(Entity et) { return ((Purchase)et).getWhitePurchaseReferrerAsOne(); }
+        public void write(Entity et, Object vl) { ((Purchase)et).setWhitePurchaseReferrerAsOne((WhitePurchaseReferrer)vl); }
+    }
+    public class EfpgPurchaseSelfAsOne implements PropertyGateway {
+        public Object read(Entity et) { return ((Purchase)et).getPurchaseSelfAsOne(); }
+        public void write(Entity et, Object vl) { ((Purchase)et).setPurchaseSelfAsOne((Purchase)vl); }
+    }
+    public PropertyGateway findForeignPropertyGateway(String prop)
+    { return doFindEfpg(_efpgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -136,18 +195,18 @@ public class PurchaseDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnPurchaseId = cci("PURCHASE_ID", "PURCHASE_ID", null, "購入ID", true, "purchaseId", Long.class, true, true, "BIGINT", 19, 0, null, false, null, "連番", "purchaseSelf,whitePurchaseReferrerAsOne,purchaseSelfAsOne", "", null);
-    protected final ColumnInfo _columnMemberId = cci("MEMBER_ID", "MEMBER_ID", null, "会員ID", true, "memberId", Integer.class, false, false, "INT", 10, 0, null, false, null, "会員を参照するID。\n購入を識別する自然キー（複合ユニーク制約）の筆頭要素。", "member,summaryWithdrawal,memberAddressAsSkipRelation", null, null);
-    protected final ColumnInfo _columnProductId = cci("PRODUCT_ID", "PRODUCT_ID", null, "商品ID", true, "productId", Integer.class, false, false, "INT", 10, 0, null, false, null, "商品を参照するID。", "product,summaryProduct,whiteNoPkRelation", null, null);
-    protected final ColumnInfo _columnPurchaseDatetime = cci("PURCHASE_DATETIME", "PURCHASE_DATETIME", null, "購入日時", true, "purchaseDatetime", java.sql.Timestamp.class, false, false, "DATETIME", 19, 0, null, false, null, "購入した瞬間の日時。", null, null, null);
-    protected final ColumnInfo _columnPurchaseCount = cci("PURCHASE_COUNT", "PURCHASE_COUNT", null, "購入数量", true, "purchaseCount", Integer.class, false, false, "INT", 10, 0, null, false, null, "購入した商品の（一回の購入における）数量。", null, null, null);
-    protected final ColumnInfo _columnPurchasePrice = cci("PURCHASE_PRICE", "PURCHASE_PRICE", null, "購入価格", true, "purchasePrice", Integer.class, false, false, "INT", 10, 0, null, false, null, "購入によって実際に会員が支払った（支払う予定の）価格。\n基本は商品の定価に購入数量を掛けたものになるが、\nポイント利用や割引があったりと必ずしもそうはならない。", null, null, null);
-    protected final ColumnInfo _columnPaymentCompleteFlg = cci("PAYMENT_COMPLETE_FLG", "PAYMENT_COMPLETE_FLG", null, "支払完了フラグ", true, "paymentCompleteFlg", Integer.class, false, false, "INT", 10, 0, null, false, null, "この購入に関しての支払いが完了しているか否か。", null, null, CDef.DefMeta.Flg);
-    protected final ColumnInfo _columnRegisterDatetime = cci("REGISTER_DATETIME", "REGISTER_DATETIME", null, null, true, "registerDatetime", java.sql.Timestamp.class, false, false, "DATETIME", 19, 0, null, true, null, null, null, null, null);
-    protected final ColumnInfo _columnRegisterUser = cci("REGISTER_USER", "REGISTER_USER", null, null, true, "registerUser", String.class, false, false, "VARCHAR", 200, 0, null, true, null, null, null, null, null);
-    protected final ColumnInfo _columnUpdateDatetime = cci("UPDATE_DATETIME", "UPDATE_DATETIME", null, null, true, "updateDatetime", java.sql.Timestamp.class, false, false, "DATETIME", 19, 0, null, true, null, null, null, null, null);
-    protected final ColumnInfo _columnUpdateUser = cci("UPDATE_USER", "UPDATE_USER", null, null, true, "updateUser", String.class, false, false, "VARCHAR", 200, 0, null, true, null, null, null, null, null);
-    protected final ColumnInfo _columnVersionNo = cci("VERSION_NO", "VERSION_NO", null, null, true, "versionNo", Long.class, false, false, "BIGINT", 19, 0, null, false, OptimisticLockType.VERSION_NO, null, null, null, null);
+    protected final ColumnInfo _columnPurchaseId = cci("PURCHASE_ID", "PURCHASE_ID", null, "購入ID", Long.class, "purchaseId", null, true, true, true, "BIGINT", 19, 0, null, false, null, "連番", "purchaseSelf,whitePurchaseReferrerAsOne,purchaseSelfAsOne", "", null);
+    protected final ColumnInfo _columnMemberId = cci("MEMBER_ID", "MEMBER_ID", null, "会員ID", Integer.class, "memberId", null, false, false, true, "INT", 10, 0, null, false, null, "会員を参照するID。\n購入を識別する自然キー（複合ユニーク制約）の筆頭要素。", "member,summaryWithdrawal,memberAddressAsSkipRelation", null, null);
+    protected final ColumnInfo _columnProductId = cci("PRODUCT_ID", "PRODUCT_ID", null, "商品ID", Integer.class, "productId", null, false, false, true, "INT", 10, 0, null, false, null, "商品を参照するID。", "product,summaryProduct,whiteNoPkRelation", null, null);
+    protected final ColumnInfo _columnPurchaseDatetime = cci("PURCHASE_DATETIME", "PURCHASE_DATETIME", null, "購入日時", java.sql.Timestamp.class, "purchaseDatetime", null, false, false, true, "DATETIME", 19, 0, null, false, null, "購入した瞬間の日時。", null, null, null);
+    protected final ColumnInfo _columnPurchaseCount = cci("PURCHASE_COUNT", "PURCHASE_COUNT", null, "購入数量", Integer.class, "purchaseCount", null, false, false, true, "INT", 10, 0, null, false, null, "購入した商品の（一回の購入における）数量。", null, null, null);
+    protected final ColumnInfo _columnPurchasePrice = cci("PURCHASE_PRICE", "PURCHASE_PRICE", null, "購入価格", Integer.class, "purchasePrice", null, false, false, true, "INT", 10, 0, null, false, null, "購入によって実際に会員が支払った（支払う予定の）価格。\n基本は商品の定価に購入数量を掛けたものになるが、\nポイント利用や割引があったりと必ずしもそうはならない。", null, null, null);
+    protected final ColumnInfo _columnPaymentCompleteFlg = cci("PAYMENT_COMPLETE_FLG", "PAYMENT_COMPLETE_FLG", null, "支払完了フラグ", Integer.class, "paymentCompleteFlg", null, false, false, true, "INT", 10, 0, null, false, null, "この購入に関しての支払いが完了しているか否か。", null, null, CDef.DefMeta.Flg);
+    protected final ColumnInfo _columnRegisterDatetime = cci("REGISTER_DATETIME", "REGISTER_DATETIME", null, null, java.sql.Timestamp.class, "registerDatetime", null, false, false, true, "DATETIME", 19, 0, null, true, null, null, null, null, null);
+    protected final ColumnInfo _columnRegisterUser = cci("REGISTER_USER", "REGISTER_USER", null, null, String.class, "registerUser", null, false, false, true, "VARCHAR", 200, 0, null, true, null, null, null, null, null);
+    protected final ColumnInfo _columnUpdateDatetime = cci("UPDATE_DATETIME", "UPDATE_DATETIME", null, null, java.sql.Timestamp.class, "updateDatetime", null, false, false, true, "DATETIME", 19, 0, null, true, null, null, null, null, null);
+    protected final ColumnInfo _columnUpdateUser = cci("UPDATE_USER", "UPDATE_USER", null, null, String.class, "updateUser", null, false, false, true, "VARCHAR", 200, 0, null, true, null, null, null, null, null);
+    protected final ColumnInfo _columnVersionNo = cci("VERSION_NO", "VERSION_NO", null, null, Long.class, "versionNo", null, false, false, true, "BIGINT", 19, 0, null, false, OptimisticLockType.VERSION_NO, null, null, null, null);
 
     /**
      * (購入ID)PURCHASE_ID: {PK, ID, NotNull, BIGINT(19), FK to PURCHASE}
@@ -155,17 +214,17 @@ public class PurchaseDbm extends AbstractDBMeta {
      */
     public ColumnInfo columnPurchaseId() { return _columnPurchaseId; }
     /**
-     * (会員ID)MEMBER_ID: {UQ, IX, NotNull, INT(10), FK to member}
+     * (会員ID)MEMBER_ID: {UQ+, IX+, NotNull, INT(10), FK to member}
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnMemberId() { return _columnMemberId; }
     /**
-     * (商品ID)PRODUCT_ID: {UQ+, IX, NotNull, INT(10), FK to product}
+     * (商品ID)PRODUCT_ID: {+UQ, IX+, NotNull, INT(10), FK to product}
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnProductId() { return _columnProductId; }
     /**
-     * (購入日時)PURCHASE_DATETIME: {UQ+, IX, NotNull, DATETIME(19)}
+     * (購入日時)PURCHASE_DATETIME: {+UQ, IX+, NotNull, DATETIME(19)}
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnPurchaseDatetime() { return _columnPurchaseDatetime; }
@@ -242,6 +301,8 @@ public class PurchaseDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

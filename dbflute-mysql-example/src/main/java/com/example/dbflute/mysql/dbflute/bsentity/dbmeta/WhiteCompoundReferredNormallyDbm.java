@@ -48,13 +48,14 @@ public class WhiteCompoundReferredNormallyDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgReferredId(), "referredId");
         setupEpg(_epgMap, new EpgReferredName(), "referredName");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgReferredId implements PropertyGateway {
         public Object read(Entity et) { return ((WhiteCompoundReferredNormally)et).getReferredId(); }
         public void write(Entity et, Object vl) { ((WhiteCompoundReferredNormally)et).setReferredId(cti(vl)); }
@@ -63,6 +64,8 @@ public class WhiteCompoundReferredNormallyDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((WhiteCompoundReferredNormally)et).getReferredName(); }
         public void write(Entity et, Object vl) { ((WhiteCompoundReferredNormally)et).setReferredName((String)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -78,8 +81,8 @@ public class WhiteCompoundReferredNormallyDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnReferredId = cci("REFERRED_ID", "REFERRED_ID", null, null, true, "referredId", Integer.class, true, false, "INT", 10, 0, null, false, null, null, null, "whiteCompoundPkList", null);
-    protected final ColumnInfo _columnReferredName = cci("REFERRED_NAME", "REFERRED_NAME", null, null, true, "referredName", String.class, false, false, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnReferredId = cci("REFERRED_ID", "REFERRED_ID", null, null, Integer.class, "referredId", null, true, false, true, "INT", 10, 0, null, false, null, null, null, "whiteCompoundPkList", null);
+    protected final ColumnInfo _columnReferredName = cci("REFERRED_NAME", "REFERRED_NAME", null, null, String.class, "referredName", null, false, false, true, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
 
     /**
      * REFERRED_ID: {PK, NotNull, INT(10)}
@@ -114,6 +117,8 @@ public class WhiteCompoundReferredNormallyDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

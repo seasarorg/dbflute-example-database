@@ -236,7 +236,7 @@ public abstract class AbstractBsWhiteImplicitReverseFkCQ extends AbstractConditi
     public abstract String keepWhiteImplicitReverseFkId_SpecifyDerivedReferrer_WhiteImplicitReverseFkRefList(WhiteImplicitReverseFkRefCQ sq);
 
     /**
-     * Prepare for (Query)DerivedReferrer. <br />
+     * Prepare for (Query)DerivedReferrer (correlated sub-query). <br />
      * {FOO &lt;= (select max(BAR) from white_implicit_reverse_fk_ref where ...)} <br />
      * white_implicit_reverse_fk_ref by WHITE_IMPLICIT_REVERSE_FK_ID, named 'whiteImplicitReverseFkRefAsOne'. <br />
      * This relation is auto-detected as implicit reverse FK.
@@ -508,7 +508,7 @@ public abstract class AbstractBsWhiteImplicitReverseFkCQ extends AbstractConditi
     public abstract String keepSpecifyMyselfDerived(WhiteImplicitReverseFkCQ sq);
 
     /**
-     * Prepare for (Query)MyselfDerived (SubQuery).
+     * Prepare for (Query)MyselfDerived (correlated sub-query).
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<WhiteImplicitReverseFkCB> myselfDerived() {
@@ -530,8 +530,8 @@ public abstract class AbstractBsWhiteImplicitReverseFkCQ extends AbstractConditi
     //                                                                        MyselfExists
     //                                                                        ============
     /**
-     * Prepare for MyselfExists (SubQuery).
-     * @param subQuery The implementation of sub query. (NotNull)
+     * Prepare for MyselfExists (correlated sub-query).
+     * @param subQuery The implementation of sub-query. (NotNull)
      */
     public void myselfExists(SubQuery<WhiteImplicitReverseFkCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
@@ -546,8 +546,8 @@ public abstract class AbstractBsWhiteImplicitReverseFkCQ extends AbstractConditi
     //                                                                       MyselfInScope
     //                                                                       =============
     /**
-     * Prepare for MyselfInScope (SubQuery).
-     * @param subQuery The implementation of sub query. (NotNull)
+     * Prepare for MyselfInScope (sub-query).
+     * @param subQuery The implementation of sub-query. (NotNull)
      */
     public void myselfInScope(SubQuery<WhiteImplicitReverseFkCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);

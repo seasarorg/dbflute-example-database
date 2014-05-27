@@ -48,13 +48,14 @@ public class WhiteSuppressDefCheckDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgDefCheckId(), "defCheckId");
         setupEpg(_epgMap, new EpgDefCheckName(), "defCheckName");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgDefCheckId implements PropertyGateway {
         public Object read(Entity et) { return ((WhiteSuppressDefCheck)et).getDefCheckId(); }
         public void write(Entity et, Object vl) { ((WhiteSuppressDefCheck)et).setDefCheckId(ctl(vl)); }
@@ -63,6 +64,8 @@ public class WhiteSuppressDefCheckDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((WhiteSuppressDefCheck)et).getDefCheckName(); }
         public void write(Entity et, Object vl) { ((WhiteSuppressDefCheck)et).setDefCheckName((String)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -78,8 +81,8 @@ public class WhiteSuppressDefCheckDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnDefCheckId = cci("DEF_CHECK_ID", "DEF_CHECK_ID", null, null, true, "defCheckId", Long.class, true, false, "BIGINT", 19, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnDefCheckName = cci("DEF_CHECK_NAME", "DEF_CHECK_NAME", null, null, true, "defCheckName", String.class, false, false, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnDefCheckId = cci("DEF_CHECK_ID", "DEF_CHECK_ID", null, null, Long.class, "defCheckId", null, true, false, true, "BIGINT", 19, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnDefCheckName = cci("DEF_CHECK_NAME", "DEF_CHECK_NAME", null, null, String.class, "defCheckName", null, false, false, true, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
 
     /**
      * DEF_CHECK_ID: {PK, NotNull, BIGINT(19)}
@@ -114,6 +117,8 @@ public class WhiteSuppressDefCheckDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

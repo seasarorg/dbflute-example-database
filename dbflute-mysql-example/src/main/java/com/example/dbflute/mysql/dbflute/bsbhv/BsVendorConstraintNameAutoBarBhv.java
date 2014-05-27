@@ -184,7 +184,7 @@ public abstract class BsVendorConstraintNameAutoBarBhv extends AbstractBehaviorW
      * </pre>
      * @param cb The condition-bean of VendorConstraintNameAutoBar. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -205,39 +205,64 @@ public abstract class BsVendorConstraintNameAutoBarBhv extends AbstractBehaviorW
 
     /**
      * Select the entity by the primary-key value.
-     * @param constraintNameAutoBarId The one of primary key. (NotNull)
+     * @param constraintNameAutoBarId : PK, NotNull, DECIMAL(16). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public VendorConstraintNameAutoBar selectByPKValue(Long constraintNameAutoBarId) {
-        return doSelectByPKValue(constraintNameAutoBarId, VendorConstraintNameAutoBar.class);
+        return doSelectByPK(constraintNameAutoBarId, VendorConstraintNameAutoBar.class);
     }
 
-    protected <ENTITY extends VendorConstraintNameAutoBar> ENTITY doSelectByPKValue(Long constraintNameAutoBarId, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(constraintNameAutoBarId), entityType);
+    protected <ENTITY extends VendorConstraintNameAutoBar> ENTITY doSelectByPK(Long constraintNameAutoBarId, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(constraintNameAutoBarId), entityType);
+    }
+
+    protected <ENTITY extends VendorConstraintNameAutoBar> OptionalEntity<ENTITY> doSelectOptionalByPK(Long constraintNameAutoBarId, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(constraintNameAutoBarId, entityType), constraintNameAutoBarId);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param constraintNameAutoBarId The one of primary key. (NotNull)
+     * @param constraintNameAutoBarId : PK, NotNull, DECIMAL(16). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public VendorConstraintNameAutoBar selectByPKValueWithDeletedCheck(Long constraintNameAutoBarId) {
-        return doSelectByPKValueWithDeletedCheck(constraintNameAutoBarId, VendorConstraintNameAutoBar.class);
+        return doSelectByPKWithDeletedCheck(constraintNameAutoBarId, VendorConstraintNameAutoBar.class);
     }
 
-    protected <ENTITY extends VendorConstraintNameAutoBar> ENTITY doSelectByPKValueWithDeletedCheck(Long constraintNameAutoBarId, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(constraintNameAutoBarId), entityType);
+    protected <ENTITY extends VendorConstraintNameAutoBar> ENTITY doSelectByPKWithDeletedCheck(Long constraintNameAutoBarId, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(constraintNameAutoBarId), entityType);
     }
 
-    private VendorConstraintNameAutoBarCB buildPKCB(Long constraintNameAutoBarId) {
+    protected VendorConstraintNameAutoBarCB xprepareCBAsPK(Long constraintNameAutoBarId) {
         assertObjectNotNull("constraintNameAutoBarId", constraintNameAutoBarId);
-        VendorConstraintNameAutoBarCB cb = newMyConditionBean();
-        cb.query().setConstraintNameAutoBarId_Equal(constraintNameAutoBarId);
+        VendorConstraintNameAutoBarCB cb = newMyConditionBean(); cb.acceptPrimaryKey(constraintNameAutoBarId);
+        return cb;
+    }
+
+    /**
+     * Select the entity by the unique-key value.
+     * @param constraintNameAutoBarName : UQ, NotNull, VARCHAR(50). (NotNull)
+     * @return The optional entity selected by the unique key. (NotNull: if no data, empty entity)
+     * @exception EntityAlreadyDeletedException When get(), required() of return value is called and the value is null, which means entity has already been deleted (not found).
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     */
+    public OptionalEntity<VendorConstraintNameAutoBar> selectByUniqueOf(String constraintNameAutoBarName) {
+        return doSelectByUniqueOf(constraintNameAutoBarName, VendorConstraintNameAutoBar.class);
+    }
+
+    protected <ENTITY extends VendorConstraintNameAutoBar> OptionalEntity<ENTITY> doSelectByUniqueOf(String constraintNameAutoBarName, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectEntity(xprepareCBAsUniqueOf(constraintNameAutoBarName), entityType), constraintNameAutoBarName);
+    }
+
+    protected VendorConstraintNameAutoBarCB xprepareCBAsUniqueOf(String constraintNameAutoBarName) {
+        assertObjectNotNull("constraintNameAutoBarName", constraintNameAutoBarName);
+        VendorConstraintNameAutoBarCB cb = newMyConditionBean(); cb.acceptUniqueOf(constraintNameAutoBarName);
         return cb;
     }
 

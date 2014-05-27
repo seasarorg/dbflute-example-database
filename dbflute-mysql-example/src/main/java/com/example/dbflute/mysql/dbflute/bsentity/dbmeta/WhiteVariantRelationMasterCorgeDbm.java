@@ -48,14 +48,15 @@ public class WhiteVariantRelationMasterCorgeDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgMasterCorgeId(), "masterCorgeId");
         setupEpg(_epgMap, new EpgMasterCorgeName(), "masterCorgeName");
         setupEpg(_epgMap, new EpgCorgeTypeCode(), "corgeTypeCode");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgMasterCorgeId implements PropertyGateway {
         public Object read(Entity et) { return ((WhiteVariantRelationMasterCorge)et).getMasterCorgeId(); }
         public void write(Entity et, Object vl) { ((WhiteVariantRelationMasterCorge)et).setMasterCorgeId(ctl(vl)); }
@@ -72,6 +73,8 @@ public class WhiteVariantRelationMasterCorgeDbm extends AbstractDBMeta {
             ((WhiteVariantRelationMasterCorge)et).setCorgeTypeCodeAsVariantRelationQuxType((CDef.VariantRelationQuxType)gcls(col, vl));
         }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -87,9 +90,9 @@ public class WhiteVariantRelationMasterCorgeDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnMasterCorgeId = cci("MASTER_CORGE_ID", "MASTER_CORGE_ID", null, null, true, "masterCorgeId", Long.class, true, false, "BIGINT", 19, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnMasterCorgeName = cci("MASTER_CORGE_NAME", "MASTER_CORGE_NAME", null, null, true, "masterCorgeName", String.class, false, false, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnCorgeTypeCode = cci("CORGE_TYPE_CODE", "CORGE_TYPE_CODE", null, null, true, "corgeTypeCode", String.class, false, false, "CHAR", 3, 0, null, false, null, null, null, null, CDef.DefMeta.VariantRelationQuxType);
+    protected final ColumnInfo _columnMasterCorgeId = cci("MASTER_CORGE_ID", "MASTER_CORGE_ID", null, null, Long.class, "masterCorgeId", null, true, false, true, "BIGINT", 19, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnMasterCorgeName = cci("MASTER_CORGE_NAME", "MASTER_CORGE_NAME", null, null, String.class, "masterCorgeName", null, false, false, true, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnCorgeTypeCode = cci("CORGE_TYPE_CODE", "CORGE_TYPE_CODE", null, null, String.class, "corgeTypeCode", null, false, false, true, "CHAR", 3, 0, null, false, null, null, null, null, CDef.DefMeta.VariantRelationQuxType);
 
     /**
      * MASTER_CORGE_ID: {PK, NotNull, BIGINT(19)}
@@ -130,6 +133,8 @@ public class WhiteVariantRelationMasterCorgeDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

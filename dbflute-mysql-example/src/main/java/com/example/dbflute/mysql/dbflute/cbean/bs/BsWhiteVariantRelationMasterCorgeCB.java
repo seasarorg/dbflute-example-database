@@ -92,10 +92,14 @@ public class BsWhiteVariantRelationMasterCorgeCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                 PrimaryKey Handling
     //                                                                 ===================
+    /**
+     * Accept the query condition of primary key as equal.
+     * @param masterCorgeId : PK, NotNull, BIGINT(19). (NotNull)
+     */
     public void acceptPrimaryKey(Long masterCorgeId) {
         assertObjectNotNull("masterCorgeId", masterCorgeId);
         BsWhiteVariantRelationMasterCorgeCB cb = this;
-        cb.query().setMasterCorgeId_Equal(masterCorgeId);
+        cb.query().setMasterCorgeId_Equal(masterCorgeId);;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {
@@ -413,6 +417,11 @@ public class BsWhiteVariantRelationMasterCorgeCB extends AbstractConditionBean {
      */
     public void orScopeQuery(OrQuery<WhiteVariantRelationMasterCorgeCB> orQuery) {
         xorSQ((WhiteVariantRelationMasterCorgeCB)this, orQuery);
+    }
+
+    @Override
+    protected HpCBPurpose xhandleOrSQPurposeChange() {
+        return null; // means no check
     }
 
     /**

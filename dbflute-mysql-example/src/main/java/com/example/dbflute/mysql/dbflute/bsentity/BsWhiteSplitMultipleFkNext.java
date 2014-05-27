@@ -88,6 +88,9 @@ public abstract class BsWhiteSplitMultipleFkNext implements Entity, Serializable
     // -----------------------------------------------------
     //                                              Internal
     //                                              --------
+    /** The unique-driven properties for this entity. (NotNull) */
+    protected final EntityUniqueDrivenProperties __uniqueDrivenProperties = newUniqueDrivenProperties();
+
     /** The modified properties for this entity. (NotNull) */
     protected final EntityModifiedProperties __modifiedProperties = newModifiedProperties();
 
@@ -130,6 +133,17 @@ public abstract class BsWhiteSplitMultipleFkNext implements Entity, Serializable
     public boolean hasPrimaryKeyValue() {
         if (getNextId() == null) { return false; }
         return true;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Set<String> uniqueDrivenProperties() {
+        return __uniqueDrivenProperties.getPropertyNames();
+    }
+
+    protected EntityUniqueDrivenProperties newUniqueDrivenProperties() {
+        return new EntityUniqueDrivenProperties();
     }
 
     // ===================================================================================
@@ -222,8 +236,8 @@ public abstract class BsWhiteSplitMultipleFkNext implements Entity, Serializable
         if (!xSV(getNextId(), other.getNextId())) { return false; }
         return true;
     }
-    protected boolean xSV(Object value1, Object value2) {
-        return FunCustodial.isSameValue(value1, value2);
+    protected boolean xSV(Object v1, Object v2) {
+        return FunCustodial.isSameValue(v1, v2);
     }
 
     /**
@@ -231,13 +245,13 @@ public abstract class BsWhiteSplitMultipleFkNext implements Entity, Serializable
      * @return The hash-code from primary-key or columns.
      */
     public int hashCode() {
-        int result = 17;
-        result = xCH(result, getTableDbName());
-        result = xCH(result, getNextId());
-        return result;
+        int hs = 17;
+        hs = xCH(hs, getTableDbName());
+        hs = xCH(hs, getNextId());
+        return hs;
     }
-    protected int xCH(int result, Object value) {
-        return FunCustodial.calculateHashcode(result, value);
+    protected int xCH(int hs, Object vl) {
+        return FunCustodial.calculateHashcode(hs, vl);
     }
 
     /**
@@ -261,13 +275,13 @@ public abstract class BsWhiteSplitMultipleFkNext implements Entity, Serializable
     public String toStringWithRelation() {
         StringBuilder sb = new StringBuilder();
         sb.append(toString());
-        String l = "\n  ";
-        if (_whiteSplitMultipleFkBaseList != null) { for (Entity e : _whiteSplitMultipleFkBaseList)
-        { if (e != null) { sb.append(l).append(xbRDS(e, "whiteSplitMultipleFkBaseList")); } } }
+        String li = "\n  ";
+        if (_whiteSplitMultipleFkBaseList != null) { for (Entity et : _whiteSplitMultipleFkBaseList)
+        { if (et != null) { sb.append(li).append(xbRDS(et, "whiteSplitMultipleFkBaseList")); } } }
         return sb.toString();
     }
-    protected String xbRDS(Entity e, String name) { // buildRelationDisplayString()
-        return e.buildDisplayString(name, true, true);
+    protected String xbRDS(Entity et, String name) { // buildRelationDisplayString()
+        return et.buildDisplayString(name, true, true);
     }
 
     /**
@@ -283,22 +297,22 @@ public abstract class BsWhiteSplitMultipleFkNext implements Entity, Serializable
     }
     protected String buildColumnString() {
         StringBuilder sb = new StringBuilder();
-        String delimiter = ", ";
-        sb.append(delimiter).append(getNextId());
-        sb.append(delimiter).append(getSecondCode());
-        if (sb.length() > delimiter.length()) {
-            sb.delete(0, delimiter.length());
+        String dm = ", ";
+        sb.append(dm).append(getNextId());
+        sb.append(dm).append(getSecondCode());
+        if (sb.length() > dm.length()) {
+            sb.delete(0, dm.length());
         }
         sb.insert(0, "{").append("}");
         return sb.toString();
     }
     protected String buildRelationString() {
         StringBuilder sb = new StringBuilder();
-        String c = ",";
+        String cm = ",";
         if (_whiteSplitMultipleFkBaseList != null && !_whiteSplitMultipleFkBaseList.isEmpty())
-        { sb.append(c).append("whiteSplitMultipleFkBaseList"); }
-        if (sb.length() > c.length()) {
-            sb.delete(0, c.length()).insert(0, "(").append(")");
+        { sb.append(cm).append("whiteSplitMultipleFkBaseList"); }
+        if (sb.length() > cm.length()) {
+            sb.delete(0, cm.length()).insert(0, "(").append(")");
         }
         return sb.toString();
     }

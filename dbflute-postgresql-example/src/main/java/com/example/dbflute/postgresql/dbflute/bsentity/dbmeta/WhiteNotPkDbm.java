@@ -33,14 +33,15 @@ public class WhiteNotPkDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgNotPkId(), "notPkId");
         setupEpg(_epgMap, new EpgNotPkName(), "notPkName");
         setupEpg(_epgMap, new EpgNotPkInteger(), "notPkInteger");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgNotPkId implements PropertyGateway {
         public Object read(Entity et) { return ((WhiteNotPk)et).getNotPkId(); }
         public void write(Entity et, Object vl) { ((WhiteNotPk)et).setNotPkId(ctl(vl)); }
@@ -53,6 +54,8 @@ public class WhiteNotPkDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((WhiteNotPk)et).getNotPkInteger(); }
         public void write(Entity et, Object vl) { ((WhiteNotPk)et).setNotPkInteger(cti(vl)); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -68,12 +71,24 @@ public class WhiteNotPkDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnNotPkId = cci("not_pk_id", "not_pk_id", null, null, true, "notPkId", Long.class, false, false, "int8", 19, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnNotPkName = cci("not_pk_name", "not_pk_name", null, null, false, "notPkName", String.class, false, false, "varchar", 2147483647, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnNotPkInteger = cci("not_pk_integer", "not_pk_integer", null, null, false, "notPkInteger", Integer.class, false, false, "int4", 10, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnNotPkId = cci("not_pk_id", "not_pk_id", null, null, Long.class, "notPkId", null, false, false, true, "int8", 19, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnNotPkName = cci("not_pk_name", "not_pk_name", null, null, String.class, "notPkName", null, false, false, false, "varchar", 2147483647, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnNotPkInteger = cci("not_pk_integer", "not_pk_integer", null, null, Integer.class, "notPkInteger", null, false, false, false, "int4", 10, 0, null, false, null, null, null, null, null);
 
+    /**
+     * not_pk_id: {NotNull, int8(19)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnNotPkId() { return _columnNotPkId; }
+    /**
+     * not_pk_name: {varchar(2147483647)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnNotPkName() { return _columnNotPkName; }
+    /**
+     * not_pk_integer: {int4(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnNotPkInteger() { return _columnNotPkInteger; }
 
     protected List<ColumnInfo> ccil() {
@@ -101,6 +116,8 @@ public class WhiteNotPkDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

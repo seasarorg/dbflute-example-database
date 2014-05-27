@@ -92,10 +92,14 @@ public class BsWhitePgReservCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                 PrimaryKey Handling
     //                                                                 ===================
+    /**
+     * Accept the query condition of primary key as equal.
+     * @param classSynonym ((using DBFlute synonym)): PK, NotNull, INT(10). (NotNull)
+     */
     public void acceptPrimaryKey(Integer classSynonym) {
         assertObjectNotNull("classSynonym", classSynonym);
         BsWhitePgReservCB cb = this;
-        cb.query().setClassSynonym_Equal(classSynonym);
+        cb.query().setClassSynonym_Equal(classSynonym);;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {
@@ -518,6 +522,11 @@ public class BsWhitePgReservCB extends AbstractConditionBean {
      */
     public void orScopeQuery(OrQuery<WhitePgReservCB> orQuery) {
         xorSQ((WhitePgReservCB)this, orQuery);
+    }
+
+    @Override
+    protected HpCBPurpose xhandleOrSQPurposeChange() {
+        return null; // means no check
     }
 
     /**

@@ -33,14 +33,15 @@ public class WithdrawalReasonDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgWithdrawalReasonCode(), "withdrawalReasonCode");
         setupEpg(_epgMap, new EpgWithdrawalReasonText(), "withdrawalReasonText");
         setupEpg(_epgMap, new EpgDisplayOrder(), "displayOrder");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgWithdrawalReasonCode implements PropertyGateway {
         public Object read(Entity et) { return ((WithdrawalReason)et).getWithdrawalReasonCode(); }
         public void write(Entity et, Object vl) { ((WithdrawalReason)et).setWithdrawalReasonCode((String)vl); }
@@ -53,6 +54,8 @@ public class WithdrawalReasonDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((WithdrawalReason)et).getDisplayOrder(); }
         public void write(Entity et, Object vl) { ((WithdrawalReason)et).setDisplayOrder(cti(vl)); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -72,12 +75,24 @@ public class WithdrawalReasonDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnWithdrawalReasonCode = cci("withdrawal_reason_code", "withdrawal_reason_code", null, "退会理由コード", true, "withdrawalReasonCode", String.class, true, false, "bpchar", 3, 0, null, false, null, null, null, "memberWithdrawalList", null);
-    protected final ColumnInfo _columnWithdrawalReasonText = cci("withdrawal_reason_text", "withdrawal_reason_text", null, "退会理由テキスト", true, "withdrawalReasonText", String.class, false, false, "text", 2147483647, 0, null, false, null, "退会理由の内容。テキスト形式なので目いっぱい書けるが、\nそうするとUI側できれいに見せるのが大変でしょうね。", null, null, null);
-    protected final ColumnInfo _columnDisplayOrder = cci("display_order", "display_order", null, null, true, "displayOrder", Integer.class, false, false, "int4", 10, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnWithdrawalReasonCode = cci("withdrawal_reason_code", "withdrawal_reason_code", null, "退会理由コード", String.class, "withdrawalReasonCode", null, true, false, true, "bpchar", 3, 0, null, false, null, null, null, "memberWithdrawalList", null);
+    protected final ColumnInfo _columnWithdrawalReasonText = cci("withdrawal_reason_text", "withdrawal_reason_text", null, "退会理由テキスト", String.class, "withdrawalReasonText", null, false, false, true, "text", 2147483647, 0, null, false, null, "退会理由の内容。テキスト形式なので目いっぱい書けるが、\nそうするとUI側できれいに見せるのが大変でしょうね。", null, null, null);
+    protected final ColumnInfo _columnDisplayOrder = cci("display_order", "display_order", null, null, Integer.class, "displayOrder", null, false, false, true, "int4", 10, 0, null, false, null, null, null, null, null);
 
+    /**
+     * (退会理由コード)withdrawal_reason_code: {PK, NotNull, bpchar(3)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnWithdrawalReasonCode() { return _columnWithdrawalReasonCode; }
+    /**
+     * (退会理由テキスト)withdrawal_reason_text: {NotNull, text(2147483647)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnWithdrawalReasonText() { return _columnWithdrawalReasonText; }
+    /**
+     * display_order: {UQ, NotNull, int4(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnDisplayOrder() { return _columnDisplayOrder; }
 
     protected List<ColumnInfo> ccil() {
@@ -103,6 +118,8 @@ public class WithdrawalReasonDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------
@@ -110,6 +127,10 @@ public class WithdrawalReasonDbm extends AbstractDBMeta {
     // -----------------------------------------------------
     //                                     Referrer Property
     //                                     -----------------
+    /**
+     * (会員退会情報)member_withdrawal by withdrawal_reason_code, named 'memberWithdrawalList'.
+     * @return The information object of referrer property. (NotNull)
+     */
     public ReferrerInfo referrerMemberWithdrawalList() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnWithdrawalReasonCode(), MemberWithdrawalDbm.getInstance().columnWithdrawalReasonCode());
         return cri("fk_member_withdrawal_info_withdrawal_reason", "memberWithdrawalList", this, MemberWithdrawalDbm.getInstance(), mp, false, "withdrawalReason");

@@ -232,7 +232,7 @@ public abstract class AbstractBsVendorConstraintNameAutoBarCQ extends AbstractCo
     public abstract String keepConstraintNameAutoBarId_SpecifyDerivedReferrer_VendorConstraintNameAutoRefList(VendorConstraintNameAutoRefCQ sq);
 
     /**
-     * Prepare for (Query)DerivedReferrer. <br />
+     * Prepare for (Query)DerivedReferrer (correlated sub-query). <br />
      * {FOO &lt;= (select max(BAR) from vendor_constraint_name_auto_ref where ...)} <br />
      * vendor_constraint_name_auto_ref by CONSTRAINT_NAME_AUTO_BAR_ID, named 'vendorConstraintNameAutoRefAsOne'.
      * <pre>
@@ -503,7 +503,7 @@ public abstract class AbstractBsVendorConstraintNameAutoBarCQ extends AbstractCo
     public abstract String keepSpecifyMyselfDerived(VendorConstraintNameAutoBarCQ sq);
 
     /**
-     * Prepare for (Query)MyselfDerived (SubQuery).
+     * Prepare for (Query)MyselfDerived (correlated sub-query).
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<VendorConstraintNameAutoBarCB> myselfDerived() {
@@ -525,8 +525,8 @@ public abstract class AbstractBsVendorConstraintNameAutoBarCQ extends AbstractCo
     //                                                                        MyselfExists
     //                                                                        ============
     /**
-     * Prepare for MyselfExists (SubQuery).
-     * @param subQuery The implementation of sub query. (NotNull)
+     * Prepare for MyselfExists (correlated sub-query).
+     * @param subQuery The implementation of sub-query. (NotNull)
      */
     public void myselfExists(SubQuery<VendorConstraintNameAutoBarCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
@@ -541,8 +541,8 @@ public abstract class AbstractBsVendorConstraintNameAutoBarCQ extends AbstractCo
     //                                                                       MyselfInScope
     //                                                                       =============
     /**
-     * Prepare for MyselfInScope (SubQuery).
-     * @param subQuery The implementation of sub query. (NotNull)
+     * Prepare for MyselfInScope (sub-query).
+     * @param subQuery The implementation of sub-query. (NotNull)
      */
     public void myselfInScope(SubQuery<VendorConstraintNameAutoBarCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);

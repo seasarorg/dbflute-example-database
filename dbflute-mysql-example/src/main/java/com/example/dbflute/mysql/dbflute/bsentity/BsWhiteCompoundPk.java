@@ -83,21 +83,24 @@ public abstract class BsWhiteCompoundPk implements Entity, Serializable, Cloneab
     // -----------------------------------------------------
     //                                                Column
     //                                                ------
-    /** PK_FIRST_ID: {PK, UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_PK_REF_MANY} */
+    /** PK_FIRST_ID: {PK, +UQ, NotNull, INT(10), FK to WHITE_COMPOUND_PK_REF_MANY} */
     protected Integer _pkFirstId;
 
-    /** PK_SECOND_ID: {PK, UQ, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_PRIMARY} */
+    /** PK_SECOND_ID: {PK, UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_PRIMARY} */
     protected Integer _pkSecondId;
 
     /** PK_NAME: {NotNull, VARCHAR(200)} */
     protected String _pkName;
 
-    /** REFERRED_ID: {UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_NORMALLY} */
+    /** REFERRED_ID: {+UQ, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_NORMALLY} */
     protected Integer _referredId;
 
     // -----------------------------------------------------
     //                                              Internal
     //                                              --------
+    /** The unique-driven properties for this entity. (NotNull) */
+    protected final EntityUniqueDrivenProperties __uniqueDrivenProperties = newUniqueDrivenProperties();
+
     /** The modified properties for this entity. (NotNull) */
     protected final EntityModifiedProperties __modifiedProperties = newModifiedProperties();
 
@@ -141,6 +144,45 @@ public abstract class BsWhiteCompoundPk implements Entity, Serializable, Cloneab
         if (getPkFirstId() == null) { return false; }
         if (getPkSecondId() == null) { return false; }
         return true;
+    }
+
+    /**
+     * To be unique by the unique column. <br />
+     * You can update the entity by the key when entity update (NOT batch update).
+     * @param pkSecondId : PK, UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_PRIMARY. (NotNull)
+     * @param referredId : +UQ, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_NORMALLY. (NotNull)
+     */
+    public void uniqueByPkSecondIdReferredId(Integer pkSecondId, Integer referredId) {
+        __uniqueDrivenProperties.clear();
+        __uniqueDrivenProperties.addPropertyName("pkSecondId");
+        _pkSecondId = pkSecondId;
+        __uniqueDrivenProperties.addPropertyName("referredId");
+        _referredId = referredId;
+    }
+
+    /**
+     * To be unique by the unique column. <br />
+     * You can update the entity by the key when entity update (NOT batch update).
+     * @param pkSecondId : PK, UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_PRIMARY. (NotNull)
+     * @param pkFirstId : PK, +UQ, NotNull, INT(10), FK to WHITE_COMPOUND_PK_REF_MANY. (NotNull)
+     */
+    public void uniqueByPkSecondIdPkFirstId(Integer pkSecondId, Integer pkFirstId) {
+        __uniqueDrivenProperties.clear();
+        __uniqueDrivenProperties.addPropertyName("pkSecondId");
+        _pkSecondId = pkSecondId;
+        __uniqueDrivenProperties.addPropertyName("pkFirstId");
+        _pkFirstId = pkFirstId;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Set<String> uniqueDrivenProperties() {
+        return __uniqueDrivenProperties.getPropertyNames();
+    }
+
+    protected EntityUniqueDrivenProperties newUniqueDrivenProperties() {
+        return new EntityUniqueDrivenProperties();
     }
 
     // ===================================================================================
@@ -330,8 +372,8 @@ public abstract class BsWhiteCompoundPk implements Entity, Serializable, Cloneab
         if (!xSV(getPkSecondId(), other.getPkSecondId())) { return false; }
         return true;
     }
-    protected boolean xSV(Object value1, Object value2) {
-        return FunCustodial.isSameValue(value1, value2);
+    protected boolean xSV(Object v1, Object v2) {
+        return FunCustodial.isSameValue(v1, v2);
     }
 
     /**
@@ -339,14 +381,14 @@ public abstract class BsWhiteCompoundPk implements Entity, Serializable, Cloneab
      * @return The hash-code from primary-key or columns.
      */
     public int hashCode() {
-        int result = 17;
-        result = xCH(result, getTableDbName());
-        result = xCH(result, getPkFirstId());
-        result = xCH(result, getPkSecondId());
-        return result;
+        int hs = 17;
+        hs = xCH(hs, getTableDbName());
+        hs = xCH(hs, getPkFirstId());
+        hs = xCH(hs, getPkSecondId());
+        return hs;
     }
-    protected int xCH(int result, Object value) {
-        return FunCustodial.calculateHashcode(result, value);
+    protected int xCH(int hs, Object vl) {
+        return FunCustodial.calculateHashcode(hs, vl);
     }
 
     /**
@@ -370,23 +412,23 @@ public abstract class BsWhiteCompoundPk implements Entity, Serializable, Cloneab
     public String toStringWithRelation() {
         StringBuilder sb = new StringBuilder();
         sb.append(toString());
-        String l = "\n  ";
+        String li = "\n  ";
         if (_whiteCompoundReferredNormally != null)
-        { sb.append(l).append(xbRDS(_whiteCompoundReferredNormally, "whiteCompoundReferredNormally")); }
+        { sb.append(li).append(xbRDS(_whiteCompoundReferredNormally, "whiteCompoundReferredNormally")); }
         if (_whiteCompoundReferredPrimary != null)
-        { sb.append(l).append(xbRDS(_whiteCompoundReferredPrimary, "whiteCompoundReferredPrimary")); }
+        { sb.append(li).append(xbRDS(_whiteCompoundReferredPrimary, "whiteCompoundReferredPrimary")); }
         if (_whiteCompoundPkRefManyAsMax != null)
-        { sb.append(l).append(xbRDS(_whiteCompoundPkRefManyAsMax, "whiteCompoundPkRefManyAsMax")); }
+        { sb.append(li).append(xbRDS(_whiteCompoundPkRefManyAsMax, "whiteCompoundPkRefManyAsMax")); }
         if (_whiteCompoundPkRefManyAsMin != null)
-        { sb.append(l).append(xbRDS(_whiteCompoundPkRefManyAsMin, "whiteCompoundPkRefManyAsMin")); }
-        if (_whiteCompoundPkRefList != null) { for (Entity e : _whiteCompoundPkRefList)
-        { if (e != null) { sb.append(l).append(xbRDS(e, "whiteCompoundPkRefList")); } } }
-        if (_whiteCompoundPkRefManyToPKList != null) { for (Entity e : _whiteCompoundPkRefManyToPKList)
-        { if (e != null) { sb.append(l).append(xbRDS(e, "whiteCompoundPkRefManyToPKList")); } } }
+        { sb.append(li).append(xbRDS(_whiteCompoundPkRefManyAsMin, "whiteCompoundPkRefManyAsMin")); }
+        if (_whiteCompoundPkRefList != null) { for (Entity et : _whiteCompoundPkRefList)
+        { if (et != null) { sb.append(li).append(xbRDS(et, "whiteCompoundPkRefList")); } } }
+        if (_whiteCompoundPkRefManyToPKList != null) { for (Entity et : _whiteCompoundPkRefManyToPKList)
+        { if (et != null) { sb.append(li).append(xbRDS(et, "whiteCompoundPkRefManyToPKList")); } } }
         return sb.toString();
     }
-    protected String xbRDS(Entity e, String name) { // buildRelationDisplayString()
-        return e.buildDisplayString(name, true, true);
+    protected String xbRDS(Entity et, String name) { // buildRelationDisplayString()
+        return et.buildDisplayString(name, true, true);
     }
 
     /**
@@ -402,30 +444,30 @@ public abstract class BsWhiteCompoundPk implements Entity, Serializable, Cloneab
     }
     protected String buildColumnString() {
         StringBuilder sb = new StringBuilder();
-        String delimiter = ", ";
-        sb.append(delimiter).append(getPkFirstId());
-        sb.append(delimiter).append(getPkSecondId());
-        sb.append(delimiter).append(getPkName());
-        sb.append(delimiter).append(getReferredId());
-        if (sb.length() > delimiter.length()) {
-            sb.delete(0, delimiter.length());
+        String dm = ", ";
+        sb.append(dm).append(getPkFirstId());
+        sb.append(dm).append(getPkSecondId());
+        sb.append(dm).append(getPkName());
+        sb.append(dm).append(getReferredId());
+        if (sb.length() > dm.length()) {
+            sb.delete(0, dm.length());
         }
         sb.insert(0, "{").append("}");
         return sb.toString();
     }
     protected String buildRelationString() {
         StringBuilder sb = new StringBuilder();
-        String c = ",";
-        if (_whiteCompoundReferredNormally != null) { sb.append(c).append("whiteCompoundReferredNormally"); }
-        if (_whiteCompoundReferredPrimary != null) { sb.append(c).append("whiteCompoundReferredPrimary"); }
-        if (_whiteCompoundPkRefManyAsMax != null) { sb.append(c).append("whiteCompoundPkRefManyAsMax"); }
-        if (_whiteCompoundPkRefManyAsMin != null) { sb.append(c).append("whiteCompoundPkRefManyAsMin"); }
+        String cm = ",";
+        if (_whiteCompoundReferredNormally != null) { sb.append(cm).append("whiteCompoundReferredNormally"); }
+        if (_whiteCompoundReferredPrimary != null) { sb.append(cm).append("whiteCompoundReferredPrimary"); }
+        if (_whiteCompoundPkRefManyAsMax != null) { sb.append(cm).append("whiteCompoundPkRefManyAsMax"); }
+        if (_whiteCompoundPkRefManyAsMin != null) { sb.append(cm).append("whiteCompoundPkRefManyAsMin"); }
         if (_whiteCompoundPkRefList != null && !_whiteCompoundPkRefList.isEmpty())
-        { sb.append(c).append("whiteCompoundPkRefList"); }
+        { sb.append(cm).append("whiteCompoundPkRefList"); }
         if (_whiteCompoundPkRefManyToPKList != null && !_whiteCompoundPkRefManyToPKList.isEmpty())
-        { sb.append(c).append("whiteCompoundPkRefManyToPKList"); }
-        if (sb.length() > c.length()) {
-            sb.delete(0, c.length()).insert(0, "(").append(")");
+        { sb.append(cm).append("whiteCompoundPkRefManyToPKList"); }
+        if (sb.length() > cm.length()) {
+            sb.delete(0, cm.length()).insert(0, "(").append(")");
         }
         return sb.toString();
     }
@@ -446,7 +488,7 @@ public abstract class BsWhiteCompoundPk implements Entity, Serializable, Cloneab
     //                                                                            Accessor
     //                                                                            ========
     /**
-     * [get] PK_FIRST_ID: {PK, UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_PK_REF_MANY} <br />
+     * [get] PK_FIRST_ID: {PK, +UQ, NotNull, INT(10), FK to WHITE_COMPOUND_PK_REF_MANY} <br />
      * @return The value of the column 'PK_FIRST_ID'. (basically NotNull if selected: for the constraint)
      */
     public Integer getPkFirstId() {
@@ -454,7 +496,7 @@ public abstract class BsWhiteCompoundPk implements Entity, Serializable, Cloneab
     }
 
     /**
-     * [set] PK_FIRST_ID: {PK, UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_PK_REF_MANY} <br />
+     * [set] PK_FIRST_ID: {PK, +UQ, NotNull, INT(10), FK to WHITE_COMPOUND_PK_REF_MANY} <br />
      * @param pkFirstId The value of the column 'PK_FIRST_ID'. (basically NotNull if update: for the constraint)
      */
     public void setPkFirstId(Integer pkFirstId) {
@@ -463,7 +505,7 @@ public abstract class BsWhiteCompoundPk implements Entity, Serializable, Cloneab
     }
 
     /**
-     * [get] PK_SECOND_ID: {PK, UQ, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_PRIMARY} <br />
+     * [get] PK_SECOND_ID: {PK, UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_PRIMARY} <br />
      * @return The value of the column 'PK_SECOND_ID'. (basically NotNull if selected: for the constraint)
      */
     public Integer getPkSecondId() {
@@ -471,7 +513,7 @@ public abstract class BsWhiteCompoundPk implements Entity, Serializable, Cloneab
     }
 
     /**
-     * [set] PK_SECOND_ID: {PK, UQ, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_PRIMARY} <br />
+     * [set] PK_SECOND_ID: {PK, UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_PRIMARY} <br />
      * @param pkSecondId The value of the column 'PK_SECOND_ID'. (basically NotNull if update: for the constraint)
      */
     public void setPkSecondId(Integer pkSecondId) {
@@ -497,7 +539,7 @@ public abstract class BsWhiteCompoundPk implements Entity, Serializable, Cloneab
     }
 
     /**
-     * [get] REFERRED_ID: {UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_NORMALLY} <br />
+     * [get] REFERRED_ID: {+UQ, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_NORMALLY} <br />
      * @return The value of the column 'REFERRED_ID'. (basically NotNull if selected: for the constraint)
      */
     public Integer getReferredId() {
@@ -505,7 +547,7 @@ public abstract class BsWhiteCompoundPk implements Entity, Serializable, Cloneab
     }
 
     /**
-     * [set] REFERRED_ID: {UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_NORMALLY} <br />
+     * [set] REFERRED_ID: {+UQ, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_NORMALLY} <br />
      * @param referredId The value of the column 'REFERRED_ID'. (basically NotNull if update: for the constraint)
      */
     public void setReferredId(Integer referredId) {

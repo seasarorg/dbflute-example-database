@@ -62,12 +62,15 @@
     <component name="whiteImplicitReverseFkBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteImplicitReverseFkBhv"/>
     <component name="whiteImplicitReverseFkRefBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteImplicitReverseFkRefBhv"/>
     <component name="whiteImplicitReverseFkSuppressBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteImplicitReverseFkSuppressBhv"/>
+    <component name="whiteIncludeQueryBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteIncludeQueryBhv"/>
     <component name="whiteLineSepCommentBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteLineSepCommentBhv"/>
     <component name="whiteLoadDataBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteLoadDataBhv"/>
     <component name="whiteMyselfBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteMyselfBhv"/>
     <component name="whiteMyselfCheckBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteMyselfCheckBhv"/>
     <component name="whiteNoPkBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteNoPkBhv"/>
     <component name="whiteNoPkRelationBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteNoPkRelationBhv"/>
+    <component name="whiteOnlyOneToOneFromBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteOnlyOneToOneFromBhv"/>
+    <component name="whiteOnlyOneToOneToBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteOnlyOneToOneToBhv"/>
     <component name="whitePgReservBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhitePgReservBhv"/>
     <component name="whitePgReservRefBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhitePgReservRefBhv"/>
     <component name="whitePointTypeMappingBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhitePointTypeMappingBhv"/>

@@ -93,10 +93,14 @@ public class BsWhiteUqFkRefNestCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                 PrimaryKey Handling
     //                                                                 ===================
+    /**
+     * Accept the query condition of primary key as equal.
+     * @param uqFkRefNestId : PK, NotNull, DECIMAL(16). (NotNull)
+     */
     public void acceptPrimaryKey(Long uqFkRefNestId) {
         assertObjectNotNull("uqFkRefNestId", uqFkRefNestId);
         BsWhiteUqFkRefNestCB cb = this;
-        cb.query().setUqFkRefNestId_Equal(uqFkRefNestId);
+        cb.query().setUqFkRefNestId_Equal(uqFkRefNestId);;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {
@@ -341,12 +345,12 @@ public class BsWhiteUqFkRefNestCB extends AbstractConditionBean {
          */
         public HpSpecifiedColumn columnUqFkRefNestId() { return doColumn("UQ_FK_REF_NEST_ID"); }
         /**
-         * COMPOUND_UQ_FIRST_CODE: {IX, NotNull, CHAR(3), FK to white_uq_fk_ref}
+         * COMPOUND_UQ_FIRST_CODE: {IX+, NotNull, CHAR(3), FK to white_uq_fk_ref}
          * @return The information object of specified column. (NotNull)
          */
         public HpSpecifiedColumn columnCompoundUqFirstCode() { return doColumn("COMPOUND_UQ_FIRST_CODE"); }
         /**
-         * COMPOUND_UQ_SECOND_CODE: {IX+, NotNull, CHAR(3), FK to white_uq_fk_ref}
+         * COMPOUND_UQ_SECOND_CODE: {NotNull, CHAR(3), FK to white_uq_fk_ref}
          * @return The information object of specified column. (NotNull)
          */
         public HpSpecifiedColumn columnCompoundUqSecondCode() { return doColumn("COMPOUND_UQ_SECOND_CODE"); }
@@ -469,6 +473,11 @@ public class BsWhiteUqFkRefNestCB extends AbstractConditionBean {
      */
     public void orScopeQuery(OrQuery<WhiteUqFkRefNestCB> orQuery) {
         xorSQ((WhiteUqFkRefNestCB)this, orQuery);
+    }
+
+    @Override
+    protected HpCBPurpose xhandleOrSQPurposeChange() {
+        return null; // means no check
     }
 
     /**

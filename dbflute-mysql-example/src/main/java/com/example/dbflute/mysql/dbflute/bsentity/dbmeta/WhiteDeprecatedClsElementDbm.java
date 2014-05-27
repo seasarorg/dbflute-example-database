@@ -48,13 +48,14 @@ public class WhiteDeprecatedClsElementDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgDeprecatedClsElementCode(), "deprecatedClsElementCode");
         setupEpg(_epgMap, new EpgDeprecatedClsElementName(), "deprecatedClsElementName");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public class EpgDeprecatedClsElementCode implements PropertyGateway {
         public Object read(Entity et) { return ((WhiteDeprecatedClsElement)et).getDeprecatedClsElementCode(); }
         public void write(Entity et, Object vl) {
@@ -67,6 +68,8 @@ public class WhiteDeprecatedClsElementDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((WhiteDeprecatedClsElement)et).getDeprecatedClsElementName(); }
         public void write(Entity et, Object vl) { ((WhiteDeprecatedClsElement)et).setDeprecatedClsElementName((String)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -82,8 +85,8 @@ public class WhiteDeprecatedClsElementDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnDeprecatedClsElementCode = cci("DEPRECATED_CLS_ELEMENT_CODE", "DEPRECATED_CLS_ELEMENT_CODE", null, null, true, "deprecatedClsElementCode", String.class, true, false, "CHAR", 3, 0, null, false, null, null, null, null, CDef.DefMeta.DeprecatedMapCollaborationType);
-    protected final ColumnInfo _columnDeprecatedClsElementName = cci("DEPRECATED_CLS_ELEMENT_NAME", "DEPRECATED_CLS_ELEMENT_NAME", null, null, false, "deprecatedClsElementName", String.class, false, false, "VARCHAR", 20, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnDeprecatedClsElementCode = cci("DEPRECATED_CLS_ELEMENT_CODE", "DEPRECATED_CLS_ELEMENT_CODE", null, null, String.class, "deprecatedClsElementCode", null, true, false, true, "CHAR", 3, 0, null, false, null, null, null, null, CDef.DefMeta.DeprecatedMapCollaborationType);
+    protected final ColumnInfo _columnDeprecatedClsElementName = cci("DEPRECATED_CLS_ELEMENT_NAME", "DEPRECATED_CLS_ELEMENT_NAME", null, null, String.class, "deprecatedClsElementName", null, false, false, false, "VARCHAR", 20, 0, null, false, null, null, null, null, null);
 
     /**
      * DEPRECATED_CLS_ELEMENT_CODE: {PK, NotNull, CHAR(3), classification=DeprecatedMapCollaborationType}
@@ -118,6 +121,8 @@ public class WhiteDeprecatedClsElementDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

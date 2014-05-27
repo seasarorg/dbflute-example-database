@@ -88,6 +88,9 @@ public abstract class BsSpReturnResultSetWithReturnValue implements Entity, Seri
     // -----------------------------------------------------
     //                                              Internal
     //                                              --------
+    /** The unique-driven properties for this entity. (NotNull) */
+    protected final EntityUniqueDrivenProperties __uniqueDrivenProperties = newUniqueDrivenProperties();
+
     /** The modified properties for this entity. (NotNull) */
     protected final EntityModifiedProperties __modifiedProperties = newModifiedProperties();
 
@@ -129,6 +132,17 @@ public abstract class BsSpReturnResultSetWithReturnValue implements Entity, Seri
      */
     public boolean hasPrimaryKeyValue() {
         return false;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Set<String> uniqueDrivenProperties() {
+        return __uniqueDrivenProperties.getPropertyNames();
+    }
+
+    protected EntityUniqueDrivenProperties newUniqueDrivenProperties() {
+        return new EntityUniqueDrivenProperties();
     }
 
     // ===================================================================================
@@ -205,8 +219,8 @@ public abstract class BsSpReturnResultSetWithReturnValue implements Entity, Seri
         if (!xSV(getMemberStatusCode(), other.getMemberStatusCode())) { return false; }
         return true;
     }
-    protected boolean xSV(Object value1, Object value2) {
-        return FunCustodial.isSameValue(value1, value2);
+    protected boolean xSV(Object v1, Object v2) {
+        return FunCustodial.isSameValue(v1, v2);
     }
 
     /**
@@ -214,17 +228,17 @@ public abstract class BsSpReturnResultSetWithReturnValue implements Entity, Seri
      * @return The hash-code from primary-key or columns.
      */
     public int hashCode() {
-        int result = 17;
-        result = xCH(result, getTableDbName());
-        result = xCH(result, getMemberId());
-        result = xCH(result, getMemberName());
-        result = xCH(result, getBirthdate());
-        result = xCH(result, getFormalizedDatetime());
-        result = xCH(result, getMemberStatusCode());
-        return result;
+        int hs = 17;
+        hs = xCH(hs, getTableDbName());
+        hs = xCH(hs, getMemberId());
+        hs = xCH(hs, getMemberName());
+        hs = xCH(hs, getBirthdate());
+        hs = xCH(hs, getFormalizedDatetime());
+        hs = xCH(hs, getMemberStatusCode());
+        return hs;
     }
-    protected int xCH(int result, Object value) {
-        return FunCustodial.calculateHashcode(result, value);
+    protected int xCH(int hs, Object vl) {
+        return FunCustodial.calculateHashcode(hs, vl);
     }
 
     /**
@@ -264,14 +278,14 @@ public abstract class BsSpReturnResultSetWithReturnValue implements Entity, Seri
     }
     protected String buildColumnString() {
         StringBuilder sb = new StringBuilder();
-        String delimiter = ", ";
-        sb.append(delimiter).append(getMemberId());
-        sb.append(delimiter).append(getMemberName());
-        sb.append(delimiter).append(xfUD(getBirthdate()));
-        sb.append(delimiter).append(getFormalizedDatetime());
-        sb.append(delimiter).append(getMemberStatusCode());
-        if (sb.length() > delimiter.length()) {
-            sb.delete(0, delimiter.length());
+        String dm = ", ";
+        sb.append(dm).append(getMemberId());
+        sb.append(dm).append(getMemberName());
+        sb.append(dm).append(xfUD(getBirthdate()));
+        sb.append(dm).append(getFormalizedDatetime());
+        sb.append(dm).append(getMemberStatusCode());
+        if (sb.length() > dm.length()) {
+            sb.delete(0, dm.length());
         }
         sb.insert(0, "{").append("}");
         return sb.toString();

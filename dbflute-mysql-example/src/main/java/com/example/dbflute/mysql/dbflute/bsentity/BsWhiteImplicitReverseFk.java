@@ -88,6 +88,9 @@ public abstract class BsWhiteImplicitReverseFk implements Entity, Serializable, 
     // -----------------------------------------------------
     //                                              Internal
     //                                              --------
+    /** The unique-driven properties for this entity. (NotNull) */
+    protected final EntityUniqueDrivenProperties __uniqueDrivenProperties = newUniqueDrivenProperties();
+
     /** The modified properties for this entity. (NotNull) */
     protected final EntityModifiedProperties __modifiedProperties = newModifiedProperties();
 
@@ -130,6 +133,17 @@ public abstract class BsWhiteImplicitReverseFk implements Entity, Serializable, 
     public boolean hasPrimaryKeyValue() {
         if (getWhiteImplicitReverseFkId() == null) { return false; }
         return true;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Set<String> uniqueDrivenProperties() {
+        return __uniqueDrivenProperties.getPropertyNames();
+    }
+
+    protected EntityUniqueDrivenProperties newUniqueDrivenProperties() {
+        return new EntityUniqueDrivenProperties();
     }
 
     // ===================================================================================
@@ -262,8 +276,8 @@ public abstract class BsWhiteImplicitReverseFk implements Entity, Serializable, 
         if (!xSV(getWhiteImplicitReverseFkId(), other.getWhiteImplicitReverseFkId())) { return false; }
         return true;
     }
-    protected boolean xSV(Object value1, Object value2) {
-        return FunCustodial.isSameValue(value1, value2);
+    protected boolean xSV(Object v1, Object v2) {
+        return FunCustodial.isSameValue(v1, v2);
     }
 
     /**
@@ -271,13 +285,13 @@ public abstract class BsWhiteImplicitReverseFk implements Entity, Serializable, 
      * @return The hash-code from primary-key or columns.
      */
     public int hashCode() {
-        int result = 17;
-        result = xCH(result, getTableDbName());
-        result = xCH(result, getWhiteImplicitReverseFkId());
-        return result;
+        int hs = 17;
+        hs = xCH(hs, getTableDbName());
+        hs = xCH(hs, getWhiteImplicitReverseFkId());
+        return hs;
     }
-    protected int xCH(int result, Object value) {
-        return FunCustodial.calculateHashcode(result, value);
+    protected int xCH(int hs, Object vl) {
+        return FunCustodial.calculateHashcode(hs, vl);
     }
 
     /**
@@ -301,17 +315,17 @@ public abstract class BsWhiteImplicitReverseFk implements Entity, Serializable, 
     public String toStringWithRelation() {
         StringBuilder sb = new StringBuilder();
         sb.append(toString());
-        String l = "\n  ";
+        String li = "\n  ";
         if (_whiteImplicitReverseFkRefWithImplicitReverseFK != null)
-        { sb.append(l).append(xbRDS(_whiteImplicitReverseFkRefWithImplicitReverseFK, "whiteImplicitReverseFkRefWithImplicitReverseFK")); }
+        { sb.append(li).append(xbRDS(_whiteImplicitReverseFkRefWithImplicitReverseFK, "whiteImplicitReverseFkRefWithImplicitReverseFK")); }
         if (_whiteImplicitReverseFkSuppressSuppressImplicitReverseFK != null)
-        { sb.append(l).append(xbRDS(_whiteImplicitReverseFkSuppressSuppressImplicitReverseFK, "whiteImplicitReverseFkSuppressSuppressImplicitReverseFK")); }
-        if (_whiteImplicitReverseFkRefList != null) { for (Entity e : _whiteImplicitReverseFkRefList)
-        { if (e != null) { sb.append(l).append(xbRDS(e, "whiteImplicitReverseFkRefList")); } } }
+        { sb.append(li).append(xbRDS(_whiteImplicitReverseFkSuppressSuppressImplicitReverseFK, "whiteImplicitReverseFkSuppressSuppressImplicitReverseFK")); }
+        if (_whiteImplicitReverseFkRefList != null) { for (Entity et : _whiteImplicitReverseFkRefList)
+        { if (et != null) { sb.append(li).append(xbRDS(et, "whiteImplicitReverseFkRefList")); } } }
         return sb.toString();
     }
-    protected String xbRDS(Entity e, String name) { // buildRelationDisplayString()
-        return e.buildDisplayString(name, true, true);
+    protected String xbRDS(Entity et, String name) { // buildRelationDisplayString()
+        return et.buildDisplayString(name, true, true);
     }
 
     /**
@@ -327,24 +341,24 @@ public abstract class BsWhiteImplicitReverseFk implements Entity, Serializable, 
     }
     protected String buildColumnString() {
         StringBuilder sb = new StringBuilder();
-        String delimiter = ", ";
-        sb.append(delimiter).append(getWhiteImplicitReverseFkId());
-        sb.append(delimiter).append(getWhiteImplicitReverseFkName());
-        if (sb.length() > delimiter.length()) {
-            sb.delete(0, delimiter.length());
+        String dm = ", ";
+        sb.append(dm).append(getWhiteImplicitReverseFkId());
+        sb.append(dm).append(getWhiteImplicitReverseFkName());
+        if (sb.length() > dm.length()) {
+            sb.delete(0, dm.length());
         }
         sb.insert(0, "{").append("}");
         return sb.toString();
     }
     protected String buildRelationString() {
         StringBuilder sb = new StringBuilder();
-        String c = ",";
-        if (_whiteImplicitReverseFkRefWithImplicitReverseFK != null) { sb.append(c).append("whiteImplicitReverseFkRefWithImplicitReverseFK"); }
-        if (_whiteImplicitReverseFkSuppressSuppressImplicitReverseFK != null) { sb.append(c).append("whiteImplicitReverseFkSuppressSuppressImplicitReverseFK"); }
+        String cm = ",";
+        if (_whiteImplicitReverseFkRefWithImplicitReverseFK != null) { sb.append(cm).append("whiteImplicitReverseFkRefWithImplicitReverseFK"); }
+        if (_whiteImplicitReverseFkSuppressSuppressImplicitReverseFK != null) { sb.append(cm).append("whiteImplicitReverseFkSuppressSuppressImplicitReverseFK"); }
         if (_whiteImplicitReverseFkRefList != null && !_whiteImplicitReverseFkRefList.isEmpty())
-        { sb.append(c).append("whiteImplicitReverseFkRefList"); }
-        if (sb.length() > c.length()) {
-            sb.delete(0, c.length()).insert(0, "(").append(")");
+        { sb.append(cm).append("whiteImplicitReverseFkRefList"); }
+        if (sb.length() > cm.length()) {
+            sb.delete(0, cm.length()).insert(0, "(").append(")");
         }
         return sb.toString();
     }

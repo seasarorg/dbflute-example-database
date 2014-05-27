@@ -184,7 +184,7 @@ public abstract class BsWhiteImplicitReverseFkBhv extends AbstractBehaviorWritab
      * </pre>
      * @param cb The condition-bean of WhiteImplicitReverseFk. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -205,39 +205,42 @@ public abstract class BsWhiteImplicitReverseFkBhv extends AbstractBehaviorWritab
 
     /**
      * Select the entity by the primary-key value.
-     * @param whiteImplicitReverseFkId The one of primary key. (NotNull)
+     * @param whiteImplicitReverseFkId : PK, ID, NotNull, INT(10), FK to WHITE_IMPLICIT_REVERSE_FK_REF. (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteImplicitReverseFk selectByPKValue(Integer whiteImplicitReverseFkId) {
-        return doSelectByPKValue(whiteImplicitReverseFkId, WhiteImplicitReverseFk.class);
+        return doSelectByPK(whiteImplicitReverseFkId, WhiteImplicitReverseFk.class);
     }
 
-    protected <ENTITY extends WhiteImplicitReverseFk> ENTITY doSelectByPKValue(Integer whiteImplicitReverseFkId, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(whiteImplicitReverseFkId), entityType);
+    protected <ENTITY extends WhiteImplicitReverseFk> ENTITY doSelectByPK(Integer whiteImplicitReverseFkId, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(whiteImplicitReverseFkId), entityType);
+    }
+
+    protected <ENTITY extends WhiteImplicitReverseFk> OptionalEntity<ENTITY> doSelectOptionalByPK(Integer whiteImplicitReverseFkId, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(whiteImplicitReverseFkId, entityType), whiteImplicitReverseFkId);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param whiteImplicitReverseFkId The one of primary key. (NotNull)
+     * @param whiteImplicitReverseFkId : PK, ID, NotNull, INT(10), FK to WHITE_IMPLICIT_REVERSE_FK_REF. (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteImplicitReverseFk selectByPKValueWithDeletedCheck(Integer whiteImplicitReverseFkId) {
-        return doSelectByPKValueWithDeletedCheck(whiteImplicitReverseFkId, WhiteImplicitReverseFk.class);
+        return doSelectByPKWithDeletedCheck(whiteImplicitReverseFkId, WhiteImplicitReverseFk.class);
     }
 
-    protected <ENTITY extends WhiteImplicitReverseFk> ENTITY doSelectByPKValueWithDeletedCheck(Integer whiteImplicitReverseFkId, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(whiteImplicitReverseFkId), entityType);
+    protected <ENTITY extends WhiteImplicitReverseFk> ENTITY doSelectByPKWithDeletedCheck(Integer whiteImplicitReverseFkId, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(whiteImplicitReverseFkId), entityType);
     }
 
-    private WhiteImplicitReverseFkCB buildPKCB(Integer whiteImplicitReverseFkId) {
+    protected WhiteImplicitReverseFkCB xprepareCBAsPK(Integer whiteImplicitReverseFkId) {
         assertObjectNotNull("whiteImplicitReverseFkId", whiteImplicitReverseFkId);
-        WhiteImplicitReverseFkCB cb = newMyConditionBean();
-        cb.query().setWhiteImplicitReverseFkId_Equal(whiteImplicitReverseFkId);
+        WhiteImplicitReverseFkCB cb = newMyConditionBean(); cb.acceptPrimaryKey(whiteImplicitReverseFkId);
         return cb;
     }
 
@@ -515,7 +518,8 @@ public abstract class BsWhiteImplicitReverseFkBhv extends AbstractBehaviorWritab
      */
     public List<WhiteImplicitReverseFkRef> pulloutWhiteImplicitReverseFkRefWithImplicitReverseFK(List<WhiteImplicitReverseFk> whiteImplicitReverseFkList) {
         return helpPulloutInternally(whiteImplicitReverseFkList, new InternalPulloutCallback<WhiteImplicitReverseFk, WhiteImplicitReverseFkRef>() {
-            public WhiteImplicitReverseFkRef getFr(WhiteImplicitReverseFk et) { return et.getWhiteImplicitReverseFkRefWithImplicitReverseFK(); }
+            public WhiteImplicitReverseFkRef getFr(WhiteImplicitReverseFk et)
+            { return et.getWhiteImplicitReverseFkRefWithImplicitReverseFK(); }
             public boolean hasRf() { return false; }
             public void setRfLs(WhiteImplicitReverseFkRef et, List<WhiteImplicitReverseFk> ls)
             { throw new UnsupportedOperationException(); }
@@ -528,7 +532,8 @@ public abstract class BsWhiteImplicitReverseFkBhv extends AbstractBehaviorWritab
      */
     public List<WhiteImplicitReverseFkSuppress> pulloutWhiteImplicitReverseFkSuppressSuppressImplicitReverseFK(List<WhiteImplicitReverseFk> whiteImplicitReverseFkList) {
         return helpPulloutInternally(whiteImplicitReverseFkList, new InternalPulloutCallback<WhiteImplicitReverseFk, WhiteImplicitReverseFkSuppress>() {
-            public WhiteImplicitReverseFkSuppress getFr(WhiteImplicitReverseFk et) { return et.getWhiteImplicitReverseFkSuppressSuppressImplicitReverseFK(); }
+            public WhiteImplicitReverseFkSuppress getFr(WhiteImplicitReverseFk et)
+            { return et.getWhiteImplicitReverseFkSuppressSuppressImplicitReverseFK(); }
             public boolean hasRf() { return false; }
             public void setRfLs(WhiteImplicitReverseFkSuppress et, List<WhiteImplicitReverseFk> ls)
             { throw new UnsupportedOperationException(); }

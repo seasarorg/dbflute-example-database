@@ -93,10 +93,24 @@ public class BsVendorConstraintNameAutoRefCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                 PrimaryKey Handling
     //                                                                 ===================
+    /**
+     * Accept the query condition of primary key as equal.
+     * @param constraintNameAutoRefId : PK, NotNull, DECIMAL(16). (NotNull)
+     */
     public void acceptPrimaryKey(Long constraintNameAutoRefId) {
         assertObjectNotNull("constraintNameAutoRefId", constraintNameAutoRefId);
         BsVendorConstraintNameAutoRefCB cb = this;
-        cb.query().setConstraintNameAutoRefId_Equal(constraintNameAutoRefId);
+        cb.query().setConstraintNameAutoRefId_Equal(constraintNameAutoRefId);;
+    }
+
+    /**
+     * Accept the query condition of unique key as equal.
+     * @param constraintNameAutoUnique : UQ, NotNull, VARCHAR(50). (NotNull)
+     */
+    public void acceptUniqueOf(String constraintNameAutoUnique) {
+        assertObjectNotNull("constraintNameAutoUnique", constraintNameAutoUnique);
+        BsVendorConstraintNameAutoRefCB cb = this;
+        cb.query().setConstraintNameAutoUnique_Equal(constraintNameAutoUnique);;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {
@@ -588,6 +602,11 @@ public class BsVendorConstraintNameAutoRefCB extends AbstractConditionBean {
      */
     public void orScopeQuery(OrQuery<VendorConstraintNameAutoRefCB> orQuery) {
         xorSQ((VendorConstraintNameAutoRefCB)this, orQuery);
+    }
+
+    @Override
+    protected HpCBPurpose xhandleOrSQPurposeChange() {
+        return null; // means no check
     }
 
     /**

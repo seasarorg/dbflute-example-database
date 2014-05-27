@@ -184,7 +184,7 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
      * </pre>
      * @param cb The condition-bean of WhiteAllInOneClsCategory. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -205,39 +205,42 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
 
     /**
      * Select the entity by the primary-key value.
-     * @param clsCategoryCode The one of primary key. (NotNull)
+     * @param clsCategoryCode : PK, NotNull, CHAR(3). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteAllInOneClsCategory selectByPKValue(String clsCategoryCode) {
-        return doSelectByPKValue(clsCategoryCode, WhiteAllInOneClsCategory.class);
+        return doSelectByPK(clsCategoryCode, WhiteAllInOneClsCategory.class);
     }
 
-    protected <ENTITY extends WhiteAllInOneClsCategory> ENTITY doSelectByPKValue(String clsCategoryCode, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(clsCategoryCode), entityType);
+    protected <ENTITY extends WhiteAllInOneClsCategory> ENTITY doSelectByPK(String clsCategoryCode, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(clsCategoryCode), entityType);
+    }
+
+    protected <ENTITY extends WhiteAllInOneClsCategory> OptionalEntity<ENTITY> doSelectOptionalByPK(String clsCategoryCode, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(clsCategoryCode, entityType), clsCategoryCode);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param clsCategoryCode The one of primary key. (NotNull)
+     * @param clsCategoryCode : PK, NotNull, CHAR(3). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteAllInOneClsCategory selectByPKValueWithDeletedCheck(String clsCategoryCode) {
-        return doSelectByPKValueWithDeletedCheck(clsCategoryCode, WhiteAllInOneClsCategory.class);
+        return doSelectByPKWithDeletedCheck(clsCategoryCode, WhiteAllInOneClsCategory.class);
     }
 
-    protected <ENTITY extends WhiteAllInOneClsCategory> ENTITY doSelectByPKValueWithDeletedCheck(String clsCategoryCode, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(clsCategoryCode), entityType);
+    protected <ENTITY extends WhiteAllInOneClsCategory> ENTITY doSelectByPKWithDeletedCheck(String clsCategoryCode, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(clsCategoryCode), entityType);
     }
 
-    private WhiteAllInOneClsCategoryCB buildPKCB(String clsCategoryCode) {
+    protected WhiteAllInOneClsCategoryCB xprepareCBAsPK(String clsCategoryCode) {
         assertObjectNotNull("clsCategoryCode", clsCategoryCode);
-        WhiteAllInOneClsCategoryCB cb = newMyConditionBean();
-        cb.query().setClsCategoryCode_Equal(clsCategoryCode);
+        WhiteAllInOneClsCategoryCB cb = newMyConditionBean(); cb.acceptPrimaryKey(clsCategoryCode);
         return cb;
     }
 

@@ -22,8 +22,8 @@ public abstract class AbstractBsVendor_non_compilableCQ extends AbstractConditio
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public AbstractBsVendor_non_compilableCQ(ConditionQuery childQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
-        super(childQuery, sqlClause, aliasName, nestLevel);
+    public AbstractBsVendor_non_compilableCQ(ConditionQuery referrerQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
+        super(referrerQuery, sqlClause, aliasName, nestLevel);
     }
 
     // ===================================================================================
@@ -217,7 +217,7 @@ public abstract class AbstractBsVendor_non_compilableCQ extends AbstractConditio
     public abstract String keepNon_compilable_id_SpecifyDerivedReferrer_Vendor_non_compilableSelfList(Vendor_non_compilableCQ sq);
 
     /**
-     * Prepare for (Query)DerivedReferrer. <br />
+     * Prepare for (Query)DerivedReferrer (correlated sub-query). <br />
      * {FOO &lt;= (select max(BAR) from VENDOR-NON COMPILABLE where ...)} <br />
      * VENDOR-NON COMPILABLE by PARENT-ID, named 'vendor_non_compilableSelfAsOne'.
      * <pre>
@@ -639,7 +639,7 @@ public abstract class AbstractBsVendor_non_compilableCQ extends AbstractConditio
     public abstract String keepSpecifyMyselfDerived(Vendor_non_compilableCQ sq);
 
     /**
-     * Prepare for (Query)MyselfDerived (SubQuery).
+     * Prepare for (Query)MyselfDerived (correlated sub-query).
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<Vendor_non_compilableCB> myselfDerived() {
@@ -661,8 +661,8 @@ public abstract class AbstractBsVendor_non_compilableCQ extends AbstractConditio
     //                                                                        MyselfExists
     //                                                                        ============
     /**
-     * Prepare for MyselfExists (SubQuery).
-     * @param subQuery The implementation of sub query. (NotNull)
+     * Prepare for MyselfExists (correlated sub-query).
+     * @param subQuery The implementation of sub-query. (NotNull)
      */
     public void myselfExists(SubQuery<Vendor_non_compilableCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
@@ -677,8 +677,8 @@ public abstract class AbstractBsVendor_non_compilableCQ extends AbstractConditio
     //                                                                       MyselfInScope
     //                                                                       =============
     /**
-     * Prepare for MyselfInScope (SubQuery).
-     * @param subQuery The implementation of sub query. (NotNull)
+     * Prepare for MyselfInScope (sub-query).
+     * @param subQuery The implementation of sub-query. (NotNull)
      */
     public void myselfInScope(SubQuery<Vendor_non_compilableCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);

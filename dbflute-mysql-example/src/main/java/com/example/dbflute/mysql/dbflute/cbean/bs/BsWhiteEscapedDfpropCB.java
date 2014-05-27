@@ -92,10 +92,14 @@ public class BsWhiteEscapedDfpropCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                 PrimaryKey Handling
     //                                                                 ===================
+    /**
+     * Accept the query condition of primary key as equal.
+     * @param escapedDfpropCode : PK, NotNull, CHAR(3), classification=EscapedDfpropCls. (NotNull)
+     */
     public void acceptPrimaryKey(String escapedDfpropCode) {
         assertObjectNotNull("escapedDfpropCode", escapedDfpropCode);
         BsWhiteEscapedDfpropCB cb = this;
-        cb.query().setEscapedDfpropCode_Equal(escapedDfpropCode);
+        cb.query().setEscapedDfpropCode_Equal(escapedDfpropCode);;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {
@@ -408,6 +412,11 @@ public class BsWhiteEscapedDfpropCB extends AbstractConditionBean {
      */
     public void orScopeQuery(OrQuery<WhiteEscapedDfpropCB> orQuery) {
         xorSQ((WhiteEscapedDfpropCB)this, orQuery);
+    }
+
+    @Override
+    protected HpCBPurpose xhandleOrSQPurposeChange() {
+        return null; // means no check
     }
 
     /**

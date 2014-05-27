@@ -24,8 +24,8 @@ public class BsWhiteSameNameCQ extends AbstractBsWhiteSameNameCQ {
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public BsWhiteSameNameCQ(ConditionQuery childQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
-        super(childQuery, sqlClause, aliasName, nestLevel);
+    public BsWhiteSameNameCQ(ConditionQuery referrerQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
+        super(referrerQuery, sqlClause, aliasName, nestLevel);
     }
 
     // ===================================================================================
@@ -267,7 +267,7 @@ public class BsWhiteSameNameCQ extends AbstractBsWhiteSameNameCQ {
     // ===================================================================================
     //                                                                         Union Query
     //                                                                         ===========
-    protected void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
+    public void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
         WhiteSameNameCQ bq = (WhiteSameNameCQ)bqs;
         WhiteSameNameCQ uq = (WhiteSameNameCQ)uqs;
         if (bq.hasConditionQueryNextSchemaProduct()) {

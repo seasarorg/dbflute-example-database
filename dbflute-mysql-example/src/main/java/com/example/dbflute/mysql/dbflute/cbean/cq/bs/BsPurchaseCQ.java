@@ -213,14 +213,14 @@ public class BsPurchaseCQ extends AbstractBsPurchaseCQ {
 
     /** 
      * Add order-by as ascend. <br />
-     * (会員ID)MEMBER_ID: {UQ, IX, NotNull, INT(10), FK to member}
+     * (会員ID)MEMBER_ID: {UQ+, IX+, NotNull, INT(10), FK to member}
      * @return this. (NotNull)
      */
     public BsPurchaseCQ addOrderBy_MemberId_Asc() { regOBA("MEMBER_ID"); return this; }
 
     /**
      * Add order-by as descend. <br />
-     * (会員ID)MEMBER_ID: {UQ, IX, NotNull, INT(10), FK to member}
+     * (会員ID)MEMBER_ID: {UQ+, IX+, NotNull, INT(10), FK to member}
      * @return this. (NotNull)
      */
     public BsPurchaseCQ addOrderBy_MemberId_Desc() { regOBD("MEMBER_ID"); return this; }
@@ -250,14 +250,14 @@ public class BsPurchaseCQ extends AbstractBsPurchaseCQ {
 
     /** 
      * Add order-by as ascend. <br />
-     * (商品ID)PRODUCT_ID: {UQ+, IX, NotNull, INT(10), FK to product}
+     * (商品ID)PRODUCT_ID: {+UQ, IX+, NotNull, INT(10), FK to product}
      * @return this. (NotNull)
      */
     public BsPurchaseCQ addOrderBy_ProductId_Asc() { regOBA("PRODUCT_ID"); return this; }
 
     /**
      * Add order-by as descend. <br />
-     * (商品ID)PRODUCT_ID: {UQ+, IX, NotNull, INT(10), FK to product}
+     * (商品ID)PRODUCT_ID: {+UQ, IX+, NotNull, INT(10), FK to product}
      * @return this. (NotNull)
      */
     public BsPurchaseCQ addOrderBy_ProductId_Desc() { regOBD("PRODUCT_ID"); return this; }
@@ -271,14 +271,14 @@ public class BsPurchaseCQ extends AbstractBsPurchaseCQ {
 
     /** 
      * Add order-by as ascend. <br />
-     * (購入日時)PURCHASE_DATETIME: {UQ+, IX, NotNull, DATETIME(19)}
+     * (購入日時)PURCHASE_DATETIME: {+UQ, IX+, NotNull, DATETIME(19)}
      * @return this. (NotNull)
      */
     public BsPurchaseCQ addOrderBy_PurchaseDatetime_Asc() { regOBA("PURCHASE_DATETIME"); return this; }
 
     /**
      * Add order-by as descend. <br />
-     * (購入日時)PURCHASE_DATETIME: {UQ+, IX, NotNull, DATETIME(19)}
+     * (購入日時)PURCHASE_DATETIME: {+UQ, IX+, NotNull, DATETIME(19)}
      * @return this. (NotNull)
      */
     public BsPurchaseCQ addOrderBy_PurchaseDatetime_Desc() { regOBD("PURCHASE_DATETIME"); return this; }
@@ -491,7 +491,7 @@ public class BsPurchaseCQ extends AbstractBsPurchaseCQ {
     // ===================================================================================
     //                                                                         Union Query
     //                                                                         ===========
-    protected void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
+    public void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
         PurchaseCQ bq = (PurchaseCQ)bqs;
         PurchaseCQ uq = (PurchaseCQ)uqs;
         if (bq.hasConditionQueryMember()) {

@@ -93,10 +93,37 @@ public class BsWhiteCompoundPkCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                 PrimaryKey Handling
     //                                                                 ===================
+    /**
+     * Accept the query condition of primary key as equal.
+     * @param pkFirstId : PK, +UQ, NotNull, INT(10), FK to WHITE_COMPOUND_PK_REF_MANY. (NotNull)
+     * @param pkSecondId : PK, UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_PRIMARY. (NotNull)
+     */
     public void acceptPrimaryKey(Integer pkFirstId, Integer pkSecondId) {
         assertObjectNotNull("pkFirstId", pkFirstId);assertObjectNotNull("pkSecondId", pkSecondId);
         BsWhiteCompoundPkCB cb = this;
-        cb.query().setPkFirstId_Equal(pkFirstId);cb.query().setPkSecondId_Equal(pkSecondId);
+        cb.query().setPkFirstId_Equal(pkFirstId);;cb.query().setPkSecondId_Equal(pkSecondId);;
+    }
+
+    /**
+     * Accept the query condition of unique key as equal.
+     * @param pkSecondId : PK, UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_PRIMARY. (NotNull)
+     * @param referredId : +UQ, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_NORMALLY. (NotNull)
+     */
+    public void acceptUniqueOfPkSecondIdReferredId(Integer pkSecondId, Integer referredId) {
+        assertObjectNotNull("pkSecondId", pkSecondId);assertObjectNotNull("referredId", referredId);
+        BsWhiteCompoundPkCB cb = this;
+        cb.query().setPkSecondId_Equal(pkSecondId);;cb.query().setReferredId_Equal(referredId);;
+    }
+
+    /**
+     * Accept the query condition of unique key as equal.
+     * @param pkSecondId : PK, UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_PRIMARY. (NotNull)
+     * @param pkFirstId : PK, +UQ, NotNull, INT(10), FK to WHITE_COMPOUND_PK_REF_MANY. (NotNull)
+     */
+    public void acceptUniqueOfPkSecondIdPkFirstId(Integer pkSecondId, Integer pkFirstId) {
+        assertObjectNotNull("pkSecondId", pkSecondId);assertObjectNotNull("pkFirstId", pkFirstId);
+        BsWhiteCompoundPkCB cb = this;
+        cb.query().setPkSecondId_Equal(pkSecondId);;cb.query().setPkFirstId_Equal(pkFirstId);;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {
@@ -412,12 +439,12 @@ public class BsWhiteCompoundPkCB extends AbstractConditionBean {
                              , HpCBPurpose purpose, DBMetaProvider dbmetaProvider)
         { super(baseCB, qyCall, purpose, dbmetaProvider); }
         /**
-         * PK_FIRST_ID: {PK, UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_PK_REF_MANY}
+         * PK_FIRST_ID: {PK, +UQ, NotNull, INT(10), FK to WHITE_COMPOUND_PK_REF_MANY}
          * @return The information object of specified column. (NotNull)
          */
         public HpSpecifiedColumn columnPkFirstId() { return doColumn("PK_FIRST_ID"); }
         /**
-         * PK_SECOND_ID: {PK, UQ, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_PRIMARY}
+         * PK_SECOND_ID: {PK, UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_PRIMARY}
          * @return The information object of specified column. (NotNull)
          */
         public HpSpecifiedColumn columnPkSecondId() { return doColumn("PK_SECOND_ID"); }
@@ -427,7 +454,7 @@ public class BsWhiteCompoundPkCB extends AbstractConditionBean {
          */
         public HpSpecifiedColumn columnPkName() { return doColumn("PK_NAME"); }
         /**
-         * REFERRED_ID: {UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_NORMALLY}
+         * REFERRED_ID: {+UQ, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_NORMALLY}
          * @return The information object of specified column. (NotNull)
          */
         public HpSpecifiedColumn columnReferredId() { return doColumn("REFERRED_ID"); }
@@ -643,6 +670,11 @@ public class BsWhiteCompoundPkCB extends AbstractConditionBean {
      */
     public void orScopeQuery(OrQuery<WhiteCompoundPkCB> orQuery) {
         xorSQ((WhiteCompoundPkCB)this, orQuery);
+    }
+
+    @Override
+    protected HpCBPurpose xhandleOrSQPurposeChange() {
+        return null; // means no check
     }
 
     /**

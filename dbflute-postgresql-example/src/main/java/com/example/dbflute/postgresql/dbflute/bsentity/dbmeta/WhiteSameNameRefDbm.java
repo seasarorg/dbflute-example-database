@@ -33,14 +33,15 @@ public class WhiteSameNameRefDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgSameNameRefId(), "sameNameRefId");
         setupEpg(_epgMap, new EpgSameNameId(), "sameNameId");
         setupEpg(_epgMap, new EpgNextSameNameId(), "nextSameNameId");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgSameNameRefId implements PropertyGateway {
         public Object read(Entity et) { return ((WhiteSameNameRef)et).getSameNameRefId(); }
         public void write(Entity et, Object vl) { ((WhiteSameNameRef)et).setSameNameRefId(cti(vl)); }
@@ -53,6 +54,22 @@ public class WhiteSameNameRefDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((WhiteSameNameRef)et).getNextSameNameId(); }
         public void write(Entity et, Object vl) { ((WhiteSameNameRef)et).setNextSameNameId(ctl(vl)); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
+
+    // -----------------------------------------------------
+    //                                      Foreign Property
+    //                                      ----------------
+    protected final Map<String, PropertyGateway> _efpgMap = newHashMap();
+    {
+        setupEfpg(_efpgMap, new EfpgWhiteSameName(), "whiteSameName");
+    }
+    public class EfpgWhiteSameName implements PropertyGateway {
+        public Object read(Entity et) { return ((WhiteSameNameRef)et).getWhiteSameName(); }
+        public void write(Entity et, Object vl) { ((WhiteSameNameRef)et).setWhiteSameName((WhiteSameName)vl); }
+    }
+    public PropertyGateway findForeignPropertyGateway(String prop)
+    { return doFindEfpg(_efpgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -68,12 +85,24 @@ public class WhiteSameNameRefDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnSameNameRefId = cci("same_name_ref_id", "same_name_ref_id", null, null, true, "sameNameRefId", Integer.class, true, false, "int4", 10, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnSameNameId = cci("same_name_id", "same_name_id", null, null, true, "sameNameId", Long.class, false, false, "int8", 19, 0, null, false, null, null, "whiteSameName", null, null);
-    protected final ColumnInfo _columnNextSameNameId = cci("next_same_name_id", "next_same_name_id", null, null, true, "nextSameNameId", Long.class, false, false, "int8", 19, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnSameNameRefId = cci("same_name_ref_id", "same_name_ref_id", null, null, Integer.class, "sameNameRefId", null, true, false, true, "int4", 10, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnSameNameId = cci("same_name_id", "same_name_id", null, null, Long.class, "sameNameId", null, false, false, true, "int8", 19, 0, null, false, null, null, "whiteSameName", null, null);
+    protected final ColumnInfo _columnNextSameNameId = cci("next_same_name_id", "next_same_name_id", null, null, Long.class, "nextSameNameId", null, false, false, true, "int8", 19, 0, null, false, null, null, null, null, null);
 
+    /**
+     * same_name_ref_id: {PK, NotNull, int4(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnSameNameRefId() { return _columnSameNameRefId; }
+    /**
+     * same_name_id: {NotNull, int8(19), FK to white_same_name}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnSameNameId() { return _columnSameNameId; }
+    /**
+     * next_same_name_id: {NotNull, int8(19)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnNextSameNameId() { return _columnNextSameNameId; }
 
     protected List<ColumnInfo> ccil() {
@@ -99,12 +128,18 @@ public class WhiteSameNameRefDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------
+    /**
+     * white_same_name by my same_name_id, named 'whiteSameName'.
+     * @return The information object of foreign property. (NotNull)
+     */
     public ForeignInfo foreignWhiteSameName() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnSameNameId(), WhiteSameNameDbm.getInstance().columnSameNameId());
-        return cfi("fk_white_same_name_ref", "whiteSameName", this, WhiteSameNameDbm.getInstance(), mp, 0, false, false, false, false, null, null, false, "whiteSameNameRefList");
+        return cfi("fk_white_same_name_ref", "whiteSameName", this, WhiteSameNameDbm.getInstance(), mp, 0, null, false, false, false, false, null, null, false, "whiteSameNameRefList");
     }
 
     // -----------------------------------------------------

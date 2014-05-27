@@ -184,7 +184,7 @@ public abstract class BsWhiteXlsManBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of WhiteXlsMan. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -205,39 +205,42 @@ public abstract class BsWhiteXlsManBhv extends AbstractBehaviorWritable {
 
     /**
      * Select the entity by the primary-key value.
-     * @param xlsManId The one of primary key. (NotNull)
+     * @param xlsManId : PK, ID, NotNull, BIGINT(19). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteXlsMan selectByPKValue(Long xlsManId) {
-        return doSelectByPKValue(xlsManId, WhiteXlsMan.class);
+        return doSelectByPK(xlsManId, WhiteXlsMan.class);
     }
 
-    protected <ENTITY extends WhiteXlsMan> ENTITY doSelectByPKValue(Long xlsManId, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(xlsManId), entityType);
+    protected <ENTITY extends WhiteXlsMan> ENTITY doSelectByPK(Long xlsManId, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(xlsManId), entityType);
+    }
+
+    protected <ENTITY extends WhiteXlsMan> OptionalEntity<ENTITY> doSelectOptionalByPK(Long xlsManId, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(xlsManId, entityType), xlsManId);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param xlsManId The one of primary key. (NotNull)
+     * @param xlsManId : PK, ID, NotNull, BIGINT(19). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteXlsMan selectByPKValueWithDeletedCheck(Long xlsManId) {
-        return doSelectByPKValueWithDeletedCheck(xlsManId, WhiteXlsMan.class);
+        return doSelectByPKWithDeletedCheck(xlsManId, WhiteXlsMan.class);
     }
 
-    protected <ENTITY extends WhiteXlsMan> ENTITY doSelectByPKValueWithDeletedCheck(Long xlsManId, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(xlsManId), entityType);
+    protected <ENTITY extends WhiteXlsMan> ENTITY doSelectByPKWithDeletedCheck(Long xlsManId, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(xlsManId), entityType);
     }
 
-    private WhiteXlsManCB buildPKCB(Long xlsManId) {
+    protected WhiteXlsManCB xprepareCBAsPK(Long xlsManId) {
         assertObjectNotNull("xlsManId", xlsManId);
-        WhiteXlsManCB cb = newMyConditionBean();
-        cb.query().setXlsManId_Equal(xlsManId);
+        WhiteXlsManCB cb = newMyConditionBean(); cb.acceptPrimaryKey(xlsManId);
         return cb;
     }
 

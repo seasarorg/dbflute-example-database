@@ -184,7 +184,7 @@ public abstract class BsWhiteSplitMultipleFkRefBhv extends AbstractBehaviorWrita
      * </pre>
      * @param cb The condition-bean of WhiteSplitMultipleFkRef. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -205,41 +205,44 @@ public abstract class BsWhiteSplitMultipleFkRefBhv extends AbstractBehaviorWrita
 
     /**
      * Select the entity by the primary-key value.
-     * @param firstId The one of primary key. (NotNull)
-     * @param secondCode The one of primary key. (NotNull)
+     * @param firstId : PK, NotNull, INT(10). (NotNull)
+     * @param secondCode : PK, NotNull, CHAR(3). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteSplitMultipleFkRef selectByPKValue(Integer firstId, String secondCode) {
-        return doSelectByPKValue(firstId, secondCode, WhiteSplitMultipleFkRef.class);
+        return doSelectByPK(firstId, secondCode, WhiteSplitMultipleFkRef.class);
     }
 
-    protected <ENTITY extends WhiteSplitMultipleFkRef> ENTITY doSelectByPKValue(Integer firstId, String secondCode, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(firstId, secondCode), entityType);
+    protected <ENTITY extends WhiteSplitMultipleFkRef> ENTITY doSelectByPK(Integer firstId, String secondCode, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(firstId, secondCode), entityType);
+    }
+
+    protected <ENTITY extends WhiteSplitMultipleFkRef> OptionalEntity<ENTITY> doSelectOptionalByPK(Integer firstId, String secondCode, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(firstId, secondCode, entityType), firstId, secondCode);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param firstId The one of primary key. (NotNull)
-     * @param secondCode The one of primary key. (NotNull)
+     * @param firstId : PK, NotNull, INT(10). (NotNull)
+     * @param secondCode : PK, NotNull, CHAR(3). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteSplitMultipleFkRef selectByPKValueWithDeletedCheck(Integer firstId, String secondCode) {
-        return doSelectByPKValueWithDeletedCheck(firstId, secondCode, WhiteSplitMultipleFkRef.class);
+        return doSelectByPKWithDeletedCheck(firstId, secondCode, WhiteSplitMultipleFkRef.class);
     }
 
-    protected <ENTITY extends WhiteSplitMultipleFkRef> ENTITY doSelectByPKValueWithDeletedCheck(Integer firstId, String secondCode, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(firstId, secondCode), entityType);
+    protected <ENTITY extends WhiteSplitMultipleFkRef> ENTITY doSelectByPKWithDeletedCheck(Integer firstId, String secondCode, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(firstId, secondCode), entityType);
     }
 
-    private WhiteSplitMultipleFkRefCB buildPKCB(Integer firstId, String secondCode) {
+    protected WhiteSplitMultipleFkRefCB xprepareCBAsPK(Integer firstId, String secondCode) {
         assertObjectNotNull("firstId", firstId);assertObjectNotNull("secondCode", secondCode);
-        WhiteSplitMultipleFkRefCB cb = newMyConditionBean();
-        cb.query().setFirstId_Equal(firstId);cb.query().setSecondCode_Equal(secondCode);
+        WhiteSplitMultipleFkRefCB cb = newMyConditionBean(); cb.acceptPrimaryKey(firstId, secondCode);
         return cb;
     }
 

@@ -48,13 +48,14 @@ public class WhiteUqFkDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgUqFkId(), "uqFkId");
         setupEpg(_epgMap, new EpgUqFkCode(), "uqFkCode");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgUqFkId implements PropertyGateway {
         public Object read(Entity et) { return ((WhiteUqFk)et).getUqFkId(); }
         public void write(Entity et, Object vl) { ((WhiteUqFk)et).setUqFkId(ctl(vl)); }
@@ -63,6 +64,8 @@ public class WhiteUqFkDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((WhiteUqFk)et).getUqFkCode(); }
         public void write(Entity et, Object vl) { ((WhiteUqFk)et).setUqFkCode((String)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -78,8 +81,8 @@ public class WhiteUqFkDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnUqFkId = cci("UQ_FK_ID", "UQ_FK_ID", null, null, true, "uqFkId", Long.class, true, false, "DECIMAL", 16, 0, null, false, null, null, null, "whiteUqFkRefByFkToPkIdList", null);
-    protected final ColumnInfo _columnUqFkCode = cci("UQ_FK_CODE", "UQ_FK_CODE", null, null, true, "uqFkCode", String.class, false, false, "CHAR", 3, 0, null, false, null, null, null, "whiteUqFkRefByFkToUqCodeList", null);
+    protected final ColumnInfo _columnUqFkId = cci("UQ_FK_ID", "UQ_FK_ID", null, null, Long.class, "uqFkId", null, true, false, true, "DECIMAL", 16, 0, null, false, null, null, null, "whiteUqFkRefByFkToPkIdList", null);
+    protected final ColumnInfo _columnUqFkCode = cci("UQ_FK_CODE", "UQ_FK_CODE", null, null, String.class, "uqFkCode", null, false, false, true, "CHAR", 3, 0, null, false, null, null, null, "whiteUqFkRefByFkToUqCodeList", null);
 
     /**
      * UQ_FK_ID: {PK, NotNull, DECIMAL(16)}
@@ -114,6 +117,8 @@ public class WhiteUqFkDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

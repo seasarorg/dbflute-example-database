@@ -274,7 +274,7 @@ public class BsWhiteCompoundPkRefManyCQ extends AbstractBsWhiteCompoundPkRefMany
     // ===================================================================================
     //                                                                         Union Query
     //                                                                         ===========
-    protected void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
+    public void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
         WhiteCompoundPkRefManyCQ bq = (WhiteCompoundPkRefManyCQ)bqs;
         WhiteCompoundPkRefManyCQ uq = (WhiteCompoundPkRefManyCQ)uqs;
         if (bq.hasConditionQueryWhiteCompoundPkToPK()) {

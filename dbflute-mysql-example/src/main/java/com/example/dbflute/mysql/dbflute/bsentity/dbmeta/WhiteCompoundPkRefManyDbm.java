@@ -48,6 +48,9 @@ public class WhiteCompoundPkRefManyDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgMultipleFirstId(), "multipleFirstId");
@@ -58,8 +61,6 @@ public class WhiteCompoundPkRefManyDbm extends AbstractDBMeta {
         setupEpg(_epgMap, new EpgRefManyName(), "refManyName");
         setupEpg(_epgMap, new EpgRefManyDatetime(), "refManyDatetime");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgMultipleFirstId implements PropertyGateway {
         public Object read(Entity et) { return ((WhiteCompoundPkRefMany)et).getMultipleFirstId(); }
         public void write(Entity et, Object vl) { ((WhiteCompoundPkRefMany)et).setMultipleFirstId(cti(vl)); }
@@ -88,6 +89,22 @@ public class WhiteCompoundPkRefManyDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((WhiteCompoundPkRefMany)et).getRefManyDatetime(); }
         public void write(Entity et, Object vl) { ((WhiteCompoundPkRefMany)et).setRefManyDatetime((java.sql.Timestamp)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
+
+    // -----------------------------------------------------
+    //                                      Foreign Property
+    //                                      ----------------
+    protected final Map<String, PropertyGateway> _efpgMap = newHashMap();
+    {
+        setupEfpg(_efpgMap, new EfpgWhiteCompoundPkToPK(), "whiteCompoundPkToPK");
+    }
+    public class EfpgWhiteCompoundPkToPK implements PropertyGateway {
+        public Object read(Entity et) { return ((WhiteCompoundPkRefMany)et).getWhiteCompoundPkToPK(); }
+        public void write(Entity et, Object vl) { ((WhiteCompoundPkRefMany)et).setWhiteCompoundPkToPK((WhiteCompoundPk)vl); }
+    }
+    public PropertyGateway findForeignPropertyGateway(String prop)
+    { return doFindEfpg(_efpgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -103,13 +120,13 @@ public class WhiteCompoundPkRefManyDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnMultipleFirstId = cci("MULTIPLE_FIRST_ID", "MULTIPLE_FIRST_ID", null, null, true, "multipleFirstId", Integer.class, true, false, "INT", 10, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnMultipleSecondId = cci("MULTIPLE_SECOND_ID", "MULTIPLE_SECOND_ID", null, null, true, "multipleSecondId", Integer.class, true, false, "INT", 10, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnRefManyFirstId = cci("REF_MANY_FIRST_ID", "REF_MANY_FIRST_ID", null, null, true, "refManyFirstId", Integer.class, false, false, "INT", 10, 0, null, false, null, null, "whiteCompoundPkToPK", null, null);
-    protected final ColumnInfo _columnRefManySecondId = cci("REF_MANY_SECOND_ID", "REF_MANY_SECOND_ID", null, null, true, "refManySecondId", Integer.class, false, false, "INT", 10, 0, null, false, null, null, "whiteCompoundPkToPK", null, null);
-    protected final ColumnInfo _columnRefManyCode = cci("REF_MANY_CODE", "REF_MANY_CODE", null, null, true, "refManyCode", String.class, false, false, "CHAR", 3, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnRefManyName = cci("REF_MANY_NAME", "REF_MANY_NAME", null, null, true, "refManyName", String.class, false, false, "VARCHAR", 50, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnRefManyDatetime = cci("REF_MANY_DATETIME", "REF_MANY_DATETIME", null, null, true, "refManyDatetime", java.sql.Timestamp.class, false, false, "DATETIME", 19, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnMultipleFirstId = cci("MULTIPLE_FIRST_ID", "MULTIPLE_FIRST_ID", null, null, Integer.class, "multipleFirstId", null, true, false, true, "INT", 10, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnMultipleSecondId = cci("MULTIPLE_SECOND_ID", "MULTIPLE_SECOND_ID", null, null, Integer.class, "multipleSecondId", null, true, false, true, "INT", 10, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnRefManyFirstId = cci("REF_MANY_FIRST_ID", "REF_MANY_FIRST_ID", null, null, Integer.class, "refManyFirstId", null, false, false, true, "INT", 10, 0, null, false, null, null, "whiteCompoundPkToPK", null, null);
+    protected final ColumnInfo _columnRefManySecondId = cci("REF_MANY_SECOND_ID", "REF_MANY_SECOND_ID", null, null, Integer.class, "refManySecondId", null, false, false, true, "INT", 10, 0, null, false, null, null, "whiteCompoundPkToPK", null, null);
+    protected final ColumnInfo _columnRefManyCode = cci("REF_MANY_CODE", "REF_MANY_CODE", null, null, String.class, "refManyCode", null, false, false, true, "CHAR", 3, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnRefManyName = cci("REF_MANY_NAME", "REF_MANY_NAME", null, null, String.class, "refManyName", null, false, false, true, "VARCHAR", 50, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnRefManyDatetime = cci("REF_MANY_DATETIME", "REF_MANY_DATETIME", null, null, java.sql.Timestamp.class, "refManyDatetime", null, false, false, true, "DATETIME", 19, 0, null, false, null, null, null, null, null);
 
     /**
      * MULTIPLE_FIRST_ID: {PK, NotNull, INT(10)}
@@ -179,6 +196,8 @@ public class WhiteCompoundPkRefManyDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

@@ -48,13 +48,14 @@ public class WhiteMyselfDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgMyselfId(), "myselfId");
         setupEpg(_epgMap, new EpgMyselfName(), "myselfName");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgMyselfId implements PropertyGateway {
         public Object read(Entity et) { return ((WhiteMyself)et).getMyselfId(); }
         public void write(Entity et, Object vl) { ((WhiteMyself)et).setMyselfId(cti(vl)); }
@@ -63,6 +64,8 @@ public class WhiteMyselfDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((WhiteMyself)et).getMyselfName(); }
         public void write(Entity et, Object vl) { ((WhiteMyself)et).setMyselfName((String)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -78,8 +81,8 @@ public class WhiteMyselfDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnMyselfId = cci("MYSELF_ID", "MYSELF_ID", null, null, true, "myselfId", Integer.class, true, false, "INT", 10, 0, null, false, null, null, null, "whiteMyselfCheckList", null);
-    protected final ColumnInfo _columnMyselfName = cci("MYSELF_NAME", "MYSELF_NAME", null, null, true, "myselfName", String.class, false, false, "VARCHAR", 80, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnMyselfId = cci("MYSELF_ID", "MYSELF_ID", null, null, Integer.class, "myselfId", null, true, false, true, "INT", 10, 0, null, false, null, null, null, "whiteMyselfCheckList", null);
+    protected final ColumnInfo _columnMyselfName = cci("MYSELF_NAME", "MYSELF_NAME", null, null, String.class, "myselfName", null, false, false, true, "VARCHAR", 80, 0, null, false, null, null, null, null, null);
 
     /**
      * MYSELF_ID: {PK, NotNull, INT(10)}
@@ -114,6 +117,8 @@ public class WhiteMyselfDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

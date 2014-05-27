@@ -24,8 +24,8 @@ public class BsWhiteNotPkCQ extends AbstractBsWhiteNotPkCQ {
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public BsWhiteNotPkCQ(ConditionQuery childQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
-        super(childQuery, sqlClause, aliasName, nestLevel);
+    public BsWhiteNotPkCQ(ConditionQuery referrerQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
+        super(referrerQuery, sqlClause, aliasName, nestLevel);
     }
 
     // ===================================================================================
@@ -175,7 +175,7 @@ public class BsWhiteNotPkCQ extends AbstractBsWhiteNotPkCQ {
     // ===================================================================================
     //                                                                         Union Query
     //                                                                         ===========
-    protected void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
+    public void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
     }
 
     // ===================================================================================

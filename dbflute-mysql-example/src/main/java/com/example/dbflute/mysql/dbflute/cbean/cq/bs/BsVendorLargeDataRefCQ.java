@@ -403,7 +403,7 @@ public class BsVendorLargeDataRefCQ extends AbstractBsVendorLargeDataRefCQ {
     // ===================================================================================
     //                                                                         Union Query
     //                                                                         ===========
-    protected void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
+    public void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
         VendorLargeDataRefCQ bq = (VendorLargeDataRefCQ)bqs;
         VendorLargeDataRefCQ uq = (VendorLargeDataRefCQ)uqs;
         if (bq.hasConditionQueryVendorLargeData()) {

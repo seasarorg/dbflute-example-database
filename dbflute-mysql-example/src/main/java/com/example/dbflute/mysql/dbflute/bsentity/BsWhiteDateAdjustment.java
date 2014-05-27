@@ -134,6 +134,9 @@ public abstract class BsWhiteDateAdjustment implements Entity, Serializable, Clo
     // -----------------------------------------------------
     //                                              Internal
     //                                              --------
+    /** The unique-driven properties for this entity. (NotNull) */
+    protected final EntityUniqueDrivenProperties __uniqueDrivenProperties = newUniqueDrivenProperties();
+
     /** The modified properties for this entity. (NotNull) */
     protected final EntityModifiedProperties __modifiedProperties = newModifiedProperties();
 
@@ -176,6 +179,17 @@ public abstract class BsWhiteDateAdjustment implements Entity, Serializable, Clo
     public boolean hasPrimaryKeyValue() {
         if (getDateAdjustmentId() == null) { return false; }
         return true;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Set<String> uniqueDrivenProperties() {
+        return __uniqueDrivenProperties.getPropertyNames();
+    }
+
+    protected EntityUniqueDrivenProperties newUniqueDrivenProperties() {
+        return new EntityUniqueDrivenProperties();
     }
 
     // ===================================================================================
@@ -248,8 +262,8 @@ public abstract class BsWhiteDateAdjustment implements Entity, Serializable, Clo
         if (!xSV(getDateAdjustmentId(), other.getDateAdjustmentId())) { return false; }
         return true;
     }
-    protected boolean xSV(Object value1, Object value2) {
-        return FunCustodial.isSameValue(value1, value2);
+    protected boolean xSV(Object v1, Object v2) {
+        return FunCustodial.isSameValue(v1, v2);
     }
 
     /**
@@ -257,13 +271,13 @@ public abstract class BsWhiteDateAdjustment implements Entity, Serializable, Clo
      * @return The hash-code from primary-key or columns.
      */
     public int hashCode() {
-        int result = 17;
-        result = xCH(result, getTableDbName());
-        result = xCH(result, getDateAdjustmentId());
-        return result;
+        int hs = 17;
+        hs = xCH(hs, getTableDbName());
+        hs = xCH(hs, getDateAdjustmentId());
+        return hs;
     }
-    protected int xCH(int result, Object value) {
-        return FunCustodial.calculateHashcode(result, value);
+    protected int xCH(int hs, Object vl) {
+        return FunCustodial.calculateHashcode(hs, vl);
     }
 
     /**
@@ -303,20 +317,20 @@ public abstract class BsWhiteDateAdjustment implements Entity, Serializable, Clo
     }
     protected String buildColumnString() {
         StringBuilder sb = new StringBuilder();
-        String delimiter = ", ";
-        sb.append(delimiter).append(getDateAdjustmentId());
-        sb.append(delimiter).append(xfUD(getAdjustedDate()));
-        sb.append(delimiter).append(getAdjustedDatetime());
-        sb.append(delimiter).append(getAdjustedTime());
-        sb.append(delimiter).append(getAdjustedInteger());
-        sb.append(delimiter).append(getAdjustedNamedStringLong());
-        sb.append(delimiter).append(getAdjustedNamedTypedLong());
-        sb.append(delimiter).append(getAdjustedPinpointStringLong());
-        sb.append(delimiter).append(getAdjustedPinpointTypedLong());
-        sb.append(delimiter).append(getAdjustedPlainLong());
-        sb.append(delimiter).append(getAdjustedString());
-        if (sb.length() > delimiter.length()) {
-            sb.delete(0, delimiter.length());
+        String dm = ", ";
+        sb.append(dm).append(getDateAdjustmentId());
+        sb.append(dm).append(xfUD(getAdjustedDate()));
+        sb.append(dm).append(getAdjustedDatetime());
+        sb.append(dm).append(getAdjustedTime());
+        sb.append(dm).append(getAdjustedInteger());
+        sb.append(dm).append(getAdjustedNamedStringLong());
+        sb.append(dm).append(getAdjustedNamedTypedLong());
+        sb.append(dm).append(getAdjustedPinpointStringLong());
+        sb.append(dm).append(getAdjustedPinpointTypedLong());
+        sb.append(dm).append(getAdjustedPlainLong());
+        sb.append(dm).append(getAdjustedString());
+        if (sb.length() > dm.length()) {
+            sb.delete(0, dm.length());
         }
         sb.insert(0, "{").append("}");
         return sb.toString();

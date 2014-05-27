@@ -33,13 +33,14 @@ public class NextSchemaProductDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgProductId(), "productId");
         setupEpg(_epgMap, new EpgProductName(), "productName");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgProductId implements PropertyGateway {
         public Object read(Entity et) { return ((NextSchemaProduct)et).getProductId(); }
         public void write(Entity et, Object vl) { ((NextSchemaProduct)et).setProductId(cti(vl)); }
@@ -48,6 +49,8 @@ public class NextSchemaProductDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((NextSchemaProduct)et).getProductName(); }
         public void write(Entity et, Object vl) { ((NextSchemaProduct)et).setProductName((String)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -63,10 +66,18 @@ public class NextSchemaProductDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnProductId = cci("product_id", "product_id", null, null, true, "productId", Integer.class, true, true, "serial", 10, 0, "nextval('nextschema.next_schema_product_product_id_seq'::regclass)", false, null, null, null, "whiteSameNameList", null);
-    protected final ColumnInfo _columnProductName = cci("product_name", "product_name", null, null, true, "productName", String.class, false, false, "varchar", 200, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnProductId = cci("product_id", "product_id", null, null, Integer.class, "productId", null, true, true, true, "serial", 10, 0, "nextval('nextschema.next_schema_product_product_id_seq'::regclass)", false, null, null, null, "whiteSameNameList", null);
+    protected final ColumnInfo _columnProductName = cci("product_name", "product_name", null, null, String.class, "productName", null, false, false, true, "varchar", 200, 0, null, false, null, null, null, null, null);
 
+    /**
+     * product_id: {PK, ID, NotNull, serial(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnProductId() { return _columnProductId; }
+    /**
+     * product_name: {NotNull, varchar(200)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnProductName() { return _columnProductName; }
 
     protected List<ColumnInfo> ccil() {
@@ -91,6 +102,8 @@ public class NextSchemaProductDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------
@@ -98,6 +111,10 @@ public class NextSchemaProductDbm extends AbstractDBMeta {
     // -----------------------------------------------------
     //                                     Referrer Property
     //                                     -----------------
+    /**
+     * white_same_name by next_schema_product_id, named 'whiteSameNameList'.
+     * @return The information object of referrer property. (NotNull)
+     */
     public ReferrerInfo referrerWhiteSameNameList() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnProductId(), WhiteSameNameDbm.getInstance().columnNextSchemaProductId());
         return cri("FK_WHITE_SAME_NAME_NEXT_SCHEMA_PRODUCT", "whiteSameNameList", this, WhiteSameNameDbm.getInstance(), mp, false, "nextSchemaProduct");

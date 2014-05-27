@@ -48,14 +48,15 @@ public class WhiteVariantRelationMasterQuxDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgMasterQuxId(), "masterQuxId");
         setupEpg(_epgMap, new EpgMasterQuxName(), "masterQuxName");
         setupEpg(_epgMap, new EpgQuxTypeCode(), "quxTypeCode");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgMasterQuxId implements PropertyGateway {
         public Object read(Entity et) { return ((WhiteVariantRelationMasterQux)et).getMasterQuxId(); }
         public void write(Entity et, Object vl) { ((WhiteVariantRelationMasterQux)et).setMasterQuxId(ctl(vl)); }
@@ -72,6 +73,8 @@ public class WhiteVariantRelationMasterQuxDbm extends AbstractDBMeta {
             ((WhiteVariantRelationMasterQux)et).setQuxTypeCodeAsVariantRelationQuxType((CDef.VariantRelationQuxType)gcls(col, vl));
         }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -87,9 +90,9 @@ public class WhiteVariantRelationMasterQuxDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnMasterQuxId = cci("MASTER_QUX_ID", "MASTER_QUX_ID", null, null, true, "masterQuxId", Long.class, true, false, "BIGINT", 19, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnMasterQuxName = cci("MASTER_QUX_NAME", "MASTER_QUX_NAME", null, null, true, "masterQuxName", String.class, false, false, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnQuxTypeCode = cci("QUX_TYPE_CODE", "QUX_TYPE_CODE", null, null, true, "quxTypeCode", String.class, false, false, "CHAR", 3, 0, null, false, null, null, null, null, CDef.DefMeta.VariantRelationQuxType);
+    protected final ColumnInfo _columnMasterQuxId = cci("MASTER_QUX_ID", "MASTER_QUX_ID", null, null, Long.class, "masterQuxId", null, true, false, true, "BIGINT", 19, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnMasterQuxName = cci("MASTER_QUX_NAME", "MASTER_QUX_NAME", null, null, String.class, "masterQuxName", null, false, false, true, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnQuxTypeCode = cci("QUX_TYPE_CODE", "QUX_TYPE_CODE", null, null, String.class, "quxTypeCode", null, false, false, true, "CHAR", 3, 0, null, false, null, null, null, null, CDef.DefMeta.VariantRelationQuxType);
 
     /**
      * MASTER_QUX_ID: {PK, NotNull, BIGINT(19)}
@@ -130,6 +133,8 @@ public class WhiteVariantRelationMasterQuxDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

@@ -48,13 +48,14 @@ public class WhiteEscapedJavaDocDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgEscapedJavaDocCode(), "escapedJavaDocCode");
         setupEpg(_epgMap, new EpgEscapedJavaDocName(), "escapedJavaDocName");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public class EpgEscapedJavaDocCode implements PropertyGateway {
         public Object read(Entity et) { return ((WhiteEscapedJavaDoc)et).getEscapedJavaDocCode(); }
         public void write(Entity et, Object vl) {
@@ -67,6 +68,8 @@ public class WhiteEscapedJavaDocDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((WhiteEscapedJavaDoc)et).getEscapedJavaDocName(); }
         public void write(Entity et, Object vl) { ((WhiteEscapedJavaDoc)et).setEscapedJavaDocName((String)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -82,8 +85,8 @@ public class WhiteEscapedJavaDocDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnEscapedJavaDocCode = cci("ESCAPED_JAVA_DOC_CODE", "ESCAPED_JAVA_DOC_CODE", null, null, true, "escapedJavaDocCode", String.class, true, false, "CHAR", 3, 0, null, false, null, null, null, null, CDef.DefMeta.EscapedJavaDocCls);
-    protected final ColumnInfo _columnEscapedJavaDocName = cci("ESCAPED_JAVA_DOC_NAME", "ESCAPED_JAVA_DOC_NAME", null, null, false, "escapedJavaDocName", String.class, false, false, "VARCHAR", 20, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnEscapedJavaDocCode = cci("ESCAPED_JAVA_DOC_CODE", "ESCAPED_JAVA_DOC_CODE", null, null, String.class, "escapedJavaDocCode", null, true, false, true, "CHAR", 3, 0, null, false, null, null, null, null, CDef.DefMeta.EscapedJavaDocCls);
+    protected final ColumnInfo _columnEscapedJavaDocName = cci("ESCAPED_JAVA_DOC_NAME", "ESCAPED_JAVA_DOC_NAME", null, null, String.class, "escapedJavaDocName", null, false, false, false, "VARCHAR", 20, 0, null, false, null, null, null, null, null);
 
     /**
      * ESCAPED_JAVA_DOC_CODE: {PK, NotNull, CHAR(3), classification=EscapedJavaDocCls}
@@ -118,6 +121,8 @@ public class WhiteEscapedJavaDocDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

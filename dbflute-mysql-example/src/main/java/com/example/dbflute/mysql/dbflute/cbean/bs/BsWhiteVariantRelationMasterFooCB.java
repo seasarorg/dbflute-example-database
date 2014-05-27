@@ -92,10 +92,14 @@ public class BsWhiteVariantRelationMasterFooCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                 PrimaryKey Handling
     //                                                                 ===================
+    /**
+     * Accept the query condition of primary key as equal.
+     * @param masterFooId : PK, NotNull, BIGINT(19). (NotNull)
+     */
     public void acceptPrimaryKey(Long masterFooId) {
         assertObjectNotNull("masterFooId", masterFooId);
         BsWhiteVariantRelationMasterFooCB cb = this;
-        cb.query().setMasterFooId_Equal(masterFooId);
+        cb.query().setMasterFooId_Equal(masterFooId);;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {
@@ -428,6 +432,11 @@ public class BsWhiteVariantRelationMasterFooCB extends AbstractConditionBean {
      */
     public void orScopeQuery(OrQuery<WhiteVariantRelationMasterFooCB> orQuery) {
         xorSQ((WhiteVariantRelationMasterFooCB)this, orQuery);
+    }
+
+    @Override
+    protected HpCBPurpose xhandleOrSQPurposeChange() {
+        return null; // means no check
     }
 
     /**

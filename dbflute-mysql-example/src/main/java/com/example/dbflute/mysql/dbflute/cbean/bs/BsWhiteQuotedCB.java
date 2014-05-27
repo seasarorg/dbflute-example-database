@@ -92,10 +92,14 @@ public class BsWhiteQuotedCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                 PrimaryKey Handling
     //                                                                 ===================
+    /**
+     * Accept the query condition of primary key as equal.
+     * @param select : PK, NotNull, INT(10). (NotNull)
+     */
     public void acceptPrimaryKey(Integer select) {
         assertObjectNotNull("select", select);
         BsWhiteQuotedCB cb = this;
-        cb.query().setSelect_Equal(select);
+        cb.query().setSelect_Equal(select);;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {
@@ -428,6 +432,11 @@ public class BsWhiteQuotedCB extends AbstractConditionBean {
      */
     public void orScopeQuery(OrQuery<WhiteQuotedCB> orQuery) {
         xorSQ((WhiteQuotedCB)this, orQuery);
+    }
+
+    @Override
+    protected HpCBPurpose xhandleOrSQPurposeChange() {
+        return null; // means no check
     }
 
     /**

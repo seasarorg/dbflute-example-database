@@ -184,7 +184,7 @@ public abstract class BsWhiteMyselfCheckBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of WhiteMyselfCheck. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -205,39 +205,42 @@ public abstract class BsWhiteMyselfCheckBhv extends AbstractBehaviorWritable {
 
     /**
      * Select the entity by the primary-key value.
-     * @param myselfCheckId The one of primary key. (NotNull)
+     * @param myselfCheckId : PK, NotNull, INT(10). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteMyselfCheck selectByPKValue(Integer myselfCheckId) {
-        return doSelectByPKValue(myselfCheckId, WhiteMyselfCheck.class);
+        return doSelectByPK(myselfCheckId, WhiteMyselfCheck.class);
     }
 
-    protected <ENTITY extends WhiteMyselfCheck> ENTITY doSelectByPKValue(Integer myselfCheckId, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(myselfCheckId), entityType);
+    protected <ENTITY extends WhiteMyselfCheck> ENTITY doSelectByPK(Integer myselfCheckId, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(myselfCheckId), entityType);
+    }
+
+    protected <ENTITY extends WhiteMyselfCheck> OptionalEntity<ENTITY> doSelectOptionalByPK(Integer myselfCheckId, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(myselfCheckId, entityType), myselfCheckId);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param myselfCheckId The one of primary key. (NotNull)
+     * @param myselfCheckId : PK, NotNull, INT(10). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteMyselfCheck selectByPKValueWithDeletedCheck(Integer myselfCheckId) {
-        return doSelectByPKValueWithDeletedCheck(myselfCheckId, WhiteMyselfCheck.class);
+        return doSelectByPKWithDeletedCheck(myselfCheckId, WhiteMyselfCheck.class);
     }
 
-    protected <ENTITY extends WhiteMyselfCheck> ENTITY doSelectByPKValueWithDeletedCheck(Integer myselfCheckId, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(myselfCheckId), entityType);
+    protected <ENTITY extends WhiteMyselfCheck> ENTITY doSelectByPKWithDeletedCheck(Integer myselfCheckId, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(myselfCheckId), entityType);
     }
 
-    private WhiteMyselfCheckCB buildPKCB(Integer myselfCheckId) {
+    protected WhiteMyselfCheckCB xprepareCBAsPK(Integer myselfCheckId) {
         assertObjectNotNull("myselfCheckId", myselfCheckId);
-        WhiteMyselfCheckCB cb = newMyConditionBean();
-        cb.query().setMyselfCheckId_Equal(myselfCheckId);
+        WhiteMyselfCheckCB cb = newMyConditionBean(); cb.acceptPrimaryKey(myselfCheckId);
         return cb;
     }
 
@@ -402,7 +405,8 @@ public abstract class BsWhiteMyselfCheckBhv extends AbstractBehaviorWritable {
      */
     public List<WhiteMyself> pulloutWhiteMyself(List<WhiteMyselfCheck> whiteMyselfCheckList) {
         return helpPulloutInternally(whiteMyselfCheckList, new InternalPulloutCallback<WhiteMyselfCheck, WhiteMyself>() {
-            public WhiteMyself getFr(WhiteMyselfCheck et) { return et.getWhiteMyself(); }
+            public WhiteMyself getFr(WhiteMyselfCheck et)
+            { return et.getWhiteMyself(); }
             public boolean hasRf() { return true; }
             public void setRfLs(WhiteMyself et, List<WhiteMyselfCheck> ls)
             { et.setWhiteMyselfCheckList(ls); }

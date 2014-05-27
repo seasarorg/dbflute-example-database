@@ -33,13 +33,14 @@ public class VendorUuidBarDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgBarId(), "barId");
         setupEpg(_epgMap, new EpgBarName(), "barName");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgBarId implements PropertyGateway {
         public Object read(Entity et) { return ((VendorUuidBar)et).getBarId(); }
         public void write(Entity et, Object vl) { ((VendorUuidBar)et).setBarId((java.util.UUID)vl); }
@@ -48,6 +49,8 @@ public class VendorUuidBarDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((VendorUuidBar)et).getBarName(); }
         public void write(Entity et, Object vl) { ((VendorUuidBar)et).setBarName((String)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -63,10 +66,18 @@ public class VendorUuidBarDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnBarId = cci("bar_id", "bar_id", null, null, true, "barId", java.util.UUID.class, true, false, "uuid", 2147483647, 0, null, false, null, null, null, "vendorUuidFooList", null);
-    protected final ColumnInfo _columnBarName = cci("bar_name", "bar_name", null, null, true, "barName", String.class, false, false, "varchar", 2147483647, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnBarId = cci("bar_id", "bar_id", null, null, java.util.UUID.class, "barId", null, true, false, true, "uuid", 2147483647, 0, null, false, null, null, null, "vendorUuidFooList", null);
+    protected final ColumnInfo _columnBarName = cci("bar_name", "bar_name", null, null, String.class, "barName", null, false, false, true, "varchar", 2147483647, 0, null, false, null, null, null, null, null);
 
+    /**
+     * bar_id: {PK, NotNull, uuid(2147483647)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnBarId() { return _columnBarId; }
+    /**
+     * bar_name: {NotNull, varchar(2147483647)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnBarName() { return _columnBarName; }
 
     protected List<ColumnInfo> ccil() {
@@ -91,6 +102,8 @@ public class VendorUuidBarDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------
@@ -98,6 +111,10 @@ public class VendorUuidBarDbm extends AbstractDBMeta {
     // -----------------------------------------------------
     //                                     Referrer Property
     //                                     -----------------
+    /**
+     * vendor_uuid_foo by bar_id, named 'vendorUuidFooList'.
+     * @return The information object of referrer property. (NotNull)
+     */
     public ReferrerInfo referrerVendorUuidFooList() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnBarId(), VendorUuidFooDbm.getInstance().columnBarId());
         return cri("fk_vendor_uuid_foo_bar", "vendorUuidFooList", this, VendorUuidFooDbm.getInstance(), mp, false, "vendorUuidBar");

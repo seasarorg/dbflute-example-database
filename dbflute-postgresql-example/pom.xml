@@ -12,9 +12,9 @@
 
 	<properties>
 		<spring.version>3.0.5.RELEASE</spring.version>
-		<dbflute.version>1.0.5F</dbflute.version>
+		<dbflute.version>1.0.5G-01-SNAPSHOT</dbflute.version>
 		<postgresql.jdbc.version>9.1-901.jdbc3</postgresql.jdbc.version>
-		<utflute.version>0.4.4</utflute.version>
+		<utflute.version>0.4.5</utflute.version>
 	</properties>
 
 	<url>http://dbflute.sandbox.seasar.org/</url>

@@ -48,6 +48,9 @@ public class WhiteAllInOneClsElementDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgClsCategoryCode(), "clsCategoryCode");
@@ -55,8 +58,6 @@ public class WhiteAllInOneClsElementDbm extends AbstractDBMeta {
         setupEpg(_epgMap, new EpgClsElementName(), "clsElementName");
         setupEpg(_epgMap, new EpgAttributeExp(), "attributeExp");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgClsCategoryCode implements PropertyGateway {
         public Object read(Entity et) { return ((WhiteAllInOneClsElement)et).getClsCategoryCode(); }
         public void write(Entity et, Object vl) { ((WhiteAllInOneClsElement)et).setClsCategoryCode((String)vl); }
@@ -73,6 +74,22 @@ public class WhiteAllInOneClsElementDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((WhiteAllInOneClsElement)et).getAttributeExp(); }
         public void write(Entity et, Object vl) { ((WhiteAllInOneClsElement)et).setAttributeExp((String)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
+
+    // -----------------------------------------------------
+    //                                      Foreign Property
+    //                                      ----------------
+    protected final Map<String, PropertyGateway> _efpgMap = newHashMap();
+    {
+        setupEfpg(_efpgMap, new EfpgWhiteAllInOneClsCategory(), "whiteAllInOneClsCategory");
+    }
+    public class EfpgWhiteAllInOneClsCategory implements PropertyGateway {
+        public Object read(Entity et) { return ((WhiteAllInOneClsElement)et).getWhiteAllInOneClsCategory(); }
+        public void write(Entity et, Object vl) { ((WhiteAllInOneClsElement)et).setWhiteAllInOneClsCategory((WhiteAllInOneClsCategory)vl); }
+    }
+    public PropertyGateway findForeignPropertyGateway(String prop)
+    { return doFindEfpg(_efpgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -88,10 +105,10 @@ public class WhiteAllInOneClsElementDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnClsCategoryCode = cci("CLS_CATEGORY_CODE", "CLS_CATEGORY_CODE", null, null, true, "clsCategoryCode", String.class, true, false, "CHAR", 3, 0, null, false, null, null, "whiteAllInOneClsCategory", null, null);
-    protected final ColumnInfo _columnClsElementCode = cci("CLS_ELEMENT_CODE", "CLS_ELEMENT_CODE", null, null, true, "clsElementCode", String.class, true, false, "CHAR", 3, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnClsElementName = cci("CLS_ELEMENT_NAME", "CLS_ELEMENT_NAME", null, null, true, "clsElementName", String.class, false, false, "VARCHAR", 20, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnAttributeExp = cci("ATTRIBUTE_EXP", "ATTRIBUTE_EXP", null, null, true, "attributeExp", String.class, false, false, "TEXT", 65535, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnClsCategoryCode = cci("CLS_CATEGORY_CODE", "CLS_CATEGORY_CODE", null, null, String.class, "clsCategoryCode", null, true, false, true, "CHAR", 3, 0, null, false, null, null, "whiteAllInOneClsCategory", null, null);
+    protected final ColumnInfo _columnClsElementCode = cci("CLS_ELEMENT_CODE", "CLS_ELEMENT_CODE", null, null, String.class, "clsElementCode", null, true, false, true, "CHAR", 3, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnClsElementName = cci("CLS_ELEMENT_NAME", "CLS_ELEMENT_NAME", null, null, String.class, "clsElementName", null, false, false, true, "VARCHAR", 20, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnAttributeExp = cci("ATTRIBUTE_EXP", "ATTRIBUTE_EXP", null, null, String.class, "attributeExp", null, false, false, true, "TEXT", 65535, 0, null, false, null, null, null, null, null);
 
     /**
      * CLS_CATEGORY_CODE: {PK, NotNull, CHAR(3), FK to white_all_in_one_cls_category}
@@ -143,6 +160,8 @@ public class WhiteAllInOneClsElementDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

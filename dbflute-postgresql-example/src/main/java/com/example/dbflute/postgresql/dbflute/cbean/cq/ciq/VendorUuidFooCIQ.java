@@ -25,9 +25,9 @@ public class VendorUuidFooCIQ extends AbstractBsVendorUuidFooCQ {
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public VendorUuidFooCIQ(ConditionQuery childQuery, SqlClause sqlClause
+    public VendorUuidFooCIQ(ConditionQuery referrerQuery, SqlClause sqlClause
                         , String aliasName, int nestLevel, BsVendorUuidFooCQ myCQ) {
-        super(childQuery, sqlClause, aliasName, nestLevel);
+        super(referrerQuery, sqlClause, aliasName, nestLevel);
         _myCQ = myCQ;
         _foreignPropertyName = _myCQ.xgetForeignPropertyName(); // accept foreign property name
         _relationPath = _myCQ.xgetRelationPath(); // accept relation path

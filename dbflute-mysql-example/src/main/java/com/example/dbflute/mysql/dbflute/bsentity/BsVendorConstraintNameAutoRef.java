@@ -108,6 +108,9 @@ public abstract class BsVendorConstraintNameAutoRef implements Entity, Serializa
     // -----------------------------------------------------
     //                                              Internal
     //                                              --------
+    /** The unique-driven properties for this entity. (NotNull) */
+    protected final EntityUniqueDrivenProperties __uniqueDrivenProperties = newUniqueDrivenProperties();
+
     /** The modified properties for this entity. (NotNull) */
     protected final EntityModifiedProperties __modifiedProperties = newModifiedProperties();
 
@@ -150,6 +153,28 @@ public abstract class BsVendorConstraintNameAutoRef implements Entity, Serializa
     public boolean hasPrimaryKeyValue() {
         if (getConstraintNameAutoRefId() == null) { return false; }
         return true;
+    }
+
+    /**
+     * To be unique by the unique column. <br />
+     * You can update the entity by the key when entity update (NOT batch update).
+     * @param constraintNameAutoUnique : UQ, NotNull, VARCHAR(50). (NotNull)
+     */
+    public void uniqueBy(String constraintNameAutoUnique) {
+        __uniqueDrivenProperties.clear();
+        __uniqueDrivenProperties.addPropertyName("constraintNameAutoUnique");
+        _constraintNameAutoUnique = constraintNameAutoUnique;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Set<String> uniqueDrivenProperties() {
+        return __uniqueDrivenProperties.getPropertyNames();
+    }
+
+    protected EntityUniqueDrivenProperties newUniqueDrivenProperties() {
+        return new EntityUniqueDrivenProperties();
     }
 
     // ===================================================================================
@@ -279,8 +304,8 @@ public abstract class BsVendorConstraintNameAutoRef implements Entity, Serializa
         if (!xSV(getConstraintNameAutoRefId(), other.getConstraintNameAutoRefId())) { return false; }
         return true;
     }
-    protected boolean xSV(Object value1, Object value2) {
-        return FunCustodial.isSameValue(value1, value2);
+    protected boolean xSV(Object v1, Object v2) {
+        return FunCustodial.isSameValue(v1, v2);
     }
 
     /**
@@ -288,13 +313,13 @@ public abstract class BsVendorConstraintNameAutoRef implements Entity, Serializa
      * @return The hash-code from primary-key or columns.
      */
     public int hashCode() {
-        int result = 17;
-        result = xCH(result, getTableDbName());
-        result = xCH(result, getConstraintNameAutoRefId());
-        return result;
+        int hs = 17;
+        hs = xCH(hs, getTableDbName());
+        hs = xCH(hs, getConstraintNameAutoRefId());
+        return hs;
     }
-    protected int xCH(int result, Object value) {
-        return FunCustodial.calculateHashcode(result, value);
+    protected int xCH(int hs, Object vl) {
+        return FunCustodial.calculateHashcode(hs, vl);
     }
 
     /**
@@ -318,17 +343,17 @@ public abstract class BsVendorConstraintNameAutoRef implements Entity, Serializa
     public String toStringWithRelation() {
         StringBuilder sb = new StringBuilder();
         sb.append(toString());
-        String l = "\n  ";
+        String li = "\n  ";
         if (_vendorConstraintNameAutoFoo != null)
-        { sb.append(l).append(xbRDS(_vendorConstraintNameAutoFoo, "vendorConstraintNameAutoFoo")); }
+        { sb.append(li).append(xbRDS(_vendorConstraintNameAutoFoo, "vendorConstraintNameAutoFoo")); }
         if (_vendorConstraintNameAutoBar != null)
-        { sb.append(l).append(xbRDS(_vendorConstraintNameAutoBar, "vendorConstraintNameAutoBar")); }
+        { sb.append(li).append(xbRDS(_vendorConstraintNameAutoBar, "vendorConstraintNameAutoBar")); }
         if (_vendorConstraintNameAutoQux != null)
-        { sb.append(l).append(xbRDS(_vendorConstraintNameAutoQux, "vendorConstraintNameAutoQux")); }
+        { sb.append(li).append(xbRDS(_vendorConstraintNameAutoQux, "vendorConstraintNameAutoQux")); }
         return sb.toString();
     }
-    protected String xbRDS(Entity e, String name) { // buildRelationDisplayString()
-        return e.buildDisplayString(name, true, true);
+    protected String xbRDS(Entity et, String name) { // buildRelationDisplayString()
+        return et.buildDisplayString(name, true, true);
     }
 
     /**
@@ -344,27 +369,27 @@ public abstract class BsVendorConstraintNameAutoRef implements Entity, Serializa
     }
     protected String buildColumnString() {
         StringBuilder sb = new StringBuilder();
-        String delimiter = ", ";
-        sb.append(delimiter).append(getConstraintNameAutoRefId());
-        sb.append(delimiter).append(getConstraintNameAutoFooId());
-        sb.append(delimiter).append(getConstraintNameAutoBarId());
-        sb.append(delimiter).append(getConstraintNameAutoQuxId());
-        sb.append(delimiter).append(getConstraintNameAutoCorgeId());
-        sb.append(delimiter).append(getConstraintNameAutoUnique());
-        if (sb.length() > delimiter.length()) {
-            sb.delete(0, delimiter.length());
+        String dm = ", ";
+        sb.append(dm).append(getConstraintNameAutoRefId());
+        sb.append(dm).append(getConstraintNameAutoFooId());
+        sb.append(dm).append(getConstraintNameAutoBarId());
+        sb.append(dm).append(getConstraintNameAutoQuxId());
+        sb.append(dm).append(getConstraintNameAutoCorgeId());
+        sb.append(dm).append(getConstraintNameAutoUnique());
+        if (sb.length() > dm.length()) {
+            sb.delete(0, dm.length());
         }
         sb.insert(0, "{").append("}");
         return sb.toString();
     }
     protected String buildRelationString() {
         StringBuilder sb = new StringBuilder();
-        String c = ",";
-        if (_vendorConstraintNameAutoFoo != null) { sb.append(c).append("vendorConstraintNameAutoFoo"); }
-        if (_vendorConstraintNameAutoBar != null) { sb.append(c).append("vendorConstraintNameAutoBar"); }
-        if (_vendorConstraintNameAutoQux != null) { sb.append(c).append("vendorConstraintNameAutoQux"); }
-        if (sb.length() > c.length()) {
-            sb.delete(0, c.length()).insert(0, "(").append(")");
+        String cm = ",";
+        if (_vendorConstraintNameAutoFoo != null) { sb.append(cm).append("vendorConstraintNameAutoFoo"); }
+        if (_vendorConstraintNameAutoBar != null) { sb.append(cm).append("vendorConstraintNameAutoBar"); }
+        if (_vendorConstraintNameAutoQux != null) { sb.append(cm).append("vendorConstraintNameAutoQux"); }
+        if (sb.length() > cm.length()) {
+            sb.delete(0, cm.length()).insert(0, "(").append(")");
         }
         return sb.toString();
     }

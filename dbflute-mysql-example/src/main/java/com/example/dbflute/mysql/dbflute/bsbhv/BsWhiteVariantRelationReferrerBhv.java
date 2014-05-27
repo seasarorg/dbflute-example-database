@@ -184,7 +184,7 @@ public abstract class BsWhiteVariantRelationReferrerBhv extends AbstractBehavior
      * </pre>
      * @param cb The condition-bean of WhiteVariantRelationReferrer. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -205,39 +205,42 @@ public abstract class BsWhiteVariantRelationReferrerBhv extends AbstractBehavior
 
     /**
      * Select the entity by the primary-key value.
-     * @param referrerId The one of primary key. (NotNull)
+     * @param referrerId : PK, NotNull, BIGINT(19). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteVariantRelationReferrer selectByPKValue(Long referrerId) {
-        return doSelectByPKValue(referrerId, WhiteVariantRelationReferrer.class);
+        return doSelectByPK(referrerId, WhiteVariantRelationReferrer.class);
     }
 
-    protected <ENTITY extends WhiteVariantRelationReferrer> ENTITY doSelectByPKValue(Long referrerId, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(referrerId), entityType);
+    protected <ENTITY extends WhiteVariantRelationReferrer> ENTITY doSelectByPK(Long referrerId, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(referrerId), entityType);
+    }
+
+    protected <ENTITY extends WhiteVariantRelationReferrer> OptionalEntity<ENTITY> doSelectOptionalByPK(Long referrerId, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(referrerId, entityType), referrerId);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param referrerId The one of primary key. (NotNull)
+     * @param referrerId : PK, NotNull, BIGINT(19). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteVariantRelationReferrer selectByPKValueWithDeletedCheck(Long referrerId) {
-        return doSelectByPKValueWithDeletedCheck(referrerId, WhiteVariantRelationReferrer.class);
+        return doSelectByPKWithDeletedCheck(referrerId, WhiteVariantRelationReferrer.class);
     }
 
-    protected <ENTITY extends WhiteVariantRelationReferrer> ENTITY doSelectByPKValueWithDeletedCheck(Long referrerId, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(referrerId), entityType);
+    protected <ENTITY extends WhiteVariantRelationReferrer> ENTITY doSelectByPKWithDeletedCheck(Long referrerId, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(referrerId), entityType);
     }
 
-    private WhiteVariantRelationReferrerCB buildPKCB(Long referrerId) {
+    protected WhiteVariantRelationReferrerCB xprepareCBAsPK(Long referrerId) {
         assertObjectNotNull("referrerId", referrerId);
-        WhiteVariantRelationReferrerCB cb = newMyConditionBean();
-        cb.query().setReferrerId_Equal(referrerId);
+        WhiteVariantRelationReferrerCB cb = newMyConditionBean(); cb.acceptPrimaryKey(referrerId);
         return cb;
     }
 
@@ -402,7 +405,8 @@ public abstract class BsWhiteVariantRelationReferrerBhv extends AbstractBehavior
      */
     public List<WhiteVariantRelationMasterFoo> pulloutWhiteVariantRelationMasterFooAsVariant(List<WhiteVariantRelationReferrer> whiteVariantRelationReferrerList) {
         return helpPulloutInternally(whiteVariantRelationReferrerList, new InternalPulloutCallback<WhiteVariantRelationReferrer, WhiteVariantRelationMasterFoo>() {
-            public WhiteVariantRelationMasterFoo getFr(WhiteVariantRelationReferrer et) { return et.getWhiteVariantRelationMasterFooAsVariant(); }
+            public WhiteVariantRelationMasterFoo getFr(WhiteVariantRelationReferrer et)
+            { return et.getWhiteVariantRelationMasterFooAsVariant(); }
             public boolean hasRf() { return true; }
             public void setRfLs(WhiteVariantRelationMasterFoo et, List<WhiteVariantRelationReferrer> ls)
             { et.setWhiteVariantRelationReferrerAsVariantList(ls); }
@@ -415,7 +419,8 @@ public abstract class BsWhiteVariantRelationReferrerBhv extends AbstractBehavior
      */
     public List<WhiteVariantRelationMasterBar> pulloutWhiteVariantRelationMasterBarAsVariant(List<WhiteVariantRelationReferrer> whiteVariantRelationReferrerList) {
         return helpPulloutInternally(whiteVariantRelationReferrerList, new InternalPulloutCallback<WhiteVariantRelationReferrer, WhiteVariantRelationMasterBar>() {
-            public WhiteVariantRelationMasterBar getFr(WhiteVariantRelationReferrer et) { return et.getWhiteVariantRelationMasterBarAsVariant(); }
+            public WhiteVariantRelationMasterBar getFr(WhiteVariantRelationReferrer et)
+            { return et.getWhiteVariantRelationMasterBarAsVariant(); }
             public boolean hasRf() { return true; }
             public void setRfLs(WhiteVariantRelationMasterBar et, List<WhiteVariantRelationReferrer> ls)
             { et.setWhiteVariantRelationReferrerAsVariantList(ls); }
@@ -428,7 +433,8 @@ public abstract class BsWhiteVariantRelationReferrerBhv extends AbstractBehavior
      */
     public List<WhiteVariantRelationMasterQux> pulloutWhiteVariantRelationMasterQuxAsVariantByQue(List<WhiteVariantRelationReferrer> whiteVariantRelationReferrerList) {
         return helpPulloutInternally(whiteVariantRelationReferrerList, new InternalPulloutCallback<WhiteVariantRelationReferrer, WhiteVariantRelationMasterQux>() {
-            public WhiteVariantRelationMasterQux getFr(WhiteVariantRelationReferrer et) { return et.getWhiteVariantRelationMasterQuxAsVariantByQue(); }
+            public WhiteVariantRelationMasterQux getFr(WhiteVariantRelationReferrer et)
+            { return et.getWhiteVariantRelationMasterQuxAsVariantByQue(); }
             public boolean hasRf() { return false; }
             public void setRfLs(WhiteVariantRelationMasterQux et, List<WhiteVariantRelationReferrer> ls)
             { throw new UnsupportedOperationException(); }
@@ -441,7 +447,8 @@ public abstract class BsWhiteVariantRelationReferrerBhv extends AbstractBehavior
      */
     public List<WhiteVariantRelationMasterCorge> pulloutWhiteVariantRelationMasterCorgeAsVariantByQuxType(List<WhiteVariantRelationReferrer> whiteVariantRelationReferrerList) {
         return helpPulloutInternally(whiteVariantRelationReferrerList, new InternalPulloutCallback<WhiteVariantRelationReferrer, WhiteVariantRelationMasterCorge>() {
-            public WhiteVariantRelationMasterCorge getFr(WhiteVariantRelationReferrer et) { return et.getWhiteVariantRelationMasterCorgeAsVariantByQuxType(); }
+            public WhiteVariantRelationMasterCorge getFr(WhiteVariantRelationReferrer et)
+            { return et.getWhiteVariantRelationMasterCorgeAsVariantByQuxType(); }
             public boolean hasRf() { return false; }
             public void setRfLs(WhiteVariantRelationMasterCorge et, List<WhiteVariantRelationReferrer> ls)
             { throw new UnsupportedOperationException(); }

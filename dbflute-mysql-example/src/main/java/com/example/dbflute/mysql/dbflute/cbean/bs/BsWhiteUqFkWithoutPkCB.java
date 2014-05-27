@@ -92,6 +92,16 @@ public class BsWhiteUqFkWithoutPkCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                 PrimaryKey Handling
     //                                                                 ===================
+    /**
+     * Accept the query condition of unique key as equal.
+     * @param uqFkCode : UQ, NotNull, CHAR(3). (NotNull)
+     */
+    public void acceptUniqueOf(String uqFkCode) {
+        assertObjectNotNull("uqFkCode", uqFkCode);
+        BsWhiteUqFkWithoutPkCB cb = this;
+        cb.query().setUqFkCode_Equal(uqFkCode);;
+    }
+
     public ConditionBean addOrderBy_PK_Asc() {
         String msg = "The table has no primary-keys: " + getTableDbName();
         throw new UnsupportedOperationException(msg);
@@ -414,6 +424,11 @@ public class BsWhiteUqFkWithoutPkCB extends AbstractConditionBean {
      */
     public void orScopeQuery(OrQuery<WhiteUqFkWithoutPkCB> orQuery) {
         xorSQ((WhiteUqFkWithoutPkCB)this, orQuery);
+    }
+
+    @Override
+    protected HpCBPurpose xhandleOrSQPurposeChange() {
+        return null; // means no check
     }
 
     /**

@@ -93,10 +93,14 @@ public class BsWhitePgReservRefCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                 PrimaryKey Handling
     //                                                                 ===================
+    /**
+     * Accept the query condition of primary key as equal.
+     * @param refId : PK, NotNull, INT(10). (NotNull)
+     */
     public void acceptPrimaryKey(Integer refId) {
         assertObjectNotNull("refId", refId);
         BsWhitePgReservRefCB cb = this;
-        cb.query().setRefId_Equal(refId);
+        cb.query().setRefId_Equal(refId);;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {
@@ -462,6 +466,11 @@ public class BsWhitePgReservRefCB extends AbstractConditionBean {
      */
     public void orScopeQuery(OrQuery<WhitePgReservRefCB> orQuery) {
         xorSQ((WhitePgReservRefCB)this, orQuery);
+    }
+
+    @Override
+    protected HpCBPurpose xhandleOrSQPurposeChange() {
+        return null; // means no check
     }
 
     /**

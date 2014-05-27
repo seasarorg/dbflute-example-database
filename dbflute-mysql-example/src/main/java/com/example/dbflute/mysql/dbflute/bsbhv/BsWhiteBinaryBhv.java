@@ -184,7 +184,7 @@ public abstract class BsWhiteBinaryBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of WhiteBinary. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -205,39 +205,42 @@ public abstract class BsWhiteBinaryBhv extends AbstractBehaviorWritable {
 
     /**
      * Select the entity by the primary-key value.
-     * @param binaryId The one of primary key. (NotNull)
+     * @param binaryId : PK, ID, NotNull, BIGINT(19). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteBinary selectByPKValue(Long binaryId) {
-        return doSelectByPKValue(binaryId, WhiteBinary.class);
+        return doSelectByPK(binaryId, WhiteBinary.class);
     }
 
-    protected <ENTITY extends WhiteBinary> ENTITY doSelectByPKValue(Long binaryId, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(binaryId), entityType);
+    protected <ENTITY extends WhiteBinary> ENTITY doSelectByPK(Long binaryId, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(binaryId), entityType);
+    }
+
+    protected <ENTITY extends WhiteBinary> OptionalEntity<ENTITY> doSelectOptionalByPK(Long binaryId, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(binaryId, entityType), binaryId);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param binaryId The one of primary key. (NotNull)
+     * @param binaryId : PK, ID, NotNull, BIGINT(19). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteBinary selectByPKValueWithDeletedCheck(Long binaryId) {
-        return doSelectByPKValueWithDeletedCheck(binaryId, WhiteBinary.class);
+        return doSelectByPKWithDeletedCheck(binaryId, WhiteBinary.class);
     }
 
-    protected <ENTITY extends WhiteBinary> ENTITY doSelectByPKValueWithDeletedCheck(Long binaryId, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(binaryId), entityType);
+    protected <ENTITY extends WhiteBinary> ENTITY doSelectByPKWithDeletedCheck(Long binaryId, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(binaryId), entityType);
     }
 
-    private WhiteBinaryCB buildPKCB(Long binaryId) {
+    protected WhiteBinaryCB xprepareCBAsPK(Long binaryId) {
         assertObjectNotNull("binaryId", binaryId);
-        WhiteBinaryCB cb = newMyConditionBean();
-        cb.query().setBinaryId_Equal(binaryId);
+        WhiteBinaryCB cb = newMyConditionBean(); cb.acceptPrimaryKey(binaryId);
         return cb;
     }
 

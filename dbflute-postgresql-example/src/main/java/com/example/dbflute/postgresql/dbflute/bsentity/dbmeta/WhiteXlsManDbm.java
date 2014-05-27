@@ -33,6 +33,9 @@ public class WhiteXlsManDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgXlsManId(), "xlsManId");
@@ -41,8 +44,6 @@ public class WhiteXlsManDbm extends AbstractDBMeta {
         setupEpg(_epgMap, new EpgTimestampZeroPrefixMillis(), "timestampZeroPrefixMillis");
         setupEpg(_epgMap, new EpgTimestampZeroSuffixMillis(), "timestampZeroSuffixMillis");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgXlsManId implements PropertyGateway {
         public Object read(Entity et) { return ((WhiteXlsMan)et).getXlsManId(); }
         public void write(Entity et, Object vl) { ((WhiteXlsMan)et).setXlsManId(ctl(vl)); }
@@ -63,6 +64,8 @@ public class WhiteXlsManDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((WhiteXlsMan)et).getTimestampZeroSuffixMillis(); }
         public void write(Entity et, Object vl) { ((WhiteXlsMan)et).setTimestampZeroSuffixMillis((java.sql.Timestamp)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -78,16 +81,36 @@ public class WhiteXlsManDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnXlsManId = cci("xls_man_id", "xls_man_id", null, null, true, "xlsManId", Long.class, true, false, "int8", 19, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnStringConverted = cci("string_converted", "string_converted", null, null, false, "stringConverted", String.class, false, false, "varchar", 2147483647, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTimestampZeroDefaultMillis = cci("timestamp_zero_default_millis", "timestamp_zero_default_millis", null, null, false, "timestampZeroDefaultMillis", java.sql.Timestamp.class, false, false, "timestamp", 26, 3, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTimestampZeroPrefixMillis = cci("timestamp_zero_prefix_millis", "timestamp_zero_prefix_millis", null, null, false, "timestampZeroPrefixMillis", java.sql.Timestamp.class, false, false, "timestamp", 26, 3, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTimestampZeroSuffixMillis = cci("timestamp_zero_suffix_millis", "timestamp_zero_suffix_millis", null, null, false, "timestampZeroSuffixMillis", java.sql.Timestamp.class, false, false, "timestamp", 26, 3, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnXlsManId = cci("xls_man_id", "xls_man_id", null, null, Long.class, "xlsManId", null, true, false, true, "int8", 19, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnStringConverted = cci("string_converted", "string_converted", null, null, String.class, "stringConverted", null, false, false, false, "varchar", 2147483647, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTimestampZeroDefaultMillis = cci("timestamp_zero_default_millis", "timestamp_zero_default_millis", null, null, java.sql.Timestamp.class, "timestampZeroDefaultMillis", null, false, false, false, "timestamp", 26, 3, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTimestampZeroPrefixMillis = cci("timestamp_zero_prefix_millis", "timestamp_zero_prefix_millis", null, null, java.sql.Timestamp.class, "timestampZeroPrefixMillis", null, false, false, false, "timestamp", 26, 3, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTimestampZeroSuffixMillis = cci("timestamp_zero_suffix_millis", "timestamp_zero_suffix_millis", null, null, java.sql.Timestamp.class, "timestampZeroSuffixMillis", null, false, false, false, "timestamp", 26, 3, null, false, null, null, null, null, null);
 
+    /**
+     * xls_man_id: {PK, NotNull, int8(19)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnXlsManId() { return _columnXlsManId; }
+    /**
+     * string_converted: {varchar(2147483647)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnStringConverted() { return _columnStringConverted; }
+    /**
+     * timestamp_zero_default_millis: {timestamp(26, 3)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTimestampZeroDefaultMillis() { return _columnTimestampZeroDefaultMillis; }
+    /**
+     * timestamp_zero_prefix_millis: {timestamp(26, 3)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTimestampZeroPrefixMillis() { return _columnTimestampZeroPrefixMillis; }
+    /**
+     * timestamp_zero_suffix_millis: {timestamp(26, 3)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTimestampZeroSuffixMillis() { return _columnTimestampZeroSuffixMillis; }
 
     protected List<ColumnInfo> ccil() {
@@ -115,6 +138,8 @@ public class WhiteXlsManDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

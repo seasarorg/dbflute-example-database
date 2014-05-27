@@ -184,7 +184,7 @@ public abstract class BsWhiteCompoundPkRefNestBhv extends AbstractBehaviorWritab
      * </pre>
      * @param cb The condition-bean of WhiteCompoundPkRefNest. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -205,39 +205,42 @@ public abstract class BsWhiteCompoundPkRefNestBhv extends AbstractBehaviorWritab
 
     /**
      * Select the entity by the primary-key value.
-     * @param compoundPkRefNestId The one of primary key. (NotNull)
+     * @param compoundPkRefNestId : PK, NotNull, INT(10). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteCompoundPkRefNest selectByPKValue(Integer compoundPkRefNestId) {
-        return doSelectByPKValue(compoundPkRefNestId, WhiteCompoundPkRefNest.class);
+        return doSelectByPK(compoundPkRefNestId, WhiteCompoundPkRefNest.class);
     }
 
-    protected <ENTITY extends WhiteCompoundPkRefNest> ENTITY doSelectByPKValue(Integer compoundPkRefNestId, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(compoundPkRefNestId), entityType);
+    protected <ENTITY extends WhiteCompoundPkRefNest> ENTITY doSelectByPK(Integer compoundPkRefNestId, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(compoundPkRefNestId), entityType);
+    }
+
+    protected <ENTITY extends WhiteCompoundPkRefNest> OptionalEntity<ENTITY> doSelectOptionalByPK(Integer compoundPkRefNestId, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(compoundPkRefNestId, entityType), compoundPkRefNestId);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param compoundPkRefNestId The one of primary key. (NotNull)
+     * @param compoundPkRefNestId : PK, NotNull, INT(10). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteCompoundPkRefNest selectByPKValueWithDeletedCheck(Integer compoundPkRefNestId) {
-        return doSelectByPKValueWithDeletedCheck(compoundPkRefNestId, WhiteCompoundPkRefNest.class);
+        return doSelectByPKWithDeletedCheck(compoundPkRefNestId, WhiteCompoundPkRefNest.class);
     }
 
-    protected <ENTITY extends WhiteCompoundPkRefNest> ENTITY doSelectByPKValueWithDeletedCheck(Integer compoundPkRefNestId, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(compoundPkRefNestId), entityType);
+    protected <ENTITY extends WhiteCompoundPkRefNest> ENTITY doSelectByPKWithDeletedCheck(Integer compoundPkRefNestId, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(compoundPkRefNestId), entityType);
     }
 
-    private WhiteCompoundPkRefNestCB buildPKCB(Integer compoundPkRefNestId) {
+    protected WhiteCompoundPkRefNestCB xprepareCBAsPK(Integer compoundPkRefNestId) {
         assertObjectNotNull("compoundPkRefNestId", compoundPkRefNestId);
-        WhiteCompoundPkRefNestCB cb = newMyConditionBean();
-        cb.query().setCompoundPkRefNestId_Equal(compoundPkRefNestId);
+        WhiteCompoundPkRefNestCB cb = newMyConditionBean(); cb.acceptPrimaryKey(compoundPkRefNestId);
         return cb;
     }
 
@@ -402,7 +405,8 @@ public abstract class BsWhiteCompoundPkRefNestBhv extends AbstractBehaviorWritab
      */
     public List<WhiteCompoundPkRef> pulloutWhiteCompoundPkRefByQuxMultipleId(List<WhiteCompoundPkRefNest> whiteCompoundPkRefNestList) {
         return helpPulloutInternally(whiteCompoundPkRefNestList, new InternalPulloutCallback<WhiteCompoundPkRefNest, WhiteCompoundPkRef>() {
-            public WhiteCompoundPkRef getFr(WhiteCompoundPkRefNest et) { return et.getWhiteCompoundPkRefByQuxMultipleId(); }
+            public WhiteCompoundPkRef getFr(WhiteCompoundPkRefNest et)
+            { return et.getWhiteCompoundPkRefByQuxMultipleId(); }
             public boolean hasRf() { return true; }
             public void setRfLs(WhiteCompoundPkRef et, List<WhiteCompoundPkRefNest> ls)
             { et.setWhiteCompoundPkRefNestByQuxMultipleIdList(ls); }
@@ -415,7 +419,8 @@ public abstract class BsWhiteCompoundPkRefNestBhv extends AbstractBehaviorWritab
      */
     public List<WhiteCompoundPkRef> pulloutWhiteCompoundPkRefByFooMultipleId(List<WhiteCompoundPkRefNest> whiteCompoundPkRefNestList) {
         return helpPulloutInternally(whiteCompoundPkRefNestList, new InternalPulloutCallback<WhiteCompoundPkRefNest, WhiteCompoundPkRef>() {
-            public WhiteCompoundPkRef getFr(WhiteCompoundPkRefNest et) { return et.getWhiteCompoundPkRefByFooMultipleId(); }
+            public WhiteCompoundPkRef getFr(WhiteCompoundPkRefNest et)
+            { return et.getWhiteCompoundPkRefByFooMultipleId(); }
             public boolean hasRf() { return true; }
             public void setRfLs(WhiteCompoundPkRef et, List<WhiteCompoundPkRefNest> ls)
             { et.setWhiteCompoundPkRefNestByFooMultipleIdList(ls); }

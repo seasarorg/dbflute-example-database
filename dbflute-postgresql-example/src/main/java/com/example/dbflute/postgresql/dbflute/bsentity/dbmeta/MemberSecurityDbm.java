@@ -33,6 +33,9 @@ public class MemberSecurityDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgMemberId(), "memberId");
@@ -48,8 +51,6 @@ public class MemberSecurityDbm extends AbstractDBMeta {
         setupEpg(_epgMap, new EpgUpdateUser(), "updateUser");
         setupEpg(_epgMap, new EpgVersionNo(), "versionNo");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgMemberId implements PropertyGateway {
         public Object read(Entity et) { return ((MemberSecurity)et).getMemberId(); }
         public void write(Entity et, Object vl) { ((MemberSecurity)et).setMemberId(cti(vl)); }
@@ -98,6 +99,22 @@ public class MemberSecurityDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((MemberSecurity)et).getVersionNo(); }
         public void write(Entity et, Object vl) { ((MemberSecurity)et).setVersionNo(ctl(vl)); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
+
+    // -----------------------------------------------------
+    //                                      Foreign Property
+    //                                      ----------------
+    protected final Map<String, PropertyGateway> _efpgMap = newHashMap();
+    {
+        setupEfpg(_efpgMap, new EfpgMember(), "member");
+    }
+    public class EfpgMember implements PropertyGateway {
+        public Object read(Entity et) { return ((MemberSecurity)et).getMember(); }
+        public void write(Entity et, Object vl) { ((MemberSecurity)et).setMember((Member)vl); }
+    }
+    public PropertyGateway findForeignPropertyGateway(String prop)
+    { return doFindEfpg(_efpgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -117,30 +134,78 @@ public class MemberSecurityDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnMemberId = cci("member_id", "member_id", null, "会員ID", true, "memberId", Integer.class, true, false, "int4", 10, 0, null, false, null, "そのまま one-to-one を構成するためのFKとなる。", "member", null, null);
-    protected final ColumnInfo _columnLoginPassword = cci("login_password", "login_password", null, "ログインパスワード", true, "loginPassword", String.class, false, false, "varchar", 50, 0, null, false, null, "ログイン時に利用するパスワード。\n本当は良くないが、Exampleなのでひとまず暗号化していない。", null, null, null);
-    protected final ColumnInfo _columnReminderQuestion = cci("reminder_question", "reminder_question", null, "リマインダ質問", true, "reminderQuestion", String.class, false, false, "varchar", 50, 0, null, false, null, "パスワードを忘れた際のリマインダ機能における質問の内容。", null, null, null);
-    protected final ColumnInfo _columnReminderAnswer = cci("reminder_answer", "reminder_answer", null, "リマインダ回答", true, "reminderAnswer", String.class, false, false, "varchar", 50, 0, null, false, null, "パスワードを忘れた際のリマインダ機能における質問の答え。", null, null, null);
-    protected final ColumnInfo _columnReminderUseCount = cci("reminder_use_count", "reminder_use_count", null, "リマインダ利用回数", true, "reminderUseCount", Integer.class, false, false, "int4", 10, 0, null, false, null, "リマインダを利用した回数。\n多いと忘れっぽい会員と言えるが、\nそんなことを知ってもしょうがない。", null, null, null);
-    protected final ColumnInfo _columnRegisterDatetime = cci("register_datetime", "register_datetime", null, null, true, "registerDatetime", java.sql.Timestamp.class, false, false, "timestamp", 26, 3, null, true, null, null, null, null, null);
-    protected final ColumnInfo _columnRegisterProcess = cci("register_process", "register_process", null, null, true, "registerProcess", String.class, false, false, "varchar", 200, 0, null, true, null, null, null, null, null);
-    protected final ColumnInfo _columnRegisterUser = cci("register_user", "register_user", null, null, true, "registerUser", String.class, false, false, "varchar", 200, 0, null, true, null, null, null, null, null);
-    protected final ColumnInfo _columnUpdateDatetime = cci("update_datetime", "update_datetime", null, null, true, "updateDatetime", java.sql.Timestamp.class, false, false, "timestamp", 26, 3, null, true, null, null, null, null, null);
-    protected final ColumnInfo _columnUpdateProcess = cci("update_process", "update_process", null, null, true, "updateProcess", String.class, false, false, "varchar", 200, 0, null, true, null, null, null, null, null);
-    protected final ColumnInfo _columnUpdateUser = cci("update_user", "update_user", null, null, true, "updateUser", String.class, false, false, "varchar", 200, 0, null, true, null, null, null, null, null);
-    protected final ColumnInfo _columnVersionNo = cci("version_no", "version_no", null, null, true, "versionNo", Long.class, false, false, "int8", 19, 0, null, false, OptimisticLockType.VERSION_NO, null, null, null, null);
+    protected final ColumnInfo _columnMemberId = cci("member_id", "member_id", null, "会員ID", Integer.class, "memberId", null, true, false, true, "int4", 10, 0, null, false, null, "そのまま one-to-one を構成するためのFKとなる。", "member", null, null);
+    protected final ColumnInfo _columnLoginPassword = cci("login_password", "login_password", null, "ログインパスワード", String.class, "loginPassword", null, false, false, true, "varchar", 50, 0, null, false, null, "ログイン時に利用するパスワード。\n本当は良くないが、Exampleなのでひとまず暗号化していない。", null, null, null);
+    protected final ColumnInfo _columnReminderQuestion = cci("reminder_question", "reminder_question", null, "リマインダ質問", String.class, "reminderQuestion", null, false, false, true, "varchar", 50, 0, null, false, null, "パスワードを忘れた際のリマインダ機能における質問の内容。", null, null, null);
+    protected final ColumnInfo _columnReminderAnswer = cci("reminder_answer", "reminder_answer", null, "リマインダ回答", String.class, "reminderAnswer", null, false, false, true, "varchar", 50, 0, null, false, null, "パスワードを忘れた際のリマインダ機能における質問の答え。", null, null, null);
+    protected final ColumnInfo _columnReminderUseCount = cci("reminder_use_count", "reminder_use_count", null, "リマインダ利用回数", Integer.class, "reminderUseCount", null, false, false, true, "int4", 10, 0, null, false, null, "リマインダを利用した回数。\n多いと忘れっぽい会員と言えるが、\nそんなことを知ってもしょうがない。", null, null, null);
+    protected final ColumnInfo _columnRegisterDatetime = cci("register_datetime", "register_datetime", null, null, java.sql.Timestamp.class, "registerDatetime", null, false, false, true, "timestamp", 26, 3, null, true, null, null, null, null, null);
+    protected final ColumnInfo _columnRegisterProcess = cci("register_process", "register_process", null, null, String.class, "registerProcess", null, false, false, true, "varchar", 200, 0, null, true, null, null, null, null, null);
+    protected final ColumnInfo _columnRegisterUser = cci("register_user", "register_user", null, null, String.class, "registerUser", null, false, false, true, "varchar", 200, 0, null, true, null, null, null, null, null);
+    protected final ColumnInfo _columnUpdateDatetime = cci("update_datetime", "update_datetime", null, null, java.sql.Timestamp.class, "updateDatetime", null, false, false, true, "timestamp", 26, 3, null, true, null, null, null, null, null);
+    protected final ColumnInfo _columnUpdateProcess = cci("update_process", "update_process", null, null, String.class, "updateProcess", null, false, false, true, "varchar", 200, 0, null, true, null, null, null, null, null);
+    protected final ColumnInfo _columnUpdateUser = cci("update_user", "update_user", null, null, String.class, "updateUser", null, false, false, true, "varchar", 200, 0, null, true, null, null, null, null, null);
+    protected final ColumnInfo _columnVersionNo = cci("version_no", "version_no", null, null, Long.class, "versionNo", null, false, false, true, "int8", 19, 0, null, false, OptimisticLockType.VERSION_NO, null, null, null, null);
 
+    /**
+     * (会員ID)member_id: {PK, NotNull, int4(10), FK to member}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnMemberId() { return _columnMemberId; }
+    /**
+     * (ログインパスワード)login_password: {NotNull, varchar(50)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnLoginPassword() { return _columnLoginPassword; }
+    /**
+     * (リマインダ質問)reminder_question: {NotNull, varchar(50)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnReminderQuestion() { return _columnReminderQuestion; }
+    /**
+     * (リマインダ回答)reminder_answer: {NotNull, varchar(50)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnReminderAnswer() { return _columnReminderAnswer; }
+    /**
+     * (リマインダ利用回数)reminder_use_count: {NotNull, int4(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnReminderUseCount() { return _columnReminderUseCount; }
+    /**
+     * register_datetime: {NotNull, timestamp(26, 3)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnRegisterDatetime() { return _columnRegisterDatetime; }
+    /**
+     * register_process: {NotNull, varchar(200)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnRegisterProcess() { return _columnRegisterProcess; }
+    /**
+     * register_user: {NotNull, varchar(200)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnRegisterUser() { return _columnRegisterUser; }
+    /**
+     * update_datetime: {NotNull, timestamp(26, 3)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnUpdateDatetime() { return _columnUpdateDatetime; }
+    /**
+     * update_process: {NotNull, varchar(200)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnUpdateProcess() { return _columnUpdateProcess; }
+    /**
+     * update_user: {NotNull, varchar(200)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnUpdateUser() { return _columnUpdateUser; }
+    /**
+     * version_no: {NotNull, int8(19)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnVersionNo() { return _columnVersionNo; }
 
     protected List<ColumnInfo> ccil() {
@@ -175,12 +240,18 @@ public class MemberSecurityDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------
+    /**
+     * (会員)member by my member_id, named 'member'.
+     * @return The information object of foreign property. (NotNull)
+     */
     public ForeignInfo foreignMember() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnMemberId(), MemberDbm.getInstance().columnMemberId());
-        return cfi("fk_member_sc_info_member", "member", this, MemberDbm.getInstance(), mp, 0, true, false, false, false, null, null, false, "memberSecurityAsOne");
+        return cfi("fk_member_sc_info_member", "member", this, MemberDbm.getInstance(), mp, 0, null, true, false, false, false, null, null, false, "memberSecurityAsOne");
     }
 
     // -----------------------------------------------------

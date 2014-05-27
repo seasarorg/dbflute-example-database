@@ -48,13 +48,14 @@ public class WhiteUqFkWithoutPkRefDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgUqFkRefId(), "uqFkRefId");
         setupEpg(_epgMap, new EpgFkToUqCode(), "fkToUqCode");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgUqFkRefId implements PropertyGateway {
         public Object read(Entity et) { return ((WhiteUqFkWithoutPkRef)et).getUqFkRefId(); }
         public void write(Entity et, Object vl) { ((WhiteUqFkWithoutPkRef)et).setUqFkRefId(ctl(vl)); }
@@ -63,6 +64,22 @@ public class WhiteUqFkWithoutPkRefDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((WhiteUqFkWithoutPkRef)et).getFkToUqCode(); }
         public void write(Entity et, Object vl) { ((WhiteUqFkWithoutPkRef)et).setFkToUqCode((String)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
+
+    // -----------------------------------------------------
+    //                                      Foreign Property
+    //                                      ----------------
+    protected final Map<String, PropertyGateway> _efpgMap = newHashMap();
+    {
+        setupEfpg(_efpgMap, new EfpgWhiteUqFkWithoutPk(), "whiteUqFkWithoutPk");
+    }
+    public class EfpgWhiteUqFkWithoutPk implements PropertyGateway {
+        public Object read(Entity et) { return ((WhiteUqFkWithoutPkRef)et).getWhiteUqFkWithoutPk(); }
+        public void write(Entity et, Object vl) { ((WhiteUqFkWithoutPkRef)et).setWhiteUqFkWithoutPk((WhiteUqFkWithoutPk)vl); }
+    }
+    public PropertyGateway findForeignPropertyGateway(String prop)
+    { return doFindEfpg(_efpgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -78,8 +95,8 @@ public class WhiteUqFkWithoutPkRefDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnUqFkRefId = cci("UQ_FK_REF_ID", "UQ_FK_REF_ID", null, null, true, "uqFkRefId", Long.class, false, false, "DECIMAL", 16, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnFkToUqCode = cci("FK_TO_UQ_CODE", "FK_TO_UQ_CODE", null, null, true, "fkToUqCode", String.class, false, false, "CHAR", 3, 0, null, false, null, null, "whiteUqFkWithoutPk", null, null);
+    protected final ColumnInfo _columnUqFkRefId = cci("UQ_FK_REF_ID", "UQ_FK_REF_ID", null, null, Long.class, "uqFkRefId", null, false, false, true, "DECIMAL", 16, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnFkToUqCode = cci("FK_TO_UQ_CODE", "FK_TO_UQ_CODE", null, null, String.class, "fkToUqCode", null, false, false, true, "CHAR", 3, 0, null, false, null, null, "whiteUqFkWithoutPk", null, null);
 
     /**
      * UQ_FK_REF_ID: {NotNull, DECIMAL(16)}
@@ -116,6 +133,8 @@ public class WhiteUqFkWithoutPkRefDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

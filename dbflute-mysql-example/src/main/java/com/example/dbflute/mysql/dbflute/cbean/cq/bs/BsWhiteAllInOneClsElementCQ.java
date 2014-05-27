@@ -227,7 +227,7 @@ public class BsWhiteAllInOneClsElementCQ extends AbstractBsWhiteAllInOneClsEleme
     // ===================================================================================
     //                                                                         Union Query
     //                                                                         ===========
-    protected void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
+    public void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
         WhiteAllInOneClsElementCQ bq = (WhiteAllInOneClsElementCQ)bqs;
         WhiteAllInOneClsElementCQ uq = (WhiteAllInOneClsElementCQ)uqs;
         if (bq.hasConditionQueryWhiteAllInOneClsCategory()) {

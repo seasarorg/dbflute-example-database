@@ -348,7 +348,7 @@ public class BsMemberServiceCQ extends AbstractBsMemberServiceCQ {
     // ===================================================================================
     //                                                                         Union Query
     //                                                                         ===========
-    protected void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
+    public void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
         MemberServiceCQ bq = (MemberServiceCQ)bqs;
         MemberServiceCQ uq = (MemberServiceCQ)uqs;
         if (bq.hasConditionQueryMember()) {

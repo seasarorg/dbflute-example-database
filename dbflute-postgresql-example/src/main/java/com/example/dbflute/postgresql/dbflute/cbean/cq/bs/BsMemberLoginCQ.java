@@ -24,8 +24,8 @@ public class BsMemberLoginCQ extends AbstractBsMemberLoginCQ {
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public BsMemberLoginCQ(ConditionQuery childQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
-        super(childQuery, sqlClause, aliasName, nestLevel);
+    public BsMemberLoginCQ(ConditionQuery referrerQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
+        super(referrerQuery, sqlClause, aliasName, nestLevel);
     }
 
     // ===================================================================================
@@ -118,14 +118,14 @@ public class BsMemberLoginCQ extends AbstractBsMemberLoginCQ {
 
     /** 
      * Add order-by as ascend. <br />
-     * (会員ID)member_id: {UQ, NotNull, int4(10), FK to member}
+     * (会員ID)member_id: {UQ+, NotNull, int4(10), FK to member}
      * @return this. (NotNull)
      */
     public BsMemberLoginCQ addOrderBy_MemberId_Asc() { regOBA("member_id"); return this; }
 
     /**
      * Add order-by as descend. <br />
-     * (会員ID)member_id: {UQ, NotNull, int4(10), FK to member}
+     * (会員ID)member_id: {UQ+, NotNull, int4(10), FK to member}
      * @return this. (NotNull)
      */
     public BsMemberLoginCQ addOrderBy_MemberId_Desc() { regOBD("member_id"); return this; }
@@ -139,14 +139,14 @@ public class BsMemberLoginCQ extends AbstractBsMemberLoginCQ {
 
     /** 
      * Add order-by as ascend. <br />
-     * (ログイン日時)login_datetime: {UQ+, IX, NotNull, timestamp(26, 3)}
+     * (ログイン日時)login_datetime: {+UQ, IX, NotNull, timestamp(26, 3)}
      * @return this. (NotNull)
      */
     public BsMemberLoginCQ addOrderBy_LoginDatetime_Asc() { regOBA("login_datetime"); return this; }
 
     /**
      * Add order-by as descend. <br />
-     * (ログイン日時)login_datetime: {UQ+, IX, NotNull, timestamp(26, 3)}
+     * (ログイン日時)login_datetime: {+UQ, IX, NotNull, timestamp(26, 3)}
      * @return this. (NotNull)
      */
     public BsMemberLoginCQ addOrderBy_LoginDatetime_Desc() { regOBD("login_datetime"); return this; }
@@ -249,7 +249,7 @@ public class BsMemberLoginCQ extends AbstractBsMemberLoginCQ {
     // ===================================================================================
     //                                                                         Union Query
     //                                                                         ===========
-    protected void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
+    public void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
         MemberLoginCQ bq = (MemberLoginCQ)bqs;
         MemberLoginCQ uq = (MemberLoginCQ)uqs;
         if (bq.hasConditionQueryMember()) {

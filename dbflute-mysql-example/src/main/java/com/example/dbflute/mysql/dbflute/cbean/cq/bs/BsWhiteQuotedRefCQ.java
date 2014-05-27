@@ -185,7 +185,7 @@ public class BsWhiteQuotedRefCQ extends AbstractBsWhiteQuotedRefCQ {
     // ===================================================================================
     //                                                                         Union Query
     //                                                                         ===========
-    protected void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
+    public void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
         WhiteQuotedRefCQ bq = (WhiteQuotedRefCQ)bqs;
         WhiteQuotedRefCQ uq = (WhiteQuotedRefCQ)uqs;
         if (bq.hasConditionQueryWhiteQuoted()) {

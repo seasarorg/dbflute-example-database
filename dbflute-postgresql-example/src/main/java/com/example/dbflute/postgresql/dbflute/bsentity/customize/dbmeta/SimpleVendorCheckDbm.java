@@ -33,6 +33,9 @@ public class SimpleVendorCheckDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgVendorCheckId(), "vendorCheckId");
@@ -60,8 +63,6 @@ public class SimpleVendorCheckDbm extends AbstractDBMeta {
         setupEpg(_epgMap, new EpgTypeOfOid(), "typeOfOid");
         setupEpg(_epgMap, new EpgTypeOfXml(), "typeOfXml");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgVendorCheckId implements PropertyGateway {
         public Object read(Entity et) { return ((SimpleVendorCheck)et).getVendorCheckId(); }
         public void write(Entity et, Object vl) { ((SimpleVendorCheck)et).setVendorCheckId(ctl(vl)); }
@@ -158,6 +159,8 @@ public class SimpleVendorCheckDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((SimpleVendorCheck)et).getTypeOfXml(); }
         public void write(Entity et, Object vl) { ((SimpleVendorCheck)et).setTypeOfXml((com.example.dbflute.postgresql.mytype.MyXML)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -173,54 +176,150 @@ public class SimpleVendorCheckDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnVendorCheckId = cci("vendor_check_id", "vendor_check_id", null, null, false, "vendorCheckId", Long.class, false, false, "numeric", 16, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfVarchar = cci("type_of_varchar", "type_of_varchar", null, null, false, "typeOfVarchar", String.class, false, false, "varchar", 2147483647, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfVcArray = cci("type_of_vc_array", "type_of_vc_array", null, null, false, "typeOfVcArray", com.example.dbflute.postgresql.mytype.MyArray.class, false, false, "_varchar", 2147483647, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfText = cci("type_of_text", "type_of_text", null, null, false, "typeOfText", String.class, false, false, "text", 2147483647, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfNumericInteger = cci("type_of_numeric_integer", "type_of_numeric_integer", null, null, false, "typeOfNumericInteger", Integer.class, false, false, "numeric", 5, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfNumericBigint = cci("type_of_numeric_bigint", "type_of_numeric_bigint", null, null, false, "typeOfNumericBigint", Long.class, false, false, "numeric", 12, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfNumericDecimal = cci("type_of_numeric_decimal", "type_of_numeric_decimal", null, null, false, "typeOfNumericDecimal", java.math.BigDecimal.class, false, false, "numeric", 5, 3, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfDecimal = cci("type_of_decimal", "type_of_decimal", null, null, false, "typeOfDecimal", java.math.BigDecimal.class, false, false, "numeric", 131089, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfBigint = cci("type_of_bigint", "type_of_bigint", null, null, false, "typeOfBigint", Long.class, false, false, "int8", 19, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfInt8 = cci("type_of_int8", "type_of_int8", null, null, false, "typeOfInt8", Long.class, false, false, "int8", 19, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfIntArray = cci("type_of_int_array", "type_of_int_array", null, null, false, "typeOfIntArray", com.example.dbflute.postgresql.mytype.MyArray.class, false, false, "_int8", 19, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfInt4 = cci("type_of_int4", "type_of_int4", null, null, false, "typeOfInt4", Integer.class, false, false, "int4", 10, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfMoney = cci("type_of_money", "type_of_money", null, null, false, "typeOfMoney", java.math.BigDecimal.class, false, false, "money", 2147483647, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfDate = cci("type_of_date", "type_of_date", null, null, false, "typeOfDate", java.util.Date.class, false, false, "date", 13, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfTime = cci("type_of_time", "type_of_time", null, null, false, "typeOfTime", java.sql.Time.class, false, false, "time", 15, 6, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfTimestamp = cci("type_of_timestamp", "type_of_timestamp", null, null, false, "typeOfTimestamp", java.sql.Timestamp.class, false, false, "timestamp", 29, 6, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfInterval = cci("type_of_interval", "type_of_interval", null, null, false, "typeOfInterval", String.class, false, false, "interval", 49, 6, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfTimetz = cci("type_of_timetz", "type_of_timetz", null, null, false, "typeOfTimetz", java.sql.Time.class, false, false, "timetz", 21, 6, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfBool = cci("type_of_bool", "type_of_bool", null, null, false, "typeOfBool", Boolean.class, false, false, "bool", 1, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfBit = cci("type_of_bit", "type_of_bit", null, null, false, "typeOfBit", Boolean.class, false, false, "bit", 1, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfBytea = cci("type_of_bytea", "type_of_bytea", null, null, false, "typeOfBytea", byte[].class, false, false, "bytea", 2147483647, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfUuid = cci("type_of_uuid", "type_of_uuid", null, null, false, "typeOfUuid", java.util.UUID.class, false, false, "uuid", 2147483647, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfOid = cci("type_of_oid", "type_of_oid", null, null, false, "typeOfOid", byte[].class, false, false, "oid", 10, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfXml = cci("type_of_xml", "type_of_xml", null, null, false, "typeOfXml", com.example.dbflute.postgresql.mytype.MyXML.class, false, false, "xml", 2147483647, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnVendorCheckId = cci("vendor_check_id", "vendor_check_id", null, null, Long.class, "vendorCheckId", null, false, false, false, "numeric", 16, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfVarchar = cci("type_of_varchar", "type_of_varchar", null, null, String.class, "typeOfVarchar", null, false, false, false, "varchar", 2147483647, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfVcArray = cci("type_of_vc_array", "type_of_vc_array", null, null, com.example.dbflute.postgresql.mytype.MyArray.class, "typeOfVcArray", null, false, false, false, "_varchar", 2147483647, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfText = cci("type_of_text", "type_of_text", null, null, String.class, "typeOfText", null, false, false, false, "text", 2147483647, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfNumericInteger = cci("type_of_numeric_integer", "type_of_numeric_integer", null, null, Integer.class, "typeOfNumericInteger", null, false, false, false, "numeric", 5, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfNumericBigint = cci("type_of_numeric_bigint", "type_of_numeric_bigint", null, null, Long.class, "typeOfNumericBigint", null, false, false, false, "numeric", 12, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfNumericDecimal = cci("type_of_numeric_decimal", "type_of_numeric_decimal", null, null, java.math.BigDecimal.class, "typeOfNumericDecimal", null, false, false, false, "numeric", 5, 3, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfDecimal = cci("type_of_decimal", "type_of_decimal", null, null, java.math.BigDecimal.class, "typeOfDecimal", null, false, false, false, "numeric", 131089, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfBigint = cci("type_of_bigint", "type_of_bigint", null, null, Long.class, "typeOfBigint", null, false, false, false, "int8", 19, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfInt8 = cci("type_of_int8", "type_of_int8", null, null, Long.class, "typeOfInt8", null, false, false, false, "int8", 19, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfIntArray = cci("type_of_int_array", "type_of_int_array", null, null, com.example.dbflute.postgresql.mytype.MyArray.class, "typeOfIntArray", null, false, false, false, "_int8", 19, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfInt4 = cci("type_of_int4", "type_of_int4", null, null, Integer.class, "typeOfInt4", null, false, false, false, "int4", 10, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfMoney = cci("type_of_money", "type_of_money", null, null, java.math.BigDecimal.class, "typeOfMoney", null, false, false, false, "money", 2147483647, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfDate = cci("type_of_date", "type_of_date", null, null, java.util.Date.class, "typeOfDate", null, false, false, false, "date", 13, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfTime = cci("type_of_time", "type_of_time", null, null, java.sql.Time.class, "typeOfTime", null, false, false, false, "time", 15, 6, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfTimestamp = cci("type_of_timestamp", "type_of_timestamp", null, null, java.sql.Timestamp.class, "typeOfTimestamp", null, false, false, false, "timestamp", 29, 6, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfInterval = cci("type_of_interval", "type_of_interval", null, null, String.class, "typeOfInterval", null, false, false, false, "interval", 49, 6, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfTimetz = cci("type_of_timetz", "type_of_timetz", null, null, java.sql.Time.class, "typeOfTimetz", null, false, false, false, "timetz", 21, 6, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfBool = cci("type_of_bool", "type_of_bool", null, null, Boolean.class, "typeOfBool", null, false, false, false, "bool", 1, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfBit = cci("type_of_bit", "type_of_bit", null, null, Boolean.class, "typeOfBit", null, false, false, false, "bit", 1, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfBytea = cci("type_of_bytea", "type_of_bytea", null, null, byte[].class, "typeOfBytea", null, false, false, false, "bytea", 2147483647, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfUuid = cci("type_of_uuid", "type_of_uuid", null, null, java.util.UUID.class, "typeOfUuid", null, false, false, false, "uuid", 2147483647, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfOid = cci("type_of_oid", "type_of_oid", null, null, byte[].class, "typeOfOid", null, false, false, false, "oid", 10, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfXml = cci("type_of_xml", "type_of_xml", null, null, com.example.dbflute.postgresql.mytype.MyXML.class, "typeOfXml", null, false, false, false, "xml", 2147483647, 0, null, false, null, null, null, null, null);
 
+    /**
+     * vendor_check_id: {numeric(16)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnVendorCheckId() { return _columnVendorCheckId; }
+    /**
+     * type_of_varchar: {varchar(2147483647)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfVarchar() { return _columnTypeOfVarchar; }
+    /**
+     * type_of_vc_array: {_varchar(2147483647)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfVcArray() { return _columnTypeOfVcArray; }
+    /**
+     * type_of_text: {text(2147483647)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfText() { return _columnTypeOfText; }
+    /**
+     * type_of_numeric_integer: {numeric(5)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfNumericInteger() { return _columnTypeOfNumericInteger; }
+    /**
+     * type_of_numeric_bigint: {numeric(12)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfNumericBigint() { return _columnTypeOfNumericBigint; }
+    /**
+     * type_of_numeric_decimal: {numeric(5, 3)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfNumericDecimal() { return _columnTypeOfNumericDecimal; }
+    /**
+     * type_of_decimal: {numeric(131089)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfDecimal() { return _columnTypeOfDecimal; }
+    /**
+     * type_of_bigint: {int8(19)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfBigint() { return _columnTypeOfBigint; }
+    /**
+     * type_of_int8: {int8(19)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfInt8() { return _columnTypeOfInt8; }
+    /**
+     * type_of_int_array: {_int8(19)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfIntArray() { return _columnTypeOfIntArray; }
+    /**
+     * type_of_int4: {int4(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfInt4() { return _columnTypeOfInt4; }
+    /**
+     * type_of_money: {money(2147483647)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfMoney() { return _columnTypeOfMoney; }
+    /**
+     * type_of_date: {date(13)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfDate() { return _columnTypeOfDate; }
+    /**
+     * type_of_time: {time(15, 6)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfTime() { return _columnTypeOfTime; }
+    /**
+     * type_of_timestamp: {timestamp(29, 6)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfTimestamp() { return _columnTypeOfTimestamp; }
+    /**
+     * type_of_interval: {interval(49, 6)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfInterval() { return _columnTypeOfInterval; }
+    /**
+     * type_of_timetz: {timetz(21, 6)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfTimetz() { return _columnTypeOfTimetz; }
+    /**
+     * type_of_bool: {bool(1)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfBool() { return _columnTypeOfBool; }
+    /**
+     * type_of_bit: {bit(1)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfBit() { return _columnTypeOfBit; }
+    /**
+     * type_of_bytea: {bytea(2147483647)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfBytea() { return _columnTypeOfBytea; }
+    /**
+     * type_of_uuid: {uuid(2147483647)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfUuid() { return _columnTypeOfUuid; }
+    /**
+     * type_of_oid: {oid(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfOid() { return _columnTypeOfOid; }
+    /**
+     * type_of_xml: {xml(2147483647)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfXml() { return _columnTypeOfXml; }
 
     protected List<ColumnInfo> ccil() {
@@ -269,6 +368,8 @@ public class SimpleVendorCheckDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

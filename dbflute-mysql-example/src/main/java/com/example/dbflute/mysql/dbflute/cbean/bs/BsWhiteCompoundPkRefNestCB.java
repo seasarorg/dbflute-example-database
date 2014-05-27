@@ -93,10 +93,14 @@ public class BsWhiteCompoundPkRefNestCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                 PrimaryKey Handling
     //                                                                 ===================
+    /**
+     * Accept the query condition of primary key as equal.
+     * @param compoundPkRefNestId : PK, NotNull, INT(10). (NotNull)
+     */
     public void acceptPrimaryKey(Integer compoundPkRefNestId) {
         assertObjectNotNull("compoundPkRefNestId", compoundPkRefNestId);
         BsWhiteCompoundPkRefNestCB cb = this;
-        cb.query().setCompoundPkRefNestId_Equal(compoundPkRefNestId);
+        cb.query().setCompoundPkRefNestId_Equal(compoundPkRefNestId);;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {
@@ -370,17 +374,17 @@ public class BsWhiteCompoundPkRefNestCB extends AbstractConditionBean {
          */
         public HpSpecifiedColumn columnCompoundPkRefNestId() { return doColumn("COMPOUND_PK_REF_NEST_ID"); }
         /**
-         * FOO_MULTIPLE_ID: {IX, NotNull, INT(10), FK to white_compound_pk_ref}
+         * FOO_MULTIPLE_ID: {IX+, NotNull, INT(10), FK to white_compound_pk_ref}
          * @return The information object of specified column. (NotNull)
          */
         public HpSpecifiedColumn columnFooMultipleId() { return doColumn("FOO_MULTIPLE_ID"); }
         /**
-         * BAR_MULTIPLE_ID: {IX, NotNull, INT(10), FK to white_compound_pk_ref}
+         * BAR_MULTIPLE_ID: {IX+, NotNull, INT(10), FK to white_compound_pk_ref}
          * @return The information object of specified column. (NotNull)
          */
         public HpSpecifiedColumn columnBarMultipleId() { return doColumn("BAR_MULTIPLE_ID"); }
         /**
-         * QUX_MULTIPLE_ID: {IX+, NotNull, INT(10), FK to white_compound_pk_ref}
+         * QUX_MULTIPLE_ID: {NotNull, INT(10), FK to white_compound_pk_ref}
          * @return The information object of specified column. (NotNull)
          */
         public HpSpecifiedColumn columnQuxMultipleId() { return doColumn("QUX_MULTIPLE_ID"); }
@@ -534,6 +538,11 @@ public class BsWhiteCompoundPkRefNestCB extends AbstractConditionBean {
      */
     public void orScopeQuery(OrQuery<WhiteCompoundPkRefNestCB> orQuery) {
         xorSQ((WhiteCompoundPkRefNestCB)this, orQuery);
+    }
+
+    @Override
+    protected HpCBPurpose xhandleOrSQPurposeChange() {
+        return null; // means no check
     }
 
     /**

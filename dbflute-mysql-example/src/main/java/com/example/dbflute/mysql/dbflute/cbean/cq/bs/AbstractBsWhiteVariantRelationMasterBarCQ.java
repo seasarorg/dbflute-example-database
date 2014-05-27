@@ -232,7 +232,7 @@ public abstract class AbstractBsWhiteVariantRelationMasterBarCQ extends Abstract
     public abstract String keepMasterBarId_SpecifyDerivedReferrer_WhiteVariantRelationReferrerAsVariantList(WhiteVariantRelationReferrerCQ sq);
 
     /**
-     * Prepare for (Query)DerivedReferrer. <br />
+     * Prepare for (Query)DerivedReferrer (correlated sub-query). <br />
      * {FOO &lt;= (select max(BAR) from white_variant_relation_referrer where ...)} <br />
      * white_variant_relation_referrer by VARIANT_MASTER_ID, named 'whiteVariantRelationReferrerAsOne'.
      * <pre>
@@ -503,7 +503,7 @@ public abstract class AbstractBsWhiteVariantRelationMasterBarCQ extends Abstract
     public abstract String keepSpecifyMyselfDerived(WhiteVariantRelationMasterBarCQ sq);
 
     /**
-     * Prepare for (Query)MyselfDerived (SubQuery).
+     * Prepare for (Query)MyselfDerived (correlated sub-query).
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<WhiteVariantRelationMasterBarCB> myselfDerived() {
@@ -525,8 +525,8 @@ public abstract class AbstractBsWhiteVariantRelationMasterBarCQ extends Abstract
     //                                                                        MyselfExists
     //                                                                        ============
     /**
-     * Prepare for MyselfExists (SubQuery).
-     * @param subQuery The implementation of sub query. (NotNull)
+     * Prepare for MyselfExists (correlated sub-query).
+     * @param subQuery The implementation of sub-query. (NotNull)
      */
     public void myselfExists(SubQuery<WhiteVariantRelationMasterBarCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
@@ -541,8 +541,8 @@ public abstract class AbstractBsWhiteVariantRelationMasterBarCQ extends Abstract
     //                                                                       MyselfInScope
     //                                                                       =============
     /**
-     * Prepare for MyselfInScope (SubQuery).
-     * @param subQuery The implementation of sub query. (NotNull)
+     * Prepare for MyselfInScope (sub-query).
+     * @param subQuery The implementation of sub-query. (NotNull)
      */
     public void myselfInScope(SubQuery<WhiteVariantRelationMasterBarCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);

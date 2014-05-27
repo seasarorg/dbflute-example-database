@@ -92,10 +92,14 @@ public class BsWhiteTableExceptGenRefCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                 PrimaryKey Handling
     //                                                                 ===================
+    /**
+     * Accept the query condition of primary key as equal.
+     * @param genRefId : PK, NotNull, DECIMAL(16). (NotNull)
+     */
     public void acceptPrimaryKey(Long genRefId) {
         assertObjectNotNull("genRefId", genRefId);
         BsWhiteTableExceptGenRefCB cb = this;
-        cb.query().setGenRefId_Equal(genRefId);
+        cb.query().setGenRefId_Equal(genRefId);;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {
@@ -413,6 +417,11 @@ public class BsWhiteTableExceptGenRefCB extends AbstractConditionBean {
      */
     public void orScopeQuery(OrQuery<WhiteTableExceptGenRefCB> orQuery) {
         xorSQ((WhiteTableExceptGenRefCB)this, orQuery);
+    }
+
+    @Override
+    protected HpCBPurpose xhandleOrSQPurposeChange() {
+        return null; // means no check
     }
 
     /**

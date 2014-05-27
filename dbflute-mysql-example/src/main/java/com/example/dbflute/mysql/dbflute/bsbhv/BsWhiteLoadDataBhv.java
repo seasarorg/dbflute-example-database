@@ -184,7 +184,7 @@ public abstract class BsWhiteLoadDataBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of WhiteLoadData. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -205,39 +205,42 @@ public abstract class BsWhiteLoadDataBhv extends AbstractBehaviorWritable {
 
     /**
      * Select the entity by the primary-key value.
-     * @param loadDataId The one of primary key. (NotNull)
+     * @param loadDataId : PK, NotNull, BIGINT(19). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteLoadData selectByPKValue(Long loadDataId) {
-        return doSelectByPKValue(loadDataId, WhiteLoadData.class);
+        return doSelectByPK(loadDataId, WhiteLoadData.class);
     }
 
-    protected <ENTITY extends WhiteLoadData> ENTITY doSelectByPKValue(Long loadDataId, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(loadDataId), entityType);
+    protected <ENTITY extends WhiteLoadData> ENTITY doSelectByPK(Long loadDataId, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(loadDataId), entityType);
+    }
+
+    protected <ENTITY extends WhiteLoadData> OptionalEntity<ENTITY> doSelectOptionalByPK(Long loadDataId, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(loadDataId, entityType), loadDataId);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param loadDataId The one of primary key. (NotNull)
+     * @param loadDataId : PK, NotNull, BIGINT(19). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteLoadData selectByPKValueWithDeletedCheck(Long loadDataId) {
-        return doSelectByPKValueWithDeletedCheck(loadDataId, WhiteLoadData.class);
+        return doSelectByPKWithDeletedCheck(loadDataId, WhiteLoadData.class);
     }
 
-    protected <ENTITY extends WhiteLoadData> ENTITY doSelectByPKValueWithDeletedCheck(Long loadDataId, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(loadDataId), entityType);
+    protected <ENTITY extends WhiteLoadData> ENTITY doSelectByPKWithDeletedCheck(Long loadDataId, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(loadDataId), entityType);
     }
 
-    private WhiteLoadDataCB buildPKCB(Long loadDataId) {
+    protected WhiteLoadDataCB xprepareCBAsPK(Long loadDataId) {
         assertObjectNotNull("loadDataId", loadDataId);
-        WhiteLoadDataCB cb = newMyConditionBean();
-        cb.query().setLoadDataId_Equal(loadDataId);
+        WhiteLoadDataCB cb = newMyConditionBean(); cb.acceptPrimaryKey(loadDataId);
         return cb;
     }
 

@@ -184,7 +184,7 @@ public abstract class BsWhiteCompoundReferredNormallyBhv extends AbstractBehavio
      * </pre>
      * @param cb The condition-bean of WhiteCompoundReferredNormally. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -205,39 +205,42 @@ public abstract class BsWhiteCompoundReferredNormallyBhv extends AbstractBehavio
 
     /**
      * Select the entity by the primary-key value.
-     * @param referredId The one of primary key. (NotNull)
+     * @param referredId : PK, NotNull, INT(10). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteCompoundReferredNormally selectByPKValue(Integer referredId) {
-        return doSelectByPKValue(referredId, WhiteCompoundReferredNormally.class);
+        return doSelectByPK(referredId, WhiteCompoundReferredNormally.class);
     }
 
-    protected <ENTITY extends WhiteCompoundReferredNormally> ENTITY doSelectByPKValue(Integer referredId, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(referredId), entityType);
+    protected <ENTITY extends WhiteCompoundReferredNormally> ENTITY doSelectByPK(Integer referredId, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(referredId), entityType);
+    }
+
+    protected <ENTITY extends WhiteCompoundReferredNormally> OptionalEntity<ENTITY> doSelectOptionalByPK(Integer referredId, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(referredId, entityType), referredId);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param referredId The one of primary key. (NotNull)
+     * @param referredId : PK, NotNull, INT(10). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteCompoundReferredNormally selectByPKValueWithDeletedCheck(Integer referredId) {
-        return doSelectByPKValueWithDeletedCheck(referredId, WhiteCompoundReferredNormally.class);
+        return doSelectByPKWithDeletedCheck(referredId, WhiteCompoundReferredNormally.class);
     }
 
-    protected <ENTITY extends WhiteCompoundReferredNormally> ENTITY doSelectByPKValueWithDeletedCheck(Integer referredId, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(referredId), entityType);
+    protected <ENTITY extends WhiteCompoundReferredNormally> ENTITY doSelectByPKWithDeletedCheck(Integer referredId, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(referredId), entityType);
     }
 
-    private WhiteCompoundReferredNormallyCB buildPKCB(Integer referredId) {
+    protected WhiteCompoundReferredNormallyCB xprepareCBAsPK(Integer referredId) {
         assertObjectNotNull("referredId", referredId);
-        WhiteCompoundReferredNormallyCB cb = newMyConditionBean();
-        cb.query().setReferredId_Equal(referredId);
+        WhiteCompoundReferredNormallyCB cb = newMyConditionBean(); cb.acceptPrimaryKey(referredId);
         return cb;
     }
 

@@ -232,7 +232,7 @@ public abstract class AbstractBsWhiteQuotedCQ extends AbstractConditionQuery {
     public abstract String keepSelect_SpecifyDerivedReferrer_WhiteQuotedRefList(WhiteQuotedRefCQ sq);
 
     /**
-     * Prepare for (Query)DerivedReferrer. <br />
+     * Prepare for (Query)DerivedReferrer (correlated sub-query). <br />
      * {FOO &lt;= (select max(BAR) from white_quoted_ref where ...)} <br />
      * white_quoted_ref by ORDER, named 'whiteQuotedRefAsOne'.
      * <pre>
@@ -521,7 +521,7 @@ public abstract class AbstractBsWhiteQuotedCQ extends AbstractConditionQuery {
     public abstract String keepSpecifyMyselfDerived(WhiteQuotedCQ sq);
 
     /**
-     * Prepare for (Query)MyselfDerived (SubQuery).
+     * Prepare for (Query)MyselfDerived (correlated sub-query).
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<WhiteQuotedCB> myselfDerived() {
@@ -543,8 +543,8 @@ public abstract class AbstractBsWhiteQuotedCQ extends AbstractConditionQuery {
     //                                                                        MyselfExists
     //                                                                        ============
     /**
-     * Prepare for MyselfExists (SubQuery).
-     * @param subQuery The implementation of sub query. (NotNull)
+     * Prepare for MyselfExists (correlated sub-query).
+     * @param subQuery The implementation of sub-query. (NotNull)
      */
     public void myselfExists(SubQuery<WhiteQuotedCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
@@ -559,8 +559,8 @@ public abstract class AbstractBsWhiteQuotedCQ extends AbstractConditionQuery {
     //                                                                       MyselfInScope
     //                                                                       =============
     /**
-     * Prepare for MyselfInScope (SubQuery).
-     * @param subQuery The implementation of sub query. (NotNull)
+     * Prepare for MyselfInScope (sub-query).
+     * @param subQuery The implementation of sub-query. (NotNull)
      */
     public void myselfInScope(SubQuery<WhiteQuotedCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);

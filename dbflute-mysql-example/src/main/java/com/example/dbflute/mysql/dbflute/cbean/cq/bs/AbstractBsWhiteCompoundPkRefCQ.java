@@ -268,7 +268,7 @@ public abstract class AbstractBsWhiteCompoundPkRefCQ extends AbstractConditionQu
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
-     * REF_FIRST_ID: {IX, NotNull, INT(10), FK to white_compound_pk}
+     * REF_FIRST_ID: {IX+, NotNull, INT(10), FK to white_compound_pk}
      * @param refFirstId The value of refFirstId as equal. (NullAllowed: if null, no condition)
      */
     public void setRefFirstId_Equal(Integer refFirstId) {
@@ -281,7 +281,7 @@ public abstract class AbstractBsWhiteCompoundPkRefCQ extends AbstractConditionQu
 
     /**
      * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br />
-     * REF_FIRST_ID: {IX, NotNull, INT(10), FK to white_compound_pk}
+     * REF_FIRST_ID: {IX+, NotNull, INT(10), FK to white_compound_pk}
      * @param refFirstId The value of refFirstId as greaterThan. (NullAllowed: if null, no condition)
      */
     public void setRefFirstId_GreaterThan(Integer refFirstId) {
@@ -290,7 +290,7 @@ public abstract class AbstractBsWhiteCompoundPkRefCQ extends AbstractConditionQu
 
     /**
      * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br />
-     * REF_FIRST_ID: {IX, NotNull, INT(10), FK to white_compound_pk}
+     * REF_FIRST_ID: {IX+, NotNull, INT(10), FK to white_compound_pk}
      * @param refFirstId The value of refFirstId as lessThan. (NullAllowed: if null, no condition)
      */
     public void setRefFirstId_LessThan(Integer refFirstId) {
@@ -299,7 +299,7 @@ public abstract class AbstractBsWhiteCompoundPkRefCQ extends AbstractConditionQu
 
     /**
      * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br />
-     * REF_FIRST_ID: {IX, NotNull, INT(10), FK to white_compound_pk}
+     * REF_FIRST_ID: {IX+, NotNull, INT(10), FK to white_compound_pk}
      * @param refFirstId The value of refFirstId as greaterEqual. (NullAllowed: if null, no condition)
      */
     public void setRefFirstId_GreaterEqual(Integer refFirstId) {
@@ -308,7 +308,7 @@ public abstract class AbstractBsWhiteCompoundPkRefCQ extends AbstractConditionQu
 
     /**
      * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br />
-     * REF_FIRST_ID: {IX, NotNull, INT(10), FK to white_compound_pk}
+     * REF_FIRST_ID: {IX+, NotNull, INT(10), FK to white_compound_pk}
      * @param refFirstId The value of refFirstId as lessEqual. (NullAllowed: if null, no condition)
      */
     public void setRefFirstId_LessEqual(Integer refFirstId) {
@@ -319,7 +319,7 @@ public abstract class AbstractBsWhiteCompoundPkRefCQ extends AbstractConditionQu
      * RangeOf with various options. (versatile) <br />
      * {(default) minNumber &lt;= column &lt;= maxNumber} <br />
      * And NullIgnored, OnlyOnceRegistered. <br />
-     * REF_FIRST_ID: {IX, NotNull, INT(10), FK to white_compound_pk}
+     * REF_FIRST_ID: {IX+, NotNull, INT(10), FK to white_compound_pk}
      * @param minNumber The min number of refFirstId. (NullAllowed: if null, no from-condition)
      * @param maxNumber The max number of refFirstId. (NullAllowed: if null, no to-condition)
      * @param rangeOfOption The option of range-of. (NotNull)
@@ -330,7 +330,7 @@ public abstract class AbstractBsWhiteCompoundPkRefCQ extends AbstractConditionQu
 
     /**
      * InScope {in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br />
-     * REF_FIRST_ID: {IX, NotNull, INT(10), FK to white_compound_pk}
+     * REF_FIRST_ID: {IX+, NotNull, INT(10), FK to white_compound_pk}
      * @param refFirstIdList The collection of refFirstId as inScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setRefFirstId_InScope(Collection<Integer> refFirstIdList) {
@@ -343,7 +343,7 @@ public abstract class AbstractBsWhiteCompoundPkRefCQ extends AbstractConditionQu
 
     /**
      * NotInScope {not in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br />
-     * REF_FIRST_ID: {IX, NotNull, INT(10), FK to white_compound_pk}
+     * REF_FIRST_ID: {IX+, NotNull, INT(10), FK to white_compound_pk}
      * @param refFirstIdList The collection of refFirstId as notInScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setRefFirstId_NotInScope(Collection<Integer> refFirstIdList) {
@@ -359,7 +359,7 @@ public abstract class AbstractBsWhiteCompoundPkRefCQ extends AbstractConditionQu
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
-     * REF_SECOND_ID: {IX+, NotNull, INT(10), FK to white_compound_pk}
+     * REF_SECOND_ID: {NotNull, INT(10), FK to white_compound_pk}
      * @param refSecondId The value of refSecondId as equal. (NullAllowed: if null, no condition)
      */
     public void setRefSecondId_Equal(Integer refSecondId) {
@@ -372,7 +372,7 @@ public abstract class AbstractBsWhiteCompoundPkRefCQ extends AbstractConditionQu
 
     /**
      * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br />
-     * REF_SECOND_ID: {IX+, NotNull, INT(10), FK to white_compound_pk}
+     * REF_SECOND_ID: {NotNull, INT(10), FK to white_compound_pk}
      * @param refSecondId The value of refSecondId as greaterThan. (NullAllowed: if null, no condition)
      */
     public void setRefSecondId_GreaterThan(Integer refSecondId) {
@@ -381,7 +381,7 @@ public abstract class AbstractBsWhiteCompoundPkRefCQ extends AbstractConditionQu
 
     /**
      * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br />
-     * REF_SECOND_ID: {IX+, NotNull, INT(10), FK to white_compound_pk}
+     * REF_SECOND_ID: {NotNull, INT(10), FK to white_compound_pk}
      * @param refSecondId The value of refSecondId as lessThan. (NullAllowed: if null, no condition)
      */
     public void setRefSecondId_LessThan(Integer refSecondId) {
@@ -390,7 +390,7 @@ public abstract class AbstractBsWhiteCompoundPkRefCQ extends AbstractConditionQu
 
     /**
      * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br />
-     * REF_SECOND_ID: {IX+, NotNull, INT(10), FK to white_compound_pk}
+     * REF_SECOND_ID: {NotNull, INT(10), FK to white_compound_pk}
      * @param refSecondId The value of refSecondId as greaterEqual. (NullAllowed: if null, no condition)
      */
     public void setRefSecondId_GreaterEqual(Integer refSecondId) {
@@ -399,7 +399,7 @@ public abstract class AbstractBsWhiteCompoundPkRefCQ extends AbstractConditionQu
 
     /**
      * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br />
-     * REF_SECOND_ID: {IX+, NotNull, INT(10), FK to white_compound_pk}
+     * REF_SECOND_ID: {NotNull, INT(10), FK to white_compound_pk}
      * @param refSecondId The value of refSecondId as lessEqual. (NullAllowed: if null, no condition)
      */
     public void setRefSecondId_LessEqual(Integer refSecondId) {
@@ -410,7 +410,7 @@ public abstract class AbstractBsWhiteCompoundPkRefCQ extends AbstractConditionQu
      * RangeOf with various options. (versatile) <br />
      * {(default) minNumber &lt;= column &lt;= maxNumber} <br />
      * And NullIgnored, OnlyOnceRegistered. <br />
-     * REF_SECOND_ID: {IX+, NotNull, INT(10), FK to white_compound_pk}
+     * REF_SECOND_ID: {NotNull, INT(10), FK to white_compound_pk}
      * @param minNumber The min number of refSecondId. (NullAllowed: if null, no from-condition)
      * @param maxNumber The max number of refSecondId. (NullAllowed: if null, no to-condition)
      * @param rangeOfOption The option of range-of. (NotNull)
@@ -421,7 +421,7 @@ public abstract class AbstractBsWhiteCompoundPkRefCQ extends AbstractConditionQu
 
     /**
      * InScope {in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br />
-     * REF_SECOND_ID: {IX+, NotNull, INT(10), FK to white_compound_pk}
+     * REF_SECOND_ID: {NotNull, INT(10), FK to white_compound_pk}
      * @param refSecondIdList The collection of refSecondId as inScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setRefSecondId_InScope(Collection<Integer> refSecondIdList) {
@@ -434,7 +434,7 @@ public abstract class AbstractBsWhiteCompoundPkRefCQ extends AbstractConditionQu
 
     /**
      * NotInScope {not in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br />
-     * REF_SECOND_ID: {IX+, NotNull, INT(10), FK to white_compound_pk}
+     * REF_SECOND_ID: {NotNull, INT(10), FK to white_compound_pk}
      * @param refSecondIdList The collection of refSecondId as notInScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setRefSecondId_NotInScope(Collection<Integer> refSecondIdList) {

@@ -33,6 +33,9 @@ public class PurchaseSummaryMemberDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgMemberId(), "memberId");
@@ -41,8 +44,6 @@ public class PurchaseSummaryMemberDbm extends AbstractDBMeta {
         setupEpg(_epgMap, new EpgFormalizedDatetime(), "formalizedDatetime");
         setupEpg(_epgMap, new EpgPurchaseSummary(), "purchaseSummary");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgMemberId implements PropertyGateway {
         public Object read(Entity et) { return ((PurchaseSummaryMember)et).getMemberId(); }
         public void write(Entity et, Object vl) { ((PurchaseSummaryMember)et).setMemberId(cti(vl)); }
@@ -63,6 +64,8 @@ public class PurchaseSummaryMemberDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((PurchaseSummaryMember)et).getPurchaseSummary(); }
         public void write(Entity et, Object vl) { ((PurchaseSummaryMember)et).setPurchaseSummary(ctl(vl)); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -78,16 +81,36 @@ public class PurchaseSummaryMemberDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnMemberId = cci("member_id", "member_id", null, null, false, "memberId", Integer.class, false, false, "int4", 10, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnMemberName = cci("member_name", "member_name", null, null, false, "memberName", String.class, false, false, "varchar", 200, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnBirthdate = cci("birthdate", "birthdate", null, null, false, "birthdate", java.util.Date.class, false, false, "date", 13, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnFormalizedDatetime = cci("formalized_datetime", "formalized_datetime", null, null, false, "formalizedDatetime", java.sql.Timestamp.class, false, false, "timestamp", 26, 3, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnPurchaseSummary = cci("purchase_summary", "purchase_summary", null, null, false, "purchaseSummary", Long.class, false, false, "int8", 19, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnMemberId = cci("member_id", "member_id", null, null, Integer.class, "memberId", null, false, false, false, "int4", 10, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnMemberName = cci("member_name", "member_name", null, null, String.class, "memberName", null, false, false, false, "varchar", 200, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnBirthdate = cci("birthdate", "birthdate", null, null, java.util.Date.class, "birthdate", null, false, false, false, "date", 13, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnFormalizedDatetime = cci("formalized_datetime", "formalized_datetime", null, null, java.sql.Timestamp.class, "formalizedDatetime", null, false, false, false, "timestamp", 26, 3, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnPurchaseSummary = cci("purchase_summary", "purchase_summary", null, null, Long.class, "purchaseSummary", null, false, false, false, "int8", 19, 0, null, false, null, null, null, null, null);
 
+    /**
+     * member_id: {int4(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnMemberId() { return _columnMemberId; }
+    /**
+     * member_name: {varchar(200)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnMemberName() { return _columnMemberName; }
+    /**
+     * birthdate: {date(13)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnBirthdate() { return _columnBirthdate; }
+    /**
+     * formalized_datetime: {timestamp(26, 3)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnFormalizedDatetime() { return _columnFormalizedDatetime; }
+    /**
+     * purchase_summary: {int8(19)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnPurchaseSummary() { return _columnPurchaseSummary; }
 
     protected List<ColumnInfo> ccil() {
@@ -117,6 +140,8 @@ public class PurchaseSummaryMemberDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

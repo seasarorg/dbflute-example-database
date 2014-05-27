@@ -117,14 +117,14 @@ public class BsWhiteImplicitReverseFkSuppressCQ extends AbstractBsWhiteImplicitR
 
     /** 
      * Add order-by as ascend. <br />
-     * WHITE_IMPLICIT_REVERSE_FK_ID: {UQ, NotNull, INT(10)}
+     * WHITE_IMPLICIT_REVERSE_FK_ID: {UQ+, NotNull, INT(10)}
      * @return this. (NotNull)
      */
     public BsWhiteImplicitReverseFkSuppressCQ addOrderBy_WhiteImplicitReverseFkId_Asc() { regOBA("WHITE_IMPLICIT_REVERSE_FK_ID"); return this; }
 
     /**
      * Add order-by as descend. <br />
-     * WHITE_IMPLICIT_REVERSE_FK_ID: {UQ, NotNull, INT(10)}
+     * WHITE_IMPLICIT_REVERSE_FK_ID: {UQ+, NotNull, INT(10)}
      * @return this. (NotNull)
      */
     public BsWhiteImplicitReverseFkSuppressCQ addOrderBy_WhiteImplicitReverseFkId_Desc() { regOBD("WHITE_IMPLICIT_REVERSE_FK_ID"); return this; }
@@ -138,14 +138,14 @@ public class BsWhiteImplicitReverseFkSuppressCQ extends AbstractBsWhiteImplicitR
 
     /** 
      * Add order-by as ascend. <br />
-     * VALID_BEGIN_DATE: {UQ+, NotNull, DATE(10)}
+     * VALID_BEGIN_DATE: {+UQ, NotNull, DATE(10)}
      * @return this. (NotNull)
      */
     public BsWhiteImplicitReverseFkSuppressCQ addOrderBy_ValidBeginDate_Asc() { regOBA("VALID_BEGIN_DATE"); return this; }
 
     /**
      * Add order-by as descend. <br />
-     * VALID_BEGIN_DATE: {UQ+, NotNull, DATE(10)}
+     * VALID_BEGIN_DATE: {+UQ, NotNull, DATE(10)}
      * @return this. (NotNull)
      */
     public BsWhiteImplicitReverseFkSuppressCQ addOrderBy_ValidBeginDate_Desc() { regOBD("VALID_BEGIN_DATE"); return this; }
@@ -211,7 +211,7 @@ public class BsWhiteImplicitReverseFkSuppressCQ extends AbstractBsWhiteImplicitR
     // ===================================================================================
     //                                                                         Union Query
     //                                                                         ===========
-    protected void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
+    public void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
     }
 
     // ===================================================================================

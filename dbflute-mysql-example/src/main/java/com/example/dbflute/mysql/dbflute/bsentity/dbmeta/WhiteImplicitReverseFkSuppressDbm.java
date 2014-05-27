@@ -48,6 +48,9 @@ public class WhiteImplicitReverseFkSuppressDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgWhiteImplicitReverseFkSuppressId(), "whiteImplicitReverseFkSuppressId");
@@ -55,8 +58,6 @@ public class WhiteImplicitReverseFkSuppressDbm extends AbstractDBMeta {
         setupEpg(_epgMap, new EpgValidBeginDate(), "validBeginDate");
         setupEpg(_epgMap, new EpgValidEndDate(), "validEndDate");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgWhiteImplicitReverseFkSuppressId implements PropertyGateway {
         public Object read(Entity et) { return ((WhiteImplicitReverseFkSuppress)et).getWhiteImplicitReverseFkSuppressId(); }
         public void write(Entity et, Object vl) { ((WhiteImplicitReverseFkSuppress)et).setWhiteImplicitReverseFkSuppressId(cti(vl)); }
@@ -73,6 +74,8 @@ public class WhiteImplicitReverseFkSuppressDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((WhiteImplicitReverseFkSuppress)et).getValidEndDate(); }
         public void write(Entity et, Object vl) { ((WhiteImplicitReverseFkSuppress)et).setValidEndDate((java.util.Date)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -88,10 +91,10 @@ public class WhiteImplicitReverseFkSuppressDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnWhiteImplicitReverseFkSuppressId = cci("WHITE_IMPLICIT_REVERSE_FK_SUPPRESS_ID", "WHITE_IMPLICIT_REVERSE_FK_SUPPRESS_ID", null, null, true, "whiteImplicitReverseFkSuppressId", Integer.class, true, true, "INT", 10, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnWhiteImplicitReverseFkId = cci("WHITE_IMPLICIT_REVERSE_FK_ID", "WHITE_IMPLICIT_REVERSE_FK_ID", null, null, true, "whiteImplicitReverseFkId", Integer.class, false, false, "INT", 10, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnValidBeginDate = cci("VALID_BEGIN_DATE", "VALID_BEGIN_DATE", null, null, true, "validBeginDate", java.util.Date.class, false, false, "DATE", 10, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnValidEndDate = cci("VALID_END_DATE", "VALID_END_DATE", null, null, true, "validEndDate", java.util.Date.class, false, false, "DATE", 10, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnWhiteImplicitReverseFkSuppressId = cci("WHITE_IMPLICIT_REVERSE_FK_SUPPRESS_ID", "WHITE_IMPLICIT_REVERSE_FK_SUPPRESS_ID", null, null, Integer.class, "whiteImplicitReverseFkSuppressId", null, true, true, true, "INT", 10, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnWhiteImplicitReverseFkId = cci("WHITE_IMPLICIT_REVERSE_FK_ID", "WHITE_IMPLICIT_REVERSE_FK_ID", null, null, Integer.class, "whiteImplicitReverseFkId", null, false, false, true, "INT", 10, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnValidBeginDate = cci("VALID_BEGIN_DATE", "VALID_BEGIN_DATE", null, null, java.util.Date.class, "validBeginDate", null, false, false, true, "DATE", 10, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnValidEndDate = cci("VALID_END_DATE", "VALID_END_DATE", null, null, java.util.Date.class, "validEndDate", null, false, false, true, "DATE", 10, 0, null, false, null, null, null, null, null);
 
     /**
      * WHITE_IMPLICIT_REVERSE_FK_SUPPRESS_ID: {PK, ID, NotNull, INT(10)}
@@ -99,12 +102,12 @@ public class WhiteImplicitReverseFkSuppressDbm extends AbstractDBMeta {
      */
     public ColumnInfo columnWhiteImplicitReverseFkSuppressId() { return _columnWhiteImplicitReverseFkSuppressId; }
     /**
-     * WHITE_IMPLICIT_REVERSE_FK_ID: {UQ, NotNull, INT(10)}
+     * WHITE_IMPLICIT_REVERSE_FK_ID: {UQ+, NotNull, INT(10)}
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnWhiteImplicitReverseFkId() { return _columnWhiteImplicitReverseFkId; }
     /**
-     * VALID_BEGIN_DATE: {UQ+, NotNull, DATE(10)}
+     * VALID_BEGIN_DATE: {+UQ, NotNull, DATE(10)}
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnValidBeginDate() { return _columnValidBeginDate; }
@@ -138,6 +141,8 @@ public class WhiteImplicitReverseFkSuppressDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

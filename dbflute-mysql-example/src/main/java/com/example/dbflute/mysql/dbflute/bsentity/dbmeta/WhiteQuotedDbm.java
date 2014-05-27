@@ -48,13 +48,14 @@ public class WhiteQuotedDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgSelect(), "select");
         setupEpg(_epgMap, new EpgFrom(), "from");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgSelect implements PropertyGateway {
         public Object read(Entity et) { return ((WhiteQuoted)et).getSelect(); }
         public void write(Entity et, Object vl) { ((WhiteQuoted)et).setSelect(cti(vl)); }
@@ -63,6 +64,8 @@ public class WhiteQuotedDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((WhiteQuoted)et).getFrom(); }
         public void write(Entity et, Object vl) { ((WhiteQuoted)et).setFrom((String)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -78,8 +81,8 @@ public class WhiteQuotedDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnSelect = cci("SELECT", "`SELECT`", null, null, true, "select", Integer.class, true, false, "INT", 10, 0, null, false, null, null, null, "whiteQuotedRefList", null);
-    protected final ColumnInfo _columnFrom = cci("FROM", "`FROM`", null, null, false, "from", String.class, false, false, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnSelect = cci("SELECT", "`SELECT`", null, null, Integer.class, "select", null, true, false, true, "INT", 10, 0, null, false, null, null, null, "whiteQuotedRefList", null);
+    protected final ColumnInfo _columnFrom = cci("FROM", "`FROM`", null, null, String.class, "from", null, false, false, false, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
 
     /**
      * SELECT: {PK, NotNull, INT(10)}
@@ -114,6 +117,8 @@ public class WhiteQuotedDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

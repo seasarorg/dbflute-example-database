@@ -184,7 +184,7 @@ public abstract class BsWhitePgReservBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of WhitePgReserv. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -205,39 +205,42 @@ public abstract class BsWhitePgReservBhv extends AbstractBehaviorWritable {
 
     /**
      * Select the entity by the primary-key value.
-     * @param classSynonym The one of primary key. (NotNull)
+     * @param classSynonym ((using DBFlute synonym)): PK, NotNull, INT(10). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhitePgReserv selectByPKValue(Integer classSynonym) {
-        return doSelectByPKValue(classSynonym, WhitePgReserv.class);
+        return doSelectByPK(classSynonym, WhitePgReserv.class);
     }
 
-    protected <ENTITY extends WhitePgReserv> ENTITY doSelectByPKValue(Integer classSynonym, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(classSynonym), entityType);
+    protected <ENTITY extends WhitePgReserv> ENTITY doSelectByPK(Integer classSynonym, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(classSynonym), entityType);
+    }
+
+    protected <ENTITY extends WhitePgReserv> OptionalEntity<ENTITY> doSelectOptionalByPK(Integer classSynonym, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(classSynonym, entityType), classSynonym);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param classSynonym The one of primary key. (NotNull)
+     * @param classSynonym ((using DBFlute synonym)): PK, NotNull, INT(10). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhitePgReserv selectByPKValueWithDeletedCheck(Integer classSynonym) {
-        return doSelectByPKValueWithDeletedCheck(classSynonym, WhitePgReserv.class);
+        return doSelectByPKWithDeletedCheck(classSynonym, WhitePgReserv.class);
     }
 
-    protected <ENTITY extends WhitePgReserv> ENTITY doSelectByPKValueWithDeletedCheck(Integer classSynonym, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(classSynonym), entityType);
+    protected <ENTITY extends WhitePgReserv> ENTITY doSelectByPKWithDeletedCheck(Integer classSynonym, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(classSynonym), entityType);
     }
 
-    private WhitePgReservCB buildPKCB(Integer classSynonym) {
+    protected WhitePgReservCB xprepareCBAsPK(Integer classSynonym) {
         assertObjectNotNull("classSynonym", classSynonym);
-        WhitePgReservCB cb = newMyConditionBean();
-        cb.query().setClassSynonym_Equal(classSynonym);
+        WhitePgReservCB cb = newMyConditionBean(); cb.acceptPrimaryKey(classSynonym);
         return cb;
     }
 

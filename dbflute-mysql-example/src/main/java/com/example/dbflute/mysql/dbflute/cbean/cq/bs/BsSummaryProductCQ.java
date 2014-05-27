@@ -303,7 +303,7 @@ public class BsSummaryProductCQ extends AbstractBsSummaryProductCQ {
     // ===================================================================================
     //                                                                         Union Query
     //                                                                         ===========
-    protected void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
+    public void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
         SummaryProductCQ bq = (SummaryProductCQ)bqs;
         SummaryProductCQ uq = (SummaryProductCQ)uqs;
         if (bq.hasConditionQueryProductStatus()) {

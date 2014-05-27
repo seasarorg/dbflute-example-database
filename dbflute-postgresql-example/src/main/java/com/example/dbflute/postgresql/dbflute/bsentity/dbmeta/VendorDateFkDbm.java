@@ -33,13 +33,14 @@ public class VendorDateFkDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgBarId(), "barId");
         setupEpg(_epgMap, new EpgBarDate(), "barDate");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgBarId implements PropertyGateway {
         public Object read(Entity et) { return ((VendorDateFk)et).getBarId(); }
         public void write(Entity et, Object vl) { ((VendorDateFk)et).setBarId(cti(vl)); }
@@ -48,6 +49,22 @@ public class VendorDateFkDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((VendorDateFk)et).getBarDate(); }
         public void write(Entity et, Object vl) { ((VendorDateFk)et).setBarDate((java.util.Date)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
+
+    // -----------------------------------------------------
+    //                                      Foreign Property
+    //                                      ----------------
+    protected final Map<String, PropertyGateway> _efpgMap = newHashMap();
+    {
+        setupEfpg(_efpgMap, new EfpgVendorDatePk(), "vendorDatePk");
+    }
+    public class EfpgVendorDatePk implements PropertyGateway {
+        public Object read(Entity et) { return ((VendorDateFk)et).getVendorDatePk(); }
+        public void write(Entity et, Object vl) { ((VendorDateFk)et).setVendorDatePk((VendorDatePk)vl); }
+    }
+    public PropertyGateway findForeignPropertyGateway(String prop)
+    { return doFindEfpg(_efpgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -63,10 +80,18 @@ public class VendorDateFkDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnBarId = cci("bar_id", "bar_id", null, null, true, "barId", Integer.class, true, false, "int4", 10, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnBarDate = cci("bar_date", "bar_date", null, null, true, "barDate", java.util.Date.class, false, false, "date", 13, 0, null, false, null, null, "vendorDatePk", null, null);
+    protected final ColumnInfo _columnBarId = cci("bar_id", "bar_id", null, null, Integer.class, "barId", null, true, false, true, "int4", 10, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnBarDate = cci("bar_date", "bar_date", null, null, java.util.Date.class, "barDate", null, false, false, true, "date", 13, 0, null, false, null, null, "vendorDatePk", null, null);
 
+    /**
+     * bar_id: {PK, NotNull, int4(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnBarId() { return _columnBarId; }
+    /**
+     * bar_date: {NotNull, date(13), FK to vendor_date_pk}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnBarDate() { return _columnBarDate; }
 
     protected List<ColumnInfo> ccil() {
@@ -91,12 +116,18 @@ public class VendorDateFkDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------
+    /**
+     * vendor_date_pk by my bar_date, named 'vendorDatePk'.
+     * @return The information object of foreign property. (NotNull)
+     */
     public ForeignInfo foreignVendorDatePk() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnBarDate(), VendorDatePkDbm.getInstance().columnFooDate());
-        return cfi("fk_vendor_date_fk_pk", "vendorDatePk", this, VendorDatePkDbm.getInstance(), mp, 0, false, false, false, false, null, null, false, "vendorDateFkList");
+        return cfi("fk_vendor_date_fk_pk", "vendorDatePk", this, VendorDatePkDbm.getInstance(), mp, 0, null, false, false, false, false, null, null, false, "vendorDateFkList");
     }
 
     // -----------------------------------------------------

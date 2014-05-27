@@ -184,7 +184,7 @@ public abstract class BsWhiteImplicitReverseFkSuppressBhv extends AbstractBehavi
      * </pre>
      * @param cb The condition-bean of WhiteImplicitReverseFkSuppress. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -205,39 +205,65 @@ public abstract class BsWhiteImplicitReverseFkSuppressBhv extends AbstractBehavi
 
     /**
      * Select the entity by the primary-key value.
-     * @param whiteImplicitReverseFkSuppressId The one of primary key. (NotNull)
+     * @param whiteImplicitReverseFkSuppressId : PK, ID, NotNull, INT(10). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteImplicitReverseFkSuppress selectByPKValue(Integer whiteImplicitReverseFkSuppressId) {
-        return doSelectByPKValue(whiteImplicitReverseFkSuppressId, WhiteImplicitReverseFkSuppress.class);
+        return doSelectByPK(whiteImplicitReverseFkSuppressId, WhiteImplicitReverseFkSuppress.class);
     }
 
-    protected <ENTITY extends WhiteImplicitReverseFkSuppress> ENTITY doSelectByPKValue(Integer whiteImplicitReverseFkSuppressId, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(whiteImplicitReverseFkSuppressId), entityType);
+    protected <ENTITY extends WhiteImplicitReverseFkSuppress> ENTITY doSelectByPK(Integer whiteImplicitReverseFkSuppressId, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(whiteImplicitReverseFkSuppressId), entityType);
+    }
+
+    protected <ENTITY extends WhiteImplicitReverseFkSuppress> OptionalEntity<ENTITY> doSelectOptionalByPK(Integer whiteImplicitReverseFkSuppressId, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(whiteImplicitReverseFkSuppressId, entityType), whiteImplicitReverseFkSuppressId);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param whiteImplicitReverseFkSuppressId The one of primary key. (NotNull)
+     * @param whiteImplicitReverseFkSuppressId : PK, ID, NotNull, INT(10). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteImplicitReverseFkSuppress selectByPKValueWithDeletedCheck(Integer whiteImplicitReverseFkSuppressId) {
-        return doSelectByPKValueWithDeletedCheck(whiteImplicitReverseFkSuppressId, WhiteImplicitReverseFkSuppress.class);
+        return doSelectByPKWithDeletedCheck(whiteImplicitReverseFkSuppressId, WhiteImplicitReverseFkSuppress.class);
     }
 
-    protected <ENTITY extends WhiteImplicitReverseFkSuppress> ENTITY doSelectByPKValueWithDeletedCheck(Integer whiteImplicitReverseFkSuppressId, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(whiteImplicitReverseFkSuppressId), entityType);
+    protected <ENTITY extends WhiteImplicitReverseFkSuppress> ENTITY doSelectByPKWithDeletedCheck(Integer whiteImplicitReverseFkSuppressId, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(whiteImplicitReverseFkSuppressId), entityType);
     }
 
-    private WhiteImplicitReverseFkSuppressCB buildPKCB(Integer whiteImplicitReverseFkSuppressId) {
+    protected WhiteImplicitReverseFkSuppressCB xprepareCBAsPK(Integer whiteImplicitReverseFkSuppressId) {
         assertObjectNotNull("whiteImplicitReverseFkSuppressId", whiteImplicitReverseFkSuppressId);
-        WhiteImplicitReverseFkSuppressCB cb = newMyConditionBean();
-        cb.query().setWhiteImplicitReverseFkSuppressId_Equal(whiteImplicitReverseFkSuppressId);
+        WhiteImplicitReverseFkSuppressCB cb = newMyConditionBean(); cb.acceptPrimaryKey(whiteImplicitReverseFkSuppressId);
+        return cb;
+    }
+
+    /**
+     * Select the entity by the unique-key value.
+     * @param whiteImplicitReverseFkId : UQ+, NotNull, INT(10). (NotNull)
+     * @param validBeginDate : +UQ, NotNull, DATE(10). (NotNull)
+     * @return The optional entity selected by the unique key. (NotNull: if no data, empty entity)
+     * @exception EntityAlreadyDeletedException When get(), required() of return value is called and the value is null, which means entity has already been deleted (not found).
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     */
+    public OptionalEntity<WhiteImplicitReverseFkSuppress> selectByUniqueOf(Integer whiteImplicitReverseFkId, java.util.Date validBeginDate) {
+        return doSelectByUniqueOf(whiteImplicitReverseFkId, validBeginDate, WhiteImplicitReverseFkSuppress.class);
+    }
+
+    protected <ENTITY extends WhiteImplicitReverseFkSuppress> OptionalEntity<ENTITY> doSelectByUniqueOf(Integer whiteImplicitReverseFkId, java.util.Date validBeginDate, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectEntity(xprepareCBAsUniqueOf(whiteImplicitReverseFkId, validBeginDate), entityType), whiteImplicitReverseFkId, validBeginDate);
+    }
+
+    protected WhiteImplicitReverseFkSuppressCB xprepareCBAsUniqueOf(Integer whiteImplicitReverseFkId, java.util.Date validBeginDate) {
+        assertObjectNotNull("whiteImplicitReverseFkId", whiteImplicitReverseFkId);assertObjectNotNull("validBeginDate", validBeginDate);
+        WhiteImplicitReverseFkSuppressCB cb = newMyConditionBean(); cb.acceptUniqueOf(whiteImplicitReverseFkId, validBeginDate);
         return cb;
     }
 

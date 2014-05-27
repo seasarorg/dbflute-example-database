@@ -33,6 +33,9 @@ public class OptionMemberDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgMemberId(), "memberId");
@@ -45,8 +48,6 @@ public class OptionMemberDbm extends AbstractDBMeta {
         setupEpg(_epgMap, new EpgDummyFlg(), "dummyFlg");
         setupEpg(_epgMap, new EpgDummyNoflg(), "dummyNoflg");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgMemberId implements PropertyGateway {
         public Object read(Entity et) { return ((OptionMember)et).getMemberId(); }
         public void write(Entity et, Object vl) { ((OptionMember)et).setMemberId(cti(vl)); }
@@ -86,6 +87,8 @@ public class OptionMemberDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((OptionMember)et).getDummyNoflg(); }
         public void write(Entity et, Object vl) { ((OptionMember)et).setDummyNoflg(cti(vl)); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -101,24 +104,60 @@ public class OptionMemberDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnMemberId = cci("member_id", "member_id", null, null, false, "memberId", Integer.class, false, false, "int4", 10, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnMemberName = cci("member_name", "member_name", null, null, false, "memberName", String.class, false, false, "varchar", 200, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnBirthdate = cci("birthdate", "birthdate", null, null, false, "birthdate", java.util.Date.class, false, false, "date", 13, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnFormalizedDatetime = cci("formalized_datetime", "formalized_datetime", null, null, false, "formalizedDatetime", java.sql.Timestamp.class, false, false, "timestamp", 26, 3, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnMemberStatusCode = cci("member_status_code", "member_status_code", null, null, false, "memberStatusCode", String.class, false, false, "bpchar", 3, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnMemberStatusName = cci("member_status_name", "member_status_name", null, null, false, "memberStatusName", String.class, false, false, "varchar", 50, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnStatusDisplayOrder = cci("status_display_order", "status_display_order", null, null, false, "statusDisplayOrder", Integer.class, false, false, "int4", 10, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnDummyFlg = cci("dummy_flg", "dummy_flg", null, null, false, "dummyFlg", Integer.class, false, false, "int4", 10, 0, null, false, null, null, null, null, CDef.DefMeta.Flg);
-    protected final ColumnInfo _columnDummyNoflg = cci("dummy_noflg", "dummy_noflg", null, null, false, "dummyNoflg", Integer.class, false, false, "int4", 10, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnMemberId = cci("member_id", "member_id", null, null, Integer.class, "memberId", null, false, false, false, "int4", 10, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnMemberName = cci("member_name", "member_name", null, null, String.class, "memberName", null, false, false, false, "varchar", 200, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnBirthdate = cci("birthdate", "birthdate", null, null, java.util.Date.class, "birthdate", null, false, false, false, "date", 13, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnFormalizedDatetime = cci("formalized_datetime", "formalized_datetime", null, null, java.sql.Timestamp.class, "formalizedDatetime", null, false, false, false, "timestamp", 26, 3, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnMemberStatusCode = cci("member_status_code", "member_status_code", null, null, String.class, "memberStatusCode", null, false, false, false, "bpchar", 3, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnMemberStatusName = cci("member_status_name", "member_status_name", null, null, String.class, "memberStatusName", null, false, false, false, "varchar", 50, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnStatusDisplayOrder = cci("status_display_order", "status_display_order", null, null, Integer.class, "statusDisplayOrder", null, false, false, false, "int4", 10, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnDummyFlg = cci("dummy_flg", "dummy_flg", null, null, Integer.class, "dummyFlg", null, false, false, false, "int4", 10, 0, null, false, null, null, null, null, CDef.DefMeta.Flg);
+    protected final ColumnInfo _columnDummyNoflg = cci("dummy_noflg", "dummy_noflg", null, null, Integer.class, "dummyNoflg", null, false, false, false, "int4", 10, 0, null, false, null, null, null, null, null);
 
+    /**
+     * member_id: {int4(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnMemberId() { return _columnMemberId; }
+    /**
+     * member_name: {varchar(200)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnMemberName() { return _columnMemberName; }
+    /**
+     * birthdate: {date(13)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnBirthdate() { return _columnBirthdate; }
+    /**
+     * formalized_datetime: {timestamp(26, 3)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnFormalizedDatetime() { return _columnFormalizedDatetime; }
+    /**
+     * member_status_code: {bpchar(3)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnMemberStatusCode() { return _columnMemberStatusCode; }
+    /**
+     * member_status_name: {varchar(50)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnMemberStatusName() { return _columnMemberStatusName; }
+    /**
+     * status_display_order: {int4(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnStatusDisplayOrder() { return _columnStatusDisplayOrder; }
+    /**
+     * dummy_flg: {int4(10), classification=Flg}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnDummyFlg() { return _columnDummyFlg; }
+    /**
+     * dummy_noflg: {int4(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnDummyNoflg() { return _columnDummyNoflg; }
 
     protected List<ColumnInfo> ccil() {
@@ -152,6 +191,8 @@ public class OptionMemberDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

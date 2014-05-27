@@ -169,7 +169,7 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of VendorDateFk. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -190,39 +190,42 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
 
     /**
      * Select the entity by the primary-key value.
-     * @param barId The one of primary key. (NotNull)
+     * @param barId : PK, NotNull, int4(10). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public VendorDateFk selectByPKValue(Integer barId) {
-        return doSelectByPKValue(barId, VendorDateFk.class);
+        return doSelectByPK(barId, VendorDateFk.class);
     }
 
-    protected <ENTITY extends VendorDateFk> ENTITY doSelectByPKValue(Integer barId, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(barId), entityType);
+    protected <ENTITY extends VendorDateFk> ENTITY doSelectByPK(Integer barId, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(barId), entityType);
+    }
+
+    protected <ENTITY extends VendorDateFk> OptionalEntity<ENTITY> doSelectOptionalByPK(Integer barId, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(barId, entityType), barId);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param barId The one of primary key. (NotNull)
+     * @param barId : PK, NotNull, int4(10). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public VendorDateFk selectByPKValueWithDeletedCheck(Integer barId) {
-        return doSelectByPKValueWithDeletedCheck(barId, VendorDateFk.class);
+        return doSelectByPKWithDeletedCheck(barId, VendorDateFk.class);
     }
 
-    protected <ENTITY extends VendorDateFk> ENTITY doSelectByPKValueWithDeletedCheck(Integer barId, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(barId), entityType);
+    protected <ENTITY extends VendorDateFk> ENTITY doSelectByPKWithDeletedCheck(Integer barId, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(barId), entityType);
     }
 
-    private VendorDateFkCB buildPKCB(Integer barId) {
+    protected VendorDateFkCB xprepareCBAsPK(Integer barId) {
         assertObjectNotNull("barId", barId);
-        VendorDateFkCB cb = newMyConditionBean();
-        cb.query().setBarId_Equal(barId);
+        VendorDateFkCB cb = newMyConditionBean(); cb.acceptPrimaryKey(barId);
         return cb;
     }
 
@@ -387,7 +390,8 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
      */
     public List<VendorDatePk> pulloutVendorDatePk(List<VendorDateFk> vendorDateFkList) {
         return helpPulloutInternally(vendorDateFkList, new InternalPulloutCallback<VendorDateFk, VendorDatePk>() {
-            public VendorDatePk getFr(VendorDateFk et) { return et.getVendorDatePk(); }
+            public VendorDatePk getFr(VendorDateFk et)
+            { return et.getVendorDatePk(); }
             public boolean hasRf() { return true; }
             public void setRfLs(VendorDatePk et, List<VendorDateFk> ls)
             { et.setVendorDateFkList(ls); }

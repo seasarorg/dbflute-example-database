@@ -33,13 +33,14 @@ public class Vendor$DollarDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgVendor$DollarId(), "vendor$DollarId");
         setupEpg(_epgMap, new EpgVendor$DollarName(), "vendor$DollarName");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgVendor$DollarId implements PropertyGateway {
         public Object read(Entity et) { return ((Vendor$Dollar)et).getVendor$DollarId(); }
         public void write(Entity et, Object vl) { ((Vendor$Dollar)et).setVendor$DollarId(cti(vl)); }
@@ -48,6 +49,8 @@ public class Vendor$DollarDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((Vendor$Dollar)et).getVendor$DollarName(); }
         public void write(Entity et, Object vl) { ((Vendor$Dollar)et).setVendor$DollarName((String)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -63,10 +66,18 @@ public class Vendor$DollarDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnVendor$DollarId = cci("vendor_$_dollar_id", "vendor_$_dollar_id", null, null, true, "vendor$DollarId", Integer.class, true, false, "int4", 10, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnVendor$DollarName = cci("vendor_$_dollar_name", "vendor_$_dollar_name", null, null, false, "vendor$DollarName", String.class, false, false, "varchar", 64, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnVendor$DollarId = cci("vendor_$_dollar_id", "vendor_$_dollar_id", null, null, Integer.class, "vendor$DollarId", null, true, false, true, "int4", 10, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnVendor$DollarName = cci("vendor_$_dollar_name", "vendor_$_dollar_name", null, null, String.class, "vendor$DollarName", null, false, false, false, "varchar", 64, 0, null, false, null, null, null, null, null);
 
+    /**
+     * vendor_$_dollar_id: {PK, NotNull, int4(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnVendor$DollarId() { return _columnVendor$DollarId; }
+    /**
+     * vendor_$_dollar_name: {varchar(64)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnVendor$DollarName() { return _columnVendor$DollarName; }
 
     protected List<ColumnInfo> ccil() {
@@ -91,6 +102,8 @@ public class Vendor$DollarDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

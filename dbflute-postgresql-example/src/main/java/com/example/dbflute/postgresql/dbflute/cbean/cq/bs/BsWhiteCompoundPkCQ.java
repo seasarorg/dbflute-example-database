@@ -26,8 +26,8 @@ public class BsWhiteCompoundPkCQ extends AbstractBsWhiteCompoundPkCQ {
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public BsWhiteCompoundPkCQ(ConditionQuery childQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
-        super(childQuery, sqlClause, aliasName, nestLevel);
+    public BsWhiteCompoundPkCQ(ConditionQuery referrerQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
+        super(referrerQuery, sqlClause, aliasName, nestLevel);
     }
 
     // ===================================================================================
@@ -177,7 +177,7 @@ public class BsWhiteCompoundPkCQ extends AbstractBsWhiteCompoundPkCQ {
     // ===================================================================================
     //                                                                         Union Query
     //                                                                         ===========
-    protected void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
+    public void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
     }
 
     // ===================================================================================
@@ -191,7 +191,7 @@ public class BsWhiteCompoundPkCQ extends AbstractBsWhiteCompoundPkCQ {
     //                                                      ExistsReferrer for Compound PK
     //                                                      ==============================
     /**
-     * Set up ExistsReferrer (correlated sub-query). <br />
+     * Set up ExistsReferrer (correlated sub-query by compound key). <br />
      * {exists (select ... from white_compound_pk_ref where ...)}
      * @param subQuery The sub-query of WhiteCompoundPkRefList for 'exists'. (NotNull)
      */
@@ -211,7 +211,7 @@ public class BsWhiteCompoundPkCQ extends AbstractBsWhiteCompoundPkCQ {
     }
 
     /**
-     * Set up NotExistsReferrer (correlated sub-query). <br />
+     * Set up NotExistsReferrer (correlated sub-query by compound key). <br />
      * {not exists (select ... from white_compound_pk_ref where ...)}
      * @param subQuery The sub-query of WhiteCompoundPkRefList for 'not exists'. (NotNull)
      */
@@ -252,7 +252,7 @@ public class BsWhiteCompoundPkCQ extends AbstractBsWhiteCompoundPkCQ {
     //                                              (Query)DerivedReferrer for Compound PK
     //                                              ======================================
     /**
-     * Prepare for (Query)DerivedReferrer. <br />
+     * Prepare for (Query)DerivedReferrer (correlated sub-query). <br />
      * {FOO &lt;= (select max(BAR) from white_compound_pk_ref where ...)} <br />
      * white_compound_pk_ref by ref_first_id, ref_second_id, named 'whiteCompoundPkRefAsOne'.
      * <pre>

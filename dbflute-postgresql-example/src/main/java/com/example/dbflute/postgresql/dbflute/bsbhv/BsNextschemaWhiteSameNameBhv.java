@@ -169,7 +169,7 @@ public abstract class BsNextschemaWhiteSameNameBhv extends AbstractBehaviorWrita
      * </pre>
      * @param cb The condition-bean of NextschemaWhiteSameName. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -190,39 +190,42 @@ public abstract class BsNextschemaWhiteSameNameBhv extends AbstractBehaviorWrita
 
     /**
      * Select the entity by the primary-key value.
-     * @param sameNameId The one of primary key. (NotNull)
+     * @param sameNameId : PK, NotNull, int4(10). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public NextschemaWhiteSameName selectByPKValue(Integer sameNameId) {
-        return doSelectByPKValue(sameNameId, NextschemaWhiteSameName.class);
+        return doSelectByPK(sameNameId, NextschemaWhiteSameName.class);
     }
 
-    protected <ENTITY extends NextschemaWhiteSameName> ENTITY doSelectByPKValue(Integer sameNameId, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(sameNameId), entityType);
+    protected <ENTITY extends NextschemaWhiteSameName> ENTITY doSelectByPK(Integer sameNameId, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(sameNameId), entityType);
+    }
+
+    protected <ENTITY extends NextschemaWhiteSameName> OptionalEntity<ENTITY> doSelectOptionalByPK(Integer sameNameId, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(sameNameId, entityType), sameNameId);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param sameNameId The one of primary key. (NotNull)
+     * @param sameNameId : PK, NotNull, int4(10). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public NextschemaWhiteSameName selectByPKValueWithDeletedCheck(Integer sameNameId) {
-        return doSelectByPKValueWithDeletedCheck(sameNameId, NextschemaWhiteSameName.class);
+        return doSelectByPKWithDeletedCheck(sameNameId, NextschemaWhiteSameName.class);
     }
 
-    protected <ENTITY extends NextschemaWhiteSameName> ENTITY doSelectByPKValueWithDeletedCheck(Integer sameNameId, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(sameNameId), entityType);
+    protected <ENTITY extends NextschemaWhiteSameName> ENTITY doSelectByPKWithDeletedCheck(Integer sameNameId, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(sameNameId), entityType);
     }
 
-    private NextschemaWhiteSameNameCB buildPKCB(Integer sameNameId) {
+    protected NextschemaWhiteSameNameCB xprepareCBAsPK(Integer sameNameId) {
         assertObjectNotNull("sameNameId", sameNameId);
-        NextschemaWhiteSameNameCB cb = newMyConditionBean();
-        cb.query().setSameNameId_Equal(sameNameId);
+        NextschemaWhiteSameNameCB cb = newMyConditionBean(); cb.acceptPrimaryKey(sameNameId);
         return cb;
     }
 

@@ -93,10 +93,14 @@ public class BsWhiteSplitMultipleFkBaseCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                 PrimaryKey Handling
     //                                                                 ===================
+    /**
+     * Accept the query condition of primary key as equal.
+     * @param baseId : PK, NotNull, BIGINT(19). (NotNull)
+     */
     public void acceptPrimaryKey(Long baseId) {
         assertObjectNotNull("baseId", baseId);
         BsWhiteSplitMultipleFkBaseCB cb = this;
-        cb.query().setBaseId_Equal(baseId);
+        cb.query().setBaseId_Equal(baseId);;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {
@@ -545,6 +549,11 @@ public class BsWhiteSplitMultipleFkBaseCB extends AbstractConditionBean {
      */
     public void orScopeQuery(OrQuery<WhiteSplitMultipleFkBaseCB> orQuery) {
         xorSQ((WhiteSplitMultipleFkBaseCB)this, orQuery);
+    }
+
+    @Override
+    protected HpCBPurpose xhandleOrSQPurposeChange() {
+        return null; // means no check
     }
 
     /**

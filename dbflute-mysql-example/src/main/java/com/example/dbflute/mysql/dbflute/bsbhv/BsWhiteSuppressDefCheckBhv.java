@@ -184,7 +184,7 @@ public abstract class BsWhiteSuppressDefCheckBhv extends AbstractBehaviorWritabl
      * </pre>
      * @param cb The condition-bean of WhiteSuppressDefCheck. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -205,39 +205,42 @@ public abstract class BsWhiteSuppressDefCheckBhv extends AbstractBehaviorWritabl
 
     /**
      * Select the entity by the primary-key value.
-     * @param defCheckId The one of primary key. (NotNull)
+     * @param defCheckId : PK, NotNull, BIGINT(19). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteSuppressDefCheck selectByPKValue(Long defCheckId) {
-        return doSelectByPKValue(defCheckId, WhiteSuppressDefCheck.class);
+        return doSelectByPK(defCheckId, WhiteSuppressDefCheck.class);
     }
 
-    protected <ENTITY extends WhiteSuppressDefCheck> ENTITY doSelectByPKValue(Long defCheckId, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(defCheckId), entityType);
+    protected <ENTITY extends WhiteSuppressDefCheck> ENTITY doSelectByPK(Long defCheckId, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(defCheckId), entityType);
+    }
+
+    protected <ENTITY extends WhiteSuppressDefCheck> OptionalEntity<ENTITY> doSelectOptionalByPK(Long defCheckId, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(defCheckId, entityType), defCheckId);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param defCheckId The one of primary key. (NotNull)
+     * @param defCheckId : PK, NotNull, BIGINT(19). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteSuppressDefCheck selectByPKValueWithDeletedCheck(Long defCheckId) {
-        return doSelectByPKValueWithDeletedCheck(defCheckId, WhiteSuppressDefCheck.class);
+        return doSelectByPKWithDeletedCheck(defCheckId, WhiteSuppressDefCheck.class);
     }
 
-    protected <ENTITY extends WhiteSuppressDefCheck> ENTITY doSelectByPKValueWithDeletedCheck(Long defCheckId, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(defCheckId), entityType);
+    protected <ENTITY extends WhiteSuppressDefCheck> ENTITY doSelectByPKWithDeletedCheck(Long defCheckId, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(defCheckId), entityType);
     }
 
-    private WhiteSuppressDefCheckCB buildPKCB(Long defCheckId) {
+    protected WhiteSuppressDefCheckCB xprepareCBAsPK(Long defCheckId) {
         assertObjectNotNull("defCheckId", defCheckId);
-        WhiteSuppressDefCheckCB cb = newMyConditionBean();
-        cb.query().setDefCheckId_Equal(defCheckId);
+        WhiteSuppressDefCheckCB cb = newMyConditionBean(); cb.acceptPrimaryKey(defCheckId);
         return cb;
     }
 

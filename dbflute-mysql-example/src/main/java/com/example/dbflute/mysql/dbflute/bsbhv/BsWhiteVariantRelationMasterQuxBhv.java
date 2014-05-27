@@ -184,7 +184,7 @@ public abstract class BsWhiteVariantRelationMasterQuxBhv extends AbstractBehavio
      * </pre>
      * @param cb The condition-bean of WhiteVariantRelationMasterQux. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -205,39 +205,42 @@ public abstract class BsWhiteVariantRelationMasterQuxBhv extends AbstractBehavio
 
     /**
      * Select the entity by the primary-key value.
-     * @param masterQuxId The one of primary key. (NotNull)
+     * @param masterQuxId : PK, NotNull, BIGINT(19). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteVariantRelationMasterQux selectByPKValue(Long masterQuxId) {
-        return doSelectByPKValue(masterQuxId, WhiteVariantRelationMasterQux.class);
+        return doSelectByPK(masterQuxId, WhiteVariantRelationMasterQux.class);
     }
 
-    protected <ENTITY extends WhiteVariantRelationMasterQux> ENTITY doSelectByPKValue(Long masterQuxId, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(masterQuxId), entityType);
+    protected <ENTITY extends WhiteVariantRelationMasterQux> ENTITY doSelectByPK(Long masterQuxId, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(masterQuxId), entityType);
+    }
+
+    protected <ENTITY extends WhiteVariantRelationMasterQux> OptionalEntity<ENTITY> doSelectOptionalByPK(Long masterQuxId, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(masterQuxId, entityType), masterQuxId);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param masterQuxId The one of primary key. (NotNull)
+     * @param masterQuxId : PK, NotNull, BIGINT(19). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteVariantRelationMasterQux selectByPKValueWithDeletedCheck(Long masterQuxId) {
-        return doSelectByPKValueWithDeletedCheck(masterQuxId, WhiteVariantRelationMasterQux.class);
+        return doSelectByPKWithDeletedCheck(masterQuxId, WhiteVariantRelationMasterQux.class);
     }
 
-    protected <ENTITY extends WhiteVariantRelationMasterQux> ENTITY doSelectByPKValueWithDeletedCheck(Long masterQuxId, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(masterQuxId), entityType);
+    protected <ENTITY extends WhiteVariantRelationMasterQux> ENTITY doSelectByPKWithDeletedCheck(Long masterQuxId, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(masterQuxId), entityType);
     }
 
-    private WhiteVariantRelationMasterQuxCB buildPKCB(Long masterQuxId) {
+    protected WhiteVariantRelationMasterQuxCB xprepareCBAsPK(Long masterQuxId) {
         assertObjectNotNull("masterQuxId", masterQuxId);
-        WhiteVariantRelationMasterQuxCB cb = newMyConditionBean();
-        cb.query().setMasterQuxId_Equal(masterQuxId);
+        WhiteVariantRelationMasterQuxCB cb = newMyConditionBean(); cb.acceptPrimaryKey(masterQuxId);
         return cb;
     }
 

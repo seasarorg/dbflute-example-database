@@ -86,18 +86,21 @@ public abstract class BsWhiteAllInOneClsNormalColRef implements Entity, Serializ
     /** CLS_REF_ID: {NotNull, INT(10)} */
     protected Integer _clsRefId;
 
-    /** FOO_CODE: {PK, UQ, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT} */
+    /** FOO_CODE: {PK, UQ+, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT} */
     protected String _fooCode;
 
-    /** BAR_CODE: {PK, UQ+, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT} */
+    /** BAR_CODE: {PK, +UQ, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT} */
     protected String _barCode;
 
-    /** QUX_CODE: {PK, UQ+, NotNull, CHAR(3)} */
+    /** QUX_CODE: {PK, +UQ, NotNull, CHAR(3)} */
     protected String _quxCode;
 
     // -----------------------------------------------------
     //                                              Internal
     //                                              --------
+    /** The unique-driven properties for this entity. (NotNull) */
+    protected final EntityUniqueDrivenProperties __uniqueDrivenProperties = newUniqueDrivenProperties();
+
     /** The modified properties for this entity. (NotNull) */
     protected final EntityModifiedProperties __modifiedProperties = newModifiedProperties();
 
@@ -142,6 +145,34 @@ public abstract class BsWhiteAllInOneClsNormalColRef implements Entity, Serializ
         if (getBarCode() == null) { return false; }
         if (getQuxCode() == null) { return false; }
         return true;
+    }
+
+    /**
+     * To be unique by the unique column. <br />
+     * You can update the entity by the key when entity update (NOT batch update).
+     * @param fooCode : PK, UQ+, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT. (NotNull)
+     * @param barCode : PK, +UQ, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT. (NotNull)
+     * @param quxCode : PK, +UQ, NotNull, CHAR(3). (NotNull)
+     */
+    public void uniqueBy(String fooCode, String barCode, String quxCode) {
+        __uniqueDrivenProperties.clear();
+        __uniqueDrivenProperties.addPropertyName("fooCode");
+        _fooCode = fooCode;
+        __uniqueDrivenProperties.addPropertyName("barCode");
+        _barCode = barCode;
+        __uniqueDrivenProperties.addPropertyName("quxCode");
+        _quxCode = quxCode;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Set<String> uniqueDrivenProperties() {
+        return __uniqueDrivenProperties.getPropertyNames();
+    }
+
+    protected EntityUniqueDrivenProperties newUniqueDrivenProperties() {
+        return new EntityUniqueDrivenProperties();
     }
 
     // ===================================================================================
@@ -254,8 +285,8 @@ public abstract class BsWhiteAllInOneClsNormalColRef implements Entity, Serializ
         if (!xSV(getQuxCode(), other.getQuxCode())) { return false; }
         return true;
     }
-    protected boolean xSV(Object value1, Object value2) {
-        return FunCustodial.isSameValue(value1, value2);
+    protected boolean xSV(Object v1, Object v2) {
+        return FunCustodial.isSameValue(v1, v2);
     }
 
     /**
@@ -263,15 +294,15 @@ public abstract class BsWhiteAllInOneClsNormalColRef implements Entity, Serializ
      * @return The hash-code from primary-key or columns.
      */
     public int hashCode() {
-        int result = 17;
-        result = xCH(result, getTableDbName());
-        result = xCH(result, getFooCode());
-        result = xCH(result, getBarCode());
-        result = xCH(result, getQuxCode());
-        return result;
+        int hs = 17;
+        hs = xCH(hs, getTableDbName());
+        hs = xCH(hs, getFooCode());
+        hs = xCH(hs, getBarCode());
+        hs = xCH(hs, getQuxCode());
+        return hs;
     }
-    protected int xCH(int result, Object value) {
-        return FunCustodial.calculateHashcode(result, value);
+    protected int xCH(int hs, Object vl) {
+        return FunCustodial.calculateHashcode(hs, vl);
     }
 
     /**
@@ -295,15 +326,15 @@ public abstract class BsWhiteAllInOneClsNormalColRef implements Entity, Serializ
     public String toStringWithRelation() {
         StringBuilder sb = new StringBuilder();
         sb.append(toString());
-        String l = "\n  ";
+        String li = "\n  ";
         if (_whiteAllInOneClsElementAsFoo != null)
-        { sb.append(l).append(xbRDS(_whiteAllInOneClsElementAsFoo, "whiteAllInOneClsElementAsFoo")); }
+        { sb.append(li).append(xbRDS(_whiteAllInOneClsElementAsFoo, "whiteAllInOneClsElementAsFoo")); }
         if (_whiteAllInOneClsElementAsBar != null)
-        { sb.append(l).append(xbRDS(_whiteAllInOneClsElementAsBar, "whiteAllInOneClsElementAsBar")); }
+        { sb.append(li).append(xbRDS(_whiteAllInOneClsElementAsBar, "whiteAllInOneClsElementAsBar")); }
         return sb.toString();
     }
-    protected String xbRDS(Entity e, String name) { // buildRelationDisplayString()
-        return e.buildDisplayString(name, true, true);
+    protected String xbRDS(Entity et, String name) { // buildRelationDisplayString()
+        return et.buildDisplayString(name, true, true);
     }
 
     /**
@@ -319,24 +350,24 @@ public abstract class BsWhiteAllInOneClsNormalColRef implements Entity, Serializ
     }
     protected String buildColumnString() {
         StringBuilder sb = new StringBuilder();
-        String delimiter = ", ";
-        sb.append(delimiter).append(getClsRefId());
-        sb.append(delimiter).append(getFooCode());
-        sb.append(delimiter).append(getBarCode());
-        sb.append(delimiter).append(getQuxCode());
-        if (sb.length() > delimiter.length()) {
-            sb.delete(0, delimiter.length());
+        String dm = ", ";
+        sb.append(dm).append(getClsRefId());
+        sb.append(dm).append(getFooCode());
+        sb.append(dm).append(getBarCode());
+        sb.append(dm).append(getQuxCode());
+        if (sb.length() > dm.length()) {
+            sb.delete(0, dm.length());
         }
         sb.insert(0, "{").append("}");
         return sb.toString();
     }
     protected String buildRelationString() {
         StringBuilder sb = new StringBuilder();
-        String c = ",";
-        if (_whiteAllInOneClsElementAsFoo != null) { sb.append(c).append("whiteAllInOneClsElementAsFoo"); }
-        if (_whiteAllInOneClsElementAsBar != null) { sb.append(c).append("whiteAllInOneClsElementAsBar"); }
-        if (sb.length() > c.length()) {
-            sb.delete(0, c.length()).insert(0, "(").append(")");
+        String cm = ",";
+        if (_whiteAllInOneClsElementAsFoo != null) { sb.append(cm).append("whiteAllInOneClsElementAsFoo"); }
+        if (_whiteAllInOneClsElementAsBar != null) { sb.append(cm).append("whiteAllInOneClsElementAsBar"); }
+        if (sb.length() > cm.length()) {
+            sb.delete(0, cm.length()).insert(0, "(").append(")");
         }
         return sb.toString();
     }
@@ -374,7 +405,7 @@ public abstract class BsWhiteAllInOneClsNormalColRef implements Entity, Serializ
     }
 
     /**
-     * [get] FOO_CODE: {PK, UQ, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT} <br />
+     * [get] FOO_CODE: {PK, UQ+, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT} <br />
      * @return The value of the column 'FOO_CODE'. (basically NotNull if selected: for the constraint)
      */
     public String getFooCode() {
@@ -382,7 +413,7 @@ public abstract class BsWhiteAllInOneClsNormalColRef implements Entity, Serializ
     }
 
     /**
-     * [set] FOO_CODE: {PK, UQ, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT} <br />
+     * [set] FOO_CODE: {PK, UQ+, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT} <br />
      * @param fooCode The value of the column 'FOO_CODE'. (basically NotNull if update: for the constraint)
      */
     public void setFooCode(String fooCode) {
@@ -391,7 +422,7 @@ public abstract class BsWhiteAllInOneClsNormalColRef implements Entity, Serializ
     }
 
     /**
-     * [get] BAR_CODE: {PK, UQ+, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT} <br />
+     * [get] BAR_CODE: {PK, +UQ, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT} <br />
      * @return The value of the column 'BAR_CODE'. (basically NotNull if selected: for the constraint)
      */
     public String getBarCode() {
@@ -399,7 +430,7 @@ public abstract class BsWhiteAllInOneClsNormalColRef implements Entity, Serializ
     }
 
     /**
-     * [set] BAR_CODE: {PK, UQ+, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT} <br />
+     * [set] BAR_CODE: {PK, +UQ, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT} <br />
      * @param barCode The value of the column 'BAR_CODE'. (basically NotNull if update: for the constraint)
      */
     public void setBarCode(String barCode) {
@@ -408,7 +439,7 @@ public abstract class BsWhiteAllInOneClsNormalColRef implements Entity, Serializ
     }
 
     /**
-     * [get] QUX_CODE: {PK, UQ+, NotNull, CHAR(3)} <br />
+     * [get] QUX_CODE: {PK, +UQ, NotNull, CHAR(3)} <br />
      * @return The value of the column 'QUX_CODE'. (basically NotNull if selected: for the constraint)
      */
     public String getQuxCode() {
@@ -416,7 +447,7 @@ public abstract class BsWhiteAllInOneClsNormalColRef implements Entity, Serializ
     }
 
     /**
-     * [set] QUX_CODE: {PK, UQ+, NotNull, CHAR(3)} <br />
+     * [set] QUX_CODE: {PK, +UQ, NotNull, CHAR(3)} <br />
      * @param quxCode The value of the column 'QUX_CODE'. (basically NotNull if update: for the constraint)
      */
     public void setQuxCode(String quxCode) {

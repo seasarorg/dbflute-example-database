@@ -1,4 +1,115 @@
 map:{
+    ; 2014/05/21 00:10:27 = map:{
+        ; diffDate = 2014/05/21 00:10:27
+        ; tableDiff = map:{
+            ; white_only_one_to_one_to = map:{
+                ; tableName = white_only_one_to_one_to
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; FROM_ID = map:{
+                        ; constraintName = FROM_ID
+                        ; diffType = ADD
+                    }
+                }
+                ; indexDiff = map:{
+                    ; FK_WHITE_ONLY_ONE_TO_ONE_TO_FROM = map:{
+                        ; constraintName = FK_WHITE_ONLY_ONE_TO_ONE_TO_FROM
+                        ; diffType = DELETE
+                    }
+                }
+            }
+        }
+    }
+    ; 2014/05/21 00:04:53 = map:{
+        ; diffDate = 2014/05/21 00:04:53
+        ; tableCount = map:{
+            ; next = 88
+            ; previous = 86
+        }
+        ; tableDiff = map:{
+            ; white_only_one_to_one_from = map:{
+                ; tableName = white_only_one_to_one_from
+                ; diffType = ADD
+            }
+            ; white_only_one_to_one_to = map:{
+                ; tableName = white_only_one_to_one_to
+                ; diffType = ADD
+            }
+        }
+    }
+    ; 2014/05/20 23:58:47 = map:{
+        ; diffDate = 2014/05/20 23:58:47
+        ; tableDiff = map:{
+            ; member = map:{
+                ; tableName = member
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; MEMBER = map:{
+                        ; columnName = MEMBER
+                        ; diffType = DELETE
+                    }
+                }
+            }
+        }
+    }
+    ; 2014/05/20 22:23:59 = map:{
+        ; diffDate = 2014/05/20 22:23:59
+        ; tableDiff = map:{
+            ; member = map:{
+                ; tableName = member
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; MEMBER = map:{
+                        ; columnName = MEMBER
+                        ; diffType = ADD
+                    }
+                }
+            }
+        }
+    }
+    ; 2014/05/20 22:23:03 = map:{
+        ; diffDate = 2014/05/20 22:23:03
+        ; tableDiff = map:{
+            ; member = map:{
+                ; tableName = member
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; MEMBER_STATUS = map:{
+                        ; columnName = MEMBER_STATUS
+                        ; diffType = DELETE
+                    }
+                }
+            }
+        }
+    }
+    ; 2014/05/20 22:21:45 = map:{
+        ; diffDate = 2014/05/20 22:21:45
+        ; tableDiff = map:{
+            ; member = map:{
+                ; tableName = member
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; MEMBER_STATUS = map:{
+                        ; columnName = MEMBER_STATUS
+                        ; diffType = ADD
+                    }
+                }
+            }
+        }
+    }
+    ; 2014/05/20 14:12:48 = map:{
+        ; diffDate = 2014/05/20 14:12:48
+        ; tableCount = map:{
+            ; next = 86
+            ; previous = 85
+        }
+        ; tableDiff = map:{
+            ; white_include_query = map:{
+                ; tableName = white_include_query
+                ; diffType = ADD
+            }
+        }
+    }
     ; 2014/04/19 13:35:36 = map:{
         ; diffDate = 2014/04/19 13:35:36
         ; craftDiff = map:{

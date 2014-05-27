@@ -117,14 +117,14 @@ public class BsWhiteCompoundPkRefNestCQ extends AbstractBsWhiteCompoundPkRefNest
 
     /** 
      * Add order-by as ascend. <br />
-     * FOO_MULTIPLE_ID: {IX, NotNull, INT(10), FK to white_compound_pk_ref}
+     * FOO_MULTIPLE_ID: {IX+, NotNull, INT(10), FK to white_compound_pk_ref}
      * @return this. (NotNull)
      */
     public BsWhiteCompoundPkRefNestCQ addOrderBy_FooMultipleId_Asc() { regOBA("FOO_MULTIPLE_ID"); return this; }
 
     /**
      * Add order-by as descend. <br />
-     * FOO_MULTIPLE_ID: {IX, NotNull, INT(10), FK to white_compound_pk_ref}
+     * FOO_MULTIPLE_ID: {IX+, NotNull, INT(10), FK to white_compound_pk_ref}
      * @return this. (NotNull)
      */
     public BsWhiteCompoundPkRefNestCQ addOrderBy_FooMultipleId_Desc() { regOBD("FOO_MULTIPLE_ID"); return this; }
@@ -138,14 +138,14 @@ public class BsWhiteCompoundPkRefNestCQ extends AbstractBsWhiteCompoundPkRefNest
 
     /** 
      * Add order-by as ascend. <br />
-     * BAR_MULTIPLE_ID: {IX, NotNull, INT(10), FK to white_compound_pk_ref}
+     * BAR_MULTIPLE_ID: {IX+, NotNull, INT(10), FK to white_compound_pk_ref}
      * @return this. (NotNull)
      */
     public BsWhiteCompoundPkRefNestCQ addOrderBy_BarMultipleId_Asc() { regOBA("BAR_MULTIPLE_ID"); return this; }
 
     /**
      * Add order-by as descend. <br />
-     * BAR_MULTIPLE_ID: {IX, NotNull, INT(10), FK to white_compound_pk_ref}
+     * BAR_MULTIPLE_ID: {IX+, NotNull, INT(10), FK to white_compound_pk_ref}
      * @return this. (NotNull)
      */
     public BsWhiteCompoundPkRefNestCQ addOrderBy_BarMultipleId_Desc() { regOBD("BAR_MULTIPLE_ID"); return this; }
@@ -159,14 +159,14 @@ public class BsWhiteCompoundPkRefNestCQ extends AbstractBsWhiteCompoundPkRefNest
 
     /** 
      * Add order-by as ascend. <br />
-     * QUX_MULTIPLE_ID: {IX+, NotNull, INT(10), FK to white_compound_pk_ref}
+     * QUX_MULTIPLE_ID: {NotNull, INT(10), FK to white_compound_pk_ref}
      * @return this. (NotNull)
      */
     public BsWhiteCompoundPkRefNestCQ addOrderBy_QuxMultipleId_Asc() { regOBA("QUX_MULTIPLE_ID"); return this; }
 
     /**
      * Add order-by as descend. <br />
-     * QUX_MULTIPLE_ID: {IX+, NotNull, INT(10), FK to white_compound_pk_ref}
+     * QUX_MULTIPLE_ID: {NotNull, INT(10), FK to white_compound_pk_ref}
      * @return this. (NotNull)
      */
     public BsWhiteCompoundPkRefNestCQ addOrderBy_QuxMultipleId_Desc() { regOBD("QUX_MULTIPLE_ID"); return this; }
@@ -232,7 +232,7 @@ public class BsWhiteCompoundPkRefNestCQ extends AbstractBsWhiteCompoundPkRefNest
     // ===================================================================================
     //                                                                         Union Query
     //                                                                         ===========
-    protected void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
+    public void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
         WhiteCompoundPkRefNestCQ bq = (WhiteCompoundPkRefNestCQ)bqs;
         WhiteCompoundPkRefNestCQ uq = (WhiteCompoundPkRefNestCQ)uqs;
         if (bq.hasConditionQueryWhiteCompoundPkRefByQuxMultipleId()) {

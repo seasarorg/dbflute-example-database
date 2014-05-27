@@ -33,6 +33,9 @@ public class VendorUnsupportedAliasDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgVendorCheckId(), "vendorCheckId");
@@ -40,8 +43,6 @@ public class VendorUnsupportedAliasDbm extends AbstractDBMeta {
         setupEpg(_epgMap, new EpgSpace_exists(), "space_exists");
         setupEpg(_epgMap, new EpgDollar$exists(), "dollar$exists");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgVendorCheckId implements PropertyGateway {
         public Object read(Entity et) { return ((VendorUnsupportedAlias)et).getVendorCheckId(); }
         public void write(Entity et, Object vl) { ((VendorUnsupportedAlias)et).setVendorCheckId(ctl(vl)); }
@@ -58,6 +59,8 @@ public class VendorUnsupportedAliasDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((VendorUnsupportedAlias)et).getDollar$exists(); }
         public void write(Entity et, Object vl) { ((VendorUnsupportedAlias)et).setDollar$exists((java.util.Date)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -73,14 +76,30 @@ public class VendorUnsupportedAliasDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnVendorCheckId = cci("vendor_check_id", "vendor_check_id", null, null, false, "vendorCheckId", Long.class, false, false, "numeric", 16, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnHyphen_exists = cci("HYPHEN-EXISTS", "\"HYPHEN-EXISTS\"", null, null, false, "hyphen_exists", String.class, false, false, "varchar", 2147483647, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnSpace_exists = cci("SPACE EXISTS", "\"SPACE EXISTS\"", null, null, false, "space_exists", Integer.class, false, false, "int4", 10, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnDollar$exists = cci("DOLLAR$EXISTS", "DOLLAR$EXISTS", null, null, false, "dollar$exists", java.util.Date.class, false, false, "date", 13, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnVendorCheckId = cci("vendor_check_id", "vendor_check_id", null, null, Long.class, "vendorCheckId", null, false, false, false, "numeric", 16, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnHyphen_exists = cci("HYPHEN-EXISTS", "\"HYPHEN-EXISTS\"", null, null, String.class, "hyphen_exists", null, false, false, false, "varchar", 2147483647, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnSpace_exists = cci("SPACE EXISTS", "\"SPACE EXISTS\"", null, null, Integer.class, "space_exists", null, false, false, false, "int4", 10, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnDollar$exists = cci("DOLLAR$EXISTS", "DOLLAR$EXISTS", null, null, java.util.Date.class, "dollar$exists", null, false, false, false, "date", 13, 0, null, false, null, null, null, null, null);
 
+    /**
+     * vendor_check_id: {numeric(16)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnVendorCheckId() { return _columnVendorCheckId; }
+    /**
+     * HYPHEN-EXISTS: {varchar(2147483647)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnHyphen_exists() { return _columnHyphen_exists; }
+    /**
+     * SPACE EXISTS: {int4(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnSpace_exists() { return _columnSpace_exists; }
+    /**
+     * DOLLAR$EXISTS: {date(13)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnDollar$exists() { return _columnDollar$exists; }
 
     protected List<ColumnInfo> ccil() {
@@ -109,6 +128,8 @@ public class VendorUnsupportedAliasDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

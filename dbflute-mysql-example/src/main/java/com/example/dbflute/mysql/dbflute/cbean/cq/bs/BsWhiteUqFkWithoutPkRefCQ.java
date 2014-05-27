@@ -185,7 +185,7 @@ public class BsWhiteUqFkWithoutPkRefCQ extends AbstractBsWhiteUqFkWithoutPkRefCQ
     // ===================================================================================
     //                                                                         Union Query
     //                                                                         ===========
-    protected void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
+    public void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
         WhiteUqFkWithoutPkRefCQ bq = (WhiteUqFkWithoutPkRefCQ)bqs;
         WhiteUqFkWithoutPkRefCQ uq = (WhiteUqFkWithoutPkRefCQ)uqs;
         if (bq.hasConditionQueryWhiteUqFkWithoutPk()) {

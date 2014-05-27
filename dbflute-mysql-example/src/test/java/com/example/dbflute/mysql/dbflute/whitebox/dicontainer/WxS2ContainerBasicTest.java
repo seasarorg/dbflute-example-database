@@ -79,7 +79,7 @@ public class WxS2ContainerBasicTest extends UnitContainerTestCase {
         }
         { // Execute SQL
             final MemberCB cb = new MemberCB();
-            cb.query().setMemberAccount_PrefixSearch("Sto");
+            cb.query().setMemberName_PrefixSearch("Sto");
             memberBhv.selectList(cb);
         }
         final String firstSql;

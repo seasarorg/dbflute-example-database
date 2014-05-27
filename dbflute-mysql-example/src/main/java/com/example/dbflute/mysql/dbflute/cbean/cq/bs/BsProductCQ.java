@@ -445,7 +445,7 @@ public class BsProductCQ extends AbstractBsProductCQ {
     // ===================================================================================
     //                                                                         Union Query
     //                                                                         ===========
-    protected void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
+    public void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
         ProductCQ bq = (ProductCQ)bqs;
         ProductCQ uq = (ProductCQ)uqs;
         if (bq.hasConditionQueryProductCategory()) {

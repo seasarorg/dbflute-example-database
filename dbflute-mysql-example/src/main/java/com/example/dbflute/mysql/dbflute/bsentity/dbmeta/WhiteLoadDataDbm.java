@@ -48,13 +48,14 @@ public class WhiteLoadDataDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgLoadDataId(), "loadDataId");
         setupEpg(_epgMap, new EpgLoadDataName(), "loadDataName");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgLoadDataId implements PropertyGateway {
         public Object read(Entity et) { return ((WhiteLoadData)et).getLoadDataId(); }
         public void write(Entity et, Object vl) { ((WhiteLoadData)et).setLoadDataId(ctl(vl)); }
@@ -63,6 +64,8 @@ public class WhiteLoadDataDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((WhiteLoadData)et).getLoadDataName(); }
         public void write(Entity et, Object vl) { ((WhiteLoadData)et).setLoadDataName((String)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -78,8 +81,8 @@ public class WhiteLoadDataDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnLoadDataId = cci("LOAD_DATA_ID", "LOAD_DATA_ID", null, null, true, "loadDataId", Long.class, true, false, "BIGINT", 19, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnLoadDataName = cci("LOAD_DATA_NAME", "LOAD_DATA_NAME", null, null, true, "loadDataName", String.class, false, false, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnLoadDataId = cci("LOAD_DATA_ID", "LOAD_DATA_ID", null, null, Long.class, "loadDataId", null, true, false, true, "BIGINT", 19, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnLoadDataName = cci("LOAD_DATA_NAME", "LOAD_DATA_NAME", null, null, String.class, "loadDataName", null, false, false, true, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
 
     /**
      * LOAD_DATA_ID: {PK, NotNull, BIGINT(19)}
@@ -114,6 +117,8 @@ public class WhiteLoadDataDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

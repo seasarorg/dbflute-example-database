@@ -489,7 +489,7 @@ public abstract class AbstractBsWhiteTableExceptGenRefCQ extends AbstractConditi
     public abstract String keepSpecifyMyselfDerived(WhiteTableExceptGenRefCQ sq);
 
     /**
-     * Prepare for (Query)MyselfDerived (SubQuery).
+     * Prepare for (Query)MyselfDerived (correlated sub-query).
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<WhiteTableExceptGenRefCB> myselfDerived() {
@@ -511,8 +511,8 @@ public abstract class AbstractBsWhiteTableExceptGenRefCQ extends AbstractConditi
     //                                                                        MyselfExists
     //                                                                        ============
     /**
-     * Prepare for MyselfExists (SubQuery).
-     * @param subQuery The implementation of sub query. (NotNull)
+     * Prepare for MyselfExists (correlated sub-query).
+     * @param subQuery The implementation of sub-query. (NotNull)
      */
     public void myselfExists(SubQuery<WhiteTableExceptGenRefCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
@@ -527,8 +527,8 @@ public abstract class AbstractBsWhiteTableExceptGenRefCQ extends AbstractConditi
     //                                                                       MyselfInScope
     //                                                                       =============
     /**
-     * Prepare for MyselfInScope (SubQuery).
-     * @param subQuery The implementation of sub query. (NotNull)
+     * Prepare for MyselfInScope (sub-query).
+     * @param subQuery The implementation of sub-query. (NotNull)
      */
     public void myselfInScope(SubQuery<WhiteTableExceptGenRefCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);

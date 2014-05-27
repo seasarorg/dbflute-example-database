@@ -184,7 +184,7 @@ public abstract class BsWhiteVariantRelationMasterFooBhv extends AbstractBehavio
      * </pre>
      * @param cb The condition-bean of WhiteVariantRelationMasterFoo. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -205,39 +205,42 @@ public abstract class BsWhiteVariantRelationMasterFooBhv extends AbstractBehavio
 
     /**
      * Select the entity by the primary-key value.
-     * @param masterFooId The one of primary key. (NotNull)
+     * @param masterFooId : PK, NotNull, BIGINT(19). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteVariantRelationMasterFoo selectByPKValue(Long masterFooId) {
-        return doSelectByPKValue(masterFooId, WhiteVariantRelationMasterFoo.class);
+        return doSelectByPK(masterFooId, WhiteVariantRelationMasterFoo.class);
     }
 
-    protected <ENTITY extends WhiteVariantRelationMasterFoo> ENTITY doSelectByPKValue(Long masterFooId, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(masterFooId), entityType);
+    protected <ENTITY extends WhiteVariantRelationMasterFoo> ENTITY doSelectByPK(Long masterFooId, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(masterFooId), entityType);
+    }
+
+    protected <ENTITY extends WhiteVariantRelationMasterFoo> OptionalEntity<ENTITY> doSelectOptionalByPK(Long masterFooId, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(masterFooId, entityType), masterFooId);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param masterFooId The one of primary key. (NotNull)
+     * @param masterFooId : PK, NotNull, BIGINT(19). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteVariantRelationMasterFoo selectByPKValueWithDeletedCheck(Long masterFooId) {
-        return doSelectByPKValueWithDeletedCheck(masterFooId, WhiteVariantRelationMasterFoo.class);
+        return doSelectByPKWithDeletedCheck(masterFooId, WhiteVariantRelationMasterFoo.class);
     }
 
-    protected <ENTITY extends WhiteVariantRelationMasterFoo> ENTITY doSelectByPKValueWithDeletedCheck(Long masterFooId, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(masterFooId), entityType);
+    protected <ENTITY extends WhiteVariantRelationMasterFoo> ENTITY doSelectByPKWithDeletedCheck(Long masterFooId, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(masterFooId), entityType);
     }
 
-    private WhiteVariantRelationMasterFooCB buildPKCB(Long masterFooId) {
+    protected WhiteVariantRelationMasterFooCB xprepareCBAsPK(Long masterFooId) {
         assertObjectNotNull("masterFooId", masterFooId);
-        WhiteVariantRelationMasterFooCB cb = newMyConditionBean();
-        cb.query().setMasterFooId_Equal(masterFooId);
+        WhiteVariantRelationMasterFooCB cb = newMyConditionBean(); cb.acceptPrimaryKey(masterFooId);
         return cb;
     }
 

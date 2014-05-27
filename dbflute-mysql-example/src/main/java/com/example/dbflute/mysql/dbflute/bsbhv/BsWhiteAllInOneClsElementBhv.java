@@ -184,7 +184,7 @@ public abstract class BsWhiteAllInOneClsElementBhv extends AbstractBehaviorWrita
      * </pre>
      * @param cb The condition-bean of WhiteAllInOneClsElement. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -205,41 +205,44 @@ public abstract class BsWhiteAllInOneClsElementBhv extends AbstractBehaviorWrita
 
     /**
      * Select the entity by the primary-key value.
-     * @param clsCategoryCode The one of primary key. (NotNull)
-     * @param clsElementCode The one of primary key. (NotNull)
+     * @param clsCategoryCode : PK, NotNull, CHAR(3), FK to white_all_in_one_cls_category. (NotNull)
+     * @param clsElementCode : PK, NotNull, CHAR(3). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteAllInOneClsElement selectByPKValue(String clsCategoryCode, String clsElementCode) {
-        return doSelectByPKValue(clsCategoryCode, clsElementCode, WhiteAllInOneClsElement.class);
+        return doSelectByPK(clsCategoryCode, clsElementCode, WhiteAllInOneClsElement.class);
     }
 
-    protected <ENTITY extends WhiteAllInOneClsElement> ENTITY doSelectByPKValue(String clsCategoryCode, String clsElementCode, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(clsCategoryCode, clsElementCode), entityType);
+    protected <ENTITY extends WhiteAllInOneClsElement> ENTITY doSelectByPK(String clsCategoryCode, String clsElementCode, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(clsCategoryCode, clsElementCode), entityType);
+    }
+
+    protected <ENTITY extends WhiteAllInOneClsElement> OptionalEntity<ENTITY> doSelectOptionalByPK(String clsCategoryCode, String clsElementCode, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(clsCategoryCode, clsElementCode, entityType), clsCategoryCode, clsElementCode);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param clsCategoryCode The one of primary key. (NotNull)
-     * @param clsElementCode The one of primary key. (NotNull)
+     * @param clsCategoryCode : PK, NotNull, CHAR(3), FK to white_all_in_one_cls_category. (NotNull)
+     * @param clsElementCode : PK, NotNull, CHAR(3). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteAllInOneClsElement selectByPKValueWithDeletedCheck(String clsCategoryCode, String clsElementCode) {
-        return doSelectByPKValueWithDeletedCheck(clsCategoryCode, clsElementCode, WhiteAllInOneClsElement.class);
+        return doSelectByPKWithDeletedCheck(clsCategoryCode, clsElementCode, WhiteAllInOneClsElement.class);
     }
 
-    protected <ENTITY extends WhiteAllInOneClsElement> ENTITY doSelectByPKValueWithDeletedCheck(String clsCategoryCode, String clsElementCode, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(clsCategoryCode, clsElementCode), entityType);
+    protected <ENTITY extends WhiteAllInOneClsElement> ENTITY doSelectByPKWithDeletedCheck(String clsCategoryCode, String clsElementCode, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(clsCategoryCode, clsElementCode), entityType);
     }
 
-    private WhiteAllInOneClsElementCB buildPKCB(String clsCategoryCode, String clsElementCode) {
+    protected WhiteAllInOneClsElementCB xprepareCBAsPK(String clsCategoryCode, String clsElementCode) {
         assertObjectNotNull("clsCategoryCode", clsCategoryCode);assertObjectNotNull("clsElementCode", clsElementCode);
-        WhiteAllInOneClsElementCB cb = newMyConditionBean();
-        cb.query().setClsCategoryCode_Equal(clsCategoryCode);cb.query().setClsElementCode_Equal(clsElementCode);
+        WhiteAllInOneClsElementCB cb = newMyConditionBean(); cb.acceptPrimaryKey(clsCategoryCode, clsElementCode);
         return cb;
     }
 
@@ -404,7 +407,8 @@ public abstract class BsWhiteAllInOneClsElementBhv extends AbstractBehaviorWrita
      */
     public List<WhiteAllInOneClsCategory> pulloutWhiteAllInOneClsCategory(List<WhiteAllInOneClsElement> whiteAllInOneClsElementList) {
         return helpPulloutInternally(whiteAllInOneClsElementList, new InternalPulloutCallback<WhiteAllInOneClsElement, WhiteAllInOneClsCategory>() {
-            public WhiteAllInOneClsCategory getFr(WhiteAllInOneClsElement et) { return et.getWhiteAllInOneClsCategory(); }
+            public WhiteAllInOneClsCategory getFr(WhiteAllInOneClsElement et)
+            { return et.getWhiteAllInOneClsCategory(); }
             public boolean hasRf() { return true; }
             public void setRfLs(WhiteAllInOneClsCategory et, List<WhiteAllInOneClsElement> ls)
             { et.setWhiteAllInOneClsElementList(ls); }

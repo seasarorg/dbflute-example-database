@@ -184,7 +184,7 @@ public abstract class BsWhiteSplitMultipleFkBaseBhv extends AbstractBehaviorWrit
      * </pre>
      * @param cb The condition-bean of WhiteSplitMultipleFkBase. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -205,39 +205,42 @@ public abstract class BsWhiteSplitMultipleFkBaseBhv extends AbstractBehaviorWrit
 
     /**
      * Select the entity by the primary-key value.
-     * @param baseId The one of primary key. (NotNull)
+     * @param baseId : PK, NotNull, BIGINT(19). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteSplitMultipleFkBase selectByPKValue(Long baseId) {
-        return doSelectByPKValue(baseId, WhiteSplitMultipleFkBase.class);
+        return doSelectByPK(baseId, WhiteSplitMultipleFkBase.class);
     }
 
-    protected <ENTITY extends WhiteSplitMultipleFkBase> ENTITY doSelectByPKValue(Long baseId, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(baseId), entityType);
+    protected <ENTITY extends WhiteSplitMultipleFkBase> ENTITY doSelectByPK(Long baseId, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(baseId), entityType);
+    }
+
+    protected <ENTITY extends WhiteSplitMultipleFkBase> OptionalEntity<ENTITY> doSelectOptionalByPK(Long baseId, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(baseId, entityType), baseId);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param baseId The one of primary key. (NotNull)
+     * @param baseId : PK, NotNull, BIGINT(19). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteSplitMultipleFkBase selectByPKValueWithDeletedCheck(Long baseId) {
-        return doSelectByPKValueWithDeletedCheck(baseId, WhiteSplitMultipleFkBase.class);
+        return doSelectByPKWithDeletedCheck(baseId, WhiteSplitMultipleFkBase.class);
     }
 
-    protected <ENTITY extends WhiteSplitMultipleFkBase> ENTITY doSelectByPKValueWithDeletedCheck(Long baseId, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(baseId), entityType);
+    protected <ENTITY extends WhiteSplitMultipleFkBase> ENTITY doSelectByPKWithDeletedCheck(Long baseId, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(baseId), entityType);
     }
 
-    private WhiteSplitMultipleFkBaseCB buildPKCB(Long baseId) {
+    protected WhiteSplitMultipleFkBaseCB xprepareCBAsPK(Long baseId) {
         assertObjectNotNull("baseId", baseId);
-        WhiteSplitMultipleFkBaseCB cb = newMyConditionBean();
-        cb.query().setBaseId_Equal(baseId);
+        WhiteSplitMultipleFkBaseCB cb = newMyConditionBean(); cb.acceptPrimaryKey(baseId);
         return cb;
     }
 
@@ -513,7 +516,8 @@ public abstract class BsWhiteSplitMultipleFkBaseBhv extends AbstractBehaviorWrit
      */
     public List<WhiteSplitMultipleFkNext> pulloutWhiteSplitMultipleFkNext(List<WhiteSplitMultipleFkBase> whiteSplitMultipleFkBaseList) {
         return helpPulloutInternally(whiteSplitMultipleFkBaseList, new InternalPulloutCallback<WhiteSplitMultipleFkBase, WhiteSplitMultipleFkNext>() {
-            public WhiteSplitMultipleFkNext getFr(WhiteSplitMultipleFkBase et) { return et.getWhiteSplitMultipleFkNext(); }
+            public WhiteSplitMultipleFkNext getFr(WhiteSplitMultipleFkBase et)
+            { return et.getWhiteSplitMultipleFkNext(); }
             public boolean hasRf() { return true; }
             public void setRfLs(WhiteSplitMultipleFkNext et, List<WhiteSplitMultipleFkBase> ls)
             { et.setWhiteSplitMultipleFkBaseList(ls); }
@@ -526,7 +530,8 @@ public abstract class BsWhiteSplitMultipleFkBaseBhv extends AbstractBehaviorWrit
      */
     public List<WhiteSplitMultipleFkRef> pulloutWhiteSplitMultipleFkRefAsSplitMultipleFkTest(List<WhiteSplitMultipleFkBase> whiteSplitMultipleFkBaseList) {
         return helpPulloutInternally(whiteSplitMultipleFkBaseList, new InternalPulloutCallback<WhiteSplitMultipleFkBase, WhiteSplitMultipleFkRef>() {
-            public WhiteSplitMultipleFkRef getFr(WhiteSplitMultipleFkBase et) { return et.getWhiteSplitMultipleFkRefAsSplitMultipleFkTest(); }
+            public WhiteSplitMultipleFkRef getFr(WhiteSplitMultipleFkBase et)
+            { return et.getWhiteSplitMultipleFkRefAsSplitMultipleFkTest(); }
             public boolean hasRf() { return false; }
             public void setRfLs(WhiteSplitMultipleFkRef et, List<WhiteSplitMultipleFkBase> ls)
             { throw new UnsupportedOperationException(); }

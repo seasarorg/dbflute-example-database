@@ -92,10 +92,14 @@ public class BsWhiteDbCommentCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                 PrimaryKey Handling
     //                                                                 ===================
+    /**
+     * Accept the query condition of primary key as equal.
+     * @param dbCommentCode (Normal): PK, NotNull, CHAR(3). (NotNull)
+     */
     public void acceptPrimaryKey(String dbCommentCode) {
         assertObjectNotNull("dbCommentCode", dbCommentCode);
         BsWhiteDbCommentCB cb = this;
-        cb.query().setDbCommentCode_Equal(dbCommentCode);
+        cb.query().setDbCommentCode_Equal(dbCommentCode);;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {
@@ -408,6 +412,11 @@ public class BsWhiteDbCommentCB extends AbstractConditionBean {
      */
     public void orScopeQuery(OrQuery<WhiteDbCommentCB> orQuery) {
         xorSQ((WhiteDbCommentCB)this, orQuery);
+    }
+
+    @Override
+    protected HpCBPurpose xhandleOrSQPurposeChange() {
+        return null; // means no check
     }
 
     /**

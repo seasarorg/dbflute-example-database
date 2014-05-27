@@ -98,6 +98,9 @@ public abstract class BsWhiteSplitMultipleFkBase implements Entity, Serializable
     // -----------------------------------------------------
     //                                              Internal
     //                                              --------
+    /** The unique-driven properties for this entity. (NotNull) */
+    protected final EntityUniqueDrivenProperties __uniqueDrivenProperties = newUniqueDrivenProperties();
+
     /** The modified properties for this entity. (NotNull) */
     protected final EntityModifiedProperties __modifiedProperties = newModifiedProperties();
 
@@ -140,6 +143,17 @@ public abstract class BsWhiteSplitMultipleFkBase implements Entity, Serializable
     public boolean hasPrimaryKeyValue() {
         if (getBaseId() == null) { return false; }
         return true;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Set<String> uniqueDrivenProperties() {
+        return __uniqueDrivenProperties.getPropertyNames();
+    }
+
+    protected EntityUniqueDrivenProperties newUniqueDrivenProperties() {
+        return new EntityUniqueDrivenProperties();
     }
 
     // ===================================================================================
@@ -270,8 +284,8 @@ public abstract class BsWhiteSplitMultipleFkBase implements Entity, Serializable
         if (!xSV(getBaseId(), other.getBaseId())) { return false; }
         return true;
     }
-    protected boolean xSV(Object value1, Object value2) {
-        return FunCustodial.isSameValue(value1, value2);
+    protected boolean xSV(Object v1, Object v2) {
+        return FunCustodial.isSameValue(v1, v2);
     }
 
     /**
@@ -279,13 +293,13 @@ public abstract class BsWhiteSplitMultipleFkBase implements Entity, Serializable
      * @return The hash-code from primary-key or columns.
      */
     public int hashCode() {
-        int result = 17;
-        result = xCH(result, getTableDbName());
-        result = xCH(result, getBaseId());
-        return result;
+        int hs = 17;
+        hs = xCH(hs, getTableDbName());
+        hs = xCH(hs, getBaseId());
+        return hs;
     }
-    protected int xCH(int result, Object value) {
-        return FunCustodial.calculateHashcode(result, value);
+    protected int xCH(int hs, Object vl) {
+        return FunCustodial.calculateHashcode(hs, vl);
     }
 
     /**
@@ -309,17 +323,17 @@ public abstract class BsWhiteSplitMultipleFkBase implements Entity, Serializable
     public String toStringWithRelation() {
         StringBuilder sb = new StringBuilder();
         sb.append(toString());
-        String l = "\n  ";
+        String li = "\n  ";
         if (_whiteSplitMultipleFkNext != null)
-        { sb.append(l).append(xbRDS(_whiteSplitMultipleFkNext, "whiteSplitMultipleFkNext")); }
+        { sb.append(li).append(xbRDS(_whiteSplitMultipleFkNext, "whiteSplitMultipleFkNext")); }
         if (_whiteSplitMultipleFkRefAsSplitMultipleFkTest != null)
-        { sb.append(l).append(xbRDS(_whiteSplitMultipleFkRefAsSplitMultipleFkTest, "whiteSplitMultipleFkRefAsSplitMultipleFkTest")); }
-        if (_whiteSplitMultipleFkChildList != null) { for (Entity e : _whiteSplitMultipleFkChildList)
-        { if (e != null) { sb.append(l).append(xbRDS(e, "whiteSplitMultipleFkChildList")); } } }
+        { sb.append(li).append(xbRDS(_whiteSplitMultipleFkRefAsSplitMultipleFkTest, "whiteSplitMultipleFkRefAsSplitMultipleFkTest")); }
+        if (_whiteSplitMultipleFkChildList != null) { for (Entity et : _whiteSplitMultipleFkChildList)
+        { if (et != null) { sb.append(li).append(xbRDS(et, "whiteSplitMultipleFkChildList")); } } }
         return sb.toString();
     }
-    protected String xbRDS(Entity e, String name) { // buildRelationDisplayString()
-        return e.buildDisplayString(name, true, true);
+    protected String xbRDS(Entity et, String name) { // buildRelationDisplayString()
+        return et.buildDisplayString(name, true, true);
     }
 
     /**
@@ -335,26 +349,26 @@ public abstract class BsWhiteSplitMultipleFkBase implements Entity, Serializable
     }
     protected String buildColumnString() {
         StringBuilder sb = new StringBuilder();
-        String delimiter = ", ";
-        sb.append(delimiter).append(getBaseId());
-        sb.append(delimiter).append(getFirstId());
-        sb.append(delimiter).append(getNextId());
-        sb.append(delimiter).append(getSplitName());
-        if (sb.length() > delimiter.length()) {
-            sb.delete(0, delimiter.length());
+        String dm = ", ";
+        sb.append(dm).append(getBaseId());
+        sb.append(dm).append(getFirstId());
+        sb.append(dm).append(getNextId());
+        sb.append(dm).append(getSplitName());
+        if (sb.length() > dm.length()) {
+            sb.delete(0, dm.length());
         }
         sb.insert(0, "{").append("}");
         return sb.toString();
     }
     protected String buildRelationString() {
         StringBuilder sb = new StringBuilder();
-        String c = ",";
-        if (_whiteSplitMultipleFkNext != null) { sb.append(c).append("whiteSplitMultipleFkNext"); }
-        if (_whiteSplitMultipleFkRefAsSplitMultipleFkTest != null) { sb.append(c).append("whiteSplitMultipleFkRefAsSplitMultipleFkTest"); }
+        String cm = ",";
+        if (_whiteSplitMultipleFkNext != null) { sb.append(cm).append("whiteSplitMultipleFkNext"); }
+        if (_whiteSplitMultipleFkRefAsSplitMultipleFkTest != null) { sb.append(cm).append("whiteSplitMultipleFkRefAsSplitMultipleFkTest"); }
         if (_whiteSplitMultipleFkChildList != null && !_whiteSplitMultipleFkChildList.isEmpty())
-        { sb.append(c).append("whiteSplitMultipleFkChildList"); }
-        if (sb.length() > c.length()) {
-            sb.delete(0, c.length()).insert(0, "(").append(")");
+        { sb.append(cm).append("whiteSplitMultipleFkChildList"); }
+        if (sb.length() > cm.length()) {
+            sb.delete(0, cm.length()).insert(0, "(").append(")");
         }
         return sb.toString();
     }

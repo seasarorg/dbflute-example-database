@@ -95,12 +95,15 @@ public class DBMetaInstanceHandler implements DBMetaProvider {
         tmpMap.put("white_implicit_reverse_fk", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteImplicitReverseFkDbm");
         tmpMap.put("white_implicit_reverse_fk_ref", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteImplicitReverseFkRefDbm");
         tmpMap.put("white_implicit_reverse_fk_suppress", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteImplicitReverseFkSuppressDbm");
+        tmpMap.put("white_include_query", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteIncludeQueryDbm");
         tmpMap.put("white_line_sep_comment", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteLineSepCommentDbm");
         tmpMap.put("white_load_data", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteLoadDataDbm");
         tmpMap.put("white_myself", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteMyselfDbm");
         tmpMap.put("white_myself_check", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteMyselfCheckDbm");
         tmpMap.put("white_no_pk", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteNoPkDbm");
         tmpMap.put("white_no_pk_relation", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteNoPkRelationDbm");
+        tmpMap.put("white_only_one_to_one_from", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteOnlyOneToOneFromDbm");
+        tmpMap.put("white_only_one_to_one_to", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteOnlyOneToOneToDbm");
         tmpMap.put("white_pg_reserv", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhitePgReservDbm");
         tmpMap.put("white_pg_reserv_ref", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhitePgReservRefDbm");
         tmpMap.put("white_point_type_mapping", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhitePointTypeMappingDbm");

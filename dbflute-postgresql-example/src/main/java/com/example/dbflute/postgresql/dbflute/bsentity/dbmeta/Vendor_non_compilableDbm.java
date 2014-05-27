@@ -33,14 +33,15 @@ public class Vendor_non_compilableDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgNon_compilable_id(), "non_compilable_id");
         setupEpg(_epgMap, new EpgNon_compilable_name(), "non_compilable_name");
         setupEpg(_epgMap, new EpgParent_id(), "parent_id");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgNon_compilable_id implements PropertyGateway {
         public Object read(Entity et) { return ((Vendor_non_compilable)et).getNon_compilable_id(); }
         public void write(Entity et, Object vl) { ((Vendor_non_compilable)et).setNon_compilable_id(cti(vl)); }
@@ -53,6 +54,22 @@ public class Vendor_non_compilableDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((Vendor_non_compilable)et).getParent_id(); }
         public void write(Entity et, Object vl) { ((Vendor_non_compilable)et).setParent_id(cti(vl)); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
+
+    // -----------------------------------------------------
+    //                                      Foreign Property
+    //                                      ----------------
+    protected final Map<String, PropertyGateway> _efpgMap = newHashMap();
+    {
+        setupEfpg(_efpgMap, new EfpgVendor_non_compilableSelf(), "vendor_non_compilableSelf");
+    }
+    public class EfpgVendor_non_compilableSelf implements PropertyGateway {
+        public Object read(Entity et) { return ((Vendor_non_compilable)et).getVendor_non_compilableSelf(); }
+        public void write(Entity et, Object vl) { ((Vendor_non_compilable)et).setVendor_non_compilableSelf((Vendor_non_compilable)vl); }
+    }
+    public PropertyGateway findForeignPropertyGateway(String prop)
+    { return doFindEfpg(_efpgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -68,12 +85,24 @@ public class Vendor_non_compilableDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnNon_compilable_id = cci("NON-COMPILABLE ID", "\"NON-COMPILABLE ID\"", null, null, true, "non_compilable_id", Integer.class, true, false, "int4", 10, 0, null, false, null, null, null, "vendor_non_compilableSelfList", null);
-    protected final ColumnInfo _columnNon_compilable_name = cci("NON COMPILABLE-NAME", "\"NON COMPILABLE-NAME\"", null, null, false, "non_compilable_name", String.class, false, false, "varchar", 64, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnParent_id = cci("PARENT-ID", "\"PARENT-ID\"", null, null, false, "parent_id", Integer.class, false, false, "int4", 10, 0, null, false, null, null, "vendor_non_compilableSelf", null, null);
+    protected final ColumnInfo _columnNon_compilable_id = cci("NON-COMPILABLE ID", "\"NON-COMPILABLE ID\"", null, null, Integer.class, "non_compilable_id", null, true, false, true, "int4", 10, 0, null, false, null, null, null, "vendor_non_compilableSelfList", null);
+    protected final ColumnInfo _columnNon_compilable_name = cci("NON COMPILABLE-NAME", "\"NON COMPILABLE-NAME\"", null, null, String.class, "non_compilable_name", null, false, false, false, "varchar", 64, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnParent_id = cci("PARENT-ID", "\"PARENT-ID\"", null, null, Integer.class, "parent_id", null, false, false, false, "int4", 10, 0, null, false, null, null, "vendor_non_compilableSelf", null, null);
 
+    /**
+     * NON-COMPILABLE ID: {PK, NotNull, int4(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnNon_compilable_id() { return _columnNon_compilable_id; }
+    /**
+     * NON COMPILABLE-NAME: {varchar(64)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnNon_compilable_name() { return _columnNon_compilable_name; }
+    /**
+     * PARENT-ID: {int4(10), FK to VENDOR-NON COMPILABLE}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnParent_id() { return _columnParent_id; }
 
     protected List<ColumnInfo> ccil() {
@@ -99,17 +128,27 @@ public class Vendor_non_compilableDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------
+    /**
+     * VENDOR-NON COMPILABLE by my PARENT-ID, named 'vendor_non_compilableSelf'.
+     * @return The information object of foreign property. (NotNull)
+     */
     public ForeignInfo foreignVendor_non_compilableSelf() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnParent_id(), Vendor_non_compilableDbm.getInstance().columnNon_compilable_id());
-        return cfi("fk_vendor_non_comppilable_self", "vendor_non_compilableSelf", this, Vendor_non_compilableDbm.getInstance(), mp, 0, false, false, false, false, null, null, false, "vendor_non_compilableSelfList");
+        return cfi("fk_vendor_non_comppilable_self", "vendor_non_compilableSelf", this, Vendor_non_compilableDbm.getInstance(), mp, 0, null, false, false, false, false, null, null, false, "vendor_non_compilableSelfList");
     }
 
     // -----------------------------------------------------
     //                                     Referrer Property
     //                                     -----------------
+    /**
+     * VENDOR-NON COMPILABLE by PARENT-ID, named 'vendor_non_compilableSelfList'.
+     * @return The information object of referrer property. (NotNull)
+     */
     public ReferrerInfo referrerVendor_non_compilableSelfList() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnNon_compilable_id(), Vendor_non_compilableDbm.getInstance().columnParent_id());
         return cri("fk_vendor_non_comppilable_self", "vendor_non_compilableSelfList", this, Vendor_non_compilableDbm.getInstance(), mp, false, "vendor_non_compilableSelf");

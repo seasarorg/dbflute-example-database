@@ -93,10 +93,25 @@ public class BsMemberLoginCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                 PrimaryKey Handling
     //                                                                 ===================
+    /**
+     * Accept the query condition of primary key as equal.
+     * @param memberLoginId (会員ログインID): PK, ID, NotNull, BIGINT(19). (NotNull)
+     */
     public void acceptPrimaryKey(Long memberLoginId) {
         assertObjectNotNull("memberLoginId", memberLoginId);
         BsMemberLoginCB cb = this;
-        cb.query().setMemberLoginId_Equal(memberLoginId);
+        cb.query().setMemberLoginId_Equal(memberLoginId);;
+    }
+
+    /**
+     * Accept the query condition of unique key as equal.
+     * @param memberId (会員ID): UQ+, NotNull, INT(10), FK to member. (NotNull)
+     * @param loginDatetime (ログイン日時): +UQ, IX, NotNull, DATETIME(19). (NotNull)
+     */
+    public void acceptUniqueOf(Integer memberId, java.sql.Timestamp loginDatetime) {
+        assertObjectNotNull("memberId", memberId);assertObjectNotNull("loginDatetime", loginDatetime);
+        BsMemberLoginCB cb = this;
+        cb.query().setMemberId_Equal(memberId);;cb.query().setLoginDatetime_Equal(loginDatetime);;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {
@@ -368,12 +383,12 @@ public class BsMemberLoginCB extends AbstractConditionBean {
          */
         public HpSpecifiedColumn columnMemberLoginId() { return doColumn("MEMBER_LOGIN_ID"); }
         /**
-         * (会員ID)MEMBER_ID: {UQ, NotNull, INT(10), FK to member}
+         * (会員ID)MEMBER_ID: {UQ+, NotNull, INT(10), FK to member}
          * @return The information object of specified column. (NotNull)
          */
         public HpSpecifiedColumn columnMemberId() { return doColumn("MEMBER_ID"); }
         /**
-         * (ログイン日時)LOGIN_DATETIME: {UQ+, IX, NotNull, DATETIME(19)}
+         * (ログイン日時)LOGIN_DATETIME: {+UQ, IX, NotNull, DATETIME(19)}
          * @return The information object of specified column. (NotNull)
          */
         public HpSpecifiedColumn columnLoginDatetime() { return doColumn("LOGIN_DATETIME"); }
@@ -530,6 +545,11 @@ public class BsMemberLoginCB extends AbstractConditionBean {
      */
     public void orScopeQuery(OrQuery<MemberLoginCB> orQuery) {
         xorSQ((MemberLoginCB)this, orQuery);
+    }
+
+    @Override
+    protected HpCBPurpose xhandleOrSQPurposeChange() {
+        return null; // means no check
     }
 
     /**

@@ -48,14 +48,15 @@ public class WhiteSelfReferenceDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgSelfReferenceId(), "selfReferenceId");
         setupEpg(_epgMap, new EpgSelfReferenceName(), "selfReferenceName");
         setupEpg(_epgMap, new EpgParentId(), "parentId");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgSelfReferenceId implements PropertyGateway {
         public Object read(Entity et) { return ((WhiteSelfReference)et).getSelfReferenceId(); }
         public void write(Entity et, Object vl) { ((WhiteSelfReference)et).setSelfReferenceId(ctl(vl)); }
@@ -68,6 +69,34 @@ public class WhiteSelfReferenceDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((WhiteSelfReference)et).getParentId(); }
         public void write(Entity et, Object vl) { ((WhiteSelfReference)et).setParentId(ctl(vl)); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
+
+    // -----------------------------------------------------
+    //                                      Foreign Property
+    //                                      ----------------
+    protected final Map<String, PropertyGateway> _efpgMap = newHashMap();
+    {
+        setupEfpg(_efpgMap, new EfpgWhiteSelfReferenceSelf(), "whiteSelfReferenceSelf");
+        setupEfpg(_efpgMap, new EfpgWhiteSelfReferenceRefOneByParentId(), "whiteSelfReferenceRefOneByParentId");
+    }
+    public class EfpgWhiteSelfReferenceSelf implements PropertyGateway {
+        public Object read(Entity et) { return ((WhiteSelfReference)et).getWhiteSelfReferenceSelf(); }
+        public void write(Entity et, Object vl) { ((WhiteSelfReference)et).setWhiteSelfReferenceSelf((WhiteSelfReference)vl); }
+    }
+    public class EfpgWhiteSelfReferenceRefOneByParentId implements PropertyGateway {
+        public Object read(Entity et) { return ((WhiteSelfReference)et).getWhiteSelfReferenceRefOneByParentId(); }
+        public void write(Entity et, Object vl) { ((WhiteSelfReference)et).setWhiteSelfReferenceRefOneByParentId((WhiteSelfReferenceRefOne)vl); }
+    }
+    {
+        setupEfpg(_efpgMap, new EfpgWhiteSelfReferenceRefOneAsOne(), "whiteSelfReferenceRefOneAsOne");
+    }
+    public class EfpgWhiteSelfReferenceRefOneAsOne implements PropertyGateway {
+        public Object read(Entity et) { return ((WhiteSelfReference)et).getWhiteSelfReferenceRefOneAsOne(); }
+        public void write(Entity et, Object vl) { ((WhiteSelfReference)et).setWhiteSelfReferenceRefOneAsOne((WhiteSelfReferenceRefOne)vl); }
+    }
+    public PropertyGateway findForeignPropertyGateway(String prop)
+    { return doFindEfpg(_efpgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -83,9 +112,9 @@ public class WhiteSelfReferenceDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnSelfReferenceId = cci("SELF_REFERENCE_ID", "SELF_REFERENCE_ID", null, null, true, "selfReferenceId", Long.class, true, false, "DECIMAL", 16, 0, null, false, null, null, null, "whiteSelfReferenceSelfList", null);
-    protected final ColumnInfo _columnSelfReferenceName = cci("SELF_REFERENCE_NAME", "SELF_REFERENCE_NAME", null, null, true, "selfReferenceName", String.class, false, false, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnParentId = cci("PARENT_ID", "PARENT_ID", null, null, false, "parentId", Long.class, false, false, "DECIMAL", 16, 0, null, false, null, null, "whiteSelfReferenceSelf,whiteSelfReferenceRefOneByParentId", null, null);
+    protected final ColumnInfo _columnSelfReferenceId = cci("SELF_REFERENCE_ID", "SELF_REFERENCE_ID", null, null, Long.class, "selfReferenceId", null, true, false, true, "DECIMAL", 16, 0, null, false, null, null, null, "whiteSelfReferenceSelfList", null);
+    protected final ColumnInfo _columnSelfReferenceName = cci("SELF_REFERENCE_NAME", "SELF_REFERENCE_NAME", null, null, String.class, "selfReferenceName", null, false, false, true, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnParentId = cci("PARENT_ID", "PARENT_ID", null, null, Long.class, "parentId", null, false, false, false, "DECIMAL", 16, 0, null, false, null, null, "whiteSelfReferenceSelf,whiteSelfReferenceRefOneByParentId", null, null);
 
     /**
      * SELF_REFERENCE_ID: {PK, NotNull, DECIMAL(16)}
@@ -126,6 +155,8 @@ public class WhiteSelfReferenceDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

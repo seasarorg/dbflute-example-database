@@ -220,7 +220,7 @@ public abstract class BsMemberBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of Member. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -241,39 +241,64 @@ public abstract class BsMemberBhv extends AbstractBehaviorWritable {
 
     /**
      * Select the entity by the primary-key value.
-     * @param memberId The one of primary key. (NotNull)
+     * @param memberId (会員ID): PK, ID, NotNull, INT(10), FK to MEMBER_ADDRESS. (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public Member selectByPKValue(Integer memberId) {
-        return doSelectByPKValue(memberId, Member.class);
+        return doSelectByPK(memberId, Member.class);
     }
 
-    protected <ENTITY extends Member> ENTITY doSelectByPKValue(Integer memberId, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(memberId), entityType);
+    protected <ENTITY extends Member> ENTITY doSelectByPK(Integer memberId, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(memberId), entityType);
+    }
+
+    protected <ENTITY extends Member> OptionalEntity<ENTITY> doSelectOptionalByPK(Integer memberId, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(memberId, entityType), memberId);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param memberId The one of primary key. (NotNull)
+     * @param memberId (会員ID): PK, ID, NotNull, INT(10), FK to MEMBER_ADDRESS. (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public Member selectByPKValueWithDeletedCheck(Integer memberId) {
-        return doSelectByPKValueWithDeletedCheck(memberId, Member.class);
+        return doSelectByPKWithDeletedCheck(memberId, Member.class);
     }
 
-    protected <ENTITY extends Member> ENTITY doSelectByPKValueWithDeletedCheck(Integer memberId, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(memberId), entityType);
+    protected <ENTITY extends Member> ENTITY doSelectByPKWithDeletedCheck(Integer memberId, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(memberId), entityType);
     }
 
-    private MemberCB buildPKCB(Integer memberId) {
+    protected MemberCB xprepareCBAsPK(Integer memberId) {
         assertObjectNotNull("memberId", memberId);
-        MemberCB cb = newMyConditionBean();
-        cb.query().setMemberId_Equal(memberId);
+        MemberCB cb = newMyConditionBean(); cb.acceptPrimaryKey(memberId);
+        return cb;
+    }
+
+    /**
+     * Select the entity by the unique-key value.
+     * @param memberAccount (会員アカウント): UQ, NotNull, VARCHAR(50). (NotNull)
+     * @return The optional entity selected by the unique key. (NotNull: if no data, empty entity)
+     * @exception EntityAlreadyDeletedException When get(), required() of return value is called and the value is null, which means entity has already been deleted (not found).
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     */
+    public OptionalEntity<Member> selectByUniqueOf(String memberAccount) {
+        return doSelectByUniqueOf(memberAccount, Member.class);
+    }
+
+    protected <ENTITY extends Member> OptionalEntity<ENTITY> doSelectByUniqueOf(String memberAccount, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectEntity(xprepareCBAsUniqueOf(memberAccount), entityType), memberAccount);
+    }
+
+    protected MemberCB xprepareCBAsUniqueOf(String memberAccount) {
+        assertObjectNotNull("memberAccount", memberAccount);
+        MemberCB cb = newMyConditionBean(); cb.acceptUniqueOf(memberAccount);
         return cb;
     }
 
@@ -765,7 +790,8 @@ public abstract class BsMemberBhv extends AbstractBehaviorWritable {
      */
     public List<MemberStatus> pulloutMemberStatus(List<Member> memberList) {
         return helpPulloutInternally(memberList, new InternalPulloutCallback<Member, MemberStatus>() {
-            public MemberStatus getFr(Member et) { return et.getMemberStatus(); }
+            public MemberStatus getFr(Member et)
+            { return et.getMemberStatus(); }
             public boolean hasRf() { return true; }
             public void setRfLs(MemberStatus et, List<Member> ls)
             { et.setMemberList(ls); }
@@ -778,7 +804,8 @@ public abstract class BsMemberBhv extends AbstractBehaviorWritable {
      */
     public List<MemberAddress> pulloutMemberAddressAsValid(List<Member> memberList) {
         return helpPulloutInternally(memberList, new InternalPulloutCallback<Member, MemberAddress>() {
-            public MemberAddress getFr(Member et) { return et.getMemberAddressAsValid(); }
+            public MemberAddress getFr(Member et)
+            { return et.getMemberAddressAsValid(); }
             public boolean hasRf() { return false; }
             public void setRfLs(MemberAddress et, List<Member> ls)
             { throw new UnsupportedOperationException(); }
@@ -791,7 +818,8 @@ public abstract class BsMemberBhv extends AbstractBehaviorWritable {
      */
     public List<MemberAddress> pulloutMemberAddressAsValidBefore(List<Member> memberList) {
         return helpPulloutInternally(memberList, new InternalPulloutCallback<Member, MemberAddress>() {
-            public MemberAddress getFr(Member et) { return et.getMemberAddressAsValidBefore(); }
+            public MemberAddress getFr(Member et)
+            { return et.getMemberAddressAsValidBefore(); }
             public boolean hasRf() { return false; }
             public void setRfLs(MemberAddress et, List<Member> ls)
             { throw new UnsupportedOperationException(); }
@@ -804,7 +832,8 @@ public abstract class BsMemberBhv extends AbstractBehaviorWritable {
      */
     public List<MemberLogin> pulloutMemberLoginAsLoginStatus(List<Member> memberList) {
         return helpPulloutInternally(memberList, new InternalPulloutCallback<Member, MemberLogin>() {
-            public MemberLogin getFr(Member et) { return et.getMemberLoginAsLoginStatus(); }
+            public MemberLogin getFr(Member et)
+            { return et.getMemberLoginAsLoginStatus(); }
             public boolean hasRf() { return false; }
             public void setRfLs(MemberLogin et, List<Member> ls)
             { throw new UnsupportedOperationException(); }
@@ -817,7 +846,8 @@ public abstract class BsMemberBhv extends AbstractBehaviorWritable {
      */
     public List<MemberAddress> pulloutMemberAddressAsIfComment(List<Member> memberList) {
         return helpPulloutInternally(memberList, new InternalPulloutCallback<Member, MemberAddress>() {
-            public MemberAddress getFr(Member et) { return et.getMemberAddressAsIfComment(); }
+            public MemberAddress getFr(Member et)
+            { return et.getMemberAddressAsIfComment(); }
             public boolean hasRf() { return false; }
             public void setRfLs(MemberAddress et, List<Member> ls)
             { throw new UnsupportedOperationException(); }
@@ -830,7 +860,8 @@ public abstract class BsMemberBhv extends AbstractBehaviorWritable {
      */
     public List<MemberAddress> pulloutMemberAddressAsOnlyOneDate(List<Member> memberList) {
         return helpPulloutInternally(memberList, new InternalPulloutCallback<Member, MemberAddress>() {
-            public MemberAddress getFr(Member et) { return et.getMemberAddressAsOnlyOneDate(); }
+            public MemberAddress getFr(Member et)
+            { return et.getMemberAddressAsOnlyOneDate(); }
             public boolean hasRf() { return false; }
             public void setRfLs(MemberAddress et, List<Member> ls)
             { throw new UnsupportedOperationException(); }
@@ -843,7 +874,8 @@ public abstract class BsMemberBhv extends AbstractBehaviorWritable {
      */
     public List<MemberLogin> pulloutMemberLoginAsLocalForeignOverTest(List<Member> memberList) {
         return helpPulloutInternally(memberList, new InternalPulloutCallback<Member, MemberLogin>() {
-            public MemberLogin getFr(Member et) { return et.getMemberLoginAsLocalForeignOverTest(); }
+            public MemberLogin getFr(Member et)
+            { return et.getMemberLoginAsLocalForeignOverTest(); }
             public boolean hasRf() { return false; }
             public void setRfLs(MemberLogin et, List<Member> ls)
             { throw new UnsupportedOperationException(); }
@@ -856,7 +888,8 @@ public abstract class BsMemberBhv extends AbstractBehaviorWritable {
      */
     public List<MemberLogin> pulloutMemberLoginAsForeignForeignEachOverTest(List<Member> memberList) {
         return helpPulloutInternally(memberList, new InternalPulloutCallback<Member, MemberLogin>() {
-            public MemberLogin getFr(Member et) { return et.getMemberLoginAsForeignForeignEachOverTest(); }
+            public MemberLogin getFr(Member et)
+            { return et.getMemberLoginAsForeignForeignEachOverTest(); }
             public boolean hasRf() { return false; }
             public void setRfLs(MemberLogin et, List<Member> ls)
             { throw new UnsupportedOperationException(); }
@@ -869,7 +902,8 @@ public abstract class BsMemberBhv extends AbstractBehaviorWritable {
      */
     public List<MemberLogin> pulloutMemberLoginAsForeignForeignOptimizedBasicOverTest(List<Member> memberList) {
         return helpPulloutInternally(memberList, new InternalPulloutCallback<Member, MemberLogin>() {
-            public MemberLogin getFr(Member et) { return et.getMemberLoginAsForeignForeignOptimizedBasicOverTest(); }
+            public MemberLogin getFr(Member et)
+            { return et.getMemberLoginAsForeignForeignOptimizedBasicOverTest(); }
             public boolean hasRf() { return false; }
             public void setRfLs(MemberLogin et, List<Member> ls)
             { throw new UnsupportedOperationException(); }
@@ -882,7 +916,8 @@ public abstract class BsMemberBhv extends AbstractBehaviorWritable {
      */
     public List<MemberLogin> pulloutMemberLoginAsForeignForeignOptimizedMarkOverTest(List<Member> memberList) {
         return helpPulloutInternally(memberList, new InternalPulloutCallback<Member, MemberLogin>() {
-            public MemberLogin getFr(Member et) { return et.getMemberLoginAsForeignForeignOptimizedMarkOverTest(); }
+            public MemberLogin getFr(Member et)
+            { return et.getMemberLoginAsForeignForeignOptimizedMarkOverTest(); }
             public boolean hasRf() { return false; }
             public void setRfLs(MemberLogin et, List<Member> ls)
             { throw new UnsupportedOperationException(); }
@@ -895,7 +930,8 @@ public abstract class BsMemberBhv extends AbstractBehaviorWritable {
      */
     public List<MemberLogin> pulloutMemberLoginAsForeignForeignOptimizedPartOverTest(List<Member> memberList) {
         return helpPulloutInternally(memberList, new InternalPulloutCallback<Member, MemberLogin>() {
-            public MemberLogin getFr(Member et) { return et.getMemberLoginAsForeignForeignOptimizedPartOverTest(); }
+            public MemberLogin getFr(Member et)
+            { return et.getMemberLoginAsForeignForeignOptimizedPartOverTest(); }
             public boolean hasRf() { return false; }
             public void setRfLs(MemberLogin et, List<Member> ls)
             { throw new UnsupportedOperationException(); }
@@ -908,7 +944,8 @@ public abstract class BsMemberBhv extends AbstractBehaviorWritable {
      */
     public List<MemberLogin> pulloutMemberLoginAsForeignForeignOptimizedWholeOverTest(List<Member> memberList) {
         return helpPulloutInternally(memberList, new InternalPulloutCallback<Member, MemberLogin>() {
-            public MemberLogin getFr(Member et) { return et.getMemberLoginAsForeignForeignOptimizedWholeOverTest(); }
+            public MemberLogin getFr(Member et)
+            { return et.getMemberLoginAsForeignForeignOptimizedWholeOverTest(); }
             public boolean hasRf() { return false; }
             public void setRfLs(MemberLogin et, List<Member> ls)
             { throw new UnsupportedOperationException(); }
@@ -921,7 +958,8 @@ public abstract class BsMemberBhv extends AbstractBehaviorWritable {
      */
     public List<MemberLogin> pulloutMemberLoginAsForeignForeignParameterOverTest(List<Member> memberList) {
         return helpPulloutInternally(memberList, new InternalPulloutCallback<Member, MemberLogin>() {
-            public MemberLogin getFr(Member et) { return et.getMemberLoginAsForeignForeignParameterOverTest(); }
+            public MemberLogin getFr(Member et)
+            { return et.getMemberLoginAsForeignForeignParameterOverTest(); }
             public boolean hasRf() { return false; }
             public void setRfLs(MemberLogin et, List<Member> ls)
             { throw new UnsupportedOperationException(); }
@@ -934,7 +972,8 @@ public abstract class BsMemberBhv extends AbstractBehaviorWritable {
      */
     public List<MemberLogin> pulloutMemberLoginAsForeignForeignVariousOverTest(List<Member> memberList) {
         return helpPulloutInternally(memberList, new InternalPulloutCallback<Member, MemberLogin>() {
-            public MemberLogin getFr(Member et) { return et.getMemberLoginAsForeignForeignVariousOverTest(); }
+            public MemberLogin getFr(Member et)
+            { return et.getMemberLoginAsForeignForeignVariousOverTest(); }
             public boolean hasRf() { return false; }
             public void setRfLs(MemberLogin et, List<Member> ls)
             { throw new UnsupportedOperationException(); }
@@ -947,7 +986,8 @@ public abstract class BsMemberBhv extends AbstractBehaviorWritable {
      */
     public List<MemberLogin> pulloutMemberLoginAsReferrerOverTest(List<Member> memberList) {
         return helpPulloutInternally(memberList, new InternalPulloutCallback<Member, MemberLogin>() {
-            public MemberLogin getFr(Member et) { return et.getMemberLoginAsReferrerOverTest(); }
+            public MemberLogin getFr(Member et)
+            { return et.getMemberLoginAsReferrerOverTest(); }
             public boolean hasRf() { return false; }
             public void setRfLs(MemberLogin et, List<Member> ls)
             { throw new UnsupportedOperationException(); }
@@ -960,7 +1000,8 @@ public abstract class BsMemberBhv extends AbstractBehaviorWritable {
      */
     public List<MemberLogin> pulloutMemberLoginAsReferrerForeignOverTest(List<Member> memberList) {
         return helpPulloutInternally(memberList, new InternalPulloutCallback<Member, MemberLogin>() {
-            public MemberLogin getFr(Member et) { return et.getMemberLoginAsReferrerForeignOverTest(); }
+            public MemberLogin getFr(Member et)
+            { return et.getMemberLoginAsReferrerForeignOverTest(); }
             public boolean hasRf() { return false; }
             public void setRfLs(MemberLogin et, List<Member> ls)
             { throw new UnsupportedOperationException(); }
@@ -973,7 +1014,8 @@ public abstract class BsMemberBhv extends AbstractBehaviorWritable {
      */
     public List<MemberAddress> pulloutMemberAddressAsFormattedBasic(List<Member> memberList) {
         return helpPulloutInternally(memberList, new InternalPulloutCallback<Member, MemberAddress>() {
-            public MemberAddress getFr(Member et) { return et.getMemberAddressAsFormattedBasic(); }
+            public MemberAddress getFr(Member et)
+            { return et.getMemberAddressAsFormattedBasic(); }
             public boolean hasRf() { return false; }
             public void setRfLs(MemberAddress et, List<Member> ls)
             { throw new UnsupportedOperationException(); }
@@ -986,7 +1028,8 @@ public abstract class BsMemberBhv extends AbstractBehaviorWritable {
      */
     public List<MemberAddress> pulloutMemberAddressAsFormattedLong(List<Member> memberList) {
         return helpPulloutInternally(memberList, new InternalPulloutCallback<Member, MemberAddress>() {
-            public MemberAddress getFr(Member et) { return et.getMemberAddressAsFormattedLong(); }
+            public MemberAddress getFr(Member et)
+            { return et.getMemberAddressAsFormattedLong(); }
             public boolean hasRf() { return false; }
             public void setRfLs(MemberAddress et, List<Member> ls)
             { throw new UnsupportedOperationException(); }
@@ -999,7 +1042,8 @@ public abstract class BsMemberBhv extends AbstractBehaviorWritable {
      */
     public List<MemberLogin> pulloutMemberLoginAsFormattedMany(List<Member> memberList) {
         return helpPulloutInternally(memberList, new InternalPulloutCallback<Member, MemberLogin>() {
-            public MemberLogin getFr(Member et) { return et.getMemberLoginAsFormattedMany(); }
+            public MemberLogin getFr(Member et)
+            { return et.getMemberLoginAsFormattedMany(); }
             public boolean hasRf() { return false; }
             public void setRfLs(MemberLogin et, List<Member> ls)
             { throw new UnsupportedOperationException(); }
@@ -1012,7 +1056,8 @@ public abstract class BsMemberBhv extends AbstractBehaviorWritable {
      */
     public List<MemberLogin> pulloutMemberLoginAsLatest(List<Member> memberList) {
         return helpPulloutInternally(memberList, new InternalPulloutCallback<Member, MemberLogin>() {
-            public MemberLogin getFr(Member et) { return et.getMemberLoginAsLatest(); }
+            public MemberLogin getFr(Member et)
+            { return et.getMemberLoginAsLatest(); }
             public boolean hasRf() { return false; }
             public void setRfLs(MemberLogin et, List<Member> ls)
             { throw new UnsupportedOperationException(); }
@@ -1025,7 +1070,8 @@ public abstract class BsMemberBhv extends AbstractBehaviorWritable {
      */
     public List<MemberLogin> pulloutMemberLoginAsOldest(List<Member> memberList) {
         return helpPulloutInternally(memberList, new InternalPulloutCallback<Member, MemberLogin>() {
-            public MemberLogin getFr(Member et) { return et.getMemberLoginAsOldest(); }
+            public MemberLogin getFr(Member et)
+            { return et.getMemberLoginAsOldest(); }
             public boolean hasRf() { return false; }
             public void setRfLs(MemberLogin et, List<Member> ls)
             { throw new UnsupportedOperationException(); }
@@ -1038,7 +1084,8 @@ public abstract class BsMemberBhv extends AbstractBehaviorWritable {
      */
     public List<MemberSecurity> pulloutMemberSecurityAsOne(List<Member> memberList) {
         return helpPulloutInternally(memberList, new InternalPulloutCallback<Member, MemberSecurity>() {
-            public MemberSecurity getFr(Member et) { return et.getMemberSecurityAsOne(); }
+            public MemberSecurity getFr(Member et)
+            { return et.getMemberSecurityAsOne(); }
             public boolean hasRf() { return true; }
             public void setRfLs(MemberSecurity et, List<Member> ls)
             { if (!ls.isEmpty()) { et.setMember(ls.get(0)); } }
@@ -1051,7 +1098,8 @@ public abstract class BsMemberBhv extends AbstractBehaviorWritable {
      */
     public List<MemberService> pulloutMemberServiceAsOne(List<Member> memberList) {
         return helpPulloutInternally(memberList, new InternalPulloutCallback<Member, MemberService>() {
-            public MemberService getFr(Member et) { return et.getMemberServiceAsOne(); }
+            public MemberService getFr(Member et)
+            { return et.getMemberServiceAsOne(); }
             public boolean hasRf() { return true; }
             public void setRfLs(MemberService et, List<Member> ls)
             { if (!ls.isEmpty()) { et.setMember(ls.get(0)); } }
@@ -1064,7 +1112,8 @@ public abstract class BsMemberBhv extends AbstractBehaviorWritable {
      */
     public List<MemberWithdrawal> pulloutMemberWithdrawalAsOne(List<Member> memberList) {
         return helpPulloutInternally(memberList, new InternalPulloutCallback<Member, MemberWithdrawal>() {
-            public MemberWithdrawal getFr(Member et) { return et.getMemberWithdrawalAsOne(); }
+            public MemberWithdrawal getFr(Member et)
+            { return et.getMemberWithdrawalAsOne(); }
             public boolean hasRf() { return true; }
             public void setRfLs(MemberWithdrawal et, List<Member> ls)
             { if (!ls.isEmpty()) { et.setMember(ls.get(0)); } }

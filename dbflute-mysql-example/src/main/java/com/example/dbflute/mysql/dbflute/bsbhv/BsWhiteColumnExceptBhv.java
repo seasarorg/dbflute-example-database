@@ -184,7 +184,7 @@ public abstract class BsWhiteColumnExceptBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of WhiteColumnExcept. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -205,39 +205,42 @@ public abstract class BsWhiteColumnExceptBhv extends AbstractBehaviorWritable {
 
     /**
      * Select the entity by the primary-key value.
-     * @param exceptColumnId The one of primary key. (NotNull)
+     * @param exceptColumnId : PK, NotNull, DECIMAL(16). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteColumnExcept selectByPKValue(Long exceptColumnId) {
-        return doSelectByPKValue(exceptColumnId, WhiteColumnExcept.class);
+        return doSelectByPK(exceptColumnId, WhiteColumnExcept.class);
     }
 
-    protected <ENTITY extends WhiteColumnExcept> ENTITY doSelectByPKValue(Long exceptColumnId, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(exceptColumnId), entityType);
+    protected <ENTITY extends WhiteColumnExcept> ENTITY doSelectByPK(Long exceptColumnId, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(exceptColumnId), entityType);
+    }
+
+    protected <ENTITY extends WhiteColumnExcept> OptionalEntity<ENTITY> doSelectOptionalByPK(Long exceptColumnId, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(exceptColumnId, entityType), exceptColumnId);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param exceptColumnId The one of primary key. (NotNull)
+     * @param exceptColumnId : PK, NotNull, DECIMAL(16). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteColumnExcept selectByPKValueWithDeletedCheck(Long exceptColumnId) {
-        return doSelectByPKValueWithDeletedCheck(exceptColumnId, WhiteColumnExcept.class);
+        return doSelectByPKWithDeletedCheck(exceptColumnId, WhiteColumnExcept.class);
     }
 
-    protected <ENTITY extends WhiteColumnExcept> ENTITY doSelectByPKValueWithDeletedCheck(Long exceptColumnId, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(exceptColumnId), entityType);
+    protected <ENTITY extends WhiteColumnExcept> ENTITY doSelectByPKWithDeletedCheck(Long exceptColumnId, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(exceptColumnId), entityType);
     }
 
-    private WhiteColumnExceptCB buildPKCB(Long exceptColumnId) {
+    protected WhiteColumnExceptCB xprepareCBAsPK(Long exceptColumnId) {
         assertObjectNotNull("exceptColumnId", exceptColumnId);
-        WhiteColumnExceptCB cb = newMyConditionBean();
-        cb.query().setExceptColumnId_Equal(exceptColumnId);
+        WhiteColumnExceptCB cb = newMyConditionBean(); cb.acceptPrimaryKey(exceptColumnId);
         return cb;
     }
 

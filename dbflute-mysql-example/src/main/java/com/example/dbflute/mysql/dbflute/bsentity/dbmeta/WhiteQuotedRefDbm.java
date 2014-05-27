@@ -48,13 +48,14 @@ public class WhiteQuotedRefDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgWhere(), "where");
         setupEpg(_epgMap, new EpgOrder(), "order");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgWhere implements PropertyGateway {
         public Object read(Entity et) { return ((WhiteQuotedRef)et).getWhere(); }
         public void write(Entity et, Object vl) { ((WhiteQuotedRef)et).setWhere(cti(vl)); }
@@ -63,6 +64,22 @@ public class WhiteQuotedRefDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((WhiteQuotedRef)et).getOrder(); }
         public void write(Entity et, Object vl) { ((WhiteQuotedRef)et).setOrder(cti(vl)); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
+
+    // -----------------------------------------------------
+    //                                      Foreign Property
+    //                                      ----------------
+    protected final Map<String, PropertyGateway> _efpgMap = newHashMap();
+    {
+        setupEfpg(_efpgMap, new EfpgWhiteQuoted(), "whiteQuoted");
+    }
+    public class EfpgWhiteQuoted implements PropertyGateway {
+        public Object read(Entity et) { return ((WhiteQuotedRef)et).getWhiteQuoted(); }
+        public void write(Entity et, Object vl) { ((WhiteQuotedRef)et).setWhiteQuoted((WhiteQuoted)vl); }
+    }
+    public PropertyGateway findForeignPropertyGateway(String prop)
+    { return doFindEfpg(_efpgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -78,8 +95,8 @@ public class WhiteQuotedRefDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnWhere = cci("WHERE", "`WHERE`", null, null, true, "where", Integer.class, true, false, "INT", 10, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnOrder = cci("ORDER", "`ORDER`", null, null, false, "order", Integer.class, false, false, "INT", 10, 0, null, false, null, null, "whiteQuoted", null, null);
+    protected final ColumnInfo _columnWhere = cci("WHERE", "`WHERE`", null, null, Integer.class, "where", null, true, false, true, "INT", 10, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnOrder = cci("ORDER", "`ORDER`", null, null, Integer.class, "order", null, false, false, false, "INT", 10, 0, null, false, null, null, "whiteQuoted", null, null);
 
     /**
      * WHERE: {PK, NotNull, INT(10)}
@@ -114,6 +131,8 @@ public class WhiteQuotedRefDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

@@ -316,7 +316,7 @@ public class BsProductCategoryCQ extends AbstractBsProductCategoryCQ {
     // ===================================================================================
     //                                                                         Union Query
     //                                                                         ===========
-    protected void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
+    public void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
         ProductCategoryCQ bq = (ProductCategoryCQ)bqs;
         ProductCategoryCQ uq = (ProductCategoryCQ)uqs;
         if (bq.hasConditionQueryProductCategorySelf()) {

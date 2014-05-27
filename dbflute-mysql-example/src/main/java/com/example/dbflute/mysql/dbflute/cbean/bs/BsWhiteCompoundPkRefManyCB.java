@@ -93,10 +93,15 @@ public class BsWhiteCompoundPkRefManyCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                 PrimaryKey Handling
     //                                                                 ===================
+    /**
+     * Accept the query condition of primary key as equal.
+     * @param multipleFirstId : PK, NotNull, INT(10). (NotNull)
+     * @param multipleSecondId : PK, NotNull, INT(10). (NotNull)
+     */
     public void acceptPrimaryKey(Integer multipleFirstId, Integer multipleSecondId) {
         assertObjectNotNull("multipleFirstId", multipleFirstId);assertObjectNotNull("multipleSecondId", multipleSecondId);
         BsWhiteCompoundPkRefManyCB cb = this;
-        cb.query().setMultipleFirstId_Equal(multipleFirstId);cb.query().setMultipleSecondId_Equal(multipleSecondId);
+        cb.query().setMultipleFirstId_Equal(multipleFirstId);;cb.query().setMultipleSecondId_Equal(multipleSecondId);;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {
@@ -482,6 +487,11 @@ public class BsWhiteCompoundPkRefManyCB extends AbstractConditionBean {
      */
     public void orScopeQuery(OrQuery<WhiteCompoundPkRefManyCB> orQuery) {
         xorSQ((WhiteCompoundPkRefManyCB)this, orQuery);
+    }
+
+    @Override
+    protected HpCBPurpose xhandleOrSQPurposeChange() {
+        return null; // means no check
     }
 
     /**

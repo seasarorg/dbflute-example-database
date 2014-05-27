@@ -169,7 +169,7 @@ public abstract class BsWhiteCompoundPkBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of WhiteCompoundPk. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -190,41 +190,44 @@ public abstract class BsWhiteCompoundPkBhv extends AbstractBehaviorWritable {
 
     /**
      * Select the entity by the primary-key value.
-     * @param pkFirstId The one of primary key. (NotNull)
-     * @param pkSecondId The one of primary key. (NotNull)
+     * @param pkFirstId : PK, NotNull, int4(10). (NotNull)
+     * @param pkSecondId : PK, NotNull, int4(10). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteCompoundPk selectByPKValue(Integer pkFirstId, Integer pkSecondId) {
-        return doSelectByPKValue(pkFirstId, pkSecondId, WhiteCompoundPk.class);
+        return doSelectByPK(pkFirstId, pkSecondId, WhiteCompoundPk.class);
     }
 
-    protected <ENTITY extends WhiteCompoundPk> ENTITY doSelectByPKValue(Integer pkFirstId, Integer pkSecondId, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(pkFirstId, pkSecondId), entityType);
+    protected <ENTITY extends WhiteCompoundPk> ENTITY doSelectByPK(Integer pkFirstId, Integer pkSecondId, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(pkFirstId, pkSecondId), entityType);
+    }
+
+    protected <ENTITY extends WhiteCompoundPk> OptionalEntity<ENTITY> doSelectOptionalByPK(Integer pkFirstId, Integer pkSecondId, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(pkFirstId, pkSecondId, entityType), pkFirstId, pkSecondId);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param pkFirstId The one of primary key. (NotNull)
-     * @param pkSecondId The one of primary key. (NotNull)
+     * @param pkFirstId : PK, NotNull, int4(10). (NotNull)
+     * @param pkSecondId : PK, NotNull, int4(10). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteCompoundPk selectByPKValueWithDeletedCheck(Integer pkFirstId, Integer pkSecondId) {
-        return doSelectByPKValueWithDeletedCheck(pkFirstId, pkSecondId, WhiteCompoundPk.class);
+        return doSelectByPKWithDeletedCheck(pkFirstId, pkSecondId, WhiteCompoundPk.class);
     }
 
-    protected <ENTITY extends WhiteCompoundPk> ENTITY doSelectByPKValueWithDeletedCheck(Integer pkFirstId, Integer pkSecondId, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(pkFirstId, pkSecondId), entityType);
+    protected <ENTITY extends WhiteCompoundPk> ENTITY doSelectByPKWithDeletedCheck(Integer pkFirstId, Integer pkSecondId, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(pkFirstId, pkSecondId), entityType);
     }
 
-    private WhiteCompoundPkCB buildPKCB(Integer pkFirstId, Integer pkSecondId) {
+    protected WhiteCompoundPkCB xprepareCBAsPK(Integer pkFirstId, Integer pkSecondId) {
         assertObjectNotNull("pkFirstId", pkFirstId);assertObjectNotNull("pkSecondId", pkSecondId);
-        WhiteCompoundPkCB cb = newMyConditionBean();
-        cb.query().setPkFirstId_Equal(pkFirstId);cb.query().setPkSecondId_Equal(pkSecondId);
+        WhiteCompoundPkCB cb = newMyConditionBean(); cb.acceptPrimaryKey(pkFirstId, pkSecondId);
         return cb;
     }
 
@@ -513,7 +516,8 @@ public abstract class BsWhiteCompoundPkBhv extends AbstractBehaviorWritable {
                 foreignKeyMap.put("PkSecondId", re.getRefSecondId());
                 return foreignKeyMap;
             }
-            public void setlcEt(WhiteCompoundPkRef re, WhiteCompoundPk le) { re.setWhiteCompoundPk(le); }
+            public void setlcEt(WhiteCompoundPkRef re, WhiteCompoundPk le)
+            { re.setWhiteCompoundPk(le); }
             public String getRfPrNm() { return "whiteCompoundPkRefList"; }
         });
     }

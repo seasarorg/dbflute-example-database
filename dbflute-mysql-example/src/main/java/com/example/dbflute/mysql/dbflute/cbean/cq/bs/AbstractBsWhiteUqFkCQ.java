@@ -232,7 +232,7 @@ public abstract class AbstractBsWhiteUqFkCQ extends AbstractConditionQuery {
     public abstract String keepUqFkId_SpecifyDerivedReferrer_WhiteUqFkRefByFkToPkIdList(WhiteUqFkRefCQ sq);
 
     /**
-     * Prepare for (Query)DerivedReferrer. <br />
+     * Prepare for (Query)DerivedReferrer (correlated sub-query). <br />
      * {FOO &lt;= (select max(BAR) from white_uq_fk_ref where ...)} <br />
      * white_uq_fk_ref by FK_TO_PK_ID, named 'whiteUqFkRefByFkToPkIdAsOne'.
      * <pre>
@@ -447,7 +447,7 @@ public abstract class AbstractBsWhiteUqFkCQ extends AbstractConditionQuery {
     public abstract String keepUqFkCode_SpecifyDerivedReferrer_WhiteUqFkRefByFkToUqCodeList(WhiteUqFkRefCQ sq);
 
     /**
-     * Prepare for (Query)DerivedReferrer. <br />
+     * Prepare for (Query)DerivedReferrer (correlated sub-query). <br />
      * {FOO &lt;= (select max(BAR) from white_uq_fk_ref where ...)} <br />
      * white_uq_fk_ref by FK_TO_UQ_CODE, named 'whiteUqFkRefByFkToUqCodeAsOne'.
      * <pre>
@@ -620,7 +620,7 @@ public abstract class AbstractBsWhiteUqFkCQ extends AbstractConditionQuery {
     public abstract String keepSpecifyMyselfDerived(WhiteUqFkCQ sq);
 
     /**
-     * Prepare for (Query)MyselfDerived (SubQuery).
+     * Prepare for (Query)MyselfDerived (correlated sub-query).
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<WhiteUqFkCB> myselfDerived() {
@@ -642,8 +642,8 @@ public abstract class AbstractBsWhiteUqFkCQ extends AbstractConditionQuery {
     //                                                                        MyselfExists
     //                                                                        ============
     /**
-     * Prepare for MyselfExists (SubQuery).
-     * @param subQuery The implementation of sub query. (NotNull)
+     * Prepare for MyselfExists (correlated sub-query).
+     * @param subQuery The implementation of sub-query. (NotNull)
      */
     public void myselfExists(SubQuery<WhiteUqFkCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
@@ -658,8 +658,8 @@ public abstract class AbstractBsWhiteUqFkCQ extends AbstractConditionQuery {
     //                                                                       MyselfInScope
     //                                                                       =============
     /**
-     * Prepare for MyselfInScope (SubQuery).
-     * @param subQuery The implementation of sub query. (NotNull)
+     * Prepare for MyselfInScope (sub-query).
+     * @param subQuery The implementation of sub-query. (NotNull)
      */
     public void myselfInScope(SubQuery<WhiteUqFkCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);

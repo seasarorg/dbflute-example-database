@@ -456,7 +456,7 @@ public abstract class AbstractBsWhiteEscapedDfpropCQ extends AbstractConditionQu
     public abstract String keepSpecifyMyselfDerived(WhiteEscapedDfpropCQ sq);
 
     /**
-     * Prepare for (Query)MyselfDerived (SubQuery).
+     * Prepare for (Query)MyselfDerived (correlated sub-query).
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<WhiteEscapedDfpropCB> myselfDerived() {
@@ -478,8 +478,8 @@ public abstract class AbstractBsWhiteEscapedDfpropCQ extends AbstractConditionQu
     //                                                                        MyselfExists
     //                                                                        ============
     /**
-     * Prepare for MyselfExists (SubQuery).
-     * @param subQuery The implementation of sub query. (NotNull)
+     * Prepare for MyselfExists (correlated sub-query).
+     * @param subQuery The implementation of sub-query. (NotNull)
      */
     public void myselfExists(SubQuery<WhiteEscapedDfpropCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
@@ -494,8 +494,8 @@ public abstract class AbstractBsWhiteEscapedDfpropCQ extends AbstractConditionQu
     //                                                                       MyselfInScope
     //                                                                       =============
     /**
-     * Prepare for MyselfInScope (SubQuery).
-     * @param subQuery The implementation of sub query. (NotNull)
+     * Prepare for MyselfInScope (sub-query).
+     * @param subQuery The implementation of sub-query. (NotNull)
      */
     public void myselfInScope(SubQuery<WhiteEscapedDfpropCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);

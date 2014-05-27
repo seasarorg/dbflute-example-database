@@ -184,7 +184,7 @@ public abstract class BsWhiteVariantRelationMasterCorgeBhv extends AbstractBehav
      * </pre>
      * @param cb The condition-bean of WhiteVariantRelationMasterCorge. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -205,39 +205,42 @@ public abstract class BsWhiteVariantRelationMasterCorgeBhv extends AbstractBehav
 
     /**
      * Select the entity by the primary-key value.
-     * @param masterCorgeId The one of primary key. (NotNull)
+     * @param masterCorgeId : PK, NotNull, BIGINT(19). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteVariantRelationMasterCorge selectByPKValue(Long masterCorgeId) {
-        return doSelectByPKValue(masterCorgeId, WhiteVariantRelationMasterCorge.class);
+        return doSelectByPK(masterCorgeId, WhiteVariantRelationMasterCorge.class);
     }
 
-    protected <ENTITY extends WhiteVariantRelationMasterCorge> ENTITY doSelectByPKValue(Long masterCorgeId, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(masterCorgeId), entityType);
+    protected <ENTITY extends WhiteVariantRelationMasterCorge> ENTITY doSelectByPK(Long masterCorgeId, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(masterCorgeId), entityType);
+    }
+
+    protected <ENTITY extends WhiteVariantRelationMasterCorge> OptionalEntity<ENTITY> doSelectOptionalByPK(Long masterCorgeId, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(masterCorgeId, entityType), masterCorgeId);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param masterCorgeId The one of primary key. (NotNull)
+     * @param masterCorgeId : PK, NotNull, BIGINT(19). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteVariantRelationMasterCorge selectByPKValueWithDeletedCheck(Long masterCorgeId) {
-        return doSelectByPKValueWithDeletedCheck(masterCorgeId, WhiteVariantRelationMasterCorge.class);
+        return doSelectByPKWithDeletedCheck(masterCorgeId, WhiteVariantRelationMasterCorge.class);
     }
 
-    protected <ENTITY extends WhiteVariantRelationMasterCorge> ENTITY doSelectByPKValueWithDeletedCheck(Long masterCorgeId, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(masterCorgeId), entityType);
+    protected <ENTITY extends WhiteVariantRelationMasterCorge> ENTITY doSelectByPKWithDeletedCheck(Long masterCorgeId, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(masterCorgeId), entityType);
     }
 
-    private WhiteVariantRelationMasterCorgeCB buildPKCB(Long masterCorgeId) {
+    protected WhiteVariantRelationMasterCorgeCB xprepareCBAsPK(Long masterCorgeId) {
         assertObjectNotNull("masterCorgeId", masterCorgeId);
-        WhiteVariantRelationMasterCorgeCB cb = newMyConditionBean();
-        cb.query().setMasterCorgeId_Equal(masterCorgeId);
+        WhiteVariantRelationMasterCorgeCB cb = newMyConditionBean(); cb.acceptPrimaryKey(masterCorgeId);
         return cb;
     }
 

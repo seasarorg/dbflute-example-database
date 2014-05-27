@@ -24,8 +24,8 @@ public class BsVendor_non_compilableCQ extends AbstractBsVendor_non_compilableCQ
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public BsVendor_non_compilableCQ(ConditionQuery childQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
-        super(childQuery, sqlClause, aliasName, nestLevel);
+    public BsVendor_non_compilableCQ(ConditionQuery referrerQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
+        super(referrerQuery, sqlClause, aliasName, nestLevel);
     }
 
     // ===================================================================================
@@ -246,7 +246,7 @@ public class BsVendor_non_compilableCQ extends AbstractBsVendor_non_compilableCQ
     // ===================================================================================
     //                                                                         Union Query
     //                                                                         ===========
-    protected void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
+    public void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
         Vendor_non_compilableCQ bq = (Vendor_non_compilableCQ)bqs;
         Vendor_non_compilableCQ uq = (Vendor_non_compilableCQ)uqs;
         if (bq.hasConditionQueryVendor_non_compilableSelf()) {

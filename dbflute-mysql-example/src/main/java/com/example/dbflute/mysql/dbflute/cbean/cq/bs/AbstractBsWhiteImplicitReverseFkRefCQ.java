@@ -165,7 +165,7 @@ public abstract class AbstractBsWhiteImplicitReverseFkRefCQ extends AbstractCond
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
-     * WHITE_IMPLICIT_REVERSE_FK_ID: {UQ, NotNull, INT(10), FK to white_implicit_reverse_fk}
+     * WHITE_IMPLICIT_REVERSE_FK_ID: {UQ+, NotNull, INT(10), FK to white_implicit_reverse_fk}
      * @param whiteImplicitReverseFkId The value of whiteImplicitReverseFkId as equal. (NullAllowed: if null, no condition)
      */
     public void setWhiteImplicitReverseFkId_Equal(Integer whiteImplicitReverseFkId) {
@@ -178,7 +178,7 @@ public abstract class AbstractBsWhiteImplicitReverseFkRefCQ extends AbstractCond
 
     /**
      * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br />
-     * WHITE_IMPLICIT_REVERSE_FK_ID: {UQ, NotNull, INT(10), FK to white_implicit_reverse_fk}
+     * WHITE_IMPLICIT_REVERSE_FK_ID: {UQ+, NotNull, INT(10), FK to white_implicit_reverse_fk}
      * @param whiteImplicitReverseFkId The value of whiteImplicitReverseFkId as greaterThan. (NullAllowed: if null, no condition)
      */
     public void setWhiteImplicitReverseFkId_GreaterThan(Integer whiteImplicitReverseFkId) {
@@ -187,7 +187,7 @@ public abstract class AbstractBsWhiteImplicitReverseFkRefCQ extends AbstractCond
 
     /**
      * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br />
-     * WHITE_IMPLICIT_REVERSE_FK_ID: {UQ, NotNull, INT(10), FK to white_implicit_reverse_fk}
+     * WHITE_IMPLICIT_REVERSE_FK_ID: {UQ+, NotNull, INT(10), FK to white_implicit_reverse_fk}
      * @param whiteImplicitReverseFkId The value of whiteImplicitReverseFkId as lessThan. (NullAllowed: if null, no condition)
      */
     public void setWhiteImplicitReverseFkId_LessThan(Integer whiteImplicitReverseFkId) {
@@ -196,7 +196,7 @@ public abstract class AbstractBsWhiteImplicitReverseFkRefCQ extends AbstractCond
 
     /**
      * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br />
-     * WHITE_IMPLICIT_REVERSE_FK_ID: {UQ, NotNull, INT(10), FK to white_implicit_reverse_fk}
+     * WHITE_IMPLICIT_REVERSE_FK_ID: {UQ+, NotNull, INT(10), FK to white_implicit_reverse_fk}
      * @param whiteImplicitReverseFkId The value of whiteImplicitReverseFkId as greaterEqual. (NullAllowed: if null, no condition)
      */
     public void setWhiteImplicitReverseFkId_GreaterEqual(Integer whiteImplicitReverseFkId) {
@@ -205,7 +205,7 @@ public abstract class AbstractBsWhiteImplicitReverseFkRefCQ extends AbstractCond
 
     /**
      * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br />
-     * WHITE_IMPLICIT_REVERSE_FK_ID: {UQ, NotNull, INT(10), FK to white_implicit_reverse_fk}
+     * WHITE_IMPLICIT_REVERSE_FK_ID: {UQ+, NotNull, INT(10), FK to white_implicit_reverse_fk}
      * @param whiteImplicitReverseFkId The value of whiteImplicitReverseFkId as lessEqual. (NullAllowed: if null, no condition)
      */
     public void setWhiteImplicitReverseFkId_LessEqual(Integer whiteImplicitReverseFkId) {
@@ -216,7 +216,7 @@ public abstract class AbstractBsWhiteImplicitReverseFkRefCQ extends AbstractCond
      * RangeOf with various options. (versatile) <br />
      * {(default) minNumber &lt;= column &lt;= maxNumber} <br />
      * And NullIgnored, OnlyOnceRegistered. <br />
-     * WHITE_IMPLICIT_REVERSE_FK_ID: {UQ, NotNull, INT(10), FK to white_implicit_reverse_fk}
+     * WHITE_IMPLICIT_REVERSE_FK_ID: {UQ+, NotNull, INT(10), FK to white_implicit_reverse_fk}
      * @param minNumber The min number of whiteImplicitReverseFkId. (NullAllowed: if null, no from-condition)
      * @param maxNumber The max number of whiteImplicitReverseFkId. (NullAllowed: if null, no to-condition)
      * @param rangeOfOption The option of range-of. (NotNull)
@@ -227,7 +227,7 @@ public abstract class AbstractBsWhiteImplicitReverseFkRefCQ extends AbstractCond
 
     /**
      * InScope {in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br />
-     * WHITE_IMPLICIT_REVERSE_FK_ID: {UQ, NotNull, INT(10), FK to white_implicit_reverse_fk}
+     * WHITE_IMPLICIT_REVERSE_FK_ID: {UQ+, NotNull, INT(10), FK to white_implicit_reverse_fk}
      * @param whiteImplicitReverseFkIdList The collection of whiteImplicitReverseFkId as inScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setWhiteImplicitReverseFkId_InScope(Collection<Integer> whiteImplicitReverseFkIdList) {
@@ -240,7 +240,7 @@ public abstract class AbstractBsWhiteImplicitReverseFkRefCQ extends AbstractCond
 
     /**
      * NotInScope {not in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br />
-     * WHITE_IMPLICIT_REVERSE_FK_ID: {UQ, NotNull, INT(10), FK to white_implicit_reverse_fk}
+     * WHITE_IMPLICIT_REVERSE_FK_ID: {UQ+, NotNull, INT(10), FK to white_implicit_reverse_fk}
      * @param whiteImplicitReverseFkIdList The collection of whiteImplicitReverseFkId as notInScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setWhiteImplicitReverseFkId_NotInScope(Collection<Integer> whiteImplicitReverseFkIdList) {
@@ -288,7 +288,7 @@ public abstract class AbstractBsWhiteImplicitReverseFkRefCQ extends AbstractCond
 
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
-     * VALID_BEGIN_DATE: {UQ+, NotNull, DATE(10)}
+     * VALID_BEGIN_DATE: {+UQ, NotNull, DATE(10)}
      * @param validBeginDate The value of validBeginDate as equal. (NullAllowed: if null, no condition)
      */
     public void setValidBeginDate_Equal(java.util.Date validBeginDate) {
@@ -297,7 +297,7 @@ public abstract class AbstractBsWhiteImplicitReverseFkRefCQ extends AbstractCond
 
     /**
      * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br />
-     * VALID_BEGIN_DATE: {UQ+, NotNull, DATE(10)}
+     * VALID_BEGIN_DATE: {+UQ, NotNull, DATE(10)}
      * @param validBeginDate The value of validBeginDate as greaterThan. (NullAllowed: if null, no condition)
      */
     public void setValidBeginDate_GreaterThan(java.util.Date validBeginDate) {
@@ -306,7 +306,7 @@ public abstract class AbstractBsWhiteImplicitReverseFkRefCQ extends AbstractCond
 
     /**
      * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br />
-     * VALID_BEGIN_DATE: {UQ+, NotNull, DATE(10)}
+     * VALID_BEGIN_DATE: {+UQ, NotNull, DATE(10)}
      * @param validBeginDate The value of validBeginDate as lessThan. (NullAllowed: if null, no condition)
      */
     public void setValidBeginDate_LessThan(java.util.Date validBeginDate) {
@@ -315,7 +315,7 @@ public abstract class AbstractBsWhiteImplicitReverseFkRefCQ extends AbstractCond
 
     /**
      * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br />
-     * VALID_BEGIN_DATE: {UQ+, NotNull, DATE(10)}
+     * VALID_BEGIN_DATE: {+UQ, NotNull, DATE(10)}
      * @param validBeginDate The value of validBeginDate as greaterEqual. (NullAllowed: if null, no condition)
      */
     public void setValidBeginDate_GreaterEqual(java.util.Date validBeginDate) {
@@ -324,7 +324,7 @@ public abstract class AbstractBsWhiteImplicitReverseFkRefCQ extends AbstractCond
 
     /**
      * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br />
-     * VALID_BEGIN_DATE: {UQ+, NotNull, DATE(10)}
+     * VALID_BEGIN_DATE: {+UQ, NotNull, DATE(10)}
      * @param validBeginDate The value of validBeginDate as lessEqual. (NullAllowed: if null, no condition)
      */
     public void setValidBeginDate_LessEqual(java.util.Date validBeginDate) {
@@ -334,7 +334,7 @@ public abstract class AbstractBsWhiteImplicitReverseFkRefCQ extends AbstractCond
     /**
      * FromTo with various options. (versatile) {(default) fromDatetime &lt;= column &lt;= toDatetime} <br />
      * And NullIgnored, OnlyOnceRegistered. <br />
-     * VALID_BEGIN_DATE: {UQ+, NotNull, DATE(10)}
+     * VALID_BEGIN_DATE: {+UQ, NotNull, DATE(10)}
      * <pre>e.g. setValidBeginDate_FromTo(fromDate, toDate, new <span style="color: #DD4747">FromToOption</span>().compareAsDate());</pre>
      * @param fromDatetime The from-datetime(yyyy/MM/dd HH:mm:ss.SSS) of validBeginDate. (NullAllowed: if null, no from-condition)
      * @param toDatetime The to-datetime(yyyy/MM/dd HH:mm:ss.SSS) of validBeginDate. (NullAllowed: if null, no to-condition)
@@ -347,7 +347,7 @@ public abstract class AbstractBsWhiteImplicitReverseFkRefCQ extends AbstractCond
     /**
      * DateFromTo. (Date means yyyy/MM/dd) {fromDate &lt;= column &lt; toDate + 1 day} <br />
      * And NullIgnored, OnlyOnceRegistered. <br />
-     * VALID_BEGIN_DATE: {UQ+, NotNull, DATE(10)}
+     * VALID_BEGIN_DATE: {+UQ, NotNull, DATE(10)}
      * <pre>
      * e.g. from:{2007/04/10 08:24:53} to:{2007/04/16 14:36:29}
      *  column &gt;= '2007/04/10 00:00:00' and column <span style="color: #DD4747">&lt; '2007/04/17 00:00:00'</span>
@@ -575,7 +575,7 @@ public abstract class AbstractBsWhiteImplicitReverseFkRefCQ extends AbstractCond
     public abstract String keepSpecifyMyselfDerived(WhiteImplicitReverseFkRefCQ sq);
 
     /**
-     * Prepare for (Query)MyselfDerived (SubQuery).
+     * Prepare for (Query)MyselfDerived (correlated sub-query).
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<WhiteImplicitReverseFkRefCB> myselfDerived() {
@@ -597,8 +597,8 @@ public abstract class AbstractBsWhiteImplicitReverseFkRefCQ extends AbstractCond
     //                                                                        MyselfExists
     //                                                                        ============
     /**
-     * Prepare for MyselfExists (SubQuery).
-     * @param subQuery The implementation of sub query. (NotNull)
+     * Prepare for MyselfExists (correlated sub-query).
+     * @param subQuery The implementation of sub-query. (NotNull)
      */
     public void myselfExists(SubQuery<WhiteImplicitReverseFkRefCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
@@ -613,8 +613,8 @@ public abstract class AbstractBsWhiteImplicitReverseFkRefCQ extends AbstractCond
     //                                                                       MyselfInScope
     //                                                                       =============
     /**
-     * Prepare for MyselfInScope (SubQuery).
-     * @param subQuery The implementation of sub query. (NotNull)
+     * Prepare for MyselfInScope (sub-query).
+     * @param subQuery The implementation of sub-query. (NotNull)
      */
     public void myselfInScope(SubQuery<WhiteImplicitReverseFkRefCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);

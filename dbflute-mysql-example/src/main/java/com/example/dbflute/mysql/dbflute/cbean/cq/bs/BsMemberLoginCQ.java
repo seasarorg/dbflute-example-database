@@ -133,14 +133,14 @@ public class BsMemberLoginCQ extends AbstractBsMemberLoginCQ {
 
     /** 
      * Add order-by as ascend. <br />
-     * (会員ID)MEMBER_ID: {UQ, NotNull, INT(10), FK to member}
+     * (会員ID)MEMBER_ID: {UQ+, NotNull, INT(10), FK to member}
      * @return this. (NotNull)
      */
     public BsMemberLoginCQ addOrderBy_MemberId_Asc() { regOBA("MEMBER_ID"); return this; }
 
     /**
      * Add order-by as descend. <br />
-     * (会員ID)MEMBER_ID: {UQ, NotNull, INT(10), FK to member}
+     * (会員ID)MEMBER_ID: {UQ+, NotNull, INT(10), FK to member}
      * @return this. (NotNull)
      */
     public BsMemberLoginCQ addOrderBy_MemberId_Desc() { regOBD("MEMBER_ID"); return this; }
@@ -154,14 +154,14 @@ public class BsMemberLoginCQ extends AbstractBsMemberLoginCQ {
 
     /** 
      * Add order-by as ascend. <br />
-     * (ログイン日時)LOGIN_DATETIME: {UQ+, IX, NotNull, DATETIME(19)}
+     * (ログイン日時)LOGIN_DATETIME: {+UQ, IX, NotNull, DATETIME(19)}
      * @return this. (NotNull)
      */
     public BsMemberLoginCQ addOrderBy_LoginDatetime_Asc() { regOBA("LOGIN_DATETIME"); return this; }
 
     /**
      * Add order-by as descend. <br />
-     * (ログイン日時)LOGIN_DATETIME: {UQ+, IX, NotNull, DATETIME(19)}
+     * (ログイン日時)LOGIN_DATETIME: {+UQ, IX, NotNull, DATETIME(19)}
      * @return this. (NotNull)
      */
     public BsMemberLoginCQ addOrderBy_LoginDatetime_Desc() { regOBD("LOGIN_DATETIME"); return this; }
@@ -264,7 +264,7 @@ public class BsMemberLoginCQ extends AbstractBsMemberLoginCQ {
     // ===================================================================================
     //                                                                         Union Query
     //                                                                         ===========
-    protected void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
+    public void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
         MemberLoginCQ bq = (MemberLoginCQ)bqs;
         MemberLoginCQ uq = (MemberLoginCQ)uqs;
         if (bq.hasConditionQueryMember()) {

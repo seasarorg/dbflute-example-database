@@ -77,10 +77,14 @@ public class BsVendor$DollarCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                 PrimaryKey Handling
     //                                                                 ===================
+    /**
+     * Accept the query condition of primary key as equal.
+     * @param vendor$DollarId : PK, NotNull, int4(10). (NotNull)
+     */
     public void acceptPrimaryKey(Integer vendor$DollarId) {
         assertObjectNotNull("vendor$DollarId", vendor$DollarId);
         BsVendor$DollarCB cb = this;
-        cb.query().setVendor$DollarId_Equal(vendor$DollarId);
+        cb.query().setVendor$DollarId_Equal(vendor$DollarId);;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {
@@ -407,6 +411,11 @@ public class BsVendor$DollarCB extends AbstractConditionBean {
      */
     public void orScopeQuery(OrQuery<Vendor$DollarCB> orQuery) {
         xorSQ((Vendor$DollarCB)this, orQuery);
+    }
+
+    @Override
+    protected HpCBPurpose xhandleOrSQPurposeChange() {
+        return null; // means no check
     }
 
     /**

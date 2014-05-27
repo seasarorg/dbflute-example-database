@@ -89,6 +89,9 @@ public abstract class BsMemberStatus implements Entity, Serializable, Cloneable 
     // -----------------------------------------------------
     //                                              Internal
     //                                              --------
+    /** The unique-driven properties for this entity. (NotNull) */
+    protected final EntityUniqueDrivenProperties __uniqueDrivenProperties = newUniqueDrivenProperties();
+
     /** The modified properties for this entity. (NotNull) */
     protected final EntityModifiedProperties __modifiedProperties = newModifiedProperties();
 
@@ -131,6 +134,28 @@ public abstract class BsMemberStatus implements Entity, Serializable, Cloneable 
     public boolean hasPrimaryKeyValue() {
         if (getMemberStatusCode() == null) { return false; }
         return true;
+    }
+
+    /**
+     * To be unique by the unique column. <br />
+     * You can update the entity by the key when entity update (NOT batch update).
+     * @param displayOrder (表示順): UQ, NotNull, int4(10). (NotNull)
+     */
+    public void uniqueBy(Integer displayOrder) {
+        __uniqueDrivenProperties.clear();
+        __uniqueDrivenProperties.addPropertyName("displayOrder");
+        _displayOrder = displayOrder;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Set<String> uniqueDrivenProperties() {
+        return __uniqueDrivenProperties.getPropertyNames();
+    }
+
+    protected EntityUniqueDrivenProperties newUniqueDrivenProperties() {
+        return new EntityUniqueDrivenProperties();
     }
 
     // ===================================================================================
@@ -333,8 +358,8 @@ public abstract class BsMemberStatus implements Entity, Serializable, Cloneable 
         if (!xSV(getMemberStatusCode(), other.getMemberStatusCode())) { return false; }
         return true;
     }
-    protected boolean xSV(Object value1, Object value2) {
-        return FunCustodial.isSameValue(value1, value2);
+    protected boolean xSV(Object v1, Object v2) {
+        return FunCustodial.isSameValue(v1, v2);
     }
 
     /**
@@ -342,13 +367,13 @@ public abstract class BsMemberStatus implements Entity, Serializable, Cloneable 
      * @return The hash-code from primary-key or columns.
      */
     public int hashCode() {
-        int result = 17;
-        result = xCH(result, getTableDbName());
-        result = xCH(result, getMemberStatusCode());
-        return result;
+        int hs = 17;
+        hs = xCH(hs, getTableDbName());
+        hs = xCH(hs, getMemberStatusCode());
+        return hs;
     }
-    protected int xCH(int result, Object value) {
-        return FunCustodial.calculateHashcode(result, value);
+    protected int xCH(int hs, Object vl) {
+        return FunCustodial.calculateHashcode(hs, vl);
     }
 
     /**
@@ -372,15 +397,15 @@ public abstract class BsMemberStatus implements Entity, Serializable, Cloneable 
     public String toStringWithRelation() {
         StringBuilder sb = new StringBuilder();
         sb.append(toString());
-        String l = "\n  ";
-        if (_memberList != null) { for (Entity e : _memberList)
-        { if (e != null) { sb.append(l).append(xbRDS(e, "memberList")); } } }
-        if (_memberLoginList != null) { for (Entity e : _memberLoginList)
-        { if (e != null) { sb.append(l).append(xbRDS(e, "memberLoginList")); } } }
+        String li = "\n  ";
+        if (_memberList != null) { for (Entity et : _memberList)
+        { if (et != null) { sb.append(li).append(xbRDS(et, "memberList")); } } }
+        if (_memberLoginList != null) { for (Entity et : _memberLoginList)
+        { if (et != null) { sb.append(li).append(xbRDS(et, "memberLoginList")); } } }
         return sb.toString();
     }
-    protected String xbRDS(Entity e, String name) { // buildRelationDisplayString()
-        return e.buildDisplayString(name, true, true);
+    protected String xbRDS(Entity et, String name) { // buildRelationDisplayString()
+        return et.buildDisplayString(name, true, true);
     }
 
     /**
@@ -396,26 +421,26 @@ public abstract class BsMemberStatus implements Entity, Serializable, Cloneable 
     }
     protected String buildColumnString() {
         StringBuilder sb = new StringBuilder();
-        String delimiter = ", ";
-        sb.append(delimiter).append(getMemberStatusCode());
-        sb.append(delimiter).append(getMemberStatusName());
-        sb.append(delimiter).append(getDescription());
-        sb.append(delimiter).append(getDisplayOrder());
-        if (sb.length() > delimiter.length()) {
-            sb.delete(0, delimiter.length());
+        String dm = ", ";
+        sb.append(dm).append(getMemberStatusCode());
+        sb.append(dm).append(getMemberStatusName());
+        sb.append(dm).append(getDescription());
+        sb.append(dm).append(getDisplayOrder());
+        if (sb.length() > dm.length()) {
+            sb.delete(0, dm.length());
         }
         sb.insert(0, "{").append("}");
         return sb.toString();
     }
     protected String buildRelationString() {
         StringBuilder sb = new StringBuilder();
-        String c = ",";
+        String cm = ",";
         if (_memberList != null && !_memberList.isEmpty())
-        { sb.append(c).append("memberList"); }
+        { sb.append(cm).append("memberList"); }
         if (_memberLoginList != null && !_memberLoginList.isEmpty())
-        { sb.append(c).append("memberLoginList"); }
-        if (sb.length() > c.length()) {
-            sb.delete(0, c.length()).insert(0, "(").append(")");
+        { sb.append(cm).append("memberLoginList"); }
+        if (sb.length() > cm.length()) {
+            sb.delete(0, cm.length()).insert(0, "(").append(")");
         }
         return sb.toString();
     }

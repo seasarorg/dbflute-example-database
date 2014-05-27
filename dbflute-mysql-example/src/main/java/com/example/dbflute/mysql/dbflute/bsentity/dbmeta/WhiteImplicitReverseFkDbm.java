@@ -48,13 +48,14 @@ public class WhiteImplicitReverseFkDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgWhiteImplicitReverseFkId(), "whiteImplicitReverseFkId");
         setupEpg(_epgMap, new EpgWhiteImplicitReverseFkName(), "whiteImplicitReverseFkName");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgWhiteImplicitReverseFkId implements PropertyGateway {
         public Object read(Entity et) { return ((WhiteImplicitReverseFk)et).getWhiteImplicitReverseFkId(); }
         public void write(Entity et, Object vl) { ((WhiteImplicitReverseFk)et).setWhiteImplicitReverseFkId(cti(vl)); }
@@ -63,6 +64,27 @@ public class WhiteImplicitReverseFkDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((WhiteImplicitReverseFk)et).getWhiteImplicitReverseFkName(); }
         public void write(Entity et, Object vl) { ((WhiteImplicitReverseFk)et).setWhiteImplicitReverseFkName((String)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
+
+    // -----------------------------------------------------
+    //                                      Foreign Property
+    //                                      ----------------
+    protected final Map<String, PropertyGateway> _efpgMap = newHashMap();
+    {
+        setupEfpg(_efpgMap, new EfpgWhiteImplicitReverseFkRefWithImplicitReverseFK(), "whiteImplicitReverseFkRefWithImplicitReverseFK");
+        setupEfpg(_efpgMap, new EfpgWhiteImplicitReverseFkSuppressSuppressImplicitReverseFK(), "whiteImplicitReverseFkSuppressSuppressImplicitReverseFK");
+    }
+    public class EfpgWhiteImplicitReverseFkRefWithImplicitReverseFK implements PropertyGateway {
+        public Object read(Entity et) { return ((WhiteImplicitReverseFk)et).getWhiteImplicitReverseFkRefWithImplicitReverseFK(); }
+        public void write(Entity et, Object vl) { ((WhiteImplicitReverseFk)et).setWhiteImplicitReverseFkRefWithImplicitReverseFK((WhiteImplicitReverseFkRef)vl); }
+    }
+    public class EfpgWhiteImplicitReverseFkSuppressSuppressImplicitReverseFK implements PropertyGateway {
+        public Object read(Entity et) { return ((WhiteImplicitReverseFk)et).getWhiteImplicitReverseFkSuppressSuppressImplicitReverseFK(); }
+        public void write(Entity et, Object vl) { ((WhiteImplicitReverseFk)et).setWhiteImplicitReverseFkSuppressSuppressImplicitReverseFK((WhiteImplicitReverseFkSuppress)vl); }
+    }
+    public PropertyGateway findForeignPropertyGateway(String prop)
+    { return doFindEfpg(_efpgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -78,8 +100,8 @@ public class WhiteImplicitReverseFkDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnWhiteImplicitReverseFkId = cci("WHITE_IMPLICIT_REVERSE_FK_ID", "WHITE_IMPLICIT_REVERSE_FK_ID", null, null, true, "whiteImplicitReverseFkId", Integer.class, true, true, "INT", 10, 0, null, false, null, null, "whiteImplicitReverseFkRefWithImplicitReverseFK,whiteImplicitReverseFkSuppressSuppressImplicitReverseFK", "whiteImplicitReverseFkRefList", null);
-    protected final ColumnInfo _columnWhiteImplicitReverseFkName = cci("WHITE_IMPLICIT_REVERSE_FK_NAME", "WHITE_IMPLICIT_REVERSE_FK_NAME", null, null, true, "whiteImplicitReverseFkName", String.class, false, false, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnWhiteImplicitReverseFkId = cci("WHITE_IMPLICIT_REVERSE_FK_ID", "WHITE_IMPLICIT_REVERSE_FK_ID", null, null, Integer.class, "whiteImplicitReverseFkId", null, true, true, true, "INT", 10, 0, null, false, null, null, "whiteImplicitReverseFkRefWithImplicitReverseFK,whiteImplicitReverseFkSuppressSuppressImplicitReverseFK", "whiteImplicitReverseFkRefList", null);
+    protected final ColumnInfo _columnWhiteImplicitReverseFkName = cci("WHITE_IMPLICIT_REVERSE_FK_NAME", "WHITE_IMPLICIT_REVERSE_FK_NAME", null, null, String.class, "whiteImplicitReverseFkName", null, false, false, true, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
 
     /**
      * WHITE_IMPLICIT_REVERSE_FK_ID: {PK, ID, NotNull, INT(10), FK to WHITE_IMPLICIT_REVERSE_FK_REF}
@@ -114,6 +136,8 @@ public class WhiteImplicitReverseFkDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

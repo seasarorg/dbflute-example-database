@@ -48,6 +48,9 @@ public class WhiteUqFkRefDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgUqFkRefId(), "uqFkRefId");
@@ -56,8 +59,6 @@ public class WhiteUqFkRefDbm extends AbstractDBMeta {
         setupEpg(_epgMap, new EpgCompoundUqFirstCode(), "compoundUqFirstCode");
         setupEpg(_epgMap, new EpgCompoundUqSecondCode(), "compoundUqSecondCode");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgUqFkRefId implements PropertyGateway {
         public Object read(Entity et) { return ((WhiteUqFkRef)et).getUqFkRefId(); }
         public void write(Entity et, Object vl) { ((WhiteUqFkRef)et).setUqFkRefId(ctl(vl)); }
@@ -78,6 +79,27 @@ public class WhiteUqFkRefDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((WhiteUqFkRef)et).getCompoundUqSecondCode(); }
         public void write(Entity et, Object vl) { ((WhiteUqFkRef)et).setCompoundUqSecondCode((String)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
+
+    // -----------------------------------------------------
+    //                                      Foreign Property
+    //                                      ----------------
+    protected final Map<String, PropertyGateway> _efpgMap = newHashMap();
+    {
+        setupEfpg(_efpgMap, new EfpgWhiteUqFkByFkToPkId(), "whiteUqFkByFkToPkId");
+        setupEfpg(_efpgMap, new EfpgWhiteUqFkByFkToUqCode(), "whiteUqFkByFkToUqCode");
+    }
+    public class EfpgWhiteUqFkByFkToPkId implements PropertyGateway {
+        public Object read(Entity et) { return ((WhiteUqFkRef)et).getWhiteUqFkByFkToPkId(); }
+        public void write(Entity et, Object vl) { ((WhiteUqFkRef)et).setWhiteUqFkByFkToPkId((WhiteUqFk)vl); }
+    }
+    public class EfpgWhiteUqFkByFkToUqCode implements PropertyGateway {
+        public Object read(Entity et) { return ((WhiteUqFkRef)et).getWhiteUqFkByFkToUqCode(); }
+        public void write(Entity et, Object vl) { ((WhiteUqFkRef)et).setWhiteUqFkByFkToUqCode((WhiteUqFk)vl); }
+    }
+    public PropertyGateway findForeignPropertyGateway(String prop)
+    { return doFindEfpg(_efpgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -93,11 +115,11 @@ public class WhiteUqFkRefDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnUqFkRefId = cci("UQ_FK_REF_ID", "UQ_FK_REF_ID", null, null, true, "uqFkRefId", Long.class, true, false, "DECIMAL", 16, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnFkToPkId = cci("FK_TO_PK_ID", "FK_TO_PK_ID", null, null, true, "fkToPkId", Long.class, false, false, "DECIMAL", 16, 0, null, false, null, null, "whiteUqFkByFkToPkId", null, null);
-    protected final ColumnInfo _columnFkToUqCode = cci("FK_TO_UQ_CODE", "FK_TO_UQ_CODE", null, null, true, "fkToUqCode", String.class, false, false, "CHAR", 3, 0, null, false, null, null, "whiteUqFkByFkToUqCode", null, null);
-    protected final ColumnInfo _columnCompoundUqFirstCode = cci("COMPOUND_UQ_FIRST_CODE", "COMPOUND_UQ_FIRST_CODE", null, null, true, "compoundUqFirstCode", String.class, false, false, "CHAR", 3, 0, null, false, null, null, null, "whiteUqFkRefNestList", null);
-    protected final ColumnInfo _columnCompoundUqSecondCode = cci("COMPOUND_UQ_SECOND_CODE", "COMPOUND_UQ_SECOND_CODE", null, null, true, "compoundUqSecondCode", String.class, false, false, "CHAR", 3, 0, null, false, null, null, null, "whiteUqFkRefNestList", null);
+    protected final ColumnInfo _columnUqFkRefId = cci("UQ_FK_REF_ID", "UQ_FK_REF_ID", null, null, Long.class, "uqFkRefId", null, true, false, true, "DECIMAL", 16, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnFkToPkId = cci("FK_TO_PK_ID", "FK_TO_PK_ID", null, null, Long.class, "fkToPkId", null, false, false, true, "DECIMAL", 16, 0, null, false, null, null, "whiteUqFkByFkToPkId", null, null);
+    protected final ColumnInfo _columnFkToUqCode = cci("FK_TO_UQ_CODE", "FK_TO_UQ_CODE", null, null, String.class, "fkToUqCode", null, false, false, true, "CHAR", 3, 0, null, false, null, null, "whiteUqFkByFkToUqCode", null, null);
+    protected final ColumnInfo _columnCompoundUqFirstCode = cci("COMPOUND_UQ_FIRST_CODE", "COMPOUND_UQ_FIRST_CODE", null, null, String.class, "compoundUqFirstCode", null, false, false, true, "CHAR", 3, 0, null, false, null, null, null, "whiteUqFkRefNestList", null);
+    protected final ColumnInfo _columnCompoundUqSecondCode = cci("COMPOUND_UQ_SECOND_CODE", "COMPOUND_UQ_SECOND_CODE", null, null, String.class, "compoundUqSecondCode", null, false, false, true, "CHAR", 3, 0, null, false, null, null, null, "whiteUqFkRefNestList", null);
 
     /**
      * UQ_FK_REF_ID: {PK, NotNull, DECIMAL(16)}
@@ -115,12 +137,12 @@ public class WhiteUqFkRefDbm extends AbstractDBMeta {
      */
     public ColumnInfo columnFkToUqCode() { return _columnFkToUqCode; }
     /**
-     * COMPOUND_UQ_FIRST_CODE: {UQ, NotNull, CHAR(3)}
+     * COMPOUND_UQ_FIRST_CODE: {UQ+, NotNull, CHAR(3)}
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnCompoundUqFirstCode() { return _columnCompoundUqFirstCode; }
     /**
-     * COMPOUND_UQ_SECOND_CODE: {UQ+, NotNull, CHAR(3)}
+     * COMPOUND_UQ_SECOND_CODE: {+UQ, NotNull, CHAR(3)}
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnCompoundUqSecondCode() { return _columnCompoundUqSecondCode; }
@@ -150,6 +172,8 @@ public class WhiteUqFkRefDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

@@ -98,6 +98,9 @@ public abstract class BsWhiteImplicitConvNumeric implements Entity, Serializable
     // -----------------------------------------------------
     //                                              Internal
     //                                              --------
+    /** The unique-driven properties for this entity. (NotNull) */
+    protected final EntityUniqueDrivenProperties __uniqueDrivenProperties = newUniqueDrivenProperties();
+
     /** The modified properties for this entity. (NotNull) */
     protected final EntityModifiedProperties __modifiedProperties = newModifiedProperties();
 
@@ -140,6 +143,17 @@ public abstract class BsWhiteImplicitConvNumeric implements Entity, Serializable
     public boolean hasPrimaryKeyValue() {
         if (getImplicitConvNumericId() == null) { return false; }
         return true;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Set<String> uniqueDrivenProperties() {
+        return __uniqueDrivenProperties.getPropertyNames();
+    }
+
+    protected EntityUniqueDrivenProperties newUniqueDrivenProperties() {
+        return new EntityUniqueDrivenProperties();
     }
 
     // ===================================================================================
@@ -290,8 +304,8 @@ public abstract class BsWhiteImplicitConvNumeric implements Entity, Serializable
         if (!xSV(getImplicitConvNumericId(), other.getImplicitConvNumericId())) { return false; }
         return true;
     }
-    protected boolean xSV(Object value1, Object value2) {
-        return FunCustodial.isSameValue(value1, value2);
+    protected boolean xSV(Object v1, Object v2) {
+        return FunCustodial.isSameValue(v1, v2);
     }
 
     /**
@@ -299,13 +313,13 @@ public abstract class BsWhiteImplicitConvNumeric implements Entity, Serializable
      * @return The hash-code from primary-key or columns.
      */
     public int hashCode() {
-        int result = 17;
-        result = xCH(result, getTableDbName());
-        result = xCH(result, getImplicitConvNumericId());
-        return result;
+        int hs = 17;
+        hs = xCH(hs, getTableDbName());
+        hs = xCH(hs, getImplicitConvNumericId());
+        return hs;
     }
-    protected int xCH(int result, Object value) {
-        return FunCustodial.calculateHashcode(result, value);
+    protected int xCH(int hs, Object vl) {
+        return FunCustodial.calculateHashcode(hs, vl);
     }
 
     /**
@@ -329,19 +343,19 @@ public abstract class BsWhiteImplicitConvNumeric implements Entity, Serializable
     public String toStringWithRelation() {
         StringBuilder sb = new StringBuilder();
         sb.append(toString());
-        String l = "\n  ";
+        String li = "\n  ";
         if (_whiteImplicitConvInteger != null)
-        { sb.append(l).append(xbRDS(_whiteImplicitConvInteger, "whiteImplicitConvInteger")); }
+        { sb.append(li).append(xbRDS(_whiteImplicitConvInteger, "whiteImplicitConvInteger")); }
         if (_whiteImplicitConvString != null)
-        { sb.append(l).append(xbRDS(_whiteImplicitConvString, "whiteImplicitConvString")); }
-        if (_whiteImplicitConvIntegerList != null) { for (Entity e : _whiteImplicitConvIntegerList)
-        { if (e != null) { sb.append(l).append(xbRDS(e, "whiteImplicitConvIntegerList")); } } }
-        if (_whiteImplicitConvStringList != null) { for (Entity e : _whiteImplicitConvStringList)
-        { if (e != null) { sb.append(l).append(xbRDS(e, "whiteImplicitConvStringList")); } } }
+        { sb.append(li).append(xbRDS(_whiteImplicitConvString, "whiteImplicitConvString")); }
+        if (_whiteImplicitConvIntegerList != null) { for (Entity et : _whiteImplicitConvIntegerList)
+        { if (et != null) { sb.append(li).append(xbRDS(et, "whiteImplicitConvIntegerList")); } } }
+        if (_whiteImplicitConvStringList != null) { for (Entity et : _whiteImplicitConvStringList)
+        { if (et != null) { sb.append(li).append(xbRDS(et, "whiteImplicitConvStringList")); } } }
         return sb.toString();
     }
-    protected String xbRDS(Entity e, String name) { // buildRelationDisplayString()
-        return e.buildDisplayString(name, true, true);
+    protected String xbRDS(Entity et, String name) { // buildRelationDisplayString()
+        return et.buildDisplayString(name, true, true);
     }
 
     /**
@@ -357,28 +371,28 @@ public abstract class BsWhiteImplicitConvNumeric implements Entity, Serializable
     }
     protected String buildColumnString() {
         StringBuilder sb = new StringBuilder();
-        String delimiter = ", ";
-        sb.append(delimiter).append(getImplicitConvNumericId());
-        sb.append(delimiter).append(getImplicitConvIntegerId());
-        sb.append(delimiter).append(getImplicitConvStringId());
-        sb.append(delimiter).append(getImplicitConvName());
-        if (sb.length() > delimiter.length()) {
-            sb.delete(0, delimiter.length());
+        String dm = ", ";
+        sb.append(dm).append(getImplicitConvNumericId());
+        sb.append(dm).append(getImplicitConvIntegerId());
+        sb.append(dm).append(getImplicitConvStringId());
+        sb.append(dm).append(getImplicitConvName());
+        if (sb.length() > dm.length()) {
+            sb.delete(0, dm.length());
         }
         sb.insert(0, "{").append("}");
         return sb.toString();
     }
     protected String buildRelationString() {
         StringBuilder sb = new StringBuilder();
-        String c = ",";
-        if (_whiteImplicitConvInteger != null) { sb.append(c).append("whiteImplicitConvInteger"); }
-        if (_whiteImplicitConvString != null) { sb.append(c).append("whiteImplicitConvString"); }
+        String cm = ",";
+        if (_whiteImplicitConvInteger != null) { sb.append(cm).append("whiteImplicitConvInteger"); }
+        if (_whiteImplicitConvString != null) { sb.append(cm).append("whiteImplicitConvString"); }
         if (_whiteImplicitConvIntegerList != null && !_whiteImplicitConvIntegerList.isEmpty())
-        { sb.append(c).append("whiteImplicitConvIntegerList"); }
+        { sb.append(cm).append("whiteImplicitConvIntegerList"); }
         if (_whiteImplicitConvStringList != null && !_whiteImplicitConvStringList.isEmpty())
-        { sb.append(c).append("whiteImplicitConvStringList"); }
-        if (sb.length() > c.length()) {
-            sb.delete(0, c.length()).insert(0, "(").append(")");
+        { sb.append(cm).append("whiteImplicitConvStringList"); }
+        if (sb.length() > cm.length()) {
+            sb.delete(0, cm.length()).insert(0, "(").append(")");
         }
         return sb.toString();
     }

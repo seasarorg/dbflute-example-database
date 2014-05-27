@@ -78,10 +78,14 @@ public class BsVendorDateFkCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                 PrimaryKey Handling
     //                                                                 ===================
+    /**
+     * Accept the query condition of primary key as equal.
+     * @param barId : PK, NotNull, int4(10). (NotNull)
+     */
     public void acceptPrimaryKey(Integer barId) {
         assertObjectNotNull("barId", barId);
         BsVendorDateFkCB cb = this;
-        cb.query().setBarId_Equal(barId);
+        cb.query().setBarId_Equal(barId);;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {
@@ -461,6 +465,11 @@ public class BsVendorDateFkCB extends AbstractConditionBean {
      */
     public void orScopeQuery(OrQuery<VendorDateFkCB> orQuery) {
         xorSQ((VendorDateFkCB)this, orQuery);
+    }
+
+    @Override
+    protected HpCBPurpose xhandleOrSQPurposeChange() {
+        return null; // means no check
     }
 
     /**

@@ -48,6 +48,9 @@ public class MemberDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgMemberId(), "memberId");
@@ -62,8 +65,6 @@ public class MemberDbm extends AbstractDBMeta {
         setupEpg(_epgMap, new EpgUpdateUser(), "updateUser");
         setupEpg(_epgMap, new EpgVersionNo(), "versionNo");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgMemberId implements PropertyGateway {
         public Object read(Entity et) { return ((Member)et).getMemberId(); }
         public void write(Entity et, Object vl) { ((Member)et).setMemberId(cti(vl)); }
@@ -112,6 +113,139 @@ public class MemberDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((Member)et).getVersionNo(); }
         public void write(Entity et, Object vl) { ((Member)et).setVersionNo(ctl(vl)); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
+
+    // -----------------------------------------------------
+    //                                      Foreign Property
+    //                                      ----------------
+    protected final Map<String, PropertyGateway> _efpgMap = newHashMap();
+    {
+        setupEfpg(_efpgMap, new EfpgMemberStatus(), "memberStatus");
+        setupEfpg(_efpgMap, new EfpgMemberAddressAsValid(), "memberAddressAsValid");
+        setupEfpg(_efpgMap, new EfpgMemberAddressAsValidBefore(), "memberAddressAsValidBefore");
+        setupEfpg(_efpgMap, new EfpgMemberLoginAsLoginStatus(), "memberLoginAsLoginStatus");
+        setupEfpg(_efpgMap, new EfpgMemberAddressAsIfComment(), "memberAddressAsIfComment");
+        setupEfpg(_efpgMap, new EfpgMemberAddressAsOnlyOneDate(), "memberAddressAsOnlyOneDate");
+        setupEfpg(_efpgMap, new EfpgMemberLoginAsLocalForeignOverTest(), "memberLoginAsLocalForeignOverTest");
+        setupEfpg(_efpgMap, new EfpgMemberLoginAsForeignForeignEachOverTest(), "memberLoginAsForeignForeignEachOverTest");
+        setupEfpg(_efpgMap, new EfpgMemberLoginAsForeignForeignOptimizedBasicOverTest(), "memberLoginAsForeignForeignOptimizedBasicOverTest");
+        setupEfpg(_efpgMap, new EfpgMemberLoginAsForeignForeignOptimizedMarkOverTest(), "memberLoginAsForeignForeignOptimizedMarkOverTest");
+        setupEfpg(_efpgMap, new EfpgMemberLoginAsForeignForeignOptimizedPartOverTest(), "memberLoginAsForeignForeignOptimizedPartOverTest");
+        setupEfpg(_efpgMap, new EfpgMemberLoginAsForeignForeignOptimizedWholeOverTest(), "memberLoginAsForeignForeignOptimizedWholeOverTest");
+        setupEfpg(_efpgMap, new EfpgMemberLoginAsForeignForeignParameterOverTest(), "memberLoginAsForeignForeignParameterOverTest");
+        setupEfpg(_efpgMap, new EfpgMemberLoginAsForeignForeignVariousOverTest(), "memberLoginAsForeignForeignVariousOverTest");
+        setupEfpg(_efpgMap, new EfpgMemberLoginAsReferrerOverTest(), "memberLoginAsReferrerOverTest");
+        setupEfpg(_efpgMap, new EfpgMemberLoginAsReferrerForeignOverTest(), "memberLoginAsReferrerForeignOverTest");
+        setupEfpg(_efpgMap, new EfpgMemberAddressAsFormattedBasic(), "memberAddressAsFormattedBasic");
+        setupEfpg(_efpgMap, new EfpgMemberAddressAsFormattedLong(), "memberAddressAsFormattedLong");
+        setupEfpg(_efpgMap, new EfpgMemberLoginAsFormattedMany(), "memberLoginAsFormattedMany");
+        setupEfpg(_efpgMap, new EfpgMemberLoginAsLatest(), "memberLoginAsLatest");
+        setupEfpg(_efpgMap, new EfpgMemberLoginAsOldest(), "memberLoginAsOldest");
+    }
+    public class EfpgMemberStatus implements PropertyGateway {
+        public Object read(Entity et) { return ((Member)et).getMemberStatus(); }
+        public void write(Entity et, Object vl) { ((Member)et).setMemberStatus((MemberStatus)vl); }
+    }
+    public class EfpgMemberAddressAsValid implements PropertyGateway {
+        public Object read(Entity et) { return ((Member)et).getMemberAddressAsValid(); }
+        public void write(Entity et, Object vl) { ((Member)et).setMemberAddressAsValid((MemberAddress)vl); }
+    }
+    public class EfpgMemberAddressAsValidBefore implements PropertyGateway {
+        public Object read(Entity et) { return ((Member)et).getMemberAddressAsValidBefore(); }
+        public void write(Entity et, Object vl) { ((Member)et).setMemberAddressAsValidBefore((MemberAddress)vl); }
+    }
+    public class EfpgMemberLoginAsLoginStatus implements PropertyGateway {
+        public Object read(Entity et) { return ((Member)et).getMemberLoginAsLoginStatus(); }
+        public void write(Entity et, Object vl) { ((Member)et).setMemberLoginAsLoginStatus((MemberLogin)vl); }
+    }
+    public class EfpgMemberAddressAsIfComment implements PropertyGateway {
+        public Object read(Entity et) { return ((Member)et).getMemberAddressAsIfComment(); }
+        public void write(Entity et, Object vl) { ((Member)et).setMemberAddressAsIfComment((MemberAddress)vl); }
+    }
+    public class EfpgMemberAddressAsOnlyOneDate implements PropertyGateway {
+        public Object read(Entity et) { return ((Member)et).getMemberAddressAsOnlyOneDate(); }
+        public void write(Entity et, Object vl) { ((Member)et).setMemberAddressAsOnlyOneDate((MemberAddress)vl); }
+    }
+    public class EfpgMemberLoginAsLocalForeignOverTest implements PropertyGateway {
+        public Object read(Entity et) { return ((Member)et).getMemberLoginAsLocalForeignOverTest(); }
+        public void write(Entity et, Object vl) { ((Member)et).setMemberLoginAsLocalForeignOverTest((MemberLogin)vl); }
+    }
+    public class EfpgMemberLoginAsForeignForeignEachOverTest implements PropertyGateway {
+        public Object read(Entity et) { return ((Member)et).getMemberLoginAsForeignForeignEachOverTest(); }
+        public void write(Entity et, Object vl) { ((Member)et).setMemberLoginAsForeignForeignEachOverTest((MemberLogin)vl); }
+    }
+    public class EfpgMemberLoginAsForeignForeignOptimizedBasicOverTest implements PropertyGateway {
+        public Object read(Entity et) { return ((Member)et).getMemberLoginAsForeignForeignOptimizedBasicOverTest(); }
+        public void write(Entity et, Object vl) { ((Member)et).setMemberLoginAsForeignForeignOptimizedBasicOverTest((MemberLogin)vl); }
+    }
+    public class EfpgMemberLoginAsForeignForeignOptimizedMarkOverTest implements PropertyGateway {
+        public Object read(Entity et) { return ((Member)et).getMemberLoginAsForeignForeignOptimizedMarkOverTest(); }
+        public void write(Entity et, Object vl) { ((Member)et).setMemberLoginAsForeignForeignOptimizedMarkOverTest((MemberLogin)vl); }
+    }
+    public class EfpgMemberLoginAsForeignForeignOptimizedPartOverTest implements PropertyGateway {
+        public Object read(Entity et) { return ((Member)et).getMemberLoginAsForeignForeignOptimizedPartOverTest(); }
+        public void write(Entity et, Object vl) { ((Member)et).setMemberLoginAsForeignForeignOptimizedPartOverTest((MemberLogin)vl); }
+    }
+    public class EfpgMemberLoginAsForeignForeignOptimizedWholeOverTest implements PropertyGateway {
+        public Object read(Entity et) { return ((Member)et).getMemberLoginAsForeignForeignOptimizedWholeOverTest(); }
+        public void write(Entity et, Object vl) { ((Member)et).setMemberLoginAsForeignForeignOptimizedWholeOverTest((MemberLogin)vl); }
+    }
+    public class EfpgMemberLoginAsForeignForeignParameterOverTest implements PropertyGateway {
+        public Object read(Entity et) { return ((Member)et).getMemberLoginAsForeignForeignParameterOverTest(); }
+        public void write(Entity et, Object vl) { ((Member)et).setMemberLoginAsForeignForeignParameterOverTest((MemberLogin)vl); }
+    }
+    public class EfpgMemberLoginAsForeignForeignVariousOverTest implements PropertyGateway {
+        public Object read(Entity et) { return ((Member)et).getMemberLoginAsForeignForeignVariousOverTest(); }
+        public void write(Entity et, Object vl) { ((Member)et).setMemberLoginAsForeignForeignVariousOverTest((MemberLogin)vl); }
+    }
+    public class EfpgMemberLoginAsReferrerOverTest implements PropertyGateway {
+        public Object read(Entity et) { return ((Member)et).getMemberLoginAsReferrerOverTest(); }
+        public void write(Entity et, Object vl) { ((Member)et).setMemberLoginAsReferrerOverTest((MemberLogin)vl); }
+    }
+    public class EfpgMemberLoginAsReferrerForeignOverTest implements PropertyGateway {
+        public Object read(Entity et) { return ((Member)et).getMemberLoginAsReferrerForeignOverTest(); }
+        public void write(Entity et, Object vl) { ((Member)et).setMemberLoginAsReferrerForeignOverTest((MemberLogin)vl); }
+    }
+    public class EfpgMemberAddressAsFormattedBasic implements PropertyGateway {
+        public Object read(Entity et) { return ((Member)et).getMemberAddressAsFormattedBasic(); }
+        public void write(Entity et, Object vl) { ((Member)et).setMemberAddressAsFormattedBasic((MemberAddress)vl); }
+    }
+    public class EfpgMemberAddressAsFormattedLong implements PropertyGateway {
+        public Object read(Entity et) { return ((Member)et).getMemberAddressAsFormattedLong(); }
+        public void write(Entity et, Object vl) { ((Member)et).setMemberAddressAsFormattedLong((MemberAddress)vl); }
+    }
+    public class EfpgMemberLoginAsFormattedMany implements PropertyGateway {
+        public Object read(Entity et) { return ((Member)et).getMemberLoginAsFormattedMany(); }
+        public void write(Entity et, Object vl) { ((Member)et).setMemberLoginAsFormattedMany((MemberLogin)vl); }
+    }
+    public class EfpgMemberLoginAsLatest implements PropertyGateway {
+        public Object read(Entity et) { return ((Member)et).getMemberLoginAsLatest(); }
+        public void write(Entity et, Object vl) { ((Member)et).setMemberLoginAsLatest((MemberLogin)vl); }
+    }
+    public class EfpgMemberLoginAsOldest implements PropertyGateway {
+        public Object read(Entity et) { return ((Member)et).getMemberLoginAsOldest(); }
+        public void write(Entity et, Object vl) { ((Member)et).setMemberLoginAsOldest((MemberLogin)vl); }
+    }
+    {
+        setupEfpg(_efpgMap, new EfpgMemberSecurityAsOne(), "memberSecurityAsOne");
+        setupEfpg(_efpgMap, new EfpgMemberServiceAsOne(), "memberServiceAsOne");
+        setupEfpg(_efpgMap, new EfpgMemberWithdrawalAsOne(), "memberWithdrawalAsOne");
+    }
+    public class EfpgMemberSecurityAsOne implements PropertyGateway {
+        public Object read(Entity et) { return ((Member)et).getMemberSecurityAsOne(); }
+        public void write(Entity et, Object vl) { ((Member)et).setMemberSecurityAsOne((MemberSecurity)vl); }
+    }
+    public class EfpgMemberServiceAsOne implements PropertyGateway {
+        public Object read(Entity et) { return ((Member)et).getMemberServiceAsOne(); }
+        public void write(Entity et, Object vl) { ((Member)et).setMemberServiceAsOne((MemberService)vl); }
+    }
+    public class EfpgMemberWithdrawalAsOne implements PropertyGateway {
+        public Object read(Entity et) { return ((Member)et).getMemberWithdrawalAsOne(); }
+        public void write(Entity et, Object vl) { ((Member)et).setMemberWithdrawalAsOne((MemberWithdrawal)vl); }
+    }
+    public PropertyGateway findForeignPropertyGateway(String prop)
+    { return doFindEfpg(_efpgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -131,17 +265,17 @@ public class MemberDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnMemberId = cci("MEMBER_ID", "MEMBER_ID", null, "会員ID", true, "memberId", Integer.class, true, true, "INT", 10, 0, null, false, null, "会員を識別するID。連番として基本的に自動採番される。\n（会員IDだけに限らず）採番方法はDBMSによって変わる。", "memberAddressAsValid,memberAddressAsValidBefore,memberLoginAsLoginStatus,memberAddressAsIfComment,memberAddressAsOnlyOneDate,memberLoginAsLocalForeignOverTest,memberLoginAsForeignForeignEachOverTest,memberLoginAsForeignForeignOptimizedBasicOverTest,memberLoginAsForeignForeignOptimizedMarkOverTest,memberLoginAsForeignForeignOptimizedPartOverTest,memberLoginAsForeignForeignOptimizedWholeOverTest,memberLoginAsForeignForeignParameterOverTest,memberLoginAsForeignForeignVariousOverTest,memberLoginAsReferrerOverTest,memberLoginAsReferrerForeignOverTest,memberAddressAsFormattedBasic,memberAddressAsFormattedLong,memberLoginAsFormattedMany,memberLoginAsLatest,memberLoginAsOldest,memberSecurityAsOne,memberServiceAsOne,memberWithdrawalAsOne", "memberAddressList,memberLoginList,purchaseList", null);
-    protected final ColumnInfo _columnMemberName = cci("MEMBER_NAME", "MEMBER_NAME", null, "会員名称", true, "memberName", String.class, false, false, "VARCHAR", 180, 0, null, false, null, "会員のフルネームの名称。", null, null, null);
-    protected final ColumnInfo _columnMemberAccount = cci("MEMBER_ACCOUNT", "MEMBER_ACCOUNT", null, "会員アカウント", true, "memberAccount", String.class, false, false, "VARCHAR", 50, 0, null, false, null, "会員がログイン時に利用するアカウントNO。", null, null, null);
-    protected final ColumnInfo _columnMemberStatusCode = cci("MEMBER_STATUS_CODE", "MEMBER_STATUS_CODE", null, "会員ステータスコード", true, "memberStatusCode", String.class, false, false, "CHAR", 3, 0, null, false, null, null, "memberStatus", null, CDef.DefMeta.MemberStatus);
-    protected final ColumnInfo _columnFormalizedDatetime = cci("FORMALIZED_DATETIME", "FORMALIZED_DATETIME", null, "正式会員日時", false, "formalizedDatetime", java.sql.Timestamp.class, false, false, "DATETIME", 19, 0, null, false, null, "会員が正式に確定した日時。一度確定したら更新されない。\n仮会員のときはnull。", null, null, null);
-    protected final ColumnInfo _columnBirthdate = cci("BIRTHDATE", "BIRTHDATE", null, "生年月日", false, "birthdate", java.util.Date.class, false, false, "DATE", 10, 0, null, false, null, "必須項目ではないので、このデータがない会員もいる。", null, null, null);
-    protected final ColumnInfo _columnRegisterDatetime = cci("REGISTER_DATETIME", "REGISTER_DATETIME", null, "登録日時", true, "registerDatetime", java.sql.Timestamp.class, false, false, "DATETIME", 19, 0, null, true, null, "レコードが登録された日時。共通カラムの一つ。", null, null, null);
-    protected final ColumnInfo _columnRegisterUser = cci("REGISTER_USER", "REGISTER_USER", null, "登録ユーザ", true, "registerUser", String.class, false, false, "VARCHAR", 200, 0, null, true, null, "レコードを登録したユーザ。共通カラムの一つ。", null, null, null);
-    protected final ColumnInfo _columnUpdateDatetime = cci("UPDATE_DATETIME", "UPDATE_DATETIME", null, "更新日時", true, "updateDatetime", java.sql.Timestamp.class, false, false, "DATETIME", 19, 0, null, true, null, "レコードが（最後に）更新された日時。共通カラムの一つ。", null, null, null);
-    protected final ColumnInfo _columnUpdateUser = cci("UPDATE_USER", "UPDATE_USER", null, "更新ユーザ", true, "updateUser", String.class, false, false, "VARCHAR", 200, 0, null, true, null, "レコードを更新したユーザ。", null, null, null);
-    protected final ColumnInfo _columnVersionNo = cci("VERSION_NO", "VERSION_NO", null, "バージョンNO", true, "versionNo", Long.class, false, false, "BIGINT", 19, 0, null, false, OptimisticLockType.VERSION_NO, "レコードのバージョンを示すNO。\n更新回数と等しく、主に排他制御のために利用される。", null, null, null);
+    protected final ColumnInfo _columnMemberId = cci("MEMBER_ID", "MEMBER_ID", null, "会員ID", Integer.class, "memberId", null, true, true, true, "INT", 10, 0, null, false, null, "会員を識別するID。連番として基本的に自動採番される。\n（会員IDだけに限らず）採番方法はDBMSによって変わる。", "memberAddressAsValid,memberAddressAsValidBefore,memberLoginAsLoginStatus,memberAddressAsIfComment,memberAddressAsOnlyOneDate,memberLoginAsLocalForeignOverTest,memberLoginAsForeignForeignEachOverTest,memberLoginAsForeignForeignOptimizedBasicOverTest,memberLoginAsForeignForeignOptimizedMarkOverTest,memberLoginAsForeignForeignOptimizedPartOverTest,memberLoginAsForeignForeignOptimizedWholeOverTest,memberLoginAsForeignForeignParameterOverTest,memberLoginAsForeignForeignVariousOverTest,memberLoginAsReferrerOverTest,memberLoginAsReferrerForeignOverTest,memberAddressAsFormattedBasic,memberAddressAsFormattedLong,memberLoginAsFormattedMany,memberLoginAsLatest,memberLoginAsOldest,memberSecurityAsOne,memberServiceAsOne,memberWithdrawalAsOne", "memberAddressList,memberLoginList,purchaseList", null);
+    protected final ColumnInfo _columnMemberName = cci("MEMBER_NAME", "MEMBER_NAME", null, "会員名称", String.class, "memberName", null, false, false, true, "VARCHAR", 180, 0, null, false, null, "会員のフルネームの名称。", null, null, null);
+    protected final ColumnInfo _columnMemberAccount = cci("MEMBER_ACCOUNT", "MEMBER_ACCOUNT", null, "会員アカウント", String.class, "memberAccount", null, false, false, true, "VARCHAR", 50, 0, null, false, null, "会員がログイン時に利用するアカウントNO。", null, null, null);
+    protected final ColumnInfo _columnMemberStatusCode = cci("MEMBER_STATUS_CODE", "MEMBER_STATUS_CODE", null, "会員ステータスコード", String.class, "memberStatusCode", null, false, false, true, "CHAR", 3, 0, null, false, null, null, "memberStatus", null, CDef.DefMeta.MemberStatus);
+    protected final ColumnInfo _columnFormalizedDatetime = cci("FORMALIZED_DATETIME", "FORMALIZED_DATETIME", null, "正式会員日時", java.sql.Timestamp.class, "formalizedDatetime", null, false, false, false, "DATETIME", 19, 0, null, false, null, "会員が正式に確定した日時。一度確定したら更新されない。\n仮会員のときはnull。", null, null, null);
+    protected final ColumnInfo _columnBirthdate = cci("BIRTHDATE", "BIRTHDATE", null, "生年月日", java.util.Date.class, "birthdate", null, false, false, false, "DATE", 10, 0, null, false, null, "必須項目ではないので、このデータがない会員もいる。", null, null, null);
+    protected final ColumnInfo _columnRegisterDatetime = cci("REGISTER_DATETIME", "REGISTER_DATETIME", null, "登録日時", java.sql.Timestamp.class, "registerDatetime", null, false, false, true, "DATETIME", 19, 0, null, true, null, "レコードが登録された日時。共通カラムの一つ。", null, null, null);
+    protected final ColumnInfo _columnRegisterUser = cci("REGISTER_USER", "REGISTER_USER", null, "登録ユーザ", String.class, "registerUser", null, false, false, true, "VARCHAR", 200, 0, null, true, null, "レコードを登録したユーザ。共通カラムの一つ。", null, null, null);
+    protected final ColumnInfo _columnUpdateDatetime = cci("UPDATE_DATETIME", "UPDATE_DATETIME", null, "更新日時", java.sql.Timestamp.class, "updateDatetime", null, false, false, true, "DATETIME", 19, 0, null, true, null, "レコードが（最後に）更新された日時。共通カラムの一つ。", null, null, null);
+    protected final ColumnInfo _columnUpdateUser = cci("UPDATE_USER", "UPDATE_USER", null, "更新ユーザ", String.class, "updateUser", null, false, false, true, "VARCHAR", 200, 0, null, true, null, "レコードを更新したユーザ。", null, null, null);
+    protected final ColumnInfo _columnVersionNo = cci("VERSION_NO", "VERSION_NO", null, "バージョンNO", Long.class, "versionNo", null, false, false, true, "BIGINT", 19, 0, null, false, OptimisticLockType.VERSION_NO, "レコードのバージョンを示すNO。\n更新回数と等しく、主に排他制御のために利用される。", null, null, null);
 
     /**
      * (会員ID)MEMBER_ID: {PK, ID, NotNull, INT(10), FK to MEMBER_ADDRESS}
@@ -230,6 +364,8 @@ public class MemberDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

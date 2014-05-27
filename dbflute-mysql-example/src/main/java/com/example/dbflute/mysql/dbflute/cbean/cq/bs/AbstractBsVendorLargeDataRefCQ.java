@@ -232,7 +232,7 @@ public abstract class AbstractBsVendorLargeDataRefCQ extends AbstractConditionQu
     public abstract String keepLargeDataRefId_SpecifyDerivedReferrer_VendorLargeDataRefSelfList(VendorLargeDataRefCQ sq);
 
     /**
-     * Prepare for (Query)DerivedReferrer. <br />
+     * Prepare for (Query)DerivedReferrer (correlated sub-query). <br />
      * {FOO &lt;= (select max(BAR) from vendor_large_data_ref where ...)} <br />
      * vendor_large_data_ref by SELF_PARENT_ID, named 'vendorLargeDataRefSelfAsOne'.
      * <pre>
@@ -1181,7 +1181,7 @@ public abstract class AbstractBsVendorLargeDataRefCQ extends AbstractConditionQu
     public abstract String keepSpecifyMyselfDerived(VendorLargeDataRefCQ sq);
 
     /**
-     * Prepare for (Query)MyselfDerived (SubQuery).
+     * Prepare for (Query)MyselfDerived (correlated sub-query).
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<VendorLargeDataRefCB> myselfDerived() {
@@ -1203,8 +1203,8 @@ public abstract class AbstractBsVendorLargeDataRefCQ extends AbstractConditionQu
     //                                                                        MyselfExists
     //                                                                        ============
     /**
-     * Prepare for MyselfExists (SubQuery).
-     * @param subQuery The implementation of sub query. (NotNull)
+     * Prepare for MyselfExists (correlated sub-query).
+     * @param subQuery The implementation of sub-query. (NotNull)
      */
     public void myselfExists(SubQuery<VendorLargeDataRefCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
@@ -1219,8 +1219,8 @@ public abstract class AbstractBsVendorLargeDataRefCQ extends AbstractConditionQu
     //                                                                       MyselfInScope
     //                                                                       =============
     /**
-     * Prepare for MyselfInScope (SubQuery).
-     * @param subQuery The implementation of sub query. (NotNull)
+     * Prepare for MyselfInScope (sub-query).
+     * @param subQuery The implementation of sub-query. (NotNull)
      */
     public void myselfInScope(SubQuery<VendorLargeDataRefCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);

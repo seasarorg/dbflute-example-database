@@ -48,6 +48,9 @@ public class WhiteImplicitConvNumericDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgImplicitConvNumericId(), "implicitConvNumericId");
@@ -55,8 +58,6 @@ public class WhiteImplicitConvNumericDbm extends AbstractDBMeta {
         setupEpg(_epgMap, new EpgImplicitConvStringId(), "implicitConvStringId");
         setupEpg(_epgMap, new EpgImplicitConvName(), "implicitConvName");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgImplicitConvNumericId implements PropertyGateway {
         public Object read(Entity et) { return ((WhiteImplicitConvNumeric)et).getImplicitConvNumericId(); }
         public void write(Entity et, Object vl) { ((WhiteImplicitConvNumeric)et).setImplicitConvNumericId(ctb(vl)); }
@@ -73,6 +74,27 @@ public class WhiteImplicitConvNumericDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((WhiteImplicitConvNumeric)et).getImplicitConvName(); }
         public void write(Entity et, Object vl) { ((WhiteImplicitConvNumeric)et).setImplicitConvName((String)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
+
+    // -----------------------------------------------------
+    //                                      Foreign Property
+    //                                      ----------------
+    protected final Map<String, PropertyGateway> _efpgMap = newHashMap();
+    {
+        setupEfpg(_efpgMap, new EfpgWhiteImplicitConvInteger(), "whiteImplicitConvInteger");
+        setupEfpg(_efpgMap, new EfpgWhiteImplicitConvString(), "whiteImplicitConvString");
+    }
+    public class EfpgWhiteImplicitConvInteger implements PropertyGateway {
+        public Object read(Entity et) { return ((WhiteImplicitConvNumeric)et).getWhiteImplicitConvInteger(); }
+        public void write(Entity et, Object vl) { ((WhiteImplicitConvNumeric)et).setWhiteImplicitConvInteger((WhiteImplicitConvInteger)vl); }
+    }
+    public class EfpgWhiteImplicitConvString implements PropertyGateway {
+        public Object read(Entity et) { return ((WhiteImplicitConvNumeric)et).getWhiteImplicitConvString(); }
+        public void write(Entity et, Object vl) { ((WhiteImplicitConvNumeric)et).setWhiteImplicitConvString((WhiteImplicitConvString)vl); }
+    }
+    public PropertyGateway findForeignPropertyGateway(String prop)
+    { return doFindEfpg(_efpgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -88,10 +110,10 @@ public class WhiteImplicitConvNumericDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnImplicitConvNumericId = cci("IMPLICIT_CONV_NUMERIC_ID", "IMPLICIT_CONV_NUMERIC_ID", null, null, true, "implicitConvNumericId", java.math.BigDecimal.class, true, false, "DECIMAL", 20, 0, null, false, null, null, null, "whiteImplicitConvIntegerList,whiteImplicitConvStringList", null);
-    protected final ColumnInfo _columnImplicitConvIntegerId = cci("IMPLICIT_CONV_INTEGER_ID", "IMPLICIT_CONV_INTEGER_ID", null, null, true, "implicitConvIntegerId", java.math.BigDecimal.class, false, false, "DECIMAL", 20, 0, null, false, null, null, "whiteImplicitConvInteger", null, null);
-    protected final ColumnInfo _columnImplicitConvStringId = cci("IMPLICIT_CONV_STRING_ID", "IMPLICIT_CONV_STRING_ID", null, null, true, "implicitConvStringId", java.math.BigDecimal.class, false, false, "DECIMAL", 20, 0, null, false, null, null, "whiteImplicitConvString", null, null);
-    protected final ColumnInfo _columnImplicitConvName = cci("IMPLICIT_CONV_NAME", "IMPLICIT_CONV_NAME", null, null, true, "implicitConvName", String.class, false, false, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnImplicitConvNumericId = cci("IMPLICIT_CONV_NUMERIC_ID", "IMPLICIT_CONV_NUMERIC_ID", null, null, java.math.BigDecimal.class, "implicitConvNumericId", null, true, false, true, "DECIMAL", 20, 0, null, false, null, null, null, "whiteImplicitConvIntegerList,whiteImplicitConvStringList", null);
+    protected final ColumnInfo _columnImplicitConvIntegerId = cci("IMPLICIT_CONV_INTEGER_ID", "IMPLICIT_CONV_INTEGER_ID", null, null, java.math.BigDecimal.class, "implicitConvIntegerId", null, false, false, true, "DECIMAL", 20, 0, null, false, null, null, "whiteImplicitConvInteger", null, null);
+    protected final ColumnInfo _columnImplicitConvStringId = cci("IMPLICIT_CONV_STRING_ID", "IMPLICIT_CONV_STRING_ID", null, null, java.math.BigDecimal.class, "implicitConvStringId", null, false, false, true, "DECIMAL", 20, 0, null, false, null, null, "whiteImplicitConvString", null, null);
+    protected final ColumnInfo _columnImplicitConvName = cci("IMPLICIT_CONV_NAME", "IMPLICIT_CONV_NAME", null, null, String.class, "implicitConvName", null, false, false, true, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
 
     /**
      * IMPLICIT_CONV_NUMERIC_ID: {PK, NotNull, DECIMAL(20)}
@@ -138,6 +160,8 @@ public class WhiteImplicitConvNumericDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

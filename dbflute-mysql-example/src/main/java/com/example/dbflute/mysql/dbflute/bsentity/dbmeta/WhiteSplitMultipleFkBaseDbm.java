@@ -48,6 +48,9 @@ public class WhiteSplitMultipleFkBaseDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgBaseId(), "baseId");
@@ -55,8 +58,6 @@ public class WhiteSplitMultipleFkBaseDbm extends AbstractDBMeta {
         setupEpg(_epgMap, new EpgNextId(), "nextId");
         setupEpg(_epgMap, new EpgSplitName(), "splitName");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgBaseId implements PropertyGateway {
         public Object read(Entity et) { return ((WhiteSplitMultipleFkBase)et).getBaseId(); }
         public void write(Entity et, Object vl) { ((WhiteSplitMultipleFkBase)et).setBaseId(ctl(vl)); }
@@ -73,6 +74,27 @@ public class WhiteSplitMultipleFkBaseDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((WhiteSplitMultipleFkBase)et).getSplitName(); }
         public void write(Entity et, Object vl) { ((WhiteSplitMultipleFkBase)et).setSplitName((String)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
+
+    // -----------------------------------------------------
+    //                                      Foreign Property
+    //                                      ----------------
+    protected final Map<String, PropertyGateway> _efpgMap = newHashMap();
+    {
+        setupEfpg(_efpgMap, new EfpgWhiteSplitMultipleFkNext(), "whiteSplitMultipleFkNext");
+        setupEfpg(_efpgMap, new EfpgWhiteSplitMultipleFkRefAsSplitMultipleFkTest(), "whiteSplitMultipleFkRefAsSplitMultipleFkTest");
+    }
+    public class EfpgWhiteSplitMultipleFkNext implements PropertyGateway {
+        public Object read(Entity et) { return ((WhiteSplitMultipleFkBase)et).getWhiteSplitMultipleFkNext(); }
+        public void write(Entity et, Object vl) { ((WhiteSplitMultipleFkBase)et).setWhiteSplitMultipleFkNext((WhiteSplitMultipleFkNext)vl); }
+    }
+    public class EfpgWhiteSplitMultipleFkRefAsSplitMultipleFkTest implements PropertyGateway {
+        public Object read(Entity et) { return ((WhiteSplitMultipleFkBase)et).getWhiteSplitMultipleFkRefAsSplitMultipleFkTest(); }
+        public void write(Entity et, Object vl) { ((WhiteSplitMultipleFkBase)et).setWhiteSplitMultipleFkRefAsSplitMultipleFkTest((WhiteSplitMultipleFkRef)vl); }
+    }
+    public PropertyGateway findForeignPropertyGateway(String prop)
+    { return doFindEfpg(_efpgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -88,10 +110,10 @@ public class WhiteSplitMultipleFkBaseDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnBaseId = cci("BASE_ID", "BASE_ID", null, null, true, "baseId", Long.class, true, false, "BIGINT", 19, 0, null, false, null, null, null, "whiteSplitMultipleFkChildList", null);
-    protected final ColumnInfo _columnFirstId = cci("FIRST_ID", "FIRST_ID", null, null, true, "firstId", Integer.class, false, false, "INT", 10, 0, null, false, null, null, "whiteSplitMultipleFkRefAsSplitMultipleFkTest", null, null);
-    protected final ColumnInfo _columnNextId = cci("NEXT_ID", "NEXT_ID", null, null, true, "nextId", Long.class, false, false, "BIGINT", 19, 0, null, false, null, null, "whiteSplitMultipleFkNext", null, null);
-    protected final ColumnInfo _columnSplitName = cci("SPLIT_NAME", "SPLIT_NAME", null, null, true, "splitName", String.class, false, false, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnBaseId = cci("BASE_ID", "BASE_ID", null, null, Long.class, "baseId", null, true, false, true, "BIGINT", 19, 0, null, false, null, null, null, "whiteSplitMultipleFkChildList", null);
+    protected final ColumnInfo _columnFirstId = cci("FIRST_ID", "FIRST_ID", null, null, Integer.class, "firstId", null, false, false, true, "INT", 10, 0, null, false, null, null, "whiteSplitMultipleFkRefAsSplitMultipleFkTest", null, null);
+    protected final ColumnInfo _columnNextId = cci("NEXT_ID", "NEXT_ID", null, null, Long.class, "nextId", null, false, false, true, "BIGINT", 19, 0, null, false, null, null, "whiteSplitMultipleFkNext", null, null);
+    protected final ColumnInfo _columnSplitName = cci("SPLIT_NAME", "SPLIT_NAME", null, null, String.class, "splitName", null, false, false, true, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
 
     /**
      * BASE_ID: {PK, NotNull, BIGINT(19)}
@@ -138,6 +160,8 @@ public class WhiteSplitMultipleFkBaseDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

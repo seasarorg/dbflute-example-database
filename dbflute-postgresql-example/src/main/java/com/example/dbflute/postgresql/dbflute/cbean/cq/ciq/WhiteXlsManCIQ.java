@@ -25,9 +25,9 @@ public class WhiteXlsManCIQ extends AbstractBsWhiteXlsManCQ {
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public WhiteXlsManCIQ(ConditionQuery childQuery, SqlClause sqlClause
+    public WhiteXlsManCIQ(ConditionQuery referrerQuery, SqlClause sqlClause
                         , String aliasName, int nestLevel, BsWhiteXlsManCQ myCQ) {
-        super(childQuery, sqlClause, aliasName, nestLevel);
+        super(referrerQuery, sqlClause, aliasName, nestLevel);
         _myCQ = myCQ;
         _foreignPropertyName = _myCQ.xgetForeignPropertyName(); // accept foreign property name
         _relationPath = _myCQ.xgetRelationPath(); // accept relation path

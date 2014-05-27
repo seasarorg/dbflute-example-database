@@ -48,14 +48,15 @@ public class WhiteXlsManDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgXlsManId(), "xlsManId");
         setupEpg(_epgMap, new EpgStringConverted(), "stringConverted");
         setupEpg(_epgMap, new EpgTimestampConverted(), "timestampConverted");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgXlsManId implements PropertyGateway {
         public Object read(Entity et) { return ((WhiteXlsMan)et).getXlsManId(); }
         public void write(Entity et, Object vl) { ((WhiteXlsMan)et).setXlsManId(ctl(vl)); }
@@ -68,6 +69,8 @@ public class WhiteXlsManDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((WhiteXlsMan)et).getTimestampConverted(); }
         public void write(Entity et, Object vl) { ((WhiteXlsMan)et).setTimestampConverted((java.sql.Timestamp)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -83,9 +86,9 @@ public class WhiteXlsManDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnXlsManId = cci("XLS_MAN_ID", "XLS_MAN_ID", null, null, true, "xlsManId", Long.class, true, true, "BIGINT", 19, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnStringConverted = cci("STRING_CONVERTED", "STRING_CONVERTED", null, null, false, "stringConverted", String.class, false, false, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTimestampConverted = cci("TIMESTAMP_CONVERTED", "TIMESTAMP_CONVERTED", null, null, false, "timestampConverted", java.sql.Timestamp.class, false, false, "DATETIME", 19, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnXlsManId = cci("XLS_MAN_ID", "XLS_MAN_ID", null, null, Long.class, "xlsManId", null, true, true, true, "BIGINT", 19, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnStringConverted = cci("STRING_CONVERTED", "STRING_CONVERTED", null, null, String.class, "stringConverted", null, false, false, false, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTimestampConverted = cci("TIMESTAMP_CONVERTED", "TIMESTAMP_CONVERTED", null, null, java.sql.Timestamp.class, "timestampConverted", null, false, false, false, "DATETIME", 19, 0, null, false, null, null, null, null, null);
 
     /**
      * XLS_MAN_ID: {PK, ID, NotNull, BIGINT(19)}
@@ -126,6 +129,8 @@ public class WhiteXlsManDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

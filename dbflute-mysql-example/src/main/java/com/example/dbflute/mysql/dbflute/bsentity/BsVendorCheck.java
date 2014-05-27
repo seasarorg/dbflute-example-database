@@ -235,6 +235,9 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
     // -----------------------------------------------------
     //                                              Internal
     //                                              --------
+    /** The unique-driven properties for this entity. (NotNull) */
+    protected final EntityUniqueDrivenProperties __uniqueDrivenProperties = newUniqueDrivenProperties();
+
     /** The modified properties for this entity. (NotNull) */
     protected final EntityModifiedProperties __modifiedProperties = newModifiedProperties();
 
@@ -277,6 +280,17 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
     public boolean hasPrimaryKeyValue() {
         if (getVendorCheckId() == null) { return false; }
         return true;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Set<String> uniqueDrivenProperties() {
+        return __uniqueDrivenProperties.getPropertyNames();
+    }
+
+    protected EntityUniqueDrivenProperties newUniqueDrivenProperties() {
+        return new EntityUniqueDrivenProperties();
     }
 
     // ===================================================================================
@@ -429,8 +443,8 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
         if (!xSV(getVendorCheckId(), other.getVendorCheckId())) { return false; }
         return true;
     }
-    protected boolean xSV(Object value1, Object value2) {
-        return FunCustodial.isSameValue(value1, value2);
+    protected boolean xSV(Object v1, Object v2) {
+        return FunCustodial.isSameValue(v1, v2);
     }
 
     /**
@@ -438,13 +452,13 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      * @return The hash-code from primary-key or columns.
      */
     public int hashCode() {
-        int result = 17;
-        result = xCH(result, getTableDbName());
-        result = xCH(result, getVendorCheckId());
-        return result;
+        int hs = 17;
+        hs = xCH(hs, getTableDbName());
+        hs = xCH(hs, getVendorCheckId());
+        return hs;
     }
-    protected int xCH(int result, Object value) {
-        return FunCustodial.calculateHashcode(result, value);
+    protected int xCH(int hs, Object vl) {
+        return FunCustodial.calculateHashcode(hs, vl);
     }
 
     /**
@@ -484,40 +498,40 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
     }
     protected String buildColumnString() {
         StringBuilder sb = new StringBuilder();
-        String delimiter = ", ";
-        sb.append(delimiter).append(getVendorCheckId());
-        sb.append(delimiter).append(getTypeOfChar());
-        sb.append(delimiter).append(getTypeOfVarchar());
-        sb.append(delimiter).append(getTypeOfText());
-        sb.append(delimiter).append(getTypeOfTinytext());
-        sb.append(delimiter).append(getTypeOfMediumtext());
-        sb.append(delimiter).append(getTypeOfLongtext());
-        sb.append(delimiter).append(getTypeOfNumericDecimal());
-        sb.append(delimiter).append(getTypeOfNumericInteger());
-        sb.append(delimiter).append(getTypeOfNumericBigint());
-        sb.append(delimiter).append(getTypeOfDecimalDecimal());
-        sb.append(delimiter).append(getTypeOfDecimalInteger());
-        sb.append(delimiter).append(getTypeOfDecimalBigint());
-        sb.append(delimiter).append(getTypeOfInteger());
-        sb.append(delimiter).append(getTypeOfBigint());
-        sb.append(delimiter).append(getTypeOfFloat());
-        sb.append(delimiter).append(getTypeOfDouble());
-        sb.append(delimiter).append(xfUD(getTypeOfDate()));
-        sb.append(delimiter).append(getTypeOfDatetime());
-        sb.append(delimiter).append(getTypeOfTimestamp());
-        sb.append(delimiter).append(getTypeOfTime());
-        sb.append(delimiter).append(xfUD(getTypeOfYear()));
-        sb.append(delimiter).append(getTypeOfBoolean());
-        sb.append(delimiter).append(xfBA(getTypeOfBlob()));
-        sb.append(delimiter).append(xfBA(getTypeOfTinyblob()));
-        sb.append(delimiter).append(xfBA(getTypeOfMediumblob()));
-        sb.append(delimiter).append(xfBA(getTypeOfLongblob()));
-        sb.append(delimiter).append(xfBA(getTypeOfBinary()));
-        sb.append(delimiter).append(xfBA(getTypeOfVarbinary()));
-        sb.append(delimiter).append(getTypeOfEnum());
-        sb.append(delimiter).append(getTypeOfSet());
-        if (sb.length() > delimiter.length()) {
-            sb.delete(0, delimiter.length());
+        String dm = ", ";
+        sb.append(dm).append(getVendorCheckId());
+        sb.append(dm).append(getTypeOfChar());
+        sb.append(dm).append(getTypeOfVarchar());
+        sb.append(dm).append(getTypeOfText());
+        sb.append(dm).append(getTypeOfTinytext());
+        sb.append(dm).append(getTypeOfMediumtext());
+        sb.append(dm).append(getTypeOfLongtext());
+        sb.append(dm).append(getTypeOfNumericDecimal());
+        sb.append(dm).append(getTypeOfNumericInteger());
+        sb.append(dm).append(getTypeOfNumericBigint());
+        sb.append(dm).append(getTypeOfDecimalDecimal());
+        sb.append(dm).append(getTypeOfDecimalInteger());
+        sb.append(dm).append(getTypeOfDecimalBigint());
+        sb.append(dm).append(getTypeOfInteger());
+        sb.append(dm).append(getTypeOfBigint());
+        sb.append(dm).append(getTypeOfFloat());
+        sb.append(dm).append(getTypeOfDouble());
+        sb.append(dm).append(xfUD(getTypeOfDate()));
+        sb.append(dm).append(getTypeOfDatetime());
+        sb.append(dm).append(getTypeOfTimestamp());
+        sb.append(dm).append(getTypeOfTime());
+        sb.append(dm).append(xfUD(getTypeOfYear()));
+        sb.append(dm).append(getTypeOfBoolean());
+        sb.append(dm).append(xfBA(getTypeOfBlob()));
+        sb.append(dm).append(xfBA(getTypeOfTinyblob()));
+        sb.append(dm).append(xfBA(getTypeOfMediumblob()));
+        sb.append(dm).append(xfBA(getTypeOfLongblob()));
+        sb.append(dm).append(xfBA(getTypeOfBinary()));
+        sb.append(dm).append(xfBA(getTypeOfVarbinary()));
+        sb.append(dm).append(getTypeOfEnum());
+        sb.append(dm).append(getTypeOfSet());
+        if (sb.length() > dm.length()) {
+            sb.delete(0, dm.length());
         }
         sb.insert(0, "{").append("}");
         return sb.toString();

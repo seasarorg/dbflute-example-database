@@ -98,14 +98,14 @@ public class BsWhiteCompoundPkCQ extends AbstractBsWhiteCompoundPkCQ {
 
     /** 
      * Add order-by as ascend. <br />
-     * PK_FIRST_ID: {PK, UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_PK_REF_MANY}
+     * PK_FIRST_ID: {PK, +UQ, NotNull, INT(10), FK to WHITE_COMPOUND_PK_REF_MANY}
      * @return this. (NotNull)
      */
     public BsWhiteCompoundPkCQ addOrderBy_PkFirstId_Asc() { regOBA("PK_FIRST_ID"); return this; }
 
     /**
      * Add order-by as descend. <br />
-     * PK_FIRST_ID: {PK, UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_PK_REF_MANY}
+     * PK_FIRST_ID: {PK, +UQ, NotNull, INT(10), FK to WHITE_COMPOUND_PK_REF_MANY}
      * @return this. (NotNull)
      */
     public BsWhiteCompoundPkCQ addOrderBy_PkFirstId_Desc() { regOBD("PK_FIRST_ID"); return this; }
@@ -135,14 +135,14 @@ public class BsWhiteCompoundPkCQ extends AbstractBsWhiteCompoundPkCQ {
 
     /** 
      * Add order-by as ascend. <br />
-     * PK_SECOND_ID: {PK, UQ, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_PRIMARY}
+     * PK_SECOND_ID: {PK, UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_PRIMARY}
      * @return this. (NotNull)
      */
     public BsWhiteCompoundPkCQ addOrderBy_PkSecondId_Asc() { regOBA("PK_SECOND_ID"); return this; }
 
     /**
      * Add order-by as descend. <br />
-     * PK_SECOND_ID: {PK, UQ, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_PRIMARY}
+     * PK_SECOND_ID: {PK, UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_PRIMARY}
      * @return this. (NotNull)
      */
     public BsWhiteCompoundPkCQ addOrderBy_PkSecondId_Desc() { regOBD("PK_SECOND_ID"); return this; }
@@ -193,14 +193,14 @@ public class BsWhiteCompoundPkCQ extends AbstractBsWhiteCompoundPkCQ {
 
     /** 
      * Add order-by as ascend. <br />
-     * REFERRED_ID: {UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_NORMALLY}
+     * REFERRED_ID: {+UQ, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_NORMALLY}
      * @return this. (NotNull)
      */
     public BsWhiteCompoundPkCQ addOrderBy_ReferredId_Asc() { regOBA("REFERRED_ID"); return this; }
 
     /**
      * Add order-by as descend. <br />
-     * REFERRED_ID: {UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_NORMALLY}
+     * REFERRED_ID: {+UQ, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_NORMALLY}
      * @return this. (NotNull)
      */
     public BsWhiteCompoundPkCQ addOrderBy_ReferredId_Desc() { regOBD("REFERRED_ID"); return this; }
@@ -245,7 +245,7 @@ public class BsWhiteCompoundPkCQ extends AbstractBsWhiteCompoundPkCQ {
     // ===================================================================================
     //                                                                         Union Query
     //                                                                         ===========
-    protected void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
+    public void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
         WhiteCompoundPkCQ bq = (WhiteCompoundPkCQ)bqs;
         WhiteCompoundPkCQ uq = (WhiteCompoundPkCQ)uqs;
         if (bq.hasConditionQueryWhiteCompoundReferredNormally()) {
@@ -411,7 +411,7 @@ public class BsWhiteCompoundPkCQ extends AbstractBsWhiteCompoundPkCQ {
     //                                                      ExistsReferrer for Compound PK
     //                                                      ==============================
     /**
-     * Set up ExistsReferrer (correlated sub-query). <br />
+     * Set up ExistsReferrer (correlated sub-query by compound key). <br />
      * {exists (select ... from white_compound_pk_ref where ...)}
      * @param subQuery The sub-query of WhiteCompoundPkRefList for 'exists'. (NotNull)
      */
@@ -431,7 +431,7 @@ public class BsWhiteCompoundPkCQ extends AbstractBsWhiteCompoundPkCQ {
     }
 
     /**
-     * Set up ExistsReferrer (correlated sub-query). <br />
+     * Set up ExistsReferrer (correlated sub-query by compound key). <br />
      * {exists (select ... from white_compound_pk_ref_many where ...)}
      * @param subQuery The sub-query of WhiteCompoundPkRefManyToPKList for 'exists'. (NotNull)
      */
@@ -451,7 +451,7 @@ public class BsWhiteCompoundPkCQ extends AbstractBsWhiteCompoundPkCQ {
     }
 
     /**
-     * Set up NotExistsReferrer (correlated sub-query). <br />
+     * Set up NotExistsReferrer (correlated sub-query by compound key). <br />
      * {not exists (select ... from white_compound_pk_ref where ...)}
      * @param subQuery The sub-query of WhiteCompoundPkRefList for 'not exists'. (NotNull)
      */
@@ -471,7 +471,7 @@ public class BsWhiteCompoundPkCQ extends AbstractBsWhiteCompoundPkCQ {
     }
 
     /**
-     * Set up NotExistsReferrer (correlated sub-query). <br />
+     * Set up NotExistsReferrer (correlated sub-query by compound key). <br />
      * {not exists (select ... from white_compound_pk_ref_many where ...)}
      * @param subQuery The sub-query of WhiteCompoundPkRefManyToPKList for 'not exists'. (NotNull)
      */
@@ -527,7 +527,7 @@ public class BsWhiteCompoundPkCQ extends AbstractBsWhiteCompoundPkCQ {
     //                                              (Query)DerivedReferrer for Compound PK
     //                                              ======================================
     /**
-     * Prepare for (Query)DerivedReferrer. <br />
+     * Prepare for (Query)DerivedReferrer (correlated sub-query). <br />
      * {FOO &lt;= (select max(BAR) from white_compound_pk_ref where ...)} <br />
      * white_compound_pk_ref by REF_FIRST_ID, REF_SECOND_ID, named 'whiteCompoundPkRefAsOne'.
      * <pre>
@@ -573,7 +573,7 @@ public class BsWhiteCompoundPkCQ extends AbstractBsWhiteCompoundPkCQ {
     }
 
     /**
-     * Prepare for (Query)DerivedReferrer. <br />
+     * Prepare for (Query)DerivedReferrer (correlated sub-query). <br />
      * {FOO &lt;= (select max(BAR) from white_compound_pk_ref_many where ...)} <br />
      * white_compound_pk_ref_many by REF_MANY_FIRST_ID, REF_MANY_SECOND_ID, named 'whiteCompoundPkRefManyAsOne'.
      * <pre>

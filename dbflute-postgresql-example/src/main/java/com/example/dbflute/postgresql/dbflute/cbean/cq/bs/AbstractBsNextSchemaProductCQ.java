@@ -22,8 +22,8 @@ public abstract class AbstractBsNextSchemaProductCQ extends AbstractConditionQue
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public AbstractBsNextSchemaProductCQ(ConditionQuery childQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
-        super(childQuery, sqlClause, aliasName, nestLevel);
+    public AbstractBsNextSchemaProductCQ(ConditionQuery referrerQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
+        super(referrerQuery, sqlClause, aliasName, nestLevel);
     }
 
     // ===================================================================================
@@ -217,7 +217,7 @@ public abstract class AbstractBsNextSchemaProductCQ extends AbstractConditionQue
     public abstract String keepProductId_SpecifyDerivedReferrer_WhiteSameNameList(WhiteSameNameCQ sq);
 
     /**
-     * Prepare for (Query)DerivedReferrer. <br />
+     * Prepare for (Query)DerivedReferrer (correlated sub-query). <br />
      * {FOO &lt;= (select max(BAR) from white_same_name where ...)} <br />
      * white_same_name by next_schema_product_id, named 'whiteSameNameAsOne'.
      * <pre>
@@ -488,7 +488,7 @@ public abstract class AbstractBsNextSchemaProductCQ extends AbstractConditionQue
     public abstract String keepSpecifyMyselfDerived(NextSchemaProductCQ sq);
 
     /**
-     * Prepare for (Query)MyselfDerived (SubQuery).
+     * Prepare for (Query)MyselfDerived (correlated sub-query).
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<NextSchemaProductCB> myselfDerived() {
@@ -510,8 +510,8 @@ public abstract class AbstractBsNextSchemaProductCQ extends AbstractConditionQue
     //                                                                        MyselfExists
     //                                                                        ============
     /**
-     * Prepare for MyselfExists (SubQuery).
-     * @param subQuery The implementation of sub query. (NotNull)
+     * Prepare for MyselfExists (correlated sub-query).
+     * @param subQuery The implementation of sub-query. (NotNull)
      */
     public void myselfExists(SubQuery<NextSchemaProductCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
@@ -526,8 +526,8 @@ public abstract class AbstractBsNextSchemaProductCQ extends AbstractConditionQue
     //                                                                       MyselfInScope
     //                                                                       =============
     /**
-     * Prepare for MyselfInScope (SubQuery).
-     * @param subQuery The implementation of sub query. (NotNull)
+     * Prepare for MyselfInScope (sub-query).
+     * @param subQuery The implementation of sub-query. (NotNull)
      */
     public void myselfInScope(SubQuery<NextSchemaProductCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);

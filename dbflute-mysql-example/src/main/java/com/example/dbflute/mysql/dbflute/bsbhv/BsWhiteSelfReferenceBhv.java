@@ -184,7 +184,7 @@ public abstract class BsWhiteSelfReferenceBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of WhiteSelfReference. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -205,39 +205,42 @@ public abstract class BsWhiteSelfReferenceBhv extends AbstractBehaviorWritable {
 
     /**
      * Select the entity by the primary-key value.
-     * @param selfReferenceId The one of primary key. (NotNull)
+     * @param selfReferenceId : PK, NotNull, DECIMAL(16). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteSelfReference selectByPKValue(Long selfReferenceId) {
-        return doSelectByPKValue(selfReferenceId, WhiteSelfReference.class);
+        return doSelectByPK(selfReferenceId, WhiteSelfReference.class);
     }
 
-    protected <ENTITY extends WhiteSelfReference> ENTITY doSelectByPKValue(Long selfReferenceId, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(selfReferenceId), entityType);
+    protected <ENTITY extends WhiteSelfReference> ENTITY doSelectByPK(Long selfReferenceId, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(selfReferenceId), entityType);
+    }
+
+    protected <ENTITY extends WhiteSelfReference> OptionalEntity<ENTITY> doSelectOptionalByPK(Long selfReferenceId, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(selfReferenceId, entityType), selfReferenceId);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param selfReferenceId The one of primary key. (NotNull)
+     * @param selfReferenceId : PK, NotNull, DECIMAL(16). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteSelfReference selectByPKValueWithDeletedCheck(Long selfReferenceId) {
-        return doSelectByPKValueWithDeletedCheck(selfReferenceId, WhiteSelfReference.class);
+        return doSelectByPKWithDeletedCheck(selfReferenceId, WhiteSelfReference.class);
     }
 
-    protected <ENTITY extends WhiteSelfReference> ENTITY doSelectByPKValueWithDeletedCheck(Long selfReferenceId, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(selfReferenceId), entityType);
+    protected <ENTITY extends WhiteSelfReference> ENTITY doSelectByPKWithDeletedCheck(Long selfReferenceId, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(selfReferenceId), entityType);
     }
 
-    private WhiteSelfReferenceCB buildPKCB(Long selfReferenceId) {
+    protected WhiteSelfReferenceCB xprepareCBAsPK(Long selfReferenceId) {
         assertObjectNotNull("selfReferenceId", selfReferenceId);
-        WhiteSelfReferenceCB cb = newMyConditionBean();
-        cb.query().setSelfReferenceId_Equal(selfReferenceId);
+        WhiteSelfReferenceCB cb = newMyConditionBean(); cb.acceptPrimaryKey(selfReferenceId);
         return cb;
     }
 
@@ -513,7 +516,8 @@ public abstract class BsWhiteSelfReferenceBhv extends AbstractBehaviorWritable {
      */
     public List<WhiteSelfReference> pulloutWhiteSelfReferenceSelf(List<WhiteSelfReference> whiteSelfReferenceList) {
         return helpPulloutInternally(whiteSelfReferenceList, new InternalPulloutCallback<WhiteSelfReference, WhiteSelfReference>() {
-            public WhiteSelfReference getFr(WhiteSelfReference et) { return et.getWhiteSelfReferenceSelf(); }
+            public WhiteSelfReference getFr(WhiteSelfReference et)
+            { return et.getWhiteSelfReferenceSelf(); }
             public boolean hasRf() { return true; }
             public void setRfLs(WhiteSelfReference et, List<WhiteSelfReference> ls)
             { et.setWhiteSelfReferenceSelfList(ls); }
@@ -526,7 +530,8 @@ public abstract class BsWhiteSelfReferenceBhv extends AbstractBehaviorWritable {
      */
     public List<WhiteSelfReferenceRefOne> pulloutWhiteSelfReferenceRefOneByParentId(List<WhiteSelfReference> whiteSelfReferenceList) {
         return helpPulloutInternally(whiteSelfReferenceList, new InternalPulloutCallback<WhiteSelfReference, WhiteSelfReferenceRefOne>() {
-            public WhiteSelfReferenceRefOne getFr(WhiteSelfReference et) { return et.getWhiteSelfReferenceRefOneByParentId(); }
+            public WhiteSelfReferenceRefOne getFr(WhiteSelfReference et)
+            { return et.getWhiteSelfReferenceRefOneByParentId(); }
             public boolean hasRf() { return true; }
             public void setRfLs(WhiteSelfReferenceRefOne et, List<WhiteSelfReference> ls)
             { et.setWhiteSelfReferenceByParentIdList(ls); }
@@ -539,7 +544,8 @@ public abstract class BsWhiteSelfReferenceBhv extends AbstractBehaviorWritable {
      */
     public List<WhiteSelfReferenceRefOne> pulloutWhiteSelfReferenceRefOneAsOne(List<WhiteSelfReference> whiteSelfReferenceList) {
         return helpPulloutInternally(whiteSelfReferenceList, new InternalPulloutCallback<WhiteSelfReference, WhiteSelfReferenceRefOne>() {
-            public WhiteSelfReferenceRefOne getFr(WhiteSelfReference et) { return et.getWhiteSelfReferenceRefOneAsOne(); }
+            public WhiteSelfReferenceRefOne getFr(WhiteSelfReference et)
+            { return et.getWhiteSelfReferenceRefOneAsOne(); }
             public boolean hasRf() { return true; }
             public void setRfLs(WhiteSelfReferenceRefOne et, List<WhiteSelfReference> ls)
             { if (!ls.isEmpty()) { et.setWhiteSelfReference(ls.get(0)); } }

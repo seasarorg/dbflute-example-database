@@ -48,6 +48,9 @@ public class VendorLargeDataDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgLargeDataId(), "largeDataId");
@@ -58,8 +61,6 @@ public class VendorLargeDataDbm extends AbstractDBMeta {
         setupEpg(_epgMap, new EpgNumericIntegerIndex(), "numericIntegerIndex");
         setupEpg(_epgMap, new EpgNumericIntegerNoIndex(), "numericIntegerNoIndex");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgLargeDataId implements PropertyGateway {
         public Object read(Entity et) { return ((VendorLargeData)et).getLargeDataId(); }
         public void write(Entity et, Object vl) { ((VendorLargeData)et).setLargeDataId(ctl(vl)); }
@@ -88,6 +89,8 @@ public class VendorLargeDataDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((VendorLargeData)et).getNumericIntegerNoIndex(); }
         public void write(Entity et, Object vl) { ((VendorLargeData)et).setNumericIntegerNoIndex(cti(vl)); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -103,13 +106,13 @@ public class VendorLargeDataDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnLargeDataId = cci("LARGE_DATA_ID", "LARGE_DATA_ID", null, null, true, "largeDataId", Long.class, true, false, "BIGINT", 19, 0, null, false, null, null, null, "vendorLargeDataRefList", null);
-    protected final ColumnInfo _columnStringIndex = cci("STRING_INDEX", "STRING_INDEX", null, null, true, "stringIndex", String.class, false, false, "VARCHAR", 180, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnStringNoIndex = cci("STRING_NO_INDEX", "STRING_NO_INDEX", null, null, true, "stringNoIndex", String.class, false, false, "VARCHAR", 180, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnStringUniqueIndex = cci("STRING_UNIQUE_INDEX", "STRING_UNIQUE_INDEX", null, null, true, "stringUniqueIndex", String.class, false, false, "VARCHAR", 180, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnIntflgIndex = cci("INTFLG_INDEX", "INTFLG_INDEX", null, null, true, "intflgIndex", Integer.class, false, false, "INT", 10, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnNumericIntegerIndex = cci("NUMERIC_INTEGER_INDEX", "NUMERIC_INTEGER_INDEX", null, null, true, "numericIntegerIndex", Integer.class, false, false, "DECIMAL", 8, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnNumericIntegerNoIndex = cci("NUMERIC_INTEGER_NO_INDEX", "NUMERIC_INTEGER_NO_INDEX", null, null, true, "numericIntegerNoIndex", Integer.class, false, false, "DECIMAL", 8, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnLargeDataId = cci("LARGE_DATA_ID", "LARGE_DATA_ID", null, null, Long.class, "largeDataId", null, true, false, true, "BIGINT", 19, 0, null, false, null, null, null, "vendorLargeDataRefList", null);
+    protected final ColumnInfo _columnStringIndex = cci("STRING_INDEX", "STRING_INDEX", null, null, String.class, "stringIndex", null, false, false, true, "VARCHAR", 180, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnStringNoIndex = cci("STRING_NO_INDEX", "STRING_NO_INDEX", null, null, String.class, "stringNoIndex", null, false, false, true, "VARCHAR", 180, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnStringUniqueIndex = cci("STRING_UNIQUE_INDEX", "STRING_UNIQUE_INDEX", null, null, String.class, "stringUniqueIndex", null, false, false, true, "VARCHAR", 180, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnIntflgIndex = cci("INTFLG_INDEX", "INTFLG_INDEX", null, null, Integer.class, "intflgIndex", null, false, false, true, "INT", 10, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnNumericIntegerIndex = cci("NUMERIC_INTEGER_INDEX", "NUMERIC_INTEGER_INDEX", null, null, Integer.class, "numericIntegerIndex", null, false, false, true, "DECIMAL", 8, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnNumericIntegerNoIndex = cci("NUMERIC_INTEGER_NO_INDEX", "NUMERIC_INTEGER_NO_INDEX", null, null, Integer.class, "numericIntegerNoIndex", null, false, false, true, "DECIMAL", 8, 0, null, false, null, null, null, null, null);
 
     /**
      * LARGE_DATA_ID: {PK, NotNull, BIGINT(19)}
@@ -174,6 +177,8 @@ public class VendorLargeDataDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

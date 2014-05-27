@@ -190,7 +190,7 @@ public class BsWhiteVariantRelationReferrerCQ extends AbstractBsWhiteVariantRela
     // ===================================================================================
     //                                                                         Union Query
     //                                                                         ===========
-    protected void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
+    public void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
         WhiteVariantRelationReferrerCQ bq = (WhiteVariantRelationReferrerCQ)bqs;
         WhiteVariantRelationReferrerCQ uq = (WhiteVariantRelationReferrerCQ)uqs;
         if (bq.hasConditionQueryWhiteVariantRelationMasterFooAsVariant()) {

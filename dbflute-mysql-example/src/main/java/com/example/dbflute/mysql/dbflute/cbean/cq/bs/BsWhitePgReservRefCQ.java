@@ -185,7 +185,7 @@ public class BsWhitePgReservRefCQ extends AbstractBsWhitePgReservRefCQ {
     // ===================================================================================
     //                                                                         Union Query
     //                                                                         ===========
-    protected void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
+    public void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
         WhitePgReservRefCQ bq = (WhitePgReservRefCQ)bqs;
         WhitePgReservRefCQ uq = (WhitePgReservRefCQ)uqs;
         if (bq.hasConditionQueryWhitePgReserv()) {

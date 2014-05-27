@@ -48,13 +48,14 @@ public class VendorConstraintNameAutoFooDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgConstraintNameAutoFooId(), "constraintNameAutoFooId");
         setupEpg(_epgMap, new EpgConstraintNameAutoFooName(), "constraintNameAutoFooName");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgConstraintNameAutoFooId implements PropertyGateway {
         public Object read(Entity et) { return ((VendorConstraintNameAutoFoo)et).getConstraintNameAutoFooId(); }
         public void write(Entity et, Object vl) { ((VendorConstraintNameAutoFoo)et).setConstraintNameAutoFooId(ctl(vl)); }
@@ -63,6 +64,8 @@ public class VendorConstraintNameAutoFooDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((VendorConstraintNameAutoFoo)et).getConstraintNameAutoFooName(); }
         public void write(Entity et, Object vl) { ((VendorConstraintNameAutoFoo)et).setConstraintNameAutoFooName((String)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -78,8 +81,8 @@ public class VendorConstraintNameAutoFooDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnConstraintNameAutoFooId = cci("CONSTRAINT_NAME_AUTO_FOO_ID", "CONSTRAINT_NAME_AUTO_FOO_ID", null, null, true, "constraintNameAutoFooId", Long.class, true, false, "DECIMAL", 16, 0, null, false, null, null, null, "vendorConstraintNameAutoRefList", null);
-    protected final ColumnInfo _columnConstraintNameAutoFooName = cci("CONSTRAINT_NAME_AUTO_FOO_NAME", "CONSTRAINT_NAME_AUTO_FOO_NAME", null, null, true, "constraintNameAutoFooName", String.class, false, false, "VARCHAR", 50, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnConstraintNameAutoFooId = cci("CONSTRAINT_NAME_AUTO_FOO_ID", "CONSTRAINT_NAME_AUTO_FOO_ID", null, null, Long.class, "constraintNameAutoFooId", null, true, false, true, "DECIMAL", 16, 0, null, false, null, null, null, "vendorConstraintNameAutoRefList", null);
+    protected final ColumnInfo _columnConstraintNameAutoFooName = cci("CONSTRAINT_NAME_AUTO_FOO_NAME", "CONSTRAINT_NAME_AUTO_FOO_NAME", null, null, String.class, "constraintNameAutoFooName", null, false, false, true, "VARCHAR", 50, 0, null, false, null, null, null, null, null);
 
     /**
      * CONSTRAINT_NAME_AUTO_FOO_ID: {PK, NotNull, DECIMAL(16)}
@@ -114,6 +117,8 @@ public class VendorConstraintNameAutoFooDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

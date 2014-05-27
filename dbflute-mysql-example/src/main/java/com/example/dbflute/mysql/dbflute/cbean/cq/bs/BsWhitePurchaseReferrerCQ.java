@@ -185,7 +185,7 @@ public class BsWhitePurchaseReferrerCQ extends AbstractBsWhitePurchaseReferrerCQ
     // ===================================================================================
     //                                                                         Union Query
     //                                                                         ===========
-    protected void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
+    public void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
         WhitePurchaseReferrerCQ bq = (WhitePurchaseReferrerCQ)bqs;
         WhitePurchaseReferrerCQ uq = (WhitePurchaseReferrerCQ)uqs;
         if (bq.hasConditionQueryPurchase()) {

@@ -48,14 +48,15 @@ public class WhiteVariantRelationReferrerDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgReferrerId(), "referrerId");
         setupEpg(_epgMap, new EpgVariantMasterId(), "variantMasterId");
         setupEpg(_epgMap, new EpgMasterTypeCode(), "masterTypeCode");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgReferrerId implements PropertyGateway {
         public Object read(Entity et) { return ((WhiteVariantRelationReferrer)et).getReferrerId(); }
         public void write(Entity et, Object vl) { ((WhiteVariantRelationReferrer)et).setReferrerId(ctl(vl)); }
@@ -72,6 +73,37 @@ public class WhiteVariantRelationReferrerDbm extends AbstractDBMeta {
             ((WhiteVariantRelationReferrer)et).setMasterTypeCodeAsVariantRelationMasterType((CDef.VariantRelationMasterType)gcls(col, vl));
         }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
+
+    // -----------------------------------------------------
+    //                                      Foreign Property
+    //                                      ----------------
+    protected final Map<String, PropertyGateway> _efpgMap = newHashMap();
+    {
+        setupEfpg(_efpgMap, new EfpgWhiteVariantRelationMasterFooAsVariant(), "whiteVariantRelationMasterFooAsVariant");
+        setupEfpg(_efpgMap, new EfpgWhiteVariantRelationMasterBarAsVariant(), "whiteVariantRelationMasterBarAsVariant");
+        setupEfpg(_efpgMap, new EfpgWhiteVariantRelationMasterQuxAsVariantByQue(), "whiteVariantRelationMasterQuxAsVariantByQue");
+        setupEfpg(_efpgMap, new EfpgWhiteVariantRelationMasterCorgeAsVariantByQuxType(), "whiteVariantRelationMasterCorgeAsVariantByQuxType");
+    }
+    public class EfpgWhiteVariantRelationMasterFooAsVariant implements PropertyGateway {
+        public Object read(Entity et) { return ((WhiteVariantRelationReferrer)et).getWhiteVariantRelationMasterFooAsVariant(); }
+        public void write(Entity et, Object vl) { ((WhiteVariantRelationReferrer)et).setWhiteVariantRelationMasterFooAsVariant((WhiteVariantRelationMasterFoo)vl); }
+    }
+    public class EfpgWhiteVariantRelationMasterBarAsVariant implements PropertyGateway {
+        public Object read(Entity et) { return ((WhiteVariantRelationReferrer)et).getWhiteVariantRelationMasterBarAsVariant(); }
+        public void write(Entity et, Object vl) { ((WhiteVariantRelationReferrer)et).setWhiteVariantRelationMasterBarAsVariant((WhiteVariantRelationMasterBar)vl); }
+    }
+    public class EfpgWhiteVariantRelationMasterQuxAsVariantByQue implements PropertyGateway {
+        public Object read(Entity et) { return ((WhiteVariantRelationReferrer)et).getWhiteVariantRelationMasterQuxAsVariantByQue(); }
+        public void write(Entity et, Object vl) { ((WhiteVariantRelationReferrer)et).setWhiteVariantRelationMasterQuxAsVariantByQue((WhiteVariantRelationMasterQux)vl); }
+    }
+    public class EfpgWhiteVariantRelationMasterCorgeAsVariantByQuxType implements PropertyGateway {
+        public Object read(Entity et) { return ((WhiteVariantRelationReferrer)et).getWhiteVariantRelationMasterCorgeAsVariantByQuxType(); }
+        public void write(Entity et, Object vl) { ((WhiteVariantRelationReferrer)et).setWhiteVariantRelationMasterCorgeAsVariantByQuxType((WhiteVariantRelationMasterCorge)vl); }
+    }
+    public PropertyGateway findForeignPropertyGateway(String prop)
+    { return doFindEfpg(_efpgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -87,9 +119,9 @@ public class WhiteVariantRelationReferrerDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnReferrerId = cci("REFERRER_ID", "REFERRER_ID", null, null, true, "referrerId", Long.class, true, false, "BIGINT", 19, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnVariantMasterId = cci("VARIANT_MASTER_ID", "VARIANT_MASTER_ID", null, null, true, "variantMasterId", Long.class, false, false, "BIGINT", 19, 0, null, false, null, null, "whiteVariantRelationMasterFooAsVariant,whiteVariantRelationMasterBarAsVariant,whiteVariantRelationMasterQuxAsVariantByQue,whiteVariantRelationMasterCorgeAsVariantByQuxType", null, null);
-    protected final ColumnInfo _columnMasterTypeCode = cci("MASTER_TYPE_CODE", "MASTER_TYPE_CODE", null, null, true, "masterTypeCode", String.class, false, false, "CHAR", 3, 0, null, false, null, null, null, null, CDef.DefMeta.VariantRelationMasterType);
+    protected final ColumnInfo _columnReferrerId = cci("REFERRER_ID", "REFERRER_ID", null, null, Long.class, "referrerId", null, true, false, true, "BIGINT", 19, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnVariantMasterId = cci("VARIANT_MASTER_ID", "VARIANT_MASTER_ID", null, null, Long.class, "variantMasterId", null, false, false, true, "BIGINT", 19, 0, null, false, null, null, "whiteVariantRelationMasterFooAsVariant,whiteVariantRelationMasterBarAsVariant,whiteVariantRelationMasterQuxAsVariantByQue,whiteVariantRelationMasterCorgeAsVariantByQuxType", null, null);
+    protected final ColumnInfo _columnMasterTypeCode = cci("MASTER_TYPE_CODE", "MASTER_TYPE_CODE", null, null, String.class, "masterTypeCode", null, false, false, true, "CHAR", 3, 0, null, false, null, null, null, null, CDef.DefMeta.VariantRelationMasterType);
 
     /**
      * REFERRER_ID: {PK, NotNull, BIGINT(19)}
@@ -130,6 +162,8 @@ public class WhiteVariantRelationReferrerDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

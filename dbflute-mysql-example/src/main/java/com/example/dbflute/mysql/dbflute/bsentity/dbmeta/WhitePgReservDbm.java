@@ -48,6 +48,9 @@ public class WhitePgReservDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgClassSynonym(), "classSynonym");
@@ -71,8 +74,6 @@ public class WhitePgReservDbm extends AbstractDBMeta {
         setupEpg(_epgMap, new EpgType(), "type");
         setupEpg(_epgMap, new EpgReservName(), "reservName");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgClassSynonym implements PropertyGateway {
         public Object read(Entity et) { return ((WhitePgReserv)et).getClassSynonym(); }
         public void write(Entity et, Object vl) { ((WhitePgReserv)et).setClassSynonym(cti(vl)); }
@@ -153,6 +154,8 @@ public class WhitePgReservDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((WhitePgReserv)et).getReservName(); }
         public void write(Entity et, Object vl) { ((WhitePgReserv)et).setReservName((String)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -168,26 +171,26 @@ public class WhitePgReservDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnClassSynonym = cci("CLASS", "CLASS", "CLASS_SYNONYM", "(using DBFlute synonym)", true, "classSynonym", Integer.class, true, false, "INT", 10, 0, null, false, null, null, null, "whitePgReservRefList", null);
-    protected final ColumnInfo _columnCaseSynonym = cci("CASE", "`CASE`", "CASE_SYNONYM", "(using DBFlute synonym)", false, "caseSynonym", Integer.class, false, false, "INT", 10, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnPackageSynonym = cci("PACKAGE", "PACKAGE", "PACKAGE_SYNONYM", "(using DBFlute synonym)", false, "packageSynonym", Integer.class, false, false, "INT", 10, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnDefaultSynonym = cci("DEFAULT", "`DEFAULT`", "DEFAULT_SYNONYM", "(using DBFlute synonym)", false, "defaultSynonym", Integer.class, false, false, "INT", 10, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnNewSynonym = cci("NEW", "NEW", "NEW_SYNONYM", "(using DBFlute synonym)", false, "newSynonym", Integer.class, false, false, "INT", 10, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnNativeSynonym = cci("NATIVE", "NATIVE", "NATIVE_SYNONYM", "(using DBFlute synonym)", false, "nativeSynonym", Integer.class, false, false, "INT", 10, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnVoidSynonym = cci("VOID", "VOID", "VOID_SYNONYM", "(using DBFlute synonym)", false, "voidSynonym", Integer.class, false, false, "INT", 10, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnPublicSynonym = cci("PUBLIC", "PUBLIC", "PUBLIC_SYNONYM", "(using DBFlute synonym)", false, "publicSynonym", Integer.class, false, false, "INT", 10, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnProtectedSynonym = cci("PROTECTED", "PROTECTED", "PROTECTED_SYNONYM", "(using DBFlute synonym)", false, "protectedSynonym", Integer.class, false, false, "INT", 10, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnPrivateSynonym = cci("PRIVATE", "PRIVATE", "PRIVATE_SYNONYM", "(using DBFlute synonym)", false, "privateSynonym", Integer.class, false, false, "INT", 10, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnInterfaceSynonym = cci("INTERFACE", "INTERFACE", "INTERFACE_SYNONYM", "(using DBFlute synonym)", false, "interfaceSynonym", Integer.class, false, false, "INT", 10, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnAbstractSynonym = cci("ABSTRACT", "ABSTRACT", "ABSTRACT_SYNONYM", "(using DBFlute synonym)", false, "abstractSynonym", Integer.class, false, false, "INT", 10, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnFinalSynonym = cci("FINAL", "FINAL", "FINAL_SYNONYM", "(using DBFlute synonym)", false, "finalSynonym", Integer.class, false, false, "INT", 10, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnFinallySynonym = cci("FINALLY", "FINALLY", "FINALLY_SYNONYM", "(using DBFlute synonym)", false, "finallySynonym", Integer.class, false, false, "INT", 10, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnReturnSynonym = cci("RETURN", "`RETURN`", "RETURN_SYNONYM", "(using DBFlute synonym)", false, "returnSynonym", Integer.class, false, false, "INT", 10, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnDoubleSynonym = cci("DOUBLE", "`DOUBLE`", "DOUBLE_SYNONYM", "(using DBFlute synonym)", false, "doubleSynonym", Integer.class, false, false, "INT", 10, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnFloatSynonym = cci("FLOAT", "`FLOAT`", "FLOAT_SYNONYM", "(using DBFlute synonym)", false, "floatSynonym", Integer.class, false, false, "INT", 10, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnShortSynonym = cci("SHORT", "SHORT", "SHORT_SYNONYM", "(using DBFlute synonym)", false, "shortSynonym", Integer.class, false, false, "INT", 10, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnType = cci("TYPE", "TYPE", null, null, false, "type", String.class, false, false, "CHAR", 3, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnReservName = cci("RESERV_NAME", "RESERV_NAME", null, null, true, "reservName", String.class, false, false, "VARCHAR", 32, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnClassSynonym = cci("CLASS", "CLASS", "CLASS_SYNONYM", "(using DBFlute synonym)", Integer.class, "classSynonym", null, true, false, true, "INT", 10, 0, null, false, null, null, null, "whitePgReservRefList", null);
+    protected final ColumnInfo _columnCaseSynonym = cci("CASE", "`CASE`", "CASE_SYNONYM", "(using DBFlute synonym)", Integer.class, "caseSynonym", null, false, false, false, "INT", 10, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnPackageSynonym = cci("PACKAGE", "PACKAGE", "PACKAGE_SYNONYM", "(using DBFlute synonym)", Integer.class, "packageSynonym", null, false, false, false, "INT", 10, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnDefaultSynonym = cci("DEFAULT", "`DEFAULT`", "DEFAULT_SYNONYM", "(using DBFlute synonym)", Integer.class, "defaultSynonym", null, false, false, false, "INT", 10, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnNewSynonym = cci("NEW", "NEW", "NEW_SYNONYM", "(using DBFlute synonym)", Integer.class, "newSynonym", null, false, false, false, "INT", 10, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnNativeSynonym = cci("NATIVE", "NATIVE", "NATIVE_SYNONYM", "(using DBFlute synonym)", Integer.class, "nativeSynonym", null, false, false, false, "INT", 10, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnVoidSynonym = cci("VOID", "VOID", "VOID_SYNONYM", "(using DBFlute synonym)", Integer.class, "voidSynonym", null, false, false, false, "INT", 10, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnPublicSynonym = cci("PUBLIC", "PUBLIC", "PUBLIC_SYNONYM", "(using DBFlute synonym)", Integer.class, "publicSynonym", null, false, false, false, "INT", 10, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnProtectedSynonym = cci("PROTECTED", "PROTECTED", "PROTECTED_SYNONYM", "(using DBFlute synonym)", Integer.class, "protectedSynonym", null, false, false, false, "INT", 10, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnPrivateSynonym = cci("PRIVATE", "PRIVATE", "PRIVATE_SYNONYM", "(using DBFlute synonym)", Integer.class, "privateSynonym", null, false, false, false, "INT", 10, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnInterfaceSynonym = cci("INTERFACE", "INTERFACE", "INTERFACE_SYNONYM", "(using DBFlute synonym)", Integer.class, "interfaceSynonym", null, false, false, false, "INT", 10, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnAbstractSynonym = cci("ABSTRACT", "ABSTRACT", "ABSTRACT_SYNONYM", "(using DBFlute synonym)", Integer.class, "abstractSynonym", null, false, false, false, "INT", 10, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnFinalSynonym = cci("FINAL", "FINAL", "FINAL_SYNONYM", "(using DBFlute synonym)", Integer.class, "finalSynonym", null, false, false, false, "INT", 10, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnFinallySynonym = cci("FINALLY", "FINALLY", "FINALLY_SYNONYM", "(using DBFlute synonym)", Integer.class, "finallySynonym", null, false, false, false, "INT", 10, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnReturnSynonym = cci("RETURN", "`RETURN`", "RETURN_SYNONYM", "(using DBFlute synonym)", Integer.class, "returnSynonym", null, false, false, false, "INT", 10, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnDoubleSynonym = cci("DOUBLE", "`DOUBLE`", "DOUBLE_SYNONYM", "(using DBFlute synonym)", Integer.class, "doubleSynonym", null, false, false, false, "INT", 10, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnFloatSynonym = cci("FLOAT", "`FLOAT`", "FLOAT_SYNONYM", "(using DBFlute synonym)", Integer.class, "floatSynonym", null, false, false, false, "INT", 10, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnShortSynonym = cci("SHORT", "SHORT", "SHORT_SYNONYM", "(using DBFlute synonym)", Integer.class, "shortSynonym", null, false, false, false, "INT", 10, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnType = cci("TYPE", "TYPE", null, null, String.class, "type", null, false, false, false, "CHAR", 3, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnReservName = cci("RESERV_NAME", "RESERV_NAME", null, null, String.class, "reservName", null, false, false, true, "VARCHAR", 32, 0, null, false, null, null, null, null, null);
 
     /**
      * ((using DBFlute synonym))CLASS: {PK, NotNull, INT(10)}
@@ -330,6 +333,8 @@ public class WhitePgReservDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

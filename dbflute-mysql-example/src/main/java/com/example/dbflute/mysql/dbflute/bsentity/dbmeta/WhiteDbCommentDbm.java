@@ -48,13 +48,14 @@ public class WhiteDbCommentDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgDbCommentCode(), "dbCommentCode");
         setupEpg(_epgMap, new EpgDbCommentName(), "dbCommentName");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgDbCommentCode implements PropertyGateway {
         public Object read(Entity et) { return ((WhiteDbComment)et).getDbCommentCode(); }
         public void write(Entity et, Object vl) { ((WhiteDbComment)et).setDbCommentCode((String)vl); }
@@ -63,6 +64,8 @@ public class WhiteDbCommentDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((WhiteDbComment)et).getDbCommentName(); }
         public void write(Entity et, Object vl) { ((WhiteDbComment)et).setDbCommentName((String)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -78,8 +81,8 @@ public class WhiteDbCommentDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnDbCommentCode = cci("DB_COMMENT_CODE", "DB_COMMENT_CODE", null, "Normal", true, "dbCommentCode", String.class, true, false, "CHAR", 3, 0, null, false, null, "this is normal comment.", null, null, null);
-    protected final ColumnInfo _columnDbCommentName = cci("DB_COMMENT_NAME", "DB_COMMENT_NAME", null, "JavaDocHeadache", false, "dbCommentName", String.class, false, false, "VARCHAR", 20, 0, null, false, null, "e.g. /*BEGIN*/, @ @foo <br />", null, null, null);
+    protected final ColumnInfo _columnDbCommentCode = cci("DB_COMMENT_CODE", "DB_COMMENT_CODE", null, "Normal", String.class, "dbCommentCode", null, true, false, true, "CHAR", 3, 0, null, false, null, "this is normal comment.", null, null, null);
+    protected final ColumnInfo _columnDbCommentName = cci("DB_COMMENT_NAME", "DB_COMMENT_NAME", null, "JavaDocHeadache", String.class, "dbCommentName", null, false, false, false, "VARCHAR", 20, 0, null, false, null, "e.g. /*BEGIN*/, @ @foo <br />", null, null, null);
 
     /**
      * (Normal)DB_COMMENT_CODE: {PK, NotNull, CHAR(3)}
@@ -114,6 +117,8 @@ public class WhiteDbCommentDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

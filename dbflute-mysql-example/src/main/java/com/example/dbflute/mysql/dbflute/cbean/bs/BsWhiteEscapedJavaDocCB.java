@@ -92,10 +92,14 @@ public class BsWhiteEscapedJavaDocCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                 PrimaryKey Handling
     //                                                                 ===================
+    /**
+     * Accept the query condition of primary key as equal.
+     * @param escapedJavaDocCode : PK, NotNull, CHAR(3), classification=EscapedJavaDocCls. (NotNull)
+     */
     public void acceptPrimaryKey(String escapedJavaDocCode) {
         assertObjectNotNull("escapedJavaDocCode", escapedJavaDocCode);
         BsWhiteEscapedJavaDocCB cb = this;
-        cb.query().setEscapedJavaDocCode_Equal(escapedJavaDocCode);
+        cb.query().setEscapedJavaDocCode_Equal(escapedJavaDocCode);;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {
@@ -408,6 +412,11 @@ public class BsWhiteEscapedJavaDocCB extends AbstractConditionBean {
      */
     public void orScopeQuery(OrQuery<WhiteEscapedJavaDocCB> orQuery) {
         xorSQ((WhiteEscapedJavaDocCB)this, orQuery);
+    }
+
+    @Override
+    protected HpCBPurpose xhandleOrSQPurposeChange() {
+        return null; // means no check
     }
 
     /**

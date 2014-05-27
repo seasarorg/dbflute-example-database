@@ -48,6 +48,9 @@ public class VendorConstraintNameAutoRefDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgConstraintNameAutoRefId(), "constraintNameAutoRefId");
@@ -57,8 +60,6 @@ public class VendorConstraintNameAutoRefDbm extends AbstractDBMeta {
         setupEpg(_epgMap, new EpgConstraintNameAutoCorgeId(), "constraintNameAutoCorgeId");
         setupEpg(_epgMap, new EpgConstraintNameAutoUnique(), "constraintNameAutoUnique");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgConstraintNameAutoRefId implements PropertyGateway {
         public Object read(Entity et) { return ((VendorConstraintNameAutoRef)et).getConstraintNameAutoRefId(); }
         public void write(Entity et, Object vl) { ((VendorConstraintNameAutoRef)et).setConstraintNameAutoRefId(ctl(vl)); }
@@ -83,6 +84,32 @@ public class VendorConstraintNameAutoRefDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((VendorConstraintNameAutoRef)et).getConstraintNameAutoUnique(); }
         public void write(Entity et, Object vl) { ((VendorConstraintNameAutoRef)et).setConstraintNameAutoUnique((String)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
+
+    // -----------------------------------------------------
+    //                                      Foreign Property
+    //                                      ----------------
+    protected final Map<String, PropertyGateway> _efpgMap = newHashMap();
+    {
+        setupEfpg(_efpgMap, new EfpgVendorConstraintNameAutoFoo(), "vendorConstraintNameAutoFoo");
+        setupEfpg(_efpgMap, new EfpgVendorConstraintNameAutoBar(), "vendorConstraintNameAutoBar");
+        setupEfpg(_efpgMap, new EfpgVendorConstraintNameAutoQux(), "vendorConstraintNameAutoQux");
+    }
+    public class EfpgVendorConstraintNameAutoFoo implements PropertyGateway {
+        public Object read(Entity et) { return ((VendorConstraintNameAutoRef)et).getVendorConstraintNameAutoFoo(); }
+        public void write(Entity et, Object vl) { ((VendorConstraintNameAutoRef)et).setVendorConstraintNameAutoFoo((VendorConstraintNameAutoFoo)vl); }
+    }
+    public class EfpgVendorConstraintNameAutoBar implements PropertyGateway {
+        public Object read(Entity et) { return ((VendorConstraintNameAutoRef)et).getVendorConstraintNameAutoBar(); }
+        public void write(Entity et, Object vl) { ((VendorConstraintNameAutoRef)et).setVendorConstraintNameAutoBar((VendorConstraintNameAutoBar)vl); }
+    }
+    public class EfpgVendorConstraintNameAutoQux implements PropertyGateway {
+        public Object read(Entity et) { return ((VendorConstraintNameAutoRef)et).getVendorConstraintNameAutoQux(); }
+        public void write(Entity et, Object vl) { ((VendorConstraintNameAutoRef)et).setVendorConstraintNameAutoQux((VendorConstraintNameAutoQux)vl); }
+    }
+    public PropertyGateway findForeignPropertyGateway(String prop)
+    { return doFindEfpg(_efpgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -98,12 +125,12 @@ public class VendorConstraintNameAutoRefDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnConstraintNameAutoRefId = cci("CONSTRAINT_NAME_AUTO_REF_ID", "CONSTRAINT_NAME_AUTO_REF_ID", null, null, true, "constraintNameAutoRefId", Long.class, true, false, "DECIMAL", 16, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnConstraintNameAutoFooId = cci("CONSTRAINT_NAME_AUTO_FOO_ID", "CONSTRAINT_NAME_AUTO_FOO_ID", null, null, true, "constraintNameAutoFooId", Long.class, false, false, "DECIMAL", 16, 0, null, false, null, null, "vendorConstraintNameAutoFoo", null, null);
-    protected final ColumnInfo _columnConstraintNameAutoBarId = cci("CONSTRAINT_NAME_AUTO_BAR_ID", "CONSTRAINT_NAME_AUTO_BAR_ID", null, null, true, "constraintNameAutoBarId", Long.class, false, false, "DECIMAL", 16, 0, null, false, null, null, "vendorConstraintNameAutoBar", null, null);
-    protected final ColumnInfo _columnConstraintNameAutoQuxId = cci("CONSTRAINT_NAME_AUTO_QUX_ID", "CONSTRAINT_NAME_AUTO_QUX_ID", null, null, true, "constraintNameAutoQuxId", Long.class, false, false, "DECIMAL", 16, 0, null, false, null, null, "vendorConstraintNameAutoQux", null, null);
-    protected final ColumnInfo _columnConstraintNameAutoCorgeId = cci("CONSTRAINT_NAME_AUTO_CORGE_ID", "CONSTRAINT_NAME_AUTO_CORGE_ID", null, null, true, "constraintNameAutoCorgeId", Long.class, false, false, "DECIMAL", 16, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnConstraintNameAutoUnique = cci("CONSTRAINT_NAME_AUTO_UNIQUE", "CONSTRAINT_NAME_AUTO_UNIQUE", null, null, true, "constraintNameAutoUnique", String.class, false, false, "VARCHAR", 50, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnConstraintNameAutoRefId = cci("CONSTRAINT_NAME_AUTO_REF_ID", "CONSTRAINT_NAME_AUTO_REF_ID", null, null, Long.class, "constraintNameAutoRefId", null, true, false, true, "DECIMAL", 16, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnConstraintNameAutoFooId = cci("CONSTRAINT_NAME_AUTO_FOO_ID", "CONSTRAINT_NAME_AUTO_FOO_ID", null, null, Long.class, "constraintNameAutoFooId", null, false, false, true, "DECIMAL", 16, 0, null, false, null, null, "vendorConstraintNameAutoFoo", null, null);
+    protected final ColumnInfo _columnConstraintNameAutoBarId = cci("CONSTRAINT_NAME_AUTO_BAR_ID", "CONSTRAINT_NAME_AUTO_BAR_ID", null, null, Long.class, "constraintNameAutoBarId", null, false, false, true, "DECIMAL", 16, 0, null, false, null, null, "vendorConstraintNameAutoBar", null, null);
+    protected final ColumnInfo _columnConstraintNameAutoQuxId = cci("CONSTRAINT_NAME_AUTO_QUX_ID", "CONSTRAINT_NAME_AUTO_QUX_ID", null, null, Long.class, "constraintNameAutoQuxId", null, false, false, true, "DECIMAL", 16, 0, null, false, null, null, "vendorConstraintNameAutoQux", null, null);
+    protected final ColumnInfo _columnConstraintNameAutoCorgeId = cci("CONSTRAINT_NAME_AUTO_CORGE_ID", "CONSTRAINT_NAME_AUTO_CORGE_ID", null, null, Long.class, "constraintNameAutoCorgeId", null, false, false, true, "DECIMAL", 16, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnConstraintNameAutoUnique = cci("CONSTRAINT_NAME_AUTO_UNIQUE", "CONSTRAINT_NAME_AUTO_UNIQUE", null, null, String.class, "constraintNameAutoUnique", null, false, false, true, "VARCHAR", 50, 0, null, false, null, null, null, null, null);
 
     /**
      * CONSTRAINT_NAME_AUTO_REF_ID: {PK, NotNull, DECIMAL(16)}
@@ -162,6 +189,8 @@ public class VendorConstraintNameAutoRefDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

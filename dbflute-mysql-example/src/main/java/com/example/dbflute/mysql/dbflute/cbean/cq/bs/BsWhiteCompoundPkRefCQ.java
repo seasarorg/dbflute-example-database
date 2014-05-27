@@ -140,14 +140,14 @@ public class BsWhiteCompoundPkRefCQ extends AbstractBsWhiteCompoundPkRefCQ {
 
     /** 
      * Add order-by as ascend. <br />
-     * REF_FIRST_ID: {IX, NotNull, INT(10), FK to white_compound_pk}
+     * REF_FIRST_ID: {IX+, NotNull, INT(10), FK to white_compound_pk}
      * @return this. (NotNull)
      */
     public BsWhiteCompoundPkRefCQ addOrderBy_RefFirstId_Asc() { regOBA("REF_FIRST_ID"); return this; }
 
     /**
      * Add order-by as descend. <br />
-     * REF_FIRST_ID: {IX, NotNull, INT(10), FK to white_compound_pk}
+     * REF_FIRST_ID: {IX+, NotNull, INT(10), FK to white_compound_pk}
      * @return this. (NotNull)
      */
     public BsWhiteCompoundPkRefCQ addOrderBy_RefFirstId_Desc() { regOBD("REF_FIRST_ID"); return this; }
@@ -161,14 +161,14 @@ public class BsWhiteCompoundPkRefCQ extends AbstractBsWhiteCompoundPkRefCQ {
 
     /** 
      * Add order-by as ascend. <br />
-     * REF_SECOND_ID: {IX+, NotNull, INT(10), FK to white_compound_pk}
+     * REF_SECOND_ID: {NotNull, INT(10), FK to white_compound_pk}
      * @return this. (NotNull)
      */
     public BsWhiteCompoundPkRefCQ addOrderBy_RefSecondId_Asc() { regOBA("REF_SECOND_ID"); return this; }
 
     /**
      * Add order-by as descend. <br />
-     * REF_SECOND_ID: {IX+, NotNull, INT(10), FK to white_compound_pk}
+     * REF_SECOND_ID: {NotNull, INT(10), FK to white_compound_pk}
      * @return this. (NotNull)
      */
     public BsWhiteCompoundPkRefCQ addOrderBy_RefSecondId_Desc() { regOBD("REF_SECOND_ID"); return this; }
@@ -234,7 +234,7 @@ public class BsWhiteCompoundPkRefCQ extends AbstractBsWhiteCompoundPkRefCQ {
     // ===================================================================================
     //                                                                         Union Query
     //                                                                         ===========
-    protected void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
+    public void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
         WhiteCompoundPkRefCQ bq = (WhiteCompoundPkRefCQ)bqs;
         WhiteCompoundPkRefCQ uq = (WhiteCompoundPkRefCQ)uqs;
         if (bq.hasConditionQueryWhiteCompoundPk()) {
@@ -288,7 +288,7 @@ public class BsWhiteCompoundPkRefCQ extends AbstractBsWhiteCompoundPkRefCQ {
     //                                                      ExistsReferrer for Compound PK
     //                                                      ==============================
     /**
-     * Set up ExistsReferrer (correlated sub-query). <br />
+     * Set up ExistsReferrer (correlated sub-query by compound key). <br />
      * {exists (select ... from white_compound_pk_ref_nest where ...)}
      * @param subQuery The sub-query of WhiteCompoundPkRefNestByQuxMultipleIdList for 'exists'. (NotNull)
      */
@@ -308,7 +308,7 @@ public class BsWhiteCompoundPkRefCQ extends AbstractBsWhiteCompoundPkRefCQ {
     }
 
     /**
-     * Set up ExistsReferrer (correlated sub-query). <br />
+     * Set up ExistsReferrer (correlated sub-query by compound key). <br />
      * {exists (select ... from white_compound_pk_ref_nest where ...)}
      * @param subQuery The sub-query of WhiteCompoundPkRefNestByFooMultipleIdList for 'exists'. (NotNull)
      */
@@ -328,7 +328,7 @@ public class BsWhiteCompoundPkRefCQ extends AbstractBsWhiteCompoundPkRefCQ {
     }
 
     /**
-     * Set up NotExistsReferrer (correlated sub-query). <br />
+     * Set up NotExistsReferrer (correlated sub-query by compound key). <br />
      * {not exists (select ... from white_compound_pk_ref_nest where ...)}
      * @param subQuery The sub-query of WhiteCompoundPkRefNestByQuxMultipleIdList for 'not exists'. (NotNull)
      */
@@ -348,7 +348,7 @@ public class BsWhiteCompoundPkRefCQ extends AbstractBsWhiteCompoundPkRefCQ {
     }
 
     /**
-     * Set up NotExistsReferrer (correlated sub-query). <br />
+     * Set up NotExistsReferrer (correlated sub-query by compound key). <br />
      * {not exists (select ... from white_compound_pk_ref_nest where ...)}
      * @param subQuery The sub-query of WhiteCompoundPkRefNestByFooMultipleIdList for 'not exists'. (NotNull)
      */
@@ -404,7 +404,7 @@ public class BsWhiteCompoundPkRefCQ extends AbstractBsWhiteCompoundPkRefCQ {
     //                                              (Query)DerivedReferrer for Compound PK
     //                                              ======================================
     /**
-     * Prepare for (Query)DerivedReferrer. <br />
+     * Prepare for (Query)DerivedReferrer (correlated sub-query). <br />
      * {FOO &lt;= (select max(BAR) from white_compound_pk_ref_nest where ...)} <br />
      * white_compound_pk_ref_nest by BAR_MULTIPLE_ID, QUX_MULTIPLE_ID, named 'whiteCompoundPkRefNestByQuxMultipleIdAsOne'.
      * <pre>
@@ -450,7 +450,7 @@ public class BsWhiteCompoundPkRefCQ extends AbstractBsWhiteCompoundPkRefCQ {
     }
 
     /**
-     * Prepare for (Query)DerivedReferrer. <br />
+     * Prepare for (Query)DerivedReferrer (correlated sub-query). <br />
      * {FOO &lt;= (select max(BAR) from white_compound_pk_ref_nest where ...)} <br />
      * white_compound_pk_ref_nest by FOO_MULTIPLE_ID, BAR_MULTIPLE_ID, named 'whiteCompoundPkRefNestByFooMultipleIdAsOne'.
      * <pre>

@@ -93,10 +93,14 @@ public class BsWhiteVariantRelationReferrerCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                 PrimaryKey Handling
     //                                                                 ===================
+    /**
+     * Accept the query condition of primary key as equal.
+     * @param referrerId : PK, NotNull, BIGINT(19). (NotNull)
+     */
     public void acceptPrimaryKey(Long referrerId) {
         assertObjectNotNull("referrerId", referrerId);
         BsWhiteVariantRelationReferrerCB cb = this;
-        cb.query().setReferrerId_Equal(referrerId);
+        cb.query().setReferrerId_Equal(referrerId);;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {
@@ -649,6 +653,11 @@ public class BsWhiteVariantRelationReferrerCB extends AbstractConditionBean {
      */
     public void orScopeQuery(OrQuery<WhiteVariantRelationReferrerCB> orQuery) {
         xorSQ((WhiteVariantRelationReferrerCB)this, orQuery);
+    }
+
+    @Override
+    protected HpCBPurpose xhandleOrSQPurposeChange() {
+        return null; // means no check
     }
 
     /**

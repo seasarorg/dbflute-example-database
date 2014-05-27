@@ -232,7 +232,7 @@ public abstract class AbstractBsWhiteCompoundReferredNormallyCQ extends Abstract
     public abstract String keepReferredId_SpecifyDerivedReferrer_WhiteCompoundPkList(WhiteCompoundPkCQ sq);
 
     /**
-     * Prepare for (Query)DerivedReferrer. <br />
+     * Prepare for (Query)DerivedReferrer (correlated sub-query). <br />
      * {FOO &lt;= (select max(BAR) from white_compound_pk where ...)} <br />
      * white_compound_pk by REFERRED_ID, named 'whiteCompoundPkAsOne'.
      * <pre>
@@ -503,7 +503,7 @@ public abstract class AbstractBsWhiteCompoundReferredNormallyCQ extends Abstract
     public abstract String keepSpecifyMyselfDerived(WhiteCompoundReferredNormallyCQ sq);
 
     /**
-     * Prepare for (Query)MyselfDerived (SubQuery).
+     * Prepare for (Query)MyselfDerived (correlated sub-query).
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<WhiteCompoundReferredNormallyCB> myselfDerived() {
@@ -525,8 +525,8 @@ public abstract class AbstractBsWhiteCompoundReferredNormallyCQ extends Abstract
     //                                                                        MyselfExists
     //                                                                        ============
     /**
-     * Prepare for MyselfExists (SubQuery).
-     * @param subQuery The implementation of sub query. (NotNull)
+     * Prepare for MyselfExists (correlated sub-query).
+     * @param subQuery The implementation of sub-query. (NotNull)
      */
     public void myselfExists(SubQuery<WhiteCompoundReferredNormallyCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
@@ -541,8 +541,8 @@ public abstract class AbstractBsWhiteCompoundReferredNormallyCQ extends Abstract
     //                                                                       MyselfInScope
     //                                                                       =============
     /**
-     * Prepare for MyselfInScope (SubQuery).
-     * @param subQuery The implementation of sub query. (NotNull)
+     * Prepare for MyselfInScope (sub-query).
+     * @param subQuery The implementation of sub-query. (NotNull)
      */
     public void myselfInScope(SubQuery<WhiteCompoundReferredNormallyCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);

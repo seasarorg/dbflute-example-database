@@ -184,7 +184,7 @@ public abstract class BsWhiteDeprecatedClsElementBhv extends AbstractBehaviorWri
      * </pre>
      * @param cb The condition-bean of WhiteDeprecatedClsElement. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -205,39 +205,42 @@ public abstract class BsWhiteDeprecatedClsElementBhv extends AbstractBehaviorWri
 
     /**
      * Select the entity by the primary-key value.
-     * @param deprecatedClsElementCode The one of primary key. (NotNull)
+     * @param deprecatedClsElementCode : PK, NotNull, CHAR(3), classification=DeprecatedMapCollaborationType. (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteDeprecatedClsElement selectByPKValue(String deprecatedClsElementCode) {
-        return doSelectByPKValue(deprecatedClsElementCode, WhiteDeprecatedClsElement.class);
+        return doSelectByPK(deprecatedClsElementCode, WhiteDeprecatedClsElement.class);
     }
 
-    protected <ENTITY extends WhiteDeprecatedClsElement> ENTITY doSelectByPKValue(String deprecatedClsElementCode, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(deprecatedClsElementCode), entityType);
+    protected <ENTITY extends WhiteDeprecatedClsElement> ENTITY doSelectByPK(String deprecatedClsElementCode, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(deprecatedClsElementCode), entityType);
+    }
+
+    protected <ENTITY extends WhiteDeprecatedClsElement> OptionalEntity<ENTITY> doSelectOptionalByPK(String deprecatedClsElementCode, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(deprecatedClsElementCode, entityType), deprecatedClsElementCode);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param deprecatedClsElementCode The one of primary key. (NotNull)
+     * @param deprecatedClsElementCode : PK, NotNull, CHAR(3), classification=DeprecatedMapCollaborationType. (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteDeprecatedClsElement selectByPKValueWithDeletedCheck(String deprecatedClsElementCode) {
-        return doSelectByPKValueWithDeletedCheck(deprecatedClsElementCode, WhiteDeprecatedClsElement.class);
+        return doSelectByPKWithDeletedCheck(deprecatedClsElementCode, WhiteDeprecatedClsElement.class);
     }
 
-    protected <ENTITY extends WhiteDeprecatedClsElement> ENTITY doSelectByPKValueWithDeletedCheck(String deprecatedClsElementCode, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(deprecatedClsElementCode), entityType);
+    protected <ENTITY extends WhiteDeprecatedClsElement> ENTITY doSelectByPKWithDeletedCheck(String deprecatedClsElementCode, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(deprecatedClsElementCode), entityType);
     }
 
-    private WhiteDeprecatedClsElementCB buildPKCB(String deprecatedClsElementCode) {
+    protected WhiteDeprecatedClsElementCB xprepareCBAsPK(String deprecatedClsElementCode) {
         assertObjectNotNull("deprecatedClsElementCode", deprecatedClsElementCode);
-        WhiteDeprecatedClsElementCB cb = newMyConditionBean();
-        cb.query().setDeprecatedClsElementCode_Equal(deprecatedClsElementCode);
+        WhiteDeprecatedClsElementCB cb = newMyConditionBean(); cb.acceptPrimaryKey(deprecatedClsElementCode);
         return cb;
     }
 

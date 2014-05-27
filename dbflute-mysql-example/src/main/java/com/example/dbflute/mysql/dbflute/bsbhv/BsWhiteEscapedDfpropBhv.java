@@ -184,7 +184,7 @@ public abstract class BsWhiteEscapedDfpropBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of WhiteEscapedDfprop. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -205,39 +205,42 @@ public abstract class BsWhiteEscapedDfpropBhv extends AbstractBehaviorWritable {
 
     /**
      * Select the entity by the primary-key value.
-     * @param escapedDfpropCode The one of primary key. (NotNull)
+     * @param escapedDfpropCode : PK, NotNull, CHAR(3), classification=EscapedDfpropCls. (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteEscapedDfprop selectByPKValue(String escapedDfpropCode) {
-        return doSelectByPKValue(escapedDfpropCode, WhiteEscapedDfprop.class);
+        return doSelectByPK(escapedDfpropCode, WhiteEscapedDfprop.class);
     }
 
-    protected <ENTITY extends WhiteEscapedDfprop> ENTITY doSelectByPKValue(String escapedDfpropCode, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(escapedDfpropCode), entityType);
+    protected <ENTITY extends WhiteEscapedDfprop> ENTITY doSelectByPK(String escapedDfpropCode, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(escapedDfpropCode), entityType);
+    }
+
+    protected <ENTITY extends WhiteEscapedDfprop> OptionalEntity<ENTITY> doSelectOptionalByPK(String escapedDfpropCode, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(escapedDfpropCode, entityType), escapedDfpropCode);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param escapedDfpropCode The one of primary key. (NotNull)
+     * @param escapedDfpropCode : PK, NotNull, CHAR(3), classification=EscapedDfpropCls. (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteEscapedDfprop selectByPKValueWithDeletedCheck(String escapedDfpropCode) {
-        return doSelectByPKValueWithDeletedCheck(escapedDfpropCode, WhiteEscapedDfprop.class);
+        return doSelectByPKWithDeletedCheck(escapedDfpropCode, WhiteEscapedDfprop.class);
     }
 
-    protected <ENTITY extends WhiteEscapedDfprop> ENTITY doSelectByPKValueWithDeletedCheck(String escapedDfpropCode, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(escapedDfpropCode), entityType);
+    protected <ENTITY extends WhiteEscapedDfprop> ENTITY doSelectByPKWithDeletedCheck(String escapedDfpropCode, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(escapedDfpropCode), entityType);
     }
 
-    private WhiteEscapedDfpropCB buildPKCB(String escapedDfpropCode) {
+    protected WhiteEscapedDfpropCB xprepareCBAsPK(String escapedDfpropCode) {
         assertObjectNotNull("escapedDfpropCode", escapedDfpropCode);
-        WhiteEscapedDfpropCB cb = newMyConditionBean();
-        cb.query().setEscapedDfpropCode_Equal(escapedDfpropCode);
+        WhiteEscapedDfpropCB cb = newMyConditionBean(); cb.acceptPrimaryKey(escapedDfpropCode);
         return cb;
     }
 

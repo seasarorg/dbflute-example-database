@@ -33,6 +33,9 @@ public class WhiteSameNameDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgSameNameId(), "sameNameId");
@@ -40,8 +43,6 @@ public class WhiteSameNameDbm extends AbstractDBMeta {
         setupEpg(_epgMap, new EpgSameNameInteger(), "sameNameInteger");
         setupEpg(_epgMap, new EpgNextSchemaProductId(), "nextSchemaProductId");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgSameNameId implements PropertyGateway {
         public Object read(Entity et) { return ((WhiteSameName)et).getSameNameId(); }
         public void write(Entity et, Object vl) { ((WhiteSameName)et).setSameNameId(ctl(vl)); }
@@ -58,6 +59,22 @@ public class WhiteSameNameDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((WhiteSameName)et).getNextSchemaProductId(); }
         public void write(Entity et, Object vl) { ((WhiteSameName)et).setNextSchemaProductId(cti(vl)); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
+
+    // -----------------------------------------------------
+    //                                      Foreign Property
+    //                                      ----------------
+    protected final Map<String, PropertyGateway> _efpgMap = newHashMap();
+    {
+        setupEfpg(_efpgMap, new EfpgNextSchemaProduct(), "nextSchemaProduct");
+    }
+    public class EfpgNextSchemaProduct implements PropertyGateway {
+        public Object read(Entity et) { return ((WhiteSameName)et).getNextSchemaProduct(); }
+        public void write(Entity et, Object vl) { ((WhiteSameName)et).setNextSchemaProduct((NextSchemaProduct)vl); }
+    }
+    public PropertyGateway findForeignPropertyGateway(String prop)
+    { return doFindEfpg(_efpgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -73,14 +90,30 @@ public class WhiteSameNameDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnSameNameId = cci("same_name_id", "same_name_id", null, null, true, "sameNameId", Long.class, true, false, "int8", 19, 0, null, false, null, null, null, "whiteSameNameRefList", null);
-    protected final ColumnInfo _columnSameNameName = cci("same_name_name", "same_name_name", null, null, false, "sameNameName", String.class, false, false, "varchar", 200, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnSameNameInteger = cci("same_name_integer", "same_name_integer", null, null, false, "sameNameInteger", Integer.class, false, false, "int4", 10, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnNextSchemaProductId = cci("next_schema_product_id", "next_schema_product_id", null, null, false, "nextSchemaProductId", Integer.class, false, false, "int4", 10, 0, null, false, null, null, "nextSchemaProduct", null, null);
+    protected final ColumnInfo _columnSameNameId = cci("same_name_id", "same_name_id", null, null, Long.class, "sameNameId", null, true, false, true, "int8", 19, 0, null, false, null, null, null, "whiteSameNameRefList", null);
+    protected final ColumnInfo _columnSameNameName = cci("same_name_name", "same_name_name", null, null, String.class, "sameNameName", null, false, false, false, "varchar", 200, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnSameNameInteger = cci("same_name_integer", "same_name_integer", null, null, Integer.class, "sameNameInteger", null, false, false, false, "int4", 10, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnNextSchemaProductId = cci("next_schema_product_id", "next_schema_product_id", null, null, Integer.class, "nextSchemaProductId", null, false, false, false, "int4", 10, 0, null, false, null, null, "nextSchemaProduct", null, null);
 
+    /**
+     * same_name_id: {PK, NotNull, int8(19)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnSameNameId() { return _columnSameNameId; }
+    /**
+     * same_name_name: {varchar(200)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnSameNameName() { return _columnSameNameName; }
+    /**
+     * same_name_integer: {int4(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnSameNameInteger() { return _columnSameNameInteger; }
+    /**
+     * next_schema_product_id: {int4(10), FK to NEXT_SCHEMA_PRODUCT}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnNextSchemaProductId() { return _columnNextSchemaProductId; }
 
     protected List<ColumnInfo> ccil() {
@@ -107,17 +140,27 @@ public class WhiteSameNameDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------
+    /**
+     * next_schema_product by my next_schema_product_id, named 'nextSchemaProduct'.
+     * @return The information object of foreign property. (NotNull)
+     */
     public ForeignInfo foreignNextSchemaProduct() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnNextSchemaProductId(), NextSchemaProductDbm.getInstance().columnProductId());
-        return cfi("FK_WHITE_SAME_NAME_NEXT_SCHEMA_PRODUCT", "nextSchemaProduct", this, NextSchemaProductDbm.getInstance(), mp, 0, false, false, false, true, null, null, false, "whiteSameNameList");
+        return cfi("FK_WHITE_SAME_NAME_NEXT_SCHEMA_PRODUCT", "nextSchemaProduct", this, NextSchemaProductDbm.getInstance(), mp, 0, null, false, false, false, true, null, null, false, "whiteSameNameList");
     }
 
     // -----------------------------------------------------
     //                                     Referrer Property
     //                                     -----------------
+    /**
+     * white_same_name_ref by same_name_id, named 'whiteSameNameRefList'.
+     * @return The information object of referrer property. (NotNull)
+     */
     public ReferrerInfo referrerWhiteSameNameRefList() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnSameNameId(), WhiteSameNameRefDbm.getInstance().columnSameNameId());
         return cri("fk_white_same_name_ref", "whiteSameNameRefList", this, WhiteSameNameRefDbm.getInstance(), mp, false, "whiteSameName");

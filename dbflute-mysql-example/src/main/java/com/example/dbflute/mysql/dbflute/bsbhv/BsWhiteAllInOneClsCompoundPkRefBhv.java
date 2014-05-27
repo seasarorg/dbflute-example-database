@@ -184,7 +184,7 @@ public abstract class BsWhiteAllInOneClsCompoundPkRefBhv extends AbstractBehavio
      * </pre>
      * @param cb The condition-bean of WhiteAllInOneClsCompoundPkRef. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -205,43 +205,70 @@ public abstract class BsWhiteAllInOneClsCompoundPkRefBhv extends AbstractBehavio
 
     /**
      * Select the entity by the primary-key value.
-     * @param fooCode The one of primary key. (NotNull)
-     * @param barCode The one of primary key. (NotNull)
-     * @param quxCode The one of primary key. (NotNull)
+     * @param fooCode : PK, UQ+, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT. (NotNull)
+     * @param barCode : PK, +UQ, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT. (NotNull)
+     * @param quxCode : PK, +UQ, NotNull, CHAR(3). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteAllInOneClsCompoundPkRef selectByPKValue(String fooCode, String barCode, String quxCode) {
-        return doSelectByPKValue(fooCode, barCode, quxCode, WhiteAllInOneClsCompoundPkRef.class);
+        return doSelectByPK(fooCode, barCode, quxCode, WhiteAllInOneClsCompoundPkRef.class);
     }
 
-    protected <ENTITY extends WhiteAllInOneClsCompoundPkRef> ENTITY doSelectByPKValue(String fooCode, String barCode, String quxCode, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(fooCode, barCode, quxCode), entityType);
+    protected <ENTITY extends WhiteAllInOneClsCompoundPkRef> ENTITY doSelectByPK(String fooCode, String barCode, String quxCode, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(fooCode, barCode, quxCode), entityType);
+    }
+
+    protected <ENTITY extends WhiteAllInOneClsCompoundPkRef> OptionalEntity<ENTITY> doSelectOptionalByPK(String fooCode, String barCode, String quxCode, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(fooCode, barCode, quxCode, entityType), fooCode, barCode, quxCode);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param fooCode The one of primary key. (NotNull)
-     * @param barCode The one of primary key. (NotNull)
-     * @param quxCode The one of primary key. (NotNull)
+     * @param fooCode : PK, UQ+, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT. (NotNull)
+     * @param barCode : PK, +UQ, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT. (NotNull)
+     * @param quxCode : PK, +UQ, NotNull, CHAR(3). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteAllInOneClsCompoundPkRef selectByPKValueWithDeletedCheck(String fooCode, String barCode, String quxCode) {
-        return doSelectByPKValueWithDeletedCheck(fooCode, barCode, quxCode, WhiteAllInOneClsCompoundPkRef.class);
+        return doSelectByPKWithDeletedCheck(fooCode, barCode, quxCode, WhiteAllInOneClsCompoundPkRef.class);
     }
 
-    protected <ENTITY extends WhiteAllInOneClsCompoundPkRef> ENTITY doSelectByPKValueWithDeletedCheck(String fooCode, String barCode, String quxCode, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(fooCode, barCode, quxCode), entityType);
+    protected <ENTITY extends WhiteAllInOneClsCompoundPkRef> ENTITY doSelectByPKWithDeletedCheck(String fooCode, String barCode, String quxCode, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(fooCode, barCode, quxCode), entityType);
     }
 
-    private WhiteAllInOneClsCompoundPkRefCB buildPKCB(String fooCode, String barCode, String quxCode) {
+    protected WhiteAllInOneClsCompoundPkRefCB xprepareCBAsPK(String fooCode, String barCode, String quxCode) {
         assertObjectNotNull("fooCode", fooCode);assertObjectNotNull("barCode", barCode);assertObjectNotNull("quxCode", quxCode);
-        WhiteAllInOneClsCompoundPkRefCB cb = newMyConditionBean();
-        cb.query().setFooCode_Equal(fooCode);cb.query().setBarCode_Equal(barCode);cb.query().setQuxCode_Equal(quxCode);
+        WhiteAllInOneClsCompoundPkRefCB cb = newMyConditionBean(); cb.acceptPrimaryKey(fooCode, barCode, quxCode);
+        return cb;
+    }
+
+    /**
+     * Select the entity by the unique-key value.
+     * @param fooCode : PK, UQ+, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT. (NotNull)
+     * @param barCode : PK, +UQ, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT. (NotNull)
+     * @param quxCode : PK, +UQ, NotNull, CHAR(3). (NotNull)
+     * @return The optional entity selected by the unique key. (NotNull: if no data, empty entity)
+     * @exception EntityAlreadyDeletedException When get(), required() of return value is called and the value is null, which means entity has already been deleted (not found).
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     */
+    public OptionalEntity<WhiteAllInOneClsCompoundPkRef> selectByUniqueOf(String fooCode, String barCode, String quxCode) {
+        return doSelectByUniqueOf(fooCode, barCode, quxCode, WhiteAllInOneClsCompoundPkRef.class);
+    }
+
+    protected <ENTITY extends WhiteAllInOneClsCompoundPkRef> OptionalEntity<ENTITY> doSelectByUniqueOf(String fooCode, String barCode, String quxCode, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectEntity(xprepareCBAsUniqueOf(fooCode, barCode, quxCode), entityType), fooCode, barCode, quxCode);
+    }
+
+    protected WhiteAllInOneClsCompoundPkRefCB xprepareCBAsUniqueOf(String fooCode, String barCode, String quxCode) {
+        assertObjectNotNull("fooCode", fooCode);assertObjectNotNull("barCode", barCode);assertObjectNotNull("quxCode", quxCode);
+        WhiteAllInOneClsCompoundPkRefCB cb = newMyConditionBean(); cb.acceptUniqueOf(fooCode, barCode, quxCode);
         return cb;
     }
 
@@ -406,7 +433,8 @@ public abstract class BsWhiteAllInOneClsCompoundPkRefBhv extends AbstractBehavio
      */
     public List<WhiteAllInOneClsElement> pulloutWhiteAllInOneClsElementAsFoo(List<WhiteAllInOneClsCompoundPkRef> whiteAllInOneClsCompoundPkRefList) {
         return helpPulloutInternally(whiteAllInOneClsCompoundPkRefList, new InternalPulloutCallback<WhiteAllInOneClsCompoundPkRef, WhiteAllInOneClsElement>() {
-            public WhiteAllInOneClsElement getFr(WhiteAllInOneClsCompoundPkRef et) { return et.getWhiteAllInOneClsElementAsFoo(); }
+            public WhiteAllInOneClsElement getFr(WhiteAllInOneClsCompoundPkRef et)
+            { return et.getWhiteAllInOneClsElementAsFoo(); }
             public boolean hasRf() { return false; }
             public void setRfLs(WhiteAllInOneClsElement et, List<WhiteAllInOneClsCompoundPkRef> ls)
             { throw new UnsupportedOperationException(); }
@@ -419,7 +447,8 @@ public abstract class BsWhiteAllInOneClsCompoundPkRefBhv extends AbstractBehavio
      */
     public List<WhiteAllInOneClsElement> pulloutWhiteAllInOneClsElementAsBar(List<WhiteAllInOneClsCompoundPkRef> whiteAllInOneClsCompoundPkRefList) {
         return helpPulloutInternally(whiteAllInOneClsCompoundPkRefList, new InternalPulloutCallback<WhiteAllInOneClsCompoundPkRef, WhiteAllInOneClsElement>() {
-            public WhiteAllInOneClsElement getFr(WhiteAllInOneClsCompoundPkRef et) { return et.getWhiteAllInOneClsElementAsBar(); }
+            public WhiteAllInOneClsElement getFr(WhiteAllInOneClsCompoundPkRef et)
+            { return et.getWhiteAllInOneClsElementAsBar(); }
             public boolean hasRf() { return false; }
             public void setRfLs(WhiteAllInOneClsElement et, List<WhiteAllInOneClsCompoundPkRef> ls)
             { throw new UnsupportedOperationException(); }

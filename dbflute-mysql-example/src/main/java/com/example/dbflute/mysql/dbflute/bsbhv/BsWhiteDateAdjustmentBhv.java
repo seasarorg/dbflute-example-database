@@ -184,7 +184,7 @@ public abstract class BsWhiteDateAdjustmentBhv extends AbstractBehaviorWritable 
      * </pre>
      * @param cb The condition-bean of WhiteDateAdjustment. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -205,39 +205,42 @@ public abstract class BsWhiteDateAdjustmentBhv extends AbstractBehaviorWritable 
 
     /**
      * Select the entity by the primary-key value.
-     * @param dateAdjustmentId The one of primary key. (NotNull)
+     * @param dateAdjustmentId : PK, NotNull, BIGINT(19). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteDateAdjustment selectByPKValue(Long dateAdjustmentId) {
-        return doSelectByPKValue(dateAdjustmentId, WhiteDateAdjustment.class);
+        return doSelectByPK(dateAdjustmentId, WhiteDateAdjustment.class);
     }
 
-    protected <ENTITY extends WhiteDateAdjustment> ENTITY doSelectByPKValue(Long dateAdjustmentId, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(dateAdjustmentId), entityType);
+    protected <ENTITY extends WhiteDateAdjustment> ENTITY doSelectByPK(Long dateAdjustmentId, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(dateAdjustmentId), entityType);
+    }
+
+    protected <ENTITY extends WhiteDateAdjustment> OptionalEntity<ENTITY> doSelectOptionalByPK(Long dateAdjustmentId, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(dateAdjustmentId, entityType), dateAdjustmentId);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param dateAdjustmentId The one of primary key. (NotNull)
+     * @param dateAdjustmentId : PK, NotNull, BIGINT(19). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteDateAdjustment selectByPKValueWithDeletedCheck(Long dateAdjustmentId) {
-        return doSelectByPKValueWithDeletedCheck(dateAdjustmentId, WhiteDateAdjustment.class);
+        return doSelectByPKWithDeletedCheck(dateAdjustmentId, WhiteDateAdjustment.class);
     }
 
-    protected <ENTITY extends WhiteDateAdjustment> ENTITY doSelectByPKValueWithDeletedCheck(Long dateAdjustmentId, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(dateAdjustmentId), entityType);
+    protected <ENTITY extends WhiteDateAdjustment> ENTITY doSelectByPKWithDeletedCheck(Long dateAdjustmentId, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(dateAdjustmentId), entityType);
     }
 
-    private WhiteDateAdjustmentCB buildPKCB(Long dateAdjustmentId) {
+    protected WhiteDateAdjustmentCB xprepareCBAsPK(Long dateAdjustmentId) {
         assertObjectNotNull("dateAdjustmentId", dateAdjustmentId);
-        WhiteDateAdjustmentCB cb = newMyConditionBean();
-        cb.query().setDateAdjustmentId_Equal(dateAdjustmentId);
+        WhiteDateAdjustmentCB cb = newMyConditionBean(); cb.acceptPrimaryKey(dateAdjustmentId);
         return cb;
     }
 

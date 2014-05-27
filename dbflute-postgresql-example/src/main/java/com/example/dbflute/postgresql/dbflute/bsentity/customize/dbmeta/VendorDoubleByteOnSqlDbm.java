@@ -33,14 +33,15 @@ public class VendorDoubleByteOnSqlDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgMemberId(), "memberId");
         setupEpg(_epgMap, new EpgMemberNameWithSpace(), "memberNameWithSpace");
         setupEpg(_epgMap, new EpgMemberStatusName(), "memberStatusName");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgMemberId implements PropertyGateway {
         public Object read(Entity et) { return ((VendorDoubleByteOnSql)et).getMemberId(); }
         public void write(Entity et, Object vl) { ((VendorDoubleByteOnSql)et).setMemberId(cti(vl)); }
@@ -53,6 +54,8 @@ public class VendorDoubleByteOnSqlDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((VendorDoubleByteOnSql)et).getMemberStatusName(); }
         public void write(Entity et, Object vl) { ((VendorDoubleByteOnSql)et).setMemberStatusName((String)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -68,12 +71,24 @@ public class VendorDoubleByteOnSqlDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnMemberId = cci("member_id", "member_id", null, null, false, "memberId", Integer.class, false, false, "int4", 10, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnMemberNameWithSpace = cci("member_name_with_space", "member_name_with_space", null, null, false, "memberNameWithSpace", String.class, false, false, "text", 2147483647, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnMemberStatusName = cci("member_status_name", "member_status_name", null, null, false, "memberStatusName", String.class, false, false, "varchar", 50, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnMemberId = cci("member_id", "member_id", null, null, Integer.class, "memberId", null, false, false, false, "int4", 10, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnMemberNameWithSpace = cci("member_name_with_space", "member_name_with_space", null, null, String.class, "memberNameWithSpace", null, false, false, false, "text", 2147483647, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnMemberStatusName = cci("member_status_name", "member_status_name", null, null, String.class, "memberStatusName", null, false, false, false, "varchar", 50, 0, null, false, null, null, null, null, null);
 
+    /**
+     * member_id: {int4(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnMemberId() { return _columnMemberId; }
+    /**
+     * member_name_with_space: {text(2147483647)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnMemberNameWithSpace() { return _columnMemberNameWithSpace; }
+    /**
+     * member_status_name: {varchar(50)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnMemberStatusName() { return _columnMemberStatusName; }
 
     protected List<ColumnInfo> ccil() {
@@ -101,6 +116,8 @@ public class VendorDoubleByteOnSqlDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

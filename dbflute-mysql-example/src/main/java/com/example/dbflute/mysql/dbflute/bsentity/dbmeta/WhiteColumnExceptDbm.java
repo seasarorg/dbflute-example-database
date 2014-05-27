@@ -48,13 +48,14 @@ public class WhiteColumnExceptDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgExceptColumnId(), "exceptColumnId");
         setupEpg(_epgMap, new EpgColumnExceptTest(), "columnExceptTest");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgExceptColumnId implements PropertyGateway {
         public Object read(Entity et) { return ((WhiteColumnExcept)et).getExceptColumnId(); }
         public void write(Entity et, Object vl) { ((WhiteColumnExcept)et).setExceptColumnId(ctl(vl)); }
@@ -63,6 +64,8 @@ public class WhiteColumnExceptDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((WhiteColumnExcept)et).getColumnExceptTest(); }
         public void write(Entity et, Object vl) { ((WhiteColumnExcept)et).setColumnExceptTest(cti(vl)); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -78,8 +81,8 @@ public class WhiteColumnExceptDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnExceptColumnId = cci("EXCEPT_COLUMN_ID", "EXCEPT_COLUMN_ID", null, null, true, "exceptColumnId", Long.class, true, false, "DECIMAL", 16, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnColumnExceptTest = cci("COLUMN_EXCEPT_TEST", "COLUMN_EXCEPT_TEST", null, null, false, "columnExceptTest", Integer.class, false, false, "INT", 10, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnExceptColumnId = cci("EXCEPT_COLUMN_ID", "EXCEPT_COLUMN_ID", null, null, Long.class, "exceptColumnId", null, true, false, true, "DECIMAL", 16, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnColumnExceptTest = cci("COLUMN_EXCEPT_TEST", "COLUMN_EXCEPT_TEST", null, null, Integer.class, "columnExceptTest", null, false, false, false, "INT", 10, 0, null, false, null, null, null, null, null);
 
     /**
      * EXCEPT_COLUMN_ID: {PK, NotNull, DECIMAL(16)}
@@ -114,6 +117,8 @@ public class WhiteColumnExceptDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

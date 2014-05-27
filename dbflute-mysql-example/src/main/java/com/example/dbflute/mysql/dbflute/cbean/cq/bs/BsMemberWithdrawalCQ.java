@@ -327,7 +327,7 @@ public class BsMemberWithdrawalCQ extends AbstractBsMemberWithdrawalCQ {
     // ===================================================================================
     //                                                                         Union Query
     //                                                                         ===========
-    protected void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
+    public void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
         MemberWithdrawalCQ bq = (MemberWithdrawalCQ)bqs;
         MemberWithdrawalCQ uq = (MemberWithdrawalCQ)uqs;
         if (bq.hasConditionQueryMember()) {

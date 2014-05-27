@@ -245,7 +245,7 @@ public abstract class AbstractBsRegionCQ extends AbstractConditionQuery {
     public abstract String keepRegionId_SpecifyDerivedReferrer_MemberAddressList(MemberAddressCQ sq);
 
     /**
-     * Prepare for (Query)DerivedReferrer. <br />
+     * Prepare for (Query)DerivedReferrer (correlated sub-query). <br />
      * {FOO &lt;= (select max(BAR) from member_address where ...)} <br />
      * (会員住所情報)member_address by REGION_ID, named 'memberAddressAsOne'.
      * <pre>
@@ -516,7 +516,7 @@ public abstract class AbstractBsRegionCQ extends AbstractConditionQuery {
     public abstract String keepSpecifyMyselfDerived(RegionCQ sq);
 
     /**
-     * Prepare for (Query)MyselfDerived (SubQuery).
+     * Prepare for (Query)MyselfDerived (correlated sub-query).
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<RegionCB> myselfDerived() {
@@ -538,8 +538,8 @@ public abstract class AbstractBsRegionCQ extends AbstractConditionQuery {
     //                                                                        MyselfExists
     //                                                                        ============
     /**
-     * Prepare for MyselfExists (SubQuery).
-     * @param subQuery The implementation of sub query. (NotNull)
+     * Prepare for MyselfExists (correlated sub-query).
+     * @param subQuery The implementation of sub-query. (NotNull)
      */
     public void myselfExists(SubQuery<RegionCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
@@ -554,8 +554,8 @@ public abstract class AbstractBsRegionCQ extends AbstractConditionQuery {
     //                                                                       MyselfInScope
     //                                                                       =============
     /**
-     * Prepare for MyselfInScope (SubQuery).
-     * @param subQuery The implementation of sub query. (NotNull)
+     * Prepare for MyselfInScope (sub-query).
+     * @param subQuery The implementation of sub-query. (NotNull)
      */
     public void myselfInScope(SubQuery<RegionCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);

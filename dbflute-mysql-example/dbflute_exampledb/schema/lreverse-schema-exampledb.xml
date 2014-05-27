@@ -1134,6 +1134,21 @@
             <unique-column name="VALID_BEGIN_DATE" position="2"/>
         </unique>
     </table>
+    <table name="white_include_query"
+        schema="exampledb.$$NoNameSchema$$" type="TABLE">
+        <column autoIncrement="true" comment="" dbType="BIGINT"
+            javaType="Long" name="INCLUDE_QUERY_ID" pkName="PRIMARY"
+            primaryKey="true" required="true" size="19" type="BIGINT"/>
+        <column comment="" dbType="INT" javaType="Integer"
+            name="INCLUDE_QUERY_INTEGER" size="10" type="INTEGER"/>
+        <column comment="" dbType="VARCHAR" javaType="String"
+            name="INCLUDE_QUERY_VARCHAR" size="100" type="VARCHAR"/>
+        <column comment="" dbType="DATE" javaType="java.util.Date"
+            name="INCLUDE_QUERY_DATE" size="10" type="DATE"/>
+        <column comment="" dbType="DATETIME"
+            javaType="java.sql.Timestamp" name="INCLUDE_QUERY_DATETIME"
+            size="19" type="TIMESTAMP"/>
+    </table>
     <table name="white_line_sep_comment"
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="CHAR" javaType="String"
@@ -1195,6 +1210,31 @@
         <column comment="" dbType="DATETIME"
             javaType="java.sql.Timestamp"
             name="LATEST_PURCHASE_DATETIME" size="19" type="TIMESTAMP"/>
+    </table>
+    <table name="white_only_one_to_one_from"
+        schema="exampledb.$$NoNameSchema$$" type="TABLE">
+        <column autoIncrement="true" comment="" dbType="BIGINT"
+            javaType="Long" name="FROM_ID" pkName="PRIMARY"
+            primaryKey="true" required="true" size="19" type="BIGINT"/>
+        <column comment="" dbType="VARCHAR" javaType="String"
+            name="FROM_NAME" required="true" size="200" type="VARCHAR"/>
+    </table>
+    <table name="white_only_one_to_one_to"
+        schema="exampledb.$$NoNameSchema$$" type="TABLE">
+        <column autoIncrement="true" comment="" dbType="BIGINT"
+            javaType="Long" name="TO_ID" pkName="PRIMARY"
+            primaryKey="true" required="true" size="19" type="BIGINT"/>
+        <column comment="" dbType="VARCHAR" javaType="String"
+            name="TO_NAME" required="true" size="200" type="VARCHAR"/>
+        <column comment="" dbType="BIGINT" javaType="Long"
+            name="FROM_ID" required="true" size="19" type="BIGINT"/>
+        <foreign-key foreignSchema="exampledb.$$NoNameSchema$$"
+            foreignTable="white_only_one_to_one_from" name="FK_WHITE_ONLY_ONE_TO_ONE_TO_FROM">
+            <reference foreign="FROM_ID" local="FROM_ID"/>
+        </foreign-key>
+        <unique name="FROM_ID">
+            <unique-column name="FROM_ID" position="1"/>
+        </unique>
     </table>
     <table name="white_pg_reserv" schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="INT" javaType="Integer" name="CLASS"

@@ -1258,7 +1258,7 @@ public abstract class AbstractBsWhiteDateAdjustmentCQ extends AbstractConditionQ
     public abstract String keepSpecifyMyselfDerived(WhiteDateAdjustmentCQ sq);
 
     /**
-     * Prepare for (Query)MyselfDerived (SubQuery).
+     * Prepare for (Query)MyselfDerived (correlated sub-query).
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<WhiteDateAdjustmentCB> myselfDerived() {
@@ -1280,8 +1280,8 @@ public abstract class AbstractBsWhiteDateAdjustmentCQ extends AbstractConditionQ
     //                                                                        MyselfExists
     //                                                                        ============
     /**
-     * Prepare for MyselfExists (SubQuery).
-     * @param subQuery The implementation of sub query. (NotNull)
+     * Prepare for MyselfExists (correlated sub-query).
+     * @param subQuery The implementation of sub-query. (NotNull)
      */
     public void myselfExists(SubQuery<WhiteDateAdjustmentCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
@@ -1296,8 +1296,8 @@ public abstract class AbstractBsWhiteDateAdjustmentCQ extends AbstractConditionQ
     //                                                                       MyselfInScope
     //                                                                       =============
     /**
-     * Prepare for MyselfInScope (SubQuery).
-     * @param subQuery The implementation of sub query. (NotNull)
+     * Prepare for MyselfInScope (sub-query).
+     * @param subQuery The implementation of sub-query. (NotNull)
      */
     public void myselfInScope(SubQuery<WhiteDateAdjustmentCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);

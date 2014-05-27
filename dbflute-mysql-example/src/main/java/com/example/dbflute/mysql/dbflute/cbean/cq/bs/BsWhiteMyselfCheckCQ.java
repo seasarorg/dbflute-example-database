@@ -206,7 +206,7 @@ public class BsWhiteMyselfCheckCQ extends AbstractBsWhiteMyselfCheckCQ {
     // ===================================================================================
     //                                                                         Union Query
     //                                                                         ===========
-    protected void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
+    public void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
         WhiteMyselfCheckCQ bq = (WhiteMyselfCheckCQ)bqs;
         WhiteMyselfCheckCQ uq = (WhiteMyselfCheckCQ)uqs;
         if (bq.hasConditionQueryWhiteMyself()) {

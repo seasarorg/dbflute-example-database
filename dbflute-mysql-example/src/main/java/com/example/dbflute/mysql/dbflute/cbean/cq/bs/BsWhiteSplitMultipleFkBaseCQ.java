@@ -282,7 +282,7 @@ public class BsWhiteSplitMultipleFkBaseCQ extends AbstractBsWhiteSplitMultipleFk
     // ===================================================================================
     //                                                                         Union Query
     //                                                                         ===========
-    protected void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
+    public void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
         WhiteSplitMultipleFkBaseCQ bq = (WhiteSplitMultipleFkBaseCQ)bqs;
         WhiteSplitMultipleFkBaseCQ uq = (WhiteSplitMultipleFkBaseCQ)uqs;
         if (bq.hasConditionQueryWhiteSplitMultipleFkNext()) {

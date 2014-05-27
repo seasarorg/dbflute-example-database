@@ -48,14 +48,15 @@ public class WhiteNoPkDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgNoPkId(), "noPkId");
         setupEpg(_epgMap, new EpgNoPkName(), "noPkName");
         setupEpg(_epgMap, new EpgNoPkInteger(), "noPkInteger");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgNoPkId implements PropertyGateway {
         public Object read(Entity et) { return ((WhiteNoPk)et).getNoPkId(); }
         public void write(Entity et, Object vl) { ((WhiteNoPk)et).setNoPkId(ctl(vl)); }
@@ -68,6 +69,8 @@ public class WhiteNoPkDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((WhiteNoPk)et).getNoPkInteger(); }
         public void write(Entity et, Object vl) { ((WhiteNoPk)et).setNoPkInteger(cti(vl)); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -83,9 +86,9 @@ public class WhiteNoPkDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnNoPkId = cci("NO_PK_ID", "NO_PK_ID", null, null, true, "noPkId", Long.class, false, false, "DECIMAL", 16, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnNoPkName = cci("NO_PK_NAME", "NO_PK_NAME", null, null, false, "noPkName", String.class, false, false, "VARCHAR", 32, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnNoPkInteger = cci("NO_PK_INTEGER", "NO_PK_INTEGER", null, null, false, "noPkInteger", Integer.class, false, false, "INT", 10, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnNoPkId = cci("NO_PK_ID", "NO_PK_ID", null, null, Long.class, "noPkId", null, false, false, true, "DECIMAL", 16, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnNoPkName = cci("NO_PK_NAME", "NO_PK_NAME", null, null, String.class, "noPkName", null, false, false, false, "VARCHAR", 32, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnNoPkInteger = cci("NO_PK_INTEGER", "NO_PK_INTEGER", null, null, Integer.class, "noPkInteger", null, false, false, false, "INT", 10, 0, null, false, null, null, null, null, null);
 
     /**
      * NO_PK_ID: {NotNull, DECIMAL(16)}
@@ -128,6 +131,8 @@ public class WhiteNoPkDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

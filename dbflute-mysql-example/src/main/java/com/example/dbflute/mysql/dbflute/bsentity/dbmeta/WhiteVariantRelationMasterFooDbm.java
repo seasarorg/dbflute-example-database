@@ -48,13 +48,14 @@ public class WhiteVariantRelationMasterFooDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgMasterFooId(), "masterFooId");
         setupEpg(_epgMap, new EpgMasterFooName(), "masterFooName");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgMasterFooId implements PropertyGateway {
         public Object read(Entity et) { return ((WhiteVariantRelationMasterFoo)et).getMasterFooId(); }
         public void write(Entity et, Object vl) { ((WhiteVariantRelationMasterFoo)et).setMasterFooId(ctl(vl)); }
@@ -63,6 +64,8 @@ public class WhiteVariantRelationMasterFooDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((WhiteVariantRelationMasterFoo)et).getMasterFooName(); }
         public void write(Entity et, Object vl) { ((WhiteVariantRelationMasterFoo)et).setMasterFooName((String)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -78,8 +81,8 @@ public class WhiteVariantRelationMasterFooDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnMasterFooId = cci("MASTER_FOO_ID", "MASTER_FOO_ID", null, null, true, "masterFooId", Long.class, true, false, "BIGINT", 19, 0, null, false, null, null, null, "whiteVariantRelationReferrerAsVariantList", null);
-    protected final ColumnInfo _columnMasterFooName = cci("MASTER_FOO_NAME", "MASTER_FOO_NAME", null, null, true, "masterFooName", String.class, false, false, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnMasterFooId = cci("MASTER_FOO_ID", "MASTER_FOO_ID", null, null, Long.class, "masterFooId", null, true, false, true, "BIGINT", 19, 0, null, false, null, null, null, "whiteVariantRelationReferrerAsVariantList", null);
+    protected final ColumnInfo _columnMasterFooName = cci("MASTER_FOO_NAME", "MASTER_FOO_NAME", null, null, String.class, "masterFooName", null, false, false, true, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
 
     /**
      * MASTER_FOO_ID: {PK, NotNull, BIGINT(19)}
@@ -114,6 +117,8 @@ public class WhiteVariantRelationMasterFooDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

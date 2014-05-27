@@ -184,7 +184,7 @@ public abstract class BsWhitePointTypeMappingBhv extends AbstractBehaviorWritabl
      * </pre>
      * @param cb The condition-bean of WhitePointTypeMapping. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -205,39 +205,42 @@ public abstract class BsWhitePointTypeMappingBhv extends AbstractBehaviorWritabl
 
     /**
      * Select the entity by the primary-key value.
-     * @param pointTypeMappingId The one of primary key. (NotNull)
+     * @param pointTypeMappingId : PK, NotNull, DECIMAL(16). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhitePointTypeMapping selectByPKValue(Long pointTypeMappingId) {
-        return doSelectByPKValue(pointTypeMappingId, WhitePointTypeMapping.class);
+        return doSelectByPK(pointTypeMappingId, WhitePointTypeMapping.class);
     }
 
-    protected <ENTITY extends WhitePointTypeMapping> ENTITY doSelectByPKValue(Long pointTypeMappingId, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(pointTypeMappingId), entityType);
+    protected <ENTITY extends WhitePointTypeMapping> ENTITY doSelectByPK(Long pointTypeMappingId, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(pointTypeMappingId), entityType);
+    }
+
+    protected <ENTITY extends WhitePointTypeMapping> OptionalEntity<ENTITY> doSelectOptionalByPK(Long pointTypeMappingId, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(pointTypeMappingId, entityType), pointTypeMappingId);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param pointTypeMappingId The one of primary key. (NotNull)
+     * @param pointTypeMappingId : PK, NotNull, DECIMAL(16). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhitePointTypeMapping selectByPKValueWithDeletedCheck(Long pointTypeMappingId) {
-        return doSelectByPKValueWithDeletedCheck(pointTypeMappingId, WhitePointTypeMapping.class);
+        return doSelectByPKWithDeletedCheck(pointTypeMappingId, WhitePointTypeMapping.class);
     }
 
-    protected <ENTITY extends WhitePointTypeMapping> ENTITY doSelectByPKValueWithDeletedCheck(Long pointTypeMappingId, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(pointTypeMappingId), entityType);
+    protected <ENTITY extends WhitePointTypeMapping> ENTITY doSelectByPKWithDeletedCheck(Long pointTypeMappingId, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(pointTypeMappingId), entityType);
     }
 
-    private WhitePointTypeMappingCB buildPKCB(Long pointTypeMappingId) {
+    protected WhitePointTypeMappingCB xprepareCBAsPK(Long pointTypeMappingId) {
         assertObjectNotNull("pointTypeMappingId", pointTypeMappingId);
-        WhitePointTypeMappingCB cb = newMyConditionBean();
-        cb.query().setPointTypeMappingId_Equal(pointTypeMappingId);
+        WhitePointTypeMappingCB cb = newMyConditionBean(); cb.acceptPrimaryKey(pointTypeMappingId);
         return cb;
     }
 

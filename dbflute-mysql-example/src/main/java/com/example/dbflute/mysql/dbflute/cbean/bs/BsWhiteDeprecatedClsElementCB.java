@@ -92,10 +92,14 @@ public class BsWhiteDeprecatedClsElementCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                 PrimaryKey Handling
     //                                                                 ===================
+    /**
+     * Accept the query condition of primary key as equal.
+     * @param deprecatedClsElementCode : PK, NotNull, CHAR(3), classification=DeprecatedMapCollaborationType. (NotNull)
+     */
     public void acceptPrimaryKey(String deprecatedClsElementCode) {
         assertObjectNotNull("deprecatedClsElementCode", deprecatedClsElementCode);
         BsWhiteDeprecatedClsElementCB cb = this;
-        cb.query().setDeprecatedClsElementCode_Equal(deprecatedClsElementCode);
+        cb.query().setDeprecatedClsElementCode_Equal(deprecatedClsElementCode);;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {
@@ -408,6 +412,11 @@ public class BsWhiteDeprecatedClsElementCB extends AbstractConditionBean {
      */
     public void orScopeQuery(OrQuery<WhiteDeprecatedClsElementCB> orQuery) {
         xorSQ((WhiteDeprecatedClsElementCB)this, orQuery);
+    }
+
+    @Override
+    protected HpCBPurpose xhandleOrSQPurposeChange() {
+        return null; // means no check
     }
 
     /**

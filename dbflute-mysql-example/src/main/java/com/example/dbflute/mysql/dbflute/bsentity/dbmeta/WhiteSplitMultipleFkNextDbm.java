@@ -48,13 +48,14 @@ public class WhiteSplitMultipleFkNextDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgNextId(), "nextId");
         setupEpg(_epgMap, new EpgSecondCode(), "secondCode");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgNextId implements PropertyGateway {
         public Object read(Entity et) { return ((WhiteSplitMultipleFkNext)et).getNextId(); }
         public void write(Entity et, Object vl) { ((WhiteSplitMultipleFkNext)et).setNextId(ctl(vl)); }
@@ -63,6 +64,8 @@ public class WhiteSplitMultipleFkNextDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((WhiteSplitMultipleFkNext)et).getSecondCode(); }
         public void write(Entity et, Object vl) { ((WhiteSplitMultipleFkNext)et).setSecondCode((String)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -78,8 +81,8 @@ public class WhiteSplitMultipleFkNextDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnNextId = cci("NEXT_ID", "NEXT_ID", null, null, true, "nextId", Long.class, true, false, "BIGINT", 19, 0, null, false, null, null, null, "whiteSplitMultipleFkBaseList", null);
-    protected final ColumnInfo _columnSecondCode = cci("SECOND_CODE", "SECOND_CODE", null, null, true, "secondCode", String.class, false, false, "CHAR", 3, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnNextId = cci("NEXT_ID", "NEXT_ID", null, null, Long.class, "nextId", null, true, false, true, "BIGINT", 19, 0, null, false, null, null, null, "whiteSplitMultipleFkBaseList", null);
+    protected final ColumnInfo _columnSecondCode = cci("SECOND_CODE", "SECOND_CODE", null, null, String.class, "secondCode", null, false, false, true, "CHAR", 3, 0, null, false, null, null, null, null, null);
 
     /**
      * NEXT_ID: {PK, NotNull, BIGINT(19)}
@@ -114,6 +117,8 @@ public class WhiteSplitMultipleFkNextDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

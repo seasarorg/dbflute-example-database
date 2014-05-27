@@ -48,6 +48,9 @@ public class WhiteDateAdjustmentDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgDateAdjustmentId(), "dateAdjustmentId");
@@ -62,8 +65,6 @@ public class WhiteDateAdjustmentDbm extends AbstractDBMeta {
         setupEpg(_epgMap, new EpgAdjustedPlainLong(), "adjustedPlainLong");
         setupEpg(_epgMap, new EpgAdjustedString(), "adjustedString");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgDateAdjustmentId implements PropertyGateway {
         public Object read(Entity et) { return ((WhiteDateAdjustment)et).getDateAdjustmentId(); }
         public void write(Entity et, Object vl) { ((WhiteDateAdjustment)et).setDateAdjustmentId(ctl(vl)); }
@@ -108,6 +109,8 @@ public class WhiteDateAdjustmentDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((WhiteDateAdjustment)et).getAdjustedString(); }
         public void write(Entity et, Object vl) { ((WhiteDateAdjustment)et).setAdjustedString((String)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -123,17 +126,17 @@ public class WhiteDateAdjustmentDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnDateAdjustmentId = cci("DATE_ADJUSTMENT_ID", "DATE_ADJUSTMENT_ID", null, null, true, "dateAdjustmentId", Long.class, true, false, "BIGINT", 19, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnAdjustedDate = cci("ADJUSTED_DATE", "ADJUSTED_DATE", null, "adjusted", false, "adjustedDate", java.util.Date.class, false, false, "DATE", 10, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnAdjustedDatetime = cci("ADJUSTED_DATETIME", "ADJUSTED_DATETIME", null, null, false, "adjustedDatetime", java.sql.Timestamp.class, false, false, "DATETIME", 19, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnAdjustedTime = cci("ADJUSTED_TIME", "ADJUSTED_TIME", null, null, false, "adjustedTime", java.sql.Time.class, false, false, "TIME", 8, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnAdjustedInteger = cci("ADJUSTED_INTEGER", "ADJUSTED_INTEGER", null, null, false, "adjustedInteger", Integer.class, false, false, "INT", 10, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnAdjustedNamedStringLong = cci("ADJUSTED_NAMED_STRING_LONG", "ADJUSTED_NAMED_STRING_LONG", null, "adjusted", false, "adjustedNamedStringLong", Long.class, false, false, "BIGINT", 19, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnAdjustedNamedTypedLong = cci("ADJUSTED_NAMED_TYPED_LONG", "ADJUSTED_NAMED_TYPED_LONG", null, "adjusted", false, "adjustedNamedTypedLong", Long.class, false, false, "BIGINT", 19, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnAdjustedPinpointStringLong = cci("ADJUSTED_PINPOINT_STRING_LONG", "ADJUSTED_PINPOINT_STRING_LONG", null, "adjusted", false, "adjustedPinpointStringLong", Long.class, false, false, "BIGINT", 19, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnAdjustedPinpointTypedLong = cci("ADJUSTED_PINPOINT_TYPED_LONG", "ADJUSTED_PINPOINT_TYPED_LONG", null, "adjusted", false, "adjustedPinpointTypedLong", Long.class, false, false, "BIGINT", 19, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnAdjustedPlainLong = cci("ADJUSTED_PLAIN_LONG", "ADJUSTED_PLAIN_LONG", null, null, false, "adjustedPlainLong", Long.class, false, false, "BIGINT", 19, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnAdjustedString = cci("ADJUSTED_STRING", "ADJUSTED_STRING", null, null, false, "adjustedString", String.class, false, false, "VARCHAR", 32, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnDateAdjustmentId = cci("DATE_ADJUSTMENT_ID", "DATE_ADJUSTMENT_ID", null, null, Long.class, "dateAdjustmentId", null, true, false, true, "BIGINT", 19, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnAdjustedDate = cci("ADJUSTED_DATE", "ADJUSTED_DATE", null, "adjusted", java.util.Date.class, "adjustedDate", null, false, false, false, "DATE", 10, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnAdjustedDatetime = cci("ADJUSTED_DATETIME", "ADJUSTED_DATETIME", null, null, java.sql.Timestamp.class, "adjustedDatetime", null, false, false, false, "DATETIME", 19, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnAdjustedTime = cci("ADJUSTED_TIME", "ADJUSTED_TIME", null, null, java.sql.Time.class, "adjustedTime", null, false, false, false, "TIME", 8, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnAdjustedInteger = cci("ADJUSTED_INTEGER", "ADJUSTED_INTEGER", null, null, Integer.class, "adjustedInteger", null, false, false, false, "INT", 10, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnAdjustedNamedStringLong = cci("ADJUSTED_NAMED_STRING_LONG", "ADJUSTED_NAMED_STRING_LONG", null, "adjusted", Long.class, "adjustedNamedStringLong", null, false, false, false, "BIGINT", 19, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnAdjustedNamedTypedLong = cci("ADJUSTED_NAMED_TYPED_LONG", "ADJUSTED_NAMED_TYPED_LONG", null, "adjusted", Long.class, "adjustedNamedTypedLong", null, false, false, false, "BIGINT", 19, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnAdjustedPinpointStringLong = cci("ADJUSTED_PINPOINT_STRING_LONG", "ADJUSTED_PINPOINT_STRING_LONG", null, "adjusted", Long.class, "adjustedPinpointStringLong", null, false, false, false, "BIGINT", 19, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnAdjustedPinpointTypedLong = cci("ADJUSTED_PINPOINT_TYPED_LONG", "ADJUSTED_PINPOINT_TYPED_LONG", null, "adjusted", Long.class, "adjustedPinpointTypedLong", null, false, false, false, "BIGINT", 19, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnAdjustedPlainLong = cci("ADJUSTED_PLAIN_LONG", "ADJUSTED_PLAIN_LONG", null, null, Long.class, "adjustedPlainLong", null, false, false, false, "BIGINT", 19, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnAdjustedString = cci("ADJUSTED_STRING", "ADJUSTED_STRING", null, null, String.class, "adjustedString", null, false, false, false, "VARCHAR", 32, 0, null, false, null, null, null, null, null);
 
     /**
      * DATE_ADJUSTMENT_ID: {PK, NotNull, BIGINT(19)}
@@ -222,6 +225,8 @@ public class WhiteDateAdjustmentDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

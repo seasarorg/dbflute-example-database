@@ -153,7 +153,7 @@ public abstract class AbstractBsWhiteAllInOneClsNormalColRefCQ extends AbstractC
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
-     * FOO_CODE: {PK, UQ, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT}
+     * FOO_CODE: {PK, UQ+, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT}
      * @param fooCode The value of fooCode as equal. (NullAllowed: if null (or empty), no condition)
      */
     public void setFooCode_Equal(String fooCode) {
@@ -166,7 +166,7 @@ public abstract class AbstractBsWhiteAllInOneClsNormalColRefCQ extends AbstractC
 
     /**
      * NotEqual(&lt;&gt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
-     * FOO_CODE: {PK, UQ, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT}
+     * FOO_CODE: {PK, UQ+, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT}
      * @param fooCode The value of fooCode as notEqual. (NullAllowed: if null (or empty), no condition)
      */
     public void setFooCode_NotEqual(String fooCode) {
@@ -179,7 +179,7 @@ public abstract class AbstractBsWhiteAllInOneClsNormalColRefCQ extends AbstractC
 
     /**
      * InScope {in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br />
-     * FOO_CODE: {PK, UQ, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT}
+     * FOO_CODE: {PK, UQ+, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT}
      * @param fooCodeList The collection of fooCode as inScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setFooCode_InScope(Collection<String> fooCodeList) {
@@ -192,7 +192,7 @@ public abstract class AbstractBsWhiteAllInOneClsNormalColRefCQ extends AbstractC
 
     /**
      * NotInScope {not in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br />
-     * FOO_CODE: {PK, UQ, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT}
+     * FOO_CODE: {PK, UQ+, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT}
      * @param fooCodeList The collection of fooCode as notInScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setFooCode_NotInScope(Collection<String> fooCodeList) {
@@ -205,7 +205,7 @@ public abstract class AbstractBsWhiteAllInOneClsNormalColRefCQ extends AbstractC
 
     /**
      * PrefixSearch {like 'xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br />
-     * FOO_CODE: {PK, UQ, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT}
+     * FOO_CODE: {PK, UQ+, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT}
      * @param fooCode The value of fooCode as prefixSearch. (NullAllowed: if null (or empty), no condition)
      */
     public void setFooCode_PrefixSearch(String fooCode) {
@@ -214,7 +214,7 @@ public abstract class AbstractBsWhiteAllInOneClsNormalColRefCQ extends AbstractC
 
     /**
      * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br />
-     * FOO_CODE: {PK, UQ, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT} <br />
+     * FOO_CODE: {PK, UQ+, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT} <br />
      * <pre>e.g. setFooCode_LikeSearch("xxx", new <span style="color: #DD4747">LikeSearchOption</span>().likeContain());</pre>
      * @param fooCode The value of fooCode as likeSearch. (NullAllowed: if null (or empty), no condition)
      * @param likeSearchOption The option of like-search. (NotNull)
@@ -226,7 +226,7 @@ public abstract class AbstractBsWhiteAllInOneClsNormalColRefCQ extends AbstractC
     /**
      * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br />
      * And NullOrEmptyIgnored, SeveralRegistered. <br />
-     * FOO_CODE: {PK, UQ, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT}
+     * FOO_CODE: {PK, UQ+, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT}
      * @param fooCode The value of fooCode as notLikeSearch. (NullAllowed: if null (or empty), no condition)
      * @param likeSearchOption The option of not-like-search. (NotNull)
      */
@@ -236,13 +236,13 @@ public abstract class AbstractBsWhiteAllInOneClsNormalColRefCQ extends AbstractC
 
     /**
      * IsNull {is null}. And OnlyOnceRegistered. <br />
-     * FOO_CODE: {PK, UQ, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT}
+     * FOO_CODE: {PK, UQ+, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT}
      */
     public void setFooCode_IsNull() { regFooCode(CK_ISN, DOBJ); }
 
     /**
      * IsNotNull {is not null}. And OnlyOnceRegistered. <br />
-     * FOO_CODE: {PK, UQ, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT}
+     * FOO_CODE: {PK, UQ+, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT}
      */
     public void setFooCode_IsNotNull() { regFooCode(CK_ISNN, DOBJ); }
 
@@ -251,7 +251,7 @@ public abstract class AbstractBsWhiteAllInOneClsNormalColRefCQ extends AbstractC
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
-     * BAR_CODE: {PK, UQ+, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT}
+     * BAR_CODE: {PK, +UQ, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT}
      * @param barCode The value of barCode as equal. (NullAllowed: if null (or empty), no condition)
      */
     public void setBarCode_Equal(String barCode) {
@@ -264,7 +264,7 @@ public abstract class AbstractBsWhiteAllInOneClsNormalColRefCQ extends AbstractC
 
     /**
      * NotEqual(&lt;&gt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
-     * BAR_CODE: {PK, UQ+, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT}
+     * BAR_CODE: {PK, +UQ, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT}
      * @param barCode The value of barCode as notEqual. (NullAllowed: if null (or empty), no condition)
      */
     public void setBarCode_NotEqual(String barCode) {
@@ -277,7 +277,7 @@ public abstract class AbstractBsWhiteAllInOneClsNormalColRefCQ extends AbstractC
 
     /**
      * InScope {in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br />
-     * BAR_CODE: {PK, UQ+, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT}
+     * BAR_CODE: {PK, +UQ, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT}
      * @param barCodeList The collection of barCode as inScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setBarCode_InScope(Collection<String> barCodeList) {
@@ -290,7 +290,7 @@ public abstract class AbstractBsWhiteAllInOneClsNormalColRefCQ extends AbstractC
 
     /**
      * NotInScope {not in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br />
-     * BAR_CODE: {PK, UQ+, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT}
+     * BAR_CODE: {PK, +UQ, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT}
      * @param barCodeList The collection of barCode as notInScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setBarCode_NotInScope(Collection<String> barCodeList) {
@@ -303,7 +303,7 @@ public abstract class AbstractBsWhiteAllInOneClsNormalColRefCQ extends AbstractC
 
     /**
      * PrefixSearch {like 'xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br />
-     * BAR_CODE: {PK, UQ+, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT}
+     * BAR_CODE: {PK, +UQ, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT}
      * @param barCode The value of barCode as prefixSearch. (NullAllowed: if null (or empty), no condition)
      */
     public void setBarCode_PrefixSearch(String barCode) {
@@ -312,7 +312,7 @@ public abstract class AbstractBsWhiteAllInOneClsNormalColRefCQ extends AbstractC
 
     /**
      * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br />
-     * BAR_CODE: {PK, UQ+, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT} <br />
+     * BAR_CODE: {PK, +UQ, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT} <br />
      * <pre>e.g. setBarCode_LikeSearch("xxx", new <span style="color: #DD4747">LikeSearchOption</span>().likeContain());</pre>
      * @param barCode The value of barCode as likeSearch. (NullAllowed: if null (or empty), no condition)
      * @param likeSearchOption The option of like-search. (NotNull)
@@ -324,7 +324,7 @@ public abstract class AbstractBsWhiteAllInOneClsNormalColRefCQ extends AbstractC
     /**
      * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br />
      * And NullOrEmptyIgnored, SeveralRegistered. <br />
-     * BAR_CODE: {PK, UQ+, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT}
+     * BAR_CODE: {PK, +UQ, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT}
      * @param barCode The value of barCode as notLikeSearch. (NullAllowed: if null (or empty), no condition)
      * @param likeSearchOption The option of not-like-search. (NotNull)
      */
@@ -334,13 +334,13 @@ public abstract class AbstractBsWhiteAllInOneClsNormalColRefCQ extends AbstractC
 
     /**
      * IsNull {is null}. And OnlyOnceRegistered. <br />
-     * BAR_CODE: {PK, UQ+, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT}
+     * BAR_CODE: {PK, +UQ, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT}
      */
     public void setBarCode_IsNull() { regBarCode(CK_ISN, DOBJ); }
 
     /**
      * IsNotNull {is not null}. And OnlyOnceRegistered. <br />
-     * BAR_CODE: {PK, UQ+, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT}
+     * BAR_CODE: {PK, +UQ, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT}
      */
     public void setBarCode_IsNotNull() { regBarCode(CK_ISNN, DOBJ); }
 
@@ -349,7 +349,7 @@ public abstract class AbstractBsWhiteAllInOneClsNormalColRefCQ extends AbstractC
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
-     * QUX_CODE: {PK, UQ+, NotNull, CHAR(3)}
+     * QUX_CODE: {PK, +UQ, NotNull, CHAR(3)}
      * @param quxCode The value of quxCode as equal. (NullAllowed: if null (or empty), no condition)
      */
     public void setQuxCode_Equal(String quxCode) {
@@ -362,7 +362,7 @@ public abstract class AbstractBsWhiteAllInOneClsNormalColRefCQ extends AbstractC
 
     /**
      * NotEqual(&lt;&gt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
-     * QUX_CODE: {PK, UQ+, NotNull, CHAR(3)}
+     * QUX_CODE: {PK, +UQ, NotNull, CHAR(3)}
      * @param quxCode The value of quxCode as notEqual. (NullAllowed: if null (or empty), no condition)
      */
     public void setQuxCode_NotEqual(String quxCode) {
@@ -375,7 +375,7 @@ public abstract class AbstractBsWhiteAllInOneClsNormalColRefCQ extends AbstractC
 
     /**
      * InScope {in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br />
-     * QUX_CODE: {PK, UQ+, NotNull, CHAR(3)}
+     * QUX_CODE: {PK, +UQ, NotNull, CHAR(3)}
      * @param quxCodeList The collection of quxCode as inScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setQuxCode_InScope(Collection<String> quxCodeList) {
@@ -388,7 +388,7 @@ public abstract class AbstractBsWhiteAllInOneClsNormalColRefCQ extends AbstractC
 
     /**
      * NotInScope {not in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br />
-     * QUX_CODE: {PK, UQ+, NotNull, CHAR(3)}
+     * QUX_CODE: {PK, +UQ, NotNull, CHAR(3)}
      * @param quxCodeList The collection of quxCode as notInScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setQuxCode_NotInScope(Collection<String> quxCodeList) {
@@ -401,7 +401,7 @@ public abstract class AbstractBsWhiteAllInOneClsNormalColRefCQ extends AbstractC
 
     /**
      * PrefixSearch {like 'xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br />
-     * QUX_CODE: {PK, UQ+, NotNull, CHAR(3)}
+     * QUX_CODE: {PK, +UQ, NotNull, CHAR(3)}
      * @param quxCode The value of quxCode as prefixSearch. (NullAllowed: if null (or empty), no condition)
      */
     public void setQuxCode_PrefixSearch(String quxCode) {
@@ -410,7 +410,7 @@ public abstract class AbstractBsWhiteAllInOneClsNormalColRefCQ extends AbstractC
 
     /**
      * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br />
-     * QUX_CODE: {PK, UQ+, NotNull, CHAR(3)} <br />
+     * QUX_CODE: {PK, +UQ, NotNull, CHAR(3)} <br />
      * <pre>e.g. setQuxCode_LikeSearch("xxx", new <span style="color: #DD4747">LikeSearchOption</span>().likeContain());</pre>
      * @param quxCode The value of quxCode as likeSearch. (NullAllowed: if null (or empty), no condition)
      * @param likeSearchOption The option of like-search. (NotNull)
@@ -422,7 +422,7 @@ public abstract class AbstractBsWhiteAllInOneClsNormalColRefCQ extends AbstractC
     /**
      * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br />
      * And NullOrEmptyIgnored, SeveralRegistered. <br />
-     * QUX_CODE: {PK, UQ+, NotNull, CHAR(3)}
+     * QUX_CODE: {PK, +UQ, NotNull, CHAR(3)}
      * @param quxCode The value of quxCode as notLikeSearch. (NullAllowed: if null (or empty), no condition)
      * @param likeSearchOption The option of not-like-search. (NotNull)
      */
@@ -432,13 +432,13 @@ public abstract class AbstractBsWhiteAllInOneClsNormalColRefCQ extends AbstractC
 
     /**
      * IsNull {is null}. And OnlyOnceRegistered. <br />
-     * QUX_CODE: {PK, UQ+, NotNull, CHAR(3)}
+     * QUX_CODE: {PK, +UQ, NotNull, CHAR(3)}
      */
     public void setQuxCode_IsNull() { regQuxCode(CK_ISN, DOBJ); }
 
     /**
      * IsNotNull {is not null}. And OnlyOnceRegistered. <br />
-     * QUX_CODE: {PK, UQ+, NotNull, CHAR(3)}
+     * QUX_CODE: {PK, +UQ, NotNull, CHAR(3)}
      */
     public void setQuxCode_IsNotNull() { regQuxCode(CK_ISNN, DOBJ); }
 

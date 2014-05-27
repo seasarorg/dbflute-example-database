@@ -184,7 +184,7 @@ public abstract class BsWhiteQuotedBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of WhiteQuoted. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -205,39 +205,42 @@ public abstract class BsWhiteQuotedBhv extends AbstractBehaviorWritable {
 
     /**
      * Select the entity by the primary-key value.
-     * @param select The one of primary key. (NotNull)
+     * @param select : PK, NotNull, INT(10). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteQuoted selectByPKValue(Integer select) {
-        return doSelectByPKValue(select, WhiteQuoted.class);
+        return doSelectByPK(select, WhiteQuoted.class);
     }
 
-    protected <ENTITY extends WhiteQuoted> ENTITY doSelectByPKValue(Integer select, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(select), entityType);
+    protected <ENTITY extends WhiteQuoted> ENTITY doSelectByPK(Integer select, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(select), entityType);
+    }
+
+    protected <ENTITY extends WhiteQuoted> OptionalEntity<ENTITY> doSelectOptionalByPK(Integer select, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(select, entityType), select);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param select The one of primary key. (NotNull)
+     * @param select : PK, NotNull, INT(10). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteQuoted selectByPKValueWithDeletedCheck(Integer select) {
-        return doSelectByPKValueWithDeletedCheck(select, WhiteQuoted.class);
+        return doSelectByPKWithDeletedCheck(select, WhiteQuoted.class);
     }
 
-    protected <ENTITY extends WhiteQuoted> ENTITY doSelectByPKValueWithDeletedCheck(Integer select, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(select), entityType);
+    protected <ENTITY extends WhiteQuoted> ENTITY doSelectByPKWithDeletedCheck(Integer select, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(select), entityType);
     }
 
-    private WhiteQuotedCB buildPKCB(Integer select) {
+    protected WhiteQuotedCB xprepareCBAsPK(Integer select) {
         assertObjectNotNull("select", select);
-        WhiteQuotedCB cb = newMyConditionBean();
-        cb.query().setSelect_Equal(select);
+        WhiteQuotedCB cb = newMyConditionBean(); cb.acceptPrimaryKey(select);
         return cb;
     }
 

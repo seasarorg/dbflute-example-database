@@ -92,10 +92,14 @@ public class BsWhitePointTypeMappingCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                 PrimaryKey Handling
     //                                                                 ===================
+    /**
+     * Accept the query condition of primary key as equal.
+     * @param pointTypeMappingId : PK, NotNull, DECIMAL(16). (NotNull)
+     */
     public void acceptPrimaryKey(Long pointTypeMappingId) {
         assertObjectNotNull("pointTypeMappingId", pointTypeMappingId);
         BsWhitePointTypeMappingCB cb = this;
-        cb.query().setPointTypeMappingId_Equal(pointTypeMappingId);
+        cb.query().setPointTypeMappingId_Equal(pointTypeMappingId);;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {
@@ -423,6 +427,11 @@ public class BsWhitePointTypeMappingCB extends AbstractConditionBean {
      */
     public void orScopeQuery(OrQuery<WhitePointTypeMappingCB> orQuery) {
         xorSQ((WhitePointTypeMappingCB)this, orQuery);
+    }
+
+    @Override
+    protected HpCBPurpose xhandleOrSQPurposeChange() {
+        return null; // means no check
     }
 
     /**

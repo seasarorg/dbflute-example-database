@@ -184,7 +184,7 @@ public abstract class BsWhiteSplitMultipleFkNextBhv extends AbstractBehaviorWrit
      * </pre>
      * @param cb The condition-bean of WhiteSplitMultipleFkNext. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -205,39 +205,42 @@ public abstract class BsWhiteSplitMultipleFkNextBhv extends AbstractBehaviorWrit
 
     /**
      * Select the entity by the primary-key value.
-     * @param nextId The one of primary key. (NotNull)
+     * @param nextId : PK, NotNull, BIGINT(19). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteSplitMultipleFkNext selectByPKValue(Long nextId) {
-        return doSelectByPKValue(nextId, WhiteSplitMultipleFkNext.class);
+        return doSelectByPK(nextId, WhiteSplitMultipleFkNext.class);
     }
 
-    protected <ENTITY extends WhiteSplitMultipleFkNext> ENTITY doSelectByPKValue(Long nextId, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(nextId), entityType);
+    protected <ENTITY extends WhiteSplitMultipleFkNext> ENTITY doSelectByPK(Long nextId, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(nextId), entityType);
+    }
+
+    protected <ENTITY extends WhiteSplitMultipleFkNext> OptionalEntity<ENTITY> doSelectOptionalByPK(Long nextId, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(nextId, entityType), nextId);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param nextId The one of primary key. (NotNull)
+     * @param nextId : PK, NotNull, BIGINT(19). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteSplitMultipleFkNext selectByPKValueWithDeletedCheck(Long nextId) {
-        return doSelectByPKValueWithDeletedCheck(nextId, WhiteSplitMultipleFkNext.class);
+        return doSelectByPKWithDeletedCheck(nextId, WhiteSplitMultipleFkNext.class);
     }
 
-    protected <ENTITY extends WhiteSplitMultipleFkNext> ENTITY doSelectByPKValueWithDeletedCheck(Long nextId, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(nextId), entityType);
+    protected <ENTITY extends WhiteSplitMultipleFkNext> ENTITY doSelectByPKWithDeletedCheck(Long nextId, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(nextId), entityType);
     }
 
-    private WhiteSplitMultipleFkNextCB buildPKCB(Long nextId) {
+    protected WhiteSplitMultipleFkNextCB xprepareCBAsPK(Long nextId) {
         assertObjectNotNull("nextId", nextId);
-        WhiteSplitMultipleFkNextCB cb = newMyConditionBean();
-        cb.query().setNextId_Equal(nextId);
+        WhiteSplitMultipleFkNextCB cb = newMyConditionBean(); cb.acceptPrimaryKey(nextId);
         return cb;
     }
 

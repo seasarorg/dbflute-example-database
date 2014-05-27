@@ -48,14 +48,15 @@ public class WhiteBinaryDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgBinaryId(), "binaryId");
         setupEpg(_epgMap, new EpgBinaryData(), "binaryData");
         setupEpg(_epgMap, new EpgBlobData(), "blobData");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgBinaryId implements PropertyGateway {
         public Object read(Entity et) { return ((WhiteBinary)et).getBinaryId(); }
         public void write(Entity et, Object vl) { ((WhiteBinary)et).setBinaryId(ctl(vl)); }
@@ -68,6 +69,8 @@ public class WhiteBinaryDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((WhiteBinary)et).getBlobData(); }
         public void write(Entity et, Object vl) { ((WhiteBinary)et).setBlobData((byte[])vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -83,9 +86,9 @@ public class WhiteBinaryDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnBinaryId = cci("BINARY_ID", "BINARY_ID", null, null, true, "binaryId", Long.class, true, true, "BIGINT", 19, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnBinaryData = cci("BINARY_DATA", "BINARY_DATA", null, null, false, "binaryData", byte[].class, false, false, "BINARY", 1, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnBlobData = cci("BLOB_DATA", "BLOB_DATA", null, null, false, "blobData", byte[].class, false, false, "BLOB", 65535, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnBinaryId = cci("BINARY_ID", "BINARY_ID", null, null, Long.class, "binaryId", null, true, true, true, "BIGINT", 19, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnBinaryData = cci("BINARY_DATA", "BINARY_DATA", null, null, byte[].class, "binaryData", null, false, false, false, "BINARY", 1, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnBlobData = cci("BLOB_DATA", "BLOB_DATA", null, null, byte[].class, "blobData", null, false, false, false, "BLOB", 65535, 0, null, false, null, null, null, null, null);
 
     /**
      * BINARY_ID: {PK, ID, NotNull, BIGINT(19)}
@@ -126,6 +129,8 @@ public class WhiteBinaryDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

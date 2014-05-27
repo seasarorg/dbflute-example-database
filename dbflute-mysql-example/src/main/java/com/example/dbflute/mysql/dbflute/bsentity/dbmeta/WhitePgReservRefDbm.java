@@ -48,13 +48,14 @@ public class WhitePgReservRefDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgRefId(), "refId");
         setupEpg(_epgMap, new EpgClassSynonym(), "classSynonym");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgRefId implements PropertyGateway {
         public Object read(Entity et) { return ((WhitePgReservRef)et).getRefId(); }
         public void write(Entity et, Object vl) { ((WhitePgReservRef)et).setRefId(cti(vl)); }
@@ -63,6 +64,22 @@ public class WhitePgReservRefDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((WhitePgReservRef)et).getClassSynonym(); }
         public void write(Entity et, Object vl) { ((WhitePgReservRef)et).setClassSynonym(cti(vl)); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
+
+    // -----------------------------------------------------
+    //                                      Foreign Property
+    //                                      ----------------
+    protected final Map<String, PropertyGateway> _efpgMap = newHashMap();
+    {
+        setupEfpg(_efpgMap, new EfpgWhitePgReserv(), "whitePgReserv");
+    }
+    public class EfpgWhitePgReserv implements PropertyGateway {
+        public Object read(Entity et) { return ((WhitePgReservRef)et).getWhitePgReserv(); }
+        public void write(Entity et, Object vl) { ((WhitePgReservRef)et).setWhitePgReserv((WhitePgReserv)vl); }
+    }
+    public PropertyGateway findForeignPropertyGateway(String prop)
+    { return doFindEfpg(_efpgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -78,8 +95,8 @@ public class WhitePgReservRefDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnRefId = cci("REF_ID", "REF_ID", null, null, true, "refId", Integer.class, true, false, "INT", 10, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnClassSynonym = cci("CLASS", "CLASS", "CLASS_SYNONYM", "(using DBFlute synonym)", false, "classSynonym", Integer.class, false, false, "INT", 10, 0, null, false, null, null, "whitePgReserv", null, null);
+    protected final ColumnInfo _columnRefId = cci("REF_ID", "REF_ID", null, null, Integer.class, "refId", null, true, false, true, "INT", 10, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnClassSynonym = cci("CLASS", "CLASS", "CLASS_SYNONYM", "(using DBFlute synonym)", Integer.class, "classSynonym", null, false, false, false, "INT", 10, 0, null, false, null, null, "whitePgReserv", null, null);
 
     /**
      * REF_ID: {PK, NotNull, INT(10)}
@@ -114,6 +131,8 @@ public class WhitePgReservRefDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

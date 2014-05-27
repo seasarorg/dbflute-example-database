@@ -62,7 +62,7 @@ public abstract class AbstractBsWhiteCompoundPkCQ extends AbstractConditionQuery
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
-     * PK_FIRST_ID: {PK, UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_PK_REF_MANY}
+     * PK_FIRST_ID: {PK, +UQ, NotNull, INT(10), FK to WHITE_COMPOUND_PK_REF_MANY}
      * @param pkFirstId The value of pkFirstId as equal. (NullAllowed: if null, no condition)
      */
     public void setPkFirstId_Equal(Integer pkFirstId) {
@@ -75,7 +75,7 @@ public abstract class AbstractBsWhiteCompoundPkCQ extends AbstractConditionQuery
 
     /**
      * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br />
-     * PK_FIRST_ID: {PK, UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_PK_REF_MANY}
+     * PK_FIRST_ID: {PK, +UQ, NotNull, INT(10), FK to WHITE_COMPOUND_PK_REF_MANY}
      * @param pkFirstId The value of pkFirstId as greaterThan. (NullAllowed: if null, no condition)
      */
     public void setPkFirstId_GreaterThan(Integer pkFirstId) {
@@ -84,7 +84,7 @@ public abstract class AbstractBsWhiteCompoundPkCQ extends AbstractConditionQuery
 
     /**
      * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br />
-     * PK_FIRST_ID: {PK, UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_PK_REF_MANY}
+     * PK_FIRST_ID: {PK, +UQ, NotNull, INT(10), FK to WHITE_COMPOUND_PK_REF_MANY}
      * @param pkFirstId The value of pkFirstId as lessThan. (NullAllowed: if null, no condition)
      */
     public void setPkFirstId_LessThan(Integer pkFirstId) {
@@ -93,7 +93,7 @@ public abstract class AbstractBsWhiteCompoundPkCQ extends AbstractConditionQuery
 
     /**
      * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br />
-     * PK_FIRST_ID: {PK, UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_PK_REF_MANY}
+     * PK_FIRST_ID: {PK, +UQ, NotNull, INT(10), FK to WHITE_COMPOUND_PK_REF_MANY}
      * @param pkFirstId The value of pkFirstId as greaterEqual. (NullAllowed: if null, no condition)
      */
     public void setPkFirstId_GreaterEqual(Integer pkFirstId) {
@@ -102,7 +102,7 @@ public abstract class AbstractBsWhiteCompoundPkCQ extends AbstractConditionQuery
 
     /**
      * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br />
-     * PK_FIRST_ID: {PK, UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_PK_REF_MANY}
+     * PK_FIRST_ID: {PK, +UQ, NotNull, INT(10), FK to WHITE_COMPOUND_PK_REF_MANY}
      * @param pkFirstId The value of pkFirstId as lessEqual. (NullAllowed: if null, no condition)
      */
     public void setPkFirstId_LessEqual(Integer pkFirstId) {
@@ -113,7 +113,7 @@ public abstract class AbstractBsWhiteCompoundPkCQ extends AbstractConditionQuery
      * RangeOf with various options. (versatile) <br />
      * {(default) minNumber &lt;= column &lt;= maxNumber} <br />
      * And NullIgnored, OnlyOnceRegistered. <br />
-     * PK_FIRST_ID: {PK, UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_PK_REF_MANY}
+     * PK_FIRST_ID: {PK, +UQ, NotNull, INT(10), FK to WHITE_COMPOUND_PK_REF_MANY}
      * @param minNumber The min number of pkFirstId. (NullAllowed: if null, no from-condition)
      * @param maxNumber The max number of pkFirstId. (NullAllowed: if null, no to-condition)
      * @param rangeOfOption The option of range-of. (NotNull)
@@ -124,7 +124,7 @@ public abstract class AbstractBsWhiteCompoundPkCQ extends AbstractConditionQuery
 
     /**
      * InScope {in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br />
-     * PK_FIRST_ID: {PK, UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_PK_REF_MANY}
+     * PK_FIRST_ID: {PK, +UQ, NotNull, INT(10), FK to WHITE_COMPOUND_PK_REF_MANY}
      * @param pkFirstIdList The collection of pkFirstId as inScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setPkFirstId_InScope(Collection<Integer> pkFirstIdList) {
@@ -137,7 +137,7 @@ public abstract class AbstractBsWhiteCompoundPkCQ extends AbstractConditionQuery
 
     /**
      * NotInScope {not in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br />
-     * PK_FIRST_ID: {PK, UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_PK_REF_MANY}
+     * PK_FIRST_ID: {PK, +UQ, NotNull, INT(10), FK to WHITE_COMPOUND_PK_REF_MANY}
      * @param pkFirstIdList The collection of pkFirstId as notInScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setPkFirstId_NotInScope(Collection<Integer> pkFirstIdList) {
@@ -150,13 +150,13 @@ public abstract class AbstractBsWhiteCompoundPkCQ extends AbstractConditionQuery
 
     /**
      * IsNull {is null}. And OnlyOnceRegistered. <br />
-     * PK_FIRST_ID: {PK, UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_PK_REF_MANY}
+     * PK_FIRST_ID: {PK, +UQ, NotNull, INT(10), FK to WHITE_COMPOUND_PK_REF_MANY}
      */
     public void setPkFirstId_IsNull() { regPkFirstId(CK_ISN, DOBJ); }
 
     /**
      * IsNotNull {is not null}. And OnlyOnceRegistered. <br />
-     * PK_FIRST_ID: {PK, UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_PK_REF_MANY}
+     * PK_FIRST_ID: {PK, +UQ, NotNull, INT(10), FK to WHITE_COMPOUND_PK_REF_MANY}
      */
     public void setPkFirstId_IsNotNull() { regPkFirstId(CK_ISNN, DOBJ); }
 
@@ -165,7 +165,7 @@ public abstract class AbstractBsWhiteCompoundPkCQ extends AbstractConditionQuery
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
-     * PK_SECOND_ID: {PK, UQ, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_PRIMARY}
+     * PK_SECOND_ID: {PK, UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_PRIMARY}
      * @param pkSecondId The value of pkSecondId as equal. (NullAllowed: if null, no condition)
      */
     public void setPkSecondId_Equal(Integer pkSecondId) {
@@ -178,7 +178,7 @@ public abstract class AbstractBsWhiteCompoundPkCQ extends AbstractConditionQuery
 
     /**
      * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br />
-     * PK_SECOND_ID: {PK, UQ, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_PRIMARY}
+     * PK_SECOND_ID: {PK, UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_PRIMARY}
      * @param pkSecondId The value of pkSecondId as greaterThan. (NullAllowed: if null, no condition)
      */
     public void setPkSecondId_GreaterThan(Integer pkSecondId) {
@@ -187,7 +187,7 @@ public abstract class AbstractBsWhiteCompoundPkCQ extends AbstractConditionQuery
 
     /**
      * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br />
-     * PK_SECOND_ID: {PK, UQ, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_PRIMARY}
+     * PK_SECOND_ID: {PK, UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_PRIMARY}
      * @param pkSecondId The value of pkSecondId as lessThan. (NullAllowed: if null, no condition)
      */
     public void setPkSecondId_LessThan(Integer pkSecondId) {
@@ -196,7 +196,7 @@ public abstract class AbstractBsWhiteCompoundPkCQ extends AbstractConditionQuery
 
     /**
      * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br />
-     * PK_SECOND_ID: {PK, UQ, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_PRIMARY}
+     * PK_SECOND_ID: {PK, UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_PRIMARY}
      * @param pkSecondId The value of pkSecondId as greaterEqual. (NullAllowed: if null, no condition)
      */
     public void setPkSecondId_GreaterEqual(Integer pkSecondId) {
@@ -205,7 +205,7 @@ public abstract class AbstractBsWhiteCompoundPkCQ extends AbstractConditionQuery
 
     /**
      * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br />
-     * PK_SECOND_ID: {PK, UQ, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_PRIMARY}
+     * PK_SECOND_ID: {PK, UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_PRIMARY}
      * @param pkSecondId The value of pkSecondId as lessEqual. (NullAllowed: if null, no condition)
      */
     public void setPkSecondId_LessEqual(Integer pkSecondId) {
@@ -216,7 +216,7 @@ public abstract class AbstractBsWhiteCompoundPkCQ extends AbstractConditionQuery
      * RangeOf with various options. (versatile) <br />
      * {(default) minNumber &lt;= column &lt;= maxNumber} <br />
      * And NullIgnored, OnlyOnceRegistered. <br />
-     * PK_SECOND_ID: {PK, UQ, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_PRIMARY}
+     * PK_SECOND_ID: {PK, UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_PRIMARY}
      * @param minNumber The min number of pkSecondId. (NullAllowed: if null, no from-condition)
      * @param maxNumber The max number of pkSecondId. (NullAllowed: if null, no to-condition)
      * @param rangeOfOption The option of range-of. (NotNull)
@@ -227,7 +227,7 @@ public abstract class AbstractBsWhiteCompoundPkCQ extends AbstractConditionQuery
 
     /**
      * InScope {in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br />
-     * PK_SECOND_ID: {PK, UQ, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_PRIMARY}
+     * PK_SECOND_ID: {PK, UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_PRIMARY}
      * @param pkSecondIdList The collection of pkSecondId as inScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setPkSecondId_InScope(Collection<Integer> pkSecondIdList) {
@@ -240,7 +240,7 @@ public abstract class AbstractBsWhiteCompoundPkCQ extends AbstractConditionQuery
 
     /**
      * NotInScope {not in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br />
-     * PK_SECOND_ID: {PK, UQ, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_PRIMARY}
+     * PK_SECOND_ID: {PK, UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_PRIMARY}
      * @param pkSecondIdList The collection of pkSecondId as notInScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setPkSecondId_NotInScope(Collection<Integer> pkSecondIdList) {
@@ -283,13 +283,13 @@ public abstract class AbstractBsWhiteCompoundPkCQ extends AbstractConditionQuery
 
     /**
      * IsNull {is null}. And OnlyOnceRegistered. <br />
-     * PK_SECOND_ID: {PK, UQ, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_PRIMARY}
+     * PK_SECOND_ID: {PK, UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_PRIMARY}
      */
     public void setPkSecondId_IsNull() { regPkSecondId(CK_ISN, DOBJ); }
 
     /**
      * IsNotNull {is not null}. And OnlyOnceRegistered. <br />
-     * PK_SECOND_ID: {PK, UQ, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_PRIMARY}
+     * PK_SECOND_ID: {PK, UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_PRIMARY}
      */
     public void setPkSecondId_IsNotNull() { regPkSecondId(CK_ISNN, DOBJ); }
 
@@ -384,7 +384,7 @@ public abstract class AbstractBsWhiteCompoundPkCQ extends AbstractConditionQuery
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
-     * REFERRED_ID: {UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_NORMALLY}
+     * REFERRED_ID: {+UQ, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_NORMALLY}
      * @param referredId The value of referredId as equal. (NullAllowed: if null, no condition)
      */
     public void setReferredId_Equal(Integer referredId) {
@@ -397,7 +397,7 @@ public abstract class AbstractBsWhiteCompoundPkCQ extends AbstractConditionQuery
 
     /**
      * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br />
-     * REFERRED_ID: {UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_NORMALLY}
+     * REFERRED_ID: {+UQ, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_NORMALLY}
      * @param referredId The value of referredId as greaterThan. (NullAllowed: if null, no condition)
      */
     public void setReferredId_GreaterThan(Integer referredId) {
@@ -406,7 +406,7 @@ public abstract class AbstractBsWhiteCompoundPkCQ extends AbstractConditionQuery
 
     /**
      * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br />
-     * REFERRED_ID: {UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_NORMALLY}
+     * REFERRED_ID: {+UQ, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_NORMALLY}
      * @param referredId The value of referredId as lessThan. (NullAllowed: if null, no condition)
      */
     public void setReferredId_LessThan(Integer referredId) {
@@ -415,7 +415,7 @@ public abstract class AbstractBsWhiteCompoundPkCQ extends AbstractConditionQuery
 
     /**
      * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br />
-     * REFERRED_ID: {UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_NORMALLY}
+     * REFERRED_ID: {+UQ, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_NORMALLY}
      * @param referredId The value of referredId as greaterEqual. (NullAllowed: if null, no condition)
      */
     public void setReferredId_GreaterEqual(Integer referredId) {
@@ -424,7 +424,7 @@ public abstract class AbstractBsWhiteCompoundPkCQ extends AbstractConditionQuery
 
     /**
      * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br />
-     * REFERRED_ID: {UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_NORMALLY}
+     * REFERRED_ID: {+UQ, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_NORMALLY}
      * @param referredId The value of referredId as lessEqual. (NullAllowed: if null, no condition)
      */
     public void setReferredId_LessEqual(Integer referredId) {
@@ -435,7 +435,7 @@ public abstract class AbstractBsWhiteCompoundPkCQ extends AbstractConditionQuery
      * RangeOf with various options. (versatile) <br />
      * {(default) minNumber &lt;= column &lt;= maxNumber} <br />
      * And NullIgnored, OnlyOnceRegistered. <br />
-     * REFERRED_ID: {UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_NORMALLY}
+     * REFERRED_ID: {+UQ, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_NORMALLY}
      * @param minNumber The min number of referredId. (NullAllowed: if null, no from-condition)
      * @param maxNumber The max number of referredId. (NullAllowed: if null, no to-condition)
      * @param rangeOfOption The option of range-of. (NotNull)
@@ -446,7 +446,7 @@ public abstract class AbstractBsWhiteCompoundPkCQ extends AbstractConditionQuery
 
     /**
      * InScope {in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br />
-     * REFERRED_ID: {UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_NORMALLY}
+     * REFERRED_ID: {+UQ, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_NORMALLY}
      * @param referredIdList The collection of referredId as inScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setReferredId_InScope(Collection<Integer> referredIdList) {
@@ -459,7 +459,7 @@ public abstract class AbstractBsWhiteCompoundPkCQ extends AbstractConditionQuery
 
     /**
      * NotInScope {not in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br />
-     * REFERRED_ID: {UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_NORMALLY}
+     * REFERRED_ID: {+UQ, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_NORMALLY}
      * @param referredIdList The collection of referredId as notInScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setReferredId_NotInScope(Collection<Integer> referredIdList) {

@@ -169,7 +169,7 @@ public abstract class BsVendorDatePkBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of VendorDatePk. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -190,39 +190,42 @@ public abstract class BsVendorDatePkBhv extends AbstractBehaviorWritable {
 
     /**
      * Select the entity by the primary-key value.
-     * @param fooDate The one of primary key. (NotNull)
+     * @param fooDate : PK, NotNull, date(13). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public VendorDatePk selectByPKValue(java.util.Date fooDate) {
-        return doSelectByPKValue(fooDate, VendorDatePk.class);
+        return doSelectByPK(fooDate, VendorDatePk.class);
     }
 
-    protected <ENTITY extends VendorDatePk> ENTITY doSelectByPKValue(java.util.Date fooDate, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(fooDate), entityType);
+    protected <ENTITY extends VendorDatePk> ENTITY doSelectByPK(java.util.Date fooDate, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(fooDate), entityType);
+    }
+
+    protected <ENTITY extends VendorDatePk> OptionalEntity<ENTITY> doSelectOptionalByPK(java.util.Date fooDate, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(fooDate, entityType), fooDate);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param fooDate The one of primary key. (NotNull)
+     * @param fooDate : PK, NotNull, date(13). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public VendorDatePk selectByPKValueWithDeletedCheck(java.util.Date fooDate) {
-        return doSelectByPKValueWithDeletedCheck(fooDate, VendorDatePk.class);
+        return doSelectByPKWithDeletedCheck(fooDate, VendorDatePk.class);
     }
 
-    protected <ENTITY extends VendorDatePk> ENTITY doSelectByPKValueWithDeletedCheck(java.util.Date fooDate, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(fooDate), entityType);
+    protected <ENTITY extends VendorDatePk> ENTITY doSelectByPKWithDeletedCheck(java.util.Date fooDate, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(fooDate), entityType);
     }
 
-    private VendorDatePkCB buildPKCB(java.util.Date fooDate) {
+    protected VendorDatePkCB xprepareCBAsPK(java.util.Date fooDate) {
         assertObjectNotNull("fooDate", fooDate);
-        VendorDatePkCB cb = newMyConditionBean();
-        cb.query().setFooDate_Equal(fooDate);
+        VendorDatePkCB cb = newMyConditionBean(); cb.acceptPrimaryKey(fooDate);
         return cb;
     }
 

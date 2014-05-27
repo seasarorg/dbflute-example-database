@@ -94,15 +94,18 @@ public abstract class BsWhiteUqFkRef implements Entity, Serializable, Cloneable 
     /** FK_TO_UQ_CODE: {IX, NotNull, CHAR(3), FK to white_uq_fk} */
     protected String _fkToUqCode;
 
-    /** COMPOUND_UQ_FIRST_CODE: {UQ, NotNull, CHAR(3)} */
+    /** COMPOUND_UQ_FIRST_CODE: {UQ+, NotNull, CHAR(3)} */
     protected String _compoundUqFirstCode;
 
-    /** COMPOUND_UQ_SECOND_CODE: {UQ+, NotNull, CHAR(3)} */
+    /** COMPOUND_UQ_SECOND_CODE: {+UQ, NotNull, CHAR(3)} */
     protected String _compoundUqSecondCode;
 
     // -----------------------------------------------------
     //                                              Internal
     //                                              --------
+    /** The unique-driven properties for this entity. (NotNull) */
+    protected final EntityUniqueDrivenProperties __uniqueDrivenProperties = newUniqueDrivenProperties();
+
     /** The modified properties for this entity. (NotNull) */
     protected final EntityModifiedProperties __modifiedProperties = newModifiedProperties();
 
@@ -145,6 +148,31 @@ public abstract class BsWhiteUqFkRef implements Entity, Serializable, Cloneable 
     public boolean hasPrimaryKeyValue() {
         if (getUqFkRefId() == null) { return false; }
         return true;
+    }
+
+    /**
+     * To be unique by the unique column. <br />
+     * You can update the entity by the key when entity update (NOT batch update).
+     * @param compoundUqFirstCode : UQ+, NotNull, CHAR(3). (NotNull)
+     * @param compoundUqSecondCode : +UQ, NotNull, CHAR(3). (NotNull)
+     */
+    public void uniqueBy(String compoundUqFirstCode, String compoundUqSecondCode) {
+        __uniqueDrivenProperties.clear();
+        __uniqueDrivenProperties.addPropertyName("compoundUqFirstCode");
+        _compoundUqFirstCode = compoundUqFirstCode;
+        __uniqueDrivenProperties.addPropertyName("compoundUqSecondCode");
+        _compoundUqSecondCode = compoundUqSecondCode;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Set<String> uniqueDrivenProperties() {
+        return __uniqueDrivenProperties.getPropertyNames();
+    }
+
+    protected EntityUniqueDrivenProperties newUniqueDrivenProperties() {
+        return new EntityUniqueDrivenProperties();
     }
 
     // ===================================================================================
@@ -275,8 +303,8 @@ public abstract class BsWhiteUqFkRef implements Entity, Serializable, Cloneable 
         if (!xSV(getUqFkRefId(), other.getUqFkRefId())) { return false; }
         return true;
     }
-    protected boolean xSV(Object value1, Object value2) {
-        return FunCustodial.isSameValue(value1, value2);
+    protected boolean xSV(Object v1, Object v2) {
+        return FunCustodial.isSameValue(v1, v2);
     }
 
     /**
@@ -284,13 +312,13 @@ public abstract class BsWhiteUqFkRef implements Entity, Serializable, Cloneable 
      * @return The hash-code from primary-key or columns.
      */
     public int hashCode() {
-        int result = 17;
-        result = xCH(result, getTableDbName());
-        result = xCH(result, getUqFkRefId());
-        return result;
+        int hs = 17;
+        hs = xCH(hs, getTableDbName());
+        hs = xCH(hs, getUqFkRefId());
+        return hs;
     }
-    protected int xCH(int result, Object value) {
-        return FunCustodial.calculateHashcode(result, value);
+    protected int xCH(int hs, Object vl) {
+        return FunCustodial.calculateHashcode(hs, vl);
     }
 
     /**
@@ -314,17 +342,17 @@ public abstract class BsWhiteUqFkRef implements Entity, Serializable, Cloneable 
     public String toStringWithRelation() {
         StringBuilder sb = new StringBuilder();
         sb.append(toString());
-        String l = "\n  ";
+        String li = "\n  ";
         if (_whiteUqFkByFkToPkId != null)
-        { sb.append(l).append(xbRDS(_whiteUqFkByFkToPkId, "whiteUqFkByFkToPkId")); }
+        { sb.append(li).append(xbRDS(_whiteUqFkByFkToPkId, "whiteUqFkByFkToPkId")); }
         if (_whiteUqFkByFkToUqCode != null)
-        { sb.append(l).append(xbRDS(_whiteUqFkByFkToUqCode, "whiteUqFkByFkToUqCode")); }
-        if (_whiteUqFkRefNestList != null) { for (Entity e : _whiteUqFkRefNestList)
-        { if (e != null) { sb.append(l).append(xbRDS(e, "whiteUqFkRefNestList")); } } }
+        { sb.append(li).append(xbRDS(_whiteUqFkByFkToUqCode, "whiteUqFkByFkToUqCode")); }
+        if (_whiteUqFkRefNestList != null) { for (Entity et : _whiteUqFkRefNestList)
+        { if (et != null) { sb.append(li).append(xbRDS(et, "whiteUqFkRefNestList")); } } }
         return sb.toString();
     }
-    protected String xbRDS(Entity e, String name) { // buildRelationDisplayString()
-        return e.buildDisplayString(name, true, true);
+    protected String xbRDS(Entity et, String name) { // buildRelationDisplayString()
+        return et.buildDisplayString(name, true, true);
     }
 
     /**
@@ -340,27 +368,27 @@ public abstract class BsWhiteUqFkRef implements Entity, Serializable, Cloneable 
     }
     protected String buildColumnString() {
         StringBuilder sb = new StringBuilder();
-        String delimiter = ", ";
-        sb.append(delimiter).append(getUqFkRefId());
-        sb.append(delimiter).append(getFkToPkId());
-        sb.append(delimiter).append(getFkToUqCode());
-        sb.append(delimiter).append(getCompoundUqFirstCode());
-        sb.append(delimiter).append(getCompoundUqSecondCode());
-        if (sb.length() > delimiter.length()) {
-            sb.delete(0, delimiter.length());
+        String dm = ", ";
+        sb.append(dm).append(getUqFkRefId());
+        sb.append(dm).append(getFkToPkId());
+        sb.append(dm).append(getFkToUqCode());
+        sb.append(dm).append(getCompoundUqFirstCode());
+        sb.append(dm).append(getCompoundUqSecondCode());
+        if (sb.length() > dm.length()) {
+            sb.delete(0, dm.length());
         }
         sb.insert(0, "{").append("}");
         return sb.toString();
     }
     protected String buildRelationString() {
         StringBuilder sb = new StringBuilder();
-        String c = ",";
-        if (_whiteUqFkByFkToPkId != null) { sb.append(c).append("whiteUqFkByFkToPkId"); }
-        if (_whiteUqFkByFkToUqCode != null) { sb.append(c).append("whiteUqFkByFkToUqCode"); }
+        String cm = ",";
+        if (_whiteUqFkByFkToPkId != null) { sb.append(cm).append("whiteUqFkByFkToPkId"); }
+        if (_whiteUqFkByFkToUqCode != null) { sb.append(cm).append("whiteUqFkByFkToUqCode"); }
         if (_whiteUqFkRefNestList != null && !_whiteUqFkRefNestList.isEmpty())
-        { sb.append(c).append("whiteUqFkRefNestList"); }
-        if (sb.length() > c.length()) {
-            sb.delete(0, c.length()).insert(0, "(").append(")");
+        { sb.append(cm).append("whiteUqFkRefNestList"); }
+        if (sb.length() > cm.length()) {
+            sb.delete(0, cm.length()).insert(0, "(").append(")");
         }
         return sb.toString();
     }
@@ -432,7 +460,7 @@ public abstract class BsWhiteUqFkRef implements Entity, Serializable, Cloneable 
     }
 
     /**
-     * [get] COMPOUND_UQ_FIRST_CODE: {UQ, NotNull, CHAR(3)} <br />
+     * [get] COMPOUND_UQ_FIRST_CODE: {UQ+, NotNull, CHAR(3)} <br />
      * @return The value of the column 'COMPOUND_UQ_FIRST_CODE'. (basically NotNull if selected: for the constraint)
      */
     public String getCompoundUqFirstCode() {
@@ -440,7 +468,7 @@ public abstract class BsWhiteUqFkRef implements Entity, Serializable, Cloneable 
     }
 
     /**
-     * [set] COMPOUND_UQ_FIRST_CODE: {UQ, NotNull, CHAR(3)} <br />
+     * [set] COMPOUND_UQ_FIRST_CODE: {UQ+, NotNull, CHAR(3)} <br />
      * @param compoundUqFirstCode The value of the column 'COMPOUND_UQ_FIRST_CODE'. (basically NotNull if update: for the constraint)
      */
     public void setCompoundUqFirstCode(String compoundUqFirstCode) {
@@ -449,7 +477,7 @@ public abstract class BsWhiteUqFkRef implements Entity, Serializable, Cloneable 
     }
 
     /**
-     * [get] COMPOUND_UQ_SECOND_CODE: {UQ+, NotNull, CHAR(3)} <br />
+     * [get] COMPOUND_UQ_SECOND_CODE: {+UQ, NotNull, CHAR(3)} <br />
      * @return The value of the column 'COMPOUND_UQ_SECOND_CODE'. (basically NotNull if selected: for the constraint)
      */
     public String getCompoundUqSecondCode() {
@@ -457,7 +485,7 @@ public abstract class BsWhiteUqFkRef implements Entity, Serializable, Cloneable 
     }
 
     /**
-     * [set] COMPOUND_UQ_SECOND_CODE: {UQ+, NotNull, CHAR(3)} <br />
+     * [set] COMPOUND_UQ_SECOND_CODE: {+UQ, NotNull, CHAR(3)} <br />
      * @param compoundUqSecondCode The value of the column 'COMPOUND_UQ_SECOND_CODE'. (basically NotNull if update: for the constraint)
      */
     public void setCompoundUqSecondCode(String compoundUqSecondCode) {

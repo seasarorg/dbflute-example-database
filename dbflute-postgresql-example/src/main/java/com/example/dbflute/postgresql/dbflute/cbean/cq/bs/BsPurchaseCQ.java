@@ -24,8 +24,8 @@ public class BsPurchaseCQ extends AbstractBsPurchaseCQ {
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public BsPurchaseCQ(ConditionQuery childQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
-        super(childQuery, sqlClause, aliasName, nestLevel);
+    public BsPurchaseCQ(ConditionQuery referrerQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
+        super(referrerQuery, sqlClause, aliasName, nestLevel);
     }
 
     // ===================================================================================
@@ -118,14 +118,14 @@ public class BsPurchaseCQ extends AbstractBsPurchaseCQ {
 
     /** 
      * Add order-by as ascend. <br />
-     * (会員ID)member_id: {UQ, IX+, NotNull, int4(10), FK to member}
+     * (会員ID)member_id: {UQ+, NotNull, int4(10), FK to member}
      * @return this. (NotNull)
      */
     public BsPurchaseCQ addOrderBy_MemberId_Asc() { regOBA("member_id"); return this; }
 
     /**
      * Add order-by as descend. <br />
-     * (会員ID)member_id: {UQ, IX+, NotNull, int4(10), FK to member}
+     * (会員ID)member_id: {UQ+, NotNull, int4(10), FK to member}
      * @return this. (NotNull)
      */
     public BsPurchaseCQ addOrderBy_MemberId_Desc() { regOBD("member_id"); return this; }
@@ -155,14 +155,14 @@ public class BsPurchaseCQ extends AbstractBsPurchaseCQ {
 
     /** 
      * Add order-by as ascend. <br />
-     * (商品ID)product_id: {UQ+, IX, NotNull, int4(10), FK to product}
+     * (商品ID)product_id: {+UQ, IX+, NotNull, int4(10), FK to product}
      * @return this. (NotNull)
      */
     public BsPurchaseCQ addOrderBy_ProductId_Asc() { regOBA("product_id"); return this; }
 
     /**
      * Add order-by as descend. <br />
-     * (商品ID)product_id: {UQ+, IX, NotNull, int4(10), FK to product}
+     * (商品ID)product_id: {+UQ, IX+, NotNull, int4(10), FK to product}
      * @return this. (NotNull)
      */
     public BsPurchaseCQ addOrderBy_ProductId_Desc() { regOBD("product_id"); return this; }
@@ -176,14 +176,14 @@ public class BsPurchaseCQ extends AbstractBsPurchaseCQ {
 
     /** 
      * Add order-by as ascend. <br />
-     * (購入日時)purchase_datetime: {UQ+, IX, NotNull, timestamp(26, 3)}
+     * (購入日時)purchase_datetime: {+UQ, IX+, NotNull, timestamp(26, 3)}
      * @return this. (NotNull)
      */
     public BsPurchaseCQ addOrderBy_PurchaseDatetime_Asc() { regOBA("purchase_datetime"); return this; }
 
     /**
      * Add order-by as descend. <br />
-     * (購入日時)purchase_datetime: {UQ+, IX, NotNull, timestamp(26, 3)}
+     * (購入日時)purchase_datetime: {+UQ, IX+, NotNull, timestamp(26, 3)}
      * @return this. (NotNull)
      */
     public BsPurchaseCQ addOrderBy_PurchaseDatetime_Desc() { regOBD("purchase_datetime"); return this; }
@@ -438,7 +438,7 @@ public class BsPurchaseCQ extends AbstractBsPurchaseCQ {
     // ===================================================================================
     //                                                                         Union Query
     //                                                                         ===========
-    protected void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
+    public void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
         PurchaseCQ bq = (PurchaseCQ)bqs;
         PurchaseCQ uq = (PurchaseCQ)uqs;
         if (bq.hasConditionQueryMember()) {

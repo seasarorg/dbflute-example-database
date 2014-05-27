@@ -184,7 +184,7 @@ public abstract class BsWhiteDelimiterBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of WhiteDelimiter. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -205,39 +205,42 @@ public abstract class BsWhiteDelimiterBhv extends AbstractBehaviorWritable {
 
     /**
      * Select the entity by the primary-key value.
-     * @param delimiterId The one of primary key. (NotNull)
+     * @param delimiterId : PK, ID, NotNull, BIGINT(19). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteDelimiter selectByPKValue(Long delimiterId) {
-        return doSelectByPKValue(delimiterId, WhiteDelimiter.class);
+        return doSelectByPK(delimiterId, WhiteDelimiter.class);
     }
 
-    protected <ENTITY extends WhiteDelimiter> ENTITY doSelectByPKValue(Long delimiterId, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(delimiterId), entityType);
+    protected <ENTITY extends WhiteDelimiter> ENTITY doSelectByPK(Long delimiterId, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(delimiterId), entityType);
+    }
+
+    protected <ENTITY extends WhiteDelimiter> OptionalEntity<ENTITY> doSelectOptionalByPK(Long delimiterId, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(delimiterId, entityType), delimiterId);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param delimiterId The one of primary key. (NotNull)
+     * @param delimiterId : PK, ID, NotNull, BIGINT(19). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteDelimiter selectByPKValueWithDeletedCheck(Long delimiterId) {
-        return doSelectByPKValueWithDeletedCheck(delimiterId, WhiteDelimiter.class);
+        return doSelectByPKWithDeletedCheck(delimiterId, WhiteDelimiter.class);
     }
 
-    protected <ENTITY extends WhiteDelimiter> ENTITY doSelectByPKValueWithDeletedCheck(Long delimiterId, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(delimiterId), entityType);
+    protected <ENTITY extends WhiteDelimiter> ENTITY doSelectByPKWithDeletedCheck(Long delimiterId, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(delimiterId), entityType);
     }
 
-    private WhiteDelimiterCB buildPKCB(Long delimiterId) {
+    protected WhiteDelimiterCB xprepareCBAsPK(Long delimiterId) {
         assertObjectNotNull("delimiterId", delimiterId);
-        WhiteDelimiterCB cb = newMyConditionBean();
-        cb.query().setDelimiterId_Equal(delimiterId);
+        WhiteDelimiterCB cb = newMyConditionBean(); cb.acceptPrimaryKey(delimiterId);
         return cb;
     }
 

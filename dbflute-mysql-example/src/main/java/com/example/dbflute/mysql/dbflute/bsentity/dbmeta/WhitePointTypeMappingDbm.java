@@ -48,6 +48,9 @@ public class WhitePointTypeMappingDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgPointTypeMappingId(), "pointTypeMappingId");
@@ -56,8 +59,6 @@ public class WhitePointTypeMappingDbm extends AbstractDBMeta {
         setupEpg(_epgMap, new EpgPointTypeMappingSaleDate(), "pointTypeMappingSaleDate");
         setupEpg(_epgMap, new EpgPointTypeMappingWantedDatetime(), "pointTypeMappingWantedDatetime");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgPointTypeMappingId implements PropertyGateway {
         public Object read(Entity et) { return ((WhitePointTypeMapping)et).getPointTypeMappingId(); }
         public void write(Entity et, Object vl) { ((WhitePointTypeMapping)et).setPointTypeMappingId(ctl(vl)); }
@@ -78,6 +79,8 @@ public class WhitePointTypeMappingDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((WhitePointTypeMapping)et).getPointTypeMappingWantedDatetime(); }
         public void write(Entity et, Object vl) { ((WhitePointTypeMapping)et).setPointTypeMappingWantedDatetime((java.util.Date)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -93,11 +96,11 @@ public class WhitePointTypeMappingDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnPointTypeMappingId = cci("POINT_TYPE_MAPPING_ID", "POINT_TYPE_MAPPING_ID", null, null, true, "pointTypeMappingId", Long.class, true, false, "DECIMAL", 16, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnPointTypeMappingMemberName = cci("POINT_TYPE_MAPPING_MEMBER_NAME", "POINT_TYPE_MAPPING_MEMBER_NAME", null, null, false, "pointTypeMappingMemberName", com.example.dbflute.mysql.mytype.MyMemberName.class, false, false, "VARCHAR", 32, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnPointTypeMappingPriceCount = cci("POINT_TYPE_MAPPING_PRICE_COUNT", "POINT_TYPE_MAPPING_PRICE_COUNT", null, null, false, "pointTypeMappingPriceCount", com.example.dbflute.mysql.mytype.MyPriceCount.class, false, false, "INT", 10, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnPointTypeMappingSaleDate = cci("POINT_TYPE_MAPPING_SALE_DATE", "POINT_TYPE_MAPPING_SALE_DATE", null, null, false, "pointTypeMappingSaleDate", com.example.dbflute.mysql.mytype.MySaleDate.class, false, false, "BIGINT", 19, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnPointTypeMappingWantedDatetime = cci("POINT_TYPE_MAPPING_WANTED_DATETIME", "POINT_TYPE_MAPPING_WANTED_DATETIME", null, null, false, "pointTypeMappingWantedDatetime", java.util.Date.class, false, false, "DATETIME", 19, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnPointTypeMappingId = cci("POINT_TYPE_MAPPING_ID", "POINT_TYPE_MAPPING_ID", null, null, Long.class, "pointTypeMappingId", null, true, false, true, "DECIMAL", 16, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnPointTypeMappingMemberName = cci("POINT_TYPE_MAPPING_MEMBER_NAME", "POINT_TYPE_MAPPING_MEMBER_NAME", null, null, com.example.dbflute.mysql.mytype.MyMemberName.class, "pointTypeMappingMemberName", null, false, false, false, "VARCHAR", 32, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnPointTypeMappingPriceCount = cci("POINT_TYPE_MAPPING_PRICE_COUNT", "POINT_TYPE_MAPPING_PRICE_COUNT", null, null, com.example.dbflute.mysql.mytype.MyPriceCount.class, "pointTypeMappingPriceCount", null, false, false, false, "INT", 10, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnPointTypeMappingSaleDate = cci("POINT_TYPE_MAPPING_SALE_DATE", "POINT_TYPE_MAPPING_SALE_DATE", null, null, com.example.dbflute.mysql.mytype.MySaleDate.class, "pointTypeMappingSaleDate", null, false, false, false, "BIGINT", 19, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnPointTypeMappingWantedDatetime = cci("POINT_TYPE_MAPPING_WANTED_DATETIME", "POINT_TYPE_MAPPING_WANTED_DATETIME", null, null, java.util.Date.class, "pointTypeMappingWantedDatetime", null, false, false, false, "DATETIME", 19, 0, null, false, null, null, null, null, null);
 
     /**
      * POINT_TYPE_MAPPING_ID: {PK, NotNull, DECIMAL(16)}
@@ -150,6 +153,8 @@ public class WhitePointTypeMappingDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

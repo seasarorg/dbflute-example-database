@@ -184,7 +184,7 @@ public abstract class BsVendorLargeDataBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of VendorLargeData. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -205,39 +205,64 @@ public abstract class BsVendorLargeDataBhv extends AbstractBehaviorWritable {
 
     /**
      * Select the entity by the primary-key value.
-     * @param largeDataId The one of primary key. (NotNull)
+     * @param largeDataId : PK, NotNull, BIGINT(19). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public VendorLargeData selectByPKValue(Long largeDataId) {
-        return doSelectByPKValue(largeDataId, VendorLargeData.class);
+        return doSelectByPK(largeDataId, VendorLargeData.class);
     }
 
-    protected <ENTITY extends VendorLargeData> ENTITY doSelectByPKValue(Long largeDataId, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(largeDataId), entityType);
+    protected <ENTITY extends VendorLargeData> ENTITY doSelectByPK(Long largeDataId, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(largeDataId), entityType);
+    }
+
+    protected <ENTITY extends VendorLargeData> OptionalEntity<ENTITY> doSelectOptionalByPK(Long largeDataId, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(largeDataId, entityType), largeDataId);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param largeDataId The one of primary key. (NotNull)
+     * @param largeDataId : PK, NotNull, BIGINT(19). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public VendorLargeData selectByPKValueWithDeletedCheck(Long largeDataId) {
-        return doSelectByPKValueWithDeletedCheck(largeDataId, VendorLargeData.class);
+        return doSelectByPKWithDeletedCheck(largeDataId, VendorLargeData.class);
     }
 
-    protected <ENTITY extends VendorLargeData> ENTITY doSelectByPKValueWithDeletedCheck(Long largeDataId, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(largeDataId), entityType);
+    protected <ENTITY extends VendorLargeData> ENTITY doSelectByPKWithDeletedCheck(Long largeDataId, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(largeDataId), entityType);
     }
 
-    private VendorLargeDataCB buildPKCB(Long largeDataId) {
+    protected VendorLargeDataCB xprepareCBAsPK(Long largeDataId) {
         assertObjectNotNull("largeDataId", largeDataId);
-        VendorLargeDataCB cb = newMyConditionBean();
-        cb.query().setLargeDataId_Equal(largeDataId);
+        VendorLargeDataCB cb = newMyConditionBean(); cb.acceptPrimaryKey(largeDataId);
+        return cb;
+    }
+
+    /**
+     * Select the entity by the unique-key value.
+     * @param stringUniqueIndex : UQ, NotNull, VARCHAR(180). (NotNull)
+     * @return The optional entity selected by the unique key. (NotNull: if no data, empty entity)
+     * @exception EntityAlreadyDeletedException When get(), required() of return value is called and the value is null, which means entity has already been deleted (not found).
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     */
+    public OptionalEntity<VendorLargeData> selectByUniqueOf(String stringUniqueIndex) {
+        return doSelectByUniqueOf(stringUniqueIndex, VendorLargeData.class);
+    }
+
+    protected <ENTITY extends VendorLargeData> OptionalEntity<ENTITY> doSelectByUniqueOf(String stringUniqueIndex, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectEntity(xprepareCBAsUniqueOf(stringUniqueIndex), entityType), stringUniqueIndex);
+    }
+
+    protected VendorLargeDataCB xprepareCBAsUniqueOf(String stringUniqueIndex) {
+        assertObjectNotNull("stringUniqueIndex", stringUniqueIndex);
+        VendorLargeDataCB cb = newMyConditionBean(); cb.acceptUniqueOf(stringUniqueIndex);
         return cb;
     }
 

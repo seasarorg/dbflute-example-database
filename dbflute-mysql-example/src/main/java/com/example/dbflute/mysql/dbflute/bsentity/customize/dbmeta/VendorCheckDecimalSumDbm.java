@@ -48,16 +48,19 @@ public class VendorCheckDecimalSumDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgDecimalDigitSum(), "decimalDigitSum");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgDecimalDigitSum implements PropertyGateway {
         public Object read(Entity et) { return ((VendorCheckDecimalSum)et).getDecimalDigitSum(); }
         public void write(Entity et, Object vl) { ((VendorCheckDecimalSum)et).setDecimalDigitSum(ctb(vl)); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -73,7 +76,7 @@ public class VendorCheckDecimalSumDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnDecimalDigitSum = cci("DECIMAL_DIGIT_SUM", "DECIMAL_DIGIT_SUM", null, null, false, "decimalDigitSum", java.math.BigDecimal.class, false, false, "DECIMAL", 27, 3, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnDecimalDigitSum = cci("DECIMAL_DIGIT_SUM", "DECIMAL_DIGIT_SUM", null, null, java.math.BigDecimal.class, "decimalDigitSum", null, false, false, false, "DECIMAL", 27, 3, null, false, null, null, null, null, null);
 
     /**
      * DECIMAL_DIGIT_SUM: {DECIMAL(27, 3)}
@@ -104,6 +107,8 @@ public class VendorCheckDecimalSumDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

@@ -48,6 +48,9 @@ public class WhiteCompoundPkRefNestDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgCompoundPkRefNestId(), "compoundPkRefNestId");
@@ -56,8 +59,6 @@ public class WhiteCompoundPkRefNestDbm extends AbstractDBMeta {
         setupEpg(_epgMap, new EpgQuxMultipleId(), "quxMultipleId");
         setupEpg(_epgMap, new EpgNestName(), "nestName");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgCompoundPkRefNestId implements PropertyGateway {
         public Object read(Entity et) { return ((WhiteCompoundPkRefNest)et).getCompoundPkRefNestId(); }
         public void write(Entity et, Object vl) { ((WhiteCompoundPkRefNest)et).setCompoundPkRefNestId(cti(vl)); }
@@ -78,6 +79,27 @@ public class WhiteCompoundPkRefNestDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((WhiteCompoundPkRefNest)et).getNestName(); }
         public void write(Entity et, Object vl) { ((WhiteCompoundPkRefNest)et).setNestName((String)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
+
+    // -----------------------------------------------------
+    //                                      Foreign Property
+    //                                      ----------------
+    protected final Map<String, PropertyGateway> _efpgMap = newHashMap();
+    {
+        setupEfpg(_efpgMap, new EfpgWhiteCompoundPkRefByQuxMultipleId(), "whiteCompoundPkRefByQuxMultipleId");
+        setupEfpg(_efpgMap, new EfpgWhiteCompoundPkRefByFooMultipleId(), "whiteCompoundPkRefByFooMultipleId");
+    }
+    public class EfpgWhiteCompoundPkRefByQuxMultipleId implements PropertyGateway {
+        public Object read(Entity et) { return ((WhiteCompoundPkRefNest)et).getWhiteCompoundPkRefByQuxMultipleId(); }
+        public void write(Entity et, Object vl) { ((WhiteCompoundPkRefNest)et).setWhiteCompoundPkRefByQuxMultipleId((WhiteCompoundPkRef)vl); }
+    }
+    public class EfpgWhiteCompoundPkRefByFooMultipleId implements PropertyGateway {
+        public Object read(Entity et) { return ((WhiteCompoundPkRefNest)et).getWhiteCompoundPkRefByFooMultipleId(); }
+        public void write(Entity et, Object vl) { ((WhiteCompoundPkRefNest)et).setWhiteCompoundPkRefByFooMultipleId((WhiteCompoundPkRef)vl); }
+    }
+    public PropertyGateway findForeignPropertyGateway(String prop)
+    { return doFindEfpg(_efpgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -93,11 +115,11 @@ public class WhiteCompoundPkRefNestDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnCompoundPkRefNestId = cci("COMPOUND_PK_REF_NEST_ID", "COMPOUND_PK_REF_NEST_ID", null, null, true, "compoundPkRefNestId", Integer.class, true, false, "INT", 10, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnFooMultipleId = cci("FOO_MULTIPLE_ID", "FOO_MULTIPLE_ID", null, null, true, "fooMultipleId", Integer.class, false, false, "INT", 10, 0, null, false, null, null, "whiteCompoundPkRefByFooMultipleId", null, null);
-    protected final ColumnInfo _columnBarMultipleId = cci("BAR_MULTIPLE_ID", "BAR_MULTIPLE_ID", null, null, true, "barMultipleId", Integer.class, false, false, "INT", 10, 0, null, false, null, null, "whiteCompoundPkRefByQuxMultipleId,whiteCompoundPkRefByFooMultipleId", null, null);
-    protected final ColumnInfo _columnQuxMultipleId = cci("QUX_MULTIPLE_ID", "QUX_MULTIPLE_ID", null, null, true, "quxMultipleId", Integer.class, false, false, "INT", 10, 0, null, false, null, null, "whiteCompoundPkRefByQuxMultipleId", null, null);
-    protected final ColumnInfo _columnNestName = cci("NEST_NAME", "NEST_NAME", null, null, true, "nestName", String.class, false, false, "VARCHAR", 50, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnCompoundPkRefNestId = cci("COMPOUND_PK_REF_NEST_ID", "COMPOUND_PK_REF_NEST_ID", null, null, Integer.class, "compoundPkRefNestId", null, true, false, true, "INT", 10, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnFooMultipleId = cci("FOO_MULTIPLE_ID", "FOO_MULTIPLE_ID", null, null, Integer.class, "fooMultipleId", null, false, false, true, "INT", 10, 0, null, false, null, null, "whiteCompoundPkRefByFooMultipleId", null, null);
+    protected final ColumnInfo _columnBarMultipleId = cci("BAR_MULTIPLE_ID", "BAR_MULTIPLE_ID", null, null, Integer.class, "barMultipleId", null, false, false, true, "INT", 10, 0, null, false, null, null, "whiteCompoundPkRefByQuxMultipleId,whiteCompoundPkRefByFooMultipleId", null, null);
+    protected final ColumnInfo _columnQuxMultipleId = cci("QUX_MULTIPLE_ID", "QUX_MULTIPLE_ID", null, null, Integer.class, "quxMultipleId", null, false, false, true, "INT", 10, 0, null, false, null, null, "whiteCompoundPkRefByQuxMultipleId", null, null);
+    protected final ColumnInfo _columnNestName = cci("NEST_NAME", "NEST_NAME", null, null, String.class, "nestName", null, false, false, true, "VARCHAR", 50, 0, null, false, null, null, null, null, null);
 
     /**
      * COMPOUND_PK_REF_NEST_ID: {PK, NotNull, INT(10)}
@@ -105,17 +127,17 @@ public class WhiteCompoundPkRefNestDbm extends AbstractDBMeta {
      */
     public ColumnInfo columnCompoundPkRefNestId() { return _columnCompoundPkRefNestId; }
     /**
-     * FOO_MULTIPLE_ID: {IX, NotNull, INT(10), FK to white_compound_pk_ref}
+     * FOO_MULTIPLE_ID: {IX+, NotNull, INT(10), FK to white_compound_pk_ref}
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnFooMultipleId() { return _columnFooMultipleId; }
     /**
-     * BAR_MULTIPLE_ID: {IX, NotNull, INT(10), FK to white_compound_pk_ref}
+     * BAR_MULTIPLE_ID: {IX+, NotNull, INT(10), FK to white_compound_pk_ref}
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnBarMultipleId() { return _columnBarMultipleId; }
     /**
-     * QUX_MULTIPLE_ID: {IX+, NotNull, INT(10), FK to white_compound_pk_ref}
+     * QUX_MULTIPLE_ID: {NotNull, INT(10), FK to white_compound_pk_ref}
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnQuxMultipleId() { return _columnQuxMultipleId; }
@@ -150,6 +172,8 @@ public class WhiteCompoundPkRefNestDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

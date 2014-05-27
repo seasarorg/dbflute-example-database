@@ -22,8 +22,8 @@ public abstract class AbstractBsNextschemaWhiteSameNameCQ extends AbstractCondit
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public AbstractBsNextschemaWhiteSameNameCQ(ConditionQuery childQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
-        super(childQuery, sqlClause, aliasName, nestLevel);
+    public AbstractBsNextschemaWhiteSameNameCQ(ConditionQuery referrerQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
+        super(referrerQuery, sqlClause, aliasName, nestLevel);
     }
 
     // ===================================================================================
@@ -217,7 +217,7 @@ public abstract class AbstractBsNextschemaWhiteSameNameCQ extends AbstractCondit
     public abstract String keepSameNameId_SpecifyDerivedReferrer_WhiteSameNameRefList(NextschemaWhiteSameNameRefCQ sq);
 
     /**
-     * Prepare for (Query)DerivedReferrer. <br />
+     * Prepare for (Query)DerivedReferrer (correlated sub-query). <br />
      * {FOO &lt;= (select max(BAR) from nextschema.white_same_name_ref where ...)} <br />
      * nextschema.white_same_name_ref by same_name_id, named 'whiteSameNameRefAsOne'.
      * <pre>
@@ -609,7 +609,7 @@ public abstract class AbstractBsNextschemaWhiteSameNameCQ extends AbstractCondit
     public abstract String keepSpecifyMyselfDerived(NextschemaWhiteSameNameCQ sq);
 
     /**
-     * Prepare for (Query)MyselfDerived (SubQuery).
+     * Prepare for (Query)MyselfDerived (correlated sub-query).
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<NextschemaWhiteSameNameCB> myselfDerived() {
@@ -631,8 +631,8 @@ public abstract class AbstractBsNextschemaWhiteSameNameCQ extends AbstractCondit
     //                                                                        MyselfExists
     //                                                                        ============
     /**
-     * Prepare for MyselfExists (SubQuery).
-     * @param subQuery The implementation of sub query. (NotNull)
+     * Prepare for MyselfExists (correlated sub-query).
+     * @param subQuery The implementation of sub-query. (NotNull)
      */
     public void myselfExists(SubQuery<NextschemaWhiteSameNameCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
@@ -647,8 +647,8 @@ public abstract class AbstractBsNextschemaWhiteSameNameCQ extends AbstractCondit
     //                                                                       MyselfInScope
     //                                                                       =============
     /**
-     * Prepare for MyselfInScope (SubQuery).
-     * @param subQuery The implementation of sub query. (NotNull)
+     * Prepare for MyselfInScope (sub-query).
+     * @param subQuery The implementation of sub-query. (NotNull)
      */
     public void myselfInScope(SubQuery<NextschemaWhiteSameNameCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);

@@ -24,8 +24,8 @@ public class BsMemberAddressCQ extends AbstractBsMemberAddressCQ {
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public BsMemberAddressCQ(ConditionQuery childQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
-        super(childQuery, sqlClause, aliasName, nestLevel);
+    public BsMemberAddressCQ(ConditionQuery referrerQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
+        super(referrerQuery, sqlClause, aliasName, nestLevel);
     }
 
     // ===================================================================================
@@ -118,14 +118,14 @@ public class BsMemberAddressCQ extends AbstractBsMemberAddressCQ {
 
     /** 
      * Add order-by as ascend. <br />
-     * (会員ID)member_id: {UQ, NotNull, int4(10), FK to member}
+     * (会員ID)member_id: {UQ+, NotNull, int4(10), FK to member}
      * @return this. (NotNull)
      */
     public BsMemberAddressCQ addOrderBy_MemberId_Asc() { regOBA("member_id"); return this; }
 
     /**
      * Add order-by as descend. <br />
-     * (会員ID)member_id: {UQ, NotNull, int4(10), FK to member}
+     * (会員ID)member_id: {UQ+, NotNull, int4(10), FK to member}
      * @return this. (NotNull)
      */
     public BsMemberAddressCQ addOrderBy_MemberId_Desc() { regOBD("member_id"); return this; }
@@ -139,14 +139,14 @@ public class BsMemberAddressCQ extends AbstractBsMemberAddressCQ {
 
     /** 
      * Add order-by as ascend. <br />
-     * (有効開始日)valid_begin_date: {UQ+, NotNull, date(13)}
+     * (有効開始日)valid_begin_date: {+UQ, NotNull, date(13)}
      * @return this. (NotNull)
      */
     public BsMemberAddressCQ addOrderBy_ValidBeginDate_Asc() { regOBA("valid_begin_date"); return this; }
 
     /**
      * Add order-by as descend. <br />
-     * (有効開始日)valid_begin_date: {UQ+, NotNull, date(13)}
+     * (有効開始日)valid_begin_date: {+UQ, NotNull, date(13)}
      * @return this. (NotNull)
      */
     public BsMemberAddressCQ addOrderBy_ValidBeginDate_Desc() { regOBD("valid_begin_date"); return this; }
@@ -417,7 +417,7 @@ public class BsMemberAddressCQ extends AbstractBsMemberAddressCQ {
     // ===================================================================================
     //                                                                         Union Query
     //                                                                         ===========
-    protected void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
+    public void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
         MemberAddressCQ bq = (MemberAddressCQ)bqs;
         MemberAddressCQ uq = (MemberAddressCQ)uqs;
         if (bq.hasConditionQueryMember()) {

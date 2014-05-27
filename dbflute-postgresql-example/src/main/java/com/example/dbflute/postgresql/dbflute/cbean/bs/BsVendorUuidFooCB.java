@@ -78,10 +78,14 @@ public class BsVendorUuidFooCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                 PrimaryKey Handling
     //                                                                 ===================
+    /**
+     * Accept the query condition of primary key as equal.
+     * @param fooId : PK, NotNull, uuid(2147483647). (NotNull)
+     */
     public void acceptPrimaryKey(java.util.UUID fooId) {
         assertObjectNotNull("fooId", fooId);
         BsVendorUuidFooCB cb = this;
-        cb.query().setFooId_Equal(fooId);
+        cb.query().setFooId_Equal(fooId);;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {
@@ -466,6 +470,11 @@ public class BsVendorUuidFooCB extends AbstractConditionBean {
      */
     public void orScopeQuery(OrQuery<VendorUuidFooCB> orQuery) {
         xorSQ((VendorUuidFooCB)this, orQuery);
+    }
+
+    @Override
+    protected HpCBPurpose xhandleOrSQPurposeChange() {
+        return null; // means no check
     }
 
     /**

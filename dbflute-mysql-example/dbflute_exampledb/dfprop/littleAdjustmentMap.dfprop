@@ -34,6 +34,10 @@
 # *The line that starts with '#' means comment-out.
 #
 map:{
+    # the test of check count for next-key-lock of MySQL
+    # set this property if you test it  
+    ; isCheckCountBeforeQueryUpdate = true
+
     # /- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # o isAvailableAddingSchemaToTableSqlName: (NotRequired - Default false)
     #   [true]
@@ -347,9 +351,5 @@ map:{
     #
     #; cursorSelectFetchSize = Integer.MIN_VALUE
     # - - - - - - - - - -/
-
-    # the test of check count for next-key-lock of MySQL
-    # set this property if you test it  
-    ; isCheckCountBeforeQueryUpdate = true
 }
 # ----------------/

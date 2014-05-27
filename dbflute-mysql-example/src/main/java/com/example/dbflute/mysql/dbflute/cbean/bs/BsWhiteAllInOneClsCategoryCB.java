@@ -92,10 +92,14 @@ public class BsWhiteAllInOneClsCategoryCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                 PrimaryKey Handling
     //                                                                 ===================
+    /**
+     * Accept the query condition of primary key as equal.
+     * @param clsCategoryCode : PK, NotNull, CHAR(3). (NotNull)
+     */
     public void acceptPrimaryKey(String clsCategoryCode) {
         assertObjectNotNull("clsCategoryCode", clsCategoryCode);
         BsWhiteAllInOneClsCategoryCB cb = this;
-        cb.query().setClsCategoryCode_Equal(clsCategoryCode);
+        cb.query().setClsCategoryCode_Equal(clsCategoryCode);;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {
@@ -433,6 +437,11 @@ public class BsWhiteAllInOneClsCategoryCB extends AbstractConditionBean {
      */
     public void orScopeQuery(OrQuery<WhiteAllInOneClsCategoryCB> orQuery) {
         xorSQ((WhiteAllInOneClsCategoryCB)this, orQuery);
+    }
+
+    @Override
+    protected HpCBPurpose xhandleOrSQPurposeChange() {
+        return null; // means no check
     }
 
     /**

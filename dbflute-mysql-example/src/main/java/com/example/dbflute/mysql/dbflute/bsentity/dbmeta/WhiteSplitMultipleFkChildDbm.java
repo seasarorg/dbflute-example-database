@@ -48,14 +48,15 @@ public class WhiteSplitMultipleFkChildDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgChildId(), "childId");
         setupEpg(_epgMap, new EpgBaseId(), "baseId");
         setupEpg(_epgMap, new EpgChildName(), "childName");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgChildId implements PropertyGateway {
         public Object read(Entity et) { return ((WhiteSplitMultipleFkChild)et).getChildId(); }
         public void write(Entity et, Object vl) { ((WhiteSplitMultipleFkChild)et).setChildId(ctl(vl)); }
@@ -68,6 +69,22 @@ public class WhiteSplitMultipleFkChildDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((WhiteSplitMultipleFkChild)et).getChildName(); }
         public void write(Entity et, Object vl) { ((WhiteSplitMultipleFkChild)et).setChildName((String)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
+
+    // -----------------------------------------------------
+    //                                      Foreign Property
+    //                                      ----------------
+    protected final Map<String, PropertyGateway> _efpgMap = newHashMap();
+    {
+        setupEfpg(_efpgMap, new EfpgWhiteSplitMultipleFkBase(), "whiteSplitMultipleFkBase");
+    }
+    public class EfpgWhiteSplitMultipleFkBase implements PropertyGateway {
+        public Object read(Entity et) { return ((WhiteSplitMultipleFkChild)et).getWhiteSplitMultipleFkBase(); }
+        public void write(Entity et, Object vl) { ((WhiteSplitMultipleFkChild)et).setWhiteSplitMultipleFkBase((WhiteSplitMultipleFkBase)vl); }
+    }
+    public PropertyGateway findForeignPropertyGateway(String prop)
+    { return doFindEfpg(_efpgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -83,9 +100,9 @@ public class WhiteSplitMultipleFkChildDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnChildId = cci("CHILD_ID", "CHILD_ID", null, null, true, "childId", Long.class, true, false, "BIGINT", 19, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnBaseId = cci("BASE_ID", "BASE_ID", null, null, true, "baseId", Long.class, false, false, "BIGINT", 19, 0, null, false, null, null, "whiteSplitMultipleFkBase", null, null);
-    protected final ColumnInfo _columnChildName = cci("CHILD_NAME", "CHILD_NAME", null, null, true, "childName", String.class, false, false, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnChildId = cci("CHILD_ID", "CHILD_ID", null, null, Long.class, "childId", null, true, false, true, "BIGINT", 19, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnBaseId = cci("BASE_ID", "BASE_ID", null, null, Long.class, "baseId", null, false, false, true, "BIGINT", 19, 0, null, false, null, null, "whiteSplitMultipleFkBase", null, null);
+    protected final ColumnInfo _columnChildName = cci("CHILD_NAME", "CHILD_NAME", null, null, String.class, "childName", null, false, false, true, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
 
     /**
      * CHILD_ID: {PK, NotNull, BIGINT(19)}
@@ -126,6 +143,8 @@ public class WhiteSplitMultipleFkChildDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

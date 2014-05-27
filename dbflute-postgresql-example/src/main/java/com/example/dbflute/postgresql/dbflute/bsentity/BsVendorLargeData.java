@@ -98,6 +98,9 @@ public abstract class BsVendorLargeData implements Entity, Serializable, Cloneab
     // -----------------------------------------------------
     //                                              Internal
     //                                              --------
+    /** The unique-driven properties for this entity. (NotNull) */
+    protected final EntityUniqueDrivenProperties __uniqueDrivenProperties = newUniqueDrivenProperties();
+
     /** The modified properties for this entity. (NotNull) */
     protected final EntityModifiedProperties __modifiedProperties = newModifiedProperties();
 
@@ -140,6 +143,28 @@ public abstract class BsVendorLargeData implements Entity, Serializable, Cloneab
     public boolean hasPrimaryKeyValue() {
         if (getLargeDataId() == null) { return false; }
         return true;
+    }
+
+    /**
+     * To be unique by the unique column. <br />
+     * You can update the entity by the key when entity update (NOT batch update).
+     * @param stringUniqueIndex : UQ, NotNull, varchar(200). (NotNull)
+     */
+    public void uniqueBy(String stringUniqueIndex) {
+        __uniqueDrivenProperties.clear();
+        __uniqueDrivenProperties.addPropertyName("stringUniqueIndex");
+        _stringUniqueIndex = stringUniqueIndex;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Set<String> uniqueDrivenProperties() {
+        return __uniqueDrivenProperties.getPropertyNames();
+    }
+
+    protected EntityUniqueDrivenProperties newUniqueDrivenProperties() {
+        return new EntityUniqueDrivenProperties();
     }
 
     // ===================================================================================
@@ -232,8 +257,8 @@ public abstract class BsVendorLargeData implements Entity, Serializable, Cloneab
         if (!xSV(getLargeDataId(), other.getLargeDataId())) { return false; }
         return true;
     }
-    protected boolean xSV(Object value1, Object value2) {
-        return FunCustodial.isSameValue(value1, value2);
+    protected boolean xSV(Object v1, Object v2) {
+        return FunCustodial.isSameValue(v1, v2);
     }
 
     /**
@@ -241,13 +266,13 @@ public abstract class BsVendorLargeData implements Entity, Serializable, Cloneab
      * @return The hash-code from primary-key or columns.
      */
     public int hashCode() {
-        int result = 17;
-        result = xCH(result, getTableDbName());
-        result = xCH(result, getLargeDataId());
-        return result;
+        int hs = 17;
+        hs = xCH(hs, getTableDbName());
+        hs = xCH(hs, getLargeDataId());
+        return hs;
     }
-    protected int xCH(int result, Object value) {
-        return FunCustodial.calculateHashcode(result, value);
+    protected int xCH(int hs, Object vl) {
+        return FunCustodial.calculateHashcode(hs, vl);
     }
 
     /**
@@ -271,13 +296,13 @@ public abstract class BsVendorLargeData implements Entity, Serializable, Cloneab
     public String toStringWithRelation() {
         StringBuilder sb = new StringBuilder();
         sb.append(toString());
-        String l = "\n  ";
-        if (_vendorLargeDataRefList != null) { for (Entity e : _vendorLargeDataRefList)
-        { if (e != null) { sb.append(l).append(xbRDS(e, "vendorLargeDataRefList")); } } }
+        String li = "\n  ";
+        if (_vendorLargeDataRefList != null) { for (Entity et : _vendorLargeDataRefList)
+        { if (et != null) { sb.append(li).append(xbRDS(et, "vendorLargeDataRefList")); } } }
         return sb.toString();
     }
-    protected String xbRDS(Entity e, String name) { // buildRelationDisplayString()
-        return e.buildDisplayString(name, true, true);
+    protected String xbRDS(Entity et, String name) { // buildRelationDisplayString()
+        return et.buildDisplayString(name, true, true);
     }
 
     /**
@@ -293,27 +318,27 @@ public abstract class BsVendorLargeData implements Entity, Serializable, Cloneab
     }
     protected String buildColumnString() {
         StringBuilder sb = new StringBuilder();
-        String delimiter = ", ";
-        sb.append(delimiter).append(getLargeDataId());
-        sb.append(delimiter).append(getStringIndex());
-        sb.append(delimiter).append(getStringNoIndex());
-        sb.append(delimiter).append(getStringUniqueIndex());
-        sb.append(delimiter).append(getIntflgIndex());
-        sb.append(delimiter).append(getNumericIntegerIndex());
-        sb.append(delimiter).append(getNumericIntegerNoIndex());
-        if (sb.length() > delimiter.length()) {
-            sb.delete(0, delimiter.length());
+        String dm = ", ";
+        sb.append(dm).append(getLargeDataId());
+        sb.append(dm).append(getStringIndex());
+        sb.append(dm).append(getStringNoIndex());
+        sb.append(dm).append(getStringUniqueIndex());
+        sb.append(dm).append(getIntflgIndex());
+        sb.append(dm).append(getNumericIntegerIndex());
+        sb.append(dm).append(getNumericIntegerNoIndex());
+        if (sb.length() > dm.length()) {
+            sb.delete(0, dm.length());
         }
         sb.insert(0, "{").append("}");
         return sb.toString();
     }
     protected String buildRelationString() {
         StringBuilder sb = new StringBuilder();
-        String c = ",";
+        String cm = ",";
         if (_vendorLargeDataRefList != null && !_vendorLargeDataRefList.isEmpty())
-        { sb.append(c).append("vendorLargeDataRefList"); }
-        if (sb.length() > c.length()) {
-            sb.delete(0, c.length()).insert(0, "(").append(")");
+        { sb.append(cm).append("vendorLargeDataRefList"); }
+        if (sb.length() > cm.length()) {
+            sb.delete(0, cm.length()).insert(0, "(").append(")");
         }
         return sb.toString();
     }

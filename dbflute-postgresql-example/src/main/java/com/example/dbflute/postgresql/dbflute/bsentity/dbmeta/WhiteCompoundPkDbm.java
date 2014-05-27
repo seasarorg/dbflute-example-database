@@ -33,14 +33,15 @@ public class WhiteCompoundPkDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgPkFirstId(), "pkFirstId");
         setupEpg(_epgMap, new EpgPkSecondId(), "pkSecondId");
         setupEpg(_epgMap, new EpgPkName(), "pkName");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgPkFirstId implements PropertyGateway {
         public Object read(Entity et) { return ((WhiteCompoundPk)et).getPkFirstId(); }
         public void write(Entity et, Object vl) { ((WhiteCompoundPk)et).setPkFirstId(cti(vl)); }
@@ -53,6 +54,8 @@ public class WhiteCompoundPkDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((WhiteCompoundPk)et).getPkName(); }
         public void write(Entity et, Object vl) { ((WhiteCompoundPk)et).setPkName((String)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -68,12 +71,24 @@ public class WhiteCompoundPkDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnPkFirstId = cci("pk_first_id", "pk_first_id", null, null, true, "pkFirstId", Integer.class, true, false, "int4", 10, 0, null, false, null, null, null, "whiteCompoundPkRefList", null);
-    protected final ColumnInfo _columnPkSecondId = cci("pk_second_id", "pk_second_id", null, null, true, "pkSecondId", Integer.class, true, false, "int4", 10, 0, null, false, null, null, null, "whiteCompoundPkRefList", null);
-    protected final ColumnInfo _columnPkName = cci("pk_name", "pk_name", null, null, true, "pkName", String.class, false, false, "varchar", 200, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnPkFirstId = cci("pk_first_id", "pk_first_id", null, null, Integer.class, "pkFirstId", null, true, false, true, "int4", 10, 0, null, false, null, null, null, "whiteCompoundPkRefList", null);
+    protected final ColumnInfo _columnPkSecondId = cci("pk_second_id", "pk_second_id", null, null, Integer.class, "pkSecondId", null, true, false, true, "int4", 10, 0, null, false, null, null, null, "whiteCompoundPkRefList", null);
+    protected final ColumnInfo _columnPkName = cci("pk_name", "pk_name", null, null, String.class, "pkName", null, false, false, true, "varchar", 200, 0, null, false, null, null, null, null, null);
 
+    /**
+     * pk_first_id: {PK, NotNull, int4(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnPkFirstId() { return _columnPkFirstId; }
+    /**
+     * pk_second_id: {PK, NotNull, int4(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnPkSecondId() { return _columnPkSecondId; }
+    /**
+     * pk_name: {NotNull, varchar(200)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnPkName() { return _columnPkName; }
 
     protected List<ColumnInfo> ccil() {
@@ -104,6 +119,8 @@ public class WhiteCompoundPkDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------
@@ -111,6 +128,10 @@ public class WhiteCompoundPkDbm extends AbstractDBMeta {
     // -----------------------------------------------------
     //                                     Referrer Property
     //                                     -----------------
+    /**
+     * white_compound_pk_ref by ref_first_id, ref_second_id, named 'whiteCompoundPkRefList'.
+     * @return The information object of referrer property. (NotNull)
+     */
     public ReferrerInfo referrerWhiteCompoundPkRefList() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMapSized(4);
         mp.put(columnPkFirstId(), WhiteCompoundPkRefDbm.getInstance().columnRefFirstId());

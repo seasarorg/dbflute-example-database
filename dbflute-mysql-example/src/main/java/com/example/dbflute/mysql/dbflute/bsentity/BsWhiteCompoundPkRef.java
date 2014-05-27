@@ -91,10 +91,10 @@ public abstract class BsWhiteCompoundPkRef implements Entity, Serializable, Clon
     /** MULTIPLE_SECOND_ID: {PK, NotNull, INT(10)} */
     protected Integer _multipleSecondId;
 
-    /** REF_FIRST_ID: {IX, NotNull, INT(10), FK to white_compound_pk} */
+    /** REF_FIRST_ID: {IX+, NotNull, INT(10), FK to white_compound_pk} */
     protected Integer _refFirstId;
 
-    /** REF_SECOND_ID: {IX+, NotNull, INT(10), FK to white_compound_pk} */
+    /** REF_SECOND_ID: {NotNull, INT(10), FK to white_compound_pk} */
     protected Integer _refSecondId;
 
     /** REF_NAME: {NotNull, VARCHAR(50)} */
@@ -103,6 +103,9 @@ public abstract class BsWhiteCompoundPkRef implements Entity, Serializable, Clon
     // -----------------------------------------------------
     //                                              Internal
     //                                              --------
+    /** The unique-driven properties for this entity. (NotNull) */
+    protected final EntityUniqueDrivenProperties __uniqueDrivenProperties = newUniqueDrivenProperties();
+
     /** The modified properties for this entity. (NotNull) */
     protected final EntityModifiedProperties __modifiedProperties = newModifiedProperties();
 
@@ -146,6 +149,17 @@ public abstract class BsWhiteCompoundPkRef implements Entity, Serializable, Clon
         if (getMultipleFirstId() == null) { return false; }
         if (getMultipleSecondId() == null) { return false; }
         return true;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Set<String> uniqueDrivenProperties() {
+        return __uniqueDrivenProperties.getPropertyNames();
+    }
+
+    protected EntityUniqueDrivenProperties newUniqueDrivenProperties() {
+        return new EntityUniqueDrivenProperties();
     }
 
     // ===================================================================================
@@ -278,8 +292,8 @@ public abstract class BsWhiteCompoundPkRef implements Entity, Serializable, Clon
         if (!xSV(getMultipleSecondId(), other.getMultipleSecondId())) { return false; }
         return true;
     }
-    protected boolean xSV(Object value1, Object value2) {
-        return FunCustodial.isSameValue(value1, value2);
+    protected boolean xSV(Object v1, Object v2) {
+        return FunCustodial.isSameValue(v1, v2);
     }
 
     /**
@@ -287,14 +301,14 @@ public abstract class BsWhiteCompoundPkRef implements Entity, Serializable, Clon
      * @return The hash-code from primary-key or columns.
      */
     public int hashCode() {
-        int result = 17;
-        result = xCH(result, getTableDbName());
-        result = xCH(result, getMultipleFirstId());
-        result = xCH(result, getMultipleSecondId());
-        return result;
+        int hs = 17;
+        hs = xCH(hs, getTableDbName());
+        hs = xCH(hs, getMultipleFirstId());
+        hs = xCH(hs, getMultipleSecondId());
+        return hs;
     }
-    protected int xCH(int result, Object value) {
-        return FunCustodial.calculateHashcode(result, value);
+    protected int xCH(int hs, Object vl) {
+        return FunCustodial.calculateHashcode(hs, vl);
     }
 
     /**
@@ -318,17 +332,17 @@ public abstract class BsWhiteCompoundPkRef implements Entity, Serializable, Clon
     public String toStringWithRelation() {
         StringBuilder sb = new StringBuilder();
         sb.append(toString());
-        String l = "\n  ";
+        String li = "\n  ";
         if (_whiteCompoundPk != null)
-        { sb.append(l).append(xbRDS(_whiteCompoundPk, "whiteCompoundPk")); }
-        if (_whiteCompoundPkRefNestByQuxMultipleIdList != null) { for (Entity e : _whiteCompoundPkRefNestByQuxMultipleIdList)
-        { if (e != null) { sb.append(l).append(xbRDS(e, "whiteCompoundPkRefNestByQuxMultipleIdList")); } } }
-        if (_whiteCompoundPkRefNestByFooMultipleIdList != null) { for (Entity e : _whiteCompoundPkRefNestByFooMultipleIdList)
-        { if (e != null) { sb.append(l).append(xbRDS(e, "whiteCompoundPkRefNestByFooMultipleIdList")); } } }
+        { sb.append(li).append(xbRDS(_whiteCompoundPk, "whiteCompoundPk")); }
+        if (_whiteCompoundPkRefNestByQuxMultipleIdList != null) { for (Entity et : _whiteCompoundPkRefNestByQuxMultipleIdList)
+        { if (et != null) { sb.append(li).append(xbRDS(et, "whiteCompoundPkRefNestByQuxMultipleIdList")); } } }
+        if (_whiteCompoundPkRefNestByFooMultipleIdList != null) { for (Entity et : _whiteCompoundPkRefNestByFooMultipleIdList)
+        { if (et != null) { sb.append(li).append(xbRDS(et, "whiteCompoundPkRefNestByFooMultipleIdList")); } } }
         return sb.toString();
     }
-    protected String xbRDS(Entity e, String name) { // buildRelationDisplayString()
-        return e.buildDisplayString(name, true, true);
+    protected String xbRDS(Entity et, String name) { // buildRelationDisplayString()
+        return et.buildDisplayString(name, true, true);
     }
 
     /**
@@ -344,28 +358,28 @@ public abstract class BsWhiteCompoundPkRef implements Entity, Serializable, Clon
     }
     protected String buildColumnString() {
         StringBuilder sb = new StringBuilder();
-        String delimiter = ", ";
-        sb.append(delimiter).append(getMultipleFirstId());
-        sb.append(delimiter).append(getMultipleSecondId());
-        sb.append(delimiter).append(getRefFirstId());
-        sb.append(delimiter).append(getRefSecondId());
-        sb.append(delimiter).append(getRefName());
-        if (sb.length() > delimiter.length()) {
-            sb.delete(0, delimiter.length());
+        String dm = ", ";
+        sb.append(dm).append(getMultipleFirstId());
+        sb.append(dm).append(getMultipleSecondId());
+        sb.append(dm).append(getRefFirstId());
+        sb.append(dm).append(getRefSecondId());
+        sb.append(dm).append(getRefName());
+        if (sb.length() > dm.length()) {
+            sb.delete(0, dm.length());
         }
         sb.insert(0, "{").append("}");
         return sb.toString();
     }
     protected String buildRelationString() {
         StringBuilder sb = new StringBuilder();
-        String c = ",";
-        if (_whiteCompoundPk != null) { sb.append(c).append("whiteCompoundPk"); }
+        String cm = ",";
+        if (_whiteCompoundPk != null) { sb.append(cm).append("whiteCompoundPk"); }
         if (_whiteCompoundPkRefNestByQuxMultipleIdList != null && !_whiteCompoundPkRefNestByQuxMultipleIdList.isEmpty())
-        { sb.append(c).append("whiteCompoundPkRefNestByQuxMultipleIdList"); }
+        { sb.append(cm).append("whiteCompoundPkRefNestByQuxMultipleIdList"); }
         if (_whiteCompoundPkRefNestByFooMultipleIdList != null && !_whiteCompoundPkRefNestByFooMultipleIdList.isEmpty())
-        { sb.append(c).append("whiteCompoundPkRefNestByFooMultipleIdList"); }
-        if (sb.length() > c.length()) {
-            sb.delete(0, c.length()).insert(0, "(").append(")");
+        { sb.append(cm).append("whiteCompoundPkRefNestByFooMultipleIdList"); }
+        if (sb.length() > cm.length()) {
+            sb.delete(0, cm.length()).insert(0, "(").append(")");
         }
         return sb.toString();
     }
@@ -420,7 +434,7 @@ public abstract class BsWhiteCompoundPkRef implements Entity, Serializable, Clon
     }
 
     /**
-     * [get] REF_FIRST_ID: {IX, NotNull, INT(10), FK to white_compound_pk} <br />
+     * [get] REF_FIRST_ID: {IX+, NotNull, INT(10), FK to white_compound_pk} <br />
      * @return The value of the column 'REF_FIRST_ID'. (basically NotNull if selected: for the constraint)
      */
     public Integer getRefFirstId() {
@@ -428,7 +442,7 @@ public abstract class BsWhiteCompoundPkRef implements Entity, Serializable, Clon
     }
 
     /**
-     * [set] REF_FIRST_ID: {IX, NotNull, INT(10), FK to white_compound_pk} <br />
+     * [set] REF_FIRST_ID: {IX+, NotNull, INT(10), FK to white_compound_pk} <br />
      * @param refFirstId The value of the column 'REF_FIRST_ID'. (basically NotNull if update: for the constraint)
      */
     public void setRefFirstId(Integer refFirstId) {
@@ -437,7 +451,7 @@ public abstract class BsWhiteCompoundPkRef implements Entity, Serializable, Clon
     }
 
     /**
-     * [get] REF_SECOND_ID: {IX+, NotNull, INT(10), FK to white_compound_pk} <br />
+     * [get] REF_SECOND_ID: {NotNull, INT(10), FK to white_compound_pk} <br />
      * @return The value of the column 'REF_SECOND_ID'. (basically NotNull if selected: for the constraint)
      */
     public Integer getRefSecondId() {
@@ -445,7 +459,7 @@ public abstract class BsWhiteCompoundPkRef implements Entity, Serializable, Clon
     }
 
     /**
-     * [set] REF_SECOND_ID: {IX+, NotNull, INT(10), FK to white_compound_pk} <br />
+     * [set] REF_SECOND_ID: {NotNull, INT(10), FK to white_compound_pk} <br />
      * @param refSecondId The value of the column 'REF_SECOND_ID'. (basically NotNull if update: for the constraint)
      */
     public void setRefSecondId(Integer refSecondId) {

@@ -93,10 +93,15 @@ public class BsWhiteCompoundPkRefCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                 PrimaryKey Handling
     //                                                                 ===================
+    /**
+     * Accept the query condition of primary key as equal.
+     * @param multipleFirstId : PK, NotNull, INT(10). (NotNull)
+     * @param multipleSecondId : PK, NotNull, INT(10). (NotNull)
+     */
     public void acceptPrimaryKey(Integer multipleFirstId, Integer multipleSecondId) {
         assertObjectNotNull("multipleFirstId", multipleFirstId);assertObjectNotNull("multipleSecondId", multipleSecondId);
         BsWhiteCompoundPkRefCB cb = this;
-        cb.query().setMultipleFirstId_Equal(multipleFirstId);cb.query().setMultipleSecondId_Equal(multipleSecondId);
+        cb.query().setMultipleFirstId_Equal(multipleFirstId);;cb.query().setMultipleSecondId_Equal(multipleSecondId);;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {
@@ -348,12 +353,12 @@ public class BsWhiteCompoundPkRefCB extends AbstractConditionBean {
          */
         public HpSpecifiedColumn columnMultipleSecondId() { return doColumn("MULTIPLE_SECOND_ID"); }
         /**
-         * REF_FIRST_ID: {IX, NotNull, INT(10), FK to white_compound_pk}
+         * REF_FIRST_ID: {IX+, NotNull, INT(10), FK to white_compound_pk}
          * @return The information object of specified column. (NotNull)
          */
         public HpSpecifiedColumn columnRefFirstId() { return doColumn("REF_FIRST_ID"); }
         /**
-         * REF_SECOND_ID: {IX+, NotNull, INT(10), FK to white_compound_pk}
+         * REF_SECOND_ID: {NotNull, INT(10), FK to white_compound_pk}
          * @return The information object of specified column. (NotNull)
          */
         public HpSpecifiedColumn columnRefSecondId() { return doColumn("REF_SECOND_ID"); }
@@ -512,6 +517,11 @@ public class BsWhiteCompoundPkRefCB extends AbstractConditionBean {
      */
     public void orScopeQuery(OrQuery<WhiteCompoundPkRefCB> orQuery) {
         xorSQ((WhiteCompoundPkRefCB)this, orQuery);
+    }
+
+    @Override
+    protected HpCBPurpose xhandleOrSQPurposeChange() {
+        return null; // means no check
     }
 
     /**

@@ -184,7 +184,7 @@ public abstract class BsWhiteQuotedRefBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of WhiteQuotedRef. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -205,39 +205,42 @@ public abstract class BsWhiteQuotedRefBhv extends AbstractBehaviorWritable {
 
     /**
      * Select the entity by the primary-key value.
-     * @param where The one of primary key. (NotNull)
+     * @param where : PK, NotNull, INT(10). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteQuotedRef selectByPKValue(Integer where) {
-        return doSelectByPKValue(where, WhiteQuotedRef.class);
+        return doSelectByPK(where, WhiteQuotedRef.class);
     }
 
-    protected <ENTITY extends WhiteQuotedRef> ENTITY doSelectByPKValue(Integer where, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(where), entityType);
+    protected <ENTITY extends WhiteQuotedRef> ENTITY doSelectByPK(Integer where, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(where), entityType);
+    }
+
+    protected <ENTITY extends WhiteQuotedRef> OptionalEntity<ENTITY> doSelectOptionalByPK(Integer where, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(where, entityType), where);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param where The one of primary key. (NotNull)
+     * @param where : PK, NotNull, INT(10). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteQuotedRef selectByPKValueWithDeletedCheck(Integer where) {
-        return doSelectByPKValueWithDeletedCheck(where, WhiteQuotedRef.class);
+        return doSelectByPKWithDeletedCheck(where, WhiteQuotedRef.class);
     }
 
-    protected <ENTITY extends WhiteQuotedRef> ENTITY doSelectByPKValueWithDeletedCheck(Integer where, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(where), entityType);
+    protected <ENTITY extends WhiteQuotedRef> ENTITY doSelectByPKWithDeletedCheck(Integer where, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(where), entityType);
     }
 
-    private WhiteQuotedRefCB buildPKCB(Integer where) {
+    protected WhiteQuotedRefCB xprepareCBAsPK(Integer where) {
         assertObjectNotNull("where", where);
-        WhiteQuotedRefCB cb = newMyConditionBean();
-        cb.query().setWhere_Equal(where);
+        WhiteQuotedRefCB cb = newMyConditionBean(); cb.acceptPrimaryKey(where);
         return cb;
     }
 
@@ -402,7 +405,8 @@ public abstract class BsWhiteQuotedRefBhv extends AbstractBehaviorWritable {
      */
     public List<WhiteQuoted> pulloutWhiteQuoted(List<WhiteQuotedRef> whiteQuotedRefList) {
         return helpPulloutInternally(whiteQuotedRefList, new InternalPulloutCallback<WhiteQuotedRef, WhiteQuoted>() {
-            public WhiteQuoted getFr(WhiteQuotedRef et) { return et.getWhiteQuoted(); }
+            public WhiteQuoted getFr(WhiteQuotedRef et)
+            { return et.getWhiteQuoted(); }
             public boolean hasRf() { return true; }
             public void setRfLs(WhiteQuoted et, List<WhiteQuotedRef> ls)
             { et.setWhiteQuotedRefList(ls); }

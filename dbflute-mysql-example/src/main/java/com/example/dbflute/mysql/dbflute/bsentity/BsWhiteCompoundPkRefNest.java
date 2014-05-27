@@ -88,13 +88,13 @@ public abstract class BsWhiteCompoundPkRefNest implements Entity, Serializable, 
     /** COMPOUND_PK_REF_NEST_ID: {PK, NotNull, INT(10)} */
     protected Integer _compoundPkRefNestId;
 
-    /** FOO_MULTIPLE_ID: {IX, NotNull, INT(10), FK to white_compound_pk_ref} */
+    /** FOO_MULTIPLE_ID: {IX+, NotNull, INT(10), FK to white_compound_pk_ref} */
     protected Integer _fooMultipleId;
 
-    /** BAR_MULTIPLE_ID: {IX, NotNull, INT(10), FK to white_compound_pk_ref} */
+    /** BAR_MULTIPLE_ID: {IX+, NotNull, INT(10), FK to white_compound_pk_ref} */
     protected Integer _barMultipleId;
 
-    /** QUX_MULTIPLE_ID: {IX+, NotNull, INT(10), FK to white_compound_pk_ref} */
+    /** QUX_MULTIPLE_ID: {NotNull, INT(10), FK to white_compound_pk_ref} */
     protected Integer _quxMultipleId;
 
     /** NEST_NAME: {NotNull, VARCHAR(50)} */
@@ -103,6 +103,9 @@ public abstract class BsWhiteCompoundPkRefNest implements Entity, Serializable, 
     // -----------------------------------------------------
     //                                              Internal
     //                                              --------
+    /** The unique-driven properties for this entity. (NotNull) */
+    protected final EntityUniqueDrivenProperties __uniqueDrivenProperties = newUniqueDrivenProperties();
+
     /** The modified properties for this entity. (NotNull) */
     protected final EntityModifiedProperties __modifiedProperties = newModifiedProperties();
 
@@ -145,6 +148,17 @@ public abstract class BsWhiteCompoundPkRefNest implements Entity, Serializable, 
     public boolean hasPrimaryKeyValue() {
         if (getCompoundPkRefNestId() == null) { return false; }
         return true;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Set<String> uniqueDrivenProperties() {
+        return __uniqueDrivenProperties.getPropertyNames();
+    }
+
+    protected EntityUniqueDrivenProperties newUniqueDrivenProperties() {
+        return new EntityUniqueDrivenProperties();
     }
 
     // ===================================================================================
@@ -255,8 +269,8 @@ public abstract class BsWhiteCompoundPkRefNest implements Entity, Serializable, 
         if (!xSV(getCompoundPkRefNestId(), other.getCompoundPkRefNestId())) { return false; }
         return true;
     }
-    protected boolean xSV(Object value1, Object value2) {
-        return FunCustodial.isSameValue(value1, value2);
+    protected boolean xSV(Object v1, Object v2) {
+        return FunCustodial.isSameValue(v1, v2);
     }
 
     /**
@@ -264,13 +278,13 @@ public abstract class BsWhiteCompoundPkRefNest implements Entity, Serializable, 
      * @return The hash-code from primary-key or columns.
      */
     public int hashCode() {
-        int result = 17;
-        result = xCH(result, getTableDbName());
-        result = xCH(result, getCompoundPkRefNestId());
-        return result;
+        int hs = 17;
+        hs = xCH(hs, getTableDbName());
+        hs = xCH(hs, getCompoundPkRefNestId());
+        return hs;
     }
-    protected int xCH(int result, Object value) {
-        return FunCustodial.calculateHashcode(result, value);
+    protected int xCH(int hs, Object vl) {
+        return FunCustodial.calculateHashcode(hs, vl);
     }
 
     /**
@@ -294,15 +308,15 @@ public abstract class BsWhiteCompoundPkRefNest implements Entity, Serializable, 
     public String toStringWithRelation() {
         StringBuilder sb = new StringBuilder();
         sb.append(toString());
-        String l = "\n  ";
+        String li = "\n  ";
         if (_whiteCompoundPkRefByQuxMultipleId != null)
-        { sb.append(l).append(xbRDS(_whiteCompoundPkRefByQuxMultipleId, "whiteCompoundPkRefByQuxMultipleId")); }
+        { sb.append(li).append(xbRDS(_whiteCompoundPkRefByQuxMultipleId, "whiteCompoundPkRefByQuxMultipleId")); }
         if (_whiteCompoundPkRefByFooMultipleId != null)
-        { sb.append(l).append(xbRDS(_whiteCompoundPkRefByFooMultipleId, "whiteCompoundPkRefByFooMultipleId")); }
+        { sb.append(li).append(xbRDS(_whiteCompoundPkRefByFooMultipleId, "whiteCompoundPkRefByFooMultipleId")); }
         return sb.toString();
     }
-    protected String xbRDS(Entity e, String name) { // buildRelationDisplayString()
-        return e.buildDisplayString(name, true, true);
+    protected String xbRDS(Entity et, String name) { // buildRelationDisplayString()
+        return et.buildDisplayString(name, true, true);
     }
 
     /**
@@ -318,25 +332,25 @@ public abstract class BsWhiteCompoundPkRefNest implements Entity, Serializable, 
     }
     protected String buildColumnString() {
         StringBuilder sb = new StringBuilder();
-        String delimiter = ", ";
-        sb.append(delimiter).append(getCompoundPkRefNestId());
-        sb.append(delimiter).append(getFooMultipleId());
-        sb.append(delimiter).append(getBarMultipleId());
-        sb.append(delimiter).append(getQuxMultipleId());
-        sb.append(delimiter).append(getNestName());
-        if (sb.length() > delimiter.length()) {
-            sb.delete(0, delimiter.length());
+        String dm = ", ";
+        sb.append(dm).append(getCompoundPkRefNestId());
+        sb.append(dm).append(getFooMultipleId());
+        sb.append(dm).append(getBarMultipleId());
+        sb.append(dm).append(getQuxMultipleId());
+        sb.append(dm).append(getNestName());
+        if (sb.length() > dm.length()) {
+            sb.delete(0, dm.length());
         }
         sb.insert(0, "{").append("}");
         return sb.toString();
     }
     protected String buildRelationString() {
         StringBuilder sb = new StringBuilder();
-        String c = ",";
-        if (_whiteCompoundPkRefByQuxMultipleId != null) { sb.append(c).append("whiteCompoundPkRefByQuxMultipleId"); }
-        if (_whiteCompoundPkRefByFooMultipleId != null) { sb.append(c).append("whiteCompoundPkRefByFooMultipleId"); }
-        if (sb.length() > c.length()) {
-            sb.delete(0, c.length()).insert(0, "(").append(")");
+        String cm = ",";
+        if (_whiteCompoundPkRefByQuxMultipleId != null) { sb.append(cm).append("whiteCompoundPkRefByQuxMultipleId"); }
+        if (_whiteCompoundPkRefByFooMultipleId != null) { sb.append(cm).append("whiteCompoundPkRefByFooMultipleId"); }
+        if (sb.length() > cm.length()) {
+            sb.delete(0, cm.length()).insert(0, "(").append(")");
         }
         return sb.toString();
     }
@@ -374,7 +388,7 @@ public abstract class BsWhiteCompoundPkRefNest implements Entity, Serializable, 
     }
 
     /**
-     * [get] FOO_MULTIPLE_ID: {IX, NotNull, INT(10), FK to white_compound_pk_ref} <br />
+     * [get] FOO_MULTIPLE_ID: {IX+, NotNull, INT(10), FK to white_compound_pk_ref} <br />
      * @return The value of the column 'FOO_MULTIPLE_ID'. (basically NotNull if selected: for the constraint)
      */
     public Integer getFooMultipleId() {
@@ -382,7 +396,7 @@ public abstract class BsWhiteCompoundPkRefNest implements Entity, Serializable, 
     }
 
     /**
-     * [set] FOO_MULTIPLE_ID: {IX, NotNull, INT(10), FK to white_compound_pk_ref} <br />
+     * [set] FOO_MULTIPLE_ID: {IX+, NotNull, INT(10), FK to white_compound_pk_ref} <br />
      * @param fooMultipleId The value of the column 'FOO_MULTIPLE_ID'. (basically NotNull if update: for the constraint)
      */
     public void setFooMultipleId(Integer fooMultipleId) {
@@ -391,7 +405,7 @@ public abstract class BsWhiteCompoundPkRefNest implements Entity, Serializable, 
     }
 
     /**
-     * [get] BAR_MULTIPLE_ID: {IX, NotNull, INT(10), FK to white_compound_pk_ref} <br />
+     * [get] BAR_MULTIPLE_ID: {IX+, NotNull, INT(10), FK to white_compound_pk_ref} <br />
      * @return The value of the column 'BAR_MULTIPLE_ID'. (basically NotNull if selected: for the constraint)
      */
     public Integer getBarMultipleId() {
@@ -399,7 +413,7 @@ public abstract class BsWhiteCompoundPkRefNest implements Entity, Serializable, 
     }
 
     /**
-     * [set] BAR_MULTIPLE_ID: {IX, NotNull, INT(10), FK to white_compound_pk_ref} <br />
+     * [set] BAR_MULTIPLE_ID: {IX+, NotNull, INT(10), FK to white_compound_pk_ref} <br />
      * @param barMultipleId The value of the column 'BAR_MULTIPLE_ID'. (basically NotNull if update: for the constraint)
      */
     public void setBarMultipleId(Integer barMultipleId) {
@@ -408,7 +422,7 @@ public abstract class BsWhiteCompoundPkRefNest implements Entity, Serializable, 
     }
 
     /**
-     * [get] QUX_MULTIPLE_ID: {IX+, NotNull, INT(10), FK to white_compound_pk_ref} <br />
+     * [get] QUX_MULTIPLE_ID: {NotNull, INT(10), FK to white_compound_pk_ref} <br />
      * @return The value of the column 'QUX_MULTIPLE_ID'. (basically NotNull if selected: for the constraint)
      */
     public Integer getQuxMultipleId() {
@@ -416,7 +430,7 @@ public abstract class BsWhiteCompoundPkRefNest implements Entity, Serializable, 
     }
 
     /**
-     * [set] QUX_MULTIPLE_ID: {IX+, NotNull, INT(10), FK to white_compound_pk_ref} <br />
+     * [set] QUX_MULTIPLE_ID: {NotNull, INT(10), FK to white_compound_pk_ref} <br />
      * @param quxMultipleId The value of the column 'QUX_MULTIPLE_ID'. (basically NotNull if update: for the constraint)
      */
     public void setQuxMultipleId(Integer quxMultipleId) {

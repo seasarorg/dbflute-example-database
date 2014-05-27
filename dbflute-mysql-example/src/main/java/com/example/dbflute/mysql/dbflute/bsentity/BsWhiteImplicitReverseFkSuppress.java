@@ -87,10 +87,10 @@ public abstract class BsWhiteImplicitReverseFkSuppress implements Entity, Serial
     /** WHITE_IMPLICIT_REVERSE_FK_SUPPRESS_ID: {PK, ID, NotNull, INT(10)} */
     protected Integer _whiteImplicitReverseFkSuppressId;
 
-    /** WHITE_IMPLICIT_REVERSE_FK_ID: {UQ, NotNull, INT(10)} */
+    /** WHITE_IMPLICIT_REVERSE_FK_ID: {UQ+, NotNull, INT(10)} */
     protected Integer _whiteImplicitReverseFkId;
 
-    /** VALID_BEGIN_DATE: {UQ+, NotNull, DATE(10)} */
+    /** VALID_BEGIN_DATE: {+UQ, NotNull, DATE(10)} */
     protected java.util.Date _validBeginDate;
 
     /** VALID_END_DATE: {NotNull, DATE(10)} */
@@ -99,6 +99,9 @@ public abstract class BsWhiteImplicitReverseFkSuppress implements Entity, Serial
     // -----------------------------------------------------
     //                                              Internal
     //                                              --------
+    /** The unique-driven properties for this entity. (NotNull) */
+    protected final EntityUniqueDrivenProperties __uniqueDrivenProperties = newUniqueDrivenProperties();
+
     /** The modified properties for this entity. (NotNull) */
     protected final EntityModifiedProperties __modifiedProperties = newModifiedProperties();
 
@@ -141,6 +144,31 @@ public abstract class BsWhiteImplicitReverseFkSuppress implements Entity, Serial
     public boolean hasPrimaryKeyValue() {
         if (getWhiteImplicitReverseFkSuppressId() == null) { return false; }
         return true;
+    }
+
+    /**
+     * To be unique by the unique column. <br />
+     * You can update the entity by the key when entity update (NOT batch update).
+     * @param whiteImplicitReverseFkId : UQ+, NotNull, INT(10). (NotNull)
+     * @param validBeginDate : +UQ, NotNull, DATE(10). (NotNull)
+     */
+    public void uniqueBy(Integer whiteImplicitReverseFkId, java.util.Date validBeginDate) {
+        __uniqueDrivenProperties.clear();
+        __uniqueDrivenProperties.addPropertyName("whiteImplicitReverseFkId");
+        _whiteImplicitReverseFkId = whiteImplicitReverseFkId;
+        __uniqueDrivenProperties.addPropertyName("validBeginDate");
+        _validBeginDate = validBeginDate;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Set<String> uniqueDrivenProperties() {
+        return __uniqueDrivenProperties.getPropertyNames();
+    }
+
+    protected EntityUniqueDrivenProperties newUniqueDrivenProperties() {
+        return new EntityUniqueDrivenProperties();
     }
 
     // ===================================================================================
@@ -213,8 +241,8 @@ public abstract class BsWhiteImplicitReverseFkSuppress implements Entity, Serial
         if (!xSV(getWhiteImplicitReverseFkSuppressId(), other.getWhiteImplicitReverseFkSuppressId())) { return false; }
         return true;
     }
-    protected boolean xSV(Object value1, Object value2) {
-        return FunCustodial.isSameValue(value1, value2);
+    protected boolean xSV(Object v1, Object v2) {
+        return FunCustodial.isSameValue(v1, v2);
     }
 
     /**
@@ -222,13 +250,13 @@ public abstract class BsWhiteImplicitReverseFkSuppress implements Entity, Serial
      * @return The hash-code from primary-key or columns.
      */
     public int hashCode() {
-        int result = 17;
-        result = xCH(result, getTableDbName());
-        result = xCH(result, getWhiteImplicitReverseFkSuppressId());
-        return result;
+        int hs = 17;
+        hs = xCH(hs, getTableDbName());
+        hs = xCH(hs, getWhiteImplicitReverseFkSuppressId());
+        return hs;
     }
-    protected int xCH(int result, Object value) {
-        return FunCustodial.calculateHashcode(result, value);
+    protected int xCH(int hs, Object vl) {
+        return FunCustodial.calculateHashcode(hs, vl);
     }
 
     /**
@@ -268,13 +296,13 @@ public abstract class BsWhiteImplicitReverseFkSuppress implements Entity, Serial
     }
     protected String buildColumnString() {
         StringBuilder sb = new StringBuilder();
-        String delimiter = ", ";
-        sb.append(delimiter).append(getWhiteImplicitReverseFkSuppressId());
-        sb.append(delimiter).append(getWhiteImplicitReverseFkId());
-        sb.append(delimiter).append(xfUD(getValidBeginDate()));
-        sb.append(delimiter).append(xfUD(getValidEndDate()));
-        if (sb.length() > delimiter.length()) {
-            sb.delete(0, delimiter.length());
+        String dm = ", ";
+        sb.append(dm).append(getWhiteImplicitReverseFkSuppressId());
+        sb.append(dm).append(getWhiteImplicitReverseFkId());
+        sb.append(dm).append(xfUD(getValidBeginDate()));
+        sb.append(dm).append(xfUD(getValidEndDate()));
+        if (sb.length() > dm.length()) {
+            sb.delete(0, dm.length());
         }
         sb.insert(0, "{").append("}");
         return sb.toString();
@@ -322,7 +350,7 @@ public abstract class BsWhiteImplicitReverseFkSuppress implements Entity, Serial
     }
 
     /**
-     * [get] WHITE_IMPLICIT_REVERSE_FK_ID: {UQ, NotNull, INT(10)} <br />
+     * [get] WHITE_IMPLICIT_REVERSE_FK_ID: {UQ+, NotNull, INT(10)} <br />
      * @return The value of the column 'WHITE_IMPLICIT_REVERSE_FK_ID'. (basically NotNull if selected: for the constraint)
      */
     public Integer getWhiteImplicitReverseFkId() {
@@ -330,7 +358,7 @@ public abstract class BsWhiteImplicitReverseFkSuppress implements Entity, Serial
     }
 
     /**
-     * [set] WHITE_IMPLICIT_REVERSE_FK_ID: {UQ, NotNull, INT(10)} <br />
+     * [set] WHITE_IMPLICIT_REVERSE_FK_ID: {UQ+, NotNull, INT(10)} <br />
      * @param whiteImplicitReverseFkId The value of the column 'WHITE_IMPLICIT_REVERSE_FK_ID'. (basically NotNull if update: for the constraint)
      */
     public void setWhiteImplicitReverseFkId(Integer whiteImplicitReverseFkId) {
@@ -339,7 +367,7 @@ public abstract class BsWhiteImplicitReverseFkSuppress implements Entity, Serial
     }
 
     /**
-     * [get] VALID_BEGIN_DATE: {UQ+, NotNull, DATE(10)} <br />
+     * [get] VALID_BEGIN_DATE: {+UQ, NotNull, DATE(10)} <br />
      * @return The value of the column 'VALID_BEGIN_DATE'. (basically NotNull if selected: for the constraint)
      */
     public java.util.Date getValidBeginDate() {
@@ -347,7 +375,7 @@ public abstract class BsWhiteImplicitReverseFkSuppress implements Entity, Serial
     }
 
     /**
-     * [set] VALID_BEGIN_DATE: {UQ+, NotNull, DATE(10)} <br />
+     * [set] VALID_BEGIN_DATE: {+UQ, NotNull, DATE(10)} <br />
      * @param validBeginDate The value of the column 'VALID_BEGIN_DATE'. (basically NotNull if update: for the constraint)
      */
     public void setValidBeginDate(java.util.Date validBeginDate) {

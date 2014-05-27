@@ -33,6 +33,9 @@ public class WhiteCompoundPkRefDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgMultipleFirstId(), "multipleFirstId");
@@ -40,8 +43,6 @@ public class WhiteCompoundPkRefDbm extends AbstractDBMeta {
         setupEpg(_epgMap, new EpgRefFirstId(), "refFirstId");
         setupEpg(_epgMap, new EpgRefSecondId(), "refSecondId");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgMultipleFirstId implements PropertyGateway {
         public Object read(Entity et) { return ((WhiteCompoundPkRef)et).getMultipleFirstId(); }
         public void write(Entity et, Object vl) { ((WhiteCompoundPkRef)et).setMultipleFirstId(cti(vl)); }
@@ -58,6 +59,22 @@ public class WhiteCompoundPkRefDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((WhiteCompoundPkRef)et).getRefSecondId(); }
         public void write(Entity et, Object vl) { ((WhiteCompoundPkRef)et).setRefSecondId(cti(vl)); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
+
+    // -----------------------------------------------------
+    //                                      Foreign Property
+    //                                      ----------------
+    protected final Map<String, PropertyGateway> _efpgMap = newHashMap();
+    {
+        setupEfpg(_efpgMap, new EfpgWhiteCompoundPk(), "whiteCompoundPk");
+    }
+    public class EfpgWhiteCompoundPk implements PropertyGateway {
+        public Object read(Entity et) { return ((WhiteCompoundPkRef)et).getWhiteCompoundPk(); }
+        public void write(Entity et, Object vl) { ((WhiteCompoundPkRef)et).setWhiteCompoundPk((WhiteCompoundPk)vl); }
+    }
+    public PropertyGateway findForeignPropertyGateway(String prop)
+    { return doFindEfpg(_efpgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -73,14 +90,30 @@ public class WhiteCompoundPkRefDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnMultipleFirstId = cci("multiple_first_id", "multiple_first_id", null, null, true, "multipleFirstId", Integer.class, true, false, "int4", 10, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnMultipleSecondId = cci("multiple_second_id", "multiple_second_id", null, null, true, "multipleSecondId", Integer.class, true, false, "int4", 10, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnRefFirstId = cci("ref_first_id", "ref_first_id", null, null, true, "refFirstId", Integer.class, false, false, "int4", 10, 0, null, false, null, null, "whiteCompoundPk", null, null);
-    protected final ColumnInfo _columnRefSecondId = cci("ref_second_id", "ref_second_id", null, null, true, "refSecondId", Integer.class, false, false, "int4", 10, 0, null, false, null, null, "whiteCompoundPk", null, null);
+    protected final ColumnInfo _columnMultipleFirstId = cci("multiple_first_id", "multiple_first_id", null, null, Integer.class, "multipleFirstId", null, true, false, true, "int4", 10, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnMultipleSecondId = cci("multiple_second_id", "multiple_second_id", null, null, Integer.class, "multipleSecondId", null, true, false, true, "int4", 10, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnRefFirstId = cci("ref_first_id", "ref_first_id", null, null, Integer.class, "refFirstId", null, false, false, true, "int4", 10, 0, null, false, null, null, "whiteCompoundPk", null, null);
+    protected final ColumnInfo _columnRefSecondId = cci("ref_second_id", "ref_second_id", null, null, Integer.class, "refSecondId", null, false, false, true, "int4", 10, 0, null, false, null, null, "whiteCompoundPk", null, null);
 
+    /**
+     * multiple_first_id: {PK, NotNull, int4(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnMultipleFirstId() { return _columnMultipleFirstId; }
+    /**
+     * multiple_second_id: {PK, NotNull, int4(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnMultipleSecondId() { return _columnMultipleSecondId; }
+    /**
+     * ref_first_id: {NotNull, int4(10), FK to white_compound_pk}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnRefFirstId() { return _columnRefFirstId; }
+    /**
+     * ref_second_id: {NotNull, int4(10), FK to white_compound_pk}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnRefSecondId() { return _columnRefSecondId; }
 
     protected List<ColumnInfo> ccil() {
@@ -112,14 +145,20 @@ public class WhiteCompoundPkRefDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------
+    /**
+     * white_compound_pk by my ref_first_id, ref_second_id, named 'whiteCompoundPk'.
+     * @return The information object of foreign property. (NotNull)
+     */
     public ForeignInfo foreignWhiteCompoundPk() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMapSized(4);
         mp.put(columnRefFirstId(), WhiteCompoundPkDbm.getInstance().columnPkFirstId());
         mp.put(columnRefSecondId(), WhiteCompoundPkDbm.getInstance().columnPkSecondId());
-        return cfi("fk_white_compound_pk_ref", "whiteCompoundPk", this, WhiteCompoundPkDbm.getInstance(), mp, 0, false, false, false, false, null, null, false, "whiteCompoundPkRefList");
+        return cfi("fk_white_compound_pk_ref", "whiteCompoundPk", this, WhiteCompoundPkDbm.getInstance(), mp, 0, null, false, false, false, false, null, null, false, "whiteCompoundPkRefList");
     }
 
     // -----------------------------------------------------

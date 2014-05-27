@@ -33,14 +33,15 @@ public class ProductCategoryDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgProductCategoryCode(), "productCategoryCode");
         setupEpg(_epgMap, new EpgProductCategoryName(), "productCategoryName");
         setupEpg(_epgMap, new EpgParentCategoryCode(), "parentCategoryCode");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgProductCategoryCode implements PropertyGateway {
         public Object read(Entity et) { return ((ProductCategory)et).getProductCategoryCode(); }
         public void write(Entity et, Object vl) { ((ProductCategory)et).setProductCategoryCode((String)vl); }
@@ -53,6 +54,22 @@ public class ProductCategoryDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((ProductCategory)et).getParentCategoryCode(); }
         public void write(Entity et, Object vl) { ((ProductCategory)et).setParentCategoryCode((String)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
+
+    // -----------------------------------------------------
+    //                                      Foreign Property
+    //                                      ----------------
+    protected final Map<String, PropertyGateway> _efpgMap = newHashMap();
+    {
+        setupEfpg(_efpgMap, new EfpgProductCategorySelf(), "productCategorySelf");
+    }
+    public class EfpgProductCategorySelf implements PropertyGateway {
+        public Object read(Entity et) { return ((ProductCategory)et).getProductCategorySelf(); }
+        public void write(Entity et, Object vl) { ((ProductCategory)et).setProductCategorySelf((ProductCategory)vl); }
+    }
+    public PropertyGateway findForeignPropertyGateway(String prop)
+    { return doFindEfpg(_efpgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -72,12 +89,24 @@ public class ProductCategoryDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnProductCategoryCode = cci("product_category_code", "product_category_code", null, "商品カテゴリコード", true, "productCategoryCode", String.class, true, false, "bpchar", 3, 0, null, false, null, null, null, "productList,productCategorySelfList", null);
-    protected final ColumnInfo _columnProductCategoryName = cci("product_category_name", "product_category_name", null, "商品カテゴリ名称", true, "productCategoryName", String.class, false, false, "varchar", 50, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnParentCategoryCode = cci("parent_category_code", "parent_category_code", null, "親カテゴリコード", false, "parentCategoryCode", String.class, false, false, "bpchar", 3, 0, null, false, null, "最上位の場合はデータなし。", "productCategorySelf", null, null);
+    protected final ColumnInfo _columnProductCategoryCode = cci("product_category_code", "product_category_code", null, "商品カテゴリコード", String.class, "productCategoryCode", null, true, false, true, "bpchar", 3, 0, null, false, null, null, null, "productList,productCategorySelfList", null);
+    protected final ColumnInfo _columnProductCategoryName = cci("product_category_name", "product_category_name", null, "商品カテゴリ名称", String.class, "productCategoryName", null, false, false, true, "varchar", 50, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnParentCategoryCode = cci("parent_category_code", "parent_category_code", null, "親カテゴリコード", String.class, "parentCategoryCode", null, false, false, false, "bpchar", 3, 0, null, false, null, "最上位の場合はデータなし。", "productCategorySelf", null, null);
 
+    /**
+     * (商品カテゴリコード)product_category_code: {PK, NotNull, bpchar(3)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnProductCategoryCode() { return _columnProductCategoryCode; }
+    /**
+     * (商品カテゴリ名称)product_category_name: {NotNull, varchar(50)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnProductCategoryName() { return _columnProductCategoryName; }
+    /**
+     * (親カテゴリコード)parent_category_code: {bpchar(3), FK to product_category}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnParentCategoryCode() { return _columnParentCategoryCode; }
 
     protected List<ColumnInfo> ccil() {
@@ -103,21 +132,35 @@ public class ProductCategoryDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------
+    /**
+     * (商品カテゴリ)product_category by my parent_category_code, named 'productCategorySelf'.
+     * @return The information object of foreign property. (NotNull)
+     */
     public ForeignInfo foreignProductCategorySelf() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnParentCategoryCode(), ProductCategoryDbm.getInstance().columnProductCategoryCode());
-        return cfi("fk_product_category_parent", "productCategorySelf", this, ProductCategoryDbm.getInstance(), mp, 0, false, false, false, false, null, null, false, "productCategorySelfList");
+        return cfi("fk_product_category_parent", "productCategorySelf", this, ProductCategoryDbm.getInstance(), mp, 0, null, false, false, false, false, null, null, false, "productCategorySelfList");
     }
 
     // -----------------------------------------------------
     //                                     Referrer Property
     //                                     -----------------
+    /**
+     * (商品)product by product_category_code, named 'productList'.
+     * @return The information object of referrer property. (NotNull)
+     */
     public ReferrerInfo referrerProductList() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnProductCategoryCode(), ProductDbm.getInstance().columnProductCategoryCode());
         return cri("fk_product_product_category", "productList", this, ProductDbm.getInstance(), mp, false, "productCategory");
     }
+    /**
+     * (商品カテゴリ)product_category by parent_category_code, named 'productCategorySelfList'.
+     * @return The information object of referrer property. (NotNull)
+     */
     public ReferrerInfo referrerProductCategorySelfList() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnProductCategoryCode(), ProductCategoryDbm.getInstance().columnParentCategoryCode());
         return cri("fk_product_category_parent", "productCategorySelfList", this, ProductCategoryDbm.getInstance(), mp, false, "productCategorySelf");

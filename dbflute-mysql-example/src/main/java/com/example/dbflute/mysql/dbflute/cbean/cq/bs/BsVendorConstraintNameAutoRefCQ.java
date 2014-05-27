@@ -301,7 +301,7 @@ public class BsVendorConstraintNameAutoRefCQ extends AbstractBsVendorConstraintN
     // ===================================================================================
     //                                                                         Union Query
     //                                                                         ===========
-    protected void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
+    public void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
         VendorConstraintNameAutoRefCQ bq = (VendorConstraintNameAutoRefCQ)bqs;
         VendorConstraintNameAutoRefCQ uq = (VendorConstraintNameAutoRefCQ)uqs;
         if (bq.hasConditionQueryVendorConstraintNameAutoFoo()) {

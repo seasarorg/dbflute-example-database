@@ -48,14 +48,15 @@ public class WhiteSplitMultipleFkRefDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgFirstId(), "firstId");
         setupEpg(_epgMap, new EpgSecondCode(), "secondCode");
         setupEpg(_epgMap, new EpgRefName(), "refName");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgFirstId implements PropertyGateway {
         public Object read(Entity et) { return ((WhiteSplitMultipleFkRef)et).getFirstId(); }
         public void write(Entity et, Object vl) { ((WhiteSplitMultipleFkRef)et).setFirstId(cti(vl)); }
@@ -68,6 +69,8 @@ public class WhiteSplitMultipleFkRefDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((WhiteSplitMultipleFkRef)et).getRefName(); }
         public void write(Entity et, Object vl) { ((WhiteSplitMultipleFkRef)et).setRefName((String)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -83,9 +86,9 @@ public class WhiteSplitMultipleFkRefDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnFirstId = cci("FIRST_ID", "FIRST_ID", null, null, true, "firstId", Integer.class, true, false, "INT", 10, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnSecondCode = cci("SECOND_CODE", "SECOND_CODE", null, null, true, "secondCode", String.class, true, false, "CHAR", 3, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnRefName = cci("REF_NAME", "REF_NAME", null, null, true, "refName", String.class, false, false, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnFirstId = cci("FIRST_ID", "FIRST_ID", null, null, Integer.class, "firstId", null, true, false, true, "INT", 10, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnSecondCode = cci("SECOND_CODE", "SECOND_CODE", null, null, String.class, "secondCode", null, true, false, true, "CHAR", 3, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnRefName = cci("REF_NAME", "REF_NAME", null, null, String.class, "refName", null, false, false, true, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
 
     /**
      * FIRST_ID: {PK, NotNull, INT(10)}
@@ -131,6 +134,8 @@ public class WhiteSplitMultipleFkRefDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

@@ -33,14 +33,15 @@ public class NextschemaWhiteSameNameDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgSameNameId(), "sameNameId");
         setupEpg(_epgMap, new EpgSameNameName(), "sameNameName");
         setupEpg(_epgMap, new EpgSameNameLong(), "sameNameLong");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgSameNameId implements PropertyGateway {
         public Object read(Entity et) { return ((NextschemaWhiteSameName)et).getSameNameId(); }
         public void write(Entity et, Object vl) { ((NextschemaWhiteSameName)et).setSameNameId(cti(vl)); }
@@ -53,6 +54,8 @@ public class NextschemaWhiteSameNameDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((NextschemaWhiteSameName)et).getSameNameLong(); }
         public void write(Entity et, Object vl) { ((NextschemaWhiteSameName)et).setSameNameLong(ctl(vl)); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -68,12 +71,24 @@ public class NextschemaWhiteSameNameDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnSameNameId = cci("same_name_id", "same_name_id", null, null, true, "sameNameId", Integer.class, true, false, "int4", 10, 0, null, false, null, null, null, "whiteSameNameRefList", null);
-    protected final ColumnInfo _columnSameNameName = cci("same_name_name", "same_name_name", null, null, false, "sameNameName", String.class, false, false, "varchar", 100, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnSameNameLong = cci("same_name_long", "same_name_long", null, null, false, "sameNameLong", Long.class, false, false, "int8", 19, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnSameNameId = cci("same_name_id", "same_name_id", null, null, Integer.class, "sameNameId", null, true, false, true, "int4", 10, 0, null, false, null, null, null, "whiteSameNameRefList", null);
+    protected final ColumnInfo _columnSameNameName = cci("same_name_name", "same_name_name", null, null, String.class, "sameNameName", null, false, false, false, "varchar", 100, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnSameNameLong = cci("same_name_long", "same_name_long", null, null, Long.class, "sameNameLong", null, false, false, false, "int8", 19, 0, null, false, null, null, null, null, null);
 
+    /**
+     * same_name_id: {PK, NotNull, int4(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnSameNameId() { return _columnSameNameId; }
+    /**
+     * same_name_name: {varchar(100)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnSameNameName() { return _columnSameNameName; }
+    /**
+     * same_name_long: {int8(19)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnSameNameLong() { return _columnSameNameLong; }
 
     protected List<ColumnInfo> ccil() {
@@ -99,6 +114,8 @@ public class NextschemaWhiteSameNameDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------
@@ -106,6 +123,10 @@ public class NextschemaWhiteSameNameDbm extends AbstractDBMeta {
     // -----------------------------------------------------
     //                                     Referrer Property
     //                                     -----------------
+    /**
+     * nextschema.white_same_name_ref by same_name_id, named 'whiteSameNameRefList'.
+     * @return The information object of referrer property. (NotNull)
+     */
     public ReferrerInfo referrerWhiteSameNameRefList() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnSameNameId(), NextschemaWhiteSameNameRefDbm.getInstance().columnSameNameId());
         return cri("fk_white_same_name_ref", "whiteSameNameRefList", this, NextschemaWhiteSameNameRefDbm.getInstance(), mp, false, "whiteSameName");

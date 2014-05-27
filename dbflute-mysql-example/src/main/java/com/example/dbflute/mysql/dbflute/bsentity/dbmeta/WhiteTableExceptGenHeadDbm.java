@@ -48,14 +48,15 @@ public class WhiteTableExceptGenHeadDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgGenHeadId(), "genHeadId");
         setupEpg(_epgMap, new EpgGenHeadName(), "genHeadName");
         setupEpg(_epgMap, new EpgNometaId(), "nometaId");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgGenHeadId implements PropertyGateway {
         public Object read(Entity et) { return ((WhiteTableExceptGenHead)et).getGenHeadId(); }
         public void write(Entity et, Object vl) { ((WhiteTableExceptGenHead)et).setGenHeadId(ctl(vl)); }
@@ -68,6 +69,8 @@ public class WhiteTableExceptGenHeadDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((WhiteTableExceptGenHead)et).getNometaId(); }
         public void write(Entity et, Object vl) { ((WhiteTableExceptGenHead)et).setNometaId(ctl(vl)); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -83,9 +86,9 @@ public class WhiteTableExceptGenHeadDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnGenHeadId = cci("GEN_HEAD_ID", "GEN_HEAD_ID", null, null, true, "genHeadId", Long.class, true, false, "DECIMAL", 16, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnGenHeadName = cci("GEN_HEAD_NAME", "GEN_HEAD_NAME", null, null, true, "genHeadName", String.class, false, false, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnNometaId = cci("NOMETA_ID", "NOMETA_ID", null, null, false, "nometaId", Long.class, false, false, "DECIMAL", 16, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnGenHeadId = cci("GEN_HEAD_ID", "GEN_HEAD_ID", null, null, Long.class, "genHeadId", null, true, false, true, "DECIMAL", 16, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnGenHeadName = cci("GEN_HEAD_NAME", "GEN_HEAD_NAME", null, null, String.class, "genHeadName", null, false, false, true, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnNometaId = cci("NOMETA_ID", "NOMETA_ID", null, null, Long.class, "nometaId", null, false, false, false, "DECIMAL", 16, 0, null, false, null, null, null, null, null);
 
     /**
      * GEN_HEAD_ID: {PK, NotNull, DECIMAL(16)}
@@ -126,6 +129,8 @@ public class WhiteTableExceptGenHeadDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

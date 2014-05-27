@@ -48,13 +48,14 @@ public class WhiteColumnExceptGenOnlyDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgGenOnlyId(), "genOnlyId");
         setupEpg(_epgMap, new EpgGenOnlyName(), "genOnlyName");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgGenOnlyId implements PropertyGateway {
         public Object read(Entity et) { return ((WhiteColumnExceptGenOnly)et).getGenOnlyId(); }
         public void write(Entity et, Object vl) { ((WhiteColumnExceptGenOnly)et).setGenOnlyId(ctl(vl)); }
@@ -63,6 +64,8 @@ public class WhiteColumnExceptGenOnlyDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((WhiteColumnExceptGenOnly)et).getGenOnlyName(); }
         public void write(Entity et, Object vl) { ((WhiteColumnExceptGenOnly)et).setGenOnlyName((String)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -78,8 +81,8 @@ public class WhiteColumnExceptGenOnlyDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnGenOnlyId = cci("GEN_ONLY_ID", "GEN_ONLY_ID", null, null, true, "genOnlyId", Long.class, true, false, "DECIMAL", 16, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnGenOnlyName = cci("GEN_ONLY_NAME", "GEN_ONLY_NAME", null, null, true, "genOnlyName", String.class, false, false, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnGenOnlyId = cci("GEN_ONLY_ID", "GEN_ONLY_ID", null, null, Long.class, "genOnlyId", null, true, false, true, "DECIMAL", 16, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnGenOnlyName = cci("GEN_ONLY_NAME", "GEN_ONLY_NAME", null, null, String.class, "genOnlyName", null, false, false, true, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
 
     /**
      * GEN_ONLY_ID: {PK, NotNull, DECIMAL(16)}
@@ -114,6 +117,8 @@ public class WhiteColumnExceptGenOnlyDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // canonot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

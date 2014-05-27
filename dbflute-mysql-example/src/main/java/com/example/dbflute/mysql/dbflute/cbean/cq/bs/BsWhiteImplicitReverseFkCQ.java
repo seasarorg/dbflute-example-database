@@ -224,7 +224,7 @@ public class BsWhiteImplicitReverseFkCQ extends AbstractBsWhiteImplicitReverseFk
     // ===================================================================================
     //                                                                         Union Query
     //                                                                         ===========
-    protected void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
+    public void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
         WhiteImplicitReverseFkCQ bq = (WhiteImplicitReverseFkCQ)bqs;
         WhiteImplicitReverseFkCQ uq = (WhiteImplicitReverseFkCQ)uqs;
         if (bq.hasConditionQueryWhiteImplicitReverseFkRefWithImplicitReverseFK()) {
