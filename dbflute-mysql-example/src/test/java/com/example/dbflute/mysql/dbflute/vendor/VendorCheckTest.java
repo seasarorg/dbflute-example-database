@@ -1,5 +1,6 @@
 package com.example.dbflute.mysql.dbflute.vendor;
 
+import java.lang.reflect.Method;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,8 +15,9 @@ import org.seasar.dbflute.cbean.EntityRowHandler;
 import org.seasar.dbflute.cbean.PagingResultBean;
 import org.seasar.dbflute.cbean.sqlclause.SqlClauseMySql;
 import org.seasar.dbflute.outsidesql.OutsideSqlContext;
+import org.seasar.dbflute.util.DfReflectionUtil;
 
-import com.example.dbflute.mysql.dbflute.allcommon.CDef;
+import com.example.dbflute.mysql.dbflute.bsentity.dbmeta.MemberStatusDbm;
 import com.example.dbflute.mysql.dbflute.cbean.MemberCB;
 import com.example.dbflute.mysql.dbflute.cbean.MemberStatusCB;
 import com.example.dbflute.mysql.dbflute.cbean.PurchaseCB;
@@ -187,6 +189,7 @@ public class VendorCheckTest extends UnitContainerTestCase {
         MemberCB cb = new MemberCB();
 
         // ## Act ##
+        final Method writeMethod = MemberStatusDbm.getInstance().columnMemberStatusCode().getWriteMethod();
         memberBhv.selectCursor(cb, new EntityRowHandler<Member>() {
             int count = 0;
 
@@ -199,21 +202,21 @@ public class VendorCheckTest extends UnitContainerTestCase {
                 }
                 assertTrue(ConditionBeanContext.isExistConditionBeanOnThread());
                 String memberName = entity.getMemberName();
-                MemberStatus memberStatus = new MemberStatus();
-                String memberStatusCode;
+                MemberStatus status = new MemberStatus();
+                String statusCode;
                 if (count >= 100) {
-                    memberStatusCode = String.valueOf(count);
+                    statusCode = String.valueOf(count);
                 } else if (count >= 10) {
-                    memberStatusCode = "0" + count;
+                    statusCode = "0" + count;
                 } else {
-                    memberStatusCode = "00" + count;
+                    statusCode = "00" + count;
                 }
-                memberStatus.setMemberStatusCodeAsMemberStatus(CDef.MemberStatus.codeOf(memberStatusCode));
-                memberStatus.setMemberStatusName(memberName + count);
-                memberStatus.setDescription("foo");
-                memberStatus.setDisplayOrder(99999 + count);
-                memberStatusBhv.insert(memberStatus);
-                codeList.add(memberStatus.getMemberStatusCode());
+                DfReflectionUtil.invokeForcedly(writeMethod, status, new Object[] { statusCode });
+                status.setMemberStatusName(memberName + count);
+                status.setDescription("foo");
+                status.setDisplayOrder(99999 + count);
+                memberStatusBhv.insert(status);
+                codeList.add(status.getMemberStatusCode());
                 assertTrue(ConditionBeanContext.isExistConditionBeanOnThread());
                 ++count;
             }

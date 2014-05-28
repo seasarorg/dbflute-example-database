@@ -1,6 +1,7 @@
 package com.example.dbflute.mysql.dbflute.whitebox;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -16,7 +17,7 @@ import org.seasar.dbflute.jdbc.SqlResultInfo;
 import org.seasar.dbflute.util.DfReflectionUtil;
 import org.seasar.dbflute.util.Srl;
 
-import com.example.dbflute.mysql.dbflute.allcommon.CDef;
+import com.example.dbflute.mysql.dbflute.bsentity.dbmeta.MemberStatusDbm;
 import com.example.dbflute.mysql.dbflute.cbean.MemberCB;
 import com.example.dbflute.mysql.dbflute.exbhv.MemberBhv;
 import com.example.dbflute.mysql.dbflute.exbhv.MemberStatusBhv;
@@ -249,12 +250,13 @@ public class WxSqlLoggingDetailTest extends UnitContainerTestCase {
     public void test_batchInsert_sqlResultHandlerOnly_lazyBuild() {
         // ## Arrange ##
         List<MemberStatus> statusList = new ArrayList<MemberStatus>();
+        Method writeMethod = MemberStatusDbm.getInstance().columnMemberStatusCode().getWriteMethod();
         for (int i = 0; i < 255; i++) {
             MemberStatus status = new MemberStatus();
             String indexStr = String.valueOf(i);
-            String code = (indexStr.length() == 1 ? "00" + indexStr : (indexStr.length() == 2 ? "0" + indexStr
-                    : indexStr));
-            status.setMemberStatusCodeAsMemberStatus(CDef.MemberStatus.codeOf(code));
+            int len = indexStr.length();
+            String code = (len == 1 ? "00" + indexStr : (len == 2 ? "0" + indexStr : indexStr));
+            DfReflectionUtil.invokeForcedly(writeMethod, status, new Object[] { code });
             status.setMemberStatusName(code + " Name");
             status.setDisplayOrder(i + 1000);
             status.setDescription(code + " Desc");
