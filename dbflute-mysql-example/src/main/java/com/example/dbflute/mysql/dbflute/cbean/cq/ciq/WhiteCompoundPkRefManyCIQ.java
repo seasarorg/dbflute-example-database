@@ -92,6 +92,8 @@ public class WhiteCompoundPkRefManyCIQ extends AbstractBsWhiteCompoundPkRefManyC
     protected ConditionValue getCValueRefManyName() { return _myCQ.getRefManyName(); }
     protected ConditionValue getCValueRefManyDatetime() { return _myCQ.getRefManyDatetime(); }
     protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
+    public String keepScalarCondition(WhiteCompoundPkRefManyCQ sq)
+    { throwIICBOE("ScalarCondition"); return null; }
 
     protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()
         throw new IllegalConditionBeanOperationException(name + " at InlineView is unsupported.");

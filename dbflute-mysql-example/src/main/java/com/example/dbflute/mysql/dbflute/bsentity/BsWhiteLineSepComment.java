@@ -139,7 +139,7 @@ public abstract class BsWhiteLineSepComment implements Entity, Serializable, Clo
     /**
      * {@inheritDoc}
      */
-    public Set<String> uniqueDrivenProperties() {
+    public Set<String> myuniqueDrivenProperties() {
         return __uniqueDrivenProperties.getPropertyNames();
     }
 
@@ -402,7 +402,7 @@ public abstract class BsWhiteLineSepComment implements Entity, Serializable, Clo
      * [set] LINE_SEP_COMMENT_CODE: {PK, NotNull, CHAR(3), classification=LineSepCommentCls} <br />
      * @param lineSepCommentCode The value of the column 'LINE_SEP_COMMENT_CODE'. (basically NotNull if update: for the constraint)
      */
-    public void setLineSepCommentCode(String lineSepCommentCode) {
+    protected void setLineSepCommentCode(String lineSepCommentCode) {
         __modifiedProperties.addPropertyName("lineSepCommentCode");
         this._lineSepCommentCode = lineSepCommentCode;
     }

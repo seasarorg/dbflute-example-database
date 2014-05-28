@@ -33,14 +33,15 @@ public class VendorSymmetricDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgVendorSymmetricId(), "vendorSymmetricId");
         setupEpg(_epgMap, new EpgPlainText(), "plainText");
         setupEpg(_epgMap, new EpgEncryptedData(), "encryptedData");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgVendorSymmetricId implements PropertyGateway {
         public Object read(Entity et) { return ((VendorSymmetric)et).getVendorSymmetricId(); }
         public void write(Entity et, Object vl) { ((VendorSymmetric)et).setVendorSymmetricId(ctl(vl)); }
@@ -53,6 +54,8 @@ public class VendorSymmetricDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((VendorSymmetric)et).getEncryptedData(); }
         public void write(Entity et, Object vl) { ((VendorSymmetric)et).setEncryptedData((String)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -68,12 +71,24 @@ public class VendorSymmetricDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnVendorSymmetricId = cci("VENDOR_SYMMETRIC_ID", "VENDOR_SYMMETRIC_ID", null, null, true, "vendorSymmetricId", Long.class, true, false, "numeric", 16, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnPlainText = cci("PLAIN_TEXT", "PLAIN_TEXT", null, null, false, "plainText", String.class, false, false, "nvarchar", 100, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnEncryptedData = cci("ENCRYPTED_DATA", "ENCRYPTED_DATA", null, null, false, "encryptedData", String.class, false, false, "image", 2147483647, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnVendorSymmetricId = cci("VENDOR_SYMMETRIC_ID", "VENDOR_SYMMETRIC_ID", null, null, Long.class, "vendorSymmetricId", null, true, false, true, "numeric", 16, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnPlainText = cci("PLAIN_TEXT", "PLAIN_TEXT", null, null, String.class, "plainText", null, false, false, false, "nvarchar", 100, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnEncryptedData = cci("ENCRYPTED_DATA", "ENCRYPTED_DATA", null, null, String.class, "encryptedData", null, false, false, false, "image", 2147483647, 0, null, false, null, null, null, null, null);
 
+    /**
+     * VENDOR_SYMMETRIC_ID: {PK, NotNull, numeric(16)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnVendorSymmetricId() { return _columnVendorSymmetricId; }
+    /**
+     * PLAIN_TEXT: {nvarchar(100)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnPlainText() { return _columnPlainText; }
+    /**
+     * ENCRYPTED_DATA: {image(2147483647)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnEncryptedData() { return _columnEncryptedData; }
 
     protected List<ColumnInfo> ccil() {
@@ -99,6 +114,8 @@ public class VendorSymmetricDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // cannot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

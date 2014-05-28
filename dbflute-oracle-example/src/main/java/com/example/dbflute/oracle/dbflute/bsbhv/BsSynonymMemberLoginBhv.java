@@ -169,7 +169,7 @@ public abstract class BsSynonymMemberLoginBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of SynonymMemberLogin. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -190,39 +190,65 @@ public abstract class BsSynonymMemberLoginBhv extends AbstractBehaviorWritable {
 
     /**
      * Select the entity by the primary-key value.
-     * @param memberLoginId The one of primary key. (NotNull)
+     * @param memberLoginId : PK, NotNull, NUMBER(16). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public SynonymMemberLogin selectByPKValue(Long memberLoginId) {
-        return doSelectByPKValue(memberLoginId, SynonymMemberLogin.class);
+        return doSelectByPK(memberLoginId, SynonymMemberLogin.class);
     }
 
-    protected <ENTITY extends SynonymMemberLogin> ENTITY doSelectByPKValue(Long memberLoginId, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(memberLoginId), entityType);
+    protected <ENTITY extends SynonymMemberLogin> ENTITY doSelectByPK(Long memberLoginId, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(memberLoginId), entityType);
+    }
+
+    protected <ENTITY extends SynonymMemberLogin> OptionalEntity<ENTITY> doSelectOptionalByPK(Long memberLoginId, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(memberLoginId, entityType), memberLoginId);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param memberLoginId The one of primary key. (NotNull)
+     * @param memberLoginId : PK, NotNull, NUMBER(16). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public SynonymMemberLogin selectByPKValueWithDeletedCheck(Long memberLoginId) {
-        return doSelectByPKValueWithDeletedCheck(memberLoginId, SynonymMemberLogin.class);
+        return doSelectByPKWithDeletedCheck(memberLoginId, SynonymMemberLogin.class);
     }
 
-    protected <ENTITY extends SynonymMemberLogin> ENTITY doSelectByPKValueWithDeletedCheck(Long memberLoginId, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(memberLoginId), entityType);
+    protected <ENTITY extends SynonymMemberLogin> ENTITY doSelectByPKWithDeletedCheck(Long memberLoginId, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(memberLoginId), entityType);
     }
 
-    private SynonymMemberLoginCB buildPKCB(Long memberLoginId) {
+    protected SynonymMemberLoginCB xprepareCBAsPK(Long memberLoginId) {
         assertObjectNotNull("memberLoginId", memberLoginId);
-        SynonymMemberLoginCB cb = newMyConditionBean();
-        cb.query().setMemberLoginId_Equal(memberLoginId);
+        SynonymMemberLoginCB cb = newMyConditionBean(); cb.acceptPrimaryKey(memberLoginId);
+        return cb;
+    }
+
+    /**
+     * Select the entity by the unique-key value.
+     * @param memberId : UQ+, NotNull, NUMBER(16), FK to MEMBER_VENDOR_SYNONYM. (NotNull)
+     * @param loginDatetime : +UQ, IX, NotNull, DATE(7). (NotNull)
+     * @return The optional entity selected by the unique key. (NotNull: if no data, empty entity)
+     * @exception EntityAlreadyDeletedException When get(), required() of return value is called and the value is null, which means entity has already been deleted (not found).
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     */
+    public OptionalEntity<SynonymMemberLogin> selectByUniqueOf(Long memberId, java.util.Date loginDatetime) {
+        return doSelectByUniqueOf(memberId, loginDatetime, SynonymMemberLogin.class);
+    }
+
+    protected <ENTITY extends SynonymMemberLogin> OptionalEntity<ENTITY> doSelectByUniqueOf(Long memberId, java.util.Date loginDatetime, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectEntity(xprepareCBAsUniqueOf(memberId, loginDatetime), entityType), memberId, loginDatetime);
+    }
+
+    protected SynonymMemberLoginCB xprepareCBAsUniqueOf(Long memberId, java.util.Date loginDatetime) {
+        assertObjectNotNull("memberId", memberId);assertObjectNotNull("loginDatetime", loginDatetime);
+        SynonymMemberLoginCB cb = newMyConditionBean(); cb.acceptUniqueOf(memberId, loginDatetime);
         return cb;
     }
 
@@ -387,7 +413,8 @@ public abstract class BsSynonymMemberLoginBhv extends AbstractBehaviorWritable {
      */
     public List<MemberStatus> pulloutMemberStatus(List<SynonymMemberLogin> synonymMemberLoginList) {
         return helpPulloutInternally(synonymMemberLoginList, new InternalPulloutCallback<SynonymMemberLogin, MemberStatus>() {
-            public MemberStatus getFr(SynonymMemberLogin et) { return et.getMemberStatus(); }
+            public MemberStatus getFr(SynonymMemberLogin et)
+            { return et.getMemberStatus(); }
             public boolean hasRf() { return true; }
             public void setRfLs(MemberStatus et, List<SynonymMemberLogin> ls)
             { et.setSynonymMemberLoginList(ls); }
@@ -400,7 +427,8 @@ public abstract class BsSynonymMemberLoginBhv extends AbstractBehaviorWritable {
      */
     public List<MemberVendorSynonym> pulloutMemberVendorSynonym(List<SynonymMemberLogin> synonymMemberLoginList) {
         return helpPulloutInternally(synonymMemberLoginList, new InternalPulloutCallback<SynonymMemberLogin, MemberVendorSynonym>() {
-            public MemberVendorSynonym getFr(SynonymMemberLogin et) { return et.getMemberVendorSynonym(); }
+            public MemberVendorSynonym getFr(SynonymMemberLogin et)
+            { return et.getMemberVendorSynonym(); }
             public boolean hasRf() { return true; }
             public void setRfLs(MemberVendorSynonym et, List<SynonymMemberLogin> ls)
             { et.setSynonymMemberLoginList(ls); }
@@ -413,7 +441,8 @@ public abstract class BsSynonymMemberLoginBhv extends AbstractBehaviorWritable {
      */
     public List<SynonymMember> pulloutSynonymMember(List<SynonymMemberLogin> synonymMemberLoginList) {
         return helpPulloutInternally(synonymMemberLoginList, new InternalPulloutCallback<SynonymMemberLogin, SynonymMember>() {
-            public SynonymMember getFr(SynonymMemberLogin et) { return et.getSynonymMember(); }
+            public SynonymMember getFr(SynonymMemberLogin et)
+            { return et.getSynonymMember(); }
             public boolean hasRf() { return true; }
             public void setRfLs(SynonymMember et, List<SynonymMemberLogin> ls)
             { et.setSynonymMemberLoginList(ls); }
@@ -426,7 +455,8 @@ public abstract class BsSynonymMemberLoginBhv extends AbstractBehaviorWritable {
      */
     public List<VendorSynonymMember> pulloutVendorSynonymMember(List<SynonymMemberLogin> synonymMemberLoginList) {
         return helpPulloutInternally(synonymMemberLoginList, new InternalPulloutCallback<SynonymMemberLogin, VendorSynonymMember>() {
-            public VendorSynonymMember getFr(SynonymMemberLogin et) { return et.getVendorSynonymMember(); }
+            public VendorSynonymMember getFr(SynonymMemberLogin et)
+            { return et.getVendorSynonymMember(); }
             public boolean hasRf() { return true; }
             public void setRfLs(VendorSynonymMember et, List<SynonymMemberLogin> ls)
             { et.setSynonymMemberLoginList(ls); }

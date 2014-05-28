@@ -24,6 +24,7 @@ import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.exception.*;
 import org.seasar.dbflute.optional.*;
 import org.seasar.dbflute.outsidesql.executor.*;
+import com.example.dbflute.mysql.dbflute.allcommon.CDef;
 import com.example.dbflute.mysql.dbflute.exbhv.*;
 import com.example.dbflute.mysql.dbflute.exentity.*;
 import com.example.dbflute.mysql.dbflute.bsentity.dbmeta.*;
@@ -210,15 +211,15 @@ public abstract class BsServiceRankBhv extends AbstractBehaviorWritable {
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
-    public ServiceRank selectByPKValue(String serviceRankCode) {
+    public ServiceRank selectByPKValue(CDef.ServiceRank serviceRankCode) {
         return doSelectByPK(serviceRankCode, ServiceRank.class);
     }
 
-    protected <ENTITY extends ServiceRank> ENTITY doSelectByPK(String serviceRankCode, Class<ENTITY> entityType) {
+    protected <ENTITY extends ServiceRank> ENTITY doSelectByPK(CDef.ServiceRank serviceRankCode, Class<ENTITY> entityType) {
         return doSelectEntity(xprepareCBAsPK(serviceRankCode), entityType);
     }
 
-    protected <ENTITY extends ServiceRank> OptionalEntity<ENTITY> doSelectOptionalByPK(String serviceRankCode, Class<ENTITY> entityType) {
+    protected <ENTITY extends ServiceRank> OptionalEntity<ENTITY> doSelectOptionalByPK(CDef.ServiceRank serviceRankCode, Class<ENTITY> entityType) {
         return createOptionalEntity(doSelectByPK(serviceRankCode, entityType), serviceRankCode);
     }
 
@@ -230,15 +231,15 @@ public abstract class BsServiceRankBhv extends AbstractBehaviorWritable {
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
-    public ServiceRank selectByPKValueWithDeletedCheck(String serviceRankCode) {
+    public ServiceRank selectByPKValueWithDeletedCheck(CDef.ServiceRank serviceRankCode) {
         return doSelectByPKWithDeletedCheck(serviceRankCode, ServiceRank.class);
     }
 
-    protected <ENTITY extends ServiceRank> ENTITY doSelectByPKWithDeletedCheck(String serviceRankCode, Class<ENTITY> entityType) {
+    protected <ENTITY extends ServiceRank> ENTITY doSelectByPKWithDeletedCheck(CDef.ServiceRank serviceRankCode, Class<ENTITY> entityType) {
         return doSelectEntityWithDeletedCheck(xprepareCBAsPK(serviceRankCode), entityType);
     }
 
-    protected ServiceRankCB xprepareCBAsPK(String serviceRankCode) {
+    protected ServiceRankCB xprepareCBAsPK(CDef.ServiceRank serviceRankCode) {
         assertObjectNotNull("serviceRankCode", serviceRankCode);
         ServiceRankCB cb = newMyConditionBean(); cb.acceptPrimaryKey(serviceRankCode);
         return cb;

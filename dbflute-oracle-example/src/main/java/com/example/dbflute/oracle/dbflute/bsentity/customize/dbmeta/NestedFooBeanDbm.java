@@ -33,6 +33,9 @@ public class NestedFooBeanDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgFooId(), "fooId");
@@ -43,8 +46,6 @@ public class NestedFooBeanDbm extends AbstractDBMeta {
         setupEpg(_epgMap, new EpgQuuxList(), "quuxList");
         setupEpg(_epgMap, new EpgCorgeList(), "corgeList");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgFooId implements PropertyGateway {
         public Object read(Entity et) { return ((NestedFooBean)et).getFooId(); }
         public void write(Entity et, Object vl) { ((NestedFooBean)et).setFooId(cti(vl)); }
@@ -76,6 +77,8 @@ public class NestedFooBeanDbm extends AbstractDBMeta {
         @SuppressWarnings("unchecked")
         public void write(Entity et, Object vl) { ((NestedFooBean)et).setCorgeList((List<CorgeBean>)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -91,20 +94,48 @@ public class NestedFooBeanDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnFooId = cci("FOO_ID", "FOO_ID", null, null, false, "fooId", Integer.class, false, false, "NUMBER", 8, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnFooName = cci("FOO_NAME", "FOO_NAME", null, null, false, "fooName", String.class, false, false, "VARCHAR2", 20, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnFooDate = cci("FOO_DATE", "FOO_DATE", null, null, false, "fooDate", java.util.Date.class, false, false, "DATE", null, null, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnBarBean = cci("BAR_BEAN", "BAR_BEAN", null, null, false, "barBean", NestedBarBean.class, false, false, "NESTED_BAR_BEAN", null, null, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnQuxList = cci("QUX_LIST", "QUX_LIST", null, null, false, "quxList", List.class, false, false, "QUX_TABLE", null, null, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnQuuxList = cci("QUUX_LIST", "QUUX_LIST", null, null, false, "quuxList", List.class, false, false, "QUUX_TABLE", null, null, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnCorgeList = cci("CORGE_LIST", "CORGE_LIST", null, null, false, "corgeList", List.class, false, false, "CORGE_TABLE", null, null, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnFooId = cci("FOO_ID", "FOO_ID", null, null, Integer.class, "fooId", null, false, false, false, "NUMBER", 8, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnFooName = cci("FOO_NAME", "FOO_NAME", null, null, String.class, "fooName", null, false, false, false, "VARCHAR2", 20, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnFooDate = cci("FOO_DATE", "FOO_DATE", null, null, java.util.Date.class, "fooDate", null, false, false, false, "DATE", null, null, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnBarBean = cci("BAR_BEAN", "BAR_BEAN", null, null, NestedBarBean.class, "barBean", null, false, false, false, "NESTED_BAR_BEAN", null, null, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnQuxList = cci("QUX_LIST", "QUX_LIST", null, null, List.class, "quxList", null, false, false, false, "QUX_TABLE", null, null, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnQuuxList = cci("QUUX_LIST", "QUUX_LIST", null, null, List.class, "quuxList", null, false, false, false, "QUUX_TABLE", null, null, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnCorgeList = cci("CORGE_LIST", "CORGE_LIST", null, null, List.class, "corgeList", null, false, false, false, "CORGE_TABLE", null, null, null, false, null, null, null, null, null);
 
+    /**
+     * FOO_ID: {NUMBER(8)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnFooId() { return _columnFooId; }
+    /**
+     * FOO_NAME: {VARCHAR2(20)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnFooName() { return _columnFooName; }
+    /**
+     * FOO_DATE: {DATE}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnFooDate() { return _columnFooDate; }
+    /**
+     * BAR_BEAN: {NESTED_BAR_BEAN}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnBarBean() { return _columnBarBean; }
+    /**
+     * QUX_LIST: {QUX_TABLE}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnQuxList() { return _columnQuxList; }
+    /**
+     * QUUX_LIST: {QUUX_TABLE}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnQuuxList() { return _columnQuuxList; }
+    /**
+     * CORGE_LIST: {CORGE_TABLE}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnCorgeList() { return _columnCorgeList; }
 
     protected List<ColumnInfo> ccil() {
@@ -136,6 +167,8 @@ public class NestedFooBeanDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // cannot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

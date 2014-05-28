@@ -33,6 +33,9 @@ public class SynonymMemberLoginDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgMemberLoginId(), "memberLoginId");
@@ -41,8 +44,6 @@ public class SynonymMemberLoginDbm extends AbstractDBMeta {
         setupEpg(_epgMap, new EpgMobileLoginFlg(), "mobileLoginFlg");
         setupEpg(_epgMap, new EpgLoginMemberStatusCode(), "loginMemberStatusCode");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgMemberLoginId implements PropertyGateway {
         public Object read(Entity et) { return ((SynonymMemberLogin)et).getMemberLoginId(); }
         public void write(Entity et, Object vl) { ((SynonymMemberLogin)et).setMemberLoginId(ctl(vl)); }
@@ -63,6 +64,37 @@ public class SynonymMemberLoginDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((SynonymMemberLogin)et).getLoginMemberStatusCode(); }
         public void write(Entity et, Object vl) { ((SynonymMemberLogin)et).setLoginMemberStatusCode((String)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
+
+    // -----------------------------------------------------
+    //                                      Foreign Property
+    //                                      ----------------
+    protected final Map<String, PropertyGateway> _efpgMap = newHashMap();
+    {
+        setupEfpg(_efpgMap, new EfpgMemberStatus(), "memberStatus");
+        setupEfpg(_efpgMap, new EfpgMemberVendorSynonym(), "memberVendorSynonym");
+        setupEfpg(_efpgMap, new EfpgSynonymMember(), "synonymMember");
+        setupEfpg(_efpgMap, new EfpgVendorSynonymMember(), "vendorSynonymMember");
+    }
+    public class EfpgMemberStatus implements PropertyGateway {
+        public Object read(Entity et) { return ((SynonymMemberLogin)et).getMemberStatus(); }
+        public void write(Entity et, Object vl) { ((SynonymMemberLogin)et).setMemberStatus((MemberStatus)vl); }
+    }
+    public class EfpgMemberVendorSynonym implements PropertyGateway {
+        public Object read(Entity et) { return ((SynonymMemberLogin)et).getMemberVendorSynonym(); }
+        public void write(Entity et, Object vl) { ((SynonymMemberLogin)et).setMemberVendorSynonym((MemberVendorSynonym)vl); }
+    }
+    public class EfpgSynonymMember implements PropertyGateway {
+        public Object read(Entity et) { return ((SynonymMemberLogin)et).getSynonymMember(); }
+        public void write(Entity et, Object vl) { ((SynonymMemberLogin)et).setSynonymMember((SynonymMember)vl); }
+    }
+    public class EfpgVendorSynonymMember implements PropertyGateway {
+        public Object read(Entity et) { return ((SynonymMemberLogin)et).getVendorSynonymMember(); }
+        public void write(Entity et, Object vl) { ((SynonymMemberLogin)et).setVendorSynonymMember((VendorSynonymMember)vl); }
+    }
+    public PropertyGateway findForeignPropertyGateway(String prop)
+    { return doFindEfpg(_efpgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -82,16 +114,36 @@ public class SynonymMemberLoginDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnMemberLoginId = cci("MEMBER_LOGIN_ID", "MEMBER_LOGIN_ID", null, null, true, "memberLoginId", Long.class, true, false, "NUMBER", 16, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnMemberId = cci("MEMBER_ID", "MEMBER_ID", null, null, true, "memberId", Long.class, false, false, "NUMBER", 16, 0, null, false, null, null, "memberVendorSynonym,synonymMember,vendorSynonymMember", null, null);
-    protected final ColumnInfo _columnLoginDatetime = cci("LOGIN_DATETIME", "LOGIN_DATETIME", null, null, true, "loginDatetime", java.util.Date.class, false, false, "DATE", 7, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnMobileLoginFlg = cci("MOBILE_LOGIN_FLG", "MOBILE_LOGIN_FLG", null, null, true, "mobileLoginFlg", Integer.class, false, false, "NUMBER", 1, 0, null, false, null, null, null, null, CDef.DefMeta.Flg);
-    protected final ColumnInfo _columnLoginMemberStatusCode = cci("LOGIN_MEMBER_STATUS_CODE", "LOGIN_MEMBER_STATUS_CODE", null, null, true, "loginMemberStatusCode", String.class, false, false, "CHAR", 3, 0, null, false, null, null, "memberStatus", null, CDef.DefMeta.MemberStatus);
+    protected final ColumnInfo _columnMemberLoginId = cci("MEMBER_LOGIN_ID", "MEMBER_LOGIN_ID", null, null, Long.class, "memberLoginId", null, true, false, true, "NUMBER", 16, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnMemberId = cci("MEMBER_ID", "MEMBER_ID", null, null, Long.class, "memberId", null, false, false, true, "NUMBER", 16, 0, null, false, null, null, "memberVendorSynonym,synonymMember,vendorSynonymMember", null, null);
+    protected final ColumnInfo _columnLoginDatetime = cci("LOGIN_DATETIME", "LOGIN_DATETIME", null, null, java.util.Date.class, "loginDatetime", null, false, false, true, "DATE", 7, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnMobileLoginFlg = cci("MOBILE_LOGIN_FLG", "MOBILE_LOGIN_FLG", null, null, Integer.class, "mobileLoginFlg", null, false, false, true, "NUMBER", 1, 0, null, false, null, null, null, null, CDef.DefMeta.Flg);
+    protected final ColumnInfo _columnLoginMemberStatusCode = cci("LOGIN_MEMBER_STATUS_CODE", "LOGIN_MEMBER_STATUS_CODE", null, null, String.class, "loginMemberStatusCode", null, false, false, true, "CHAR", 3, 0, null, false, null, null, "memberStatus", null, CDef.DefMeta.MemberStatus);
 
+    /**
+     * MEMBER_LOGIN_ID: {PK, NotNull, NUMBER(16)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnMemberLoginId() { return _columnMemberLoginId; }
+    /**
+     * MEMBER_ID: {UQ+, NotNull, NUMBER(16), FK to MEMBER_VENDOR_SYNONYM}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnMemberId() { return _columnMemberId; }
+    /**
+     * LOGIN_DATETIME: {+UQ, IX, NotNull, DATE(7)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnLoginDatetime() { return _columnLoginDatetime; }
+    /**
+     * MOBILE_LOGIN_FLG: {NotNull, NUMBER(1), classification=Flg}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnMobileLoginFlg() { return _columnMobileLoginFlg; }
+    /**
+     * LOGIN_MEMBER_STATUS_CODE: {NotNull, CHAR(3), FK to MEMBER_STATUS, classification=MemberStatus}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnLoginMemberStatusCode() { return _columnLoginMemberStatusCode; }
 
     protected List<ColumnInfo> ccil() {
@@ -119,24 +171,42 @@ public class SynonymMemberLoginDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // cannot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------
+    /**
+     * (会員ステータス)MEMBER_STATUS by my LOGIN_MEMBER_STATUS_CODE, named 'memberStatus'.
+     * @return The information object of foreign property. (NotNull)
+     */
     public ForeignInfo foreignMemberStatus() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnLoginMemberStatusCode(), MemberStatusDbm.getInstance().columnMemberStatusCode());
-        return cfi("FK_MEMBER_LOGIN_MEMBER_STATUS", "memberStatus", this, MemberStatusDbm.getInstance(), mp, 0, false, false, false, false, null, null, false, "synonymMemberLoginList");
+        return cfi("FK_MEMBER_LOGIN_MEMBER_STATUS", "memberStatus", this, MemberStatusDbm.getInstance(), mp, 0, null, false, false, false, false, null, null, false, "synonymMemberLoginList");
     }
+    /**
+     * (会員)MEMBER_VENDOR_SYNONYM by my MEMBER_ID, named 'memberVendorSynonym'.
+     * @return The information object of foreign property. (NotNull)
+     */
     public ForeignInfo foreignMemberVendorSynonym() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnMemberId(), MemberVendorSynonymDbm.getInstance().columnMemberId());
-        return cfi("FK_MEMBER_LOGIN_MEMBER_SYNONYM1", "memberVendorSynonym", this, MemberVendorSynonymDbm.getInstance(), mp, 1, false, false, false, false, null, null, false, "synonymMemberLoginList");
+        return cfi("FK_MEMBER_LOGIN_MEMBER_SYNONYM1", "memberVendorSynonym", this, MemberVendorSynonymDbm.getInstance(), mp, 1, null, false, false, false, false, null, null, false, "synonymMemberLoginList");
     }
+    /**
+     * (会員)SYNONYM_MEMBER by my MEMBER_ID, named 'synonymMember'.
+     * @return The information object of foreign property. (NotNull)
+     */
     public ForeignInfo foreignSynonymMember() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnMemberId(), SynonymMemberDbm.getInstance().columnMemberId());
-        return cfi("FK_MEMBER_LOGIN_MEMBER_SYNONYM2", "synonymMember", this, SynonymMemberDbm.getInstance(), mp, 2, false, false, false, false, null, null, false, "synonymMemberLoginList");
+        return cfi("FK_MEMBER_LOGIN_MEMBER_SYNONYM2", "synonymMember", this, SynonymMemberDbm.getInstance(), mp, 2, null, false, false, false, false, null, null, false, "synonymMemberLoginList");
     }
+    /**
+     * (会員)VENDOR_SYNONYM_MEMBER by my MEMBER_ID, named 'vendorSynonymMember'.
+     * @return The information object of foreign property. (NotNull)
+     */
     public ForeignInfo foreignVendorSynonymMember() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnMemberId(), VendorSynonymMemberDbm.getInstance().columnMemberId());
-        return cfi("FK_MEMBER_LOGIN_MEMBER_SYNONYM3", "vendorSynonymMember", this, VendorSynonymMemberDbm.getInstance(), mp, 3, false, false, false, false, null, null, false, "synonymMemberLoginList");
+        return cfi("FK_MEMBER_LOGIN_MEMBER_SYNONYM3", "vendorSynonymMember", this, VendorSynonymMemberDbm.getInstance(), mp, 3, null, false, false, false, false, null, null, false, "synonymMemberLoginList");
     }
 
     // -----------------------------------------------------

@@ -3,6 +3,8 @@ package com.example.dbflute.oracle.dbflute.cbean.cq.bs;
 import java.util.Map;
 
 import org.seasar.dbflute.cbean.*;
+import org.seasar.dbflute.cbean.chelper.*;
+import org.seasar.dbflute.cbean.coption.*;
 import org.seasar.dbflute.cbean.cvalue.ConditionValue;
 import org.seasar.dbflute.cbean.sqlclause.SqlClause;
 import org.seasar.dbflute.exception.IllegalConditionBeanOperationException;
@@ -24,8 +26,8 @@ public class BsSynonymRefExceptCQ extends AbstractBsSynonymRefExceptCQ {
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public BsSynonymRefExceptCQ(ConditionQuery childQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
-        super(childQuery, sqlClause, aliasName, nestLevel);
+    public BsSynonymRefExceptCQ(ConditionQuery referrerQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
+        super(referrerQuery, sqlClause, aliasName, nestLevel);
     }
 
     // ===================================================================================
@@ -170,7 +172,7 @@ public class BsSynonymRefExceptCQ extends AbstractBsSynonymRefExceptCQ {
     // ===================================================================================
     //                                                                         Union Query
     //                                                                         ===========
-    protected void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
+    public void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
         SynonymRefExceptCQ bq = (SynonymRefExceptCQ)bqs;
         SynonymRefExceptCQ uq = (SynonymRefExceptCQ)uqs;
         if (bq.hasConditionQuerySynonymExcept()) {
@@ -284,5 +286,7 @@ public class BsSynonymRefExceptCQ extends AbstractBsSynonymRefExceptCQ {
     // very internal (for suppressing warn about 'Not Use Import')
     protected String xCB() { return SynonymRefExceptCB.class.getName(); }
     protected String xCQ() { return SynonymRefExceptCQ.class.getName(); }
+    protected String xCHp() { return HpCalculator.class.getName(); }
+    protected String xCOp() { return ConditionOption.class.getName(); }
     protected String xMap() { return Map.class.getName(); }
 }

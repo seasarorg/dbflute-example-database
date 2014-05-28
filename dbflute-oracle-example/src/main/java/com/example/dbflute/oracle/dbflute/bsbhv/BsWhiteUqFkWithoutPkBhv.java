@@ -169,7 +169,7 @@ public abstract class BsWhiteUqFkWithoutPkBhv extends AbstractBehaviorReadable {
      * </pre>
      * @param cb The condition-bean of WhiteUqFkWithoutPk. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -186,6 +186,28 @@ public abstract class BsWhiteUqFkWithoutPkBhv extends AbstractBehaviorReadable {
     @Override
     protected Entity doReadEntityWithDeletedCheck(ConditionBean cb) {
         return selectEntityWithDeletedCheck(downcast(cb));
+    }
+
+    /**
+     * Select the entity by the unique-key value.
+     * @param uqFkCode : UQ, NotNull, CHAR(3). (NotNull)
+     * @return The optional entity selected by the unique key. (NotNull: if no data, empty entity)
+     * @exception EntityAlreadyDeletedException When get(), required() of return value is called and the value is null, which means entity has already been deleted (not found).
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     */
+    public OptionalEntity<WhiteUqFkWithoutPk> selectByUniqueOf(String uqFkCode) {
+        return doSelectByUniqueOf(uqFkCode, WhiteUqFkWithoutPk.class);
+    }
+
+    protected <ENTITY extends WhiteUqFkWithoutPk> OptionalEntity<ENTITY> doSelectByUniqueOf(String uqFkCode, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectEntity(xprepareCBAsUniqueOf(uqFkCode), entityType), uqFkCode);
+    }
+
+    protected WhiteUqFkWithoutPkCB xprepareCBAsUniqueOf(String uqFkCode) {
+        assertObjectNotNull("uqFkCode", uqFkCode);
+        WhiteUqFkWithoutPkCB cb = newMyConditionBean(); cb.acceptUniqueOf(uqFkCode);
+        return cb;
     }
 
     // ===================================================================================

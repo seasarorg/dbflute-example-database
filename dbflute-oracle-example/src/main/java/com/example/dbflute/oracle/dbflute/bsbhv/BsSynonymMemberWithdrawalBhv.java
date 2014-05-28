@@ -169,7 +169,7 @@ public abstract class BsSynonymMemberWithdrawalBhv extends AbstractBehaviorWrita
      * </pre>
      * @param cb The condition-bean of SynonymMemberWithdrawal. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -190,39 +190,42 @@ public abstract class BsSynonymMemberWithdrawalBhv extends AbstractBehaviorWrita
 
     /**
      * Select the entity by the primary-key value.
-     * @param memberId The one of primary key. (NotNull)
+     * @param memberId : PK, NotNull, NUMBER(16), FK to MEMBER_VENDOR_SYNONYM. (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public SynonymMemberWithdrawal selectByPKValue(Long memberId) {
-        return doSelectByPKValue(memberId, SynonymMemberWithdrawal.class);
+        return doSelectByPK(memberId, SynonymMemberWithdrawal.class);
     }
 
-    protected <ENTITY extends SynonymMemberWithdrawal> ENTITY doSelectByPKValue(Long memberId, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(memberId), entityType);
+    protected <ENTITY extends SynonymMemberWithdrawal> ENTITY doSelectByPK(Long memberId, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(memberId), entityType);
+    }
+
+    protected <ENTITY extends SynonymMemberWithdrawal> OptionalEntity<ENTITY> doSelectOptionalByPK(Long memberId, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(memberId, entityType), memberId);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param memberId The one of primary key. (NotNull)
+     * @param memberId : PK, NotNull, NUMBER(16), FK to MEMBER_VENDOR_SYNONYM. (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public SynonymMemberWithdrawal selectByPKValueWithDeletedCheck(Long memberId) {
-        return doSelectByPKValueWithDeletedCheck(memberId, SynonymMemberWithdrawal.class);
+        return doSelectByPKWithDeletedCheck(memberId, SynonymMemberWithdrawal.class);
     }
 
-    protected <ENTITY extends SynonymMemberWithdrawal> ENTITY doSelectByPKValueWithDeletedCheck(Long memberId, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(memberId), entityType);
+    protected <ENTITY extends SynonymMemberWithdrawal> ENTITY doSelectByPKWithDeletedCheck(Long memberId, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(memberId), entityType);
     }
 
-    private SynonymMemberWithdrawalCB buildPKCB(Long memberId) {
+    protected SynonymMemberWithdrawalCB xprepareCBAsPK(Long memberId) {
         assertObjectNotNull("memberId", memberId);
-        SynonymMemberWithdrawalCB cb = newMyConditionBean();
-        cb.query().setMemberId_Equal(memberId);
+        SynonymMemberWithdrawalCB cb = newMyConditionBean(); cb.acceptPrimaryKey(memberId);
         return cb;
     }
 
@@ -387,7 +390,8 @@ public abstract class BsSynonymMemberWithdrawalBhv extends AbstractBehaviorWrita
      */
     public List<MemberVendorSynonym> pulloutMemberVendorSynonym(List<SynonymMemberWithdrawal> synonymMemberWithdrawalList) {
         return helpPulloutInternally(synonymMemberWithdrawalList, new InternalPulloutCallback<SynonymMemberWithdrawal, MemberVendorSynonym>() {
-            public MemberVendorSynonym getFr(SynonymMemberWithdrawal et) { return et.getMemberVendorSynonym(); }
+            public MemberVendorSynonym getFr(SynonymMemberWithdrawal et)
+            { return et.getMemberVendorSynonym(); }
             public boolean hasRf() { return true; }
             public void setRfLs(MemberVendorSynonym et, List<SynonymMemberWithdrawal> ls)
             { if (!ls.isEmpty()) { et.setSynonymMemberWithdrawalAsOne(ls.get(0)); } }
@@ -400,7 +404,8 @@ public abstract class BsSynonymMemberWithdrawalBhv extends AbstractBehaviorWrita
      */
     public List<WithdrawalReason> pulloutWithdrawalReason(List<SynonymMemberWithdrawal> synonymMemberWithdrawalList) {
         return helpPulloutInternally(synonymMemberWithdrawalList, new InternalPulloutCallback<SynonymMemberWithdrawal, WithdrawalReason>() {
-            public WithdrawalReason getFr(SynonymMemberWithdrawal et) { return et.getWithdrawalReason(); }
+            public WithdrawalReason getFr(SynonymMemberWithdrawal et)
+            { return et.getWithdrawalReason(); }
             public boolean hasRf() { return true; }
             public void setRfLs(WithdrawalReason et, List<SynonymMemberWithdrawal> ls)
             { et.setSynonymMemberWithdrawalList(ls); }
@@ -413,7 +418,8 @@ public abstract class BsSynonymMemberWithdrawalBhv extends AbstractBehaviorWrita
      */
     public List<SynonymMember> pulloutSynonymMember(List<SynonymMemberWithdrawal> synonymMemberWithdrawalList) {
         return helpPulloutInternally(synonymMemberWithdrawalList, new InternalPulloutCallback<SynonymMemberWithdrawal, SynonymMember>() {
-            public SynonymMember getFr(SynonymMemberWithdrawal et) { return et.getSynonymMember(); }
+            public SynonymMember getFr(SynonymMemberWithdrawal et)
+            { return et.getSynonymMember(); }
             public boolean hasRf() { return true; }
             public void setRfLs(SynonymMember et, List<SynonymMemberWithdrawal> ls)
             { if (!ls.isEmpty()) { et.setSynonymMemberWithdrawalAsOne(ls.get(0)); } }
@@ -426,7 +432,8 @@ public abstract class BsSynonymMemberWithdrawalBhv extends AbstractBehaviorWrita
      */
     public List<VendorSynonymMember> pulloutVendorSynonymMember(List<SynonymMemberWithdrawal> synonymMemberWithdrawalList) {
         return helpPulloutInternally(synonymMemberWithdrawalList, new InternalPulloutCallback<SynonymMemberWithdrawal, VendorSynonymMember>() {
-            public VendorSynonymMember getFr(SynonymMemberWithdrawal et) { return et.getVendorSynonymMember(); }
+            public VendorSynonymMember getFr(SynonymMemberWithdrawal et)
+            { return et.getVendorSynonymMember(); }
             public boolean hasRf() { return true; }
             public void setRfLs(VendorSynonymMember et, List<SynonymMemberWithdrawal> ls)
             { if (!ls.isEmpty()) { et.setSynonymMemberWithdrawalAsOne(ls.get(0)); } }

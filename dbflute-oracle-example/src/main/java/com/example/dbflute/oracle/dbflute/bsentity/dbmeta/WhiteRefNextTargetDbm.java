@@ -33,13 +33,14 @@ public class WhiteRefNextTargetDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgRefNextTargetId(), "refNextTargetId");
         setupEpg(_epgMap, new EpgNextTargetCode(), "nextTargetCode");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgRefNextTargetId implements PropertyGateway {
         public Object read(Entity et) { return ((WhiteRefNextTarget)et).getRefNextTargetId(); }
         public void write(Entity et, Object vl) { ((WhiteRefNextTarget)et).setRefNextTargetId(ctl(vl)); }
@@ -48,6 +49,22 @@ public class WhiteRefNextTargetDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((WhiteRefNextTarget)et).getNextTargetCode(); }
         public void write(Entity et, Object vl) { ((WhiteRefNextTarget)et).setNextTargetCode((String)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
+
+    // -----------------------------------------------------
+    //                                      Foreign Property
+    //                                      ----------------
+    protected final Map<String, PropertyGateway> _efpgMap = newHashMap();
+    {
+        setupEfpg(_efpgMap, new EfpgNextSchemaProductStatus(), "nextSchemaProductStatus");
+    }
+    public class EfpgNextSchemaProductStatus implements PropertyGateway {
+        public Object read(Entity et) { return ((WhiteRefNextTarget)et).getNextSchemaProductStatus(); }
+        public void write(Entity et, Object vl) { ((WhiteRefNextTarget)et).setNextSchemaProductStatus((NextSchemaProductStatus)vl); }
+    }
+    public PropertyGateway findForeignPropertyGateway(String prop)
+    { return doFindEfpg(_efpgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -63,10 +80,18 @@ public class WhiteRefNextTargetDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnRefNextTargetId = cci("REF_NEXT_TARGET_ID", "REF_NEXT_TARGET_ID", null, null, true, "refNextTargetId", Long.class, true, false, "NUMBER", 16, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnNextTargetCode = cci("NEXT_TARGET_CODE", "NEXT_TARGET_CODE", null, null, true, "nextTargetCode", String.class, false, false, "CHAR", 3, 0, null, false, null, null, "nextSchemaProductStatus", null, null);
+    protected final ColumnInfo _columnRefNextTargetId = cci("REF_NEXT_TARGET_ID", "REF_NEXT_TARGET_ID", null, null, Long.class, "refNextTargetId", null, true, false, true, "NUMBER", 16, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnNextTargetCode = cci("NEXT_TARGET_CODE", "NEXT_TARGET_CODE", null, null, String.class, "nextTargetCode", null, false, false, true, "CHAR", 3, 0, null, false, null, null, "nextSchemaProductStatus", null, null);
 
+    /**
+     * REF_NEXT_TARGET_ID: {PK, NotNull, NUMBER(16)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnRefNextTargetId() { return _columnRefNextTargetId; }
+    /**
+     * NEXT_TARGET_CODE: {NotNull, CHAR(3), FK to NEXT_SCHEMA_PRODUCT_STATUS}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnNextTargetCode() { return _columnNextTargetCode; }
 
     protected List<ColumnInfo> ccil() {
@@ -91,12 +116,18 @@ public class WhiteRefNextTargetDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // cannot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------
+    /**
+     * (隣のスキステ)NEXT_SCHEMA_PRODUCT_STATUS by my NEXT_TARGET_CODE, named 'nextSchemaProductStatus'.
+     * @return The information object of foreign property. (NotNull)
+     */
     public ForeignInfo foreignNextSchemaProductStatus() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnNextTargetCode(), NextSchemaProductStatusDbm.getInstance().columnProductStatusCode());
-        return cfi("FK_WHITE_REF_NEXT_TARGET", "nextSchemaProductStatus", this, NextSchemaProductStatusDbm.getInstance(), mp, 0, false, false, false, false, null, null, false, "whiteRefNextTargetList");
+        return cfi("FK_WHITE_REF_NEXT_TARGET", "nextSchemaProductStatus", this, NextSchemaProductStatusDbm.getInstance(), mp, 0, null, false, false, false, false, null, null, false, "whiteRefNextTargetList");
     }
 
     // -----------------------------------------------------

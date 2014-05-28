@@ -29,6 +29,7 @@ import org.seasar.dbflute.cbean.sqlclause.SqlClause;
 import org.seasar.dbflute.cbean.sqlclause.SqlClauseCreator;
 import org.seasar.dbflute.dbmeta.DBMetaProvider;
 import org.seasar.dbflute.twowaysql.factory.SqlAnalyzerFactory;
+import com.example.dbflute.mysql.dbflute.allcommon.CDef;
 import com.example.dbflute.mysql.dbflute.allcommon.DBFluteConfig;
 import com.example.dbflute.mysql.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.mysql.dbflute.allcommon.ImplementedInvokerAssistant;
@@ -96,10 +97,10 @@ public class BsRegionCB extends AbstractConditionBean {
      * Accept the query condition of primary key as equal.
      * @param regionId (地域ID): PK, NotNull, INT(10), classification=Region. (NotNull)
      */
-    public void acceptPrimaryKey(Integer regionId) {
+    public void acceptPrimaryKey(CDef.Region regionId) {
         assertObjectNotNull("regionId", regionId);
         BsRegionCB cb = this;
-        cb.query().setRegionId_Equal(regionId);;
+        cb.query().setRegionId_Equal_AsRegion(regionId);
     }
 
     public ConditionBean addOrderBy_PK_Asc() {

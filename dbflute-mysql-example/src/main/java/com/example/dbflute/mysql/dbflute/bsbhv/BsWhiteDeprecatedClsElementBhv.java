@@ -24,6 +24,7 @@ import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.exception.*;
 import org.seasar.dbflute.optional.*;
 import org.seasar.dbflute.outsidesql.executor.*;
+import com.example.dbflute.mysql.dbflute.allcommon.CDef;
 import com.example.dbflute.mysql.dbflute.exbhv.*;
 import com.example.dbflute.mysql.dbflute.exentity.*;
 import com.example.dbflute.mysql.dbflute.bsentity.dbmeta.*;
@@ -210,15 +211,15 @@ public abstract class BsWhiteDeprecatedClsElementBhv extends AbstractBehaviorWri
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
-    public WhiteDeprecatedClsElement selectByPKValue(String deprecatedClsElementCode) {
+    public WhiteDeprecatedClsElement selectByPKValue(CDef.DeprecatedMapCollaborationType deprecatedClsElementCode) {
         return doSelectByPK(deprecatedClsElementCode, WhiteDeprecatedClsElement.class);
     }
 
-    protected <ENTITY extends WhiteDeprecatedClsElement> ENTITY doSelectByPK(String deprecatedClsElementCode, Class<ENTITY> entityType) {
+    protected <ENTITY extends WhiteDeprecatedClsElement> ENTITY doSelectByPK(CDef.DeprecatedMapCollaborationType deprecatedClsElementCode, Class<ENTITY> entityType) {
         return doSelectEntity(xprepareCBAsPK(deprecatedClsElementCode), entityType);
     }
 
-    protected <ENTITY extends WhiteDeprecatedClsElement> OptionalEntity<ENTITY> doSelectOptionalByPK(String deprecatedClsElementCode, Class<ENTITY> entityType) {
+    protected <ENTITY extends WhiteDeprecatedClsElement> OptionalEntity<ENTITY> doSelectOptionalByPK(CDef.DeprecatedMapCollaborationType deprecatedClsElementCode, Class<ENTITY> entityType) {
         return createOptionalEntity(doSelectByPK(deprecatedClsElementCode, entityType), deprecatedClsElementCode);
     }
 
@@ -230,15 +231,15 @@ public abstract class BsWhiteDeprecatedClsElementBhv extends AbstractBehaviorWri
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
-    public WhiteDeprecatedClsElement selectByPKValueWithDeletedCheck(String deprecatedClsElementCode) {
+    public WhiteDeprecatedClsElement selectByPKValueWithDeletedCheck(CDef.DeprecatedMapCollaborationType deprecatedClsElementCode) {
         return doSelectByPKWithDeletedCheck(deprecatedClsElementCode, WhiteDeprecatedClsElement.class);
     }
 
-    protected <ENTITY extends WhiteDeprecatedClsElement> ENTITY doSelectByPKWithDeletedCheck(String deprecatedClsElementCode, Class<ENTITY> entityType) {
+    protected <ENTITY extends WhiteDeprecatedClsElement> ENTITY doSelectByPKWithDeletedCheck(CDef.DeprecatedMapCollaborationType deprecatedClsElementCode, Class<ENTITY> entityType) {
         return doSelectEntityWithDeletedCheck(xprepareCBAsPK(deprecatedClsElementCode), entityType);
     }
 
-    protected WhiteDeprecatedClsElementCB xprepareCBAsPK(String deprecatedClsElementCode) {
+    protected WhiteDeprecatedClsElementCB xprepareCBAsPK(CDef.DeprecatedMapCollaborationType deprecatedClsElementCode) {
         assertObjectNotNull("deprecatedClsElementCode", deprecatedClsElementCode);
         WhiteDeprecatedClsElementCB cb = newMyConditionBean(); cb.acceptPrimaryKey(deprecatedClsElementCode);
         return cb;

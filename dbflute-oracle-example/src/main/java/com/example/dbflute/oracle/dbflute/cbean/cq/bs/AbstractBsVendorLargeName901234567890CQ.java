@@ -22,8 +22,8 @@ public abstract class AbstractBsVendorLargeName901234567890CQ extends AbstractCo
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public AbstractBsVendorLargeName901234567890CQ(ConditionQuery childQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
-        super(childQuery, sqlClause, aliasName, nestLevel);
+    public AbstractBsVendorLargeName901234567890CQ(ConditionQuery referrerQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
+        super(referrerQuery, sqlClause, aliasName, nestLevel);
     }
 
     // ===================================================================================
@@ -217,7 +217,7 @@ public abstract class AbstractBsVendorLargeName901234567890CQ extends AbstractCo
     public abstract String keepVendorLargeName901234567Id_SpecifyDerivedReferrer_VendorLargeName90123456RefList(VendorLargeName90123456RefCQ sq);
 
     /**
-     * Prepare for (Query)DerivedReferrer. <br />
+     * Prepare for (Query)DerivedReferrer (correlated sub-query). <br />
      * {FOO &lt;= (select max(BAR) from VENDOR_LARGE_NAME_90123456_REF where ...)} <br />
      * VENDOR_LARGE_NAME_90123456_REF by VENDOR_LARGE_NAME_901234567_ID, named 'vendorLargeName90123456RefAsOne'.
      * <pre>
@@ -488,7 +488,7 @@ public abstract class AbstractBsVendorLargeName901234567890CQ extends AbstractCo
     public abstract String keepSpecifyMyselfDerived(VendorLargeName901234567890CQ sq);
 
     /**
-     * Prepare for (Query)MyselfDerived (SubQuery).
+     * Prepare for (Query)MyselfDerived (correlated sub-query).
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<VendorLargeName901234567890CB> myselfDerived() {
@@ -510,8 +510,8 @@ public abstract class AbstractBsVendorLargeName901234567890CQ extends AbstractCo
     //                                                                        MyselfExists
     //                                                                        ============
     /**
-     * Prepare for MyselfExists (SubQuery).
-     * @param subQuery The implementation of sub query. (NotNull)
+     * Prepare for MyselfExists (correlated sub-query).
+     * @param subQuery The implementation of sub-query. (NotNull)
      */
     public void myselfExists(SubQuery<VendorLargeName901234567890CB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
@@ -526,8 +526,8 @@ public abstract class AbstractBsVendorLargeName901234567890CQ extends AbstractCo
     //                                                                       MyselfInScope
     //                                                                       =============
     /**
-     * Prepare for MyselfInScope (SubQuery).
-     * @param subQuery The implementation of sub query. (NotNull)
+     * Prepare for MyselfInScope (sub-query).
+     * @param subQuery The implementation of sub-query. (NotNull)
      */
     public void myselfInScope(SubQuery<VendorLargeName901234567890CB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);

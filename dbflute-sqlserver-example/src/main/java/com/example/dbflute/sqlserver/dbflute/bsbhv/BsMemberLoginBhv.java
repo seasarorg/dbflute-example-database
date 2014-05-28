@@ -169,7 +169,7 @@ public abstract class BsMemberLoginBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of MemberLogin. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -190,39 +190,42 @@ public abstract class BsMemberLoginBhv extends AbstractBehaviorWritable {
 
     /**
      * Select the entity by the primary-key value.
-     * @param memberLoginId The one of primary key. (NotNull)
+     * @param memberLoginId : PK, ID, NotNull, bigint identity(19). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public MemberLogin selectByPKValue(Long memberLoginId) {
-        return doSelectByPKValue(memberLoginId, MemberLogin.class);
+        return doSelectByPK(memberLoginId, MemberLogin.class);
     }
 
-    protected <ENTITY extends MemberLogin> ENTITY doSelectByPKValue(Long memberLoginId, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(memberLoginId), entityType);
+    protected <ENTITY extends MemberLogin> ENTITY doSelectByPK(Long memberLoginId, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(memberLoginId), entityType);
+    }
+
+    protected <ENTITY extends MemberLogin> OptionalEntity<ENTITY> doSelectOptionalByPK(Long memberLoginId, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(memberLoginId, entityType), memberLoginId);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param memberLoginId The one of primary key. (NotNull)
+     * @param memberLoginId : PK, ID, NotNull, bigint identity(19). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public MemberLogin selectByPKValueWithDeletedCheck(Long memberLoginId) {
-        return doSelectByPKValueWithDeletedCheck(memberLoginId, MemberLogin.class);
+        return doSelectByPKWithDeletedCheck(memberLoginId, MemberLogin.class);
     }
 
-    protected <ENTITY extends MemberLogin> ENTITY doSelectByPKValueWithDeletedCheck(Long memberLoginId, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(memberLoginId), entityType);
+    protected <ENTITY extends MemberLogin> ENTITY doSelectByPKWithDeletedCheck(Long memberLoginId, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(memberLoginId), entityType);
     }
 
-    private MemberLoginCB buildPKCB(Long memberLoginId) {
+    protected MemberLoginCB xprepareCBAsPK(Long memberLoginId) {
         assertObjectNotNull("memberLoginId", memberLoginId);
-        MemberLoginCB cb = newMyConditionBean();
-        cb.query().setMemberLoginId_Equal(memberLoginId);
+        MemberLoginCB cb = newMyConditionBean(); cb.acceptPrimaryKey(memberLoginId);
         return cb;
     }
 
@@ -387,7 +390,8 @@ public abstract class BsMemberLoginBhv extends AbstractBehaviorWritable {
      */
     public List<Member> pulloutMember(List<MemberLogin> memberLoginList) {
         return helpPulloutInternally(memberLoginList, new InternalPulloutCallback<MemberLogin, Member>() {
-            public Member getFr(MemberLogin et) { return et.getMember(); }
+            public Member getFr(MemberLogin et)
+            { return et.getMember(); }
             public boolean hasRf() { return true; }
             public void setRfLs(Member et, List<MemberLogin> ls)
             { et.setMemberLoginList(ls); }
@@ -400,7 +404,8 @@ public abstract class BsMemberLoginBhv extends AbstractBehaviorWritable {
      */
     public List<MemberStatus> pulloutMemberStatus(List<MemberLogin> memberLoginList) {
         return helpPulloutInternally(memberLoginList, new InternalPulloutCallback<MemberLogin, MemberStatus>() {
-            public MemberStatus getFr(MemberLogin et) { return et.getMemberStatus(); }
+            public MemberStatus getFr(MemberLogin et)
+            { return et.getMemberStatus(); }
             public boolean hasRf() { return true; }
             public void setRfLs(MemberStatus et, List<MemberLogin> ls)
             { et.setMemberLoginList(ls); }

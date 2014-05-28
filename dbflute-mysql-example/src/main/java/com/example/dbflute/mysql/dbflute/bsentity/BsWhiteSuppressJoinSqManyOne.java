@@ -32,7 +32,7 @@ import com.example.dbflute.mysql.dbflute.exentity.*;
  *     MANY_ONE_ID
  * 
  * [column]
- *     MANY_ONE_ID, MANY_ONE_NAME
+ *     MANY_ONE_ID, MANY_ONE_NAME, MANY_ONE_ONE_ID
  * 
  * [sequence]
  *     
@@ -44,13 +44,13 @@ import com.example.dbflute.mysql.dbflute.exentity.*;
  *     
  * 
  * [foreign table]
- *     
+ *     white_suppress_join_sq_many_one_one
  * 
  * [referrer table]
  *     white_suppress_join_sq_many
  * 
  * [foreign property]
- *     
+ *     whiteSuppressJoinSqManyOneOne
  * 
  * [referrer property]
  *     whiteSuppressJoinSqManyList
@@ -59,8 +59,10 @@ import com.example.dbflute.mysql.dbflute.exentity.*;
  * /= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
  * Integer manyOneId = entity.getManyOneId();
  * String manyOneName = entity.getManyOneName();
+ * Integer manyOneOneId = entity.getManyOneOneId();
  * entity.setManyOneId(manyOneId);
  * entity.setManyOneName(manyOneName);
+ * entity.setManyOneOneId(manyOneOneId);
  * = = = = = = = = = =/
  * </pre>
  * @author DBFlute(AutoGenerator)
@@ -84,6 +86,9 @@ public abstract class BsWhiteSuppressJoinSqManyOne implements Entity, Serializab
 
     /** MANY_ONE_NAME: {NotNull, VARCHAR(200)} */
     protected String _manyOneName;
+
+    /** MANY_ONE_ONE_ID: {IX, NotNull, INT(10), FK to white_suppress_join_sq_many_one_one} */
+    protected Integer _manyOneOneId;
 
     // -----------------------------------------------------
     //                                              Internal
@@ -138,7 +143,7 @@ public abstract class BsWhiteSuppressJoinSqManyOne implements Entity, Serializab
     /**
      * {@inheritDoc}
      */
-    public Set<String> uniqueDrivenProperties() {
+    public Set<String> myuniqueDrivenProperties() {
         return __uniqueDrivenProperties.getPropertyNames();
     }
 
@@ -149,6 +154,25 @@ public abstract class BsWhiteSuppressJoinSqManyOne implements Entity, Serializab
     // ===================================================================================
     //                                                                    Foreign Property
     //                                                                    ================
+    /** white_suppress_join_sq_many_one_one by my MANY_ONE_ONE_ID, named 'whiteSuppressJoinSqManyOneOne'. */
+    protected WhiteSuppressJoinSqManyOneOne _whiteSuppressJoinSqManyOneOne;
+
+    /**
+     * white_suppress_join_sq_many_one_one by my MANY_ONE_ONE_ID, named 'whiteSuppressJoinSqManyOneOne'.
+     * @return The entity of foreign property 'whiteSuppressJoinSqManyOneOne'. (NullAllowed: when e.g. null FK column, no setupSelect)
+     */
+    public WhiteSuppressJoinSqManyOneOne getWhiteSuppressJoinSqManyOneOne() {
+        return _whiteSuppressJoinSqManyOneOne;
+    }
+
+    /**
+     * white_suppress_join_sq_many_one_one by my MANY_ONE_ONE_ID, named 'whiteSuppressJoinSqManyOneOne'.
+     * @param whiteSuppressJoinSqManyOneOne The entity of foreign property 'whiteSuppressJoinSqManyOneOne'. (NullAllowed)
+     */
+    public void setWhiteSuppressJoinSqManyOneOne(WhiteSuppressJoinSqManyOneOne whiteSuppressJoinSqManyOneOne) {
+        _whiteSuppressJoinSqManyOneOne = whiteSuppressJoinSqManyOneOne;
+    }
+
     // ===================================================================================
     //                                                                   Referrer Property
     //                                                                   =================
@@ -276,6 +300,8 @@ public abstract class BsWhiteSuppressJoinSqManyOne implements Entity, Serializab
         StringBuilder sb = new StringBuilder();
         sb.append(toString());
         String li = "\n  ";
+        if (_whiteSuppressJoinSqManyOneOne != null)
+        { sb.append(li).append(xbRDS(_whiteSuppressJoinSqManyOneOne, "whiteSuppressJoinSqManyOneOne")); }
         if (_whiteSuppressJoinSqManyList != null) { for (Entity et : _whiteSuppressJoinSqManyList)
         { if (et != null) { sb.append(li).append(xbRDS(et, "whiteSuppressJoinSqManyList")); } } }
         return sb.toString();
@@ -300,6 +326,7 @@ public abstract class BsWhiteSuppressJoinSqManyOne implements Entity, Serializab
         String dm = ", ";
         sb.append(dm).append(getManyOneId());
         sb.append(dm).append(getManyOneName());
+        sb.append(dm).append(getManyOneOneId());
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length());
         }
@@ -309,6 +336,7 @@ public abstract class BsWhiteSuppressJoinSqManyOne implements Entity, Serializab
     protected String buildRelationString() {
         StringBuilder sb = new StringBuilder();
         String cm = ",";
+        if (_whiteSuppressJoinSqManyOneOne != null) { sb.append(cm).append("whiteSuppressJoinSqManyOneOne"); }
         if (_whiteSuppressJoinSqManyList != null && !_whiteSuppressJoinSqManyList.isEmpty())
         { sb.append(cm).append("whiteSuppressJoinSqManyList"); }
         if (sb.length() > cm.length()) {
@@ -364,5 +392,22 @@ public abstract class BsWhiteSuppressJoinSqManyOne implements Entity, Serializab
     public void setManyOneName(String manyOneName) {
         __modifiedProperties.addPropertyName("manyOneName");
         this._manyOneName = manyOneName;
+    }
+
+    /**
+     * [get] MANY_ONE_ONE_ID: {IX, NotNull, INT(10), FK to white_suppress_join_sq_many_one_one} <br />
+     * @return The value of the column 'MANY_ONE_ONE_ID'. (basically NotNull if selected: for the constraint)
+     */
+    public Integer getManyOneOneId() {
+        return _manyOneOneId;
+    }
+
+    /**
+     * [set] MANY_ONE_ONE_ID: {IX, NotNull, INT(10), FK to white_suppress_join_sq_many_one_one} <br />
+     * @param manyOneOneId The value of the column 'MANY_ONE_ONE_ID'. (basically NotNull if update: for the constraint)
+     */
+    public void setManyOneOneId(Integer manyOneOneId) {
+        __modifiedProperties.addPropertyName("manyOneOneId");
+        this._manyOneOneId = manyOneOneId;
     }
 }

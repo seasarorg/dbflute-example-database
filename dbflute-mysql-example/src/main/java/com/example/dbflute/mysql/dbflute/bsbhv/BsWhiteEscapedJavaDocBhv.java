@@ -24,6 +24,7 @@ import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.exception.*;
 import org.seasar.dbflute.optional.*;
 import org.seasar.dbflute.outsidesql.executor.*;
+import com.example.dbflute.mysql.dbflute.allcommon.CDef;
 import com.example.dbflute.mysql.dbflute.exbhv.*;
 import com.example.dbflute.mysql.dbflute.exentity.*;
 import com.example.dbflute.mysql.dbflute.bsentity.dbmeta.*;
@@ -210,15 +211,15 @@ public abstract class BsWhiteEscapedJavaDocBhv extends AbstractBehaviorWritable 
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
-    public WhiteEscapedJavaDoc selectByPKValue(String escapedJavaDocCode) {
+    public WhiteEscapedJavaDoc selectByPKValue(CDef.EscapedJavaDocCls escapedJavaDocCode) {
         return doSelectByPK(escapedJavaDocCode, WhiteEscapedJavaDoc.class);
     }
 
-    protected <ENTITY extends WhiteEscapedJavaDoc> ENTITY doSelectByPK(String escapedJavaDocCode, Class<ENTITY> entityType) {
+    protected <ENTITY extends WhiteEscapedJavaDoc> ENTITY doSelectByPK(CDef.EscapedJavaDocCls escapedJavaDocCode, Class<ENTITY> entityType) {
         return doSelectEntity(xprepareCBAsPK(escapedJavaDocCode), entityType);
     }
 
-    protected <ENTITY extends WhiteEscapedJavaDoc> OptionalEntity<ENTITY> doSelectOptionalByPK(String escapedJavaDocCode, Class<ENTITY> entityType) {
+    protected <ENTITY extends WhiteEscapedJavaDoc> OptionalEntity<ENTITY> doSelectOptionalByPK(CDef.EscapedJavaDocCls escapedJavaDocCode, Class<ENTITY> entityType) {
         return createOptionalEntity(doSelectByPK(escapedJavaDocCode, entityType), escapedJavaDocCode);
     }
 
@@ -230,15 +231,15 @@ public abstract class BsWhiteEscapedJavaDocBhv extends AbstractBehaviorWritable 
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
-    public WhiteEscapedJavaDoc selectByPKValueWithDeletedCheck(String escapedJavaDocCode) {
+    public WhiteEscapedJavaDoc selectByPKValueWithDeletedCheck(CDef.EscapedJavaDocCls escapedJavaDocCode) {
         return doSelectByPKWithDeletedCheck(escapedJavaDocCode, WhiteEscapedJavaDoc.class);
     }
 
-    protected <ENTITY extends WhiteEscapedJavaDoc> ENTITY doSelectByPKWithDeletedCheck(String escapedJavaDocCode, Class<ENTITY> entityType) {
+    protected <ENTITY extends WhiteEscapedJavaDoc> ENTITY doSelectByPKWithDeletedCheck(CDef.EscapedJavaDocCls escapedJavaDocCode, Class<ENTITY> entityType) {
         return doSelectEntityWithDeletedCheck(xprepareCBAsPK(escapedJavaDocCode), entityType);
     }
 
-    protected WhiteEscapedJavaDocCB xprepareCBAsPK(String escapedJavaDocCode) {
+    protected WhiteEscapedJavaDocCB xprepareCBAsPK(CDef.EscapedJavaDocCls escapedJavaDocCode) {
         assertObjectNotNull("escapedJavaDocCode", escapedJavaDocCode);
         WhiteEscapedJavaDocCB cb = newMyConditionBean(); cb.acceptPrimaryKey(escapedJavaDocCode);
         return cb;

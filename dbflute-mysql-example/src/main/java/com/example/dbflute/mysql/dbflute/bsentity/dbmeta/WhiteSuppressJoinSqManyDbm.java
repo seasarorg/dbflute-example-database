@@ -110,13 +110,13 @@ public class WhiteSuppressJoinSqManyDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnManyId = cci("MANY_ID", "MANY_ID", null, null, Integer.class, "manyId", null, false, false, true, "INT", 10, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnManyId = cci("MANY_ID", "MANY_ID", null, null, Integer.class, "manyId", null, true, false, true, "INT", 10, 0, null, false, null, null, null, null, null);
     protected final ColumnInfo _columnManyName = cci("MANY_NAME", "MANY_NAME", null, null, String.class, "manyName", null, false, false, true, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnSuppressJoinSqId = cci("SUPPRESS_JOIN_SQ_ID", "SUPPRESS_JOIN_SQ_ID", null, null, Integer.class, "suppressJoinSqId", null, true, false, true, "INT", 10, 0, null, false, null, null, "whiteSuppressJoinSq", null, null);
+    protected final ColumnInfo _columnSuppressJoinSqId = cci("SUPPRESS_JOIN_SQ_ID", "SUPPRESS_JOIN_SQ_ID", null, null, Integer.class, "suppressJoinSqId", null, false, false, true, "INT", 10, 0, null, false, null, null, "whiteSuppressJoinSq", null, null);
     protected final ColumnInfo _columnManyOneId = cci("MANY_ONE_ID", "MANY_ONE_ID", null, null, Integer.class, "manyOneId", null, false, false, true, "INT", 10, 0, null, false, null, null, "whiteSuppressJoinSqManyOne", null, null);
 
     /**
-     * MANY_ID: {NotNull, INT(10)}
+     * MANY_ID: {PK, NotNull, INT(10)}
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnManyId() { return _columnManyId; }
@@ -126,7 +126,7 @@ public class WhiteSuppressJoinSqManyDbm extends AbstractDBMeta {
      */
     public ColumnInfo columnManyName() { return _columnManyName; }
     /**
-     * SUPPRESS_JOIN_SQ_ID: {PK, NotNull, INT(10), FK to white_suppress_join_sq}
+     * SUPPRESS_JOIN_SQ_ID: {IX, NotNull, INT(10), FK to white_suppress_join_sq}
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnSuppressJoinSqId() { return _columnSuppressJoinSqId; }
@@ -153,14 +153,14 @@ public class WhiteSuppressJoinSqManyDbm extends AbstractDBMeta {
     // -----------------------------------------------------
     //                                       Primary Element
     //                                       ---------------
-    protected UniqueInfo cpui() { return hpcpui(columnSuppressJoinSqId()); }
+    protected UniqueInfo cpui() { return hpcpui(columnManyId()); }
     public boolean hasPrimaryKey() { return true; }
     public boolean hasCompoundPrimaryKey() { return false; }
 
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
-    // canonot cache because it uses related DB meta instance while booting
+    // cannot cache because it uses related DB meta instance while booting
     // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
@@ -179,7 +179,7 @@ public class WhiteSuppressJoinSqManyDbm extends AbstractDBMeta {
      */
     public ForeignInfo foreignWhiteSuppressJoinSq() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnSuppressJoinSqId(), WhiteSuppressJoinSqDbm.getInstance().columnSuppressJoinSqId());
-        return cfi("FK_WHITE_SUPPRESS_JOIN_SQ_MANY", "whiteSuppressJoinSq", this, WhiteSuppressJoinSqDbm.getInstance(), mp, 1, null, true, false, false, false, null, null, false, "whiteSuppressJoinSqManyAsOne");
+        return cfi("FK_WHITE_SUPPRESS_JOIN_SQ_MANY", "whiteSuppressJoinSq", this, WhiteSuppressJoinSqDbm.getInstance(), mp, 1, null, false, false, false, false, null, null, false, "whiteSuppressJoinSqManyList");
     }
 
     // -----------------------------------------------------

@@ -144,7 +144,7 @@ public abstract class BsWhiteVariantRelationMasterCorge implements Entity, Seria
     /**
      * {@inheritDoc}
      */
-    public Set<String> uniqueDrivenProperties() {
+    public Set<String> myuniqueDrivenProperties() {
         return __uniqueDrivenProperties.getPropertyNames();
     }
 
@@ -442,7 +442,7 @@ public abstract class BsWhiteVariantRelationMasterCorge implements Entity, Seria
      * [set] CORGE_TYPE_CODE: {NotNull, CHAR(3), classification=VariantRelationQuxType} <br />
      * @param corgeTypeCode The value of the column 'CORGE_TYPE_CODE'. (basically NotNull if update: for the constraint)
      */
-    public void setCorgeTypeCode(String corgeTypeCode) {
+    protected void setCorgeTypeCode(String corgeTypeCode) {
         checkImplicitSet("CORGE_TYPE_CODE", CDef.DefMeta.VariantRelationQuxType, corgeTypeCode);
         __modifiedProperties.addPropertyName("corgeTypeCode");
         this._corgeTypeCode = corgeTypeCode;

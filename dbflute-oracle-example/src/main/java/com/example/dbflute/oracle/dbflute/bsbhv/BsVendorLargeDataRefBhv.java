@@ -169,7 +169,7 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of VendorLargeDataRef. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -190,39 +190,42 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
 
     /**
      * Select the entity by the primary-key value.
-     * @param largeDataRefId The one of primary key. (NotNull)
+     * @param largeDataRefId : PK, NotNull, NUMBER(12). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public VendorLargeDataRef selectByPKValue(Long largeDataRefId) {
-        return doSelectByPKValue(largeDataRefId, VendorLargeDataRef.class);
+        return doSelectByPK(largeDataRefId, VendorLargeDataRef.class);
     }
 
-    protected <ENTITY extends VendorLargeDataRef> ENTITY doSelectByPKValue(Long largeDataRefId, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(largeDataRefId), entityType);
+    protected <ENTITY extends VendorLargeDataRef> ENTITY doSelectByPK(Long largeDataRefId, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(largeDataRefId), entityType);
+    }
+
+    protected <ENTITY extends VendorLargeDataRef> OptionalEntity<ENTITY> doSelectOptionalByPK(Long largeDataRefId, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(largeDataRefId, entityType), largeDataRefId);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param largeDataRefId The one of primary key. (NotNull)
+     * @param largeDataRefId : PK, NotNull, NUMBER(12). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public VendorLargeDataRef selectByPKValueWithDeletedCheck(Long largeDataRefId) {
-        return doSelectByPKValueWithDeletedCheck(largeDataRefId, VendorLargeDataRef.class);
+        return doSelectByPKWithDeletedCheck(largeDataRefId, VendorLargeDataRef.class);
     }
 
-    protected <ENTITY extends VendorLargeDataRef> ENTITY doSelectByPKValueWithDeletedCheck(Long largeDataRefId, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(largeDataRefId), entityType);
+    protected <ENTITY extends VendorLargeDataRef> ENTITY doSelectByPKWithDeletedCheck(Long largeDataRefId, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(largeDataRefId), entityType);
     }
 
-    private VendorLargeDataRefCB buildPKCB(Long largeDataRefId) {
+    protected VendorLargeDataRefCB xprepareCBAsPK(Long largeDataRefId) {
         assertObjectNotNull("largeDataRefId", largeDataRefId);
-        VendorLargeDataRefCB cb = newMyConditionBean();
-        cb.query().setLargeDataRefId_Equal(largeDataRefId);
+        VendorLargeDataRefCB cb = newMyConditionBean(); cb.acceptPrimaryKey(largeDataRefId);
         return cb;
     }
 
@@ -498,7 +501,8 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
      */
     public List<VendorLargeData> pulloutVendorLargeData(List<VendorLargeDataRef> vendorLargeDataRefList) {
         return helpPulloutInternally(vendorLargeDataRefList, new InternalPulloutCallback<VendorLargeDataRef, VendorLargeData>() {
-            public VendorLargeData getFr(VendorLargeDataRef et) { return et.getVendorLargeData(); }
+            public VendorLargeData getFr(VendorLargeDataRef et)
+            { return et.getVendorLargeData(); }
             public boolean hasRf() { return true; }
             public void setRfLs(VendorLargeData et, List<VendorLargeDataRef> ls)
             { et.setVendorLargeDataRefList(ls); }
@@ -511,7 +515,8 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
      */
     public List<VendorLargeDataRef> pulloutVendorLargeDataRefSelf(List<VendorLargeDataRef> vendorLargeDataRefList) {
         return helpPulloutInternally(vendorLargeDataRefList, new InternalPulloutCallback<VendorLargeDataRef, VendorLargeDataRef>() {
-            public VendorLargeDataRef getFr(VendorLargeDataRef et) { return et.getVendorLargeDataRefSelf(); }
+            public VendorLargeDataRef getFr(VendorLargeDataRef et)
+            { return et.getVendorLargeDataRefSelf(); }
             public boolean hasRf() { return true; }
             public void setRfLs(VendorLargeDataRef et, List<VendorLargeDataRef> ls)
             { et.setVendorLargeDataRefSelfList(ls); }

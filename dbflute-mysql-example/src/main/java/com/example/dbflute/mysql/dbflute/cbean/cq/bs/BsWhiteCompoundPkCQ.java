@@ -408,6 +408,17 @@ public class BsWhiteCompoundPkCQ extends AbstractBsWhiteCompoundPkCQ {
     }
 
     // ===================================================================================
+    //                                                                     ScalarCondition
+    //                                                                     ===============
+    protected Map<String, WhiteCompoundPkCQ> _scalarConditionMap;
+    public Map<String, WhiteCompoundPkCQ> getScalarCondition() { return _scalarConditionMap; }
+    public String keepScalarCondition(WhiteCompoundPkCQ sq) {
+        if (_scalarConditionMap == null) { _scalarConditionMap = newLinkedHashMapSized(4); }
+        String ky = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
+        _scalarConditionMap.put(ky, sq); return "scalarCondition." + ky;
+    }
+
+    // ===================================================================================
     //                                                      ExistsReferrer for Compound PK
     //                                                      ==============================
     /**
@@ -624,5 +635,7 @@ public class BsWhiteCompoundPkCQ extends AbstractBsWhiteCompoundPkCQ {
     // very internal (for suppressing warn about 'Not Use Import')
     protected String xCB() { return WhiteCompoundPkCB.class.getName(); }
     protected String xCQ() { return WhiteCompoundPkCQ.class.getName(); }
+    protected String xCHp() { return HpCalculator.class.getName(); }
+    protected String xCOp() { return ConditionOption.class.getName(); }
     protected String xMap() { return Map.class.getName(); }
 }

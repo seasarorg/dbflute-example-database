@@ -33,6 +33,9 @@ public class VendorCheckDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgVendorCheckId(), "vendorCheckId");
@@ -67,8 +70,6 @@ public class VendorCheckDbm extends AbstractDBMeta {
         setupEpg(_epgMap, new EpgTypeOfBfile(), "typeOfBfile");
         setupEpg(_epgMap, new EpgTypeOfRowid(), "typeOfRowid");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgVendorCheckId implements PropertyGateway {
         public Object read(Entity et) { return ((VendorCheck)et).getVendorCheckId(); }
         public void write(Entity et, Object vl) { ((VendorCheck)et).setVendorCheckId(ctl(vl)); }
@@ -193,6 +194,8 @@ public class VendorCheckDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((VendorCheck)et).getTypeOfRowid(); }
         public void write(Entity et, Object vl) { ((VendorCheck)et).setTypeOfRowid((String)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -208,68 +211,192 @@ public class VendorCheckDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnVendorCheckId = cci("VENDOR_CHECK_ID", "VENDOR_CHECK_ID", null, null, true, "vendorCheckId", Long.class, true, false, "NUMBER", 16, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfChar = cci("TYPE_OF_CHAR", "TYPE_OF_CHAR", null, null, false, "typeOfChar", String.class, false, false, "CHAR", 3, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfNchar = cci("TYPE_OF_NCHAR", "TYPE_OF_NCHAR", null, null, false, "typeOfNchar", String.class, false, false, "NCHAR", 3, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfVarchar2 = cci("TYPE_OF_VARCHAR2", "TYPE_OF_VARCHAR2", null, null, false, "typeOfVarchar2", String.class, false, false, "VARCHAR2", 32, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfVarchar2Max = cci("TYPE_OF_VARCHAR2_MAX", "TYPE_OF_VARCHAR2_MAX", null, null, false, "typeOfVarchar2Max", String.class, false, false, "VARCHAR2", 4000, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfNvarchar2 = cci("TYPE_OF_NVARCHAR2", "TYPE_OF_NVARCHAR2", null, null, false, "typeOfNvarchar2", String.class, false, false, "NVARCHAR2", 32, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfClob = cci("TYPE_OF_CLOB", "TYPE_OF_CLOB", null, null, false, "typeOfClob", String.class, false, false, "CLOB", 4000, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfNclob = cci("TYPE_OF_NCLOB", "TYPE_OF_NCLOB", null, null, false, "typeOfNclob", String.class, false, false, "NCLOB", 4000, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfLong = cci("TYPE_OF_LONG", "TYPE_OF_LONG", null, null, false, "typeOfLong", String.class, false, false, "LONG", null, null, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfXmltype = cci("TYPE_OF_XMLTYPE", "TYPE_OF_XMLTYPE", null, null, false, "typeOfXmltype", String.class, false, false, "XMLTYPE", 2000, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfNumberInteger = cci("TYPE_OF_NUMBER_INTEGER", "TYPE_OF_NUMBER_INTEGER", null, null, false, "typeOfNumberInteger", Integer.class, false, false, "NUMBER", 5, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfNumberBigint = cci("TYPE_OF_NUMBER_BIGINT", "TYPE_OF_NUMBER_BIGINT", null, null, false, "typeOfNumberBigint", Long.class, false, false, "NUMBER", 12, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfNumberDecimal = cci("TYPE_OF_NUMBER_DECIMAL", "TYPE_OF_NUMBER_DECIMAL", null, null, false, "typeOfNumberDecimal", java.math.BigDecimal.class, false, false, "NUMBER", 5, 3, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfNumberIntegerMin = cci("TYPE_OF_NUMBER_INTEGER_MIN", "TYPE_OF_NUMBER_INTEGER_MIN", null, null, false, "typeOfNumberIntegerMin", Integer.class, false, false, "NUMBER", 1, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfNumberIntegerMax = cci("TYPE_OF_NUMBER_INTEGER_MAX", "TYPE_OF_NUMBER_INTEGER_MAX", null, null, false, "typeOfNumberIntegerMax", Integer.class, false, false, "NUMBER", 9, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfNumberBigintMin = cci("TYPE_OF_NUMBER_BIGINT_MIN", "TYPE_OF_NUMBER_BIGINT_MIN", null, null, false, "typeOfNumberBigintMin", Long.class, false, false, "NUMBER", 10, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfNumberBigintMax = cci("TYPE_OF_NUMBER_BIGINT_MAX", "TYPE_OF_NUMBER_BIGINT_MAX", null, null, false, "typeOfNumberBigintMax", Long.class, false, false, "NUMBER", 18, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfNumberSuperintMin = cci("TYPE_OF_NUMBER_SUPERINT_MIN", "TYPE_OF_NUMBER_SUPERINT_MIN", null, null, false, "typeOfNumberSuperintMin", java.math.BigDecimal.class, false, false, "NUMBER", 19, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfNumberSuperintMax = cci("TYPE_OF_NUMBER_SUPERINT_MAX", "TYPE_OF_NUMBER_SUPERINT_MAX", null, null, false, "typeOfNumberSuperintMax", java.math.BigDecimal.class, false, false, "NUMBER", 38, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfNumberMaxdecimal = cci("TYPE_OF_NUMBER_MAXDECIMAL", "TYPE_OF_NUMBER_MAXDECIMAL", null, null, false, "typeOfNumberMaxdecimal", java.math.BigDecimal.class, false, false, "NUMBER", 38, 127, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfInteger = cci("TYPE_OF_INTEGER", "TYPE_OF_INTEGER", null, null, false, "typeOfInteger", java.math.BigDecimal.class, false, false, "NUMBER", 22, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfBinaryFloat = cci("TYPE_OF_BINARY_FLOAT", "TYPE_OF_BINARY_FLOAT", null, null, false, "typeOfBinaryFloat", String.class, false, false, "BINARY_FLOAT", 4, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfBinaryDouble = cci("TYPE_OF_BINARY_DOUBLE", "TYPE_OF_BINARY_DOUBLE", null, null, false, "typeOfBinaryDouble", String.class, false, false, "BINARY_DOUBLE", 8, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfDate = cci("TYPE_OF_DATE", "TYPE_OF_DATE", null, null, false, "typeOfDate", java.util.Date.class, false, false, "DATE", 7, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfTimestamp = cci("TYPE_OF_TIMESTAMP", "TYPE_OF_TIMESTAMP", null, null, false, "typeOfTimestamp", java.sql.Timestamp.class, false, false, "TIMESTAMP(6)", 11, 6, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfIntervalYearToMonth = cci("TYPE_OF_INTERVAL_YEAR_TO_MONTH", "TYPE_OF_INTERVAL_YEAR_TO_MONTH", null, null, false, "typeOfIntervalYearToMonth", String.class, false, false, "INTERVAL YEAR(2) TO MONTH", 2, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfIntervalDayToSecond = cci("TYPE_OF_INTERVAL_DAY_TO_SECOND", "TYPE_OF_INTERVAL_DAY_TO_SECOND", null, null, false, "typeOfIntervalDayToSecond", String.class, false, false, "INTERVAL DAY(2) TO SECOND(6)", 2, 6, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfBlob = cci("TYPE_OF_BLOB", "TYPE_OF_BLOB", null, null, false, "typeOfBlob", byte[].class, false, false, "BLOB", 4000, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfRaw = cci("TYPE_OF_RAW", "TYPE_OF_RAW", null, null, false, "typeOfRaw", byte[].class, false, false, "RAW", 512, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfBfile = cci("TYPE_OF_BFILE", "TYPE_OF_BFILE", null, null, false, "typeOfBfile", String.class, false, false, "BFILE", 530, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfRowid = cci("TYPE_OF_ROWID", "TYPE_OF_ROWID", null, null, false, "typeOfRowid", String.class, false, false, "ROWID", 10, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnVendorCheckId = cci("VENDOR_CHECK_ID", "VENDOR_CHECK_ID", null, null, Long.class, "vendorCheckId", null, true, false, true, "NUMBER", 16, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfChar = cci("TYPE_OF_CHAR", "TYPE_OF_CHAR", null, null, String.class, "typeOfChar", null, false, false, false, "CHAR", 3, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfNchar = cci("TYPE_OF_NCHAR", "TYPE_OF_NCHAR", null, null, String.class, "typeOfNchar", null, false, false, false, "NCHAR", 3, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfVarchar2 = cci("TYPE_OF_VARCHAR2", "TYPE_OF_VARCHAR2", null, null, String.class, "typeOfVarchar2", null, false, false, false, "VARCHAR2", 32, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfVarchar2Max = cci("TYPE_OF_VARCHAR2_MAX", "TYPE_OF_VARCHAR2_MAX", null, null, String.class, "typeOfVarchar2Max", null, false, false, false, "VARCHAR2", 4000, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfNvarchar2 = cci("TYPE_OF_NVARCHAR2", "TYPE_OF_NVARCHAR2", null, null, String.class, "typeOfNvarchar2", null, false, false, false, "NVARCHAR2", 32, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfClob = cci("TYPE_OF_CLOB", "TYPE_OF_CLOB", null, null, String.class, "typeOfClob", null, false, false, false, "CLOB", 4000, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfNclob = cci("TYPE_OF_NCLOB", "TYPE_OF_NCLOB", null, null, String.class, "typeOfNclob", null, false, false, false, "NCLOB", 4000, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfLong = cci("TYPE_OF_LONG", "TYPE_OF_LONG", null, null, String.class, "typeOfLong", null, false, false, false, "LONG", null, null, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfXmltype = cci("TYPE_OF_XMLTYPE", "TYPE_OF_XMLTYPE", null, null, String.class, "typeOfXmltype", null, false, false, false, "XMLTYPE", 2000, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfNumberInteger = cci("TYPE_OF_NUMBER_INTEGER", "TYPE_OF_NUMBER_INTEGER", null, null, Integer.class, "typeOfNumberInteger", null, false, false, false, "NUMBER", 5, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfNumberBigint = cci("TYPE_OF_NUMBER_BIGINT", "TYPE_OF_NUMBER_BIGINT", null, null, Long.class, "typeOfNumberBigint", null, false, false, false, "NUMBER", 12, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfNumberDecimal = cci("TYPE_OF_NUMBER_DECIMAL", "TYPE_OF_NUMBER_DECIMAL", null, null, java.math.BigDecimal.class, "typeOfNumberDecimal", null, false, false, false, "NUMBER", 5, 3, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfNumberIntegerMin = cci("TYPE_OF_NUMBER_INTEGER_MIN", "TYPE_OF_NUMBER_INTEGER_MIN", null, null, Integer.class, "typeOfNumberIntegerMin", null, false, false, false, "NUMBER", 1, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfNumberIntegerMax = cci("TYPE_OF_NUMBER_INTEGER_MAX", "TYPE_OF_NUMBER_INTEGER_MAX", null, null, Integer.class, "typeOfNumberIntegerMax", null, false, false, false, "NUMBER", 9, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfNumberBigintMin = cci("TYPE_OF_NUMBER_BIGINT_MIN", "TYPE_OF_NUMBER_BIGINT_MIN", null, null, Long.class, "typeOfNumberBigintMin", null, false, false, false, "NUMBER", 10, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfNumberBigintMax = cci("TYPE_OF_NUMBER_BIGINT_MAX", "TYPE_OF_NUMBER_BIGINT_MAX", null, null, Long.class, "typeOfNumberBigintMax", null, false, false, false, "NUMBER", 18, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfNumberSuperintMin = cci("TYPE_OF_NUMBER_SUPERINT_MIN", "TYPE_OF_NUMBER_SUPERINT_MIN", null, null, java.math.BigDecimal.class, "typeOfNumberSuperintMin", null, false, false, false, "NUMBER", 19, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfNumberSuperintMax = cci("TYPE_OF_NUMBER_SUPERINT_MAX", "TYPE_OF_NUMBER_SUPERINT_MAX", null, null, java.math.BigDecimal.class, "typeOfNumberSuperintMax", null, false, false, false, "NUMBER", 38, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfNumberMaxdecimal = cci("TYPE_OF_NUMBER_MAXDECIMAL", "TYPE_OF_NUMBER_MAXDECIMAL", null, null, java.math.BigDecimal.class, "typeOfNumberMaxdecimal", null, false, false, false, "NUMBER", 38, 127, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfInteger = cci("TYPE_OF_INTEGER", "TYPE_OF_INTEGER", null, null, java.math.BigDecimal.class, "typeOfInteger", null, false, false, false, "NUMBER", 22, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfBinaryFloat = cci("TYPE_OF_BINARY_FLOAT", "TYPE_OF_BINARY_FLOAT", null, null, String.class, "typeOfBinaryFloat", null, false, false, false, "BINARY_FLOAT", 4, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfBinaryDouble = cci("TYPE_OF_BINARY_DOUBLE", "TYPE_OF_BINARY_DOUBLE", null, null, String.class, "typeOfBinaryDouble", null, false, false, false, "BINARY_DOUBLE", 8, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfDate = cci("TYPE_OF_DATE", "TYPE_OF_DATE", null, null, java.util.Date.class, "typeOfDate", null, false, false, false, "DATE", 7, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfTimestamp = cci("TYPE_OF_TIMESTAMP", "TYPE_OF_TIMESTAMP", null, null, java.sql.Timestamp.class, "typeOfTimestamp", null, false, false, false, "TIMESTAMP(6)", 11, 6, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfIntervalYearToMonth = cci("TYPE_OF_INTERVAL_YEAR_TO_MONTH", "TYPE_OF_INTERVAL_YEAR_TO_MONTH", null, null, String.class, "typeOfIntervalYearToMonth", null, false, false, false, "INTERVAL YEAR(2) TO MONTH", 2, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfIntervalDayToSecond = cci("TYPE_OF_INTERVAL_DAY_TO_SECOND", "TYPE_OF_INTERVAL_DAY_TO_SECOND", null, null, String.class, "typeOfIntervalDayToSecond", null, false, false, false, "INTERVAL DAY(2) TO SECOND(6)", 2, 6, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfBlob = cci("TYPE_OF_BLOB", "TYPE_OF_BLOB", null, null, byte[].class, "typeOfBlob", null, false, false, false, "BLOB", 4000, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfRaw = cci("TYPE_OF_RAW", "TYPE_OF_RAW", null, null, byte[].class, "typeOfRaw", null, false, false, false, "RAW", 512, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfBfile = cci("TYPE_OF_BFILE", "TYPE_OF_BFILE", null, null, String.class, "typeOfBfile", null, false, false, false, "BFILE", 530, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfRowid = cci("TYPE_OF_ROWID", "TYPE_OF_ROWID", null, null, String.class, "typeOfRowid", null, false, false, false, "ROWID", 10, 0, null, false, null, null, null, null, null);
 
+    /**
+     * VENDOR_CHECK_ID: {PK, NotNull, NUMBER(16)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnVendorCheckId() { return _columnVendorCheckId; }
+    /**
+     * TYPE_OF_CHAR: {CHAR(3)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfChar() { return _columnTypeOfChar; }
+    /**
+     * TYPE_OF_NCHAR: {NCHAR(3)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfNchar() { return _columnTypeOfNchar; }
+    /**
+     * TYPE_OF_VARCHAR2: {VARCHAR2(32)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfVarchar2() { return _columnTypeOfVarchar2; }
+    /**
+     * TYPE_OF_VARCHAR2_MAX: {VARCHAR2(4000)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfVarchar2Max() { return _columnTypeOfVarchar2Max; }
+    /**
+     * TYPE_OF_NVARCHAR2: {NVARCHAR2(32)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfNvarchar2() { return _columnTypeOfNvarchar2; }
+    /**
+     * TYPE_OF_CLOB: {CLOB(4000)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfClob() { return _columnTypeOfClob; }
+    /**
+     * TYPE_OF_NCLOB: {NCLOB(4000)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfNclob() { return _columnTypeOfNclob; }
+    /**
+     * TYPE_OF_LONG: {LONG}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfLong() { return _columnTypeOfLong; }
+    /**
+     * TYPE_OF_XMLTYPE: {XMLTYPE(2000)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfXmltype() { return _columnTypeOfXmltype; }
+    /**
+     * TYPE_OF_NUMBER_INTEGER: {NUMBER(5)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfNumberInteger() { return _columnTypeOfNumberInteger; }
+    /**
+     * TYPE_OF_NUMBER_BIGINT: {NUMBER(12)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfNumberBigint() { return _columnTypeOfNumberBigint; }
+    /**
+     * TYPE_OF_NUMBER_DECIMAL: {NUMBER(5, 3)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfNumberDecimal() { return _columnTypeOfNumberDecimal; }
+    /**
+     * TYPE_OF_NUMBER_INTEGER_MIN: {NUMBER(1)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfNumberIntegerMin() { return _columnTypeOfNumberIntegerMin; }
+    /**
+     * TYPE_OF_NUMBER_INTEGER_MAX: {NUMBER(9)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfNumberIntegerMax() { return _columnTypeOfNumberIntegerMax; }
+    /**
+     * TYPE_OF_NUMBER_BIGINT_MIN: {NUMBER(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfNumberBigintMin() { return _columnTypeOfNumberBigintMin; }
+    /**
+     * TYPE_OF_NUMBER_BIGINT_MAX: {NUMBER(18)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfNumberBigintMax() { return _columnTypeOfNumberBigintMax; }
+    /**
+     * TYPE_OF_NUMBER_SUPERINT_MIN: {NUMBER(19)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfNumberSuperintMin() { return _columnTypeOfNumberSuperintMin; }
+    /**
+     * TYPE_OF_NUMBER_SUPERINT_MAX: {NUMBER(38)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfNumberSuperintMax() { return _columnTypeOfNumberSuperintMax; }
+    /**
+     * TYPE_OF_NUMBER_MAXDECIMAL: {NUMBER(38, 127)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfNumberMaxdecimal() { return _columnTypeOfNumberMaxdecimal; }
+    /**
+     * TYPE_OF_INTEGER: {NUMBER(22)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfInteger() { return _columnTypeOfInteger; }
+    /**
+     * TYPE_OF_BINARY_FLOAT: {BINARY_FLOAT(4)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfBinaryFloat() { return _columnTypeOfBinaryFloat; }
+    /**
+     * TYPE_OF_BINARY_DOUBLE: {BINARY_DOUBLE(8)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfBinaryDouble() { return _columnTypeOfBinaryDouble; }
+    /**
+     * TYPE_OF_DATE: {DATE(7)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfDate() { return _columnTypeOfDate; }
+    /**
+     * TYPE_OF_TIMESTAMP: {TIMESTAMP(6)(11, 6)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfTimestamp() { return _columnTypeOfTimestamp; }
+    /**
+     * TYPE_OF_INTERVAL_YEAR_TO_MONTH: {INTERVAL YEAR(2) TO MONTH(2)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfIntervalYearToMonth() { return _columnTypeOfIntervalYearToMonth; }
+    /**
+     * TYPE_OF_INTERVAL_DAY_TO_SECOND: {INTERVAL DAY(2) TO SECOND(6)(2, 6)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfIntervalDayToSecond() { return _columnTypeOfIntervalDayToSecond; }
+    /**
+     * TYPE_OF_BLOB: {BLOB(4000)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfBlob() { return _columnTypeOfBlob; }
+    /**
+     * TYPE_OF_RAW: {RAW(512)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfRaw() { return _columnTypeOfRaw; }
+    /**
+     * TYPE_OF_BFILE: {BFILE(530)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfBfile() { return _columnTypeOfBfile; }
+    /**
+     * TYPE_OF_ROWID: {ROWID(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfRowid() { return _columnTypeOfRowid; }
 
     protected List<ColumnInfo> ccil() {
@@ -323,6 +450,8 @@ public class VendorCheckDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // cannot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

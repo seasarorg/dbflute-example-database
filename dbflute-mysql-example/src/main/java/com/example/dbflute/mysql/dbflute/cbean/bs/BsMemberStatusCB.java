@@ -29,6 +29,7 @@ import org.seasar.dbflute.cbean.sqlclause.SqlClause;
 import org.seasar.dbflute.cbean.sqlclause.SqlClauseCreator;
 import org.seasar.dbflute.dbmeta.DBMetaProvider;
 import org.seasar.dbflute.twowaysql.factory.SqlAnalyzerFactory;
+import com.example.dbflute.mysql.dbflute.allcommon.CDef;
 import com.example.dbflute.mysql.dbflute.allcommon.DBFluteConfig;
 import com.example.dbflute.mysql.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.mysql.dbflute.allcommon.ImplementedInvokerAssistant;
@@ -96,10 +97,10 @@ public class BsMemberStatusCB extends AbstractConditionBean {
      * Accept the query condition of primary key as equal.
      * @param memberStatusCode (会員ステータスコード): PK, NotNull, CHAR(3), classification=MemberStatus. (NotNull)
      */
-    public void acceptPrimaryKey(String memberStatusCode) {
+    public void acceptPrimaryKey(CDef.MemberStatus memberStatusCode) {
         assertObjectNotNull("memberStatusCode", memberStatusCode);
         BsMemberStatusCB cb = this;
-        cb.query().setMemberStatusCode_Equal(memberStatusCode);;
+        cb.query().setMemberStatusCode_Equal_AsMemberStatus(memberStatusCode);
     }
 
     /**

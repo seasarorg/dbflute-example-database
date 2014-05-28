@@ -22,8 +22,8 @@ public abstract class AbstractBsSynonymNextLinkTableCQ extends AbstractCondition
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public AbstractBsSynonymNextLinkTableCQ(ConditionQuery childQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
-        super(childQuery, sqlClause, aliasName, nestLevel);
+    public AbstractBsSynonymNextLinkTableCQ(ConditionQuery referrerQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
+        super(referrerQuery, sqlClause, aliasName, nestLevel);
     }
 
     // ===================================================================================
@@ -660,7 +660,7 @@ public abstract class AbstractBsSynonymNextLinkTableCQ extends AbstractCondition
     public abstract String keepSpecifyMyselfDerived(SynonymNextLinkTableCQ sq);
 
     /**
-     * Prepare for (Query)MyselfDerived (SubQuery).
+     * Prepare for (Query)MyselfDerived (correlated sub-query).
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<SynonymNextLinkTableCB> myselfDerived() {
@@ -682,8 +682,8 @@ public abstract class AbstractBsSynonymNextLinkTableCQ extends AbstractCondition
     //                                                                        MyselfExists
     //                                                                        ============
     /**
-     * Prepare for MyselfExists (SubQuery).
-     * @param subQuery The implementation of sub query. (NotNull)
+     * Prepare for MyselfExists (correlated sub-query).
+     * @param subQuery The implementation of sub-query. (NotNull)
      */
     public void myselfExists(SubQuery<SynonymNextLinkTableCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
@@ -698,8 +698,8 @@ public abstract class AbstractBsSynonymNextLinkTableCQ extends AbstractCondition
     //                                                                       MyselfInScope
     //                                                                       =============
     /**
-     * Prepare for MyselfInScope (SubQuery).
-     * @param subQuery The implementation of sub query. (NotNull)
+     * Prepare for MyselfInScope (sub-query).
+     * @param subQuery The implementation of sub-query. (NotNull)
      */
     public void myselfInScope(SubQuery<SynonymNextLinkTableCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);

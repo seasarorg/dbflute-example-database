@@ -169,7 +169,7 @@ public abstract class BsVendorLargeName901234567890Bhv extends AbstractBehaviorW
      * </pre>
      * @param cb The condition-bean of VendorLargeName901234567890. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -190,39 +190,42 @@ public abstract class BsVendorLargeName901234567890Bhv extends AbstractBehaviorW
 
     /**
      * Select the entity by the primary-key value.
-     * @param vendorLargeName901234567Id The one of primary key. (NotNull)
+     * @param vendorLargeName901234567Id : PK, NotNull, NUMBER(16). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public VendorLargeName901234567890 selectByPKValue(Long vendorLargeName901234567Id) {
-        return doSelectByPKValue(vendorLargeName901234567Id, VendorLargeName901234567890.class);
+        return doSelectByPK(vendorLargeName901234567Id, VendorLargeName901234567890.class);
     }
 
-    protected <ENTITY extends VendorLargeName901234567890> ENTITY doSelectByPKValue(Long vendorLargeName901234567Id, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(vendorLargeName901234567Id), entityType);
+    protected <ENTITY extends VendorLargeName901234567890> ENTITY doSelectByPK(Long vendorLargeName901234567Id, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(vendorLargeName901234567Id), entityType);
+    }
+
+    protected <ENTITY extends VendorLargeName901234567890> OptionalEntity<ENTITY> doSelectOptionalByPK(Long vendorLargeName901234567Id, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(vendorLargeName901234567Id, entityType), vendorLargeName901234567Id);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param vendorLargeName901234567Id The one of primary key. (NotNull)
+     * @param vendorLargeName901234567Id : PK, NotNull, NUMBER(16). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public VendorLargeName901234567890 selectByPKValueWithDeletedCheck(Long vendorLargeName901234567Id) {
-        return doSelectByPKValueWithDeletedCheck(vendorLargeName901234567Id, VendorLargeName901234567890.class);
+        return doSelectByPKWithDeletedCheck(vendorLargeName901234567Id, VendorLargeName901234567890.class);
     }
 
-    protected <ENTITY extends VendorLargeName901234567890> ENTITY doSelectByPKValueWithDeletedCheck(Long vendorLargeName901234567Id, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(vendorLargeName901234567Id), entityType);
+    protected <ENTITY extends VendorLargeName901234567890> ENTITY doSelectByPKWithDeletedCheck(Long vendorLargeName901234567Id, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(vendorLargeName901234567Id), entityType);
     }
 
-    private VendorLargeName901234567890CB buildPKCB(Long vendorLargeName901234567Id) {
+    protected VendorLargeName901234567890CB xprepareCBAsPK(Long vendorLargeName901234567Id) {
         assertObjectNotNull("vendorLargeName901234567Id", vendorLargeName901234567Id);
-        VendorLargeName901234567890CB cb = newMyConditionBean();
-        cb.query().setVendorLargeName901234567Id_Equal(vendorLargeName901234567Id);
+        VendorLargeName901234567890CB cb = newMyConditionBean(); cb.acceptPrimaryKey(vendorLargeName901234567Id);
         return cb;
     }
 

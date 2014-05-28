@@ -169,7 +169,7 @@ public abstract class BsWhiteRefNextExceptBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of WhiteRefNextExcept. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -190,39 +190,42 @@ public abstract class BsWhiteRefNextExceptBhv extends AbstractBehaviorWritable {
 
     /**
      * Select the entity by the primary-key value.
-     * @param refNextExceptId The one of primary key. (NotNull)
+     * @param refNextExceptId : PK, NotNull, NUMBER(16). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteRefNextExcept selectByPKValue(Long refNextExceptId) {
-        return doSelectByPKValue(refNextExceptId, WhiteRefNextExcept.class);
+        return doSelectByPK(refNextExceptId, WhiteRefNextExcept.class);
     }
 
-    protected <ENTITY extends WhiteRefNextExcept> ENTITY doSelectByPKValue(Long refNextExceptId, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(refNextExceptId), entityType);
+    protected <ENTITY extends WhiteRefNextExcept> ENTITY doSelectByPK(Long refNextExceptId, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(refNextExceptId), entityType);
+    }
+
+    protected <ENTITY extends WhiteRefNextExcept> OptionalEntity<ENTITY> doSelectOptionalByPK(Long refNextExceptId, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(refNextExceptId, entityType), refNextExceptId);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param refNextExceptId The one of primary key. (NotNull)
+     * @param refNextExceptId : PK, NotNull, NUMBER(16). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteRefNextExcept selectByPKValueWithDeletedCheck(Long refNextExceptId) {
-        return doSelectByPKValueWithDeletedCheck(refNextExceptId, WhiteRefNextExcept.class);
+        return doSelectByPKWithDeletedCheck(refNextExceptId, WhiteRefNextExcept.class);
     }
 
-    protected <ENTITY extends WhiteRefNextExcept> ENTITY doSelectByPKValueWithDeletedCheck(Long refNextExceptId, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(refNextExceptId), entityType);
+    protected <ENTITY extends WhiteRefNextExcept> ENTITY doSelectByPKWithDeletedCheck(Long refNextExceptId, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(refNextExceptId), entityType);
     }
 
-    private WhiteRefNextExceptCB buildPKCB(Long refNextExceptId) {
+    protected WhiteRefNextExceptCB xprepareCBAsPK(Long refNextExceptId) {
         assertObjectNotNull("refNextExceptId", refNextExceptId);
-        WhiteRefNextExceptCB cb = newMyConditionBean();
-        cb.query().setRefNextExceptId_Equal(refNextExceptId);
+        WhiteRefNextExceptCB cb = newMyConditionBean(); cb.acceptPrimaryKey(refNextExceptId);
         return cb;
     }
 

@@ -7,6 +7,7 @@ import org.seasar.dbflute.bhv.ConditionBeanSetupper;
 import org.seasar.dbflute.bhv.EntityListSetupper;
 import org.seasar.dbflute.bhv.LoadReferrerOption;
 import org.seasar.dbflute.cbean.ListResultBean;
+import org.seasar.dbflute.cbean.SpecifyQuery;
 import org.seasar.dbflute.cbean.SubQuery;
 import org.seasar.dbflute.cbean.UnionQuery;
 import org.seasar.dbflute.cbean.coption.DerivedReferrerOption;
@@ -606,6 +607,62 @@ public class WxCompoundPKMainTest extends UnitContainerTestCase {
         }
         log(logSb);
         assertTrue(exists);
+    }
+
+    // ===================================================================================
+    //                                                                    Scalar Condition
+    //                                                                    ================
+    public void test_CompoundPK_ScalarCondition_basic() {
+        // ## Arrange ##
+        registerTestData();
+        WhiteCompoundPkCB cb = new WhiteCompoundPkCB();
+        cb.setupSelect_WhiteCompoundPkRefManyAsMax();
+        cb.setupSelect_WhiteCompoundPkRefManyAsMin();
+        cb.setupSelect_WhiteCompoundReferredNormally();
+        cb.setupSelect_WhiteCompoundReferredPrimary();
+        cb.query().scalar_Equal().max(new SubQuery<WhiteCompoundPkCB>() {
+            public void query(WhiteCompoundPkCB subCB) {
+                subCB.specify().columnPkSecondId();
+                subCB.query().setPkFirstId_IsNotNull();
+            }
+        });
+
+        // ## Act ##
+        ListResultBean<WhiteCompoundPk> pkList = whiteCompoundPkBhv.selectList(cb);
+
+        // ## Assert ##
+        assertHasAnyElement(pkList);
+        for (WhiteCompoundPk pk : pkList) {
+            log(pk);
+        }
+    }
+
+    public void test_CompoundPK_ScalarCondition_partitionBy() {
+        // ## Arrange ##
+        registerTestData();
+        WhiteCompoundPkCB cb = new WhiteCompoundPkCB();
+        cb.setupSelect_WhiteCompoundPkRefManyAsMax();
+        cb.setupSelect_WhiteCompoundPkRefManyAsMin();
+        cb.setupSelect_WhiteCompoundReferredNormally();
+        cb.setupSelect_WhiteCompoundReferredPrimary();
+        cb.query().scalar_Equal().max(new SubQuery<WhiteCompoundPkCB>() {
+            public void query(WhiteCompoundPkCB subCB) {
+                subCB.specify().columnPkSecondId();
+            }
+        }).partitionBy(new SpecifyQuery<WhiteCompoundPkCB>() {
+            public void specify(WhiteCompoundPkCB cb) {
+                cb.specify().columnReferredId();
+            }
+        });
+
+        // ## Act ##
+        ListResultBean<WhiteCompoundPk> pkList = whiteCompoundPkBhv.selectList(cb);
+
+        // ## Assert ##
+        assertHasAnyElement(pkList);
+        for (WhiteCompoundPk pk : pkList) {
+            log(pk);
+        }
     }
 
     // ===================================================================================

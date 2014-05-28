@@ -285,7 +285,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
     /**
      * {@inheritDoc}
      */
-    public Set<String> uniqueDrivenProperties() {
+    public Set<String> myuniqueDrivenProperties() {
         return __uniqueDrivenProperties.getPropertyNames();
     }
 
@@ -950,7 +950,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      * [set] TYPE_OF_BOOLEAN: {BIT, classification=BooleanFlg} <br />
      * @param typeOfBoolean The value of the column 'TYPE_OF_BOOLEAN'. (NullAllowed: null update allowed for no constraint)
      */
-    public void setTypeOfBoolean(Boolean typeOfBoolean) {
+    protected void setTypeOfBoolean(Boolean typeOfBoolean) {
         __modifiedProperties.addPropertyName("typeOfBoolean");
         this._typeOfBoolean = typeOfBoolean;
     }

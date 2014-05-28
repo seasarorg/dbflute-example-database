@@ -97,6 +97,8 @@ public class WhiteCompoundPkCIQ extends AbstractBsWhiteCompoundPkCQ {
     public String keepReferredId_NotInScopeRelation_WhiteCompoundReferredNormally(WhiteCompoundReferredNormallyCQ sq)
     { return _myCQ.keepReferredId_NotInScopeRelation_WhiteCompoundReferredNormally(sq); }
     protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
+    public String keepScalarCondition(WhiteCompoundPkCQ sq)
+    { throwIICBOE("ScalarCondition"); return null; }
 
     protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()
         throw new IllegalConditionBeanOperationException(name + " at InlineView is unsupported.");

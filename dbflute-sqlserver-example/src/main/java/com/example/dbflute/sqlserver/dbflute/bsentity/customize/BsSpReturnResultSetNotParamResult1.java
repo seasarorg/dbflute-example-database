@@ -128,6 +128,9 @@ public abstract class BsSpReturnResultSetNotParamResult1 implements Entity, Seri
     // -----------------------------------------------------
     //                                              Internal
     //                                              --------
+    /** The unique-driven properties for this entity. (NotNull) */
+    protected final EntityUniqueDrivenProperties __uniqueDrivenProperties = newUniqueDrivenProperties();
+
     /** The modified properties for this entity. (NotNull) */
     protected final EntityModifiedProperties __modifiedProperties = newModifiedProperties();
 
@@ -169,6 +172,17 @@ public abstract class BsSpReturnResultSetNotParamResult1 implements Entity, Seri
      */
     public boolean hasPrimaryKeyValue() {
         return false;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Set<String> myuniqueDrivenProperties() {
+        return __uniqueDrivenProperties.getPropertyNames();
+    }
+
+    protected EntityUniqueDrivenProperties newUniqueDrivenProperties() {
+        return new EntityUniqueDrivenProperties();
     }
 
     // ===================================================================================
@@ -361,8 +375,8 @@ public abstract class BsSpReturnResultSetNotParamResult1 implements Entity, Seri
         if (!xSV(getVersionNo(), other.getVersionNo())) { return false; }
         return true;
     }
-    protected boolean xSV(Object value1, Object value2) {
-        return FunCustodial.isSameValue(value1, value2);
+    protected boolean xSV(Object v1, Object v2) {
+        return FunCustodial.isSameValue(v1, v2);
     }
 
     /**
@@ -370,25 +384,25 @@ public abstract class BsSpReturnResultSetNotParamResult1 implements Entity, Seri
      * @return The hash-code from primary-key or columns.
      */
     public int hashCode() {
-        int result = 17;
-        result = xCH(result, getTableDbName());
-        result = xCH(result, getMemberId());
-        result = xCH(result, getMemberName());
-        result = xCH(result, getMemberAccount());
-        result = xCH(result, getMemberStatusCode());
-        result = xCH(result, getFormalizedDatetime());
-        result = xCH(result, getBirthdate());
-        result = xCH(result, getRegisterDatetime());
-        result = xCH(result, getRegisterUser());
-        result = xCH(result, getRegisterProcess());
-        result = xCH(result, getUpdateDatetime());
-        result = xCH(result, getUpdateUser());
-        result = xCH(result, getUpdateProcess());
-        result = xCH(result, getVersionNo());
-        return result;
+        int hs = 17;
+        hs = xCH(hs, getTableDbName());
+        hs = xCH(hs, getMemberId());
+        hs = xCH(hs, getMemberName());
+        hs = xCH(hs, getMemberAccount());
+        hs = xCH(hs, getMemberStatusCode());
+        hs = xCH(hs, getFormalizedDatetime());
+        hs = xCH(hs, getBirthdate());
+        hs = xCH(hs, getRegisterDatetime());
+        hs = xCH(hs, getRegisterUser());
+        hs = xCH(hs, getRegisterProcess());
+        hs = xCH(hs, getUpdateDatetime());
+        hs = xCH(hs, getUpdateUser());
+        hs = xCH(hs, getUpdateProcess());
+        hs = xCH(hs, getVersionNo());
+        return hs;
     }
-    protected int xCH(int result, Object value) {
-        return FunCustodial.calculateHashcode(result, value);
+    protected int xCH(int hs, Object vl) {
+        return FunCustodial.calculateHashcode(hs, vl);
     }
 
     /**
@@ -428,22 +442,22 @@ public abstract class BsSpReturnResultSetNotParamResult1 implements Entity, Seri
     }
     protected String buildColumnString() {
         StringBuilder sb = new StringBuilder();
-        String delimiter = ", ";
-        sb.append(delimiter).append(getMemberId());
-        sb.append(delimiter).append(getMemberName());
-        sb.append(delimiter).append(getMemberAccount());
-        sb.append(delimiter).append(getMemberStatusCode());
-        sb.append(delimiter).append(getFormalizedDatetime());
-        sb.append(delimiter).append(getBirthdate());
-        sb.append(delimiter).append(getRegisterDatetime());
-        sb.append(delimiter).append(getRegisterUser());
-        sb.append(delimiter).append(getRegisterProcess());
-        sb.append(delimiter).append(getUpdateDatetime());
-        sb.append(delimiter).append(getUpdateUser());
-        sb.append(delimiter).append(getUpdateProcess());
-        sb.append(delimiter).append(getVersionNo());
-        if (sb.length() > delimiter.length()) {
-            sb.delete(0, delimiter.length());
+        String dm = ", ";
+        sb.append(dm).append(getMemberId());
+        sb.append(dm).append(getMemberName());
+        sb.append(dm).append(getMemberAccount());
+        sb.append(dm).append(getMemberStatusCode());
+        sb.append(dm).append(getFormalizedDatetime());
+        sb.append(dm).append(getBirthdate());
+        sb.append(dm).append(getRegisterDatetime());
+        sb.append(dm).append(getRegisterUser());
+        sb.append(dm).append(getRegisterProcess());
+        sb.append(dm).append(getUpdateDatetime());
+        sb.append(dm).append(getUpdateUser());
+        sb.append(dm).append(getUpdateProcess());
+        sb.append(dm).append(getVersionNo());
+        if (sb.length() > dm.length()) {
+            sb.delete(0, dm.length());
         }
         sb.insert(0, "{").append("}");
         return sb.toString();

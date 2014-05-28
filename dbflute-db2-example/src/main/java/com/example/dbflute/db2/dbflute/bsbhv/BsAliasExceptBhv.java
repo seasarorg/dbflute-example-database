@@ -169,7 +169,7 @@ public abstract class BsAliasExceptBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of AliasExcept. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -190,39 +190,42 @@ public abstract class BsAliasExceptBhv extends AbstractBehaviorWritable {
 
     /**
      * Select the entity by the primary-key value.
-     * @param exceptId The one of primary key. (NotNull)
+     * @param exceptId : PK, NotNull, DECIMAL(16). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public AliasExcept selectByPKValue(Long exceptId) {
-        return doSelectByPKValue(exceptId, AliasExcept.class);
+        return doSelectByPK(exceptId, AliasExcept.class);
     }
 
-    protected <ENTITY extends AliasExcept> ENTITY doSelectByPKValue(Long exceptId, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(exceptId), entityType);
+    protected <ENTITY extends AliasExcept> ENTITY doSelectByPK(Long exceptId, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(exceptId), entityType);
+    }
+
+    protected <ENTITY extends AliasExcept> OptionalEntity<ENTITY> doSelectOptionalByPK(Long exceptId, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(exceptId, entityType), exceptId);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param exceptId The one of primary key. (NotNull)
+     * @param exceptId : PK, NotNull, DECIMAL(16). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public AliasExcept selectByPKValueWithDeletedCheck(Long exceptId) {
-        return doSelectByPKValueWithDeletedCheck(exceptId, AliasExcept.class);
+        return doSelectByPKWithDeletedCheck(exceptId, AliasExcept.class);
     }
 
-    protected <ENTITY extends AliasExcept> ENTITY doSelectByPKValueWithDeletedCheck(Long exceptId, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(exceptId), entityType);
+    protected <ENTITY extends AliasExcept> ENTITY doSelectByPKWithDeletedCheck(Long exceptId, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(exceptId), entityType);
     }
 
-    private AliasExceptCB buildPKCB(Long exceptId) {
+    protected AliasExceptCB xprepareCBAsPK(Long exceptId) {
         assertObjectNotNull("exceptId", exceptId);
-        AliasExceptCB cb = newMyConditionBean();
-        cb.query().setExceptId_Equal(exceptId);
+        AliasExceptCB cb = newMyConditionBean(); cb.acceptPrimaryKey(exceptId);
         return cb;
     }
 

@@ -159,7 +159,7 @@ public abstract class BsVendorLargeDataRef implements Entity, Serializable, Clon
     /**
      * {@inheritDoc}
      */
-    public Set<String> uniqueDrivenProperties() {
+    public Set<String> myuniqueDrivenProperties() {
         return __uniqueDrivenProperties.getPropertyNames();
     }
 

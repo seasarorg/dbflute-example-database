@@ -169,7 +169,7 @@ public abstract class BsAliasRefExceptBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of AliasRefExcept. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -190,39 +190,42 @@ public abstract class BsAliasRefExceptBhv extends AbstractBehaviorWritable {
 
     /**
      * Select the entity by the primary-key value.
-     * @param refExceptId The one of primary key. (NotNull)
+     * @param refExceptId : PK, NotNull, DECIMAL(16). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public AliasRefExcept selectByPKValue(Long refExceptId) {
-        return doSelectByPKValue(refExceptId, AliasRefExcept.class);
+        return doSelectByPK(refExceptId, AliasRefExcept.class);
     }
 
-    protected <ENTITY extends AliasRefExcept> ENTITY doSelectByPKValue(Long refExceptId, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(refExceptId), entityType);
+    protected <ENTITY extends AliasRefExcept> ENTITY doSelectByPK(Long refExceptId, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(refExceptId), entityType);
+    }
+
+    protected <ENTITY extends AliasRefExcept> OptionalEntity<ENTITY> doSelectOptionalByPK(Long refExceptId, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(refExceptId, entityType), refExceptId);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param refExceptId The one of primary key. (NotNull)
+     * @param refExceptId : PK, NotNull, DECIMAL(16). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public AliasRefExcept selectByPKValueWithDeletedCheck(Long refExceptId) {
-        return doSelectByPKValueWithDeletedCheck(refExceptId, AliasRefExcept.class);
+        return doSelectByPKWithDeletedCheck(refExceptId, AliasRefExcept.class);
     }
 
-    protected <ENTITY extends AliasRefExcept> ENTITY doSelectByPKValueWithDeletedCheck(Long refExceptId, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(refExceptId), entityType);
+    protected <ENTITY extends AliasRefExcept> ENTITY doSelectByPKWithDeletedCheck(Long refExceptId, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(refExceptId), entityType);
     }
 
-    private AliasRefExceptCB buildPKCB(Long refExceptId) {
+    protected AliasRefExceptCB xprepareCBAsPK(Long refExceptId) {
         assertObjectNotNull("refExceptId", refExceptId);
-        AliasRefExceptCB cb = newMyConditionBean();
-        cb.query().setRefExceptId_Equal(refExceptId);
+        AliasRefExceptCB cb = newMyConditionBean(); cb.acceptPrimaryKey(refExceptId);
         return cb;
     }
 
@@ -387,7 +390,8 @@ public abstract class BsAliasRefExceptBhv extends AbstractBehaviorWritable {
      */
     public List<AliasExcept> pulloutAliasExcept(List<AliasRefExcept> aliasRefExceptList) {
         return helpPulloutInternally(aliasRefExceptList, new InternalPulloutCallback<AliasRefExcept, AliasExcept>() {
-            public AliasExcept getFr(AliasRefExcept et) { return et.getAliasExcept(); }
+            public AliasExcept getFr(AliasRefExcept et)
+            { return et.getAliasExcept(); }
             public boolean hasRf() { return true; }
             public void setRfLs(AliasExcept et, List<AliasRefExcept> ls)
             { et.setAliasRefExceptList(ls); }

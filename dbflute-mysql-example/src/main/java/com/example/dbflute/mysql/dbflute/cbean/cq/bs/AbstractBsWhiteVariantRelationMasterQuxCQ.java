@@ -254,7 +254,7 @@ public abstract class AbstractBsWhiteVariantRelationMasterQuxCQ extends Abstract
      * QUX_TYPE_CODE: {NotNull, CHAR(3), classification=VariantRelationQuxType}
      * @param quxTypeCode The value of quxTypeCode as equal. (NullAllowed: if null (or empty), no condition)
      */
-    public void setQuxTypeCode_Equal(String quxTypeCode) {
+    protected void setQuxTypeCode_Equal(String quxTypeCode) {
         doSetQuxTypeCode_Equal(fRES(quxTypeCode));
     }
 
@@ -301,7 +301,7 @@ public abstract class AbstractBsWhiteVariantRelationMasterQuxCQ extends Abstract
      * QUX_TYPE_CODE: {NotNull, CHAR(3), classification=VariantRelationQuxType}
      * @param quxTypeCode The value of quxTypeCode as notEqual. (NullAllowed: if null (or empty), no condition)
      */
-    public void setQuxTypeCode_NotEqual(String quxTypeCode) {
+    protected void setQuxTypeCode_NotEqual(String quxTypeCode) {
         doSetQuxTypeCode_NotEqual(fRES(quxTypeCode));
     }
 

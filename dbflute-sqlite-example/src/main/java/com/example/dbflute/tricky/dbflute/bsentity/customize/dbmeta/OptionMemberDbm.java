@@ -33,6 +33,9 @@ public class OptionMemberDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgMemberId(), "memberId");
@@ -45,8 +48,6 @@ public class OptionMemberDbm extends AbstractDBMeta {
         setupEpg(_epgMap, new EpgDummyFlg(), "dummyFlg");
         setupEpg(_epgMap, new EpgDummyNoflg(), "dummyNoflg");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgMemberId implements PropertyGateway {
         public Object read(Entity et) { return ((OptionMember)et).getMemberId(); }
         public void write(Entity et, Object vl) { ((OptionMember)et).setMemberId((String)vl); }
@@ -83,6 +84,8 @@ public class OptionMemberDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((OptionMember)et).getDummyNoflg(); }
         public void write(Entity et, Object vl) { ((OptionMember)et).setDummyNoflg((String)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -98,24 +101,60 @@ public class OptionMemberDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnMemberId = cci("MEMBER_ID", "MEMBER_ID", null, null, false, "memberId", String.class, false, false, "null", 2147483647, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnMemberName = cci("MEMBER_NAME", "MEMBER_NAME", null, null, false, "memberName", String.class, false, false, "null", 2147483647, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnBirthdate = cci("BIRTHDATE", "BIRTHDATE", null, null, false, "birthdate", String.class, false, false, "null", 2147483647, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnFormalizedDatetime = cci("FORMALIZED_DATETIME", "FORMALIZED_DATETIME", null, null, false, "formalizedDatetime", java.sql.Timestamp.class, false, false, "null", 2147483647, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnMemberStatusCode = cci("MEMBER_STATUS_CODE", "MEMBER_STATUS_CODE", null, null, false, "memberStatusCode", String.class, false, false, "null", 2147483647, 0, null, false, null, null, null, null, CDef.DefMeta.MemberStatus);
-    protected final ColumnInfo _columnMemberStatusName = cci("MEMBER_STATUS_NAME", "MEMBER_STATUS_NAME", null, null, false, "memberStatusName", String.class, false, false, "null", 2147483647, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnStatusDisplayOrder = cci("STATUS_DISPLAY_ORDER", "STATUS_DISPLAY_ORDER", null, null, false, "statusDisplayOrder", String.class, false, false, "null", 2147483647, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnDummyFlg = cci("DUMMY_FLG", "DUMMY_FLG", null, null, false, "dummyFlg", String.class, false, false, "null", 2147483647, 0, null, false, null, null, null, null, CDef.DefMeta.Flg);
-    protected final ColumnInfo _columnDummyNoflg = cci("DUMMY_NOFLG", "DUMMY_NOFLG", null, null, false, "dummyNoflg", String.class, false, false, "null", 2147483647, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnMemberId = cci("MEMBER_ID", "MEMBER_ID", null, null, String.class, "memberId", null, false, false, false, "null", 2147483647, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnMemberName = cci("MEMBER_NAME", "MEMBER_NAME", null, null, String.class, "memberName", null, false, false, false, "null", 2147483647, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnBirthdate = cci("BIRTHDATE", "BIRTHDATE", null, null, String.class, "birthdate", null, false, false, false, "null", 2147483647, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnFormalizedDatetime = cci("FORMALIZED_DATETIME", "FORMALIZED_DATETIME", null, null, java.sql.Timestamp.class, "formalizedDatetime", null, false, false, false, "null", 2147483647, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnMemberStatusCode = cci("MEMBER_STATUS_CODE", "MEMBER_STATUS_CODE", null, null, String.class, "memberStatusCode", null, false, false, false, "null", 2147483647, 0, null, false, null, null, null, null, CDef.DefMeta.MemberStatus);
+    protected final ColumnInfo _columnMemberStatusName = cci("MEMBER_STATUS_NAME", "MEMBER_STATUS_NAME", null, null, String.class, "memberStatusName", null, false, false, false, "null", 2147483647, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnStatusDisplayOrder = cci("STATUS_DISPLAY_ORDER", "STATUS_DISPLAY_ORDER", null, null, String.class, "statusDisplayOrder", null, false, false, false, "null", 2147483647, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnDummyFlg = cci("DUMMY_FLG", "DUMMY_FLG", null, null, String.class, "dummyFlg", null, false, false, false, "null", 2147483647, 0, null, false, null, null, null, null, CDef.DefMeta.Flg);
+    protected final ColumnInfo _columnDummyNoflg = cci("DUMMY_NOFLG", "DUMMY_NOFLG", null, null, String.class, "dummyNoflg", null, false, false, false, "null", 2147483647, 0, null, false, null, null, null, null, null);
 
+    /**
+     * MEMBER_ID: {null(2147483647), refers to MEMBER.MEMBER_ID}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnMemberId() { return _columnMemberId; }
+    /**
+     * MEMBER_NAME: {null(2147483647), refers to MEMBER.MEMBER_NAME}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnMemberName() { return _columnMemberName; }
+    /**
+     * BIRTHDATE: {null(2147483647), refers to MEMBER.BIRTHDATE}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnBirthdate() { return _columnBirthdate; }
+    /**
+     * FORMALIZED_DATETIME: {null(2147483647), refers to MEMBER.FORMALIZED_DATETIME}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnFormalizedDatetime() { return _columnFormalizedDatetime; }
+    /**
+     * MEMBER_STATUS_CODE: {null(2147483647), refers to MEMBER.MEMBER_STATUS_CODE, classification=MemberStatus}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnMemberStatusCode() { return _columnMemberStatusCode; }
+    /**
+     * MEMBER_STATUS_NAME: {null(2147483647), refers to MEMBER_STATUS.MEMBER_STATUS_NAME}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnMemberStatusName() { return _columnMemberStatusName; }
+    /**
+     * STATUS_DISPLAY_ORDER: {null(2147483647), refers to MEMBER_STATUS}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnStatusDisplayOrder() { return _columnStatusDisplayOrder; }
+    /**
+     * DUMMY_FLG: {null(2147483647), classification=Flg}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnDummyFlg() { return _columnDummyFlg; }
+    /**
+     * DUMMY_NOFLG: {null(2147483647)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnDummyNoflg() { return _columnDummyNoflg; }
 
     protected List<ColumnInfo> ccil() {
@@ -149,6 +188,8 @@ public class OptionMemberDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // cannot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

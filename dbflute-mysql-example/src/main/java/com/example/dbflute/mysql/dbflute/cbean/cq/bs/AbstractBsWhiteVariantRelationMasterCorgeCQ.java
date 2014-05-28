@@ -254,7 +254,7 @@ public abstract class AbstractBsWhiteVariantRelationMasterCorgeCQ extends Abstra
      * CORGE_TYPE_CODE: {NotNull, CHAR(3), classification=VariantRelationQuxType}
      * @param corgeTypeCode The value of corgeTypeCode as equal. (NullAllowed: if null (or empty), no condition)
      */
-    public void setCorgeTypeCode_Equal(String corgeTypeCode) {
+    protected void setCorgeTypeCode_Equal(String corgeTypeCode) {
         doSetCorgeTypeCode_Equal(fRES(corgeTypeCode));
     }
 
@@ -301,7 +301,7 @@ public abstract class AbstractBsWhiteVariantRelationMasterCorgeCQ extends Abstra
      * CORGE_TYPE_CODE: {NotNull, CHAR(3), classification=VariantRelationQuxType}
      * @param corgeTypeCode The value of corgeTypeCode as notEqual. (NullAllowed: if null (or empty), no condition)
      */
-    public void setCorgeTypeCode_NotEqual(String corgeTypeCode) {
+    protected void setCorgeTypeCode_NotEqual(String corgeTypeCode) {
         doSetCorgeTypeCode_NotEqual(fRES(corgeTypeCode));
     }
 

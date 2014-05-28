@@ -33,6 +33,9 @@ public class SpReturnResultSetMoreNotParamResult2Dbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgMemberStatusCode(), "memberStatusCode");
@@ -40,8 +43,6 @@ public class SpReturnResultSetMoreNotParamResult2Dbm extends AbstractDBMeta {
         setupEpg(_epgMap, new EpgDescription(), "description");
         setupEpg(_epgMap, new EpgDisplayOrder(), "displayOrder");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgMemberStatusCode implements PropertyGateway {
         public Object read(Entity et) { return ((SpReturnResultSetMoreNotParamResult2)et).getMemberStatusCode(); }
         public void write(Entity et, Object vl) { ((SpReturnResultSetMoreNotParamResult2)et).setMemberStatusCode((String)vl); }
@@ -58,6 +59,8 @@ public class SpReturnResultSetMoreNotParamResult2Dbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((SpReturnResultSetMoreNotParamResult2)et).getDisplayOrder(); }
         public void write(Entity et, Object vl) { ((SpReturnResultSetMoreNotParamResult2)et).setDisplayOrder(cti(vl)); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -73,14 +76,30 @@ public class SpReturnResultSetMoreNotParamResult2Dbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnMemberStatusCode = cci("MEMBER_STATUS_CODE", "MEMBER_STATUS_CODE", null, null, false, "memberStatusCode", String.class, false, false, "char", 3, 0, null, false, null, null, null, null, CDef.DefMeta.MemberStatus);
-    protected final ColumnInfo _columnMemberStatusName = cci("MEMBER_STATUS_NAME", "MEMBER_STATUS_NAME", null, null, false, "memberStatusName", String.class, false, false, "nvarchar", 50, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnDescription = cci("DESCRIPTION", "DESCRIPTION", null, null, false, "description", String.class, false, false, "nvarchar", 200, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnDisplayOrder = cci("DISPLAY_ORDER", "DISPLAY_ORDER", null, null, false, "displayOrder", Integer.class, false, false, "int", 10, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnMemberStatusCode = cci("MEMBER_STATUS_CODE", "MEMBER_STATUS_CODE", null, null, String.class, "memberStatusCode", null, false, false, false, "char", 3, 0, null, false, null, null, null, null, CDef.DefMeta.MemberStatus);
+    protected final ColumnInfo _columnMemberStatusName = cci("MEMBER_STATUS_NAME", "MEMBER_STATUS_NAME", null, null, String.class, "memberStatusName", null, false, false, false, "nvarchar", 50, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnDescription = cci("DESCRIPTION", "DESCRIPTION", null, null, String.class, "description", null, false, false, false, "nvarchar", 200, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnDisplayOrder = cci("DISPLAY_ORDER", "DISPLAY_ORDER", null, null, Integer.class, "displayOrder", null, false, false, false, "int", 10, 0, null, false, null, null, null, null, null);
 
+    /**
+     * MEMBER_STATUS_CODE: {char(3), classification=MemberStatus}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnMemberStatusCode() { return _columnMemberStatusCode; }
+    /**
+     * MEMBER_STATUS_NAME: {nvarchar(50)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnMemberStatusName() { return _columnMemberStatusName; }
+    /**
+     * DESCRIPTION: {nvarchar(200)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnDescription() { return _columnDescription; }
+    /**
+     * DISPLAY_ORDER: {int(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnDisplayOrder() { return _columnDisplayOrder; }
 
     protected List<ColumnInfo> ccil() {
@@ -109,6 +128,8 @@ public class SpReturnResultSetMoreNotParamResult2Dbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // cannot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

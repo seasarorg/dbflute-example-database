@@ -139,7 +139,7 @@ public abstract class BsWhiteEscapedJavaDoc implements Entity, Serializable, Clo
     /**
      * {@inheritDoc}
      */
-    public Set<String> uniqueDrivenProperties() {
+    public Set<String> myuniqueDrivenProperties() {
         return __uniqueDrivenProperties.getPropertyNames();
     }
 
@@ -402,7 +402,7 @@ public abstract class BsWhiteEscapedJavaDoc implements Entity, Serializable, Clo
      * [set] ESCAPED_JAVA_DOC_CODE: {PK, NotNull, CHAR(3), classification=EscapedJavaDocCls} <br />
      * @param escapedJavaDocCode The value of the column 'ESCAPED_JAVA_DOC_CODE'. (basically NotNull if update: for the constraint)
      */
-    public void setEscapedJavaDocCode(String escapedJavaDocCode) {
+    protected void setEscapedJavaDocCode(String escapedJavaDocCode) {
         __modifiedProperties.addPropertyName("escapedJavaDocCode");
         this._escapedJavaDocCode = escapedJavaDocCode;
     }

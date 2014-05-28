@@ -21,6 +21,7 @@ import org.seasar.dbflute.unit.core.cannonball.CannonballRun;
 import org.seasar.dbflute.unit.core.transaction.TransactionResource;
 import org.seasar.dbflute.util.DfCollectionUtil;
 
+import com.example.dbflute.mysql.dbflute.allcommon.CDef;
 import com.example.dbflute.mysql.dbflute.cbean.MemberCB;
 import com.example.dbflute.mysql.dbflute.cbean.PurchaseCB;
 import com.example.dbflute.mysql.dbflute.exbhv.MemberBhv;
@@ -188,7 +189,7 @@ public class VendorLockTest extends UnitContainerTestCase {
                 car.projectA(new CannonballProjectA() {
                     public void plan(CannonballDragon dragon) {
                         MemberStatus status = new MemberStatus();
-                        status.setMemberStatusCode(statusCode);
+                        status.setMemberStatusCodeAsMemberStatus(CDef.MemberStatus.codeOf(statusCode));
                         status.setDisplayOrder(99999);
                         memberStatusBhv.update(status);
                     }

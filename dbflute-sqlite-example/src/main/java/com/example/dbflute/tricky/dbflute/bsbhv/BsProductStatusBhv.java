@@ -169,7 +169,7 @@ public abstract class BsProductStatusBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of ProductStatus. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -190,39 +190,42 @@ public abstract class BsProductStatusBhv extends AbstractBehaviorWritable {
 
     /**
      * Select the entity by the primary-key value.
-     * @param productStatusCode The one of primary key. (NotNull)
+     * @param productStatusCode : PK, NotNull, TEXT(2000000000, 10). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public ProductStatus selectByPKValue(String productStatusCode) {
-        return doSelectByPKValue(productStatusCode, ProductStatus.class);
+        return doSelectByPK(productStatusCode, ProductStatus.class);
     }
 
-    protected <ENTITY extends ProductStatus> ENTITY doSelectByPKValue(String productStatusCode, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(productStatusCode), entityType);
+    protected <ENTITY extends ProductStatus> ENTITY doSelectByPK(String productStatusCode, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(productStatusCode), entityType);
+    }
+
+    protected <ENTITY extends ProductStatus> OptionalEntity<ENTITY> doSelectOptionalByPK(String productStatusCode, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(productStatusCode, entityType), productStatusCode);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param productStatusCode The one of primary key. (NotNull)
+     * @param productStatusCode : PK, NotNull, TEXT(2000000000, 10). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public ProductStatus selectByPKValueWithDeletedCheck(String productStatusCode) {
-        return doSelectByPKValueWithDeletedCheck(productStatusCode, ProductStatus.class);
+        return doSelectByPKWithDeletedCheck(productStatusCode, ProductStatus.class);
     }
 
-    protected <ENTITY extends ProductStatus> ENTITY doSelectByPKValueWithDeletedCheck(String productStatusCode, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(productStatusCode), entityType);
+    protected <ENTITY extends ProductStatus> ENTITY doSelectByPKWithDeletedCheck(String productStatusCode, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(productStatusCode), entityType);
     }
 
-    private ProductStatusCB buildPKCB(String productStatusCode) {
+    protected ProductStatusCB xprepareCBAsPK(String productStatusCode) {
         assertObjectNotNull("productStatusCode", productStatusCode);
-        ProductStatusCB cb = newMyConditionBean();
-        cb.query().setProductStatusCode_Equal(productStatusCode);
+        ProductStatusCB cb = newMyConditionBean(); cb.acceptPrimaryKey(productStatusCode);
         return cb;
     }
 

@@ -33,6 +33,9 @@ public class MemberDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgMemberId(), "memberId");
@@ -49,8 +52,6 @@ public class MemberDbm extends AbstractDBMeta {
         setupEpg(_epgMap, new EpgMemberUpdateProcess(), "memberUpdateProcess");
         setupEpg(_epgMap, new EpgVersionNo(), "versionNo");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgMemberId implements PropertyGateway {
         public Object read(Entity et) { return ((Member)et).getMemberId(); }
         public void write(Entity et, Object vl) { ((Member)et).setMemberId(cti(vl)); }
@@ -103,6 +104,39 @@ public class MemberDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((Member)et).getVersionNo(); }
         public void write(Entity et, Object vl) { ((Member)et).setVersionNo(cti(vl)); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
+
+    // -----------------------------------------------------
+    //                                      Foreign Property
+    //                                      ----------------
+    protected final Map<String, PropertyGateway> _efpgMap = newHashMap();
+    {
+        setupEfpg(_efpgMap, new EfpgMemberStatus(), "memberStatus");
+        setupEfpg(_efpgMap, new EfpgMemberAddressAsValid(), "memberAddressAsValid");
+    }
+    public class EfpgMemberStatus implements PropertyGateway {
+        public Object read(Entity et) { return ((Member)et).getMemberStatus(); }
+        public void write(Entity et, Object vl) { ((Member)et).setMemberStatus((MemberStatus)vl); }
+    }
+    public class EfpgMemberAddressAsValid implements PropertyGateway {
+        public Object read(Entity et) { return ((Member)et).getMemberAddressAsValid(); }
+        public void write(Entity et, Object vl) { ((Member)et).setMemberAddressAsValid((MemberAddress)vl); }
+    }
+    {
+        setupEfpg(_efpgMap, new EfpgMemberSecurityAsOne(), "memberSecurityAsOne");
+        setupEfpg(_efpgMap, new EfpgMemberWithdrawalAsOne(), "memberWithdrawalAsOne");
+    }
+    public class EfpgMemberSecurityAsOne implements PropertyGateway {
+        public Object read(Entity et) { return ((Member)et).getMemberSecurityAsOne(); }
+        public void write(Entity et, Object vl) { ((Member)et).setMemberSecurityAsOne((MemberSecurity)vl); }
+    }
+    public class EfpgMemberWithdrawalAsOne implements PropertyGateway {
+        public Object read(Entity et) { return ((Member)et).getMemberWithdrawalAsOne(); }
+        public void write(Entity et, Object vl) { ((Member)et).setMemberWithdrawalAsOne((MemberWithdrawal)vl); }
+    }
+    public PropertyGateway findForeignPropertyGateway(String prop)
+    { return doFindEfpg(_efpgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -118,32 +152,84 @@ public class MemberDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnMemberId = cci("MEMBER_ID", "MEMBER_ID", null, null, true, "memberId", Integer.class, true, true, "INTEGER", 2000000000, 10, null, false, null, null, "memberAddressAsValid,memberSecurityAsOne,memberWithdrawalAsOne", "memberAddressList,memberLoginList,memberServiceList,purchaseList", null);
-    protected final ColumnInfo _columnMemberName = cci("MEMBER_NAME", "MEMBER_NAME", null, null, true, "memberName", String.class, false, false, "TEXT", 2000000000, 10, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnMemberAccount = cci("MEMBER_ACCOUNT", "MEMBER_ACCOUNT", null, null, true, "memberAccount", String.class, false, false, "TEXT", 2000000000, 10, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnMemberStatusCode = cci("MEMBER_STATUS_CODE", "MEMBER_STATUS_CODE", null, null, true, "memberStatusCode", String.class, false, false, "TEXT", 2000000000, 10, null, false, null, null, "memberStatus", null, CDef.DefMeta.MemberStatus);
-    protected final ColumnInfo _columnFormalizedDatetime = cci("FORMALIZED_DATETIME", "FORMALIZED_DATETIME", null, null, false, "formalizedDatetime", java.sql.Timestamp.class, false, false, "DATETIME", 2000000000, 10, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnBirthdate = cci("BIRTHDATE", "BIRTHDATE", null, null, false, "birthdate", java.util.Date.class, false, false, "DATE", 2000000000, 10, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnMemberRegisterDatetime = cci("MEMBER_REGISTER_DATETIME", "MEMBER_REGISTER_DATETIME", null, null, true, "memberRegisterDatetime", java.sql.Timestamp.class, false, false, "DATETIME", 2000000000, 10, null, true, null, null, null, null, null);
-    protected final ColumnInfo _columnMemberRegisterUser = cci("MEMBER_REGISTER_USER", "MEMBER_REGISTER_USER", null, null, true, "memberRegisterUser", String.class, false, false, "TEXT", 2000000000, 10, null, true, null, null, null, null, null);
-    protected final ColumnInfo _columnMemberRegisterProcess = cci("MEMBER_REGISTER_PROCESS", "MEMBER_REGISTER_PROCESS", null, null, true, "memberRegisterProcess", String.class, false, false, "TEXT", 2000000000, 10, null, true, null, null, null, null, null);
-    protected final ColumnInfo _columnMemberUpdateDatetime = cci("MEMBER_UPDATE_DATETIME", "MEMBER_UPDATE_DATETIME", null, null, true, "memberUpdateDatetime", java.sql.Timestamp.class, false, false, "DATETIME", 2000000000, 10, null, true, null, null, null, null, null);
-    protected final ColumnInfo _columnMemberUpdateUser = cci("MEMBER_UPDATE_USER", "MEMBER_UPDATE_USER", null, null, true, "memberUpdateUser", String.class, false, false, "TEXT", 2000000000, 10, null, true, null, null, null, null, null);
-    protected final ColumnInfo _columnMemberUpdateProcess = cci("MEMBER_UPDATE_PROCESS", "MEMBER_UPDATE_PROCESS", null, null, true, "memberUpdateProcess", String.class, false, false, "TEXT", 2000000000, 10, null, true, null, null, null, null, null);
-    protected final ColumnInfo _columnVersionNo = cci("VERSION_NO", "VERSION_NO", null, null, true, "versionNo", Integer.class, false, false, "INTEGER", 2000000000, 10, null, false, OptimisticLockType.VERSION_NO, null, null, null, null);
+    protected final ColumnInfo _columnMemberId = cci("MEMBER_ID", "MEMBER_ID", null, null, Integer.class, "memberId", null, true, true, true, "INTEGER", 2000000000, 10, null, false, null, null, "memberAddressAsValid,memberSecurityAsOne,memberWithdrawalAsOne", "memberAddressList,memberLoginList,memberServiceList,purchaseList", null);
+    protected final ColumnInfo _columnMemberName = cci("MEMBER_NAME", "MEMBER_NAME", null, null, String.class, "memberName", null, false, false, true, "TEXT", 2000000000, 10, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnMemberAccount = cci("MEMBER_ACCOUNT", "MEMBER_ACCOUNT", null, null, String.class, "memberAccount", null, false, false, true, "TEXT", 2000000000, 10, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnMemberStatusCode = cci("MEMBER_STATUS_CODE", "MEMBER_STATUS_CODE", null, null, String.class, "memberStatusCode", null, false, false, true, "TEXT", 2000000000, 10, null, false, null, null, "memberStatus", null, CDef.DefMeta.MemberStatus);
+    protected final ColumnInfo _columnFormalizedDatetime = cci("FORMALIZED_DATETIME", "FORMALIZED_DATETIME", null, null, java.sql.Timestamp.class, "formalizedDatetime", null, false, false, false, "DATETIME", 2000000000, 10, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnBirthdate = cci("BIRTHDATE", "BIRTHDATE", null, null, java.util.Date.class, "birthdate", null, false, false, false, "DATE", 2000000000, 10, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnMemberRegisterDatetime = cci("MEMBER_REGISTER_DATETIME", "MEMBER_REGISTER_DATETIME", null, null, java.sql.Timestamp.class, "memberRegisterDatetime", null, false, false, true, "DATETIME", 2000000000, 10, null, true, null, null, null, null, null);
+    protected final ColumnInfo _columnMemberRegisterUser = cci("MEMBER_REGISTER_USER", "MEMBER_REGISTER_USER", null, null, String.class, "memberRegisterUser", null, false, false, true, "TEXT", 2000000000, 10, null, true, null, null, null, null, null);
+    protected final ColumnInfo _columnMemberRegisterProcess = cci("MEMBER_REGISTER_PROCESS", "MEMBER_REGISTER_PROCESS", null, null, String.class, "memberRegisterProcess", null, false, false, true, "TEXT", 2000000000, 10, null, true, null, null, null, null, null);
+    protected final ColumnInfo _columnMemberUpdateDatetime = cci("MEMBER_UPDATE_DATETIME", "MEMBER_UPDATE_DATETIME", null, null, java.sql.Timestamp.class, "memberUpdateDatetime", null, false, false, true, "DATETIME", 2000000000, 10, null, true, null, null, null, null, null);
+    protected final ColumnInfo _columnMemberUpdateUser = cci("MEMBER_UPDATE_USER", "MEMBER_UPDATE_USER", null, null, String.class, "memberUpdateUser", null, false, false, true, "TEXT", 2000000000, 10, null, true, null, null, null, null, null);
+    protected final ColumnInfo _columnMemberUpdateProcess = cci("MEMBER_UPDATE_PROCESS", "MEMBER_UPDATE_PROCESS", null, null, String.class, "memberUpdateProcess", null, false, false, true, "TEXT", 2000000000, 10, null, true, null, null, null, null, null);
+    protected final ColumnInfo _columnVersionNo = cci("VERSION_NO", "VERSION_NO", null, null, Integer.class, "versionNo", null, false, false, true, "INTEGER", 2000000000, 10, null, false, OptimisticLockType.VERSION_NO, null, null, null, null);
 
+    /**
+     * MEMBER_ID: {PK, ID, NotNull, INTEGER(2000000000, 10), FK to MEMBER_ADDRESS}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnMemberId() { return _columnMemberId; }
+    /**
+     * MEMBER_NAME: {NotNull, TEXT(2000000000, 10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnMemberName() { return _columnMemberName; }
+    /**
+     * MEMBER_ACCOUNT: {UQ, NotNull, TEXT(2000000000, 10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnMemberAccount() { return _columnMemberAccount; }
+    /**
+     * MEMBER_STATUS_CODE: {NotNull, TEXT(2000000000, 10), FK to MEMBER_STATUS, classification=MemberStatus}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnMemberStatusCode() { return _columnMemberStatusCode; }
+    /**
+     * FORMALIZED_DATETIME: {DATETIME(2000000000, 10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnFormalizedDatetime() { return _columnFormalizedDatetime; }
+    /**
+     * BIRTHDATE: {DATE(2000000000, 10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnBirthdate() { return _columnBirthdate; }
+    /**
+     * MEMBER_REGISTER_DATETIME: {NotNull, DATETIME(2000000000, 10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnMemberRegisterDatetime() { return _columnMemberRegisterDatetime; }
+    /**
+     * MEMBER_REGISTER_USER: {NotNull, TEXT(2000000000, 10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnMemberRegisterUser() { return _columnMemberRegisterUser; }
+    /**
+     * MEMBER_REGISTER_PROCESS: {NotNull, TEXT(2000000000, 10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnMemberRegisterProcess() { return _columnMemberRegisterProcess; }
+    /**
+     * MEMBER_UPDATE_DATETIME: {NotNull, DATETIME(2000000000, 10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnMemberUpdateDatetime() { return _columnMemberUpdateDatetime; }
+    /**
+     * MEMBER_UPDATE_USER: {NotNull, TEXT(2000000000, 10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnMemberUpdateUser() { return _columnMemberUpdateUser; }
+    /**
+     * MEMBER_UPDATE_PROCESS: {NotNull, TEXT(2000000000, 10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnMemberUpdateProcess() { return _columnMemberUpdateProcess; }
+    /**
+     * VERSION_NO: {NotNull, INTEGER(2000000000, 10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnVersionNo() { return _columnVersionNo; }
 
     protected List<ColumnInfo> ccil() {
@@ -179,41 +265,75 @@ public class MemberDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // cannot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------
+    /**
+     * MEMBER_STATUS by my MEMBER_STATUS_CODE, named 'memberStatus'.
+     * @return The information object of foreign property. (NotNull)
+     */
     public ForeignInfo foreignMemberStatus() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnMemberStatusCode(), MemberStatusDbm.getInstance().columnMemberStatusCode());
-        return cfi("FK_MEMBER_MEMBER_STATUS_CODE_MEMBER_STATUS", "memberStatus", this, MemberStatusDbm.getInstance(), mp, 0, false, false, false, false, null, null, false, "memberList");
+        return cfi("FK_MEMBER_MEMBER_STATUS_CODE_MEMBER_STATUS", "memberStatus", this, MemberStatusDbm.getInstance(), mp, 0, null, false, false, false, false, null, null, false, "memberList");
     }
+    /**
+     * MEMBER_ADDRESS by my MEMBER_ID, named 'memberAddressAsValid'.
+     * @return The information object of foreign property. (NotNull)
+     */
     public ForeignInfo foreignMemberAddressAsValid() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnMemberId(), MemberAddressDbm.getInstance().columnMemberId());
-        return cfi("FK_MEMBER_MEMBER_ADDRESS_VALID", "memberAddressAsValid", this, MemberAddressDbm.getInstance(), mp, 1, true, true, false, true, "$$foreignAlias$$.VALID_BEGIN_DATE <= /*$$locationBase$$.parameterMapMemberAddressAsValid.targetDate*/null\n     and $$foreignAlias$$.VALID_END_DATE >= /*$$locationBase$$.parameterMapMemberAddressAsValid.targetDate*/null", newArrayList("targetDate"), false, null);
+        return cfi("FK_MEMBER_MEMBER_ADDRESS_VALID", "memberAddressAsValid", this, MemberAddressDbm.getInstance(), mp, 1, null, true, true, false, true, "$$foreignAlias$$.VALID_BEGIN_DATE <= /*$$locationBase$$.parameterMapMemberAddressAsValid.targetDate*/null\n     and $$foreignAlias$$.VALID_END_DATE >= /*$$locationBase$$.parameterMapMemberAddressAsValid.targetDate*/null", newArrayList("targetDate"), false, null);
     }
+    /**
+     * MEMBER_SECURITY by MEMBER_ID, named 'memberSecurityAsOne'.
+     * @return The information object of foreign property(referrer-as-one). (NotNull)
+     */
     public ForeignInfo foreignMemberSecurityAsOne() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnMemberId(), MemberSecurityDbm.getInstance().columnMemberId());
-        return cfi("FK_MEMBER_SECURITY_MEMBER_ID_MEMBER", "memberSecurityAsOne", this, MemberSecurityDbm.getInstance(), mp, 2, true, false, true, false, null, null, false, "member");
+        return cfi("FK_MEMBER_SECURITY_MEMBER_ID_MEMBER", "memberSecurityAsOne", this, MemberSecurityDbm.getInstance(), mp, 2, null, true, false, true, false, null, null, false, "member");
     }
+    /**
+     * MEMBER_WITHDRAWAL by MEMBER_ID, named 'memberWithdrawalAsOne'.
+     * @return The information object of foreign property(referrer-as-one). (NotNull)
+     */
     public ForeignInfo foreignMemberWithdrawalAsOne() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnMemberId(), MemberWithdrawalDbm.getInstance().columnMemberId());
-        return cfi("FK_MEMBER_WITHDRAWAL_MEMBER_ID_MEMBER", "memberWithdrawalAsOne", this, MemberWithdrawalDbm.getInstance(), mp, 3, true, false, true, false, null, null, false, "member");
+        return cfi("FK_MEMBER_WITHDRAWAL_MEMBER_ID_MEMBER", "memberWithdrawalAsOne", this, MemberWithdrawalDbm.getInstance(), mp, 3, null, true, false, true, false, null, null, false, "member");
     }
 
     // -----------------------------------------------------
     //                                     Referrer Property
     //                                     -----------------
+    /**
+     * MEMBER_ADDRESS by MEMBER_ID, named 'memberAddressList'.
+     * @return The information object of referrer property. (NotNull)
+     */
     public ReferrerInfo referrerMemberAddressList() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnMemberId(), MemberAddressDbm.getInstance().columnMemberId());
         return cri("FK_MEMBER_ADDRESS_MEMBER_ID_MEMBER", "memberAddressList", this, MemberAddressDbm.getInstance(), mp, false, "member");
     }
+    /**
+     * MEMBER_LOGIN by MEMBER_ID, named 'memberLoginList'.
+     * @return The information object of referrer property. (NotNull)
+     */
     public ReferrerInfo referrerMemberLoginList() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnMemberId(), MemberLoginDbm.getInstance().columnMemberId());
         return cri("FK_MEMBER_LOGIN_MEMBER_ID_MEMBER", "memberLoginList", this, MemberLoginDbm.getInstance(), mp, false, "member");
     }
+    /**
+     * MEMBER_SERVICE by MEMBER_ID, named 'memberServiceList'.
+     * @return The information object of referrer property. (NotNull)
+     */
     public ReferrerInfo referrerMemberServiceList() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnMemberId(), MemberServiceDbm.getInstance().columnMemberId());
         return cri("FK_MEMBER_SERVICE_MEMBER_ID_MEMBER", "memberServiceList", this, MemberServiceDbm.getInstance(), mp, false, "member");
     }
+    /**
+     * PURCHASE by MEMBER_ID, named 'purchaseList'.
+     * @return The information object of referrer property. (NotNull)
+     */
     public ReferrerInfo referrerPurchaseList() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnMemberId(), PurchaseDbm.getInstance().columnMemberId());
         return cri("FK_PURCHASE_MEMBER_ID_MEMBER", "purchaseList", this, PurchaseDbm.getInstance(), mp, false, "member");

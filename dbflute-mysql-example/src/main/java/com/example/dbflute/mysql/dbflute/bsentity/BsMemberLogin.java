@@ -162,15 +162,14 @@ public abstract class BsMemberLogin implements Entity, Serializable, Cloneable {
     public void uniqueBy(Integer memberId, java.sql.Timestamp loginDatetime) {
         __uniqueDrivenProperties.clear();
         __uniqueDrivenProperties.addPropertyName("memberId");
-        _memberId = memberId;
         __uniqueDrivenProperties.addPropertyName("loginDatetime");
-        _loginDatetime = loginDatetime;
+        setMemberId(memberId);setLoginDatetime(loginDatetime);
     }
 
     /**
      * {@inheritDoc}
      */
-    public Set<String> uniqueDrivenProperties() {
+    public Set<String> myuniqueDrivenProperties() {
         return __uniqueDrivenProperties.getPropertyNames();
     }
 
@@ -639,7 +638,7 @@ public abstract class BsMemberLogin implements Entity, Serializable, Cloneable {
      * モバイル機器からのログインか否か。
      * @param mobileLoginFlg The value of the column 'MOBILE_LOGIN_FLG'. (basically NotNull if update: for the constraint)
      */
-    public void setMobileLoginFlg(Integer mobileLoginFlg) {
+    protected void setMobileLoginFlg(Integer mobileLoginFlg) {
         checkImplicitSet("MOBILE_LOGIN_FLG", CDef.DefMeta.Flg, mobileLoginFlg);
         __modifiedProperties.addPropertyName("mobileLoginFlg");
         this._mobileLoginFlg = mobileLoginFlg;
@@ -659,7 +658,7 @@ public abstract class BsMemberLogin implements Entity, Serializable, Cloneable {
      * ログイン時の会員ステータス
      * @param loginMemberStatusCode The value of the column 'LOGIN_MEMBER_STATUS_CODE'. (basically NotNull if update: for the constraint)
      */
-    public void setLoginMemberStatusCode(String loginMemberStatusCode) {
+    protected void setLoginMemberStatusCode(String loginMemberStatusCode) {
         __modifiedProperties.addPropertyName("loginMemberStatusCode");
         this._loginMemberStatusCode = loginMemberStatusCode;
     }

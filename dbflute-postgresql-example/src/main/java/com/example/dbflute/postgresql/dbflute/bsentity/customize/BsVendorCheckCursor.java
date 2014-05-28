@@ -247,7 +247,7 @@ public abstract class BsVendorCheckCursor implements Entity, Serializable, Clone
     /**
      * {@inheritDoc}
      */
-    public Set<String> uniqueDrivenProperties() {
+    public Set<String> myuniqueDrivenProperties() {
         return __uniqueDrivenProperties.getPropertyNames();
     }
 

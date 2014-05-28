@@ -33,13 +33,14 @@ public class SimpleVendorCheckDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgVendorCheckId(), "vendorCheckId");
         setupEpg(_epgMap, new EpgTypeOfVarchar(), "typeOfVarchar");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgVendorCheckId implements PropertyGateway {
         public Object read(Entity et) { return ((SimpleVendorCheck)et).getVendorCheckId(); }
         public void write(Entity et, Object vl) { ((SimpleVendorCheck)et).setVendorCheckId(ctl(vl)); }
@@ -48,6 +49,8 @@ public class SimpleVendorCheckDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((SimpleVendorCheck)et).getTypeOfVarchar(); }
         public void write(Entity et, Object vl) { ((SimpleVendorCheck)et).setTypeOfVarchar((String)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -63,10 +66,18 @@ public class SimpleVendorCheckDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnVendorCheckId = cci("VENDOR_CHECK_ID", "VENDOR_CHECK_ID", null, null, false, "vendorCheckId", Long.class, false, false, "DECIMAL", 16, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfVarchar = cci("TYPE_OF_VARCHAR", "TYPE_OF_VARCHAR", null, null, false, "typeOfVarchar", String.class, false, false, "VARCHAR", 32, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnVendorCheckId = cci("VENDOR_CHECK_ID", "VENDOR_CHECK_ID", null, null, Long.class, "vendorCheckId", null, false, false, false, "DECIMAL", 16, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfVarchar = cci("TYPE_OF_VARCHAR", "TYPE_OF_VARCHAR", null, null, String.class, "typeOfVarchar", null, false, false, false, "VARCHAR", 32, 0, null, false, null, null, null, null, null);
 
+    /**
+     * VENDOR_CHECK_ID: {DECIMAL(16), refers to VENDOR_CHECK.VENDOR_CHECK_ID}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnVendorCheckId() { return _columnVendorCheckId; }
+    /**
+     * TYPE_OF_VARCHAR: {VARCHAR(32), refers to VENDOR_CHECK.TYPE_OF_VARCHAR}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfVarchar() { return _columnTypeOfVarchar; }
 
     protected List<ColumnInfo> ccil() {
@@ -93,6 +104,8 @@ public class SimpleVendorCheckDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // cannot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

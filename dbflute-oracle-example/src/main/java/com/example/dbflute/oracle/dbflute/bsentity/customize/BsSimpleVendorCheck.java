@@ -213,6 +213,9 @@ public abstract class BsSimpleVendorCheck implements Entity, Serializable, Clone
     // -----------------------------------------------------
     //                                              Internal
     //                                              --------
+    /** The unique-driven properties for this entity. (NotNull) */
+    protected final EntityUniqueDrivenProperties __uniqueDrivenProperties = newUniqueDrivenProperties();
+
     /** The modified properties for this entity. (NotNull) */
     protected final EntityModifiedProperties __modifiedProperties = newModifiedProperties();
 
@@ -254,6 +257,17 @@ public abstract class BsSimpleVendorCheck implements Entity, Serializable, Clone
      */
     public boolean hasPrimaryKeyValue() {
         return false;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Set<String> myuniqueDrivenProperties() {
+        return __uniqueDrivenProperties.getPropertyNames();
+    }
+
+    protected EntityUniqueDrivenProperties newUniqueDrivenProperties() {
+        return new EntityUniqueDrivenProperties();
     }
 
     // ===================================================================================
@@ -355,8 +369,8 @@ public abstract class BsSimpleVendorCheck implements Entity, Serializable, Clone
         if (!xSV(getTypeOfRowid(), other.getTypeOfRowid())) { return false; }
         return true;
     }
-    protected boolean xSV(Object value1, Object value2) {
-        return FunCustodial.isSameValue(value1, value2);
+    protected boolean xSV(Object v1, Object v2) {
+        return FunCustodial.isSameValue(v1, v2);
     }
 
     /**
@@ -364,42 +378,42 @@ public abstract class BsSimpleVendorCheck implements Entity, Serializable, Clone
      * @return The hash-code from primary-key or columns.
      */
     public int hashCode() {
-        int result = 17;
-        result = xCH(result, getTableDbName());
-        result = xCH(result, getVendorCheckId());
-        result = xCH(result, getTypeOfChar());
-        result = xCH(result, getTypeOfNchar());
-        result = xCH(result, getTypeOfVarchar2());
-        result = xCH(result, getTypeOfVarchar2Max());
-        result = xCH(result, getTypeOfNvarchar2());
-        result = xCH(result, getTypeOfClob());
-        result = xCH(result, getTypeOfNclob());
-        result = xCH(result, getTypeOfLong());
-        result = xCH(result, getTypeOfInteger());
-        result = xCH(result, getTypeOfNumberInteger());
-        result = xCH(result, getTypeOfNumberBigint());
-        result = xCH(result, getTypeOfNumberDecimal());
-        result = xCH(result, getTypeOfNumberIntegerMin());
-        result = xCH(result, getTypeOfNumberIntegerMax());
-        result = xCH(result, getTypeOfNumberBigintMin());
-        result = xCH(result, getTypeOfNumberBigintMax());
-        result = xCH(result, getTypeOfNumberSuperintMin());
-        result = xCH(result, getTypeOfNumberSuperintMax());
-        result = xCH(result, getTypeOfNumberMaxdecimal());
-        result = xCH(result, getTypeOfBinaryFloat());
-        result = xCH(result, getTypeOfBinaryDouble());
-        result = xCH(result, getTypeOfDate());
-        result = xCH(result, getTypeOfTimestamp());
-        result = xCH(result, getTypeOfIntervalYearToMonth());
-        result = xCH(result, getTypeOfIntervalDayToSecond());
-        result = xCH(result, getTypeOfBlob());
-        result = xCH(result, getTypeOfRaw());
-        result = xCH(result, getTypeOfBfile());
-        result = xCH(result, getTypeOfRowid());
-        return result;
+        int hs = 17;
+        hs = xCH(hs, getTableDbName());
+        hs = xCH(hs, getVendorCheckId());
+        hs = xCH(hs, getTypeOfChar());
+        hs = xCH(hs, getTypeOfNchar());
+        hs = xCH(hs, getTypeOfVarchar2());
+        hs = xCH(hs, getTypeOfVarchar2Max());
+        hs = xCH(hs, getTypeOfNvarchar2());
+        hs = xCH(hs, getTypeOfClob());
+        hs = xCH(hs, getTypeOfNclob());
+        hs = xCH(hs, getTypeOfLong());
+        hs = xCH(hs, getTypeOfInteger());
+        hs = xCH(hs, getTypeOfNumberInteger());
+        hs = xCH(hs, getTypeOfNumberBigint());
+        hs = xCH(hs, getTypeOfNumberDecimal());
+        hs = xCH(hs, getTypeOfNumberIntegerMin());
+        hs = xCH(hs, getTypeOfNumberIntegerMax());
+        hs = xCH(hs, getTypeOfNumberBigintMin());
+        hs = xCH(hs, getTypeOfNumberBigintMax());
+        hs = xCH(hs, getTypeOfNumberSuperintMin());
+        hs = xCH(hs, getTypeOfNumberSuperintMax());
+        hs = xCH(hs, getTypeOfNumberMaxdecimal());
+        hs = xCH(hs, getTypeOfBinaryFloat());
+        hs = xCH(hs, getTypeOfBinaryDouble());
+        hs = xCH(hs, getTypeOfDate());
+        hs = xCH(hs, getTypeOfTimestamp());
+        hs = xCH(hs, getTypeOfIntervalYearToMonth());
+        hs = xCH(hs, getTypeOfIntervalDayToSecond());
+        hs = xCH(hs, getTypeOfBlob());
+        hs = xCH(hs, getTypeOfRaw());
+        hs = xCH(hs, getTypeOfBfile());
+        hs = xCH(hs, getTypeOfRowid());
+        return hs;
     }
-    protected int xCH(int result, Object value) {
-        return FunCustodial.calculateHashcode(result, value);
+    protected int xCH(int hs, Object vl) {
+        return FunCustodial.calculateHashcode(hs, vl);
     }
 
     /**
@@ -439,39 +453,39 @@ public abstract class BsSimpleVendorCheck implements Entity, Serializable, Clone
     }
     protected String buildColumnString() {
         StringBuilder sb = new StringBuilder();
-        String delimiter = ", ";
-        sb.append(delimiter).append(getVendorCheckId());
-        sb.append(delimiter).append(getTypeOfChar());
-        sb.append(delimiter).append(getTypeOfNchar());
-        sb.append(delimiter).append(getTypeOfVarchar2());
-        sb.append(delimiter).append(getTypeOfVarchar2Max());
-        sb.append(delimiter).append(getTypeOfNvarchar2());
-        sb.append(delimiter).append(getTypeOfClob());
-        sb.append(delimiter).append(getTypeOfNclob());
-        sb.append(delimiter).append(getTypeOfLong());
-        sb.append(delimiter).append(getTypeOfInteger());
-        sb.append(delimiter).append(getTypeOfNumberInteger());
-        sb.append(delimiter).append(getTypeOfNumberBigint());
-        sb.append(delimiter).append(getTypeOfNumberDecimal());
-        sb.append(delimiter).append(getTypeOfNumberIntegerMin());
-        sb.append(delimiter).append(getTypeOfNumberIntegerMax());
-        sb.append(delimiter).append(getTypeOfNumberBigintMin());
-        sb.append(delimiter).append(getTypeOfNumberBigintMax());
-        sb.append(delimiter).append(getTypeOfNumberSuperintMin());
-        sb.append(delimiter).append(getTypeOfNumberSuperintMax());
-        sb.append(delimiter).append(getTypeOfNumberMaxdecimal());
-        sb.append(delimiter).append(getTypeOfBinaryFloat());
-        sb.append(delimiter).append(getTypeOfBinaryDouble());
-        sb.append(delimiter).append(xfUD(getTypeOfDate()));
-        sb.append(delimiter).append(getTypeOfTimestamp());
-        sb.append(delimiter).append(getTypeOfIntervalYearToMonth());
-        sb.append(delimiter).append(getTypeOfIntervalDayToSecond());
-        sb.append(delimiter).append(xfBA(getTypeOfBlob()));
-        sb.append(delimiter).append(xfBA(getTypeOfRaw()));
-        sb.append(delimiter).append(getTypeOfBfile());
-        sb.append(delimiter).append(getTypeOfRowid());
-        if (sb.length() > delimiter.length()) {
-            sb.delete(0, delimiter.length());
+        String dm = ", ";
+        sb.append(dm).append(getVendorCheckId());
+        sb.append(dm).append(getTypeOfChar());
+        sb.append(dm).append(getTypeOfNchar());
+        sb.append(dm).append(getTypeOfVarchar2());
+        sb.append(dm).append(getTypeOfVarchar2Max());
+        sb.append(dm).append(getTypeOfNvarchar2());
+        sb.append(dm).append(getTypeOfClob());
+        sb.append(dm).append(getTypeOfNclob());
+        sb.append(dm).append(getTypeOfLong());
+        sb.append(dm).append(getTypeOfInteger());
+        sb.append(dm).append(getTypeOfNumberInteger());
+        sb.append(dm).append(getTypeOfNumberBigint());
+        sb.append(dm).append(getTypeOfNumberDecimal());
+        sb.append(dm).append(getTypeOfNumberIntegerMin());
+        sb.append(dm).append(getTypeOfNumberIntegerMax());
+        sb.append(dm).append(getTypeOfNumberBigintMin());
+        sb.append(dm).append(getTypeOfNumberBigintMax());
+        sb.append(dm).append(getTypeOfNumberSuperintMin());
+        sb.append(dm).append(getTypeOfNumberSuperintMax());
+        sb.append(dm).append(getTypeOfNumberMaxdecimal());
+        sb.append(dm).append(getTypeOfBinaryFloat());
+        sb.append(dm).append(getTypeOfBinaryDouble());
+        sb.append(dm).append(xfUD(getTypeOfDate()));
+        sb.append(dm).append(getTypeOfTimestamp());
+        sb.append(dm).append(getTypeOfIntervalYearToMonth());
+        sb.append(dm).append(getTypeOfIntervalDayToSecond());
+        sb.append(dm).append(xfBA(getTypeOfBlob()));
+        sb.append(dm).append(xfBA(getTypeOfRaw()));
+        sb.append(dm).append(getTypeOfBfile());
+        sb.append(dm).append(getTypeOfRowid());
+        if (sb.length() > dm.length()) {
+            sb.delete(0, dm.length());
         }
         sb.insert(0, "{").append("}");
         return sb.toString();

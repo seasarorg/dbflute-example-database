@@ -15,7 +15,6 @@
  */
 package com.example.dbflute.mysql.dbflute.cbean.nss;
 
-import org.seasar.dbflute.cbean.ConditionQuery;
 import com.example.dbflute.mysql.dbflute.cbean.cq.WhiteSuppressJoinSqCQ;
 
 /**
@@ -35,22 +34,4 @@ public class WhiteSuppressJoinSqNss {
     //                                                                     Nested Relation
     //                                                                     ===============
 
-    /**
-     * With nested relation columns to select clause. <br />
-     * white_suppress_join_sq_many by SUPPRESS_JOIN_SQ_ID, named 'whiteSuppressJoinSqManyAsOne'.
-     * @return The set-upper of more nested relation. {...with[nested-relation].with[more-nested-relation]} (NotNull)
-     */
-    public WhiteSuppressJoinSqManyNss withWhiteSuppressJoinSqManyAsOne() {
-        _query.doNss(new WhiteSuppressJoinSqCQ.NssCall() { public ConditionQuery qf() { return _query.queryWhiteSuppressJoinSqManyAsOne(); }});
-        return new WhiteSuppressJoinSqManyNss(_query.queryWhiteSuppressJoinSqManyAsOne());
-    }
-    /**
-     * With nested relation columns to select clause. <br />
-     * white_suppress_join_sq_one by SUPPRESS_JOIN_SQ_ID, named 'whiteSuppressJoinSqOneAsOne'.
-     * @return The set-upper of more nested relation. {...with[nested-relation].with[more-nested-relation]} (NotNull)
-     */
-    public WhiteSuppressJoinSqOneNss withWhiteSuppressJoinSqOneAsOne() {
-        _query.doNss(new WhiteSuppressJoinSqCQ.NssCall() { public ConditionQuery qf() { return _query.queryWhiteSuppressJoinSqOneAsOne(); }});
-        return new WhiteSuppressJoinSqOneNss(_query.queryWhiteSuppressJoinSqOneAsOne());
-    }
 }

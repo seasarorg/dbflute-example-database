@@ -169,7 +169,7 @@ public abstract class BsSynonymNextLinkTableBhv extends AbstractBehaviorWritable
      * </pre>
      * @param cb The condition-bean of SynonymNextLinkTable. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -190,39 +190,42 @@ public abstract class BsSynonymNextLinkTableBhv extends AbstractBehaviorWritable
 
     /**
      * Select the entity by the primary-key value.
-     * @param productId The one of primary key. (NotNull)
+     * @param productId : PK, NotNull, NUMBER(16). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public SynonymNextLinkTable selectByPKValue(Long productId) {
-        return doSelectByPKValue(productId, SynonymNextLinkTable.class);
+        return doSelectByPK(productId, SynonymNextLinkTable.class);
     }
 
-    protected <ENTITY extends SynonymNextLinkTable> ENTITY doSelectByPKValue(Long productId, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(productId), entityType);
+    protected <ENTITY extends SynonymNextLinkTable> ENTITY doSelectByPK(Long productId, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(productId), entityType);
+    }
+
+    protected <ENTITY extends SynonymNextLinkTable> OptionalEntity<ENTITY> doSelectOptionalByPK(Long productId, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(productId, entityType), productId);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param productId The one of primary key. (NotNull)
+     * @param productId : PK, NotNull, NUMBER(16). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public SynonymNextLinkTable selectByPKValueWithDeletedCheck(Long productId) {
-        return doSelectByPKValueWithDeletedCheck(productId, SynonymNextLinkTable.class);
+        return doSelectByPKWithDeletedCheck(productId, SynonymNextLinkTable.class);
     }
 
-    protected <ENTITY extends SynonymNextLinkTable> ENTITY doSelectByPKValueWithDeletedCheck(Long productId, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(productId), entityType);
+    protected <ENTITY extends SynonymNextLinkTable> ENTITY doSelectByPKWithDeletedCheck(Long productId, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(productId), entityType);
     }
 
-    private SynonymNextLinkTableCB buildPKCB(Long productId) {
+    protected SynonymNextLinkTableCB xprepareCBAsPK(Long productId) {
         assertObjectNotNull("productId", productId);
-        SynonymNextLinkTableCB cb = newMyConditionBean();
-        cb.query().setProductId_Equal(productId);
+        SynonymNextLinkTableCB cb = newMyConditionBean(); cb.acceptPrimaryKey(productId);
         return cb;
     }
 

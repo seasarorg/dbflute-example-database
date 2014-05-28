@@ -65,7 +65,7 @@ public abstract class AbstractBsWhiteEscapedJavaDocCQ extends AbstractConditionQ
      * ESCAPED_JAVA_DOC_CODE: {PK, NotNull, CHAR(3), classification=EscapedJavaDocCls}
      * @param escapedJavaDocCode The value of escapedJavaDocCode as equal. (NullAllowed: if null (or empty), no condition)
      */
-    public void setEscapedJavaDocCode_Equal(String escapedJavaDocCode) {
+    protected void setEscapedJavaDocCode_Equal(String escapedJavaDocCode) {
         doSetEscapedJavaDocCode_Equal(fRES(escapedJavaDocCode));
     }
 
@@ -104,7 +104,7 @@ public abstract class AbstractBsWhiteEscapedJavaDocCQ extends AbstractConditionQ
      * ESCAPED_JAVA_DOC_CODE: {PK, NotNull, CHAR(3), classification=EscapedJavaDocCls}
      * @param escapedJavaDocCode The value of escapedJavaDocCode as notEqual. (NullAllowed: if null (or empty), no condition)
      */
-    public void setEscapedJavaDocCode_NotEqual(String escapedJavaDocCode) {
+    protected void setEscapedJavaDocCode_NotEqual(String escapedJavaDocCode) {
         doSetEscapedJavaDocCode_NotEqual(fRES(escapedJavaDocCode));
     }
 

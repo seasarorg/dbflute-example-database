@@ -22,8 +22,8 @@ public abstract class AbstractBsNextSchemaProductStatusCQ extends AbstractCondit
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public AbstractBsNextSchemaProductStatusCQ(ConditionQuery childQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
-        super(childQuery, sqlClause, aliasName, nestLevel);
+    public AbstractBsNextSchemaProductStatusCQ(ConditionQuery referrerQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
+        super(referrerQuery, sqlClause, aliasName, nestLevel);
     }
 
     // ===================================================================================
@@ -295,7 +295,7 @@ public abstract class AbstractBsNextSchemaProductStatusCQ extends AbstractCondit
     public abstract String keepProductStatusCode_SpecifyDerivedReferrer_NextSchemaProductList(NextSchemaProductCQ sq);
 
     /**
-     * Prepare for (Query)DerivedReferrer. <br />
+     * Prepare for (Query)DerivedReferrer (correlated sub-query). <br />
      * {FOO &lt;= (select max(BAR) from WHITE_REF_NEXT_TARGET where ...)} <br />
      * WHITE_REF_NEXT_TARGET by NEXT_TARGET_CODE, named 'whiteRefNextTargetAsOne'.
      * <pre>
@@ -329,7 +329,7 @@ public abstract class AbstractBsNextSchemaProductStatusCQ extends AbstractCondit
     public abstract String keepProductStatusCode_QueryDerivedReferrer_WhiteRefNextTargetListParameter(Object vl);
 
     /**
-     * Prepare for (Query)DerivedReferrer. <br />
+     * Prepare for (Query)DerivedReferrer (correlated sub-query). <br />
      * {FOO &lt;= (select max(BAR) from NEXT_SCHEMA_PRODUCT where ...)} <br />
      * (隣のスキーマ)NEXT_SCHEMA_PRODUCT by PRODUCT_STATUS_CODE, named 'nextSchemaProductAsOne'.
      * <pre>
@@ -600,7 +600,7 @@ public abstract class AbstractBsNextSchemaProductStatusCQ extends AbstractCondit
     public abstract String keepSpecifyMyselfDerived(NextSchemaProductStatusCQ sq);
 
     /**
-     * Prepare for (Query)MyselfDerived (SubQuery).
+     * Prepare for (Query)MyselfDerived (correlated sub-query).
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<NextSchemaProductStatusCB> myselfDerived() {
@@ -622,8 +622,8 @@ public abstract class AbstractBsNextSchemaProductStatusCQ extends AbstractCondit
     //                                                                        MyselfExists
     //                                                                        ============
     /**
-     * Prepare for MyselfExists (SubQuery).
-     * @param subQuery The implementation of sub query. (NotNull)
+     * Prepare for MyselfExists (correlated sub-query).
+     * @param subQuery The implementation of sub-query. (NotNull)
      */
     public void myselfExists(SubQuery<NextSchemaProductStatusCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
@@ -638,8 +638,8 @@ public abstract class AbstractBsNextSchemaProductStatusCQ extends AbstractCondit
     //                                                                       MyselfInScope
     //                                                                       =============
     /**
-     * Prepare for MyselfInScope (SubQuery).
-     * @param subQuery The implementation of sub query. (NotNull)
+     * Prepare for MyselfInScope (sub-query).
+     * @param subQuery The implementation of sub-query. (NotNull)
      */
     public void myselfInScope(SubQuery<NextSchemaProductStatusCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);

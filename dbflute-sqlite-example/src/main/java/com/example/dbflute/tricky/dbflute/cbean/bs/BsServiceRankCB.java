@@ -77,10 +77,14 @@ public class BsServiceRankCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                 PrimaryKey Handling
     //                                                                 ===================
+    /**
+     * Accept the query condition of primary key as equal.
+     * @param serviceRankCode : PK, NotNull, TEXT(2000000000, 10). (NotNull)
+     */
     public void acceptPrimaryKey(String serviceRankCode) {
         assertObjectNotNull("serviceRankCode", serviceRankCode);
         BsServiceRankCB cb = this;
-        cb.query().setServiceRankCode_Equal(serviceRankCode);
+        cb.query().setServiceRankCode_Equal(serviceRankCode);;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {
@@ -433,6 +437,11 @@ public class BsServiceRankCB extends AbstractConditionBean {
      */
     public void orScopeQuery(OrQuery<ServiceRankCB> orQuery) {
         xorSQ((ServiceRankCB)this, orQuery);
+    }
+
+    @Override
+    protected HpCBPurpose xhandleOrSQPurposeChange() {
+        return null; // means no check
     }
 
     /**

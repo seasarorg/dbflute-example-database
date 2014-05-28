@@ -170,7 +170,7 @@ public abstract class BsVendorSymmetricBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of VendorSymmetric. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -191,39 +191,42 @@ public abstract class BsVendorSymmetricBhv extends AbstractBehaviorWritable {
 
     /**
      * Select the entity by the primary-key value.
-     * @param vendorSymmetricId The one of primary key. (NotNull)
+     * @param vendorSymmetricId : PK, NotNull, numeric(16). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public VendorSymmetric selectByPKValue(Long vendorSymmetricId) {
-        return doSelectByPKValue(vendorSymmetricId, VendorSymmetric.class);
+        return doSelectByPK(vendorSymmetricId, VendorSymmetric.class);
     }
 
-    protected <ENTITY extends VendorSymmetric> ENTITY doSelectByPKValue(Long vendorSymmetricId, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(vendorSymmetricId), entityType);
+    protected <ENTITY extends VendorSymmetric> ENTITY doSelectByPK(Long vendorSymmetricId, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(vendorSymmetricId), entityType);
+    }
+
+    protected <ENTITY extends VendorSymmetric> OptionalEntity<ENTITY> doSelectOptionalByPK(Long vendorSymmetricId, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(vendorSymmetricId, entityType), vendorSymmetricId);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param vendorSymmetricId The one of primary key. (NotNull)
+     * @param vendorSymmetricId : PK, NotNull, numeric(16). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public VendorSymmetric selectByPKValueWithDeletedCheck(Long vendorSymmetricId) {
-        return doSelectByPKValueWithDeletedCheck(vendorSymmetricId, VendorSymmetric.class);
+        return doSelectByPKWithDeletedCheck(vendorSymmetricId, VendorSymmetric.class);
     }
 
-    protected <ENTITY extends VendorSymmetric> ENTITY doSelectByPKValueWithDeletedCheck(Long vendorSymmetricId, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(vendorSymmetricId), entityType);
+    protected <ENTITY extends VendorSymmetric> ENTITY doSelectByPKWithDeletedCheck(Long vendorSymmetricId, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(vendorSymmetricId), entityType);
     }
 
-    private VendorSymmetricCB buildPKCB(Long vendorSymmetricId) {
+    protected VendorSymmetricCB xprepareCBAsPK(Long vendorSymmetricId) {
         assertObjectNotNull("vendorSymmetricId", vendorSymmetricId);
-        VendorSymmetricCB cb = newMyConditionBean();
-        cb.query().setVendorSymmetricId_Equal(vendorSymmetricId);
+        VendorSymmetricCB cb = newMyConditionBean(); cb.acceptPrimaryKey(vendorSymmetricId);
         return cb;
     }
 

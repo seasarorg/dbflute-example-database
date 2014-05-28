@@ -91,6 +91,11 @@ public class WhiteSuppressJoinSqOneCIQ extends AbstractBsWhiteSuppressJoinSqOneC
     { return _myCQ.keepSuppressJoinSqId_InScopeRelation_WhiteSuppressJoinSq(sq); }
     public String keepSuppressJoinSqId_NotInScopeRelation_WhiteSuppressJoinSq(WhiteSuppressJoinSqCQ sq)
     { return _myCQ.keepSuppressJoinSqId_NotInScopeRelation_WhiteSuppressJoinSq(sq); }
+    protected ConditionValue getCValueOneAddiId() { return _myCQ.getOneAddiId(); }
+    public String keepOneAddiId_InScopeRelation_WhiteSuppressJoinSqOneAddi(WhiteSuppressJoinSqOneAddiCQ sq)
+    { return _myCQ.keepOneAddiId_InScopeRelation_WhiteSuppressJoinSqOneAddi(sq); }
+    public String keepOneAddiId_NotInScopeRelation_WhiteSuppressJoinSqOneAddi(WhiteSuppressJoinSqOneAddiCQ sq)
+    { return _myCQ.keepOneAddiId_NotInScopeRelation_WhiteSuppressJoinSqOneAddi(sq); }
     protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
     public String keepScalarCondition(WhiteSuppressJoinSqOneCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }

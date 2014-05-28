@@ -77,10 +77,14 @@ public class BsSynonymExceptCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                 PrimaryKey Handling
     //                                                                 ===================
+    /**
+     * Accept the query condition of primary key as equal.
+     * @param exceptId : PK, NotNull, NUMBER(16). (NotNull)
+     */
     public void acceptPrimaryKey(Long exceptId) {
         assertObjectNotNull("exceptId", exceptId);
         BsSynonymExceptCB cb = this;
-        cb.query().setExceptId_Equal(exceptId);
+        cb.query().setExceptId_Equal(exceptId);;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {
@@ -429,6 +433,11 @@ public class BsSynonymExceptCB extends AbstractConditionBean {
      */
     public void orScopeQuery(OrQuery<SynonymExceptCB> orQuery) {
         xorSQ((SynonymExceptCB)this, orQuery);
+    }
+
+    @Override
+    protected HpCBPurpose xhandleOrSQPurposeChange() {
+        return null; // means no check
     }
 
     /**

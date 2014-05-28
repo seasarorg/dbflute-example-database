@@ -78,6 +78,9 @@ public abstract class BsWhiteUqFkRefNest implements Entity, Serializable, Clonea
     // -----------------------------------------------------
     //                                              Internal
     //                                              --------
+    /** The unique-driven properties for this entity. (NotNull) */
+    protected final EntityUniqueDrivenProperties __uniqueDrivenProperties = newUniqueDrivenProperties();
+
     /** The modified properties for this entity. (NotNull) */
     protected final EntityModifiedProperties __modifiedProperties = newModifiedProperties();
 
@@ -120,6 +123,17 @@ public abstract class BsWhiteUqFkRefNest implements Entity, Serializable, Clonea
     public boolean hasPrimaryKeyValue() {
         if (getUqFkRefNestId() == null) { return false; }
         return true;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Set<String> myuniqueDrivenProperties() {
+        return __uniqueDrivenProperties.getPropertyNames();
+    }
+
+    protected EntityUniqueDrivenProperties newUniqueDrivenProperties() {
+        return new EntityUniqueDrivenProperties();
     }
 
     // ===================================================================================
@@ -211,8 +225,8 @@ public abstract class BsWhiteUqFkRefNest implements Entity, Serializable, Clonea
         if (!xSV(getUqFkRefNestId(), other.getUqFkRefNestId())) { return false; }
         return true;
     }
-    protected boolean xSV(Object value1, Object value2) {
-        return FunCustodial.isSameValue(value1, value2);
+    protected boolean xSV(Object v1, Object v2) {
+        return FunCustodial.isSameValue(v1, v2);
     }
 
     /**
@@ -220,13 +234,13 @@ public abstract class BsWhiteUqFkRefNest implements Entity, Serializable, Clonea
      * @return The hash-code from primary-key or columns.
      */
     public int hashCode() {
-        int result = 17;
-        result = xCH(result, getTableDbName());
-        result = xCH(result, getUqFkRefNestId());
-        return result;
+        int hs = 17;
+        hs = xCH(hs, getTableDbName());
+        hs = xCH(hs, getUqFkRefNestId());
+        return hs;
     }
-    protected int xCH(int result, Object value) {
-        return FunCustodial.calculateHashcode(result, value);
+    protected int xCH(int hs, Object vl) {
+        return FunCustodial.calculateHashcode(hs, vl);
     }
 
     /**
@@ -250,13 +264,13 @@ public abstract class BsWhiteUqFkRefNest implements Entity, Serializable, Clonea
     public String toStringWithRelation() {
         StringBuilder sb = new StringBuilder();
         sb.append(toString());
-        String l = "\n  ";
+        String li = "\n  ";
         if (_whiteUqFkRef != null)
-        { sb.append(l).append(xbRDS(_whiteUqFkRef, "whiteUqFkRef")); }
+        { sb.append(li).append(xbRDS(_whiteUqFkRef, "whiteUqFkRef")); }
         return sb.toString();
     }
-    protected String xbRDS(Entity e, String name) { // buildRelationDisplayString()
-        return e.buildDisplayString(name, true, true);
+    protected String xbRDS(Entity et, String name) { // buildRelationDisplayString()
+        return et.buildDisplayString(name, true, true);
     }
 
     /**
@@ -272,22 +286,22 @@ public abstract class BsWhiteUqFkRefNest implements Entity, Serializable, Clonea
     }
     protected String buildColumnString() {
         StringBuilder sb = new StringBuilder();
-        String delimiter = ", ";
-        sb.append(delimiter).append(getUqFkRefNestId());
-        sb.append(delimiter).append(getCompoundUqFirstCode());
-        sb.append(delimiter).append(getCompoundUqSecondCode());
-        if (sb.length() > delimiter.length()) {
-            sb.delete(0, delimiter.length());
+        String dm = ", ";
+        sb.append(dm).append(getUqFkRefNestId());
+        sb.append(dm).append(getCompoundUqFirstCode());
+        sb.append(dm).append(getCompoundUqSecondCode());
+        if (sb.length() > dm.length()) {
+            sb.delete(0, dm.length());
         }
         sb.insert(0, "{").append("}");
         return sb.toString();
     }
     protected String buildRelationString() {
         StringBuilder sb = new StringBuilder();
-        String c = ",";
-        if (_whiteUqFkRef != null) { sb.append(c).append("whiteUqFkRef"); }
-        if (sb.length() > c.length()) {
-            sb.delete(0, c.length()).insert(0, "(").append(")");
+        String cm = ",";
+        if (_whiteUqFkRef != null) { sb.append(cm).append("whiteUqFkRef"); }
+        if (sb.length() > cm.length()) {
+            sb.delete(0, cm.length()).insert(0, "(").append(")");
         }
         return sb.toString();
     }

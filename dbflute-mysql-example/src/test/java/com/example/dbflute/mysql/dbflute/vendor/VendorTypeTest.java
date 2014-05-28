@@ -207,7 +207,7 @@ public class VendorTypeTest extends UnitContainerTestCase {
         vendorCheck.setTypeOfNumericInteger(new Integer(123));
         vendorCheck.setTypeOfNumericBigint(new Long(123));
         vendorCheck.setTypeOfText("abc");
-        vendorCheck.setTypeOfBoolean(true);
+        vendorCheck.setTypeOfBoolean_True();
 
         vendorCheckBhv.insert(vendorCheck);
         {
@@ -217,7 +217,7 @@ public class VendorTypeTest extends UnitContainerTestCase {
             twice.setTypeOfNumericInteger(new Integer(41));
             vendorCheck.setTypeOfNumericBigint(new Long(32));
             twice.setTypeOfText("abc");
-            twice.setTypeOfBoolean(false);
+            twice.setTypeOfBoolean_False();
             vendorCheckBhv.insert(twice);
         }
         return vendorCheck; // is true

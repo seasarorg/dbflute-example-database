@@ -144,7 +144,7 @@ public abstract class BsWhiteVariantRelationReferrer implements Entity, Serializ
     /**
      * {@inheritDoc}
      */
-    public Set<String> uniqueDrivenProperties() {
+    public Set<String> myuniqueDrivenProperties() {
         return __uniqueDrivenProperties.getPropertyNames();
     }
 
@@ -577,7 +577,7 @@ public abstract class BsWhiteVariantRelationReferrer implements Entity, Serializ
      * [set] MASTER_TYPE_CODE: {NotNull, CHAR(3), classification=VariantRelationMasterType} <br />
      * @param masterTypeCode The value of the column 'MASTER_TYPE_CODE'. (basically NotNull if update: for the constraint)
      */
-    public void setMasterTypeCode(String masterTypeCode) {
+    protected void setMasterTypeCode(String masterTypeCode) {
         checkImplicitSet("MASTER_TYPE_CODE", CDef.DefMeta.VariantRelationMasterType, masterTypeCode);
         __modifiedProperties.addPropertyName("masterTypeCode");
         this._masterTypeCode = masterTypeCode;

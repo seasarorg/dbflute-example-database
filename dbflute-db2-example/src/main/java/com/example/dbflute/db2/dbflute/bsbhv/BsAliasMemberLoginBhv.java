@@ -169,7 +169,7 @@ public abstract class BsAliasMemberLoginBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of AliasMemberLogin. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -190,39 +190,65 @@ public abstract class BsAliasMemberLoginBhv extends AbstractBehaviorWritable {
 
     /**
      * Select the entity by the primary-key value.
-     * @param memberLoginId The one of primary key. (NotNull)
+     * @param memberLoginId (会員ログインID): PK, NotNull, BIGINT(19). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public AliasMemberLogin selectByPKValue(Long memberLoginId) {
-        return doSelectByPKValue(memberLoginId, AliasMemberLogin.class);
+        return doSelectByPK(memberLoginId, AliasMemberLogin.class);
     }
 
-    protected <ENTITY extends AliasMemberLogin> ENTITY doSelectByPKValue(Long memberLoginId, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(memberLoginId), entityType);
+    protected <ENTITY extends AliasMemberLogin> ENTITY doSelectByPK(Long memberLoginId, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(memberLoginId), entityType);
+    }
+
+    protected <ENTITY extends AliasMemberLogin> OptionalEntity<ENTITY> doSelectOptionalByPK(Long memberLoginId, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(memberLoginId, entityType), memberLoginId);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param memberLoginId The one of primary key. (NotNull)
+     * @param memberLoginId (会員ログインID): PK, NotNull, BIGINT(19). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public AliasMemberLogin selectByPKValueWithDeletedCheck(Long memberLoginId) {
-        return doSelectByPKValueWithDeletedCheck(memberLoginId, AliasMemberLogin.class);
+        return doSelectByPKWithDeletedCheck(memberLoginId, AliasMemberLogin.class);
     }
 
-    protected <ENTITY extends AliasMemberLogin> ENTITY doSelectByPKValueWithDeletedCheck(Long memberLoginId, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(memberLoginId), entityType);
+    protected <ENTITY extends AliasMemberLogin> ENTITY doSelectByPKWithDeletedCheck(Long memberLoginId, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(memberLoginId), entityType);
     }
 
-    private AliasMemberLoginCB buildPKCB(Long memberLoginId) {
+    protected AliasMemberLoginCB xprepareCBAsPK(Long memberLoginId) {
         assertObjectNotNull("memberLoginId", memberLoginId);
-        AliasMemberLoginCB cb = newMyConditionBean();
-        cb.query().setMemberLoginId_Equal(memberLoginId);
+        AliasMemberLoginCB cb = newMyConditionBean(); cb.acceptPrimaryKey(memberLoginId);
+        return cb;
+    }
+
+    /**
+     * Select the entity by the unique-key value.
+     * @param memberId (会員ID): UQ+, NotNull, INTEGER(10), FK to ALIAS_MEMBER. (NotNull)
+     * @param loginDatetime (ログイン日時): +UQ, IX, NotNull, TIMESTAMP(26, 6). (NotNull)
+     * @return The optional entity selected by the unique key. (NotNull: if no data, empty entity)
+     * @exception EntityAlreadyDeletedException When get(), required() of return value is called and the value is null, which means entity has already been deleted (not found).
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     */
+    public OptionalEntity<AliasMemberLogin> selectByUniqueOf(Integer memberId, java.sql.Timestamp loginDatetime) {
+        return doSelectByUniqueOf(memberId, loginDatetime, AliasMemberLogin.class);
+    }
+
+    protected <ENTITY extends AliasMemberLogin> OptionalEntity<ENTITY> doSelectByUniqueOf(Integer memberId, java.sql.Timestamp loginDatetime, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectEntity(xprepareCBAsUniqueOf(memberId, loginDatetime), entityType), memberId, loginDatetime);
+    }
+
+    protected AliasMemberLoginCB xprepareCBAsUniqueOf(Integer memberId, java.sql.Timestamp loginDatetime) {
+        assertObjectNotNull("memberId", memberId);assertObjectNotNull("loginDatetime", loginDatetime);
+        AliasMemberLoginCB cb = newMyConditionBean(); cb.acceptUniqueOf(memberId, loginDatetime);
         return cb;
     }
 
@@ -387,7 +413,8 @@ public abstract class BsAliasMemberLoginBhv extends AbstractBehaviorWritable {
      */
     public List<AliasMember> pulloutAliasMember(List<AliasMemberLogin> aliasMemberLoginList) {
         return helpPulloutInternally(aliasMemberLoginList, new InternalPulloutCallback<AliasMemberLogin, AliasMember>() {
-            public AliasMember getFr(AliasMemberLogin et) { return et.getAliasMember(); }
+            public AliasMember getFr(AliasMemberLogin et)
+            { return et.getAliasMember(); }
             public boolean hasRf() { return true; }
             public void setRfLs(AliasMember et, List<AliasMemberLogin> ls)
             { et.setAliasMemberLoginList(ls); }
@@ -400,7 +427,8 @@ public abstract class BsAliasMemberLoginBhv extends AbstractBehaviorWritable {
      */
     public List<MemberStatus> pulloutMemberStatus(List<AliasMemberLogin> aliasMemberLoginList) {
         return helpPulloutInternally(aliasMemberLoginList, new InternalPulloutCallback<AliasMemberLogin, MemberStatus>() {
-            public MemberStatus getFr(AliasMemberLogin et) { return et.getMemberStatus(); }
+            public MemberStatus getFr(AliasMemberLogin et)
+            { return et.getMemberStatus(); }
             public boolean hasRf() { return true; }
             public void setRfLs(MemberStatus et, List<AliasMemberLogin> ls)
             { et.setAliasMemberLoginList(ls); }

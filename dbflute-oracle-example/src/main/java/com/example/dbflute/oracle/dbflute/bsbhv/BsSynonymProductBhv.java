@@ -169,7 +169,7 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of SynonymProduct. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -190,39 +190,64 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
 
     /**
      * Select the entity by the primary-key value.
-     * @param productId The one of primary key. (NotNull)
+     * @param productId : PK, NotNull, NUMBER(16). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public SynonymProduct selectByPKValue(Long productId) {
-        return doSelectByPKValue(productId, SynonymProduct.class);
+        return doSelectByPK(productId, SynonymProduct.class);
     }
 
-    protected <ENTITY extends SynonymProduct> ENTITY doSelectByPKValue(Long productId, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(productId), entityType);
+    protected <ENTITY extends SynonymProduct> ENTITY doSelectByPK(Long productId, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(productId), entityType);
+    }
+
+    protected <ENTITY extends SynonymProduct> OptionalEntity<ENTITY> doSelectOptionalByPK(Long productId, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(productId, entityType), productId);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param productId The one of primary key. (NotNull)
+     * @param productId : PK, NotNull, NUMBER(16). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public SynonymProduct selectByPKValueWithDeletedCheck(Long productId) {
-        return doSelectByPKValueWithDeletedCheck(productId, SynonymProduct.class);
+        return doSelectByPKWithDeletedCheck(productId, SynonymProduct.class);
     }
 
-    protected <ENTITY extends SynonymProduct> ENTITY doSelectByPKValueWithDeletedCheck(Long productId, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(productId), entityType);
+    protected <ENTITY extends SynonymProduct> ENTITY doSelectByPKWithDeletedCheck(Long productId, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(productId), entityType);
     }
 
-    private SynonymProductCB buildPKCB(Long productId) {
+    protected SynonymProductCB xprepareCBAsPK(Long productId) {
         assertObjectNotNull("productId", productId);
-        SynonymProductCB cb = newMyConditionBean();
-        cb.query().setProductId_Equal(productId);
+        SynonymProductCB cb = newMyConditionBean(); cb.acceptPrimaryKey(productId);
+        return cb;
+    }
+
+    /**
+     * Select the entity by the unique-key value.
+     * @param productHandleCode : UQ, NotNull, VARCHAR2(100). (NotNull)
+     * @return The optional entity selected by the unique key. (NotNull: if no data, empty entity)
+     * @exception EntityAlreadyDeletedException When get(), required() of return value is called and the value is null, which means entity has already been deleted (not found).
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     */
+    public OptionalEntity<SynonymProduct> selectByUniqueOf(String productHandleCode) {
+        return doSelectByUniqueOf(productHandleCode, SynonymProduct.class);
+    }
+
+    protected <ENTITY extends SynonymProduct> OptionalEntity<ENTITY> doSelectByUniqueOf(String productHandleCode, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectEntity(xprepareCBAsUniqueOf(productHandleCode), entityType), productHandleCode);
+    }
+
+    protected SynonymProductCB xprepareCBAsUniqueOf(String productHandleCode) {
+        assertObjectNotNull("productHandleCode", productHandleCode);
+        SynonymProductCB cb = newMyConditionBean(); cb.acceptUniqueOf(productHandleCode);
         return cb;
     }
 
@@ -387,7 +412,8 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
      */
     public List<SynonymProductStatus> pulloutSynonymProductStatus(List<SynonymProduct> synonymProductList) {
         return helpPulloutInternally(synonymProductList, new InternalPulloutCallback<SynonymProduct, SynonymProductStatus>() {
-            public SynonymProductStatus getFr(SynonymProduct et) { return et.getSynonymProductStatus(); }
+            public SynonymProductStatus getFr(SynonymProduct et)
+            { return et.getSynonymProductStatus(); }
             public boolean hasRf() { return true; }
             public void setRfLs(SynonymProductStatus et, List<SynonymProduct> ls)
             { et.setSynonymProductList(ls); }

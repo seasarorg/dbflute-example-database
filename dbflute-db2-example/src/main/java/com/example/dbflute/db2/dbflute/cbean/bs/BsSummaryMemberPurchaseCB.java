@@ -77,10 +77,14 @@ public class BsSummaryMemberPurchaseCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                 PrimaryKey Handling
     //                                                                 ===================
+    /**
+     * Accept the query condition of primary key as equal.
+     * @param memberId : PK, ID, NotNull, UnknownType. (NotNull)
+     */
     public void acceptPrimaryKey(Integer memberId) {
         assertObjectNotNull("memberId", memberId);
         BsSummaryMemberPurchaseCB cb = this;
-        cb.query().setMemberId_Equal(memberId);
+        cb.query().setMemberId_Equal(memberId);;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {
@@ -416,6 +420,11 @@ public class BsSummaryMemberPurchaseCB extends AbstractConditionBean {
      */
     public void orScopeQuery(OrQuery<SummaryMemberPurchaseCB> orQuery) {
         xorSQ((SummaryMemberPurchaseCB)this, orQuery);
+    }
+
+    @Override
+    protected HpCBPurpose xhandleOrSQPurposeChange() {
+        return null; // means no check
     }
 
     /**

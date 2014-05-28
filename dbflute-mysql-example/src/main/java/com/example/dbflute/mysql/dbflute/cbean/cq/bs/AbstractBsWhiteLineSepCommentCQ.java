@@ -65,7 +65,7 @@ public abstract class AbstractBsWhiteLineSepCommentCQ extends AbstractConditionQ
      * LINE_SEP_COMMENT_CODE: {PK, NotNull, CHAR(3), classification=LineSepCommentCls}
      * @param lineSepCommentCode The value of lineSepCommentCode as equal. (NullAllowed: if null (or empty), no condition)
      */
-    public void setLineSepCommentCode_Equal(String lineSepCommentCode) {
+    protected void setLineSepCommentCode_Equal(String lineSepCommentCode) {
         doSetLineSepCommentCode_Equal(fRES(lineSepCommentCode));
     }
 
@@ -104,7 +104,7 @@ public abstract class AbstractBsWhiteLineSepCommentCQ extends AbstractConditionQ
      * LINE_SEP_COMMENT_CODE: {PK, NotNull, CHAR(3), classification=LineSepCommentCls}
      * @param lineSepCommentCode The value of lineSepCommentCode as notEqual. (NullAllowed: if null (or empty), no condition)
      */
-    public void setLineSepCommentCode_NotEqual(String lineSepCommentCode) {
+    protected void setLineSepCommentCode_NotEqual(String lineSepCommentCode) {
         doSetLineSepCommentCode_NotEqual(fRES(lineSepCommentCode));
     }
 

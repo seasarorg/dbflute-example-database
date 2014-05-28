@@ -32,7 +32,7 @@ import com.example.dbflute.mysql.dbflute.exentity.*;
  *     ONE_ID
  * 
  * [column]
- *     ONE_ID, ONE_NAME, SUPPRESS_JOIN_SQ_ID
+ *     ONE_ID, ONE_NAME, SUPPRESS_JOIN_SQ_ID, ONE_ADDI_ID
  * 
  * [sequence]
  *     
@@ -44,13 +44,13 @@ import com.example.dbflute.mysql.dbflute.exentity.*;
  *     
  * 
  * [foreign table]
- *     white_suppress_join_sq
+ *     white_suppress_join_sq, WHITE_SUPPRESS_JOIN_SQ_ONE_ADDI
  * 
  * [referrer table]
  *     
  * 
  * [foreign property]
- *     whiteSuppressJoinSq
+ *     whiteSuppressJoinSq, whiteSuppressJoinSqOneAddi
  * 
  * [referrer property]
  *     
@@ -60,9 +60,11 @@ import com.example.dbflute.mysql.dbflute.exentity.*;
  * Integer oneId = entity.getOneId();
  * String oneName = entity.getOneName();
  * Integer suppressJoinSqId = entity.getSuppressJoinSqId();
+ * Integer oneAddiId = entity.getOneAddiId();
  * entity.setOneId(oneId);
  * entity.setOneName(oneName);
  * entity.setSuppressJoinSqId(suppressJoinSqId);
+ * entity.setOneAddiId(oneAddiId);
  * = = = = = = = = = =/
  * </pre>
  * @author DBFlute(AutoGenerator)
@@ -89,6 +91,9 @@ public abstract class BsWhiteSuppressJoinSqOne implements Entity, Serializable, 
 
     /** SUPPRESS_JOIN_SQ_ID: {UQ, NotNull, INT(10), FK to white_suppress_join_sq} */
     protected Integer _suppressJoinSqId;
+
+    /** ONE_ADDI_ID: {NotNull, INT(10), FK to WHITE_SUPPRESS_JOIN_SQ_ONE_ADDI} */
+    protected Integer _oneAddiId;
 
     // -----------------------------------------------------
     //                                              Internal
@@ -148,13 +153,13 @@ public abstract class BsWhiteSuppressJoinSqOne implements Entity, Serializable, 
     public void uniqueBy(Integer suppressJoinSqId) {
         __uniqueDrivenProperties.clear();
         __uniqueDrivenProperties.addPropertyName("suppressJoinSqId");
-        _suppressJoinSqId = suppressJoinSqId;
+        setSuppressJoinSqId(suppressJoinSqId);
     }
 
     /**
      * {@inheritDoc}
      */
-    public Set<String> uniqueDrivenProperties() {
+    public Set<String> myuniqueDrivenProperties() {
         return __uniqueDrivenProperties.getPropertyNames();
     }
 
@@ -182,6 +187,25 @@ public abstract class BsWhiteSuppressJoinSqOne implements Entity, Serializable, 
      */
     public void setWhiteSuppressJoinSq(WhiteSuppressJoinSq whiteSuppressJoinSq) {
         _whiteSuppressJoinSq = whiteSuppressJoinSq;
+    }
+
+    /** white_suppress_join_sq_one_addi by my ONE_ADDI_ID, named 'whiteSuppressJoinSqOneAddi'. */
+    protected WhiteSuppressJoinSqOneAddi _whiteSuppressJoinSqOneAddi;
+
+    /**
+     * white_suppress_join_sq_one_addi by my ONE_ADDI_ID, named 'whiteSuppressJoinSqOneAddi'.
+     * @return The entity of foreign property 'whiteSuppressJoinSqOneAddi'. (NullAllowed: when e.g. null FK column, no setupSelect)
+     */
+    public WhiteSuppressJoinSqOneAddi getWhiteSuppressJoinSqOneAddi() {
+        return _whiteSuppressJoinSqOneAddi;
+    }
+
+    /**
+     * white_suppress_join_sq_one_addi by my ONE_ADDI_ID, named 'whiteSuppressJoinSqOneAddi'.
+     * @param whiteSuppressJoinSqOneAddi The entity of foreign property 'whiteSuppressJoinSqOneAddi'. (NullAllowed)
+     */
+    public void setWhiteSuppressJoinSqOneAddi(WhiteSuppressJoinSqOneAddi whiteSuppressJoinSqOneAddi) {
+        _whiteSuppressJoinSqOneAddi = whiteSuppressJoinSqOneAddi;
     }
 
     // ===================================================================================
@@ -293,6 +317,8 @@ public abstract class BsWhiteSuppressJoinSqOne implements Entity, Serializable, 
         String li = "\n  ";
         if (_whiteSuppressJoinSq != null)
         { sb.append(li).append(xbRDS(_whiteSuppressJoinSq, "whiteSuppressJoinSq")); }
+        if (_whiteSuppressJoinSqOneAddi != null)
+        { sb.append(li).append(xbRDS(_whiteSuppressJoinSqOneAddi, "whiteSuppressJoinSqOneAddi")); }
         return sb.toString();
     }
     protected String xbRDS(Entity et, String name) { // buildRelationDisplayString()
@@ -316,6 +342,7 @@ public abstract class BsWhiteSuppressJoinSqOne implements Entity, Serializable, 
         sb.append(dm).append(getOneId());
         sb.append(dm).append(getOneName());
         sb.append(dm).append(getSuppressJoinSqId());
+        sb.append(dm).append(getOneAddiId());
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length());
         }
@@ -326,6 +353,7 @@ public abstract class BsWhiteSuppressJoinSqOne implements Entity, Serializable, 
         StringBuilder sb = new StringBuilder();
         String cm = ",";
         if (_whiteSuppressJoinSq != null) { sb.append(cm).append("whiteSuppressJoinSq"); }
+        if (_whiteSuppressJoinSqOneAddi != null) { sb.append(cm).append("whiteSuppressJoinSqOneAddi"); }
         if (sb.length() > cm.length()) {
             sb.delete(0, cm.length()).insert(0, "(").append(")");
         }
@@ -396,5 +424,22 @@ public abstract class BsWhiteSuppressJoinSqOne implements Entity, Serializable, 
     public void setSuppressJoinSqId(Integer suppressJoinSqId) {
         __modifiedProperties.addPropertyName("suppressJoinSqId");
         this._suppressJoinSqId = suppressJoinSqId;
+    }
+
+    /**
+     * [get] ONE_ADDI_ID: {NotNull, INT(10), FK to WHITE_SUPPRESS_JOIN_SQ_ONE_ADDI} <br />
+     * @return The value of the column 'ONE_ADDI_ID'. (basically NotNull if selected: for the constraint)
+     */
+    public Integer getOneAddiId() {
+        return _oneAddiId;
+    }
+
+    /**
+     * [set] ONE_ADDI_ID: {NotNull, INT(10), FK to WHITE_SUPPRESS_JOIN_SQ_ONE_ADDI} <br />
+     * @param oneAddiId The value of the column 'ONE_ADDI_ID'. (basically NotNull if update: for the constraint)
+     */
+    public void setOneAddiId(Integer oneAddiId) {
+        __modifiedProperties.addPropertyName("oneAddiId");
+        this._oneAddiId = oneAddiId;
     }
 }

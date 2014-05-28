@@ -169,7 +169,7 @@ public abstract class BsNextSchemaProductBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of NextSchemaProduct. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -190,39 +190,42 @@ public abstract class BsNextSchemaProductBhv extends AbstractBehaviorWritable {
 
     /**
      * Select the entity by the primary-key value.
-     * @param productId The one of primary key. (NotNull)
+     * @param productId (隣の商品ID): PK, NotNull, NUMBER(16). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public NextSchemaProduct selectByPKValue(Long productId) {
-        return doSelectByPKValue(productId, NextSchemaProduct.class);
+        return doSelectByPK(productId, NextSchemaProduct.class);
     }
 
-    protected <ENTITY extends NextSchemaProduct> ENTITY doSelectByPKValue(Long productId, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(productId), entityType);
+    protected <ENTITY extends NextSchemaProduct> ENTITY doSelectByPK(Long productId, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(productId), entityType);
+    }
+
+    protected <ENTITY extends NextSchemaProduct> OptionalEntity<ENTITY> doSelectOptionalByPK(Long productId, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(productId, entityType), productId);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param productId The one of primary key. (NotNull)
+     * @param productId (隣の商品ID): PK, NotNull, NUMBER(16). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public NextSchemaProduct selectByPKValueWithDeletedCheck(Long productId) {
-        return doSelectByPKValueWithDeletedCheck(productId, NextSchemaProduct.class);
+        return doSelectByPKWithDeletedCheck(productId, NextSchemaProduct.class);
     }
 
-    protected <ENTITY extends NextSchemaProduct> ENTITY doSelectByPKValueWithDeletedCheck(Long productId, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(productId), entityType);
+    protected <ENTITY extends NextSchemaProduct> ENTITY doSelectByPKWithDeletedCheck(Long productId, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(productId), entityType);
     }
 
-    private NextSchemaProductCB buildPKCB(Long productId) {
+    protected NextSchemaProductCB xprepareCBAsPK(Long productId) {
         assertObjectNotNull("productId", productId);
-        NextSchemaProductCB cb = newMyConditionBean();
-        cb.query().setProductId_Equal(productId);
+        NextSchemaProductCB cb = newMyConditionBean(); cb.acceptPrimaryKey(productId);
         return cb;
     }
 
@@ -400,7 +403,8 @@ public abstract class BsNextSchemaProductBhv extends AbstractBehaviorWritable {
      */
     public List<NextSchemaProductStatus> pulloutNextSchemaProductStatus(List<NextSchemaProduct> nextSchemaProductList) {
         return helpPulloutInternally(nextSchemaProductList, new InternalPulloutCallback<NextSchemaProduct, NextSchemaProductStatus>() {
-            public NextSchemaProductStatus getFr(NextSchemaProduct et) { return et.getNextSchemaProductStatus(); }
+            public NextSchemaProductStatus getFr(NextSchemaProduct et)
+            { return et.getNextSchemaProductStatus(); }
             public boolean hasRf() { return true; }
             public void setRfLs(NextSchemaProductStatus et, List<NextSchemaProduct> ls)
             { et.setNextSchemaProductList(ls); }

@@ -29,6 +29,7 @@ import org.seasar.dbflute.cbean.sqlclause.SqlClause;
 import org.seasar.dbflute.cbean.sqlclause.SqlClauseCreator;
 import org.seasar.dbflute.dbmeta.DBMetaProvider;
 import org.seasar.dbflute.twowaysql.factory.SqlAnalyzerFactory;
+import com.example.dbflute.mysql.dbflute.allcommon.CDef;
 import com.example.dbflute.mysql.dbflute.allcommon.DBFluteConfig;
 import com.example.dbflute.mysql.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.mysql.dbflute.allcommon.ImplementedInvokerAssistant;
@@ -96,10 +97,10 @@ public class BsWhiteLineSepCommentCB extends AbstractConditionBean {
      * Accept the query condition of primary key as equal.
      * @param lineSepCommentCode : PK, NotNull, CHAR(3), classification=LineSepCommentCls. (NotNull)
      */
-    public void acceptPrimaryKey(String lineSepCommentCode) {
+    public void acceptPrimaryKey(CDef.LineSepCommentCls lineSepCommentCode) {
         assertObjectNotNull("lineSepCommentCode", lineSepCommentCode);
         BsWhiteLineSepCommentCB cb = this;
-        cb.query().setLineSepCommentCode_Equal(lineSepCommentCode);;
+        cb.query().setLineSepCommentCode_Equal_AsLineSepCommentCls(lineSepCommentCode);
     }
 
     public ConditionBean addOrderBy_PK_Asc() {

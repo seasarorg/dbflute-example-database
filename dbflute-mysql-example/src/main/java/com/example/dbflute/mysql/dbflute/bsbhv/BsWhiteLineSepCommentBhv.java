@@ -24,6 +24,7 @@ import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.exception.*;
 import org.seasar.dbflute.optional.*;
 import org.seasar.dbflute.outsidesql.executor.*;
+import com.example.dbflute.mysql.dbflute.allcommon.CDef;
 import com.example.dbflute.mysql.dbflute.exbhv.*;
 import com.example.dbflute.mysql.dbflute.exentity.*;
 import com.example.dbflute.mysql.dbflute.bsentity.dbmeta.*;
@@ -210,15 +211,15 @@ public abstract class BsWhiteLineSepCommentBhv extends AbstractBehaviorWritable 
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
-    public WhiteLineSepComment selectByPKValue(String lineSepCommentCode) {
+    public WhiteLineSepComment selectByPKValue(CDef.LineSepCommentCls lineSepCommentCode) {
         return doSelectByPK(lineSepCommentCode, WhiteLineSepComment.class);
     }
 
-    protected <ENTITY extends WhiteLineSepComment> ENTITY doSelectByPK(String lineSepCommentCode, Class<ENTITY> entityType) {
+    protected <ENTITY extends WhiteLineSepComment> ENTITY doSelectByPK(CDef.LineSepCommentCls lineSepCommentCode, Class<ENTITY> entityType) {
         return doSelectEntity(xprepareCBAsPK(lineSepCommentCode), entityType);
     }
 
-    protected <ENTITY extends WhiteLineSepComment> OptionalEntity<ENTITY> doSelectOptionalByPK(String lineSepCommentCode, Class<ENTITY> entityType) {
+    protected <ENTITY extends WhiteLineSepComment> OptionalEntity<ENTITY> doSelectOptionalByPK(CDef.LineSepCommentCls lineSepCommentCode, Class<ENTITY> entityType) {
         return createOptionalEntity(doSelectByPK(lineSepCommentCode, entityType), lineSepCommentCode);
     }
 
@@ -230,15 +231,15 @@ public abstract class BsWhiteLineSepCommentBhv extends AbstractBehaviorWritable 
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
-    public WhiteLineSepComment selectByPKValueWithDeletedCheck(String lineSepCommentCode) {
+    public WhiteLineSepComment selectByPKValueWithDeletedCheck(CDef.LineSepCommentCls lineSepCommentCode) {
         return doSelectByPKWithDeletedCheck(lineSepCommentCode, WhiteLineSepComment.class);
     }
 
-    protected <ENTITY extends WhiteLineSepComment> ENTITY doSelectByPKWithDeletedCheck(String lineSepCommentCode, Class<ENTITY> entityType) {
+    protected <ENTITY extends WhiteLineSepComment> ENTITY doSelectByPKWithDeletedCheck(CDef.LineSepCommentCls lineSepCommentCode, Class<ENTITY> entityType) {
         return doSelectEntityWithDeletedCheck(xprepareCBAsPK(lineSepCommentCode), entityType);
     }
 
-    protected WhiteLineSepCommentCB xprepareCBAsPK(String lineSepCommentCode) {
+    protected WhiteLineSepCommentCB xprepareCBAsPK(CDef.LineSepCommentCls lineSepCommentCode) {
         assertObjectNotNull("lineSepCommentCode", lineSepCommentCode);
         WhiteLineSepCommentCB cb = newMyConditionBean(); cb.acceptPrimaryKey(lineSepCommentCode);
         return cb;

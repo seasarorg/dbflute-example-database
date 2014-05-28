@@ -15,6 +15,7 @@ import org.seasar.dbflute.cbean.PagingResultBean;
 import org.seasar.dbflute.cbean.sqlclause.SqlClauseMySql;
 import org.seasar.dbflute.outsidesql.OutsideSqlContext;
 
+import com.example.dbflute.mysql.dbflute.allcommon.CDef;
 import com.example.dbflute.mysql.dbflute.cbean.MemberCB;
 import com.example.dbflute.mysql.dbflute.cbean.MemberStatusCB;
 import com.example.dbflute.mysql.dbflute.cbean.PurchaseCB;
@@ -207,7 +208,7 @@ public class VendorCheckTest extends UnitContainerTestCase {
                 } else {
                     memberStatusCode = "00" + count;
                 }
-                memberStatus.setMemberStatusCode(memberStatusCode);
+                memberStatus.setMemberStatusCodeAsMemberStatus(CDef.MemberStatus.codeOf(memberStatusCode));
                 memberStatus.setMemberStatusName(memberName + count);
                 memberStatus.setDescription("foo");
                 memberStatus.setDisplayOrder(99999 + count);

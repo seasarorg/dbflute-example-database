@@ -24,6 +24,7 @@ import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.exception.*;
 import org.seasar.dbflute.optional.*;
 import org.seasar.dbflute.outsidesql.executor.*;
+import com.example.dbflute.mysql.dbflute.allcommon.CDef;
 import com.example.dbflute.mysql.dbflute.exbhv.*;
 import com.example.dbflute.mysql.dbflute.exentity.*;
 import com.example.dbflute.mysql.dbflute.bsentity.dbmeta.*;
@@ -210,15 +211,15 @@ public abstract class BsRegionBhv extends AbstractBehaviorWritable {
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
-    public Region selectByPKValue(Integer regionId) {
+    public Region selectByPKValue(CDef.Region regionId) {
         return doSelectByPK(regionId, Region.class);
     }
 
-    protected <ENTITY extends Region> ENTITY doSelectByPK(Integer regionId, Class<ENTITY> entityType) {
+    protected <ENTITY extends Region> ENTITY doSelectByPK(CDef.Region regionId, Class<ENTITY> entityType) {
         return doSelectEntity(xprepareCBAsPK(regionId), entityType);
     }
 
-    protected <ENTITY extends Region> OptionalEntity<ENTITY> doSelectOptionalByPK(Integer regionId, Class<ENTITY> entityType) {
+    protected <ENTITY extends Region> OptionalEntity<ENTITY> doSelectOptionalByPK(CDef.Region regionId, Class<ENTITY> entityType) {
         return createOptionalEntity(doSelectByPK(regionId, entityType), regionId);
     }
 
@@ -230,15 +231,15 @@ public abstract class BsRegionBhv extends AbstractBehaviorWritable {
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
-    public Region selectByPKValueWithDeletedCheck(Integer regionId) {
+    public Region selectByPKValueWithDeletedCheck(CDef.Region regionId) {
         return doSelectByPKWithDeletedCheck(regionId, Region.class);
     }
 
-    protected <ENTITY extends Region> ENTITY doSelectByPKWithDeletedCheck(Integer regionId, Class<ENTITY> entityType) {
+    protected <ENTITY extends Region> ENTITY doSelectByPKWithDeletedCheck(CDef.Region regionId, Class<ENTITY> entityType) {
         return doSelectEntityWithDeletedCheck(xprepareCBAsPK(regionId), entityType);
     }
 
-    protected RegionCB xprepareCBAsPK(Integer regionId) {
+    protected RegionCB xprepareCBAsPK(CDef.Region regionId) {
         assertObjectNotNull("regionId", regionId);
         RegionCB cb = newMyConditionBean(); cb.acceptPrimaryKey(regionId);
         return cb;

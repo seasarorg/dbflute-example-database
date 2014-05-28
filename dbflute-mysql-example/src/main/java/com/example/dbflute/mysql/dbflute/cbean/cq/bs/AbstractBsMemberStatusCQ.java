@@ -65,7 +65,7 @@ public abstract class AbstractBsMemberStatusCQ extends AbstractConditionQuery {
      * (会員ステータスコード)MEMBER_STATUS_CODE: {PK, NotNull, CHAR(3), classification=MemberStatus}
      * @param memberStatusCode The value of memberStatusCode as equal. (NullAllowed: if null (or empty), no condition)
      */
-    public void setMemberStatusCode_Equal(String memberStatusCode) {
+    protected void setMemberStatusCode_Equal(String memberStatusCode) {
         doSetMemberStatusCode_Equal(fRES(memberStatusCode));
     }
 
@@ -112,7 +112,7 @@ public abstract class AbstractBsMemberStatusCQ extends AbstractConditionQuery {
      * (会員ステータスコード)MEMBER_STATUS_CODE: {PK, NotNull, CHAR(3), classification=MemberStatus}
      * @param memberStatusCode The value of memberStatusCode as notEqual. (NullAllowed: if null (or empty), no condition)
      */
-    public void setMemberStatusCode_NotEqual(String memberStatusCode) {
+    protected void setMemberStatusCode_NotEqual(String memberStatusCode) {
         doSetMemberStatusCode_NotEqual(fRES(memberStatusCode));
     }
 

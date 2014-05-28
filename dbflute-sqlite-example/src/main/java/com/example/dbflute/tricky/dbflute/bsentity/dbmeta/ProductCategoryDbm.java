@@ -33,14 +33,15 @@ public class ProductCategoryDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgProductCategoryCode(), "productCategoryCode");
         setupEpg(_epgMap, new EpgProductCategoryName(), "productCategoryName");
         setupEpg(_epgMap, new EpgParentCategoryCode(), "parentCategoryCode");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgProductCategoryCode implements PropertyGateway {
         public Object read(Entity et) { return ((ProductCategory)et).getProductCategoryCode(); }
         public void write(Entity et, Object vl) { ((ProductCategory)et).setProductCategoryCode((String)vl); }
@@ -53,6 +54,8 @@ public class ProductCategoryDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((ProductCategory)et).getParentCategoryCode(); }
         public void write(Entity et, Object vl) { ((ProductCategory)et).setParentCategoryCode((String)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -68,12 +71,24 @@ public class ProductCategoryDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnProductCategoryCode = cci("PRODUCT_CATEGORY_CODE", "PRODUCT_CATEGORY_CODE", null, null, true, "productCategoryCode", String.class, true, false, "TEXT", 2000000000, 10, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnProductCategoryName = cci("PRODUCT_CATEGORY_NAME", "PRODUCT_CATEGORY_NAME", null, null, true, "productCategoryName", String.class, false, false, "TEXT", 2000000000, 10, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnParentCategoryCode = cci("PARENT_CATEGORY_CODE", "PARENT_CATEGORY_CODE", null, null, false, "parentCategoryCode", String.class, false, false, "TEXT", 2000000000, 10, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnProductCategoryCode = cci("PRODUCT_CATEGORY_CODE", "PRODUCT_CATEGORY_CODE", null, null, String.class, "productCategoryCode", null, true, false, true, "TEXT", 2000000000, 10, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnProductCategoryName = cci("PRODUCT_CATEGORY_NAME", "PRODUCT_CATEGORY_NAME", null, null, String.class, "productCategoryName", null, false, false, true, "TEXT", 2000000000, 10, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnParentCategoryCode = cci("PARENT_CATEGORY_CODE", "PARENT_CATEGORY_CODE", null, null, String.class, "parentCategoryCode", null, false, false, false, "TEXT", 2000000000, 10, null, false, null, null, null, null, null);
 
+    /**
+     * PRODUCT_CATEGORY_CODE: {PK, NotNull, TEXT(2000000000, 10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnProductCategoryCode() { return _columnProductCategoryCode; }
+    /**
+     * PRODUCT_CATEGORY_NAME: {NotNull, TEXT(2000000000, 10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnProductCategoryName() { return _columnProductCategoryName; }
+    /**
+     * PARENT_CATEGORY_CODE: {TEXT(2000000000, 10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnParentCategoryCode() { return _columnParentCategoryCode; }
 
     protected List<ColumnInfo> ccil() {
@@ -99,6 +114,8 @@ public class ProductCategoryDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // cannot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

@@ -143,13 +143,13 @@ public abstract class BsVendorConstraintNameAutoQux implements Entity, Serializa
     public void uniqueBy(String constraintNameAutoQuxName) {
         __uniqueDrivenProperties.clear();
         __uniqueDrivenProperties.addPropertyName("constraintNameAutoQuxName");
-        _constraintNameAutoQuxName = constraintNameAutoQuxName;
+        setConstraintNameAutoQuxName(constraintNameAutoQuxName);
     }
 
     /**
      * {@inheritDoc}
      */
-    public Set<String> uniqueDrivenProperties() {
+    public Set<String> myuniqueDrivenProperties() {
         return __uniqueDrivenProperties.getPropertyNames();
     }
 

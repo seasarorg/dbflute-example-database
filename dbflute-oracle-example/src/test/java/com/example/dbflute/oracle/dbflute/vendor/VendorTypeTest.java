@@ -252,14 +252,14 @@ public class VendorTypeTest extends UnitContainerTestCase {
         // ## Act ##
         final Integer columnSize = columnDecimalDigit.getColumnSize();
         final Integer columnDecimalDigits = columnDecimalDigit.getDecimalDigits();
-        final Class<?> propertyType = columnDecimalDigit.getPropertyType();
+        final Class<?> propertyType = columnDecimalDigit.getPropertyAccessType();
 
         // ## Assert ##
         assertNotNull(columnSize);
         assertNotNull(columnDecimalDigits);
         assertNotSame(0, columnSize);
         assertNotSame(0, columnDecimalDigits);
-        assertEquals(SimpleVendorCheckDbm.getInstance().columnTypeOfNumberDecimal().getPropertyType(), propertyType);
+        assertEquals(SimpleVendorCheckDbm.getInstance().columnTypeOfNumberDecimal().getPropertyAccessType(), propertyType);
         final BigDecimal decimalDigit = new VendorCheck().getTypeOfNumberDecimal();
         assertNull(decimalDigit);
     }
@@ -271,14 +271,14 @@ public class VendorTypeTest extends UnitContainerTestCase {
         // ## Act ##
         final Integer columnSize = columnTypeOfNumberInteger.getColumnSize();
         final Integer columnDecimalDigits = columnTypeOfNumberInteger.getDecimalDigits();
-        final Class<?> propertyType = columnTypeOfNumberInteger.getPropertyType();
+        final Class<?> propertyType = columnTypeOfNumberInteger.getPropertyAccessType();
 
         // ## Assert ##
         assertNotNull(columnSize);
         assertNotNull(columnDecimalDigits);
         assertNotSame(0, columnSize);
         assertNotSame(0, columnTypeOfNumberInteger);
-        assertEquals(SimpleVendorCheckDbm.getInstance().columnTypeOfNumberInteger().getPropertyType(), propertyType);
+        assertEquals(SimpleVendorCheckDbm.getInstance().columnTypeOfNumberInteger().getPropertyAccessType(), propertyType);
         final Integer integerNonDigit = new VendorCheck().getTypeOfNumberInteger();
         assertNull(integerNonDigit);
     }
@@ -290,14 +290,14 @@ public class VendorTypeTest extends UnitContainerTestCase {
         // ## Act ##
         final Integer columnSize = columnTypeOfNumberBigint.getColumnSize();
         final Integer columnDecimalDigits = columnTypeOfNumberBigint.getDecimalDigits();
-        final Class<?> propertyType = columnTypeOfNumberBigint.getPropertyType();
+        final Class<?> propertyType = columnTypeOfNumberBigint.getPropertyAccessType();
 
         // ## Assert ##
         assertNotNull(columnSize);
         assertNotNull(columnDecimalDigits);
         assertNotSame(0, columnSize);
         assertNotSame(0, columnTypeOfNumberBigint);
-        assertEquals(SimpleVendorCheckDbm.getInstance().columnTypeOfNumberBigint().getPropertyType(), propertyType);
+        assertEquals(SimpleVendorCheckDbm.getInstance().columnTypeOfNumberBigint().getPropertyAccessType(), propertyType);
         final Long bigintNonDigit = new VendorCheck().getTypeOfNumberBigint();
         assertNull(bigintNonDigit);
     }
@@ -309,14 +309,14 @@ public class VendorTypeTest extends UnitContainerTestCase {
         // ## Act ##
         final Integer columnSize = columnTypeOfNumberSuperint.getColumnSize();
         final Integer columnDecimalDigits = columnTypeOfNumberSuperint.getDecimalDigits();
-        final Class<?> propertyType = columnTypeOfNumberSuperint.getPropertyType();
+        final Class<?> propertyType = columnTypeOfNumberSuperint.getPropertyAccessType();
 
         // ## Assert ##
         assertNotNull(columnSize);
         assertNotNull(columnDecimalDigits);
         assertNotSame(0, columnSize);
         assertNotSame(0, columnTypeOfNumberSuperint);
-        assertEquals(SimpleVendorCheckDbm.getInstance().columnTypeOfNumberSuperintMax().getPropertyType(), propertyType);
+        assertEquals(SimpleVendorCheckDbm.getInstance().columnTypeOfNumberSuperintMax().getPropertyAccessType(), propertyType);
         final BigDecimal bigintNonDigit = new VendorCheck().getTypeOfNumberSuperintMax();
         assertNull(bigintNonDigit);
     }
@@ -328,14 +328,14 @@ public class VendorTypeTest extends UnitContainerTestCase {
         // ## Act ##
         final Integer columnSize = columnDecimalDigit.getColumnSize();
         final Integer columnDecimalDigits = columnDecimalDigit.getDecimalDigits();
-        final Class<?> propertyType = columnDecimalDigit.getPropertyType();
+        final Class<?> propertyType = columnDecimalDigit.getPropertyAccessType();
 
         // ## Assert ##
         assertNotNull(columnSize);
         assertNotNull(columnDecimalDigits);
         assertNotSame(0, columnSize);
         assertNotSame(0, columnDecimalDigits);
-        assertEquals(VendorCheckDbm.getInstance().columnTypeOfNumberDecimal().getPropertyType(), propertyType);
+        assertEquals(VendorCheckDbm.getInstance().columnTypeOfNumberDecimal().getPropertyAccessType(), propertyType);
         final BigDecimal decimalDigit = new SimpleVendorCheck().getTypeOfNumberDecimal();
         assertNull(decimalDigit);
     }
@@ -347,14 +347,14 @@ public class VendorTypeTest extends UnitContainerTestCase {
         // ## Act ##
         final Integer columnSize = columnTypeOfNumberInteger.getColumnSize();
         final Integer columnDecimalDigits = columnTypeOfNumberInteger.getDecimalDigits();
-        final Class<?> propertyType = columnTypeOfNumberInteger.getPropertyType();
+        final Class<?> propertyType = columnTypeOfNumberInteger.getPropertyAccessType();
 
         // ## Assert ##
         assertNotNull(columnSize);
         assertNotNull(columnDecimalDigits);
         assertNotSame(0, columnSize);
         assertNotSame(0, columnTypeOfNumberInteger);
-        assertEquals(VendorCheckDbm.getInstance().columnTypeOfNumberInteger().getPropertyType(), propertyType);
+        assertEquals(VendorCheckDbm.getInstance().columnTypeOfNumberInteger().getPropertyAccessType(), propertyType);
         final Integer integerNonDigit = new SimpleVendorCheck().getTypeOfNumberInteger();
         assertNull(integerNonDigit);
     }
@@ -445,7 +445,7 @@ public class VendorTypeTest extends UnitContainerTestCase {
     }
 
     public void test_OracleDateColumn() throws Exception {
-        Class<?> type = VendorCheckDbm.getInstance().columnTypeOfDate().getPropertyType();
+        Class<?> type = VendorCheckDbm.getInstance().columnTypeOfDate().getPropertyAccessType();
         assertEquals(Date.class, type);
     }
 

@@ -35,7 +35,6 @@ import com.example.dbflute.mysql.dbflute.allcommon.ImplementedInvokerAssistant;
 import com.example.dbflute.mysql.dbflute.allcommon.ImplementedSqlClauseCreator;
 import com.example.dbflute.mysql.dbflute.cbean.*;
 import com.example.dbflute.mysql.dbflute.cbean.cq.*;
-import com.example.dbflute.mysql.dbflute.cbean.nss.*;
 
 /**
  * The base condition-bean of white_suppress_join_sq_one.
@@ -274,33 +273,6 @@ public class BsWhiteSuppressJoinSqOneCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                         SetupSelect
     //                                                                         ===========
-    protected WhiteSuppressJoinSqNss _nssWhiteSuppressJoinSq;
-    public WhiteSuppressJoinSqNss getNssWhiteSuppressJoinSq() {
-        if (_nssWhiteSuppressJoinSq == null) { _nssWhiteSuppressJoinSq = new WhiteSuppressJoinSqNss(null); }
-        return _nssWhiteSuppressJoinSq;
-    }
-    /**
-     * Set up relation columns to select clause. <br />
-     * white_suppress_join_sq by my SUPPRESS_JOIN_SQ_ID, named 'whiteSuppressJoinSq'.
-     * <pre>
-     * WhiteSuppressJoinSqOneCB cb = new WhiteSuppressJoinSqOneCB();
-     * cb.<span style="color: #DD4747">setupSelect_WhiteSuppressJoinSq()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
-     * cb.query().setFoo...(value);
-     * WhiteSuppressJoinSqOne whiteSuppressJoinSqOne = whiteSuppressJoinSqOneBhv.selectEntityWithDeletedCheck(cb);
-     * ... = whiteSuppressJoinSqOne.<span style="color: #DD4747">getWhiteSuppressJoinSq()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
-     * </pre>
-     * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
-     */
-    public WhiteSuppressJoinSqNss setupSelect_WhiteSuppressJoinSq() {
-        assertSetupSelectPurpose("whiteSuppressJoinSq");
-        if (hasSpecifiedColumn()) { // if reverse call
-            specify().columnSuppressJoinSqId();
-        }
-        doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryWhiteSuppressJoinSq(); } });
-        if (_nssWhiteSuppressJoinSq == null || !_nssWhiteSuppressJoinSq.hasConditionQuery())
-        { _nssWhiteSuppressJoinSq = new WhiteSuppressJoinSqNss(query().queryWhiteSuppressJoinSq()); }
-        return _nssWhiteSuppressJoinSq;
-    }
 
     // [DBFlute-0.7.4]
     // ===================================================================================
@@ -345,6 +317,7 @@ public class BsWhiteSuppressJoinSqOneCB extends AbstractConditionBean {
 
     public static class HpSpecification extends HpAbstractSpecification<WhiteSuppressJoinSqOneCQ> {
         protected WhiteSuppressJoinSqCB.HpSpecification _whiteSuppressJoinSq;
+        protected WhiteSuppressJoinSqOneAddiCB.HpSpecification _whiteSuppressJoinSqOneAddi;
         public HpSpecification(ConditionBean baseCB, HpSpQyCall<WhiteSuppressJoinSqOneCQ> qyCall
                              , HpCBPurpose purpose, DBMetaProvider dbmetaProvider)
         { super(baseCB, qyCall, purpose, dbmetaProvider); }
@@ -363,39 +336,19 @@ public class BsWhiteSuppressJoinSqOneCB extends AbstractConditionBean {
          * @return The information object of specified column. (NotNull)
          */
         public HpSpecifiedColumn columnSuppressJoinSqId() { return doColumn("SUPPRESS_JOIN_SQ_ID"); }
+        /**
+         * ONE_ADDI_ID: {NotNull, INT(10), FK to WHITE_SUPPRESS_JOIN_SQ_ONE_ADDI}
+         * @return The information object of specified column. (NotNull)
+         */
+        public HpSpecifiedColumn columnOneAddiId() { return doColumn("ONE_ADDI_ID"); }
         public void everyColumn() { doEveryColumn(); }
         public void exceptRecordMetaColumn() { doExceptRecordMetaColumn(); }
         @Override
         protected void doSpecifyRequiredColumn() {
             columnOneId(); // PK
-            if (qyCall().qy().hasConditionQueryWhiteSuppressJoinSq()
-                    || qyCall().qy().xgetReferrerQuery() instanceof WhiteSuppressJoinSqCQ) {
-                columnSuppressJoinSqId(); // FK or one-to-one referrer
-            }
         }
         @Override
         protected String getTableDbName() { return "white_suppress_join_sq_one"; }
-        /**
-         * Prepare to specify functions about relation table. <br />
-         * white_suppress_join_sq by my SUPPRESS_JOIN_SQ_ID, named 'whiteSuppressJoinSq'.
-         * @return The instance for specification for relation table to specify. (NotNull)
-         */
-        public WhiteSuppressJoinSqCB.HpSpecification specifyWhiteSuppressJoinSq() {
-            assertRelation("whiteSuppressJoinSq");
-            if (_whiteSuppressJoinSq == null) {
-                _whiteSuppressJoinSq = new WhiteSuppressJoinSqCB.HpSpecification(_baseCB, new HpSpQyCall<WhiteSuppressJoinSqCQ>() {
-                    public boolean has() { return _qyCall.has() && _qyCall.qy().hasConditionQueryWhiteSuppressJoinSq(); }
-                    public WhiteSuppressJoinSqCQ qy() { return _qyCall.qy().queryWhiteSuppressJoinSq(); } }
-                    , _purpose, _dbmetaProvider);
-                if (xhasSyncQyCall()) { // inherits it
-                    _whiteSuppressJoinSq.xsetSyncQyCall(new HpSpQyCall<WhiteSuppressJoinSqCQ>() {
-                        public boolean has() { return xsyncQyCall().has() && xsyncQyCall().qy().hasConditionQueryWhiteSuppressJoinSq(); }
-                        public WhiteSuppressJoinSqCQ qy() { return xsyncQyCall().qy().queryWhiteSuppressJoinSq(); }
-                    });
-                }
-            }
-            return _whiteSuppressJoinSq;
-        }
         /**
          * Prepare for (Specify)MyselfDerived (SubQuery).
          * @return The object to set up a function for myself table. (NotNull)

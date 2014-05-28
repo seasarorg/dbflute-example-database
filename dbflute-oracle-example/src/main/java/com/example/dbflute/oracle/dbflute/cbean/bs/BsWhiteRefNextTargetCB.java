@@ -78,10 +78,14 @@ public class BsWhiteRefNextTargetCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                 PrimaryKey Handling
     //                                                                 ===================
+    /**
+     * Accept the query condition of primary key as equal.
+     * @param refNextTargetId : PK, NotNull, NUMBER(16). (NotNull)
+     */
     public void acceptPrimaryKey(Long refNextTargetId) {
         assertObjectNotNull("refNextTargetId", refNextTargetId);
         BsWhiteRefNextTargetCB cb = this;
-        cb.query().setRefNextTargetId_Equal(refNextTargetId);
+        cb.query().setRefNextTargetId_Equal(refNextTargetId);;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {
@@ -463,6 +467,11 @@ public class BsWhiteRefNextTargetCB extends AbstractConditionBean {
      */
     public void orScopeQuery(OrQuery<WhiteRefNextTargetCB> orQuery) {
         xorSQ((WhiteRefNextTargetCB)this, orQuery);
+    }
+
+    @Override
+    protected HpCBPurpose xhandleOrSQPurposeChange() {
+        return null; // means no check
     }
 
     /**

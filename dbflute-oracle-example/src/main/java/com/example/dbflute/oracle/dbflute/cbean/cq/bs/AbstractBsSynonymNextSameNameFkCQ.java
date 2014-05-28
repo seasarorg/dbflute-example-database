@@ -22,8 +22,8 @@ public abstract class AbstractBsSynonymNextSameNameFkCQ extends AbstractConditio
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public AbstractBsSynonymNextSameNameFkCQ(ConditionQuery childQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
-        super(childQuery, sqlClause, aliasName, nestLevel);
+    public AbstractBsSynonymNextSameNameFkCQ(ConditionQuery referrerQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
+        super(referrerQuery, sqlClause, aliasName, nestLevel);
     }
 
     // ===================================================================================
@@ -474,7 +474,7 @@ public abstract class AbstractBsSynonymNextSameNameFkCQ extends AbstractConditio
     public abstract String keepSpecifyMyselfDerived(SynonymNextSameNameFkCQ sq);
 
     /**
-     * Prepare for (Query)MyselfDerived (SubQuery).
+     * Prepare for (Query)MyselfDerived (correlated sub-query).
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<SynonymNextSameNameFkCB> myselfDerived() {
@@ -496,8 +496,8 @@ public abstract class AbstractBsSynonymNextSameNameFkCQ extends AbstractConditio
     //                                                                        MyselfExists
     //                                                                        ============
     /**
-     * Prepare for MyselfExists (SubQuery).
-     * @param subQuery The implementation of sub query. (NotNull)
+     * Prepare for MyselfExists (correlated sub-query).
+     * @param subQuery The implementation of sub-query. (NotNull)
      */
     public void myselfExists(SubQuery<SynonymNextSameNameFkCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
@@ -512,8 +512,8 @@ public abstract class AbstractBsSynonymNextSameNameFkCQ extends AbstractConditio
     //                                                                       MyselfInScope
     //                                                                       =============
     /**
-     * Prepare for MyselfInScope (SubQuery).
-     * @param subQuery The implementation of sub query. (NotNull)
+     * Prepare for MyselfInScope (sub-query).
+     * @param subQuery The implementation of sub-query. (NotNull)
      */
     public void myselfInScope(SubQuery<SynonymNextSameNameFkCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);

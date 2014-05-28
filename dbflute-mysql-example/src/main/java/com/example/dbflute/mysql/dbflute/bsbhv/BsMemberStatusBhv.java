@@ -24,6 +24,7 @@ import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.exception.*;
 import org.seasar.dbflute.optional.*;
 import org.seasar.dbflute.outsidesql.executor.*;
+import com.example.dbflute.mysql.dbflute.allcommon.CDef;
 import com.example.dbflute.mysql.dbflute.exbhv.*;
 import com.example.dbflute.mysql.dbflute.exentity.*;
 import com.example.dbflute.mysql.dbflute.bsentity.dbmeta.*;
@@ -213,15 +214,15 @@ public abstract class BsMemberStatusBhv extends AbstractBehaviorWritable {
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
-    public MemberStatus selectByPKValue(String memberStatusCode) {
+    public MemberStatus selectByPKValue(CDef.MemberStatus memberStatusCode) {
         return doSelectByPK(memberStatusCode, MemberStatus.class);
     }
 
-    protected <ENTITY extends MemberStatus> ENTITY doSelectByPK(String memberStatusCode, Class<ENTITY> entityType) {
+    protected <ENTITY extends MemberStatus> ENTITY doSelectByPK(CDef.MemberStatus memberStatusCode, Class<ENTITY> entityType) {
         return doSelectEntity(xprepareCBAsPK(memberStatusCode), entityType);
     }
 
-    protected <ENTITY extends MemberStatus> OptionalEntity<ENTITY> doSelectOptionalByPK(String memberStatusCode, Class<ENTITY> entityType) {
+    protected <ENTITY extends MemberStatus> OptionalEntity<ENTITY> doSelectOptionalByPK(CDef.MemberStatus memberStatusCode, Class<ENTITY> entityType) {
         return createOptionalEntity(doSelectByPK(memberStatusCode, entityType), memberStatusCode);
     }
 
@@ -233,15 +234,15 @@ public abstract class BsMemberStatusBhv extends AbstractBehaviorWritable {
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
-    public MemberStatus selectByPKValueWithDeletedCheck(String memberStatusCode) {
+    public MemberStatus selectByPKValueWithDeletedCheck(CDef.MemberStatus memberStatusCode) {
         return doSelectByPKWithDeletedCheck(memberStatusCode, MemberStatus.class);
     }
 
-    protected <ENTITY extends MemberStatus> ENTITY doSelectByPKWithDeletedCheck(String memberStatusCode, Class<ENTITY> entityType) {
+    protected <ENTITY extends MemberStatus> ENTITY doSelectByPKWithDeletedCheck(CDef.MemberStatus memberStatusCode, Class<ENTITY> entityType) {
         return doSelectEntityWithDeletedCheck(xprepareCBAsPK(memberStatusCode), entityType);
     }
 
-    protected MemberStatusCB xprepareCBAsPK(String memberStatusCode) {
+    protected MemberStatusCB xprepareCBAsPK(CDef.MemberStatus memberStatusCode) {
         assertObjectNotNull("memberStatusCode", memberStatusCode);
         MemberStatusCB cb = newMyConditionBean(); cb.acceptPrimaryKey(memberStatusCode);
         return cb;

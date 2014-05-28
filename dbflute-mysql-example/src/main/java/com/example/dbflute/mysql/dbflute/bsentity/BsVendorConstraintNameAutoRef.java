@@ -163,13 +163,13 @@ public abstract class BsVendorConstraintNameAutoRef implements Entity, Serializa
     public void uniqueBy(String constraintNameAutoUnique) {
         __uniqueDrivenProperties.clear();
         __uniqueDrivenProperties.addPropertyName("constraintNameAutoUnique");
-        _constraintNameAutoUnique = constraintNameAutoUnique;
+        setConstraintNameAutoUnique(constraintNameAutoUnique);
     }
 
     /**
      * {@inheritDoc}
      */
-    public Set<String> uniqueDrivenProperties() {
+    public Set<String> myuniqueDrivenProperties() {
         return __uniqueDrivenProperties.getPropertyNames();
     }
 

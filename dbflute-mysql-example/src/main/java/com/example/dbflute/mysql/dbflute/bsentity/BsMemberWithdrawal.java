@@ -174,7 +174,7 @@ public abstract class BsMemberWithdrawal implements EntityDefinedCommonColumn, S
     /**
      * {@inheritDoc}
      */
-    public Set<String> uniqueDrivenProperties() {
+    public Set<String> myuniqueDrivenProperties() {
         return __uniqueDrivenProperties.getPropertyNames();
     }
 

@@ -3,6 +3,8 @@ package com.example.dbflute.oracle.dbflute.cbean.cq.bs;
 import java.util.Map;
 
 import org.seasar.dbflute.cbean.*;
+import org.seasar.dbflute.cbean.chelper.*;
+import org.seasar.dbflute.cbean.coption.*;
 import org.seasar.dbflute.cbean.cvalue.ConditionValue;
 import org.seasar.dbflute.cbean.sqlclause.SqlClause;
 import org.seasar.dbflute.exception.IllegalConditionBeanOperationException;
@@ -24,8 +26,8 @@ public class BsVendorLargeName90123456RefCQ extends AbstractBsVendorLargeName901
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public BsVendorLargeName90123456RefCQ(ConditionQuery childQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
-        super(childQuery, sqlClause, aliasName, nestLevel);
+    public BsVendorLargeName90123456RefCQ(ConditionQuery referrerQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
+        super(referrerQuery, sqlClause, aliasName, nestLevel);
     }
 
     // ===================================================================================
@@ -191,7 +193,7 @@ public class BsVendorLargeName90123456RefCQ extends AbstractBsVendorLargeName901
     // ===================================================================================
     //                                                                         Union Query
     //                                                                         ===========
-    protected void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
+    public void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
         VendorLargeName90123456RefCQ bq = (VendorLargeName90123456RefCQ)bqs;
         VendorLargeName90123456RefCQ uq = (VendorLargeName90123456RefCQ)uqs;
         if (bq.hasConditionQueryVendorLargeName901234567890()) {
@@ -305,5 +307,7 @@ public class BsVendorLargeName90123456RefCQ extends AbstractBsVendorLargeName901
     // very internal (for suppressing warn about 'Not Use Import')
     protected String xCB() { return VendorLargeName90123456RefCB.class.getName(); }
     protected String xCQ() { return VendorLargeName90123456RefCQ.class.getName(); }
+    protected String xCHp() { return HpCalculator.class.getName(); }
+    protected String xCOp() { return ConditionOption.class.getName(); }
     protected String xMap() { return Map.class.getName(); }
 }

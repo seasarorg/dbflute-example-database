@@ -44,16 +44,16 @@ import com.example.dbflute.mysql.dbflute.exentity.*;
  *     
  * 
  * [foreign table]
- *     white_suppress_join_sq_many(AsOne), white_suppress_join_sq_one(AsOne)
+ *     white_suppress_join_sq_one(AsOne)
  * 
  * [referrer table]
  *     white_suppress_join_sq_many, white_suppress_join_sq_one
  * 
  * [foreign property]
- *     whiteSuppressJoinSqManyAsOne, whiteSuppressJoinSqOneAsOne
+ *     whiteSuppressJoinSqOneAsOne
  * 
  * [referrer property]
- *     
+ *     whiteSuppressJoinSqManyList
  * 
  * [get/set template]
  * /= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
@@ -138,7 +138,7 @@ public abstract class BsWhiteSuppressJoinSq implements Entity, Serializable, Clo
     /**
      * {@inheritDoc}
      */
-    public Set<String> uniqueDrivenProperties() {
+    public Set<String> myuniqueDrivenProperties() {
         return __uniqueDrivenProperties.getPropertyNames();
     }
 
@@ -149,25 +149,6 @@ public abstract class BsWhiteSuppressJoinSq implements Entity, Serializable, Clo
     // ===================================================================================
     //                                                                    Foreign Property
     //                                                                    ================
-    /** white_suppress_join_sq_many by SUPPRESS_JOIN_SQ_ID, named 'whiteSuppressJoinSqManyAsOne'. */
-    protected WhiteSuppressJoinSqMany _whiteSuppressJoinSqManyAsOne;
-
-    /**
-     * white_suppress_join_sq_many by SUPPRESS_JOIN_SQ_ID, named 'whiteSuppressJoinSqManyAsOne'.
-     * @return the entity of foreign property(referrer-as-one) 'whiteSuppressJoinSqManyAsOne'. (NullAllowed: when e.g. no data, no setupSelect)
-     */
-    public WhiteSuppressJoinSqMany getWhiteSuppressJoinSqManyAsOne() {
-        return _whiteSuppressJoinSqManyAsOne;
-    }
-
-    /**
-     * white_suppress_join_sq_many by SUPPRESS_JOIN_SQ_ID, named 'whiteSuppressJoinSqManyAsOne'.
-     * @param whiteSuppressJoinSqManyAsOne The entity of foreign property(referrer-as-one) 'whiteSuppressJoinSqManyAsOne'. (NullAllowed)
-     */
-    public void setWhiteSuppressJoinSqManyAsOne(WhiteSuppressJoinSqMany whiteSuppressJoinSqManyAsOne) {
-        _whiteSuppressJoinSqManyAsOne = whiteSuppressJoinSqManyAsOne;
-    }
-
     /** white_suppress_join_sq_one by SUPPRESS_JOIN_SQ_ID, named 'whiteSuppressJoinSqOneAsOne'. */
     protected WhiteSuppressJoinSqOne _whiteSuppressJoinSqOneAsOne;
 
@@ -190,6 +171,26 @@ public abstract class BsWhiteSuppressJoinSq implements Entity, Serializable, Clo
     // ===================================================================================
     //                                                                   Referrer Property
     //                                                                   =================
+    /** white_suppress_join_sq_many by SUPPRESS_JOIN_SQ_ID, named 'whiteSuppressJoinSqManyList'. */
+    protected List<WhiteSuppressJoinSqMany> _whiteSuppressJoinSqManyList;
+
+    /**
+     * white_suppress_join_sq_many by SUPPRESS_JOIN_SQ_ID, named 'whiteSuppressJoinSqManyList'.
+     * @return The entity list of referrer property 'whiteSuppressJoinSqManyList'. (NotNull: even if no loading, returns empty list)
+     */
+    public List<WhiteSuppressJoinSqMany> getWhiteSuppressJoinSqManyList() {
+        if (_whiteSuppressJoinSqManyList == null) { _whiteSuppressJoinSqManyList = newReferrerList(); }
+        return _whiteSuppressJoinSqManyList;
+    }
+
+    /**
+     * white_suppress_join_sq_many by SUPPRESS_JOIN_SQ_ID, named 'whiteSuppressJoinSqManyList'.
+     * @param whiteSuppressJoinSqManyList The entity list of referrer property 'whiteSuppressJoinSqManyList'. (NullAllowed)
+     */
+    public void setWhiteSuppressJoinSqManyList(List<WhiteSuppressJoinSqMany> whiteSuppressJoinSqManyList) {
+        _whiteSuppressJoinSqManyList = whiteSuppressJoinSqManyList;
+    }
+
     protected <ELEMENT> List<ELEMENT> newReferrerList() {
         return new ArrayList<ELEMENT>();
     }
@@ -294,10 +295,10 @@ public abstract class BsWhiteSuppressJoinSq implements Entity, Serializable, Clo
         StringBuilder sb = new StringBuilder();
         sb.append(toString());
         String li = "\n  ";
-        if (_whiteSuppressJoinSqManyAsOne != null)
-        { sb.append(li).append(xbRDS(_whiteSuppressJoinSqManyAsOne, "whiteSuppressJoinSqManyAsOne")); }
         if (_whiteSuppressJoinSqOneAsOne != null)
         { sb.append(li).append(xbRDS(_whiteSuppressJoinSqOneAsOne, "whiteSuppressJoinSqOneAsOne")); }
+        if (_whiteSuppressJoinSqManyList != null) { for (Entity et : _whiteSuppressJoinSqManyList)
+        { if (et != null) { sb.append(li).append(xbRDS(et, "whiteSuppressJoinSqManyList")); } } }
         return sb.toString();
     }
     protected String xbRDS(Entity et, String name) { // buildRelationDisplayString()
@@ -329,8 +330,9 @@ public abstract class BsWhiteSuppressJoinSq implements Entity, Serializable, Clo
     protected String buildRelationString() {
         StringBuilder sb = new StringBuilder();
         String cm = ",";
-        if (_whiteSuppressJoinSqManyAsOne != null) { sb.append(cm).append("whiteSuppressJoinSqManyAsOne"); }
         if (_whiteSuppressJoinSqOneAsOne != null) { sb.append(cm).append("whiteSuppressJoinSqOneAsOne"); }
+        if (_whiteSuppressJoinSqManyList != null && !_whiteSuppressJoinSqManyList.isEmpty())
+        { sb.append(cm).append("whiteSuppressJoinSqManyList"); }
         if (sb.length() > cm.length()) {
             sb.delete(0, cm.length()).insert(0, "(").append(")");
         }

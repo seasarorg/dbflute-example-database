@@ -159,15 +159,14 @@ public abstract class BsWhiteUqFkRef implements Entity, Serializable, Cloneable 
     public void uniqueBy(String compoundUqFirstCode, String compoundUqSecondCode) {
         __uniqueDrivenProperties.clear();
         __uniqueDrivenProperties.addPropertyName("compoundUqFirstCode");
-        _compoundUqFirstCode = compoundUqFirstCode;
         __uniqueDrivenProperties.addPropertyName("compoundUqSecondCode");
-        _compoundUqSecondCode = compoundUqSecondCode;
+        setCompoundUqFirstCode(compoundUqFirstCode);setCompoundUqSecondCode(compoundUqSecondCode);
     }
 
     /**
      * {@inheritDoc}
      */
-    public Set<String> uniqueDrivenProperties() {
+    public Set<String> myuniqueDrivenProperties() {
         return __uniqueDrivenProperties.getPropertyNames();
     }
 

@@ -1,12 +1,15 @@
 package com.example.dbflute.mysql.dbflute.vendor;
 
+import java.lang.reflect.Method;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.seasar.dbflute.exception.EntityAlreadyExistsException;
 import org.seasar.dbflute.exception.SQLFailureException;
+import org.seasar.dbflute.util.DfReflectionUtil;
 
+import com.example.dbflute.mysql.dbflute.bsentity.dbmeta.MemberDbm;
 import com.example.dbflute.mysql.dbflute.cbean.MemberCB;
 import com.example.dbflute.mysql.dbflute.exbhv.MemberBhv;
 import com.example.dbflute.mysql.dbflute.exentity.Member;
@@ -253,7 +256,9 @@ public class VendorConstraintTest extends UnitContainerTestCase {
         Member member = new Member();
         member.setMemberName("testName");
         member.setMemberAccount("testAccount");
-        member.setMemberStatusCode("NO_EXIST");
+        Method writeMethod = MemberDbm.getInstance().columnMemberStatusCode().getWriteMethod();
+        DfReflectionUtil.invokeForcedly(writeMethod, member, new Object[] { "NO_EXIST" });
+        assertEquals("NO_EXIST", member.getMemberStatusCode());
 
         // ## Act & Assert ##
         try {

@@ -12,12 +12,12 @@
 
 	<properties>
 		<guice.version>3.0</guice.version>
-		<dbflute.version>1.0.5F</dbflute.version>
+		<dbflute.version>1.0.5G</dbflute.version>
 		<sqlite.jdbc.version>3.7.2</sqlite.jdbc.version>
-		<utflute.version>0.4.4</utflute.version>
+		<utflute.version>0.4.5</utflute.version>
 	</properties>
 
-	<url>http://dbflute.sandbox.seasar.org/</url>
+	<url>http://dbflute.seasar.org/</url>
 	<inceptionYear>2006</inceptionYear>
 	<licenses>
 		<license>

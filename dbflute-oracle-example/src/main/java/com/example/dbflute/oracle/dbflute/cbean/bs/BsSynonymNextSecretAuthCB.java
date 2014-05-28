@@ -77,10 +77,14 @@ public class BsSynonymNextSecretAuthCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                 PrimaryKey Handling
     //                                                                 ===================
+    /**
+     * Accept the query condition of primary key as equal.
+     * @param secretAuthCode (隣の秘密２コード): PK, NotNull, CHAR(3). (NotNull)
+     */
     public void acceptPrimaryKey(String secretAuthCode) {
         assertObjectNotNull("secretAuthCode", secretAuthCode);
         BsSynonymNextSecretAuthCB cb = this;
-        cb.query().setSecretAuthCode_Equal(secretAuthCode);
+        cb.query().setSecretAuthCode_Equal(secretAuthCode);;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {
@@ -409,6 +413,11 @@ public class BsSynonymNextSecretAuthCB extends AbstractConditionBean {
      */
     public void orScopeQuery(OrQuery<SynonymNextSecretAuthCB> orQuery) {
         xorSQ((SynonymNextSecretAuthCB)this, orQuery);
+    }
+
+    @Override
+    protected HpCBPurpose xhandleOrSQPurposeChange() {
+        return null; // means no check
     }
 
     /**

@@ -78,10 +78,14 @@ public class BsVendorLargeName90123456RefCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                 PrimaryKey Handling
     //                                                                 ===================
+    /**
+     * Accept the query condition of primary key as equal.
+     * @param vendorLargeName90123RefId : PK, NotNull, NUMBER(16). (NotNull)
+     */
     public void acceptPrimaryKey(Long vendorLargeName90123RefId) {
         assertObjectNotNull("vendorLargeName90123RefId", vendorLargeName90123RefId);
         BsVendorLargeName90123456RefCB cb = this;
-        cb.query().setVendorLargeName90123RefId_Equal(vendorLargeName90123RefId);
+        cb.query().setVendorLargeName90123RefId_Equal(vendorLargeName90123RefId);;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {
@@ -468,6 +472,11 @@ public class BsVendorLargeName90123456RefCB extends AbstractConditionBean {
      */
     public void orScopeQuery(OrQuery<VendorLargeName90123456RefCB> orQuery) {
         xorSQ((VendorLargeName90123456RefCB)this, orQuery);
+    }
+
+    @Override
+    protected HpCBPurpose xhandleOrSQPurposeChange() {
+        return null; // means no check
     }
 
     /**

@@ -169,7 +169,7 @@ public abstract class BsWhiteDiffWorldBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of WhiteDiffWorld. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -190,39 +190,42 @@ public abstract class BsWhiteDiffWorldBhv extends AbstractBehaviorWritable {
 
     /**
      * Select the entity by the primary-key value.
-     * @param diffWorldId The one of primary key. (NotNull)
+     * @param diffWorldId : PK, NotNull, NUMBER(16). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteDiffWorld selectByPKValue(Long diffWorldId) {
-        return doSelectByPKValue(diffWorldId, WhiteDiffWorld.class);
+        return doSelectByPK(diffWorldId, WhiteDiffWorld.class);
     }
 
-    protected <ENTITY extends WhiteDiffWorld> ENTITY doSelectByPKValue(Long diffWorldId, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(diffWorldId), entityType);
+    protected <ENTITY extends WhiteDiffWorld> ENTITY doSelectByPK(Long diffWorldId, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(diffWorldId), entityType);
+    }
+
+    protected <ENTITY extends WhiteDiffWorld> OptionalEntity<ENTITY> doSelectOptionalByPK(Long diffWorldId, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(diffWorldId, entityType), diffWorldId);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param diffWorldId The one of primary key. (NotNull)
+     * @param diffWorldId : PK, NotNull, NUMBER(16). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteDiffWorld selectByPKValueWithDeletedCheck(Long diffWorldId) {
-        return doSelectByPKValueWithDeletedCheck(diffWorldId, WhiteDiffWorld.class);
+        return doSelectByPKWithDeletedCheck(diffWorldId, WhiteDiffWorld.class);
     }
 
-    protected <ENTITY extends WhiteDiffWorld> ENTITY doSelectByPKValueWithDeletedCheck(Long diffWorldId, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(diffWorldId), entityType);
+    protected <ENTITY extends WhiteDiffWorld> ENTITY doSelectByPKWithDeletedCheck(Long diffWorldId, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(diffWorldId), entityType);
     }
 
-    private WhiteDiffWorldCB buildPKCB(Long diffWorldId) {
+    protected WhiteDiffWorldCB xprepareCBAsPK(Long diffWorldId) {
         assertObjectNotNull("diffWorldId", diffWorldId);
-        WhiteDiffWorldCB cb = newMyConditionBean();
-        cb.query().setDiffWorldId_Equal(diffWorldId);
+        WhiteDiffWorldCB cb = newMyConditionBean(); cb.acceptPrimaryKey(diffWorldId);
         return cb;
     }
 

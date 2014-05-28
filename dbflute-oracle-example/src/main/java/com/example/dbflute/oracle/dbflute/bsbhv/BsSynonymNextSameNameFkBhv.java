@@ -169,7 +169,7 @@ public abstract class BsSynonymNextSameNameFkBhv extends AbstractBehaviorWritabl
      * </pre>
      * @param cb The condition-bean of SynonymNextSameNameFk. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -190,39 +190,42 @@ public abstract class BsSynonymNextSameNameFkBhv extends AbstractBehaviorWritabl
 
     /**
      * Select the entity by the primary-key value.
-     * @param refId The one of primary key. (NotNull)
+     * @param refId : PK, NotNull, NUMBER(16). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public SynonymNextSameNameFk selectByPKValue(Long refId) {
-        return doSelectByPKValue(refId, SynonymNextSameNameFk.class);
+        return doSelectByPK(refId, SynonymNextSameNameFk.class);
     }
 
-    protected <ENTITY extends SynonymNextSameNameFk> ENTITY doSelectByPKValue(Long refId, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(refId), entityType);
+    protected <ENTITY extends SynonymNextSameNameFk> ENTITY doSelectByPK(Long refId, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(refId), entityType);
+    }
+
+    protected <ENTITY extends SynonymNextSameNameFk> OptionalEntity<ENTITY> doSelectOptionalByPK(Long refId, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(refId, entityType), refId);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param refId The one of primary key. (NotNull)
+     * @param refId : PK, NotNull, NUMBER(16). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public SynonymNextSameNameFk selectByPKValueWithDeletedCheck(Long refId) {
-        return doSelectByPKValueWithDeletedCheck(refId, SynonymNextSameNameFk.class);
+        return doSelectByPKWithDeletedCheck(refId, SynonymNextSameNameFk.class);
     }
 
-    protected <ENTITY extends SynonymNextSameNameFk> ENTITY doSelectByPKValueWithDeletedCheck(Long refId, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(refId), entityType);
+    protected <ENTITY extends SynonymNextSameNameFk> ENTITY doSelectByPKWithDeletedCheck(Long refId, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(refId), entityType);
     }
 
-    private SynonymNextSameNameFkCB buildPKCB(Long refId) {
+    protected SynonymNextSameNameFkCB xprepareCBAsPK(Long refId) {
         assertObjectNotNull("refId", refId);
-        SynonymNextSameNameFkCB cb = newMyConditionBean();
-        cb.query().setRefId_Equal(refId);
+        SynonymNextSameNameFkCB cb = newMyConditionBean(); cb.acceptPrimaryKey(refId);
         return cb;
     }
 

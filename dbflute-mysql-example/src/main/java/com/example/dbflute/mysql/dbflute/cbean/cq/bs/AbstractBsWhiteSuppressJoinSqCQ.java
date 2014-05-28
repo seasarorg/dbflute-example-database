@@ -150,28 +150,6 @@ public abstract class AbstractBsWhiteSuppressJoinSqCQ extends AbstractConditionQ
 
     /**
      * Set up ExistsReferrer (correlated sub-query). <br />
-     * {exists (select SUPPRESS_JOIN_SQ_ID from white_suppress_join_sq_many where ...)} <br />
-     * white_suppress_join_sq_many by SUPPRESS_JOIN_SQ_ID, named 'whiteSuppressJoinSqManyAsOne'.
-     * <pre>
-     * cb.query().<span style="color: #DD4747">existsWhiteSuppressJoinSqManyAsOne</span>(new SubQuery&lt;WhiteSuppressJoinSqManyCB&gt;() {
-     *     public void query(WhiteSuppressJoinSqManyCB subCB) {
-     *         subCB.query().setXxx...
-     *     }
-     * });
-     * </pre>
-     * @param subQuery The sub-query of WhiteSuppressJoinSqManyAsOne for 'exists'. (NotNull)
-     */
-    public void existsWhiteSuppressJoinSqManyAsOne(SubQuery<WhiteSuppressJoinSqManyCB> subQuery) {
-        assertObjectNotNull("subQuery", subQuery);
-        WhiteSuppressJoinSqManyCB cb = new WhiteSuppressJoinSqManyCB(); cb.xsetupForExistsReferrer(this);
-        try { lock(); subQuery.query(cb); } finally { unlock(); }
-        String pp = keepSuppressJoinSqId_ExistsReferrer_WhiteSuppressJoinSqManyAsOne(cb.query());
-        registerExistsReferrer(cb.query(), "SUPPRESS_JOIN_SQ_ID", "SUPPRESS_JOIN_SQ_ID", pp, "whiteSuppressJoinSqManyAsOne");
-    }
-    public abstract String keepSuppressJoinSqId_ExistsReferrer_WhiteSuppressJoinSqManyAsOne(WhiteSuppressJoinSqManyCQ sq);
-
-    /**
-     * Set up ExistsReferrer (correlated sub-query). <br />
      * {exists (select SUPPRESS_JOIN_SQ_ID from white_suppress_join_sq_one where ...)} <br />
      * white_suppress_join_sq_one by SUPPRESS_JOIN_SQ_ID, named 'whiteSuppressJoinSqOneAsOne'.
      * <pre>
@@ -191,28 +169,6 @@ public abstract class AbstractBsWhiteSuppressJoinSqCQ extends AbstractConditionQ
         registerExistsReferrer(cb.query(), "SUPPRESS_JOIN_SQ_ID", "SUPPRESS_JOIN_SQ_ID", pp, "whiteSuppressJoinSqOneAsOne");
     }
     public abstract String keepSuppressJoinSqId_ExistsReferrer_WhiteSuppressJoinSqOneAsOne(WhiteSuppressJoinSqOneCQ sq);
-
-    /**
-     * Set up NotExistsReferrer (correlated sub-query). <br />
-     * {not exists (select SUPPRESS_JOIN_SQ_ID from white_suppress_join_sq_many where ...)} <br />
-     * white_suppress_join_sq_many by SUPPRESS_JOIN_SQ_ID, named 'whiteSuppressJoinSqManyAsOne'.
-     * <pre>
-     * cb.query().<span style="color: #DD4747">notExistsWhiteSuppressJoinSqManyAsOne</span>(new SubQuery&lt;WhiteSuppressJoinSqManyCB&gt;() {
-     *     public void query(WhiteSuppressJoinSqManyCB subCB) {
-     *         subCB.query().setXxx...
-     *     }
-     * });
-     * </pre>
-     * @param subQuery The sub-query of SuppressJoinSqId_NotExistsReferrer_WhiteSuppressJoinSqManyAsOne for 'not exists'. (NotNull)
-     */
-    public void notExistsWhiteSuppressJoinSqManyAsOne(SubQuery<WhiteSuppressJoinSqManyCB> subQuery) {
-        assertObjectNotNull("subQuery", subQuery);
-        WhiteSuppressJoinSqManyCB cb = new WhiteSuppressJoinSqManyCB(); cb.xsetupForExistsReferrer(this);
-        try { lock(); subQuery.query(cb); } finally { unlock(); }
-        String pp = keepSuppressJoinSqId_NotExistsReferrer_WhiteSuppressJoinSqManyAsOne(cb.query());
-        registerNotExistsReferrer(cb.query(), "SUPPRESS_JOIN_SQ_ID", "SUPPRESS_JOIN_SQ_ID", pp, "whiteSuppressJoinSqManyAsOne");
-    }
-    public abstract String keepSuppressJoinSqId_NotExistsReferrer_WhiteSuppressJoinSqManyAsOne(WhiteSuppressJoinSqManyCQ sq);
 
     /**
      * Set up NotExistsReferrer (correlated sub-query). <br />
@@ -238,21 +194,6 @@ public abstract class AbstractBsWhiteSuppressJoinSqCQ extends AbstractConditionQ
 
     /**
      * Set up InScopeRelation (sub-query). <br />
-     * {in (select SUPPRESS_JOIN_SQ_ID from white_suppress_join_sq_many where ...)} <br />
-     * white_suppress_join_sq_many by SUPPRESS_JOIN_SQ_ID, named 'whiteSuppressJoinSqManyAsOne'.
-     * @param subQuery The sub-query of WhiteSuppressJoinSqManyAsOne for 'in-scope'. (NotNull)
-     */
-    public void inScopeWhiteSuppressJoinSqManyAsOne(SubQuery<WhiteSuppressJoinSqManyCB> subQuery) {
-        assertObjectNotNull("subQuery", subQuery);
-        WhiteSuppressJoinSqManyCB cb = new WhiteSuppressJoinSqManyCB(); cb.xsetupForInScopeRelation(this);
-        try { lock(); subQuery.query(cb); } finally { unlock(); }
-        String pp = keepSuppressJoinSqId_InScopeRelation_WhiteSuppressJoinSqManyAsOne(cb.query());
-        registerInScopeRelation(cb.query(), "SUPPRESS_JOIN_SQ_ID", "SUPPRESS_JOIN_SQ_ID", pp, "whiteSuppressJoinSqManyAsOne");
-    }
-    public abstract String keepSuppressJoinSqId_InScopeRelation_WhiteSuppressJoinSqManyAsOne(WhiteSuppressJoinSqManyCQ sq);
-
-    /**
-     * Set up InScopeRelation (sub-query). <br />
      * {in (select SUPPRESS_JOIN_SQ_ID from white_suppress_join_sq_one where ...)} <br />
      * white_suppress_join_sq_one by SUPPRESS_JOIN_SQ_ID, named 'whiteSuppressJoinSqOneAsOne'.
      * @param subQuery The sub-query of WhiteSuppressJoinSqOneAsOne for 'in-scope'. (NotNull)
@@ -265,21 +206,6 @@ public abstract class AbstractBsWhiteSuppressJoinSqCQ extends AbstractConditionQ
         registerInScopeRelation(cb.query(), "SUPPRESS_JOIN_SQ_ID", "SUPPRESS_JOIN_SQ_ID", pp, "whiteSuppressJoinSqOneAsOne");
     }
     public abstract String keepSuppressJoinSqId_InScopeRelation_WhiteSuppressJoinSqOneAsOne(WhiteSuppressJoinSqOneCQ sq);
-
-    /**
-     * Set up NotInScopeRelation (sub-query). <br />
-     * {not in (select SUPPRESS_JOIN_SQ_ID from white_suppress_join_sq_many where ...)} <br />
-     * white_suppress_join_sq_many by SUPPRESS_JOIN_SQ_ID, named 'whiteSuppressJoinSqManyAsOne'.
-     * @param subQuery The sub-query of WhiteSuppressJoinSqManyAsOne for 'not in-scope'. (NotNull)
-     */
-    public void notInScopeWhiteSuppressJoinSqManyAsOne(SubQuery<WhiteSuppressJoinSqManyCB> subQuery) {
-        assertObjectNotNull("subQuery", subQuery);
-        WhiteSuppressJoinSqManyCB cb = new WhiteSuppressJoinSqManyCB(); cb.xsetupForInScopeRelation(this);
-        try { lock(); subQuery.query(cb); } finally { unlock(); }
-        String pp = keepSuppressJoinSqId_NotInScopeRelation_WhiteSuppressJoinSqManyAsOne(cb.query());
-        registerNotInScopeRelation(cb.query(), "SUPPRESS_JOIN_SQ_ID", "SUPPRESS_JOIN_SQ_ID", pp, "whiteSuppressJoinSqManyAsOne");
-    }
-    public abstract String keepSuppressJoinSqId_NotInScopeRelation_WhiteSuppressJoinSqManyAsOne(WhiteSuppressJoinSqManyCQ sq);
 
     /**
      * Set up NotInScopeRelation (sub-query). <br />

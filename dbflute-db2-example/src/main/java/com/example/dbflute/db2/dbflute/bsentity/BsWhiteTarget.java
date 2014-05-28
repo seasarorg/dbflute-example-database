@@ -73,6 +73,9 @@ public abstract class BsWhiteTarget implements Entity, Serializable, Cloneable {
     // -----------------------------------------------------
     //                                              Internal
     //                                              --------
+    /** The unique-driven properties for this entity. (NotNull) */
+    protected final EntityUniqueDrivenProperties __uniqueDrivenProperties = newUniqueDrivenProperties();
+
     /** The modified properties for this entity. (NotNull) */
     protected final EntityModifiedProperties __modifiedProperties = newModifiedProperties();
 
@@ -115,6 +118,17 @@ public abstract class BsWhiteTarget implements Entity, Serializable, Cloneable {
     public boolean hasPrimaryKeyValue() {
         if (getTargetId() == null) { return false; }
         return true;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Set<String> myuniqueDrivenProperties() {
+        return __uniqueDrivenProperties.getPropertyNames();
+    }
+
+    protected EntityUniqueDrivenProperties newUniqueDrivenProperties() {
+        return new EntityUniqueDrivenProperties();
     }
 
     // ===================================================================================
@@ -207,8 +221,8 @@ public abstract class BsWhiteTarget implements Entity, Serializable, Cloneable {
         if (!xSV(getTargetId(), other.getTargetId())) { return false; }
         return true;
     }
-    protected boolean xSV(Object value1, Object value2) {
-        return FunCustodial.isSameValue(value1, value2);
+    protected boolean xSV(Object v1, Object v2) {
+        return FunCustodial.isSameValue(v1, v2);
     }
 
     /**
@@ -216,13 +230,13 @@ public abstract class BsWhiteTarget implements Entity, Serializable, Cloneable {
      * @return The hash-code from primary-key or columns.
      */
     public int hashCode() {
-        int result = 17;
-        result = xCH(result, getTableDbName());
-        result = xCH(result, getTargetId());
-        return result;
+        int hs = 17;
+        hs = xCH(hs, getTableDbName());
+        hs = xCH(hs, getTargetId());
+        return hs;
     }
-    protected int xCH(int result, Object value) {
-        return FunCustodial.calculateHashcode(result, value);
+    protected int xCH(int hs, Object vl) {
+        return FunCustodial.calculateHashcode(hs, vl);
     }
 
     /**
@@ -246,13 +260,13 @@ public abstract class BsWhiteTarget implements Entity, Serializable, Cloneable {
     public String toStringWithRelation() {
         StringBuilder sb = new StringBuilder();
         sb.append(toString());
-        String l = "\n  ";
-        if (_whiteRefTargetList != null) { for (Entity e : _whiteRefTargetList)
-        { if (e != null) { sb.append(l).append(xbRDS(e, "whiteRefTargetList")); } } }
+        String li = "\n  ";
+        if (_whiteRefTargetList != null) { for (Entity et : _whiteRefTargetList)
+        { if (et != null) { sb.append(li).append(xbRDS(et, "whiteRefTargetList")); } } }
         return sb.toString();
     }
-    protected String xbRDS(Entity e, String name) { // buildRelationDisplayString()
-        return e.buildDisplayString(name, true, true);
+    protected String xbRDS(Entity et, String name) { // buildRelationDisplayString()
+        return et.buildDisplayString(name, true, true);
     }
 
     /**
@@ -268,22 +282,22 @@ public abstract class BsWhiteTarget implements Entity, Serializable, Cloneable {
     }
     protected String buildColumnString() {
         StringBuilder sb = new StringBuilder();
-        String delimiter = ", ";
-        sb.append(delimiter).append(getTargetId());
-        sb.append(delimiter).append(getTargetName());
-        if (sb.length() > delimiter.length()) {
-            sb.delete(0, delimiter.length());
+        String dm = ", ";
+        sb.append(dm).append(getTargetId());
+        sb.append(dm).append(getTargetName());
+        if (sb.length() > dm.length()) {
+            sb.delete(0, dm.length());
         }
         sb.insert(0, "{").append("}");
         return sb.toString();
     }
     protected String buildRelationString() {
         StringBuilder sb = new StringBuilder();
-        String c = ",";
+        String cm = ",";
         if (_whiteRefTargetList != null && !_whiteRefTargetList.isEmpty())
-        { sb.append(c).append("whiteRefTargetList"); }
-        if (sb.length() > c.length()) {
-            sb.delete(0, c.length()).insert(0, "(").append(")");
+        { sb.append(cm).append("whiteRefTargetList"); }
+        if (sb.length() > cm.length()) {
+            sb.delete(0, cm.length()).insert(0, "(").append(")");
         }
         return sb.toString();
     }

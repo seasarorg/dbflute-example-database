@@ -155,15 +155,14 @@ public abstract class BsWhiteImplicitReverseFkSuppress implements Entity, Serial
     public void uniqueBy(Integer whiteImplicitReverseFkId, java.util.Date validBeginDate) {
         __uniqueDrivenProperties.clear();
         __uniqueDrivenProperties.addPropertyName("whiteImplicitReverseFkId");
-        _whiteImplicitReverseFkId = whiteImplicitReverseFkId;
         __uniqueDrivenProperties.addPropertyName("validBeginDate");
-        _validBeginDate = validBeginDate;
+        setWhiteImplicitReverseFkId(whiteImplicitReverseFkId);setValidBeginDate(validBeginDate);
     }
 
     /**
      * {@inheritDoc}
      */
-    public Set<String> uniqueDrivenProperties() {
+    public Set<String> myuniqueDrivenProperties() {
         return __uniqueDrivenProperties.getPropertyNames();
     }
 

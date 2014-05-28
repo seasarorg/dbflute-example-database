@@ -137,7 +137,7 @@ public abstract class BsWhiteUqFkWithoutPkRef implements Entity, Serializable, C
     /**
      * {@inheritDoc}
      */
-    public Set<String> uniqueDrivenProperties() {
+    public Set<String> myuniqueDrivenProperties() {
         return __uniqueDrivenProperties.getPropertyNames();
     }
 

@@ -142,13 +142,13 @@ public abstract class BsWhiteUqFkWithoutPk implements Entity, Serializable, Clon
     public void uniqueBy(String uqFkCode) {
         __uniqueDrivenProperties.clear();
         __uniqueDrivenProperties.addPropertyName("uqFkCode");
-        _uqFkCode = uqFkCode;
+        setUqFkCode(uqFkCode);
     }
 
     /**
      * {@inheritDoc}
      */
-    public Set<String> uniqueDrivenProperties() {
+    public Set<String> myuniqueDrivenProperties() {
         return __uniqueDrivenProperties.getPropertyNames();
     }
 

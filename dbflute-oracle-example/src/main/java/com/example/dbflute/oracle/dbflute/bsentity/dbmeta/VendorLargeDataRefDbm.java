@@ -33,6 +33,9 @@ public class VendorLargeDataRefDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgLargeDataRefId(), "largeDataRefId");
@@ -45,8 +48,6 @@ public class VendorLargeDataRefDbm extends AbstractDBMeta {
         setupEpg(_epgMap, new EpgNullableDecimalNoIndex(), "nullableDecimalNoIndex");
         setupEpg(_epgMap, new EpgSelfParentId(), "selfParentId");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgLargeDataRefId implements PropertyGateway {
         public Object read(Entity et) { return ((VendorLargeDataRef)et).getLargeDataRefId(); }
         public void write(Entity et, Object vl) { ((VendorLargeDataRef)et).setLargeDataRefId(ctl(vl)); }
@@ -83,6 +84,27 @@ public class VendorLargeDataRefDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((VendorLargeDataRef)et).getSelfParentId(); }
         public void write(Entity et, Object vl) { ((VendorLargeDataRef)et).setSelfParentId(ctl(vl)); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
+
+    // -----------------------------------------------------
+    //                                      Foreign Property
+    //                                      ----------------
+    protected final Map<String, PropertyGateway> _efpgMap = newHashMap();
+    {
+        setupEfpg(_efpgMap, new EfpgVendorLargeData(), "vendorLargeData");
+        setupEfpg(_efpgMap, new EfpgVendorLargeDataRefSelf(), "vendorLargeDataRefSelf");
+    }
+    public class EfpgVendorLargeData implements PropertyGateway {
+        public Object read(Entity et) { return ((VendorLargeDataRef)et).getVendorLargeData(); }
+        public void write(Entity et, Object vl) { ((VendorLargeDataRef)et).setVendorLargeData((VendorLargeData)vl); }
+    }
+    public class EfpgVendorLargeDataRefSelf implements PropertyGateway {
+        public Object read(Entity et) { return ((VendorLargeDataRef)et).getVendorLargeDataRefSelf(); }
+        public void write(Entity et, Object vl) { ((VendorLargeDataRef)et).setVendorLargeDataRefSelf((VendorLargeDataRef)vl); }
+    }
+    public PropertyGateway findForeignPropertyGateway(String prop)
+    { return doFindEfpg(_efpgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -98,24 +120,60 @@ public class VendorLargeDataRefDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnLargeDataRefId = cci("LARGE_DATA_REF_ID", "LARGE_DATA_REF_ID", null, null, true, "largeDataRefId", Long.class, true, false, "NUMBER", 12, 0, null, false, null, null, null, "vendorLargeDataRefSelfList", null);
-    protected final ColumnInfo _columnLargeDataId = cci("LARGE_DATA_ID", "LARGE_DATA_ID", null, null, true, "largeDataId", Long.class, false, false, "NUMBER", 12, 0, null, false, null, null, "vendorLargeData", null, null);
-    protected final ColumnInfo _columnDateIndex = cci("DATE_INDEX", "DATE_INDEX", null, null, true, "dateIndex", java.util.Date.class, false, false, "DATE", 7, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnDateNoIndex = cci("DATE_NO_INDEX", "DATE_NO_INDEX", null, null, true, "dateNoIndex", java.util.Date.class, false, false, "DATE", 7, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTimestampIndex = cci("TIMESTAMP_INDEX", "TIMESTAMP_INDEX", null, null, true, "timestampIndex", java.sql.Timestamp.class, false, false, "TIMESTAMP(6)", 11, 6, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTimestampNoIndex = cci("TIMESTAMP_NO_INDEX", "TIMESTAMP_NO_INDEX", null, null, true, "timestampNoIndex", java.sql.Timestamp.class, false, false, "TIMESTAMP(6)", 11, 6, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnNullableDecimalIndex = cci("NULLABLE_DECIMAL_INDEX", "NULLABLE_DECIMAL_INDEX", null, null, false, "nullableDecimalIndex", java.math.BigDecimal.class, false, false, "NUMBER", 12, 3, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnNullableDecimalNoIndex = cci("NULLABLE_DECIMAL_NO_INDEX", "NULLABLE_DECIMAL_NO_INDEX", null, null, false, "nullableDecimalNoIndex", java.math.BigDecimal.class, false, false, "NUMBER", 12, 3, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnSelfParentId = cci("SELF_PARENT_ID", "SELF_PARENT_ID", null, null, false, "selfParentId", Long.class, false, false, "NUMBER", 12, 0, null, false, null, null, "vendorLargeDataRefSelf", null, null);
+    protected final ColumnInfo _columnLargeDataRefId = cci("LARGE_DATA_REF_ID", "LARGE_DATA_REF_ID", null, null, Long.class, "largeDataRefId", null, true, false, true, "NUMBER", 12, 0, null, false, null, null, null, "vendorLargeDataRefSelfList", null);
+    protected final ColumnInfo _columnLargeDataId = cci("LARGE_DATA_ID", "LARGE_DATA_ID", null, null, Long.class, "largeDataId", null, false, false, true, "NUMBER", 12, 0, null, false, null, null, "vendorLargeData", null, null);
+    protected final ColumnInfo _columnDateIndex = cci("DATE_INDEX", "DATE_INDEX", null, null, java.util.Date.class, "dateIndex", null, false, false, true, "DATE", 7, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnDateNoIndex = cci("DATE_NO_INDEX", "DATE_NO_INDEX", null, null, java.util.Date.class, "dateNoIndex", null, false, false, true, "DATE", 7, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTimestampIndex = cci("TIMESTAMP_INDEX", "TIMESTAMP_INDEX", null, null, java.sql.Timestamp.class, "timestampIndex", null, false, false, true, "TIMESTAMP(6)", 11, 6, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTimestampNoIndex = cci("TIMESTAMP_NO_INDEX", "TIMESTAMP_NO_INDEX", null, null, java.sql.Timestamp.class, "timestampNoIndex", null, false, false, true, "TIMESTAMP(6)", 11, 6, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnNullableDecimalIndex = cci("NULLABLE_DECIMAL_INDEX", "NULLABLE_DECIMAL_INDEX", null, null, java.math.BigDecimal.class, "nullableDecimalIndex", null, false, false, false, "NUMBER", 12, 3, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnNullableDecimalNoIndex = cci("NULLABLE_DECIMAL_NO_INDEX", "NULLABLE_DECIMAL_NO_INDEX", null, null, java.math.BigDecimal.class, "nullableDecimalNoIndex", null, false, false, false, "NUMBER", 12, 3, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnSelfParentId = cci("SELF_PARENT_ID", "SELF_PARENT_ID", null, null, Long.class, "selfParentId", null, false, false, false, "NUMBER", 12, 0, null, false, null, null, "vendorLargeDataRefSelf", null, null);
 
+    /**
+     * LARGE_DATA_REF_ID: {PK, NotNull, NUMBER(12)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnLargeDataRefId() { return _columnLargeDataRefId; }
+    /**
+     * LARGE_DATA_ID: {IX, NotNull, NUMBER(12), FK to VENDOR_LARGE_DATA}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnLargeDataId() { return _columnLargeDataId; }
+    /**
+     * DATE_INDEX: {IX, NotNull, DATE(7)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnDateIndex() { return _columnDateIndex; }
+    /**
+     * DATE_NO_INDEX: {NotNull, DATE(7)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnDateNoIndex() { return _columnDateNoIndex; }
+    /**
+     * TIMESTAMP_INDEX: {IX, NotNull, TIMESTAMP(6)(11, 6)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTimestampIndex() { return _columnTimestampIndex; }
+    /**
+     * TIMESTAMP_NO_INDEX: {NotNull, TIMESTAMP(6)(11, 6)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTimestampNoIndex() { return _columnTimestampNoIndex; }
+    /**
+     * NULLABLE_DECIMAL_INDEX: {IX, NUMBER(12, 3)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnNullableDecimalIndex() { return _columnNullableDecimalIndex; }
+    /**
+     * NULLABLE_DECIMAL_NO_INDEX: {NUMBER(12, 3)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnNullableDecimalNoIndex() { return _columnNullableDecimalNoIndex; }
+    /**
+     * SELF_PARENT_ID: {NUMBER(12), FK to VENDOR_LARGE_DATA_REF}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnSelfParentId() { return _columnSelfParentId; }
 
     protected List<ColumnInfo> ccil() {
@@ -147,21 +205,35 @@ public class VendorLargeDataRefDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // cannot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------
+    /**
+     * VENDOR_LARGE_DATA by my LARGE_DATA_ID, named 'vendorLargeData'.
+     * @return The information object of foreign property. (NotNull)
+     */
     public ForeignInfo foreignVendorLargeData() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnLargeDataId(), VendorLargeDataDbm.getInstance().columnLargeDataId());
-        return cfi("FK_VENDOR_LARGE_DATA_REF_DATA", "vendorLargeData", this, VendorLargeDataDbm.getInstance(), mp, 0, false, false, false, false, null, null, false, "vendorLargeDataRefList");
+        return cfi("FK_VENDOR_LARGE_DATA_REF_DATA", "vendorLargeData", this, VendorLargeDataDbm.getInstance(), mp, 0, null, false, false, false, false, null, null, false, "vendorLargeDataRefList");
     }
+    /**
+     * VENDOR_LARGE_DATA_REF by my SELF_PARENT_ID, named 'vendorLargeDataRefSelf'.
+     * @return The information object of foreign property. (NotNull)
+     */
     public ForeignInfo foreignVendorLargeDataRefSelf() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnSelfParentId(), VendorLargeDataRefDbm.getInstance().columnLargeDataRefId());
-        return cfi("FK_VENDOR_LARGE_DATA_REF_SELF", "vendorLargeDataRefSelf", this, VendorLargeDataRefDbm.getInstance(), mp, 1, false, false, false, false, null, null, false, "vendorLargeDataRefSelfList");
+        return cfi("FK_VENDOR_LARGE_DATA_REF_SELF", "vendorLargeDataRefSelf", this, VendorLargeDataRefDbm.getInstance(), mp, 1, null, false, false, false, false, null, null, false, "vendorLargeDataRefSelfList");
     }
 
     // -----------------------------------------------------
     //                                     Referrer Property
     //                                     -----------------
+    /**
+     * VENDOR_LARGE_DATA_REF by SELF_PARENT_ID, named 'vendorLargeDataRefSelfList'.
+     * @return The information object of referrer property. (NotNull)
+     */
     public ReferrerInfo referrerVendorLargeDataRefSelfList() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnLargeDataRefId(), VendorLargeDataRefDbm.getInstance().columnSelfParentId());
         return cri("FK_VENDOR_LARGE_DATA_REF_SELF", "vendorLargeDataRefSelfList", this, VendorLargeDataRefDbm.getInstance(), mp, false, "vendorLargeDataRefSelf");

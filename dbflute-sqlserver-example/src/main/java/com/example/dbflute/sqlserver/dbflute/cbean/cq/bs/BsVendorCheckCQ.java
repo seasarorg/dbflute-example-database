@@ -3,6 +3,8 @@ package com.example.dbflute.sqlserver.dbflute.cbean.cq.bs;
 import java.util.Map;
 
 import org.seasar.dbflute.cbean.*;
+import org.seasar.dbflute.cbean.chelper.*;
+import org.seasar.dbflute.cbean.coption.*;
 import org.seasar.dbflute.cbean.cvalue.ConditionValue;
 import org.seasar.dbflute.cbean.sqlclause.SqlClause;
 import org.seasar.dbflute.exception.IllegalConditionBeanOperationException;
@@ -24,8 +26,8 @@ public class BsVendorCheckCQ extends AbstractBsVendorCheckCQ {
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public BsVendorCheckCQ(ConditionQuery childQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
-        super(childQuery, sqlClause, aliasName, nestLevel);
+    public BsVendorCheckCQ(ConditionQuery referrerQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
+        super(referrerQuery, sqlClause, aliasName, nestLevel);
     }
 
     // ===================================================================================
@@ -396,14 +398,14 @@ public class BsVendorCheckCQ extends AbstractBsVendorCheckCQ {
 
     /** 
      * Add order-by as ascend. <br />
-     * TYPE_OF_BINARY: {binary(2000)}
+     * TYPE_OF_BINARY: {binary(3000)}
      * @return this. (NotNull)
      */
     public BsVendorCheckCQ addOrderBy_TypeOfBinary_Asc() { regOBA("TYPE_OF_BINARY"); return this; }
 
     /**
      * Add order-by as descend. <br />
-     * TYPE_OF_BINARY: {binary(2000)}
+     * TYPE_OF_BINARY: {binary(3000)}
      * @return this. (NotNull)
      */
     public BsVendorCheckCQ addOrderBy_TypeOfBinary_Desc() { regOBD("TYPE_OF_BINARY"); return this; }
@@ -417,14 +419,14 @@ public class BsVendorCheckCQ extends AbstractBsVendorCheckCQ {
 
     /** 
      * Add order-by as ascend. <br />
-     * TYPE_OF_VARBINARY: {varbinary(2000)}
+     * TYPE_OF_VARBINARY: {varbinary(3000)}
      * @return this. (NotNull)
      */
     public BsVendorCheckCQ addOrderBy_TypeOfVarbinary_Asc() { regOBA("TYPE_OF_VARBINARY"); return this; }
 
     /**
      * Add order-by as descend. <br />
-     * TYPE_OF_VARBINARY: {varbinary(2000)}
+     * TYPE_OF_VARBINARY: {varbinary(3000)}
      * @return this. (NotNull)
      */
     public BsVendorCheckCQ addOrderBy_TypeOfVarbinary_Desc() { regOBD("TYPE_OF_VARBINARY"); return this; }
@@ -511,7 +513,7 @@ public class BsVendorCheckCQ extends AbstractBsVendorCheckCQ {
     // ===================================================================================
     //                                                                         Union Query
     //                                                                         ===========
-    protected void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
+    public void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
     }
 
     // ===================================================================================
@@ -586,5 +588,7 @@ public class BsVendorCheckCQ extends AbstractBsVendorCheckCQ {
     // very internal (for suppressing warn about 'Not Use Import')
     protected String xCB() { return VendorCheckCB.class.getName(); }
     protected String xCQ() { return VendorCheckCQ.class.getName(); }
+    protected String xCHp() { return HpCalculator.class.getName(); }
+    protected String xCOp() { return ConditionOption.class.getName(); }
     protected String xMap() { return Map.class.getName(); }
 }

@@ -148,13 +148,13 @@ public abstract class BsWhiteOnlyOneToOneTo implements Entity, Serializable, Clo
     public void uniqueBy(Long fromId) {
         __uniqueDrivenProperties.clear();
         __uniqueDrivenProperties.addPropertyName("fromId");
-        _fromId = fromId;
+        setFromId(fromId);
     }
 
     /**
      * {@inheritDoc}
      */
-    public Set<String> uniqueDrivenProperties() {
+    public Set<String> myuniqueDrivenProperties() {
         return __uniqueDrivenProperties.getPropertyNames();
     }
 

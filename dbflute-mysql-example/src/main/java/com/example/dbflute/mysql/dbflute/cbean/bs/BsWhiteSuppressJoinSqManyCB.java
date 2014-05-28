@@ -35,7 +35,6 @@ import com.example.dbflute.mysql.dbflute.allcommon.ImplementedInvokerAssistant;
 import com.example.dbflute.mysql.dbflute.allcommon.ImplementedSqlClauseCreator;
 import com.example.dbflute.mysql.dbflute.cbean.*;
 import com.example.dbflute.mysql.dbflute.cbean.cq.*;
-import com.example.dbflute.mysql.dbflute.cbean.nss.*;
 
 /**
  * The base condition-bean of white_suppress_join_sq_many.
@@ -95,21 +94,21 @@ public class BsWhiteSuppressJoinSqManyCB extends AbstractConditionBean {
     //                                                                 ===================
     /**
      * Accept the query condition of primary key as equal.
-     * @param suppressJoinSqId : PK, NotNull, INT(10), FK to white_suppress_join_sq. (NotNull)
+     * @param manyId : PK, NotNull, INT(10). (NotNull)
      */
-    public void acceptPrimaryKey(Integer suppressJoinSqId) {
-        assertObjectNotNull("suppressJoinSqId", suppressJoinSqId);
+    public void acceptPrimaryKey(Integer manyId) {
+        assertObjectNotNull("manyId", manyId);
         BsWhiteSuppressJoinSqManyCB cb = this;
-        cb.query().setSuppressJoinSqId_Equal(suppressJoinSqId);;
+        cb.query().setManyId_Equal(manyId);;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {
-        query().addOrderBy_SuppressJoinSqId_Asc();
+        query().addOrderBy_ManyId_Asc();
         return this;
     }
 
     public ConditionBean addOrderBy_PK_Desc() {
-        query().addOrderBy_SuppressJoinSqId_Desc();
+        query().addOrderBy_ManyId_Desc();
         return this;
     }
 
@@ -264,57 +263,6 @@ public class BsWhiteSuppressJoinSqManyCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                         SetupSelect
     //                                                                         ===========
-    protected WhiteSuppressJoinSqManyOneNss _nssWhiteSuppressJoinSqManyOne;
-    public WhiteSuppressJoinSqManyOneNss getNssWhiteSuppressJoinSqManyOne() {
-        if (_nssWhiteSuppressJoinSqManyOne == null) { _nssWhiteSuppressJoinSqManyOne = new WhiteSuppressJoinSqManyOneNss(null); }
-        return _nssWhiteSuppressJoinSqManyOne;
-    }
-    /**
-     * Set up relation columns to select clause. <br />
-     * white_suppress_join_sq_many_one by my MANY_ONE_ID, named 'whiteSuppressJoinSqManyOne'.
-     * <pre>
-     * WhiteSuppressJoinSqManyCB cb = new WhiteSuppressJoinSqManyCB();
-     * cb.<span style="color: #DD4747">setupSelect_WhiteSuppressJoinSqManyOne()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
-     * cb.query().setFoo...(value);
-     * WhiteSuppressJoinSqMany whiteSuppressJoinSqMany = whiteSuppressJoinSqManyBhv.selectEntityWithDeletedCheck(cb);
-     * ... = whiteSuppressJoinSqMany.<span style="color: #DD4747">getWhiteSuppressJoinSqManyOne()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
-     * </pre>
-     * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
-     */
-    public WhiteSuppressJoinSqManyOneNss setupSelect_WhiteSuppressJoinSqManyOne() {
-        assertSetupSelectPurpose("whiteSuppressJoinSqManyOne");
-        if (hasSpecifiedColumn()) { // if reverse call
-            specify().columnManyOneId();
-        }
-        doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryWhiteSuppressJoinSqManyOne(); } });
-        if (_nssWhiteSuppressJoinSqManyOne == null || !_nssWhiteSuppressJoinSqManyOne.hasConditionQuery())
-        { _nssWhiteSuppressJoinSqManyOne = new WhiteSuppressJoinSqManyOneNss(query().queryWhiteSuppressJoinSqManyOne()); }
-        return _nssWhiteSuppressJoinSqManyOne;
-    }
-    protected WhiteSuppressJoinSqNss _nssWhiteSuppressJoinSq;
-    public WhiteSuppressJoinSqNss getNssWhiteSuppressJoinSq() {
-        if (_nssWhiteSuppressJoinSq == null) { _nssWhiteSuppressJoinSq = new WhiteSuppressJoinSqNss(null); }
-        return _nssWhiteSuppressJoinSq;
-    }
-    /**
-     * Set up relation columns to select clause. <br />
-     * white_suppress_join_sq by my SUPPRESS_JOIN_SQ_ID, named 'whiteSuppressJoinSq'.
-     * <pre>
-     * WhiteSuppressJoinSqManyCB cb = new WhiteSuppressJoinSqManyCB();
-     * cb.<span style="color: #DD4747">setupSelect_WhiteSuppressJoinSq()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
-     * cb.query().setFoo...(value);
-     * WhiteSuppressJoinSqMany whiteSuppressJoinSqMany = whiteSuppressJoinSqManyBhv.selectEntityWithDeletedCheck(cb);
-     * ... = whiteSuppressJoinSqMany.<span style="color: #DD4747">getWhiteSuppressJoinSq()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
-     * </pre>
-     * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
-     */
-    public WhiteSuppressJoinSqNss setupSelect_WhiteSuppressJoinSq() {
-        assertSetupSelectPurpose("whiteSuppressJoinSq");
-        doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryWhiteSuppressJoinSq(); } });
-        if (_nssWhiteSuppressJoinSq == null || !_nssWhiteSuppressJoinSq.hasConditionQuery())
-        { _nssWhiteSuppressJoinSq = new WhiteSuppressJoinSqNss(query().queryWhiteSuppressJoinSq()); }
-        return _nssWhiteSuppressJoinSq;
-    }
 
     // [DBFlute-0.7.4]
     // ===================================================================================
@@ -364,7 +312,7 @@ public class BsWhiteSuppressJoinSqManyCB extends AbstractConditionBean {
                              , HpCBPurpose purpose, DBMetaProvider dbmetaProvider)
         { super(baseCB, qyCall, purpose, dbmetaProvider); }
         /**
-         * MANY_ID: {NotNull, INT(10)}
+         * MANY_ID: {PK, NotNull, INT(10)}
          * @return The information object of specified column. (NotNull)
          */
         public HpSpecifiedColumn columnManyId() { return doColumn("MANY_ID"); }
@@ -374,7 +322,7 @@ public class BsWhiteSuppressJoinSqManyCB extends AbstractConditionBean {
          */
         public HpSpecifiedColumn columnManyName() { return doColumn("MANY_NAME"); }
         /**
-         * SUPPRESS_JOIN_SQ_ID: {PK, NotNull, INT(10), FK to white_suppress_join_sq}
+         * SUPPRESS_JOIN_SQ_ID: {IX, NotNull, INT(10), FK to white_suppress_join_sq}
          * @return The information object of specified column. (NotNull)
          */
         public HpSpecifiedColumn columnSuppressJoinSqId() { return doColumn("SUPPRESS_JOIN_SQ_ID"); }
@@ -387,56 +335,10 @@ public class BsWhiteSuppressJoinSqManyCB extends AbstractConditionBean {
         public void exceptRecordMetaColumn() { doExceptRecordMetaColumn(); }
         @Override
         protected void doSpecifyRequiredColumn() {
-            columnSuppressJoinSqId(); // PK
-            if (qyCall().qy().hasConditionQueryWhiteSuppressJoinSqManyOne()
-                    || qyCall().qy().xgetReferrerQuery() instanceof WhiteSuppressJoinSqManyOneCQ) {
-                columnManyOneId(); // FK or one-to-one referrer
-            }
+            columnManyId(); // PK
         }
         @Override
         protected String getTableDbName() { return "white_suppress_join_sq_many"; }
-        /**
-         * Prepare to specify functions about relation table. <br />
-         * white_suppress_join_sq_many_one by my MANY_ONE_ID, named 'whiteSuppressJoinSqManyOne'.
-         * @return The instance for specification for relation table to specify. (NotNull)
-         */
-        public WhiteSuppressJoinSqManyOneCB.HpSpecification specifyWhiteSuppressJoinSqManyOne() {
-            assertRelation("whiteSuppressJoinSqManyOne");
-            if (_whiteSuppressJoinSqManyOne == null) {
-                _whiteSuppressJoinSqManyOne = new WhiteSuppressJoinSqManyOneCB.HpSpecification(_baseCB, new HpSpQyCall<WhiteSuppressJoinSqManyOneCQ>() {
-                    public boolean has() { return _qyCall.has() && _qyCall.qy().hasConditionQueryWhiteSuppressJoinSqManyOne(); }
-                    public WhiteSuppressJoinSqManyOneCQ qy() { return _qyCall.qy().queryWhiteSuppressJoinSqManyOne(); } }
-                    , _purpose, _dbmetaProvider);
-                if (xhasSyncQyCall()) { // inherits it
-                    _whiteSuppressJoinSqManyOne.xsetSyncQyCall(new HpSpQyCall<WhiteSuppressJoinSqManyOneCQ>() {
-                        public boolean has() { return xsyncQyCall().has() && xsyncQyCall().qy().hasConditionQueryWhiteSuppressJoinSqManyOne(); }
-                        public WhiteSuppressJoinSqManyOneCQ qy() { return xsyncQyCall().qy().queryWhiteSuppressJoinSqManyOne(); }
-                    });
-                }
-            }
-            return _whiteSuppressJoinSqManyOne;
-        }
-        /**
-         * Prepare to specify functions about relation table. <br />
-         * white_suppress_join_sq by my SUPPRESS_JOIN_SQ_ID, named 'whiteSuppressJoinSq'.
-         * @return The instance for specification for relation table to specify. (NotNull)
-         */
-        public WhiteSuppressJoinSqCB.HpSpecification specifyWhiteSuppressJoinSq() {
-            assertRelation("whiteSuppressJoinSq");
-            if (_whiteSuppressJoinSq == null) {
-                _whiteSuppressJoinSq = new WhiteSuppressJoinSqCB.HpSpecification(_baseCB, new HpSpQyCall<WhiteSuppressJoinSqCQ>() {
-                    public boolean has() { return _qyCall.has() && _qyCall.qy().hasConditionQueryWhiteSuppressJoinSq(); }
-                    public WhiteSuppressJoinSqCQ qy() { return _qyCall.qy().queryWhiteSuppressJoinSq(); } }
-                    , _purpose, _dbmetaProvider);
-                if (xhasSyncQyCall()) { // inherits it
-                    _whiteSuppressJoinSq.xsetSyncQyCall(new HpSpQyCall<WhiteSuppressJoinSqCQ>() {
-                        public boolean has() { return xsyncQyCall().has() && xsyncQyCall().qy().hasConditionQueryWhiteSuppressJoinSq(); }
-                        public WhiteSuppressJoinSqCQ qy() { return xsyncQyCall().qy().queryWhiteSuppressJoinSq(); }
-                    });
-                }
-            }
-            return _whiteSuppressJoinSq;
-        }
         /**
          * Prepare for (Specify)MyselfDerived (SubQuery).
          * @return The object to set up a function for myself table. (NotNull)

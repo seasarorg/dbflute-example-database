@@ -22,8 +22,8 @@ public abstract class AbstractBsSynonymExceptCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public AbstractBsSynonymExceptCQ(ConditionQuery childQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
-        super(childQuery, sqlClause, aliasName, nestLevel);
+    public AbstractBsSynonymExceptCQ(ConditionQuery referrerQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
+        super(referrerQuery, sqlClause, aliasName, nestLevel);
     }
 
     // ===================================================================================
@@ -217,7 +217,7 @@ public abstract class AbstractBsSynonymExceptCQ extends AbstractConditionQuery {
     public abstract String keepExceptId_SpecifyDerivedReferrer_SynonymRefExceptList(SynonymRefExceptCQ sq);
 
     /**
-     * Prepare for (Query)DerivedReferrer. <br />
+     * Prepare for (Query)DerivedReferrer (correlated sub-query). <br />
      * {FOO &lt;= (select max(BAR) from SYNONYM_REF_EXCEPT where ...)} <br />
      * SYNONYM_REF_EXCEPT by EXCEPT_ID, named 'synonymRefExceptAsOne'.
      * <pre>
@@ -506,7 +506,7 @@ public abstract class AbstractBsSynonymExceptCQ extends AbstractConditionQuery {
     public abstract String keepSpecifyMyselfDerived(SynonymExceptCQ sq);
 
     /**
-     * Prepare for (Query)MyselfDerived (SubQuery).
+     * Prepare for (Query)MyselfDerived (correlated sub-query).
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<SynonymExceptCB> myselfDerived() {
@@ -528,8 +528,8 @@ public abstract class AbstractBsSynonymExceptCQ extends AbstractConditionQuery {
     //                                                                        MyselfExists
     //                                                                        ============
     /**
-     * Prepare for MyselfExists (SubQuery).
-     * @param subQuery The implementation of sub query. (NotNull)
+     * Prepare for MyselfExists (correlated sub-query).
+     * @param subQuery The implementation of sub-query. (NotNull)
      */
     public void myselfExists(SubQuery<SynonymExceptCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
@@ -544,8 +544,8 @@ public abstract class AbstractBsSynonymExceptCQ extends AbstractConditionQuery {
     //                                                                       MyselfInScope
     //                                                                       =============
     /**
-     * Prepare for MyselfInScope (SubQuery).
-     * @param subQuery The implementation of sub query. (NotNull)
+     * Prepare for MyselfInScope (sub-query).
+     * @param subQuery The implementation of sub-query. (NotNull)
      */
     public void myselfInScope(SubQuery<SynonymExceptCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);

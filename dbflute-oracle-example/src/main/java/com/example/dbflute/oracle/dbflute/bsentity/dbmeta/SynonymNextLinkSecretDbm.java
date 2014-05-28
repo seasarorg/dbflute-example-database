@@ -33,14 +33,15 @@ public class SynonymNextLinkSecretDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgSecretCode(), "secretCode");
         setupEpg(_epgMap, new EpgSecretName(), "secretName");
         setupEpg(_epgMap, new EpgSecretAuthCode(), "secretAuthCode");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgSecretCode implements PropertyGateway {
         public Object read(Entity et) { return ((SynonymNextLinkSecret)et).getSecretCode(); }
         public void write(Entity et, Object vl) { ((SynonymNextLinkSecret)et).setSecretCode((String)vl); }
@@ -53,6 +54,8 @@ public class SynonymNextLinkSecretDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((SynonymNextLinkSecret)et).getSecretAuthCode(); }
         public void write(Entity et, Object vl) { ((SynonymNextLinkSecret)et).setSecretAuthCode((String)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -68,12 +71,24 @@ public class SynonymNextLinkSecretDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnSecretCode = cci("SECRET_CODE", "SECRET_CODE", null, null, true, "secretCode", String.class, true, false, "CHAR", 3, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnSecretName = cci("SECRET_NAME", "SECRET_NAME", null, null, true, "secretName", String.class, false, false, "VARCHAR2", 50, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnSecretAuthCode = cci("SECRET_AUTH_CODE", "SECRET_AUTH_CODE", null, null, false, "secretAuthCode", String.class, false, false, "CHAR", 3, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnSecretCode = cci("SECRET_CODE", "SECRET_CODE", null, null, String.class, "secretCode", null, true, false, true, "CHAR", 3, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnSecretName = cci("SECRET_NAME", "SECRET_NAME", null, null, String.class, "secretName", null, false, false, true, "VARCHAR2", 50, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnSecretAuthCode = cci("SECRET_AUTH_CODE", "SECRET_AUTH_CODE", null, null, String.class, "secretAuthCode", null, false, false, false, "CHAR", 3, 0, null, false, null, null, null, null, null);
 
+    /**
+     * SECRET_CODE: {PK, NotNull, CHAR(3)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnSecretCode() { return _columnSecretCode; }
+    /**
+     * SECRET_NAME: {UQ, NotNull, VARCHAR2(50)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnSecretName() { return _columnSecretName; }
+    /**
+     * SECRET_AUTH_CODE: {CHAR(3)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnSecretAuthCode() { return _columnSecretAuthCode; }
 
     protected List<ColumnInfo> ccil() {
@@ -99,6 +114,8 @@ public class SynonymNextLinkSecretDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // cannot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

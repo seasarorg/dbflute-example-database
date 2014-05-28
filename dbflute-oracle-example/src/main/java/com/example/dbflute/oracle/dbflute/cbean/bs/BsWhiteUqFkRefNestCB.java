@@ -78,10 +78,14 @@ public class BsWhiteUqFkRefNestCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                 PrimaryKey Handling
     //                                                                 ===================
+    /**
+     * Accept the query condition of primary key as equal.
+     * @param uqFkRefNestId : PK, NotNull, NUMBER(16). (NotNull)
+     */
     public void acceptPrimaryKey(Long uqFkRefNestId) {
         assertObjectNotNull("uqFkRefNestId", uqFkRefNestId);
         BsWhiteUqFkRefNestCB cb = this;
-        cb.query().setUqFkRefNestId_Equal(uqFkRefNestId);
+        cb.query().setUqFkRefNestId_Equal(uqFkRefNestId);;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {
@@ -470,6 +474,11 @@ public class BsWhiteUqFkRefNestCB extends AbstractConditionBean {
      */
     public void orScopeQuery(OrQuery<WhiteUqFkRefNestCB> orQuery) {
         xorSQ((WhiteUqFkRefNestCB)this, orQuery);
+    }
+
+    @Override
+    protected HpCBPurpose xhandleOrSQPurposeChange() {
+        return null; // means no check
     }
 
     /**

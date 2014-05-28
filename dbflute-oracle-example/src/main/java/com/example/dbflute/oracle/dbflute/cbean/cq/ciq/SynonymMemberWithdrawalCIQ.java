@@ -25,9 +25,9 @@ public class SynonymMemberWithdrawalCIQ extends AbstractBsSynonymMemberWithdrawa
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public SynonymMemberWithdrawalCIQ(ConditionQuery childQuery, SqlClause sqlClause
+    public SynonymMemberWithdrawalCIQ(ConditionQuery referrerQuery, SqlClause sqlClause
                         , String aliasName, int nestLevel, BsSynonymMemberWithdrawalCQ myCQ) {
-        super(childQuery, sqlClause, aliasName, nestLevel);
+        super(referrerQuery, sqlClause, aliasName, nestLevel);
         _myCQ = myCQ;
         _foreignPropertyName = _myCQ.xgetForeignPropertyName(); // accept foreign property name
         _relationPath = _myCQ.xgetRelationPath(); // accept relation path

@@ -25,9 +25,9 @@ public class WhiteSameNameRefRefCIQ extends AbstractBsWhiteSameNameRefRefCQ {
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public WhiteSameNameRefRefCIQ(ConditionQuery childQuery, SqlClause sqlClause
+    public WhiteSameNameRefRefCIQ(ConditionQuery referrerQuery, SqlClause sqlClause
                         , String aliasName, int nestLevel, BsWhiteSameNameRefRefCQ myCQ) {
-        super(childQuery, sqlClause, aliasName, nestLevel);
+        super(referrerQuery, sqlClause, aliasName, nestLevel);
         _myCQ = myCQ;
         _foreignPropertyName = _myCQ.xgetForeignPropertyName(); // accept foreign property name
         _relationPath = _myCQ.xgetRelationPath(); // accept relation path

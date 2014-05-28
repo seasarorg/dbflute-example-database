@@ -169,7 +169,7 @@ public abstract class BsSummaryMemberPurchaseBhv extends AbstractBehaviorWritabl
      * </pre>
      * @param cb The condition-bean of SummaryMemberPurchase. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -190,39 +190,42 @@ public abstract class BsSummaryMemberPurchaseBhv extends AbstractBehaviorWritabl
 
     /**
      * Select the entity by the primary-key value.
-     * @param memberId The one of primary key. (NotNull)
+     * @param memberId : PK, ID, NotNull, UnknownType. (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public SummaryMemberPurchase selectByPKValue(Integer memberId) {
-        return doSelectByPKValue(memberId, SummaryMemberPurchase.class);
+        return doSelectByPK(memberId, SummaryMemberPurchase.class);
     }
 
-    protected <ENTITY extends SummaryMemberPurchase> ENTITY doSelectByPKValue(Integer memberId, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(memberId), entityType);
+    protected <ENTITY extends SummaryMemberPurchase> ENTITY doSelectByPK(Integer memberId, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(memberId), entityType);
+    }
+
+    protected <ENTITY extends SummaryMemberPurchase> OptionalEntity<ENTITY> doSelectOptionalByPK(Integer memberId, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(memberId, entityType), memberId);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param memberId The one of primary key. (NotNull)
+     * @param memberId : PK, ID, NotNull, UnknownType. (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public SummaryMemberPurchase selectByPKValueWithDeletedCheck(Integer memberId) {
-        return doSelectByPKValueWithDeletedCheck(memberId, SummaryMemberPurchase.class);
+        return doSelectByPKWithDeletedCheck(memberId, SummaryMemberPurchase.class);
     }
 
-    protected <ENTITY extends SummaryMemberPurchase> ENTITY doSelectByPKValueWithDeletedCheck(Integer memberId, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(memberId), entityType);
+    protected <ENTITY extends SummaryMemberPurchase> ENTITY doSelectByPKWithDeletedCheck(Integer memberId, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(memberId), entityType);
     }
 
-    private SummaryMemberPurchaseCB buildPKCB(Integer memberId) {
+    protected SummaryMemberPurchaseCB xprepareCBAsPK(Integer memberId) {
         assertObjectNotNull("memberId", memberId);
-        SummaryMemberPurchaseCB cb = newMyConditionBean();
-        cb.query().setMemberId_Equal(memberId);
+        SummaryMemberPurchaseCB cb = newMyConditionBean(); cb.acceptPrimaryKey(memberId);
         return cb;
     }
 

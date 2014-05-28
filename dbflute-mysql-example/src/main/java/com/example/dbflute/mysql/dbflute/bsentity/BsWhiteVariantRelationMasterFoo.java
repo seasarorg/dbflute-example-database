@@ -138,7 +138,7 @@ public abstract class BsWhiteVariantRelationMasterFoo implements Entity, Seriali
     /**
      * {@inheritDoc}
      */
-    public Set<String> uniqueDrivenProperties() {
+    public Set<String> myuniqueDrivenProperties() {
         return __uniqueDrivenProperties.getPropertyNames();
     }
 

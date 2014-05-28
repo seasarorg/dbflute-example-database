@@ -33,13 +33,14 @@ public class WhiteRefNextExceptDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgRefNextExceptId(), "refNextExceptId");
         setupEpg(_epgMap, new EpgNextExceptCode(), "nextExceptCode");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgRefNextExceptId implements PropertyGateway {
         public Object read(Entity et) { return ((WhiteRefNextExcept)et).getRefNextExceptId(); }
         public void write(Entity et, Object vl) { ((WhiteRefNextExcept)et).setRefNextExceptId(ctl(vl)); }
@@ -48,6 +49,8 @@ public class WhiteRefNextExceptDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((WhiteRefNextExcept)et).getNextExceptCode(); }
         public void write(Entity et, Object vl) { ((WhiteRefNextExcept)et).setNextExceptCode((String)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -63,10 +66,18 @@ public class WhiteRefNextExceptDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnRefNextExceptId = cci("REF_NEXT_EXCEPT_ID", "REF_NEXT_EXCEPT_ID", null, null, true, "refNextExceptId", Long.class, true, false, "NUMBER", 16, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnNextExceptCode = cci("NEXT_EXCEPT_CODE", "NEXT_EXCEPT_CODE", null, null, true, "nextExceptCode", String.class, false, false, "CHAR", 3, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnRefNextExceptId = cci("REF_NEXT_EXCEPT_ID", "REF_NEXT_EXCEPT_ID", null, null, Long.class, "refNextExceptId", null, true, false, true, "NUMBER", 16, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnNextExceptCode = cci("NEXT_EXCEPT_CODE", "NEXT_EXCEPT_CODE", null, null, String.class, "nextExceptCode", null, false, false, true, "CHAR", 3, 0, null, false, null, null, null, null, null);
 
+    /**
+     * REF_NEXT_EXCEPT_ID: {PK, NotNull, NUMBER(16)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnRefNextExceptId() { return _columnRefNextExceptId; }
+    /**
+     * NEXT_EXCEPT_CODE: {NotNull, CHAR(3)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnNextExceptCode() { return _columnNextExceptCode; }
 
     protected List<ColumnInfo> ccil() {
@@ -91,6 +102,8 @@ public class WhiteRefNextExceptDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // cannot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

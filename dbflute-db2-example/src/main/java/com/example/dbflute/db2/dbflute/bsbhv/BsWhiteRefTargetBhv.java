@@ -169,7 +169,7 @@ public abstract class BsWhiteRefTargetBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of WhiteRefTarget. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -190,39 +190,42 @@ public abstract class BsWhiteRefTargetBhv extends AbstractBehaviorWritable {
 
     /**
      * Select the entity by the primary-key value.
-     * @param refTargetId The one of primary key. (NotNull)
+     * @param refTargetId : PK, NotNull, DECIMAL(16). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteRefTarget selectByPKValue(Long refTargetId) {
-        return doSelectByPKValue(refTargetId, WhiteRefTarget.class);
+        return doSelectByPK(refTargetId, WhiteRefTarget.class);
     }
 
-    protected <ENTITY extends WhiteRefTarget> ENTITY doSelectByPKValue(Long refTargetId, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(refTargetId), entityType);
+    protected <ENTITY extends WhiteRefTarget> ENTITY doSelectByPK(Long refTargetId, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(refTargetId), entityType);
+    }
+
+    protected <ENTITY extends WhiteRefTarget> OptionalEntity<ENTITY> doSelectOptionalByPK(Long refTargetId, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(refTargetId, entityType), refTargetId);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param refTargetId The one of primary key. (NotNull)
+     * @param refTargetId : PK, NotNull, DECIMAL(16). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteRefTarget selectByPKValueWithDeletedCheck(Long refTargetId) {
-        return doSelectByPKValueWithDeletedCheck(refTargetId, WhiteRefTarget.class);
+        return doSelectByPKWithDeletedCheck(refTargetId, WhiteRefTarget.class);
     }
 
-    protected <ENTITY extends WhiteRefTarget> ENTITY doSelectByPKValueWithDeletedCheck(Long refTargetId, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(refTargetId), entityType);
+    protected <ENTITY extends WhiteRefTarget> ENTITY doSelectByPKWithDeletedCheck(Long refTargetId, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(refTargetId), entityType);
     }
 
-    private WhiteRefTargetCB buildPKCB(Long refTargetId) {
+    protected WhiteRefTargetCB xprepareCBAsPK(Long refTargetId) {
         assertObjectNotNull("refTargetId", refTargetId);
-        WhiteRefTargetCB cb = newMyConditionBean();
-        cb.query().setRefTargetId_Equal(refTargetId);
+        WhiteRefTargetCB cb = newMyConditionBean(); cb.acceptPrimaryKey(refTargetId);
         return cb;
     }
 
@@ -387,7 +390,8 @@ public abstract class BsWhiteRefTargetBhv extends AbstractBehaviorWritable {
      */
     public List<WhiteTarget> pulloutWhiteTarget(List<WhiteRefTarget> whiteRefTargetList) {
         return helpPulloutInternally(whiteRefTargetList, new InternalPulloutCallback<WhiteRefTarget, WhiteTarget>() {
-            public WhiteTarget getFr(WhiteRefTarget et) { return et.getWhiteTarget(); }
+            public WhiteTarget getFr(WhiteRefTarget et)
+            { return et.getWhiteTarget(); }
             public boolean hasRf() { return true; }
             public void setRfLs(WhiteTarget et, List<WhiteRefTarget> ls)
             { et.setWhiteRefTargetList(ls); }

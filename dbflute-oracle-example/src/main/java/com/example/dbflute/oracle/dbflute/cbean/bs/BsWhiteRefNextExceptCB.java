@@ -77,10 +77,14 @@ public class BsWhiteRefNextExceptCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                 PrimaryKey Handling
     //                                                                 ===================
+    /**
+     * Accept the query condition of primary key as equal.
+     * @param refNextExceptId : PK, NotNull, NUMBER(16). (NotNull)
+     */
     public void acceptPrimaryKey(Long refNextExceptId) {
         assertObjectNotNull("refNextExceptId", refNextExceptId);
         BsWhiteRefNextExceptCB cb = this;
-        cb.query().setRefNextExceptId_Equal(refNextExceptId);
+        cb.query().setRefNextExceptId_Equal(refNextExceptId);;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {
@@ -409,6 +413,11 @@ public class BsWhiteRefNextExceptCB extends AbstractConditionBean {
      */
     public void orScopeQuery(OrQuery<WhiteRefNextExceptCB> orQuery) {
         xorSQ((WhiteRefNextExceptCB)this, orQuery);
+    }
+
+    @Override
+    protected HpCBPurpose xhandleOrSQPurposeChange() {
+        return null; // means no check
     }
 
     /**

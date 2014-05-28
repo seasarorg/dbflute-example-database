@@ -18,6 +18,8 @@ package com.example.dbflute.mysql.dbflute.cbean.cq.bs;
 import java.util.Map;
 
 import org.seasar.dbflute.cbean.*;
+import org.seasar.dbflute.cbean.chelper.*;
+import org.seasar.dbflute.cbean.coption.*;
 import org.seasar.dbflute.cbean.cvalue.ConditionValue;
 import org.seasar.dbflute.cbean.sqlclause.SqlClause;
 import org.seasar.dbflute.exception.IllegalConditionBeanOperationException;
@@ -96,14 +98,14 @@ public class BsWhiteSuppressJoinSqManyCQ extends AbstractBsWhiteSuppressJoinSqMa
 
     /** 
      * Add order-by as ascend. <br />
-     * MANY_ID: {NotNull, INT(10)}
+     * MANY_ID: {PK, NotNull, INT(10)}
      * @return this. (NotNull)
      */
     public BsWhiteSuppressJoinSqManyCQ addOrderBy_ManyId_Asc() { regOBA("MANY_ID"); return this; }
 
     /**
      * Add order-by as descend. <br />
-     * MANY_ID: {NotNull, INT(10)}
+     * MANY_ID: {PK, NotNull, INT(10)}
      * @return this. (NotNull)
      */
     public BsWhiteSuppressJoinSqManyCQ addOrderBy_ManyId_Desc() { regOBD("MANY_ID"); return this; }
@@ -154,14 +156,14 @@ public class BsWhiteSuppressJoinSqManyCQ extends AbstractBsWhiteSuppressJoinSqMa
 
     /** 
      * Add order-by as ascend. <br />
-     * SUPPRESS_JOIN_SQ_ID: {PK, NotNull, INT(10), FK to white_suppress_join_sq}
+     * SUPPRESS_JOIN_SQ_ID: {IX, NotNull, INT(10), FK to white_suppress_join_sq}
      * @return this. (NotNull)
      */
     public BsWhiteSuppressJoinSqManyCQ addOrderBy_SuppressJoinSqId_Asc() { regOBA("SUPPRESS_JOIN_SQ_ID"); return this; }
 
     /**
      * Add order-by as descend. <br />
-     * SUPPRESS_JOIN_SQ_ID: {PK, NotNull, INT(10), FK to white_suppress_join_sq}
+     * SUPPRESS_JOIN_SQ_ID: {IX, NotNull, INT(10), FK to white_suppress_join_sq}
      * @return this. (NotNull)
      */
     public BsWhiteSuppressJoinSqManyCQ addOrderBy_SuppressJoinSqId_Desc() { regOBD("SUPPRESS_JOIN_SQ_ID"); return this; }
@@ -244,87 +246,11 @@ public class BsWhiteSuppressJoinSqManyCQ extends AbstractBsWhiteSuppressJoinSqMa
     //                                                                         Union Query
     //                                                                         ===========
     public void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
-        WhiteSuppressJoinSqManyCQ bq = (WhiteSuppressJoinSqManyCQ)bqs;
-        WhiteSuppressJoinSqManyCQ uq = (WhiteSuppressJoinSqManyCQ)uqs;
-        if (bq.hasConditionQueryWhiteSuppressJoinSqManyOne()) {
-            uq.queryWhiteSuppressJoinSqManyOne().reflectRelationOnUnionQuery(bq.queryWhiteSuppressJoinSqManyOne(), uq.queryWhiteSuppressJoinSqManyOne());
-        }
-        if (bq.hasConditionQueryWhiteSuppressJoinSq()) {
-            uq.queryWhiteSuppressJoinSq().reflectRelationOnUnionQuery(bq.queryWhiteSuppressJoinSq(), uq.queryWhiteSuppressJoinSq());
-        }
     }
 
     // ===================================================================================
     //                                                                       Foreign Query
     //                                                                       =============
-    /**
-     * Get the condition-query for relation table. <br />
-     * white_suppress_join_sq_many_one by my MANY_ONE_ID, named 'whiteSuppressJoinSqManyOne'.
-     * @return The instance of condition-query. (NotNull)
-     */
-    public WhiteSuppressJoinSqManyOneCQ queryWhiteSuppressJoinSqManyOne() {
-        return getConditionQueryWhiteSuppressJoinSqManyOne();
-    }
-    protected WhiteSuppressJoinSqManyOneCQ _conditionQueryWhiteSuppressJoinSqManyOne;
-    public WhiteSuppressJoinSqManyOneCQ getConditionQueryWhiteSuppressJoinSqManyOne() {
-        if (_conditionQueryWhiteSuppressJoinSqManyOne == null) {
-            _conditionQueryWhiteSuppressJoinSqManyOne = xcreateQueryWhiteSuppressJoinSqManyOne();
-            xsetupOuterJoinWhiteSuppressJoinSqManyOne();
-        }
-        return _conditionQueryWhiteSuppressJoinSqManyOne;
-    }
-    protected WhiteSuppressJoinSqManyOneCQ xcreateQueryWhiteSuppressJoinSqManyOne() {
-        String nrp = resolveNextRelationPath("white_suppress_join_sq_many", "whiteSuppressJoinSqManyOne");
-        String jan = resolveJoinAliasName(nrp, xgetNextNestLevel());
-        WhiteSuppressJoinSqManyOneCQ cq = new WhiteSuppressJoinSqManyOneCQ(this, xgetSqlClause(), jan, xgetNextNestLevel());
-        cq.xsetBaseCB(_baseCB);
-        cq.xsetForeignPropertyName("whiteSuppressJoinSqManyOne");
-        cq.xsetRelationPath(nrp); return cq;
-    }
-    protected void xsetupOuterJoinWhiteSuppressJoinSqManyOne() {
-        WhiteSuppressJoinSqManyOneCQ cq = getConditionQueryWhiteSuppressJoinSqManyOne();
-        Map<String, String> joinOnMap = newLinkedHashMapSized(4);
-        joinOnMap.put("MANY_ONE_ID", "MANY_ONE_ID");
-        registerOuterJoin(cq, joinOnMap, "whiteSuppressJoinSqManyOne");
-    }
-    public boolean hasConditionQueryWhiteSuppressJoinSqManyOne() {
-        return _conditionQueryWhiteSuppressJoinSqManyOne != null;
-    }
-
-    /**
-     * Get the condition-query for relation table. <br />
-     * white_suppress_join_sq by my SUPPRESS_JOIN_SQ_ID, named 'whiteSuppressJoinSq'.
-     * @return The instance of condition-query. (NotNull)
-     */
-    public WhiteSuppressJoinSqCQ queryWhiteSuppressJoinSq() {
-        return getConditionQueryWhiteSuppressJoinSq();
-    }
-    protected WhiteSuppressJoinSqCQ _conditionQueryWhiteSuppressJoinSq;
-    public WhiteSuppressJoinSqCQ getConditionQueryWhiteSuppressJoinSq() {
-        if (_conditionQueryWhiteSuppressJoinSq == null) {
-            _conditionQueryWhiteSuppressJoinSq = xcreateQueryWhiteSuppressJoinSq();
-            xsetupOuterJoinWhiteSuppressJoinSq();
-        }
-        return _conditionQueryWhiteSuppressJoinSq;
-    }
-    protected WhiteSuppressJoinSqCQ xcreateQueryWhiteSuppressJoinSq() {
-        String nrp = resolveNextRelationPath("white_suppress_join_sq_many", "whiteSuppressJoinSq");
-        String jan = resolveJoinAliasName(nrp, xgetNextNestLevel());
-        WhiteSuppressJoinSqCQ cq = new WhiteSuppressJoinSqCQ(this, xgetSqlClause(), jan, xgetNextNestLevel());
-        cq.xsetBaseCB(_baseCB);
-        cq.xsetForeignPropertyName("whiteSuppressJoinSq");
-        cq.xsetRelationPath(nrp); return cq;
-    }
-    protected void xsetupOuterJoinWhiteSuppressJoinSq() {
-        WhiteSuppressJoinSqCQ cq = getConditionQueryWhiteSuppressJoinSq();
-        Map<String, String> joinOnMap = newLinkedHashMapSized(4);
-        joinOnMap.put("SUPPRESS_JOIN_SQ_ID", "SUPPRESS_JOIN_SQ_ID");
-        registerOuterJoin(cq, joinOnMap, "whiteSuppressJoinSq");
-    }
-    public boolean hasConditionQueryWhiteSuppressJoinSq() {
-        return _conditionQueryWhiteSuppressJoinSq != null;
-    }
-
     protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) {
         return null;
     }
@@ -394,5 +320,7 @@ public class BsWhiteSuppressJoinSqManyCQ extends AbstractBsWhiteSuppressJoinSqMa
     // very internal (for suppressing warn about 'Not Use Import')
     protected String xCB() { return WhiteSuppressJoinSqManyCB.class.getName(); }
     protected String xCQ() { return WhiteSuppressJoinSqManyCQ.class.getName(); }
+    protected String xCHp() { return HpCalculator.class.getName(); }
+    protected String xCOp() { return ConditionOption.class.getName(); }
     protected String xMap() { return Map.class.getName(); }
 }

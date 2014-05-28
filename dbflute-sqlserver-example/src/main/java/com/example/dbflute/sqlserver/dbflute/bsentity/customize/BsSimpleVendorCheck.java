@@ -107,6 +107,9 @@ public abstract class BsSimpleVendorCheck implements Entity, Serializable, Clone
     // -----------------------------------------------------
     //                                              Internal
     //                                              --------
+    /** The unique-driven properties for this entity. (NotNull) */
+    protected final EntityUniqueDrivenProperties __uniqueDrivenProperties = newUniqueDrivenProperties();
+
     /** The modified properties for this entity. (NotNull) */
     protected final EntityModifiedProperties __modifiedProperties = newModifiedProperties();
 
@@ -148,6 +151,17 @@ public abstract class BsSimpleVendorCheck implements Entity, Serializable, Clone
      */
     public boolean hasPrimaryKeyValue() {
         return false;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Set<String> myuniqueDrivenProperties() {
+        return __uniqueDrivenProperties.getPropertyNames();
+    }
+
+    protected EntityUniqueDrivenProperties newUniqueDrivenProperties() {
+        return new EntityUniqueDrivenProperties();
     }
 
     // ===================================================================================
@@ -228,8 +242,8 @@ public abstract class BsSimpleVendorCheck implements Entity, Serializable, Clone
         if (!xSV(getTypeOfUniqueidentifier(), other.getTypeOfUniqueidentifier())) { return false; }
         return true;
     }
-    protected boolean xSV(Object value1, Object value2) {
-        return FunCustodial.isSameValue(value1, value2);
+    protected boolean xSV(Object v1, Object v2) {
+        return FunCustodial.isSameValue(v1, v2);
     }
 
     /**
@@ -237,21 +251,21 @@ public abstract class BsSimpleVendorCheck implements Entity, Serializable, Clone
      * @return The hash-code from primary-key or columns.
      */
     public int hashCode() {
-        int result = 17;
-        result = xCH(result, getTableDbName());
-        result = xCH(result, getVendorCheckId());
-        result = xCH(result, getTypeOfNumericDecimal());
-        result = xCH(result, getTypeOfNumericInteger());
-        result = xCH(result, getTypeOfNumericBigint());
-        result = xCH(result, getTypeOfText());
-        result = xCH(result, getTypeOfDatetime());
-        result = xCH(result, getTypeOfSmalldatetime());
-        result = xCH(result, getTypeOfBit());
-        result = xCH(result, getTypeOfUniqueidentifier());
-        return result;
+        int hs = 17;
+        hs = xCH(hs, getTableDbName());
+        hs = xCH(hs, getVendorCheckId());
+        hs = xCH(hs, getTypeOfNumericDecimal());
+        hs = xCH(hs, getTypeOfNumericInteger());
+        hs = xCH(hs, getTypeOfNumericBigint());
+        hs = xCH(hs, getTypeOfText());
+        hs = xCH(hs, getTypeOfDatetime());
+        hs = xCH(hs, getTypeOfSmalldatetime());
+        hs = xCH(hs, getTypeOfBit());
+        hs = xCH(hs, getTypeOfUniqueidentifier());
+        return hs;
     }
-    protected int xCH(int result, Object value) {
-        return FunCustodial.calculateHashcode(result, value);
+    protected int xCH(int hs, Object vl) {
+        return FunCustodial.calculateHashcode(hs, vl);
     }
 
     /**
@@ -291,18 +305,18 @@ public abstract class BsSimpleVendorCheck implements Entity, Serializable, Clone
     }
     protected String buildColumnString() {
         StringBuilder sb = new StringBuilder();
-        String delimiter = ", ";
-        sb.append(delimiter).append(getVendorCheckId());
-        sb.append(delimiter).append(getTypeOfNumericDecimal());
-        sb.append(delimiter).append(getTypeOfNumericInteger());
-        sb.append(delimiter).append(getTypeOfNumericBigint());
-        sb.append(delimiter).append(getTypeOfText());
-        sb.append(delimiter).append(getTypeOfDatetime());
-        sb.append(delimiter).append(getTypeOfSmalldatetime());
-        sb.append(delimiter).append(getTypeOfBit());
-        sb.append(delimiter).append(getTypeOfUniqueidentifier());
-        if (sb.length() > delimiter.length()) {
-            sb.delete(0, delimiter.length());
+        String dm = ", ";
+        sb.append(dm).append(getVendorCheckId());
+        sb.append(dm).append(getTypeOfNumericDecimal());
+        sb.append(dm).append(getTypeOfNumericInteger());
+        sb.append(dm).append(getTypeOfNumericBigint());
+        sb.append(dm).append(getTypeOfText());
+        sb.append(dm).append(getTypeOfDatetime());
+        sb.append(dm).append(getTypeOfSmalldatetime());
+        sb.append(dm).append(getTypeOfBit());
+        sb.append(dm).append(getTypeOfUniqueidentifier());
+        if (sb.length() > dm.length()) {
+            sb.delete(0, dm.length());
         }
         sb.insert(0, "{").append("}");
         return sb.toString();

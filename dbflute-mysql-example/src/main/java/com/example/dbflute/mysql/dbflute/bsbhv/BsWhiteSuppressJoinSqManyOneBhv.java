@@ -36,7 +36,7 @@ import com.example.dbflute.mysql.dbflute.cbean.*;
  *     MANY_ONE_ID
  *
  * [column]
- *     MANY_ONE_ID, MANY_ONE_NAME
+ *     MANY_ONE_ID, MANY_ONE_NAME, MANY_ONE_ONE_ID
  *
  * [sequence]
  *     
@@ -48,13 +48,13 @@ import com.example.dbflute.mysql.dbflute.cbean.*;
  *     
  *
  * [foreign table]
- *     
+ *     white_suppress_join_sq_many_one_one
  *
  * [referrer table]
  *     white_suppress_join_sq_many
  *
  * [foreign property]
- *     
+ *     whiteSuppressJoinSqManyOneOne
  *
  * [referrer property]
  *     whiteSuppressJoinSqManyList
@@ -509,6 +509,20 @@ public abstract class BsWhiteSuppressJoinSqManyOneBhv extends AbstractBehaviorWr
     // ===================================================================================
     //                                                                   Pull out Relation
     //                                                                   =================
+    /**
+     * Pull out the list of foreign table 'WhiteSuppressJoinSqManyOneOne'.
+     * @param whiteSuppressJoinSqManyOneList The list of whiteSuppressJoinSqManyOne. (NotNull, EmptyAllowed)
+     * @return The list of foreign table. (NotNull, EmptyAllowed, NotNullElement)
+     */
+    public List<WhiteSuppressJoinSqManyOneOne> pulloutWhiteSuppressJoinSqManyOneOne(List<WhiteSuppressJoinSqManyOne> whiteSuppressJoinSqManyOneList) {
+        return helpPulloutInternally(whiteSuppressJoinSqManyOneList, new InternalPulloutCallback<WhiteSuppressJoinSqManyOne, WhiteSuppressJoinSqManyOneOne>() {
+            public WhiteSuppressJoinSqManyOneOne getFr(WhiteSuppressJoinSqManyOne et)
+            { return et.getWhiteSuppressJoinSqManyOneOne(); }
+            public boolean hasRf() { return true; }
+            public void setRfLs(WhiteSuppressJoinSqManyOneOne et, List<WhiteSuppressJoinSqManyOne> ls)
+            { et.setWhiteSuppressJoinSqManyOneList(ls); }
+        });
+    }
 
     // ===================================================================================
     //                                                                      Extract Column

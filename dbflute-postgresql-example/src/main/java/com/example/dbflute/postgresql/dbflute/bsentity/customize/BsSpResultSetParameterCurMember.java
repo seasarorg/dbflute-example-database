@@ -137,7 +137,7 @@ public abstract class BsSpResultSetParameterCurMember implements Entity, Seriali
     /**
      * {@inheritDoc}
      */
-    public Set<String> uniqueDrivenProperties() {
+    public Set<String> myuniqueDrivenProperties() {
         return __uniqueDrivenProperties.getPropertyNames();
     }
 

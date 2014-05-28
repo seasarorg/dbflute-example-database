@@ -77,10 +77,14 @@ public class BsSynonymNextLinkSynonymCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                 PrimaryKey Handling
     //                                                                 ===================
+    /**
+     * Accept the query condition of primary key as equal.
+     * @param productId : PK, NotNull, NUMBER(16). (NotNull)
+     */
     public void acceptPrimaryKey(Long productId) {
         assertObjectNotNull("productId", productId);
         BsSynonymNextLinkSynonymCB cb = this;
-        cb.query().setProductId_Equal(productId);
+        cb.query().setProductId_Equal(productId);;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {
@@ -454,6 +458,11 @@ public class BsSynonymNextLinkSynonymCB extends AbstractConditionBean {
      */
     public void orScopeQuery(OrQuery<SynonymNextLinkSynonymCB> orQuery) {
         xorSQ((SynonymNextLinkSynonymCB)this, orQuery);
+    }
+
+    @Override
+    protected HpCBPurpose xhandleOrSQPurposeChange() {
+        return null; // means no check
     }
 
     /**

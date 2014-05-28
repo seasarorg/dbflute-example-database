@@ -139,7 +139,7 @@ public abstract class BsWhiteEscapedDfprop implements Entity, Serializable, Clon
     /**
      * {@inheritDoc}
      */
-    public Set<String> uniqueDrivenProperties() {
+    public Set<String> myuniqueDrivenProperties() {
         return __uniqueDrivenProperties.getPropertyNames();
     }
 
@@ -411,7 +411,7 @@ public abstract class BsWhiteEscapedDfprop implements Entity, Serializable, Clon
      * [set] ESCAPED_DFPROP_CODE: {PK, NotNull, CHAR(3), classification=EscapedDfpropCls} <br />
      * @param escapedDfpropCode The value of the column 'ESCAPED_DFPROP_CODE'. (basically NotNull if update: for the constraint)
      */
-    public void setEscapedDfpropCode(String escapedDfpropCode) {
+    protected void setEscapedDfpropCode(String escapedDfpropCode) {
         __modifiedProperties.addPropertyName("escapedDfpropCode");
         this._escapedDfpropCode = escapedDfpropCode;
     }

@@ -65,7 +65,7 @@ public abstract class AbstractBsWhiteEscapedDfpropCQ extends AbstractConditionQu
      * ESCAPED_DFPROP_CODE: {PK, NotNull, CHAR(3), classification=EscapedDfpropCls}
      * @param escapedDfpropCode The value of escapedDfpropCode as equal. (NullAllowed: if null (or empty), no condition)
      */
-    public void setEscapedDfpropCode_Equal(String escapedDfpropCode) {
+    protected void setEscapedDfpropCode_Equal(String escapedDfpropCode) {
         doSetEscapedDfpropCode_Equal(fRES(escapedDfpropCode));
     }
 
@@ -112,7 +112,7 @@ public abstract class AbstractBsWhiteEscapedDfpropCQ extends AbstractConditionQu
      * ESCAPED_DFPROP_CODE: {PK, NotNull, CHAR(3), classification=EscapedDfpropCls}
      * @param escapedDfpropCode The value of escapedDfpropCode as notEqual. (NullAllowed: if null (or empty), no condition)
      */
-    public void setEscapedDfpropCode_NotEqual(String escapedDfpropCode) {
+    protected void setEscapedDfpropCode_NotEqual(String escapedDfpropCode) {
         doSetEscapedDfpropCode_NotEqual(fRES(escapedDfpropCode));
     }
 

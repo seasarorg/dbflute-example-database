@@ -24,6 +24,7 @@ import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.exception.*;
 import org.seasar.dbflute.optional.*;
 import org.seasar.dbflute.outsidesql.executor.*;
+import com.example.dbflute.mysql.dbflute.allcommon.CDef;
 import com.example.dbflute.mysql.dbflute.exbhv.*;
 import com.example.dbflute.mysql.dbflute.exentity.*;
 import com.example.dbflute.mysql.dbflute.bsentity.dbmeta.*;
@@ -210,15 +211,15 @@ public abstract class BsWhiteEscapedDfpropBhv extends AbstractBehaviorWritable {
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
-    public WhiteEscapedDfprop selectByPKValue(String escapedDfpropCode) {
+    public WhiteEscapedDfprop selectByPKValue(CDef.EscapedDfpropCls escapedDfpropCode) {
         return doSelectByPK(escapedDfpropCode, WhiteEscapedDfprop.class);
     }
 
-    protected <ENTITY extends WhiteEscapedDfprop> ENTITY doSelectByPK(String escapedDfpropCode, Class<ENTITY> entityType) {
+    protected <ENTITY extends WhiteEscapedDfprop> ENTITY doSelectByPK(CDef.EscapedDfpropCls escapedDfpropCode, Class<ENTITY> entityType) {
         return doSelectEntity(xprepareCBAsPK(escapedDfpropCode), entityType);
     }
 
-    protected <ENTITY extends WhiteEscapedDfprop> OptionalEntity<ENTITY> doSelectOptionalByPK(String escapedDfpropCode, Class<ENTITY> entityType) {
+    protected <ENTITY extends WhiteEscapedDfprop> OptionalEntity<ENTITY> doSelectOptionalByPK(CDef.EscapedDfpropCls escapedDfpropCode, Class<ENTITY> entityType) {
         return createOptionalEntity(doSelectByPK(escapedDfpropCode, entityType), escapedDfpropCode);
     }
 
@@ -230,15 +231,15 @@ public abstract class BsWhiteEscapedDfpropBhv extends AbstractBehaviorWritable {
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
-    public WhiteEscapedDfprop selectByPKValueWithDeletedCheck(String escapedDfpropCode) {
+    public WhiteEscapedDfprop selectByPKValueWithDeletedCheck(CDef.EscapedDfpropCls escapedDfpropCode) {
         return doSelectByPKWithDeletedCheck(escapedDfpropCode, WhiteEscapedDfprop.class);
     }
 
-    protected <ENTITY extends WhiteEscapedDfprop> ENTITY doSelectByPKWithDeletedCheck(String escapedDfpropCode, Class<ENTITY> entityType) {
+    protected <ENTITY extends WhiteEscapedDfprop> ENTITY doSelectByPKWithDeletedCheck(CDef.EscapedDfpropCls escapedDfpropCode, Class<ENTITY> entityType) {
         return doSelectEntityWithDeletedCheck(xprepareCBAsPK(escapedDfpropCode), entityType);
     }
 
-    protected WhiteEscapedDfpropCB xprepareCBAsPK(String escapedDfpropCode) {
+    protected WhiteEscapedDfpropCB xprepareCBAsPK(CDef.EscapedDfpropCls escapedDfpropCode) {
         assertObjectNotNull("escapedDfpropCode", escapedDfpropCode);
         WhiteEscapedDfpropCB cb = newMyConditionBean(); cb.acceptPrimaryKey(escapedDfpropCode);
         return cb;

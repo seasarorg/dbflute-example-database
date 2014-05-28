@@ -154,13 +154,13 @@ public abstract class BsMemberStatus implements Entity, Serializable, Cloneable 
     public void uniqueBy(Integer displayOrder) {
         __uniqueDrivenProperties.clear();
         __uniqueDrivenProperties.addPropertyName("displayOrder");
-        _displayOrder = displayOrder;
+        setDisplayOrder(displayOrder);
     }
 
     /**
      * {@inheritDoc}
      */
-    public Set<String> uniqueDrivenProperties() {
+    public Set<String> myuniqueDrivenProperties() {
         return __uniqueDrivenProperties.getPropertyNames();
     }
 
@@ -502,7 +502,7 @@ public abstract class BsMemberStatus implements Entity, Serializable, Cloneable 
      * 会員ステータスを識別するコード。
      * @param memberStatusCode The value of the column 'MEMBER_STATUS_CODE'. (basically NotNull if update: for the constraint)
      */
-    public void setMemberStatusCode(String memberStatusCode) {
+    protected void setMemberStatusCode(String memberStatusCode) {
         __modifiedProperties.addPropertyName("memberStatusCode");
         this._memberStatusCode = memberStatusCode;
     }

@@ -169,7 +169,7 @@ public abstract class BsWhiteUqFkRefNestBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of WhiteUqFkRefNest. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -190,39 +190,42 @@ public abstract class BsWhiteUqFkRefNestBhv extends AbstractBehaviorWritable {
 
     /**
      * Select the entity by the primary-key value.
-     * @param uqFkRefNestId The one of primary key. (NotNull)
+     * @param uqFkRefNestId : PK, NotNull, NUMBER(16). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteUqFkRefNest selectByPKValue(Long uqFkRefNestId) {
-        return doSelectByPKValue(uqFkRefNestId, WhiteUqFkRefNest.class);
+        return doSelectByPK(uqFkRefNestId, WhiteUqFkRefNest.class);
     }
 
-    protected <ENTITY extends WhiteUqFkRefNest> ENTITY doSelectByPKValue(Long uqFkRefNestId, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(uqFkRefNestId), entityType);
+    protected <ENTITY extends WhiteUqFkRefNest> ENTITY doSelectByPK(Long uqFkRefNestId, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(uqFkRefNestId), entityType);
+    }
+
+    protected <ENTITY extends WhiteUqFkRefNest> OptionalEntity<ENTITY> doSelectOptionalByPK(Long uqFkRefNestId, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(uqFkRefNestId, entityType), uqFkRefNestId);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param uqFkRefNestId The one of primary key. (NotNull)
+     * @param uqFkRefNestId : PK, NotNull, NUMBER(16). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteUqFkRefNest selectByPKValueWithDeletedCheck(Long uqFkRefNestId) {
-        return doSelectByPKValueWithDeletedCheck(uqFkRefNestId, WhiteUqFkRefNest.class);
+        return doSelectByPKWithDeletedCheck(uqFkRefNestId, WhiteUqFkRefNest.class);
     }
 
-    protected <ENTITY extends WhiteUqFkRefNest> ENTITY doSelectByPKValueWithDeletedCheck(Long uqFkRefNestId, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(uqFkRefNestId), entityType);
+    protected <ENTITY extends WhiteUqFkRefNest> ENTITY doSelectByPKWithDeletedCheck(Long uqFkRefNestId, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(uqFkRefNestId), entityType);
     }
 
-    private WhiteUqFkRefNestCB buildPKCB(Long uqFkRefNestId) {
+    protected WhiteUqFkRefNestCB xprepareCBAsPK(Long uqFkRefNestId) {
         assertObjectNotNull("uqFkRefNestId", uqFkRefNestId);
-        WhiteUqFkRefNestCB cb = newMyConditionBean();
-        cb.query().setUqFkRefNestId_Equal(uqFkRefNestId);
+        WhiteUqFkRefNestCB cb = newMyConditionBean(); cb.acceptPrimaryKey(uqFkRefNestId);
         return cb;
     }
 
@@ -387,7 +390,8 @@ public abstract class BsWhiteUqFkRefNestBhv extends AbstractBehaviorWritable {
      */
     public List<WhiteUqFkRef> pulloutWhiteUqFkRef(List<WhiteUqFkRefNest> whiteUqFkRefNestList) {
         return helpPulloutInternally(whiteUqFkRefNestList, new InternalPulloutCallback<WhiteUqFkRefNest, WhiteUqFkRef>() {
-            public WhiteUqFkRef getFr(WhiteUqFkRefNest et) { return et.getWhiteUqFkRef(); }
+            public WhiteUqFkRef getFr(WhiteUqFkRefNest et)
+            { return et.getWhiteUqFkRef(); }
             public boolean hasRf() { return true; }
             public void setRfLs(WhiteUqFkRef et, List<WhiteUqFkRefNest> ls)
             { et.setWhiteUqFkRefNestList(ls); }

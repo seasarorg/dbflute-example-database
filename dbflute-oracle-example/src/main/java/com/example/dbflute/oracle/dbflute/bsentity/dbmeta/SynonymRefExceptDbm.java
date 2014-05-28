@@ -33,13 +33,14 @@ public class SynonymRefExceptDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgRefExceptId(), "refExceptId");
         setupEpg(_epgMap, new EpgExceptId(), "exceptId");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgRefExceptId implements PropertyGateway {
         public Object read(Entity et) { return ((SynonymRefExcept)et).getRefExceptId(); }
         public void write(Entity et, Object vl) { ((SynonymRefExcept)et).setRefExceptId(ctl(vl)); }
@@ -48,6 +49,22 @@ public class SynonymRefExceptDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((SynonymRefExcept)et).getExceptId(); }
         public void write(Entity et, Object vl) { ((SynonymRefExcept)et).setExceptId(ctl(vl)); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
+
+    // -----------------------------------------------------
+    //                                      Foreign Property
+    //                                      ----------------
+    protected final Map<String, PropertyGateway> _efpgMap = newHashMap();
+    {
+        setupEfpg(_efpgMap, new EfpgSynonymExcept(), "synonymExcept");
+    }
+    public class EfpgSynonymExcept implements PropertyGateway {
+        public Object read(Entity et) { return ((SynonymRefExcept)et).getSynonymExcept(); }
+        public void write(Entity et, Object vl) { ((SynonymRefExcept)et).setSynonymExcept((SynonymExcept)vl); }
+    }
+    public PropertyGateway findForeignPropertyGateway(String prop)
+    { return doFindEfpg(_efpgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -63,10 +80,18 @@ public class SynonymRefExceptDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnRefExceptId = cci("REF_EXCEPT_ID", "REF_EXCEPT_ID", null, null, true, "refExceptId", Long.class, true, false, "NUMBER", 16, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnExceptId = cci("EXCEPT_ID", "EXCEPT_ID", null, null, true, "exceptId", Long.class, false, false, "NUMBER", 16, 0, null, false, null, null, "synonymExcept", null, null);
+    protected final ColumnInfo _columnRefExceptId = cci("REF_EXCEPT_ID", "REF_EXCEPT_ID", null, null, Long.class, "refExceptId", null, true, false, true, "NUMBER", 16, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnExceptId = cci("EXCEPT_ID", "EXCEPT_ID", null, null, Long.class, "exceptId", null, false, false, true, "NUMBER", 16, 0, null, false, null, null, "synonymExcept", null, null);
 
+    /**
+     * REF_EXCEPT_ID: {PK, NotNull, NUMBER(16)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnRefExceptId() { return _columnRefExceptId; }
+    /**
+     * EXCEPT_ID: {NotNull, NUMBER(16), FK to SYNONYM_EXCEPT}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnExceptId() { return _columnExceptId; }
 
     protected List<ColumnInfo> ccil() {
@@ -91,12 +116,18 @@ public class SynonymRefExceptDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // cannot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------
+    /**
+     * SYNONYM_EXCEPT by my EXCEPT_ID, named 'synonymExcept'.
+     * @return The information object of foreign property. (NotNull)
+     */
     public ForeignInfo foreignSynonymExcept() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnExceptId(), SynonymExceptDbm.getInstance().columnExceptId());
-        return cfi("FK_WHITE_REF_EXCEPT_SYNONYM1", "synonymExcept", this, SynonymExceptDbm.getInstance(), mp, 0, false, false, false, false, null, null, false, "synonymRefExceptList");
+        return cfi("FK_WHITE_REF_EXCEPT_SYNONYM1", "synonymExcept", this, SynonymExceptDbm.getInstance(), mp, 0, null, false, false, false, false, null, null, false, "synonymRefExceptList");
     }
 
     // -----------------------------------------------------

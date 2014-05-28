@@ -202,17 +202,15 @@ public abstract class BsPurchase implements EntityDefinedCommonColumn, Serializa
     public void uniqueBy(Integer memberId, Integer productId, java.sql.Timestamp purchaseDatetime) {
         __uniqueDrivenProperties.clear();
         __uniqueDrivenProperties.addPropertyName("memberId");
-        _memberId = memberId;
         __uniqueDrivenProperties.addPropertyName("productId");
-        _productId = productId;
         __uniqueDrivenProperties.addPropertyName("purchaseDatetime");
-        _purchaseDatetime = purchaseDatetime;
+        setMemberId(memberId);setProductId(productId);setPurchaseDatetime(purchaseDatetime);
     }
 
     /**
      * {@inheritDoc}
      */
-    public Set<String> uniqueDrivenProperties() {
+    public Set<String> myuniqueDrivenProperties() {
         return __uniqueDrivenProperties.getPropertyNames();
     }
 
@@ -837,7 +835,7 @@ public abstract class BsPurchase implements EntityDefinedCommonColumn, Serializa
      * この購入に関しての支払いが完了しているか否か。
      * @param paymentCompleteFlg The value of the column 'PAYMENT_COMPLETE_FLG'. (basically NotNull if update: for the constraint)
      */
-    public void setPaymentCompleteFlg(Integer paymentCompleteFlg) {
+    protected void setPaymentCompleteFlg(Integer paymentCompleteFlg) {
         checkImplicitSet("PAYMENT_COMPLETE_FLG", CDef.DefMeta.Flg, paymentCompleteFlg);
         __modifiedProperties.addPropertyName("paymentCompleteFlg");
         this._paymentCompleteFlg = paymentCompleteFlg;

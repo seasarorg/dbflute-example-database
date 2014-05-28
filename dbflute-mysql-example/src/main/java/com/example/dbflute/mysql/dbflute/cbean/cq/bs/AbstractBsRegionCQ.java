@@ -65,7 +65,7 @@ public abstract class AbstractBsRegionCQ extends AbstractConditionQuery {
      * (地域ID)REGION_ID: {PK, NotNull, INT(10), classification=Region}
      * @param regionId The value of regionId as equal. (NullAllowed: if null, no condition)
      */
-    public void setRegionId_Equal(Integer regionId) {
+    protected void setRegionId_Equal(Integer regionId) {
         doSetRegionId_Equal(regionId);
     }
 

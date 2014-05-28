@@ -72,12 +72,7 @@ public class WhiteSuppressJoinSqDbm extends AbstractDBMeta {
     //                                      ----------------
     protected final Map<String, PropertyGateway> _efpgMap = newHashMap();
     {
-        setupEfpg(_efpgMap, new EfpgWhiteSuppressJoinSqManyAsOne(), "whiteSuppressJoinSqManyAsOne");
         setupEfpg(_efpgMap, new EfpgWhiteSuppressJoinSqOneAsOne(), "whiteSuppressJoinSqOneAsOne");
-    }
-    public class EfpgWhiteSuppressJoinSqManyAsOne implements PropertyGateway {
-        public Object read(Entity et) { return ((WhiteSuppressJoinSq)et).getWhiteSuppressJoinSqManyAsOne(); }
-        public void write(Entity et, Object vl) { ((WhiteSuppressJoinSq)et).setWhiteSuppressJoinSqManyAsOne((WhiteSuppressJoinSqMany)vl); }
     }
     public class EfpgWhiteSuppressJoinSqOneAsOne implements PropertyGateway {
         public Object read(Entity et) { return ((WhiteSuppressJoinSq)et).getWhiteSuppressJoinSqOneAsOne(); }
@@ -100,7 +95,7 @@ public class WhiteSuppressJoinSqDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnSuppressJoinSqId = cci("SUPPRESS_JOIN_SQ_ID", "SUPPRESS_JOIN_SQ_ID", null, null, Integer.class, "suppressJoinSqId", null, true, false, true, "INT", 10, 0, null, false, null, null, null, "", null);
+    protected final ColumnInfo _columnSuppressJoinSqId = cci("SUPPRESS_JOIN_SQ_ID", "SUPPRESS_JOIN_SQ_ID", null, null, Integer.class, "suppressJoinSqId", null, true, false, true, "INT", 10, 0, null, false, null, null, null, "whiteSuppressJoinSqManyList", null);
     protected final ColumnInfo _columnSuppressJoinSqName = cci("SUPPRESS_JOIN_SQ_NAME", "SUPPRESS_JOIN_SQ_NAME", null, null, String.class, "suppressJoinSqName", null, false, false, true, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
 
     /**
@@ -136,31 +131,31 @@ public class WhiteSuppressJoinSqDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
-    // canonot cache because it uses related DB meta instance while booting
+    // cannot cache because it uses related DB meta instance while booting
     // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------
-    /**
-     * white_suppress_join_sq_many by SUPPRESS_JOIN_SQ_ID, named 'whiteSuppressJoinSqManyAsOne'.
-     * @return The information object of foreign property(referrer-as-one). (NotNull)
-     */
-    public ForeignInfo foreignWhiteSuppressJoinSqManyAsOne() {
-        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnSuppressJoinSqId(), WhiteSuppressJoinSqManyDbm.getInstance().columnSuppressJoinSqId());
-        return cfi("FK_WHITE_SUPPRESS_JOIN_SQ_MANY", "whiteSuppressJoinSqManyAsOne", this, WhiteSuppressJoinSqManyDbm.getInstance(), mp, 0, null, true, false, true, false, null, null, false, "whiteSuppressJoinSq");
-    }
     /**
      * white_suppress_join_sq_one by SUPPRESS_JOIN_SQ_ID, named 'whiteSuppressJoinSqOneAsOne'.
      * @return The information object of foreign property(referrer-as-one). (NotNull)
      */
     public ForeignInfo foreignWhiteSuppressJoinSqOneAsOne() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnSuppressJoinSqId(), WhiteSuppressJoinSqOneDbm.getInstance().columnSuppressJoinSqId());
-        return cfi("FK_WHITE_SUPPRESS_JOIN_SQ_ONE", "whiteSuppressJoinSqOneAsOne", this, WhiteSuppressJoinSqOneDbm.getInstance(), mp, 1, null, true, false, true, false, null, null, false, "whiteSuppressJoinSq");
+        return cfi("FK_WHITE_SUPPRESS_JOIN_SQ_ONE", "whiteSuppressJoinSqOneAsOne", this, WhiteSuppressJoinSqOneDbm.getInstance(), mp, 0, null, true, false, true, false, null, null, false, "whiteSuppressJoinSq");
     }
 
     // -----------------------------------------------------
     //                                     Referrer Property
     //                                     -----------------
+    /**
+     * white_suppress_join_sq_many by SUPPRESS_JOIN_SQ_ID, named 'whiteSuppressJoinSqManyList'.
+     * @return The information object of referrer property. (NotNull)
+     */
+    public ReferrerInfo referrerWhiteSuppressJoinSqManyList() {
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnSuppressJoinSqId(), WhiteSuppressJoinSqManyDbm.getInstance().columnSuppressJoinSqId());
+        return cri("FK_WHITE_SUPPRESS_JOIN_SQ_MANY", "whiteSuppressJoinSqManyList", this, WhiteSuppressJoinSqManyDbm.getInstance(), mp, false, "whiteSuppressJoinSq");
+    }
 
     // ===================================================================================
     //                                                                        Various Info

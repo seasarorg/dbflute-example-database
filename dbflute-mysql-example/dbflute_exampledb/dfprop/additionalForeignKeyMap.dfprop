@@ -389,6 +389,31 @@ $$over($localTable.whiteSplitMultipleFkNext)$$.SECOND_CODE = $$foreignAlias$$.SE
     # ====================================================================================
     #                                                               Suppress Join/SubQuery
     #                                                               ======================
+    ; FK_WHITE_SUPPRESS_JOIN_SQ_MANY_BASIC_TEST = map:{
+        ; localTableName  = WHITE_SUPPRESS_JOIN_SQ_MANY ; foreignTableName  = WHITE_SUPPRESS_JOIN_SQ
+        ; localColumnName = SUPPRESS_JOIN_SQ_ID ; foreignColumnName = SUPPRESS_JOIN_SQ_ID
+        ; suppressJoin = true ; suppressSubQuery = true
+    }
+    ; FK_WHITE_SUPPRESS_JOIN_SQ_MANY_ONE_TEST = map:{
+        ; localTableName  = WHITE_SUPPRESS_JOIN_SQ_MANY ; foreignTableName  = WHITE_SUPPRESS_JOIN_SQ_MANY_ONE
+        ; localColumnName = MANY_ONE_ID ; foreignColumnName = MANY_ONE_ID
+        ; suppressJoin = true
+    }
+    ; FK_WHITE_SUPPRESS_JOIN_SQ_MANY_ONE_ONE_TEST = map:{
+        ; localTableName  = WHITE_SUPPRESS_JOIN_SQ_MANY_ONE ; foreignTableName  = WHITE_SUPPRESS_JOIN_SQ_MANY_ONE_ONE
+        ; localColumnName = MANY_ONE_ONE_ID ; foreignColumnName = MANY_ONE_ONE_ID
+        ; suppressSubQuery = true
+    }
+    ; FK_WHITE_SUPPRESS_JOIN_SQ_ONE_TEST = map:{
+        ; localTableName  = WHITE_SUPPRESS_JOIN_SQ_ONE ; foreignTableName  = WHITE_SUPPRESS_JOIN_SQ
+        ; localColumnName = SUPPRESS_JOIN_SQ_ID ; foreignColumnName = SUPPRESS_JOIN_SQ_ID
+        ; suppressJoin = true
+    }
+    ; FK_WHITE_SUPPRESS_JOIN_SQ_ONE_ADDI_TEST = map:{
+        ; localTableName  = WHITE_SUPPRESS_JOIN_SQ_ONE ; foreignTableName = WHITE_SUPPRESS_JOIN_SQ_ONE_ADDI
+        ; localColumnName = ONE_ADDI_ID ; foreignColumnName = ONE_ADDI_ID
+        ; suppressJoin = true ; suppressSubQuery = true
+    }
 
     # ====================================================================================
     #                                                          Compound FK Biz-Many-to-One

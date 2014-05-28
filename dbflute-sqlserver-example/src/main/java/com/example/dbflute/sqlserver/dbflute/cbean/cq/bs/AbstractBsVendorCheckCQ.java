@@ -22,8 +22,8 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public AbstractBsVendorCheckCQ(ConditionQuery childQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
-        super(childQuery, sqlClause, aliasName, nestLevel);
+    public AbstractBsVendorCheckCQ(ConditionQuery referrerQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
+        super(referrerQuery, sqlClause, aliasName, nestLevel);
     }
 
     // ===================================================================================
@@ -1538,13 +1538,13 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
 
     /**
      * IsNull {is null}. And OnlyOnceRegistered. <br />
-     * TYPE_OF_BINARY: {binary(2000)}
+     * TYPE_OF_BINARY: {binary(3000)}
      */
     public void setTypeOfBinary_IsNull() { regTypeOfBinary(CK_ISN, DOBJ); }
 
     /**
      * IsNotNull {is not null}. And OnlyOnceRegistered. <br />
-     * TYPE_OF_BINARY: {binary(2000)}
+     * TYPE_OF_BINARY: {binary(3000)}
      */
     public void setTypeOfBinary_IsNotNull() { regTypeOfBinary(CK_ISNN, DOBJ); }
 
@@ -1553,13 +1553,13 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
 
     /**
      * IsNull {is null}. And OnlyOnceRegistered. <br />
-     * TYPE_OF_VARBINARY: {varbinary(2000)}
+     * TYPE_OF_VARBINARY: {varbinary(3000)}
      */
     public void setTypeOfVarbinary_IsNull() { regTypeOfVarbinary(CK_ISN, DOBJ); }
 
     /**
      * IsNotNull {is not null}. And OnlyOnceRegistered. <br />
-     * TYPE_OF_VARBINARY: {varbinary(2000)}
+     * TYPE_OF_VARBINARY: {varbinary(3000)}
      */
     public void setTypeOfVarbinary_IsNotNull() { regTypeOfVarbinary(CK_ISNN, DOBJ); }
 
@@ -1840,7 +1840,7 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
     public abstract String keepSpecifyMyselfDerived(VendorCheckCQ sq);
 
     /**
-     * Prepare for (Query)MyselfDerived (SubQuery).
+     * Prepare for (Query)MyselfDerived (correlated sub-query).
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<VendorCheckCB> myselfDerived() {
@@ -1862,8 +1862,8 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
     //                                                                        MyselfExists
     //                                                                        ============
     /**
-     * Prepare for MyselfExists (SubQuery).
-     * @param subQuery The implementation of sub query. (NotNull)
+     * Prepare for MyselfExists (correlated sub-query).
+     * @param subQuery The implementation of sub-query. (NotNull)
      */
     public void myselfExists(SubQuery<VendorCheckCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
@@ -1878,8 +1878,8 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
     //                                                                       MyselfInScope
     //                                                                       =============
     /**
-     * Prepare for MyselfInScope (SubQuery).
-     * @param subQuery The implementation of sub query. (NotNull)
+     * Prepare for MyselfInScope (sub-query).
+     * @param subQuery The implementation of sub-query. (NotNull)
      */
     public void myselfInScope(SubQuery<VendorCheckCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);

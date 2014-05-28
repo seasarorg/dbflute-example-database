@@ -33,6 +33,9 @@ public class VendorCheckDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgVendorCheckId(), "vendorCheckId");
@@ -40,8 +43,6 @@ public class VendorCheckDbm extends AbstractDBMeta {
         setupEpg(_epgMap, new EpgTypeOfInteger(), "typeOfInteger");
         setupEpg(_epgMap, new EpgTypeOfReal(), "typeOfReal");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgVendorCheckId implements PropertyGateway {
         public Object read(Entity et) { return ((VendorCheck)et).getVendorCheckId(); }
         public void write(Entity et, Object vl) { ((VendorCheck)et).setVendorCheckId(cti(vl)); }
@@ -58,6 +59,8 @@ public class VendorCheckDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((VendorCheck)et).getTypeOfReal(); }
         public void write(Entity et, Object vl) { ((VendorCheck)et).setTypeOfReal((String)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -73,14 +76,30 @@ public class VendorCheckDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnVendorCheckId = cci("VENDOR_CHECK_ID", "VENDOR_CHECK_ID", null, null, true, "vendorCheckId", Integer.class, true, false, "INTEGER", 2000000000, 10, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfText = cci("TYPE_OF_TEXT", "TYPE_OF_TEXT", null, null, false, "typeOfText", String.class, false, false, "TEXT", 2000000000, 10, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfInteger = cci("TYPE_OF_INTEGER", "TYPE_OF_INTEGER", null, null, false, "typeOfInteger", Integer.class, false, false, "INTEGER", 2000000000, 10, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfReal = cci("TYPE_OF_REAL", "TYPE_OF_REAL", null, null, false, "typeOfReal", String.class, false, false, "REAL", 2000000000, 10, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnVendorCheckId = cci("VENDOR_CHECK_ID", "VENDOR_CHECK_ID", null, null, Integer.class, "vendorCheckId", null, true, false, true, "INTEGER", 2000000000, 10, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfText = cci("TYPE_OF_TEXT", "TYPE_OF_TEXT", null, null, String.class, "typeOfText", null, false, false, false, "TEXT", 2000000000, 10, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfInteger = cci("TYPE_OF_INTEGER", "TYPE_OF_INTEGER", null, null, Integer.class, "typeOfInteger", null, false, false, false, "INTEGER", 2000000000, 10, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfReal = cci("TYPE_OF_REAL", "TYPE_OF_REAL", null, null, String.class, "typeOfReal", null, false, false, false, "REAL", 2000000000, 10, null, false, null, null, null, null, null);
 
+    /**
+     * VENDOR_CHECK_ID: {PK, NotNull, INTEGER(2000000000, 10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnVendorCheckId() { return _columnVendorCheckId; }
+    /**
+     * TYPE_OF_TEXT: {TEXT(2000000000, 10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfText() { return _columnTypeOfText; }
+    /**
+     * TYPE_OF_INTEGER: {INTEGER(2000000000, 10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfInteger() { return _columnTypeOfInteger; }
+    /**
+     * TYPE_OF_REAL: {REAL(2000000000, 10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfReal() { return _columnTypeOfReal; }
 
     protected List<ColumnInfo> ccil() {
@@ -107,6 +126,8 @@ public class VendorCheckDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // cannot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

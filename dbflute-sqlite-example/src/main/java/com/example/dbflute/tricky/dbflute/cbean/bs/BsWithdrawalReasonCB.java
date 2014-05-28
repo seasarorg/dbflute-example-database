@@ -77,10 +77,14 @@ public class BsWithdrawalReasonCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                 PrimaryKey Handling
     //                                                                 ===================
+    /**
+     * Accept the query condition of primary key as equal.
+     * @param withdrawalReasonCode : PK, NotNull, TEXT(2000000000, 10). (NotNull)
+     */
     public void acceptPrimaryKey(String withdrawalReasonCode) {
         assertObjectNotNull("withdrawalReasonCode", withdrawalReasonCode);
         BsWithdrawalReasonCB cb = this;
-        cb.query().setWithdrawalReasonCode_Equal(withdrawalReasonCode);
+        cb.query().setWithdrawalReasonCode_Equal(withdrawalReasonCode);;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {
@@ -418,6 +422,11 @@ public class BsWithdrawalReasonCB extends AbstractConditionBean {
      */
     public void orScopeQuery(OrQuery<WithdrawalReasonCB> orQuery) {
         xorSQ((WithdrawalReasonCB)this, orQuery);
+    }
+
+    @Override
+    protected HpCBPurpose xhandleOrSQPurposeChange() {
+        return null; // means no check
     }
 
     /**

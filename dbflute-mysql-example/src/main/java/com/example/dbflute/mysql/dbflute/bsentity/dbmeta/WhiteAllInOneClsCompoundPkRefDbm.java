@@ -110,17 +110,17 @@ public class WhiteAllInOneClsCompoundPkRefDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnQuxCode = cci("QUX_CODE", "QUX_CODE", null, null, String.class, "quxCode", null, true, false, true, "CHAR", 3, 0, null, false, null, null, null, null, null);
 
     /**
-     * FOO_CODE: {PK, UQ+, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT}
+     * FOO_CODE: {PK, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT}
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnFooCode() { return _columnFooCode; }
     /**
-     * BAR_CODE: {PK, +UQ, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT}
+     * BAR_CODE: {PK, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT}
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnBarCode() { return _columnBarCode; }
     /**
-     * QUX_CODE: {PK, +UQ, NotNull, CHAR(3)}
+     * QUX_CODE: {PK, NotNull, CHAR(3)}
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnQuxCode() { return _columnQuxCode; }
@@ -154,7 +154,7 @@ public class WhiteAllInOneClsCompoundPkRefDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
-    // canonot cache because it uses related DB meta instance while booting
+    // cannot cache because it uses related DB meta instance while booting
     // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property

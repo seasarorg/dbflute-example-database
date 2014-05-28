@@ -138,7 +138,7 @@ public abstract class BsWhiteVariantRelationMasterBar implements Entity, Seriali
     /**
      * {@inheritDoc}
      */
-    public Set<String> uniqueDrivenProperties() {
+    public Set<String> myuniqueDrivenProperties() {
         return __uniqueDrivenProperties.getPropertyNames();
     }
 

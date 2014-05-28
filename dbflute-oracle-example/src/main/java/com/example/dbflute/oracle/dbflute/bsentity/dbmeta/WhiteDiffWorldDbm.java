@@ -33,13 +33,14 @@ public class WhiteDiffWorldDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgDiffWorldId(), "diffWorldId");
         setupEpg(_epgMap, new EpgDiffWorldName(), "diffWorldName");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgDiffWorldId implements PropertyGateway {
         public Object read(Entity et) { return ((WhiteDiffWorld)et).getDiffWorldId(); }
         public void write(Entity et, Object vl) { ((WhiteDiffWorld)et).setDiffWorldId(ctl(vl)); }
@@ -48,6 +49,8 @@ public class WhiteDiffWorldDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((WhiteDiffWorld)et).getDiffWorldName(); }
         public void write(Entity et, Object vl) { ((WhiteDiffWorld)et).setDiffWorldName((String)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -63,10 +66,18 @@ public class WhiteDiffWorldDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnDiffWorldId = cci("DIFF_WORLD_ID", "DIFF_WORLD_ID", null, null, true, "diffWorldId", Long.class, true, false, "NUMBER", 16, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnDiffWorldName = cci("DIFF_WORLD_NAME", "DIFF_WORLD_NAME", null, null, true, "diffWorldName", String.class, false, false, "VARCHAR2", 50, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnDiffWorldId = cci("DIFF_WORLD_ID", "DIFF_WORLD_ID", null, null, Long.class, "diffWorldId", null, true, false, true, "NUMBER", 16, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnDiffWorldName = cci("DIFF_WORLD_NAME", "DIFF_WORLD_NAME", null, null, String.class, "diffWorldName", null, false, false, true, "VARCHAR2", 50, 0, null, false, null, null, null, null, null);
 
+    /**
+     * DIFF_WORLD_ID: {PK, NotNull, NUMBER(16)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnDiffWorldId() { return _columnDiffWorldId; }
+    /**
+     * DIFF_WORLD_NAME: {NotNull, VARCHAR2(50)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnDiffWorldName() { return _columnDiffWorldName; }
 
     protected List<ColumnInfo> ccil() {
@@ -91,6 +102,8 @@ public class WhiteDiffWorldDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // cannot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

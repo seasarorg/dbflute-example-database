@@ -77,10 +77,14 @@ public class BsVendorCheckCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                 PrimaryKey Handling
     //                                                                 ===================
+    /**
+     * Accept the query condition of primary key as equal.
+     * @param vendorCheckId : PK, NotNull, numeric(16). (NotNull)
+     */
     public void acceptPrimaryKey(Long vendorCheckId) {
         assertObjectNotNull("vendorCheckId", vendorCheckId);
         BsVendorCheckCB cb = this;
-        cb.query().setVendorCheckId_Equal(vendorCheckId);
+        cb.query().setVendorCheckId_Equal(vendorCheckId);;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {
@@ -366,12 +370,12 @@ public class BsVendorCheckCB extends AbstractConditionBean {
          */
         public HpSpecifiedColumn columnTypeOfBit() { return doColumn("TYPE_OF_BIT"); }
         /**
-         * TYPE_OF_BINARY: {binary(2000)}
+         * TYPE_OF_BINARY: {binary(3000)}
          * @return The information object of specified column. (NotNull)
          */
         public HpSpecifiedColumn columnTypeOfBinary() { return doColumn("TYPE_OF_BINARY"); }
         /**
-         * TYPE_OF_VARBINARY: {varbinary(2000)}
+         * TYPE_OF_VARBINARY: {varbinary(3000)}
          * @return The information object of specified column. (NotNull)
          */
         public HpSpecifiedColumn columnTypeOfVarbinary() { return doColumn("TYPE_OF_VARBINARY"); }
@@ -478,6 +482,11 @@ public class BsVendorCheckCB extends AbstractConditionBean {
      */
     public void orScopeQuery(OrQuery<VendorCheckCB> orQuery) {
         xorSQ((VendorCheckCB)this, orQuery);
+    }
+
+    @Override
+    protected HpCBPurpose xhandleOrSQPurposeChange() {
+        return null; // means no check
     }
 
     /**

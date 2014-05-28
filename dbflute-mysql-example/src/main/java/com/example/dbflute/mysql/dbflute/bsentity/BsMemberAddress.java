@@ -197,15 +197,14 @@ public abstract class BsMemberAddress implements EntityDefinedCommonColumn, Seri
     public void uniqueBy(Integer memberId, java.util.Date validBeginDate) {
         __uniqueDrivenProperties.clear();
         __uniqueDrivenProperties.addPropertyName("memberId");
-        _memberId = memberId;
         __uniqueDrivenProperties.addPropertyName("validBeginDate");
-        _validBeginDate = validBeginDate;
+        setMemberId(memberId);setValidBeginDate(validBeginDate);
     }
 
     /**
      * {@inheritDoc}
      */
-    public Set<String> uniqueDrivenProperties() {
+    public Set<String> myuniqueDrivenProperties() {
         return __uniqueDrivenProperties.getPropertyNames();
     }
 
@@ -688,7 +687,7 @@ public abstract class BsMemberAddress implements EntityDefinedCommonColumn, Seri
      * ここでは特に住所の内容と連動しているわけではない。
      * @param regionId The value of the column 'REGION_ID'. (basically NotNull if update: for the constraint)
      */
-    public void setRegionId(Integer regionId) {
+    protected void setRegionId(Integer regionId) {
         __modifiedProperties.addPropertyName("regionId");
         this._regionId = regionId;
     }

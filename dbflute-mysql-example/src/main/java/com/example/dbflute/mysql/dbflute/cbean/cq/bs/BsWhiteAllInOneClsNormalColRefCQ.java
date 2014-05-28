@@ -18,6 +18,8 @@ package com.example.dbflute.mysql.dbflute.cbean.cq.bs;
 import java.util.Map;
 
 import org.seasar.dbflute.cbean.*;
+import org.seasar.dbflute.cbean.chelper.*;
+import org.seasar.dbflute.cbean.coption.*;
 import org.seasar.dbflute.cbean.cvalue.ConditionValue;
 import org.seasar.dbflute.cbean.sqlclause.SqlClause;
 import org.seasar.dbflute.exception.IllegalConditionBeanOperationException;
@@ -117,14 +119,14 @@ public class BsWhiteAllInOneClsNormalColRefCQ extends AbstractBsWhiteAllInOneCls
 
     /** 
      * Add order-by as ascend. <br />
-     * FOO_CODE: {PK, UQ+, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT}
+     * FOO_CODE: {PK, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT}
      * @return this. (NotNull)
      */
     public BsWhiteAllInOneClsNormalColRefCQ addOrderBy_FooCode_Asc() { regOBA("FOO_CODE"); return this; }
 
     /**
      * Add order-by as descend. <br />
-     * FOO_CODE: {PK, UQ+, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT}
+     * FOO_CODE: {PK, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT}
      * @return this. (NotNull)
      */
     public BsWhiteAllInOneClsNormalColRefCQ addOrderBy_FooCode_Desc() { regOBD("FOO_CODE"); return this; }
@@ -138,14 +140,14 @@ public class BsWhiteAllInOneClsNormalColRefCQ extends AbstractBsWhiteAllInOneCls
 
     /** 
      * Add order-by as ascend. <br />
-     * BAR_CODE: {PK, +UQ, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT}
+     * BAR_CODE: {PK, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT}
      * @return this. (NotNull)
      */
     public BsWhiteAllInOneClsNormalColRefCQ addOrderBy_BarCode_Asc() { regOBA("BAR_CODE"); return this; }
 
     /**
      * Add order-by as descend. <br />
-     * BAR_CODE: {PK, +UQ, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT}
+     * BAR_CODE: {PK, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT}
      * @return this. (NotNull)
      */
     public BsWhiteAllInOneClsNormalColRefCQ addOrderBy_BarCode_Desc() { regOBD("BAR_CODE"); return this; }
@@ -159,14 +161,14 @@ public class BsWhiteAllInOneClsNormalColRefCQ extends AbstractBsWhiteAllInOneCls
 
     /** 
      * Add order-by as ascend. <br />
-     * QUX_CODE: {PK, +UQ, NotNull, CHAR(3)}
+     * QUX_CODE: {PK, NotNull, CHAR(3)}
      * @return this. (NotNull)
      */
     public BsWhiteAllInOneClsNormalColRefCQ addOrderBy_QuxCode_Asc() { regOBA("QUX_CODE"); return this; }
 
     /**
      * Add order-by as descend. <br />
-     * QUX_CODE: {PK, +UQ, NotNull, CHAR(3)}
+     * QUX_CODE: {PK, NotNull, CHAR(3)}
      * @return this. (NotNull)
      */
     public BsWhiteAllInOneClsNormalColRefCQ addOrderBy_QuxCode_Desc() { regOBD("QUX_CODE"); return this; }
@@ -298,10 +300,23 @@ public class BsWhiteAllInOneClsNormalColRefCQ extends AbstractBsWhiteAllInOneCls
     }
 
     // ===================================================================================
+    //                                                                     ScalarCondition
+    //                                                                     ===============
+    protected Map<String, WhiteAllInOneClsNormalColRefCQ> _scalarConditionMap;
+    public Map<String, WhiteAllInOneClsNormalColRefCQ> getScalarCondition() { return _scalarConditionMap; }
+    public String keepScalarCondition(WhiteAllInOneClsNormalColRefCQ sq) {
+        if (_scalarConditionMap == null) { _scalarConditionMap = newLinkedHashMapSized(4); }
+        String ky = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
+        _scalarConditionMap.put(ky, sq); return "scalarCondition." + ky;
+    }
+
+    // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
     // very internal (for suppressing warn about 'Not Use Import')
     protected String xCB() { return WhiteAllInOneClsNormalColRefCB.class.getName(); }
     protected String xCQ() { return WhiteAllInOneClsNormalColRefCQ.class.getName(); }
+    protected String xCHp() { return HpCalculator.class.getName(); }
+    protected String xCOp() { return ConditionOption.class.getName(); }
     protected String xMap() { return Map.class.getName(); }
 }

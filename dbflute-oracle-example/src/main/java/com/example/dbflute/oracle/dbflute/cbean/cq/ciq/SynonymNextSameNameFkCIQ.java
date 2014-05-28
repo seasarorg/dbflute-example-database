@@ -25,9 +25,9 @@ public class SynonymNextSameNameFkCIQ extends AbstractBsSynonymNextSameNameFkCQ 
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public SynonymNextSameNameFkCIQ(ConditionQuery childQuery, SqlClause sqlClause
+    public SynonymNextSameNameFkCIQ(ConditionQuery referrerQuery, SqlClause sqlClause
                         , String aliasName, int nestLevel, BsSynonymNextSameNameFkCQ myCQ) {
-        super(childQuery, sqlClause, aliasName, nestLevel);
+        super(referrerQuery, sqlClause, aliasName, nestLevel);
         _myCQ = myCQ;
         _foreignPropertyName = _myCQ.xgetForeignPropertyName(); // accept foreign property name
         _relationPath = _myCQ.xgetRelationPath(); // accept relation path

@@ -162,7 +162,7 @@ public abstract class BsUnionVendorCheck implements Entity, Serializable, Clonea
     /**
      * {@inheritDoc}
      */
-    public Set<String> uniqueDrivenProperties() {
+    public Set<String> myuniqueDrivenProperties() {
         return __uniqueDrivenProperties.getPropertyNames();
     }
 
@@ -520,7 +520,7 @@ public abstract class BsUnionVendorCheck implements Entity, Serializable, Clonea
      * [set] TYPE_OF_BOOLEAN: {TINYINT(4), classification=BooleanFlg} <br />
      * @param typeOfBoolean The value of the column 'TYPE_OF_BOOLEAN'. (NullAllowed: null update allowed for no constraint)
      */
-    public void setTypeOfBoolean(Integer typeOfBoolean) {
+    protected void setTypeOfBoolean(Integer typeOfBoolean) {
         __modifiedProperties.addPropertyName("typeOfBoolean");
         this._typeOfBoolean = typeOfBoolean;
     }

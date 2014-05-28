@@ -62,7 +62,7 @@ public abstract class AbstractBsWhiteSuppressJoinSqManyCQ extends AbstractCondit
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
-     * MANY_ID: {NotNull, INT(10)}
+     * MANY_ID: {PK, NotNull, INT(10)}
      * @param manyId The value of manyId as equal. (NullAllowed: if null, no condition)
      */
     public void setManyId_Equal(Integer manyId) {
@@ -75,7 +75,7 @@ public abstract class AbstractBsWhiteSuppressJoinSqManyCQ extends AbstractCondit
 
     /**
      * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br />
-     * MANY_ID: {NotNull, INT(10)}
+     * MANY_ID: {PK, NotNull, INT(10)}
      * @param manyId The value of manyId as greaterThan. (NullAllowed: if null, no condition)
      */
     public void setManyId_GreaterThan(Integer manyId) {
@@ -84,7 +84,7 @@ public abstract class AbstractBsWhiteSuppressJoinSqManyCQ extends AbstractCondit
 
     /**
      * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br />
-     * MANY_ID: {NotNull, INT(10)}
+     * MANY_ID: {PK, NotNull, INT(10)}
      * @param manyId The value of manyId as lessThan. (NullAllowed: if null, no condition)
      */
     public void setManyId_LessThan(Integer manyId) {
@@ -93,7 +93,7 @@ public abstract class AbstractBsWhiteSuppressJoinSqManyCQ extends AbstractCondit
 
     /**
      * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br />
-     * MANY_ID: {NotNull, INT(10)}
+     * MANY_ID: {PK, NotNull, INT(10)}
      * @param manyId The value of manyId as greaterEqual. (NullAllowed: if null, no condition)
      */
     public void setManyId_GreaterEqual(Integer manyId) {
@@ -102,7 +102,7 @@ public abstract class AbstractBsWhiteSuppressJoinSqManyCQ extends AbstractCondit
 
     /**
      * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br />
-     * MANY_ID: {NotNull, INT(10)}
+     * MANY_ID: {PK, NotNull, INT(10)}
      * @param manyId The value of manyId as lessEqual. (NullAllowed: if null, no condition)
      */
     public void setManyId_LessEqual(Integer manyId) {
@@ -113,7 +113,7 @@ public abstract class AbstractBsWhiteSuppressJoinSqManyCQ extends AbstractCondit
      * RangeOf with various options. (versatile) <br />
      * {(default) minNumber &lt;= column &lt;= maxNumber} <br />
      * And NullIgnored, OnlyOnceRegistered. <br />
-     * MANY_ID: {NotNull, INT(10)}
+     * MANY_ID: {PK, NotNull, INT(10)}
      * @param minNumber The min number of manyId. (NullAllowed: if null, no from-condition)
      * @param maxNumber The max number of manyId. (NullAllowed: if null, no to-condition)
      * @param rangeOfOption The option of range-of. (NotNull)
@@ -124,7 +124,7 @@ public abstract class AbstractBsWhiteSuppressJoinSqManyCQ extends AbstractCondit
 
     /**
      * InScope {in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br />
-     * MANY_ID: {NotNull, INT(10)}
+     * MANY_ID: {PK, NotNull, INT(10)}
      * @param manyIdList The collection of manyId as inScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setManyId_InScope(Collection<Integer> manyIdList) {
@@ -137,7 +137,7 @@ public abstract class AbstractBsWhiteSuppressJoinSqManyCQ extends AbstractCondit
 
     /**
      * NotInScope {not in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br />
-     * MANY_ID: {NotNull, INT(10)}
+     * MANY_ID: {PK, NotNull, INT(10)}
      * @param manyIdList The collection of manyId as notInScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setManyId_NotInScope(Collection<Integer> manyIdList) {
@@ -147,6 +147,18 @@ public abstract class AbstractBsWhiteSuppressJoinSqManyCQ extends AbstractCondit
     protected void doSetManyId_NotInScope(Collection<Integer> manyIdList) {
         regINS(CK_NINS, cTL(manyIdList), getCValueManyId(), "MANY_ID");
     }
+
+    /**
+     * IsNull {is null}. And OnlyOnceRegistered. <br />
+     * MANY_ID: {PK, NotNull, INT(10)}
+     */
+    public void setManyId_IsNull() { regManyId(CK_ISN, DOBJ); }
+
+    /**
+     * IsNotNull {is not null}. And OnlyOnceRegistered. <br />
+     * MANY_ID: {PK, NotNull, INT(10)}
+     */
+    public void setManyId_IsNotNull() { regManyId(CK_ISNN, DOBJ); }
 
     protected void regManyId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueManyId(), "MANY_ID"); }
     protected abstract ConditionValue getCValueManyId();
@@ -239,7 +251,7 @@ public abstract class AbstractBsWhiteSuppressJoinSqManyCQ extends AbstractCondit
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
-     * SUPPRESS_JOIN_SQ_ID: {PK, NotNull, INT(10), FK to white_suppress_join_sq}
+     * SUPPRESS_JOIN_SQ_ID: {IX, NotNull, INT(10), FK to white_suppress_join_sq}
      * @param suppressJoinSqId The value of suppressJoinSqId as equal. (NullAllowed: if null, no condition)
      */
     public void setSuppressJoinSqId_Equal(Integer suppressJoinSqId) {
@@ -252,7 +264,7 @@ public abstract class AbstractBsWhiteSuppressJoinSqManyCQ extends AbstractCondit
 
     /**
      * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br />
-     * SUPPRESS_JOIN_SQ_ID: {PK, NotNull, INT(10), FK to white_suppress_join_sq}
+     * SUPPRESS_JOIN_SQ_ID: {IX, NotNull, INT(10), FK to white_suppress_join_sq}
      * @param suppressJoinSqId The value of suppressJoinSqId as greaterThan. (NullAllowed: if null, no condition)
      */
     public void setSuppressJoinSqId_GreaterThan(Integer suppressJoinSqId) {
@@ -261,7 +273,7 @@ public abstract class AbstractBsWhiteSuppressJoinSqManyCQ extends AbstractCondit
 
     /**
      * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br />
-     * SUPPRESS_JOIN_SQ_ID: {PK, NotNull, INT(10), FK to white_suppress_join_sq}
+     * SUPPRESS_JOIN_SQ_ID: {IX, NotNull, INT(10), FK to white_suppress_join_sq}
      * @param suppressJoinSqId The value of suppressJoinSqId as lessThan. (NullAllowed: if null, no condition)
      */
     public void setSuppressJoinSqId_LessThan(Integer suppressJoinSqId) {
@@ -270,7 +282,7 @@ public abstract class AbstractBsWhiteSuppressJoinSqManyCQ extends AbstractCondit
 
     /**
      * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br />
-     * SUPPRESS_JOIN_SQ_ID: {PK, NotNull, INT(10), FK to white_suppress_join_sq}
+     * SUPPRESS_JOIN_SQ_ID: {IX, NotNull, INT(10), FK to white_suppress_join_sq}
      * @param suppressJoinSqId The value of suppressJoinSqId as greaterEqual. (NullAllowed: if null, no condition)
      */
     public void setSuppressJoinSqId_GreaterEqual(Integer suppressJoinSqId) {
@@ -279,7 +291,7 @@ public abstract class AbstractBsWhiteSuppressJoinSqManyCQ extends AbstractCondit
 
     /**
      * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br />
-     * SUPPRESS_JOIN_SQ_ID: {PK, NotNull, INT(10), FK to white_suppress_join_sq}
+     * SUPPRESS_JOIN_SQ_ID: {IX, NotNull, INT(10), FK to white_suppress_join_sq}
      * @param suppressJoinSqId The value of suppressJoinSqId as lessEqual. (NullAllowed: if null, no condition)
      */
     public void setSuppressJoinSqId_LessEqual(Integer suppressJoinSqId) {
@@ -290,7 +302,7 @@ public abstract class AbstractBsWhiteSuppressJoinSqManyCQ extends AbstractCondit
      * RangeOf with various options. (versatile) <br />
      * {(default) minNumber &lt;= column &lt;= maxNumber} <br />
      * And NullIgnored, OnlyOnceRegistered. <br />
-     * SUPPRESS_JOIN_SQ_ID: {PK, NotNull, INT(10), FK to white_suppress_join_sq}
+     * SUPPRESS_JOIN_SQ_ID: {IX, NotNull, INT(10), FK to white_suppress_join_sq}
      * @param minNumber The min number of suppressJoinSqId. (NullAllowed: if null, no from-condition)
      * @param maxNumber The max number of suppressJoinSqId. (NullAllowed: if null, no to-condition)
      * @param rangeOfOption The option of range-of. (NotNull)
@@ -301,7 +313,7 @@ public abstract class AbstractBsWhiteSuppressJoinSqManyCQ extends AbstractCondit
 
     /**
      * InScope {in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br />
-     * SUPPRESS_JOIN_SQ_ID: {PK, NotNull, INT(10), FK to white_suppress_join_sq}
+     * SUPPRESS_JOIN_SQ_ID: {IX, NotNull, INT(10), FK to white_suppress_join_sq}
      * @param suppressJoinSqIdList The collection of suppressJoinSqId as inScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setSuppressJoinSqId_InScope(Collection<Integer> suppressJoinSqIdList) {
@@ -314,7 +326,7 @@ public abstract class AbstractBsWhiteSuppressJoinSqManyCQ extends AbstractCondit
 
     /**
      * NotInScope {not in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br />
-     * SUPPRESS_JOIN_SQ_ID: {PK, NotNull, INT(10), FK to white_suppress_join_sq}
+     * SUPPRESS_JOIN_SQ_ID: {IX, NotNull, INT(10), FK to white_suppress_join_sq}
      * @param suppressJoinSqIdList The collection of suppressJoinSqId as notInScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setSuppressJoinSqId_NotInScope(Collection<Integer> suppressJoinSqIdList) {
@@ -354,18 +366,6 @@ public abstract class AbstractBsWhiteSuppressJoinSqManyCQ extends AbstractCondit
         registerNotInScopeRelation(cb.query(), "SUPPRESS_JOIN_SQ_ID", "SUPPRESS_JOIN_SQ_ID", pp, "whiteSuppressJoinSq");
     }
     public abstract String keepSuppressJoinSqId_NotInScopeRelation_WhiteSuppressJoinSq(WhiteSuppressJoinSqCQ sq);
-
-    /**
-     * IsNull {is null}. And OnlyOnceRegistered. <br />
-     * SUPPRESS_JOIN_SQ_ID: {PK, NotNull, INT(10), FK to white_suppress_join_sq}
-     */
-    public void setSuppressJoinSqId_IsNull() { regSuppressJoinSqId(CK_ISN, DOBJ); }
-
-    /**
-     * IsNotNull {is not null}. And OnlyOnceRegistered. <br />
-     * SUPPRESS_JOIN_SQ_ID: {PK, NotNull, INT(10), FK to white_suppress_join_sq}
-     */
-    public void setSuppressJoinSqId_IsNotNull() { regSuppressJoinSqId(CK_ISNN, DOBJ); }
 
     protected void regSuppressJoinSqId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueSuppressJoinSqId(), "SUPPRESS_JOIN_SQ_ID"); }
     protected abstract ConditionValue getCValueSuppressJoinSqId();
@@ -622,7 +622,7 @@ public abstract class AbstractBsWhiteSuppressJoinSqManyCQ extends AbstractCondit
         WhiteSuppressJoinSqManyCB cb = new WhiteSuppressJoinSqManyCB(); cb.xsetupForDerivedReferrer(this);
         try { lock(); sq.query(cb); } finally { unlock(); }
         String pp = keepSpecifyMyselfDerived(cb.query());
-        String pk = "SUPPRESS_JOIN_SQ_ID";
+        String pk = "MANY_ID";
         registerSpecifyMyselfDerived(fn, cb.query(), pk, pk, pp, "myselfDerived", al, op);
     }
     public abstract String keepSpecifyMyselfDerived(WhiteSuppressJoinSqManyCQ sq);
@@ -638,7 +638,7 @@ public abstract class AbstractBsWhiteSuppressJoinSqManyCQ extends AbstractCondit
     protected <CB extends ConditionBean> void xqderiveMyselfDerived(String fn, SubQuery<CB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
         WhiteSuppressJoinSqManyCB cb = new WhiteSuppressJoinSqManyCB(); cb.xsetupForDerivedReferrer(this); sq.query((CB)cb);
-        String pk = "SUPPRESS_JOIN_SQ_ID";
+        String pk = "MANY_ID";
         String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
         String prpp = keepQueryMyselfDerivedParameter(vl);
         registerQueryMyselfDerived(fn, cb.query(), pk, pk, sqpp, "myselfDerived", rd, vl, prpp, op);

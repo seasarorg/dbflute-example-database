@@ -25,9 +25,9 @@ public class VendorLargeName901234567890CIQ extends AbstractBsVendorLargeName901
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public VendorLargeName901234567890CIQ(ConditionQuery childQuery, SqlClause sqlClause
+    public VendorLargeName901234567890CIQ(ConditionQuery referrerQuery, SqlClause sqlClause
                         , String aliasName, int nestLevel, BsVendorLargeName901234567890CQ myCQ) {
-        super(childQuery, sqlClause, aliasName, nestLevel);
+        super(referrerQuery, sqlClause, aliasName, nestLevel);
         _myCQ = myCQ;
         _foreignPropertyName = _myCQ.xgetForeignPropertyName(); // accept foreign property name
         _relationPath = _myCQ.xgetRelationPath(); // accept relation path

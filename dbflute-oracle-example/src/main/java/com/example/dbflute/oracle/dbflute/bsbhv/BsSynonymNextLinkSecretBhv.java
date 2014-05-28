@@ -169,7 +169,7 @@ public abstract class BsSynonymNextLinkSecretBhv extends AbstractBehaviorWritabl
      * </pre>
      * @param cb The condition-bean of SynonymNextLinkSecret. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -190,39 +190,64 @@ public abstract class BsSynonymNextLinkSecretBhv extends AbstractBehaviorWritabl
 
     /**
      * Select the entity by the primary-key value.
-     * @param secretCode The one of primary key. (NotNull)
+     * @param secretCode : PK, NotNull, CHAR(3). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public SynonymNextLinkSecret selectByPKValue(String secretCode) {
-        return doSelectByPKValue(secretCode, SynonymNextLinkSecret.class);
+        return doSelectByPK(secretCode, SynonymNextLinkSecret.class);
     }
 
-    protected <ENTITY extends SynonymNextLinkSecret> ENTITY doSelectByPKValue(String secretCode, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(secretCode), entityType);
+    protected <ENTITY extends SynonymNextLinkSecret> ENTITY doSelectByPK(String secretCode, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(secretCode), entityType);
+    }
+
+    protected <ENTITY extends SynonymNextLinkSecret> OptionalEntity<ENTITY> doSelectOptionalByPK(String secretCode, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(secretCode, entityType), secretCode);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param secretCode The one of primary key. (NotNull)
+     * @param secretCode : PK, NotNull, CHAR(3). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public SynonymNextLinkSecret selectByPKValueWithDeletedCheck(String secretCode) {
-        return doSelectByPKValueWithDeletedCheck(secretCode, SynonymNextLinkSecret.class);
+        return doSelectByPKWithDeletedCheck(secretCode, SynonymNextLinkSecret.class);
     }
 
-    protected <ENTITY extends SynonymNextLinkSecret> ENTITY doSelectByPKValueWithDeletedCheck(String secretCode, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(secretCode), entityType);
+    protected <ENTITY extends SynonymNextLinkSecret> ENTITY doSelectByPKWithDeletedCheck(String secretCode, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(secretCode), entityType);
     }
 
-    private SynonymNextLinkSecretCB buildPKCB(String secretCode) {
+    protected SynonymNextLinkSecretCB xprepareCBAsPK(String secretCode) {
         assertObjectNotNull("secretCode", secretCode);
-        SynonymNextLinkSecretCB cb = newMyConditionBean();
-        cb.query().setSecretCode_Equal(secretCode);
+        SynonymNextLinkSecretCB cb = newMyConditionBean(); cb.acceptPrimaryKey(secretCode);
+        return cb;
+    }
+
+    /**
+     * Select the entity by the unique-key value.
+     * @param secretName : UQ, NotNull, VARCHAR2(50). (NotNull)
+     * @return The optional entity selected by the unique key. (NotNull: if no data, empty entity)
+     * @exception EntityAlreadyDeletedException When get(), required() of return value is called and the value is null, which means entity has already been deleted (not found).
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     */
+    public OptionalEntity<SynonymNextLinkSecret> selectByUniqueOf(String secretName) {
+        return doSelectByUniqueOf(secretName, SynonymNextLinkSecret.class);
+    }
+
+    protected <ENTITY extends SynonymNextLinkSecret> OptionalEntity<ENTITY> doSelectByUniqueOf(String secretName, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectEntity(xprepareCBAsUniqueOf(secretName), entityType), secretName);
+    }
+
+    protected SynonymNextLinkSecretCB xprepareCBAsUniqueOf(String secretName) {
+        assertObjectNotNull("secretName", secretName);
+        SynonymNextLinkSecretCB cb = newMyConditionBean(); cb.acceptUniqueOf(secretName);
         return cb;
     }
 

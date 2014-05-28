@@ -98,6 +98,9 @@ public abstract class BsNestedFooBean implements Entity, Serializable, Cloneable
     // -----------------------------------------------------
     //                                              Internal
     //                                              --------
+    /** The unique-driven properties for this entity. (NotNull) */
+    protected final EntityUniqueDrivenProperties __uniqueDrivenProperties = newUniqueDrivenProperties();
+
     /** The modified properties for this entity. (NotNull) */
     protected final EntityModifiedProperties __modifiedProperties = newModifiedProperties();
 
@@ -139,6 +142,17 @@ public abstract class BsNestedFooBean implements Entity, Serializable, Cloneable
      */
     public boolean hasPrimaryKeyValue() {
         return false;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Set<String> myuniqueDrivenProperties() {
+        return __uniqueDrivenProperties.getPropertyNames();
+    }
+
+    protected EntityUniqueDrivenProperties newUniqueDrivenProperties() {
+        return new EntityUniqueDrivenProperties();
     }
 
     // ===================================================================================
@@ -217,8 +231,8 @@ public abstract class BsNestedFooBean implements Entity, Serializable, Cloneable
         if (!xSV(getCorgeList(), other.getCorgeList())) { return false; }
         return true;
     }
-    protected boolean xSV(Object value1, Object value2) {
-        return FunCustodial.isSameValue(value1, value2);
+    protected boolean xSV(Object v1, Object v2) {
+        return FunCustodial.isSameValue(v1, v2);
     }
 
     /**
@@ -226,19 +240,19 @@ public abstract class BsNestedFooBean implements Entity, Serializable, Cloneable
      * @return The hash-code from primary-key or columns.
      */
     public int hashCode() {
-        int result = 17;
-        result = xCH(result, getTableDbName());
-        result = xCH(result, getFooId());
-        result = xCH(result, getFooName());
-        result = xCH(result, getFooDate());
-        result = xCH(result, getBarBean());
-        result = xCH(result, getQuxList());
-        result = xCH(result, getQuuxList());
-        result = xCH(result, getCorgeList());
-        return result;
+        int hs = 17;
+        hs = xCH(hs, getTableDbName());
+        hs = xCH(hs, getFooId());
+        hs = xCH(hs, getFooName());
+        hs = xCH(hs, getFooDate());
+        hs = xCH(hs, getBarBean());
+        hs = xCH(hs, getQuxList());
+        hs = xCH(hs, getQuuxList());
+        hs = xCH(hs, getCorgeList());
+        return hs;
     }
-    protected int xCH(int result, Object value) {
-        return FunCustodial.calculateHashcode(result, value);
+    protected int xCH(int hs, Object vl) {
+        return FunCustodial.calculateHashcode(hs, vl);
     }
 
     /**
@@ -278,16 +292,16 @@ public abstract class BsNestedFooBean implements Entity, Serializable, Cloneable
     }
     protected String buildColumnString() {
         StringBuilder sb = new StringBuilder();
-        String delimiter = ", ";
-        sb.append(delimiter).append(getFooId());
-        sb.append(delimiter).append(getFooName());
-        sb.append(delimiter).append(xfUD(getFooDate()));
-        sb.append(delimiter).append(getBarBean());
-        sb.append(delimiter).append(getQuxList());
-        sb.append(delimiter).append(getQuuxList());
-        sb.append(delimiter).append(getCorgeList());
-        if (sb.length() > delimiter.length()) {
-            sb.delete(0, delimiter.length());
+        String dm = ", ";
+        sb.append(dm).append(getFooId());
+        sb.append(dm).append(getFooName());
+        sb.append(dm).append(xfUD(getFooDate()));
+        sb.append(dm).append(getBarBean());
+        sb.append(dm).append(getQuxList());
+        sb.append(dm).append(getQuuxList());
+        sb.append(dm).append(getCorgeList());
+        if (sb.length() > dm.length()) {
+            sb.delete(0, dm.length());
         }
         sb.insert(0, "{").append("}");
         return sb.toString();

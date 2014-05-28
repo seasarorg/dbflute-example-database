@@ -101,6 +101,8 @@ public class WhiteUqFkWithoutPkCIQ extends AbstractBsWhiteUqFkWithoutPkCQ {
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
     protected ConditionValue getCValueUqFkName() { return _myCQ.getUqFkName(); }
     protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
+    public String keepScalarCondition(WhiteUqFkWithoutPkCQ sq)
+    { throwIICBOE("ScalarCondition"); return null; }
 
     protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()
         throw new IllegalConditionBeanOperationException(name + " at InlineView is unsupported.");

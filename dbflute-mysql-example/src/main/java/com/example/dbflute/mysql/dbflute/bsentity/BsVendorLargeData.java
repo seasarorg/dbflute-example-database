@@ -168,13 +168,13 @@ public abstract class BsVendorLargeData implements Entity, Serializable, Cloneab
     public void uniqueBy(String stringUniqueIndex) {
         __uniqueDrivenProperties.clear();
         __uniqueDrivenProperties.addPropertyName("stringUniqueIndex");
-        _stringUniqueIndex = stringUniqueIndex;
+        setStringUniqueIndex(stringUniqueIndex);
     }
 
     /**
      * {@inheritDoc}
      */
-    public Set<String> uniqueDrivenProperties() {
+    public Set<String> myuniqueDrivenProperties() {
         return __uniqueDrivenProperties.getPropertyNames();
     }
 

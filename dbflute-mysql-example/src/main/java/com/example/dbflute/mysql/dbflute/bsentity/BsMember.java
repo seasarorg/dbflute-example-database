@@ -198,13 +198,13 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     public void uniqueBy(String memberAccount) {
         __uniqueDrivenProperties.clear();
         __uniqueDrivenProperties.addPropertyName("memberAccount");
-        _memberAccount = memberAccount;
+        setMemberAccount(memberAccount);
     }
 
     /**
      * {@inheritDoc}
      */
-    public Set<String> uniqueDrivenProperties() {
+    public Set<String> myuniqueDrivenProperties() {
         return __uniqueDrivenProperties.getPropertyNames();
     }
 
@@ -1198,7 +1198,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
      * [set] (会員ステータスコード)MEMBER_STATUS_CODE: {IX, NotNull, CHAR(3), FK to member_status, classification=MemberStatus} <br />
      * @param memberStatusCode The value of the column 'MEMBER_STATUS_CODE'. (basically NotNull if update: for the constraint)
      */
-    public void setMemberStatusCode(String memberStatusCode) {
+    protected void setMemberStatusCode(String memberStatusCode) {
         __modifiedProperties.addPropertyName("memberStatusCode");
         this._memberStatusCode = memberStatusCode;
     }

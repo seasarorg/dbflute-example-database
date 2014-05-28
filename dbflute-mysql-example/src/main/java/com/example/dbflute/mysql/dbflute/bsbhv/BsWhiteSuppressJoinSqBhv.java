@@ -48,16 +48,16 @@ import com.example.dbflute.mysql.dbflute.cbean.*;
  *     
  *
  * [foreign table]
- *     white_suppress_join_sq_many(AsOne), white_suppress_join_sq_one(AsOne)
+ *     white_suppress_join_sq_one(AsOne)
  *
  * [referrer table]
  *     white_suppress_join_sq_many, white_suppress_join_sq_one
  *
  * [foreign property]
- *     whiteSuppressJoinSqManyAsOne, whiteSuppressJoinSqOneAsOne
+ *     whiteSuppressJoinSqOneAsOne
  *
  * [referrer property]
- *     
+ *     whiteSuppressJoinSqManyList
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
@@ -396,22 +396,119 @@ public abstract class BsWhiteSuppressJoinSqBhv extends AbstractBehaviorWritable 
     }
 
     // ===================================================================================
-    //                                                                   Pull out Relation
-    //                                                                   =================
+    //                                                                       Load Referrer
+    //                                                                       =============
     /**
-     * Pull out the list of referrer-as-one table 'WhiteSuppressJoinSqMany'.
-     * @param whiteSuppressJoinSqList The list of whiteSuppressJoinSq. (NotNull, EmptyAllowed)
-     * @return The list of referrer-as-one table. (NotNull, EmptyAllowed, NotNullElement)
+     * Load referrer of whiteSuppressJoinSqManyList by the set-upper of referrer. <br />
+     * white_suppress_join_sq_many by SUPPRESS_JOIN_SQ_ID, named 'whiteSuppressJoinSqManyList'.
+     * <pre>
+     * whiteSuppressJoinSqBhv.<span style="color: #DD4747">loadWhiteSuppressJoinSqManyList</span>(whiteSuppressJoinSqList, new ConditionBeanSetupper&lt;WhiteSuppressJoinSqManyCB&gt;() {
+     *     public void setup(WhiteSuppressJoinSqManyCB cb) {
+     *         cb.setupSelect...();
+     *         cb.query().setFoo...(value);
+     *         cb.query().addOrderBy_Bar...();
+     *     }
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
+     * <span style="color: #3F7E5E">//}).withNestedList(referrerList -&gt {</span>
+     * <span style="color: #3F7E5E">//    ...</span>
+     * <span style="color: #3F7E5E">//});</span>
+     * for (WhiteSuppressJoinSq whiteSuppressJoinSq : whiteSuppressJoinSqList) {
+     *     ... = whiteSuppressJoinSq.<span style="color: #DD4747">getWhiteSuppressJoinSqManyList()</span>;
+     * }
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
+     * <pre>
+     * cb.query().setSuppressJoinSqId_InScope(pkList);
+     * cb.query().addOrderBy_SuppressJoinSqId_Asc();
+     * </pre>
+     * @param whiteSuppressJoinSqList The entity list of whiteSuppressJoinSq. (NotNull)
+     * @param setupper The callback to set up referrer condition-bean for loading referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public List<WhiteSuppressJoinSqMany> pulloutWhiteSuppressJoinSqManyAsOne(List<WhiteSuppressJoinSq> whiteSuppressJoinSqList) {
-        return helpPulloutInternally(whiteSuppressJoinSqList, new InternalPulloutCallback<WhiteSuppressJoinSq, WhiteSuppressJoinSqMany>() {
-            public WhiteSuppressJoinSqMany getFr(WhiteSuppressJoinSq et)
-            { return et.getWhiteSuppressJoinSqManyAsOne(); }
-            public boolean hasRf() { return true; }
-            public void setRfLs(WhiteSuppressJoinSqMany et, List<WhiteSuppressJoinSq> ls)
-            { if (!ls.isEmpty()) { et.setWhiteSuppressJoinSq(ls.get(0)); } }
+    public NestedReferrerLoader<WhiteSuppressJoinSqMany> loadWhiteSuppressJoinSqManyList(List<WhiteSuppressJoinSq> whiteSuppressJoinSqList, ConditionBeanSetupper<WhiteSuppressJoinSqManyCB> setupper) {
+        xassLRArg(whiteSuppressJoinSqList, setupper);
+        return doLoadWhiteSuppressJoinSqManyList(whiteSuppressJoinSqList, new LoadReferrerOption<WhiteSuppressJoinSqManyCB, WhiteSuppressJoinSqMany>().xinit(setupper));
+    }
+
+    /**
+     * Load referrer of whiteSuppressJoinSqManyList by the set-upper of referrer. <br />
+     * white_suppress_join_sq_many by SUPPRESS_JOIN_SQ_ID, named 'whiteSuppressJoinSqManyList'.
+     * <pre>
+     * whiteSuppressJoinSqBhv.<span style="color: #DD4747">loadWhiteSuppressJoinSqManyList</span>(whiteSuppressJoinSqList, new ConditionBeanSetupper&lt;WhiteSuppressJoinSqManyCB&gt;() {
+     *     public void setup(WhiteSuppressJoinSqManyCB cb) {
+     *         cb.setupSelect...();
+     *         cb.query().setFoo...(value);
+     *         cb.query().addOrderBy_Bar...();
+     *     }
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
+     * <span style="color: #3F7E5E">//}).withNestedList(referrerList -&gt {</span>
+     * <span style="color: #3F7E5E">//    ...</span>
+     * <span style="color: #3F7E5E">//});</span>
+     * ... = whiteSuppressJoinSq.<span style="color: #DD4747">getWhiteSuppressJoinSqManyList()</span>;
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
+     * <pre>
+     * cb.query().setSuppressJoinSqId_InScope(pkList);
+     * cb.query().addOrderBy_SuppressJoinSqId_Asc();
+     * </pre>
+     * @param whiteSuppressJoinSq The entity of whiteSuppressJoinSq. (NotNull)
+     * @param setupper The callback to set up referrer condition-bean for loading referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
+     */
+    public NestedReferrerLoader<WhiteSuppressJoinSqMany> loadWhiteSuppressJoinSqManyList(WhiteSuppressJoinSq whiteSuppressJoinSq, ConditionBeanSetupper<WhiteSuppressJoinSqManyCB> setupper) {
+        xassLRArg(whiteSuppressJoinSq, setupper);
+        return doLoadWhiteSuppressJoinSqManyList(xnewLRLs(whiteSuppressJoinSq), new LoadReferrerOption<WhiteSuppressJoinSqManyCB, WhiteSuppressJoinSqMany>().xinit(setupper));
+    }
+
+    /**
+     * {Refer to overload method that has an argument of the list of entity.} #beforejava8
+     * @param whiteSuppressJoinSq The entity of whiteSuppressJoinSq. (NotNull)
+     * @param loadReferrerOption The option of load-referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
+     */
+    public NestedReferrerLoader<WhiteSuppressJoinSqMany> loadWhiteSuppressJoinSqManyList(WhiteSuppressJoinSq whiteSuppressJoinSq, LoadReferrerOption<WhiteSuppressJoinSqManyCB, WhiteSuppressJoinSqMany> loadReferrerOption) {
+        xassLRArg(whiteSuppressJoinSq, loadReferrerOption);
+        return loadWhiteSuppressJoinSqManyList(xnewLRLs(whiteSuppressJoinSq), loadReferrerOption);
+    }
+
+    /**
+     * {Refer to overload method that has an argument of condition-bean setupper.} #beforejava8
+     * @param whiteSuppressJoinSqList The entity list of whiteSuppressJoinSq. (NotNull)
+     * @param loadReferrerOption The option of load-referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
+     */
+    @SuppressWarnings("unchecked")
+    public NestedReferrerLoader<WhiteSuppressJoinSqMany> loadWhiteSuppressJoinSqManyList(List<WhiteSuppressJoinSq> whiteSuppressJoinSqList, LoadReferrerOption<WhiteSuppressJoinSqManyCB, WhiteSuppressJoinSqMany> loadReferrerOption) {
+        xassLRArg(whiteSuppressJoinSqList, loadReferrerOption);
+        if (whiteSuppressJoinSqList.isEmpty()) { return (NestedReferrerLoader<WhiteSuppressJoinSqMany>)EMPTY_LOADER; }
+        return doLoadWhiteSuppressJoinSqManyList(whiteSuppressJoinSqList, loadReferrerOption);
+    }
+
+    protected NestedReferrerLoader<WhiteSuppressJoinSqMany> doLoadWhiteSuppressJoinSqManyList(List<WhiteSuppressJoinSq> whiteSuppressJoinSqList, LoadReferrerOption<WhiteSuppressJoinSqManyCB, WhiteSuppressJoinSqMany> option) {
+        final WhiteSuppressJoinSqManyBhv referrerBhv = xgetBSFLR().select(WhiteSuppressJoinSqManyBhv.class);
+        return helpLoadReferrerInternally(whiteSuppressJoinSqList, option, new InternalLoadReferrerCallback<WhiteSuppressJoinSq, Integer, WhiteSuppressJoinSqManyCB, WhiteSuppressJoinSqMany>() {
+            public Integer getPKVal(WhiteSuppressJoinSq et)
+            { return et.getSuppressJoinSqId(); }
+            public void setRfLs(WhiteSuppressJoinSq et, List<WhiteSuppressJoinSqMany> ls)
+            { et.setWhiteSuppressJoinSqManyList(ls); }
+            public WhiteSuppressJoinSqManyCB newMyCB() { return referrerBhv.newMyConditionBean(); }
+            public void qyFKIn(WhiteSuppressJoinSqManyCB cb, List<Integer> ls)
+            { cb.query().setSuppressJoinSqId_InScope(ls); }
+            public void qyOdFKAsc(WhiteSuppressJoinSqManyCB cb) { cb.query().addOrderBy_SuppressJoinSqId_Asc(); }
+            public void spFKCol(WhiteSuppressJoinSqManyCB cb) { cb.specify().columnSuppressJoinSqId(); }
+            public List<WhiteSuppressJoinSqMany> selRfLs(WhiteSuppressJoinSqManyCB cb) { return referrerBhv.selectList(cb); }
+            public Integer getFKVal(WhiteSuppressJoinSqMany re) { return re.getSuppressJoinSqId(); }
+            public void setlcEt(WhiteSuppressJoinSqMany re, WhiteSuppressJoinSq le)
+            { re.setWhiteSuppressJoinSq(le); }
+            public String getRfPrNm() { return "whiteSuppressJoinSqManyList"; }
         });
     }
+
+    // ===================================================================================
+    //                                                                   Pull out Relation
+    //                                                                   =================
     /**
      * Pull out the list of referrer-as-one table 'WhiteSuppressJoinSqOne'.
      * @param whiteSuppressJoinSqList The list of whiteSuppressJoinSq. (NotNull, EmptyAllowed)

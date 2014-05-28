@@ -73,6 +73,8 @@ public class WhiteNotPkCIQ extends AbstractBsWhiteNotPkCQ {
     protected ConditionValue getCValueNotPkName() { return _myCQ.getNotPkName(); }
     protected ConditionValue getCValueNotPkInteger() { return _myCQ.getNotPkInteger(); }
     protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
+    public String keepScalarCondition(WhiteNotPkCQ sq)
+    { throwIICBOE("ScalarCondition"); return null; }
 
     protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()
         throw new IllegalConditionBeanOperationException(name + " at InlineView is unsupported.");

@@ -85,20 +85,12 @@ public class WhiteSuppressJoinSqCIQ extends AbstractBsWhiteSuppressJoinSqCQ {
     //                                                                Override about Query
     //                                                                ====================
     protected ConditionValue getCValueSuppressJoinSqId() { return _myCQ.getSuppressJoinSqId(); }
-    public String keepSuppressJoinSqId_ExistsReferrer_WhiteSuppressJoinSqManyAsOne(WhiteSuppressJoinSqManyCQ sq)
-    { throwIICBOE("ExistsReferrer"); return null; }
     public String keepSuppressJoinSqId_ExistsReferrer_WhiteSuppressJoinSqOneAsOne(WhiteSuppressJoinSqOneCQ sq)
     { throwIICBOE("ExistsReferrer"); return null; }
-    public String keepSuppressJoinSqId_NotExistsReferrer_WhiteSuppressJoinSqManyAsOne(WhiteSuppressJoinSqManyCQ sq)
-    { throwIICBOE("NotExistsReferrer"); return null; }
     public String keepSuppressJoinSqId_NotExistsReferrer_WhiteSuppressJoinSqOneAsOne(WhiteSuppressJoinSqOneCQ sq)
     { throwIICBOE("NotExistsReferrer"); return null; }
-    public String keepSuppressJoinSqId_InScopeRelation_WhiteSuppressJoinSqManyAsOne(WhiteSuppressJoinSqManyCQ sq)
-    { return _myCQ.keepSuppressJoinSqId_InScopeRelation_WhiteSuppressJoinSqManyAsOne(sq); }
     public String keepSuppressJoinSqId_InScopeRelation_WhiteSuppressJoinSqOneAsOne(WhiteSuppressJoinSqOneCQ sq)
     { return _myCQ.keepSuppressJoinSqId_InScopeRelation_WhiteSuppressJoinSqOneAsOne(sq); }
-    public String keepSuppressJoinSqId_NotInScopeRelation_WhiteSuppressJoinSqManyAsOne(WhiteSuppressJoinSqManyCQ sq)
-    { return _myCQ.keepSuppressJoinSqId_NotInScopeRelation_WhiteSuppressJoinSqManyAsOne(sq); }
     public String keepSuppressJoinSqId_NotInScopeRelation_WhiteSuppressJoinSqOneAsOne(WhiteSuppressJoinSqOneCQ sq)
     { return _myCQ.keepSuppressJoinSqId_NotInScopeRelation_WhiteSuppressJoinSqOneAsOne(sq); }
     protected ConditionValue getCValueSuppressJoinSqName() { return _myCQ.getSuppressJoinSqName(); }

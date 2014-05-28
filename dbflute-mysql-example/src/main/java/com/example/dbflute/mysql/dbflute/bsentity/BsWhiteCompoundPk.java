@@ -155,9 +155,8 @@ public abstract class BsWhiteCompoundPk implements Entity, Serializable, Cloneab
     public void uniqueByPkSecondIdReferredId(Integer pkSecondId, Integer referredId) {
         __uniqueDrivenProperties.clear();
         __uniqueDrivenProperties.addPropertyName("pkSecondId");
-        _pkSecondId = pkSecondId;
         __uniqueDrivenProperties.addPropertyName("referredId");
-        _referredId = referredId;
+        setPkSecondId(pkSecondId);setReferredId(referredId);
     }
 
     /**
@@ -169,15 +168,14 @@ public abstract class BsWhiteCompoundPk implements Entity, Serializable, Cloneab
     public void uniqueByPkSecondIdPkFirstId(Integer pkSecondId, Integer pkFirstId) {
         __uniqueDrivenProperties.clear();
         __uniqueDrivenProperties.addPropertyName("pkSecondId");
-        _pkSecondId = pkSecondId;
         __uniqueDrivenProperties.addPropertyName("pkFirstId");
-        _pkFirstId = pkFirstId;
+        setPkSecondId(pkSecondId);setPkFirstId(pkFirstId);
     }
 
     /**
      * {@inheritDoc}
      */
-    public Set<String> uniqueDrivenProperties() {
+    public Set<String> myuniqueDrivenProperties() {
         return __uniqueDrivenProperties.getPropertyNames();
     }
 

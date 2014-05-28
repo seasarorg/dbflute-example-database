@@ -3,6 +3,8 @@ package com.example.dbflute.oracle.dbflute.cbean.cq.bs;
 import java.util.Map;
 
 import org.seasar.dbflute.cbean.*;
+import org.seasar.dbflute.cbean.chelper.*;
+import org.seasar.dbflute.cbean.coption.*;
 import org.seasar.dbflute.cbean.cvalue.ConditionValue;
 import org.seasar.dbflute.cbean.sqlclause.SqlClause;
 import org.seasar.dbflute.exception.IllegalConditionBeanOperationException;
@@ -24,8 +26,8 @@ public class BsVendorLargeDataRefCQ extends AbstractBsVendorLargeDataRefCQ {
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public BsVendorLargeDataRefCQ(ConditionQuery childQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
-        super(childQuery, sqlClause, aliasName, nestLevel);
+    public BsVendorLargeDataRefCQ(ConditionQuery referrerQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
+        super(referrerQuery, sqlClause, aliasName, nestLevel);
     }
 
     // ===================================================================================
@@ -388,7 +390,7 @@ public class BsVendorLargeDataRefCQ extends AbstractBsVendorLargeDataRefCQ {
     // ===================================================================================
     //                                                                         Union Query
     //                                                                         ===========
-    protected void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
+    public void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
         VendorLargeDataRefCQ bq = (VendorLargeDataRefCQ)bqs;
         VendorLargeDataRefCQ uq = (VendorLargeDataRefCQ)uqs;
         if (bq.hasConditionQueryVendorLargeData()) {
@@ -539,5 +541,7 @@ public class BsVendorLargeDataRefCQ extends AbstractBsVendorLargeDataRefCQ {
     // very internal (for suppressing warn about 'Not Use Import')
     protected String xCB() { return VendorLargeDataRefCB.class.getName(); }
     protected String xCQ() { return VendorLargeDataRefCQ.class.getName(); }
+    protected String xCHp() { return HpCalculator.class.getName(); }
+    protected String xCOp() { return ConditionOption.class.getName(); }
     protected String xMap() { return Map.class.getName(); }
 }

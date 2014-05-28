@@ -303,6 +303,16 @@ select category.CLS_CATEGORY_NAME as classificationName
         ; map:{code=BAR; name=BarName; alias=BarBar; comment=here}
         ; map:{code=QUX; name=QuxName; alias=QuxQux}
     }
+
+    # the test of unique key as classification
+    ; UQClassificationType = list:{
+        ; map:{topComment=unique key as classification; codeType=String}
+        ; map:{
+            ; table=WHITE_UQ_CLASSIFICATION
+            ; code=UQ_CLS_CODE; name=UQ_CLS_CODE
+            ; orderBy=UQ_CLS_CODE
+        }
+    }
 }
 # ----------------/
 

@@ -77,10 +77,24 @@ public class BsSynonymNextLinkSecretCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                 PrimaryKey Handling
     //                                                                 ===================
+    /**
+     * Accept the query condition of primary key as equal.
+     * @param secretCode : PK, NotNull, CHAR(3). (NotNull)
+     */
     public void acceptPrimaryKey(String secretCode) {
         assertObjectNotNull("secretCode", secretCode);
         BsSynonymNextLinkSecretCB cb = this;
-        cb.query().setSecretCode_Equal(secretCode);
+        cb.query().setSecretCode_Equal(secretCode);;
+    }
+
+    /**
+     * Accept the query condition of unique key as equal.
+     * @param secretName : UQ, NotNull, VARCHAR2(50). (NotNull)
+     */
+    public void acceptUniqueOf(String secretName) {
+        assertObjectNotNull("secretName", secretName);
+        BsSynonymNextLinkSecretCB cb = this;
+        cb.query().setSecretName_Equal(secretName);;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {
@@ -414,6 +428,11 @@ public class BsSynonymNextLinkSecretCB extends AbstractConditionBean {
      */
     public void orScopeQuery(OrQuery<SynonymNextLinkSecretCB> orQuery) {
         xorSQ((SynonymNextLinkSecretCB)this, orQuery);
+    }
+
+    @Override
+    protected HpCBPurpose xhandleOrSQPurposeChange() {
+        return null; // means no check
     }
 
     /**

@@ -33,13 +33,14 @@ public class WhiteUqFkDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgUqFkId(), "uqFkId");
         setupEpg(_epgMap, new EpgUqFkCode(), "uqFkCode");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgUqFkId implements PropertyGateway {
         public Object read(Entity et) { return ((WhiteUqFk)et).getUqFkId(); }
         public void write(Entity et, Object vl) { ((WhiteUqFk)et).setUqFkId(ctl(vl)); }
@@ -48,6 +49,8 @@ public class WhiteUqFkDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((WhiteUqFk)et).getUqFkCode(); }
         public void write(Entity et, Object vl) { ((WhiteUqFk)et).setUqFkCode((String)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -63,10 +66,18 @@ public class WhiteUqFkDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnUqFkId = cci("UQ_FK_ID", "UQ_FK_ID", null, null, true, "uqFkId", Long.class, true, false, "NUMBER", 16, 0, null, false, null, null, null, "whiteUqFkRefByFkToPkIdList", null);
-    protected final ColumnInfo _columnUqFkCode = cci("UQ_FK_CODE", "UQ_FK_CODE", null, null, true, "uqFkCode", String.class, false, false, "CHAR", 3, 0, null, false, null, null, null, "whiteUqFkRefByFkToUqCodeList", null);
+    protected final ColumnInfo _columnUqFkId = cci("UQ_FK_ID", "UQ_FK_ID", null, null, Long.class, "uqFkId", null, true, false, true, "NUMBER", 16, 0, null, false, null, null, null, "whiteUqFkRefByFkToPkIdList", null);
+    protected final ColumnInfo _columnUqFkCode = cci("UQ_FK_CODE", "UQ_FK_CODE", null, null, String.class, "uqFkCode", null, false, false, true, "CHAR", 3, 0, null, false, null, null, null, "whiteUqFkRefByFkToUqCodeList", null);
 
+    /**
+     * UQ_FK_ID: {PK, NotNull, NUMBER(16)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnUqFkId() { return _columnUqFkId; }
+    /**
+     * UQ_FK_CODE: {UQ, NotNull, CHAR(3)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnUqFkCode() { return _columnUqFkCode; }
 
     protected List<ColumnInfo> ccil() {
@@ -91,6 +102,8 @@ public class WhiteUqFkDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // cannot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------
@@ -98,10 +111,18 @@ public class WhiteUqFkDbm extends AbstractDBMeta {
     // -----------------------------------------------------
     //                                     Referrer Property
     //                                     -----------------
+    /**
+     * WHITE_UQ_FK_REF by FK_TO_PK_ID, named 'whiteUqFkRefByFkToPkIdList'.
+     * @return The information object of referrer property. (NotNull)
+     */
     public ReferrerInfo referrerWhiteUqFkRefByFkToPkIdList() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnUqFkId(), WhiteUqFkRefDbm.getInstance().columnFkToPkId());
         return cri("FK_WHITE_UQ_FK_REF_PK", "whiteUqFkRefByFkToPkIdList", this, WhiteUqFkRefDbm.getInstance(), mp, false, "whiteUqFkByFkToPkId");
     }
+    /**
+     * WHITE_UQ_FK_REF by FK_TO_UQ_CODE, named 'whiteUqFkRefByFkToUqCodeList'.
+     * @return The information object of referrer property. (NotNull)
+     */
     public ReferrerInfo referrerWhiteUqFkRefByFkToUqCodeList() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnUqFkCode(), WhiteUqFkRefDbm.getInstance().columnFkToUqCode());
         return cri("FK_WHITE_UQ_FK_REF_UQ", "whiteUqFkRefByFkToUqCodeList", this, WhiteUqFkRefDbm.getInstance(), mp, false, "whiteUqFkByFkToUqCode");

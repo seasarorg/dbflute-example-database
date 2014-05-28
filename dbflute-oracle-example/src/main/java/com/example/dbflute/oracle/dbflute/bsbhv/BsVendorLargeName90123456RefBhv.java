@@ -169,7 +169,7 @@ public abstract class BsVendorLargeName90123456RefBhv extends AbstractBehaviorWr
      * </pre>
      * @param cb The condition-bean of VendorLargeName90123456Ref. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -190,39 +190,42 @@ public abstract class BsVendorLargeName90123456RefBhv extends AbstractBehaviorWr
 
     /**
      * Select the entity by the primary-key value.
-     * @param vendorLargeName90123RefId The one of primary key. (NotNull)
+     * @param vendorLargeName90123RefId : PK, NotNull, NUMBER(16). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public VendorLargeName90123456Ref selectByPKValue(Long vendorLargeName90123RefId) {
-        return doSelectByPKValue(vendorLargeName90123RefId, VendorLargeName90123456Ref.class);
+        return doSelectByPK(vendorLargeName90123RefId, VendorLargeName90123456Ref.class);
     }
 
-    protected <ENTITY extends VendorLargeName90123456Ref> ENTITY doSelectByPKValue(Long vendorLargeName90123RefId, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(vendorLargeName90123RefId), entityType);
+    protected <ENTITY extends VendorLargeName90123456Ref> ENTITY doSelectByPK(Long vendorLargeName90123RefId, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(vendorLargeName90123RefId), entityType);
+    }
+
+    protected <ENTITY extends VendorLargeName90123456Ref> OptionalEntity<ENTITY> doSelectOptionalByPK(Long vendorLargeName90123RefId, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(vendorLargeName90123RefId, entityType), vendorLargeName90123RefId);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param vendorLargeName90123RefId The one of primary key. (NotNull)
+     * @param vendorLargeName90123RefId : PK, NotNull, NUMBER(16). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public VendorLargeName90123456Ref selectByPKValueWithDeletedCheck(Long vendorLargeName90123RefId) {
-        return doSelectByPKValueWithDeletedCheck(vendorLargeName90123RefId, VendorLargeName90123456Ref.class);
+        return doSelectByPKWithDeletedCheck(vendorLargeName90123RefId, VendorLargeName90123456Ref.class);
     }
 
-    protected <ENTITY extends VendorLargeName90123456Ref> ENTITY doSelectByPKValueWithDeletedCheck(Long vendorLargeName90123RefId, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(vendorLargeName90123RefId), entityType);
+    protected <ENTITY extends VendorLargeName90123456Ref> ENTITY doSelectByPKWithDeletedCheck(Long vendorLargeName90123RefId, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(vendorLargeName90123RefId), entityType);
     }
 
-    private VendorLargeName90123456RefCB buildPKCB(Long vendorLargeName90123RefId) {
+    protected VendorLargeName90123456RefCB xprepareCBAsPK(Long vendorLargeName90123RefId) {
         assertObjectNotNull("vendorLargeName90123RefId", vendorLargeName90123RefId);
-        VendorLargeName90123456RefCB cb = newMyConditionBean();
-        cb.query().setVendorLargeName90123RefId_Equal(vendorLargeName90123RefId);
+        VendorLargeName90123456RefCB cb = newMyConditionBean(); cb.acceptPrimaryKey(vendorLargeName90123RefId);
         return cb;
     }
 
@@ -387,7 +390,8 @@ public abstract class BsVendorLargeName90123456RefBhv extends AbstractBehaviorWr
      */
     public List<VendorLargeName901234567890> pulloutVendorLargeName901234567890(List<VendorLargeName90123456Ref> vendorLargeName90123456RefList) {
         return helpPulloutInternally(vendorLargeName90123456RefList, new InternalPulloutCallback<VendorLargeName90123456Ref, VendorLargeName901234567890>() {
-            public VendorLargeName901234567890 getFr(VendorLargeName90123456Ref et) { return et.getVendorLargeName901234567890(); }
+            public VendorLargeName901234567890 getFr(VendorLargeName90123456Ref et)
+            { return et.getVendorLargeName901234567890(); }
             public boolean hasRf() { return true; }
             public void setRfLs(VendorLargeName901234567890 et, List<VendorLargeName90123456Ref> ls)
             { et.setVendorLargeName90123456RefList(ls); }

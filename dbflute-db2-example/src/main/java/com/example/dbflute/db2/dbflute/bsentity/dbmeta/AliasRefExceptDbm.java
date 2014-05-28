@@ -33,13 +33,14 @@ public class AliasRefExceptDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgRefExceptId(), "refExceptId");
         setupEpg(_epgMap, new EpgExceptId(), "exceptId");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgRefExceptId implements PropertyGateway {
         public Object read(Entity et) { return ((AliasRefExcept)et).getRefExceptId(); }
         public void write(Entity et, Object vl) { ((AliasRefExcept)et).setRefExceptId(ctl(vl)); }
@@ -48,6 +49,22 @@ public class AliasRefExceptDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((AliasRefExcept)et).getExceptId(); }
         public void write(Entity et, Object vl) { ((AliasRefExcept)et).setExceptId(ctl(vl)); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
+
+    // -----------------------------------------------------
+    //                                      Foreign Property
+    //                                      ----------------
+    protected final Map<String, PropertyGateway> _efpgMap = newHashMap();
+    {
+        setupEfpg(_efpgMap, new EfpgAliasExcept(), "aliasExcept");
+    }
+    public class EfpgAliasExcept implements PropertyGateway {
+        public Object read(Entity et) { return ((AliasRefExcept)et).getAliasExcept(); }
+        public void write(Entity et, Object vl) { ((AliasRefExcept)et).setAliasExcept((AliasExcept)vl); }
+    }
+    public PropertyGateway findForeignPropertyGateway(String prop)
+    { return doFindEfpg(_efpgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -63,10 +80,18 @@ public class AliasRefExceptDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnRefExceptId = cci("REF_EXCEPT_ID", "REF_EXCEPT_ID", null, null, true, "refExceptId", Long.class, true, false, "DECIMAL", 16, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnExceptId = cci("EXCEPT_ID", "EXCEPT_ID", null, null, true, "exceptId", Long.class, false, false, "DECIMAL", 16, 0, null, false, null, null, "aliasExcept", null, null);
+    protected final ColumnInfo _columnRefExceptId = cci("REF_EXCEPT_ID", "REF_EXCEPT_ID", null, null, Long.class, "refExceptId", null, true, false, true, "DECIMAL", 16, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnExceptId = cci("EXCEPT_ID", "EXCEPT_ID", null, null, Long.class, "exceptId", null, false, false, true, "DECIMAL", 16, 0, null, false, null, null, "aliasExcept", null, null);
 
+    /**
+     * REF_EXCEPT_ID: {PK, NotNull, DECIMAL(16)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnRefExceptId() { return _columnRefExceptId; }
+    /**
+     * EXCEPT_ID: {NotNull, DECIMAL(16), FK to ALIAS_EXCEPT}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnExceptId() { return _columnExceptId; }
 
     protected List<ColumnInfo> ccil() {
@@ -91,12 +116,18 @@ public class AliasRefExceptDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // cannot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------
+    /**
+     * ALIAS_EXCEPT by my EXCEPT_ID, named 'aliasExcept'.
+     * @return The information object of foreign property. (NotNull)
+     */
     public ForeignInfo foreignAliasExcept() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnExceptId(), AliasExceptDbm.getInstance().columnExceptId());
-        return cfi("FK_WHITE_REF_EXCEPT", "aliasExcept", this, AliasExceptDbm.getInstance(), mp, 0, false, false, false, false, null, null, false, "aliasRefExceptList");
+        return cfi("FK_WHITE_REF_EXCEPT", "aliasExcept", this, AliasExceptDbm.getInstance(), mp, 0, null, false, false, false, false, null, null, false, "aliasRefExceptList");
     }
 
     // -----------------------------------------------------

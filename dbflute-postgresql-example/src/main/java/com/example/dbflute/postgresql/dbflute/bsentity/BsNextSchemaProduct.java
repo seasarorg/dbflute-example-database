@@ -123,7 +123,7 @@ public abstract class BsNextSchemaProduct implements Entity, Serializable, Clone
     /**
      * {@inheritDoc}
      */
-    public Set<String> uniqueDrivenProperties() {
+    public Set<String> myuniqueDrivenProperties() {
         return __uniqueDrivenProperties.getPropertyNames();
     }
 

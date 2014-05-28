@@ -169,7 +169,7 @@ public abstract class BsWhiteTargetBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of WhiteTarget. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -190,39 +190,42 @@ public abstract class BsWhiteTargetBhv extends AbstractBehaviorWritable {
 
     /**
      * Select the entity by the primary-key value.
-     * @param targetId The one of primary key. (NotNull)
+     * @param targetId : PK, NotNull, NUMBER(16). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteTarget selectByPKValue(Long targetId) {
-        return doSelectByPKValue(targetId, WhiteTarget.class);
+        return doSelectByPK(targetId, WhiteTarget.class);
     }
 
-    protected <ENTITY extends WhiteTarget> ENTITY doSelectByPKValue(Long targetId, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(targetId), entityType);
+    protected <ENTITY extends WhiteTarget> ENTITY doSelectByPK(Long targetId, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(targetId), entityType);
+    }
+
+    protected <ENTITY extends WhiteTarget> OptionalEntity<ENTITY> doSelectOptionalByPK(Long targetId, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(targetId, entityType), targetId);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param targetId The one of primary key. (NotNull)
+     * @param targetId : PK, NotNull, NUMBER(16). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteTarget selectByPKValueWithDeletedCheck(Long targetId) {
-        return doSelectByPKValueWithDeletedCheck(targetId, WhiteTarget.class);
+        return doSelectByPKWithDeletedCheck(targetId, WhiteTarget.class);
     }
 
-    protected <ENTITY extends WhiteTarget> ENTITY doSelectByPKValueWithDeletedCheck(Long targetId, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(targetId), entityType);
+    protected <ENTITY extends WhiteTarget> ENTITY doSelectByPKWithDeletedCheck(Long targetId, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(targetId), entityType);
     }
 
-    private WhiteTargetCB buildPKCB(Long targetId) {
+    protected WhiteTargetCB xprepareCBAsPK(Long targetId) {
         assertObjectNotNull("targetId", targetId);
-        WhiteTargetCB cb = newMyConditionBean();
-        cb.query().setTargetId_Equal(targetId);
+        WhiteTargetCB cb = newMyConditionBean(); cb.acceptPrimaryKey(targetId);
         return cb;
     }
 

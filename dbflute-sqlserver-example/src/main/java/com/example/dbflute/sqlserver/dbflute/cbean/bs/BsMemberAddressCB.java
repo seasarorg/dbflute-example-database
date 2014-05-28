@@ -78,10 +78,25 @@ public class BsMemberAddressCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                 PrimaryKey Handling
     //                                                                 ===================
+    /**
+     * Accept the query condition of primary key as equal.
+     * @param memberAddressId : PK, NotNull, int(10). (NotNull)
+     */
     public void acceptPrimaryKey(Integer memberAddressId) {
         assertObjectNotNull("memberAddressId", memberAddressId);
         BsMemberAddressCB cb = this;
-        cb.query().setMemberAddressId_Equal(memberAddressId);
+        cb.query().setMemberAddressId_Equal(memberAddressId);;
+    }
+
+    /**
+     * Accept the query condition of unique key as equal.
+     * @param memberId : UQ+, NotNull, int(10), FK to MEMBER. (NotNull)
+     * @param validBeginDate : +UQ, NotNull, datetime(23, 3). (NotNull)
+     */
+    public void acceptUniqueOf(Integer memberId, java.sql.Timestamp validBeginDate) {
+        assertObjectNotNull("memberId", memberId);assertObjectNotNull("validBeginDate", validBeginDate);
+        BsMemberAddressCB cb = this;
+        cb.query().setMemberId_Equal(memberId);;cb.query().setValidBeginDate_Equal(validBeginDate);;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {
@@ -353,12 +368,12 @@ public class BsMemberAddressCB extends AbstractConditionBean {
          */
         public HpSpecifiedColumn columnMemberAddressId() { return doColumn("MEMBER_ADDRESS_ID"); }
         /**
-         * MEMBER_ID: {UQ, NotNull, int(10), FK to MEMBER}
+         * MEMBER_ID: {UQ+, NotNull, int(10), FK to MEMBER}
          * @return The information object of specified column. (NotNull)
          */
         public HpSpecifiedColumn columnMemberId() { return doColumn("MEMBER_ID"); }
         /**
-         * VALID_BEGIN_DATE: {UQ+, NotNull, datetime(23, 3)}
+         * VALID_BEGIN_DATE: {+UQ, NotNull, datetime(23, 3)}
          * @return The information object of specified column. (NotNull)
          */
         public HpSpecifiedColumn columnValidBeginDate() { return doColumn("VALID_BEGIN_DATE"); }
@@ -555,6 +570,11 @@ public class BsMemberAddressCB extends AbstractConditionBean {
      */
     public void orScopeQuery(OrQuery<MemberAddressCB> orQuery) {
         xorSQ((MemberAddressCB)this, orQuery);
+    }
+
+    @Override
+    protected HpCBPurpose xhandleOrSQPurposeChange() {
+        return null; // means no check
     }
 
     /**

@@ -47,13 +47,13 @@ import com.example.dbflute.mysql.dbflute.exentity.*;
  *     
  * 
  * [referrer table]
- *     
+ *     white_suppress_join_sq_one
  * 
  * [foreign property]
  *     
  * 
  * [referrer property]
- *     
+ *     whiteSuppressJoinSqOneList
  * 
  * [get/set template]
  * /= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
@@ -138,7 +138,7 @@ public abstract class BsWhiteSuppressJoinSqOneAddi implements Entity, Serializab
     /**
      * {@inheritDoc}
      */
-    public Set<String> uniqueDrivenProperties() {
+    public Set<String> myuniqueDrivenProperties() {
         return __uniqueDrivenProperties.getPropertyNames();
     }
 
@@ -152,6 +152,26 @@ public abstract class BsWhiteSuppressJoinSqOneAddi implements Entity, Serializab
     // ===================================================================================
     //                                                                   Referrer Property
     //                                                                   =================
+    /** white_suppress_join_sq_one by ONE_ADDI_ID, named 'whiteSuppressJoinSqOneList'. */
+    protected List<WhiteSuppressJoinSqOne> _whiteSuppressJoinSqOneList;
+
+    /**
+     * white_suppress_join_sq_one by ONE_ADDI_ID, named 'whiteSuppressJoinSqOneList'.
+     * @return The entity list of referrer property 'whiteSuppressJoinSqOneList'. (NotNull: even if no loading, returns empty list)
+     */
+    public List<WhiteSuppressJoinSqOne> getWhiteSuppressJoinSqOneList() {
+        if (_whiteSuppressJoinSqOneList == null) { _whiteSuppressJoinSqOneList = newReferrerList(); }
+        return _whiteSuppressJoinSqOneList;
+    }
+
+    /**
+     * white_suppress_join_sq_one by ONE_ADDI_ID, named 'whiteSuppressJoinSqOneList'.
+     * @param whiteSuppressJoinSqOneList The entity list of referrer property 'whiteSuppressJoinSqOneList'. (NullAllowed)
+     */
+    public void setWhiteSuppressJoinSqOneList(List<WhiteSuppressJoinSqOne> whiteSuppressJoinSqOneList) {
+        _whiteSuppressJoinSqOneList = whiteSuppressJoinSqOneList;
+    }
+
     protected <ELEMENT> List<ELEMENT> newReferrerList() {
         return new ArrayList<ELEMENT>();
     }
@@ -255,7 +275,13 @@ public abstract class BsWhiteSuppressJoinSqOneAddi implements Entity, Serializab
     public String toStringWithRelation() {
         StringBuilder sb = new StringBuilder();
         sb.append(toString());
+        String li = "\n  ";
+        if (_whiteSuppressJoinSqOneList != null) { for (Entity et : _whiteSuppressJoinSqOneList)
+        { if (et != null) { sb.append(li).append(xbRDS(et, "whiteSuppressJoinSqOneList")); } } }
         return sb.toString();
+    }
+    protected String xbRDS(Entity et, String name) { // buildRelationDisplayString()
+        return et.buildDisplayString(name, true, true);
     }
 
     /**
@@ -281,7 +307,14 @@ public abstract class BsWhiteSuppressJoinSqOneAddi implements Entity, Serializab
         return sb.toString();
     }
     protected String buildRelationString() {
-        return "";
+        StringBuilder sb = new StringBuilder();
+        String cm = ",";
+        if (_whiteSuppressJoinSqOneList != null && !_whiteSuppressJoinSqOneList.isEmpty())
+        { sb.append(cm).append("whiteSuppressJoinSqOneList"); }
+        if (sb.length() > cm.length()) {
+            sb.delete(0, cm.length()).insert(0, "(").append(")");
+        }
+        return sb.toString();
     }
 
     /**

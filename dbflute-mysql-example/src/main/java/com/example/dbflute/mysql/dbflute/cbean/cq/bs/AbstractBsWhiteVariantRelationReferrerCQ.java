@@ -259,7 +259,7 @@ public abstract class AbstractBsWhiteVariantRelationReferrerCQ extends AbstractC
      * MASTER_TYPE_CODE: {NotNull, CHAR(3), classification=VariantRelationMasterType}
      * @param masterTypeCode The value of masterTypeCode as equal. (NullAllowed: if null (or empty), no condition)
      */
-    public void setMasterTypeCode_Equal(String masterTypeCode) {
+    protected void setMasterTypeCode_Equal(String masterTypeCode) {
         doSetMasterTypeCode_Equal(fRES(masterTypeCode));
     }
 
@@ -314,7 +314,7 @@ public abstract class AbstractBsWhiteVariantRelationReferrerCQ extends AbstractC
      * MASTER_TYPE_CODE: {NotNull, CHAR(3), classification=VariantRelationMasterType}
      * @param masterTypeCode The value of masterTypeCode as notEqual. (NullAllowed: if null (or empty), no condition)
      */
-    public void setMasterTypeCode_NotEqual(String masterTypeCode) {
+    protected void setMasterTypeCode_NotEqual(String masterTypeCode) {
         doSetMasterTypeCode_NotEqual(fRES(masterTypeCode));
     }
 

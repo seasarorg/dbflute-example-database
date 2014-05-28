@@ -103,6 +103,9 @@ public abstract class BsNestedBarBean implements Entity, Serializable, Cloneable
     // -----------------------------------------------------
     //                                              Internal
     //                                              --------
+    /** The unique-driven properties for this entity. (NotNull) */
+    protected final EntityUniqueDrivenProperties __uniqueDrivenProperties = newUniqueDrivenProperties();
+
     /** The modified properties for this entity. (NotNull) */
     protected final EntityModifiedProperties __modifiedProperties = newModifiedProperties();
 
@@ -144,6 +147,17 @@ public abstract class BsNestedBarBean implements Entity, Serializable, Cloneable
      */
     public boolean hasPrimaryKeyValue() {
         return false;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Set<String> myuniqueDrivenProperties() {
+        return __uniqueDrivenProperties.getPropertyNames();
+    }
+
+    protected EntityUniqueDrivenProperties newUniqueDrivenProperties() {
+        return new EntityUniqueDrivenProperties();
     }
 
     // ===================================================================================
@@ -223,8 +237,8 @@ public abstract class BsNestedBarBean implements Entity, Serializable, Cloneable
         if (!xSV(getQuuxList(), other.getQuuxList())) { return false; }
         return true;
     }
-    protected boolean xSV(Object value1, Object value2) {
-        return FunCustodial.isSameValue(value1, value2);
+    protected boolean xSV(Object v1, Object v2) {
+        return FunCustodial.isSameValue(v1, v2);
     }
 
     /**
@@ -232,20 +246,20 @@ public abstract class BsNestedBarBean implements Entity, Serializable, Cloneable
      * @return The hash-code from primary-key or columns.
      */
     public int hashCode() {
-        int result = 17;
-        result = xCH(result, getTableDbName());
-        result = xCH(result, getBarId());
-        result = xCH(result, getBarName());
-        result = xCH(result, getBarDate());
-        result = xCH(result, getBarList());
-        result = xCH(result, getBazBean1());
-        result = xCH(result, getBazBean2());
-        result = xCH(result, getQuxList());
-        result = xCH(result, getQuuxList());
-        return result;
+        int hs = 17;
+        hs = xCH(hs, getTableDbName());
+        hs = xCH(hs, getBarId());
+        hs = xCH(hs, getBarName());
+        hs = xCH(hs, getBarDate());
+        hs = xCH(hs, getBarList());
+        hs = xCH(hs, getBazBean1());
+        hs = xCH(hs, getBazBean2());
+        hs = xCH(hs, getQuxList());
+        hs = xCH(hs, getQuuxList());
+        return hs;
     }
-    protected int xCH(int result, Object value) {
-        return FunCustodial.calculateHashcode(result, value);
+    protected int xCH(int hs, Object vl) {
+        return FunCustodial.calculateHashcode(hs, vl);
     }
 
     /**
@@ -285,17 +299,17 @@ public abstract class BsNestedBarBean implements Entity, Serializable, Cloneable
     }
     protected String buildColumnString() {
         StringBuilder sb = new StringBuilder();
-        String delimiter = ", ";
-        sb.append(delimiter).append(getBarId());
-        sb.append(delimiter).append(getBarName());
-        sb.append(delimiter).append(xfUD(getBarDate()));
-        sb.append(delimiter).append(getBarList());
-        sb.append(delimiter).append(getBazBean1());
-        sb.append(delimiter).append(getBazBean2());
-        sb.append(delimiter).append(getQuxList());
-        sb.append(delimiter).append(getQuuxList());
-        if (sb.length() > delimiter.length()) {
-            sb.delete(0, delimiter.length());
+        String dm = ", ";
+        sb.append(dm).append(getBarId());
+        sb.append(dm).append(getBarName());
+        sb.append(dm).append(xfUD(getBarDate()));
+        sb.append(dm).append(getBarList());
+        sb.append(dm).append(getBazBean1());
+        sb.append(dm).append(getBazBean2());
+        sb.append(dm).append(getQuxList());
+        sb.append(dm).append(getQuuxList());
+        if (sb.length() > dm.length()) {
+            sb.delete(0, dm.length());
         }
         sb.insert(0, "{").append("}");
         return sb.toString();

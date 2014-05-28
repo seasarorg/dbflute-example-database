@@ -22,8 +22,8 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public AbstractBsPurchaseCQ(ConditionQuery childQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
-        super(childQuery, sqlClause, aliasName, nestLevel);
+    public AbstractBsPurchaseCQ(ConditionQuery referrerQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
+        super(referrerQuery, sqlClause, aliasName, nestLevel);
     }
 
     // ===================================================================================
@@ -150,7 +150,7 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
-     * MEMBER_ID: {UQ, IX+, NotNull, NUMBER(16), FK to MEMBER}
+     * MEMBER_ID: {UQ+, NotNull, NUMBER(16), FK to MEMBER}
      * @param memberId The value of memberId as equal. (NullAllowed: if null, no condition)
      */
     public void setMemberId_Equal(Long memberId) {
@@ -163,7 +163,7 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
 
     /**
      * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br />
-     * MEMBER_ID: {UQ, IX+, NotNull, NUMBER(16), FK to MEMBER}
+     * MEMBER_ID: {UQ+, NotNull, NUMBER(16), FK to MEMBER}
      * @param memberId The value of memberId as greaterThan. (NullAllowed: if null, no condition)
      */
     public void setMemberId_GreaterThan(Long memberId) {
@@ -172,7 +172,7 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
 
     /**
      * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br />
-     * MEMBER_ID: {UQ, IX+, NotNull, NUMBER(16), FK to MEMBER}
+     * MEMBER_ID: {UQ+, NotNull, NUMBER(16), FK to MEMBER}
      * @param memberId The value of memberId as lessThan. (NullAllowed: if null, no condition)
      */
     public void setMemberId_LessThan(Long memberId) {
@@ -181,7 +181,7 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
 
     /**
      * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br />
-     * MEMBER_ID: {UQ, IX+, NotNull, NUMBER(16), FK to MEMBER}
+     * MEMBER_ID: {UQ+, NotNull, NUMBER(16), FK to MEMBER}
      * @param memberId The value of memberId as greaterEqual. (NullAllowed: if null, no condition)
      */
     public void setMemberId_GreaterEqual(Long memberId) {
@@ -190,7 +190,7 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
 
     /**
      * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br />
-     * MEMBER_ID: {UQ, IX+, NotNull, NUMBER(16), FK to MEMBER}
+     * MEMBER_ID: {UQ+, NotNull, NUMBER(16), FK to MEMBER}
      * @param memberId The value of memberId as lessEqual. (NullAllowed: if null, no condition)
      */
     public void setMemberId_LessEqual(Long memberId) {
@@ -201,7 +201,7 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
      * RangeOf with various options. (versatile) <br />
      * {(default) minNumber &lt;= column &lt;= maxNumber} <br />
      * And NullIgnored, OnlyOnceRegistered. <br />
-     * MEMBER_ID: {UQ, IX+, NotNull, NUMBER(16), FK to MEMBER}
+     * MEMBER_ID: {UQ+, NotNull, NUMBER(16), FK to MEMBER}
      * @param minNumber The min number of memberId. (NullAllowed: if null, no from-condition)
      * @param maxNumber The max number of memberId. (NullAllowed: if null, no to-condition)
      * @param rangeOfOption The option of range-of. (NotNull)
@@ -212,7 +212,7 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
 
     /**
      * InScope {in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br />
-     * MEMBER_ID: {UQ, IX+, NotNull, NUMBER(16), FK to MEMBER}
+     * MEMBER_ID: {UQ+, NotNull, NUMBER(16), FK to MEMBER}
      * @param memberIdList The collection of memberId as inScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setMemberId_InScope(Collection<Long> memberIdList) {
@@ -225,7 +225,7 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
 
     /**
      * NotInScope {not in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br />
-     * MEMBER_ID: {UQ, IX+, NotNull, NUMBER(16), FK to MEMBER}
+     * MEMBER_ID: {UQ+, NotNull, NUMBER(16), FK to MEMBER}
      * @param memberIdList The collection of memberId as notInScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setMemberId_NotInScope(Collection<Long> memberIdList) {
@@ -271,7 +271,7 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
-     * PRODUCT_ID: {UQ+, IX, NotNull, NUMBER(16), FK to PRODUCT}
+     * PRODUCT_ID: {+UQ, IX+, NotNull, NUMBER(16), FK to PRODUCT}
      * @param productId The value of productId as equal. (NullAllowed: if null, no condition)
      */
     public void setProductId_Equal(Long productId) {
@@ -284,7 +284,7 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
 
     /**
      * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br />
-     * PRODUCT_ID: {UQ+, IX, NotNull, NUMBER(16), FK to PRODUCT}
+     * PRODUCT_ID: {+UQ, IX+, NotNull, NUMBER(16), FK to PRODUCT}
      * @param productId The value of productId as greaterThan. (NullAllowed: if null, no condition)
      */
     public void setProductId_GreaterThan(Long productId) {
@@ -293,7 +293,7 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
 
     /**
      * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br />
-     * PRODUCT_ID: {UQ+, IX, NotNull, NUMBER(16), FK to PRODUCT}
+     * PRODUCT_ID: {+UQ, IX+, NotNull, NUMBER(16), FK to PRODUCT}
      * @param productId The value of productId as lessThan. (NullAllowed: if null, no condition)
      */
     public void setProductId_LessThan(Long productId) {
@@ -302,7 +302,7 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
 
     /**
      * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br />
-     * PRODUCT_ID: {UQ+, IX, NotNull, NUMBER(16), FK to PRODUCT}
+     * PRODUCT_ID: {+UQ, IX+, NotNull, NUMBER(16), FK to PRODUCT}
      * @param productId The value of productId as greaterEqual. (NullAllowed: if null, no condition)
      */
     public void setProductId_GreaterEqual(Long productId) {
@@ -311,7 +311,7 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
 
     /**
      * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br />
-     * PRODUCT_ID: {UQ+, IX, NotNull, NUMBER(16), FK to PRODUCT}
+     * PRODUCT_ID: {+UQ, IX+, NotNull, NUMBER(16), FK to PRODUCT}
      * @param productId The value of productId as lessEqual. (NullAllowed: if null, no condition)
      */
     public void setProductId_LessEqual(Long productId) {
@@ -322,7 +322,7 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
      * RangeOf with various options. (versatile) <br />
      * {(default) minNumber &lt;= column &lt;= maxNumber} <br />
      * And NullIgnored, OnlyOnceRegistered. <br />
-     * PRODUCT_ID: {UQ+, IX, NotNull, NUMBER(16), FK to PRODUCT}
+     * PRODUCT_ID: {+UQ, IX+, NotNull, NUMBER(16), FK to PRODUCT}
      * @param minNumber The min number of productId. (NullAllowed: if null, no from-condition)
      * @param maxNumber The max number of productId. (NullAllowed: if null, no to-condition)
      * @param rangeOfOption The option of range-of. (NotNull)
@@ -333,7 +333,7 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
 
     /**
      * InScope {in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br />
-     * PRODUCT_ID: {UQ+, IX, NotNull, NUMBER(16), FK to PRODUCT}
+     * PRODUCT_ID: {+UQ, IX+, NotNull, NUMBER(16), FK to PRODUCT}
      * @param productIdList The collection of productId as inScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setProductId_InScope(Collection<Long> productIdList) {
@@ -346,7 +346,7 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
 
     /**
      * NotInScope {not in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br />
-     * PRODUCT_ID: {UQ+, IX, NotNull, NUMBER(16), FK to PRODUCT}
+     * PRODUCT_ID: {+UQ, IX+, NotNull, NUMBER(16), FK to PRODUCT}
      * @param productIdList The collection of productId as notInScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setProductId_NotInScope(Collection<Long> productIdList) {
@@ -392,7 +392,7 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
 
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
-     * PURCHASE_DATETIME: {UQ+, IX, NotNull, TIMESTAMP(3)(11, 3)}
+     * PURCHASE_DATETIME: {+UQ, IX+, NotNull, TIMESTAMP(3)(11, 3)}
      * @param purchaseDatetime The value of purchaseDatetime as equal. (NullAllowed: if null, no condition)
      */
     public void setPurchaseDatetime_Equal(java.sql.Timestamp purchaseDatetime) {
@@ -401,7 +401,7 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
 
     /**
      * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br />
-     * PURCHASE_DATETIME: {UQ+, IX, NotNull, TIMESTAMP(3)(11, 3)}
+     * PURCHASE_DATETIME: {+UQ, IX+, NotNull, TIMESTAMP(3)(11, 3)}
      * @param purchaseDatetime The value of purchaseDatetime as greaterThan. (NullAllowed: if null, no condition)
      */
     public void setPurchaseDatetime_GreaterThan(java.sql.Timestamp purchaseDatetime) {
@@ -410,7 +410,7 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
 
     /**
      * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br />
-     * PURCHASE_DATETIME: {UQ+, IX, NotNull, TIMESTAMP(3)(11, 3)}
+     * PURCHASE_DATETIME: {+UQ, IX+, NotNull, TIMESTAMP(3)(11, 3)}
      * @param purchaseDatetime The value of purchaseDatetime as lessThan. (NullAllowed: if null, no condition)
      */
     public void setPurchaseDatetime_LessThan(java.sql.Timestamp purchaseDatetime) {
@@ -419,7 +419,7 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
 
     /**
      * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br />
-     * PURCHASE_DATETIME: {UQ+, IX, NotNull, TIMESTAMP(3)(11, 3)}
+     * PURCHASE_DATETIME: {+UQ, IX+, NotNull, TIMESTAMP(3)(11, 3)}
      * @param purchaseDatetime The value of purchaseDatetime as greaterEqual. (NullAllowed: if null, no condition)
      */
     public void setPurchaseDatetime_GreaterEqual(java.sql.Timestamp purchaseDatetime) {
@@ -428,7 +428,7 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
 
     /**
      * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br />
-     * PURCHASE_DATETIME: {UQ+, IX, NotNull, TIMESTAMP(3)(11, 3)}
+     * PURCHASE_DATETIME: {+UQ, IX+, NotNull, TIMESTAMP(3)(11, 3)}
      * @param purchaseDatetime The value of purchaseDatetime as lessEqual. (NullAllowed: if null, no condition)
      */
     public void setPurchaseDatetime_LessEqual(java.sql.Timestamp purchaseDatetime) {
@@ -438,7 +438,7 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
     /**
      * FromTo with various options. (versatile) {(default) fromDatetime &lt;= column &lt;= toDatetime} <br />
      * And NullIgnored, OnlyOnceRegistered. <br />
-     * PURCHASE_DATETIME: {UQ+, IX, NotNull, TIMESTAMP(3)(11, 3)}
+     * PURCHASE_DATETIME: {+UQ, IX+, NotNull, TIMESTAMP(3)(11, 3)}
      * <pre>e.g. setPurchaseDatetime_FromTo(fromDate, toDate, new <span style="color: #DD4747">FromToOption</span>().compareAsDate());</pre>
      * @param fromDatetime The from-datetime(yyyy/MM/dd HH:mm:ss.SSS) of purchaseDatetime. (NullAllowed: if null, no from-condition)
      * @param toDatetime The to-datetime(yyyy/MM/dd HH:mm:ss.SSS) of purchaseDatetime. (NullAllowed: if null, no to-condition)
@@ -451,7 +451,7 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
     /**
      * DateFromTo. (Date means yyyy/MM/dd) {fromDate &lt;= column &lt; toDate + 1 day} <br />
      * And NullIgnored, OnlyOnceRegistered. <br />
-     * PURCHASE_DATETIME: {UQ+, IX, NotNull, TIMESTAMP(3)(11, 3)}
+     * PURCHASE_DATETIME: {+UQ, IX+, NotNull, TIMESTAMP(3)(11, 3)}
      * <pre>
      * e.g. from:{2007/04/10 08:24:53} to:{2007/04/16 14:36:29}
      *  column &gt;= '2007/04/10 00:00:00' and column <span style="color: #DD4747">&lt; '2007/04/17 00:00:00'</span>
@@ -990,7 +990,7 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
     public abstract String keepSpecifyMyselfDerived(PurchaseCQ sq);
 
     /**
-     * Prepare for (Query)MyselfDerived (SubQuery).
+     * Prepare for (Query)MyselfDerived (correlated sub-query).
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<PurchaseCB> myselfDerived() {
@@ -1012,8 +1012,8 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
     //                                                                        MyselfExists
     //                                                                        ============
     /**
-     * Prepare for MyselfExists (SubQuery).
-     * @param subQuery The implementation of sub query. (NotNull)
+     * Prepare for MyselfExists (correlated sub-query).
+     * @param subQuery The implementation of sub-query. (NotNull)
      */
     public void myselfExists(SubQuery<PurchaseCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
@@ -1028,8 +1028,8 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
     //                                                                       MyselfInScope
     //                                                                       =============
     /**
-     * Prepare for MyselfInScope (SubQuery).
-     * @param subQuery The implementation of sub query. (NotNull)
+     * Prepare for MyselfInScope (sub-query).
+     * @param subQuery The implementation of sub-query. (NotNull)
      */
     public void myselfInScope(SubQuery<PurchaseCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);

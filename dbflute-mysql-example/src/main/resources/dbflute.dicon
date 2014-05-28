@@ -87,10 +87,12 @@
     <component name="whiteSuppressJoinSqBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteSuppressJoinSqBhv"/>
     <component name="whiteSuppressJoinSqManyBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteSuppressJoinSqManyBhv"/>
     <component name="whiteSuppressJoinSqManyOneBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteSuppressJoinSqManyOneBhv"/>
+    <component name="whiteSuppressJoinSqManyOneOneBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteSuppressJoinSqManyOneOneBhv"/>
     <component name="whiteSuppressJoinSqOneBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteSuppressJoinSqOneBhv"/>
     <component name="whiteSuppressJoinSqOneAddiBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteSuppressJoinSqOneAddiBhv"/>
     <component name="whiteTableExceptGenHeadBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteTableExceptGenHeadBhv"/>
     <component name="whiteTableExceptGenRefBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteTableExceptGenRefBhv"/>
+    <component name="whiteUqClassificationBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteUqClassificationBhv"/>
     <component name="whiteUqFkBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteUqFkBhv"/>
     <component name="whiteUqFkRefBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteUqFkRefBhv"/>
     <component name="whiteUqFkRefNestBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteUqFkRefNestBhv"/>

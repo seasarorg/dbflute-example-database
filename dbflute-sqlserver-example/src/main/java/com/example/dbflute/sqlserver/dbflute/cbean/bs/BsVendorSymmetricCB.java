@@ -77,10 +77,14 @@ public class BsVendorSymmetricCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                 PrimaryKey Handling
     //                                                                 ===================
+    /**
+     * Accept the query condition of primary key as equal.
+     * @param vendorSymmetricId : PK, NotNull, numeric(16). (NotNull)
+     */
     public void acceptPrimaryKey(Long vendorSymmetricId) {
         assertObjectNotNull("vendorSymmetricId", vendorSymmetricId);
         BsVendorSymmetricCB cb = this;
-        cb.query().setVendorSymmetricId_Equal(vendorSymmetricId);
+        cb.query().setVendorSymmetricId_Equal(vendorSymmetricId);;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {
@@ -398,6 +402,11 @@ public class BsVendorSymmetricCB extends AbstractConditionBean {
      */
     public void orScopeQuery(OrQuery<VendorSymmetricCB> orQuery) {
         xorSQ((VendorSymmetricCB)this, orQuery);
+    }
+
+    @Override
+    protected HpCBPurpose xhandleOrSQPurposeChange() {
+        return null; // means no check
     }
 
     /**

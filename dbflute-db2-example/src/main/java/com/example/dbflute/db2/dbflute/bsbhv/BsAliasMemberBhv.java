@@ -169,7 +169,7 @@ public abstract class BsAliasMemberBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of AliasMember. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -190,39 +190,64 @@ public abstract class BsAliasMemberBhv extends AbstractBehaviorWritable {
 
     /**
      * Select the entity by the primary-key value.
-     * @param memberId The one of primary key. (NotNull)
+     * @param memberId (会員ID): PK, NotNull, INTEGER(10). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public AliasMember selectByPKValue(Integer memberId) {
-        return doSelectByPKValue(memberId, AliasMember.class);
+        return doSelectByPK(memberId, AliasMember.class);
     }
 
-    protected <ENTITY extends AliasMember> ENTITY doSelectByPKValue(Integer memberId, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(memberId), entityType);
+    protected <ENTITY extends AliasMember> ENTITY doSelectByPK(Integer memberId, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(memberId), entityType);
+    }
+
+    protected <ENTITY extends AliasMember> OptionalEntity<ENTITY> doSelectOptionalByPK(Integer memberId, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(memberId, entityType), memberId);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param memberId The one of primary key. (NotNull)
+     * @param memberId (会員ID): PK, NotNull, INTEGER(10). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public AliasMember selectByPKValueWithDeletedCheck(Integer memberId) {
-        return doSelectByPKValueWithDeletedCheck(memberId, AliasMember.class);
+        return doSelectByPKWithDeletedCheck(memberId, AliasMember.class);
     }
 
-    protected <ENTITY extends AliasMember> ENTITY doSelectByPKValueWithDeletedCheck(Integer memberId, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(memberId), entityType);
+    protected <ENTITY extends AliasMember> ENTITY doSelectByPKWithDeletedCheck(Integer memberId, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(memberId), entityType);
     }
 
-    private AliasMemberCB buildPKCB(Integer memberId) {
+    protected AliasMemberCB xprepareCBAsPK(Integer memberId) {
         assertObjectNotNull("memberId", memberId);
-        AliasMemberCB cb = newMyConditionBean();
-        cb.query().setMemberId_Equal(memberId);
+        AliasMemberCB cb = newMyConditionBean(); cb.acceptPrimaryKey(memberId);
+        return cb;
+    }
+
+    /**
+     * Select the entity by the unique-key value.
+     * @param memberAccount (会員アカウント): UQ, NotNull, VARCHAR(50). (NotNull)
+     * @return The optional entity selected by the unique key. (NotNull: if no data, empty entity)
+     * @exception EntityAlreadyDeletedException When get(), required() of return value is called and the value is null, which means entity has already been deleted (not found).
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     */
+    public OptionalEntity<AliasMember> selectByUniqueOf(String memberAccount) {
+        return doSelectByUniqueOf(memberAccount, AliasMember.class);
+    }
+
+    protected <ENTITY extends AliasMember> OptionalEntity<ENTITY> doSelectByUniqueOf(String memberAccount, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectEntity(xprepareCBAsUniqueOf(memberAccount), entityType), memberAccount);
+    }
+
+    protected AliasMemberCB xprepareCBAsUniqueOf(String memberAccount) {
+        assertObjectNotNull("memberAccount", memberAccount);
+        AliasMemberCB cb = newMyConditionBean(); cb.acceptUniqueOf(memberAccount);
         return cb;
     }
 
@@ -498,7 +523,8 @@ public abstract class BsAliasMemberBhv extends AbstractBehaviorWritable {
      */
     public List<MemberStatus> pulloutMemberStatus(List<AliasMember> aliasMemberList) {
         return helpPulloutInternally(aliasMemberList, new InternalPulloutCallback<AliasMember, MemberStatus>() {
-            public MemberStatus getFr(AliasMember et) { return et.getMemberStatus(); }
+            public MemberStatus getFr(AliasMember et)
+            { return et.getMemberStatus(); }
             public boolean hasRf() { return true; }
             public void setRfLs(MemberStatus et, List<AliasMember> ls)
             { et.setAliasMemberList(ls); }

@@ -169,7 +169,7 @@ public abstract class BsSynonymRefExceptBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of SynonymRefExcept. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -190,39 +190,42 @@ public abstract class BsSynonymRefExceptBhv extends AbstractBehaviorWritable {
 
     /**
      * Select the entity by the primary-key value.
-     * @param refExceptId The one of primary key. (NotNull)
+     * @param refExceptId : PK, NotNull, NUMBER(16). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public SynonymRefExcept selectByPKValue(Long refExceptId) {
-        return doSelectByPKValue(refExceptId, SynonymRefExcept.class);
+        return doSelectByPK(refExceptId, SynonymRefExcept.class);
     }
 
-    protected <ENTITY extends SynonymRefExcept> ENTITY doSelectByPKValue(Long refExceptId, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(refExceptId), entityType);
+    protected <ENTITY extends SynonymRefExcept> ENTITY doSelectByPK(Long refExceptId, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(refExceptId), entityType);
+    }
+
+    protected <ENTITY extends SynonymRefExcept> OptionalEntity<ENTITY> doSelectOptionalByPK(Long refExceptId, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(refExceptId, entityType), refExceptId);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param refExceptId The one of primary key. (NotNull)
+     * @param refExceptId : PK, NotNull, NUMBER(16). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public SynonymRefExcept selectByPKValueWithDeletedCheck(Long refExceptId) {
-        return doSelectByPKValueWithDeletedCheck(refExceptId, SynonymRefExcept.class);
+        return doSelectByPKWithDeletedCheck(refExceptId, SynonymRefExcept.class);
     }
 
-    protected <ENTITY extends SynonymRefExcept> ENTITY doSelectByPKValueWithDeletedCheck(Long refExceptId, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(refExceptId), entityType);
+    protected <ENTITY extends SynonymRefExcept> ENTITY doSelectByPKWithDeletedCheck(Long refExceptId, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(refExceptId), entityType);
     }
 
-    private SynonymRefExceptCB buildPKCB(Long refExceptId) {
+    protected SynonymRefExceptCB xprepareCBAsPK(Long refExceptId) {
         assertObjectNotNull("refExceptId", refExceptId);
-        SynonymRefExceptCB cb = newMyConditionBean();
-        cb.query().setRefExceptId_Equal(refExceptId);
+        SynonymRefExceptCB cb = newMyConditionBean(); cb.acceptPrimaryKey(refExceptId);
         return cb;
     }
 
@@ -387,7 +390,8 @@ public abstract class BsSynonymRefExceptBhv extends AbstractBehaviorWritable {
      */
     public List<SynonymExcept> pulloutSynonymExcept(List<SynonymRefExcept> synonymRefExceptList) {
         return helpPulloutInternally(synonymRefExceptList, new InternalPulloutCallback<SynonymRefExcept, SynonymExcept>() {
-            public SynonymExcept getFr(SynonymRefExcept et) { return et.getSynonymExcept(); }
+            public SynonymExcept getFr(SynonymRefExcept et)
+            { return et.getSynonymExcept(); }
             public boolean hasRf() { return true; }
             public void setRfLs(SynonymExcept et, List<SynonymRefExcept> ls)
             { et.setSynonymRefExceptList(ls); }

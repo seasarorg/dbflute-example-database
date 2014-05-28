@@ -90,6 +90,8 @@ public class WhiteCompoundPkRefCIQ extends AbstractBsWhiteCompoundPkRefCQ {
     protected ConditionValue getCValueRefSecondId() { return _myCQ.getRefSecondId(); }
     protected ConditionValue getCValueRefName() { return _myCQ.getRefName(); }
     protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
+    public String keepScalarCondition(WhiteCompoundPkRefCQ sq)
+    { throwIICBOE("ScalarCondition"); return null; }
 
     protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()
         throw new IllegalConditionBeanOperationException(name + " at InlineView is unsupported.");

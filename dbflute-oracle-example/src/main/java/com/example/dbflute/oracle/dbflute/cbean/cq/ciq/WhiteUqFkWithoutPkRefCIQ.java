@@ -25,9 +25,9 @@ public class WhiteUqFkWithoutPkRefCIQ extends AbstractBsWhiteUqFkWithoutPkRefCQ 
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public WhiteUqFkWithoutPkRefCIQ(ConditionQuery childQuery, SqlClause sqlClause
+    public WhiteUqFkWithoutPkRefCIQ(ConditionQuery referrerQuery, SqlClause sqlClause
                         , String aliasName, int nestLevel, BsWhiteUqFkWithoutPkRefCQ myCQ) {
-        super(childQuery, sqlClause, aliasName, nestLevel);
+        super(referrerQuery, sqlClause, aliasName, nestLevel);
         _myCQ = myCQ;
         _foreignPropertyName = _myCQ.xgetForeignPropertyName(); // accept foreign property name
         _relationPath = _myCQ.xgetRelationPath(); // accept relation path
@@ -76,6 +76,8 @@ public class WhiteUqFkWithoutPkRefCIQ extends AbstractBsWhiteUqFkWithoutPkRefCQ 
     public String keepFkToUqCode_NotInScopeRelation_WhiteUqFkWithoutPk(WhiteUqFkWithoutPkCQ sq)
     { return _myCQ.keepFkToUqCode_NotInScopeRelation_WhiteUqFkWithoutPk(sq); }
     protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
+    public String keepScalarCondition(WhiteUqFkWithoutPkRefCQ sq)
+    { throwIICBOE("ScalarCondition"); return null; }
 
     protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()
         throw new IllegalConditionBeanOperationException(name + " at InlineView is unsupported.");

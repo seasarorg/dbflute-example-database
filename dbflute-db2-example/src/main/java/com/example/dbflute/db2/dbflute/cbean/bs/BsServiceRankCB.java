@@ -77,10 +77,24 @@ public class BsServiceRankCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                 PrimaryKey Handling
     //                                                                 ===================
+    /**
+     * Accept the query condition of primary key as equal.
+     * @param serviceRankCode (サービスランクコード): PK, NotNull, CHAR(3). (NotNull)
+     */
     public void acceptPrimaryKey(String serviceRankCode) {
         assertObjectNotNull("serviceRankCode", serviceRankCode);
         BsServiceRankCB cb = this;
-        cb.query().setServiceRankCode_Equal(serviceRankCode);
+        cb.query().setServiceRankCode_Equal(serviceRankCode);;
+    }
+
+    /**
+     * Accept the query condition of unique key as equal.
+     * @param displayOrder (表示順): UQ, NotNull, INTEGER(10). (NotNull)
+     */
+    public void acceptUniqueOf(Integer displayOrder) {
+        assertObjectNotNull("displayOrder", displayOrder);
+        BsServiceRankCB cb = this;
+        cb.query().setDisplayOrder_Equal(displayOrder);;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {
@@ -451,6 +465,11 @@ public class BsServiceRankCB extends AbstractConditionBean {
      */
     public void orScopeQuery(OrQuery<ServiceRankCB> orQuery) {
         xorSQ((ServiceRankCB)this, orQuery);
+    }
+
+    @Override
+    protected HpCBPurpose xhandleOrSQPurposeChange() {
+        return null; // means no check
     }
 
     /**

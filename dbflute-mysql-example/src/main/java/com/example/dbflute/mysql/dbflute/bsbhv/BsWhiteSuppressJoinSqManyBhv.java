@@ -33,7 +33,7 @@ import com.example.dbflute.mysql.dbflute.cbean.*;
  * The behavior of WHITE_SUPPRESS_JOIN_SQ_MANY as TABLE. <br />
  * <pre>
  * [primary key]
- *     SUPPRESS_JOIN_SQ_ID
+ *     MANY_ID
  *
  * [column]
  *     MANY_ID, MANY_NAME, SUPPRESS_JOIN_SQ_ID, MANY_ONE_ID
@@ -205,42 +205,42 @@ public abstract class BsWhiteSuppressJoinSqManyBhv extends AbstractBehaviorWrita
 
     /**
      * Select the entity by the primary-key value.
-     * @param suppressJoinSqId : PK, NotNull, INT(10), FK to white_suppress_join_sq. (NotNull)
+     * @param manyId : PK, NotNull, INT(10). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
-    public WhiteSuppressJoinSqMany selectByPKValue(Integer suppressJoinSqId) {
-        return doSelectByPK(suppressJoinSqId, WhiteSuppressJoinSqMany.class);
+    public WhiteSuppressJoinSqMany selectByPKValue(Integer manyId) {
+        return doSelectByPK(manyId, WhiteSuppressJoinSqMany.class);
     }
 
-    protected <ENTITY extends WhiteSuppressJoinSqMany> ENTITY doSelectByPK(Integer suppressJoinSqId, Class<ENTITY> entityType) {
-        return doSelectEntity(xprepareCBAsPK(suppressJoinSqId), entityType);
+    protected <ENTITY extends WhiteSuppressJoinSqMany> ENTITY doSelectByPK(Integer manyId, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(manyId), entityType);
     }
 
-    protected <ENTITY extends WhiteSuppressJoinSqMany> OptionalEntity<ENTITY> doSelectOptionalByPK(Integer suppressJoinSqId, Class<ENTITY> entityType) {
-        return createOptionalEntity(doSelectByPK(suppressJoinSqId, entityType), suppressJoinSqId);
+    protected <ENTITY extends WhiteSuppressJoinSqMany> OptionalEntity<ENTITY> doSelectOptionalByPK(Integer manyId, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(manyId, entityType), manyId);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param suppressJoinSqId : PK, NotNull, INT(10), FK to white_suppress_join_sq. (NotNull)
+     * @param manyId : PK, NotNull, INT(10). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
-    public WhiteSuppressJoinSqMany selectByPKValueWithDeletedCheck(Integer suppressJoinSqId) {
-        return doSelectByPKWithDeletedCheck(suppressJoinSqId, WhiteSuppressJoinSqMany.class);
+    public WhiteSuppressJoinSqMany selectByPKValueWithDeletedCheck(Integer manyId) {
+        return doSelectByPKWithDeletedCheck(manyId, WhiteSuppressJoinSqMany.class);
     }
 
-    protected <ENTITY extends WhiteSuppressJoinSqMany> ENTITY doSelectByPKWithDeletedCheck(Integer suppressJoinSqId, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(suppressJoinSqId), entityType);
+    protected <ENTITY extends WhiteSuppressJoinSqMany> ENTITY doSelectByPKWithDeletedCheck(Integer manyId, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(manyId), entityType);
     }
 
-    protected WhiteSuppressJoinSqManyCB xprepareCBAsPK(Integer suppressJoinSqId) {
-        assertObjectNotNull("suppressJoinSqId", suppressJoinSqId);
-        WhiteSuppressJoinSqManyCB cb = newMyConditionBean(); cb.acceptPrimaryKey(suppressJoinSqId);
+    protected WhiteSuppressJoinSqManyCB xprepareCBAsPK(Integer manyId) {
+        assertObjectNotNull("manyId", manyId);
+        WhiteSuppressJoinSqManyCB cb = newMyConditionBean(); cb.acceptPrimaryKey(manyId);
         return cb;
     }
 
@@ -423,7 +423,7 @@ public abstract class BsWhiteSuppressJoinSqManyBhv extends AbstractBehaviorWrita
             { return et.getWhiteSuppressJoinSq(); }
             public boolean hasRf() { return true; }
             public void setRfLs(WhiteSuppressJoinSq et, List<WhiteSuppressJoinSqMany> ls)
-            { if (!ls.isEmpty()) { et.setWhiteSuppressJoinSqManyAsOne(ls.get(0)); } }
+            { et.setWhiteSuppressJoinSqManyList(ls); }
         });
     }
 
@@ -431,13 +431,13 @@ public abstract class BsWhiteSuppressJoinSqManyBhv extends AbstractBehaviorWrita
     //                                                                      Extract Column
     //                                                                      ==============
     /**
-     * Extract the value list of (single) primary key suppressJoinSqId.
+     * Extract the value list of (single) primary key manyId.
      * @param whiteSuppressJoinSqManyList The list of whiteSuppressJoinSqMany. (NotNull, EmptyAllowed)
      * @return The list of the column value. (NotNull, EmptyAllowed, NotNullElement)
      */
-    public List<Integer> extractSuppressJoinSqIdList(List<WhiteSuppressJoinSqMany> whiteSuppressJoinSqManyList) {
+    public List<Integer> extractManyIdList(List<WhiteSuppressJoinSqMany> whiteSuppressJoinSqManyList) {
         return helpExtractListInternally(whiteSuppressJoinSqManyList, new InternalExtractCallback<WhiteSuppressJoinSqMany, Integer>() {
-            public Integer getCV(WhiteSuppressJoinSqMany et) { return et.getSuppressJoinSqId(); }
+            public Integer getCV(WhiteSuppressJoinSqMany et) { return et.getManyId(); }
         });
     }
 

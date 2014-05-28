@@ -77,10 +77,14 @@ public class BsWhiteDiffWorldCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                 PrimaryKey Handling
     //                                                                 ===================
+    /**
+     * Accept the query condition of primary key as equal.
+     * @param diffWorldId : PK, NotNull, NUMBER(16). (NotNull)
+     */
     public void acceptPrimaryKey(Long diffWorldId) {
         assertObjectNotNull("diffWorldId", diffWorldId);
         BsWhiteDiffWorldCB cb = this;
-        cb.query().setDiffWorldId_Equal(diffWorldId);
+        cb.query().setDiffWorldId_Equal(diffWorldId);;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {
@@ -409,6 +413,11 @@ public class BsWhiteDiffWorldCB extends AbstractConditionBean {
      */
     public void orScopeQuery(OrQuery<WhiteDiffWorldCB> orQuery) {
         xorSQ((WhiteDiffWorldCB)this, orQuery);
+    }
+
+    @Override
+    protected HpCBPurpose xhandleOrSQPurposeChange() {
+        return null; // means no check
     }
 
     /**

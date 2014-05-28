@@ -74,10 +74,10 @@ public abstract class BsAliasMemberLogin implements Entity, Serializable, Clonea
     /** (会員ログインID)MEMBER_LOGIN_ID: {PK, NotNull, BIGINT(19)} */
     protected Long _memberLoginId;
 
-    /** (会員ID)MEMBER_ID: {UQ, NotNull, INTEGER(10), FK to ALIAS_MEMBER} */
+    /** (会員ID)MEMBER_ID: {UQ+, NotNull, INTEGER(10), FK to ALIAS_MEMBER} */
     protected Integer _memberId;
 
-    /** (ログイン日時)LOGIN_DATETIME: {UQ+, IX, NotNull, TIMESTAMP(26, 6)} */
+    /** (ログイン日時)LOGIN_DATETIME: {+UQ, IX, NotNull, TIMESTAMP(26, 6)} */
     protected java.sql.Timestamp _loginDatetime;
 
     /** (モバイルログインフラグ)MOBILE_LOGIN_FLG: {NotNull, INTEGER(10), classification=Flg} */
@@ -89,6 +89,9 @@ public abstract class BsAliasMemberLogin implements Entity, Serializable, Clonea
     // -----------------------------------------------------
     //                                              Internal
     //                                              --------
+    /** The unique-driven properties for this entity. (NotNull) */
+    protected final EntityUniqueDrivenProperties __uniqueDrivenProperties = newUniqueDrivenProperties();
+
     /** The modified properties for this entity. (NotNull) */
     protected final EntityModifiedProperties __modifiedProperties = newModifiedProperties();
 
@@ -131,6 +134,30 @@ public abstract class BsAliasMemberLogin implements Entity, Serializable, Clonea
     public boolean hasPrimaryKeyValue() {
         if (getMemberLoginId() == null) { return false; }
         return true;
+    }
+
+    /**
+     * To be unique by the unique column. <br />
+     * You can update the entity by the key when entity update (NOT batch update).
+     * @param memberId (会員ID): UQ+, NotNull, INTEGER(10), FK to ALIAS_MEMBER. (NotNull)
+     * @param loginDatetime (ログイン日時): +UQ, IX, NotNull, TIMESTAMP(26, 6). (NotNull)
+     */
+    public void uniqueBy(Integer memberId, java.sql.Timestamp loginDatetime) {
+        __uniqueDrivenProperties.clear();
+        __uniqueDrivenProperties.addPropertyName("memberId");
+        __uniqueDrivenProperties.addPropertyName("loginDatetime");
+        setMemberId(memberId);setLoginDatetime(loginDatetime);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Set<String> myuniqueDrivenProperties() {
+        return __uniqueDrivenProperties.getPropertyNames();
+    }
+
+    protected EntityUniqueDrivenProperties newUniqueDrivenProperties() {
+        return new EntityUniqueDrivenProperties();
     }
 
     // ===================================================================================
@@ -408,8 +435,8 @@ public abstract class BsAliasMemberLogin implements Entity, Serializable, Clonea
         if (!xSV(getMemberLoginId(), other.getMemberLoginId())) { return false; }
         return true;
     }
-    protected boolean xSV(Object value1, Object value2) {
-        return FunCustodial.isSameValue(value1, value2);
+    protected boolean xSV(Object v1, Object v2) {
+        return FunCustodial.isSameValue(v1, v2);
     }
 
     /**
@@ -417,13 +444,13 @@ public abstract class BsAliasMemberLogin implements Entity, Serializable, Clonea
      * @return The hash-code from primary-key or columns.
      */
     public int hashCode() {
-        int result = 17;
-        result = xCH(result, getTableDbName());
-        result = xCH(result, getMemberLoginId());
-        return result;
+        int hs = 17;
+        hs = xCH(hs, getTableDbName());
+        hs = xCH(hs, getMemberLoginId());
+        return hs;
     }
-    protected int xCH(int result, Object value) {
-        return FunCustodial.calculateHashcode(result, value);
+    protected int xCH(int hs, Object vl) {
+        return FunCustodial.calculateHashcode(hs, vl);
     }
 
     /**
@@ -447,15 +474,15 @@ public abstract class BsAliasMemberLogin implements Entity, Serializable, Clonea
     public String toStringWithRelation() {
         StringBuilder sb = new StringBuilder();
         sb.append(toString());
-        String l = "\n  ";
+        String li = "\n  ";
         if (_aliasMember != null)
-        { sb.append(l).append(xbRDS(_aliasMember, "aliasMember")); }
+        { sb.append(li).append(xbRDS(_aliasMember, "aliasMember")); }
         if (_memberStatus != null)
-        { sb.append(l).append(xbRDS(_memberStatus, "memberStatus")); }
+        { sb.append(li).append(xbRDS(_memberStatus, "memberStatus")); }
         return sb.toString();
     }
-    protected String xbRDS(Entity e, String name) { // buildRelationDisplayString()
-        return e.buildDisplayString(name, true, true);
+    protected String xbRDS(Entity et, String name) { // buildRelationDisplayString()
+        return et.buildDisplayString(name, true, true);
     }
 
     /**
@@ -471,25 +498,25 @@ public abstract class BsAliasMemberLogin implements Entity, Serializable, Clonea
     }
     protected String buildColumnString() {
         StringBuilder sb = new StringBuilder();
-        String delimiter = ", ";
-        sb.append(delimiter).append(getMemberLoginId());
-        sb.append(delimiter).append(getMemberId());
-        sb.append(delimiter).append(getLoginDatetime());
-        sb.append(delimiter).append(getMobileLoginFlg());
-        sb.append(delimiter).append(getLoginMemberStatusCode());
-        if (sb.length() > delimiter.length()) {
-            sb.delete(0, delimiter.length());
+        String dm = ", ";
+        sb.append(dm).append(getMemberLoginId());
+        sb.append(dm).append(getMemberId());
+        sb.append(dm).append(getLoginDatetime());
+        sb.append(dm).append(getMobileLoginFlg());
+        sb.append(dm).append(getLoginMemberStatusCode());
+        if (sb.length() > dm.length()) {
+            sb.delete(0, dm.length());
         }
         sb.insert(0, "{").append("}");
         return sb.toString();
     }
     protected String buildRelationString() {
         StringBuilder sb = new StringBuilder();
-        String c = ",";
-        if (_aliasMember != null) { sb.append(c).append("aliasMember"); }
-        if (_memberStatus != null) { sb.append(c).append("memberStatus"); }
-        if (sb.length() > c.length()) {
-            sb.delete(0, c.length()).insert(0, "(").append(")");
+        String cm = ",";
+        if (_aliasMember != null) { sb.append(cm).append("aliasMember"); }
+        if (_memberStatus != null) { sb.append(cm).append("memberStatus"); }
+        if (sb.length() > cm.length()) {
+            sb.delete(0, cm.length()).insert(0, "(").append(")");
         }
         return sb.toString();
     }
@@ -527,7 +554,7 @@ public abstract class BsAliasMemberLogin implements Entity, Serializable, Clonea
     }
 
     /**
-     * [get] (会員ID)MEMBER_ID: {UQ, NotNull, INTEGER(10), FK to ALIAS_MEMBER} <br />
+     * [get] (会員ID)MEMBER_ID: {UQ+, NotNull, INTEGER(10), FK to ALIAS_MEMBER} <br />
      * @return The value of the column 'MEMBER_ID'. (basically NotNull if selected: for the constraint)
      */
     public Integer getMemberId() {
@@ -535,7 +562,7 @@ public abstract class BsAliasMemberLogin implements Entity, Serializable, Clonea
     }
 
     /**
-     * [set] (会員ID)MEMBER_ID: {UQ, NotNull, INTEGER(10), FK to ALIAS_MEMBER} <br />
+     * [set] (会員ID)MEMBER_ID: {UQ+, NotNull, INTEGER(10), FK to ALIAS_MEMBER} <br />
      * @param memberId The value of the column 'MEMBER_ID'. (basically NotNull if update: for the constraint)
      */
     public void setMemberId(Integer memberId) {
@@ -544,7 +571,7 @@ public abstract class BsAliasMemberLogin implements Entity, Serializable, Clonea
     }
 
     /**
-     * [get] (ログイン日時)LOGIN_DATETIME: {UQ+, IX, NotNull, TIMESTAMP(26, 6)} <br />
+     * [get] (ログイン日時)LOGIN_DATETIME: {+UQ, IX, NotNull, TIMESTAMP(26, 6)} <br />
      * ログインした瞬間の日時。<br />
      * 同じ会員が同じ日時にログインはできない。(ユニーク制約で重複ログインできないようにしてある)
      * @return The value of the column 'LOGIN_DATETIME'. (basically NotNull if selected: for the constraint)
@@ -554,7 +581,7 @@ public abstract class BsAliasMemberLogin implements Entity, Serializable, Clonea
     }
 
     /**
-     * [set] (ログイン日時)LOGIN_DATETIME: {UQ+, IX, NotNull, TIMESTAMP(26, 6)} <br />
+     * [set] (ログイン日時)LOGIN_DATETIME: {+UQ, IX, NotNull, TIMESTAMP(26, 6)} <br />
      * ログインした瞬間の日時。<br />
      * 同じ会員が同じ日時にログインはできない。(ユニーク制約で重複ログインできないようにしてある)
      * @param loginDatetime The value of the column 'LOGIN_DATETIME'. (basically NotNull if update: for the constraint)

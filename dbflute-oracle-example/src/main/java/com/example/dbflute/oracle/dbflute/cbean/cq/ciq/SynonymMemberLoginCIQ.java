@@ -25,9 +25,9 @@ public class SynonymMemberLoginCIQ extends AbstractBsSynonymMemberLoginCQ {
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public SynonymMemberLoginCIQ(ConditionQuery childQuery, SqlClause sqlClause
+    public SynonymMemberLoginCIQ(ConditionQuery referrerQuery, SqlClause sqlClause
                         , String aliasName, int nestLevel, BsSynonymMemberLoginCQ myCQ) {
-        super(childQuery, sqlClause, aliasName, nestLevel);
+        super(referrerQuery, sqlClause, aliasName, nestLevel);
         _myCQ = myCQ;
         _foreignPropertyName = _myCQ.xgetForeignPropertyName(); // accept foreign property name
         _relationPath = _myCQ.xgetRelationPath(); // accept relation path

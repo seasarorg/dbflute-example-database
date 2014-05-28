@@ -137,7 +137,7 @@ public abstract class BsSpReturnResultSetReturnValue implements Entity, Serializ
     /**
      * {@inheritDoc}
      */
-    public Set<String> uniqueDrivenProperties() {
+    public Set<String> myuniqueDrivenProperties() {
         return __uniqueDrivenProperties.getPropertyNames();
     }
 

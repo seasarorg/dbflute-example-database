@@ -169,7 +169,7 @@ public abstract class BsVendorSynonymMemberBhv extends AbstractBehaviorWritable 
      * </pre>
      * @param cb The condition-bean of VendorSynonymMember. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -190,39 +190,64 @@ public abstract class BsVendorSynonymMemberBhv extends AbstractBehaviorWritable 
 
     /**
      * Select the entity by the primary-key value.
-     * @param memberId The one of primary key. (NotNull)
+     * @param memberId (会員ID): PK, NotNull, NUMBER(16). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public VendorSynonymMember selectByPKValue(Long memberId) {
-        return doSelectByPKValue(memberId, VendorSynonymMember.class);
+        return doSelectByPK(memberId, VendorSynonymMember.class);
     }
 
-    protected <ENTITY extends VendorSynonymMember> ENTITY doSelectByPKValue(Long memberId, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(memberId), entityType);
+    protected <ENTITY extends VendorSynonymMember> ENTITY doSelectByPK(Long memberId, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(memberId), entityType);
+    }
+
+    protected <ENTITY extends VendorSynonymMember> OptionalEntity<ENTITY> doSelectOptionalByPK(Long memberId, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(memberId, entityType), memberId);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param memberId The one of primary key. (NotNull)
+     * @param memberId (会員ID): PK, NotNull, NUMBER(16). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public VendorSynonymMember selectByPKValueWithDeletedCheck(Long memberId) {
-        return doSelectByPKValueWithDeletedCheck(memberId, VendorSynonymMember.class);
+        return doSelectByPKWithDeletedCheck(memberId, VendorSynonymMember.class);
     }
 
-    protected <ENTITY extends VendorSynonymMember> ENTITY doSelectByPKValueWithDeletedCheck(Long memberId, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(memberId), entityType);
+    protected <ENTITY extends VendorSynonymMember> ENTITY doSelectByPKWithDeletedCheck(Long memberId, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(memberId), entityType);
     }
 
-    private VendorSynonymMemberCB buildPKCB(Long memberId) {
+    protected VendorSynonymMemberCB xprepareCBAsPK(Long memberId) {
         assertObjectNotNull("memberId", memberId);
-        VendorSynonymMemberCB cb = newMyConditionBean();
-        cb.query().setMemberId_Equal(memberId);
+        VendorSynonymMemberCB cb = newMyConditionBean(); cb.acceptPrimaryKey(memberId);
+        return cb;
+    }
+
+    /**
+     * Select the entity by the unique-key value.
+     * @param memberAccount (会員アカウント): UQ, NotNull, VARCHAR2(50). (NotNull)
+     * @return The optional entity selected by the unique key. (NotNull: if no data, empty entity)
+     * @exception EntityAlreadyDeletedException When get(), required() of return value is called and the value is null, which means entity has already been deleted (not found).
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     */
+    public OptionalEntity<VendorSynonymMember> selectByUniqueOf(String memberAccount) {
+        return doSelectByUniqueOf(memberAccount, VendorSynonymMember.class);
+    }
+
+    protected <ENTITY extends VendorSynonymMember> OptionalEntity<ENTITY> doSelectByUniqueOf(String memberAccount, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectEntity(xprepareCBAsUniqueOf(memberAccount), entityType), memberAccount);
+    }
+
+    protected VendorSynonymMemberCB xprepareCBAsUniqueOf(String memberAccount) {
+        assertObjectNotNull("memberAccount", memberAccount);
+        VendorSynonymMemberCB cb = newMyConditionBean(); cb.acceptUniqueOf(memberAccount);
         return cb;
     }
 
@@ -498,7 +523,8 @@ public abstract class BsVendorSynonymMemberBhv extends AbstractBehaviorWritable 
      */
     public List<MemberStatus> pulloutMemberStatus(List<VendorSynonymMember> vendorSynonymMemberList) {
         return helpPulloutInternally(vendorSynonymMemberList, new InternalPulloutCallback<VendorSynonymMember, MemberStatus>() {
-            public MemberStatus getFr(VendorSynonymMember et) { return et.getMemberStatus(); }
+            public MemberStatus getFr(VendorSynonymMember et)
+            { return et.getMemberStatus(); }
             public boolean hasRf() { return true; }
             public void setRfLs(MemberStatus et, List<VendorSynonymMember> ls)
             { et.setVendorSynonymMemberList(ls); }
@@ -511,7 +537,8 @@ public abstract class BsVendorSynonymMemberBhv extends AbstractBehaviorWritable 
      */
     public List<SynonymMemberWithdrawal> pulloutSynonymMemberWithdrawalAsOne(List<VendorSynonymMember> vendorSynonymMemberList) {
         return helpPulloutInternally(vendorSynonymMemberList, new InternalPulloutCallback<VendorSynonymMember, SynonymMemberWithdrawal>() {
-            public SynonymMemberWithdrawal getFr(VendorSynonymMember et) { return et.getSynonymMemberWithdrawalAsOne(); }
+            public SynonymMemberWithdrawal getFr(VendorSynonymMember et)
+            { return et.getSynonymMemberWithdrawalAsOne(); }
             public boolean hasRf() { return true; }
             public void setRfLs(SynonymMemberWithdrawal et, List<VendorSynonymMember> ls)
             { if (!ls.isEmpty()) { et.setVendorSynonymMember(ls.get(0)); } }

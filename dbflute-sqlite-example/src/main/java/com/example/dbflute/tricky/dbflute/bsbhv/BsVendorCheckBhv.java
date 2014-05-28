@@ -169,7 +169,7 @@ public abstract class BsVendorCheckBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of VendorCheck. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -190,39 +190,42 @@ public abstract class BsVendorCheckBhv extends AbstractBehaviorWritable {
 
     /**
      * Select the entity by the primary-key value.
-     * @param vendorCheckId The one of primary key. (NotNull)
+     * @param vendorCheckId : PK, NotNull, INTEGER(2000000000, 10). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public VendorCheck selectByPKValue(Integer vendorCheckId) {
-        return doSelectByPKValue(vendorCheckId, VendorCheck.class);
+        return doSelectByPK(vendorCheckId, VendorCheck.class);
     }
 
-    protected <ENTITY extends VendorCheck> ENTITY doSelectByPKValue(Integer vendorCheckId, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(vendorCheckId), entityType);
+    protected <ENTITY extends VendorCheck> ENTITY doSelectByPK(Integer vendorCheckId, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(vendorCheckId), entityType);
+    }
+
+    protected <ENTITY extends VendorCheck> OptionalEntity<ENTITY> doSelectOptionalByPK(Integer vendorCheckId, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(vendorCheckId, entityType), vendorCheckId);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param vendorCheckId The one of primary key. (NotNull)
+     * @param vendorCheckId : PK, NotNull, INTEGER(2000000000, 10). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public VendorCheck selectByPKValueWithDeletedCheck(Integer vendorCheckId) {
-        return doSelectByPKValueWithDeletedCheck(vendorCheckId, VendorCheck.class);
+        return doSelectByPKWithDeletedCheck(vendorCheckId, VendorCheck.class);
     }
 
-    protected <ENTITY extends VendorCheck> ENTITY doSelectByPKValueWithDeletedCheck(Integer vendorCheckId, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(vendorCheckId), entityType);
+    protected <ENTITY extends VendorCheck> ENTITY doSelectByPKWithDeletedCheck(Integer vendorCheckId, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(vendorCheckId), entityType);
     }
 
-    private VendorCheckCB buildPKCB(Integer vendorCheckId) {
+    protected VendorCheckCB xprepareCBAsPK(Integer vendorCheckId) {
         assertObjectNotNull("vendorCheckId", vendorCheckId);
-        VendorCheckCB cb = newMyConditionBean();
-        cb.query().setVendorCheckId_Equal(vendorCheckId);
+        VendorCheckCB cb = newMyConditionBean(); cb.acceptPrimaryKey(vendorCheckId);
         return cb;
     }
 

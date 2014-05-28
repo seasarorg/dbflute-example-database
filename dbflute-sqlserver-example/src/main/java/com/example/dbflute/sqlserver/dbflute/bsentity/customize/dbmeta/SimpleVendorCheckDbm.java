@@ -33,6 +33,9 @@ public class SimpleVendorCheckDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgVendorCheckId(), "vendorCheckId");
@@ -45,8 +48,6 @@ public class SimpleVendorCheckDbm extends AbstractDBMeta {
         setupEpg(_epgMap, new EpgTypeOfBit(), "typeOfBit");
         setupEpg(_epgMap, new EpgTypeOfUniqueidentifier(), "typeOfUniqueidentifier");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgVendorCheckId implements PropertyGateway {
         public Object read(Entity et) { return ((SimpleVendorCheck)et).getVendorCheckId(); }
         public void write(Entity et, Object vl) { ((SimpleVendorCheck)et).setVendorCheckId(ctl(vl)); }
@@ -83,6 +84,8 @@ public class SimpleVendorCheckDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((SimpleVendorCheck)et).getTypeOfUniqueidentifier(); }
         public void write(Entity et, Object vl) { ((SimpleVendorCheck)et).setTypeOfUniqueidentifier((java.util.UUID)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -98,24 +101,60 @@ public class SimpleVendorCheckDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnVendorCheckId = cci("VENDOR_CHECK_ID", "VENDOR_CHECK_ID", null, null, false, "vendorCheckId", Long.class, false, false, "numeric", 16, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfNumericDecimal = cci("TYPE_OF_NUMERIC_DECIMAL", "TYPE_OF_NUMERIC_DECIMAL", null, null, false, "typeOfNumericDecimal", java.math.BigDecimal.class, false, false, "numeric", 5, 3, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfNumericInteger = cci("TYPE_OF_NUMERIC_INTEGER", "TYPE_OF_NUMERIC_INTEGER", null, null, false, "typeOfNumericInteger", Integer.class, false, false, "numeric", 5, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfNumericBigint = cci("TYPE_OF_NUMERIC_BIGINT", "TYPE_OF_NUMERIC_BIGINT", null, null, false, "typeOfNumericBigint", Long.class, false, false, "numeric", 12, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfText = cci("TYPE_OF_TEXT", "TYPE_OF_TEXT", null, null, false, "typeOfText", String.class, false, false, "text", 2147483647, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfDatetime = cci("TYPE_OF_DATETIME", "TYPE_OF_DATETIME", null, null, false, "typeOfDatetime", java.sql.Timestamp.class, false, false, "datetime", 23, 3, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfSmalldatetime = cci("TYPE_OF_SMALLDATETIME", "TYPE_OF_SMALLDATETIME", null, null, false, "typeOfSmalldatetime", java.sql.Timestamp.class, false, false, "smalldatetime", 16, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfBit = cci("TYPE_OF_BIT", "TYPE_OF_BIT", null, null, false, "typeOfBit", Boolean.class, false, false, "bit", 1, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfUniqueidentifier = cci("TYPE_OF_UNIQUEIDENTIFIER", "TYPE_OF_UNIQUEIDENTIFIER", null, null, false, "typeOfUniqueidentifier", java.util.UUID.class, false, false, "uniqueidentifier", 36, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnVendorCheckId = cci("VENDOR_CHECK_ID", "VENDOR_CHECK_ID", null, null, Long.class, "vendorCheckId", null, false, false, false, "numeric", 16, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfNumericDecimal = cci("TYPE_OF_NUMERIC_DECIMAL", "TYPE_OF_NUMERIC_DECIMAL", null, null, java.math.BigDecimal.class, "typeOfNumericDecimal", null, false, false, false, "numeric", 5, 3, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfNumericInteger = cci("TYPE_OF_NUMERIC_INTEGER", "TYPE_OF_NUMERIC_INTEGER", null, null, Integer.class, "typeOfNumericInteger", null, false, false, false, "numeric", 5, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfNumericBigint = cci("TYPE_OF_NUMERIC_BIGINT", "TYPE_OF_NUMERIC_BIGINT", null, null, Long.class, "typeOfNumericBigint", null, false, false, false, "numeric", 12, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfText = cci("TYPE_OF_TEXT", "TYPE_OF_TEXT", null, null, String.class, "typeOfText", null, false, false, false, "text", 2147483647, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfDatetime = cci("TYPE_OF_DATETIME", "TYPE_OF_DATETIME", null, null, java.sql.Timestamp.class, "typeOfDatetime", null, false, false, false, "datetime", 23, 3, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfSmalldatetime = cci("TYPE_OF_SMALLDATETIME", "TYPE_OF_SMALLDATETIME", null, null, java.sql.Timestamp.class, "typeOfSmalldatetime", null, false, false, false, "smalldatetime", 16, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfBit = cci("TYPE_OF_BIT", "TYPE_OF_BIT", null, null, Boolean.class, "typeOfBit", null, false, false, false, "bit", 1, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfUniqueidentifier = cci("TYPE_OF_UNIQUEIDENTIFIER", "TYPE_OF_UNIQUEIDENTIFIER", null, null, java.util.UUID.class, "typeOfUniqueidentifier", null, false, false, false, "uniqueidentifier", 36, 0, null, false, null, null, null, null, null);
 
+    /**
+     * VENDOR_CHECK_ID: {numeric(16)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnVendorCheckId() { return _columnVendorCheckId; }
+    /**
+     * TYPE_OF_NUMERIC_DECIMAL: {numeric(5, 3)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfNumericDecimal() { return _columnTypeOfNumericDecimal; }
+    /**
+     * TYPE_OF_NUMERIC_INTEGER: {numeric(5)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfNumericInteger() { return _columnTypeOfNumericInteger; }
+    /**
+     * TYPE_OF_NUMERIC_BIGINT: {numeric(12)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfNumericBigint() { return _columnTypeOfNumericBigint; }
+    /**
+     * TYPE_OF_TEXT: {text(2147483647), refers to VENDOR_CHECK.TYPE_OF_TEXT}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfText() { return _columnTypeOfText; }
+    /**
+     * TYPE_OF_DATETIME: {datetime(23, 3)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfDatetime() { return _columnTypeOfDatetime; }
+    /**
+     * TYPE_OF_SMALLDATETIME: {smalldatetime(16)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfSmalldatetime() { return _columnTypeOfSmalldatetime; }
+    /**
+     * TYPE_OF_BIT: {bit(1)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfBit() { return _columnTypeOfBit; }
+    /**
+     * TYPE_OF_UNIQUEIDENTIFIER: {uniqueidentifier(36)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTypeOfUniqueidentifier() { return _columnTypeOfUniqueidentifier; }
 
     protected List<ColumnInfo> ccil() {
@@ -149,6 +188,8 @@ public class SimpleVendorCheckDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // cannot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

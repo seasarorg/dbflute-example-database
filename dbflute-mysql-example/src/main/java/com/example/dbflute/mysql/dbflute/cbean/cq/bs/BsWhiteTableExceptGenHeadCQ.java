@@ -18,6 +18,8 @@ package com.example.dbflute.mysql.dbflute.cbean.cq.bs;
 import java.util.Map;
 
 import org.seasar.dbflute.cbean.*;
+import org.seasar.dbflute.cbean.chelper.*;
+import org.seasar.dbflute.cbean.coption.*;
 import org.seasar.dbflute.cbean.cvalue.ConditionValue;
 import org.seasar.dbflute.cbean.sqlclause.SqlClause;
 import org.seasar.dbflute.exception.IllegalConditionBeanOperationException;
@@ -265,5 +267,7 @@ public class BsWhiteTableExceptGenHeadCQ extends AbstractBsWhiteTableExceptGenHe
     // very internal (for suppressing warn about 'Not Use Import')
     protected String xCB() { return WhiteTableExceptGenHeadCB.class.getName(); }
     protected String xCQ() { return WhiteTableExceptGenHeadCQ.class.getName(); }
+    protected String xCHp() { return HpCalculator.class.getName(); }
+    protected String xCOp() { return ConditionOption.class.getName(); }
     protected String xMap() { return Map.class.getName(); }
 }

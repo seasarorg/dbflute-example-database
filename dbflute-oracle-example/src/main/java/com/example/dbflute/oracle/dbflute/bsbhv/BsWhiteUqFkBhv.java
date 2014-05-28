@@ -169,7 +169,7 @@ public abstract class BsWhiteUqFkBhv extends AbstractBehaviorWritable {
      * </pre>
      * @param cb The condition-bean of WhiteUqFk. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -190,39 +190,64 @@ public abstract class BsWhiteUqFkBhv extends AbstractBehaviorWritable {
 
     /**
      * Select the entity by the primary-key value.
-     * @param uqFkId The one of primary key. (NotNull)
+     * @param uqFkId : PK, NotNull, NUMBER(16). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteUqFk selectByPKValue(Long uqFkId) {
-        return doSelectByPKValue(uqFkId, WhiteUqFk.class);
+        return doSelectByPK(uqFkId, WhiteUqFk.class);
     }
 
-    protected <ENTITY extends WhiteUqFk> ENTITY doSelectByPKValue(Long uqFkId, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(uqFkId), entityType);
+    protected <ENTITY extends WhiteUqFk> ENTITY doSelectByPK(Long uqFkId, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(uqFkId), entityType);
+    }
+
+    protected <ENTITY extends WhiteUqFk> OptionalEntity<ENTITY> doSelectOptionalByPK(Long uqFkId, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(uqFkId, entityType), uqFkId);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param uqFkId The one of primary key. (NotNull)
+     * @param uqFkId : PK, NotNull, NUMBER(16). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteUqFk selectByPKValueWithDeletedCheck(Long uqFkId) {
-        return doSelectByPKValueWithDeletedCheck(uqFkId, WhiteUqFk.class);
+        return doSelectByPKWithDeletedCheck(uqFkId, WhiteUqFk.class);
     }
 
-    protected <ENTITY extends WhiteUqFk> ENTITY doSelectByPKValueWithDeletedCheck(Long uqFkId, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(uqFkId), entityType);
+    protected <ENTITY extends WhiteUqFk> ENTITY doSelectByPKWithDeletedCheck(Long uqFkId, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(uqFkId), entityType);
     }
 
-    private WhiteUqFkCB buildPKCB(Long uqFkId) {
+    protected WhiteUqFkCB xprepareCBAsPK(Long uqFkId) {
         assertObjectNotNull("uqFkId", uqFkId);
-        WhiteUqFkCB cb = newMyConditionBean();
-        cb.query().setUqFkId_Equal(uqFkId);
+        WhiteUqFkCB cb = newMyConditionBean(); cb.acceptPrimaryKey(uqFkId);
+        return cb;
+    }
+
+    /**
+     * Select the entity by the unique-key value.
+     * @param uqFkCode : UQ, NotNull, CHAR(3). (NotNull)
+     * @return The optional entity selected by the unique key. (NotNull: if no data, empty entity)
+     * @exception EntityAlreadyDeletedException When get(), required() of return value is called and the value is null, which means entity has already been deleted (not found).
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     */
+    public OptionalEntity<WhiteUqFk> selectByUniqueOf(String uqFkCode) {
+        return doSelectByUniqueOf(uqFkCode, WhiteUqFk.class);
+    }
+
+    protected <ENTITY extends WhiteUqFk> OptionalEntity<ENTITY> doSelectByUniqueOf(String uqFkCode, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectEntity(xprepareCBAsUniqueOf(uqFkCode), entityType), uqFkCode);
+    }
+
+    protected WhiteUqFkCB xprepareCBAsUniqueOf(String uqFkCode) {
+        assertObjectNotNull("uqFkCode", uqFkCode);
+        WhiteUqFkCB cb = newMyConditionBean(); cb.acceptUniqueOf(uqFkCode);
         return cb;
     }
 

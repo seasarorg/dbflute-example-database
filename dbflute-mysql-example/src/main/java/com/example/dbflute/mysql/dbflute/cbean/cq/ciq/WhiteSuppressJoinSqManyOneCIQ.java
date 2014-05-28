@@ -100,6 +100,11 @@ public class WhiteSuppressJoinSqManyOneCIQ extends AbstractBsWhiteSuppressJoinSq
     public String keepManyOneId_QueryDerivedReferrer_WhiteSuppressJoinSqManyListParameter(Object vl)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
     protected ConditionValue getCValueManyOneName() { return _myCQ.getManyOneName(); }
+    protected ConditionValue getCValueManyOneOneId() { return _myCQ.getManyOneOneId(); }
+    public String keepManyOneOneId_InScopeRelation_WhiteSuppressJoinSqManyOneOne(WhiteSuppressJoinSqManyOneOneCQ sq)
+    { return _myCQ.keepManyOneOneId_InScopeRelation_WhiteSuppressJoinSqManyOneOne(sq); }
+    public String keepManyOneOneId_NotInScopeRelation_WhiteSuppressJoinSqManyOneOne(WhiteSuppressJoinSqManyOneOneCQ sq)
+    { return _myCQ.keepManyOneOneId_NotInScopeRelation_WhiteSuppressJoinSqManyOneOne(sq); }
     protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
     public String keepScalarCondition(WhiteSuppressJoinSqManyOneCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }

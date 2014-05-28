@@ -225,14 +225,6 @@ public class BsPurchaseSummaryMemberPmb implements CursorHandlingPmb<MemberBhv, 
     }
 
     /**
-     * [set] memberStatusCode:cls(MemberStatus) <br />
-     * @param memberStatusCode The value of memberStatusCode. (NullAllowed)
-     */
-    public void setMemberStatusCode(String memberStatusCode) {
-        _memberStatusCode = memberStatusCode;
-    }
-
-    /**
      * [set as Formalized] memberStatusCode:cls(MemberStatus) <br />
      * 正式な会員を示す
      */

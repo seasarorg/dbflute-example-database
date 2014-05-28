@@ -169,7 +169,7 @@ public abstract class BsWhiteSameNameRefRefBhv extends AbstractBehaviorWritable 
      * </pre>
      * @param cb The condition-bean of WhiteSameNameRefRef. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -190,39 +190,42 @@ public abstract class BsWhiteSameNameRefRefBhv extends AbstractBehaviorWritable 
 
     /**
      * Select the entity by the primary-key value.
-     * @param refRefId The one of primary key. (NotNull)
+     * @param refRefId : PK, NotNull, NUMBER(16). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteSameNameRefRef selectByPKValue(Long refRefId) {
-        return doSelectByPKValue(refRefId, WhiteSameNameRefRef.class);
+        return doSelectByPK(refRefId, WhiteSameNameRefRef.class);
     }
 
-    protected <ENTITY extends WhiteSameNameRefRef> ENTITY doSelectByPKValue(Long refRefId, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(refRefId), entityType);
+    protected <ENTITY extends WhiteSameNameRefRef> ENTITY doSelectByPK(Long refRefId, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(refRefId), entityType);
+    }
+
+    protected <ENTITY extends WhiteSameNameRefRef> OptionalEntity<ENTITY> doSelectOptionalByPK(Long refRefId, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(refRefId, entityType), refRefId);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param refRefId The one of primary key. (NotNull)
+     * @param refRefId : PK, NotNull, NUMBER(16). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteSameNameRefRef selectByPKValueWithDeletedCheck(Long refRefId) {
-        return doSelectByPKValueWithDeletedCheck(refRefId, WhiteSameNameRefRef.class);
+        return doSelectByPKWithDeletedCheck(refRefId, WhiteSameNameRefRef.class);
     }
 
-    protected <ENTITY extends WhiteSameNameRefRef> ENTITY doSelectByPKValueWithDeletedCheck(Long refRefId, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(refRefId), entityType);
+    protected <ENTITY extends WhiteSameNameRefRef> ENTITY doSelectByPKWithDeletedCheck(Long refRefId, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(refRefId), entityType);
     }
 
-    private WhiteSameNameRefRefCB buildPKCB(Long refRefId) {
+    protected WhiteSameNameRefRefCB xprepareCBAsPK(Long refRefId) {
         assertObjectNotNull("refRefId", refRefId);
-        WhiteSameNameRefRefCB cb = newMyConditionBean();
-        cb.query().setRefRefId_Equal(refRefId);
+        WhiteSameNameRefRefCB cb = newMyConditionBean(); cb.acceptPrimaryKey(refRefId);
         return cb;
     }
 

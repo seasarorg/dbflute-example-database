@@ -33,6 +33,9 @@ public class FooBeanDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgFooId(), "fooId");
@@ -42,8 +45,6 @@ public class FooBeanDbm extends AbstractDBMeta {
         setupEpg(_epgMap, new EpgFooTimestamp(), "fooTimestamp");
         setupEpg(_epgMap, new EpgFooClob(), "fooClob");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgFooId implements PropertyGateway {
         public Object read(Entity et) { return ((FooBean)et).getFooId(); }
         public void write(Entity et, Object vl) { ((FooBean)et).setFooId(cti(vl)); }
@@ -68,6 +69,8 @@ public class FooBeanDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((FooBean)et).getFooClob(); }
         public void write(Entity et, Object vl) { ((FooBean)et).setFooClob((String)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -83,18 +86,42 @@ public class FooBeanDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnFooId = cci("FOO_ID", "FOO_ID", null, null, false, "fooId", Integer.class, false, false, "NUMBER", 8, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnFooName = cci("FOO_NAME", "FOO_NAME", null, null, false, "fooName", String.class, false, false, "VARCHAR2", 20, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnFooDecimal = cci("FOO_DECIMAL", "FOO_DECIMAL", null, null, false, "fooDecimal", java.math.BigDecimal.class, false, false, "NUMBER", 5, 3, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnFooDate = cci("FOO_DATE", "FOO_DATE", null, null, false, "fooDate", java.util.Date.class, false, false, "DATE", null, null, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnFooTimestamp = cci("FOO_TIMESTAMP", "FOO_TIMESTAMP", null, null, false, "fooTimestamp", java.sql.Timestamp.class, false, false, "TIMESTAMP", null, null, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnFooClob = cci("FOO_CLOB", "FOO_CLOB", null, null, false, "fooClob", String.class, false, false, "CLOB", null, null, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnFooId = cci("FOO_ID", "FOO_ID", null, null, Integer.class, "fooId", null, false, false, false, "NUMBER", 8, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnFooName = cci("FOO_NAME", "FOO_NAME", null, null, String.class, "fooName", null, false, false, false, "VARCHAR2", 20, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnFooDecimal = cci("FOO_DECIMAL", "FOO_DECIMAL", null, null, java.math.BigDecimal.class, "fooDecimal", null, false, false, false, "NUMBER", 5, 3, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnFooDate = cci("FOO_DATE", "FOO_DATE", null, null, java.util.Date.class, "fooDate", null, false, false, false, "DATE", null, null, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnFooTimestamp = cci("FOO_TIMESTAMP", "FOO_TIMESTAMP", null, null, java.sql.Timestamp.class, "fooTimestamp", null, false, false, false, "TIMESTAMP", null, null, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnFooClob = cci("FOO_CLOB", "FOO_CLOB", null, null, String.class, "fooClob", null, false, false, false, "CLOB", null, null, null, false, null, null, null, null, null);
 
+    /**
+     * FOO_ID: {NUMBER(8)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnFooId() { return _columnFooId; }
+    /**
+     * FOO_NAME: {VARCHAR2(20)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnFooName() { return _columnFooName; }
+    /**
+     * FOO_DECIMAL: {NUMBER(5, 3)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnFooDecimal() { return _columnFooDecimal; }
+    /**
+     * FOO_DATE: {DATE}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnFooDate() { return _columnFooDate; }
+    /**
+     * FOO_TIMESTAMP: {TIMESTAMP}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnFooTimestamp() { return _columnFooTimestamp; }
+    /**
+     * FOO_CLOB: {CLOB}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnFooClob() { return _columnFooClob; }
 
     protected List<ColumnInfo> ccil() {
@@ -125,6 +152,8 @@ public class FooBeanDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // cannot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

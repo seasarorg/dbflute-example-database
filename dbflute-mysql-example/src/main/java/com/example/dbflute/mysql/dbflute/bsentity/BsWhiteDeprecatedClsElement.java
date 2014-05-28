@@ -139,7 +139,7 @@ public abstract class BsWhiteDeprecatedClsElement implements Entity, Serializabl
     /**
      * {@inheritDoc}
      */
-    public Set<String> uniqueDrivenProperties() {
+    public Set<String> myuniqueDrivenProperties() {
         return __uniqueDrivenProperties.getPropertyNames();
     }
 
@@ -434,7 +434,7 @@ public abstract class BsWhiteDeprecatedClsElement implements Entity, Serializabl
      * [set] DEPRECATED_CLS_ELEMENT_CODE: {PK, NotNull, CHAR(3), classification=DeprecatedMapCollaborationType} <br />
      * @param deprecatedClsElementCode The value of the column 'DEPRECATED_CLS_ELEMENT_CODE'. (basically NotNull if update: for the constraint)
      */
-    public void setDeprecatedClsElementCode(String deprecatedClsElementCode) {
+    protected void setDeprecatedClsElementCode(String deprecatedClsElementCode) {
         checkImplicitSet("DEPRECATED_CLS_ELEMENT_CODE", CDef.DefMeta.DeprecatedMapCollaborationType, deprecatedClsElementCode);
         __modifiedProperties.addPropertyName("deprecatedClsElementCode");
         this._deprecatedClsElementCode = deprecatedClsElementCode;

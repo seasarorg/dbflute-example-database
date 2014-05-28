@@ -16,6 +16,7 @@ import org.seasar.dbflute.jdbc.SqlResultInfo;
 import org.seasar.dbflute.util.DfReflectionUtil;
 import org.seasar.dbflute.util.Srl;
 
+import com.example.dbflute.mysql.dbflute.allcommon.CDef;
 import com.example.dbflute.mysql.dbflute.cbean.MemberCB;
 import com.example.dbflute.mysql.dbflute.exbhv.MemberBhv;
 import com.example.dbflute.mysql.dbflute.exbhv.MemberStatusBhv;
@@ -253,7 +254,7 @@ public class WxSqlLoggingDetailTest extends UnitContainerTestCase {
             String indexStr = String.valueOf(i);
             String code = (indexStr.length() == 1 ? "00" + indexStr : (indexStr.length() == 2 ? "0" + indexStr
                     : indexStr));
-            status.setMemberStatusCode(code);
+            status.setMemberStatusCodeAsMemberStatus(CDef.MemberStatus.codeOf(code));
             status.setMemberStatusName(code + " Name");
             status.setDisplayOrder(i + 1000);
             status.setDescription(code + " Desc");

@@ -1410,6 +1410,71 @@ public interface CDef extends Classification {
     }
 
     /**
+     * unique key as classification
+     */
+    public enum UQClassificationType implements CDef {
+        ;
+        private static final Map<String, UQClassificationType> _codeValueMap = new HashMap<String, UQClassificationType>();
+        static {
+            for (UQClassificationType value : values()) {
+                _codeValueMap.put(value.code().toLowerCase(), value);
+                for (String sister : value.sisters()) { _codeValueMap.put(sister.toLowerCase(), value); }
+            }
+        }
+        private String _code; private String _alias; private String[] _sisters;
+        private UQClassificationType(String code, String alias, String[] sisters)
+        { _code = code; _alias = alias; _sisters = sisters; }
+        public String code() { return _code; } public String alias() { return _alias; }
+        private String[] sisters() { return _sisters; }
+        public Map<String, Object> subItemMap() { return EMPTY_SUB_ITEM_MAP; }
+        public ClassificationMeta meta() { return CDef.DefMeta.UQClassificationType; }
+
+        public boolean inGroup(String groupName) {
+            return false;
+        }
+
+        /**
+         * Get the classification by the code. (CaseInsensitive)
+         * @param code The value of code, which is case-insensitive. (NullAllowed: if null, returns null)
+         * @return The instance of the corresponding classification to the code. (NullAllowed: if not found, returns null)
+         */
+        public static UQClassificationType codeOf(Object code) {
+            if (code == null) { return null; }
+            if (code instanceof UQClassificationType) { return (UQClassificationType)code; }
+            return _codeValueMap.get(code.toString().toLowerCase());
+        }
+
+        /**
+         * Get the classification by the name (also called 'value' in ENUM world).
+         * @param name The string of name, which is case-sensitive. (NullAllowed: if null, returns null)
+         * @return The instance of the corresponding classification to the name. (NullAllowed: if not found, returns null)
+         */
+        public static UQClassificationType nameOf(String name) {
+            if (name == null) { return null; }
+            try { return valueOf(name); } catch (RuntimeException ignored) { return null; }
+        }
+
+        /**
+         * Get the list of all classification elements. (returns new copied list)
+         * @return The list of all classification elements. (NotNull)
+         */
+        public static List<UQClassificationType> listAll() {
+            return new ArrayList<UQClassificationType>(Arrays.asList(values()));
+        }
+
+        /**
+         * Get the list of classification elements in the specified group. (returns new copied list) <br />
+         * @param groupName The string of group name, which is case-sensitive. (NullAllowed: if null, returns empty list)
+         * @return The list of classification elements in the group. (NotNull)
+         */
+        public static List<UQClassificationType> groupOf(String groupName) {
+            return new ArrayList<UQClassificationType>(4);
+        }
+
+        @Override public String toString() { return code(); }
+    }
+
+    /**
      * Classification of Bar
      */
     public enum BarCls implements CDef {
@@ -1829,6 +1894,9 @@ public interface CDef extends Classification {
         /** has deprecated element */
         DeprecatedMapCollaborationType
         ,
+        /** unique key as classification */
+        UQClassificationType
+        ,
         /** Classification of Bar */
         BarCls
         ,
@@ -1861,6 +1929,7 @@ public interface CDef extends Classification {
             if ("DeprecatedTopBasicType".equals(name())) { return CDef.DeprecatedTopBasicType.codeOf(code); }
             if ("DeprecatedMapBasicType".equals(name())) { return CDef.DeprecatedMapBasicType.codeOf(code); }
             if ("DeprecatedMapCollaborationType".equals(name())) { return CDef.DeprecatedMapCollaborationType.codeOf(code); }
+            if ("UQClassificationType".equals(name())) { return CDef.UQClassificationType.codeOf(code); }
             if ("BarCls".equals(name())) { return CDef.BarCls.codeOf(code); }
             if ("FooCls".equals(name())) { return CDef.FooCls.codeOf(code); }
             if ("Flg".equals(name())) { return CDef.Flg.codeOf(code); }
@@ -1886,6 +1955,7 @@ public interface CDef extends Classification {
             if ("DeprecatedTopBasicType".equals(name())) { return CDef.DeprecatedTopBasicType.valueOf(name); }
             if ("DeprecatedMapBasicType".equals(name())) { return CDef.DeprecatedMapBasicType.valueOf(name); }
             if ("DeprecatedMapCollaborationType".equals(name())) { return CDef.DeprecatedMapCollaborationType.valueOf(name); }
+            if ("UQClassificationType".equals(name())) { return CDef.UQClassificationType.valueOf(name); }
             if ("BarCls".equals(name())) { return CDef.BarCls.valueOf(name); }
             if ("FooCls".equals(name())) { return CDef.FooCls.valueOf(name); }
             if ("Flg".equals(name())) { return CDef.Flg.valueOf(name); }
@@ -1911,6 +1981,7 @@ public interface CDef extends Classification {
             if ("DeprecatedTopBasicType".equals(name())) { return toClassificationList(CDef.DeprecatedTopBasicType.listAll()); }
             if ("DeprecatedMapBasicType".equals(name())) { return toClassificationList(CDef.DeprecatedMapBasicType.listAll()); }
             if ("DeprecatedMapCollaborationType".equals(name())) { return toClassificationList(CDef.DeprecatedMapCollaborationType.listAll()); }
+            if ("UQClassificationType".equals(name())) { return toClassificationList(CDef.UQClassificationType.listAll()); }
             if ("BarCls".equals(name())) { return toClassificationList(CDef.BarCls.listAll()); }
             if ("FooCls".equals(name())) { return toClassificationList(CDef.FooCls.listAll()); }
             if ("Flg".equals(name())) { return toClassificationList(CDef.Flg.listAll()); }
@@ -1936,6 +2007,7 @@ public interface CDef extends Classification {
             if ("DeprecatedTopBasicType".equals(name())) { return toClassificationList(CDef.DeprecatedTopBasicType.groupOf(groupName)); }
             if ("DeprecatedMapBasicType".equals(name())) { return toClassificationList(CDef.DeprecatedMapBasicType.groupOf(groupName)); }
             if ("DeprecatedMapCollaborationType".equals(name())) { return toClassificationList(CDef.DeprecatedMapCollaborationType.groupOf(groupName)); }
+            if ("UQClassificationType".equals(name())) { return toClassificationList(CDef.UQClassificationType.groupOf(groupName)); }
             if ("BarCls".equals(name())) { return toClassificationList(CDef.BarCls.groupOf(groupName)); }
             if ("FooCls".equals(name())) { return toClassificationList(CDef.FooCls.groupOf(groupName)); }
             if ("Flg".equals(name())) { return toClassificationList(CDef.Flg.groupOf(groupName)); }
@@ -1966,6 +2038,7 @@ public interface CDef extends Classification {
             if ("DeprecatedTopBasicType".equals(name())) { return ClassificationCodeType.String; }
             if ("DeprecatedMapBasicType".equals(name())) { return ClassificationCodeType.String; }
             if ("DeprecatedMapCollaborationType".equals(name())) { return ClassificationCodeType.String; }
+            if ("UQClassificationType".equals(name())) { return ClassificationCodeType.String; }
             if ("BarCls".equals(name())) { return ClassificationCodeType.String; }
             if ("FooCls".equals(name())) { return ClassificationCodeType.String; }
             if ("Flg".equals(name())) { return ClassificationCodeType.Number; }

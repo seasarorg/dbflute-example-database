@@ -328,7 +328,7 @@ public abstract class AbstractBsWhiteNoPkRelationCQ extends AbstractConditionQue
      * PRODUCT_STATUS_CODE: {NotNull, CHAR(3), classification=ProductStatus}
      * @param productStatusCode The value of productStatusCode as equal. (NullAllowed: if null (or empty), no condition)
      */
-    public void setProductStatusCode_Equal(String productStatusCode) {
+    protected void setProductStatusCode_Equal(String productStatusCode) {
         doSetProductStatusCode_Equal(fRES(productStatusCode));
     }
 
@@ -375,7 +375,7 @@ public abstract class AbstractBsWhiteNoPkRelationCQ extends AbstractConditionQue
      * PRODUCT_STATUS_CODE: {NotNull, CHAR(3), classification=ProductStatus}
      * @param productStatusCode The value of productStatusCode as notEqual. (NullAllowed: if null (or empty), no condition)
      */
-    public void setProductStatusCode_NotEqual(String productStatusCode) {
+    protected void setProductStatusCode_NotEqual(String productStatusCode) {
         doSetProductStatusCode_NotEqual(fRES(productStatusCode));
     }
 
@@ -553,6 +553,129 @@ public abstract class AbstractBsWhiteNoPkRelationCQ extends AbstractConditionQue
 
     protected void regLatestPurchaseDatetime(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueLatestPurchaseDatetime(), "LATEST_PURCHASE_DATETIME"); }
     protected abstract ConditionValue getCValueLatestPurchaseDatetime();
+
+    // ===================================================================================
+    //                                                                     ScalarCondition
+    //                                                                     ===============
+    /**
+     * Prepare ScalarCondition as equal. <br />
+     * {where FOO = (select max(BAR) from ...)
+     * <pre>
+     * cb.query().<span style="color: #DD4747">scalar_Equal()</span>.max(new SubQuery&lt;WhiteNoPkRelationCB&gt;() {
+     *     public void query(WhiteNoPkRelationCB subCB) {
+     *         subCB.specify().setXxx... <span style="color: #3F7E5E">// derived column for function</span>
+     *         subCB.query().setYyy...
+     *     }
+     * });
+     * </pre>
+     * @return The object to set up a function. (NotNull)
+     */
+    public HpSSQFunction<WhiteNoPkRelationCB> scalar_Equal() {
+        return xcreateSSQFunction(CK_EQ.getOperand(), WhiteNoPkRelationCB.class);
+    }
+
+    /**
+     * Prepare ScalarCondition as equal. <br />
+     * {where FOO &lt;&gt; (select max(BAR) from ...)
+     * <pre>
+     * cb.query().<span style="color: #DD4747">scalar_NotEqual()</span>.max(new SubQuery&lt;WhiteNoPkRelationCB&gt;() {
+     *     public void query(WhiteNoPkRelationCB subCB) {
+     *         subCB.specify().setXxx... <span style="color: #3F7E5E">// derived column for function</span>
+     *         subCB.query().setYyy...
+     *     }
+     * });
+     * </pre>
+     * @return The object to set up a function. (NotNull)
+     */
+    public HpSSQFunction<WhiteNoPkRelationCB> scalar_NotEqual() {
+        return xcreateSSQFunction(CK_NES.getOperand(), WhiteNoPkRelationCB.class);
+    }
+
+    /**
+     * Prepare ScalarCondition as greaterThan. <br />
+     * {where FOO &gt; (select max(BAR) from ...)
+     * <pre>
+     * cb.query().<span style="color: #DD4747">scalar_GreaterThan()</span>.max(new SubQuery&lt;WhiteNoPkRelationCB&gt;() {
+     *     public void query(WhiteNoPkRelationCB subCB) {
+     *         subCB.specify().setFoo... <span style="color: #3F7E5E">// derived column for function</span>
+     *         subCB.query().setBar...
+     *     }
+     * });
+     * </pre>
+     * @return The object to set up a function. (NotNull)
+     */
+    public HpSSQFunction<WhiteNoPkRelationCB> scalar_GreaterThan() {
+        return xcreateSSQFunction(CK_GT.getOperand(), WhiteNoPkRelationCB.class);
+    }
+
+    /**
+     * Prepare ScalarCondition as lessThan. <br />
+     * {where FOO &lt; (select max(BAR) from ...)
+     * <pre>
+     * cb.query().<span style="color: #DD4747">scalar_LessThan()</span>.max(new SubQuery&lt;WhiteNoPkRelationCB&gt;() {
+     *     public void query(WhiteNoPkRelationCB subCB) {
+     *         subCB.specify().setFoo... <span style="color: #3F7E5E">// derived column for function</span>
+     *         subCB.query().setBar...
+     *     }
+     * });
+     * </pre>
+     * @return The object to set up a function. (NotNull)
+     */
+    public HpSSQFunction<WhiteNoPkRelationCB> scalar_LessThan() {
+        return xcreateSSQFunction(CK_LT.getOperand(), WhiteNoPkRelationCB.class);
+    }
+
+    /**
+     * Prepare ScalarCondition as greaterEqual. <br />
+     * {where FOO &gt;= (select max(BAR) from ...)
+     * <pre>
+     * cb.query().<span style="color: #DD4747">scalar_GreaterEqual()</span>.max(new SubQuery&lt;WhiteNoPkRelationCB&gt;() {
+     *     public void query(WhiteNoPkRelationCB subCB) {
+     *         subCB.specify().setFoo... <span style="color: #3F7E5E">// derived column for function</span>
+     *         subCB.query().setBar...
+     *     }
+     * });
+     * </pre>
+     * @return The object to set up a function. (NotNull)
+     */
+    public HpSSQFunction<WhiteNoPkRelationCB> scalar_GreaterEqual() {
+        return xcreateSSQFunction(CK_GE.getOperand(), WhiteNoPkRelationCB.class);
+    }
+
+    /**
+     * Prepare ScalarCondition as lessEqual. <br />
+     * {where FOO &lt;= (select max(BAR) from ...)
+     * <pre>
+     * cb.query().<span style="color: #DD4747">scalar_LessEqual()</span>.max(new SubQuery&lt;WhiteNoPkRelationCB&gt;() {
+     *     public void query(WhiteNoPkRelationCB subCB) {
+     *         subCB.specify().setFoo... <span style="color: #3F7E5E">// derived column for function</span>
+     *         subCB.query().setBar...
+     *     }
+     * });
+     * </pre>
+     * @return The object to set up a function. (NotNull)
+     */
+    public HpSSQFunction<WhiteNoPkRelationCB> scalar_LessEqual() {
+        return xcreateSSQFunction(CK_LE.getOperand(), WhiteNoPkRelationCB.class);
+    }
+
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xscalarCondition(String fn, SubQuery<CB> sq, String rd, HpSSQOption<CB> op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteNoPkRelationCB cb = xcreateScalarConditionCB(); sq.query((CB)cb);
+        String pp = keepScalarCondition(cb.query()); // for saving query-value
+        op.setPartitionByCBean((CB)xcreateScalarConditionPartitionByCB()); // for using partition-by
+        registerScalarCondition(fn, cb.query(), pp, rd, op);
+    }
+    public abstract String keepScalarCondition(WhiteNoPkRelationCQ sq);
+
+    protected WhiteNoPkRelationCB xcreateScalarConditionCB() {
+        WhiteNoPkRelationCB cb = newMyCB(); cb.xsetupForScalarCondition(this); return cb;
+    }
+
+    protected WhiteNoPkRelationCB xcreateScalarConditionPartitionByCB() {
+        WhiteNoPkRelationCB cb = newMyCB(); cb.xsetupForScalarConditionPartitionBy(this); return cb;
+    }
 
     // ===================================================================================
     //                                                                    Full Text Search

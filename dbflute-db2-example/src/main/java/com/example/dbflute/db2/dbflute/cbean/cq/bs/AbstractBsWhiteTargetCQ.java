@@ -22,8 +22,8 @@ public abstract class AbstractBsWhiteTargetCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public AbstractBsWhiteTargetCQ(ConditionQuery childQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
-        super(childQuery, sqlClause, aliasName, nestLevel);
+    public AbstractBsWhiteTargetCQ(ConditionQuery referrerQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
+        super(referrerQuery, sqlClause, aliasName, nestLevel);
     }
 
     // ===================================================================================
@@ -230,7 +230,7 @@ public abstract class AbstractBsWhiteTargetCQ extends AbstractConditionQuery {
     public abstract String keepTargetId_SpecifyDerivedReferrer_WhiteRefTargetList(WhiteRefTargetCQ sq);
 
     /**
-     * Prepare for (Query)DerivedReferrer. <br />
+     * Prepare for (Query)DerivedReferrer (correlated sub-query). <br />
      * {FOO &lt;= (select max(BAR) from WHITE_REF_TARGET where ...)} <br />
      * WHITE_REF_TARGET by TARGET_ID, named 'whiteRefTargetAsOne'.
      * <pre>
@@ -519,7 +519,7 @@ public abstract class AbstractBsWhiteTargetCQ extends AbstractConditionQuery {
     public abstract String keepSpecifyMyselfDerived(WhiteTargetCQ sq);
 
     /**
-     * Prepare for (Query)MyselfDerived (SubQuery).
+     * Prepare for (Query)MyselfDerived (correlated sub-query).
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<WhiteTargetCB> myselfDerived() {
@@ -541,8 +541,8 @@ public abstract class AbstractBsWhiteTargetCQ extends AbstractConditionQuery {
     //                                                                        MyselfExists
     //                                                                        ============
     /**
-     * Prepare for MyselfExists (SubQuery).
-     * @param subQuery The implementation of sub query. (NotNull)
+     * Prepare for MyselfExists (correlated sub-query).
+     * @param subQuery The implementation of sub-query. (NotNull)
      */
     public void myselfExists(SubQuery<WhiteTargetCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
@@ -557,8 +557,8 @@ public abstract class AbstractBsWhiteTargetCQ extends AbstractConditionQuery {
     //                                                                       MyselfInScope
     //                                                                       =============
     /**
-     * Prepare for MyselfInScope (SubQuery).
-     * @param subQuery The implementation of sub query. (NotNull)
+     * Prepare for MyselfInScope (sub-query).
+     * @param subQuery The implementation of sub-query. (NotNull)
      */
     public void myselfInScope(SubQuery<WhiteTargetCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);

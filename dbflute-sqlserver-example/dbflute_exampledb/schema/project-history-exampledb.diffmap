@@ -1,4 +1,31 @@
 map:{
+    ; 2014/05/28 22:43:43 = map:{
+        ; diffDate = 2014/05/28 22:43:43
+        ; tableDiff = map:{
+            ; VENDOR_CHECK = map:{
+                ; tableName = VENDOR_CHECK
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; TYPE_OF_BINARY = map:{
+                        ; columnName = TYPE_OF_BINARY
+                        ; diffType = CHANGE
+                        ; columnSizeDiff = map:{
+                            ; next = 3000
+                            ; previous = 2000
+                        }
+                    }
+                    ; TYPE_OF_VARBINARY = map:{
+                        ; columnName = TYPE_OF_VARBINARY
+                        ; diffType = CHANGE
+                        ; columnSizeDiff = map:{
+                            ; next = 3000
+                            ; previous = 2000
+                        }
+                    }
+                }
+            }
+        }
+    }
     ; 2014/03/12 23:38:16 = map:{
         ; diffDate = 2014/03/12 23:38:16
         ; tableDiff = map:{

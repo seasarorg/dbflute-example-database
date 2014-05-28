@@ -149,13 +149,13 @@ public abstract class BsProductStatus implements Entity, Serializable, Cloneable
     public void uniqueBy(Integer displayOrder) {
         __uniqueDrivenProperties.clear();
         __uniqueDrivenProperties.addPropertyName("displayOrder");
-        _displayOrder = displayOrder;
+        setDisplayOrder(displayOrder);
     }
 
     /**
      * {@inheritDoc}
      */
-    public Set<String> uniqueDrivenProperties() {
+    public Set<String> myuniqueDrivenProperties() {
         return __uniqueDrivenProperties.getPropertyNames();
     }
 
@@ -494,7 +494,7 @@ public abstract class BsProductStatus implements Entity, Serializable, Cloneable
      * [set] (商品ステータスコード)PRODUCT_STATUS_CODE: {PK, NotNull, CHAR(3), classification=ProductStatus} <br />
      * @param productStatusCode The value of the column 'PRODUCT_STATUS_CODE'. (basically NotNull if update: for the constraint)
      */
-    public void setProductStatusCode(String productStatusCode) {
+    protected void setProductStatusCode(String productStatusCode) {
         __modifiedProperties.addPropertyName("productStatusCode");
         this._productStatusCode = productStatusCode;
     }

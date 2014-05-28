@@ -33,13 +33,14 @@ public class WhiteTargetDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgTargetId(), "targetId");
         setupEpg(_epgMap, new EpgTargetName(), "targetName");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgTargetId implements PropertyGateway {
         public Object read(Entity et) { return ((WhiteTarget)et).getTargetId(); }
         public void write(Entity et, Object vl) { ((WhiteTarget)et).setTargetId(ctl(vl)); }
@@ -48,6 +49,8 @@ public class WhiteTargetDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((WhiteTarget)et).getTargetName(); }
         public void write(Entity et, Object vl) { ((WhiteTarget)et).setTargetName((String)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -63,10 +66,18 @@ public class WhiteTargetDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnTargetId = cci("TARGET_ID", "TARGET_ID", null, null, true, "targetId", Long.class, true, false, "NUMBER", 16, 0, null, false, null, null, null, "whiteRefTargetList", null);
-    protected final ColumnInfo _columnTargetName = cci("TARGET_NAME", "TARGET_NAME", null, null, false, "targetName", String.class, false, false, "VARCHAR2", 256, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTargetId = cci("TARGET_ID", "TARGET_ID", null, null, Long.class, "targetId", null, true, false, true, "NUMBER", 16, 0, null, false, null, null, null, "whiteRefTargetList", null);
+    protected final ColumnInfo _columnTargetName = cci("TARGET_NAME", "TARGET_NAME", null, null, String.class, "targetName", null, false, false, false, "VARCHAR2", 256, 0, null, false, null, null, null, null, null);
 
+    /**
+     * TARGET_ID: {PK, NotNull, NUMBER(16)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTargetId() { return _columnTargetId; }
+    /**
+     * TARGET_NAME: {VARCHAR2(256)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnTargetName() { return _columnTargetName; }
 
     protected List<ColumnInfo> ccil() {
@@ -91,6 +102,8 @@ public class WhiteTargetDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // cannot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------
@@ -98,6 +111,10 @@ public class WhiteTargetDbm extends AbstractDBMeta {
     // -----------------------------------------------------
     //                                     Referrer Property
     //                                     -----------------
+    /**
+     * WHITE_REF_TARGET by TARGET_ID, named 'whiteRefTargetList'.
+     * @return The information object of referrer property. (NotNull)
+     */
     public ReferrerInfo referrerWhiteRefTargetList() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnTargetId(), WhiteRefTargetDbm.getInstance().columnTargetId());
         return cri("FK_WHITE_REF_TARGET", "whiteRefTargetList", this, WhiteRefTargetDbm.getInstance(), mp, false, "whiteTarget");

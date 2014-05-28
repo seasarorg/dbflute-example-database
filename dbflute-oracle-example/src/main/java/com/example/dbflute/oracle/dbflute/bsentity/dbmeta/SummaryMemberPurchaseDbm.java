@@ -33,14 +33,15 @@ public class SummaryMemberPurchaseDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgMemberId(), "memberId");
         setupEpg(_epgMap, new EpgAllsumPurchasePrice(), "allsumPurchasePrice");
         setupEpg(_epgMap, new EpgLatestPurchaseDatetime(), "latestPurchaseDatetime");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgMemberId implements PropertyGateway {
         public Object read(Entity et) { return ((SummaryMemberPurchase)et).getMemberId(); }
         public void write(Entity et, Object vl) { ((SummaryMemberPurchase)et).setMemberId(ctl(vl)); }
@@ -53,6 +54,8 @@ public class SummaryMemberPurchaseDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((SummaryMemberPurchase)et).getLatestPurchaseDatetime(); }
         public void write(Entity et, Object vl) { ((SummaryMemberPurchase)et).setLatestPurchaseDatetime((java.sql.Timestamp)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -72,12 +75,24 @@ public class SummaryMemberPurchaseDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnMemberId = cci("MEMBER_ID", "MEMBER_ID", null, null, true, "memberId", Long.class, false, false, "NUMBER", 16, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnAllsumPurchasePrice = cci("ALLSUM_PURCHASE_PRICE", "ALLSUM_PURCHASE_PRICE", null, null, false, "allsumPurchasePrice", java.math.BigDecimal.class, false, false, "NUMBER", 22, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnLatestPurchaseDatetime = cci("LATEST_PURCHASE_DATETIME", "LATEST_PURCHASE_DATETIME", null, null, false, "latestPurchaseDatetime", java.sql.Timestamp.class, false, false, "TIMESTAMP(3)", 11, 3, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnMemberId = cci("MEMBER_ID", "MEMBER_ID", null, null, Long.class, "memberId", null, false, false, true, "NUMBER", 16, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnAllsumPurchasePrice = cci("ALLSUM_PURCHASE_PRICE", "ALLSUM_PURCHASE_PRICE", null, null, java.math.BigDecimal.class, "allsumPurchasePrice", null, false, false, false, "NUMBER", 22, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnLatestPurchaseDatetime = cci("LATEST_PURCHASE_DATETIME", "LATEST_PURCHASE_DATETIME", null, null, java.sql.Timestamp.class, "latestPurchaseDatetime", null, false, false, false, "TIMESTAMP(3)", 11, 3, null, false, null, null, null, null, null);
 
+    /**
+     * MEMBER_ID: {NotNull, NUMBER(16)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnMemberId() { return _columnMemberId; }
+    /**
+     * ALLSUM_PURCHASE_PRICE: {NUMBER(22)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnAllsumPurchasePrice() { return _columnAllsumPurchasePrice; }
+    /**
+     * LATEST_PURCHASE_DATETIME: {TIMESTAMP(3)(11, 3)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnLatestPurchaseDatetime() { return _columnLatestPurchaseDatetime; }
 
     protected List<ColumnInfo> ccil() {
@@ -105,6 +120,8 @@ public class SummaryMemberPurchaseDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // cannot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

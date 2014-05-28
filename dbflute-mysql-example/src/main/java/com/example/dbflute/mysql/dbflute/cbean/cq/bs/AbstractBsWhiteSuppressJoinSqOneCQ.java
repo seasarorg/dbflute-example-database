@@ -369,6 +369,127 @@ public abstract class AbstractBsWhiteSuppressJoinSqOneCQ extends AbstractConditi
 
     protected void regSuppressJoinSqId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueSuppressJoinSqId(), "SUPPRESS_JOIN_SQ_ID"); }
     protected abstract ConditionValue getCValueSuppressJoinSqId();
+    
+    /**
+     * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
+     * ONE_ADDI_ID: {NotNull, INT(10), FK to WHITE_SUPPRESS_JOIN_SQ_ONE_ADDI}
+     * @param oneAddiId The value of oneAddiId as equal. (NullAllowed: if null, no condition)
+     */
+    public void setOneAddiId_Equal(Integer oneAddiId) {
+        doSetOneAddiId_Equal(oneAddiId);
+    }
+
+    protected void doSetOneAddiId_Equal(Integer oneAddiId) {
+        regOneAddiId(CK_EQ, oneAddiId);
+    }
+
+    /**
+     * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br />
+     * ONE_ADDI_ID: {NotNull, INT(10), FK to WHITE_SUPPRESS_JOIN_SQ_ONE_ADDI}
+     * @param oneAddiId The value of oneAddiId as greaterThan. (NullAllowed: if null, no condition)
+     */
+    public void setOneAddiId_GreaterThan(Integer oneAddiId) {
+        regOneAddiId(CK_GT, oneAddiId);
+    }
+
+    /**
+     * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br />
+     * ONE_ADDI_ID: {NotNull, INT(10), FK to WHITE_SUPPRESS_JOIN_SQ_ONE_ADDI}
+     * @param oneAddiId The value of oneAddiId as lessThan. (NullAllowed: if null, no condition)
+     */
+    public void setOneAddiId_LessThan(Integer oneAddiId) {
+        regOneAddiId(CK_LT, oneAddiId);
+    }
+
+    /**
+     * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br />
+     * ONE_ADDI_ID: {NotNull, INT(10), FK to WHITE_SUPPRESS_JOIN_SQ_ONE_ADDI}
+     * @param oneAddiId The value of oneAddiId as greaterEqual. (NullAllowed: if null, no condition)
+     */
+    public void setOneAddiId_GreaterEqual(Integer oneAddiId) {
+        regOneAddiId(CK_GE, oneAddiId);
+    }
+
+    /**
+     * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br />
+     * ONE_ADDI_ID: {NotNull, INT(10), FK to WHITE_SUPPRESS_JOIN_SQ_ONE_ADDI}
+     * @param oneAddiId The value of oneAddiId as lessEqual. (NullAllowed: if null, no condition)
+     */
+    public void setOneAddiId_LessEqual(Integer oneAddiId) {
+        regOneAddiId(CK_LE, oneAddiId);
+    }
+
+    /**
+     * RangeOf with various options. (versatile) <br />
+     * {(default) minNumber &lt;= column &lt;= maxNumber} <br />
+     * And NullIgnored, OnlyOnceRegistered. <br />
+     * ONE_ADDI_ID: {NotNull, INT(10), FK to WHITE_SUPPRESS_JOIN_SQ_ONE_ADDI}
+     * @param minNumber The min number of oneAddiId. (NullAllowed: if null, no from-condition)
+     * @param maxNumber The max number of oneAddiId. (NullAllowed: if null, no to-condition)
+     * @param rangeOfOption The option of range-of. (NotNull)
+     */
+    public void setOneAddiId_RangeOf(Integer minNumber, Integer maxNumber, RangeOfOption rangeOfOption) {
+        regROO(minNumber, maxNumber, getCValueOneAddiId(), "ONE_ADDI_ID", rangeOfOption);
+    }
+
+    /**
+     * InScope {in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br />
+     * ONE_ADDI_ID: {NotNull, INT(10), FK to WHITE_SUPPRESS_JOIN_SQ_ONE_ADDI}
+     * @param oneAddiIdList The collection of oneAddiId as inScope. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setOneAddiId_InScope(Collection<Integer> oneAddiIdList) {
+        doSetOneAddiId_InScope(oneAddiIdList);
+    }
+
+    protected void doSetOneAddiId_InScope(Collection<Integer> oneAddiIdList) {
+        regINS(CK_INS, cTL(oneAddiIdList), getCValueOneAddiId(), "ONE_ADDI_ID");
+    }
+
+    /**
+     * NotInScope {not in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br />
+     * ONE_ADDI_ID: {NotNull, INT(10), FK to WHITE_SUPPRESS_JOIN_SQ_ONE_ADDI}
+     * @param oneAddiIdList The collection of oneAddiId as notInScope. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setOneAddiId_NotInScope(Collection<Integer> oneAddiIdList) {
+        doSetOneAddiId_NotInScope(oneAddiIdList);
+    }
+
+    protected void doSetOneAddiId_NotInScope(Collection<Integer> oneAddiIdList) {
+        regINS(CK_NINS, cTL(oneAddiIdList), getCValueOneAddiId(), "ONE_ADDI_ID");
+    }
+
+    /**
+     * Set up InScopeRelation (sub-query). <br />
+     * {in (select ONE_ADDI_ID from white_suppress_join_sq_one_addi where ...)} <br />
+     * white_suppress_join_sq_one_addi by my ONE_ADDI_ID, named 'whiteSuppressJoinSqOneAddi'.
+     * @param subQuery The sub-query of WhiteSuppressJoinSqOneAddi for 'in-scope'. (NotNull)
+     */
+    public void inScopeWhiteSuppressJoinSqOneAddi(SubQuery<WhiteSuppressJoinSqOneAddiCB> subQuery) {
+        assertObjectNotNull("subQuery", subQuery);
+        WhiteSuppressJoinSqOneAddiCB cb = new WhiteSuppressJoinSqOneAddiCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepOneAddiId_InScopeRelation_WhiteSuppressJoinSqOneAddi(cb.query());
+        registerInScopeRelation(cb.query(), "ONE_ADDI_ID", "ONE_ADDI_ID", pp, "whiteSuppressJoinSqOneAddi");
+    }
+    public abstract String keepOneAddiId_InScopeRelation_WhiteSuppressJoinSqOneAddi(WhiteSuppressJoinSqOneAddiCQ sq);
+
+    /**
+     * Set up NotInScopeRelation (sub-query). <br />
+     * {not in (select ONE_ADDI_ID from white_suppress_join_sq_one_addi where ...)} <br />
+     * white_suppress_join_sq_one_addi by my ONE_ADDI_ID, named 'whiteSuppressJoinSqOneAddi'.
+     * @param subQuery The sub-query of WhiteSuppressJoinSqOneAddi for 'not in-scope'. (NotNull)
+     */
+    public void notInScopeWhiteSuppressJoinSqOneAddi(SubQuery<WhiteSuppressJoinSqOneAddiCB> subQuery) {
+        assertObjectNotNull("subQuery", subQuery);
+        WhiteSuppressJoinSqOneAddiCB cb = new WhiteSuppressJoinSqOneAddiCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepOneAddiId_NotInScopeRelation_WhiteSuppressJoinSqOneAddi(cb.query());
+        registerNotInScopeRelation(cb.query(), "ONE_ADDI_ID", "ONE_ADDI_ID", pp, "whiteSuppressJoinSqOneAddi");
+    }
+    public abstract String keepOneAddiId_NotInScopeRelation_WhiteSuppressJoinSqOneAddi(WhiteSuppressJoinSqOneAddiCQ sq);
+
+    protected void regOneAddiId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueOneAddiId(), "ONE_ADDI_ID"); }
+    protected abstract ConditionValue getCValueOneAddiId();
 
     // ===================================================================================
     //                                                                     ScalarCondition

@@ -78,10 +78,25 @@ public class BsWhiteUqFkRefCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                 PrimaryKey Handling
     //                                                                 ===================
+    /**
+     * Accept the query condition of primary key as equal.
+     * @param uqFkRefId : PK, NotNull, NUMBER(16). (NotNull)
+     */
     public void acceptPrimaryKey(Long uqFkRefId) {
         assertObjectNotNull("uqFkRefId", uqFkRefId);
         BsWhiteUqFkRefCB cb = this;
-        cb.query().setUqFkRefId_Equal(uqFkRefId);
+        cb.query().setUqFkRefId_Equal(uqFkRefId);;
+    }
+
+    /**
+     * Accept the query condition of unique key as equal.
+     * @param compoundUqFirstCode : UQ+, NotNull, CHAR(3). (NotNull)
+     * @param compoundUqSecondCode : +UQ, NotNull, CHAR(3). (NotNull)
+     */
+    public void acceptUniqueOf(String compoundUqFirstCode, String compoundUqSecondCode) {
+        assertObjectNotNull("compoundUqFirstCode", compoundUqFirstCode);assertObjectNotNull("compoundUqSecondCode", compoundUqSecondCode);
+        BsWhiteUqFkRefCB cb = this;
+        cb.query().setCompoundUqFirstCode_Equal(compoundUqFirstCode);;cb.query().setCompoundUqSecondCode_Equal(compoundUqSecondCode);;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {
@@ -379,12 +394,12 @@ public class BsWhiteUqFkRefCB extends AbstractConditionBean {
          */
         public HpSpecifiedColumn columnFkToUqCode() { return doColumn("FK_TO_UQ_CODE"); }
         /**
-         * COMPOUND_UQ_FIRST_CODE: {UQ, NotNull, CHAR(3)}
+         * COMPOUND_UQ_FIRST_CODE: {UQ+, NotNull, CHAR(3)}
          * @return The information object of specified column. (NotNull)
          */
         public HpSpecifiedColumn columnCompoundUqFirstCode() { return doColumn("COMPOUND_UQ_FIRST_CODE"); }
         /**
-         * COMPOUND_UQ_SECOND_CODE: {UQ+, NotNull, CHAR(3)}
+         * COMPOUND_UQ_SECOND_CODE: {+UQ, NotNull, CHAR(3)}
          * @return The information object of specified column. (NotNull)
          */
         public HpSpecifiedColumn columnCompoundUqSecondCode() { return doColumn("COMPOUND_UQ_SECOND_CODE"); }
@@ -555,6 +570,11 @@ public class BsWhiteUqFkRefCB extends AbstractConditionBean {
      */
     public void orScopeQuery(OrQuery<WhiteUqFkRefCB> orQuery) {
         xorSQ((WhiteUqFkRefCB)this, orQuery);
+    }
+
+    @Override
+    protected HpCBPurpose xhandleOrSQPurposeChange() {
+        return null; // means no check
     }
 
     /**

@@ -33,6 +33,9 @@ public class BarBeanDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgBarId(), "barId");
@@ -42,8 +45,6 @@ public class BarBeanDbm extends AbstractDBMeta {
         setupEpg(_epgMap, new EpgBarTimestamp(), "barTimestamp");
         setupEpg(_epgMap, new EpgBarClob(), "barClob");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgBarId implements PropertyGateway {
         public Object read(Entity et) { return ((BarBean)et).getBarId(); }
         public void write(Entity et, Object vl) { ((BarBean)et).setBarId(cti(vl)); }
@@ -68,6 +69,8 @@ public class BarBeanDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((BarBean)et).getBarClob(); }
         public void write(Entity et, Object vl) { ((BarBean)et).setBarClob((String)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -83,18 +86,42 @@ public class BarBeanDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnBarId = cci("BAR_ID", "BAR_ID", null, null, false, "barId", Integer.class, false, false, "NUMBER", 8, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnBarName = cci("BAR_NAME", "BAR_NAME", null, null, false, "barName", String.class, false, false, "VARCHAR2", 20, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnBarDecimal = cci("BAR_DECIMAL", "BAR_DECIMAL", null, null, false, "barDecimal", java.math.BigDecimal.class, false, false, "NUMBER", 5, 3, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnBarDate = cci("BAR_DATE", "BAR_DATE", null, null, false, "barDate", java.util.Date.class, false, false, "DATE", null, null, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnBarTimestamp = cci("BAR_TIMESTAMP", "BAR_TIMESTAMP", null, null, false, "barTimestamp", java.sql.Timestamp.class, false, false, "TIMESTAMP", null, null, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnBarClob = cci("BAR_CLOB", "BAR_CLOB", null, null, false, "barClob", String.class, false, false, "CLOB", null, null, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnBarId = cci("BAR_ID", "BAR_ID", null, null, Integer.class, "barId", null, false, false, false, "NUMBER", 8, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnBarName = cci("BAR_NAME", "BAR_NAME", null, null, String.class, "barName", null, false, false, false, "VARCHAR2", 20, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnBarDecimal = cci("BAR_DECIMAL", "BAR_DECIMAL", null, null, java.math.BigDecimal.class, "barDecimal", null, false, false, false, "NUMBER", 5, 3, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnBarDate = cci("BAR_DATE", "BAR_DATE", null, null, java.util.Date.class, "barDate", null, false, false, false, "DATE", null, null, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnBarTimestamp = cci("BAR_TIMESTAMP", "BAR_TIMESTAMP", null, null, java.sql.Timestamp.class, "barTimestamp", null, false, false, false, "TIMESTAMP", null, null, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnBarClob = cci("BAR_CLOB", "BAR_CLOB", null, null, String.class, "barClob", null, false, false, false, "CLOB", null, null, null, false, null, null, null, null, null);
 
+    /**
+     * BAR_ID: {NUMBER(8)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnBarId() { return _columnBarId; }
+    /**
+     * BAR_NAME: {VARCHAR2(20)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnBarName() { return _columnBarName; }
+    /**
+     * BAR_DECIMAL: {NUMBER(5, 3)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnBarDecimal() { return _columnBarDecimal; }
+    /**
+     * BAR_DATE: {DATE}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnBarDate() { return _columnBarDate; }
+    /**
+     * BAR_TIMESTAMP: {TIMESTAMP}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnBarTimestamp() { return _columnBarTimestamp; }
+    /**
+     * BAR_CLOB: {CLOB}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnBarClob() { return _columnBarClob; }
 
     protected List<ColumnInfo> ccil() {
@@ -125,6 +152,8 @@ public class BarBeanDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // cannot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

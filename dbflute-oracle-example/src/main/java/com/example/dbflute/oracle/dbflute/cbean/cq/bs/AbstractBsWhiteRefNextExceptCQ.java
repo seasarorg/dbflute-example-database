@@ -22,8 +22,8 @@ public abstract class AbstractBsWhiteRefNextExceptCQ extends AbstractConditionQu
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public AbstractBsWhiteRefNextExceptCQ(ConditionQuery childQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
-        super(childQuery, sqlClause, aliasName, nestLevel);
+    public AbstractBsWhiteRefNextExceptCQ(ConditionQuery referrerQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
+        super(referrerQuery, sqlClause, aliasName, nestLevel);
     }
 
     // ===================================================================================
@@ -371,7 +371,7 @@ public abstract class AbstractBsWhiteRefNextExceptCQ extends AbstractConditionQu
     public abstract String keepSpecifyMyselfDerived(WhiteRefNextExceptCQ sq);
 
     /**
-     * Prepare for (Query)MyselfDerived (SubQuery).
+     * Prepare for (Query)MyselfDerived (correlated sub-query).
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<WhiteRefNextExceptCB> myselfDerived() {
@@ -393,8 +393,8 @@ public abstract class AbstractBsWhiteRefNextExceptCQ extends AbstractConditionQu
     //                                                                        MyselfExists
     //                                                                        ============
     /**
-     * Prepare for MyselfExists (SubQuery).
-     * @param subQuery The implementation of sub query. (NotNull)
+     * Prepare for MyselfExists (correlated sub-query).
+     * @param subQuery The implementation of sub-query. (NotNull)
      */
     public void myselfExists(SubQuery<WhiteRefNextExceptCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
@@ -409,8 +409,8 @@ public abstract class AbstractBsWhiteRefNextExceptCQ extends AbstractConditionQu
     //                                                                       MyselfInScope
     //                                                                       =============
     /**
-     * Prepare for MyselfInScope (SubQuery).
-     * @param subQuery The implementation of sub query. (NotNull)
+     * Prepare for MyselfInScope (sub-query).
+     * @param subQuery The implementation of sub-query. (NotNull)
      */
     public void myselfInScope(SubQuery<WhiteRefNextExceptCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);

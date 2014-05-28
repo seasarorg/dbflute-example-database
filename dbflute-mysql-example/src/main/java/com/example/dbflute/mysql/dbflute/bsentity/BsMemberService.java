@@ -184,13 +184,13 @@ public abstract class BsMemberService implements EntityDefinedCommonColumn, Seri
     public void uniqueBy(Integer memberId) {
         __uniqueDrivenProperties.clear();
         __uniqueDrivenProperties.addPropertyName("memberId");
-        _memberId = memberId;
+        setMemberId(memberId);
     }
 
     /**
      * {@inheritDoc}
      */
-    public Set<String> uniqueDrivenProperties() {
+    public Set<String> myuniqueDrivenProperties() {
         return __uniqueDrivenProperties.getPropertyNames();
     }
 
@@ -640,7 +640,7 @@ public abstract class BsMemberService implements EntityDefinedCommonColumn, Seri
      * どんなランクがあるのかドキドキですね。
      * @param serviceRankCode The value of the column 'SERVICE_RANK_CODE'. (basically NotNull if update: for the constraint)
      */
-    public void setServiceRankCode(String serviceRankCode) {
+    protected void setServiceRankCode(String serviceRankCode) {
         __modifiedProperties.addPropertyName("serviceRankCode");
         this._serviceRankCode = serviceRankCode;
     }

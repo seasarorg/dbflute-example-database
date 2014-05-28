@@ -33,14 +33,15 @@ public class SynonymProductStatusDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgProductStatusCode(), "productStatusCode");
         setupEpg(_epgMap, new EpgProductStatusName(), "productStatusName");
         setupEpg(_epgMap, new EpgDisplayOrder(), "displayOrder");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgProductStatusCode implements PropertyGateway {
         public Object read(Entity et) { return ((SynonymProductStatus)et).getProductStatusCode(); }
         public void write(Entity et, Object vl) { ((SynonymProductStatus)et).setProductStatusCode((String)vl); }
@@ -53,6 +54,8 @@ public class SynonymProductStatusDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((SynonymProductStatus)et).getDisplayOrder(); }
         public void write(Entity et, Object vl) { ((SynonymProductStatus)et).setDisplayOrder(ctb(vl)); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -70,12 +73,24 @@ public class SynonymProductStatusDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnProductStatusCode = cci("PRODUCT_STATUS_CODE", "PRODUCT_STATUS_CODE", null, null, true, "productStatusCode", String.class, true, false, "CHAR", 3, 0, null, false, null, null, null, "synonymProductList", null);
-    protected final ColumnInfo _columnProductStatusName = cci("PRODUCT_STATUS_NAME", "PRODUCT_STATUS_NAME", null, null, true, "productStatusName", String.class, false, false, "VARCHAR2", 50, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnDisplayOrder = cci("DISPLAY_ORDER", "DISPLAY_ORDER", null, null, true, "displayOrder", java.math.BigDecimal.class, false, false, "NUMBER", 22, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnProductStatusCode = cci("PRODUCT_STATUS_CODE", "PRODUCT_STATUS_CODE", null, null, String.class, "productStatusCode", null, true, false, true, "CHAR", 3, 0, null, false, null, null, null, "synonymProductList", null);
+    protected final ColumnInfo _columnProductStatusName = cci("PRODUCT_STATUS_NAME", "PRODUCT_STATUS_NAME", null, null, String.class, "productStatusName", null, false, false, true, "VARCHAR2", 50, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnDisplayOrder = cci("DISPLAY_ORDER", "DISPLAY_ORDER", null, null, java.math.BigDecimal.class, "displayOrder", null, false, false, true, "NUMBER", 22, 0, null, false, null, null, null, null, null);
 
+    /**
+     * PRODUCT_STATUS_CODE: {PK, NotNull, CHAR(3)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnProductStatusCode() { return _columnProductStatusCode; }
+    /**
+     * PRODUCT_STATUS_NAME: {UQ, NotNull, VARCHAR2(50)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnProductStatusName() { return _columnProductStatusName; }
+    /**
+     * DISPLAY_ORDER: {NotNull, NUMBER(22)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnDisplayOrder() { return _columnDisplayOrder; }
 
     protected List<ColumnInfo> ccil() {
@@ -101,6 +116,8 @@ public class SynonymProductStatusDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // cannot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------
@@ -108,6 +125,10 @@ public class SynonymProductStatusDbm extends AbstractDBMeta {
     // -----------------------------------------------------
     //                                     Referrer Property
     //                                     -----------------
+    /**
+     * (商品)SYNONYM_PRODUCT by PRODUCT_STATUS_CODE, named 'synonymProductList'.
+     * @return The information object of referrer property. (NotNull)
+     */
     public ReferrerInfo referrerSynonymProductList() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnProductStatusCode(), SynonymProductDbm.getInstance().columnProductStatusCode());
         return cri("FK_PRODUCT_PRODUCT_STATUS_SYNONYM1", "synonymProductList", this, SynonymProductDbm.getInstance(), mp, false, "synonymProductStatus");

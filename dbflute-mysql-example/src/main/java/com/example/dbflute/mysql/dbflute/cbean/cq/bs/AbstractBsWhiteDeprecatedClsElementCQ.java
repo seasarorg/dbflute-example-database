@@ -65,7 +65,7 @@ public abstract class AbstractBsWhiteDeprecatedClsElementCQ extends AbstractCond
      * DEPRECATED_CLS_ELEMENT_CODE: {PK, NotNull, CHAR(3), classification=DeprecatedMapCollaborationType}
      * @param deprecatedClsElementCode The value of deprecatedClsElementCode as equal. (NullAllowed: if null (or empty), no condition)
      */
-    public void setDeprecatedClsElementCode_Equal(String deprecatedClsElementCode) {
+    protected void setDeprecatedClsElementCode_Equal(String deprecatedClsElementCode) {
         doSetDeprecatedClsElementCode_Equal(fRES(deprecatedClsElementCode));
     }
 
@@ -114,7 +114,7 @@ public abstract class AbstractBsWhiteDeprecatedClsElementCQ extends AbstractCond
      * DEPRECATED_CLS_ELEMENT_CODE: {PK, NotNull, CHAR(3), classification=DeprecatedMapCollaborationType}
      * @param deprecatedClsElementCode The value of deprecatedClsElementCode as notEqual. (NullAllowed: if null (or empty), no condition)
      */
-    public void setDeprecatedClsElementCode_NotEqual(String deprecatedClsElementCode) {
+    protected void setDeprecatedClsElementCode_NotEqual(String deprecatedClsElementCode) {
         doSetDeprecatedClsElementCode_NotEqual(fRES(deprecatedClsElementCode));
     }
 

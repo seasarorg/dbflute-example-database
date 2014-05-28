@@ -3,6 +3,8 @@ package com.example.dbflute.oracle.dbflute.cbean.cq.bs;
 import java.util.Map;
 
 import org.seasar.dbflute.cbean.*;
+import org.seasar.dbflute.cbean.chelper.*;
+import org.seasar.dbflute.cbean.coption.*;
 import org.seasar.dbflute.cbean.cvalue.ConditionValue;
 import org.seasar.dbflute.cbean.sqlclause.SqlClause;
 import org.seasar.dbflute.exception.IllegalConditionBeanOperationException;
@@ -24,8 +26,8 @@ public class BsWhiteUqFkRefNestCQ extends AbstractBsWhiteUqFkRefNestCQ {
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public BsWhiteUqFkRefNestCQ(ConditionQuery childQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
-        super(childQuery, sqlClause, aliasName, nestLevel);
+    public BsWhiteUqFkRefNestCQ(ConditionQuery referrerQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
+        super(referrerQuery, sqlClause, aliasName, nestLevel);
     }
 
     // ===================================================================================
@@ -175,7 +177,7 @@ public class BsWhiteUqFkRefNestCQ extends AbstractBsWhiteUqFkRefNestCQ {
     // ===================================================================================
     //                                                                         Union Query
     //                                                                         ===========
-    protected void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
+    public void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
         WhiteUqFkRefNestCQ bq = (WhiteUqFkRefNestCQ)bqs;
         WhiteUqFkRefNestCQ uq = (WhiteUqFkRefNestCQ)uqs;
         if (bq.hasConditionQueryWhiteUqFkRef()) {
@@ -290,5 +292,7 @@ public class BsWhiteUqFkRefNestCQ extends AbstractBsWhiteUqFkRefNestCQ {
     // very internal (for suppressing warn about 'Not Use Import')
     protected String xCB() { return WhiteUqFkRefNestCB.class.getName(); }
     protected String xCQ() { return WhiteUqFkRefNestCQ.class.getName(); }
+    protected String xCHp() { return HpCalculator.class.getName(); }
+    protected String xCOp() { return ConditionOption.class.getName(); }
     protected String xMap() { return Map.class.getName(); }
 }

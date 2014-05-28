@@ -33,13 +33,14 @@ public class WhiteUqFkWithoutPkRefDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgUqFkRefId(), "uqFkRefId");
         setupEpg(_epgMap, new EpgFkToUqCode(), "fkToUqCode");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgUqFkRefId implements PropertyGateway {
         public Object read(Entity et) { return ((WhiteUqFkWithoutPkRef)et).getUqFkRefId(); }
         public void write(Entity et, Object vl) { ((WhiteUqFkWithoutPkRef)et).setUqFkRefId(ctl(vl)); }
@@ -48,6 +49,22 @@ public class WhiteUqFkWithoutPkRefDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((WhiteUqFkWithoutPkRef)et).getFkToUqCode(); }
         public void write(Entity et, Object vl) { ((WhiteUqFkWithoutPkRef)et).setFkToUqCode((String)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
+
+    // -----------------------------------------------------
+    //                                      Foreign Property
+    //                                      ----------------
+    protected final Map<String, PropertyGateway> _efpgMap = newHashMap();
+    {
+        setupEfpg(_efpgMap, new EfpgWhiteUqFkWithoutPk(), "whiteUqFkWithoutPk");
+    }
+    public class EfpgWhiteUqFkWithoutPk implements PropertyGateway {
+        public Object read(Entity et) { return ((WhiteUqFkWithoutPkRef)et).getWhiteUqFkWithoutPk(); }
+        public void write(Entity et, Object vl) { ((WhiteUqFkWithoutPkRef)et).setWhiteUqFkWithoutPk((WhiteUqFkWithoutPk)vl); }
+    }
+    public PropertyGateway findForeignPropertyGateway(String prop)
+    { return doFindEfpg(_efpgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -63,10 +80,18 @@ public class WhiteUqFkWithoutPkRefDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnUqFkRefId = cci("UQ_FK_REF_ID", "UQ_FK_REF_ID", null, null, true, "uqFkRefId", Long.class, false, false, "NUMBER", 16, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnFkToUqCode = cci("FK_TO_UQ_CODE", "FK_TO_UQ_CODE", null, null, true, "fkToUqCode", String.class, false, false, "CHAR", 3, 0, null, false, null, null, "whiteUqFkWithoutPk", null, null);
+    protected final ColumnInfo _columnUqFkRefId = cci("UQ_FK_REF_ID", "UQ_FK_REF_ID", null, null, Long.class, "uqFkRefId", null, false, false, true, "NUMBER", 16, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnFkToUqCode = cci("FK_TO_UQ_CODE", "FK_TO_UQ_CODE", null, null, String.class, "fkToUqCode", null, false, false, true, "CHAR", 3, 0, null, false, null, null, "whiteUqFkWithoutPk", null, null);
 
+    /**
+     * UQ_FK_REF_ID: {NotNull, NUMBER(16)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnUqFkRefId() { return _columnUqFkRefId; }
+    /**
+     * FK_TO_UQ_CODE: {NotNull, CHAR(3), FK to WHITE_UQ_FK_WITHOUT_PK}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnFkToUqCode() { return _columnFkToUqCode; }
 
     protected List<ColumnInfo> ccil() {
@@ -93,12 +118,18 @@ public class WhiteUqFkWithoutPkRefDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // cannot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------
+    /**
+     * WHITE_UQ_FK_WITHOUT_PK by my FK_TO_UQ_CODE, named 'whiteUqFkWithoutPk'.
+     * @return The information object of foreign property. (NotNull)
+     */
     public ForeignInfo foreignWhiteUqFkWithoutPk() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnFkToUqCode(), WhiteUqFkWithoutPkDbm.getInstance().columnUqFkCode());
-        return cfi("FK_WHITE_UQ_FK_WITHOUT_PK_REF", "whiteUqFkWithoutPk", this, WhiteUqFkWithoutPkDbm.getInstance(), mp, 0, false, false, false, false, null, null, false, "whiteUqFkWithoutPkRefList");
+        return cfi("FK_WHITE_UQ_FK_WITHOUT_PK_REF", "whiteUqFkWithoutPk", this, WhiteUqFkWithoutPkDbm.getInstance(), mp, 0, null, false, false, false, false, null, null, false, "whiteUqFkWithoutPkRefList");
     }
 
     // -----------------------------------------------------

@@ -399,6 +399,11 @@ public class BsSummaryMemberPurchaseCB extends AbstractConditionBean {
         xorSQ((SummaryMemberPurchaseCB)this, orQuery);
     }
 
+    @Override
+    protected HpCBPurpose xhandleOrSQPurposeChange() {
+        return null; // means no check
+    }
+
     /**
      * Set up the and-part of or-scope. <br />
      * (However nested or-scope query and as-or-split of like-search in and-part are unsupported)

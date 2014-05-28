@@ -121,6 +121,9 @@ public abstract class BsNextSchemaProduct implements EntityDefinedCommonColumn, 
     // -----------------------------------------------------
     //                                              Internal
     //                                              --------
+    /** The unique-driven properties for this entity. (NotNull) */
+    protected final EntityUniqueDrivenProperties __uniqueDrivenProperties = newUniqueDrivenProperties();
+
     /** The modified properties for this entity. (NotNull) */
     protected final EntityModifiedProperties __modifiedProperties = newModifiedProperties();
 
@@ -166,6 +169,17 @@ public abstract class BsNextSchemaProduct implements EntityDefinedCommonColumn, 
     public boolean hasPrimaryKeyValue() {
         if (getProductId() == null) { return false; }
         return true;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Set<String> myuniqueDrivenProperties() {
+        return __uniqueDrivenProperties.getPropertyNames();
+    }
+
+    protected EntityUniqueDrivenProperties newUniqueDrivenProperties() {
+        return new EntityUniqueDrivenProperties();
     }
 
     // ===================================================================================
@@ -281,8 +295,8 @@ public abstract class BsNextSchemaProduct implements EntityDefinedCommonColumn, 
         if (!xSV(getProductId(), other.getProductId())) { return false; }
         return true;
     }
-    protected boolean xSV(Object value1, Object value2) {
-        return FunCustodial.isSameValue(value1, value2);
+    protected boolean xSV(Object v1, Object v2) {
+        return FunCustodial.isSameValue(v1, v2);
     }
 
     /**
@@ -290,13 +304,13 @@ public abstract class BsNextSchemaProduct implements EntityDefinedCommonColumn, 
      * @return The hash-code from primary-key or columns.
      */
     public int hashCode() {
-        int result = 17;
-        result = xCH(result, getTableDbName());
-        result = xCH(result, getProductId());
-        return result;
+        int hs = 17;
+        hs = xCH(hs, getTableDbName());
+        hs = xCH(hs, getProductId());
+        return hs;
     }
-    protected int xCH(int result, Object value) {
-        return FunCustodial.calculateHashcode(result, value);
+    protected int xCH(int hs, Object vl) {
+        return FunCustodial.calculateHashcode(hs, vl);
     }
 
     /**
@@ -320,13 +334,13 @@ public abstract class BsNextSchemaProduct implements EntityDefinedCommonColumn, 
     public String toStringWithRelation() {
         StringBuilder sb = new StringBuilder();
         sb.append(toString());
-        String l = "\n  ";
+        String li = "\n  ";
         if (_nextSchemaProductStatus != null)
-        { sb.append(l).append(xbRDS(_nextSchemaProductStatus, "nextSchemaProductStatus")); }
+        { sb.append(li).append(xbRDS(_nextSchemaProductStatus, "nextSchemaProductStatus")); }
         return sb.toString();
     }
-    protected String xbRDS(Entity e, String name) { // buildRelationDisplayString()
-        return e.buildDisplayString(name, true, true);
+    protected String xbRDS(Entity et, String name) { // buildRelationDisplayString()
+        return et.buildDisplayString(name, true, true);
     }
 
     /**
@@ -342,20 +356,20 @@ public abstract class BsNextSchemaProduct implements EntityDefinedCommonColumn, 
     }
     protected String buildColumnString() {
         StringBuilder sb = new StringBuilder();
-        String delimiter = ", ";
-        sb.append(delimiter).append(getProductId());
-        sb.append(delimiter).append(getProductName());
-        sb.append(delimiter).append(getProductHandleCode());
-        sb.append(delimiter).append(getProductStatusCode());
-        sb.append(delimiter).append(xfUD(getRegisterDatetime()));
-        sb.append(delimiter).append(getRegisterUser());
-        sb.append(delimiter).append(getRegisterProcess());
-        sb.append(delimiter).append(xfUD(getUpdateDatetime()));
-        sb.append(delimiter).append(getUpdateUser());
-        sb.append(delimiter).append(getUpdateProcess());
-        sb.append(delimiter).append(getVersionNo());
-        if (sb.length() > delimiter.length()) {
-            sb.delete(0, delimiter.length());
+        String dm = ", ";
+        sb.append(dm).append(getProductId());
+        sb.append(dm).append(getProductName());
+        sb.append(dm).append(getProductHandleCode());
+        sb.append(dm).append(getProductStatusCode());
+        sb.append(dm).append(xfUD(getRegisterDatetime()));
+        sb.append(dm).append(getRegisterUser());
+        sb.append(dm).append(getRegisterProcess());
+        sb.append(dm).append(xfUD(getUpdateDatetime()));
+        sb.append(dm).append(getUpdateUser());
+        sb.append(dm).append(getUpdateProcess());
+        sb.append(dm).append(getVersionNo());
+        if (sb.length() > dm.length()) {
+            sb.delete(0, dm.length());
         }
         sb.insert(0, "{").append("}");
         return sb.toString();
@@ -368,10 +382,10 @@ public abstract class BsNextSchemaProduct implements EntityDefinedCommonColumn, 
     }
     protected String buildRelationString() {
         StringBuilder sb = new StringBuilder();
-        String c = ",";
-        if (_nextSchemaProductStatus != null) { sb.append(c).append("nextSchemaProductStatus"); }
-        if (sb.length() > c.length()) {
-            sb.delete(0, c.length()).insert(0, "(").append(")");
+        String cm = ",";
+        if (_nextSchemaProductStatus != null) { sb.append(cm).append("nextSchemaProductStatus"); }
+        if (sb.length() > cm.length()) {
+            sb.delete(0, cm.length()).insert(0, "(").append(")");
         }
         return sb.toString();
     }

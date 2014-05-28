@@ -380,7 +380,7 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
      * (サービスランクコード)SERVICE_RANK_CODE: {IX, NotNull, CHAR(3), FK to service_rank, classification=ServiceRank}
      * @param serviceRankCode The value of serviceRankCode as equal. (NullAllowed: if null (or empty), no condition)
      */
-    public void setServiceRankCode_Equal(String serviceRankCode) {
+    protected void setServiceRankCode_Equal(String serviceRankCode) {
         doSetServiceRankCode_Equal(fRES(serviceRankCode));
     }
 
@@ -444,7 +444,7 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
      * (サービスランクコード)SERVICE_RANK_CODE: {IX, NotNull, CHAR(3), FK to service_rank, classification=ServiceRank}
      * @param serviceRankCode The value of serviceRankCode as notEqual. (NullAllowed: if null (or empty), no condition)
      */
-    public void setServiceRankCode_NotEqual(String serviceRankCode) {
+    protected void setServiceRankCode_NotEqual(String serviceRankCode) {
         doSetServiceRankCode_NotEqual(fRES(serviceRankCode));
     }
 

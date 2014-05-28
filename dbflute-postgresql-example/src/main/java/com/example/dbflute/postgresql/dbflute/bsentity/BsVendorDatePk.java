@@ -124,7 +124,7 @@ public abstract class BsVendorDatePk implements Entity, Serializable, Cloneable 
     /**
      * {@inheritDoc}
      */
-    public Set<String> uniqueDrivenProperties() {
+    public Set<String> myuniqueDrivenProperties() {
         return __uniqueDrivenProperties.getPropertyNames();
     }
 

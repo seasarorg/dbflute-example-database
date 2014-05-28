@@ -51,13 +51,13 @@ import com.example.dbflute.mysql.dbflute.cbean.*;
  *     
  *
  * [referrer table]
- *     
+ *     white_suppress_join_sq_one
  *
  * [foreign property]
  *     
  *
  * [referrer property]
- *     
+ *     whiteSuppressJoinSqOneList
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
@@ -393,6 +393,117 @@ public abstract class BsWhiteSuppressJoinSqOneAddiBhv extends AbstractBehaviorWr
     protected Number doReadNextVal() {
         String msg = "This table is NOT related to sequence: " + getTableDbName();
         throw new UnsupportedOperationException(msg);
+    }
+
+    // ===================================================================================
+    //                                                                       Load Referrer
+    //                                                                       =============
+    /**
+     * Load referrer of whiteSuppressJoinSqOneList by the set-upper of referrer. <br />
+     * white_suppress_join_sq_one by ONE_ADDI_ID, named 'whiteSuppressJoinSqOneList'.
+     * <pre>
+     * whiteSuppressJoinSqOneAddiBhv.<span style="color: #DD4747">loadWhiteSuppressJoinSqOneList</span>(whiteSuppressJoinSqOneAddiList, new ConditionBeanSetupper&lt;WhiteSuppressJoinSqOneCB&gt;() {
+     *     public void setup(WhiteSuppressJoinSqOneCB cb) {
+     *         cb.setupSelect...();
+     *         cb.query().setFoo...(value);
+     *         cb.query().addOrderBy_Bar...();
+     *     }
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
+     * <span style="color: #3F7E5E">//}).withNestedList(referrerList -&gt {</span>
+     * <span style="color: #3F7E5E">//    ...</span>
+     * <span style="color: #3F7E5E">//});</span>
+     * for (WhiteSuppressJoinSqOneAddi whiteSuppressJoinSqOneAddi : whiteSuppressJoinSqOneAddiList) {
+     *     ... = whiteSuppressJoinSqOneAddi.<span style="color: #DD4747">getWhiteSuppressJoinSqOneList()</span>;
+     * }
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
+     * <pre>
+     * cb.query().setOneAddiId_InScope(pkList);
+     * cb.query().addOrderBy_OneAddiId_Asc();
+     * </pre>
+     * @param whiteSuppressJoinSqOneAddiList The entity list of whiteSuppressJoinSqOneAddi. (NotNull)
+     * @param setupper The callback to set up referrer condition-bean for loading referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
+     */
+    public NestedReferrerLoader<WhiteSuppressJoinSqOne> loadWhiteSuppressJoinSqOneList(List<WhiteSuppressJoinSqOneAddi> whiteSuppressJoinSqOneAddiList, ConditionBeanSetupper<WhiteSuppressJoinSqOneCB> setupper) {
+        xassLRArg(whiteSuppressJoinSqOneAddiList, setupper);
+        return doLoadWhiteSuppressJoinSqOneList(whiteSuppressJoinSqOneAddiList, new LoadReferrerOption<WhiteSuppressJoinSqOneCB, WhiteSuppressJoinSqOne>().xinit(setupper));
+    }
+
+    /**
+     * Load referrer of whiteSuppressJoinSqOneList by the set-upper of referrer. <br />
+     * white_suppress_join_sq_one by ONE_ADDI_ID, named 'whiteSuppressJoinSqOneList'.
+     * <pre>
+     * whiteSuppressJoinSqOneAddiBhv.<span style="color: #DD4747">loadWhiteSuppressJoinSqOneList</span>(whiteSuppressJoinSqOneAddiList, new ConditionBeanSetupper&lt;WhiteSuppressJoinSqOneCB&gt;() {
+     *     public void setup(WhiteSuppressJoinSqOneCB cb) {
+     *         cb.setupSelect...();
+     *         cb.query().setFoo...(value);
+     *         cb.query().addOrderBy_Bar...();
+     *     }
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
+     * <span style="color: #3F7E5E">//}).withNestedList(referrerList -&gt {</span>
+     * <span style="color: #3F7E5E">//    ...</span>
+     * <span style="color: #3F7E5E">//});</span>
+     * ... = whiteSuppressJoinSqOneAddi.<span style="color: #DD4747">getWhiteSuppressJoinSqOneList()</span>;
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
+     * <pre>
+     * cb.query().setOneAddiId_InScope(pkList);
+     * cb.query().addOrderBy_OneAddiId_Asc();
+     * </pre>
+     * @param whiteSuppressJoinSqOneAddi The entity of whiteSuppressJoinSqOneAddi. (NotNull)
+     * @param setupper The callback to set up referrer condition-bean for loading referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
+     */
+    public NestedReferrerLoader<WhiteSuppressJoinSqOne> loadWhiteSuppressJoinSqOneList(WhiteSuppressJoinSqOneAddi whiteSuppressJoinSqOneAddi, ConditionBeanSetupper<WhiteSuppressJoinSqOneCB> setupper) {
+        xassLRArg(whiteSuppressJoinSqOneAddi, setupper);
+        return doLoadWhiteSuppressJoinSqOneList(xnewLRLs(whiteSuppressJoinSqOneAddi), new LoadReferrerOption<WhiteSuppressJoinSqOneCB, WhiteSuppressJoinSqOne>().xinit(setupper));
+    }
+
+    /**
+     * {Refer to overload method that has an argument of the list of entity.} #beforejava8
+     * @param whiteSuppressJoinSqOneAddi The entity of whiteSuppressJoinSqOneAddi. (NotNull)
+     * @param loadReferrerOption The option of load-referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
+     */
+    public NestedReferrerLoader<WhiteSuppressJoinSqOne> loadWhiteSuppressJoinSqOneList(WhiteSuppressJoinSqOneAddi whiteSuppressJoinSqOneAddi, LoadReferrerOption<WhiteSuppressJoinSqOneCB, WhiteSuppressJoinSqOne> loadReferrerOption) {
+        xassLRArg(whiteSuppressJoinSqOneAddi, loadReferrerOption);
+        return loadWhiteSuppressJoinSqOneList(xnewLRLs(whiteSuppressJoinSqOneAddi), loadReferrerOption);
+    }
+
+    /**
+     * {Refer to overload method that has an argument of condition-bean setupper.} #beforejava8
+     * @param whiteSuppressJoinSqOneAddiList The entity list of whiteSuppressJoinSqOneAddi. (NotNull)
+     * @param loadReferrerOption The option of load-referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
+     */
+    @SuppressWarnings("unchecked")
+    public NestedReferrerLoader<WhiteSuppressJoinSqOne> loadWhiteSuppressJoinSqOneList(List<WhiteSuppressJoinSqOneAddi> whiteSuppressJoinSqOneAddiList, LoadReferrerOption<WhiteSuppressJoinSqOneCB, WhiteSuppressJoinSqOne> loadReferrerOption) {
+        xassLRArg(whiteSuppressJoinSqOneAddiList, loadReferrerOption);
+        if (whiteSuppressJoinSqOneAddiList.isEmpty()) { return (NestedReferrerLoader<WhiteSuppressJoinSqOne>)EMPTY_LOADER; }
+        return doLoadWhiteSuppressJoinSqOneList(whiteSuppressJoinSqOneAddiList, loadReferrerOption);
+    }
+
+    protected NestedReferrerLoader<WhiteSuppressJoinSqOne> doLoadWhiteSuppressJoinSqOneList(List<WhiteSuppressJoinSqOneAddi> whiteSuppressJoinSqOneAddiList, LoadReferrerOption<WhiteSuppressJoinSqOneCB, WhiteSuppressJoinSqOne> option) {
+        final WhiteSuppressJoinSqOneBhv referrerBhv = xgetBSFLR().select(WhiteSuppressJoinSqOneBhv.class);
+        return helpLoadReferrerInternally(whiteSuppressJoinSqOneAddiList, option, new InternalLoadReferrerCallback<WhiteSuppressJoinSqOneAddi, Integer, WhiteSuppressJoinSqOneCB, WhiteSuppressJoinSqOne>() {
+            public Integer getPKVal(WhiteSuppressJoinSqOneAddi et)
+            { return et.getOneAddiId(); }
+            public void setRfLs(WhiteSuppressJoinSqOneAddi et, List<WhiteSuppressJoinSqOne> ls)
+            { et.setWhiteSuppressJoinSqOneList(ls); }
+            public WhiteSuppressJoinSqOneCB newMyCB() { return referrerBhv.newMyConditionBean(); }
+            public void qyFKIn(WhiteSuppressJoinSqOneCB cb, List<Integer> ls)
+            { cb.query().setOneAddiId_InScope(ls); }
+            public void qyOdFKAsc(WhiteSuppressJoinSqOneCB cb) { cb.query().addOrderBy_OneAddiId_Asc(); }
+            public void spFKCol(WhiteSuppressJoinSqOneCB cb) { cb.specify().columnOneAddiId(); }
+            public List<WhiteSuppressJoinSqOne> selRfLs(WhiteSuppressJoinSqOneCB cb) { return referrerBhv.selectList(cb); }
+            public Integer getFKVal(WhiteSuppressJoinSqOne re) { return re.getOneAddiId(); }
+            public void setlcEt(WhiteSuppressJoinSqOne re, WhiteSuppressJoinSqOneAddi le)
+            { re.setWhiteSuppressJoinSqOneAddi(le); }
+            public String getRfPrNm() { return "whiteSuppressJoinSqOneList"; }
+        });
     }
 
     // ===================================================================================

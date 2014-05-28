@@ -143,10 +143,10 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
     /** TYPE_OF_BIT: {bit(1)} */
     protected Boolean _typeOfBit;
 
-    /** TYPE_OF_BINARY: {binary(2000)} */
+    /** TYPE_OF_BINARY: {binary(3000)} */
     protected byte[] _typeOfBinary;
 
-    /** TYPE_OF_VARBINARY: {varbinary(2000)} */
+    /** TYPE_OF_VARBINARY: {varbinary(3000)} */
     protected byte[] _typeOfVarbinary;
 
     /** TYPE_OF_UNIQUEIDENTIFIER: {uniqueidentifier(36)} */
@@ -158,6 +158,9 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
     // -----------------------------------------------------
     //                                              Internal
     //                                              --------
+    /** The unique-driven properties for this entity. (NotNull) */
+    protected final EntityUniqueDrivenProperties __uniqueDrivenProperties = newUniqueDrivenProperties();
+
     /** The modified properties for this entity. (NotNull) */
     protected final EntityModifiedProperties __modifiedProperties = newModifiedProperties();
 
@@ -200,6 +203,17 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
     public boolean hasPrimaryKeyValue() {
         if (getVendorCheckId() == null) { return false; }
         return true;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Set<String> myuniqueDrivenProperties() {
+        return __uniqueDrivenProperties.getPropertyNames();
+    }
+
+    protected EntityUniqueDrivenProperties newUniqueDrivenProperties() {
+        return new EntityUniqueDrivenProperties();
     }
 
     // ===================================================================================
@@ -272,8 +286,8 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
         if (!xSV(getVendorCheckId(), other.getVendorCheckId())) { return false; }
         return true;
     }
-    protected boolean xSV(Object value1, Object value2) {
-        return FunCustodial.isSameValue(value1, value2);
+    protected boolean xSV(Object v1, Object v2) {
+        return FunCustodial.isSameValue(v1, v2);
     }
 
     /**
@@ -281,13 +295,13 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      * @return The hash-code from primary-key or columns.
      */
     public int hashCode() {
-        int result = 17;
-        result = xCH(result, getTableDbName());
-        result = xCH(result, getVendorCheckId());
-        return result;
+        int hs = 17;
+        hs = xCH(hs, getTableDbName());
+        hs = xCH(hs, getVendorCheckId());
+        return hs;
     }
-    protected int xCH(int result, Object value) {
-        return FunCustodial.calculateHashcode(result, value);
+    protected int xCH(int hs, Object vl) {
+        return FunCustodial.calculateHashcode(hs, vl);
     }
 
     /**
@@ -327,28 +341,28 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
     }
     protected String buildColumnString() {
         StringBuilder sb = new StringBuilder();
-        String delimiter = ", ";
-        sb.append(delimiter).append(getVendorCheckId());
-        sb.append(delimiter).append(getTypeOfVarchar());
-        sb.append(delimiter).append(getTypeOfNvarchar());
-        sb.append(delimiter).append(getTypeOfText());
-        sb.append(delimiter).append(getTypeOfNumericDecimal());
-        sb.append(delimiter).append(getTypeOfNumericInteger());
-        sb.append(delimiter).append(getTypeOfNumericBigint());
-        sb.append(delimiter).append(getTypeOfSmallinteger());
-        sb.append(delimiter).append(getTypeOfInteger());
-        sb.append(delimiter).append(getTypeOfBigint());
-        sb.append(delimiter).append(getTypeOfMoney());
-        sb.append(delimiter).append(getTypeOfSmallmoney());
-        sb.append(delimiter).append(getTypeOfDatetime());
-        sb.append(delimiter).append(getTypeOfSmalldatetime());
-        sb.append(delimiter).append(getTypeOfBit());
-        sb.append(delimiter).append(xfBA(getTypeOfBinary()));
-        sb.append(delimiter).append(xfBA(getTypeOfVarbinary()));
-        sb.append(delimiter).append(getTypeOfUniqueidentifier());
-        sb.append(delimiter).append(getTypeOfXml());
-        if (sb.length() > delimiter.length()) {
-            sb.delete(0, delimiter.length());
+        String dm = ", ";
+        sb.append(dm).append(getVendorCheckId());
+        sb.append(dm).append(getTypeOfVarchar());
+        sb.append(dm).append(getTypeOfNvarchar());
+        sb.append(dm).append(getTypeOfText());
+        sb.append(dm).append(getTypeOfNumericDecimal());
+        sb.append(dm).append(getTypeOfNumericInteger());
+        sb.append(dm).append(getTypeOfNumericBigint());
+        sb.append(dm).append(getTypeOfSmallinteger());
+        sb.append(dm).append(getTypeOfInteger());
+        sb.append(dm).append(getTypeOfBigint());
+        sb.append(dm).append(getTypeOfMoney());
+        sb.append(dm).append(getTypeOfSmallmoney());
+        sb.append(dm).append(getTypeOfDatetime());
+        sb.append(dm).append(getTypeOfSmalldatetime());
+        sb.append(dm).append(getTypeOfBit());
+        sb.append(dm).append(xfBA(getTypeOfBinary()));
+        sb.append(dm).append(xfBA(getTypeOfVarbinary()));
+        sb.append(dm).append(getTypeOfUniqueidentifier());
+        sb.append(dm).append(getTypeOfXml());
+        if (sb.length() > dm.length()) {
+            sb.delete(0, dm.length());
         }
         sb.insert(0, "{").append("}");
         return sb.toString();
@@ -631,7 +645,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
     }
 
     /**
-     * [get] TYPE_OF_BINARY: {binary(2000)} <br />
+     * [get] TYPE_OF_BINARY: {binary(3000)} <br />
      * @return The value of the column 'TYPE_OF_BINARY'. (NullAllowed even if selected: for no constraint)
      */
     public byte[] getTypeOfBinary() {
@@ -639,7 +653,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
     }
 
     /**
-     * [set] TYPE_OF_BINARY: {binary(2000)} <br />
+     * [set] TYPE_OF_BINARY: {binary(3000)} <br />
      * @param typeOfBinary The value of the column 'TYPE_OF_BINARY'. (NullAllowed: null update allowed for no constraint)
      */
     public void setTypeOfBinary(byte[] typeOfBinary) {
@@ -648,7 +662,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
     }
 
     /**
-     * [get] TYPE_OF_VARBINARY: {varbinary(2000)} <br />
+     * [get] TYPE_OF_VARBINARY: {varbinary(3000)} <br />
      * @return The value of the column 'TYPE_OF_VARBINARY'. (NullAllowed even if selected: for no constraint)
      */
     public byte[] getTypeOfVarbinary() {
@@ -656,7 +670,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
     }
 
     /**
-     * [set] TYPE_OF_VARBINARY: {varbinary(2000)} <br />
+     * [set] TYPE_OF_VARBINARY: {varbinary(3000)} <br />
      * @param typeOfVarbinary The value of the column 'TYPE_OF_VARBINARY'. (NullAllowed: null update allowed for no constraint)
      */
     public void setTypeOfVarbinary(byte[] typeOfVarbinary) {

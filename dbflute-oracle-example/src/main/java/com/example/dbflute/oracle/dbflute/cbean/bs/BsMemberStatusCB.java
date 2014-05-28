@@ -77,10 +77,34 @@ public class BsMemberStatusCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                 PrimaryKey Handling
     //                                                                 ===================
+    /**
+     * Accept the query condition of primary key as equal.
+     * @param memberStatusCode : PK, NotNull, CHAR(3), classification=MemberStatus. (NotNull)
+     */
     public void acceptPrimaryKey(String memberStatusCode) {
         assertObjectNotNull("memberStatusCode", memberStatusCode);
         BsMemberStatusCB cb = this;
-        cb.query().setMemberStatusCode_Equal(memberStatusCode);
+        cb.query().setMemberStatusCode_Equal(memberStatusCode);;
+    }
+
+    /**
+     * Accept the query condition of unique key as equal.
+     * @param displayOrder : UQ, NotNull, NUMBER(16). (NotNull)
+     */
+    public void acceptUniqueOfDisplayOrder(Long displayOrder) {
+        assertObjectNotNull("displayOrder", displayOrder);
+        BsMemberStatusCB cb = this;
+        cb.query().setDisplayOrder_Equal(displayOrder);;
+    }
+
+    /**
+     * Accept the query condition of unique key as equal.
+     * @param memberStatusName : UQ, NotNull, VARCHAR2(50). (NotNull)
+     */
+    public void acceptUniqueOfMemberStatusName(String memberStatusName) {
+        assertObjectNotNull("memberStatusName", memberStatusName);
+        BsMemberStatusCB cb = this;
+        cb.query().setMemberStatusName_Equal(memberStatusName);;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {
@@ -539,6 +563,11 @@ public class BsMemberStatusCB extends AbstractConditionBean {
      */
     public void orScopeQuery(OrQuery<MemberStatusCB> orQuery) {
         xorSQ((MemberStatusCB)this, orQuery);
+    }
+
+    @Override
+    protected HpCBPurpose xhandleOrSQPurposeChange() {
+        return null; // means no check
     }
 
     /**

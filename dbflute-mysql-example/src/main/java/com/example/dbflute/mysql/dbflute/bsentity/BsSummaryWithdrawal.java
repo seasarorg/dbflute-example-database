@@ -173,7 +173,7 @@ public abstract class BsSummaryWithdrawal implements Entity, Serializable, Clone
     /**
      * {@inheritDoc}
      */
-    public Set<String> uniqueDrivenProperties() {
+    public Set<String> myuniqueDrivenProperties() {
         return __uniqueDrivenProperties.getPropertyNames();
     }
 
@@ -597,7 +597,7 @@ public abstract class BsSummaryWithdrawal implements Entity, Serializable, Clone
      * [set] (会員ステータスコード)MEMBER_STATUS_CODE: {CHAR(3), classification=MemberStatus} <br />
      * @param memberStatusCode The value of the column 'MEMBER_STATUS_CODE'. (NullAllowed: null update allowed for no constraint)
      */
-    public void setMemberStatusCode(String memberStatusCode) {
+    protected void setMemberStatusCode(String memberStatusCode) {
         __modifiedProperties.addPropertyName("memberStatusCode");
         this._memberStatusCode = memberStatusCode;
     }

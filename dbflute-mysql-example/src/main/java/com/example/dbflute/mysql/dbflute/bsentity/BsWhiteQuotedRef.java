@@ -138,7 +138,7 @@ public abstract class BsWhiteQuotedRef implements Entity, Serializable, Cloneabl
     /**
      * {@inheritDoc}
      */
-    public Set<String> uniqueDrivenProperties() {
+    public Set<String> myuniqueDrivenProperties() {
         return __uniqueDrivenProperties.getPropertyNames();
     }
 

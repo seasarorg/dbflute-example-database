@@ -1,4 +1,117 @@
 map:{
+    ; 2014/05/28 20:22:47 = map:{
+        ; diffDate = 2014/05/28 20:22:47
+        ; tableDiff = map:{
+            ; white_all_in_one_cls_compound_pk_ref = map:{
+                ; tableName = white_all_in_one_cls_compound_pk_ref
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; white_all_in_one_cls_normal_col_ref = map:{
+                ; tableName = white_all_in_one_cls_normal_col_ref
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = DELETE
+                    }
+                }
+            }
+        }
+    }
+    ; 2014/05/28 13:52:16 = map:{
+        ; diffDate = 2014/05/28 13:52:16
+        ; tableCount = map:{
+            ; next = 95
+            ; previous = 94
+        }
+        ; tableDiff = map:{
+            ; white_uq_classification = map:{
+                ; tableName = white_uq_classification
+                ; diffType = ADD
+            }
+        }
+    }
+    ; 2014/05/27 23:19:38 = map:{
+        ; diffDate = 2014/05/27 23:19:38
+        ; tableDiff = map:{
+            ; white_suppress_join_sq_many = map:{
+                ; tableName = white_suppress_join_sq_many
+                ; diffType = CHANGE
+                ; primaryKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = CHANGE
+                        ; columnDiff = map:{
+                            ; next = MANY_ID
+                            ; previous = SUPPRESS_JOIN_SQ_ID
+                        }
+                    }
+                }
+                ; indexDiff = map:{
+                    ; FK_WHITE_SUPPRESS_JOIN_SQ_MANY = map:{
+                        ; constraintName = FK_WHITE_SUPPRESS_JOIN_SQ_MANY
+                        ; diffType = ADD
+                    }
+                }
+            }
+        }
+    }
+    ; 2014/05/27 22:46:40 = map:{
+        ; diffDate = 2014/05/27 22:46:40
+        ; tableDiff = map:{
+            ; white_suppress_join_sq_one = map:{
+                ; tableName = white_suppress_join_sq_one
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; ONE_ADDI_ID = map:{
+                        ; columnName = ONE_ADDI_ID
+                        ; diffType = ADD
+                    }
+                }
+            }
+        }
+    }
+    ; 2014/05/27 22:32:49 = map:{
+        ; diffDate = 2014/05/27 22:32:49
+        ; tableCount = map:{
+            ; next = 94
+            ; previous = 93
+        }
+        ; tableDiff = map:{
+            ; white_suppress_join_sq_many_one_one = map:{
+                ; tableName = white_suppress_join_sq_many_one_one
+                ; diffType = ADD
+            }
+            ; white_suppress_join_sq_many_one = map:{
+                ; tableName = white_suppress_join_sq_many_one
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; MANY_ONE_ONE_ID = map:{
+                        ; columnName = MANY_ONE_ONE_ID
+                        ; diffType = ADD
+                    }
+                }
+                ; foreignKeyDiff = map:{
+                    ; FK_WHITE_SUPPRESS_JOIN_SQ_MANY_ONE_ONE = map:{
+                        ; constraintName = FK_WHITE_SUPPRESS_JOIN_SQ_MANY_ONE_ONE
+                        ; diffType = ADD
+                    }
+                }
+                ; indexDiff = map:{
+                    ; FK_WHITE_SUPPRESS_JOIN_SQ_MANY_ONE_ONE = map:{
+                        ; constraintName = FK_WHITE_SUPPRESS_JOIN_SQ_MANY_ONE_ONE
+                        ; diffType = ADD
+                    }
+                }
+            }
+        }
+    }
     ; 2014/05/27 22:16:09 = map:{
         ; diffDate = 2014/05/27 22:16:09
         ; tableCount = map:{

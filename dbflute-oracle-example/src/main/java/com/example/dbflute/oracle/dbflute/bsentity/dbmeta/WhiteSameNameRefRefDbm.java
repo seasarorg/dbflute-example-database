@@ -33,14 +33,15 @@ public class WhiteSameNameRefRefDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgRefRefId(), "refRefId");
         setupEpg(_epgMap, new EpgRefRefName(), "refRefName");
         setupEpg(_epgMap, new EpgRefRefDate(), "refRefDate");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgRefRefId implements PropertyGateway {
         public Object read(Entity et) { return ((WhiteSameNameRefRef)et).getRefRefId(); }
         public void write(Entity et, Object vl) { ((WhiteSameNameRefRef)et).setRefRefId(ctl(vl)); }
@@ -53,6 +54,8 @@ public class WhiteSameNameRefRefDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((WhiteSameNameRefRef)et).getRefRefDate(); }
         public void write(Entity et, Object vl) { ((WhiteSameNameRefRef)et).setRefRefDate((java.util.Date)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -68,12 +71,24 @@ public class WhiteSameNameRefRefDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnRefRefId = cci("REF_REF_ID", "REF_REF_ID", null, null, true, "refRefId", Long.class, true, false, "NUMBER", 16, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnRefRefName = cci("REF_REF_NAME", "REF_REF_NAME", null, null, true, "refRefName", String.class, false, false, "VARCHAR2", 100, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnRefRefDate = cci("REF_REF_DATE", "REF_REF_DATE", null, null, true, "refRefDate", java.util.Date.class, false, false, "DATE", 7, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnRefRefId = cci("REF_REF_ID", "REF_REF_ID", null, null, Long.class, "refRefId", null, true, false, true, "NUMBER", 16, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnRefRefName = cci("REF_REF_NAME", "REF_REF_NAME", null, null, String.class, "refRefName", null, false, false, true, "VARCHAR2", 100, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnRefRefDate = cci("REF_REF_DATE", "REF_REF_DATE", null, null, java.util.Date.class, "refRefDate", null, false, false, true, "DATE", 7, 0, null, false, null, null, null, null, null);
 
+    /**
+     * REF_REF_ID: {PK, NotNull, NUMBER(16)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnRefRefId() { return _columnRefRefId; }
+    /**
+     * REF_REF_NAME: {NotNull, VARCHAR2(100)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnRefRefName() { return _columnRefRefName; }
+    /**
+     * REF_REF_DATE: {NotNull, DATE(7)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnRefRefDate() { return _columnRefRefDate; }
 
     protected List<ColumnInfo> ccil() {
@@ -99,6 +114,8 @@ public class WhiteSameNameRefRefDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // cannot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

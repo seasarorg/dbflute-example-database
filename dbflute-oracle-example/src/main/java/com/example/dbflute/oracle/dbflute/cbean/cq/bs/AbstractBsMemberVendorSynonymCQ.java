@@ -22,8 +22,8 @@ public abstract class AbstractBsMemberVendorSynonymCQ extends AbstractConditionQ
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public AbstractBsMemberVendorSynonymCQ(ConditionQuery childQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
-        super(childQuery, sqlClause, aliasName, nestLevel);
+    public AbstractBsMemberVendorSynonymCQ(ConditionQuery referrerQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
+        super(referrerQuery, sqlClause, aliasName, nestLevel);
     }
 
     // ===================================================================================
@@ -291,7 +291,7 @@ public abstract class AbstractBsMemberVendorSynonymCQ extends AbstractConditionQ
     public abstract String keepMemberId_SpecifyDerivedReferrer_SynonymMemberLoginList(SynonymMemberLoginCQ sq);
 
     /**
-     * Prepare for (Query)DerivedReferrer. <br />
+     * Prepare for (Query)DerivedReferrer (correlated sub-query). <br />
      * {FOO &lt;= (select max(BAR) from SYNONYM_MEMBER_LOGIN where ...)} <br />
      * (会員ログイン)SYNONYM_MEMBER_LOGIN by MEMBER_ID, named 'synonymMemberLoginAsOne'.
      * <pre>
@@ -1114,7 +1114,7 @@ public abstract class AbstractBsMemberVendorSynonymCQ extends AbstractConditionQ
     public abstract String keepSpecifyMyselfDerived(MemberVendorSynonymCQ sq);
 
     /**
-     * Prepare for (Query)MyselfDerived (SubQuery).
+     * Prepare for (Query)MyselfDerived (correlated sub-query).
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<MemberVendorSynonymCB> myselfDerived() {
@@ -1136,8 +1136,8 @@ public abstract class AbstractBsMemberVendorSynonymCQ extends AbstractConditionQ
     //                                                                        MyselfExists
     //                                                                        ============
     /**
-     * Prepare for MyselfExists (SubQuery).
-     * @param subQuery The implementation of sub query. (NotNull)
+     * Prepare for MyselfExists (correlated sub-query).
+     * @param subQuery The implementation of sub-query. (NotNull)
      */
     public void myselfExists(SubQuery<MemberVendorSynonymCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
@@ -1152,8 +1152,8 @@ public abstract class AbstractBsMemberVendorSynonymCQ extends AbstractConditionQ
     //                                                                       MyselfInScope
     //                                                                       =============
     /**
-     * Prepare for MyselfInScope (SubQuery).
-     * @param subQuery The implementation of sub query. (NotNull)
+     * Prepare for MyselfInScope (sub-query).
+     * @param subQuery The implementation of sub-query. (NotNull)
      */
     public void myselfInScope(SubQuery<MemberVendorSynonymCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);

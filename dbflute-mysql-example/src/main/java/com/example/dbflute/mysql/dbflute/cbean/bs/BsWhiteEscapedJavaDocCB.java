@@ -29,6 +29,7 @@ import org.seasar.dbflute.cbean.sqlclause.SqlClause;
 import org.seasar.dbflute.cbean.sqlclause.SqlClauseCreator;
 import org.seasar.dbflute.dbmeta.DBMetaProvider;
 import org.seasar.dbflute.twowaysql.factory.SqlAnalyzerFactory;
+import com.example.dbflute.mysql.dbflute.allcommon.CDef;
 import com.example.dbflute.mysql.dbflute.allcommon.DBFluteConfig;
 import com.example.dbflute.mysql.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.mysql.dbflute.allcommon.ImplementedInvokerAssistant;
@@ -96,10 +97,10 @@ public class BsWhiteEscapedJavaDocCB extends AbstractConditionBean {
      * Accept the query condition of primary key as equal.
      * @param escapedJavaDocCode : PK, NotNull, CHAR(3), classification=EscapedJavaDocCls. (NotNull)
      */
-    public void acceptPrimaryKey(String escapedJavaDocCode) {
+    public void acceptPrimaryKey(CDef.EscapedJavaDocCls escapedJavaDocCode) {
         assertObjectNotNull("escapedJavaDocCode", escapedJavaDocCode);
         BsWhiteEscapedJavaDocCB cb = this;
-        cb.query().setEscapedJavaDocCode_Equal(escapedJavaDocCode);;
+        cb.query().setEscapedJavaDocCode_Equal_AsEscapedJavaDocCls(escapedJavaDocCode);
     }
 
     public ConditionBean addOrderBy_PK_Asc() {

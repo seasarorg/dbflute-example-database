@@ -159,13 +159,13 @@ public abstract class BsSummaryProduct implements Entity, Serializable, Cloneabl
     public void uniqueBy(String productHandleCode) {
         __uniqueDrivenProperties.clear();
         __uniqueDrivenProperties.addPropertyName("productHandleCode");
-        _productHandleCode = productHandleCode;
+        setProductHandleCode(productHandleCode);
     }
 
     /**
      * {@inheritDoc}
      */
-    public Set<String> uniqueDrivenProperties() {
+    public Set<String> myuniqueDrivenProperties() {
         return __uniqueDrivenProperties.getPropertyNames();
     }
 
@@ -557,7 +557,7 @@ public abstract class BsSummaryProduct implements Entity, Serializable, Cloneabl
      * [set] PRODUCT_STATUS_CODE: {NotNull, CHAR(3), FK to PRODUCT_STATUS, classification=ProductStatus} <br />
      * @param productStatusCode The value of the column 'PRODUCT_STATUS_CODE'. (basically NotNull if update: for the constraint)
      */
-    public void setProductStatusCode(String productStatusCode) {
+    protected void setProductStatusCode(String productStatusCode) {
         __modifiedProperties.addPropertyName("productStatusCode");
         this._productStatusCode = productStatusCode;
     }

@@ -77,10 +77,14 @@ public class BsWhiteSameNameRefRefCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                 PrimaryKey Handling
     //                                                                 ===================
+    /**
+     * Accept the query condition of primary key as equal.
+     * @param refRefId : PK, NotNull, NUMBER(16). (NotNull)
+     */
     public void acceptPrimaryKey(Long refRefId) {
         assertObjectNotNull("refRefId", refRefId);
         BsWhiteSameNameRefRefCB cb = this;
-        cb.query().setRefRefId_Equal(refRefId);
+        cb.query().setRefRefId_Equal(refRefId);;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {
@@ -414,6 +418,11 @@ public class BsWhiteSameNameRefRefCB extends AbstractConditionBean {
      */
     public void orScopeQuery(OrQuery<WhiteSameNameRefRefCB> orQuery) {
         xorSQ((WhiteSameNameRefRefCB)this, orQuery);
+    }
+
+    @Override
+    protected HpCBPurpose xhandleOrSQPurposeChange() {
+        return null; // means no check
     }
 
     /**

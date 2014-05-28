@@ -22,8 +22,8 @@ public abstract class AbstractBsSynonymNextLinkSecretCQ extends AbstractConditio
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public AbstractBsSynonymNextLinkSecretCQ(ConditionQuery childQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
-        super(childQuery, sqlClause, aliasName, nestLevel);
+    public AbstractBsSynonymNextLinkSecretCQ(ConditionQuery referrerQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
+        super(referrerQuery, sqlClause, aliasName, nestLevel);
     }
 
     // ===================================================================================
@@ -470,7 +470,7 @@ public abstract class AbstractBsSynonymNextLinkSecretCQ extends AbstractConditio
     public abstract String keepSpecifyMyselfDerived(SynonymNextLinkSecretCQ sq);
 
     /**
-     * Prepare for (Query)MyselfDerived (SubQuery).
+     * Prepare for (Query)MyselfDerived (correlated sub-query).
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<SynonymNextLinkSecretCB> myselfDerived() {
@@ -492,8 +492,8 @@ public abstract class AbstractBsSynonymNextLinkSecretCQ extends AbstractConditio
     //                                                                        MyselfExists
     //                                                                        ============
     /**
-     * Prepare for MyselfExists (SubQuery).
-     * @param subQuery The implementation of sub query. (NotNull)
+     * Prepare for MyselfExists (correlated sub-query).
+     * @param subQuery The implementation of sub-query. (NotNull)
      */
     public void myselfExists(SubQuery<SynonymNextLinkSecretCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
@@ -508,8 +508,8 @@ public abstract class AbstractBsSynonymNextLinkSecretCQ extends AbstractConditio
     //                                                                       MyselfInScope
     //                                                                       =============
     /**
-     * Prepare for MyselfInScope (SubQuery).
-     * @param subQuery The implementation of sub query. (NotNull)
+     * Prepare for MyselfInScope (sub-query).
+     * @param subQuery The implementation of sub-query. (NotNull)
      */
     public void myselfInScope(SubQuery<SynonymNextLinkSecretCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);

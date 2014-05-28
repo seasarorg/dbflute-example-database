@@ -76,10 +76,10 @@ public abstract class BsSynonymMemberLogin implements Entity, Serializable, Clon
     /** MEMBER_LOGIN_ID: {PK, NotNull, NUMBER(16)} */
     protected Long _memberLoginId;
 
-    /** MEMBER_ID: {UQ, NotNull, NUMBER(16), FK to MEMBER_VENDOR_SYNONYM} */
+    /** MEMBER_ID: {UQ+, NotNull, NUMBER(16), FK to MEMBER_VENDOR_SYNONYM} */
     protected Long _memberId;
 
-    /** LOGIN_DATETIME: {UQ+, IX, NotNull, DATE(7)} */
+    /** LOGIN_DATETIME: {+UQ, IX, NotNull, DATE(7)} */
     protected java.util.Date _loginDatetime;
 
     /** MOBILE_LOGIN_FLG: {NotNull, NUMBER(1), classification=Flg} */
@@ -91,6 +91,9 @@ public abstract class BsSynonymMemberLogin implements Entity, Serializable, Clon
     // -----------------------------------------------------
     //                                              Internal
     //                                              --------
+    /** The unique-driven properties for this entity. (NotNull) */
+    protected final EntityUniqueDrivenProperties __uniqueDrivenProperties = newUniqueDrivenProperties();
+
     /** The modified properties for this entity. (NotNull) */
     protected final EntityModifiedProperties __modifiedProperties = newModifiedProperties();
 
@@ -133,6 +136,30 @@ public abstract class BsSynonymMemberLogin implements Entity, Serializable, Clon
     public boolean hasPrimaryKeyValue() {
         if (getMemberLoginId() == null) { return false; }
         return true;
+    }
+
+    /**
+     * To be unique by the unique column. <br />
+     * You can update the entity by the key when entity update (NOT batch update).
+     * @param memberId : UQ+, NotNull, NUMBER(16), FK to MEMBER_VENDOR_SYNONYM. (NotNull)
+     * @param loginDatetime : +UQ, IX, NotNull, DATE(7). (NotNull)
+     */
+    public void uniqueBy(Long memberId, java.util.Date loginDatetime) {
+        __uniqueDrivenProperties.clear();
+        __uniqueDrivenProperties.addPropertyName("memberId");
+        __uniqueDrivenProperties.addPropertyName("loginDatetime");
+        setMemberId(memberId);setLoginDatetime(loginDatetime);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Set<String> myuniqueDrivenProperties() {
+        return __uniqueDrivenProperties.getPropertyNames();
+    }
+
+    protected EntityUniqueDrivenProperties newUniqueDrivenProperties() {
+        return new EntityUniqueDrivenProperties();
     }
 
     // ===================================================================================
@@ -448,8 +475,8 @@ public abstract class BsSynonymMemberLogin implements Entity, Serializable, Clon
         if (!xSV(getMemberLoginId(), other.getMemberLoginId())) { return false; }
         return true;
     }
-    protected boolean xSV(Object value1, Object value2) {
-        return FunCustodial.isSameValue(value1, value2);
+    protected boolean xSV(Object v1, Object v2) {
+        return FunCustodial.isSameValue(v1, v2);
     }
 
     /**
@@ -457,13 +484,13 @@ public abstract class BsSynonymMemberLogin implements Entity, Serializable, Clon
      * @return The hash-code from primary-key or columns.
      */
     public int hashCode() {
-        int result = 17;
-        result = xCH(result, getTableDbName());
-        result = xCH(result, getMemberLoginId());
-        return result;
+        int hs = 17;
+        hs = xCH(hs, getTableDbName());
+        hs = xCH(hs, getMemberLoginId());
+        return hs;
     }
-    protected int xCH(int result, Object value) {
-        return FunCustodial.calculateHashcode(result, value);
+    protected int xCH(int hs, Object vl) {
+        return FunCustodial.calculateHashcode(hs, vl);
     }
 
     /**
@@ -487,19 +514,19 @@ public abstract class BsSynonymMemberLogin implements Entity, Serializable, Clon
     public String toStringWithRelation() {
         StringBuilder sb = new StringBuilder();
         sb.append(toString());
-        String l = "\n  ";
+        String li = "\n  ";
         if (_memberStatus != null)
-        { sb.append(l).append(xbRDS(_memberStatus, "memberStatus")); }
+        { sb.append(li).append(xbRDS(_memberStatus, "memberStatus")); }
         if (_memberVendorSynonym != null)
-        { sb.append(l).append(xbRDS(_memberVendorSynonym, "memberVendorSynonym")); }
+        { sb.append(li).append(xbRDS(_memberVendorSynonym, "memberVendorSynonym")); }
         if (_synonymMember != null)
-        { sb.append(l).append(xbRDS(_synonymMember, "synonymMember")); }
+        { sb.append(li).append(xbRDS(_synonymMember, "synonymMember")); }
         if (_vendorSynonymMember != null)
-        { sb.append(l).append(xbRDS(_vendorSynonymMember, "vendorSynonymMember")); }
+        { sb.append(li).append(xbRDS(_vendorSynonymMember, "vendorSynonymMember")); }
         return sb.toString();
     }
-    protected String xbRDS(Entity e, String name) { // buildRelationDisplayString()
-        return e.buildDisplayString(name, true, true);
+    protected String xbRDS(Entity et, String name) { // buildRelationDisplayString()
+        return et.buildDisplayString(name, true, true);
     }
 
     /**
@@ -515,14 +542,14 @@ public abstract class BsSynonymMemberLogin implements Entity, Serializable, Clon
     }
     protected String buildColumnString() {
         StringBuilder sb = new StringBuilder();
-        String delimiter = ", ";
-        sb.append(delimiter).append(getMemberLoginId());
-        sb.append(delimiter).append(getMemberId());
-        sb.append(delimiter).append(xfUD(getLoginDatetime()));
-        sb.append(delimiter).append(getMobileLoginFlg());
-        sb.append(delimiter).append(getLoginMemberStatusCode());
-        if (sb.length() > delimiter.length()) {
-            sb.delete(0, delimiter.length());
+        String dm = ", ";
+        sb.append(dm).append(getMemberLoginId());
+        sb.append(dm).append(getMemberId());
+        sb.append(dm).append(xfUD(getLoginDatetime()));
+        sb.append(dm).append(getMobileLoginFlg());
+        sb.append(dm).append(getLoginMemberStatusCode());
+        if (sb.length() > dm.length()) {
+            sb.delete(0, dm.length());
         }
         sb.insert(0, "{").append("}");
         return sb.toString();
@@ -535,13 +562,13 @@ public abstract class BsSynonymMemberLogin implements Entity, Serializable, Clon
     }
     protected String buildRelationString() {
         StringBuilder sb = new StringBuilder();
-        String c = ",";
-        if (_memberStatus != null) { sb.append(c).append("memberStatus"); }
-        if (_memberVendorSynonym != null) { sb.append(c).append("memberVendorSynonym"); }
-        if (_synonymMember != null) { sb.append(c).append("synonymMember"); }
-        if (_vendorSynonymMember != null) { sb.append(c).append("vendorSynonymMember"); }
-        if (sb.length() > c.length()) {
-            sb.delete(0, c.length()).insert(0, "(").append(")");
+        String cm = ",";
+        if (_memberStatus != null) { sb.append(cm).append("memberStatus"); }
+        if (_memberVendorSynonym != null) { sb.append(cm).append("memberVendorSynonym"); }
+        if (_synonymMember != null) { sb.append(cm).append("synonymMember"); }
+        if (_vendorSynonymMember != null) { sb.append(cm).append("vendorSynonymMember"); }
+        if (sb.length() > cm.length()) {
+            sb.delete(0, cm.length()).insert(0, "(").append(")");
         }
         return sb.toString();
     }
@@ -579,7 +606,7 @@ public abstract class BsSynonymMemberLogin implements Entity, Serializable, Clon
     }
 
     /**
-     * [get] MEMBER_ID: {UQ, NotNull, NUMBER(16), FK to MEMBER_VENDOR_SYNONYM} <br />
+     * [get] MEMBER_ID: {UQ+, NotNull, NUMBER(16), FK to MEMBER_VENDOR_SYNONYM} <br />
      * @return The value of the column 'MEMBER_ID'. (basically NotNull if selected: for the constraint)
      */
     public Long getMemberId() {
@@ -587,7 +614,7 @@ public abstract class BsSynonymMemberLogin implements Entity, Serializable, Clon
     }
 
     /**
-     * [set] MEMBER_ID: {UQ, NotNull, NUMBER(16), FK to MEMBER_VENDOR_SYNONYM} <br />
+     * [set] MEMBER_ID: {UQ+, NotNull, NUMBER(16), FK to MEMBER_VENDOR_SYNONYM} <br />
      * @param memberId The value of the column 'MEMBER_ID'. (basically NotNull if update: for the constraint)
      */
     public void setMemberId(Long memberId) {
@@ -596,7 +623,7 @@ public abstract class BsSynonymMemberLogin implements Entity, Serializable, Clon
     }
 
     /**
-     * [get] LOGIN_DATETIME: {UQ+, IX, NotNull, DATE(7)} <br />
+     * [get] LOGIN_DATETIME: {+UQ, IX, NotNull, DATE(7)} <br />
      * @return The value of the column 'LOGIN_DATETIME'. (basically NotNull if selected: for the constraint)
      */
     public java.util.Date getLoginDatetime() {
@@ -604,7 +631,7 @@ public abstract class BsSynonymMemberLogin implements Entity, Serializable, Clon
     }
 
     /**
-     * [set] LOGIN_DATETIME: {UQ+, IX, NotNull, DATE(7)} <br />
+     * [set] LOGIN_DATETIME: {+UQ, IX, NotNull, DATE(7)} <br />
      * @param loginDatetime The value of the column 'LOGIN_DATETIME'. (basically NotNull if update: for the constraint)
      */
     public void setLoginDatetime(java.util.Date loginDatetime) {

@@ -22,8 +22,8 @@ public abstract class AbstractBsVendorLargeDataRefCQ extends AbstractConditionQu
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public AbstractBsVendorLargeDataRefCQ(ConditionQuery childQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
-        super(childQuery, sqlClause, aliasName, nestLevel);
+    public AbstractBsVendorLargeDataRefCQ(ConditionQuery referrerQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
+        super(referrerQuery, sqlClause, aliasName, nestLevel);
     }
 
     // ===================================================================================
@@ -217,7 +217,7 @@ public abstract class AbstractBsVendorLargeDataRefCQ extends AbstractConditionQu
     public abstract String keepLargeDataRefId_SpecifyDerivedReferrer_VendorLargeDataRefSelfList(VendorLargeDataRefCQ sq);
 
     /**
-     * Prepare for (Query)DerivedReferrer. <br />
+     * Prepare for (Query)DerivedReferrer (correlated sub-query). <br />
      * {FOO &lt;= (select max(BAR) from VENDOR_LARGE_DATA_REF where ...)} <br />
      * VENDOR_LARGE_DATA_REF by SELF_PARENT_ID, named 'vendorLargeDataRefSelfAsOne'.
      * <pre>
@@ -1166,7 +1166,7 @@ public abstract class AbstractBsVendorLargeDataRefCQ extends AbstractConditionQu
     public abstract String keepSpecifyMyselfDerived(VendorLargeDataRefCQ sq);
 
     /**
-     * Prepare for (Query)MyselfDerived (SubQuery).
+     * Prepare for (Query)MyselfDerived (correlated sub-query).
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<VendorLargeDataRefCB> myselfDerived() {
@@ -1188,8 +1188,8 @@ public abstract class AbstractBsVendorLargeDataRefCQ extends AbstractConditionQu
     //                                                                        MyselfExists
     //                                                                        ============
     /**
-     * Prepare for MyselfExists (SubQuery).
-     * @param subQuery The implementation of sub query. (NotNull)
+     * Prepare for MyselfExists (correlated sub-query).
+     * @param subQuery The implementation of sub-query. (NotNull)
      */
     public void myselfExists(SubQuery<VendorLargeDataRefCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
@@ -1204,8 +1204,8 @@ public abstract class AbstractBsVendorLargeDataRefCQ extends AbstractConditionQu
     //                                                                       MyselfInScope
     //                                                                       =============
     /**
-     * Prepare for MyselfInScope (SubQuery).
-     * @param subQuery The implementation of sub query. (NotNull)
+     * Prepare for MyselfInScope (sub-query).
+     * @param subQuery The implementation of sub-query. (NotNull)
      */
     public void myselfInScope(SubQuery<VendorLargeDataRefCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);

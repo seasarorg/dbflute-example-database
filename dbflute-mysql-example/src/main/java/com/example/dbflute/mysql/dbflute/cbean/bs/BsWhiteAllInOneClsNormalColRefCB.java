@@ -95,23 +95,11 @@ public class BsWhiteAllInOneClsNormalColRefCB extends AbstractConditionBean {
     //                                                                 ===================
     /**
      * Accept the query condition of primary key as equal.
-     * @param fooCode : PK, UQ+, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT. (NotNull)
-     * @param barCode : PK, +UQ, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT. (NotNull)
-     * @param quxCode : PK, +UQ, NotNull, CHAR(3). (NotNull)
+     * @param fooCode : PK, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT. (NotNull)
+     * @param barCode : PK, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT. (NotNull)
+     * @param quxCode : PK, NotNull, CHAR(3). (NotNull)
      */
     public void acceptPrimaryKey(String fooCode, String barCode, String quxCode) {
-        assertObjectNotNull("fooCode", fooCode);assertObjectNotNull("barCode", barCode);assertObjectNotNull("quxCode", quxCode);
-        BsWhiteAllInOneClsNormalColRefCB cb = this;
-        cb.query().setFooCode_Equal(fooCode);;cb.query().setBarCode_Equal(barCode);;cb.query().setQuxCode_Equal(quxCode);;
-    }
-
-    /**
-     * Accept the query condition of unique key as equal.
-     * @param fooCode : PK, UQ+, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT. (NotNull)
-     * @param barCode : PK, +UQ, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT. (NotNull)
-     * @param quxCode : PK, +UQ, NotNull, CHAR(3). (NotNull)
-     */
-    public void acceptUniqueOf(String fooCode, String barCode, String quxCode) {
         assertObjectNotNull("fooCode", fooCode);assertObjectNotNull("barCode", barCode);assertObjectNotNull("quxCode", quxCode);
         BsWhiteAllInOneClsNormalColRefCB cb = this;
         cb.query().setFooCode_Equal(fooCode);;cb.query().setBarCode_Equal(barCode);;cb.query().setQuxCode_Equal(quxCode);;
@@ -384,17 +372,17 @@ public class BsWhiteAllInOneClsNormalColRefCB extends AbstractConditionBean {
          */
         public HpSpecifiedColumn columnClsRefId() { return doColumn("CLS_REF_ID"); }
         /**
-         * FOO_CODE: {PK, UQ+, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT}
+         * FOO_CODE: {PK, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT}
          * @return The information object of specified column. (NotNull)
          */
         public HpSpecifiedColumn columnFooCode() { return doColumn("FOO_CODE"); }
         /**
-         * BAR_CODE: {PK, +UQ, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT}
+         * BAR_CODE: {PK, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT}
          * @return The information object of specified column. (NotNull)
          */
         public HpSpecifiedColumn columnBarCode() { return doColumn("BAR_CODE"); }
         /**
-         * QUX_CODE: {PK, +UQ, NotNull, CHAR(3)}
+         * QUX_CODE: {PK, NotNull, CHAR(3)}
          * @return The information object of specified column. (NotNull)
          */
         public HpSpecifiedColumn columnQuxCode() { return doColumn("QUX_CODE"); }

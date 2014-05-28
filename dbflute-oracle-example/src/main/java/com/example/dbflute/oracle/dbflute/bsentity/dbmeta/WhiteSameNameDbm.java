@@ -33,13 +33,14 @@ public class WhiteSameNameDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgSameNameId(), "sameNameId");
         setupEpg(_epgMap, new EpgSameNameName(), "sameNameName");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgSameNameId implements PropertyGateway {
         public Object read(Entity et) { return ((WhiteSameName)et).getSameNameId(); }
         public void write(Entity et, Object vl) { ((WhiteSameName)et).setSameNameId(ctl(vl)); }
@@ -48,6 +49,8 @@ public class WhiteSameNameDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((WhiteSameName)et).getSameNameName(); }
         public void write(Entity et, Object vl) { ((WhiteSameName)et).setSameNameName((String)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -63,10 +66,18 @@ public class WhiteSameNameDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnSameNameId = cci("SAME_NAME_ID", "SAME_NAME_ID", null, null, true, "sameNameId", Long.class, true, false, "NUMBER", 16, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnSameNameName = cci("SAME_NAME_NAME", "SAME_NAME_NAME", null, null, true, "sameNameName", String.class, false, false, "VARCHAR2", 50, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnSameNameId = cci("SAME_NAME_ID", "SAME_NAME_ID", null, null, Long.class, "sameNameId", null, true, false, true, "NUMBER", 16, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnSameNameName = cci("SAME_NAME_NAME", "SAME_NAME_NAME", null, null, String.class, "sameNameName", null, false, false, true, "VARCHAR2", 50, 0, null, false, null, null, null, null, null);
 
+    /**
+     * SAME_NAME_ID: {PK, NotNull, NUMBER(16)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnSameNameId() { return _columnSameNameId; }
+    /**
+     * SAME_NAME_NAME: {NotNull, VARCHAR2(50)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnSameNameName() { return _columnSameNameName; }
 
     protected List<ColumnInfo> ccil() {
@@ -91,6 +102,8 @@ public class WhiteSameNameDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // cannot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

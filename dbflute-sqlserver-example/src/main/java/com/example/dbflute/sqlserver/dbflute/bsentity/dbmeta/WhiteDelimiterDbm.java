@@ -33,6 +33,9 @@ public class WhiteDelimiterDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgDelimiterId(), "delimiterId");
@@ -41,8 +44,6 @@ public class WhiteDelimiterDbm extends AbstractDBMeta {
         setupEpg(_epgMap, new EpgStringNonConverted(), "stringNonConverted");
         setupEpg(_epgMap, new EpgDateDefault(), "dateDefault");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgDelimiterId implements PropertyGateway {
         public Object read(Entity et) { return ((WhiteDelimiter)et).getDelimiterId(); }
         public void write(Entity et, Object vl) { ((WhiteDelimiter)et).setDelimiterId(ctl(vl)); }
@@ -63,6 +64,8 @@ public class WhiteDelimiterDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((WhiteDelimiter)et).getDateDefault(); }
         public void write(Entity et, Object vl) { ((WhiteDelimiter)et).setDateDefault((java.sql.Timestamp)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -78,16 +81,36 @@ public class WhiteDelimiterDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnDelimiterId = cci("DELIMITER_ID", "DELIMITER_ID", null, null, true, "delimiterId", Long.class, true, true, "bigint identity", 19, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnNumberNullable = cci("NUMBER_NULLABLE", "NUMBER_NULLABLE", null, null, false, "numberNullable", Integer.class, false, false, "int", 10, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnStringConverted = cci("STRING_CONVERTED", "STRING_CONVERTED", null, null, true, "stringConverted", String.class, false, false, "varchar", 200, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnStringNonConverted = cci("STRING_NON_CONVERTED", "STRING_NON_CONVERTED", null, null, false, "stringNonConverted", String.class, false, false, "varchar", 200, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnDateDefault = cci("DATE_DEFAULT", "DATE_DEFAULT", null, null, true, "dateDefault", java.sql.Timestamp.class, false, false, "datetime", 23, 3, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnDelimiterId = cci("DELIMITER_ID", "DELIMITER_ID", null, null, Long.class, "delimiterId", null, true, true, true, "bigint identity", 19, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnNumberNullable = cci("NUMBER_NULLABLE", "NUMBER_NULLABLE", null, null, Integer.class, "numberNullable", null, false, false, false, "int", 10, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnStringConverted = cci("STRING_CONVERTED", "STRING_CONVERTED", null, null, String.class, "stringConverted", null, false, false, true, "varchar", 200, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnStringNonConverted = cci("STRING_NON_CONVERTED", "STRING_NON_CONVERTED", null, null, String.class, "stringNonConverted", null, false, false, false, "varchar", 200, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnDateDefault = cci("DATE_DEFAULT", "DATE_DEFAULT", null, null, java.sql.Timestamp.class, "dateDefault", null, false, false, true, "datetime", 23, 3, null, false, null, null, null, null, null);
 
+    /**
+     * DELIMITER_ID: {PK, ID, NotNull, bigint identity(19)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnDelimiterId() { return _columnDelimiterId; }
+    /**
+     * NUMBER_NULLABLE: {int(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnNumberNullable() { return _columnNumberNullable; }
+    /**
+     * STRING_CONVERTED: {NotNull, varchar(200)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnStringConverted() { return _columnStringConverted; }
+    /**
+     * STRING_NON_CONVERTED: {varchar(200)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnStringNonConverted() { return _columnStringNonConverted; }
+    /**
+     * DATE_DEFAULT: {NotNull, datetime(23, 3)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnDateDefault() { return _columnDateDefault; }
 
     protected List<ColumnInfo> ccil() {
@@ -115,6 +138,8 @@ public class WhiteDelimiterDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // cannot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

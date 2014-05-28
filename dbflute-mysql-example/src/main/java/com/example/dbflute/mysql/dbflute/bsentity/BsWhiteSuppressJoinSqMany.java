@@ -29,7 +29,7 @@ import com.example.dbflute.mysql.dbflute.exentity.*;
  * The entity of WHITE_SUPPRESS_JOIN_SQ_MANY as TABLE. <br />
  * <pre>
  * [primary-key]
- *     SUPPRESS_JOIN_SQ_ID
+ *     MANY_ID
  * 
  * [column]
  *     MANY_ID, MANY_NAME, SUPPRESS_JOIN_SQ_ID, MANY_ONE_ID
@@ -83,13 +83,13 @@ public abstract class BsWhiteSuppressJoinSqMany implements Entity, Serializable,
     // -----------------------------------------------------
     //                                                Column
     //                                                ------
-    /** MANY_ID: {NotNull, INT(10)} */
+    /** MANY_ID: {PK, NotNull, INT(10)} */
     protected Integer _manyId;
 
     /** MANY_NAME: {NotNull, VARCHAR(200)} */
     protected String _manyName;
 
-    /** SUPPRESS_JOIN_SQ_ID: {PK, NotNull, INT(10), FK to white_suppress_join_sq} */
+    /** SUPPRESS_JOIN_SQ_ID: {IX, NotNull, INT(10), FK to white_suppress_join_sq} */
     protected Integer _suppressJoinSqId;
 
     /** MANY_ONE_ID: {IX, NotNull, INT(10), FK to white_suppress_join_sq_many_one} */
@@ -141,14 +141,14 @@ public abstract class BsWhiteSuppressJoinSqMany implements Entity, Serializable,
      * {@inheritDoc}
      */
     public boolean hasPrimaryKeyValue() {
-        if (getSuppressJoinSqId() == null) { return false; }
+        if (getManyId() == null) { return false; }
         return true;
     }
 
     /**
      * {@inheritDoc}
      */
-    public Set<String> uniqueDrivenProperties() {
+    public Set<String> myuniqueDrivenProperties() {
         return __uniqueDrivenProperties.getPropertyNames();
     }
 
@@ -261,7 +261,7 @@ public abstract class BsWhiteSuppressJoinSqMany implements Entity, Serializable,
     public boolean equals(Object obj) {
         if (obj == null || !(obj instanceof BsWhiteSuppressJoinSqMany)) { return false; }
         BsWhiteSuppressJoinSqMany other = (BsWhiteSuppressJoinSqMany)obj;
-        if (!xSV(getSuppressJoinSqId(), other.getSuppressJoinSqId())) { return false; }
+        if (!xSV(getManyId(), other.getManyId())) { return false; }
         return true;
     }
     protected boolean xSV(Object v1, Object v2) {
@@ -275,7 +275,7 @@ public abstract class BsWhiteSuppressJoinSqMany implements Entity, Serializable,
     public int hashCode() {
         int hs = 17;
         hs = xCH(hs, getTableDbName());
-        hs = xCH(hs, getSuppressJoinSqId());
+        hs = xCH(hs, getManyId());
         return hs;
     }
     protected int xCH(int hs, Object vl) {
@@ -365,7 +365,7 @@ public abstract class BsWhiteSuppressJoinSqMany implements Entity, Serializable,
     //                                                                            Accessor
     //                                                                            ========
     /**
-     * [get] MANY_ID: {NotNull, INT(10)} <br />
+     * [get] MANY_ID: {PK, NotNull, INT(10)} <br />
      * @return The value of the column 'MANY_ID'. (basically NotNull if selected: for the constraint)
      */
     public Integer getManyId() {
@@ -373,7 +373,7 @@ public abstract class BsWhiteSuppressJoinSqMany implements Entity, Serializable,
     }
 
     /**
-     * [set] MANY_ID: {NotNull, INT(10)} <br />
+     * [set] MANY_ID: {PK, NotNull, INT(10)} <br />
      * @param manyId The value of the column 'MANY_ID'. (basically NotNull if update: for the constraint)
      */
     public void setManyId(Integer manyId) {
@@ -399,7 +399,7 @@ public abstract class BsWhiteSuppressJoinSqMany implements Entity, Serializable,
     }
 
     /**
-     * [get] SUPPRESS_JOIN_SQ_ID: {PK, NotNull, INT(10), FK to white_suppress_join_sq} <br />
+     * [get] SUPPRESS_JOIN_SQ_ID: {IX, NotNull, INT(10), FK to white_suppress_join_sq} <br />
      * @return The value of the column 'SUPPRESS_JOIN_SQ_ID'. (basically NotNull if selected: for the constraint)
      */
     public Integer getSuppressJoinSqId() {
@@ -407,7 +407,7 @@ public abstract class BsWhiteSuppressJoinSqMany implements Entity, Serializable,
     }
 
     /**
-     * [set] SUPPRESS_JOIN_SQ_ID: {PK, NotNull, INT(10), FK to white_suppress_join_sq} <br />
+     * [set] SUPPRESS_JOIN_SQ_ID: {IX, NotNull, INT(10), FK to white_suppress_join_sq} <br />
      * @param suppressJoinSqId The value of the column 'SUPPRESS_JOIN_SQ_ID'. (basically NotNull if update: for the constraint)
      */
     public void setSuppressJoinSqId(Integer suppressJoinSqId) {

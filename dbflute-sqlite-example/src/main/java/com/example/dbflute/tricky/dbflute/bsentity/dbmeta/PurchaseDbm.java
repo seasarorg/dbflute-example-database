@@ -33,6 +33,9 @@ public class PurchaseDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgPurchaseId(), "purchaseId");
@@ -50,8 +53,6 @@ public class PurchaseDbm extends AbstractDBMeta {
         setupEpg(_epgMap, new EpgPurchaseUpdateProcess(), "purchaseUpdateProcess");
         setupEpg(_epgMap, new EpgVersionNo(), "versionNo");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgPurchaseId implements PropertyGateway {
         public Object read(Entity et) { return ((Purchase)et).getPurchaseId(); }
         public void write(Entity et, Object vl) { ((Purchase)et).setPurchaseId(cti(vl)); }
@@ -108,6 +109,32 @@ public class PurchaseDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((Purchase)et).getVersionNo(); }
         public void write(Entity et, Object vl) { ((Purchase)et).setVersionNo(cti(vl)); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
+
+    // -----------------------------------------------------
+    //                                      Foreign Property
+    //                                      ----------------
+    protected final Map<String, PropertyGateway> _efpgMap = newHashMap();
+    {
+        setupEfpg(_efpgMap, new EfpgMember(), "member");
+        setupEfpg(_efpgMap, new EfpgProduct(), "product");
+        setupEfpg(_efpgMap, new EfpgSummaryProduct(), "summaryProduct");
+    }
+    public class EfpgMember implements PropertyGateway {
+        public Object read(Entity et) { return ((Purchase)et).getMember(); }
+        public void write(Entity et, Object vl) { ((Purchase)et).setMember((Member)vl); }
+    }
+    public class EfpgProduct implements PropertyGateway {
+        public Object read(Entity et) { return ((Purchase)et).getProduct(); }
+        public void write(Entity et, Object vl) { ((Purchase)et).setProduct((Product)vl); }
+    }
+    public class EfpgSummaryProduct implements PropertyGateway {
+        public Object read(Entity et) { return ((Purchase)et).getSummaryProduct(); }
+        public void write(Entity et, Object vl) { ((Purchase)et).setSummaryProduct((SummaryProduct)vl); }
+    }
+    public PropertyGateway findForeignPropertyGateway(String prop)
+    { return doFindEfpg(_efpgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -123,34 +150,90 @@ public class PurchaseDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnPurchaseId = cci("PURCHASE_ID", "PURCHASE_ID", null, null, true, "purchaseId", Integer.class, true, true, "INTEGER", 2000000000, 10, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnMemberId = cci("MEMBER_ID", "MEMBER_ID", null, null, true, "memberId", Integer.class, false, false, "INTEGER", 2000000000, 10, null, false, null, null, "member", null, null);
-    protected final ColumnInfo _columnProductId = cci("PRODUCT_ID", "PRODUCT_ID", null, null, true, "productId", Integer.class, false, false, "INTEGER", 2000000000, 10, null, false, null, null, "product,summaryProduct", null, null);
-    protected final ColumnInfo _columnPurchaseDatetime = cci("PURCHASE_DATETIME", "PURCHASE_DATETIME", null, null, true, "purchaseDatetime", java.sql.Timestamp.class, false, false, "DATETIME", 2000000000, 10, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnPurchaseCount = cci("PURCHASE_COUNT", "PURCHASE_COUNT", null, null, true, "purchaseCount", Integer.class, false, false, "INTEGER", 2000000000, 10, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnPurchasePrice = cci("PURCHASE_PRICE", "PURCHASE_PRICE", null, null, true, "purchasePrice", Integer.class, false, false, "INTEGER", 2000000000, 10, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnPaymentCompleteFlg = cci("PAYMENT_COMPLETE_FLG", "PAYMENT_COMPLETE_FLG", null, null, true, "paymentCompleteFlg", Integer.class, false, false, "INTEGER", 2000000000, 10, null, false, null, null, null, null, CDef.DefMeta.Flg);
-    protected final ColumnInfo _columnPurchaseRegisterDatetime = cci("PURCHASE_REGISTER_DATETIME", "PURCHASE_REGISTER_DATETIME", null, null, true, "purchaseRegisterDatetime", java.sql.Timestamp.class, false, false, "DATETIME", 2000000000, 10, null, true, null, null, null, null, null);
-    protected final ColumnInfo _columnPurchaseRegisterUser = cci("PURCHASE_REGISTER_USER", "PURCHASE_REGISTER_USER", null, null, true, "purchaseRegisterUser", String.class, false, false, "TEXT", 2000000000, 10, null, true, null, null, null, null, null);
-    protected final ColumnInfo _columnPurchaseRegisterProcess = cci("PURCHASE_REGISTER_PROCESS", "PURCHASE_REGISTER_PROCESS", null, null, true, "purchaseRegisterProcess", String.class, false, false, "TEXT", 2000000000, 10, null, true, null, null, null, null, null);
-    protected final ColumnInfo _columnPurchaseUpdateDatetime = cci("PURCHASE_UPDATE_DATETIME", "PURCHASE_UPDATE_DATETIME", null, null, true, "purchaseUpdateDatetime", java.sql.Timestamp.class, false, false, "DATETIME", 2000000000, 10, null, true, null, null, null, null, null);
-    protected final ColumnInfo _columnPurchaseUpdateUser = cci("PURCHASE_UPDATE_USER", "PURCHASE_UPDATE_USER", null, null, true, "purchaseUpdateUser", String.class, false, false, "TEXT", 2000000000, 10, null, true, null, null, null, null, null);
-    protected final ColumnInfo _columnPurchaseUpdateProcess = cci("PURCHASE_UPDATE_PROCESS", "PURCHASE_UPDATE_PROCESS", null, null, true, "purchaseUpdateProcess", String.class, false, false, "TEXT", 2000000000, 10, null, true, null, null, null, null, null);
-    protected final ColumnInfo _columnVersionNo = cci("VERSION_NO", "VERSION_NO", null, null, true, "versionNo", Integer.class, false, false, "INTEGER", 2000000000, 10, null, false, OptimisticLockType.VERSION_NO, null, null, null, null);
+    protected final ColumnInfo _columnPurchaseId = cci("PURCHASE_ID", "PURCHASE_ID", null, null, Integer.class, "purchaseId", null, true, true, true, "INTEGER", 2000000000, 10, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnMemberId = cci("MEMBER_ID", "MEMBER_ID", null, null, Integer.class, "memberId", null, false, false, true, "INTEGER", 2000000000, 10, null, false, null, null, "member", null, null);
+    protected final ColumnInfo _columnProductId = cci("PRODUCT_ID", "PRODUCT_ID", null, null, Integer.class, "productId", null, false, false, true, "INTEGER", 2000000000, 10, null, false, null, null, "product,summaryProduct", null, null);
+    protected final ColumnInfo _columnPurchaseDatetime = cci("PURCHASE_DATETIME", "PURCHASE_DATETIME", null, null, java.sql.Timestamp.class, "purchaseDatetime", null, false, false, true, "DATETIME", 2000000000, 10, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnPurchaseCount = cci("PURCHASE_COUNT", "PURCHASE_COUNT", null, null, Integer.class, "purchaseCount", null, false, false, true, "INTEGER", 2000000000, 10, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnPurchasePrice = cci("PURCHASE_PRICE", "PURCHASE_PRICE", null, null, Integer.class, "purchasePrice", null, false, false, true, "INTEGER", 2000000000, 10, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnPaymentCompleteFlg = cci("PAYMENT_COMPLETE_FLG", "PAYMENT_COMPLETE_FLG", null, null, Integer.class, "paymentCompleteFlg", null, false, false, true, "INTEGER", 2000000000, 10, null, false, null, null, null, null, CDef.DefMeta.Flg);
+    protected final ColumnInfo _columnPurchaseRegisterDatetime = cci("PURCHASE_REGISTER_DATETIME", "PURCHASE_REGISTER_DATETIME", null, null, java.sql.Timestamp.class, "purchaseRegisterDatetime", null, false, false, true, "DATETIME", 2000000000, 10, null, true, null, null, null, null, null);
+    protected final ColumnInfo _columnPurchaseRegisterUser = cci("PURCHASE_REGISTER_USER", "PURCHASE_REGISTER_USER", null, null, String.class, "purchaseRegisterUser", null, false, false, true, "TEXT", 2000000000, 10, null, true, null, null, null, null, null);
+    protected final ColumnInfo _columnPurchaseRegisterProcess = cci("PURCHASE_REGISTER_PROCESS", "PURCHASE_REGISTER_PROCESS", null, null, String.class, "purchaseRegisterProcess", null, false, false, true, "TEXT", 2000000000, 10, null, true, null, null, null, null, null);
+    protected final ColumnInfo _columnPurchaseUpdateDatetime = cci("PURCHASE_UPDATE_DATETIME", "PURCHASE_UPDATE_DATETIME", null, null, java.sql.Timestamp.class, "purchaseUpdateDatetime", null, false, false, true, "DATETIME", 2000000000, 10, null, true, null, null, null, null, null);
+    protected final ColumnInfo _columnPurchaseUpdateUser = cci("PURCHASE_UPDATE_USER", "PURCHASE_UPDATE_USER", null, null, String.class, "purchaseUpdateUser", null, false, false, true, "TEXT", 2000000000, 10, null, true, null, null, null, null, null);
+    protected final ColumnInfo _columnPurchaseUpdateProcess = cci("PURCHASE_UPDATE_PROCESS", "PURCHASE_UPDATE_PROCESS", null, null, String.class, "purchaseUpdateProcess", null, false, false, true, "TEXT", 2000000000, 10, null, true, null, null, null, null, null);
+    protected final ColumnInfo _columnVersionNo = cci("VERSION_NO", "VERSION_NO", null, null, Integer.class, "versionNo", null, false, false, true, "INTEGER", 2000000000, 10, null, false, OptimisticLockType.VERSION_NO, null, null, null, null);
 
+    /**
+     * PURCHASE_ID: {PK, ID, NotNull, INTEGER(2000000000, 10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnPurchaseId() { return _columnPurchaseId; }
+    /**
+     * MEMBER_ID: {NotNull, INTEGER(2000000000, 10), FK to MEMBER}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnMemberId() { return _columnMemberId; }
+    /**
+     * PRODUCT_ID: {NotNull, INTEGER(2000000000, 10), FK to PRODUCT}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnProductId() { return _columnProductId; }
+    /**
+     * PURCHASE_DATETIME: {NotNull, DATETIME(2000000000, 10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnPurchaseDatetime() { return _columnPurchaseDatetime; }
+    /**
+     * PURCHASE_COUNT: {NotNull, INTEGER(2000000000, 10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnPurchaseCount() { return _columnPurchaseCount; }
+    /**
+     * PURCHASE_PRICE: {NotNull, INTEGER(2000000000, 10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnPurchasePrice() { return _columnPurchasePrice; }
+    /**
+     * PAYMENT_COMPLETE_FLG: {NotNull, INTEGER(2000000000, 10), classification=Flg}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnPaymentCompleteFlg() { return _columnPaymentCompleteFlg; }
+    /**
+     * PURCHASE_REGISTER_DATETIME: {NotNull, DATETIME(2000000000, 10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnPurchaseRegisterDatetime() { return _columnPurchaseRegisterDatetime; }
+    /**
+     * PURCHASE_REGISTER_USER: {NotNull, TEXT(2000000000, 10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnPurchaseRegisterUser() { return _columnPurchaseRegisterUser; }
+    /**
+     * PURCHASE_REGISTER_PROCESS: {NotNull, TEXT(2000000000, 10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnPurchaseRegisterProcess() { return _columnPurchaseRegisterProcess; }
+    /**
+     * PURCHASE_UPDATE_DATETIME: {NotNull, DATETIME(2000000000, 10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnPurchaseUpdateDatetime() { return _columnPurchaseUpdateDatetime; }
+    /**
+     * PURCHASE_UPDATE_USER: {NotNull, TEXT(2000000000, 10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnPurchaseUpdateUser() { return _columnPurchaseUpdateUser; }
+    /**
+     * PURCHASE_UPDATE_PROCESS: {NotNull, TEXT(2000000000, 10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnPurchaseUpdateProcess() { return _columnPurchaseUpdateProcess; }
+    /**
+     * VERSION_NO: {NotNull, INTEGER(2000000000, 10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnVersionNo() { return _columnVersionNo; }
 
     protected List<ColumnInfo> ccil() {
@@ -187,20 +270,34 @@ public class PurchaseDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // cannot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------
+    /**
+     * MEMBER by my MEMBER_ID, named 'member'.
+     * @return The information object of foreign property. (NotNull)
+     */
     public ForeignInfo foreignMember() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnMemberId(), MemberDbm.getInstance().columnMemberId());
-        return cfi("FK_PURCHASE_MEMBER_ID_MEMBER", "member", this, MemberDbm.getInstance(), mp, 0, false, false, false, false, null, null, false, "purchaseList");
+        return cfi("FK_PURCHASE_MEMBER_ID_MEMBER", "member", this, MemberDbm.getInstance(), mp, 0, null, false, false, false, false, null, null, false, "purchaseList");
     }
+    /**
+     * PRODUCT by my PRODUCT_ID, named 'product'.
+     * @return The information object of foreign property. (NotNull)
+     */
     public ForeignInfo foreignProduct() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnProductId(), ProductDbm.getInstance().columnProductId());
-        return cfi("FK_PURCHASE_PRODUCT_ID_PRODUCT", "product", this, ProductDbm.getInstance(), mp, 1, false, false, false, false, null, null, false, "purchaseList");
+        return cfi("FK_PURCHASE_PRODUCT_ID_PRODUCT", "product", this, ProductDbm.getInstance(), mp, 1, null, false, false, false, false, null, null, false, "purchaseList");
     }
+    /**
+     * SUMMARY_PRODUCT by my PRODUCT_ID, named 'summaryProduct'.
+     * @return The information object of foreign property. (NotNull)
+     */
     public ForeignInfo foreignSummaryProduct() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnProductId(), SummaryProductDbm.getInstance().columnProductId());
-        return cfi("FK_PURCHASE_SUMMARY_PRODUCT", "summaryProduct", this, SummaryProductDbm.getInstance(), mp, 2, false, false, false, true, null, null, false, "purchaseList");
+        return cfi("FK_PURCHASE_SUMMARY_PRODUCT", "summaryProduct", this, SummaryProductDbm.getInstance(), mp, 2, null, false, false, false, true, null, null, false, "purchaseList");
     }
 
     // -----------------------------------------------------

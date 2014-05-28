@@ -33,13 +33,14 @@ public class SynonymNextSecretAuthDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgSecretAuthCode(), "secretAuthCode");
         setupEpg(_epgMap, new EpgSecretAuthName(), "secretAuthName");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgSecretAuthCode implements PropertyGateway {
         public Object read(Entity et) { return ((SynonymNextSecretAuth)et).getSecretAuthCode(); }
         public void write(Entity et, Object vl) { ((SynonymNextSecretAuth)et).setSecretAuthCode((String)vl); }
@@ -48,6 +49,8 @@ public class SynonymNextSecretAuthDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((SynonymNextSecretAuth)et).getSecretAuthName(); }
         public void write(Entity et, Object vl) { ((SynonymNextSecretAuth)et).setSecretAuthName((String)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -67,10 +70,18 @@ public class SynonymNextSecretAuthDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnSecretAuthCode = cci("SECRET_AUTH_CODE", "SECRET_AUTH_CODE", null, "隣の秘密２コード", true, "secretAuthCode", String.class, true, false, "CHAR", 3, 0, null, false, null, "隣の商品を秘密するかもしれない", null, null, null);
-    protected final ColumnInfo _columnSecretAuthName = cci("SECRET_AUTH_NAME", "SECRET_AUTH_NAME", null, "隣の秘密２名称", true, "secretAuthName", String.class, false, false, "VARCHAR2", 50, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnSecretAuthCode = cci("SECRET_AUTH_CODE", "SECRET_AUTH_CODE", null, "隣の秘密２コード", String.class, "secretAuthCode", null, true, false, true, "CHAR", 3, 0, null, false, null, "隣の商品を秘密するかもしれない", null, null, null);
+    protected final ColumnInfo _columnSecretAuthName = cci("SECRET_AUTH_NAME", "SECRET_AUTH_NAME", null, "隣の秘密２名称", String.class, "secretAuthName", null, false, false, true, "VARCHAR2", 50, 0, null, false, null, null, null, null, null);
 
+    /**
+     * (隣の秘密２コード)SECRET_AUTH_CODE: {PK, NotNull, CHAR(3)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnSecretAuthCode() { return _columnSecretAuthCode; }
+    /**
+     * (隣の秘密２名称)SECRET_AUTH_NAME: {NotNull, VARCHAR2(50)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnSecretAuthName() { return _columnSecretAuthName; }
 
     protected List<ColumnInfo> ccil() {
@@ -95,6 +106,8 @@ public class SynonymNextSecretAuthDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // cannot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

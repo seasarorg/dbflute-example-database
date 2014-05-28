@@ -169,7 +169,7 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
      * </pre>
      * @param cb The condition-bean of NextSchemaProductStatus. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -190,39 +190,64 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
 
     /**
      * Select the entity by the primary-key value.
-     * @param productStatusCode The one of primary key. (NotNull)
+     * @param productStatusCode : PK, NotNull, CHAR(3). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public NextSchemaProductStatus selectByPKValue(String productStatusCode) {
-        return doSelectByPKValue(productStatusCode, NextSchemaProductStatus.class);
+        return doSelectByPK(productStatusCode, NextSchemaProductStatus.class);
     }
 
-    protected <ENTITY extends NextSchemaProductStatus> ENTITY doSelectByPKValue(String productStatusCode, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(productStatusCode), entityType);
+    protected <ENTITY extends NextSchemaProductStatus> ENTITY doSelectByPK(String productStatusCode, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(productStatusCode), entityType);
+    }
+
+    protected <ENTITY extends NextSchemaProductStatus> OptionalEntity<ENTITY> doSelectOptionalByPK(String productStatusCode, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(productStatusCode, entityType), productStatusCode);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param productStatusCode The one of primary key. (NotNull)
+     * @param productStatusCode : PK, NotNull, CHAR(3). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public NextSchemaProductStatus selectByPKValueWithDeletedCheck(String productStatusCode) {
-        return doSelectByPKValueWithDeletedCheck(productStatusCode, NextSchemaProductStatus.class);
+        return doSelectByPKWithDeletedCheck(productStatusCode, NextSchemaProductStatus.class);
     }
 
-    protected <ENTITY extends NextSchemaProductStatus> ENTITY doSelectByPKValueWithDeletedCheck(String productStatusCode, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(productStatusCode), entityType);
+    protected <ENTITY extends NextSchemaProductStatus> ENTITY doSelectByPKWithDeletedCheck(String productStatusCode, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(productStatusCode), entityType);
     }
 
-    private NextSchemaProductStatusCB buildPKCB(String productStatusCode) {
+    protected NextSchemaProductStatusCB xprepareCBAsPK(String productStatusCode) {
         assertObjectNotNull("productStatusCode", productStatusCode);
-        NextSchemaProductStatusCB cb = newMyConditionBean();
-        cb.query().setProductStatusCode_Equal(productStatusCode);
+        NextSchemaProductStatusCB cb = newMyConditionBean(); cb.acceptPrimaryKey(productStatusCode);
+        return cb;
+    }
+
+    /**
+     * Select the entity by the unique-key value.
+     * @param productStatusName : UQ, NotNull, VARCHAR2(50). (NotNull)
+     * @return The optional entity selected by the unique key. (NotNull: if no data, empty entity)
+     * @exception EntityAlreadyDeletedException When get(), required() of return value is called and the value is null, which means entity has already been deleted (not found).
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     */
+    public OptionalEntity<NextSchemaProductStatus> selectByUniqueOf(String productStatusName) {
+        return doSelectByUniqueOf(productStatusName, NextSchemaProductStatus.class);
+    }
+
+    protected <ENTITY extends NextSchemaProductStatus> OptionalEntity<ENTITY> doSelectByUniqueOf(String productStatusName, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectEntity(xprepareCBAsUniqueOf(productStatusName), entityType), productStatusName);
+    }
+
+    protected NextSchemaProductStatusCB xprepareCBAsUniqueOf(String productStatusName) {
+        assertObjectNotNull("productStatusName", productStatusName);
+        NextSchemaProductStatusCB cb = newMyConditionBean(); cb.acceptUniqueOf(productStatusName);
         return cb;
     }
 

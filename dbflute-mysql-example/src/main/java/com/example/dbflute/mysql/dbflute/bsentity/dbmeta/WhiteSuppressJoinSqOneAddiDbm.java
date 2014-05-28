@@ -81,7 +81,7 @@ public class WhiteSuppressJoinSqOneAddiDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnOneAddiId = cci("ONE_ADDI_ID", "ONE_ADDI_ID", null, null, Integer.class, "oneAddiId", null, true, false, true, "INT", 10, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnOneAddiId = cci("ONE_ADDI_ID", "ONE_ADDI_ID", null, null, Integer.class, "oneAddiId", null, true, false, true, "INT", 10, 0, null, false, null, null, null, "whiteSuppressJoinSqOneList", null);
     protected final ColumnInfo _columnOneAddiName = cci("ONE_ADDI_NAME", "ONE_ADDI_NAME", null, null, String.class, "oneAddiName", null, false, false, true, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
 
     /**
@@ -117,7 +117,7 @@ public class WhiteSuppressJoinSqOneAddiDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
-    // canonot cache because it uses related DB meta instance while booting
+    // cannot cache because it uses related DB meta instance while booting
     // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
@@ -126,6 +126,14 @@ public class WhiteSuppressJoinSqOneAddiDbm extends AbstractDBMeta {
     // -----------------------------------------------------
     //                                     Referrer Property
     //                                     -----------------
+    /**
+     * white_suppress_join_sq_one by ONE_ADDI_ID, named 'whiteSuppressJoinSqOneList'.
+     * @return The information object of referrer property. (NotNull)
+     */
+    public ReferrerInfo referrerWhiteSuppressJoinSqOneList() {
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnOneAddiId(), WhiteSuppressJoinSqOneDbm.getInstance().columnOneAddiId());
+        return cri("FK_WHITE_SUPPRESS_JOIN_SQ_ONE_ADDI_TEST", "whiteSuppressJoinSqOneList", this, WhiteSuppressJoinSqOneDbm.getInstance(), mp, false, "whiteSuppressJoinSqOneAddi");
+    }
 
     // ===================================================================================
     //                                                                        Various Info

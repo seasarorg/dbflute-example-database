@@ -33,6 +33,9 @@ public class NestedBarBeanDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgBarId(), "barId");
@@ -44,8 +47,6 @@ public class NestedBarBeanDbm extends AbstractDBMeta {
         setupEpg(_epgMap, new EpgQuxList(), "quxList");
         setupEpg(_epgMap, new EpgQuuxList(), "quuxList");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgBarId implements PropertyGateway {
         public Object read(Entity et) { return ((NestedBarBean)et).getBarId(); }
         public void write(Entity et, Object vl) { ((NestedBarBean)et).setBarId(cti(vl)); }
@@ -81,6 +82,8 @@ public class NestedBarBeanDbm extends AbstractDBMeta {
         @SuppressWarnings("unchecked")
         public void write(Entity et, Object vl) { ((NestedBarBean)et).setQuuxList((List<java.math.BigDecimal>)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -96,22 +99,54 @@ public class NestedBarBeanDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnBarId = cci("BAR_ID", "BAR_ID", null, null, false, "barId", Integer.class, false, false, "NUMBER", 8, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnBarName = cci("BAR_NAME", "BAR_NAME", null, null, false, "barName", String.class, false, false, "VARCHAR2", 20, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnBarDate = cci("BAR_DATE", "BAR_DATE", null, null, false, "barDate", java.util.Date.class, false, false, "DATE", null, null, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnBarList = cci("BAR_LIST", "BAR_LIST", null, null, false, "barList", List.class, false, false, "BAR_TABLE", null, null, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnBazBean1 = cci("BAZ_BEAN1", "BAZ_BEAN1", null, null, false, "bazBean1", NestedBazBean.class, false, false, "NESTED_BAZ_BEAN", null, null, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnBazBean2 = cci("BAZ_BEAN2", "BAZ_BEAN2", null, null, false, "bazBean2", NestedBazBean.class, false, false, "NESTED_BAZ_BEAN", null, null, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnQuxList = cci("QUX_LIST", "QUX_LIST", null, null, false, "quxList", List.class, false, false, "QUX_TABLE", null, null, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnQuuxList = cci("QUUX_LIST", "QUUX_LIST", null, null, false, "quuxList", List.class, false, false, "QUUX_TABLE", null, null, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnBarId = cci("BAR_ID", "BAR_ID", null, null, Integer.class, "barId", null, false, false, false, "NUMBER", 8, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnBarName = cci("BAR_NAME", "BAR_NAME", null, null, String.class, "barName", null, false, false, false, "VARCHAR2", 20, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnBarDate = cci("BAR_DATE", "BAR_DATE", null, null, java.util.Date.class, "barDate", null, false, false, false, "DATE", null, null, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnBarList = cci("BAR_LIST", "BAR_LIST", null, null, List.class, "barList", null, false, false, false, "BAR_TABLE", null, null, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnBazBean1 = cci("BAZ_BEAN1", "BAZ_BEAN1", null, null, NestedBazBean.class, "bazBean1", null, false, false, false, "NESTED_BAZ_BEAN", null, null, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnBazBean2 = cci("BAZ_BEAN2", "BAZ_BEAN2", null, null, NestedBazBean.class, "bazBean2", null, false, false, false, "NESTED_BAZ_BEAN", null, null, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnQuxList = cci("QUX_LIST", "QUX_LIST", null, null, List.class, "quxList", null, false, false, false, "QUX_TABLE", null, null, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnQuuxList = cci("QUUX_LIST", "QUUX_LIST", null, null, List.class, "quuxList", null, false, false, false, "QUUX_TABLE", null, null, null, false, null, null, null, null, null);
 
+    /**
+     * BAR_ID: {NUMBER(8)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnBarId() { return _columnBarId; }
+    /**
+     * BAR_NAME: {VARCHAR2(20)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnBarName() { return _columnBarName; }
+    /**
+     * BAR_DATE: {DATE}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnBarDate() { return _columnBarDate; }
+    /**
+     * BAR_LIST: {BAR_TABLE}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnBarList() { return _columnBarList; }
+    /**
+     * BAZ_BEAN1: {NESTED_BAZ_BEAN}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnBazBean1() { return _columnBazBean1; }
+    /**
+     * BAZ_BEAN2: {NESTED_BAZ_BEAN}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnBazBean2() { return _columnBazBean2; }
+    /**
+     * QUX_LIST: {QUX_TABLE}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnQuxList() { return _columnQuxList; }
+    /**
+     * QUUX_LIST: {QUUX_TABLE}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnQuuxList() { return _columnQuuxList; }
 
     protected List<ColumnInfo> ccil() {
@@ -144,6 +179,8 @@ public class NestedBarBeanDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // cannot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

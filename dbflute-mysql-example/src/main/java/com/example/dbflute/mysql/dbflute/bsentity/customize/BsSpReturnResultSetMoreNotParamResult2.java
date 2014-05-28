@@ -147,7 +147,7 @@ public abstract class BsSpReturnResultSetMoreNotParamResult2 implements Entity, 
     /**
      * {@inheritDoc}
      */
-    public Set<String> uniqueDrivenProperties() {
+    public Set<String> myuniqueDrivenProperties() {
         return __uniqueDrivenProperties.getPropertyNames();
     }
 
@@ -438,7 +438,7 @@ public abstract class BsSpReturnResultSetMoreNotParamResult2 implements Entity, 
      * 会員ステータスを識別するコード。
      * @param memberStatusCode The value of the column 'MEMBER_STATUS_CODE'. (NullAllowed: null update allowed for no constraint)
      */
-    public void setMemberStatusCode(String memberStatusCode) {
+    protected void setMemberStatusCode(String memberStatusCode) {
         __modifiedProperties.addPropertyName("memberStatusCode");
         this._memberStatusCode = memberStatusCode;
     }

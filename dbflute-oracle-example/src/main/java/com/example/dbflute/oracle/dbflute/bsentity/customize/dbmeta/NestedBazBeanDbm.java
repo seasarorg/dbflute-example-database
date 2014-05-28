@@ -33,6 +33,9 @@ public class NestedBazBeanDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgBazId(), "bazId");
@@ -40,8 +43,6 @@ public class NestedBazBeanDbm extends AbstractDBMeta {
         setupEpg(_epgMap, new EpgBazDate(), "bazDate");
         setupEpg(_epgMap, new EpgBazList(), "bazList");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgBazId implements PropertyGateway {
         public Object read(Entity et) { return ((NestedBazBean)et).getBazId(); }
         public void write(Entity et, Object vl) { ((NestedBazBean)et).setBazId(cti(vl)); }
@@ -59,6 +60,8 @@ public class NestedBazBeanDbm extends AbstractDBMeta {
         @SuppressWarnings("unchecked")
         public void write(Entity et, Object vl) { ((NestedBazBean)et).setBazList((List<List<BarBean>>)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -74,14 +77,30 @@ public class NestedBazBeanDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnBazId = cci("BAZ_ID", "BAZ_ID", null, null, false, "bazId", Integer.class, false, false, "NUMBER", 8, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnBazName = cci("BAZ_NAME", "BAZ_NAME", null, null, false, "bazName", String.class, false, false, "VARCHAR2", 20, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnBazDate = cci("BAZ_DATE", "BAZ_DATE", null, null, false, "bazDate", java.util.Date.class, false, false, "DATE", null, null, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnBazList = cci("BAZ_LIST", "BAZ_LIST", null, null, false, "bazList", List.class, false, false, "BAZ_TABLE", null, null, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnBazId = cci("BAZ_ID", "BAZ_ID", null, null, Integer.class, "bazId", null, false, false, false, "NUMBER", 8, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnBazName = cci("BAZ_NAME", "BAZ_NAME", null, null, String.class, "bazName", null, false, false, false, "VARCHAR2", 20, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnBazDate = cci("BAZ_DATE", "BAZ_DATE", null, null, java.util.Date.class, "bazDate", null, false, false, false, "DATE", null, null, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnBazList = cci("BAZ_LIST", "BAZ_LIST", null, null, List.class, "bazList", null, false, false, false, "BAZ_TABLE", null, null, null, false, null, null, null, null, null);
 
+    /**
+     * BAZ_ID: {NUMBER(8)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnBazId() { return _columnBazId; }
+    /**
+     * BAZ_NAME: {VARCHAR2(20)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnBazName() { return _columnBazName; }
+    /**
+     * BAZ_DATE: {DATE}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnBazDate() { return _columnBazDate; }
+    /**
+     * BAZ_LIST: {BAZ_TABLE}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnBazList() { return _columnBazList; }
 
     protected List<ColumnInfo> ccil() {
@@ -110,6 +129,8 @@ public class NestedBazBeanDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // cannot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

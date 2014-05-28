@@ -365,6 +365,127 @@ public abstract class AbstractBsWhiteSuppressJoinSqManyOneCQ extends AbstractCon
 
     protected void regManyOneName(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueManyOneName(), "MANY_ONE_NAME"); }
     protected abstract ConditionValue getCValueManyOneName();
+    
+    /**
+     * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
+     * MANY_ONE_ONE_ID: {IX, NotNull, INT(10), FK to white_suppress_join_sq_many_one_one}
+     * @param manyOneOneId The value of manyOneOneId as equal. (NullAllowed: if null, no condition)
+     */
+    public void setManyOneOneId_Equal(Integer manyOneOneId) {
+        doSetManyOneOneId_Equal(manyOneOneId);
+    }
+
+    protected void doSetManyOneOneId_Equal(Integer manyOneOneId) {
+        regManyOneOneId(CK_EQ, manyOneOneId);
+    }
+
+    /**
+     * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br />
+     * MANY_ONE_ONE_ID: {IX, NotNull, INT(10), FK to white_suppress_join_sq_many_one_one}
+     * @param manyOneOneId The value of manyOneOneId as greaterThan. (NullAllowed: if null, no condition)
+     */
+    public void setManyOneOneId_GreaterThan(Integer manyOneOneId) {
+        regManyOneOneId(CK_GT, manyOneOneId);
+    }
+
+    /**
+     * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br />
+     * MANY_ONE_ONE_ID: {IX, NotNull, INT(10), FK to white_suppress_join_sq_many_one_one}
+     * @param manyOneOneId The value of manyOneOneId as lessThan. (NullAllowed: if null, no condition)
+     */
+    public void setManyOneOneId_LessThan(Integer manyOneOneId) {
+        regManyOneOneId(CK_LT, manyOneOneId);
+    }
+
+    /**
+     * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br />
+     * MANY_ONE_ONE_ID: {IX, NotNull, INT(10), FK to white_suppress_join_sq_many_one_one}
+     * @param manyOneOneId The value of manyOneOneId as greaterEqual. (NullAllowed: if null, no condition)
+     */
+    public void setManyOneOneId_GreaterEqual(Integer manyOneOneId) {
+        regManyOneOneId(CK_GE, manyOneOneId);
+    }
+
+    /**
+     * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br />
+     * MANY_ONE_ONE_ID: {IX, NotNull, INT(10), FK to white_suppress_join_sq_many_one_one}
+     * @param manyOneOneId The value of manyOneOneId as lessEqual. (NullAllowed: if null, no condition)
+     */
+    public void setManyOneOneId_LessEqual(Integer manyOneOneId) {
+        regManyOneOneId(CK_LE, manyOneOneId);
+    }
+
+    /**
+     * RangeOf with various options. (versatile) <br />
+     * {(default) minNumber &lt;= column &lt;= maxNumber} <br />
+     * And NullIgnored, OnlyOnceRegistered. <br />
+     * MANY_ONE_ONE_ID: {IX, NotNull, INT(10), FK to white_suppress_join_sq_many_one_one}
+     * @param minNumber The min number of manyOneOneId. (NullAllowed: if null, no from-condition)
+     * @param maxNumber The max number of manyOneOneId. (NullAllowed: if null, no to-condition)
+     * @param rangeOfOption The option of range-of. (NotNull)
+     */
+    public void setManyOneOneId_RangeOf(Integer minNumber, Integer maxNumber, RangeOfOption rangeOfOption) {
+        regROO(minNumber, maxNumber, getCValueManyOneOneId(), "MANY_ONE_ONE_ID", rangeOfOption);
+    }
+
+    /**
+     * InScope {in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br />
+     * MANY_ONE_ONE_ID: {IX, NotNull, INT(10), FK to white_suppress_join_sq_many_one_one}
+     * @param manyOneOneIdList The collection of manyOneOneId as inScope. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setManyOneOneId_InScope(Collection<Integer> manyOneOneIdList) {
+        doSetManyOneOneId_InScope(manyOneOneIdList);
+    }
+
+    protected void doSetManyOneOneId_InScope(Collection<Integer> manyOneOneIdList) {
+        regINS(CK_INS, cTL(manyOneOneIdList), getCValueManyOneOneId(), "MANY_ONE_ONE_ID");
+    }
+
+    /**
+     * NotInScope {not in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br />
+     * MANY_ONE_ONE_ID: {IX, NotNull, INT(10), FK to white_suppress_join_sq_many_one_one}
+     * @param manyOneOneIdList The collection of manyOneOneId as notInScope. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setManyOneOneId_NotInScope(Collection<Integer> manyOneOneIdList) {
+        doSetManyOneOneId_NotInScope(manyOneOneIdList);
+    }
+
+    protected void doSetManyOneOneId_NotInScope(Collection<Integer> manyOneOneIdList) {
+        regINS(CK_NINS, cTL(manyOneOneIdList), getCValueManyOneOneId(), "MANY_ONE_ONE_ID");
+    }
+
+    /**
+     * Set up InScopeRelation (sub-query). <br />
+     * {in (select MANY_ONE_ONE_ID from white_suppress_join_sq_many_one_one where ...)} <br />
+     * white_suppress_join_sq_many_one_one by my MANY_ONE_ONE_ID, named 'whiteSuppressJoinSqManyOneOne'.
+     * @param subQuery The sub-query of WhiteSuppressJoinSqManyOneOne for 'in-scope'. (NotNull)
+     */
+    public void inScopeWhiteSuppressJoinSqManyOneOne(SubQuery<WhiteSuppressJoinSqManyOneOneCB> subQuery) {
+        assertObjectNotNull("subQuery", subQuery);
+        WhiteSuppressJoinSqManyOneOneCB cb = new WhiteSuppressJoinSqManyOneOneCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepManyOneOneId_InScopeRelation_WhiteSuppressJoinSqManyOneOne(cb.query());
+        registerInScopeRelation(cb.query(), "MANY_ONE_ONE_ID", "MANY_ONE_ONE_ID", pp, "whiteSuppressJoinSqManyOneOne");
+    }
+    public abstract String keepManyOneOneId_InScopeRelation_WhiteSuppressJoinSqManyOneOne(WhiteSuppressJoinSqManyOneOneCQ sq);
+
+    /**
+     * Set up NotInScopeRelation (sub-query). <br />
+     * {not in (select MANY_ONE_ONE_ID from white_suppress_join_sq_many_one_one where ...)} <br />
+     * white_suppress_join_sq_many_one_one by my MANY_ONE_ONE_ID, named 'whiteSuppressJoinSqManyOneOne'.
+     * @param subQuery The sub-query of WhiteSuppressJoinSqManyOneOne for 'not in-scope'. (NotNull)
+     */
+    public void notInScopeWhiteSuppressJoinSqManyOneOne(SubQuery<WhiteSuppressJoinSqManyOneOneCB> subQuery) {
+        assertObjectNotNull("subQuery", subQuery);
+        WhiteSuppressJoinSqManyOneOneCB cb = new WhiteSuppressJoinSqManyOneOneCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepManyOneOneId_NotInScopeRelation_WhiteSuppressJoinSqManyOneOne(cb.query());
+        registerNotInScopeRelation(cb.query(), "MANY_ONE_ONE_ID", "MANY_ONE_ONE_ID", pp, "whiteSuppressJoinSqManyOneOne");
+    }
+    public abstract String keepManyOneOneId_NotInScopeRelation_WhiteSuppressJoinSqManyOneOne(WhiteSuppressJoinSqManyOneOneCQ sq);
+
+    protected void regManyOneOneId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueManyOneOneId(), "MANY_ONE_ONE_ID"); }
+    protected abstract ConditionValue getCValueManyOneOneId();
 
     // ===================================================================================
     //                                                                     ScalarCondition

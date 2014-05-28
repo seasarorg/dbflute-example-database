@@ -169,7 +169,7 @@ public abstract class BsSynonymNextSecretAuthBhv extends AbstractBehaviorWritabl
      * </pre>
      * @param cb The condition-bean of SynonymNextSecretAuth. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
-     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (point is not found)
+     * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
@@ -190,39 +190,42 @@ public abstract class BsSynonymNextSecretAuthBhv extends AbstractBehaviorWritabl
 
     /**
      * Select the entity by the primary-key value.
-     * @param secretAuthCode The one of primary key. (NotNull)
+     * @param secretAuthCode (隣の秘密２コード): PK, NotNull, CHAR(3). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public SynonymNextSecretAuth selectByPKValue(String secretAuthCode) {
-        return doSelectByPKValue(secretAuthCode, SynonymNextSecretAuth.class);
+        return doSelectByPK(secretAuthCode, SynonymNextSecretAuth.class);
     }
 
-    protected <ENTITY extends SynonymNextSecretAuth> ENTITY doSelectByPKValue(String secretAuthCode, Class<ENTITY> entityType) {
-        return doSelectEntity(buildPKCB(secretAuthCode), entityType);
+    protected <ENTITY extends SynonymNextSecretAuth> ENTITY doSelectByPK(String secretAuthCode, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(secretAuthCode), entityType);
+    }
+
+    protected <ENTITY extends SynonymNextSecretAuth> OptionalEntity<ENTITY> doSelectOptionalByPK(String secretAuthCode, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(secretAuthCode, entityType), secretAuthCode);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param secretAuthCode The one of primary key. (NotNull)
+     * @param secretAuthCode (隣の秘密２コード): PK, NotNull, CHAR(3). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public SynonymNextSecretAuth selectByPKValueWithDeletedCheck(String secretAuthCode) {
-        return doSelectByPKValueWithDeletedCheck(secretAuthCode, SynonymNextSecretAuth.class);
+        return doSelectByPKWithDeletedCheck(secretAuthCode, SynonymNextSecretAuth.class);
     }
 
-    protected <ENTITY extends SynonymNextSecretAuth> ENTITY doSelectByPKValueWithDeletedCheck(String secretAuthCode, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(buildPKCB(secretAuthCode), entityType);
+    protected <ENTITY extends SynonymNextSecretAuth> ENTITY doSelectByPKWithDeletedCheck(String secretAuthCode, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(secretAuthCode), entityType);
     }
 
-    private SynonymNextSecretAuthCB buildPKCB(String secretAuthCode) {
+    protected SynonymNextSecretAuthCB xprepareCBAsPK(String secretAuthCode) {
         assertObjectNotNull("secretAuthCode", secretAuthCode);
-        SynonymNextSecretAuthCB cb = newMyConditionBean();
-        cb.query().setSecretAuthCode_Equal(secretAuthCode);
+        SynonymNextSecretAuthCB cb = newMyConditionBean(); cb.acceptPrimaryKey(secretAuthCode);
         return cb;
     }
 

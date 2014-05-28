@@ -141,7 +141,7 @@ public abstract class BsRegion implements Entity, Serializable, Cloneable {
     /**
      * {@inheritDoc}
      */
-    public Set<String> uniqueDrivenProperties() {
+    public Set<String> myuniqueDrivenProperties() {
         return __uniqueDrivenProperties.getPropertyNames();
     }
 
@@ -456,7 +456,7 @@ public abstract class BsRegion implements Entity, Serializable, Cloneable {
      * [set] (地域ID)REGION_ID: {PK, NotNull, INT(10), classification=Region} <br />
      * @param regionId The value of the column 'REGION_ID'. (basically NotNull if update: for the constraint)
      */
-    public void setRegionId(Integer regionId) {
+    protected void setRegionId(Integer regionId) {
         __modifiedProperties.addPropertyName("regionId");
         this._regionId = regionId;
     }

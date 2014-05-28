@@ -77,10 +77,14 @@ public class BsSynonymNextSameNameFkCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                 PrimaryKey Handling
     //                                                                 ===================
+    /**
+     * Accept the query condition of primary key as equal.
+     * @param refId : PK, NotNull, NUMBER(16). (NotNull)
+     */
     public void acceptPrimaryKey(Long refId) {
         assertObjectNotNull("refId", refId);
         BsSynonymNextSameNameFkCB cb = this;
-        cb.query().setRefId_Equal(refId);
+        cb.query().setRefId_Equal(refId);;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {
@@ -414,6 +418,11 @@ public class BsSynonymNextSameNameFkCB extends AbstractConditionBean {
      */
     public void orScopeQuery(OrQuery<SynonymNextSameNameFkCB> orQuery) {
         xorSQ((SynonymNextSameNameFkCB)this, orQuery);
+    }
+
+    @Override
+    protected HpCBPurpose xhandleOrSQPurposeChange() {
+        return null; // means no check
     }
 
     /**

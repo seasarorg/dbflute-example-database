@@ -36,7 +36,7 @@ import com.example.dbflute.mysql.dbflute.cbean.*;
  *     ONE_ID
  *
  * [column]
- *     ONE_ID, ONE_NAME, SUPPRESS_JOIN_SQ_ID
+ *     ONE_ID, ONE_NAME, SUPPRESS_JOIN_SQ_ID, ONE_ADDI_ID
  *
  * [sequence]
  *     
@@ -48,13 +48,13 @@ import com.example.dbflute.mysql.dbflute.cbean.*;
  *     
  *
  * [foreign table]
- *     white_suppress_join_sq
+ *     white_suppress_join_sq, WHITE_SUPPRESS_JOIN_SQ_ONE_ADDI
  *
  * [referrer table]
  *     
  *
  * [foreign property]
- *     whiteSuppressJoinSq
+ *     whiteSuppressJoinSq, whiteSuppressJoinSqOneAddi
  *
  * [referrer property]
  *     
@@ -432,6 +432,20 @@ public abstract class BsWhiteSuppressJoinSqOneBhv extends AbstractBehaviorWritab
             public boolean hasRf() { return true; }
             public void setRfLs(WhiteSuppressJoinSq et, List<WhiteSuppressJoinSqOne> ls)
             { if (!ls.isEmpty()) { et.setWhiteSuppressJoinSqOneAsOne(ls.get(0)); } }
+        });
+    }
+    /**
+     * Pull out the list of foreign table 'WhiteSuppressJoinSqOneAddi'.
+     * @param whiteSuppressJoinSqOneList The list of whiteSuppressJoinSqOne. (NotNull, EmptyAllowed)
+     * @return The list of foreign table. (NotNull, EmptyAllowed, NotNullElement)
+     */
+    public List<WhiteSuppressJoinSqOneAddi> pulloutWhiteSuppressJoinSqOneAddi(List<WhiteSuppressJoinSqOne> whiteSuppressJoinSqOneList) {
+        return helpPulloutInternally(whiteSuppressJoinSqOneList, new InternalPulloutCallback<WhiteSuppressJoinSqOne, WhiteSuppressJoinSqOneAddi>() {
+            public WhiteSuppressJoinSqOneAddi getFr(WhiteSuppressJoinSqOne et)
+            { return et.getWhiteSuppressJoinSqOneAddi(); }
+            public boolean hasRf() { return true; }
+            public void setRfLs(WhiteSuppressJoinSqOneAddi et, List<WhiteSuppressJoinSqOne> ls)
+            { et.setWhiteSuppressJoinSqOneList(ls); }
         });
     }
 

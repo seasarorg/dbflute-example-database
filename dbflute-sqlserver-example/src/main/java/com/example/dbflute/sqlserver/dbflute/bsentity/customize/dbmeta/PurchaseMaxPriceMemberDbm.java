@@ -33,6 +33,9 @@ public class PurchaseMaxPriceMemberDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgMemberId(), "memberId");
@@ -41,8 +44,6 @@ public class PurchaseMaxPriceMemberDbm extends AbstractDBMeta {
         setupEpg(_epgMap, new EpgMemberStatusName(), "memberStatusName");
         setupEpg(_epgMap, new EpgRn(), "rn");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgMemberId implements PropertyGateway {
         public Object read(Entity et) { return ((PurchaseMaxPriceMember)et).getMemberId(); }
         public void write(Entity et, Object vl) { ((PurchaseMaxPriceMember)et).setMemberId(cti(vl)); }
@@ -63,6 +64,8 @@ public class PurchaseMaxPriceMemberDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((PurchaseMaxPriceMember)et).getRn(); }
         public void write(Entity et, Object vl) { ((PurchaseMaxPriceMember)et).setRn(ctl(vl)); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -78,16 +81,36 @@ public class PurchaseMaxPriceMemberDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnMemberId = cci("MEMBER_ID", "MEMBER_ID", null, null, false, "memberId", Integer.class, false, false, "int", 10, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnMemberName = cci("MEMBER_NAME", "MEMBER_NAME", null, null, false, "memberName", String.class, false, false, "nvarchar", 200, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnPurchaseMaxPrice = cci("PURCHASE_MAX_PRICE", "PURCHASE_MAX_PRICE", null, null, false, "purchaseMaxPrice", Integer.class, false, false, "int", 10, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnMemberStatusName = cci("MEMBER_STATUS_NAME", "MEMBER_STATUS_NAME", null, null, false, "memberStatusName", String.class, false, false, "nvarchar", 50, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnRn = cci("rn", "rn", null, null, false, "rn", Long.class, false, false, "bigint", 19, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnMemberId = cci("MEMBER_ID", "MEMBER_ID", null, null, Integer.class, "memberId", null, false, false, false, "int", 10, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnMemberName = cci("MEMBER_NAME", "MEMBER_NAME", null, null, String.class, "memberName", null, false, false, false, "nvarchar", 200, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnPurchaseMaxPrice = cci("PURCHASE_MAX_PRICE", "PURCHASE_MAX_PRICE", null, null, Integer.class, "purchaseMaxPrice", null, false, false, false, "int", 10, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnMemberStatusName = cci("MEMBER_STATUS_NAME", "MEMBER_STATUS_NAME", null, null, String.class, "memberStatusName", null, false, false, false, "nvarchar", 50, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnRn = cci("rn", "rn", null, null, Long.class, "rn", null, false, false, false, "bigint", 19, 0, null, false, null, null, null, null, null);
 
+    /**
+     * MEMBER_ID: {int(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnMemberId() { return _columnMemberId; }
+    /**
+     * MEMBER_NAME: {nvarchar(200)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnMemberName() { return _columnMemberName; }
+    /**
+     * PURCHASE_MAX_PRICE: {int(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnPurchaseMaxPrice() { return _columnPurchaseMaxPrice; }
+    /**
+     * MEMBER_STATUS_NAME: {nvarchar(50)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnMemberStatusName() { return _columnMemberStatusName; }
+    /**
+     * rn: {bigint(19)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnRn() { return _columnRn; }
 
     protected List<ColumnInfo> ccil() {
@@ -117,6 +140,8 @@ public class PurchaseMaxPriceMemberDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // cannot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------

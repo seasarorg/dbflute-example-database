@@ -22,8 +22,8 @@ public abstract class AbstractBsAliasMemberCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public AbstractBsAliasMemberCQ(ConditionQuery childQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
-        super(childQuery, sqlClause, aliasName, nestLevel);
+    public AbstractBsAliasMemberCQ(ConditionQuery referrerQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
+        super(referrerQuery, sqlClause, aliasName, nestLevel);
     }
 
     // ===================================================================================
@@ -230,7 +230,7 @@ public abstract class AbstractBsAliasMemberCQ extends AbstractConditionQuery {
     public abstract String keepMemberId_SpecifyDerivedReferrer_AliasMemberLoginList(AliasMemberLoginCQ sq);
 
     /**
-     * Prepare for (Query)DerivedReferrer. <br />
+     * Prepare for (Query)DerivedReferrer (correlated sub-query). <br />
      * {FOO &lt;= (select max(BAR) from ALIAS_MEMBER_LOGIN where ...)} <br />
      * ALIAS_MEMBER_LOGIN by MEMBER_ID, named 'aliasMemberLoginAsOne'.
      * <pre>
@@ -1364,7 +1364,7 @@ public abstract class AbstractBsAliasMemberCQ extends AbstractConditionQuery {
     public abstract String keepSpecifyMyselfDerived(AliasMemberCQ sq);
 
     /**
-     * Prepare for (Query)MyselfDerived (SubQuery).
+     * Prepare for (Query)MyselfDerived (correlated sub-query).
      * @return The object to set up a function for myself table. (NotNull)
      */
     public HpQDRFunction<AliasMemberCB> myselfDerived() {
@@ -1386,8 +1386,8 @@ public abstract class AbstractBsAliasMemberCQ extends AbstractConditionQuery {
     //                                                                        MyselfExists
     //                                                                        ============
     /**
-     * Prepare for MyselfExists (SubQuery).
-     * @param subQuery The implementation of sub query. (NotNull)
+     * Prepare for MyselfExists (correlated sub-query).
+     * @param subQuery The implementation of sub-query. (NotNull)
      */
     public void myselfExists(SubQuery<AliasMemberCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
@@ -1402,8 +1402,8 @@ public abstract class AbstractBsAliasMemberCQ extends AbstractConditionQuery {
     //                                                                       MyselfInScope
     //                                                                       =============
     /**
-     * Prepare for MyselfInScope (SubQuery).
-     * @param subQuery The implementation of sub query. (NotNull)
+     * Prepare for MyselfInScope (sub-query).
+     * @param subQuery The implementation of sub-query. (NotNull)
      */
     public void myselfInScope(SubQuery<AliasMemberCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);

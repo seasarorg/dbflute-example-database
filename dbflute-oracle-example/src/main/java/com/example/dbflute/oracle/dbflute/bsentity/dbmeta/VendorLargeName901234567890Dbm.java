@@ -33,13 +33,14 @@ public class VendorLargeName901234567890Dbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgVendorLargeName901234567Id(), "vendorLargeName901234567Id");
         setupEpg(_epgMap, new EpgVendorLargeName9012345Name(), "vendorLargeName9012345Name");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgVendorLargeName901234567Id implements PropertyGateway {
         public Object read(Entity et) { return ((VendorLargeName901234567890)et).getVendorLargeName901234567Id(); }
         public void write(Entity et, Object vl) { ((VendorLargeName901234567890)et).setVendorLargeName901234567Id(ctl(vl)); }
@@ -48,6 +49,8 @@ public class VendorLargeName901234567890Dbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((VendorLargeName901234567890)et).getVendorLargeName9012345Name(); }
         public void write(Entity et, Object vl) { ((VendorLargeName901234567890)et).setVendorLargeName9012345Name((String)vl); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -63,10 +66,18 @@ public class VendorLargeName901234567890Dbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnVendorLargeName901234567Id = cci("VENDOR_LARGE_NAME_901234567_ID", "VENDOR_LARGE_NAME_901234567_ID", null, null, true, "vendorLargeName901234567Id", Long.class, true, false, "NUMBER", 16, 0, null, false, null, null, null, "vendorLargeName90123456RefList", null);
-    protected final ColumnInfo _columnVendorLargeName9012345Name = cci("VENDOR_LARGE_NAME_9012345_NAME", "VENDOR_LARGE_NAME_9012345_NAME", null, null, true, "vendorLargeName9012345Name", String.class, false, false, "VARCHAR2", 32, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnVendorLargeName901234567Id = cci("VENDOR_LARGE_NAME_901234567_ID", "VENDOR_LARGE_NAME_901234567_ID", null, null, Long.class, "vendorLargeName901234567Id", null, true, false, true, "NUMBER", 16, 0, null, false, null, null, null, "vendorLargeName90123456RefList", null);
+    protected final ColumnInfo _columnVendorLargeName9012345Name = cci("VENDOR_LARGE_NAME_9012345_NAME", "VENDOR_LARGE_NAME_9012345_NAME", null, null, String.class, "vendorLargeName9012345Name", null, false, false, true, "VARCHAR2", 32, 0, null, false, null, null, null, null, null);
 
+    /**
+     * VENDOR_LARGE_NAME_901234567_ID: {PK, NotNull, NUMBER(16)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnVendorLargeName901234567Id() { return _columnVendorLargeName901234567Id; }
+    /**
+     * VENDOR_LARGE_NAME_9012345_NAME: {NotNull, VARCHAR2(32)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnVendorLargeName9012345Name() { return _columnVendorLargeName9012345Name; }
 
     protected List<ColumnInfo> ccil() {
@@ -91,6 +102,8 @@ public class VendorLargeName901234567890Dbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // cannot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------
@@ -98,6 +111,10 @@ public class VendorLargeName901234567890Dbm extends AbstractDBMeta {
     // -----------------------------------------------------
     //                                     Referrer Property
     //                                     -----------------
+    /**
+     * VENDOR_LARGE_NAME_90123456_REF by VENDOR_LARGE_NAME_901234567_ID, named 'vendorLargeName90123456RefList'.
+     * @return The information object of referrer property. (NotNull)
+     */
     public ReferrerInfo referrerVendorLargeName90123456RefList() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnVendorLargeName901234567Id(), VendorLargeName90123456RefDbm.getInstance().columnVendorLargeName901234567Id());
         return cri("FK_VENDOR_LARGE_NAME_$$$_REF", "vendorLargeName90123456RefList", this, VendorLargeName90123456RefDbm.getInstance(), mp, false, "vendorLargeName901234567890");

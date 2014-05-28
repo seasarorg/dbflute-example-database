@@ -3,6 +3,8 @@ package com.example.dbflute.oracle.dbflute.cbean.cq.bs;
 import java.util.Map;
 
 import org.seasar.dbflute.cbean.*;
+import org.seasar.dbflute.cbean.chelper.*;
+import org.seasar.dbflute.cbean.coption.*;
 import org.seasar.dbflute.cbean.cvalue.ConditionValue;
 import org.seasar.dbflute.cbean.sqlclause.SqlClause;
 import org.seasar.dbflute.exception.IllegalConditionBeanOperationException;
@@ -24,8 +26,8 @@ public class BsSynonymMemberLoginCQ extends AbstractBsSynonymMemberLoginCQ {
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public BsSynonymMemberLoginCQ(ConditionQuery childQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
-        super(childQuery, sqlClause, aliasName, nestLevel);
+    public BsSynonymMemberLoginCQ(ConditionQuery referrerQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
+        super(referrerQuery, sqlClause, aliasName, nestLevel);
     }
 
     // ===================================================================================
@@ -118,14 +120,14 @@ public class BsSynonymMemberLoginCQ extends AbstractBsSynonymMemberLoginCQ {
 
     /** 
      * Add order-by as ascend. <br />
-     * MEMBER_ID: {UQ, NotNull, NUMBER(16), FK to MEMBER_VENDOR_SYNONYM}
+     * MEMBER_ID: {UQ+, NotNull, NUMBER(16), FK to MEMBER_VENDOR_SYNONYM}
      * @return this. (NotNull)
      */
     public BsSynonymMemberLoginCQ addOrderBy_MemberId_Asc() { regOBA("MEMBER_ID"); return this; }
 
     /**
      * Add order-by as descend. <br />
-     * MEMBER_ID: {UQ, NotNull, NUMBER(16), FK to MEMBER_VENDOR_SYNONYM}
+     * MEMBER_ID: {UQ+, NotNull, NUMBER(16), FK to MEMBER_VENDOR_SYNONYM}
      * @return this. (NotNull)
      */
     public BsSynonymMemberLoginCQ addOrderBy_MemberId_Desc() { regOBD("MEMBER_ID"); return this; }
@@ -139,14 +141,14 @@ public class BsSynonymMemberLoginCQ extends AbstractBsSynonymMemberLoginCQ {
 
     /** 
      * Add order-by as ascend. <br />
-     * LOGIN_DATETIME: {UQ+, IX, NotNull, DATE(7)}
+     * LOGIN_DATETIME: {+UQ, IX, NotNull, DATE(7)}
      * @return this. (NotNull)
      */
     public BsSynonymMemberLoginCQ addOrderBy_LoginDatetime_Asc() { regOBA("LOGIN_DATETIME"); return this; }
 
     /**
      * Add order-by as descend. <br />
-     * LOGIN_DATETIME: {UQ+, IX, NotNull, DATE(7)}
+     * LOGIN_DATETIME: {+UQ, IX, NotNull, DATE(7)}
      * @return this. (NotNull)
      */
     public BsSynonymMemberLoginCQ addOrderBy_LoginDatetime_Desc() { regOBD("LOGIN_DATETIME"); return this; }
@@ -249,7 +251,7 @@ public class BsSynonymMemberLoginCQ extends AbstractBsSynonymMemberLoginCQ {
     // ===================================================================================
     //                                                                         Union Query
     //                                                                         ===========
-    protected void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
+    public void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
         SynonymMemberLoginCQ bq = (SynonymMemberLoginCQ)bqs;
         SynonymMemberLoginCQ uq = (SynonymMemberLoginCQ)uqs;
         if (bq.hasConditionQueryMemberStatus()) {
@@ -474,5 +476,7 @@ public class BsSynonymMemberLoginCQ extends AbstractBsSynonymMemberLoginCQ {
     // very internal (for suppressing warn about 'Not Use Import')
     protected String xCB() { return SynonymMemberLoginCB.class.getName(); }
     protected String xCQ() { return SynonymMemberLoginCQ.class.getName(); }
+    protected String xCHp() { return HpCalculator.class.getName(); }
+    protected String xCOp() { return ConditionOption.class.getName(); }
     protected String xMap() { return Map.class.getName(); }
 }

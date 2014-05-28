@@ -144,7 +144,7 @@ public abstract class BsWhiteVariantRelationMasterQux implements Entity, Seriali
     /**
      * {@inheritDoc}
      */
-    public Set<String> uniqueDrivenProperties() {
+    public Set<String> myuniqueDrivenProperties() {
         return __uniqueDrivenProperties.getPropertyNames();
     }
 
@@ -442,7 +442,7 @@ public abstract class BsWhiteVariantRelationMasterQux implements Entity, Seriali
      * [set] QUX_TYPE_CODE: {NotNull, CHAR(3), classification=VariantRelationQuxType} <br />
      * @param quxTypeCode The value of the column 'QUX_TYPE_CODE'. (basically NotNull if update: for the constraint)
      */
-    public void setQuxTypeCode(String quxTypeCode) {
+    protected void setQuxTypeCode(String quxTypeCode) {
         checkImplicitSet("QUX_TYPE_CODE", CDef.DefMeta.VariantRelationQuxType, quxTypeCode);
         __modifiedProperties.addPropertyName("quxTypeCode");
         this._quxTypeCode = quxTypeCode;
