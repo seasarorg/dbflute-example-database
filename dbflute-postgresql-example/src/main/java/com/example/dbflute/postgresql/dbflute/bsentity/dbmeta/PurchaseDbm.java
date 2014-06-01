@@ -152,7 +152,7 @@ public class PurchaseDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnPurchaseId = cci("purchase_id", "purchase_id", null, null, Long.class, "purchaseId", null, true, true, true, "bigserial", 19, 0, "nextval('purchase_purchase_id_seq'::regclass)", false, null, null, null, null, null);
+    protected final ColumnInfo _columnPurchaseId = cci("purchase_id", "purchase_id", null, null, Long.class, "purchaseId", null, true, true, true, "bigserial", 19, 0, "nextval('purchase_purchase_id_seq'::regclass)", false, null, null, null, "purchasePaymentList", null);
     protected final ColumnInfo _columnMemberId = cci("member_id", "member_id", null, "会員ID", Integer.class, "memberId", null, false, false, true, "int4", 10, 0, null, false, null, "会員を参照するID。\n購入を識別する自然キー（複合ユニーク制約）の筆頭要素。", "member", null, null);
     protected final ColumnInfo _columnProductId = cci("product_id", "product_id", null, "商品ID", Integer.class, "productId", null, false, false, true, "int4", 10, 0, null, false, null, "商品を参照するID。", "product", null, null);
     protected final ColumnInfo _columnPurchaseDatetime = cci("purchase_datetime", "purchase_datetime", null, "購入日時", java.sql.Timestamp.class, "purchaseDatetime", null, false, false, true, "timestamp", 26, 3, null, false, null, "購入した瞬間の日時。", null, null, null);
@@ -297,6 +297,14 @@ public class PurchaseDbm extends AbstractDBMeta {
     // -----------------------------------------------------
     //                                     Referrer Property
     //                                     -----------------
+    /**
+     * (購入支払)purchase_payment by purchase_id, named 'purchasePaymentList'.
+     * @return The information object of referrer property. (NotNull)
+     */
+    public ReferrerInfo referrerPurchasePaymentList() {
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnPurchaseId(), PurchasePaymentDbm.getInstance().columnPurchaseId());
+        return cri("fk_purchase_payment_purchase", "purchasePaymentList", this, PurchasePaymentDbm.getInstance(), mp, false, "purchase");
+    }
 
     // ===================================================================================
     //                                                                        Various Info

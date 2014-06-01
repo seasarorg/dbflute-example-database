@@ -249,11 +249,6 @@ public class BsMemberLoginCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                         SetupSelect
     //                                                                         ===========
-    protected MemberStatusNss _nssMemberStatus;
-    public MemberStatusNss getNssMemberStatus() {
-        if (_nssMemberStatus == null) { _nssMemberStatus = new MemberStatusNss(null); }
-        return _nssMemberStatus;
-    }
     /**
      * Set up relation columns to select clause. <br />
      * MEMBER_STATUS by my LOGIN_MEMBER_STATUS_CODE, named 'memberStatus'.
@@ -264,18 +259,15 @@ public class BsMemberLoginCB extends AbstractConditionBean {
      * MemberLogin memberLogin = memberLoginBhv.selectEntityWithDeletedCheck(cb);
      * ... = memberLogin.<span style="color: #DD4747">getMemberStatus()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
      * </pre>
-     * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
-    public MemberStatusNss setupSelect_MemberStatus() {
+    public void setupSelect_MemberStatus() {
         assertSetupSelectPurpose("memberStatus");
         if (hasSpecifiedColumn()) { // if reverse call
             specify().columnLoginMemberStatusCode();
         }
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryMemberStatus(); } });
-        if (_nssMemberStatus == null || !_nssMemberStatus.hasConditionQuery())
-        { _nssMemberStatus = new MemberStatusNss(query().queryMemberStatus()); }
-        return _nssMemberStatus;
     }
+
     protected MemberNss _nssMember;
     public MemberNss getNssMember() {
         if (_nssMember == null) { _nssMember = new MemberNss(null); }

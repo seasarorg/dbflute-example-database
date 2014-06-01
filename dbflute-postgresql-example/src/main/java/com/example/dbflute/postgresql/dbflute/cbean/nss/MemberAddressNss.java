@@ -37,5 +37,4 @@ public class MemberAddressNss {
         _query.doNss(new MemberAddressCQ.NssCall() { public ConditionQuery qf() { return _query.queryRegion(); }});
         return new RegionNss(_query.queryRegion());
     }
-
 }

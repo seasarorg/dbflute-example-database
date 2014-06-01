@@ -73,7 +73,6 @@ public class BsWhiteNotPkCQ extends AbstractBsWhiteNotPkCQ {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _notPkId;
     public ConditionValue getNotPkId() {
         if (_notPkId == null) { _notPkId = nCV(); }

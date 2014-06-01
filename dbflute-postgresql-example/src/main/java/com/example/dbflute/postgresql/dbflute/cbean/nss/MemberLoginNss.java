@@ -37,5 +37,4 @@ public class MemberLoginNss {
         _query.doNss(new MemberLoginCQ.NssCall() { public ConditionQuery qf() { return _query.queryMemberStatus(); }});
         return new MemberStatusNss(_query.queryMemberStatus());
     }
-
 }

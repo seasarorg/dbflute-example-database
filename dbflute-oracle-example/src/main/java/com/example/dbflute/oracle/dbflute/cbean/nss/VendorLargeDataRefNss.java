@@ -22,11 +22,9 @@ public class VendorLargeDataRefNss {
     /**
      * With nested relation columns to select clause. <br />
      * VENDOR_LARGE_DATA by my LARGE_DATA_ID, named 'vendorLargeData'.
-     * @return The set-upper of more nested relation. {...with[nested-relation].with[more-nested-relation]} (NotNull)
      */
-    public VendorLargeDataNss withVendorLargeData() {
+    public void withVendorLargeData() {
         _query.doNss(new VendorLargeDataRefCQ.NssCall() { public ConditionQuery qf() { return _query.queryVendorLargeData(); }});
-        return new VendorLargeDataNss(_query.queryVendorLargeData());
     }
     /**
      * With nested relation columns to select clause. <br />
@@ -37,5 +35,4 @@ public class VendorLargeDataRefNss {
         _query.doNss(new VendorLargeDataRefCQ.NssCall() { public ConditionQuery qf() { return _query.queryVendorLargeDataRefSelf(); }});
         return new VendorLargeDataRefNss(_query.queryVendorLargeDataRefSelf());
     }
-
 }

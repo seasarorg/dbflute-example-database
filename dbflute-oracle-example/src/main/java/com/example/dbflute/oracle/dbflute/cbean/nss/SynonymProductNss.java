@@ -22,11 +22,8 @@ public class SynonymProductNss {
     /**
      * With nested relation columns to select clause. <br />
      * SYNONYM_PRODUCT_STATUS by my PRODUCT_STATUS_CODE, named 'synonymProductStatus'.
-     * @return The set-upper of more nested relation. {...with[nested-relation].with[more-nested-relation]} (NotNull)
      */
-    public SynonymProductStatusNss withSynonymProductStatus() {
+    public void withSynonymProductStatus() {
         _query.doNss(new SynonymProductCQ.NssCall() { public ConditionQuery qf() { return _query.querySynonymProductStatus(); }});
-        return new SynonymProductStatusNss(_query.querySynonymProductStatus());
     }
-
 }

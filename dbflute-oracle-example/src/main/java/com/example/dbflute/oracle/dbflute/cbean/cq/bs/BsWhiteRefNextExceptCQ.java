@@ -73,7 +73,6 @@ public class BsWhiteRefNextExceptCQ extends AbstractBsWhiteRefNextExceptCQ {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _refNextExceptId;
     public ConditionValue getRefNextExceptId() {
         if (_refNextExceptId == null) { _refNextExceptId = nCV(); }

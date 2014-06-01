@@ -28,5 +28,4 @@ public class Vendor_non_compilableNss {
         _query.doNss(new Vendor_non_compilableCQ.NssCall() { public ConditionQuery qf() { return _query.queryVendor_non_compilableSelf(); }});
         return new Vendor_non_compilableNss(_query.queryVendor_non_compilableSelf());
     }
-
 }

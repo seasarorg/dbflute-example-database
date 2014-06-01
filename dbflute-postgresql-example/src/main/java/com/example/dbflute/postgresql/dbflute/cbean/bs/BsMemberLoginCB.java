@@ -301,6 +301,7 @@ public class BsMemberLoginCB extends AbstractConditionBean {
         { _nssMember = new MemberNss(query().queryMember()); }
         return _nssMember;
     }
+
     protected MemberStatusNss _nssMemberStatus;
     public MemberStatusNss getNssMemberStatus() {
         if (_nssMemberStatus == null) { _nssMemberStatus = new MemberStatusNss(null); }

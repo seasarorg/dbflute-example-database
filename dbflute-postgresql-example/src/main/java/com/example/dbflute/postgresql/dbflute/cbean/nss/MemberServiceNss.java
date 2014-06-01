@@ -28,5 +28,4 @@ public class MemberServiceNss {
         _query.doNss(new MemberServiceCQ.NssCall() { public ConditionQuery qf() { return _query.queryServiceRank(); }});
         return new ServiceRankNss(_query.queryServiceRank());
     }
-
 }

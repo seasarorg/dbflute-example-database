@@ -31,11 +31,9 @@ public class SynonymMemberWithdrawalNss {
     /**
      * With nested relation columns to select clause. <br />
      * WITHDRAWAL_REASON by my WITHDRAWAL_REASON_CODE, named 'withdrawalReason'.
-     * @return The set-upper of more nested relation. {...with[nested-relation].with[more-nested-relation]} (NotNull)
      */
-    public WithdrawalReasonNss withWithdrawalReason() {
+    public void withWithdrawalReason() {
         _query.doNss(new SynonymMemberWithdrawalCQ.NssCall() { public ConditionQuery qf() { return _query.queryWithdrawalReason(); }});
-        return new WithdrawalReasonNss(_query.queryWithdrawalReason());
     }
     /**
      * With nested relation columns to select clause. <br />
@@ -55,5 +53,4 @@ public class SynonymMemberWithdrawalNss {
         _query.doNss(new SynonymMemberWithdrawalCQ.NssCall() { public ConditionQuery qf() { return _query.queryVendorSynonymMember(); }});
         return new VendorSynonymMemberNss(_query.queryVendorSynonymMember());
     }
-
 }

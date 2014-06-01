@@ -20,7 +20,6 @@ import com.example.dbflute.oracle.dbflute.allcommon.ImplementedInvokerAssistant;
 import com.example.dbflute.oracle.dbflute.allcommon.ImplementedSqlClauseCreator;
 import com.example.dbflute.oracle.dbflute.cbean.*;
 import com.example.dbflute.oracle.dbflute.cbean.cq.*;
-import com.example.dbflute.oracle.dbflute.cbean.nss.*;
 
 /**
  * The base condition-bean of SYNONYM_REF_EXCEPT.
@@ -265,11 +264,6 @@ public class BsSynonymRefExceptCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                         SetupSelect
     //                                                                         ===========
-    protected SynonymExceptNss _nssSynonymExcept;
-    public SynonymExceptNss getNssSynonymExcept() {
-        if (_nssSynonymExcept == null) { _nssSynonymExcept = new SynonymExceptNss(null); }
-        return _nssSynonymExcept;
-    }
     /**
      * Set up relation columns to select clause. <br />
      * SYNONYM_EXCEPT by my EXCEPT_ID, named 'synonymExcept'.
@@ -280,17 +274,13 @@ public class BsSynonymRefExceptCB extends AbstractConditionBean {
      * SynonymRefExcept synonymRefExcept = synonymRefExceptBhv.selectEntityWithDeletedCheck(cb);
      * ... = synonymRefExcept.<span style="color: #DD4747">getSynonymExcept()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
      * </pre>
-     * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
-    public SynonymExceptNss setupSelect_SynonymExcept() {
+    public void setupSelect_SynonymExcept() {
         assertSetupSelectPurpose("synonymExcept");
         if (hasSpecifiedColumn()) { // if reverse call
             specify().columnExceptId();
         }
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().querySynonymExcept(); } });
-        if (_nssSynonymExcept == null || !_nssSynonymExcept.hasConditionQuery())
-        { _nssSynonymExcept = new SynonymExceptNss(query().querySynonymExcept()); }
-        return _nssSynonymExcept;
     }
 
     // [DBFlute-0.7.4]

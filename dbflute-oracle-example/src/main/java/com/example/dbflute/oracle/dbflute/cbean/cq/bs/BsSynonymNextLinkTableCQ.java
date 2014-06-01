@@ -73,7 +73,6 @@ public class BsSynonymNextLinkTableCQ extends AbstractBsSynonymNextLinkTableCQ {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _productId;
     public ConditionValue getProductId() {
         if (_productId == null) { _productId = nCV(); }

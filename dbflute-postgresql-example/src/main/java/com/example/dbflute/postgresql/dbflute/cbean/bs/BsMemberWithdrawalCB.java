@@ -287,6 +287,7 @@ public class BsMemberWithdrawalCB extends AbstractConditionBean {
         { _nssMember = new MemberNss(query().queryMember()); }
         return _nssMember;
     }
+
     protected WithdrawalReasonNss _nssWithdrawalReason;
     public WithdrawalReasonNss getNssWithdrawalReason() {
         if (_nssWithdrawalReason == null) { _nssWithdrawalReason = new WithdrawalReasonNss(null); }

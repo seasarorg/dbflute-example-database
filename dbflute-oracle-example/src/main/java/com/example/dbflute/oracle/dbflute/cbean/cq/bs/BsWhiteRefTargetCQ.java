@@ -73,7 +73,6 @@ public class BsWhiteRefTargetCQ extends AbstractBsWhiteRefTargetCQ {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _refTargetId;
     public ConditionValue getRefTargetId() {
         if (_refTargetId == null) { _refTargetId = nCV(); }

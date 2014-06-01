@@ -290,6 +290,7 @@ public class BsVendorLargeDataRefCB extends AbstractConditionBean {
         { _nssVendorLargeData = new VendorLargeDataNss(query().queryVendorLargeData()); }
         return _nssVendorLargeData;
     }
+
     protected VendorLargeDataRefNss _nssVendorLargeDataRefSelf;
     public VendorLargeDataRefNss getNssVendorLargeDataRefSelf() {
         if (_nssVendorLargeDataRefSelf == null) { _nssVendorLargeDataRefSelf = new VendorLargeDataRefNss(null); }

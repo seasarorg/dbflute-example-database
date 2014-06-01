@@ -47,7 +47,6 @@ public class MemberNss {
         _query.doNss(new MemberCQ.NssCall() { public ConditionQuery qf() { return _query.queryMemberLoginAsLatest(); }});
         return new MemberLoginNss(_query.queryMemberLoginAsLatest());
     }
-
     /**
      * With nested relation columns to select clause. <br />
      * (会員セキュリティ情報)member_security by member_id, named 'memberSecurityAsOne'.

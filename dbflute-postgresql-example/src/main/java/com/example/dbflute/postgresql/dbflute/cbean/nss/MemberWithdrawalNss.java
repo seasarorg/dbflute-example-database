@@ -37,5 +37,4 @@ public class MemberWithdrawalNss {
         _query.doNss(new MemberWithdrawalCQ.NssCall() { public ConditionQuery qf() { return _query.queryWithdrawalReason(); }});
         return new WithdrawalReasonNss(_query.queryWithdrawalReason());
     }
-
 }

@@ -73,7 +73,6 @@ public class BsSummaryMemberPurchaseCQ extends AbstractBsSummaryMemberPurchaseCQ
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _memberId;
     public ConditionValue getMemberId() {
         if (_memberId == null) { _memberId = nCV(); }

@@ -276,11 +276,6 @@ public class BsSynonymMemberLoginCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                         SetupSelect
     //                                                                         ===========
-    protected MemberStatusNss _nssMemberStatus;
-    public MemberStatusNss getNssMemberStatus() {
-        if (_nssMemberStatus == null) { _nssMemberStatus = new MemberStatusNss(null); }
-        return _nssMemberStatus;
-    }
     /**
      * Set up relation columns to select clause. <br />
      * (会員ステータス)MEMBER_STATUS by my LOGIN_MEMBER_STATUS_CODE, named 'memberStatus'.
@@ -291,18 +286,15 @@ public class BsSynonymMemberLoginCB extends AbstractConditionBean {
      * SynonymMemberLogin synonymMemberLogin = synonymMemberLoginBhv.selectEntityWithDeletedCheck(cb);
      * ... = synonymMemberLogin.<span style="color: #DD4747">getMemberStatus()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
      * </pre>
-     * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
-    public MemberStatusNss setupSelect_MemberStatus() {
+    public void setupSelect_MemberStatus() {
         assertSetupSelectPurpose("memberStatus");
         if (hasSpecifiedColumn()) { // if reverse call
             specify().columnLoginMemberStatusCode();
         }
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryMemberStatus(); } });
-        if (_nssMemberStatus == null || !_nssMemberStatus.hasConditionQuery())
-        { _nssMemberStatus = new MemberStatusNss(query().queryMemberStatus()); }
-        return _nssMemberStatus;
     }
+
     protected MemberVendorSynonymNss _nssMemberVendorSynonym;
     public MemberVendorSynonymNss getNssMemberVendorSynonym() {
         if (_nssMemberVendorSynonym == null) { _nssMemberVendorSynonym = new MemberVendorSynonymNss(null); }
@@ -330,6 +322,7 @@ public class BsSynonymMemberLoginCB extends AbstractConditionBean {
         { _nssMemberVendorSynonym = new MemberVendorSynonymNss(query().queryMemberVendorSynonym()); }
         return _nssMemberVendorSynonym;
     }
+
     protected SynonymMemberNss _nssSynonymMember;
     public SynonymMemberNss getNssSynonymMember() {
         if (_nssSynonymMember == null) { _nssSynonymMember = new SynonymMemberNss(null); }
@@ -357,6 +350,7 @@ public class BsSynonymMemberLoginCB extends AbstractConditionBean {
         { _nssSynonymMember = new SynonymMemberNss(query().querySynonymMember()); }
         return _nssSynonymMember;
     }
+
     protected VendorSynonymMemberNss _nssVendorSynonymMember;
     public VendorSynonymMemberNss getNssVendorSynonymMember() {
         if (_nssVendorSynonymMember == null) { _nssVendorSynonymMember = new VendorSynonymMemberNss(null); }

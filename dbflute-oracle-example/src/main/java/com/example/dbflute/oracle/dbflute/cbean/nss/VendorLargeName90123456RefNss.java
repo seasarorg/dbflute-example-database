@@ -22,11 +22,8 @@ public class VendorLargeName90123456RefNss {
     /**
      * With nested relation columns to select clause. <br />
      * VENDOR_LARGE_NAME_901234567890 by my VENDOR_LARGE_NAME_901234567_ID, named 'vendorLargeName901234567890'.
-     * @return The set-upper of more nested relation. {...with[nested-relation].with[more-nested-relation]} (NotNull)
      */
-    public VendorLargeName901234567890Nss withVendorLargeName901234567890() {
+    public void withVendorLargeName901234567890() {
         _query.doNss(new VendorLargeName90123456RefCQ.NssCall() { public ConditionQuery qf() { return _query.queryVendorLargeName901234567890(); }});
-        return new VendorLargeName901234567890Nss(_query.queryVendorLargeName901234567890());
     }
-
 }

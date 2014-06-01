@@ -20,7 +20,6 @@ import com.example.dbflute.oracle.dbflute.allcommon.ImplementedInvokerAssistant;
 import com.example.dbflute.oracle.dbflute.allcommon.ImplementedSqlClauseCreator;
 import com.example.dbflute.oracle.dbflute.cbean.*;
 import com.example.dbflute.oracle.dbflute.cbean.cq.*;
-import com.example.dbflute.oracle.dbflute.cbean.nss.*;
 
 /**
  * The base condition-bean of WHITE_REF_NEXT_TARGET.
@@ -265,11 +264,6 @@ public class BsWhiteRefNextTargetCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                         SetupSelect
     //                                                                         ===========
-    protected NextSchemaProductStatusNss _nssNextSchemaProductStatus;
-    public NextSchemaProductStatusNss getNssNextSchemaProductStatus() {
-        if (_nssNextSchemaProductStatus == null) { _nssNextSchemaProductStatus = new NextSchemaProductStatusNss(null); }
-        return _nssNextSchemaProductStatus;
-    }
     /**
      * Set up relation columns to select clause. <br />
      * (隣のスキステ)NEXT_SCHEMA_PRODUCT_STATUS by my NEXT_TARGET_CODE, named 'nextSchemaProductStatus'.
@@ -280,17 +274,13 @@ public class BsWhiteRefNextTargetCB extends AbstractConditionBean {
      * WhiteRefNextTarget whiteRefNextTarget = whiteRefNextTargetBhv.selectEntityWithDeletedCheck(cb);
      * ... = whiteRefNextTarget.<span style="color: #DD4747">getNextSchemaProductStatus()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
      * </pre>
-     * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
-    public NextSchemaProductStatusNss setupSelect_NextSchemaProductStatus() {
+    public void setupSelect_NextSchemaProductStatus() {
         assertSetupSelectPurpose("nextSchemaProductStatus");
         if (hasSpecifiedColumn()) { // if reverse call
             specify().columnNextTargetCode();
         }
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryNextSchemaProductStatus(); } });
-        if (_nssNextSchemaProductStatus == null || !_nssNextSchemaProductStatus.hasConditionQuery())
-        { _nssNextSchemaProductStatus = new NextSchemaProductStatusNss(query().queryNextSchemaProductStatus()); }
-        return _nssNextSchemaProductStatus;
     }
 
     // [DBFlute-0.7.4]

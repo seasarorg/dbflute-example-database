@@ -28,5 +28,4 @@ public class VendorUuidFooNss {
         _query.doNss(new VendorUuidFooCQ.NssCall() { public ConditionQuery qf() { return _query.queryVendorUuidBar(); }});
         return new VendorUuidBarNss(_query.queryVendorUuidBar());
     }
-
 }

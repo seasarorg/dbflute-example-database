@@ -20,7 +20,6 @@ import com.example.dbflute.oracle.dbflute.allcommon.ImplementedInvokerAssistant;
 import com.example.dbflute.oracle.dbflute.allcommon.ImplementedSqlClauseCreator;
 import com.example.dbflute.oracle.dbflute.cbean.*;
 import com.example.dbflute.oracle.dbflute.cbean.cq.*;
-import com.example.dbflute.oracle.dbflute.cbean.nss.*;
 
 /**
  * The base condition-bean of WHITE_REF_TARGET.
@@ -265,11 +264,6 @@ public class BsWhiteRefTargetCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                         SetupSelect
     //                                                                         ===========
-    protected WhiteTargetNss _nssWhiteTarget;
-    public WhiteTargetNss getNssWhiteTarget() {
-        if (_nssWhiteTarget == null) { _nssWhiteTarget = new WhiteTargetNss(null); }
-        return _nssWhiteTarget;
-    }
     /**
      * Set up relation columns to select clause. <br />
      * WHITE_TARGET by my TARGET_ID, named 'whiteTarget'.
@@ -280,17 +274,13 @@ public class BsWhiteRefTargetCB extends AbstractConditionBean {
      * WhiteRefTarget whiteRefTarget = whiteRefTargetBhv.selectEntityWithDeletedCheck(cb);
      * ... = whiteRefTarget.<span style="color: #DD4747">getWhiteTarget()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
      * </pre>
-     * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
-    public WhiteTargetNss setupSelect_WhiteTarget() {
+    public void setupSelect_WhiteTarget() {
         assertSetupSelectPurpose("whiteTarget");
         if (hasSpecifiedColumn()) { // if reverse call
             specify().columnTargetId();
         }
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryWhiteTarget(); } });
-        if (_nssWhiteTarget == null || !_nssWhiteTarget.hasConditionQuery())
-        { _nssWhiteTarget = new WhiteTargetNss(query().queryWhiteTarget()); }
-        return _nssWhiteTarget;
     }
 
     // [DBFlute-0.7.4]

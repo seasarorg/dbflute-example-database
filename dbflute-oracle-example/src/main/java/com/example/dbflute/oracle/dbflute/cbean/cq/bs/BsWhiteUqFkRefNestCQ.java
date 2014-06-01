@@ -73,7 +73,6 @@ public class BsWhiteUqFkRefNestCQ extends AbstractBsWhiteUqFkRefNestCQ {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _uqFkRefNestId;
     public ConditionValue getUqFkRefNestId() {
         if (_uqFkRefNestId == null) { _uqFkRefNestId = nCV(); }

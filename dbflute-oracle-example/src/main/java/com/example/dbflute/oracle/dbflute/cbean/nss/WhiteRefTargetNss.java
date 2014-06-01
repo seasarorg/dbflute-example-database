@@ -22,11 +22,8 @@ public class WhiteRefTargetNss {
     /**
      * With nested relation columns to select clause. <br />
      * WHITE_TARGET by my TARGET_ID, named 'whiteTarget'.
-     * @return The set-upper of more nested relation. {...with[nested-relation].with[more-nested-relation]} (NotNull)
      */
-    public WhiteTargetNss withWhiteTarget() {
+    public void withWhiteTarget() {
         _query.doNss(new WhiteRefTargetCQ.NssCall() { public ConditionQuery qf() { return _query.queryWhiteTarget(); }});
-        return new WhiteTargetNss(_query.queryWhiteTarget());
     }
-
 }

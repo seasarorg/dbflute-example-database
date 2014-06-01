@@ -73,7 +73,6 @@ public class BsSynonymNextSecretAuthCQ extends AbstractBsSynonymNextSecretAuthCQ
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _secretAuthCode;
     public ConditionValue getSecretAuthCode() {
         if (_secretAuthCode == null) { _secretAuthCode = nCV(); }

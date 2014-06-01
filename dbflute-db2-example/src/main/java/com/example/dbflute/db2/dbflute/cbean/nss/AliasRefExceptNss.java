@@ -22,11 +22,8 @@ public class AliasRefExceptNss {
     /**
      * With nested relation columns to select clause. <br />
      * ALIAS_EXCEPT by my EXCEPT_ID, named 'aliasExcept'.
-     * @return The set-upper of more nested relation. {...with[nested-relation].with[more-nested-relation]} (NotNull)
      */
-    public AliasExceptNss withAliasExcept() {
+    public void withAliasExcept() {
         _query.doNss(new AliasRefExceptCQ.NssCall() { public ConditionQuery qf() { return _query.queryAliasExcept(); }});
-        return new AliasExceptNss(_query.queryAliasExcept());
     }
-
 }

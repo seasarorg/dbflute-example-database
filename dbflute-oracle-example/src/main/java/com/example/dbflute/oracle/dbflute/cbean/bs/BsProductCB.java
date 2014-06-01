@@ -20,7 +20,6 @@ import com.example.dbflute.oracle.dbflute.allcommon.ImplementedInvokerAssistant;
 import com.example.dbflute.oracle.dbflute.allcommon.ImplementedSqlClauseCreator;
 import com.example.dbflute.oracle.dbflute.cbean.*;
 import com.example.dbflute.oracle.dbflute.cbean.cq.*;
-import com.example.dbflute.oracle.dbflute.cbean.nss.*;
 
 /**
  * The base condition-bean of PRODUCT.
@@ -275,11 +274,6 @@ public class BsProductCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                         SetupSelect
     //                                                                         ===========
-    protected ProductStatusNss _nssProductStatus;
-    public ProductStatusNss getNssProductStatus() {
-        if (_nssProductStatus == null) { _nssProductStatus = new ProductStatusNss(null); }
-        return _nssProductStatus;
-    }
     /**
      * Set up relation columns to select clause. <br />
      * PRODUCT_STATUS by my PRODUCT_STATUS_CODE, named 'productStatus'.
@@ -290,17 +284,13 @@ public class BsProductCB extends AbstractConditionBean {
      * Product product = productBhv.selectEntityWithDeletedCheck(cb);
      * ... = product.<span style="color: #DD4747">getProductStatus()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
      * </pre>
-     * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
-    public ProductStatusNss setupSelect_ProductStatus() {
+    public void setupSelect_ProductStatus() {
         assertSetupSelectPurpose("productStatus");
         if (hasSpecifiedColumn()) { // if reverse call
             specify().columnProductStatusCode();
         }
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryProductStatus(); } });
-        if (_nssProductStatus == null || !_nssProductStatus.hasConditionQuery())
-        { _nssProductStatus = new ProductStatusNss(query().queryProductStatus()); }
-        return _nssProductStatus;
     }
 
     // [DBFlute-0.7.4]

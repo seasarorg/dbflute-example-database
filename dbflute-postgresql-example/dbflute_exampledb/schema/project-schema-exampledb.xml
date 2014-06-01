@@ -477,6 +477,42 @@
         </index>
     </table>
     <table
+        comment="購入支払: 購入に対する支払。&#xa;分割払いもできるのでmanyとなり、会員からの孫テーブルのテストができてうれしい。"
+        name="purchase_payment" schema="exampledb.public" type="TABLE">
+        <column autoIncrement="true" comment="購入支払ID: 連番"
+            dbType="bigserial"
+            default="nextval('purchase_payment_purchase_payment_id_seq'::regclass)"
+            javaType="Long" name="purchase_payment_id"
+            pkName="purchase_payment_pkey" primaryKey="true"
+            required="true" size="19" type="BIGINT"/>
+        <column comment="購入ID: 支払い対象の購入へのID" dbType="int8"
+            javaType="Long" name="purchase_id" required="true" size="19" type="BIGINT"/>
+        <column comment="支払金額: 支払った金額。さて、小数点なのはなぜでしょう？" dbType="numeric"
+            javaType="java.math.BigDecimal" name="payment_amount"
+            required="true" size="10, 2" type="NUMERIC"/>
+        <column comment="支払日時: 支払ったときの日時" dbType="timestamp"
+            javaType="java.sql.Timestamp" name="payment_datetime"
+            required="true" size="26, 3" type="TIMESTAMP"/>
+        <column comment="支払方法コード: 手渡しや銀行振込など" dbType="bpchar"
+            javaType="String" name="payment_method_code" required="true"
+            size="3" type="CHAR"/>
+        <column dbType="timestamp" javaType="java.sql.Timestamp"
+            name="register_datetime" required="true" size="26, 3" type="TIMESTAMP"/>
+        <column dbType="varchar" javaType="String" name="register_user"
+            required="true" size="200" type="VARCHAR"/>
+        <column dbType="timestamp" javaType="java.sql.Timestamp"
+            name="update_datetime" required="true" size="26, 3" type="TIMESTAMP"/>
+        <column dbType="varchar" javaType="String" name="update_user"
+            required="true" size="200" type="VARCHAR"/>
+        <foreign-key foreignSchema="public" foreignTable="purchase" name="fk_purchase_payment_purchase">
+            <reference foreign="purchase_id" local="purchase_id"/>
+        </foreign-key>
+        <index name="ix_purchase_payment_datetime">
+            <index-column name="payment_datetime" position="1"/>
+            <index-column name="payment_amount" position="2"/>
+        </index>
+    </table>
+    <table
         comment="地域: 主に会員の住所に対応する地域。&#xa;かなりざっくりした感じではある。&#xa;業務的one-to-oneの親テーブル。"
         name="region" schema="exampledb.public" type="TABLE">
         <column
@@ -795,6 +831,9 @@
             minimumValue="1" name="member_service_member_service_id_seq" schema="exampledb.public"/>
         <sequence incrementSize="1" maximumValue="9223372036854775807"
             minimumValue="1" name="purchase_purchase_id_seq" schema="exampledb.public"/>
+        <sequence incrementSize="1" maximumValue="9223372036854775807"
+            minimumValue="1"
+            name="purchase_payment_purchase_payment_id_seq" schema="exampledb.public"/>
         <sequence incrementSize="1" maximumValue="9223372036854775807"
             minimumValue="1" name="product_product_id_seq" schema="exampledb.public"/>
         <sequence incrementSize="1" maximumValue="9223372036854775807"

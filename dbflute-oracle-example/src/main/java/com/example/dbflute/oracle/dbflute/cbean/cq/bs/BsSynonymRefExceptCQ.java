@@ -73,7 +73,6 @@ public class BsSynonymRefExceptCQ extends AbstractBsSynonymRefExceptCQ {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _refExceptId;
     public ConditionValue getRefExceptId() {
         if (_refExceptId == null) { _refExceptId = nCV(); }

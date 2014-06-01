@@ -73,7 +73,6 @@ public class BsWhiteXlsManCQ extends AbstractBsWhiteXlsManCQ {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _xlsManId;
     public ConditionValue getXlsManId() {
         if (_xlsManId == null) { _xlsManId = nCV(); }

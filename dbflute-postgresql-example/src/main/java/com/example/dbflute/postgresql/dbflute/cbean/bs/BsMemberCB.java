@@ -300,6 +300,7 @@ public class BsMemberCB extends AbstractConditionBean {
         { _nssMemberStatus = new MemberStatusNss(query().queryMemberStatus()); }
         return _nssMemberStatus;
     }
+
     protected MemberAddressNss _nssMemberAddressAsValid;
     public MemberAddressNss getNssMemberAddressAsValid() {
         if (_nssMemberAddressAsValid == null) { _nssMemberAddressAsValid = new MemberAddressNss(null); }
@@ -325,6 +326,7 @@ public class BsMemberCB extends AbstractConditionBean {
         { _nssMemberAddressAsValid = new MemberAddressNss(query().queryMemberAddressAsValid(targetDate)); }
         return _nssMemberAddressAsValid;
     }
+
     protected MemberLoginNss _nssMemberLoginAsLatest;
     public MemberLoginNss getNssMemberLoginAsLatest() {
         if (_nssMemberLoginAsLatest == null) { _nssMemberLoginAsLatest = new MemberLoginNss(null); }

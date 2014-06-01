@@ -73,7 +73,6 @@ public class BsWhiteSameNameRefRefCQ extends AbstractBsWhiteSameNameRefRefCQ {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _refRefId;
     public ConditionValue getRefRefId() {
         if (_refRefId == null) { _refRefId = nCV(); }

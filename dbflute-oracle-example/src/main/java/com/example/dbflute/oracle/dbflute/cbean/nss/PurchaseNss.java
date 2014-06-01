@@ -37,5 +37,4 @@ public class PurchaseNss {
         _query.doNss(new PurchaseCQ.NssCall() { public ConditionQuery qf() { return _query.queryProduct(); }});
         return new ProductNss(_query.queryProduct());
     }
-
 }

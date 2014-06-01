@@ -73,7 +73,6 @@ public class BsVendorDatePkCQ extends AbstractBsVendorDatePkCQ {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _fooDate;
     public ConditionValue getFooDate() {
         if (_fooDate == null) { _fooDate = nCV(); }

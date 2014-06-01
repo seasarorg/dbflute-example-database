@@ -73,7 +73,6 @@ public class BsSynonymMemberLoginCQ extends AbstractBsSynonymMemberLoginCQ {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _memberLoginId;
     public ConditionValue getMemberLoginId() {
         if (_memberLoginId == null) { _memberLoginId = nCV(); }

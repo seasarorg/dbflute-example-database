@@ -301,6 +301,7 @@ public class BsMemberAddressCB extends AbstractConditionBean {
         { _nssMember = new MemberNss(query().queryMember()); }
         return _nssMember;
     }
+
     protected RegionNss _nssRegion;
     public RegionNss getNssRegion() {
         if (_nssRegion == null) { _nssRegion = new RegionNss(null); }

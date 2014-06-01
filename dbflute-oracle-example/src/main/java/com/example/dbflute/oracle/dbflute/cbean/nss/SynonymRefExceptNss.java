@@ -22,11 +22,8 @@ public class SynonymRefExceptNss {
     /**
      * With nested relation columns to select clause. <br />
      * SYNONYM_EXCEPT by my EXCEPT_ID, named 'synonymExcept'.
-     * @return The set-upper of more nested relation. {...with[nested-relation].with[more-nested-relation]} (NotNull)
      */
-    public SynonymExceptNss withSynonymExcept() {
+    public void withSynonymExcept() {
         _query.doNss(new SynonymRefExceptCQ.NssCall() { public ConditionQuery qf() { return _query.querySynonymExcept(); }});
-        return new SynonymExceptNss(_query.querySynonymExcept());
     }
-
 }

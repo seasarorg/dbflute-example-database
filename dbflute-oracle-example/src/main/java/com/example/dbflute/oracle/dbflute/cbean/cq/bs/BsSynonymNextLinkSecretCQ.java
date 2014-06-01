@@ -73,7 +73,6 @@ public class BsSynonymNextLinkSecretCQ extends AbstractBsSynonymNextLinkSecretCQ
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _secretCode;
     public ConditionValue getSecretCode() {
         if (_secretCode == null) { _secretCode = nCV(); }

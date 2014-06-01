@@ -20,7 +20,6 @@ import com.example.dbflute.oracle.dbflute.allcommon.ImplementedInvokerAssistant;
 import com.example.dbflute.oracle.dbflute.allcommon.ImplementedSqlClauseCreator;
 import com.example.dbflute.oracle.dbflute.cbean.*;
 import com.example.dbflute.oracle.dbflute.cbean.cq.*;
-import com.example.dbflute.oracle.dbflute.cbean.nss.*;
 
 /**
  * The base condition-bean of SYNONYM_PRODUCT.
@@ -275,11 +274,6 @@ public class BsSynonymProductCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                         SetupSelect
     //                                                                         ===========
-    protected SynonymProductStatusNss _nssSynonymProductStatus;
-    public SynonymProductStatusNss getNssSynonymProductStatus() {
-        if (_nssSynonymProductStatus == null) { _nssSynonymProductStatus = new SynonymProductStatusNss(null); }
-        return _nssSynonymProductStatus;
-    }
     /**
      * Set up relation columns to select clause. <br />
      * SYNONYM_PRODUCT_STATUS by my PRODUCT_STATUS_CODE, named 'synonymProductStatus'.
@@ -290,17 +284,13 @@ public class BsSynonymProductCB extends AbstractConditionBean {
      * SynonymProduct synonymProduct = synonymProductBhv.selectEntityWithDeletedCheck(cb);
      * ... = synonymProduct.<span style="color: #DD4747">getSynonymProductStatus()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
      * </pre>
-     * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
-    public SynonymProductStatusNss setupSelect_SynonymProductStatus() {
+    public void setupSelect_SynonymProductStatus() {
         assertSetupSelectPurpose("synonymProductStatus");
         if (hasSpecifiedColumn()) { // if reverse call
             specify().columnProductStatusCode();
         }
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().querySynonymProductStatus(); } });
-        if (_nssSynonymProductStatus == null || !_nssSynonymProductStatus.hasConditionQuery())
-        { _nssSynonymProductStatus = new SynonymProductStatusNss(query().querySynonymProductStatus()); }
-        return _nssSynonymProductStatus;
     }
 
     // [DBFlute-0.7.4]

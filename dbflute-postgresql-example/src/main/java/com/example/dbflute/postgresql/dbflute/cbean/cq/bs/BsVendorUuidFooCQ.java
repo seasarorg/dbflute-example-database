@@ -73,7 +73,6 @@ public class BsVendorUuidFooCQ extends AbstractBsVendorUuidFooCQ {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _fooId;
     public ConditionValue getFooId() {
         if (_fooId == null) { _fooId = nCV(); }

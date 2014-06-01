@@ -300,6 +300,7 @@ public class BsProductCB extends AbstractConditionBean {
         { _nssProductCategory = new ProductCategoryNss(query().queryProductCategory()); }
         return _nssProductCategory;
     }
+
     protected ProductStatusNss _nssProductStatus;
     public ProductStatusNss getNssProductStatus() {
         if (_nssProductStatus == null) { _nssProductStatus = new ProductStatusNss(null); }

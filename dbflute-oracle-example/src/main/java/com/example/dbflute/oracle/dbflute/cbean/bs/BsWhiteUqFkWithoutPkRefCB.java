@@ -20,7 +20,6 @@ import com.example.dbflute.oracle.dbflute.allcommon.ImplementedInvokerAssistant;
 import com.example.dbflute.oracle.dbflute.allcommon.ImplementedSqlClauseCreator;
 import com.example.dbflute.oracle.dbflute.cbean.*;
 import com.example.dbflute.oracle.dbflute.cbean.cq.*;
-import com.example.dbflute.oracle.dbflute.cbean.nss.*;
 
 /**
  * The base condition-bean of WHITE_UQ_FK_WITHOUT_PK_REF.
@@ -255,11 +254,6 @@ public class BsWhiteUqFkWithoutPkRefCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                         SetupSelect
     //                                                                         ===========
-    protected WhiteUqFkWithoutPkNss _nssWhiteUqFkWithoutPk;
-    public WhiteUqFkWithoutPkNss getNssWhiteUqFkWithoutPk() {
-        if (_nssWhiteUqFkWithoutPk == null) { _nssWhiteUqFkWithoutPk = new WhiteUqFkWithoutPkNss(null); }
-        return _nssWhiteUqFkWithoutPk;
-    }
     /**
      * Set up relation columns to select clause. <br />
      * WHITE_UQ_FK_WITHOUT_PK by my FK_TO_UQ_CODE, named 'whiteUqFkWithoutPk'.
@@ -270,17 +264,13 @@ public class BsWhiteUqFkWithoutPkRefCB extends AbstractConditionBean {
      * WhiteUqFkWithoutPkRef whiteUqFkWithoutPkRef = whiteUqFkWithoutPkRefBhv.selectEntityWithDeletedCheck(cb);
      * ... = whiteUqFkWithoutPkRef.<span style="color: #DD4747">getWhiteUqFkWithoutPk()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
      * </pre>
-     * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
-    public WhiteUqFkWithoutPkNss setupSelect_WhiteUqFkWithoutPk() {
+    public void setupSelect_WhiteUqFkWithoutPk() {
         assertSetupSelectPurpose("whiteUqFkWithoutPk");
         if (hasSpecifiedColumn()) { // if reverse call
             specify().columnFkToUqCode();
         }
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryWhiteUqFkWithoutPk(); } });
-        if (_nssWhiteUqFkWithoutPk == null || !_nssWhiteUqFkWithoutPk.hasConditionQuery())
-        { _nssWhiteUqFkWithoutPk = new WhiteUqFkWithoutPkNss(query().queryWhiteUqFkWithoutPk()); }
-        return _nssWhiteUqFkWithoutPk;
     }
 
     // [DBFlute-0.7.4]

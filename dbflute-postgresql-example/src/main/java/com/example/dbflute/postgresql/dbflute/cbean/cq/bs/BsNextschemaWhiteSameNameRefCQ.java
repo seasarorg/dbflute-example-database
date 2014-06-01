@@ -73,7 +73,6 @@ public class BsNextschemaWhiteSameNameRefCQ extends AbstractBsNextschemaWhiteSam
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _sameNameRefId;
     public ConditionValue getSameNameRefId() {
         if (_sameNameRefId == null) { _sameNameRefId = nCV(); }

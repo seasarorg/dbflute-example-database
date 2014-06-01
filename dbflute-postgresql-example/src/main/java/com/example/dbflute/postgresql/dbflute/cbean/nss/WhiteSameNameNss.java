@@ -28,5 +28,4 @@ public class WhiteSameNameNss {
         _query.doNss(new WhiteSameNameCQ.NssCall() { public ConditionQuery qf() { return _query.queryNextSchemaProduct(); }});
         return new NextSchemaProductNss(_query.queryNextSchemaProduct());
     }
-
 }

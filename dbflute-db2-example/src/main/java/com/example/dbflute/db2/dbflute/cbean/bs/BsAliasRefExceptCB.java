@@ -20,7 +20,6 @@ import com.example.dbflute.db2.dbflute.allcommon.ImplementedInvokerAssistant;
 import com.example.dbflute.db2.dbflute.allcommon.ImplementedSqlClauseCreator;
 import com.example.dbflute.db2.dbflute.cbean.*;
 import com.example.dbflute.db2.dbflute.cbean.cq.*;
-import com.example.dbflute.db2.dbflute.cbean.nss.*;
 
 /**
  * The base condition-bean of ALIAS_REF_EXCEPT.
@@ -267,11 +266,6 @@ public class BsAliasRefExceptCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                         SetupSelect
     //                                                                         ===========
-    protected AliasExceptNss _nssAliasExcept;
-    public AliasExceptNss getNssAliasExcept() {
-        if (_nssAliasExcept == null) { _nssAliasExcept = new AliasExceptNss(null); }
-        return _nssAliasExcept;
-    }
     /**
      * Set up relation columns to select clause. <br />
      * ALIAS_EXCEPT by my EXCEPT_ID, named 'aliasExcept'.
@@ -282,17 +276,13 @@ public class BsAliasRefExceptCB extends AbstractConditionBean {
      * AliasRefExcept aliasRefExcept = aliasRefExceptBhv.selectEntityWithDeletedCheck(cb);
      * ... = aliasRefExcept.<span style="color: #DD4747">getAliasExcept()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
      * </pre>
-     * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
-    public AliasExceptNss setupSelect_AliasExcept() {
+    public void setupSelect_AliasExcept() {
         assertSetupSelectPurpose("aliasExcept");
         if (hasSpecifiedColumn()) { // if reverse call
             specify().columnExceptId();
         }
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryAliasExcept(); } });
-        if (_nssAliasExcept == null || !_nssAliasExcept.hasConditionQuery())
-        { _nssAliasExcept = new AliasExceptNss(query().queryAliasExcept()); }
-        return _nssAliasExcept;
     }
 
     // [DBFlute-0.7.4]

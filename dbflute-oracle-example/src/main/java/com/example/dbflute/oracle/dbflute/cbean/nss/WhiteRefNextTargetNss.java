@@ -22,11 +22,8 @@ public class WhiteRefNextTargetNss {
     /**
      * With nested relation columns to select clause. <br />
      * (隣のスキステ)NEXT_SCHEMA_PRODUCT_STATUS by my NEXT_TARGET_CODE, named 'nextSchemaProductStatus'.
-     * @return The set-upper of more nested relation. {...with[nested-relation].with[more-nested-relation]} (NotNull)
      */
-    public NextSchemaProductStatusNss withNextSchemaProductStatus() {
+    public void withNextSchemaProductStatus() {
         _query.doNss(new WhiteRefNextTargetCQ.NssCall() { public ConditionQuery qf() { return _query.queryNextSchemaProductStatus(); }});
-        return new NextSchemaProductStatusNss(_query.queryNextSchemaProductStatus());
     }
-
 }

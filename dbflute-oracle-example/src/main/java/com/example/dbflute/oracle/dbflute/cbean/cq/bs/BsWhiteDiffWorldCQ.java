@@ -73,7 +73,6 @@ public class BsWhiteDiffWorldCQ extends AbstractBsWhiteDiffWorldCQ {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _diffWorldId;
     public ConditionValue getDiffWorldId() {
         if (_diffWorldId == null) { _diffWorldId = nCV(); }

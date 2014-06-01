@@ -73,7 +73,6 @@ public class BsSynonymNextSameNameFkCQ extends AbstractBsSynonymNextSameNameFkCQ
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _refId;
     public ConditionValue getRefId() {
         if (_refId == null) { _refId = nCV(); }

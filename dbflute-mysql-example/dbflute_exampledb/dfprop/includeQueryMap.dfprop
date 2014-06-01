@@ -115,7 +115,7 @@ map:{
             ; !NotEqual ; !NotInScope ; !PrefixSearch; !LikeSearch; !NotLikeSearch ; !IsNull ; !IsNotNull
         }
         ; suffix:_TEXT(String) = list:{}
-        ; suffix:_TEXT(OrderBy) = list:{ !Asc ; !Desc }
+        ; suffix:_TEXT(OrderBy) = list:{}
         ; suffix:_ORDER(Number) = list:{}
         ; suffix:_ORDER(OrderBy) = list:{ !Desc }
     }

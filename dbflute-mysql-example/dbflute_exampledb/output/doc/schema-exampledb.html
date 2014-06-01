@@ -2215,7 +2215,7 @@
 		<td class="sizecell"> 3 </td>
 		<td class="relcell"><a href="#withdrawal_reason" title="FK_MEMBER_WITHDRAWAL_WITHDRAWAL_REASON">WITHDRAWAL_REASON</a>&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
-		<td class="relcell"> &nbsp;</td>
+		<td class="relcell"><a href="#WithdrawalReasonCls">WithdrawalReason</a></td>
 		<td class="commentcell"> 退会した定型理由を参照するコード。<br />何も言わずに退会する会員もいるので必須項目ではない。</td>
 		<td class="subcell">withdrawalReasonCode</td>
 		<td class="subcell">String</td>
@@ -10294,7 +10294,7 @@ WHITE_XLS_MAN
 		<td class="sizecell"> 3 </td>
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell"><a href="#member_withdrawal" title="FK_MEMBER_WITHDRAWAL_WITHDRAWAL_REASON">MEMBER_WITHDRAWAL</a>&nbsp;</td>
-		<td class="relcell"> &nbsp;</td>
+		<td class="relcell"><a href="#WithdrawalReasonCls">WithdrawalReason</a></td>
 		<td class="commentcell"> &nbsp;</td>
 		<td class="subcell">withdrawalReasonCode</td>
 		<td class="subcell">String</td>
@@ -11130,6 +11130,40 @@ WHITE_XLS_MAN
 				<td>4</td>
 				<td>千葉</td>
 				<td class="commentcell"> &nbsp;</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td>WithdrawalReason</td>
+		<td class="clstypecell">table</td>
+		<td>reason&nbsp;for&nbsp;member&nbsp;withdrawal</td>
+		<td>
+			<table class="child">
+			<tr>
+				<th id="WithdrawalReasonCls">Code</th>
+				<th>Name</th>
+				<th>Comment</th>
+			</tr>
+			<tr>
+				<td>SIT</td>
+				<td>Sit</td>
+				<td class="commentcell">サイトが使いにくいから</td>
+			</tr>
+			<tr>
+				<td>PRD</td>
+				<td>Prd</td>
+				<td class="commentcell">商品に魅力がないから</td>
+			</tr>
+			<tr>
+				<td>FRT</td>
+				<td>Frt</td>
+				<td class="commentcell">フリテンだから</td>
+			</tr>
+			<tr>
+				<td>OTH</td>
+				<td>Oth</td>
+				<td class="commentcell">その他理由</td>
 			</tr>
 			</table>
 		</td>

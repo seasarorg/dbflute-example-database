@@ -1,4 +1,23 @@
 map:{
+    ; 2014/06/01 23:19:07 = map:{
+        ; diffDate = 2014/06/01 23:19:07
+        ; tableCount = map:{
+            ; next = 34
+            ; previous = 33
+        }
+        ; tableDiff = map:{
+            ; purchase_payment = map:{
+                ; tableName = purchase_payment
+                ; diffType = ADD
+            }
+        }
+        ; sequenceDiff = map:{
+            ; exampledb.public.purchase_payment_purchase_payment_id_seq = map:{
+                ; sequenceName = exampledb.public.purchase_payment_purchase_payment_id_seq
+                ; diffType = ADD
+            }
+        }
+    }
     ; 2013/11/30 23:29:00 = map:{
         ; diffDate = 2013/11/30 23:29:00
         ; tableDiff = map:{

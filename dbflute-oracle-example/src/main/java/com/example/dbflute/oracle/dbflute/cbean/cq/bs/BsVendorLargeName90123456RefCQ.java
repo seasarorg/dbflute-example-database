@@ -73,7 +73,6 @@ public class BsVendorLargeName90123456RefCQ extends AbstractBsVendorLargeName901
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _vendorLargeName90123RefId;
     public ConditionValue getVendorLargeName90123RefId() {
         if (_vendorLargeName90123RefId == null) { _vendorLargeName90123RefId = nCV(); }

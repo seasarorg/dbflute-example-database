@@ -20,7 +20,6 @@ import com.example.dbflute.oracle.dbflute.allcommon.ImplementedInvokerAssistant;
 import com.example.dbflute.oracle.dbflute.allcommon.ImplementedSqlClauseCreator;
 import com.example.dbflute.oracle.dbflute.cbean.*;
 import com.example.dbflute.oracle.dbflute.cbean.cq.*;
-import com.example.dbflute.oracle.dbflute.cbean.nss.*;
 
 /**
  * The base condition-bean of VENDOR_LARGE_NAME_90123456_REF.
@@ -265,11 +264,6 @@ public class BsVendorLargeName90123456RefCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                         SetupSelect
     //                                                                         ===========
-    protected VendorLargeName901234567890Nss _nssVendorLargeName901234567890;
-    public VendorLargeName901234567890Nss getNssVendorLargeName901234567890() {
-        if (_nssVendorLargeName901234567890 == null) { _nssVendorLargeName901234567890 = new VendorLargeName901234567890Nss(null); }
-        return _nssVendorLargeName901234567890;
-    }
     /**
      * Set up relation columns to select clause. <br />
      * VENDOR_LARGE_NAME_901234567890 by my VENDOR_LARGE_NAME_901234567_ID, named 'vendorLargeName901234567890'.
@@ -280,17 +274,13 @@ public class BsVendorLargeName90123456RefCB extends AbstractConditionBean {
      * VendorLargeName90123456Ref vendorLargeName90123456Ref = vendorLargeName90123456RefBhv.selectEntityWithDeletedCheck(cb);
      * ... = vendorLargeName90123456Ref.<span style="color: #DD4747">getVendorLargeName901234567890()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
      * </pre>
-     * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
-    public VendorLargeName901234567890Nss setupSelect_VendorLargeName901234567890() {
+    public void setupSelect_VendorLargeName901234567890() {
         assertSetupSelectPurpose("vendorLargeName901234567890");
         if (hasSpecifiedColumn()) { // if reverse call
             specify().columnVendorLargeName901234567Id();
         }
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryVendorLargeName901234567890(); } });
-        if (_nssVendorLargeName901234567890 == null || !_nssVendorLargeName901234567890.hasConditionQuery())
-        { _nssVendorLargeName901234567890 = new VendorLargeName901234567890Nss(query().queryVendorLargeName901234567890()); }
-        return _nssVendorLargeName901234567890;
     }
 
     // [DBFlute-0.7.4]

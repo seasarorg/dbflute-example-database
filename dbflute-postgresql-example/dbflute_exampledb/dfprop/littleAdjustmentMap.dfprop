@@ -39,6 +39,10 @@ map:{
 
     ; isSuppressNonCompilableConnectorLimiter = true
 
+    # the test of compatible for CIQ and Nss always generate
+    ; isCompatibleConditionInlineQueryAlwaysGenerate = true
+    ; isCompatibleNestSelectSetupperAlwaysGenerate = true
+
     # /- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # o isAvailableAddingSchemaToTableSqlName: (NotRequired - Default false)
     #   [true]

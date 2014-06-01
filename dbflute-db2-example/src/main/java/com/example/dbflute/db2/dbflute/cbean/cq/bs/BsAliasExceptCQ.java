@@ -73,7 +73,6 @@ public class BsAliasExceptCQ extends AbstractBsAliasExceptCQ {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _exceptId;
     public ConditionValue getExceptId() {
         if (_exceptId == null) { _exceptId = nCV(); }

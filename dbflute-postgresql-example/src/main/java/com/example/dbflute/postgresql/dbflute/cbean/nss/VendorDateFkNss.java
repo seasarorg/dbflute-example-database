@@ -28,5 +28,4 @@ public class VendorDateFkNss {
         _query.doNss(new VendorDateFkCQ.NssCall() { public ConditionQuery qf() { return _query.queryVendorDatePk(); }});
         return new VendorDatePkNss(_query.queryVendorDatePk());
     }
-
 }

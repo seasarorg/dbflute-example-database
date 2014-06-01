@@ -73,7 +73,6 @@ public class BsVendorSynonymMemberCQ extends AbstractBsVendorSynonymMemberCQ {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _memberId;
     public ConditionValue getMemberId() {
         if (_memberId == null) { _memberId = nCV(); }

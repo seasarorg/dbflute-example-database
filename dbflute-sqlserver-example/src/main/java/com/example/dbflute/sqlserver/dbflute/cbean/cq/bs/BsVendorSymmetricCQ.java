@@ -73,7 +73,6 @@ public class BsVendorSymmetricCQ extends AbstractBsVendorSymmetricCQ {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _vendorSymmetricId;
     public ConditionValue getVendorSymmetricId() {
         if (_vendorSymmetricId == null) { _vendorSymmetricId = nCV(); }

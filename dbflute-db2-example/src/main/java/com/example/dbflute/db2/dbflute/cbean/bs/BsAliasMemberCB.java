@@ -20,7 +20,6 @@ import com.example.dbflute.db2.dbflute.allcommon.ImplementedInvokerAssistant;
 import com.example.dbflute.db2.dbflute.allcommon.ImplementedSqlClauseCreator;
 import com.example.dbflute.db2.dbflute.cbean.*;
 import com.example.dbflute.db2.dbflute.cbean.cq.*;
-import com.example.dbflute.db2.dbflute.cbean.nss.*;
 
 /**
  * The base condition-bean of ALIAS_MEMBER.
@@ -277,11 +276,6 @@ public class BsAliasMemberCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                         SetupSelect
     //                                                                         ===========
-    protected MemberStatusNss _nssMemberStatus;
-    public MemberStatusNss getNssMemberStatus() {
-        if (_nssMemberStatus == null) { _nssMemberStatus = new MemberStatusNss(null); }
-        return _nssMemberStatus;
-    }
     /**
      * Set up relation columns to select clause. <br />
      * (会員ステータス)MEMBER_STATUS by my MEMBER_STATUS_CODE, named 'memberStatus'.
@@ -292,17 +286,13 @@ public class BsAliasMemberCB extends AbstractConditionBean {
      * AliasMember aliasMember = aliasMemberBhv.selectEntityWithDeletedCheck(cb);
      * ... = aliasMember.<span style="color: #DD4747">getMemberStatus()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
      * </pre>
-     * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
-    public MemberStatusNss setupSelect_MemberStatus() {
+    public void setupSelect_MemberStatus() {
         assertSetupSelectPurpose("memberStatus");
         if (hasSpecifiedColumn()) { // if reverse call
             specify().columnMemberStatusCode();
         }
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryMemberStatus(); } });
-        if (_nssMemberStatus == null || !_nssMemberStatus.hasConditionQuery())
-        { _nssMemberStatus = new MemberStatusNss(query().queryMemberStatus()); }
-        return _nssMemberStatus;
     }
 
     // [DBFlute-0.7.4]

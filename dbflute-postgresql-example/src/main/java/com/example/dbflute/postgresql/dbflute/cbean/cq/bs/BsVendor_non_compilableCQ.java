@@ -73,7 +73,6 @@ public class BsVendor_non_compilableCQ extends AbstractBsVendor_non_compilableCQ
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _non_compilable_id;
     public ConditionValue getNon_compilable_id() {
         if (_non_compilable_id == null) { _non_compilable_id = nCV(); }

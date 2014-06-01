@@ -73,7 +73,6 @@ public class BsWhiteTargetCQ extends AbstractBsWhiteTargetCQ {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _targetId;
     public ConditionValue getTargetId() {
         if (_targetId == null) { _targetId = nCV(); }

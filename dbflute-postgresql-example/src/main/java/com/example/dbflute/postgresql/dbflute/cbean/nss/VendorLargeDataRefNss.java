@@ -37,5 +37,4 @@ public class VendorLargeDataRefNss {
         _query.doNss(new VendorLargeDataRefCQ.NssCall() { public ConditionQuery qf() { return _query.queryVendorLargeDataRefSelf(); }});
         return new VendorLargeDataRefNss(_query.queryVendorLargeDataRefSelf());
     }
-
 }
