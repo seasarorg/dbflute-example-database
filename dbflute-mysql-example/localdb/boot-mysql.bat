@@ -1,6 +1,4 @@
 %~d0
 cd %~p0
 
-.\mysql\bin\mysqld --defaults-file=.\my.ini -nt
-
-pause
+start /b cmd /c .\mysql\bin\mysqld --defaults-file=.\my.cnf -nt
