@@ -88,7 +88,6 @@ public class BsNextSchemaProductCQ extends AbstractBsNextSchemaProductCQ {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _productId;
     public ConditionValue getProductId() {
         if (_productId == null) { _productId = nCV(); }

@@ -51,13 +51,13 @@ import com.example.dbflute.mysql.dbflute.exentity.*;
  *     member, product, SUMMARY_PRODUCT, SUMMARY_WITHDRAWAL, WHITE_NO_PK_RELATION, PURCHASE, MEMBER_ADDRESS(AsSkipRelation), white_purchase_referrer(AsOne), purchase(AsOne)
  * 
  * [referrer table]
- *     white_purchase_referrer, purchase
+ *     purchase_payment, white_purchase_referrer, purchase
  * 
  * [foreign property]
  *     member, product, summaryProduct, summaryWithdrawal, whiteNoPkRelation, purchaseSelf, memberAddressAsSkipRelation, whitePurchaseReferrerAsOne, purchaseSelfAsOne
  * 
  * [referrer property]
- *     
+ *     purchasePaymentList
  * 
  * [get/set template]
  * /= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
@@ -484,6 +484,26 @@ public abstract class BsPurchase implements EntityDefinedCommonColumn, Serializa
     // ===================================================================================
     //                                                                   Referrer Property
     //                                                                   =================
+    /** (購入支払)purchase_payment by PURCHASE_ID, named 'purchasePaymentList'. */
+    protected List<PurchasePayment> _purchasePaymentList;
+
+    /**
+     * (購入支払)purchase_payment by PURCHASE_ID, named 'purchasePaymentList'.
+     * @return The entity list of referrer property 'purchasePaymentList'. (NotNull: even if no loading, returns empty list)
+     */
+    public List<PurchasePayment> getPurchasePaymentList() {
+        if (_purchasePaymentList == null) { _purchasePaymentList = newReferrerList(); }
+        return _purchasePaymentList;
+    }
+
+    /**
+     * (購入支払)purchase_payment by PURCHASE_ID, named 'purchasePaymentList'.
+     * @param purchasePaymentList The entity list of referrer property 'purchasePaymentList'. (NullAllowed)
+     */
+    public void setPurchasePaymentList(List<PurchasePayment> purchasePaymentList) {
+        _purchasePaymentList = purchasePaymentList;
+    }
+
     protected <ELEMENT> List<ELEMENT> newReferrerList() {
         return new ArrayList<ELEMENT>();
     }
@@ -630,6 +650,8 @@ public abstract class BsPurchase implements EntityDefinedCommonColumn, Serializa
         { sb.append(li).append(xbRDS(_whitePurchaseReferrerAsOne, "whitePurchaseReferrerAsOne")); }
         if (_purchaseSelfAsOne != null)
         { sb.append(li).append(xbRDS(_purchaseSelfAsOne, "purchaseSelfAsOne")); }
+        if (_purchasePaymentList != null) { for (Entity et : _purchasePaymentList)
+        { if (et != null) { sb.append(li).append(xbRDS(et, "purchasePaymentList")); } } }
         return sb.toString();
     }
     protected String xbRDS(Entity et, String name) { // buildRelationDisplayString()
@@ -680,6 +702,8 @@ public abstract class BsPurchase implements EntityDefinedCommonColumn, Serializa
         if (_memberAddressAsSkipRelation != null) { sb.append(cm).append("memberAddressAsSkipRelation"); }
         if (_whitePurchaseReferrerAsOne != null) { sb.append(cm).append("whitePurchaseReferrerAsOne"); }
         if (_purchaseSelfAsOne != null) { sb.append(cm).append("purchaseSelfAsOne"); }
+        if (_purchasePaymentList != null && !_purchasePaymentList.isEmpty())
+        { sb.append(cm).append("purchasePaymentList"); }
         if (sb.length() > cm.length()) {
             sb.delete(0, cm.length()).insert(0, "(").append(")");
         }

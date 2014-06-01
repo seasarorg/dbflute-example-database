@@ -88,7 +88,6 @@ public class BsWhiteColumnExceptCQ extends AbstractBsWhiteColumnExceptCQ {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _exceptColumnId;
     public ConditionValue getExceptColumnId() {
         if (_exceptColumnId == null) { _exceptColumnId = nCV(); }

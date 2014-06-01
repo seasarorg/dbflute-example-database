@@ -88,7 +88,6 @@ public class BsWhiteEscapedJavaDocCQ extends AbstractBsWhiteEscapedJavaDocCQ {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _escapedJavaDocCode;
     public ConditionValue getEscapedJavaDocCode() {
         if (_escapedJavaDocCode == null) { _escapedJavaDocCode = nCV(); }

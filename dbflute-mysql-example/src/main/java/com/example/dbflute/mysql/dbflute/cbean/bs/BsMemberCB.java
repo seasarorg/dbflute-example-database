@@ -274,11 +274,6 @@ public class BsMemberCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                         SetupSelect
     //                                                                         ===========
-    protected MemberStatusNss _nssMemberStatus;
-    public MemberStatusNss getNssMemberStatus() {
-        if (_nssMemberStatus == null) { _nssMemberStatus = new MemberStatusNss(null); }
-        return _nssMemberStatus;
-    }
     /**
      * Set up relation columns to select clause. <br />
      * (会員ステータス)member_status by my MEMBER_STATUS_CODE, named 'memberStatus'.
@@ -289,18 +284,15 @@ public class BsMemberCB extends AbstractConditionBean {
      * Member member = memberBhv.selectEntityWithDeletedCheck(cb);
      * ... = member.<span style="color: #DD4747">getMemberStatus()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
      * </pre>
-     * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
-    public MemberStatusNss setupSelect_MemberStatus() {
+    public void setupSelect_MemberStatus() {
         assertSetupSelectPurpose("memberStatus");
         if (hasSpecifiedColumn()) { // if reverse call
             specify().columnMemberStatusCode();
         }
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryMemberStatus(); } });
-        if (_nssMemberStatus == null || !_nssMemberStatus.hasConditionQuery())
-        { _nssMemberStatus = new MemberStatusNss(query().queryMemberStatus()); }
-        return _nssMemberStatus;
     }
+
     protected MemberAddressNss _nssMemberAddressAsValid;
     public MemberAddressNss getNssMemberAddressAsValid() {
         if (_nssMemberAddressAsValid == null) { _nssMemberAddressAsValid = new MemberAddressNss(null); }
@@ -326,6 +318,7 @@ public class BsMemberCB extends AbstractConditionBean {
         { _nssMemberAddressAsValid = new MemberAddressNss(query().queryMemberAddressAsValid(targetDate)); }
         return _nssMemberAddressAsValid;
     }
+
     protected MemberAddressNss _nssMemberAddressAsValidBefore;
     public MemberAddressNss getNssMemberAddressAsValidBefore() {
         if (_nssMemberAddressAsValidBefore == null) { _nssMemberAddressAsValidBefore = new MemberAddressNss(null); }
@@ -351,6 +344,7 @@ public class BsMemberCB extends AbstractConditionBean {
         { _nssMemberAddressAsValidBefore = new MemberAddressNss(query().queryMemberAddressAsValidBefore(targetDate)); }
         return _nssMemberAddressAsValidBefore;
     }
+
     protected MemberLoginNss _nssMemberLoginAsLoginStatus;
     public MemberLoginNss getNssMemberLoginAsLoginStatus() {
         if (_nssMemberLoginAsLoginStatus == null) { _nssMemberLoginAsLoginStatus = new MemberLoginNss(null); }
@@ -376,6 +370,7 @@ public class BsMemberCB extends AbstractConditionBean {
         { _nssMemberLoginAsLoginStatus = new MemberLoginNss(query().queryMemberLoginAsLoginStatus(statusCode)); }
         return _nssMemberLoginAsLoginStatus;
     }
+
     protected MemberAddressNss _nssMemberAddressAsIfComment;
     public MemberAddressNss getNssMemberAddressAsIfComment() {
         if (_nssMemberAddressAsIfComment == null) { _nssMemberAddressAsIfComment = new MemberAddressNss(null); }
@@ -402,6 +397,7 @@ public class BsMemberCB extends AbstractConditionBean {
         { _nssMemberAddressAsIfComment = new MemberAddressNss(query().queryMemberAddressAsIfComment(targetDate, region)); }
         return _nssMemberAddressAsIfComment;
     }
+
     protected MemberAddressNss _nssMemberAddressAsOnlyOneDate;
     public MemberAddressNss getNssMemberAddressAsOnlyOneDate() {
         if (_nssMemberAddressAsOnlyOneDate == null) { _nssMemberAddressAsOnlyOneDate = new MemberAddressNss(null); }
@@ -427,6 +423,7 @@ public class BsMemberCB extends AbstractConditionBean {
         { _nssMemberAddressAsOnlyOneDate = new MemberAddressNss(query().queryMemberAddressAsOnlyOneDate(targetDate)); }
         return _nssMemberAddressAsOnlyOneDate;
     }
+
     protected MemberLoginNss _nssMemberLoginAsLocalForeignOverTest;
     public MemberLoginNss getNssMemberLoginAsLocalForeignOverTest() {
         if (_nssMemberLoginAsLocalForeignOverTest == null) { _nssMemberLoginAsLocalForeignOverTest = new MemberLoginNss(null); }
@@ -451,6 +448,7 @@ public class BsMemberCB extends AbstractConditionBean {
         { _nssMemberLoginAsLocalForeignOverTest = new MemberLoginNss(query().queryMemberLoginAsLocalForeignOverTest()); }
         return _nssMemberLoginAsLocalForeignOverTest;
     }
+
     protected MemberLoginNss _nssMemberLoginAsForeignForeignEachOverTest;
     public MemberLoginNss getNssMemberLoginAsForeignForeignEachOverTest() {
         if (_nssMemberLoginAsForeignForeignEachOverTest == null) { _nssMemberLoginAsForeignForeignEachOverTest = new MemberLoginNss(null); }
@@ -475,6 +473,7 @@ public class BsMemberCB extends AbstractConditionBean {
         { _nssMemberLoginAsForeignForeignEachOverTest = new MemberLoginNss(query().queryMemberLoginAsForeignForeignEachOverTest()); }
         return _nssMemberLoginAsForeignForeignEachOverTest;
     }
+
     protected MemberLoginNss _nssMemberLoginAsForeignForeignOptimizedBasicOverTest;
     public MemberLoginNss getNssMemberLoginAsForeignForeignOptimizedBasicOverTest() {
         if (_nssMemberLoginAsForeignForeignOptimizedBasicOverTest == null) { _nssMemberLoginAsForeignForeignOptimizedBasicOverTest = new MemberLoginNss(null); }
@@ -499,6 +498,7 @@ public class BsMemberCB extends AbstractConditionBean {
         { _nssMemberLoginAsForeignForeignOptimizedBasicOverTest = new MemberLoginNss(query().queryMemberLoginAsForeignForeignOptimizedBasicOverTest()); }
         return _nssMemberLoginAsForeignForeignOptimizedBasicOverTest;
     }
+
     protected MemberLoginNss _nssMemberLoginAsForeignForeignOptimizedMarkOverTest;
     public MemberLoginNss getNssMemberLoginAsForeignForeignOptimizedMarkOverTest() {
         if (_nssMemberLoginAsForeignForeignOptimizedMarkOverTest == null) { _nssMemberLoginAsForeignForeignOptimizedMarkOverTest = new MemberLoginNss(null); }
@@ -523,6 +523,7 @@ public class BsMemberCB extends AbstractConditionBean {
         { _nssMemberLoginAsForeignForeignOptimizedMarkOverTest = new MemberLoginNss(query().queryMemberLoginAsForeignForeignOptimizedMarkOverTest()); }
         return _nssMemberLoginAsForeignForeignOptimizedMarkOverTest;
     }
+
     protected MemberLoginNss _nssMemberLoginAsForeignForeignOptimizedPartOverTest;
     public MemberLoginNss getNssMemberLoginAsForeignForeignOptimizedPartOverTest() {
         if (_nssMemberLoginAsForeignForeignOptimizedPartOverTest == null) { _nssMemberLoginAsForeignForeignOptimizedPartOverTest = new MemberLoginNss(null); }
@@ -548,6 +549,7 @@ public class BsMemberCB extends AbstractConditionBean {
         { _nssMemberLoginAsForeignForeignOptimizedPartOverTest = new MemberLoginNss(query().queryMemberLoginAsForeignForeignOptimizedPartOverTest(memberName)); }
         return _nssMemberLoginAsForeignForeignOptimizedPartOverTest;
     }
+
     protected MemberLoginNss _nssMemberLoginAsForeignForeignOptimizedWholeOverTest;
     public MemberLoginNss getNssMemberLoginAsForeignForeignOptimizedWholeOverTest() {
         if (_nssMemberLoginAsForeignForeignOptimizedWholeOverTest == null) { _nssMemberLoginAsForeignForeignOptimizedWholeOverTest = new MemberLoginNss(null); }
@@ -572,6 +574,7 @@ public class BsMemberCB extends AbstractConditionBean {
         { _nssMemberLoginAsForeignForeignOptimizedWholeOverTest = new MemberLoginNss(query().queryMemberLoginAsForeignForeignOptimizedWholeOverTest()); }
         return _nssMemberLoginAsForeignForeignOptimizedWholeOverTest;
     }
+
     protected MemberLoginNss _nssMemberLoginAsForeignForeignParameterOverTest;
     public MemberLoginNss getNssMemberLoginAsForeignForeignParameterOverTest() {
         if (_nssMemberLoginAsForeignForeignParameterOverTest == null) { _nssMemberLoginAsForeignForeignParameterOverTest = new MemberLoginNss(null); }
@@ -597,6 +600,7 @@ public class BsMemberCB extends AbstractConditionBean {
         { _nssMemberLoginAsForeignForeignParameterOverTest = new MemberLoginNss(query().queryMemberLoginAsForeignForeignParameterOverTest(targetDate)); }
         return _nssMemberLoginAsForeignForeignParameterOverTest;
     }
+
     protected MemberLoginNss _nssMemberLoginAsForeignForeignVariousOverTest;
     public MemberLoginNss getNssMemberLoginAsForeignForeignVariousOverTest() {
         if (_nssMemberLoginAsForeignForeignVariousOverTest == null) { _nssMemberLoginAsForeignForeignVariousOverTest = new MemberLoginNss(null); }
@@ -621,6 +625,7 @@ public class BsMemberCB extends AbstractConditionBean {
         { _nssMemberLoginAsForeignForeignVariousOverTest = new MemberLoginNss(query().queryMemberLoginAsForeignForeignVariousOverTest()); }
         return _nssMemberLoginAsForeignForeignVariousOverTest;
     }
+
     protected MemberLoginNss _nssMemberLoginAsReferrerOverTest;
     public MemberLoginNss getNssMemberLoginAsReferrerOverTest() {
         if (_nssMemberLoginAsReferrerOverTest == null) { _nssMemberLoginAsReferrerOverTest = new MemberLoginNss(null); }
@@ -645,6 +650,7 @@ public class BsMemberCB extends AbstractConditionBean {
         { _nssMemberLoginAsReferrerOverTest = new MemberLoginNss(query().queryMemberLoginAsReferrerOverTest()); }
         return _nssMemberLoginAsReferrerOverTest;
     }
+
     protected MemberLoginNss _nssMemberLoginAsReferrerForeignOverTest;
     public MemberLoginNss getNssMemberLoginAsReferrerForeignOverTest() {
         if (_nssMemberLoginAsReferrerForeignOverTest == null) { _nssMemberLoginAsReferrerForeignOverTest = new MemberLoginNss(null); }
@@ -669,6 +675,7 @@ public class BsMemberCB extends AbstractConditionBean {
         { _nssMemberLoginAsReferrerForeignOverTest = new MemberLoginNss(query().queryMemberLoginAsReferrerForeignOverTest()); }
         return _nssMemberLoginAsReferrerForeignOverTest;
     }
+
     protected MemberAddressNss _nssMemberAddressAsFormattedBasic;
     public MemberAddressNss getNssMemberAddressAsFormattedBasic() {
         if (_nssMemberAddressAsFormattedBasic == null) { _nssMemberAddressAsFormattedBasic = new MemberAddressNss(null); }
@@ -694,6 +701,7 @@ public class BsMemberCB extends AbstractConditionBean {
         { _nssMemberAddressAsFormattedBasic = new MemberAddressNss(query().queryMemberAddressAsFormattedBasic(targetDate)); }
         return _nssMemberAddressAsFormattedBasic;
     }
+
     protected MemberAddressNss _nssMemberAddressAsFormattedLong;
     public MemberAddressNss getNssMemberAddressAsFormattedLong() {
         if (_nssMemberAddressAsFormattedLong == null) { _nssMemberAddressAsFormattedLong = new MemberAddressNss(null); }
@@ -719,6 +727,7 @@ public class BsMemberCB extends AbstractConditionBean {
         { _nssMemberAddressAsFormattedLong = new MemberAddressNss(query().queryMemberAddressAsFormattedLong(targetDate)); }
         return _nssMemberAddressAsFormattedLong;
     }
+
     protected MemberLoginNss _nssMemberLoginAsFormattedMany;
     public MemberLoginNss getNssMemberLoginAsFormattedMany() {
         if (_nssMemberLoginAsFormattedMany == null) { _nssMemberLoginAsFormattedMany = new MemberLoginNss(null); }
@@ -743,6 +752,7 @@ public class BsMemberCB extends AbstractConditionBean {
         { _nssMemberLoginAsFormattedMany = new MemberLoginNss(query().queryMemberLoginAsFormattedMany()); }
         return _nssMemberLoginAsFormattedMany;
     }
+
     protected MemberLoginNss _nssMemberLoginAsLatest;
     public MemberLoginNss getNssMemberLoginAsLatest() {
         if (_nssMemberLoginAsLatest == null) { _nssMemberLoginAsLatest = new MemberLoginNss(null); }
@@ -767,6 +777,7 @@ public class BsMemberCB extends AbstractConditionBean {
         { _nssMemberLoginAsLatest = new MemberLoginNss(query().queryMemberLoginAsLatest()); }
         return _nssMemberLoginAsLatest;
     }
+
     protected MemberLoginNss _nssMemberLoginAsOldest;
     public MemberLoginNss getNssMemberLoginAsOldest() {
         if (_nssMemberLoginAsOldest == null) { _nssMemberLoginAsOldest = new MemberLoginNss(null); }

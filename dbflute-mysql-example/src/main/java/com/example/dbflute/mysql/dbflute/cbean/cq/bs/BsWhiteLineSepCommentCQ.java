@@ -88,7 +88,6 @@ public class BsWhiteLineSepCommentCQ extends AbstractBsWhiteLineSepCommentCQ {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _lineSepCommentCode;
     public ConditionValue getLineSepCommentCode() {
         if (_lineSepCommentCode == null) { _lineSepCommentCode = nCV(); }

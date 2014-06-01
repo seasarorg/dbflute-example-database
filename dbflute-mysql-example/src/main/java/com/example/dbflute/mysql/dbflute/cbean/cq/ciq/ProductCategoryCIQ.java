@@ -52,32 +52,24 @@ public class ProductCategoryCIQ extends AbstractBsProductCategoryCQ {
     // ===================================================================================
     //                                                             Override about Register
     //                                                             =======================
-    @Override
-    protected void reflectRelationOnUnionQuery(ConditionQuery bq, ConditionQuery uq) {
-        String msg = "InlineView must not need UNION method: " + bq + " : " + uq;
-        throw new IllegalConditionBeanOperationException(msg);
-    }
+    protected void reflectRelationOnUnionQuery(ConditionQuery bq, ConditionQuery uq)
+    { throw new IllegalConditionBeanOperationException("InlineView cannot use Union: " + bq + " : " + uq); }
 
     @Override
-    protected void setupConditionValueAndRegisterWhereClause(ConditionKey k, Object v, ConditionValue cv, String col) {
-        regIQ(k, v, cv, col);
-    }
+    protected void setupConditionValueAndRegisterWhereClause(ConditionKey k, Object v, ConditionValue cv, String col)
+    { regIQ(k, v, cv, col); }
 
     @Override
-    protected void setupConditionValueAndRegisterWhereClause(ConditionKey k, Object v, ConditionValue cv, String col, ConditionOption op) {
-        regIQ(k, v, cv, col, op);
-    }
+    protected void setupConditionValueAndRegisterWhereClause(ConditionKey k, Object v, ConditionValue cv, String col, ConditionOption op)
+    { regIQ(k, v, cv, col, op); }
 
     @Override
-    protected void registerWhereClause(String wc) {
-        registerInlineWhereClause(wc);
-    }
+    protected void registerWhereClause(String wc)
+    { registerInlineWhereClause(wc); }
 
     @Override
     protected boolean isInScopeRelationSuppressLocalAliasName() {
-        if (_onClause) {
-            throw new IllegalConditionBeanOperationException("InScopeRelation on OnClause is unsupported.");
-        }
+        if (_onClause) { throw new IllegalConditionBeanOperationException("InScopeRelation on OnClause is unsupported."); }
         return true;
     }
 
@@ -93,14 +85,6 @@ public class ProductCategoryCIQ extends AbstractBsProductCategoryCQ {
     { throwIICBOE("NotExistsReferrer"); return null; }
     public String keepProductCategoryCode_NotExistsReferrer_ProductCategorySelfList(ProductCategoryCQ sq)
     { throwIICBOE("NotExistsReferrer"); return null; }
-    public String keepProductCategoryCode_InScopeRelation_ProductList(ProductCQ sq)
-    { return _myCQ.keepProductCategoryCode_InScopeRelation_ProductList(sq); }
-    public String keepProductCategoryCode_InScopeRelation_ProductCategorySelfList(ProductCategoryCQ sq)
-    { return _myCQ.keepProductCategoryCode_InScopeRelation_ProductCategorySelfList(sq); }
-    public String keepProductCategoryCode_NotInScopeRelation_ProductList(ProductCQ sq)
-    { return _myCQ.keepProductCategoryCode_NotInScopeRelation_ProductList(sq); }
-    public String keepProductCategoryCode_NotInScopeRelation_ProductCategorySelfList(ProductCategoryCQ sq)
-    { return _myCQ.keepProductCategoryCode_NotInScopeRelation_ProductCategorySelfList(sq); }
     public String keepProductCategoryCode_SpecifyDerivedReferrer_ProductList(ProductCQ sq)
     { throwIICBOE("(Specify)DerivedReferrer"); return null; }
     public String keepProductCategoryCode_SpecifyDerivedReferrer_ProductCategorySelfList(ProductCategoryCQ sq)
@@ -115,10 +99,6 @@ public class ProductCategoryCIQ extends AbstractBsProductCategoryCQ {
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
     protected ConditionValue getCValueProductCategoryName() { return _myCQ.getProductCategoryName(); }
     protected ConditionValue getCValueParentCategoryCode() { return _myCQ.getParentCategoryCode(); }
-    public String keepParentCategoryCode_InScopeRelation_ProductCategorySelf(ProductCategoryCQ sq)
-    { return _myCQ.keepParentCategoryCode_InScopeRelation_ProductCategorySelf(sq); }
-    public String keepParentCategoryCode_NotInScopeRelation_ProductCategorySelf(ProductCategoryCQ sq)
-    { return _myCQ.keepParentCategoryCode_NotInScopeRelation_ProductCategorySelf(sq); }
     protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
     public String keepScalarCondition(ProductCategoryCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }
@@ -133,9 +113,8 @@ public class ProductCategoryCIQ extends AbstractBsProductCategoryCQ {
     public String keepMyselfInScope(ProductCategoryCQ sq)
     { throwIICBOE("MyselfInScope"); return null;}
 
-    protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()
-        throw new IllegalConditionBeanOperationException(name + " at InlineView is unsupported.");
-    }
+    protected void throwIICBOE(String name)
+    { throw new IllegalConditionBeanOperationException(name + " at InlineView is unsupported."); }
 
     // ===================================================================================
     //                                                                       Very Internal

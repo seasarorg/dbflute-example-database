@@ -88,7 +88,6 @@ public class BsWhiteAdditionalCQ extends AbstractBsWhiteAdditionalCQ {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _fooId;
     public ConditionValue getFooId() {
         if (_fooId == null) { _fooId = nCV(); }

@@ -29,6 +29,7 @@ map:{
         # the test of boolean flg
         ; TYPE_OF_BOOLEAN = BooleanFlg
     }
+    ; PURCHASE_PAYMENT = map:{PAYMENT_METHOD_CODE=PaymentMethod}
 
     # the test of document only
     ; PRODUCT = map:{

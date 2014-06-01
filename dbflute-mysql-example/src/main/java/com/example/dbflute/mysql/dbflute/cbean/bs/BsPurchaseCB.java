@@ -303,6 +303,7 @@ public class BsPurchaseCB extends AbstractConditionBean {
         { _nssMember = new MemberNss(query().queryMember()); }
         return _nssMember;
     }
+
     protected ProductNss _nssProduct;
     public ProductNss getNssProduct() {
         if (_nssProduct == null) { _nssProduct = new ProductNss(null); }
@@ -330,6 +331,7 @@ public class BsPurchaseCB extends AbstractConditionBean {
         { _nssProduct = new ProductNss(query().queryProduct()); }
         return _nssProduct;
     }
+
     protected SummaryProductNss _nssSummaryProduct;
     public SummaryProductNss getNssSummaryProduct() {
         if (_nssSummaryProduct == null) { _nssSummaryProduct = new SummaryProductNss(null); }
@@ -357,11 +359,7 @@ public class BsPurchaseCB extends AbstractConditionBean {
         { _nssSummaryProduct = new SummaryProductNss(query().querySummaryProduct()); }
         return _nssSummaryProduct;
     }
-    protected SummaryWithdrawalNss _nssSummaryWithdrawal;
-    public SummaryWithdrawalNss getNssSummaryWithdrawal() {
-        if (_nssSummaryWithdrawal == null) { _nssSummaryWithdrawal = new SummaryWithdrawalNss(null); }
-        return _nssSummaryWithdrawal;
-    }
+
     /**
      * Set up relation columns to select clause. <br />
      * (VIEW)summary_withdrawal by my MEMBER_ID, named 'summaryWithdrawal'.
@@ -372,23 +370,15 @@ public class BsPurchaseCB extends AbstractConditionBean {
      * Purchase purchase = purchaseBhv.selectEntityWithDeletedCheck(cb);
      * ... = purchase.<span style="color: #DD4747">getSummaryWithdrawal()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
      * </pre>
-     * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
-    public SummaryWithdrawalNss setupSelect_SummaryWithdrawal() {
+    public void setupSelect_SummaryWithdrawal() {
         assertSetupSelectPurpose("summaryWithdrawal");
         if (hasSpecifiedColumn()) { // if reverse call
             specify().columnMemberId();
         }
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().querySummaryWithdrawal(); } });
-        if (_nssSummaryWithdrawal == null || !_nssSummaryWithdrawal.hasConditionQuery())
-        { _nssSummaryWithdrawal = new SummaryWithdrawalNss(query().querySummaryWithdrawal()); }
-        return _nssSummaryWithdrawal;
     }
-    protected WhiteNoPkRelationNss _nssWhiteNoPkRelation;
-    public WhiteNoPkRelationNss getNssWhiteNoPkRelation() {
-        if (_nssWhiteNoPkRelation == null) { _nssWhiteNoPkRelation = new WhiteNoPkRelationNss(null); }
-        return _nssWhiteNoPkRelation;
-    }
+
     /**
      * Set up relation columns to select clause. <br />
      * (VIEW)white_no_pk_relation by my PRODUCT_ID, named 'whiteNoPkRelation'.
@@ -399,18 +389,15 @@ public class BsPurchaseCB extends AbstractConditionBean {
      * Purchase purchase = purchaseBhv.selectEntityWithDeletedCheck(cb);
      * ... = purchase.<span style="color: #DD4747">getWhiteNoPkRelation()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
      * </pre>
-     * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
-    public WhiteNoPkRelationNss setupSelect_WhiteNoPkRelation() {
+    public void setupSelect_WhiteNoPkRelation() {
         assertSetupSelectPurpose("whiteNoPkRelation");
         if (hasSpecifiedColumn()) { // if reverse call
             specify().columnProductId();
         }
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryWhiteNoPkRelation(); } });
-        if (_nssWhiteNoPkRelation == null || !_nssWhiteNoPkRelation.hasConditionQuery())
-        { _nssWhiteNoPkRelation = new WhiteNoPkRelationNss(query().queryWhiteNoPkRelation()); }
-        return _nssWhiteNoPkRelation;
     }
+
     protected PurchaseNss _nssPurchaseSelf;
     public PurchaseNss getNssPurchaseSelf() {
         if (_nssPurchaseSelf == null) { _nssPurchaseSelf = new PurchaseNss(null); }
@@ -435,6 +422,7 @@ public class BsPurchaseCB extends AbstractConditionBean {
         { _nssPurchaseSelf = new PurchaseNss(query().queryPurchaseSelf()); }
         return _nssPurchaseSelf;
     }
+
     protected MemberAddressNss _nssMemberAddressAsSkipRelation;
     public MemberAddressNss getNssMemberAddressAsSkipRelation() {
         if (_nssMemberAddressAsSkipRelation == null) { _nssMemberAddressAsSkipRelation = new MemberAddressNss(null); }
@@ -868,6 +856,26 @@ public class BsPurchaseCB extends AbstractConditionBean {
                 }
             }
             return _purchaseSelfAsOne;
+        }
+        /**
+         * Prepare for (Specify)DerivedReferrer (correlated sub-query). <br />
+         * {select max(FOO) from purchase_payment where ...) as FOO_MAX} <br />
+         * (購入支払)purchase_payment by PURCHASE_ID, named 'purchasePaymentList'.
+         * <pre>
+         * cb.specify().<span style="color: #DD4747">derivedPurchasePaymentList()</span>.<span style="color: #DD4747">max</span>(new SubQuery&lt;PurchasePaymentCB&gt;() {
+         *     public void query(PurchasePaymentCB subCB) {
+         *         subCB.specify().<span style="color: #DD4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
+         *         subCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
+         *     }
+         * }, PurchasePayment.<span style="color: #DD4747">ALIAS_foo...</span>);
+         * </pre>
+         * @return The object to set up a function for referrer table. (NotNull)
+         */
+        public HpSDRFunction<PurchasePaymentCB, PurchaseCQ> derivedPurchasePaymentList() {
+            assertDerived("purchasePaymentList"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
+            return new HpSDRFunction<PurchasePaymentCB, PurchaseCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<PurchasePaymentCB, PurchaseCQ>() {
+                public void setup(String fn, SubQuery<PurchasePaymentCB> sq, PurchaseCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsderivePurchasePaymentList(fn, sq, al, op); } }, _dbmetaProvider);
         }
         /**
          * Prepare for (Specify)MyselfDerived (SubQuery).

@@ -88,7 +88,6 @@ public class BsWhiteBinaryCQ extends AbstractBsWhiteBinaryCQ {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _binaryId;
     public ConditionValue getBinaryId() {
         if (_binaryId == null) { _binaryId = nCV(); }

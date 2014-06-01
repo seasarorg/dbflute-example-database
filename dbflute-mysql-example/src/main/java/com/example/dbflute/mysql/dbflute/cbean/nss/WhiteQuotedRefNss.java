@@ -37,11 +37,8 @@ public class WhiteQuotedRefNss {
     /**
      * With nested relation columns to select clause. <br />
      * white_quoted by my ORDER, named 'whiteQuoted'.
-     * @return The set-upper of more nested relation. {...with[nested-relation].with[more-nested-relation]} (NotNull)
      */
-    public WhiteQuotedNss withWhiteQuoted() {
+    public void withWhiteQuoted() {
         _query.doNss(new WhiteQuotedRefCQ.NssCall() { public ConditionQuery qf() { return _query.queryWhiteQuoted(); }});
-        return new WhiteQuotedNss(_query.queryWhiteQuoted());
     }
-
 }

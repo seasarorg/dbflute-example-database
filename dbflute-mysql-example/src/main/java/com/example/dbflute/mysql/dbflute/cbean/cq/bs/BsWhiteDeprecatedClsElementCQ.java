@@ -88,7 +88,6 @@ public class BsWhiteDeprecatedClsElementCQ extends AbstractBsWhiteDeprecatedClsE
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _deprecatedClsElementCode;
     public ConditionValue getDeprecatedClsElementCode() {
         if (_deprecatedClsElementCode == null) { _deprecatedClsElementCode = nCV(); }

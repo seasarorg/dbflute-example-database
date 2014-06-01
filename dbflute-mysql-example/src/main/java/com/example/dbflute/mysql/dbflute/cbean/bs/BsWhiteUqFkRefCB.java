@@ -35,7 +35,6 @@ import com.example.dbflute.mysql.dbflute.allcommon.ImplementedInvokerAssistant;
 import com.example.dbflute.mysql.dbflute.allcommon.ImplementedSqlClauseCreator;
 import com.example.dbflute.mysql.dbflute.cbean.*;
 import com.example.dbflute.mysql.dbflute.cbean.cq.*;
-import com.example.dbflute.mysql.dbflute.cbean.nss.*;
 
 /**
  * The base condition-bean of white_uq_fk_ref.
@@ -275,11 +274,6 @@ public class BsWhiteUqFkRefCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                         SetupSelect
     //                                                                         ===========
-    protected WhiteUqFkNss _nssWhiteUqFkByFkToPkId;
-    public WhiteUqFkNss getNssWhiteUqFkByFkToPkId() {
-        if (_nssWhiteUqFkByFkToPkId == null) { _nssWhiteUqFkByFkToPkId = new WhiteUqFkNss(null); }
-        return _nssWhiteUqFkByFkToPkId;
-    }
     /**
      * Set up relation columns to select clause. <br />
      * white_uq_fk by my FK_TO_PK_ID, named 'whiteUqFkByFkToPkId'.
@@ -290,23 +284,15 @@ public class BsWhiteUqFkRefCB extends AbstractConditionBean {
      * WhiteUqFkRef whiteUqFkRef = whiteUqFkRefBhv.selectEntityWithDeletedCheck(cb);
      * ... = whiteUqFkRef.<span style="color: #DD4747">getWhiteUqFkByFkToPkId()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
      * </pre>
-     * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
-    public WhiteUqFkNss setupSelect_WhiteUqFkByFkToPkId() {
+    public void setupSelect_WhiteUqFkByFkToPkId() {
         assertSetupSelectPurpose("whiteUqFkByFkToPkId");
         if (hasSpecifiedColumn()) { // if reverse call
             specify().columnFkToPkId();
         }
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryWhiteUqFkByFkToPkId(); } });
-        if (_nssWhiteUqFkByFkToPkId == null || !_nssWhiteUqFkByFkToPkId.hasConditionQuery())
-        { _nssWhiteUqFkByFkToPkId = new WhiteUqFkNss(query().queryWhiteUqFkByFkToPkId()); }
-        return _nssWhiteUqFkByFkToPkId;
     }
-    protected WhiteUqFkNss _nssWhiteUqFkByFkToUqCode;
-    public WhiteUqFkNss getNssWhiteUqFkByFkToUqCode() {
-        if (_nssWhiteUqFkByFkToUqCode == null) { _nssWhiteUqFkByFkToUqCode = new WhiteUqFkNss(null); }
-        return _nssWhiteUqFkByFkToUqCode;
-    }
+
     /**
      * Set up relation columns to select clause. <br />
      * white_uq_fk by my FK_TO_UQ_CODE, named 'whiteUqFkByFkToUqCode'.
@@ -317,17 +303,13 @@ public class BsWhiteUqFkRefCB extends AbstractConditionBean {
      * WhiteUqFkRef whiteUqFkRef = whiteUqFkRefBhv.selectEntityWithDeletedCheck(cb);
      * ... = whiteUqFkRef.<span style="color: #DD4747">getWhiteUqFkByFkToUqCode()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
      * </pre>
-     * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
-    public WhiteUqFkNss setupSelect_WhiteUqFkByFkToUqCode() {
+    public void setupSelect_WhiteUqFkByFkToUqCode() {
         assertSetupSelectPurpose("whiteUqFkByFkToUqCode");
         if (hasSpecifiedColumn()) { // if reverse call
             specify().columnFkToUqCode();
         }
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryWhiteUqFkByFkToUqCode(); } });
-        if (_nssWhiteUqFkByFkToUqCode == null || !_nssWhiteUqFkByFkToUqCode.hasConditionQuery())
-        { _nssWhiteUqFkByFkToUqCode = new WhiteUqFkNss(query().queryWhiteUqFkByFkToUqCode()); }
-        return _nssWhiteUqFkByFkToUqCode;
     }
 
     // [DBFlute-0.7.4]

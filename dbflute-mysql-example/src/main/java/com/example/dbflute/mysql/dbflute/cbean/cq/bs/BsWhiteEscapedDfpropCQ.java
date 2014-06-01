@@ -88,7 +88,6 @@ public class BsWhiteEscapedDfpropCQ extends AbstractBsWhiteEscapedDfpropCQ {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _escapedDfpropCode;
     public ConditionValue getEscapedDfpropCode() {
         if (_escapedDfpropCode == null) { _escapedDfpropCode = nCV(); }

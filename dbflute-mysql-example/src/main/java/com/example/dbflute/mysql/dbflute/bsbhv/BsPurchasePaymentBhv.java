@@ -30,38 +30,38 @@ import com.example.dbflute.mysql.dbflute.bsentity.dbmeta.*;
 import com.example.dbflute.mysql.dbflute.cbean.*;
 
 /**
- * The behavior of (退会理由)WITHDRAWAL_REASON as TABLE. <br />
+ * The behavior of (購入支払)PURCHASE_PAYMENT as TABLE. <br />
  * <pre>
  * [primary key]
- *     WITHDRAWAL_REASON_CODE
+ *     PURCHASE_PAYMENT_ID
  *
  * [column]
- *     WITHDRAWAL_REASON_CODE, WITHDRAWAL_REASON_TEXT, DISPLAY_ORDER
+ *     PURCHASE_PAYMENT_ID, PURCHASE_ID, PAYMENT_AMOUNT, PAYMENT_DATETIME, PAYMENT_METHOD_CODE, REGISTER_DATETIME, REGISTER_USER, UPDATE_DATETIME, UPDATE_USER
  *
  * [sequence]
  *     
  *
  * [identity]
- *     
+ *     PURCHASE_PAYMENT_ID
  *
  * [version-no]
  *     
  *
  * [foreign table]
- *     
+ *     purchase
  *
  * [referrer table]
- *     member_withdrawal
- *
- * [foreign property]
  *     
  *
+ * [foreign property]
+ *     purchase
+ *
  * [referrer property]
- *     memberWithdrawalList
+ *     
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
-public abstract class BsWithdrawalReasonBhv extends AbstractBehaviorWritable {
+public abstract class BsPurchasePaymentBhv extends AbstractBehaviorWritable {
 
     // ===================================================================================
     //                                                                          Definition
@@ -73,16 +73,16 @@ public abstract class BsWithdrawalReasonBhv extends AbstractBehaviorWritable {
     //                                                                          Table name
     //                                                                          ==========
     /** @return The name on database of table. (NotNull) */
-    public String getTableDbName() { return "withdrawal_reason"; }
+    public String getTableDbName() { return "purchase_payment"; }
 
     // ===================================================================================
     //                                                                              DBMeta
     //                                                                              ======
     /** @return The instance of DBMeta. (NotNull) */
-    public DBMeta getDBMeta() { return WithdrawalReasonDbm.getInstance(); }
+    public DBMeta getDBMeta() { return PurchasePaymentDbm.getInstance(); }
 
     /** @return The instance of DBMeta as my table type. (NotNull) */
-    public WithdrawalReasonDbm getMyDBMeta() { return WithdrawalReasonDbm.getInstance(); }
+    public PurchasePaymentDbm getMyDBMeta() { return PurchasePaymentDbm.getInstance(); }
 
     // ===================================================================================
     //                                                                        New Instance
@@ -94,10 +94,10 @@ public abstract class BsWithdrawalReasonBhv extends AbstractBehaviorWritable {
     public ConditionBean newConditionBean() { return newMyConditionBean(); }
 
     /** @return The instance of new entity as my table type. (NotNull) */
-    public WithdrawalReason newMyEntity() { return new WithdrawalReason(); }
+    public PurchasePayment newMyEntity() { return new PurchasePayment(); }
 
     /** @return The instance of new condition-bean as my table type. (NotNull) */
-    public WithdrawalReasonCB newMyConditionBean() { return new WithdrawalReasonCB(); }
+    public PurchasePaymentCB newMyConditionBean() { return new PurchasePaymentCB(); }
 
     // ===================================================================================
     //                                                                        Count Select
@@ -106,23 +106,23 @@ public abstract class BsWithdrawalReasonBhv extends AbstractBehaviorWritable {
      * Select the count of uniquely-selected records by the condition-bean. {IgnorePagingCondition, IgnoreSpecifyColumn}<br />
      * SpecifyColumn is ignored but you can use it only to remove text type column for union's distinct.
      * <pre>
-     * WithdrawalReasonCB cb = new WithdrawalReasonCB();
+     * PurchasePaymentCB cb = new PurchasePaymentCB();
      * cb.query().setFoo...(value);
-     * int count = withdrawalReasonBhv.<span style="color: #DD4747">selectCount</span>(cb);
+     * int count = purchasePaymentBhv.<span style="color: #DD4747">selectCount</span>(cb);
      * </pre>
-     * @param cb The condition-bean of WithdrawalReason. (NotNull)
+     * @param cb The condition-bean of PurchasePayment. (NotNull)
      * @return The count for the condition. (NotMinus)
      */
-    public int selectCount(WithdrawalReasonCB cb) {
+    public int selectCount(PurchasePaymentCB cb) {
         return doSelectCountUniquely(cb);
     }
 
-    protected int doSelectCountUniquely(WithdrawalReasonCB cb) { // called by selectCount(cb)
+    protected int doSelectCountUniquely(PurchasePaymentCB cb) { // called by selectCount(cb)
         assertCBStateValid(cb);
         return delegateSelectCountUniquely(cb);
     }
 
-    protected int doSelectCountPlainly(WithdrawalReasonCB cb) { // called by selectPage(cb)
+    protected int doSelectCountPlainly(PurchasePaymentCB cb) { // called by selectPage(cb)
         assertCBStateValid(cb);
         return delegateSelectCountPlainly(cb);
     }
@@ -140,31 +140,31 @@ public abstract class BsWithdrawalReasonBhv extends AbstractBehaviorWritable {
      * <span style="color: #AD4747; font-size: 120%">The return might be null if no data, so you should have null check.</span> <br />
      * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, use selectEntityWithDeletedCheck().</span>
      * <pre>
-     * WithdrawalReasonCB cb = new WithdrawalReasonCB();
+     * PurchasePaymentCB cb = new PurchasePaymentCB();
      * cb.query().setFoo...(value);
-     * WithdrawalReason withdrawalReason = withdrawalReasonBhv.<span style="color: #DD4747">selectEntity</span>(cb);
-     * if (withdrawalReason != null) { <span style="color: #3F7E5E">// null check</span>
-     *     ... = withdrawalReason.get...();
+     * PurchasePayment purchasePayment = purchasePaymentBhv.<span style="color: #DD4747">selectEntity</span>(cb);
+     * if (purchasePayment != null) { <span style="color: #3F7E5E">// null check</span>
+     *     ... = purchasePayment.get...();
      * } else {
      *     ...
      * }
      * </pre>
-     * @param cb The condition-bean of WithdrawalReason. (NotNull)
+     * @param cb The condition-bean of PurchasePayment. (NotNull)
      * @return The entity selected by the condition. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
-    public WithdrawalReason selectEntity(WithdrawalReasonCB cb) {
-        return doSelectEntity(cb, WithdrawalReason.class);
+    public PurchasePayment selectEntity(PurchasePaymentCB cb) {
+        return doSelectEntity(cb, PurchasePayment.class);
     }
 
-    protected <ENTITY extends WithdrawalReason> ENTITY doSelectEntity(WithdrawalReasonCB cb, Class<ENTITY> tp) {
+    protected <ENTITY extends PurchasePayment> ENTITY doSelectEntity(PurchasePaymentCB cb, Class<ENTITY> tp) {
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, WithdrawalReasonCB>() {
-            public List<ENTITY> callbackSelectList(WithdrawalReasonCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
+        return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, PurchasePaymentCB>() {
+            public List<ENTITY> callbackSelectList(PurchasePaymentCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
-    protected <ENTITY extends WithdrawalReason> OptionalEntity<ENTITY> doSelectOptionalEntity(WithdrawalReasonCB cb, Class<ENTITY> tp) {
+    protected <ENTITY extends PurchasePayment> OptionalEntity<ENTITY> doSelectOptionalEntity(PurchasePaymentCB cb, Class<ENTITY> tp) {
         return createOptionalEntity(doSelectEntity(cb, tp), cb);
     }
 
@@ -177,25 +177,25 @@ public abstract class BsWithdrawalReasonBhv extends AbstractBehaviorWritable {
      * Select the entity by the condition-bean with deleted check. <br />
      * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, this method is good.</span>
      * <pre>
-     * WithdrawalReasonCB cb = new WithdrawalReasonCB();
+     * PurchasePaymentCB cb = new PurchasePaymentCB();
      * cb.query().setFoo...(value);
-     * WithdrawalReason withdrawalReason = withdrawalReasonBhv.<span style="color: #DD4747">selectEntityWithDeletedCheck</span>(cb);
-     * ... = withdrawalReason.get...(); <span style="color: #3F7E5E">// the entity always be not null</span>
+     * PurchasePayment purchasePayment = purchasePaymentBhv.<span style="color: #DD4747">selectEntityWithDeletedCheck</span>(cb);
+     * ... = purchasePayment.get...(); <span style="color: #3F7E5E">// the entity always be not null</span>
      * </pre>
-     * @param cb The condition-bean of WithdrawalReason. (NotNull)
+     * @param cb The condition-bean of PurchasePayment. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
-    public WithdrawalReason selectEntityWithDeletedCheck(WithdrawalReasonCB cb) {
-        return doSelectEntityWithDeletedCheck(cb, WithdrawalReason.class);
+    public PurchasePayment selectEntityWithDeletedCheck(PurchasePaymentCB cb) {
+        return doSelectEntityWithDeletedCheck(cb, PurchasePayment.class);
     }
 
-    protected <ENTITY extends WithdrawalReason> ENTITY doSelectEntityWithDeletedCheck(WithdrawalReasonCB cb, Class<ENTITY> tp) {
+    protected <ENTITY extends PurchasePayment> ENTITY doSelectEntityWithDeletedCheck(PurchasePaymentCB cb, Class<ENTITY> tp) {
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, WithdrawalReasonCB>() {
-            public List<ENTITY> callbackSelectList(WithdrawalReasonCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
+        return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, PurchasePaymentCB>() {
+            public List<ENTITY> callbackSelectList(PurchasePaymentCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -205,64 +205,42 @@ public abstract class BsWithdrawalReasonBhv extends AbstractBehaviorWritable {
 
     /**
      * Select the entity by the primary-key value.
-     * @param withdrawalReasonCode (退会理由コード): PK, NotNull, CHAR(3). (NotNull)
+     * @param purchasePaymentId (購入支払ID): PK, ID, NotNull, BIGINT(19). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
-    public WithdrawalReason selectByPKValue(String withdrawalReasonCode) {
-        return doSelectByPK(withdrawalReasonCode, WithdrawalReason.class);
+    public PurchasePayment selectByPKValue(Long purchasePaymentId) {
+        return doSelectByPK(purchasePaymentId, PurchasePayment.class);
     }
 
-    protected <ENTITY extends WithdrawalReason> ENTITY doSelectByPK(String withdrawalReasonCode, Class<ENTITY> entityType) {
-        return doSelectEntity(xprepareCBAsPK(withdrawalReasonCode), entityType);
+    protected <ENTITY extends PurchasePayment> ENTITY doSelectByPK(Long purchasePaymentId, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(purchasePaymentId), entityType);
     }
 
-    protected <ENTITY extends WithdrawalReason> OptionalEntity<ENTITY> doSelectOptionalByPK(String withdrawalReasonCode, Class<ENTITY> entityType) {
-        return createOptionalEntity(doSelectByPK(withdrawalReasonCode, entityType), withdrawalReasonCode);
+    protected <ENTITY extends PurchasePayment> OptionalEntity<ENTITY> doSelectOptionalByPK(Long purchasePaymentId, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(purchasePaymentId, entityType), purchasePaymentId);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param withdrawalReasonCode (退会理由コード): PK, NotNull, CHAR(3). (NotNull)
+     * @param purchasePaymentId (購入支払ID): PK, ID, NotNull, BIGINT(19). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
-    public WithdrawalReason selectByPKValueWithDeletedCheck(String withdrawalReasonCode) {
-        return doSelectByPKWithDeletedCheck(withdrawalReasonCode, WithdrawalReason.class);
+    public PurchasePayment selectByPKValueWithDeletedCheck(Long purchasePaymentId) {
+        return doSelectByPKWithDeletedCheck(purchasePaymentId, PurchasePayment.class);
     }
 
-    protected <ENTITY extends WithdrawalReason> ENTITY doSelectByPKWithDeletedCheck(String withdrawalReasonCode, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(withdrawalReasonCode), entityType);
+    protected <ENTITY extends PurchasePayment> ENTITY doSelectByPKWithDeletedCheck(Long purchasePaymentId, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(purchasePaymentId), entityType);
     }
 
-    protected WithdrawalReasonCB xprepareCBAsPK(String withdrawalReasonCode) {
-        assertObjectNotNull("withdrawalReasonCode", withdrawalReasonCode);
-        WithdrawalReasonCB cb = newMyConditionBean(); cb.acceptPrimaryKey(withdrawalReasonCode);
-        return cb;
-    }
-
-    /**
-     * Select the entity by the unique-key value.
-     * @param displayOrder (表示順): UQ, NotNull, INT(10). (NotNull)
-     * @return The optional entity selected by the unique key. (NotNull: if no data, empty entity)
-     * @exception EntityAlreadyDeletedException When get(), required() of return value is called and the value is null, which means entity has already been deleted (not found).
-     * @exception EntityDuplicatedException When the entity has been duplicated.
-     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
-     */
-    public OptionalEntity<WithdrawalReason> selectByUniqueOf(Integer displayOrder) {
-        return doSelectByUniqueOf(displayOrder, WithdrawalReason.class);
-    }
-
-    protected <ENTITY extends WithdrawalReason> OptionalEntity<ENTITY> doSelectByUniqueOf(Integer displayOrder, Class<ENTITY> entityType) {
-        return createOptionalEntity(doSelectEntity(xprepareCBAsUniqueOf(displayOrder), entityType), displayOrder);
-    }
-
-    protected WithdrawalReasonCB xprepareCBAsUniqueOf(Integer displayOrder) {
-        assertObjectNotNull("displayOrder", displayOrder);
-        WithdrawalReasonCB cb = newMyConditionBean(); cb.acceptUniqueOf(displayOrder);
+    protected PurchasePaymentCB xprepareCBAsPK(Long purchasePaymentId) {
+        assertObjectNotNull("purchasePaymentId", purchasePaymentId);
+        PurchasePaymentCB cb = newMyConditionBean(); cb.acceptPrimaryKey(purchasePaymentId);
         return cb;
     }
 
@@ -272,27 +250,27 @@ public abstract class BsWithdrawalReasonBhv extends AbstractBehaviorWritable {
     /**
      * Select the list as result bean.
      * <pre>
-     * WithdrawalReasonCB cb = new WithdrawalReasonCB();
+     * PurchasePaymentCB cb = new PurchasePaymentCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * ListResultBean&lt;WithdrawalReason&gt; withdrawalReasonList = withdrawalReasonBhv.<span style="color: #DD4747">selectList</span>(cb);
-     * for (WithdrawalReason withdrawalReason : withdrawalReasonList) {
-     *     ... = withdrawalReason.get...();
+     * ListResultBean&lt;PurchasePayment&gt; purchasePaymentList = purchasePaymentBhv.<span style="color: #DD4747">selectList</span>(cb);
+     * for (PurchasePayment purchasePayment : purchasePaymentList) {
+     *     ... = purchasePayment.get...();
      * }
      * </pre>
-     * @param cb The condition-bean of WithdrawalReason. (NotNull)
+     * @param cb The condition-bean of PurchasePayment. (NotNull)
      * @return The result bean of selected list. (NotNull: if no data, returns empty list)
      * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
-    public ListResultBean<WithdrawalReason> selectList(WithdrawalReasonCB cb) {
-        return doSelectList(cb, WithdrawalReason.class);
+    public ListResultBean<PurchasePayment> selectList(PurchasePaymentCB cb) {
+        return doSelectList(cb, PurchasePayment.class);
     }
 
-    protected <ENTITY extends WithdrawalReason> ListResultBean<ENTITY> doSelectList(WithdrawalReasonCB cb, Class<ENTITY> tp) {
+    protected <ENTITY extends PurchasePayment> ListResultBean<ENTITY> doSelectList(PurchasePaymentCB cb, Class<ENTITY> tp) {
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
-        return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, WithdrawalReasonCB>() {
-            public List<ENTITY> callbackSelectList(WithdrawalReasonCB lcb, Class<ENTITY> ltp) { return delegateSelectList(lcb, ltp); } });
+        return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, PurchasePaymentCB>() {
+            public List<ENTITY> callbackSelectList(PurchasePaymentCB lcb, Class<ENTITY> ltp) { return delegateSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -307,33 +285,33 @@ public abstract class BsWithdrawalReasonBhv extends AbstractBehaviorWritable {
      * Select the page as result bean. <br />
      * (both count-select and paging-select are executed)
      * <pre>
-     * WithdrawalReasonCB cb = new WithdrawalReasonCB();
+     * PurchasePaymentCB cb = new PurchasePaymentCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
      * cb.<span style="color: #DD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
-     * PagingResultBean&lt;WithdrawalReason&gt; page = withdrawalReasonBhv.<span style="color: #DD4747">selectPage</span>(cb);
+     * PagingResultBean&lt;PurchasePayment&gt; page = purchasePaymentBhv.<span style="color: #DD4747">selectPage</span>(cb);
      * int allRecordCount = page.getAllRecordCount();
      * int allPageCount = page.getAllPageCount();
      * boolean isExistPrePage = page.isExistPrePage();
      * boolean isExistNextPage = page.isExistNextPage();
      * ...
-     * for (WithdrawalReason withdrawalReason : page) {
-     *     ... = withdrawalReason.get...();
+     * for (PurchasePayment purchasePayment : page) {
+     *     ... = purchasePayment.get...();
      * }
      * </pre>
-     * @param cb The condition-bean of WithdrawalReason. (NotNull)
+     * @param cb The condition-bean of PurchasePayment. (NotNull)
      * @return The result bean of selected page. (NotNull: if no data, returns bean as empty list)
      * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
-    public PagingResultBean<WithdrawalReason> selectPage(WithdrawalReasonCB cb) {
-        return doSelectPage(cb, WithdrawalReason.class);
+    public PagingResultBean<PurchasePayment> selectPage(PurchasePaymentCB cb) {
+        return doSelectPage(cb, PurchasePayment.class);
     }
 
-    protected <ENTITY extends WithdrawalReason> PagingResultBean<ENTITY> doSelectPage(WithdrawalReasonCB cb, Class<ENTITY> tp) {
+    protected <ENTITY extends PurchasePayment> PagingResultBean<ENTITY> doSelectPage(PurchasePaymentCB cb, Class<ENTITY> tp) {
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectPageInternally(cb, tp, new InternalSelectPageCallback<ENTITY, WithdrawalReasonCB>() {
-            public int callbackSelectCount(WithdrawalReasonCB cb) { return doSelectCountPlainly(cb); }
-            public List<ENTITY> callbackSelectList(WithdrawalReasonCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
+        return helpSelectPageInternally(cb, tp, new InternalSelectPageCallback<ENTITY, PurchasePaymentCB>() {
+            public int callbackSelectCount(PurchasePaymentCB cb) { return doSelectCountPlainly(cb); }
+            public List<ENTITY> callbackSelectList(PurchasePaymentCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
         });
     }
 
@@ -348,27 +326,27 @@ public abstract class BsWithdrawalReasonBhv extends AbstractBehaviorWritable {
     /**
      * Select the cursor by the condition-bean.
      * <pre>
-     * WithdrawalReasonCB cb = new WithdrawalReasonCB();
+     * PurchasePaymentCB cb = new PurchasePaymentCB();
      * cb.query().setFoo...(value);
-     * withdrawalReasonBhv.<span style="color: #DD4747">selectCursor</span>(cb, new EntityRowHandler&lt;WithdrawalReason&gt;() {
-     *     public void handle(WithdrawalReason entity) {
+     * purchasePaymentBhv.<span style="color: #DD4747">selectCursor</span>(cb, new EntityRowHandler&lt;PurchasePayment&gt;() {
+     *     public void handle(PurchasePayment entity) {
      *         ... = entity.getFoo...();
      *     }
      * });
      * </pre>
-     * @param cb The condition-bean of WithdrawalReason. (NotNull)
-     * @param entityRowHandler The handler of entity row of WithdrawalReason. (NotNull)
+     * @param cb The condition-bean of PurchasePayment. (NotNull)
+     * @param entityRowHandler The handler of entity row of PurchasePayment. (NotNull)
      */
-    public void selectCursor(WithdrawalReasonCB cb, EntityRowHandler<WithdrawalReason> entityRowHandler) {
-        doSelectCursor(cb, entityRowHandler, WithdrawalReason.class);
+    public void selectCursor(PurchasePaymentCB cb, EntityRowHandler<PurchasePayment> entityRowHandler) {
+        doSelectCursor(cb, entityRowHandler, PurchasePayment.class);
     }
 
-    protected <ENTITY extends WithdrawalReason> void doSelectCursor(WithdrawalReasonCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
+    protected <ENTITY extends PurchasePayment> void doSelectCursor(PurchasePaymentCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
         assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
-        helpSelectCursorInternally(cb, handler, tp, new InternalSelectCursorCallback<ENTITY, WithdrawalReasonCB>() {
-            public void callbackSelectCursor(WithdrawalReasonCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) { delegateSelectCursor(cb, handler, tp); }
-            public List<ENTITY> callbackSelectList(WithdrawalReasonCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
+        helpSelectCursorInternally(cb, handler, tp, new InternalSelectCursorCallback<ENTITY, PurchasePaymentCB>() {
+            public void callbackSelectCursor(PurchasePaymentCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) { delegateSelectCursor(cb, handler, tp); }
+            public List<ENTITY> callbackSelectList(PurchasePaymentCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
         });
     }
 
@@ -379,8 +357,8 @@ public abstract class BsWithdrawalReasonBhv extends AbstractBehaviorWritable {
      * Select the scalar value derived by a function from uniquely-selected records. <br />
      * You should call a function method after this method called like as follows:
      * <pre>
-     * withdrawalReasonBhv.<span style="color: #DD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
-     *     public void query(WithdrawalReasonCB cb) {
+     * purchasePaymentBhv.<span style="color: #DD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
+     *     public void query(PurchasePaymentCB cb) {
      *         cb.specify().<span style="color: #DD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
      *         cb.query().setBarName_PrefixSearch("S");
      *     }
@@ -390,17 +368,17 @@ public abstract class BsWithdrawalReasonBhv extends AbstractBehaviorWritable {
      * @param resultType The type of result. (NotNull)
      * @return The scalar function object to specify function for scalar value. (NotNull)
      */
-    public <RESULT> SLFunction<WithdrawalReasonCB, RESULT> scalarSelect(Class<RESULT> resultType) {
+    public <RESULT> SLFunction<PurchasePaymentCB, RESULT> scalarSelect(Class<RESULT> resultType) {
         return doScalarSelect(resultType, newMyConditionBean());
     }
 
-    protected <RESULT, CB extends WithdrawalReasonCB> SLFunction<CB, RESULT> doScalarSelect(Class<RESULT> tp, CB cb) {
+    protected <RESULT, CB extends PurchasePaymentCB> SLFunction<CB, RESULT> doScalarSelect(Class<RESULT> tp, CB cb) {
         assertObjectNotNull("resultType", tp); assertCBStateValid(cb);
         cb.xsetupForScalarSelect(); cb.getSqlClause().disableSelectIndex(); // for when you use union
         return createSLFunction(cb, tp);
     }
 
-    protected <RESULT, CB extends WithdrawalReasonCB> SLFunction<CB, RESULT> createSLFunction(CB cb, Class<RESULT> tp) {
+    protected <RESULT, CB extends PurchasePaymentCB> SLFunction<CB, RESULT> createSLFunction(CB cb, Class<RESULT> tp) {
         return new SLFunction<CB, RESULT>(cb, tp);
     }
 
@@ -418,142 +396,34 @@ public abstract class BsWithdrawalReasonBhv extends AbstractBehaviorWritable {
     }
 
     // ===================================================================================
-    //                                                                       Load Referrer
-    //                                                                       =============
-    /**
-     * Load referrer of memberWithdrawalList by the set-upper of referrer. <br />
-     * (会員退会情報)member_withdrawal by WITHDRAWAL_REASON_CODE, named 'memberWithdrawalList'.
-     * <pre>
-     * withdrawalReasonBhv.<span style="color: #DD4747">loadMemberWithdrawalList</span>(withdrawalReasonList, new ConditionBeanSetupper&lt;MemberWithdrawalCB&gt;() {
-     *     public void setup(MemberWithdrawalCB cb) {
-     *         cb.setupSelect...();
-     *         cb.query().setFoo...(value);
-     *         cb.query().addOrderBy_Bar...();
-     *     }
-     * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
-     * <span style="color: #3F7E5E">//}).withNestedList(referrerList -&gt {</span>
-     * <span style="color: #3F7E5E">//    ...</span>
-     * <span style="color: #3F7E5E">//});</span>
-     * for (WithdrawalReason withdrawalReason : withdrawalReasonList) {
-     *     ... = withdrawalReason.<span style="color: #DD4747">getMemberWithdrawalList()</span>;
-     * }
-     * </pre>
-     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
-     * The condition-bean, which the set-upper provides, has settings before callback as follows:
-     * <pre>
-     * cb.query().setWithdrawalReasonCode_InScope(pkList);
-     * cb.query().addOrderBy_WithdrawalReasonCode_Asc();
-     * </pre>
-     * @param withdrawalReasonList The entity list of withdrawalReason. (NotNull)
-     * @param setupper The callback to set up referrer condition-bean for loading referrer. (NotNull)
-     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
-     */
-    public NestedReferrerLoader<MemberWithdrawal> loadMemberWithdrawalList(List<WithdrawalReason> withdrawalReasonList, ConditionBeanSetupper<MemberWithdrawalCB> setupper) {
-        xassLRArg(withdrawalReasonList, setupper);
-        return doLoadMemberWithdrawalList(withdrawalReasonList, new LoadReferrerOption<MemberWithdrawalCB, MemberWithdrawal>().xinit(setupper));
-    }
-
-    /**
-     * Load referrer of memberWithdrawalList by the set-upper of referrer. <br />
-     * (会員退会情報)member_withdrawal by WITHDRAWAL_REASON_CODE, named 'memberWithdrawalList'.
-     * <pre>
-     * withdrawalReasonBhv.<span style="color: #DD4747">loadMemberWithdrawalList</span>(withdrawalReasonList, new ConditionBeanSetupper&lt;MemberWithdrawalCB&gt;() {
-     *     public void setup(MemberWithdrawalCB cb) {
-     *         cb.setupSelect...();
-     *         cb.query().setFoo...(value);
-     *         cb.query().addOrderBy_Bar...();
-     *     }
-     * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
-     * <span style="color: #3F7E5E">//}).withNestedList(referrerList -&gt {</span>
-     * <span style="color: #3F7E5E">//    ...</span>
-     * <span style="color: #3F7E5E">//});</span>
-     * ... = withdrawalReason.<span style="color: #DD4747">getMemberWithdrawalList()</span>;
-     * </pre>
-     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
-     * The condition-bean, which the set-upper provides, has settings before callback as follows:
-     * <pre>
-     * cb.query().setWithdrawalReasonCode_InScope(pkList);
-     * cb.query().addOrderBy_WithdrawalReasonCode_Asc();
-     * </pre>
-     * @param withdrawalReason The entity of withdrawalReason. (NotNull)
-     * @param setupper The callback to set up referrer condition-bean for loading referrer. (NotNull)
-     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
-     */
-    public NestedReferrerLoader<MemberWithdrawal> loadMemberWithdrawalList(WithdrawalReason withdrawalReason, ConditionBeanSetupper<MemberWithdrawalCB> setupper) {
-        xassLRArg(withdrawalReason, setupper);
-        return doLoadMemberWithdrawalList(xnewLRLs(withdrawalReason), new LoadReferrerOption<MemberWithdrawalCB, MemberWithdrawal>().xinit(setupper));
-    }
-
-    /**
-     * {Refer to overload method that has an argument of the list of entity.} #beforejava8
-     * @param withdrawalReason The entity of withdrawalReason. (NotNull)
-     * @param loadReferrerOption The option of load-referrer. (NotNull)
-     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
-     */
-    public NestedReferrerLoader<MemberWithdrawal> loadMemberWithdrawalList(WithdrawalReason withdrawalReason, LoadReferrerOption<MemberWithdrawalCB, MemberWithdrawal> loadReferrerOption) {
-        xassLRArg(withdrawalReason, loadReferrerOption);
-        return loadMemberWithdrawalList(xnewLRLs(withdrawalReason), loadReferrerOption);
-    }
-
-    /**
-     * {Refer to overload method that has an argument of condition-bean setupper.} #beforejava8
-     * @param withdrawalReasonList The entity list of withdrawalReason. (NotNull)
-     * @param loadReferrerOption The option of load-referrer. (NotNull)
-     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
-     */
-    @SuppressWarnings("unchecked")
-    public NestedReferrerLoader<MemberWithdrawal> loadMemberWithdrawalList(List<WithdrawalReason> withdrawalReasonList, LoadReferrerOption<MemberWithdrawalCB, MemberWithdrawal> loadReferrerOption) {
-        xassLRArg(withdrawalReasonList, loadReferrerOption);
-        if (withdrawalReasonList.isEmpty()) { return (NestedReferrerLoader<MemberWithdrawal>)EMPTY_LOADER; }
-        return doLoadMemberWithdrawalList(withdrawalReasonList, loadReferrerOption);
-    }
-
-    protected NestedReferrerLoader<MemberWithdrawal> doLoadMemberWithdrawalList(List<WithdrawalReason> withdrawalReasonList, LoadReferrerOption<MemberWithdrawalCB, MemberWithdrawal> option) {
-        final MemberWithdrawalBhv referrerBhv = xgetBSFLR().select(MemberWithdrawalBhv.class);
-        return helpLoadReferrerInternally(withdrawalReasonList, option, new InternalLoadReferrerCallback<WithdrawalReason, String, MemberWithdrawalCB, MemberWithdrawal>() {
-            public String getPKVal(WithdrawalReason et)
-            { return et.getWithdrawalReasonCode(); }
-            public void setRfLs(WithdrawalReason et, List<MemberWithdrawal> ls)
-            { et.setMemberWithdrawalList(ls); }
-            public MemberWithdrawalCB newMyCB() { return referrerBhv.newMyConditionBean(); }
-            public void qyFKIn(MemberWithdrawalCB cb, List<String> ls)
-            { cb.query().setWithdrawalReasonCode_InScope(ls); }
-            public void qyOdFKAsc(MemberWithdrawalCB cb) { cb.query().addOrderBy_WithdrawalReasonCode_Asc(); }
-            public void spFKCol(MemberWithdrawalCB cb) { cb.specify().columnWithdrawalReasonCode(); }
-            public List<MemberWithdrawal> selRfLs(MemberWithdrawalCB cb) { return referrerBhv.selectList(cb); }
-            public String getFKVal(MemberWithdrawal re) { return re.getWithdrawalReasonCode(); }
-            public void setlcEt(MemberWithdrawal re, WithdrawalReason le)
-            { re.setWithdrawalReason(le); }
-            public String getRfPrNm() { return "memberWithdrawalList"; }
-        });
-    }
-
-    // ===================================================================================
     //                                                                   Pull out Relation
     //                                                                   =================
+    /**
+     * Pull out the list of foreign table 'Purchase'.
+     * @param purchasePaymentList The list of purchasePayment. (NotNull, EmptyAllowed)
+     * @return The list of foreign table. (NotNull, EmptyAllowed, NotNullElement)
+     */
+    public List<Purchase> pulloutPurchase(List<PurchasePayment> purchasePaymentList) {
+        return helpPulloutInternally(purchasePaymentList, new InternalPulloutCallback<PurchasePayment, Purchase>() {
+            public Purchase getFr(PurchasePayment et)
+            { return et.getPurchase(); }
+            public boolean hasRf() { return true; }
+            public void setRfLs(Purchase et, List<PurchasePayment> ls)
+            { et.setPurchasePaymentList(ls); }
+        });
+    }
 
     // ===================================================================================
     //                                                                      Extract Column
     //                                                                      ==============
     /**
-     * Extract the value list of (single) primary key withdrawalReasonCode.
-     * @param withdrawalReasonList The list of withdrawalReason. (NotNull, EmptyAllowed)
+     * Extract the value list of (single) primary key purchasePaymentId.
+     * @param purchasePaymentList The list of purchasePayment. (NotNull, EmptyAllowed)
      * @return The list of the column value. (NotNull, EmptyAllowed, NotNullElement)
      */
-    public List<String> extractWithdrawalReasonCodeList(List<WithdrawalReason> withdrawalReasonList) {
-        return helpExtractListInternally(withdrawalReasonList, new InternalExtractCallback<WithdrawalReason, String>() {
-            public String getCV(WithdrawalReason et) { return et.getWithdrawalReasonCode(); }
-        });
-    }
-
-    /**
-     * Extract the value list of (single) unique key displayOrder.
-     * @param withdrawalReasonList The list of withdrawalReason. (NotNull, EmptyAllowed)
-     * @return The list of the column value. (NotNull, EmptyAllowed, NotNullElement)
-     */
-    public List<Integer> extractDisplayOrderList(List<WithdrawalReason> withdrawalReasonList) {
-        return helpExtractListInternally(withdrawalReasonList, new InternalExtractCallback<WithdrawalReason, Integer>() {
-            public Integer getCV(WithdrawalReason et) { return et.getDisplayOrder(); }
+    public List<Long> extractPurchasePaymentIdList(List<PurchasePayment> purchasePaymentList) {
+        return helpExtractListInternally(purchasePaymentList, new InternalExtractCallback<PurchasePayment, Long>() {
+            public Long getCV(PurchasePayment et) { return et.getPurchasePaymentId(); }
         });
     }
 
@@ -563,31 +433,31 @@ public abstract class BsWithdrawalReasonBhv extends AbstractBehaviorWritable {
     /**
      * Insert the entity modified-only. (DefaultConstraintsEnabled)
      * <pre>
-     * WithdrawalReason withdrawalReason = new WithdrawalReason();
+     * PurchasePayment purchasePayment = new PurchasePayment();
      * <span style="color: #3F7E5E">// if auto-increment, you don't need to set the PK value</span>
-     * withdrawalReason.setFoo...(value);
-     * withdrawalReason.setBar...(value);
+     * purchasePayment.setFoo...(value);
+     * purchasePayment.setBar...(value);
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
-     * <span style="color: #3F7E5E">//withdrawalReason.setRegisterUser(value);</span>
-     * <span style="color: #3F7E5E">//withdrawalReason.set...;</span>
-     * withdrawalReasonBhv.<span style="color: #DD4747">insert</span>(withdrawalReason);
-     * ... = withdrawalReason.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
+     * <span style="color: #3F7E5E">//purchasePayment.setRegisterUser(value);</span>
+     * <span style="color: #3F7E5E">//purchasePayment.set...;</span>
+     * purchasePaymentBhv.<span style="color: #DD4747">insert</span>(purchasePayment);
+     * ... = purchasePayment.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * <p>While, when the entity is created by select, all columns are registered.</p>
-     * @param withdrawalReason The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
+     * @param purchasePayment The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
      * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
-    public void insert(WithdrawalReason withdrawalReason) {
-        doInsert(withdrawalReason, null);
+    public void insert(PurchasePayment purchasePayment) {
+        doInsert(purchasePayment, null);
     }
 
-    protected void doInsert(WithdrawalReason withdrawalReason, InsertOption<WithdrawalReasonCB> op) {
-        assertObjectNotNull("withdrawalReason", withdrawalReason);
+    protected void doInsert(PurchasePayment purchasePayment, InsertOption<PurchasePaymentCB> op) {
+        assertObjectNotNull("purchasePayment", purchasePayment);
         prepareInsertOption(op);
-        delegateInsert(withdrawalReason, op);
+        delegateInsert(purchasePayment, op);
     }
 
-    protected void prepareInsertOption(InsertOption<WithdrawalReasonCB> op) {
+    protected void prepareInsertOption(InsertOption<PurchasePaymentCB> op) {
         if (op == null) { return; }
         assertInsertOptionStatus(op);
         if (op.hasSpecifiedInsertColumn()) {
@@ -604,37 +474,37 @@ public abstract class BsWithdrawalReasonBhv extends AbstractBehaviorWritable {
     /**
      * Update the entity modified-only. (ZeroUpdateException, NonExclusiveControl)
      * <pre>
-     * WithdrawalReason withdrawalReason = new WithdrawalReason();
-     * withdrawalReason.setPK...(value); <span style="color: #3F7E5E">// required</span>
-     * withdrawalReason.setFoo...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
+     * PurchasePayment purchasePayment = new PurchasePayment();
+     * purchasePayment.setPK...(value); <span style="color: #3F7E5E">// required</span>
+     * purchasePayment.setFoo...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
-     * <span style="color: #3F7E5E">//withdrawalReason.setRegisterUser(value);</span>
-     * <span style="color: #3F7E5E">//withdrawalReason.set...;</span>
+     * <span style="color: #3F7E5E">//purchasePayment.setRegisterUser(value);</span>
+     * <span style="color: #3F7E5E">//purchasePayment.set...;</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * withdrawalReason.<span style="color: #DD4747">setVersionNo</span>(value);
+     * purchasePayment.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
-     *     withdrawalReasonBhv.<span style="color: #DD4747">update</span>(withdrawalReason);
+     *     purchasePaymentBhv.<span style="color: #DD4747">update</span>(purchasePayment);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
-     * @param withdrawalReason The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
+     * @param purchasePayment The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
-    public void update(final WithdrawalReason withdrawalReason) {
-        doUpdate(withdrawalReason, null);
+    public void update(final PurchasePayment purchasePayment) {
+        doUpdate(purchasePayment, null);
     }
 
-    protected void doUpdate(WithdrawalReason withdrawalReason, final UpdateOption<WithdrawalReasonCB> op) {
-        assertObjectNotNull("withdrawalReason", withdrawalReason);
+    protected void doUpdate(PurchasePayment purchasePayment, final UpdateOption<PurchasePaymentCB> op) {
+        assertObjectNotNull("purchasePayment", purchasePayment);
         prepareUpdateOption(op);
-        helpUpdateInternally(withdrawalReason, new InternalUpdateCallback<WithdrawalReason>() {
-            public int callbackDelegateUpdate(WithdrawalReason et) { return delegateUpdate(et, op); } });
+        helpUpdateInternally(purchasePayment, new InternalUpdateCallback<PurchasePayment>() {
+            public int callbackDelegateUpdate(PurchasePayment et) { return delegateUpdate(et, op); } });
     }
 
-    protected void prepareUpdateOption(UpdateOption<WithdrawalReasonCB> op) {
+    protected void prepareUpdateOption(UpdateOption<PurchasePaymentCB> op) {
         if (op == null) { return; }
         assertUpdateOptionStatus(op);
         if (op.hasSelfSpecification()) {
@@ -645,14 +515,14 @@ public abstract class BsWithdrawalReasonBhv extends AbstractBehaviorWritable {
         }
     }
 
-    protected WithdrawalReasonCB createCBForVaryingUpdate() {
-        WithdrawalReasonCB cb = newMyConditionBean();
+    protected PurchasePaymentCB createCBForVaryingUpdate() {
+        PurchasePaymentCB cb = newMyConditionBean();
         cb.xsetupForVaryingUpdate();
         return cb;
     }
 
-    protected WithdrawalReasonCB createCBForSpecifiedUpdate() {
-        WithdrawalReasonCB cb = newMyConditionBean();
+    protected PurchasePaymentCB createCBForSpecifiedUpdate() {
+        PurchasePaymentCB cb = newMyConditionBean();
         cb.xsetupForSpecifiedUpdate();
         return cb;
     }
@@ -672,21 +542,21 @@ public abstract class BsWithdrawalReasonBhv extends AbstractBehaviorWritable {
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br />
      * <p><span style="color: #DD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
-     * @param withdrawalReason The entity of insert or update target. (NotNull)
+     * @param purchasePayment The entity of insert or update target. (NotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
-    public void insertOrUpdate(WithdrawalReason withdrawalReason) {
-        doInesrtOrUpdate(withdrawalReason, null, null);
+    public void insertOrUpdate(PurchasePayment purchasePayment) {
+        doInesrtOrUpdate(purchasePayment, null, null);
     }
 
-    protected void doInesrtOrUpdate(WithdrawalReason withdrawalReason, final InsertOption<WithdrawalReasonCB> iop, final UpdateOption<WithdrawalReasonCB> uop) {
-        helpInsertOrUpdateInternally(withdrawalReason, new InternalInsertOrUpdateCallback<WithdrawalReason, WithdrawalReasonCB>() {
-            public void callbackInsert(WithdrawalReason et) { doInsert(et, iop); }
-            public void callbackUpdate(WithdrawalReason et) { doUpdate(et, uop); }
-            public WithdrawalReasonCB callbackNewMyConditionBean() { return newMyConditionBean(); }
-            public int callbackSelectCount(WithdrawalReasonCB cb) { return selectCount(cb); }
+    protected void doInesrtOrUpdate(PurchasePayment purchasePayment, final InsertOption<PurchasePaymentCB> iop, final UpdateOption<PurchasePaymentCB> uop) {
+        helpInsertOrUpdateInternally(purchasePayment, new InternalInsertOrUpdateCallback<PurchasePayment, PurchasePaymentCB>() {
+            public void callbackInsert(PurchasePayment et) { doInsert(et, iop); }
+            public void callbackUpdate(PurchasePayment et) { doUpdate(et, uop); }
+            public PurchasePaymentCB callbackNewMyConditionBean() { return newMyConditionBean(); }
+            public int callbackSelectCount(PurchasePaymentCB cb) { return selectCount(cb); }
         });
     }
 
@@ -694,8 +564,8 @@ public abstract class BsWithdrawalReasonBhv extends AbstractBehaviorWritable {
     protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
         if (iop == null && uop == null) { insertOrUpdate(downcast(et)); }
         else {
-            iop = iop != null ? iop : new InsertOption<WithdrawalReasonCB>();
-            uop = uop != null ? uop : new UpdateOption<WithdrawalReasonCB>();
+            iop = iop != null ? iop : new InsertOption<PurchasePaymentCB>();
+            uop = uop != null ? uop : new UpdateOption<PurchasePaymentCB>();
             varyingInsertOrUpdate(downcast(et), downcast(iop), downcast(uop));
         }
     }
@@ -708,32 +578,32 @@ public abstract class BsWithdrawalReasonBhv extends AbstractBehaviorWritable {
     /**
      * Delete the entity. (ZeroUpdateException, NonExclusiveControl)
      * <pre>
-     * WithdrawalReason withdrawalReason = new WithdrawalReason();
-     * withdrawalReason.setPK...(value); <span style="color: #3F7E5E">// required</span>
+     * PurchasePayment purchasePayment = new PurchasePayment();
+     * purchasePayment.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * withdrawalReason.<span style="color: #DD4747">setVersionNo</span>(value);
+     * purchasePayment.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
-     *     withdrawalReasonBhv.<span style="color: #DD4747">delete</span>(withdrawalReason);
+     *     purchasePaymentBhv.<span style="color: #DD4747">delete</span>(purchasePayment);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
-     * @param withdrawalReason The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
+     * @param purchasePayment The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      */
-    public void delete(WithdrawalReason withdrawalReason) {
-        doDelete(withdrawalReason, null);
+    public void delete(PurchasePayment purchasePayment) {
+        doDelete(purchasePayment, null);
     }
 
-    protected void doDelete(WithdrawalReason withdrawalReason, final DeleteOption<WithdrawalReasonCB> op) {
-        assertObjectNotNull("withdrawalReason", withdrawalReason);
+    protected void doDelete(PurchasePayment purchasePayment, final DeleteOption<PurchasePaymentCB> op) {
+        assertObjectNotNull("purchasePayment", purchasePayment);
         prepareDeleteOption(op);
-        helpDeleteInternally(withdrawalReason, new InternalDeleteCallback<WithdrawalReason>() {
-            public int callbackDelegateDelete(WithdrawalReason et) { return delegateDelete(et, op); } });
+        helpDeleteInternally(purchasePayment, new InternalDeleteCallback<PurchasePayment>() {
+            public int callbackDelegateDelete(PurchasePayment et) { return delegateDelete(et, op); } });
     }
 
-    protected void prepareDeleteOption(DeleteOption<WithdrawalReasonCB> op) {
+    protected void prepareDeleteOption(DeleteOption<PurchasePaymentCB> op) {
         if (op == null) { return; }
         assertDeleteOptionStatus(op);
     }
@@ -758,38 +628,38 @@ public abstract class BsWithdrawalReasonBhv extends AbstractBehaviorWritable {
      * <p><span style="color: #DD4747; font-size: 120%">The columns of least common multiple are registered like this:</span></p>
      * <pre>
      * for (... : ...) {
-     *     WithdrawalReason withdrawalReason = new WithdrawalReason();
-     *     withdrawalReason.setFooName("foo");
+     *     PurchasePayment purchasePayment = new PurchasePayment();
+     *     purchasePayment.setFooName("foo");
      *     if (...) {
-     *         withdrawalReason.setFooPrice(123);
+     *         purchasePayment.setFooPrice(123);
      *     }
      *     <span style="color: #3F7E5E">// FOO_NAME and FOO_PRICE (and record meta columns) are registered</span>
      *     <span style="color: #3F7E5E">// FOO_PRICE not-called in any entities are registered as null without default value</span>
      *     <span style="color: #3F7E5E">// columns not-called in all entities are registered as null or default value</span>
-     *     withdrawalReasonList.add(withdrawalReason);
+     *     purchasePaymentList.add(purchasePayment);
      * }
-     * withdrawalReasonBhv.<span style="color: #DD4747">batchInsert</span>(withdrawalReasonList);
+     * purchasePaymentBhv.<span style="color: #DD4747">batchInsert</span>(purchasePaymentList);
      * </pre>
      * <p>While, when the entities are created by select, all columns are registered.</p>
      * <p>And if the table has an identity, entities after the process don't have incremented values.
      * (When you use the (normal) insert(), you can get the incremented value from your entity)</p>
-     * @param withdrawalReasonList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNullAllowed: when auto-increment)
+     * @param purchasePaymentList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNullAllowed: when auto-increment)
      * @return The array of inserted count. (NotNull, EmptyAllowed)
      */
-    public int[] batchInsert(List<WithdrawalReason> withdrawalReasonList) {
-        InsertOption<WithdrawalReasonCB> op = createInsertUpdateOption();
-        return doBatchInsert(withdrawalReasonList, op);
+    public int[] batchInsert(List<PurchasePayment> purchasePaymentList) {
+        InsertOption<PurchasePaymentCB> op = createInsertUpdateOption();
+        return doBatchInsert(purchasePaymentList, op);
     }
 
-    protected int[] doBatchInsert(List<WithdrawalReason> withdrawalReasonList, InsertOption<WithdrawalReasonCB> op) {
-        assertObjectNotNull("withdrawalReasonList", withdrawalReasonList);
-        prepareBatchInsertOption(withdrawalReasonList, op);
-        return delegateBatchInsert(withdrawalReasonList, op);
+    protected int[] doBatchInsert(List<PurchasePayment> purchasePaymentList, InsertOption<PurchasePaymentCB> op) {
+        assertObjectNotNull("purchasePaymentList", purchasePaymentList);
+        prepareBatchInsertOption(purchasePaymentList, op);
+        return delegateBatchInsert(purchasePaymentList, op);
     }
 
-    protected void prepareBatchInsertOption(List<WithdrawalReason> withdrawalReasonList, InsertOption<WithdrawalReasonCB> op) {
+    protected void prepareBatchInsertOption(List<PurchasePayment> purchasePaymentList, InsertOption<PurchasePaymentCB> op) {
         op.xallowInsertColumnModifiedPropertiesFragmented();
-        op.xacceptInsertColumnModifiedPropertiesIfNeeds(withdrawalReasonList);
+        op.xacceptInsertColumnModifiedPropertiesIfNeeds(purchasePaymentList);
         prepareInsertOption(op);
     }
 
@@ -805,37 +675,37 @@ public abstract class BsWithdrawalReasonBhv extends AbstractBehaviorWritable {
      * <span style="color: #DD4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
      * <pre>
      * for (... : ...) {
-     *     WithdrawalReason withdrawalReason = new WithdrawalReason();
-     *     withdrawalReason.setFooName("foo");
+     *     PurchasePayment purchasePayment = new PurchasePayment();
+     *     purchasePayment.setFooName("foo");
      *     if (...) {
-     *         withdrawalReason.setFooPrice(123);
+     *         purchasePayment.setFooPrice(123);
      *     } else {
-     *         withdrawalReason.setFooPrice(null); <span style="color: #3F7E5E">// updated as null</span>
-     *         <span style="color: #3F7E5E">//withdrawalReason.setFooDate(...); // *not allowed, fragmented</span>
+     *         purchasePayment.setFooPrice(null); <span style="color: #3F7E5E">// updated as null</span>
+     *         <span style="color: #3F7E5E">//purchasePayment.setFooDate(...); // *not allowed, fragmented</span>
      *     }
      *     <span style="color: #3F7E5E">// FOO_NAME and FOO_PRICE (and record meta columns) are updated</span>
      *     <span style="color: #3F7E5E">// (others are not updated: their values are kept)</span>
-     *     withdrawalReasonList.add(withdrawalReason);
+     *     purchasePaymentList.add(purchasePayment);
      * }
-     * withdrawalReasonBhv.<span style="color: #DD4747">batchUpdate</span>(withdrawalReasonList);
+     * purchasePaymentBhv.<span style="color: #DD4747">batchUpdate</span>(purchasePaymentList);
      * </pre>
-     * @param withdrawalReasonList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
+     * @param purchasePaymentList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
-    public int[] batchUpdate(List<WithdrawalReason> withdrawalReasonList) {
-        UpdateOption<WithdrawalReasonCB> op = createPlainUpdateOption();
-        return doBatchUpdate(withdrawalReasonList, op);
+    public int[] batchUpdate(List<PurchasePayment> purchasePaymentList) {
+        UpdateOption<PurchasePaymentCB> op = createPlainUpdateOption();
+        return doBatchUpdate(purchasePaymentList, op);
     }
 
-    protected int[] doBatchUpdate(List<WithdrawalReason> withdrawalReasonList, UpdateOption<WithdrawalReasonCB> op) {
-        assertObjectNotNull("withdrawalReasonList", withdrawalReasonList);
-        prepareBatchUpdateOption(withdrawalReasonList, op);
-        return delegateBatchUpdate(withdrawalReasonList, op);
+    protected int[] doBatchUpdate(List<PurchasePayment> purchasePaymentList, UpdateOption<PurchasePaymentCB> op) {
+        assertObjectNotNull("purchasePaymentList", purchasePaymentList);
+        prepareBatchUpdateOption(purchasePaymentList, op);
+        return delegateBatchUpdate(purchasePaymentList, op);
     }
 
-    protected void prepareBatchUpdateOption(List<WithdrawalReason> withdrawalReasonList, UpdateOption<WithdrawalReasonCB> op) {
-        op.xacceptUpdateColumnModifiedPropertiesIfNeeds(withdrawalReasonList);
+    protected void prepareBatchUpdateOption(List<PurchasePayment> purchasePaymentList, UpdateOption<PurchasePaymentCB> op) {
+        op.xacceptUpdateColumnModifiedPropertiesIfNeeds(purchasePaymentList);
         prepareUpdateOption(op);
     }
 
@@ -850,15 +720,15 @@ public abstract class BsWithdrawalReasonBhv extends AbstractBehaviorWritable {
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * <pre>
      * <span style="color: #3F7E5E">// e.g. update two columns only</span>
-     * withdrawalReasonBhv.<span style="color: #DD4747">batchUpdate</span>(withdrawalReasonList, new SpecifyQuery<WithdrawalReasonCB>() {
-     *     public void specify(WithdrawalReasonCB cb) { <span style="color: #3F7E5E">// the two only updated</span>
+     * purchasePaymentBhv.<span style="color: #DD4747">batchUpdate</span>(purchasePaymentList, new SpecifyQuery<PurchasePaymentCB>() {
+     *     public void specify(PurchasePaymentCB cb) { <span style="color: #3F7E5E">// the two only updated</span>
      *         cb.specify().<span style="color: #DD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
      *         cb.specify().<span style="color: #DD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
      *     }
      * });
      * <span style="color: #3F7E5E">// e.g. update every column in the table</span>
-     * withdrawalReasonBhv.<span style="color: #DD4747">batchUpdate</span>(withdrawalReasonList, new SpecifyQuery<WithdrawalReasonCB>() {
-     *     public void specify(WithdrawalReasonCB cb) { <span style="color: #3F7E5E">// all columns are updated</span>
+     * purchasePaymentBhv.<span style="color: #DD4747">batchUpdate</span>(purchasePaymentList, new SpecifyQuery<PurchasePaymentCB>() {
+     *     public void specify(PurchasePaymentCB cb) { <span style="color: #3F7E5E">// all columns are updated</span>
      *         cb.specify().<span style="color: #DD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
      *     }
      * });
@@ -868,13 +738,13 @@ public abstract class BsWithdrawalReasonBhv extends AbstractBehaviorWritable {
      * and an optimistic lock column because they are specified implicitly.</p>
      * <p>And you should specify columns that are modified in any entities (at least one entity).
      * But if you specify every column, it has no check.</p>
-     * @param withdrawalReasonList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
+     * @param purchasePaymentList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @param updateColumnSpec The specification of update columns. (NotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
-    public int[] batchUpdate(List<WithdrawalReason> withdrawalReasonList, SpecifyQuery<WithdrawalReasonCB> updateColumnSpec) {
-        return doBatchUpdate(withdrawalReasonList, createSpecifiedUpdateOption(updateColumnSpec));
+    public int[] batchUpdate(List<PurchasePayment> purchasePaymentList, SpecifyQuery<PurchasePaymentCB> updateColumnSpec) {
+        return doBatchUpdate(purchasePaymentList, createSpecifiedUpdateOption(updateColumnSpec));
     }
 
     @Override
@@ -885,18 +755,18 @@ public abstract class BsWithdrawalReasonBhv extends AbstractBehaviorWritable {
     /**
      * Batch-delete the entity list. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement.
-     * @param withdrawalReasonList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
+     * @param purchasePaymentList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of deleted count. (NotNull, EmptyAllowed)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
-    public int[] batchDelete(List<WithdrawalReason> withdrawalReasonList) {
-        return doBatchDelete(withdrawalReasonList, null);
+    public int[] batchDelete(List<PurchasePayment> purchasePaymentList) {
+        return doBatchDelete(purchasePaymentList, null);
     }
 
-    protected int[] doBatchDelete(List<WithdrawalReason> withdrawalReasonList, DeleteOption<WithdrawalReasonCB> op) {
-        assertObjectNotNull("withdrawalReasonList", withdrawalReasonList);
+    protected int[] doBatchDelete(List<PurchasePayment> purchasePaymentList, DeleteOption<PurchasePaymentCB> op) {
+        assertObjectNotNull("purchasePaymentList", purchasePaymentList);
         prepareDeleteOption(op);
-        return delegateBatchDelete(withdrawalReasonList, op);
+        return delegateBatchDelete(purchasePaymentList, op);
     }
 
     @Override
@@ -916,8 +786,8 @@ public abstract class BsWithdrawalReasonBhv extends AbstractBehaviorWritable {
     /**
      * Insert the several entities by query (modified-only for fixed value).
      * <pre>
-     * withdrawalReasonBhv.<span style="color: #DD4747">queryInsert</span>(new QueryInsertSetupper&lt;WithdrawalReason, WithdrawalReasonCB&gt;() {
-     *     public ConditionBean setup(withdrawalReason entity, WithdrawalReasonCB intoCB) {
+     * purchasePaymentBhv.<span style="color: #DD4747">queryInsert</span>(new QueryInsertSetupper&lt;PurchasePayment, PurchasePaymentCB&gt;() {
+     *     public ConditionBean setup(purchasePayment entity, PurchasePaymentCB intoCB) {
      *         FooCB cb = FooCB();
      *         cb.setupSelect_Bar();
      *
@@ -939,20 +809,20 @@ public abstract class BsWithdrawalReasonBhv extends AbstractBehaviorWritable {
      * @param setupper The setup-per of query-insert. (NotNull)
      * @return The inserted count.
      */
-    public int queryInsert(QueryInsertSetupper<WithdrawalReason, WithdrawalReasonCB> setupper) {
+    public int queryInsert(QueryInsertSetupper<PurchasePayment, PurchasePaymentCB> setupper) {
         return doQueryInsert(setupper, null);
     }
 
-    protected int doQueryInsert(QueryInsertSetupper<WithdrawalReason, WithdrawalReasonCB> sp, InsertOption<WithdrawalReasonCB> op) {
+    protected int doQueryInsert(QueryInsertSetupper<PurchasePayment, PurchasePaymentCB> sp, InsertOption<PurchasePaymentCB> op) {
         assertObjectNotNull("setupper", sp);
         prepareInsertOption(op);
-        WithdrawalReason e = new WithdrawalReason();
-        WithdrawalReasonCB cb = createCBForQueryInsert();
+        PurchasePayment e = new PurchasePayment();
+        PurchasePaymentCB cb = createCBForQueryInsert();
         return delegateQueryInsert(e, cb, sp.setup(e, cb), op);
     }
 
-    protected WithdrawalReasonCB createCBForQueryInsert() {
-        WithdrawalReasonCB cb = newMyConditionBean();
+    protected PurchasePaymentCB createCBForQueryInsert() {
+        PurchasePaymentCB cb = newMyConditionBean();
         cb.xsetupForQueryInsert();
         return cb;
     }
@@ -966,57 +836,57 @@ public abstract class BsWithdrawalReasonBhv extends AbstractBehaviorWritable {
     /**
      * Update the several entities by query non-strictly modified-only. (NonExclusiveControl)
      * <pre>
-     * WithdrawalReason withdrawalReason = new WithdrawalReason();
+     * PurchasePayment purchasePayment = new PurchasePayment();
      * <span style="color: #3F7E5E">// you don't need to set PK value</span>
-     * <span style="color: #3F7E5E">//withdrawalReason.setPK...(value);</span>
-     * withdrawalReason.setFoo...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
+     * <span style="color: #3F7E5E">//purchasePayment.setPK...(value);</span>
+     * purchasePayment.setFoo...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
-     * <span style="color: #3F7E5E">//withdrawalReason.setRegisterUser(value);</span>
-     * <span style="color: #3F7E5E">//withdrawalReason.set...;</span>
+     * <span style="color: #3F7E5E">//purchasePayment.setRegisterUser(value);</span>
+     * <span style="color: #3F7E5E">//purchasePayment.set...;</span>
      * <span style="color: #3F7E5E">// you don't need to set a value of exclusive control column</span>
      * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
-     * <span style="color: #3F7E5E">//withdrawalReason.setVersionNo(value);</span>
-     * WithdrawalReasonCB cb = new WithdrawalReasonCB();
+     * <span style="color: #3F7E5E">//purchasePayment.setVersionNo(value);</span>
+     * PurchasePaymentCB cb = new PurchasePaymentCB();
      * cb.query().setFoo...(value);
-     * withdrawalReasonBhv.<span style="color: #DD4747">queryUpdate</span>(withdrawalReason, cb);
+     * purchasePaymentBhv.<span style="color: #DD4747">queryUpdate</span>(purchasePayment, cb);
      * </pre>
-     * @param withdrawalReason The entity that contains update values. (NotNull, PrimaryKeyNullAllowed)
-     * @param cb The condition-bean of WithdrawalReason. (NotNull)
+     * @param purchasePayment The entity that contains update values. (NotNull, PrimaryKeyNullAllowed)
+     * @param cb The condition-bean of PurchasePayment. (NotNull)
      * @return The updated count.
      * @exception NonQueryUpdateNotAllowedException When the query has no condition.
      */
-    public int queryUpdate(WithdrawalReason withdrawalReason, WithdrawalReasonCB cb) {
-        return doQueryUpdate(withdrawalReason, cb, null);
+    public int queryUpdate(PurchasePayment purchasePayment, PurchasePaymentCB cb) {
+        return doQueryUpdate(purchasePayment, cb, null);
     }
 
-    protected int doQueryUpdate(WithdrawalReason withdrawalReason, WithdrawalReasonCB cb, UpdateOption<WithdrawalReasonCB> op) {
-        assertObjectNotNull("withdrawalReason", withdrawalReason); assertCBStateValid(cb);
+    protected int doQueryUpdate(PurchasePayment purchasePayment, PurchasePaymentCB cb, UpdateOption<PurchasePaymentCB> op) {
+        assertObjectNotNull("purchasePayment", purchasePayment); assertCBStateValid(cb);
         prepareUpdateOption(op);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(withdrawalReason, cb, op) : 0;
+        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(purchasePayment, cb, op) : 0;
     }
 
     @Override
     protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op) {
-        if (op == null) { return queryUpdate(downcast(et), (WithdrawalReasonCB)cb); }
-        else { return varyingQueryUpdate(downcast(et), (WithdrawalReasonCB)cb, downcast(op)); }
+        if (op == null) { return queryUpdate(downcast(et), (PurchasePaymentCB)cb); }
+        else { return varyingQueryUpdate(downcast(et), (PurchasePaymentCB)cb, downcast(op)); }
     }
 
     /**
      * Delete the several entities by query. (NonExclusiveControl)
      * <pre>
-     * WithdrawalReasonCB cb = new WithdrawalReasonCB();
+     * PurchasePaymentCB cb = new PurchasePaymentCB();
      * cb.query().setFoo...(value);
-     * withdrawalReasonBhv.<span style="color: #DD4747">queryDelete</span>(withdrawalReason, cb);
+     * purchasePaymentBhv.<span style="color: #DD4747">queryDelete</span>(purchasePayment, cb);
      * </pre>
-     * @param cb The condition-bean of WithdrawalReason. (NotNull)
+     * @param cb The condition-bean of PurchasePayment. (NotNull)
      * @return The deleted count.
      * @exception NonQueryDeleteNotAllowedException When the query has no condition.
      */
-    public int queryDelete(WithdrawalReasonCB cb) {
+    public int queryDelete(PurchasePaymentCB cb) {
         return doQueryDelete(cb, null);
     }
 
-    protected int doQueryDelete(WithdrawalReasonCB cb, DeleteOption<WithdrawalReasonCB> op) {
+    protected int doQueryDelete(PurchasePaymentCB cb, DeleteOption<PurchasePaymentCB> op) {
         assertCBStateValid(cb);
         prepareDeleteOption(op);
         return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryDelete(cb, op) : 0;
@@ -1024,8 +894,8 @@ public abstract class BsWithdrawalReasonBhv extends AbstractBehaviorWritable {
 
     @Override
     protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) {
-        if (op == null) { return queryDelete((WithdrawalReasonCB)cb); }
-        else { return varyingQueryDelete((WithdrawalReasonCB)cb, downcast(op)); }
+        if (op == null) { return queryDelete((PurchasePaymentCB)cb); }
+        else { return varyingQueryDelete((PurchasePaymentCB)cb, downcast(op)); }
     }
 
     // ===================================================================================
@@ -1039,23 +909,23 @@ public abstract class BsWithdrawalReasonBhv extends AbstractBehaviorWritable {
      * For example, disableCommonColumnAutoSetup(), disablePrimaryKeyIdentity(). <br />
      * Other specifications are same as insert(entity).
      * <pre>
-     * WithdrawalReason withdrawalReason = new WithdrawalReason();
+     * PurchasePayment purchasePayment = new PurchasePayment();
      * <span style="color: #3F7E5E">// if auto-increment, you don't need to set the PK value</span>
-     * withdrawalReason.setFoo...(value);
-     * withdrawalReason.setBar...(value);
-     * InsertOption<WithdrawalReasonCB> option = new InsertOption<WithdrawalReasonCB>();
+     * purchasePayment.setFoo...(value);
+     * purchasePayment.setBar...(value);
+     * InsertOption<PurchasePaymentCB> option = new InsertOption<PurchasePaymentCB>();
      * <span style="color: #3F7E5E">// you can insert by your values for common columns</span>
      * option.disableCommonColumnAutoSetup();
-     * withdrawalReasonBhv.<span style="color: #DD4747">varyingInsert</span>(withdrawalReason, option);
-     * ... = withdrawalReason.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
+     * purchasePaymentBhv.<span style="color: #DD4747">varyingInsert</span>(purchasePayment, option);
+     * ... = purchasePayment.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
-     * @param withdrawalReason The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
+     * @param purchasePayment The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
      * @param option The option of insert for varying requests. (NotNull)
      * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
-    public void varyingInsert(WithdrawalReason withdrawalReason, InsertOption<WithdrawalReasonCB> option) {
+    public void varyingInsert(PurchasePayment purchasePayment, InsertOption<PurchasePaymentCB> option) {
         assertInsertOptionNotNull(option);
-        doInsert(withdrawalReason, option);
+        doInsert(purchasePayment, option);
     }
 
     /**
@@ -1063,62 +933,62 @@ public abstract class BsWithdrawalReasonBhv extends AbstractBehaviorWritable {
      * For example, self(selfCalculationSpecification), specify(updateColumnSpecification), disableCommonColumnAutoSetup(). <br />
      * Other specifications are same as update(entity).
      * <pre>
-     * WithdrawalReason withdrawalReason = new WithdrawalReason();
-     * withdrawalReason.setPK...(value); <span style="color: #3F7E5E">// required</span>
-     * withdrawalReason.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
+     * PurchasePayment purchasePayment = new PurchasePayment();
+     * purchasePayment.setPK...(value); <span style="color: #3F7E5E">// required</span>
+     * purchasePayment.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * withdrawalReason.<span style="color: #DD4747">setVersionNo</span>(value);
+     * purchasePayment.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     <span style="color: #3F7E5E">// you can update by self calculation values</span>
-     *     UpdateOption&lt;WithdrawalReasonCB&gt; option = new UpdateOption&lt;WithdrawalReasonCB&gt;();
-     *     option.self(new SpecifyQuery&lt;WithdrawalReasonCB&gt;() {
-     *         public void specify(WithdrawalReasonCB cb) {
+     *     UpdateOption&lt;PurchasePaymentCB&gt; option = new UpdateOption&lt;PurchasePaymentCB&gt;();
+     *     option.self(new SpecifyQuery&lt;PurchasePaymentCB&gt;() {
+     *         public void specify(PurchasePaymentCB cb) {
      *             cb.specify().<span style="color: #DD4747">columnXxxCount()</span>;
      *         }
      *     }).plus(1); <span style="color: #3F7E5E">// XXX_COUNT = XXX_COUNT + 1</span>
-     *     withdrawalReasonBhv.<span style="color: #DD4747">varyingUpdate</span>(withdrawalReason, option);
+     *     purchasePaymentBhv.<span style="color: #DD4747">varyingUpdate</span>(purchasePayment, option);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
-     * @param withdrawalReason The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
+     * @param purchasePayment The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @param option The option of update for varying requests. (NotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
-    public void varyingUpdate(WithdrawalReason withdrawalReason, UpdateOption<WithdrawalReasonCB> option) {
+    public void varyingUpdate(PurchasePayment purchasePayment, UpdateOption<PurchasePaymentCB> option) {
         assertUpdateOptionNotNull(option);
-        doUpdate(withdrawalReason, option);
+        doUpdate(purchasePayment, option);
     }
 
     /**
      * Insert or update the entity with varying requests. (ExclusiveControl: when update) <br />
      * Other specifications are same as insertOrUpdate(entity).
-     * @param withdrawalReason The entity of insert or update target. (NotNull)
+     * @param purchasePayment The entity of insert or update target. (NotNull)
      * @param insertOption The option of insert for varying requests. (NotNull)
      * @param updateOption The option of update for varying requests. (NotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
-    public void varyingInsertOrUpdate(WithdrawalReason withdrawalReason, InsertOption<WithdrawalReasonCB> insertOption, UpdateOption<WithdrawalReasonCB> updateOption) {
+    public void varyingInsertOrUpdate(PurchasePayment purchasePayment, InsertOption<PurchasePaymentCB> insertOption, UpdateOption<PurchasePaymentCB> updateOption) {
         assertInsertOptionNotNull(insertOption); assertUpdateOptionNotNull(updateOption);
-        doInesrtOrUpdate(withdrawalReason, insertOption, updateOption);
+        doInesrtOrUpdate(purchasePayment, insertOption, updateOption);
     }
 
     /**
      * Delete the entity with varying requests. (ZeroUpdateException, NonExclusiveControl) <br />
      * Now a valid option does not exist. <br />
      * Other specifications are same as delete(entity).
-     * @param withdrawalReason The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
+     * @param purchasePayment The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @param option The option of update for varying requests. (NotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      */
-    public void varyingDelete(WithdrawalReason withdrawalReason, DeleteOption<WithdrawalReasonCB> option) {
+    public void varyingDelete(PurchasePayment purchasePayment, DeleteOption<PurchasePaymentCB> option) {
         assertDeleteOptionNotNull(option);
-        doDelete(withdrawalReason, option);
+        doDelete(purchasePayment, option);
     }
 
     // -----------------------------------------------------
@@ -1129,13 +999,13 @@ public abstract class BsWithdrawalReasonBhv extends AbstractBehaviorWritable {
      * For example, disableCommonColumnAutoSetup()
      * , disablePrimaryKeyIdentity(), limitBatchInsertLogging(). <br />
      * Other specifications are same as batchInsert(entityList).
-     * @param withdrawalReasonList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
+     * @param purchasePaymentList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @param option The option of insert for varying requests. (NotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
      */
-    public int[] varyingBatchInsert(List<WithdrawalReason> withdrawalReasonList, InsertOption<WithdrawalReasonCB> option) {
+    public int[] varyingBatchInsert(List<PurchasePayment> purchasePaymentList, InsertOption<PurchasePaymentCB> option) {
         assertInsertOptionNotNull(option);
-        return doBatchInsert(withdrawalReasonList, option);
+        return doBatchInsert(purchasePaymentList, option);
     }
 
     /**
@@ -1143,26 +1013,26 @@ public abstract class BsWithdrawalReasonBhv extends AbstractBehaviorWritable {
      * For example, self(selfCalculationSpecification), specify(updateColumnSpecification)
      * , disableCommonColumnAutoSetup(), limitBatchUpdateLogging(). <br />
      * Other specifications are same as batchUpdate(entityList).
-     * @param withdrawalReasonList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
+     * @param purchasePaymentList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @param option The option of update for varying requests. (NotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
      */
-    public int[] varyingBatchUpdate(List<WithdrawalReason> withdrawalReasonList, UpdateOption<WithdrawalReasonCB> option) {
+    public int[] varyingBatchUpdate(List<PurchasePayment> purchasePaymentList, UpdateOption<PurchasePaymentCB> option) {
         assertUpdateOptionNotNull(option);
-        return doBatchUpdate(withdrawalReasonList, option);
+        return doBatchUpdate(purchasePaymentList, option);
     }
 
     /**
      * Batch-delete the list with varying requests. <br />
      * For example, limitBatchDeleteLogging(). <br />
      * Other specifications are same as batchDelete(entityList).
-     * @param withdrawalReasonList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
+     * @param purchasePaymentList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @param option The option of delete for varying requests. (NotNull)
      * @return The array of deleted count. (NotNull, EmptyAllowed)
      */
-    public int[] varyingBatchDelete(List<WithdrawalReason> withdrawalReasonList, DeleteOption<WithdrawalReasonCB> option) {
+    public int[] varyingBatchDelete(List<PurchasePayment> purchasePaymentList, DeleteOption<PurchasePaymentCB> option) {
         assertDeleteOptionNotNull(option);
-        return doBatchDelete(withdrawalReasonList, option);
+        return doBatchDelete(purchasePaymentList, option);
     }
 
     // -----------------------------------------------------
@@ -1176,7 +1046,7 @@ public abstract class BsWithdrawalReasonBhv extends AbstractBehaviorWritable {
      * @param option The option of insert for varying requests. (NotNull)
      * @return The inserted count.
      */
-    public int varyingQueryInsert(QueryInsertSetupper<WithdrawalReason, WithdrawalReasonCB> setupper, InsertOption<WithdrawalReasonCB> option) {
+    public int varyingQueryInsert(QueryInsertSetupper<PurchasePayment, PurchasePaymentCB> setupper, InsertOption<PurchasePaymentCB> option) {
         assertInsertOptionNotNull(option);
         return doQueryInsert(setupper, option);
     }
@@ -1188,44 +1058,44 @@ public abstract class BsWithdrawalReasonBhv extends AbstractBehaviorWritable {
      * Other specifications are same as queryUpdate(entity, cb).
      * <pre>
      * <span style="color: #3F7E5E">// ex) you can update by self calculation values</span>
-     * WithdrawalReason withdrawalReason = new WithdrawalReason();
+     * PurchasePayment purchasePayment = new PurchasePayment();
      * <span style="color: #3F7E5E">// you don't need to set PK value</span>
-     * <span style="color: #3F7E5E">//withdrawalReason.setPK...(value);</span>
-     * withdrawalReason.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
+     * <span style="color: #3F7E5E">//purchasePayment.setPK...(value);</span>
+     * purchasePayment.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
      * <span style="color: #3F7E5E">// you don't need to set a value of exclusive control column</span>
      * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
-     * <span style="color: #3F7E5E">//withdrawalReason.setVersionNo(value);</span>
-     * WithdrawalReasonCB cb = new WithdrawalReasonCB();
+     * <span style="color: #3F7E5E">//purchasePayment.setVersionNo(value);</span>
+     * PurchasePaymentCB cb = new PurchasePaymentCB();
      * cb.query().setFoo...(value);
-     * UpdateOption&lt;WithdrawalReasonCB&gt; option = new UpdateOption&lt;WithdrawalReasonCB&gt;();
-     * option.self(new SpecifyQuery&lt;WithdrawalReasonCB&gt;() {
-     *     public void specify(WithdrawalReasonCB cb) {
+     * UpdateOption&lt;PurchasePaymentCB&gt; option = new UpdateOption&lt;PurchasePaymentCB&gt;();
+     * option.self(new SpecifyQuery&lt;PurchasePaymentCB&gt;() {
+     *     public void specify(PurchasePaymentCB cb) {
      *         cb.specify().<span style="color: #DD4747">columnFooCount()</span>;
      *     }
      * }).plus(1); <span style="color: #3F7E5E">// FOO_COUNT = FOO_COUNT + 1</span>
-     * withdrawalReasonBhv.<span style="color: #DD4747">varyingQueryUpdate</span>(withdrawalReason, cb, option);
+     * purchasePaymentBhv.<span style="color: #DD4747">varyingQueryUpdate</span>(purchasePayment, cb, option);
      * </pre>
-     * @param withdrawalReason The entity that contains update values. (NotNull) {PrimaryKeyNotRequired}
-     * @param cb The condition-bean of WithdrawalReason. (NotNull)
+     * @param purchasePayment The entity that contains update values. (NotNull) {PrimaryKeyNotRequired}
+     * @param cb The condition-bean of PurchasePayment. (NotNull)
      * @param option The option of update for varying requests. (NotNull)
      * @return The updated count.
      * @exception NonQueryUpdateNotAllowedException When the query has no condition (if not allowed).
      */
-    public int varyingQueryUpdate(WithdrawalReason withdrawalReason, WithdrawalReasonCB cb, UpdateOption<WithdrawalReasonCB> option) {
+    public int varyingQueryUpdate(PurchasePayment purchasePayment, PurchasePaymentCB cb, UpdateOption<PurchasePaymentCB> option) {
         assertUpdateOptionNotNull(option);
-        return doQueryUpdate(withdrawalReason, cb, option);
+        return doQueryUpdate(purchasePayment, cb, option);
     }
 
     /**
      * Delete the several entities by query with varying requests non-strictly. <br />
      * For example, allowNonQueryDelete(). <br />
      * Other specifications are same as batchUpdateNonstrict(entityList).
-     * @param cb The condition-bean of WithdrawalReason. (NotNull)
+     * @param cb The condition-bean of PurchasePayment. (NotNull)
      * @param option The option of delete for varying requests. (NotNull)
      * @return The deleted count.
      * @exception NonQueryDeleteNotAllowedException When the query has no condition (if not allowed).
      */
-    public int varyingQueryDelete(WithdrawalReasonCB cb, DeleteOption<WithdrawalReasonCB> option) {
+    public int varyingQueryDelete(PurchasePaymentCB cb, DeleteOption<PurchasePaymentCB> option) {
         assertDeleteOptionNotNull(option);
         return doQueryDelete(cb, option);
     }
@@ -1264,7 +1134,7 @@ public abstract class BsWithdrawalReasonBhv extends AbstractBehaviorWritable {
      * </pre>
      * @return The basic executor of outside-SQL. (NotNull)
      */
-    public OutsideSqlBasicExecutor<WithdrawalReasonBhv> outsideSql() {
+    public OutsideSqlBasicExecutor<PurchasePaymentBhv> outsideSql() {
         return doOutsideSql();
     }
 
@@ -1275,53 +1145,53 @@ public abstract class BsWithdrawalReasonBhv extends AbstractBehaviorWritable {
     // -----------------------------------------------------
     //                                                Select
     //                                                ------
-    protected int delegateSelectCountUniquely(WithdrawalReasonCB cb) { return invoke(createSelectCountCBCommand(cb, true)); }
-    protected int delegateSelectCountPlainly(WithdrawalReasonCB cb) { return invoke(createSelectCountCBCommand(cb, false)); }
-    protected <ENTITY extends WithdrawalReason> void delegateSelectCursor(WithdrawalReasonCB cb, EntityRowHandler<ENTITY> rh, Class<ENTITY> tp)
+    protected int delegateSelectCountUniquely(PurchasePaymentCB cb) { return invoke(createSelectCountCBCommand(cb, true)); }
+    protected int delegateSelectCountPlainly(PurchasePaymentCB cb) { return invoke(createSelectCountCBCommand(cb, false)); }
+    protected <ENTITY extends PurchasePayment> void delegateSelectCursor(PurchasePaymentCB cb, EntityRowHandler<ENTITY> rh, Class<ENTITY> tp)
     { invoke(createSelectCursorCBCommand(cb, rh, tp)); }
-    protected <ENTITY extends WithdrawalReason> List<ENTITY> delegateSelectList(WithdrawalReasonCB cb, Class<ENTITY> tp)
+    protected <ENTITY extends PurchasePayment> List<ENTITY> delegateSelectList(PurchasePaymentCB cb, Class<ENTITY> tp)
     { return invoke(createSelectListCBCommand(cb, tp)); }
 
     // -----------------------------------------------------
     //                                                Update
     //                                                ------
-    protected int delegateInsert(WithdrawalReason et, InsertOption<WithdrawalReasonCB> op)
+    protected int delegateInsert(PurchasePayment et, InsertOption<PurchasePaymentCB> op)
     { if (!processBeforeInsert(et, op)) { return 0; }
       return invoke(createInsertEntityCommand(et, op)); }
-    protected int delegateUpdate(WithdrawalReason et, UpdateOption<WithdrawalReasonCB> op)
+    protected int delegateUpdate(PurchasePayment et, UpdateOption<PurchasePaymentCB> op)
     { if (!processBeforeUpdate(et, op)) { return 0; }
       return delegateUpdateNonstrict(et, op); }
-    protected int delegateUpdateNonstrict(WithdrawalReason et, UpdateOption<WithdrawalReasonCB> op)
+    protected int delegateUpdateNonstrict(PurchasePayment et, UpdateOption<PurchasePaymentCB> op)
     { if (!processBeforeUpdate(et, op)) { return 0; }
       return invoke(createUpdateNonstrictEntityCommand(et, op)); }
-    protected int delegateDelete(WithdrawalReason et, DeleteOption<WithdrawalReasonCB> op)
+    protected int delegateDelete(PurchasePayment et, DeleteOption<PurchasePaymentCB> op)
     { if (!processBeforeDelete(et, op)) { return 0; }
       return delegateDeleteNonstrict(et, op); }
-    protected int delegateDeleteNonstrict(WithdrawalReason et, DeleteOption<WithdrawalReasonCB> op)
+    protected int delegateDeleteNonstrict(PurchasePayment et, DeleteOption<PurchasePaymentCB> op)
     { if (!processBeforeDelete(et, op)) { return 0; }
       return invoke(createDeleteNonstrictEntityCommand(et, op)); }
 
-    protected int[] delegateBatchInsert(List<WithdrawalReason> ls, InsertOption<WithdrawalReasonCB> op)
+    protected int[] delegateBatchInsert(List<PurchasePayment> ls, InsertOption<PurchasePaymentCB> op)
     { if (ls.isEmpty()) { return new int[]{}; }
       return invoke(createBatchInsertCommand(processBatchInternally(ls, op), op)); }
-    protected int[] delegateBatchUpdate(List<WithdrawalReason> ls, UpdateOption<WithdrawalReasonCB> op)
+    protected int[] delegateBatchUpdate(List<PurchasePayment> ls, UpdateOption<PurchasePaymentCB> op)
     { if (ls.isEmpty()) { return new int[]{}; }
       return delegateBatchUpdateNonstrict(ls, op); }
-    protected int[] delegateBatchUpdateNonstrict(List<WithdrawalReason> ls, UpdateOption<WithdrawalReasonCB> op)
+    protected int[] delegateBatchUpdateNonstrict(List<PurchasePayment> ls, UpdateOption<PurchasePaymentCB> op)
     { if (ls.isEmpty()) { return new int[]{}; }
       return invoke(createBatchUpdateNonstrictCommand(processBatchInternally(ls, op, true), op)); }
-    protected int[] delegateBatchDelete(List<WithdrawalReason> ls, DeleteOption<WithdrawalReasonCB> op)
+    protected int[] delegateBatchDelete(List<PurchasePayment> ls, DeleteOption<PurchasePaymentCB> op)
     { if (ls.isEmpty()) { return new int[]{}; }
       return delegateBatchDeleteNonstrict(ls, op); }
-    protected int[] delegateBatchDeleteNonstrict(List<WithdrawalReason> ls, DeleteOption<WithdrawalReasonCB> op)
+    protected int[] delegateBatchDeleteNonstrict(List<PurchasePayment> ls, DeleteOption<PurchasePaymentCB> op)
     { if (ls.isEmpty()) { return new int[]{}; }
       return invoke(createBatchDeleteNonstrictCommand(processBatchInternally(ls, op, true), op)); }
 
-    protected int delegateQueryInsert(WithdrawalReason et, WithdrawalReasonCB inCB, ConditionBean resCB, InsertOption<WithdrawalReasonCB> op)
+    protected int delegateQueryInsert(PurchasePayment et, PurchasePaymentCB inCB, ConditionBean resCB, InsertOption<PurchasePaymentCB> op)
     { if (!processBeforeQueryInsert(et, inCB, resCB, op)) { return 0; } return invoke(createQueryInsertCBCommand(et, inCB, resCB, op));  }
-    protected int delegateQueryUpdate(WithdrawalReason et, WithdrawalReasonCB cb, UpdateOption<WithdrawalReasonCB> op)
+    protected int delegateQueryUpdate(PurchasePayment et, PurchasePaymentCB cb, UpdateOption<PurchasePaymentCB> op)
     { if (!processBeforeQueryUpdate(et, cb, op)) { return 0; } return invoke(createQueryUpdateCBCommand(et, cb, op));  }
-    protected int delegateQueryDelete(WithdrawalReasonCB cb, DeleteOption<WithdrawalReasonCB> op)
+    protected int delegateQueryDelete(PurchasePaymentCB cb, DeleteOption<PurchasePaymentCB> op)
     { if (!processBeforeQueryDelete(cb, op)) { return 0; } return invoke(createQueryDeleteCBCommand(cb, op));  }
 
     // ===================================================================================
@@ -1346,36 +1216,36 @@ public abstract class BsWithdrawalReasonBhv extends AbstractBehaviorWritable {
     // ===================================================================================
     //                                                                     Downcast Helper
     //                                                                     ===============
-    protected WithdrawalReason downcast(Entity et) {
-        return helpEntityDowncastInternally(et, WithdrawalReason.class);
+    protected PurchasePayment downcast(Entity et) {
+        return helpEntityDowncastInternally(et, PurchasePayment.class);
     }
 
-    protected WithdrawalReasonCB downcast(ConditionBean cb) {
-        return helpConditionBeanDowncastInternally(cb, WithdrawalReasonCB.class);
-    }
-
-    @SuppressWarnings("unchecked")
-    protected List<WithdrawalReason> downcast(List<? extends Entity> ls) {
-        return (List<WithdrawalReason>)ls;
+    protected PurchasePaymentCB downcast(ConditionBean cb) {
+        return helpConditionBeanDowncastInternally(cb, PurchasePaymentCB.class);
     }
 
     @SuppressWarnings("unchecked")
-    protected InsertOption<WithdrawalReasonCB> downcast(InsertOption<? extends ConditionBean> op) {
-        return (InsertOption<WithdrawalReasonCB>)op;
+    protected List<PurchasePayment> downcast(List<? extends Entity> ls) {
+        return (List<PurchasePayment>)ls;
     }
 
     @SuppressWarnings("unchecked")
-    protected UpdateOption<WithdrawalReasonCB> downcast(UpdateOption<? extends ConditionBean> op) {
-        return (UpdateOption<WithdrawalReasonCB>)op;
+    protected InsertOption<PurchasePaymentCB> downcast(InsertOption<? extends ConditionBean> op) {
+        return (InsertOption<PurchasePaymentCB>)op;
     }
 
     @SuppressWarnings("unchecked")
-    protected DeleteOption<WithdrawalReasonCB> downcast(DeleteOption<? extends ConditionBean> op) {
-        return (DeleteOption<WithdrawalReasonCB>)op;
+    protected UpdateOption<PurchasePaymentCB> downcast(UpdateOption<? extends ConditionBean> op) {
+        return (UpdateOption<PurchasePaymentCB>)op;
     }
 
     @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WithdrawalReason, WithdrawalReasonCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp) {
-        return (QueryInsertSetupper<WithdrawalReason, WithdrawalReasonCB>)sp;
+    protected DeleteOption<PurchasePaymentCB> downcast(DeleteOption<? extends ConditionBean> op) {
+        return (DeleteOption<PurchasePaymentCB>)op;
+    }
+
+    @SuppressWarnings("unchecked")
+    protected QueryInsertSetupper<PurchasePayment, PurchasePaymentCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp) {
+        return (QueryInsertSetupper<PurchasePayment, PurchasePaymentCB>)sp;
     }
 }

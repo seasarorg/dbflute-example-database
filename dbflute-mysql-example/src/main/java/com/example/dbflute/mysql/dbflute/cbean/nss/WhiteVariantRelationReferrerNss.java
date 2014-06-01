@@ -37,39 +37,30 @@ public class WhiteVariantRelationReferrerNss {
     /**
      * With nested relation columns to select clause. <br />
      * white_variant_relation_master_foo by my VARIANT_MASTER_ID, named 'whiteVariantRelationMasterFooAsVariant'.
-     * @return The set-upper of more nested relation. {...with[nested-relation].with[more-nested-relation]} (NotNull)
      */
-    public WhiteVariantRelationMasterFooNss withWhiteVariantRelationMasterFooAsVariant() {
+    public void withWhiteVariantRelationMasterFooAsVariant() {
         _query.doNss(new WhiteVariantRelationReferrerCQ.NssCall() { public ConditionQuery qf() { return _query.queryWhiteVariantRelationMasterFooAsVariant(); }});
-        return new WhiteVariantRelationMasterFooNss(_query.queryWhiteVariantRelationMasterFooAsVariant());
     }
     /**
      * With nested relation columns to select clause. <br />
      * white_variant_relation_master_bar by my VARIANT_MASTER_ID, named 'whiteVariantRelationMasterBarAsVariant'.
-     * @return The set-upper of more nested relation. {...with[nested-relation].with[more-nested-relation]} (NotNull)
      */
-    public WhiteVariantRelationMasterBarNss withWhiteVariantRelationMasterBarAsVariant() {
+    public void withWhiteVariantRelationMasterBarAsVariant() {
         _query.doNss(new WhiteVariantRelationReferrerCQ.NssCall() { public ConditionQuery qf() { return _query.queryWhiteVariantRelationMasterBarAsVariant(); }});
-        return new WhiteVariantRelationMasterBarNss(_query.queryWhiteVariantRelationMasterBarAsVariant());
     }
     /**
      * With nested relation columns to select clause. <br />
      * white_variant_relation_master_qux by my VARIANT_MASTER_ID, named 'whiteVariantRelationMasterQuxAsVariantByQue'.
-     * @return The set-upper of more nested relation. {...with[nested-relation].with[more-nested-relation]} (NotNull)
      */
-    public WhiteVariantRelationMasterQuxNss withWhiteVariantRelationMasterQuxAsVariantByQue() {
+    public void withWhiteVariantRelationMasterQuxAsVariantByQue() {
         _query.doNss(new WhiteVariantRelationReferrerCQ.NssCall() { public ConditionQuery qf() { return _query.queryWhiteVariantRelationMasterQuxAsVariantByQue(); }});
-        return new WhiteVariantRelationMasterQuxNss(_query.queryWhiteVariantRelationMasterQuxAsVariantByQue());
     }
     /**
      * With nested relation columns to select clause. <br />
      * white_variant_relation_master_corge by my VARIANT_MASTER_ID, named 'whiteVariantRelationMasterCorgeAsVariantByQuxType'.
      * @param quxType The bind parameter of fixed condition for quxType. (NotNull)
-     * @return The set-upper of more nested relation. {...with[nested-relation].with[more-nested-relation]} (NotNull)
      */
-    public WhiteVariantRelationMasterCorgeNss withWhiteVariantRelationMasterCorgeAsVariantByQuxType(final com.example.dbflute.mysql.dbflute.allcommon.CDef.VariantRelationQuxType quxType) {
+    public void withWhiteVariantRelationMasterCorgeAsVariantByQuxType(final com.example.dbflute.mysql.dbflute.allcommon.CDef.VariantRelationQuxType quxType) {
         _query.doNss(new WhiteVariantRelationReferrerCQ.NssCall() { public ConditionQuery qf() { return _query.queryWhiteVariantRelationMasterCorgeAsVariantByQuxType(quxType); }});
-        return new WhiteVariantRelationMasterCorgeNss(_query.queryWhiteVariantRelationMasterCorgeAsVariantByQuxType(quxType));
     }
-
 }

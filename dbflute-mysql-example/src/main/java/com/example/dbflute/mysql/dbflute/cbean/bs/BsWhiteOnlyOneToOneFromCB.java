@@ -264,7 +264,6 @@ public class BsWhiteOnlyOneToOneFromCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                         SetupSelect
     //                                                                         ===========
-
     protected WhiteOnlyOneToOneToNss _nssWhiteOnlyOneToOneToAsOne;
     public WhiteOnlyOneToOneToNss getNssWhiteOnlyOneToOneToAsOne() {
         if (_nssWhiteOnlyOneToOneToAsOne == null) { _nssWhiteOnlyOneToOneToAsOne = new WhiteOnlyOneToOneToNss(null); }

@@ -35,7 +35,6 @@ import com.example.dbflute.mysql.dbflute.allcommon.ImplementedInvokerAssistant;
 import com.example.dbflute.mysql.dbflute.allcommon.ImplementedSqlClauseCreator;
 import com.example.dbflute.mysql.dbflute.cbean.*;
 import com.example.dbflute.mysql.dbflute.cbean.cq.*;
-import com.example.dbflute.mysql.dbflute.cbean.nss.*;
 
 /**
  * The base condition-bean of white_pg_reserv_ref.
@@ -264,11 +263,6 @@ public class BsWhitePgReservRefCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                         SetupSelect
     //                                                                         ===========
-    protected WhitePgReservNss _nssWhitePgReserv;
-    public WhitePgReservNss getNssWhitePgReserv() {
-        if (_nssWhitePgReserv == null) { _nssWhitePgReserv = new WhitePgReservNss(null); }
-        return _nssWhitePgReserv;
-    }
     /**
      * Set up relation columns to select clause. <br />
      * white_pg_reserv by my CLASS, named 'whitePgReserv'.
@@ -279,17 +273,13 @@ public class BsWhitePgReservRefCB extends AbstractConditionBean {
      * WhitePgReservRef whitePgReservRef = whitePgReservRefBhv.selectEntityWithDeletedCheck(cb);
      * ... = whitePgReservRef.<span style="color: #DD4747">getWhitePgReserv()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
      * </pre>
-     * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
-    public WhitePgReservNss setupSelect_WhitePgReserv() {
+    public void setupSelect_WhitePgReserv() {
         assertSetupSelectPurpose("whitePgReserv");
         if (hasSpecifiedColumn()) { // if reverse call
             specify().columnClassSynonym();
         }
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryWhitePgReserv(); } });
-        if (_nssWhitePgReserv == null || !_nssWhitePgReserv.hasConditionQuery())
-        { _nssWhitePgReserv = new WhitePgReservNss(query().queryWhitePgReserv()); }
-        return _nssWhitePgReserv;
     }
 
     // [DBFlute-0.7.4]

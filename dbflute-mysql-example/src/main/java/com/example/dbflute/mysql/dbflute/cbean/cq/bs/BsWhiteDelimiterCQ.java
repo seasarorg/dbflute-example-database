@@ -88,7 +88,6 @@ public class BsWhiteDelimiterCQ extends AbstractBsWhiteDelimiterCQ {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _delimiterId;
     public ConditionValue getDelimiterId() {
         if (_delimiterId == null) { _delimiterId = nCV(); }

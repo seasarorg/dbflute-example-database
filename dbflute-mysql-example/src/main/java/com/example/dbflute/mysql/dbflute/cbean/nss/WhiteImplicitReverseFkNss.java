@@ -48,11 +48,8 @@ public class WhiteImplicitReverseFkNss {
      * With nested relation columns to select clause. <br />
      * white_implicit_reverse_fk_suppress by my WHITE_IMPLICIT_REVERSE_FK_ID, named 'whiteImplicitReverseFkSuppressSuppressImplicitReverseFK'.
      * @param targetDate The bind parameter of fixed condition for targetDate. (NotNull)
-     * @return The set-upper of more nested relation. {...with[nested-relation].with[more-nested-relation]} (NotNull)
      */
-    public WhiteImplicitReverseFkSuppressNss withWhiteImplicitReverseFkSuppressSuppressImplicitReverseFK(final java.util.Date targetDate) {
+    public void withWhiteImplicitReverseFkSuppressSuppressImplicitReverseFK(final java.util.Date targetDate) {
         _query.doNss(new WhiteImplicitReverseFkCQ.NssCall() { public ConditionQuery qf() { return _query.queryWhiteImplicitReverseFkSuppressSuppressImplicitReverseFK(targetDate); }});
-        return new WhiteImplicitReverseFkSuppressNss(_query.queryWhiteImplicitReverseFkSuppressSuppressImplicitReverseFK(targetDate));
     }
-
 }

@@ -88,7 +88,6 @@ public class BsWhiteSuppressJoinSqManyCQ extends AbstractBsWhiteSuppressJoinSqMa
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _manyId;
     public ConditionValue getManyId() {
         if (_manyId == null) { _manyId = nCV(); }

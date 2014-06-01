@@ -88,7 +88,6 @@ public class BsWhitePurchaseReferrerCQ extends AbstractBsWhitePurchaseReferrerCQ
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _purchaseReferrerId;
     public ConditionValue getPurchaseReferrerId() {
         if (_purchaseReferrerId == null) { _purchaseReferrerId = nCV(); }

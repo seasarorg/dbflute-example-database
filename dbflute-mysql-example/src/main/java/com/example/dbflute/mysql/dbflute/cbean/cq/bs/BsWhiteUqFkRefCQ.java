@@ -88,7 +88,6 @@ public class BsWhiteUqFkRefCQ extends AbstractBsWhiteUqFkRefCQ {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _uqFkRefId;
     public ConditionValue getUqFkRefId() {
         if (_uqFkRefId == null) { _uqFkRefId = nCV(); }

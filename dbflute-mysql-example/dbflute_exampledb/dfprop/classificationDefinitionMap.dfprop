@@ -59,7 +59,40 @@ map:{
             ; orderBy=REGION_ID
         }
     }
+    ; WithdrawalReason = list:{
+        ; map:{
+            ; topComment=reason for member withdrawal; codeType=String
+            ; isSuppressDBAccessClass=true
+        }
+        ; map:{
+            ; table=WITHDRAWAL_REASON
+            ; code=WITHDRAWAL_REASON_CODE; name=WITHDRAWAL_REASON_CODE
+            ; comment=WITHDRAWAL_REASON_TEXT; orderBy=DISPLAY_ORDER
+        }
+    }
 
+    # ====================================================================================
+    #                                                                              Product
+    #                                                                              =======
+    ; PaymentMethod = list:{
+        ; map:{
+            ; topComment=支払方法; codeType=String
+            ; isCheckImplicitSet=true
+            ; groupingMap = map:{
+                ; recommended = map:{
+                    ; groupComment = 最も推奨されている方法
+                    ; elementList = list:{ByHand}
+                }
+            }
+        }
+        ; map:{code=HAN; name=ByHand; alias=手渡し; comment=Face-to-Faceの手渡しで商品と交換}
+        ; map:{code=BAK; name=BankTransfer; alias=銀行振込; comment=銀行振込で確認してから商品発送}
+        ; map:{code=CRC; name=CreditCard; alias=クレジットカード; comment=クレジットカードの番号を教えてもらう}
+    }
+
+    # ====================================================================================
+    #                                                                        Whitebox Test
+    #                                                                        =============
     # the test of 'sql' expression
     ; SelfReference = list:{
         ; map:{topComment=The test of relation reference; codeType=Number}

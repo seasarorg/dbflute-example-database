@@ -88,7 +88,6 @@ public class BsWhitePointTypeMappingCQ extends AbstractBsWhitePointTypeMappingCQ
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _pointTypeMappingId;
     public ConditionValue getPointTypeMappingId() {
         if (_pointTypeMappingId == null) { _pointTypeMappingId = nCV(); }

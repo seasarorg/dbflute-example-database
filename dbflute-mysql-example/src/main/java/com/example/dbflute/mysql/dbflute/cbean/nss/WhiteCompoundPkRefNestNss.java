@@ -52,5 +52,4 @@ public class WhiteCompoundPkRefNestNss {
         _query.doNss(new WhiteCompoundPkRefNestCQ.NssCall() { public ConditionQuery qf() { return _query.queryWhiteCompoundPkRefByFooMultipleId(); }});
         return new WhiteCompoundPkRefNss(_query.queryWhiteCompoundPkRefByFooMultipleId());
     }
-
 }

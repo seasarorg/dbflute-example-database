@@ -64,20 +64,16 @@ public class PurchaseNss {
     /**
      * With nested relation columns to select clause. <br />
      * (VIEW)summary_withdrawal by my MEMBER_ID, named 'summaryWithdrawal'.
-     * @return The set-upper of more nested relation. {...with[nested-relation].with[more-nested-relation]} (NotNull)
      */
-    public SummaryWithdrawalNss withSummaryWithdrawal() {
+    public void withSummaryWithdrawal() {
         _query.doNss(new PurchaseCQ.NssCall() { public ConditionQuery qf() { return _query.querySummaryWithdrawal(); }});
-        return new SummaryWithdrawalNss(_query.querySummaryWithdrawal());
     }
     /**
      * With nested relation columns to select clause. <br />
      * (VIEW)white_no_pk_relation by my PRODUCT_ID, named 'whiteNoPkRelation'.
-     * @return The set-upper of more nested relation. {...with[nested-relation].with[more-nested-relation]} (NotNull)
      */
-    public WhiteNoPkRelationNss withWhiteNoPkRelation() {
+    public void withWhiteNoPkRelation() {
         _query.doNss(new PurchaseCQ.NssCall() { public ConditionQuery qf() { return _query.queryWhiteNoPkRelation(); }});
-        return new WhiteNoPkRelationNss(_query.queryWhiteNoPkRelation());
     }
     /**
      * With nested relation columns to select clause. <br />
@@ -98,7 +94,6 @@ public class PurchaseNss {
         _query.doNss(new PurchaseCQ.NssCall() { public ConditionQuery qf() { return _query.queryMemberAddressAsSkipRelation(targetDate); }});
         return new MemberAddressNss(_query.queryMemberAddressAsSkipRelation(targetDate));
     }
-
     /**
      * With nested relation columns to select clause. <br />
      * white_purchase_referrer by PURCHASE_REFERRER_ID, named 'whitePurchaseReferrerAsOne'.

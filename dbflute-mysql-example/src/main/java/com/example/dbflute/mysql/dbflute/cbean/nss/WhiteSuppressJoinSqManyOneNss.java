@@ -37,11 +37,8 @@ public class WhiteSuppressJoinSqManyOneNss {
     /**
      * With nested relation columns to select clause. <br />
      * white_suppress_join_sq_many_one_one by my MANY_ONE_ONE_ID, named 'whiteSuppressJoinSqManyOneOne'.
-     * @return The set-upper of more nested relation. {...with[nested-relation].with[more-nested-relation]} (NotNull)
      */
-    public WhiteSuppressJoinSqManyOneOneNss withWhiteSuppressJoinSqManyOneOne() {
+    public void withWhiteSuppressJoinSqManyOneOne() {
         _query.doNss(new WhiteSuppressJoinSqManyOneCQ.NssCall() { public ConditionQuery qf() { return _query.queryWhiteSuppressJoinSqManyOneOne(); }});
-        return new WhiteSuppressJoinSqManyOneOneNss(_query.queryWhiteSuppressJoinSqManyOneOne());
     }
-
 }

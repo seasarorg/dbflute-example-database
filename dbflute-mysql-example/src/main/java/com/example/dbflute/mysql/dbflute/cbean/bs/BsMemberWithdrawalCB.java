@@ -288,11 +288,7 @@ public class BsMemberWithdrawalCB extends AbstractConditionBean {
         { _nssMember = new MemberNss(query().queryMember()); }
         return _nssMember;
     }
-    protected WithdrawalReasonNss _nssWithdrawalReason;
-    public WithdrawalReasonNss getNssWithdrawalReason() {
-        if (_nssWithdrawalReason == null) { _nssWithdrawalReason = new WithdrawalReasonNss(null); }
-        return _nssWithdrawalReason;
-    }
+
     /**
      * Set up relation columns to select clause. <br />
      * (退会理由)withdrawal_reason by my WITHDRAWAL_REASON_CODE, named 'withdrawalReason'.
@@ -303,17 +299,13 @@ public class BsMemberWithdrawalCB extends AbstractConditionBean {
      * MemberWithdrawal memberWithdrawal = memberWithdrawalBhv.selectEntityWithDeletedCheck(cb);
      * ... = memberWithdrawal.<span style="color: #DD4747">getWithdrawalReason()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
      * </pre>
-     * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
-    public WithdrawalReasonNss setupSelect_WithdrawalReason() {
+    public void setupSelect_WithdrawalReason() {
         assertSetupSelectPurpose("withdrawalReason");
         if (hasSpecifiedColumn()) { // if reverse call
             specify().columnWithdrawalReasonCode();
         }
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryWithdrawalReason(); } });
-        if (_nssWithdrawalReason == null || !_nssWithdrawalReason.hasConditionQuery())
-        { _nssWithdrawalReason = new WithdrawalReasonNss(query().queryWithdrawalReason()); }
-        return _nssWithdrawalReason;
     }
 
     // [DBFlute-0.7.4]
@@ -369,7 +361,7 @@ public class BsMemberWithdrawalCB extends AbstractConditionBean {
          */
         public HpSpecifiedColumn columnMemberId() { return doColumn("MEMBER_ID"); }
         /**
-         * (退会理由コード)WITHDRAWAL_REASON_CODE: {IX, CHAR(3), FK to withdrawal_reason}
+         * (退会理由コード)WITHDRAWAL_REASON_CODE: {IX, CHAR(3), FK to withdrawal_reason, classification=WithdrawalReason}
          * @return The information object of specified column. (NotNull)
          */
         public HpSpecifiedColumn columnWithdrawalReasonCode() { return doColumn("WITHDRAWAL_REASON_CODE"); }

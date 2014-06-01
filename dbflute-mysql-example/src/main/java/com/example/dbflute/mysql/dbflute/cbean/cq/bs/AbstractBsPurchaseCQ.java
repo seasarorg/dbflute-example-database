@@ -150,6 +150,28 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
 
     /**
      * Set up ExistsReferrer (correlated sub-query). <br />
+     * {exists (select PURCHASE_ID from purchase_payment where ...)} <br />
+     * (購入支払)purchase_payment by PURCHASE_ID, named 'purchasePaymentAsOne'.
+     * <pre>
+     * cb.query().<span style="color: #DD4747">existsPurchasePaymentList</span>(new SubQuery&lt;PurchasePaymentCB&gt;() {
+     *     public void query(PurchasePaymentCB subCB) {
+     *         subCB.query().setXxx...
+     *     }
+     * });
+     * </pre>
+     * @param subQuery The sub-query of PurchasePaymentList for 'exists'. (NotNull)
+     */
+    public void existsPurchasePaymentList(SubQuery<PurchasePaymentCB> subQuery) {
+        assertObjectNotNull("subQuery", subQuery);
+        PurchasePaymentCB cb = new PurchasePaymentCB(); cb.xsetupForExistsReferrer(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepPurchaseId_ExistsReferrer_PurchasePaymentList(cb.query());
+        registerExistsReferrer(cb.query(), "PURCHASE_ID", "PURCHASE_ID", pp, "purchasePaymentList");
+    }
+    public abstract String keepPurchaseId_ExistsReferrer_PurchasePaymentList(PurchasePaymentCQ sq);
+
+    /**
+     * Set up ExistsReferrer (correlated sub-query). <br />
      * {exists (select PURCHASE_REFERRER_ID from white_purchase_referrer where ...)} <br />
      * white_purchase_referrer by PURCHASE_REFERRER_ID, named 'whitePurchaseReferrerAsOne'.
      * <pre>
@@ -191,6 +213,28 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
         registerExistsReferrer(cb.query(), "PURCHASE_ID", "PURCHASE_ID", pp, "purchaseSelfAsOne");
     }
     public abstract String keepPurchaseId_ExistsReferrer_PurchaseSelfAsOne(PurchaseCQ sq);
+
+    /**
+     * Set up NotExistsReferrer (correlated sub-query). <br />
+     * {not exists (select PURCHASE_ID from purchase_payment where ...)} <br />
+     * (購入支払)purchase_payment by PURCHASE_ID, named 'purchasePaymentAsOne'.
+     * <pre>
+     * cb.query().<span style="color: #DD4747">notExistsPurchasePaymentList</span>(new SubQuery&lt;PurchasePaymentCB&gt;() {
+     *     public void query(PurchasePaymentCB subCB) {
+     *         subCB.query().setXxx...
+     *     }
+     * });
+     * </pre>
+     * @param subQuery The sub-query of PurchaseId_NotExistsReferrer_PurchasePaymentList for 'not exists'. (NotNull)
+     */
+    public void notExistsPurchasePaymentList(SubQuery<PurchasePaymentCB> subQuery) {
+        assertObjectNotNull("subQuery", subQuery);
+        PurchasePaymentCB cb = new PurchasePaymentCB(); cb.xsetupForExistsReferrer(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepPurchaseId_NotExistsReferrer_PurchasePaymentList(cb.query());
+        registerNotExistsReferrer(cb.query(), "PURCHASE_ID", "PURCHASE_ID", pp, "purchasePaymentList");
+    }
+    public abstract String keepPurchaseId_NotExistsReferrer_PurchasePaymentList(PurchasePaymentCQ sq);
 
     /**
      * Set up NotExistsReferrer (correlated sub-query). <br />
@@ -253,6 +297,21 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
 
     /**
      * Set up InScopeRelation (sub-query). <br />
+     * {in (select PURCHASE_ID from purchase_payment where ...)} <br />
+     * (購入支払)purchase_payment by PURCHASE_ID, named 'purchasePaymentAsOne'.
+     * @param subQuery The sub-query of PurchasePaymentList for 'in-scope'. (NotNull)
+     */
+    public void inScopePurchasePaymentList(SubQuery<PurchasePaymentCB> subQuery) {
+        assertObjectNotNull("subQuery", subQuery);
+        PurchasePaymentCB cb = new PurchasePaymentCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepPurchaseId_InScopeRelation_PurchasePaymentList(cb.query());
+        registerInScopeRelation(cb.query(), "PURCHASE_ID", "PURCHASE_ID", pp, "purchasePaymentList");
+    }
+    public abstract String keepPurchaseId_InScopeRelation_PurchasePaymentList(PurchasePaymentCQ sq);
+
+    /**
+     * Set up InScopeRelation (sub-query). <br />
      * {in (select PURCHASE_REFERRER_ID from white_purchase_referrer where ...)} <br />
      * white_purchase_referrer by PURCHASE_REFERRER_ID, named 'whitePurchaseReferrerAsOne'.
      * @param subQuery The sub-query of WhitePurchaseReferrerAsOne for 'in-scope'. (NotNull)
@@ -298,6 +357,21 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
 
     /**
      * Set up NotInScopeRelation (sub-query). <br />
+     * {not in (select PURCHASE_ID from purchase_payment where ...)} <br />
+     * (購入支払)purchase_payment by PURCHASE_ID, named 'purchasePaymentAsOne'.
+     * @param subQuery The sub-query of PurchasePaymentList for 'not in-scope'. (NotNull)
+     */
+    public void notInScopePurchasePaymentList(SubQuery<PurchasePaymentCB> subQuery) {
+        assertObjectNotNull("subQuery", subQuery);
+        PurchasePaymentCB cb = new PurchasePaymentCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepPurchaseId_NotInScopeRelation_PurchasePaymentList(cb.query());
+        registerNotInScopeRelation(cb.query(), "PURCHASE_ID", "PURCHASE_ID", pp, "purchasePaymentList");
+    }
+    public abstract String keepPurchaseId_NotInScopeRelation_PurchasePaymentList(PurchasePaymentCQ sq);
+
+    /**
+     * Set up NotInScopeRelation (sub-query). <br />
      * {not in (select PURCHASE_REFERRER_ID from white_purchase_referrer where ...)} <br />
      * white_purchase_referrer by PURCHASE_REFERRER_ID, named 'whitePurchaseReferrerAsOne'.
      * @param subQuery The sub-query of WhitePurchaseReferrerAsOne for 'not in-scope'. (NotNull)
@@ -325,6 +399,49 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
         registerNotInScopeRelation(cb.query(), "PURCHASE_ID", "PURCHASE_ID", pp, "purchaseSelfAsOne");
     }
     public abstract String keepPurchaseId_NotInScopeRelation_PurchaseSelfAsOne(PurchaseCQ sq);
+
+    public void xsderivePurchasePaymentList(String fn, SubQuery<PurchasePaymentCB> sq, String al, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        PurchasePaymentCB cb = new PurchasePaymentCB(); cb.xsetupForDerivedReferrer(this);
+        try { lock(); sq.query(cb); } finally { unlock(); }
+        String pp = keepPurchaseId_SpecifyDerivedReferrer_PurchasePaymentList(cb.query());
+        registerSpecifyDerivedReferrer(fn, cb.query(), "PURCHASE_ID", "PURCHASE_ID", pp, "purchasePaymentList", al, op);
+    }
+    public abstract String keepPurchaseId_SpecifyDerivedReferrer_PurchasePaymentList(PurchasePaymentCQ sq);
+
+    /**
+     * Prepare for (Query)DerivedReferrer (correlated sub-query). <br />
+     * {FOO &lt;= (select max(BAR) from purchase_payment where ...)} <br />
+     * (購入支払)purchase_payment by PURCHASE_ID, named 'purchasePaymentAsOne'.
+     * <pre>
+     * cb.query().<span style="color: #DD4747">derivedPurchasePaymentList()</span>.<span style="color: #DD4747">max</span>(new SubQuery&lt;PurchasePaymentCB&gt;() {
+     *     public void query(PurchasePaymentCB subCB) {
+     *         subCB.specify().<span style="color: #DD4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
+     *         subCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
+     *     }
+     * }).<span style="color: #DD4747">greaterEqual</span>(123); <span style="color: #3F7E5E">// condition to derived column</span>
+     * </pre>
+     * @return The object to set up a function for referrer table. (NotNull)
+     */
+    public HpQDRFunction<PurchasePaymentCB> derivedPurchasePaymentList() {
+        return xcreateQDRFunctionPurchasePaymentList();
+    }
+    protected HpQDRFunction<PurchasePaymentCB> xcreateQDRFunctionPurchasePaymentList() {
+        return new HpQDRFunction<PurchasePaymentCB>(new HpQDRSetupper<PurchasePaymentCB>() {
+            public void setup(String fn, SubQuery<PurchasePaymentCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+                xqderivePurchasePaymentList(fn, sq, rd, vl, op);
+            }
+        });
+    }
+    public void xqderivePurchasePaymentList(String fn, SubQuery<PurchasePaymentCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        PurchasePaymentCB cb = new PurchasePaymentCB(); cb.xsetupForDerivedReferrer(this);
+        try { lock(); sq.query(cb); } finally { unlock(); }
+        String sqpp = keepPurchaseId_QueryDerivedReferrer_PurchasePaymentList(cb.query()); String prpp = keepPurchaseId_QueryDerivedReferrer_PurchasePaymentListParameter(vl);
+        registerQueryDerivedReferrer(fn, cb.query(), "PURCHASE_ID", "PURCHASE_ID", sqpp, "purchasePaymentList", rd, vl, prpp, op);
+    }
+    public abstract String keepPurchaseId_QueryDerivedReferrer_PurchasePaymentList(PurchasePaymentCQ sq);
+    public abstract String keepPurchaseId_QueryDerivedReferrer_PurchasePaymentListParameter(Object vl);
 
     /**
      * IsNull {is null}. And OnlyOnceRegistered. <br />
@@ -1251,37 +1368,6 @@ public abstract class AbstractBsPurchaseCQ extends AbstractConditionQuery {
                     , String conditionValue
                     , org.seasar.dbflute.dbway.WayOfMySQL.FullTextSearchModifier modifier) {
         xdoMatchForMySQL(textColumnList, conditionValue, modifier);
-    }
-
-    // ===================================================================================
-    //                                                                          Compatible
-    //                                                                          ==========
-    /**
-     * Order along the list of manual values. #beforejava8 <br />
-     * This function with Union is unsupported! <br />
-     * The order values are bound (treated as bind parameter).
-     * <pre>
-     * MemberCB cb = new MemberCB();
-     * List&lt;CDef.MemberStatus&gt; orderValueList = new ArrayList&lt;CDef.MemberStatus&gt;();
-     * orderValueList.add(CDef.MemberStatus.Withdrawal);
-     * orderValueList.add(CDef.MemberStatus.Formalized);
-     * orderValueList.add(CDef.MemberStatus.Provisional);
-     * cb.query().addOrderBy_MemberStatusCode_Asc().<span style="color: #DD4747">withManualOrder(orderValueList)</span>;
-     * <span style="color: #3F7E5E">// order by </span>
-     * <span style="color: #3F7E5E">//   case</span>
-     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'WDL' then 0</span>
-     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'FML' then 1</span>
-     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'PRV' then 2</span>
-     * <span style="color: #3F7E5E">//     else 3</span>
-     * <span style="color: #3F7E5E">//   end asc, ...</span>
-     * </pre>
-     * @param orderValueList The list of order values for manual ordering. (NotNull)
-     */
-    public void withManualOrder(List<? extends Object> orderValueList) { // is user public!
-        assertObjectNotNull("withManualOrder(orderValueList)", orderValueList);
-        final ManualOrderBean manualOrderBean = new ManualOrderBean();
-        manualOrderBean.acceptOrderValueList(orderValueList);
-        withManualOrder(manualOrderBean);
     }
 
     // ===================================================================================

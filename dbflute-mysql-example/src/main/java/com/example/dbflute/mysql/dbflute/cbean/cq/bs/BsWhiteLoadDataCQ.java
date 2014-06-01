@@ -88,7 +88,6 @@ public class BsWhiteLoadDataCQ extends AbstractBsWhiteLoadDataCQ {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _loadDataId;
     public ConditionValue getLoadDataId() {
         if (_loadDataId == null) { _loadDataId = nCV(); }

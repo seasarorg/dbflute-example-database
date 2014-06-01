@@ -88,7 +88,6 @@ public class BsWhiteAllInOneClsElementCQ extends AbstractBsWhiteAllInOneClsEleme
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _clsCategoryCode;
     public ConditionValue getClsCategoryCode() {
         if (_clsCategoryCode == null) { _clsCategoryCode = nCV(); }

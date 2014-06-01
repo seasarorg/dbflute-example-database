@@ -35,7 +35,6 @@ import com.example.dbflute.mysql.dbflute.allcommon.ImplementedInvokerAssistant;
 import com.example.dbflute.mysql.dbflute.allcommon.ImplementedSqlClauseCreator;
 import com.example.dbflute.mysql.dbflute.cbean.*;
 import com.example.dbflute.mysql.dbflute.cbean.cq.*;
-import com.example.dbflute.mysql.dbflute.cbean.nss.*;
 
 /**
  * The base condition-bean of white_split_multiple_fk_base.
@@ -264,11 +263,6 @@ public class BsWhiteSplitMultipleFkBaseCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                         SetupSelect
     //                                                                         ===========
-    protected WhiteSplitMultipleFkNextNss _nssWhiteSplitMultipleFkNext;
-    public WhiteSplitMultipleFkNextNss getNssWhiteSplitMultipleFkNext() {
-        if (_nssWhiteSplitMultipleFkNext == null) { _nssWhiteSplitMultipleFkNext = new WhiteSplitMultipleFkNextNss(null); }
-        return _nssWhiteSplitMultipleFkNext;
-    }
     /**
      * Set up relation columns to select clause. <br />
      * white_split_multiple_fk_next by my NEXT_ID, named 'whiteSplitMultipleFkNext'.
@@ -279,23 +273,15 @@ public class BsWhiteSplitMultipleFkBaseCB extends AbstractConditionBean {
      * WhiteSplitMultipleFkBase whiteSplitMultipleFkBase = whiteSplitMultipleFkBaseBhv.selectEntityWithDeletedCheck(cb);
      * ... = whiteSplitMultipleFkBase.<span style="color: #DD4747">getWhiteSplitMultipleFkNext()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
      * </pre>
-     * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
-    public WhiteSplitMultipleFkNextNss setupSelect_WhiteSplitMultipleFkNext() {
+    public void setupSelect_WhiteSplitMultipleFkNext() {
         assertSetupSelectPurpose("whiteSplitMultipleFkNext");
         if (hasSpecifiedColumn()) { // if reverse call
             specify().columnNextId();
         }
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryWhiteSplitMultipleFkNext(); } });
-        if (_nssWhiteSplitMultipleFkNext == null || !_nssWhiteSplitMultipleFkNext.hasConditionQuery())
-        { _nssWhiteSplitMultipleFkNext = new WhiteSplitMultipleFkNextNss(query().queryWhiteSplitMultipleFkNext()); }
-        return _nssWhiteSplitMultipleFkNext;
     }
-    protected WhiteSplitMultipleFkRefNss _nssWhiteSplitMultipleFkRefAsSplitMultipleFkTest;
-    public WhiteSplitMultipleFkRefNss getNssWhiteSplitMultipleFkRefAsSplitMultipleFkTest() {
-        if (_nssWhiteSplitMultipleFkRefAsSplitMultipleFkTest == null) { _nssWhiteSplitMultipleFkRefAsSplitMultipleFkTest = new WhiteSplitMultipleFkRefNss(null); }
-        return _nssWhiteSplitMultipleFkRefAsSplitMultipleFkTest;
-    }
+
     /**
      * Set up relation columns to select clause. <br />
      * white_split_multiple_fk_ref by my FIRST_ID, named 'whiteSplitMultipleFkRefAsSplitMultipleFkTest'.
@@ -306,17 +292,13 @@ public class BsWhiteSplitMultipleFkBaseCB extends AbstractConditionBean {
      * WhiteSplitMultipleFkBase whiteSplitMultipleFkBase = whiteSplitMultipleFkBaseBhv.selectEntityWithDeletedCheck(cb);
      * ... = whiteSplitMultipleFkBase.<span style="color: #DD4747">getWhiteSplitMultipleFkRefAsSplitMultipleFkTest()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
      * </pre>
-     * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
-    public WhiteSplitMultipleFkRefNss setupSelect_WhiteSplitMultipleFkRefAsSplitMultipleFkTest() {
+    public void setupSelect_WhiteSplitMultipleFkRefAsSplitMultipleFkTest() {
         assertSetupSelectPurpose("whiteSplitMultipleFkRefAsSplitMultipleFkTest");
         if (hasSpecifiedColumn()) { // if reverse call
             specify().columnFirstId();
         }
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryWhiteSplitMultipleFkRefAsSplitMultipleFkTest(); } });
-        if (_nssWhiteSplitMultipleFkRefAsSplitMultipleFkTest == null || !_nssWhiteSplitMultipleFkRefAsSplitMultipleFkTest.hasConditionQuery())
-        { _nssWhiteSplitMultipleFkRefAsSplitMultipleFkTest = new WhiteSplitMultipleFkRefNss(query().queryWhiteSplitMultipleFkRefAsSplitMultipleFkTest()); }
-        return _nssWhiteSplitMultipleFkRefAsSplitMultipleFkTest;
     }
 
     // [DBFlute-0.7.4]

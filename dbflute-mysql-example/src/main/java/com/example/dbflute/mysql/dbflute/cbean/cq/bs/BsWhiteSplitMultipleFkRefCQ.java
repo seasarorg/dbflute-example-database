@@ -88,7 +88,6 @@ public class BsWhiteSplitMultipleFkRefCQ extends AbstractBsWhiteSplitMultipleFkR
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _firstId;
     public ConditionValue getFirstId() {
         if (_firstId == null) { _firstId = nCV(); }

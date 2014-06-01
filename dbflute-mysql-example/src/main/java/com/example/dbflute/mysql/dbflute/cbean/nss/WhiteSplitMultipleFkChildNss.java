@@ -43,5 +43,4 @@ public class WhiteSplitMultipleFkChildNss {
         _query.doNss(new WhiteSplitMultipleFkChildCQ.NssCall() { public ConditionQuery qf() { return _query.queryWhiteSplitMultipleFkBase(); }});
         return new WhiteSplitMultipleFkBaseNss(_query.queryWhiteSplitMultipleFkBase());
     }
-
 }

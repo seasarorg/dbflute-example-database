@@ -88,7 +88,6 @@ public class BsWhiteCompoundReferredNormallyCQ extends AbstractBsWhiteCompoundRe
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _referredId;
     public ConditionValue getReferredId() {
         if (_referredId == null) { _referredId = nCV(); }

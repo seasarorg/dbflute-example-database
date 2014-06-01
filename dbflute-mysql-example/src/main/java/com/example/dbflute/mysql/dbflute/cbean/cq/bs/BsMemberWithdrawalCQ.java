@@ -88,7 +88,6 @@ public class BsMemberWithdrawalCQ extends AbstractBsMemberWithdrawalCQ {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _memberId;
     public ConditionValue getMemberId() {
         if (_memberId == null) { _memberId = nCV(); }
@@ -151,14 +150,14 @@ public class BsMemberWithdrawalCQ extends AbstractBsMemberWithdrawalCQ {
 
     /** 
      * Add order-by as ascend. <br />
-     * (退会理由コード)WITHDRAWAL_REASON_CODE: {IX, CHAR(3), FK to withdrawal_reason}
+     * (退会理由コード)WITHDRAWAL_REASON_CODE: {IX, CHAR(3), FK to withdrawal_reason, classification=WithdrawalReason}
      * @return this. (NotNull)
      */
     public BsMemberWithdrawalCQ addOrderBy_WithdrawalReasonCode_Asc() { regOBA("WITHDRAWAL_REASON_CODE"); return this; }
 
     /**
      * Add order-by as descend. <br />
-     * (退会理由コード)WITHDRAWAL_REASON_CODE: {IX, CHAR(3), FK to withdrawal_reason}
+     * (退会理由コード)WITHDRAWAL_REASON_CODE: {IX, CHAR(3), FK to withdrawal_reason, classification=WithdrawalReason}
      * @return this. (NotNull)
      */
     public BsMemberWithdrawalCQ addOrderBy_WithdrawalReasonCode_Desc() { regOBD("WITHDRAWAL_REASON_CODE"); return this; }

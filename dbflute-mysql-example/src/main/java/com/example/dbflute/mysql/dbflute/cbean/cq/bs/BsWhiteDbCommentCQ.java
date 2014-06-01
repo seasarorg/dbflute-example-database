@@ -88,7 +88,6 @@ public class BsWhiteDbCommentCQ extends AbstractBsWhiteDbCommentCQ {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _dbCommentCode;
     public ConditionValue getDbCommentCode() {
         if (_dbCommentCode == null) { _dbCommentCode = nCV(); }

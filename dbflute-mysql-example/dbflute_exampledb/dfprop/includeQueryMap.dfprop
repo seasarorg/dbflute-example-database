@@ -48,6 +48,9 @@ map:{
         ; GreaterEqual = map:{}
         ; LessEqual = map:{}
 
+        # the test of revived
+        ; %LikeSearch = map:{ PRODUCT_CATEGORY = list:{PRODUCT_CATEGORY_NAME} }
+
         # [Exclude]
         # Common columns of String type may not be needed
         # to be set these condition-keys basically.
@@ -105,6 +108,35 @@ map:{
         ; INCLUDE_QUERY_VARCHAR(String) = list:{ !PrefixSearch ; !LikeSearch ; !NotLikeSearch }
         ; INCLUDE_QUERY_DATE(Date) = list:{}
         ; INCLUDE_QUERY_DATETIME(Date) = list:{ !GreaterThan ; !GreaterEqual ; !LessThan ; !LessEqual }
+    }
+    # WITHDRAWAL_RE is test of table classification small size
+    ; $prefix:WITHDRAWAL_RE = map:{
+        ; suffix:_CODE(String) = list:{
+            ; !NotEqual ; !NotInScope ; !PrefixSearch; !LikeSearch; !NotLikeSearch ; !IsNull ; !IsNotNull
+        }
+        ; suffix:_TEXT(String) = list:{}
+        ; suffix:_TEXT(OrderBy) = list:{ !Asc ; !Desc }
+        ; suffix:_ORDER(Number) = list:{}
+        ; suffix:_ORDER(OrderBy) = list:{ !Desc }
+    }
+    ; $suffix:CT_CATEGORY = map:{
+        ; suffix:_CODE(String) = list:{ !PrefixSearch ; !LikeSearch ; !NotLikeSearch }
+        ; suffix:_NAME(String) = list:{}
+    }
+    ; Relation = map:{
+        ; !ExistsReferrer = map:{ prefix:WITHDRAWAL_RE = list:{} ; suffix:CT_CATEGORY = list:{} }
+        ; !InScopeRelation = map:{ prefix:WITHDRAWAL_RE = list:{} ; suffix:CT_CATEGORY = list:{} }
+        ; !DerivedReferrer = map:{ prefix:WITHDRAWAL_RE = list:{} }
+        ; !SpecifiedDerivedOrderBy = map:{ prefix:WITHDRAWAL_RE = list:{} }
+        ; %ExistsReferrer = map:{ PRODUCT_CATEGORY = list:{} }
+    }
+    ; Myself = map:{
+        ; !InlineView = map:{ prefix:WITHDRAWAL_RE = list:{} }
+        ; !ScalarCondition = map:{ prefix:WITHDRAWAL_RE = list:{} ; suffix:CT_CATEGORY = list:{} }
+        ; !MyselfDerived = map:{ prefix:WITHDRAWAL_RE = list:{} }
+        ; !MyselfExists = map:{ prefix:WITHDRAWAL_RE = list:{} }
+        ; !MyselfInScope = map:{ prefix:WITHDRAWAL_RE = list:{} }
+        ; %ScalarCondition = map:{ PRODUCT_CATEGORY = list:{} }
     }
 }
 # ----------------/

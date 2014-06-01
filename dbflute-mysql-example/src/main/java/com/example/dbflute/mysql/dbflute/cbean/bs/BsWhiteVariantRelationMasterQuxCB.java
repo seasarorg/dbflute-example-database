@@ -263,7 +263,6 @@ public class BsWhiteVariantRelationMasterQuxCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                         SetupSelect
     //                                                                         ===========
-
     // [DBFlute-0.7.4]
     // ===================================================================================
     //                                                                             Specify

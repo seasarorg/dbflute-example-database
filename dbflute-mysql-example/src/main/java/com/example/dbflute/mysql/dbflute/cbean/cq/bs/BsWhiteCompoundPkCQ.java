@@ -88,7 +88,6 @@ public class BsWhiteCompoundPkCQ extends AbstractBsWhiteCompoundPkCQ {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _pkFirstId;
     public ConditionValue getPkFirstId() {
         if (_pkFirstId == null) { _pkFirstId = nCV(); }

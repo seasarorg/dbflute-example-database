@@ -88,7 +88,6 @@ public class BsWhiteColumnExceptGenOnlyCQ extends AbstractBsWhiteColumnExceptGen
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _genOnlyId;
     public ConditionValue getGenOnlyId() {
         if (_genOnlyId == null) { _genOnlyId = nCV(); }

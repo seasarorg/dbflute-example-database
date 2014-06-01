@@ -264,11 +264,6 @@ public class BsVendorLargeDataRefCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                         SetupSelect
     //                                                                         ===========
-    protected VendorLargeDataNss _nssVendorLargeData;
-    public VendorLargeDataNss getNssVendorLargeData() {
-        if (_nssVendorLargeData == null) { _nssVendorLargeData = new VendorLargeDataNss(null); }
-        return _nssVendorLargeData;
-    }
     /**
      * Set up relation columns to select clause. <br />
      * vendor_large_data by my LARGE_DATA_ID, named 'vendorLargeData'.
@@ -279,18 +274,15 @@ public class BsVendorLargeDataRefCB extends AbstractConditionBean {
      * VendorLargeDataRef vendorLargeDataRef = vendorLargeDataRefBhv.selectEntityWithDeletedCheck(cb);
      * ... = vendorLargeDataRef.<span style="color: #DD4747">getVendorLargeData()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
      * </pre>
-     * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
-    public VendorLargeDataNss setupSelect_VendorLargeData() {
+    public void setupSelect_VendorLargeData() {
         assertSetupSelectPurpose("vendorLargeData");
         if (hasSpecifiedColumn()) { // if reverse call
             specify().columnLargeDataId();
         }
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryVendorLargeData(); } });
-        if (_nssVendorLargeData == null || !_nssVendorLargeData.hasConditionQuery())
-        { _nssVendorLargeData = new VendorLargeDataNss(query().queryVendorLargeData()); }
-        return _nssVendorLargeData;
     }
+
     protected VendorLargeDataRefNss _nssVendorLargeDataRefSelf;
     public VendorLargeDataRefNss getNssVendorLargeDataRefSelf() {
         if (_nssVendorLargeDataRefSelf == null) { _nssVendorLargeDataRefSelf = new VendorLargeDataRefNss(null); }

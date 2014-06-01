@@ -52,5 +52,4 @@ public class WhiteAllInOneClsCompoundPkRefNss {
         _query.doNss(new WhiteAllInOneClsCompoundPkRefCQ.NssCall() { public ConditionQuery qf() { return _query.queryWhiteAllInOneClsElementAsBar(); }});
         return new WhiteAllInOneClsElementNss(_query.queryWhiteAllInOneClsElementAsBar());
     }
-
 }

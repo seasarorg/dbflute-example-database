@@ -294,6 +294,7 @@ public class BsWhiteAllInOneClsCompoundPkRefCB extends AbstractConditionBean {
         { _nssWhiteAllInOneClsElementAsFoo = new WhiteAllInOneClsElementNss(query().queryWhiteAllInOneClsElementAsFoo()); }
         return _nssWhiteAllInOneClsElementAsFoo;
     }
+
     protected WhiteAllInOneClsElementNss _nssWhiteAllInOneClsElementAsBar;
     public WhiteAllInOneClsElementNss getNssWhiteAllInOneClsElementAsBar() {
         if (_nssWhiteAllInOneClsElementAsBar == null) { _nssWhiteAllInOneClsElementAsBar = new WhiteAllInOneClsElementNss(null); }

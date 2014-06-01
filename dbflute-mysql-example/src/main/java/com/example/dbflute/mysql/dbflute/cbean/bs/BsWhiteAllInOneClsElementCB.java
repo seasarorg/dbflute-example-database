@@ -35,7 +35,6 @@ import com.example.dbflute.mysql.dbflute.allcommon.ImplementedInvokerAssistant;
 import com.example.dbflute.mysql.dbflute.allcommon.ImplementedSqlClauseCreator;
 import com.example.dbflute.mysql.dbflute.cbean.*;
 import com.example.dbflute.mysql.dbflute.cbean.cq.*;
-import com.example.dbflute.mysql.dbflute.cbean.nss.*;
 
 /**
  * The base condition-bean of white_all_in_one_cls_element.
@@ -267,11 +266,6 @@ public class BsWhiteAllInOneClsElementCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                         SetupSelect
     //                                                                         ===========
-    protected WhiteAllInOneClsCategoryNss _nssWhiteAllInOneClsCategory;
-    public WhiteAllInOneClsCategoryNss getNssWhiteAllInOneClsCategory() {
-        if (_nssWhiteAllInOneClsCategory == null) { _nssWhiteAllInOneClsCategory = new WhiteAllInOneClsCategoryNss(null); }
-        return _nssWhiteAllInOneClsCategory;
-    }
     /**
      * Set up relation columns to select clause. <br />
      * white_all_in_one_cls_category by my CLS_CATEGORY_CODE, named 'whiteAllInOneClsCategory'.
@@ -282,14 +276,10 @@ public class BsWhiteAllInOneClsElementCB extends AbstractConditionBean {
      * WhiteAllInOneClsElement whiteAllInOneClsElement = whiteAllInOneClsElementBhv.selectEntityWithDeletedCheck(cb);
      * ... = whiteAllInOneClsElement.<span style="color: #DD4747">getWhiteAllInOneClsCategory()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
      * </pre>
-     * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
-    public WhiteAllInOneClsCategoryNss setupSelect_WhiteAllInOneClsCategory() {
+    public void setupSelect_WhiteAllInOneClsCategory() {
         assertSetupSelectPurpose("whiteAllInOneClsCategory");
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryWhiteAllInOneClsCategory(); } });
-        if (_nssWhiteAllInOneClsCategory == null || !_nssWhiteAllInOneClsCategory.hasConditionQuery())
-        { _nssWhiteAllInOneClsCategory = new WhiteAllInOneClsCategoryNss(query().queryWhiteAllInOneClsCategory()); }
-        return _nssWhiteAllInOneClsCategory;
     }
 
     // [DBFlute-0.7.4]

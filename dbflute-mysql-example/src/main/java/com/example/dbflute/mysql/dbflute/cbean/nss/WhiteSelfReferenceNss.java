@@ -53,7 +53,6 @@ public class WhiteSelfReferenceNss {
         _query.doNss(new WhiteSelfReferenceCQ.NssCall() { public ConditionQuery qf() { return _query.queryWhiteSelfReferenceRefOneByParentId(); }});
         return new WhiteSelfReferenceRefOneNss(_query.queryWhiteSelfReferenceRefOneByParentId());
     }
-
     /**
      * With nested relation columns to select clause. <br />
      * white_self_reference_ref_one by SELF_REFERENCE_ID, named 'whiteSelfReferenceRefOneAsOne'.

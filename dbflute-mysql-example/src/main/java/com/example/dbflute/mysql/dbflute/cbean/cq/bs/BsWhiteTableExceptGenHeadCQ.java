@@ -88,7 +88,6 @@ public class BsWhiteTableExceptGenHeadCQ extends AbstractBsWhiteTableExceptGenHe
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _genHeadId;
     public ConditionValue getGenHeadId() {
         if (_genHeadId == null) { _genHeadId = nCV(); }

@@ -88,7 +88,6 @@ public class BsWhiteAllInOneClsCompoundPkRefCQ extends AbstractBsWhiteAllInOneCl
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _fooCode;
     public ConditionValue getFooCode() {
         if (_fooCode == null) { _fooCode = nCV(); }

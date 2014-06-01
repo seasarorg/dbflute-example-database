@@ -88,7 +88,6 @@ public class BsVendorConstraintNameAutoRefCQ extends AbstractBsVendorConstraintN
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _constraintNameAutoRefId;
     public ConditionValue getConstraintNameAutoRefId() {
         if (_constraintNameAutoRefId == null) { _constraintNameAutoRefId = nCV(); }

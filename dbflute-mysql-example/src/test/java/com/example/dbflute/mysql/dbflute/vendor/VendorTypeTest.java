@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.seasar.dbflute.cbean.ListResultBean;
+import org.seasar.dbflute.cbean.ManualOrderBean;
 import org.seasar.dbflute.cbean.UnionQuery;
 import org.seasar.dbflute.exception.IllegalClassificationCodeException;
 import org.seasar.dbflute.util.DfTypeUtil;
@@ -93,7 +94,9 @@ public class VendorTypeTest extends UnitContainerTestCase {
         registerTrueAndFalse();
         VendorCheckCB cb = new VendorCheckCB();
         List<BooleanFlg> orderValueList = Arrays.asList(CDef.BooleanFlg.True);
-        cb.query().addOrderBy_TypeOfBoolean_Asc().withManualOrder(orderValueList);
+        ManualOrderBean mob = new ManualOrderBean();
+        mob.acceptOrderValueList(orderValueList);
+        cb.query().addOrderBy_TypeOfBoolean_Asc().withManualOrder(mob);
 
         // ## Act ##
         ListResultBean<VendorCheck> checkList = vendorCheckBhv.selectList(cb);
@@ -113,7 +116,9 @@ public class VendorTypeTest extends UnitContainerTestCase {
         registerTrueAndFalse();
         VendorCheckCB cb = new VendorCheckCB();
         List<BooleanFlg> orderValueList = Arrays.asList(CDef.BooleanFlg.False);
-        cb.query().addOrderBy_TypeOfBoolean_Asc().withManualOrder(orderValueList);
+        ManualOrderBean mob = new ManualOrderBean();
+        mob.acceptOrderValueList(orderValueList);
+        cb.query().addOrderBy_TypeOfBoolean_Asc().withManualOrder(mob);
 
         // ## Act ##
         ListResultBean<VendorCheck> checkList = vendorCheckBhv.selectList(cb);

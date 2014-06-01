@@ -37,29 +37,22 @@ public class VendorConstraintNameAutoRefNss {
     /**
      * With nested relation columns to select clause. <br />
      * vendor_constraint_name_auto_foo by my CONSTRAINT_NAME_AUTO_FOO_ID, named 'vendorConstraintNameAutoFoo'.
-     * @return The set-upper of more nested relation. {...with[nested-relation].with[more-nested-relation]} (NotNull)
      */
-    public VendorConstraintNameAutoFooNss withVendorConstraintNameAutoFoo() {
+    public void withVendorConstraintNameAutoFoo() {
         _query.doNss(new VendorConstraintNameAutoRefCQ.NssCall() { public ConditionQuery qf() { return _query.queryVendorConstraintNameAutoFoo(); }});
-        return new VendorConstraintNameAutoFooNss(_query.queryVendorConstraintNameAutoFoo());
     }
     /**
      * With nested relation columns to select clause. <br />
      * vendor_constraint_name_auto_bar by my CONSTRAINT_NAME_AUTO_BAR_ID, named 'vendorConstraintNameAutoBar'.
-     * @return The set-upper of more nested relation. {...with[nested-relation].with[more-nested-relation]} (NotNull)
      */
-    public VendorConstraintNameAutoBarNss withVendorConstraintNameAutoBar() {
+    public void withVendorConstraintNameAutoBar() {
         _query.doNss(new VendorConstraintNameAutoRefCQ.NssCall() { public ConditionQuery qf() { return _query.queryVendorConstraintNameAutoBar(); }});
-        return new VendorConstraintNameAutoBarNss(_query.queryVendorConstraintNameAutoBar());
     }
     /**
      * With nested relation columns to select clause. <br />
      * vendor_constraint_name_auto_qux by my CONSTRAINT_NAME_AUTO_QUX_ID, named 'vendorConstraintNameAutoQux'.
-     * @return The set-upper of more nested relation. {...with[nested-relation].with[more-nested-relation]} (NotNull)
      */
-    public VendorConstraintNameAutoQuxNss withVendorConstraintNameAutoQux() {
+    public void withVendorConstraintNameAutoQux() {
         _query.doNss(new VendorConstraintNameAutoRefCQ.NssCall() { public ConditionQuery qf() { return _query.queryVendorConstraintNameAutoQux(); }});
-        return new VendorConstraintNameAutoQuxNss(_query.queryVendorConstraintNameAutoQux());
     }
-
 }

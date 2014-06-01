@@ -88,7 +88,6 @@ public class BsWhiteVariantRelationMasterQuxCQ extends AbstractBsWhiteVariantRel
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _masterQuxId;
     public ConditionValue getMasterQuxId() {
         if (_masterQuxId == null) { _masterQuxId = nCV(); }

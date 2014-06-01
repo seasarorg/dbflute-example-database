@@ -43,5 +43,4 @@ public class WhiteCompoundPkRefManyNss {
         _query.doNss(new WhiteCompoundPkRefManyCQ.NssCall() { public ConditionQuery qf() { return _query.queryWhiteCompoundPkToPK(); }});
         return new WhiteCompoundPkNss(_query.queryWhiteCompoundPkToPK());
     }
-
 }

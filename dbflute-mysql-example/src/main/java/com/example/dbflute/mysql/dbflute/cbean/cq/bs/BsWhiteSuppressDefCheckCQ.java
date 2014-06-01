@@ -88,7 +88,6 @@ public class BsWhiteSuppressDefCheckCQ extends AbstractBsWhiteSuppressDefCheckCQ
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _defCheckId;
     public ConditionValue getDefCheckId() {
         if (_defCheckId == null) { _defCheckId = nCV(); }

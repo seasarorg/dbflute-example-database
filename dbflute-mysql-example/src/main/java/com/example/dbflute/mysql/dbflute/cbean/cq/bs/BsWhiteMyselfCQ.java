@@ -88,7 +88,6 @@ public class BsWhiteMyselfCQ extends AbstractBsWhiteMyselfCQ {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _myselfId;
     public ConditionValue getMyselfId() {
         if (_myselfId == null) { _myselfId = nCV(); }

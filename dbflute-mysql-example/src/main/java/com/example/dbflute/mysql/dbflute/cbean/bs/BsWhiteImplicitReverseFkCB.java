@@ -289,11 +289,7 @@ public class BsWhiteImplicitReverseFkCB extends AbstractConditionBean {
         { _nssWhiteImplicitReverseFkRefWithImplicitReverseFK = new WhiteImplicitReverseFkRefNss(query().queryWhiteImplicitReverseFkRefWithImplicitReverseFK(targetDate)); }
         return _nssWhiteImplicitReverseFkRefWithImplicitReverseFK;
     }
-    protected WhiteImplicitReverseFkSuppressNss _nssWhiteImplicitReverseFkSuppressSuppressImplicitReverseFK;
-    public WhiteImplicitReverseFkSuppressNss getNssWhiteImplicitReverseFkSuppressSuppressImplicitReverseFK() {
-        if (_nssWhiteImplicitReverseFkSuppressSuppressImplicitReverseFK == null) { _nssWhiteImplicitReverseFkSuppressSuppressImplicitReverseFK = new WhiteImplicitReverseFkSuppressNss(null); }
-        return _nssWhiteImplicitReverseFkSuppressSuppressImplicitReverseFK;
-    }
+
     /**
      * Set up relation columns to select clause. <br />
      * white_implicit_reverse_fk_suppress by my WHITE_IMPLICIT_REVERSE_FK_ID, named 'whiteImplicitReverseFkSuppressSuppressImplicitReverseFK'.
@@ -305,14 +301,10 @@ public class BsWhiteImplicitReverseFkCB extends AbstractConditionBean {
      * ... = whiteImplicitReverseFk.<span style="color: #DD4747">getWhiteImplicitReverseFkSuppressSuppressImplicitReverseFK()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
      * </pre>
      * @param targetDate The bind parameter of fixed condition for targetDate. (NotNull)
-     * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
-    public WhiteImplicitReverseFkSuppressNss setupSelect_WhiteImplicitReverseFkSuppressSuppressImplicitReverseFK(final java.util.Date targetDate) {
+    public void setupSelect_WhiteImplicitReverseFkSuppressSuppressImplicitReverseFK(final java.util.Date targetDate) {
         assertSetupSelectPurpose("whiteImplicitReverseFkSuppressSuppressImplicitReverseFK");
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryWhiteImplicitReverseFkSuppressSuppressImplicitReverseFK(targetDate); } });
-        if (_nssWhiteImplicitReverseFkSuppressSuppressImplicitReverseFK == null || !_nssWhiteImplicitReverseFkSuppressSuppressImplicitReverseFK.hasConditionQuery())
-        { _nssWhiteImplicitReverseFkSuppressSuppressImplicitReverseFK = new WhiteImplicitReverseFkSuppressNss(query().queryWhiteImplicitReverseFkSuppressSuppressImplicitReverseFK(targetDate)); }
-        return _nssWhiteImplicitReverseFkSuppressSuppressImplicitReverseFK;
     }
 
     // [DBFlute-0.7.4]

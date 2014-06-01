@@ -37,11 +37,8 @@ public class WhiteMyselfCheckNss {
     /**
      * With nested relation columns to select clause. <br />
      * white_myself by my MYSELF_ID, named 'whiteMyself'.
-     * @return The set-upper of more nested relation. {...with[nested-relation].with[more-nested-relation]} (NotNull)
      */
-    public WhiteMyselfNss withWhiteMyself() {
+    public void withWhiteMyself() {
         _query.doNss(new WhiteMyselfCheckCQ.NssCall() { public ConditionQuery qf() { return _query.queryWhiteMyself(); }});
-        return new WhiteMyselfNss(_query.queryWhiteMyself());
     }
-
 }

@@ -24,16 +24,13 @@ import com.example.dbflute.mysql.dbflute.cbean.MemberCB;
 import com.example.dbflute.mysql.dbflute.cbean.MemberLoginCB;
 import com.example.dbflute.mysql.dbflute.cbean.MemberWithdrawalCB;
 import com.example.dbflute.mysql.dbflute.cbean.PurchaseCB;
-import com.example.dbflute.mysql.dbflute.cbean.WithdrawalReasonCB;
 import com.example.dbflute.mysql.dbflute.exbhv.MemberBhv;
 import com.example.dbflute.mysql.dbflute.exbhv.MemberWithdrawalBhv;
 import com.example.dbflute.mysql.dbflute.exbhv.PurchaseBhv;
-import com.example.dbflute.mysql.dbflute.exbhv.WithdrawalReasonBhv;
 import com.example.dbflute.mysql.dbflute.exentity.Member;
 import com.example.dbflute.mysql.dbflute.exentity.MemberSecurity;
 import com.example.dbflute.mysql.dbflute.exentity.MemberWithdrawal;
 import com.example.dbflute.mysql.dbflute.exentity.Purchase;
-import com.example.dbflute.mysql.dbflute.exentity.WithdrawalReason;
 import com.example.dbflute.mysql.unit.UnitContainerTestCase;
 
 /**
@@ -47,7 +44,6 @@ public class VendorGrammerTest extends UnitContainerTestCase {
     //                                                                           =========
     private MemberBhv memberBhv;
     private PurchaseBhv purchaseBhv;
-    private WithdrawalReasonBhv withdrawalReasonBhv;
     private MemberWithdrawalBhv memberWithdrawalBhv;
 
     // ===================================================================================
@@ -84,8 +80,7 @@ public class VendorGrammerTest extends UnitContainerTestCase {
         int countAll;
         {
             PurchaseCB cb = new PurchaseCB();
-            cb.query().queryMember().queryMemberWithdrawalAsOne().queryWithdrawalReason()
-                    .setWithdrawalReasonCode_IsNotNull();
+            cb.query().queryMember().queryMemberWithdrawalAsOne().setWithdrawalReasonCode_IsNotNull();
             countAll = purchaseBhv.selectCount(cb);
         }
 
@@ -137,17 +132,18 @@ public class VendorGrammerTest extends UnitContainerTestCase {
                 formalizedMemberMap.put(member.getMemberId(), member);
             }
         }
-        final WithdrawalReason firstReason;
+        final String firstReason;
         {
-            WithdrawalReasonCB cb = new WithdrawalReasonCB();
+            MemberWithdrawalCB cb = new MemberWithdrawalCB();
+            cb.query().setWithdrawalReasonCode_IsNotNull();
             cb.fetchFirst(1);
-            firstReason = withdrawalReasonBhv.selectEntityWithDeletedCheck(cb);
+            firstReason = memberWithdrawalBhv.selectEntityWithDeletedCheck(cb).getWithdrawalReasonCode();
         }
 
         // ## Act ##
         int inserted = memberWithdrawalBhv.queryInsert(new QueryInsertSetupper<MemberWithdrawal, MemberWithdrawalCB>() {
             public ConditionBean setup(MemberWithdrawal entity, MemberWithdrawalCB intoCB) {
-                entity.setWithdrawalReasonCode(firstReason.getWithdrawalReasonCode());
+                entity.setWithdrawalReasonCodeAsWithdrawalReason(CDef.WithdrawalReason.codeOf(firstReason));
                 MemberCB cb = new MemberCB();
 
                 intoCB.specify().columnMemberId().mappedFrom(cb.specify().columnMemberId());
@@ -179,7 +175,7 @@ public class VendorGrammerTest extends UnitContainerTestCase {
         for (MemberWithdrawal actual : actualList) {
             String withdrawalReasonCode = actual.getWithdrawalReasonCode();
             assertNotNull(withdrawalReasonCode);
-            assertEquals(firstReason.getWithdrawalReasonCode(), withdrawalReasonCode);
+            assertEquals(firstReason, withdrawalReasonCode);
             Member member = formalizedMemberMap.get(actual.getMemberId());
             assertEquals(member.getMemberName(), actual.getWithdrawalReasonInputText());
 

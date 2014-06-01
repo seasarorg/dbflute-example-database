@@ -37,20 +37,15 @@ public class WhiteSplitMultipleFkBaseNss {
     /**
      * With nested relation columns to select clause. <br />
      * white_split_multiple_fk_next by my NEXT_ID, named 'whiteSplitMultipleFkNext'.
-     * @return The set-upper of more nested relation. {...with[nested-relation].with[more-nested-relation]} (NotNull)
      */
-    public WhiteSplitMultipleFkNextNss withWhiteSplitMultipleFkNext() {
+    public void withWhiteSplitMultipleFkNext() {
         _query.doNss(new WhiteSplitMultipleFkBaseCQ.NssCall() { public ConditionQuery qf() { return _query.queryWhiteSplitMultipleFkNext(); }});
-        return new WhiteSplitMultipleFkNextNss(_query.queryWhiteSplitMultipleFkNext());
     }
     /**
      * With nested relation columns to select clause. <br />
      * white_split_multiple_fk_ref by my FIRST_ID, named 'whiteSplitMultipleFkRefAsSplitMultipleFkTest'.
-     * @return The set-upper of more nested relation. {...with[nested-relation].with[more-nested-relation]} (NotNull)
      */
-    public WhiteSplitMultipleFkRefNss withWhiteSplitMultipleFkRefAsSplitMultipleFkTest() {
+    public void withWhiteSplitMultipleFkRefAsSplitMultipleFkTest() {
         _query.doNss(new WhiteSplitMultipleFkBaseCQ.NssCall() { public ConditionQuery qf() { return _query.queryWhiteSplitMultipleFkRefAsSplitMultipleFkTest(); }});
-        return new WhiteSplitMultipleFkRefNss(_query.queryWhiteSplitMultipleFkRefAsSplitMultipleFkTest());
     }
-
 }

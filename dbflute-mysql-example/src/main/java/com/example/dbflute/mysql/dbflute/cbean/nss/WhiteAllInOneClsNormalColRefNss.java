@@ -52,5 +52,4 @@ public class WhiteAllInOneClsNormalColRefNss {
         _query.doNss(new WhiteAllInOneClsNormalColRefCQ.NssCall() { public ConditionQuery qf() { return _query.queryWhiteAllInOneClsElementAsBar(); }});
         return new WhiteAllInOneClsElementNss(_query.queryWhiteAllInOneClsElementAsBar());
     }
-
 }

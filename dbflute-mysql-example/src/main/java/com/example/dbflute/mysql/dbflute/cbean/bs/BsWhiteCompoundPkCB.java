@@ -289,11 +289,6 @@ public class BsWhiteCompoundPkCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                         SetupSelect
     //                                                                         ===========
-    protected WhiteCompoundReferredNormallyNss _nssWhiteCompoundReferredNormally;
-    public WhiteCompoundReferredNormallyNss getNssWhiteCompoundReferredNormally() {
-        if (_nssWhiteCompoundReferredNormally == null) { _nssWhiteCompoundReferredNormally = new WhiteCompoundReferredNormallyNss(null); }
-        return _nssWhiteCompoundReferredNormally;
-    }
     /**
      * Set up relation columns to select clause. <br />
      * white_compound_referred_normally by my REFERRED_ID, named 'whiteCompoundReferredNormally'.
@@ -304,23 +299,15 @@ public class BsWhiteCompoundPkCB extends AbstractConditionBean {
      * WhiteCompoundPk whiteCompoundPk = whiteCompoundPkBhv.selectEntityWithDeletedCheck(cb);
      * ... = whiteCompoundPk.<span style="color: #DD4747">getWhiteCompoundReferredNormally()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
      * </pre>
-     * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
-    public WhiteCompoundReferredNormallyNss setupSelect_WhiteCompoundReferredNormally() {
+    public void setupSelect_WhiteCompoundReferredNormally() {
         assertSetupSelectPurpose("whiteCompoundReferredNormally");
         if (hasSpecifiedColumn()) { // if reverse call
             specify().columnReferredId();
         }
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryWhiteCompoundReferredNormally(); } });
-        if (_nssWhiteCompoundReferredNormally == null || !_nssWhiteCompoundReferredNormally.hasConditionQuery())
-        { _nssWhiteCompoundReferredNormally = new WhiteCompoundReferredNormallyNss(query().queryWhiteCompoundReferredNormally()); }
-        return _nssWhiteCompoundReferredNormally;
     }
-    protected WhiteCompoundReferredPrimaryNss _nssWhiteCompoundReferredPrimary;
-    public WhiteCompoundReferredPrimaryNss getNssWhiteCompoundReferredPrimary() {
-        if (_nssWhiteCompoundReferredPrimary == null) { _nssWhiteCompoundReferredPrimary = new WhiteCompoundReferredPrimaryNss(null); }
-        return _nssWhiteCompoundReferredPrimary;
-    }
+
     /**
      * Set up relation columns to select clause. <br />
      * white_compound_referred_primary by my PK_SECOND_ID, named 'whiteCompoundReferredPrimary'.
@@ -331,15 +318,12 @@ public class BsWhiteCompoundPkCB extends AbstractConditionBean {
      * WhiteCompoundPk whiteCompoundPk = whiteCompoundPkBhv.selectEntityWithDeletedCheck(cb);
      * ... = whiteCompoundPk.<span style="color: #DD4747">getWhiteCompoundReferredPrimary()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
      * </pre>
-     * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
-    public WhiteCompoundReferredPrimaryNss setupSelect_WhiteCompoundReferredPrimary() {
+    public void setupSelect_WhiteCompoundReferredPrimary() {
         assertSetupSelectPurpose("whiteCompoundReferredPrimary");
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryWhiteCompoundReferredPrimary(); } });
-        if (_nssWhiteCompoundReferredPrimary == null || !_nssWhiteCompoundReferredPrimary.hasConditionQuery())
-        { _nssWhiteCompoundReferredPrimary = new WhiteCompoundReferredPrimaryNss(query().queryWhiteCompoundReferredPrimary()); }
-        return _nssWhiteCompoundReferredPrimary;
     }
+
     protected WhiteCompoundPkRefManyNss _nssWhiteCompoundPkRefManyAsMax;
     public WhiteCompoundPkRefManyNss getNssWhiteCompoundPkRefManyAsMax() {
         if (_nssWhiteCompoundPkRefManyAsMax == null) { _nssWhiteCompoundPkRefManyAsMax = new WhiteCompoundPkRefManyNss(null); }
@@ -364,6 +348,7 @@ public class BsWhiteCompoundPkCB extends AbstractConditionBean {
         { _nssWhiteCompoundPkRefManyAsMax = new WhiteCompoundPkRefManyNss(query().queryWhiteCompoundPkRefManyAsMax()); }
         return _nssWhiteCompoundPkRefManyAsMax;
     }
+
     protected WhiteCompoundPkRefManyNss _nssWhiteCompoundPkRefManyAsMin;
     public WhiteCompoundPkRefManyNss getNssWhiteCompoundPkRefManyAsMin() {
         if (_nssWhiteCompoundPkRefManyAsMin == null) { _nssWhiteCompoundPkRefManyAsMin = new WhiteCompoundPkRefManyNss(null); }

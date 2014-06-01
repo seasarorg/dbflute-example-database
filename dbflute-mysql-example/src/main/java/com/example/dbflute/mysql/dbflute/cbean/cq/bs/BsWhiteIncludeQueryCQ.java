@@ -88,7 +88,6 @@ public class BsWhiteIncludeQueryCQ extends AbstractBsWhiteIncludeQueryCQ {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _includeQueryId;
     public ConditionValue getIncludeQueryId() {
         if (_includeQueryId == null) { _includeQueryId = nCV(); }
@@ -116,20 +115,6 @@ public class BsWhiteIncludeQueryCQ extends AbstractBsWhiteIncludeQueryCQ {
         return _includeQueryInteger;
     }
     protected ConditionValue getCValueIncludeQueryInteger() { return getIncludeQueryInteger(); }
-
-    /** 
-     * Add order-by as ascend. <br />
-     * INCLUDE_QUERY_INTEGER: {INT(10)}
-     * @return this. (NotNull)
-     */
-    public BsWhiteIncludeQueryCQ addOrderBy_IncludeQueryInteger_Asc() { regOBA("INCLUDE_QUERY_INTEGER"); return this; }
-
-    /**
-     * Add order-by as descend. <br />
-     * INCLUDE_QUERY_INTEGER: {INT(10)}
-     * @return this. (NotNull)
-     */
-    public BsWhiteIncludeQueryCQ addOrderBy_IncludeQueryInteger_Desc() { regOBD("INCLUDE_QUERY_INTEGER"); return this; }
 
     protected ConditionValue _includeQueryVarchar;
     public ConditionValue getIncludeQueryVarchar() {

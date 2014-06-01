@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.seasar.dbflute.CallbackContext;
+import org.seasar.dbflute.bhv.DeleteOption;
 import org.seasar.dbflute.bhv.UpdateOption;
 import org.seasar.dbflute.cbean.ListResultBean;
 import org.seasar.dbflute.cbean.SpecifyQuery;
@@ -15,8 +16,10 @@ import org.seasar.dbflute.jdbc.SqlLogInfo;
 
 import com.example.dbflute.mysql.dbflute.cbean.MemberCB;
 import com.example.dbflute.mysql.dbflute.cbean.PurchaseCB;
+import com.example.dbflute.mysql.dbflute.cbean.PurchasePaymentCB;
 import com.example.dbflute.mysql.dbflute.exbhv.MemberBhv;
 import com.example.dbflute.mysql.dbflute.exbhv.PurchaseBhv;
+import com.example.dbflute.mysql.dbflute.exbhv.PurchasePaymentBhv;
 import com.example.dbflute.mysql.dbflute.exentity.Member;
 import com.example.dbflute.mysql.dbflute.exentity.Purchase;
 import com.example.dbflute.mysql.unit.UnitContainerTestCase;
@@ -32,6 +35,7 @@ public class WxBhvQueryUpdateMySQLTest extends UnitContainerTestCase {
     //                                                                           =========
     private MemberBhv memberBhv;
     private PurchaseBhv purchaseBhv;
+    private PurchasePaymentBhv purchasePaymentBhv;
 
     // ===================================================================================
     //                                                                        Query Update
@@ -298,6 +302,8 @@ public class WxBhvQueryUpdateMySQLTest extends UnitContainerTestCase {
 
     public void test_queryDelete_OuterJoin() {
         // ## Arrange ##
+        purchasePaymentBhv.varyingQueryDelete(new PurchasePaymentCB(),
+                new DeleteOption<PurchasePaymentCB>().allowNonQueryDelete());
         PurchaseCB cb = new PurchaseCB();
         cb.query().queryMember().setMemberStatusCode_Equal_Formalized();
 

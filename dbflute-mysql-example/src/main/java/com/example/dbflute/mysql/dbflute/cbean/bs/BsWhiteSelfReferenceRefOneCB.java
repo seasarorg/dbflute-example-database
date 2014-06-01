@@ -288,6 +288,7 @@ public class BsWhiteSelfReferenceRefOneCB extends AbstractConditionBean {
         { _nssWhiteSelfReference = new WhiteSelfReferenceNss(query().queryWhiteSelfReference()); }
         return _nssWhiteSelfReference;
     }
+
     protected WhiteSelfReferenceNss _nssWhiteSelfReferenceAsDirectParent;
     public WhiteSelfReferenceNss getNssWhiteSelfReferenceAsDirectParent() {
         if (_nssWhiteSelfReferenceAsDirectParent == null) { _nssWhiteSelfReferenceAsDirectParent = new WhiteSelfReferenceNss(null); }

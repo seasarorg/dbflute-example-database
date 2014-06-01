@@ -88,7 +88,6 @@ public class BsWhiteVariantRelationReferrerCQ extends AbstractBsWhiteVariantRela
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _referrerId;
     public ConditionValue getReferrerId() {
         if (_referrerId == null) { _referrerId = nCV(); }

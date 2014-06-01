@@ -52,5 +52,4 @@ public class WhiteSelfReferenceRefOneNss {
         _query.doNss(new WhiteSelfReferenceRefOneCQ.NssCall() { public ConditionQuery qf() { return _query.queryWhiteSelfReferenceAsDirectParent(); }});
         return new WhiteSelfReferenceNss(_query.queryWhiteSelfReferenceAsDirectParent());
     }
-
 }

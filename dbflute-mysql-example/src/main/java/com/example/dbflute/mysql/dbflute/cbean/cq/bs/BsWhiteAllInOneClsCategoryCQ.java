@@ -88,7 +88,6 @@ public class BsWhiteAllInOneClsCategoryCQ extends AbstractBsWhiteAllInOneClsCate
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _clsCategoryCode;
     public ConditionValue getClsCategoryCode() {
         if (_clsCategoryCode == null) { _clsCategoryCode = nCV(); }

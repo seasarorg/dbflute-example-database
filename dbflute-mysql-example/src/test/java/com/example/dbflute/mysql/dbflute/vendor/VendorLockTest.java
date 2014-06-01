@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.Stack;
 
+import org.seasar.dbflute.bhv.DeleteOption;
 import org.seasar.dbflute.bhv.InsertOption;
 import org.seasar.dbflute.cbean.ListResultBean;
 import org.seasar.dbflute.exception.EntityAlreadyUpdatedException;
@@ -24,10 +25,12 @@ import org.seasar.dbflute.util.DfCollectionUtil;
 import com.example.dbflute.mysql.dbflute.allcommon.CDef;
 import com.example.dbflute.mysql.dbflute.cbean.MemberCB;
 import com.example.dbflute.mysql.dbflute.cbean.PurchaseCB;
+import com.example.dbflute.mysql.dbflute.cbean.PurchasePaymentCB;
 import com.example.dbflute.mysql.dbflute.exbhv.MemberBhv;
 import com.example.dbflute.mysql.dbflute.exbhv.MemberLoginBhv;
 import com.example.dbflute.mysql.dbflute.exbhv.MemberStatusBhv;
 import com.example.dbflute.mysql.dbflute.exbhv.PurchaseBhv;
+import com.example.dbflute.mysql.dbflute.exbhv.PurchasePaymentBhv;
 import com.example.dbflute.mysql.dbflute.exentity.Member;
 import com.example.dbflute.mysql.dbflute.exentity.MemberLogin;
 import com.example.dbflute.mysql.dbflute.exentity.MemberStatus;
@@ -47,6 +50,7 @@ public class VendorLockTest extends UnitContainerTestCase {
     private MemberStatusBhv memberStatusBhv;
     private MemberLoginBhv memberLoginBhv;
     private PurchaseBhv purchaseBhv;
+    private PurchasePaymentBhv purchasePaymentBhv;
 
     // ===================================================================================
     //                                                                            Settings
@@ -275,6 +279,8 @@ public class VendorLockTest extends UnitContainerTestCase {
     //                                  NextKeyLock Deadlock
     //                                  --------------------
     public void test_insert_NextKeyLockDeadlock_for_FK() {
+        purchasePaymentBhv.varyingQueryDelete(new PurchasePaymentCB(),
+                new DeleteOption<PurchasePaymentCB>().allowNonQueryDelete());
         // {3, 6, 7} no deadlock (if no data since first, deadlock)
         // if unique index removed, {3, 6, 9} no deadlock but {3, 3} deadlock
         final Map<Integer, Integer> parameterMap = new HashMap<Integer, Integer>();

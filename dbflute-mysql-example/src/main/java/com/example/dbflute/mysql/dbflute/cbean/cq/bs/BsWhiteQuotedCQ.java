@@ -88,7 +88,6 @@ public class BsWhiteQuotedCQ extends AbstractBsWhiteQuotedCQ {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _select;
     public ConditionValue getSelect() {
         if (_select == null) { _select = nCV(); }

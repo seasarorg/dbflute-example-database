@@ -88,7 +88,6 @@ public class BsWhiteImplicitReverseFkCQ extends AbstractBsWhiteImplicitReverseFk
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _whiteImplicitReverseFkId;
     public ConditionValue getWhiteImplicitReverseFkId() {
         if (_whiteImplicitReverseFkId == null) { _whiteImplicitReverseFkId = nCV(); }

@@ -29,6 +29,7 @@ import org.seasar.dbflute.cbean.sqlclause.SqlClause;
 import org.seasar.dbflute.cbean.sqlclause.SqlClauseCreator;
 import org.seasar.dbflute.dbmeta.DBMetaProvider;
 import org.seasar.dbflute.twowaysql.factory.SqlAnalyzerFactory;
+import com.example.dbflute.mysql.dbflute.allcommon.CDef;
 import com.example.dbflute.mysql.dbflute.allcommon.DBFluteConfig;
 import com.example.dbflute.mysql.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.mysql.dbflute.allcommon.ImplementedInvokerAssistant;
@@ -94,12 +95,12 @@ public class BsWithdrawalReasonCB extends AbstractConditionBean {
     //                                                                 ===================
     /**
      * Accept the query condition of primary key as equal.
-     * @param withdrawalReasonCode (退会理由コード): PK, NotNull, CHAR(3). (NotNull)
+     * @param withdrawalReasonCode (退会理由コード): PK, NotNull, CHAR(3), classification=WithdrawalReason. (NotNull)
      */
-    public void acceptPrimaryKey(String withdrawalReasonCode) {
+    public void acceptPrimaryKey(CDef.WithdrawalReason withdrawalReasonCode) {
         assertObjectNotNull("withdrawalReasonCode", withdrawalReasonCode);
         BsWithdrawalReasonCB cb = this;
-        cb.query().setWithdrawalReasonCode_Equal(withdrawalReasonCode);;
+        cb.query().setWithdrawalReasonCode_Equal_AsWithdrawalReason(withdrawalReasonCode);
     }
 
     /**
@@ -273,7 +274,6 @@ public class BsWithdrawalReasonCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                         SetupSelect
     //                                                                         ===========
-
     // [DBFlute-0.7.4]
     // ===================================================================================
     //                                                                             Specify
@@ -320,7 +320,7 @@ public class BsWithdrawalReasonCB extends AbstractConditionBean {
                              , HpCBPurpose purpose, DBMetaProvider dbmetaProvider)
         { super(baseCB, qyCall, purpose, dbmetaProvider); }
         /**
-         * (退会理由コード)WITHDRAWAL_REASON_CODE: {PK, NotNull, CHAR(3)}
+         * (退会理由コード)WITHDRAWAL_REASON_CODE: {PK, NotNull, CHAR(3), classification=WithdrawalReason}
          * @return The information object of specified column. (NotNull)
          */
         public HpSpecifiedColumn columnWithdrawalReasonCode() { return doColumn("WITHDRAWAL_REASON_CODE"); }
@@ -342,36 +342,6 @@ public class BsWithdrawalReasonCB extends AbstractConditionBean {
         }
         @Override
         protected String getTableDbName() { return "withdrawal_reason"; }
-        /**
-         * Prepare for (Specify)DerivedReferrer (correlated sub-query). <br />
-         * {select max(FOO) from member_withdrawal where ...) as FOO_MAX} <br />
-         * (会員退会情報)member_withdrawal by WITHDRAWAL_REASON_CODE, named 'memberWithdrawalList'.
-         * <pre>
-         * cb.specify().<span style="color: #DD4747">derivedMemberWithdrawalList()</span>.<span style="color: #DD4747">max</span>(new SubQuery&lt;MemberWithdrawalCB&gt;() {
-         *     public void query(MemberWithdrawalCB subCB) {
-         *         subCB.specify().<span style="color: #DD4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
-         *         subCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
-         *     }
-         * }, MemberWithdrawal.<span style="color: #DD4747">ALIAS_foo...</span>);
-         * </pre>
-         * @return The object to set up a function for referrer table. (NotNull)
-         */
-        public HpSDRFunction<MemberWithdrawalCB, WithdrawalReasonCQ> derivedMemberWithdrawalList() {
-            assertDerived("memberWithdrawalList"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
-            return new HpSDRFunction<MemberWithdrawalCB, WithdrawalReasonCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<MemberWithdrawalCB, WithdrawalReasonCQ>() {
-                public void setup(String fn, SubQuery<MemberWithdrawalCB> sq, WithdrawalReasonCQ cq, String al, DerivedReferrerOption op) {
-                    cq.xsderiveMemberWithdrawalList(fn, sq, al, op); } }, _dbmetaProvider);
-        }
-        /**
-         * Prepare for (Specify)MyselfDerived (SubQuery).
-         * @return The object to set up a function for myself table. (NotNull)
-         */
-        public HpSDRFunction<WithdrawalReasonCB, WithdrawalReasonCQ> myselfDerived() {
-            assertDerived("myselfDerived"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
-            return new HpSDRFunction<WithdrawalReasonCB, WithdrawalReasonCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<WithdrawalReasonCB, WithdrawalReasonCQ>() {
-                public void setup(String fn, SubQuery<WithdrawalReasonCB> sq, WithdrawalReasonCQ cq, String al, DerivedReferrerOption op) {
-                    cq.xsmyselfDerive(fn, sq, al, op); } }, _dbmetaProvider);
-        }
     }
 
     // [DBFlute-0.9.5.3]

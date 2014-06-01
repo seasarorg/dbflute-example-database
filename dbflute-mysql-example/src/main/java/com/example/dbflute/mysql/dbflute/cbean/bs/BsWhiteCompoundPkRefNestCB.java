@@ -292,6 +292,7 @@ public class BsWhiteCompoundPkRefNestCB extends AbstractConditionBean {
         { _nssWhiteCompoundPkRefByQuxMultipleId = new WhiteCompoundPkRefNss(query().queryWhiteCompoundPkRefByQuxMultipleId()); }
         return _nssWhiteCompoundPkRefByQuxMultipleId;
     }
+
     protected WhiteCompoundPkRefNss _nssWhiteCompoundPkRefByFooMultipleId;
     public WhiteCompoundPkRefNss getNssWhiteCompoundPkRefByFooMultipleId() {
         if (_nssWhiteCompoundPkRefByFooMultipleId == null) { _nssWhiteCompoundPkRefByFooMultipleId = new WhiteCompoundPkRefNss(null); }

@@ -191,6 +191,177 @@ public interface CDef extends Classification {
     }
 
     /**
+     * reason for member withdrawal
+     */
+    public enum WithdrawalReason implements CDef {
+        /** SIT: サイトが使いにくいから */
+        Sit("SIT", "SIT", EMPTY_SISTERS)
+        ,
+        /** PRD: 商品に魅力がないから */
+        Prd("PRD", "PRD", EMPTY_SISTERS)
+        ,
+        /** FRT: フリテンだから */
+        Frt("FRT", "FRT", EMPTY_SISTERS)
+        ,
+        /** OTH: その他理由 */
+        Oth("OTH", "OTH", EMPTY_SISTERS)
+        ;
+        private static final Map<String, WithdrawalReason> _codeValueMap = new HashMap<String, WithdrawalReason>();
+        static {
+            for (WithdrawalReason value : values()) {
+                _codeValueMap.put(value.code().toLowerCase(), value);
+                for (String sister : value.sisters()) { _codeValueMap.put(sister.toLowerCase(), value); }
+            }
+        }
+        private String _code; private String _alias; private String[] _sisters;
+        private WithdrawalReason(String code, String alias, String[] sisters)
+        { _code = code; _alias = alias; _sisters = sisters; }
+        public String code() { return _code; } public String alias() { return _alias; }
+        private String[] sisters() { return _sisters; }
+        public Map<String, Object> subItemMap() { return EMPTY_SUB_ITEM_MAP; }
+        public ClassificationMeta meta() { return CDef.DefMeta.WithdrawalReason; }
+
+        public boolean inGroup(String groupName) {
+            return false;
+        }
+
+        /**
+         * Get the classification by the code. (CaseInsensitive)
+         * @param code The value of code, which is case-insensitive. (NullAllowed: if null, returns null)
+         * @return The instance of the corresponding classification to the code. (NullAllowed: if not found, returns null)
+         */
+        public static WithdrawalReason codeOf(Object code) {
+            if (code == null) { return null; }
+            if (code instanceof WithdrawalReason) { return (WithdrawalReason)code; }
+            return _codeValueMap.get(code.toString().toLowerCase());
+        }
+
+        /**
+         * Get the classification by the name (also called 'value' in ENUM world).
+         * @param name The string of name, which is case-sensitive. (NullAllowed: if null, returns null)
+         * @return The instance of the corresponding classification to the name. (NullAllowed: if not found, returns null)
+         */
+        public static WithdrawalReason nameOf(String name) {
+            if (name == null) { return null; }
+            try { return valueOf(name); } catch (RuntimeException ignored) { return null; }
+        }
+
+        /**
+         * Get the list of all classification elements. (returns new copied list)
+         * @return The list of all classification elements. (NotNull)
+         */
+        public static List<WithdrawalReason> listAll() {
+            return new ArrayList<WithdrawalReason>(Arrays.asList(values()));
+        }
+
+        /**
+         * Get the list of classification elements in the specified group. (returns new copied list) <br />
+         * @param groupName The string of group name, which is case-sensitive. (NullAllowed: if null, returns empty list)
+         * @return The list of classification elements in the group. (NotNull)
+         */
+        public static List<WithdrawalReason> groupOf(String groupName) {
+            return new ArrayList<WithdrawalReason>(4);
+        }
+
+        @Override public String toString() { return code(); }
+    }
+
+    /**
+     * 支払方法
+     */
+    public enum PaymentMethod implements CDef {
+        /** 手渡し: Face-to-Faceの手渡しで商品と交換 */
+        ByHand("HAN", "手渡し", EMPTY_SISTERS)
+        ,
+        /** 銀行振込: 銀行振込で確認してから商品発送 */
+        BankTransfer("BAK", "銀行振込", EMPTY_SISTERS)
+        ,
+        /** クレジットカード: クレジットカードの番号を教えてもらう */
+        CreditCard("CRC", "クレジットカード", EMPTY_SISTERS)
+        ;
+        private static final Map<String, PaymentMethod> _codeValueMap = new HashMap<String, PaymentMethod>();
+        static {
+            for (PaymentMethod value : values()) {
+                _codeValueMap.put(value.code().toLowerCase(), value);
+                for (String sister : value.sisters()) { _codeValueMap.put(sister.toLowerCase(), value); }
+            }
+        }
+        private String _code; private String _alias; private String[] _sisters;
+        private PaymentMethod(String code, String alias, String[] sisters)
+        { _code = code; _alias = alias; _sisters = sisters; }
+        public String code() { return _code; } public String alias() { return _alias; }
+        private String[] sisters() { return _sisters; }
+        public Map<String, Object> subItemMap() { return EMPTY_SUB_ITEM_MAP; }
+        public ClassificationMeta meta() { return CDef.DefMeta.PaymentMethod; }
+
+        /**
+         * Is the classification in the group? <br />
+         * 最も推奨されている方法 <br />
+         * The group elements:[ByHand]
+         * @return The determination, true or false.
+         */
+        public boolean isRecommended() {
+            return ByHand.equals(this);
+        }
+
+        public boolean inGroup(String groupName) {
+            if ("recommended".equals(groupName)) { return isRecommended(); }
+            return false;
+        }
+
+        /**
+         * Get the classification by the code. (CaseInsensitive)
+         * @param code The value of code, which is case-insensitive. (NullAllowed: if null, returns null)
+         * @return The instance of the corresponding classification to the code. (NullAllowed: if not found, returns null)
+         */
+        public static PaymentMethod codeOf(Object code) {
+            if (code == null) { return null; }
+            if (code instanceof PaymentMethod) { return (PaymentMethod)code; }
+            return _codeValueMap.get(code.toString().toLowerCase());
+        }
+
+        /**
+         * Get the classification by the name (also called 'value' in ENUM world).
+         * @param name The string of name, which is case-sensitive. (NullAllowed: if null, returns null)
+         * @return The instance of the corresponding classification to the name. (NullAllowed: if not found, returns null)
+         */
+        public static PaymentMethod nameOf(String name) {
+            if (name == null) { return null; }
+            try { return valueOf(name); } catch (RuntimeException ignored) { return null; }
+        }
+
+        /**
+         * Get the list of all classification elements. (returns new copied list)
+         * @return The list of all classification elements. (NotNull)
+         */
+        public static List<PaymentMethod> listAll() {
+            return new ArrayList<PaymentMethod>(Arrays.asList(values()));
+        }
+
+        /**
+         * Get the list of group classification elements. (returns new copied list) <br />
+         * 最も推奨されている方法 <br />
+         * The group elements:[ByHand]
+         * @return The list of classification elements in the group. (NotNull)
+         */
+        public static List<PaymentMethod> listOfRecommended() {
+            return new ArrayList<PaymentMethod>(Arrays.asList(ByHand));
+        }
+
+        /**
+         * Get the list of classification elements in the specified group. (returns new copied list) <br />
+         * @param groupName The string of group name, which is case-sensitive. (NullAllowed: if null, returns empty list)
+         * @return The list of classification elements in the group. (NotNull)
+         */
+        public static List<PaymentMethod> groupOf(String groupName) {
+            if ("recommended".equals(groupName)) { return listOfRecommended(); }
+            return new ArrayList<PaymentMethod>(4);
+        }
+
+        @Override public String toString() { return code(); }
+    }
+
+    /**
      * The test of relation reference
      */
     public enum SelfReference implements CDef {
@@ -1852,6 +2023,12 @@ public interface CDef extends Classification {
         /** mainly region of member address */
         Region
         ,
+        /** reason for member withdrawal */
+        WithdrawalReason
+        ,
+        /** 支払方法 */
+        PaymentMethod
+        ,
         /** The test of relation reference */
         SelfReference
         ,
@@ -1915,6 +2092,8 @@ public interface CDef extends Classification {
         public Classification codeOf(Object code) {
             if ("ServiceRank".equals(name())) { return CDef.ServiceRank.codeOf(code); }
             if ("Region".equals(name())) { return CDef.Region.codeOf(code); }
+            if ("WithdrawalReason".equals(name())) { return CDef.WithdrawalReason.codeOf(code); }
+            if ("PaymentMethod".equals(name())) { return CDef.PaymentMethod.codeOf(code); }
             if ("SelfReference".equals(name())) { return CDef.SelfReference.codeOf(code); }
             if ("TopCommentOnly".equals(name())) { return CDef.TopCommentOnly.codeOf(code); }
             if ("SubItemImplicit".equals(name())) { return CDef.SubItemImplicit.codeOf(code); }
@@ -1941,6 +2120,8 @@ public interface CDef extends Classification {
         public Classification nameOf(String name) {
             if ("ServiceRank".equals(name())) { return CDef.ServiceRank.valueOf(name); }
             if ("Region".equals(name())) { return CDef.Region.valueOf(name); }
+            if ("WithdrawalReason".equals(name())) { return CDef.WithdrawalReason.valueOf(name); }
+            if ("PaymentMethod".equals(name())) { return CDef.PaymentMethod.valueOf(name); }
             if ("SelfReference".equals(name())) { return CDef.SelfReference.valueOf(name); }
             if ("TopCommentOnly".equals(name())) { return CDef.TopCommentOnly.valueOf(name); }
             if ("SubItemImplicit".equals(name())) { return CDef.SubItemImplicit.valueOf(name); }
@@ -1967,6 +2148,8 @@ public interface CDef extends Classification {
         public List<Classification> listAll() {
             if ("ServiceRank".equals(name())) { return toClassificationList(CDef.ServiceRank.listAll()); }
             if ("Region".equals(name())) { return toClassificationList(CDef.Region.listAll()); }
+            if ("WithdrawalReason".equals(name())) { return toClassificationList(CDef.WithdrawalReason.listAll()); }
+            if ("PaymentMethod".equals(name())) { return toClassificationList(CDef.PaymentMethod.listAll()); }
             if ("SelfReference".equals(name())) { return toClassificationList(CDef.SelfReference.listAll()); }
             if ("TopCommentOnly".equals(name())) { return toClassificationList(CDef.TopCommentOnly.listAll()); }
             if ("SubItemImplicit".equals(name())) { return toClassificationList(CDef.SubItemImplicit.listAll()); }
@@ -1993,6 +2176,8 @@ public interface CDef extends Classification {
         public List<Classification> groupOf(String groupName) {
             if ("ServiceRank".equals(name())) { return toClassificationList(CDef.ServiceRank.groupOf(groupName)); }
             if ("Region".equals(name())) { return toClassificationList(CDef.Region.groupOf(groupName)); }
+            if ("WithdrawalReason".equals(name())) { return toClassificationList(CDef.WithdrawalReason.groupOf(groupName)); }
+            if ("PaymentMethod".equals(name())) { return toClassificationList(CDef.PaymentMethod.groupOf(groupName)); }
             if ("SelfReference".equals(name())) { return toClassificationList(CDef.SelfReference.groupOf(groupName)); }
             if ("TopCommentOnly".equals(name())) { return toClassificationList(CDef.TopCommentOnly.groupOf(groupName)); }
             if ("SubItemImplicit".equals(name())) { return toClassificationList(CDef.SubItemImplicit.groupOf(groupName)); }
@@ -2024,6 +2209,8 @@ public interface CDef extends Classification {
         public ClassificationCodeType codeType() {
             if ("ServiceRank".equals(name())) { return ClassificationCodeType.String; }
             if ("Region".equals(name())) { return ClassificationCodeType.Number; }
+            if ("WithdrawalReason".equals(name())) { return ClassificationCodeType.String; }
+            if ("PaymentMethod".equals(name())) { return ClassificationCodeType.String; }
             if ("SelfReference".equals(name())) { return ClassificationCodeType.Number; }
             if ("TopCommentOnly".equals(name())) { return ClassificationCodeType.String; }
             if ("SubItemImplicit".equals(name())) { return ClassificationCodeType.Number; }

@@ -88,7 +88,6 @@ public class BsWhiteSelfReferenceCQ extends AbstractBsWhiteSelfReferenceCQ {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _selfReferenceId;
     public ConditionValue getSelfReferenceId() {
         if (_selfReferenceId == null) { _selfReferenceId = nCV(); }

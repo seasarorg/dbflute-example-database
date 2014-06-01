@@ -37,11 +37,8 @@ public class WhiteUqFkWithoutPkRefNss {
     /**
      * With nested relation columns to select clause. <br />
      * white_uq_fk_without_pk by my FK_TO_UQ_CODE, named 'whiteUqFkWithoutPk'.
-     * @return The set-upper of more nested relation. {...with[nested-relation].with[more-nested-relation]} (NotNull)
      */
-    public WhiteUqFkWithoutPkNss withWhiteUqFkWithoutPk() {
+    public void withWhiteUqFkWithoutPk() {
         _query.doNss(new WhiteUqFkWithoutPkRefCQ.NssCall() { public ConditionQuery qf() { return _query.queryWhiteUqFkWithoutPk(); }});
-        return new WhiteUqFkWithoutPkNss(_query.queryWhiteUqFkWithoutPk());
     }
-
 }

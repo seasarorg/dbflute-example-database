@@ -88,7 +88,6 @@ public class BsWhiteCompoundPkRefManyCQ extends AbstractBsWhiteCompoundPkRefMany
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _multipleFirstId;
     public ConditionValue getMultipleFirstId() {
         if (_multipleFirstId == null) { _multipleFirstId = nCV(); }

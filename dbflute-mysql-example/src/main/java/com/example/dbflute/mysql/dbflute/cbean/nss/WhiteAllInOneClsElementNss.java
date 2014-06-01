@@ -37,11 +37,8 @@ public class WhiteAllInOneClsElementNss {
     /**
      * With nested relation columns to select clause. <br />
      * white_all_in_one_cls_category by my CLS_CATEGORY_CODE, named 'whiteAllInOneClsCategory'.
-     * @return The set-upper of more nested relation. {...with[nested-relation].with[more-nested-relation]} (NotNull)
      */
-    public WhiteAllInOneClsCategoryNss withWhiteAllInOneClsCategory() {
+    public void withWhiteAllInOneClsCategory() {
         _query.doNss(new WhiteAllInOneClsElementCQ.NssCall() { public ConditionQuery qf() { return _query.queryWhiteAllInOneClsCategory(); }});
-        return new WhiteAllInOneClsCategoryNss(_query.queryWhiteAllInOneClsCategory());
     }
-
 }

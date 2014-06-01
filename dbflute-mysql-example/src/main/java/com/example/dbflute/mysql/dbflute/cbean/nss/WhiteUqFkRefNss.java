@@ -37,20 +37,15 @@ public class WhiteUqFkRefNss {
     /**
      * With nested relation columns to select clause. <br />
      * white_uq_fk by my FK_TO_PK_ID, named 'whiteUqFkByFkToPkId'.
-     * @return The set-upper of more nested relation. {...with[nested-relation].with[more-nested-relation]} (NotNull)
      */
-    public WhiteUqFkNss withWhiteUqFkByFkToPkId() {
+    public void withWhiteUqFkByFkToPkId() {
         _query.doNss(new WhiteUqFkRefCQ.NssCall() { public ConditionQuery qf() { return _query.queryWhiteUqFkByFkToPkId(); }});
-        return new WhiteUqFkNss(_query.queryWhiteUqFkByFkToPkId());
     }
     /**
      * With nested relation columns to select clause. <br />
      * white_uq_fk by my FK_TO_UQ_CODE, named 'whiteUqFkByFkToUqCode'.
-     * @return The set-upper of more nested relation. {...with[nested-relation].with[more-nested-relation]} (NotNull)
      */
-    public WhiteUqFkNss withWhiteUqFkByFkToUqCode() {
+    public void withWhiteUqFkByFkToUqCode() {
         _query.doNss(new WhiteUqFkRefCQ.NssCall() { public ConditionQuery qf() { return _query.queryWhiteUqFkByFkToUqCode(); }});
-        return new WhiteUqFkNss(_query.queryWhiteUqFkByFkToUqCode());
     }
-
 }

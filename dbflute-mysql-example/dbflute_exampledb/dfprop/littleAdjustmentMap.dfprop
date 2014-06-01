@@ -38,6 +38,9 @@ map:{
     # set this property if you test it  
     ; isCheckCountBeforeQueryUpdate = true
 
+    # for table classification small size
+    ; isMakeConditionQueryPlainListManualOrder = false
+
     # /- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # o isAvailableAddingSchemaToTableSqlName: (NotRequired - Default false)
     #   [true]

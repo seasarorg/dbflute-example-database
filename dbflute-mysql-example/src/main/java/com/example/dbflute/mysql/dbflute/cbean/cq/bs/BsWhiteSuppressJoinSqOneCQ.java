@@ -88,7 +88,6 @@ public class BsWhiteSuppressJoinSqOneCQ extends AbstractBsWhiteSuppressJoinSqOne
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _oneId;
     public ConditionValue getOneId() {
         if (_oneId == null) { _oneId = nCV(); }

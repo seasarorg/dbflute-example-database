@@ -88,7 +88,6 @@ public class BsWhiteImplicitConvIntegerCQ extends AbstractBsWhiteImplicitConvInt
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _implicitConvIntegerId;
     public ConditionValue getImplicitConvIntegerId() {
         if (_implicitConvIntegerId == null) { _implicitConvIntegerId = nCV(); }

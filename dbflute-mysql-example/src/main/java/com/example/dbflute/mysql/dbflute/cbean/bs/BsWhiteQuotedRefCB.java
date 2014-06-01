@@ -35,7 +35,6 @@ import com.example.dbflute.mysql.dbflute.allcommon.ImplementedInvokerAssistant;
 import com.example.dbflute.mysql.dbflute.allcommon.ImplementedSqlClauseCreator;
 import com.example.dbflute.mysql.dbflute.cbean.*;
 import com.example.dbflute.mysql.dbflute.cbean.cq.*;
-import com.example.dbflute.mysql.dbflute.cbean.nss.*;
 
 /**
  * The base condition-bean of white_quoted_ref.
@@ -264,11 +263,6 @@ public class BsWhiteQuotedRefCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                         SetupSelect
     //                                                                         ===========
-    protected WhiteQuotedNss _nssWhiteQuoted;
-    public WhiteQuotedNss getNssWhiteQuoted() {
-        if (_nssWhiteQuoted == null) { _nssWhiteQuoted = new WhiteQuotedNss(null); }
-        return _nssWhiteQuoted;
-    }
     /**
      * Set up relation columns to select clause. <br />
      * white_quoted by my ORDER, named 'whiteQuoted'.
@@ -279,17 +273,13 @@ public class BsWhiteQuotedRefCB extends AbstractConditionBean {
      * WhiteQuotedRef whiteQuotedRef = whiteQuotedRefBhv.selectEntityWithDeletedCheck(cb);
      * ... = whiteQuotedRef.<span style="color: #DD4747">getWhiteQuoted()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
      * </pre>
-     * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
-    public WhiteQuotedNss setupSelect_WhiteQuoted() {
+    public void setupSelect_WhiteQuoted() {
         assertSetupSelectPurpose("whiteQuoted");
         if (hasSpecifiedColumn()) { // if reverse call
             specify().columnOrder();
         }
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryWhiteQuoted(); } });
-        if (_nssWhiteQuoted == null || !_nssWhiteQuoted.hasConditionQuery())
-        { _nssWhiteQuoted = new WhiteQuotedNss(query().queryWhiteQuoted()); }
-        return _nssWhiteQuoted;
     }
 
     // [DBFlute-0.7.4]

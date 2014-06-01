@@ -35,7 +35,6 @@ import com.example.dbflute.mysql.dbflute.allcommon.ImplementedInvokerAssistant;
 import com.example.dbflute.mysql.dbflute.allcommon.ImplementedSqlClauseCreator;
 import com.example.dbflute.mysql.dbflute.cbean.*;
 import com.example.dbflute.mysql.dbflute.cbean.cq.*;
-import com.example.dbflute.mysql.dbflute.cbean.nss.*;
 
 /**
  * The base condition-bean of white_suppress_join_sq_many_one.
@@ -264,11 +263,6 @@ public class BsWhiteSuppressJoinSqManyOneCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                         SetupSelect
     //                                                                         ===========
-    protected WhiteSuppressJoinSqManyOneOneNss _nssWhiteSuppressJoinSqManyOneOne;
-    public WhiteSuppressJoinSqManyOneOneNss getNssWhiteSuppressJoinSqManyOneOne() {
-        if (_nssWhiteSuppressJoinSqManyOneOne == null) { _nssWhiteSuppressJoinSqManyOneOne = new WhiteSuppressJoinSqManyOneOneNss(null); }
-        return _nssWhiteSuppressJoinSqManyOneOne;
-    }
     /**
      * Set up relation columns to select clause. <br />
      * white_suppress_join_sq_many_one_one by my MANY_ONE_ONE_ID, named 'whiteSuppressJoinSqManyOneOne'.
@@ -279,17 +273,13 @@ public class BsWhiteSuppressJoinSqManyOneCB extends AbstractConditionBean {
      * WhiteSuppressJoinSqManyOne whiteSuppressJoinSqManyOne = whiteSuppressJoinSqManyOneBhv.selectEntityWithDeletedCheck(cb);
      * ... = whiteSuppressJoinSqManyOne.<span style="color: #DD4747">getWhiteSuppressJoinSqManyOneOne()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
      * </pre>
-     * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
-    public WhiteSuppressJoinSqManyOneOneNss setupSelect_WhiteSuppressJoinSqManyOneOne() {
+    public void setupSelect_WhiteSuppressJoinSqManyOneOne() {
         assertSetupSelectPurpose("whiteSuppressJoinSqManyOneOne");
         if (hasSpecifiedColumn()) { // if reverse call
             specify().columnManyOneOneId();
         }
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryWhiteSuppressJoinSqManyOneOne(); } });
-        if (_nssWhiteSuppressJoinSqManyOneOne == null || !_nssWhiteSuppressJoinSqManyOneOne.hasConditionQuery())
-        { _nssWhiteSuppressJoinSqManyOneOne = new WhiteSuppressJoinSqManyOneOneNss(query().queryWhiteSuppressJoinSqManyOneOne()); }
-        return _nssWhiteSuppressJoinSqManyOneOne;
     }
 
     // [DBFlute-0.7.4]

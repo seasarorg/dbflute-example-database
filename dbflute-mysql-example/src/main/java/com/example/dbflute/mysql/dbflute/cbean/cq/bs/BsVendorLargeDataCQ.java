@@ -88,7 +88,6 @@ public class BsVendorLargeDataCQ extends AbstractBsVendorLargeDataCQ {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _largeDataId;
     public ConditionValue getLargeDataId() {
         if (_largeDataId == null) { _largeDataId = nCV(); }

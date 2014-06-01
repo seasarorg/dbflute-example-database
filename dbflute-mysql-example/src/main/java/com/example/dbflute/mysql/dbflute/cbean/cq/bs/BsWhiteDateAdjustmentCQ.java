@@ -88,7 +88,6 @@ public class BsWhiteDateAdjustmentCQ extends AbstractBsWhiteDateAdjustmentCQ {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _dateAdjustmentId;
     public ConditionValue getDateAdjustmentId() {
         if (_dateAdjustmentId == null) { _dateAdjustmentId = nCV(); }

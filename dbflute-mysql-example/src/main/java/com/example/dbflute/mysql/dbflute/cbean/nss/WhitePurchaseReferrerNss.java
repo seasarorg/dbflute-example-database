@@ -43,5 +43,4 @@ public class WhitePurchaseReferrerNss {
         _query.doNss(new WhitePurchaseReferrerCQ.NssCall() { public ConditionQuery qf() { return _query.queryPurchase(); }});
         return new PurchaseNss(_query.queryPurchase());
     }
-
 }

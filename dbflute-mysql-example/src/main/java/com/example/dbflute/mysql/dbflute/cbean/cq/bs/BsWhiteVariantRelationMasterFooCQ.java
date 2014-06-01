@@ -88,7 +88,6 @@ public class BsWhiteVariantRelationMasterFooCQ extends AbstractBsWhiteVariantRel
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _masterFooId;
     public ConditionValue getMasterFooId() {
         if (_masterFooId == null) { _masterFooId = nCV(); }

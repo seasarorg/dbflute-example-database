@@ -88,7 +88,6 @@ public class BsWhiteVariantRelationMasterCorgeCQ extends AbstractBsWhiteVariantR
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _masterCorgeId;
     public ConditionValue getMasterCorgeId() {
         if (_masterCorgeId == null) { _masterCorgeId = nCV(); }

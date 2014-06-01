@@ -37,20 +37,16 @@ public class WhiteCompoundPkNss {
     /**
      * With nested relation columns to select clause. <br />
      * white_compound_referred_normally by my REFERRED_ID, named 'whiteCompoundReferredNormally'.
-     * @return The set-upper of more nested relation. {...with[nested-relation].with[more-nested-relation]} (NotNull)
      */
-    public WhiteCompoundReferredNormallyNss withWhiteCompoundReferredNormally() {
+    public void withWhiteCompoundReferredNormally() {
         _query.doNss(new WhiteCompoundPkCQ.NssCall() { public ConditionQuery qf() { return _query.queryWhiteCompoundReferredNormally(); }});
-        return new WhiteCompoundReferredNormallyNss(_query.queryWhiteCompoundReferredNormally());
     }
     /**
      * With nested relation columns to select clause. <br />
      * white_compound_referred_primary by my PK_SECOND_ID, named 'whiteCompoundReferredPrimary'.
-     * @return The set-upper of more nested relation. {...with[nested-relation].with[more-nested-relation]} (NotNull)
      */
-    public WhiteCompoundReferredPrimaryNss withWhiteCompoundReferredPrimary() {
+    public void withWhiteCompoundReferredPrimary() {
         _query.doNss(new WhiteCompoundPkCQ.NssCall() { public ConditionQuery qf() { return _query.queryWhiteCompoundReferredPrimary(); }});
-        return new WhiteCompoundReferredPrimaryNss(_query.queryWhiteCompoundReferredPrimary());
     }
     /**
      * With nested relation columns to select clause. <br />
@@ -70,5 +66,4 @@ public class WhiteCompoundPkNss {
         _query.doNss(new WhiteCompoundPkCQ.NssCall() { public ConditionQuery qf() { return _query.queryWhiteCompoundPkRefManyAsMin(); }});
         return new WhiteCompoundPkRefManyNss(_query.queryWhiteCompoundPkRefManyAsMin());
     }
-
 }

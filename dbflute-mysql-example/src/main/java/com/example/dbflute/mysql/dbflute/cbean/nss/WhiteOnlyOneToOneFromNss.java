@@ -34,7 +34,6 @@ public class WhiteOnlyOneToOneFromNss {
     // ===================================================================================
     //                                                                     Nested Relation
     //                                                                     ===============
-
     /**
      * With nested relation columns to select clause. <br />
      * white_only_one_to_one_to by FROM_ID, named 'whiteOnlyOneToOneToAsOne'.

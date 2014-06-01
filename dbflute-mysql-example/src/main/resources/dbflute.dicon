@@ -24,6 +24,7 @@
     <component name="productCategoryBhv" class="com.example.dbflute.mysql.dbflute.exbhv.ProductCategoryBhv"/>
     <component name="productStatusBhv" class="com.example.dbflute.mysql.dbflute.exbhv.ProductStatusBhv"/>
     <component name="purchaseBhv" class="com.example.dbflute.mysql.dbflute.exbhv.PurchaseBhv"/>
+    <component name="purchasePaymentBhv" class="com.example.dbflute.mysql.dbflute.exbhv.PurchasePaymentBhv"/>
     <component name="regionBhv" class="com.example.dbflute.mysql.dbflute.exbhv.RegionBhv"/>
     <component name="serviceRankBhv" class="com.example.dbflute.mysql.dbflute.exbhv.ServiceRankBhv"/>
     <component name="summaryProductBhv" class="com.example.dbflute.mysql.dbflute.exbhv.SummaryProductBhv"/>
@@ -104,7 +105,6 @@
     <component name="whiteVariantRelationMasterQuxBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteVariantRelationMasterQuxBhv"/>
     <component name="whiteVariantRelationReferrerBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteVariantRelationReferrerBhv"/>
     <component name="whiteXlsManBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteXlsManBhv"/>
-    <component name="withdrawalReasonBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WithdrawalReasonBhv"/>
     <component name="nextSchemaProductBhv" class="com.example.dbflute.mysql.dbflute.exbhv.NextSchemaProductBhv"/>
     <component name="whiteAdditionalBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteAdditionalBhv"/>
 </components>

@@ -88,7 +88,6 @@ public class BsVendorConstraintNameAutoQuxCQ extends AbstractBsVendorConstraintN
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _constraintNameAutoQuxId;
     public ConditionValue getConstraintNameAutoQuxId() {
         if (_constraintNameAutoQuxId == null) { _constraintNameAutoQuxId = nCV(); }

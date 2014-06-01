@@ -10,6 +10,7 @@ import java.util.List;
 
 import org.seasar.dbflute.bhv.ConditionBeanSetupper;
 import org.seasar.dbflute.cbean.ListResultBean;
+import org.seasar.dbflute.cbean.ManualOrderBean;
 import org.seasar.dbflute.cbean.PagingResultBean;
 import org.seasar.dbflute.cbean.SubQuery;
 import org.seasar.dbflute.cbean.UnionQuery;
@@ -251,7 +252,9 @@ public class ConditionBeanPlatinumTest extends UnitContainerTestCase {
         manualValueList.add(CDef.MemberStatus.Withdrawal.code());
         manualValueList.add(CDef.MemberStatus.Formalized.code());
         manualValueList.add(CDef.MemberStatus.Provisional.code());
-        cb.query().addOrderBy_MemberStatusCode_Asc().withManualOrder(manualValueList);
+        ManualOrderBean mob = new ManualOrderBean();
+        mob.acceptOrderValueList(manualValueList);
+        cb.query().addOrderBy_MemberStatusCode_Asc().withManualOrder(mob);
         cb.query().addOrderBy_Birthdate_Desc().withNullsLast();
         cb.query().addOrderBy_MemberName_Asc();
 
@@ -801,8 +804,7 @@ public class ConditionBeanPlatinumTest extends UnitContainerTestCase {
                 });
                 memberCB.query().existsMemberWithdrawalAsOne(new SubQuery<MemberWithdrawalCB>() {
                     public void query(MemberWithdrawalCB subCB) {
-                        final LikeSearchOption option = new LikeSearchOption().likeContain().escapeByPipeLine();
-                        subCB.query().queryWithdrawalReason().setWithdrawalReasonCode_LikeSearch("xxx", option);
+                        subCB.query().queryWithdrawalReason().setWithdrawalReasonCode_Equal_Oth();
                         subCB.union(new UnionQuery<MemberWithdrawalCB>() {
                             public void query(MemberWithdrawalCB unionCB) {
                                 unionCB.query().setWithdrawalReasonInputText_IsNotNull();

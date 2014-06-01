@@ -52,5 +52,4 @@ public class WhiteImplicitConvNumericNss {
         _query.doNss(new WhiteImplicitConvNumericCQ.NssCall() { public ConditionQuery qf() { return _query.queryWhiteImplicitConvString(); }});
         return new WhiteImplicitConvStringNss(_query.queryWhiteImplicitConvString());
     }
-
 }

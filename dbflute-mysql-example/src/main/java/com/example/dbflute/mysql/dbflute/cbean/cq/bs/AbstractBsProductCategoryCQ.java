@@ -113,37 +113,6 @@ public abstract class AbstractBsProductCategoryCQ extends AbstractConditionQuery
     }
 
     /**
-     * PrefixSearch {like 'xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br />
-     * (商品カテゴリコード)PRODUCT_CATEGORY_CODE: {PK, NotNull, CHAR(3)}
-     * @param productCategoryCode The value of productCategoryCode as prefixSearch. (NullAllowed: if null (or empty), no condition)
-     */
-    public void setProductCategoryCode_PrefixSearch(String productCategoryCode) {
-        setProductCategoryCode_LikeSearch(productCategoryCode, cLSOP());
-    }
-
-    /**
-     * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br />
-     * (商品カテゴリコード)PRODUCT_CATEGORY_CODE: {PK, NotNull, CHAR(3)} <br />
-     * <pre>e.g. setProductCategoryCode_LikeSearch("xxx", new <span style="color: #DD4747">LikeSearchOption</span>().likeContain());</pre>
-     * @param productCategoryCode The value of productCategoryCode as likeSearch. (NullAllowed: if null (or empty), no condition)
-     * @param likeSearchOption The option of like-search. (NotNull)
-     */
-    public void setProductCategoryCode_LikeSearch(String productCategoryCode, LikeSearchOption likeSearchOption) {
-        regLSQ(CK_LS, fRES(productCategoryCode), getCValueProductCategoryCode(), "PRODUCT_CATEGORY_CODE", likeSearchOption);
-    }
-
-    /**
-     * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br />
-     * And NullOrEmptyIgnored, SeveralRegistered. <br />
-     * (商品カテゴリコード)PRODUCT_CATEGORY_CODE: {PK, NotNull, CHAR(3)}
-     * @param productCategoryCode The value of productCategoryCode as notLikeSearch. (NullAllowed: if null (or empty), no condition)
-     * @param likeSearchOption The option of not-like-search. (NotNull)
-     */
-    public void setProductCategoryCode_NotLikeSearch(String productCategoryCode, LikeSearchOption likeSearchOption) {
-        regLSQ(CK_NLS, fRES(productCategoryCode), getCValueProductCategoryCode(), "PRODUCT_CATEGORY_CODE", likeSearchOption);
-    }
-
-    /**
      * Set up ExistsReferrer (correlated sub-query). <br />
      * {exists (select PRODUCT_CATEGORY_CODE from product where ...)} <br />
      * (商品)product by PRODUCT_CATEGORY_CODE, named 'productAsOne'.
@@ -230,66 +199,6 @@ public abstract class AbstractBsProductCategoryCQ extends AbstractConditionQuery
         registerNotExistsReferrer(cb.query(), "PRODUCT_CATEGORY_CODE", "PARENT_CATEGORY_CODE", pp, "productCategorySelfList");
     }
     public abstract String keepProductCategoryCode_NotExistsReferrer_ProductCategorySelfList(ProductCategoryCQ sq);
-
-    /**
-     * Set up InScopeRelation (sub-query). <br />
-     * {in (select PRODUCT_CATEGORY_CODE from product where ...)} <br />
-     * (商品)product by PRODUCT_CATEGORY_CODE, named 'productAsOne'.
-     * @param subQuery The sub-query of ProductList for 'in-scope'. (NotNull)
-     */
-    public void inScopeProductList(SubQuery<ProductCB> subQuery) {
-        assertObjectNotNull("subQuery", subQuery);
-        ProductCB cb = new ProductCB(); cb.xsetupForInScopeRelation(this);
-        try { lock(); subQuery.query(cb); } finally { unlock(); }
-        String pp = keepProductCategoryCode_InScopeRelation_ProductList(cb.query());
-        registerInScopeRelation(cb.query(), "PRODUCT_CATEGORY_CODE", "PRODUCT_CATEGORY_CODE", pp, "productList");
-    }
-    public abstract String keepProductCategoryCode_InScopeRelation_ProductList(ProductCQ sq);
-
-    /**
-     * Set up InScopeRelation (sub-query). <br />
-     * {in (select PARENT_CATEGORY_CODE from product_category where ...)} <br />
-     * (商品カテゴリ)product_category by PARENT_CATEGORY_CODE, named 'productCategorySelfAsOne'.
-     * @param subQuery The sub-query of ProductCategorySelfList for 'in-scope'. (NotNull)
-     */
-    public void inScopeProductCategorySelfList(SubQuery<ProductCategoryCB> subQuery) {
-        assertObjectNotNull("subQuery", subQuery);
-        ProductCategoryCB cb = new ProductCategoryCB(); cb.xsetupForInScopeRelation(this);
-        try { lock(); subQuery.query(cb); } finally { unlock(); }
-        String pp = keepProductCategoryCode_InScopeRelation_ProductCategorySelfList(cb.query());
-        registerInScopeRelation(cb.query(), "PRODUCT_CATEGORY_CODE", "PARENT_CATEGORY_CODE", pp, "productCategorySelfList");
-    }
-    public abstract String keepProductCategoryCode_InScopeRelation_ProductCategorySelfList(ProductCategoryCQ sq);
-
-    /**
-     * Set up NotInScopeRelation (sub-query). <br />
-     * {not in (select PRODUCT_CATEGORY_CODE from product where ...)} <br />
-     * (商品)product by PRODUCT_CATEGORY_CODE, named 'productAsOne'.
-     * @param subQuery The sub-query of ProductList for 'not in-scope'. (NotNull)
-     */
-    public void notInScopeProductList(SubQuery<ProductCB> subQuery) {
-        assertObjectNotNull("subQuery", subQuery);
-        ProductCB cb = new ProductCB(); cb.xsetupForInScopeRelation(this);
-        try { lock(); subQuery.query(cb); } finally { unlock(); }
-        String pp = keepProductCategoryCode_NotInScopeRelation_ProductList(cb.query());
-        registerNotInScopeRelation(cb.query(), "PRODUCT_CATEGORY_CODE", "PRODUCT_CATEGORY_CODE", pp, "productList");
-    }
-    public abstract String keepProductCategoryCode_NotInScopeRelation_ProductList(ProductCQ sq);
-
-    /**
-     * Set up NotInScopeRelation (sub-query). <br />
-     * {not in (select PARENT_CATEGORY_CODE from product_category where ...)} <br />
-     * (商品カテゴリ)product_category by PARENT_CATEGORY_CODE, named 'productCategorySelfAsOne'.
-     * @param subQuery The sub-query of ProductCategorySelfList for 'not in-scope'. (NotNull)
-     */
-    public void notInScopeProductCategorySelfList(SubQuery<ProductCategoryCB> subQuery) {
-        assertObjectNotNull("subQuery", subQuery);
-        ProductCategoryCB cb = new ProductCategoryCB(); cb.xsetupForInScopeRelation(this);
-        try { lock(); subQuery.query(cb); } finally { unlock(); }
-        String pp = keepProductCategoryCode_NotInScopeRelation_ProductCategorySelfList(cb.query());
-        registerNotInScopeRelation(cb.query(), "PRODUCT_CATEGORY_CODE", "PARENT_CATEGORY_CODE", pp, "productCategorySelfList");
-    }
-    public abstract String keepProductCategoryCode_NotInScopeRelation_ProductCategorySelfList(ProductCategoryCQ sq);
 
     public void xsderiveProductList(String fn, SubQuery<ProductCB> sq, String al, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
@@ -406,54 +315,6 @@ public abstract class AbstractBsProductCategoryCQ extends AbstractConditionQuery
     }
 
     /**
-     * NotEqual(&lt;&gt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
-     * (商品カテゴリ名称)PRODUCT_CATEGORY_NAME: {NotNull, VARCHAR(50)}
-     * @param productCategoryName The value of productCategoryName as notEqual. (NullAllowed: if null (or empty), no condition)
-     */
-    public void setProductCategoryName_NotEqual(String productCategoryName) {
-        doSetProductCategoryName_NotEqual(fRES(productCategoryName));
-    }
-
-    protected void doSetProductCategoryName_NotEqual(String productCategoryName) {
-        regProductCategoryName(CK_NES, productCategoryName);
-    }
-
-    /**
-     * InScope {in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br />
-     * (商品カテゴリ名称)PRODUCT_CATEGORY_NAME: {NotNull, VARCHAR(50)}
-     * @param productCategoryNameList The collection of productCategoryName as inScope. (NullAllowed: if null (or empty), no condition)
-     */
-    public void setProductCategoryName_InScope(Collection<String> productCategoryNameList) {
-        doSetProductCategoryName_InScope(productCategoryNameList);
-    }
-
-    public void doSetProductCategoryName_InScope(Collection<String> productCategoryNameList) {
-        regINS(CK_INS, cTL(productCategoryNameList), getCValueProductCategoryName(), "PRODUCT_CATEGORY_NAME");
-    }
-
-    /**
-     * NotInScope {not in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br />
-     * (商品カテゴリ名称)PRODUCT_CATEGORY_NAME: {NotNull, VARCHAR(50)}
-     * @param productCategoryNameList The collection of productCategoryName as notInScope. (NullAllowed: if null (or empty), no condition)
-     */
-    public void setProductCategoryName_NotInScope(Collection<String> productCategoryNameList) {
-        doSetProductCategoryName_NotInScope(productCategoryNameList);
-    }
-
-    public void doSetProductCategoryName_NotInScope(Collection<String> productCategoryNameList) {
-        regINS(CK_NINS, cTL(productCategoryNameList), getCValueProductCategoryName(), "PRODUCT_CATEGORY_NAME");
-    }
-
-    /**
-     * PrefixSearch {like 'xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br />
-     * (商品カテゴリ名称)PRODUCT_CATEGORY_NAME: {NotNull, VARCHAR(50)}
-     * @param productCategoryName The value of productCategoryName as prefixSearch. (NullAllowed: if null (or empty), no condition)
-     */
-    public void setProductCategoryName_PrefixSearch(String productCategoryName) {
-        setProductCategoryName_LikeSearch(productCategoryName, cLSOP());
-    }
-
-    /**
      * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br />
      * (商品カテゴリ名称)PRODUCT_CATEGORY_NAME: {NotNull, VARCHAR(50)} <br />
      * <pre>e.g. setProductCategoryName_LikeSearch("xxx", new <span style="color: #DD4747">LikeSearchOption</span>().likeContain());</pre>
@@ -462,17 +323,6 @@ public abstract class AbstractBsProductCategoryCQ extends AbstractConditionQuery
      */
     public void setProductCategoryName_LikeSearch(String productCategoryName, LikeSearchOption likeSearchOption) {
         regLSQ(CK_LS, fRES(productCategoryName), getCValueProductCategoryName(), "PRODUCT_CATEGORY_NAME", likeSearchOption);
-    }
-
-    /**
-     * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br />
-     * And NullOrEmptyIgnored, SeveralRegistered. <br />
-     * (商品カテゴリ名称)PRODUCT_CATEGORY_NAME: {NotNull, VARCHAR(50)}
-     * @param productCategoryName The value of productCategoryName as notLikeSearch. (NullAllowed: if null (or empty), no condition)
-     * @param likeSearchOption The option of not-like-search. (NotNull)
-     */
-    public void setProductCategoryName_NotLikeSearch(String productCategoryName, LikeSearchOption likeSearchOption) {
-        regLSQ(CK_NLS, fRES(productCategoryName), getCValueProductCategoryName(), "PRODUCT_CATEGORY_NAME", likeSearchOption);
     }
 
     protected void regProductCategoryName(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueProductCategoryName(), "PRODUCT_CATEGORY_NAME"); }
@@ -529,67 +379,6 @@ public abstract class AbstractBsProductCategoryCQ extends AbstractConditionQuery
     public void doSetParentCategoryCode_NotInScope(Collection<String> parentCategoryCodeList) {
         regINS(CK_NINS, cTL(parentCategoryCodeList), getCValueParentCategoryCode(), "PARENT_CATEGORY_CODE");
     }
-
-    /**
-     * PrefixSearch {like 'xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br />
-     * (親カテゴリコード)PARENT_CATEGORY_CODE: {IX, CHAR(3), FK to product_category}
-     * @param parentCategoryCode The value of parentCategoryCode as prefixSearch. (NullAllowed: if null (or empty), no condition)
-     */
-    public void setParentCategoryCode_PrefixSearch(String parentCategoryCode) {
-        setParentCategoryCode_LikeSearch(parentCategoryCode, cLSOP());
-    }
-
-    /**
-     * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br />
-     * (親カテゴリコード)PARENT_CATEGORY_CODE: {IX, CHAR(3), FK to product_category} <br />
-     * <pre>e.g. setParentCategoryCode_LikeSearch("xxx", new <span style="color: #DD4747">LikeSearchOption</span>().likeContain());</pre>
-     * @param parentCategoryCode The value of parentCategoryCode as likeSearch. (NullAllowed: if null (or empty), no condition)
-     * @param likeSearchOption The option of like-search. (NotNull)
-     */
-    public void setParentCategoryCode_LikeSearch(String parentCategoryCode, LikeSearchOption likeSearchOption) {
-        regLSQ(CK_LS, fRES(parentCategoryCode), getCValueParentCategoryCode(), "PARENT_CATEGORY_CODE", likeSearchOption);
-    }
-
-    /**
-     * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br />
-     * And NullOrEmptyIgnored, SeveralRegistered. <br />
-     * (親カテゴリコード)PARENT_CATEGORY_CODE: {IX, CHAR(3), FK to product_category}
-     * @param parentCategoryCode The value of parentCategoryCode as notLikeSearch. (NullAllowed: if null (or empty), no condition)
-     * @param likeSearchOption The option of not-like-search. (NotNull)
-     */
-    public void setParentCategoryCode_NotLikeSearch(String parentCategoryCode, LikeSearchOption likeSearchOption) {
-        regLSQ(CK_NLS, fRES(parentCategoryCode), getCValueParentCategoryCode(), "PARENT_CATEGORY_CODE", likeSearchOption);
-    }
-
-    /**
-     * Set up InScopeRelation (sub-query). <br />
-     * {in (select PARENT_CATEGORY_CODE from product_category where ...)} <br />
-     * (商品カテゴリ)product_category by my PARENT_CATEGORY_CODE, named 'productCategorySelf'.
-     * @param subQuery The sub-query of ProductCategorySelf for 'in-scope'. (NotNull)
-     */
-    public void inScopeProductCategorySelf(SubQuery<ProductCategoryCB> subQuery) {
-        assertObjectNotNull("subQuery", subQuery);
-        ProductCategoryCB cb = new ProductCategoryCB(); cb.xsetupForInScopeRelation(this);
-        try { lock(); subQuery.query(cb); } finally { unlock(); }
-        String pp = keepParentCategoryCode_InScopeRelation_ProductCategorySelf(cb.query());
-        registerInScopeRelation(cb.query(), "PARENT_CATEGORY_CODE", "PRODUCT_CATEGORY_CODE", pp, "productCategorySelf");
-    }
-    public abstract String keepParentCategoryCode_InScopeRelation_ProductCategorySelf(ProductCategoryCQ sq);
-
-    /**
-     * Set up NotInScopeRelation (sub-query). <br />
-     * {not in (select PARENT_CATEGORY_CODE from product_category where ...)} <br />
-     * (商品カテゴリ)product_category by my PARENT_CATEGORY_CODE, named 'productCategorySelf'.
-     * @param subQuery The sub-query of ProductCategorySelf for 'not in-scope'. (NotNull)
-     */
-    public void notInScopeProductCategorySelf(SubQuery<ProductCategoryCB> subQuery) {
-        assertObjectNotNull("subQuery", subQuery);
-        ProductCategoryCB cb = new ProductCategoryCB(); cb.xsetupForInScopeRelation(this);
-        try { lock(); subQuery.query(cb); } finally { unlock(); }
-        String pp = keepParentCategoryCode_NotInScopeRelation_ProductCategorySelf(cb.query());
-        registerNotInScopeRelation(cb.query(), "PARENT_CATEGORY_CODE", "PRODUCT_CATEGORY_CODE", pp, "productCategorySelf");
-    }
-    public abstract String keepParentCategoryCode_NotInScopeRelation_ProductCategorySelf(ProductCategoryCQ sq);
 
     /**
      * IsNull {is null}. And OnlyOnceRegistered. <br />
@@ -827,37 +616,6 @@ public abstract class AbstractBsProductCategoryCQ extends AbstractConditionQuery
                     , String conditionValue
                     , org.seasar.dbflute.dbway.WayOfMySQL.FullTextSearchModifier modifier) {
         xdoMatchForMySQL(textColumnList, conditionValue, modifier);
-    }
-
-    // ===================================================================================
-    //                                                                          Compatible
-    //                                                                          ==========
-    /**
-     * Order along the list of manual values. #beforejava8 <br />
-     * This function with Union is unsupported! <br />
-     * The order values are bound (treated as bind parameter).
-     * <pre>
-     * MemberCB cb = new MemberCB();
-     * List&lt;CDef.MemberStatus&gt; orderValueList = new ArrayList&lt;CDef.MemberStatus&gt;();
-     * orderValueList.add(CDef.MemberStatus.Withdrawal);
-     * orderValueList.add(CDef.MemberStatus.Formalized);
-     * orderValueList.add(CDef.MemberStatus.Provisional);
-     * cb.query().addOrderBy_MemberStatusCode_Asc().<span style="color: #DD4747">withManualOrder(orderValueList)</span>;
-     * <span style="color: #3F7E5E">// order by </span>
-     * <span style="color: #3F7E5E">//   case</span>
-     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'WDL' then 0</span>
-     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'FML' then 1</span>
-     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'PRV' then 2</span>
-     * <span style="color: #3F7E5E">//     else 3</span>
-     * <span style="color: #3F7E5E">//   end asc, ...</span>
-     * </pre>
-     * @param orderValueList The list of order values for manual ordering. (NotNull)
-     */
-    public void withManualOrder(List<? extends Object> orderValueList) { // is user public!
-        assertObjectNotNull("withManualOrder(orderValueList)", orderValueList);
-        final ManualOrderBean manualOrderBean = new ManualOrderBean();
-        manualOrderBean.acceptOrderValueList(orderValueList);
-        withManualOrder(manualOrderBean);
     }
 
     // ===================================================================================

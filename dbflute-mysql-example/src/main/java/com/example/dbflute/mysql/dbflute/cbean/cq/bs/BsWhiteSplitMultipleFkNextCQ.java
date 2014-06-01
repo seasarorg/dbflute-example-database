@@ -88,7 +88,6 @@ public class BsWhiteSplitMultipleFkNextCQ extends AbstractBsWhiteSplitMultipleFk
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _nextId;
     public ConditionValue getNextId() {
         if (_nextId == null) { _nextId = nCV(); }

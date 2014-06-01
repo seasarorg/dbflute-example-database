@@ -35,7 +35,6 @@ import com.example.dbflute.mysql.dbflute.allcommon.ImplementedInvokerAssistant;
 import com.example.dbflute.mysql.dbflute.allcommon.ImplementedSqlClauseCreator;
 import com.example.dbflute.mysql.dbflute.cbean.*;
 import com.example.dbflute.mysql.dbflute.cbean.cq.*;
-import com.example.dbflute.mysql.dbflute.cbean.nss.*;
 
 /**
  * The base condition-bean of white_variant_relation_referrer.
@@ -264,11 +263,6 @@ public class BsWhiteVariantRelationReferrerCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                         SetupSelect
     //                                                                         ===========
-    protected WhiteVariantRelationMasterFooNss _nssWhiteVariantRelationMasterFooAsVariant;
-    public WhiteVariantRelationMasterFooNss getNssWhiteVariantRelationMasterFooAsVariant() {
-        if (_nssWhiteVariantRelationMasterFooAsVariant == null) { _nssWhiteVariantRelationMasterFooAsVariant = new WhiteVariantRelationMasterFooNss(null); }
-        return _nssWhiteVariantRelationMasterFooAsVariant;
-    }
     /**
      * Set up relation columns to select clause. <br />
      * white_variant_relation_master_foo by my VARIANT_MASTER_ID, named 'whiteVariantRelationMasterFooAsVariant'.
@@ -279,23 +273,15 @@ public class BsWhiteVariantRelationReferrerCB extends AbstractConditionBean {
      * WhiteVariantRelationReferrer whiteVariantRelationReferrer = whiteVariantRelationReferrerBhv.selectEntityWithDeletedCheck(cb);
      * ... = whiteVariantRelationReferrer.<span style="color: #DD4747">getWhiteVariantRelationMasterFooAsVariant()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
      * </pre>
-     * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
-    public WhiteVariantRelationMasterFooNss setupSelect_WhiteVariantRelationMasterFooAsVariant() {
+    public void setupSelect_WhiteVariantRelationMasterFooAsVariant() {
         assertSetupSelectPurpose("whiteVariantRelationMasterFooAsVariant");
         if (hasSpecifiedColumn()) { // if reverse call
             specify().columnVariantMasterId();
         }
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryWhiteVariantRelationMasterFooAsVariant(); } });
-        if (_nssWhiteVariantRelationMasterFooAsVariant == null || !_nssWhiteVariantRelationMasterFooAsVariant.hasConditionQuery())
-        { _nssWhiteVariantRelationMasterFooAsVariant = new WhiteVariantRelationMasterFooNss(query().queryWhiteVariantRelationMasterFooAsVariant()); }
-        return _nssWhiteVariantRelationMasterFooAsVariant;
     }
-    protected WhiteVariantRelationMasterBarNss _nssWhiteVariantRelationMasterBarAsVariant;
-    public WhiteVariantRelationMasterBarNss getNssWhiteVariantRelationMasterBarAsVariant() {
-        if (_nssWhiteVariantRelationMasterBarAsVariant == null) { _nssWhiteVariantRelationMasterBarAsVariant = new WhiteVariantRelationMasterBarNss(null); }
-        return _nssWhiteVariantRelationMasterBarAsVariant;
-    }
+
     /**
      * Set up relation columns to select clause. <br />
      * white_variant_relation_master_bar by my VARIANT_MASTER_ID, named 'whiteVariantRelationMasterBarAsVariant'.
@@ -306,23 +292,15 @@ public class BsWhiteVariantRelationReferrerCB extends AbstractConditionBean {
      * WhiteVariantRelationReferrer whiteVariantRelationReferrer = whiteVariantRelationReferrerBhv.selectEntityWithDeletedCheck(cb);
      * ... = whiteVariantRelationReferrer.<span style="color: #DD4747">getWhiteVariantRelationMasterBarAsVariant()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
      * </pre>
-     * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
-    public WhiteVariantRelationMasterBarNss setupSelect_WhiteVariantRelationMasterBarAsVariant() {
+    public void setupSelect_WhiteVariantRelationMasterBarAsVariant() {
         assertSetupSelectPurpose("whiteVariantRelationMasterBarAsVariant");
         if (hasSpecifiedColumn()) { // if reverse call
             specify().columnVariantMasterId();
         }
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryWhiteVariantRelationMasterBarAsVariant(); } });
-        if (_nssWhiteVariantRelationMasterBarAsVariant == null || !_nssWhiteVariantRelationMasterBarAsVariant.hasConditionQuery())
-        { _nssWhiteVariantRelationMasterBarAsVariant = new WhiteVariantRelationMasterBarNss(query().queryWhiteVariantRelationMasterBarAsVariant()); }
-        return _nssWhiteVariantRelationMasterBarAsVariant;
     }
-    protected WhiteVariantRelationMasterQuxNss _nssWhiteVariantRelationMasterQuxAsVariantByQue;
-    public WhiteVariantRelationMasterQuxNss getNssWhiteVariantRelationMasterQuxAsVariantByQue() {
-        if (_nssWhiteVariantRelationMasterQuxAsVariantByQue == null) { _nssWhiteVariantRelationMasterQuxAsVariantByQue = new WhiteVariantRelationMasterQuxNss(null); }
-        return _nssWhiteVariantRelationMasterQuxAsVariantByQue;
-    }
+
     /**
      * Set up relation columns to select clause. <br />
      * white_variant_relation_master_qux by my VARIANT_MASTER_ID, named 'whiteVariantRelationMasterQuxAsVariantByQue'.
@@ -333,23 +311,15 @@ public class BsWhiteVariantRelationReferrerCB extends AbstractConditionBean {
      * WhiteVariantRelationReferrer whiteVariantRelationReferrer = whiteVariantRelationReferrerBhv.selectEntityWithDeletedCheck(cb);
      * ... = whiteVariantRelationReferrer.<span style="color: #DD4747">getWhiteVariantRelationMasterQuxAsVariantByQue()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
      * </pre>
-     * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
-    public WhiteVariantRelationMasterQuxNss setupSelect_WhiteVariantRelationMasterQuxAsVariantByQue() {
+    public void setupSelect_WhiteVariantRelationMasterQuxAsVariantByQue() {
         assertSetupSelectPurpose("whiteVariantRelationMasterQuxAsVariantByQue");
         if (hasSpecifiedColumn()) { // if reverse call
             specify().columnVariantMasterId();
         }
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryWhiteVariantRelationMasterQuxAsVariantByQue(); } });
-        if (_nssWhiteVariantRelationMasterQuxAsVariantByQue == null || !_nssWhiteVariantRelationMasterQuxAsVariantByQue.hasConditionQuery())
-        { _nssWhiteVariantRelationMasterQuxAsVariantByQue = new WhiteVariantRelationMasterQuxNss(query().queryWhiteVariantRelationMasterQuxAsVariantByQue()); }
-        return _nssWhiteVariantRelationMasterQuxAsVariantByQue;
     }
-    protected WhiteVariantRelationMasterCorgeNss _nssWhiteVariantRelationMasterCorgeAsVariantByQuxType;
-    public WhiteVariantRelationMasterCorgeNss getNssWhiteVariantRelationMasterCorgeAsVariantByQuxType() {
-        if (_nssWhiteVariantRelationMasterCorgeAsVariantByQuxType == null) { _nssWhiteVariantRelationMasterCorgeAsVariantByQuxType = new WhiteVariantRelationMasterCorgeNss(null); }
-        return _nssWhiteVariantRelationMasterCorgeAsVariantByQuxType;
-    }
+
     /**
      * Set up relation columns to select clause. <br />
      * white_variant_relation_master_corge by my VARIANT_MASTER_ID, named 'whiteVariantRelationMasterCorgeAsVariantByQuxType'.
@@ -361,17 +331,13 @@ public class BsWhiteVariantRelationReferrerCB extends AbstractConditionBean {
      * ... = whiteVariantRelationReferrer.<span style="color: #DD4747">getWhiteVariantRelationMasterCorgeAsVariantByQuxType()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
      * </pre>
      * @param quxType The bind parameter of fixed condition for quxType. (NotNull)
-     * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
-    public WhiteVariantRelationMasterCorgeNss setupSelect_WhiteVariantRelationMasterCorgeAsVariantByQuxType(final com.example.dbflute.mysql.dbflute.allcommon.CDef.VariantRelationQuxType quxType) {
+    public void setupSelect_WhiteVariantRelationMasterCorgeAsVariantByQuxType(final com.example.dbflute.mysql.dbflute.allcommon.CDef.VariantRelationQuxType quxType) {
         assertSetupSelectPurpose("whiteVariantRelationMasterCorgeAsVariantByQuxType");
         if (hasSpecifiedColumn()) { // if reverse call
             specify().columnVariantMasterId();
         }
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryWhiteVariantRelationMasterCorgeAsVariantByQuxType(quxType); } });
-        if (_nssWhiteVariantRelationMasterCorgeAsVariantByQuxType == null || !_nssWhiteVariantRelationMasterCorgeAsVariantByQuxType.hasConditionQuery())
-        { _nssWhiteVariantRelationMasterCorgeAsVariantByQuxType = new WhiteVariantRelationMasterCorgeNss(query().queryWhiteVariantRelationMasterCorgeAsVariantByQuxType(quxType)); }
-        return _nssWhiteVariantRelationMasterCorgeAsVariantByQuxType;
     }
 
     // [DBFlute-0.7.4]

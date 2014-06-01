@@ -88,7 +88,6 @@ public class BsWhiteCompoundPkRefNestCQ extends AbstractBsWhiteCompoundPkRefNest
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _compoundPkRefNestId;
     public ConditionValue getCompoundPkRefNestId() {
         if (_compoundPkRefNestId == null) { _compoundPkRefNestId = nCV(); }

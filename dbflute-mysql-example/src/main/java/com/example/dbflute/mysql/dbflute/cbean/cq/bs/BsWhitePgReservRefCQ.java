@@ -88,7 +88,6 @@ public class BsWhitePgReservRefCQ extends AbstractBsWhitePgReservRefCQ {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _refId;
     public ConditionValue getRefId() {
         if (_refId == null) { _refId = nCV(); }

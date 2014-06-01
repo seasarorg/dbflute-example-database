@@ -88,7 +88,6 @@ public class BsWhiteUqClassificationCQ extends AbstractBsWhiteUqClassificationCQ
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _uqClsId;
     public ConditionValue getUqClsId() {
         if (_uqClsId == null) { _uqClsId = nCV(); }

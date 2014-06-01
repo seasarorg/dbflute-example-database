@@ -35,7 +35,6 @@ import com.example.dbflute.mysql.dbflute.allcommon.ImplementedInvokerAssistant;
 import com.example.dbflute.mysql.dbflute.allcommon.ImplementedSqlClauseCreator;
 import com.example.dbflute.mysql.dbflute.cbean.*;
 import com.example.dbflute.mysql.dbflute.cbean.cq.*;
-import com.example.dbflute.mysql.dbflute.cbean.nss.*;
 
 /**
  * The base condition-bean of white_myself_check.
@@ -264,11 +263,6 @@ public class BsWhiteMyselfCheckCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                         SetupSelect
     //                                                                         ===========
-    protected WhiteMyselfNss _nssWhiteMyself;
-    public WhiteMyselfNss getNssWhiteMyself() {
-        if (_nssWhiteMyself == null) { _nssWhiteMyself = new WhiteMyselfNss(null); }
-        return _nssWhiteMyself;
-    }
     /**
      * Set up relation columns to select clause. <br />
      * white_myself by my MYSELF_ID, named 'whiteMyself'.
@@ -279,17 +273,13 @@ public class BsWhiteMyselfCheckCB extends AbstractConditionBean {
      * WhiteMyselfCheck whiteMyselfCheck = whiteMyselfCheckBhv.selectEntityWithDeletedCheck(cb);
      * ... = whiteMyselfCheck.<span style="color: #DD4747">getWhiteMyself()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
      * </pre>
-     * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
-    public WhiteMyselfNss setupSelect_WhiteMyself() {
+    public void setupSelect_WhiteMyself() {
         assertSetupSelectPurpose("whiteMyself");
         if (hasSpecifiedColumn()) { // if reverse call
             specify().columnMyselfId();
         }
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryWhiteMyself(); } });
-        if (_nssWhiteMyself == null || !_nssWhiteMyself.hasConditionQuery())
-        { _nssWhiteMyself = new WhiteMyselfNss(query().queryWhiteMyself()); }
-        return _nssWhiteMyself;
     }
 
     // [DBFlute-0.7.4]

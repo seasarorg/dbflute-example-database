@@ -88,7 +88,6 @@ public class BsWhiteSuppressJoinSqManyOneOneCQ extends AbstractBsWhiteSuppressJo
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _manyOneOneId;
     public ConditionValue getManyOneOneId() {
         if (_manyOneOneId == null) { _manyOneOneId = nCV(); }

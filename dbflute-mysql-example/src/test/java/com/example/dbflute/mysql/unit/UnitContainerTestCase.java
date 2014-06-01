@@ -18,6 +18,7 @@ import com.example.dbflute.mysql.dbflute.exbhv.MemberSecurityBhv;
 import com.example.dbflute.mysql.dbflute.exbhv.MemberServiceBhv;
 import com.example.dbflute.mysql.dbflute.exbhv.MemberWithdrawalBhv;
 import com.example.dbflute.mysql.dbflute.exbhv.PurchaseBhv;
+import com.example.dbflute.mysql.dbflute.exbhv.PurchasePaymentBhv;
 
 /**
  * @author jflute
@@ -45,6 +46,7 @@ public abstract class UnitContainerTestCase extends ContainerTestCase {
         deleteAll(MemberLoginBhv.class);
         deleteAll(MemberSecurityBhv.class);
         deleteAll(MemberWithdrawalBhv.class);
+        deleteAll(PurchasePaymentBhv.class);
         deleteAll(PurchaseBhv.class);
     }
 

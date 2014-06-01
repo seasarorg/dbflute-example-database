@@ -291,6 +291,7 @@ public class BsWhiteImplicitConvStringCB extends AbstractConditionBean {
         { _nssWhiteImplicitConvInteger = new WhiteImplicitConvIntegerNss(query().queryWhiteImplicitConvInteger()); }
         return _nssWhiteImplicitConvInteger;
     }
+
     protected WhiteImplicitConvNumericNss _nssWhiteImplicitConvNumeric;
     public WhiteImplicitConvNumericNss getNssWhiteImplicitConvNumeric() {
         if (_nssWhiteImplicitConvNumeric == null) { _nssWhiteImplicitConvNumeric = new WhiteImplicitConvNumericNss(null); }

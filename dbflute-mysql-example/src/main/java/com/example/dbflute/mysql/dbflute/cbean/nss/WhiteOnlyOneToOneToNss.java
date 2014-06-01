@@ -43,5 +43,4 @@ public class WhiteOnlyOneToOneToNss {
         _query.doNss(new WhiteOnlyOneToOneToCQ.NssCall() { public ConditionQuery qf() { return _query.queryWhiteOnlyOneToOneFrom(); }});
         return new WhiteOnlyOneToOneFromNss(_query.queryWhiteOnlyOneToOneFrom());
     }
-
 }

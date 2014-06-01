@@ -88,7 +88,6 @@ public class BsWhiteOnlyOneToOneToCQ extends AbstractBsWhiteOnlyOneToOneToCQ {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _toId;
     public ConditionValue getToId() {
         if (_toId == null) { _toId = nCV(); }

@@ -88,7 +88,6 @@ public class BsWhiteNoPkCQ extends AbstractBsWhiteNoPkCQ {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _noPkId;
     public ConditionValue getNoPkId() {
         if (_noPkId == null) { _noPkId = nCV(); }

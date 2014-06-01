@@ -88,7 +88,6 @@ public class BsWhitePgReservCQ extends AbstractBsWhitePgReservCQ {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _classSynonym;
     public ConditionValue getClassSynonym() {
         if (_classSynonym == null) { _classSynonym = nCV(); }

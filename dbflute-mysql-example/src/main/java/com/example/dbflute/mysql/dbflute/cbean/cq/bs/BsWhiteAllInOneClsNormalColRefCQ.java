@@ -88,7 +88,6 @@ public class BsWhiteAllInOneClsNormalColRefCQ extends AbstractBsWhiteAllInOneCls
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _clsRefId;
     public ConditionValue getClsRefId() {
         if (_clsRefId == null) { _clsRefId = nCV(); }

@@ -37,11 +37,8 @@ public class WhitePgReservRefNss {
     /**
      * With nested relation columns to select clause. <br />
      * white_pg_reserv by my CLASS, named 'whitePgReserv'.
-     * @return The set-upper of more nested relation. {...with[nested-relation].with[more-nested-relation]} (NotNull)
      */
-    public WhitePgReservNss withWhitePgReserv() {
+    public void withWhitePgReserv() {
         _query.doNss(new WhitePgReservRefCQ.NssCall() { public ConditionQuery qf() { return _query.queryWhitePgReserv(); }});
-        return new WhitePgReservNss(_query.queryWhitePgReserv());
     }
-
 }

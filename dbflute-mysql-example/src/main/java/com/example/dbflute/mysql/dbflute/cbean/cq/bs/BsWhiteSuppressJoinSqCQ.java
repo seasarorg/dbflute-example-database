@@ -88,7 +88,6 @@ public class BsWhiteSuppressJoinSqCQ extends AbstractBsWhiteSuppressJoinSqCQ {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _suppressJoinSqId;
     public ConditionValue getSuppressJoinSqId() {
         if (_suppressJoinSqId == null) { _suppressJoinSqId = nCV(); }

@@ -43,5 +43,4 @@ public class WhiteUqFkRefNestNss {
         _query.doNss(new WhiteUqFkRefNestCQ.NssCall() { public ConditionQuery qf() { return _query.queryWhiteUqFkRef(); }});
         return new WhiteUqFkRefNss(_query.queryWhiteUqFkRef());
     }
-
 }

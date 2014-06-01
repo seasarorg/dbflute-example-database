@@ -66,9 +66,13 @@ public class MemberWithdrawalDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((MemberWithdrawal)et).getMemberId(); }
         public void write(Entity et, Object vl) { ((MemberWithdrawal)et).setMemberId(cti(vl)); }
     }
-    public static class EpgWithdrawalReasonCode implements PropertyGateway {
+    public class EpgWithdrawalReasonCode implements PropertyGateway {
         public Object read(Entity et) { return ((MemberWithdrawal)et).getWithdrawalReasonCode(); }
-        public void write(Entity et, Object vl) { ((MemberWithdrawal)et).setWithdrawalReasonCode((String)vl); }
+        public void write(Entity et, Object vl) {
+            ColumnInfo col = columnWithdrawalReasonCode();
+            ccls(col, vl);
+            ((MemberWithdrawal)et).setWithdrawalReasonCodeAsWithdrawalReason((CDef.WithdrawalReason)gcls(col, vl));
+        }
     }
     public static class EpgWithdrawalReasonInputText implements PropertyGateway {
         public Object read(Entity et) { return ((MemberWithdrawal)et).getWithdrawalReasonInputText(); }
@@ -135,7 +139,7 @@ public class MemberWithdrawalDbm extends AbstractDBMeta {
     //                                                                         Column Info
     //                                                                         ===========
     protected final ColumnInfo _columnMemberId = cci("MEMBER_ID", "MEMBER_ID", null, null, Integer.class, "memberId", null, true, false, true, "INT", 10, 0, null, false, null, null, "member", null, null);
-    protected final ColumnInfo _columnWithdrawalReasonCode = cci("WITHDRAWAL_REASON_CODE", "WITHDRAWAL_REASON_CODE", null, "退会理由コード", String.class, "withdrawalReasonCode", null, false, false, false, "CHAR", 3, 0, null, false, null, "退会した定型理由を参照するコード。\n何も言わずに退会する会員もいるので必須項目ではない。", "withdrawalReason", null, null);
+    protected final ColumnInfo _columnWithdrawalReasonCode = cci("WITHDRAWAL_REASON_CODE", "WITHDRAWAL_REASON_CODE", null, "退会理由コード", String.class, "withdrawalReasonCode", null, false, false, false, "CHAR", 3, 0, null, false, null, "退会した定型理由を参照するコード。\n何も言わずに退会する会員もいるので必須項目ではない。", "withdrawalReason", null, CDef.DefMeta.WithdrawalReason);
     protected final ColumnInfo _columnWithdrawalReasonInputText = cci("WITHDRAWAL_REASON_INPUT_TEXT", "WITHDRAWAL_REASON_INPUT_TEXT", null, "退会理由入力テキスト", String.class, "withdrawalReasonInputText", null, false, false, false, "TEXT", 65535, 0, null, false, null, "会員がフリーテキストで入力できる退会理由。\nもう言いたいこと言ってもらう感じ。", null, null, null);
     protected final ColumnInfo _columnWithdrawalDatetime = cci("WITHDRAWAL_DATETIME", "WITHDRAWAL_DATETIME", null, "退会日時", java.sql.Timestamp.class, "withdrawalDatetime", null, false, false, true, "DATETIME", 19, 0, null, false, null, "退会した瞬間の日時。\n正式会員日時と違い、こっちはone-to-oneの別テーブルで。", null, null, null);
     protected final ColumnInfo _columnRegisterDatetime = cci("REGISTER_DATETIME", "REGISTER_DATETIME", null, null, java.sql.Timestamp.class, "registerDatetime", null, false, false, true, "DATETIME", 19, 0, null, true, null, null, null, null, null);
@@ -149,7 +153,7 @@ public class MemberWithdrawalDbm extends AbstractDBMeta {
      */
     public ColumnInfo columnMemberId() { return _columnMemberId; }
     /**
-     * (退会理由コード)WITHDRAWAL_REASON_CODE: {IX, CHAR(3), FK to withdrawal_reason}
+     * (退会理由コード)WITHDRAWAL_REASON_CODE: {IX, CHAR(3), FK to withdrawal_reason, classification=WithdrawalReason}
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnWithdrawalReasonCode() { return _columnWithdrawalReasonCode; }

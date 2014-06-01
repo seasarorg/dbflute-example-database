@@ -88,7 +88,6 @@ public class BsProductCategoryCQ extends AbstractBsProductCategoryCQ {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     protected ConditionValue _productCategoryCode;
     public ConditionValue getProductCategoryCode() {
         if (_productCategoryCode == null) { _productCategoryCode = nCV(); }
@@ -126,38 +125,6 @@ public class BsProductCategoryCQ extends AbstractBsProductCategoryCQ {
         if (_productCategoryCode_NotExistsReferrer_ProductCategorySelfListMap == null) { _productCategoryCode_NotExistsReferrer_ProductCategorySelfListMap = newLinkedHashMapSized(4); }
         String ky = "subQueryMapKey" + (_productCategoryCode_NotExistsReferrer_ProductCategorySelfListMap.size() + 1);
         _productCategoryCode_NotExistsReferrer_ProductCategorySelfListMap.put(ky, sq); return "productCategoryCode_NotExistsReferrer_ProductCategorySelfList." + ky;
-    }
-
-    protected Map<String, ProductCQ> _productCategoryCode_InScopeRelation_ProductListMap;
-    public Map<String, ProductCQ> getProductCategoryCode_InScopeRelation_ProductList() { return _productCategoryCode_InScopeRelation_ProductListMap; }
-    public String keepProductCategoryCode_InScopeRelation_ProductList(ProductCQ sq) {
-        if (_productCategoryCode_InScopeRelation_ProductListMap == null) { _productCategoryCode_InScopeRelation_ProductListMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_productCategoryCode_InScopeRelation_ProductListMap.size() + 1);
-        _productCategoryCode_InScopeRelation_ProductListMap.put(ky, sq); return "productCategoryCode_InScopeRelation_ProductList." + ky;
-    }
-
-    protected Map<String, ProductCategoryCQ> _productCategoryCode_InScopeRelation_ProductCategorySelfListMap;
-    public Map<String, ProductCategoryCQ> getProductCategoryCode_InScopeRelation_ProductCategorySelfList() { return _productCategoryCode_InScopeRelation_ProductCategorySelfListMap; }
-    public String keepProductCategoryCode_InScopeRelation_ProductCategorySelfList(ProductCategoryCQ sq) {
-        if (_productCategoryCode_InScopeRelation_ProductCategorySelfListMap == null) { _productCategoryCode_InScopeRelation_ProductCategorySelfListMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_productCategoryCode_InScopeRelation_ProductCategorySelfListMap.size() + 1);
-        _productCategoryCode_InScopeRelation_ProductCategorySelfListMap.put(ky, sq); return "productCategoryCode_InScopeRelation_ProductCategorySelfList." + ky;
-    }
-
-    protected Map<String, ProductCQ> _productCategoryCode_NotInScopeRelation_ProductListMap;
-    public Map<String, ProductCQ> getProductCategoryCode_NotInScopeRelation_ProductList() { return _productCategoryCode_NotInScopeRelation_ProductListMap; }
-    public String keepProductCategoryCode_NotInScopeRelation_ProductList(ProductCQ sq) {
-        if (_productCategoryCode_NotInScopeRelation_ProductListMap == null) { _productCategoryCode_NotInScopeRelation_ProductListMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_productCategoryCode_NotInScopeRelation_ProductListMap.size() + 1);
-        _productCategoryCode_NotInScopeRelation_ProductListMap.put(ky, sq); return "productCategoryCode_NotInScopeRelation_ProductList." + ky;
-    }
-
-    protected Map<String, ProductCategoryCQ> _productCategoryCode_NotInScopeRelation_ProductCategorySelfListMap;
-    public Map<String, ProductCategoryCQ> getProductCategoryCode_NotInScopeRelation_ProductCategorySelfList() { return _productCategoryCode_NotInScopeRelation_ProductCategorySelfListMap; }
-    public String keepProductCategoryCode_NotInScopeRelation_ProductCategorySelfList(ProductCategoryCQ sq) {
-        if (_productCategoryCode_NotInScopeRelation_ProductCategorySelfListMap == null) { _productCategoryCode_NotInScopeRelation_ProductCategorySelfListMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_productCategoryCode_NotInScopeRelation_ProductCategorySelfListMap.size() + 1);
-        _productCategoryCode_NotInScopeRelation_ProductCategorySelfListMap.put(ky, sq); return "productCategoryCode_NotInScopeRelation_ProductCategorySelfList." + ky;
     }
 
     protected Map<String, ProductCQ> _productCategoryCode_SpecifyDerivedReferrer_ProductListMap;
@@ -247,22 +214,6 @@ public class BsProductCategoryCQ extends AbstractBsProductCategoryCQ {
         return _parentCategoryCode;
     }
     protected ConditionValue getCValueParentCategoryCode() { return getParentCategoryCode(); }
-
-    protected Map<String, ProductCategoryCQ> _parentCategoryCode_InScopeRelation_ProductCategorySelfMap;
-    public Map<String, ProductCategoryCQ> getParentCategoryCode_InScopeRelation_ProductCategorySelf() { return _parentCategoryCode_InScopeRelation_ProductCategorySelfMap; }
-    public String keepParentCategoryCode_InScopeRelation_ProductCategorySelf(ProductCategoryCQ sq) {
-        if (_parentCategoryCode_InScopeRelation_ProductCategorySelfMap == null) { _parentCategoryCode_InScopeRelation_ProductCategorySelfMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_parentCategoryCode_InScopeRelation_ProductCategorySelfMap.size() + 1);
-        _parentCategoryCode_InScopeRelation_ProductCategorySelfMap.put(ky, sq); return "parentCategoryCode_InScopeRelation_ProductCategorySelf." + ky;
-    }
-
-    protected Map<String, ProductCategoryCQ> _parentCategoryCode_NotInScopeRelation_ProductCategorySelfMap;
-    public Map<String, ProductCategoryCQ> getParentCategoryCode_NotInScopeRelation_ProductCategorySelf() { return _parentCategoryCode_NotInScopeRelation_ProductCategorySelfMap; }
-    public String keepParentCategoryCode_NotInScopeRelation_ProductCategorySelf(ProductCategoryCQ sq) {
-        if (_parentCategoryCode_NotInScopeRelation_ProductCategorySelfMap == null) { _parentCategoryCode_NotInScopeRelation_ProductCategorySelfMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_parentCategoryCode_NotInScopeRelation_ProductCategorySelfMap.size() + 1);
-        _parentCategoryCode_NotInScopeRelation_ProductCategorySelfMap.put(ky, sq); return "parentCategoryCode_NotInScopeRelation_ProductCategorySelf." + ky;
-    }
 
     /** 
      * Add order-by as ascend. <br />
