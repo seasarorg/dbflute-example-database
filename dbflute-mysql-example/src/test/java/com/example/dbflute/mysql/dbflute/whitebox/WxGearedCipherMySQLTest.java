@@ -1,6 +1,8 @@
 package com.example.dbflute.mysql.dbflute.whitebox;
 
 import java.security.MessageDigest;
+import java.sql.Timestamp;
+import java.util.Date;
 
 import org.seasar.dbflute.bhv.UpdateOption;
 import org.seasar.dbflute.cbean.ListResultBean;
@@ -18,14 +20,17 @@ import com.example.dbflute.mysql.dbflute.cbean.MemberCB;
 import com.example.dbflute.mysql.dbflute.cbean.MemberSecurityCB;
 import com.example.dbflute.mysql.dbflute.cbean.MemberStatusCB;
 import com.example.dbflute.mysql.dbflute.cbean.PurchaseCB;
+import com.example.dbflute.mysql.dbflute.cbean.WhiteGearedCipherCB;
 import com.example.dbflute.mysql.dbflute.exbhv.MemberBhv;
 import com.example.dbflute.mysql.dbflute.exbhv.MemberSecurityBhv;
 import com.example.dbflute.mysql.dbflute.exbhv.MemberStatusBhv;
 import com.example.dbflute.mysql.dbflute.exbhv.PurchaseBhv;
+import com.example.dbflute.mysql.dbflute.exbhv.WhiteGearedCipherBhv;
 import com.example.dbflute.mysql.dbflute.exentity.Member;
 import com.example.dbflute.mysql.dbflute.exentity.MemberSecurity;
 import com.example.dbflute.mysql.dbflute.exentity.MemberStatus;
 import com.example.dbflute.mysql.dbflute.exentity.Purchase;
+import com.example.dbflute.mysql.dbflute.exentity.WhiteGearedCipher;
 import com.example.dbflute.mysql.unit.UnitContainerTestCase;
 
 /**
@@ -41,6 +46,7 @@ public class WxGearedCipherMySQLTest extends UnitContainerTestCase {
     private MemberStatusBhv memberStatusBhv;
     private MemberSecurityBhv memberSecurityBhv;
     private PurchaseBhv purchaseBhv;
+    private WhiteGearedCipherBhv whiteGearedCipherBhv;
 
     // ===================================================================================
     //                                                                               Basic
@@ -720,6 +726,35 @@ public class WxGearedCipherMySQLTest extends UnitContainerTestCase {
         for (MemberSecurity security : memberList) {
             log(security.getMemberId() + ", " + security.getLoginPassword());
         }
+    }
+
+    // ===================================================================================
+    //                                                                         TypeMapping
+    //                                                                         ===========
+    public void test_typeMapping_basic() throws Exception {
+        // ## Arrange ##
+        WhiteGearedCipher inserted = new WhiteGearedCipher();
+        String expectedVarchar = "foo";
+        int expectedInteger = 6;
+        Date expectedDate = toDate("2014/09/26");
+        Timestamp expectedDatetime = toTimestamp("2014/03/03 12:34:56");
+        inserted.setCipherVarchar(expectedVarchar);
+        inserted.setCipherInteger(expectedInteger);
+        inserted.setCipherDate(expectedDate);
+        inserted.setCipherDatetime(expectedDatetime);
+        whiteGearedCipherBhv.insert(inserted);
+
+        WhiteGearedCipherCB cb = new WhiteGearedCipherCB();
+        cb.query().setCipherId_Equal(inserted.getCipherId());
+
+        // ## Act ##
+        WhiteGearedCipher cipher = whiteGearedCipherBhv.selectEntityWithDeletedCheck(cb);
+
+        // ## Assert ##
+        assertEquals(expectedVarchar, cipher.getCipherVarchar());
+        assertEquals(expectedInteger, cipher.getCipherInteger());
+        assertEquals(expectedDate, cipher.getCipherDate());
+        assertEquals(expectedDatetime, cipher.getCipherDatetime());
     }
 
     // ===================================================================================

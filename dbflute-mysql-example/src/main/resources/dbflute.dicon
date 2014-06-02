@@ -57,6 +57,7 @@
     <component name="whiteDeprecatedClsElementBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteDeprecatedClsElementBhv"/>
     <component name="whiteEscapedDfpropBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteEscapedDfpropBhv"/>
     <component name="whiteEscapedJavaDocBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteEscapedJavaDocBhv"/>
+    <component name="whiteGearedCipherBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteGearedCipherBhv"/>
     <component name="whiteImplicitConvIntegerBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteImplicitConvIntegerBhv"/>
     <component name="whiteImplicitConvNumericBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteImplicitConvNumericBhv"/>
     <component name="whiteImplicitConvStringBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteImplicitConvStringBhv"/>

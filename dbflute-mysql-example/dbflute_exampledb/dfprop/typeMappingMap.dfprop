@@ -33,6 +33,11 @@ map:{
         ; WHITE_POINT_TYPE_MAPPING = map:{
             ; POINT_TYPE_MAPPING_SALE_DATE = SALE_DATE
         }
+        ; WHITE_GEARED_CIPHER = map:{
+            ; CIPHER_INTEGER = INTEGER
+            ; CIPHER_DATE = DATE
+            ; CIPHER_DATETIME = TIMESTAMP
+        }
     }
     ; MEMBER_NAME = com.example.dbflute.mysql.mytype.MyMemberName
     ; PRICE_COUNT = com.example.dbflute.mysql.mytype.MyPriceCount

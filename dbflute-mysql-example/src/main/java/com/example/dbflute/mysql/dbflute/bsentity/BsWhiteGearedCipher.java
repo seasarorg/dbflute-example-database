@@ -27,19 +27,19 @@ import com.example.dbflute.mysql.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.mysql.dbflute.exentity.*;
 
 /**
- * The entity of WHITE_INCLUDE_QUERY as TABLE. <br />
+ * The entity of WHITE_GEARED_CIPHER as TABLE. <br />
  * <pre>
  * [primary-key]
- *     INCLUDE_QUERY_ID
+ *     CIPHER_ID
  * 
  * [column]
- *     INCLUDE_QUERY_ID, INCLUDE_QUERY_VARCHAR, INCLUDE_QUERY_INTEGER, INCLUDE_QUERY_DATE, INCLUDE_QUERY_DATETIME
+ *     CIPHER_ID, CIPHER_INTEGER, CIPHER_VARCHAR, CIPHER__DATE, CIPHER__DATETIME
  * 
  * [sequence]
  *     
  * 
  * [identity]
- *     INCLUDE_QUERY_ID
+ *     CIPHER_ID
  * 
  * [version-no]
  *     
@@ -58,21 +58,21 @@ import com.example.dbflute.mysql.dbflute.exentity.*;
  * 
  * [get/set template]
  * /= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
- * Long includeQueryId = entity.getIncludeQueryId();
- * String includeQueryVarchar = entity.getIncludeQueryVarchar();
- * Integer includeQueryInteger = entity.getIncludeQueryInteger();
- * java.util.Date includeQueryDate = entity.getIncludeQueryDate();
- * java.sql.Timestamp includeQueryDatetime = entity.getIncludeQueryDatetime();
- * entity.setIncludeQueryId(includeQueryId);
- * entity.setIncludeQueryVarchar(includeQueryVarchar);
- * entity.setIncludeQueryInteger(includeQueryInteger);
- * entity.setIncludeQueryDate(includeQueryDate);
- * entity.setIncludeQueryDatetime(includeQueryDatetime);
+ * Long cipherId = entity.getCipherId();
+ * Integer cipherInteger = entity.getCipherInteger();
+ * String cipherVarchar = entity.getCipherVarchar();
+ * java.util.Date cipherDate = entity.getCipherDate();
+ * java.sql.Timestamp cipherDatetime = entity.getCipherDatetime();
+ * entity.setCipherId(cipherId);
+ * entity.setCipherInteger(cipherInteger);
+ * entity.setCipherVarchar(cipherVarchar);
+ * entity.setCipherDate(cipherDate);
+ * entity.setCipherDatetime(cipherDatetime);
  * = = = = = = = = = =/
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
-public abstract class BsWhiteIncludeQuery implements Entity, Serializable, Cloneable {
+public abstract class BsWhiteGearedCipher implements Entity, Serializable, Cloneable {
 
     // ===================================================================================
     //                                                                          Definition
@@ -86,20 +86,20 @@ public abstract class BsWhiteIncludeQuery implements Entity, Serializable, Clone
     // -----------------------------------------------------
     //                                                Column
     //                                                ------
-    /** INCLUDE_QUERY_ID: {PK, ID, NotNull, BIGINT(19)} */
-    protected Long _includeQueryId;
+    /** CIPHER_ID: {PK, ID, NotNull, BIGINT(19)} */
+    protected Long _cipherId;
 
-    /** INCLUDE_QUERY_VARCHAR: {VARCHAR(100)} */
-    protected String _includeQueryVarchar;
+    /** CIPHER_INTEGER: {VARCHAR(100)} */
+    protected Integer _cipherInteger;
 
-    /** INCLUDE_QUERY_INTEGER: {INT(10)} */
-    protected Integer _includeQueryInteger;
+    /** CIPHER_VARCHAR: {VARCHAR(100)} */
+    protected String _cipherVarchar;
 
-    /** INCLUDE_QUERY_DATE: {DATE(10)} */
-    protected java.util.Date _includeQueryDate;
+    /** CIPHER__DATE: {VARCHAR(100)} */
+    protected java.util.Date _cipherDate;
 
-    /** INCLUDE_QUERY_DATETIME: {DATETIME(19)} */
-    protected java.sql.Timestamp _includeQueryDatetime;
+    /** CIPHER__DATETIME: {VARCHAR(100)} */
+    protected java.sql.Timestamp _cipherDatetime;
 
     // -----------------------------------------------------
     //                                              Internal
@@ -120,14 +120,14 @@ public abstract class BsWhiteIncludeQuery implements Entity, Serializable, Clone
      * {@inheritDoc}
      */
     public String getTableDbName() {
-        return "white_include_query";
+        return "white_geared_cipher";
     }
 
     /**
      * {@inheritDoc}
      */
     public String getTablePropertyName() { // according to Java Beans rule
-        return "whiteIncludeQuery";
+        return "whiteGearedCipher";
     }
 
     // ===================================================================================
@@ -147,7 +147,7 @@ public abstract class BsWhiteIncludeQuery implements Entity, Serializable, Clone
      * {@inheritDoc}
      */
     public boolean hasPrimaryKeyValue() {
-        if (getIncludeQueryId() == null) { return false; }
+        if (getCipherId() == null) { return false; }
         return true;
     }
 
@@ -227,9 +227,9 @@ public abstract class BsWhiteIncludeQuery implements Entity, Serializable, Clone
      * @return Comparing result.
      */
     public boolean equals(Object obj) {
-        if (obj == null || !(obj instanceof BsWhiteIncludeQuery)) { return false; }
-        BsWhiteIncludeQuery other = (BsWhiteIncludeQuery)obj;
-        if (!xSV(getIncludeQueryId(), other.getIncludeQueryId())) { return false; }
+        if (obj == null || !(obj instanceof BsWhiteGearedCipher)) { return false; }
+        BsWhiteGearedCipher other = (BsWhiteGearedCipher)obj;
+        if (!xSV(getCipherId(), other.getCipherId())) { return false; }
         return true;
     }
     protected boolean xSV(Object v1, Object v2) {
@@ -243,7 +243,7 @@ public abstract class BsWhiteIncludeQuery implements Entity, Serializable, Clone
     public int hashCode() {
         int hs = 17;
         hs = xCH(hs, getTableDbName());
-        hs = xCH(hs, getIncludeQueryId());
+        hs = xCH(hs, getCipherId());
         return hs;
     }
     protected int xCH(int hs, Object vl) {
@@ -288,11 +288,11 @@ public abstract class BsWhiteIncludeQuery implements Entity, Serializable, Clone
     protected String buildColumnString() {
         StringBuilder sb = new StringBuilder();
         String dm = ", ";
-        sb.append(dm).append(getIncludeQueryId());
-        sb.append(dm).append(getIncludeQueryVarchar());
-        sb.append(dm).append(getIncludeQueryInteger());
-        sb.append(dm).append(xfUD(getIncludeQueryDate()));
-        sb.append(dm).append(getIncludeQueryDatetime());
+        sb.append(dm).append(getCipherId());
+        sb.append(dm).append(getCipherInteger());
+        sb.append(dm).append(getCipherVarchar());
+        sb.append(dm).append(xfUD(getCipherDate()));
+        sb.append(dm).append(getCipherDatetime());
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length());
         }
@@ -313,9 +313,9 @@ public abstract class BsWhiteIncludeQuery implements Entity, Serializable, Clone
      * Clone entity instance using super.clone(). (shallow copy) 
      * @return The cloned instance of this entity. (NotNull)
      */
-    public WhiteIncludeQuery clone() {
+    public WhiteGearedCipher clone() {
         try {
-            return (WhiteIncludeQuery)super.clone();
+            return (WhiteGearedCipher)super.clone();
         } catch (CloneNotSupportedException e) {
             throw new IllegalStateException("Failed to clone the entity: " + toString(), e);
         }
@@ -325,87 +325,87 @@ public abstract class BsWhiteIncludeQuery implements Entity, Serializable, Clone
     //                                                                            Accessor
     //                                                                            ========
     /**
-     * [get] INCLUDE_QUERY_ID: {PK, ID, NotNull, BIGINT(19)} <br />
-     * @return The value of the column 'INCLUDE_QUERY_ID'. (basically NotNull if selected: for the constraint)
+     * [get] CIPHER_ID: {PK, ID, NotNull, BIGINT(19)} <br />
+     * @return The value of the column 'CIPHER_ID'. (basically NotNull if selected: for the constraint)
      */
-    public Long getIncludeQueryId() {
-        return _includeQueryId;
+    public Long getCipherId() {
+        return _cipherId;
     }
 
     /**
-     * [set] INCLUDE_QUERY_ID: {PK, ID, NotNull, BIGINT(19)} <br />
-     * @param includeQueryId The value of the column 'INCLUDE_QUERY_ID'. (basically NotNull if update: for the constraint)
+     * [set] CIPHER_ID: {PK, ID, NotNull, BIGINT(19)} <br />
+     * @param cipherId The value of the column 'CIPHER_ID'. (basically NotNull if update: for the constraint)
      */
-    public void setIncludeQueryId(Long includeQueryId) {
-        __modifiedProperties.addPropertyName("includeQueryId");
-        this._includeQueryId = includeQueryId;
+    public void setCipherId(Long cipherId) {
+        __modifiedProperties.addPropertyName("cipherId");
+        this._cipherId = cipherId;
     }
 
     /**
-     * [get] INCLUDE_QUERY_VARCHAR: {VARCHAR(100)} <br />
-     * @return The value of the column 'INCLUDE_QUERY_VARCHAR'. (NullAllowed even if selected: for no constraint)
+     * [get] CIPHER_INTEGER: {VARCHAR(100)} <br />
+     * @return The value of the column 'CIPHER_INTEGER'. (NullAllowed even if selected: for no constraint)
      */
-    public String getIncludeQueryVarchar() {
-        return _includeQueryVarchar;
+    public Integer getCipherInteger() {
+        return _cipherInteger;
     }
 
     /**
-     * [set] INCLUDE_QUERY_VARCHAR: {VARCHAR(100)} <br />
-     * @param includeQueryVarchar The value of the column 'INCLUDE_QUERY_VARCHAR'. (NullAllowed: null update allowed for no constraint)
+     * [set] CIPHER_INTEGER: {VARCHAR(100)} <br />
+     * @param cipherInteger The value of the column 'CIPHER_INTEGER'. (NullAllowed: null update allowed for no constraint)
      */
-    public void setIncludeQueryVarchar(String includeQueryVarchar) {
-        __modifiedProperties.addPropertyName("includeQueryVarchar");
-        this._includeQueryVarchar = includeQueryVarchar;
+    public void setCipherInteger(Integer cipherInteger) {
+        __modifiedProperties.addPropertyName("cipherInteger");
+        this._cipherInteger = cipherInteger;
     }
 
     /**
-     * [get] INCLUDE_QUERY_INTEGER: {INT(10)} <br />
-     * @return The value of the column 'INCLUDE_QUERY_INTEGER'. (NullAllowed even if selected: for no constraint)
+     * [get] CIPHER_VARCHAR: {VARCHAR(100)} <br />
+     * @return The value of the column 'CIPHER_VARCHAR'. (NullAllowed even if selected: for no constraint)
      */
-    public Integer getIncludeQueryInteger() {
-        return _includeQueryInteger;
+    public String getCipherVarchar() {
+        return _cipherVarchar;
     }
 
     /**
-     * [set] INCLUDE_QUERY_INTEGER: {INT(10)} <br />
-     * @param includeQueryInteger The value of the column 'INCLUDE_QUERY_INTEGER'. (NullAllowed: null update allowed for no constraint)
+     * [set] CIPHER_VARCHAR: {VARCHAR(100)} <br />
+     * @param cipherVarchar The value of the column 'CIPHER_VARCHAR'. (NullAllowed: null update allowed for no constraint)
      */
-    public void setIncludeQueryInteger(Integer includeQueryInteger) {
-        __modifiedProperties.addPropertyName("includeQueryInteger");
-        this._includeQueryInteger = includeQueryInteger;
+    public void setCipherVarchar(String cipherVarchar) {
+        __modifiedProperties.addPropertyName("cipherVarchar");
+        this._cipherVarchar = cipherVarchar;
     }
 
     /**
-     * [get] INCLUDE_QUERY_DATE: {DATE(10)} <br />
-     * @return The value of the column 'INCLUDE_QUERY_DATE'. (NullAllowed even if selected: for no constraint)
+     * [get] CIPHER__DATE: {VARCHAR(100)} <br />
+     * @return The value of the column 'CIPHER__DATE'. (NullAllowed even if selected: for no constraint)
      */
-    public java.util.Date getIncludeQueryDate() {
-        return _includeQueryDate;
+    public java.util.Date getCipherDate() {
+        return _cipherDate;
     }
 
     /**
-     * [set] INCLUDE_QUERY_DATE: {DATE(10)} <br />
-     * @param includeQueryDate The value of the column 'INCLUDE_QUERY_DATE'. (NullAllowed: null update allowed for no constraint)
+     * [set] CIPHER__DATE: {VARCHAR(100)} <br />
+     * @param cipherDate The value of the column 'CIPHER__DATE'. (NullAllowed: null update allowed for no constraint)
      */
-    public void setIncludeQueryDate(java.util.Date includeQueryDate) {
-        __modifiedProperties.addPropertyName("includeQueryDate");
-        this._includeQueryDate = includeQueryDate;
+    public void setCipherDate(java.util.Date cipherDate) {
+        __modifiedProperties.addPropertyName("cipherDate");
+        this._cipherDate = cipherDate;
     }
 
     /**
-     * [get] INCLUDE_QUERY_DATETIME: {DATETIME(19)} <br />
-     * @return The value of the column 'INCLUDE_QUERY_DATETIME'. (NullAllowed even if selected: for no constraint)
+     * [get] CIPHER__DATETIME: {VARCHAR(100)} <br />
+     * @return The value of the column 'CIPHER__DATETIME'. (NullAllowed even if selected: for no constraint)
      */
-    public java.sql.Timestamp getIncludeQueryDatetime() {
-        return _includeQueryDatetime;
+    public java.sql.Timestamp getCipherDatetime() {
+        return _cipherDatetime;
     }
 
     /**
-     * [set] INCLUDE_QUERY_DATETIME: {DATETIME(19)} <br />
-     * @param includeQueryDatetime The value of the column 'INCLUDE_QUERY_DATETIME'. (NullAllowed: null update allowed for no constraint)
+     * [set] CIPHER__DATETIME: {VARCHAR(100)} <br />
+     * @param cipherDatetime The value of the column 'CIPHER__DATETIME'. (NullAllowed: null update allowed for no constraint)
      */
-    public void setIncludeQueryDatetime(java.sql.Timestamp includeQueryDatetime) {
-        __modifiedProperties.addPropertyName("includeQueryDatetime");
-        this._includeQueryDatetime = includeQueryDatetime;
+    public void setCipherDatetime(java.sql.Timestamp cipherDatetime) {
+        __modifiedProperties.addPropertyName("cipherDatetime");
+        this._cipherDatetime = cipherDatetime;
     }
 }

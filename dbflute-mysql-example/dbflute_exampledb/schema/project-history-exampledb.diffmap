@@ -1,4 +1,30 @@
 map:{
+    ; 2014/06/02 22:31:24 = map:{
+        ; diffDate = 2014/06/02 22:31:24
+        ; tableDiff = map:{
+            ; white_include_query = map:{
+                ; tableName = white_include_query
+                ; diffType = CHANGE
+                ; columnDefOrderDiff = map:{
+                    ; next = INCLUDE_QUERY_VARCHAR(2)
+                    ; previous = INCLUDE_QUERY_VARCHAR(3)
+                }
+            }
+        }
+    }
+    ; 2014/06/02 22:24:56 = map:{
+        ; diffDate = 2014/06/02 22:24:56
+        ; tableCount = map:{
+            ; next = 97
+            ; previous = 96
+        }
+        ; tableDiff = map:{
+            ; white_geared_cipher = map:{
+                ; tableName = white_geared_cipher
+                ; diffType = ADD
+            }
+        }
+    }
     ; 2014/05/31 13:47:05 = map:{
         ; diffDate = 2014/05/31 13:47:05
         ; tableDiff = map:{

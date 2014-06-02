@@ -162,22 +162,6 @@ public abstract class AbstractBsWhiteIncludeQueryCQ extends AbstractConditionQue
 
     protected void regIncludeQueryId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueIncludeQueryId(), "INCLUDE_QUERY_ID"); }
     protected abstract ConditionValue getCValueIncludeQueryId();
-    
-    /**
-     * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
-     * INCLUDE_QUERY_INTEGER: {INT(10)}
-     * @param includeQueryInteger The value of includeQueryInteger as equal. (NullAllowed: if null, no condition)
-     */
-    public void setIncludeQueryInteger_Equal(Integer includeQueryInteger) {
-        doSetIncludeQueryInteger_Equal(includeQueryInteger);
-    }
-
-    protected void doSetIncludeQueryInteger_Equal(Integer includeQueryInteger) {
-        regIncludeQueryInteger(CK_EQ, includeQueryInteger);
-    }
-
-    protected void regIncludeQueryInteger(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueIncludeQueryInteger(), "INCLUDE_QUERY_INTEGER"); }
-    protected abstract ConditionValue getCValueIncludeQueryInteger();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -251,6 +235,22 @@ public abstract class AbstractBsWhiteIncludeQueryCQ extends AbstractConditionQue
 
     protected void regIncludeQueryVarchar(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueIncludeQueryVarchar(), "INCLUDE_QUERY_VARCHAR"); }
     protected abstract ConditionValue getCValueIncludeQueryVarchar();
+    
+    /**
+     * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
+     * INCLUDE_QUERY_INTEGER: {INT(10)}
+     * @param includeQueryInteger The value of includeQueryInteger as equal. (NullAllowed: if null, no condition)
+     */
+    public void setIncludeQueryInteger_Equal(Integer includeQueryInteger) {
+        doSetIncludeQueryInteger_Equal(includeQueryInteger);
+    }
+
+    protected void doSetIncludeQueryInteger_Equal(Integer includeQueryInteger) {
+        regIncludeQueryInteger(CK_EQ, includeQueryInteger);
+    }
+
+    protected void regIncludeQueryInteger(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueIncludeQueryInteger(), "INCLUDE_QUERY_INTEGER"); }
+    protected abstract ConditionValue getCValueIncludeQueryInteger();
 
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />

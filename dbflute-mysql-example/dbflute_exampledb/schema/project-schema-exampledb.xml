@@ -1078,6 +1078,21 @@
         <column comment="" dbType="VARCHAR" javaType="String"
             name="ESCAPED_JAVA_DOC_NAME" size="20" type="VARCHAR"/>
     </table>
+    <table name="white_geared_cipher"
+        schema="exampledb.$$NoNameSchema$$" type="TABLE">
+        <column autoIncrement="true" comment="" dbType="BIGINT"
+            javaType="Long" name="CIPHER_ID" pkName="PRIMARY"
+            primaryKey="true" required="true" size="19" type="BIGINT"/>
+        <column comment="" dbType="VARCHAR" javaType="Integer"
+            name="CIPHER_INTEGER" size="100" type="INTEGER"/>
+        <column comment="" dbType="VARCHAR" javaType="String"
+            name="CIPHER_VARCHAR" size="100" type="VARCHAR"/>
+        <column comment="" dbType="VARCHAR" javaType="java.util.Date"
+            name="CIPHER__DATE" size="100" type="DATE"/>
+        <column comment="" dbType="VARCHAR"
+            javaType="java.sql.Timestamp" name="CIPHER__DATETIME"
+            size="100" type="TIMESTAMP"/>
+    </table>
     <table name="white_implicit_conv_integer"
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="INT" javaType="Integer"
@@ -1166,10 +1181,10 @@
         <column autoIncrement="true" comment="" dbType="BIGINT"
             javaType="Long" name="INCLUDE_QUERY_ID" pkName="PRIMARY"
             primaryKey="true" required="true" size="19" type="BIGINT"/>
-        <column comment="" dbType="INT" javaType="Integer"
-            name="INCLUDE_QUERY_INTEGER" size="10" type="INTEGER"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="INCLUDE_QUERY_VARCHAR" size="100" type="VARCHAR"/>
+        <column comment="" dbType="INT" javaType="Integer"
+            name="INCLUDE_QUERY_INTEGER" size="10" type="INTEGER"/>
         <column comment="" dbType="DATE" javaType="java.util.Date"
             name="INCLUDE_QUERY_DATE" size="10" type="DATE"/>
         <column comment="" dbType="DATETIME"

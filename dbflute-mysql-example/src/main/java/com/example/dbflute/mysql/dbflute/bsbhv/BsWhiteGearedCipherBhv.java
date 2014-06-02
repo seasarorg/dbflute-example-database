@@ -30,19 +30,19 @@ import com.example.dbflute.mysql.dbflute.bsentity.dbmeta.*;
 import com.example.dbflute.mysql.dbflute.cbean.*;
 
 /**
- * The behavior of WHITE_INCLUDE_QUERY as TABLE. <br />
+ * The behavior of WHITE_GEARED_CIPHER as TABLE. <br />
  * <pre>
  * [primary key]
- *     INCLUDE_QUERY_ID
+ *     CIPHER_ID
  *
  * [column]
- *     INCLUDE_QUERY_ID, INCLUDE_QUERY_VARCHAR, INCLUDE_QUERY_INTEGER, INCLUDE_QUERY_DATE, INCLUDE_QUERY_DATETIME
+ *     CIPHER_ID, CIPHER_INTEGER, CIPHER_VARCHAR, CIPHER__DATE, CIPHER__DATETIME
  *
  * [sequence]
  *     
  *
  * [identity]
- *     INCLUDE_QUERY_ID
+ *     CIPHER_ID
  *
  * [version-no]
  *     
@@ -61,7 +61,7 @@ import com.example.dbflute.mysql.dbflute.cbean.*;
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
-public abstract class BsWhiteIncludeQueryBhv extends AbstractBehaviorWritable {
+public abstract class BsWhiteGearedCipherBhv extends AbstractBehaviorWritable {
 
     // ===================================================================================
     //                                                                          Definition
@@ -73,16 +73,16 @@ public abstract class BsWhiteIncludeQueryBhv extends AbstractBehaviorWritable {
     //                                                                          Table name
     //                                                                          ==========
     /** @return The name on database of table. (NotNull) */
-    public String getTableDbName() { return "white_include_query"; }
+    public String getTableDbName() { return "white_geared_cipher"; }
 
     // ===================================================================================
     //                                                                              DBMeta
     //                                                                              ======
     /** @return The instance of DBMeta. (NotNull) */
-    public DBMeta getDBMeta() { return WhiteIncludeQueryDbm.getInstance(); }
+    public DBMeta getDBMeta() { return WhiteGearedCipherDbm.getInstance(); }
 
     /** @return The instance of DBMeta as my table type. (NotNull) */
-    public WhiteIncludeQueryDbm getMyDBMeta() { return WhiteIncludeQueryDbm.getInstance(); }
+    public WhiteGearedCipherDbm getMyDBMeta() { return WhiteGearedCipherDbm.getInstance(); }
 
     // ===================================================================================
     //                                                                        New Instance
@@ -94,10 +94,10 @@ public abstract class BsWhiteIncludeQueryBhv extends AbstractBehaviorWritable {
     public ConditionBean newConditionBean() { return newMyConditionBean(); }
 
     /** @return The instance of new entity as my table type. (NotNull) */
-    public WhiteIncludeQuery newMyEntity() { return new WhiteIncludeQuery(); }
+    public WhiteGearedCipher newMyEntity() { return new WhiteGearedCipher(); }
 
     /** @return The instance of new condition-bean as my table type. (NotNull) */
-    public WhiteIncludeQueryCB newMyConditionBean() { return new WhiteIncludeQueryCB(); }
+    public WhiteGearedCipherCB newMyConditionBean() { return new WhiteGearedCipherCB(); }
 
     // ===================================================================================
     //                                                                        Count Select
@@ -106,23 +106,23 @@ public abstract class BsWhiteIncludeQueryBhv extends AbstractBehaviorWritable {
      * Select the count of uniquely-selected records by the condition-bean. {IgnorePagingCondition, IgnoreSpecifyColumn}<br />
      * SpecifyColumn is ignored but you can use it only to remove text type column for union's distinct.
      * <pre>
-     * WhiteIncludeQueryCB cb = new WhiteIncludeQueryCB();
+     * WhiteGearedCipherCB cb = new WhiteGearedCipherCB();
      * cb.query().setFoo...(value);
-     * int count = whiteIncludeQueryBhv.<span style="color: #DD4747">selectCount</span>(cb);
+     * int count = whiteGearedCipherBhv.<span style="color: #DD4747">selectCount</span>(cb);
      * </pre>
-     * @param cb The condition-bean of WhiteIncludeQuery. (NotNull)
+     * @param cb The condition-bean of WhiteGearedCipher. (NotNull)
      * @return The count for the condition. (NotMinus)
      */
-    public int selectCount(WhiteIncludeQueryCB cb) {
+    public int selectCount(WhiteGearedCipherCB cb) {
         return doSelectCountUniquely(cb);
     }
 
-    protected int doSelectCountUniquely(WhiteIncludeQueryCB cb) { // called by selectCount(cb)
+    protected int doSelectCountUniquely(WhiteGearedCipherCB cb) { // called by selectCount(cb)
         assertCBStateValid(cb);
         return delegateSelectCountUniquely(cb);
     }
 
-    protected int doSelectCountPlainly(WhiteIncludeQueryCB cb) { // called by selectPage(cb)
+    protected int doSelectCountPlainly(WhiteGearedCipherCB cb) { // called by selectPage(cb)
         assertCBStateValid(cb);
         return delegateSelectCountPlainly(cb);
     }
@@ -140,31 +140,31 @@ public abstract class BsWhiteIncludeQueryBhv extends AbstractBehaviorWritable {
      * <span style="color: #AD4747; font-size: 120%">The return might be null if no data, so you should have null check.</span> <br />
      * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, use selectEntityWithDeletedCheck().</span>
      * <pre>
-     * WhiteIncludeQueryCB cb = new WhiteIncludeQueryCB();
+     * WhiteGearedCipherCB cb = new WhiteGearedCipherCB();
      * cb.query().setFoo...(value);
-     * WhiteIncludeQuery whiteIncludeQuery = whiteIncludeQueryBhv.<span style="color: #DD4747">selectEntity</span>(cb);
-     * if (whiteIncludeQuery != null) { <span style="color: #3F7E5E">// null check</span>
-     *     ... = whiteIncludeQuery.get...();
+     * WhiteGearedCipher whiteGearedCipher = whiteGearedCipherBhv.<span style="color: #DD4747">selectEntity</span>(cb);
+     * if (whiteGearedCipher != null) { <span style="color: #3F7E5E">// null check</span>
+     *     ... = whiteGearedCipher.get...();
      * } else {
      *     ...
      * }
      * </pre>
-     * @param cb The condition-bean of WhiteIncludeQuery. (NotNull)
+     * @param cb The condition-bean of WhiteGearedCipher. (NotNull)
      * @return The entity selected by the condition. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
-    public WhiteIncludeQuery selectEntity(WhiteIncludeQueryCB cb) {
-        return doSelectEntity(cb, WhiteIncludeQuery.class);
+    public WhiteGearedCipher selectEntity(WhiteGearedCipherCB cb) {
+        return doSelectEntity(cb, WhiteGearedCipher.class);
     }
 
-    protected <ENTITY extends WhiteIncludeQuery> ENTITY doSelectEntity(WhiteIncludeQueryCB cb, Class<ENTITY> tp) {
+    protected <ENTITY extends WhiteGearedCipher> ENTITY doSelectEntity(WhiteGearedCipherCB cb, Class<ENTITY> tp) {
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, WhiteIncludeQueryCB>() {
-            public List<ENTITY> callbackSelectList(WhiteIncludeQueryCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
+        return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, WhiteGearedCipherCB>() {
+            public List<ENTITY> callbackSelectList(WhiteGearedCipherCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
-    protected <ENTITY extends WhiteIncludeQuery> OptionalEntity<ENTITY> doSelectOptionalEntity(WhiteIncludeQueryCB cb, Class<ENTITY> tp) {
+    protected <ENTITY extends WhiteGearedCipher> OptionalEntity<ENTITY> doSelectOptionalEntity(WhiteGearedCipherCB cb, Class<ENTITY> tp) {
         return createOptionalEntity(doSelectEntity(cb, tp), cb);
     }
 
@@ -177,25 +177,25 @@ public abstract class BsWhiteIncludeQueryBhv extends AbstractBehaviorWritable {
      * Select the entity by the condition-bean with deleted check. <br />
      * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, this method is good.</span>
      * <pre>
-     * WhiteIncludeQueryCB cb = new WhiteIncludeQueryCB();
+     * WhiteGearedCipherCB cb = new WhiteGearedCipherCB();
      * cb.query().setFoo...(value);
-     * WhiteIncludeQuery whiteIncludeQuery = whiteIncludeQueryBhv.<span style="color: #DD4747">selectEntityWithDeletedCheck</span>(cb);
-     * ... = whiteIncludeQuery.get...(); <span style="color: #3F7E5E">// the entity always be not null</span>
+     * WhiteGearedCipher whiteGearedCipher = whiteGearedCipherBhv.<span style="color: #DD4747">selectEntityWithDeletedCheck</span>(cb);
+     * ... = whiteGearedCipher.get...(); <span style="color: #3F7E5E">// the entity always be not null</span>
      * </pre>
-     * @param cb The condition-bean of WhiteIncludeQuery. (NotNull)
+     * @param cb The condition-bean of WhiteGearedCipher. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
-    public WhiteIncludeQuery selectEntityWithDeletedCheck(WhiteIncludeQueryCB cb) {
-        return doSelectEntityWithDeletedCheck(cb, WhiteIncludeQuery.class);
+    public WhiteGearedCipher selectEntityWithDeletedCheck(WhiteGearedCipherCB cb) {
+        return doSelectEntityWithDeletedCheck(cb, WhiteGearedCipher.class);
     }
 
-    protected <ENTITY extends WhiteIncludeQuery> ENTITY doSelectEntityWithDeletedCheck(WhiteIncludeQueryCB cb, Class<ENTITY> tp) {
+    protected <ENTITY extends WhiteGearedCipher> ENTITY doSelectEntityWithDeletedCheck(WhiteGearedCipherCB cb, Class<ENTITY> tp) {
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, WhiteIncludeQueryCB>() {
-            public List<ENTITY> callbackSelectList(WhiteIncludeQueryCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
+        return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, WhiteGearedCipherCB>() {
+            public List<ENTITY> callbackSelectList(WhiteGearedCipherCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -205,42 +205,42 @@ public abstract class BsWhiteIncludeQueryBhv extends AbstractBehaviorWritable {
 
     /**
      * Select the entity by the primary-key value.
-     * @param includeQueryId : PK, ID, NotNull, BIGINT(19). (NotNull)
+     * @param cipherId : PK, ID, NotNull, BIGINT(19). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
-    public WhiteIncludeQuery selectByPKValue(Long includeQueryId) {
-        return doSelectByPK(includeQueryId, WhiteIncludeQuery.class);
+    public WhiteGearedCipher selectByPKValue(Long cipherId) {
+        return doSelectByPK(cipherId, WhiteGearedCipher.class);
     }
 
-    protected <ENTITY extends WhiteIncludeQuery> ENTITY doSelectByPK(Long includeQueryId, Class<ENTITY> entityType) {
-        return doSelectEntity(xprepareCBAsPK(includeQueryId), entityType);
+    protected <ENTITY extends WhiteGearedCipher> ENTITY doSelectByPK(Long cipherId, Class<ENTITY> entityType) {
+        return doSelectEntity(xprepareCBAsPK(cipherId), entityType);
     }
 
-    protected <ENTITY extends WhiteIncludeQuery> OptionalEntity<ENTITY> doSelectOptionalByPK(Long includeQueryId, Class<ENTITY> entityType) {
-        return createOptionalEntity(doSelectByPK(includeQueryId, entityType), includeQueryId);
+    protected <ENTITY extends WhiteGearedCipher> OptionalEntity<ENTITY> doSelectOptionalByPK(Long cipherId, Class<ENTITY> entityType) {
+        return createOptionalEntity(doSelectByPK(cipherId, entityType), cipherId);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param includeQueryId : PK, ID, NotNull, BIGINT(19). (NotNull)
+     * @param cipherId : PK, ID, NotNull, BIGINT(19). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
-    public WhiteIncludeQuery selectByPKValueWithDeletedCheck(Long includeQueryId) {
-        return doSelectByPKWithDeletedCheck(includeQueryId, WhiteIncludeQuery.class);
+    public WhiteGearedCipher selectByPKValueWithDeletedCheck(Long cipherId) {
+        return doSelectByPKWithDeletedCheck(cipherId, WhiteGearedCipher.class);
     }
 
-    protected <ENTITY extends WhiteIncludeQuery> ENTITY doSelectByPKWithDeletedCheck(Long includeQueryId, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(includeQueryId), entityType);
+    protected <ENTITY extends WhiteGearedCipher> ENTITY doSelectByPKWithDeletedCheck(Long cipherId, Class<ENTITY> entityType) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(cipherId), entityType);
     }
 
-    protected WhiteIncludeQueryCB xprepareCBAsPK(Long includeQueryId) {
-        assertObjectNotNull("includeQueryId", includeQueryId);
-        WhiteIncludeQueryCB cb = newMyConditionBean(); cb.acceptPrimaryKey(includeQueryId);
+    protected WhiteGearedCipherCB xprepareCBAsPK(Long cipherId) {
+        assertObjectNotNull("cipherId", cipherId);
+        WhiteGearedCipherCB cb = newMyConditionBean(); cb.acceptPrimaryKey(cipherId);
         return cb;
     }
 
@@ -250,27 +250,27 @@ public abstract class BsWhiteIncludeQueryBhv extends AbstractBehaviorWritable {
     /**
      * Select the list as result bean.
      * <pre>
-     * WhiteIncludeQueryCB cb = new WhiteIncludeQueryCB();
+     * WhiteGearedCipherCB cb = new WhiteGearedCipherCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * ListResultBean&lt;WhiteIncludeQuery&gt; whiteIncludeQueryList = whiteIncludeQueryBhv.<span style="color: #DD4747">selectList</span>(cb);
-     * for (WhiteIncludeQuery whiteIncludeQuery : whiteIncludeQueryList) {
-     *     ... = whiteIncludeQuery.get...();
+     * ListResultBean&lt;WhiteGearedCipher&gt; whiteGearedCipherList = whiteGearedCipherBhv.<span style="color: #DD4747">selectList</span>(cb);
+     * for (WhiteGearedCipher whiteGearedCipher : whiteGearedCipherList) {
+     *     ... = whiteGearedCipher.get...();
      * }
      * </pre>
-     * @param cb The condition-bean of WhiteIncludeQuery. (NotNull)
+     * @param cb The condition-bean of WhiteGearedCipher. (NotNull)
      * @return The result bean of selected list. (NotNull: if no data, returns empty list)
      * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
-    public ListResultBean<WhiteIncludeQuery> selectList(WhiteIncludeQueryCB cb) {
-        return doSelectList(cb, WhiteIncludeQuery.class);
+    public ListResultBean<WhiteGearedCipher> selectList(WhiteGearedCipherCB cb) {
+        return doSelectList(cb, WhiteGearedCipher.class);
     }
 
-    protected <ENTITY extends WhiteIncludeQuery> ListResultBean<ENTITY> doSelectList(WhiteIncludeQueryCB cb, Class<ENTITY> tp) {
+    protected <ENTITY extends WhiteGearedCipher> ListResultBean<ENTITY> doSelectList(WhiteGearedCipherCB cb, Class<ENTITY> tp) {
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
-        return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, WhiteIncludeQueryCB>() {
-            public List<ENTITY> callbackSelectList(WhiteIncludeQueryCB lcb, Class<ENTITY> ltp) { return delegateSelectList(lcb, ltp); } });
+        return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, WhiteGearedCipherCB>() {
+            public List<ENTITY> callbackSelectList(WhiteGearedCipherCB lcb, Class<ENTITY> ltp) { return delegateSelectList(lcb, ltp); } });
     }
 
     @Override
@@ -285,33 +285,33 @@ public abstract class BsWhiteIncludeQueryBhv extends AbstractBehaviorWritable {
      * Select the page as result bean. <br />
      * (both count-select and paging-select are executed)
      * <pre>
-     * WhiteIncludeQueryCB cb = new WhiteIncludeQueryCB();
+     * WhiteGearedCipherCB cb = new WhiteGearedCipherCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
      * cb.<span style="color: #DD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
-     * PagingResultBean&lt;WhiteIncludeQuery&gt; page = whiteIncludeQueryBhv.<span style="color: #DD4747">selectPage</span>(cb);
+     * PagingResultBean&lt;WhiteGearedCipher&gt; page = whiteGearedCipherBhv.<span style="color: #DD4747">selectPage</span>(cb);
      * int allRecordCount = page.getAllRecordCount();
      * int allPageCount = page.getAllPageCount();
      * boolean isExistPrePage = page.isExistPrePage();
      * boolean isExistNextPage = page.isExistNextPage();
      * ...
-     * for (WhiteIncludeQuery whiteIncludeQuery : page) {
-     *     ... = whiteIncludeQuery.get...();
+     * for (WhiteGearedCipher whiteGearedCipher : page) {
+     *     ... = whiteGearedCipher.get...();
      * }
      * </pre>
-     * @param cb The condition-bean of WhiteIncludeQuery. (NotNull)
+     * @param cb The condition-bean of WhiteGearedCipher. (NotNull)
      * @return The result bean of selected page. (NotNull: if no data, returns bean as empty list)
      * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
-    public PagingResultBean<WhiteIncludeQuery> selectPage(WhiteIncludeQueryCB cb) {
-        return doSelectPage(cb, WhiteIncludeQuery.class);
+    public PagingResultBean<WhiteGearedCipher> selectPage(WhiteGearedCipherCB cb) {
+        return doSelectPage(cb, WhiteGearedCipher.class);
     }
 
-    protected <ENTITY extends WhiteIncludeQuery> PagingResultBean<ENTITY> doSelectPage(WhiteIncludeQueryCB cb, Class<ENTITY> tp) {
+    protected <ENTITY extends WhiteGearedCipher> PagingResultBean<ENTITY> doSelectPage(WhiteGearedCipherCB cb, Class<ENTITY> tp) {
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectPageInternally(cb, tp, new InternalSelectPageCallback<ENTITY, WhiteIncludeQueryCB>() {
-            public int callbackSelectCount(WhiteIncludeQueryCB cb) { return doSelectCountPlainly(cb); }
-            public List<ENTITY> callbackSelectList(WhiteIncludeQueryCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
+        return helpSelectPageInternally(cb, tp, new InternalSelectPageCallback<ENTITY, WhiteGearedCipherCB>() {
+            public int callbackSelectCount(WhiteGearedCipherCB cb) { return doSelectCountPlainly(cb); }
+            public List<ENTITY> callbackSelectList(WhiteGearedCipherCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
         });
     }
 
@@ -326,27 +326,27 @@ public abstract class BsWhiteIncludeQueryBhv extends AbstractBehaviorWritable {
     /**
      * Select the cursor by the condition-bean.
      * <pre>
-     * WhiteIncludeQueryCB cb = new WhiteIncludeQueryCB();
+     * WhiteGearedCipherCB cb = new WhiteGearedCipherCB();
      * cb.query().setFoo...(value);
-     * whiteIncludeQueryBhv.<span style="color: #DD4747">selectCursor</span>(cb, new EntityRowHandler&lt;WhiteIncludeQuery&gt;() {
-     *     public void handle(WhiteIncludeQuery entity) {
+     * whiteGearedCipherBhv.<span style="color: #DD4747">selectCursor</span>(cb, new EntityRowHandler&lt;WhiteGearedCipher&gt;() {
+     *     public void handle(WhiteGearedCipher entity) {
      *         ... = entity.getFoo...();
      *     }
      * });
      * </pre>
-     * @param cb The condition-bean of WhiteIncludeQuery. (NotNull)
-     * @param entityRowHandler The handler of entity row of WhiteIncludeQuery. (NotNull)
+     * @param cb The condition-bean of WhiteGearedCipher. (NotNull)
+     * @param entityRowHandler The handler of entity row of WhiteGearedCipher. (NotNull)
      */
-    public void selectCursor(WhiteIncludeQueryCB cb, EntityRowHandler<WhiteIncludeQuery> entityRowHandler) {
-        doSelectCursor(cb, entityRowHandler, WhiteIncludeQuery.class);
+    public void selectCursor(WhiteGearedCipherCB cb, EntityRowHandler<WhiteGearedCipher> entityRowHandler) {
+        doSelectCursor(cb, entityRowHandler, WhiteGearedCipher.class);
     }
 
-    protected <ENTITY extends WhiteIncludeQuery> void doSelectCursor(WhiteIncludeQueryCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
+    protected <ENTITY extends WhiteGearedCipher> void doSelectCursor(WhiteGearedCipherCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
         assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
-        helpSelectCursorInternally(cb, handler, tp, new InternalSelectCursorCallback<ENTITY, WhiteIncludeQueryCB>() {
-            public void callbackSelectCursor(WhiteIncludeQueryCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) { delegateSelectCursor(cb, handler, tp); }
-            public List<ENTITY> callbackSelectList(WhiteIncludeQueryCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
+        helpSelectCursorInternally(cb, handler, tp, new InternalSelectCursorCallback<ENTITY, WhiteGearedCipherCB>() {
+            public void callbackSelectCursor(WhiteGearedCipherCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) { delegateSelectCursor(cb, handler, tp); }
+            public List<ENTITY> callbackSelectList(WhiteGearedCipherCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
         });
     }
 
@@ -357,8 +357,8 @@ public abstract class BsWhiteIncludeQueryBhv extends AbstractBehaviorWritable {
      * Select the scalar value derived by a function from uniquely-selected records. <br />
      * You should call a function method after this method called like as follows:
      * <pre>
-     * whiteIncludeQueryBhv.<span style="color: #DD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
-     *     public void query(WhiteIncludeQueryCB cb) {
+     * whiteGearedCipherBhv.<span style="color: #DD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
+     *     public void query(WhiteGearedCipherCB cb) {
      *         cb.specify().<span style="color: #DD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
      *         cb.query().setBarName_PrefixSearch("S");
      *     }
@@ -368,17 +368,17 @@ public abstract class BsWhiteIncludeQueryBhv extends AbstractBehaviorWritable {
      * @param resultType The type of result. (NotNull)
      * @return The scalar function object to specify function for scalar value. (NotNull)
      */
-    public <RESULT> SLFunction<WhiteIncludeQueryCB, RESULT> scalarSelect(Class<RESULT> resultType) {
+    public <RESULT> SLFunction<WhiteGearedCipherCB, RESULT> scalarSelect(Class<RESULT> resultType) {
         return doScalarSelect(resultType, newMyConditionBean());
     }
 
-    protected <RESULT, CB extends WhiteIncludeQueryCB> SLFunction<CB, RESULT> doScalarSelect(Class<RESULT> tp, CB cb) {
+    protected <RESULT, CB extends WhiteGearedCipherCB> SLFunction<CB, RESULT> doScalarSelect(Class<RESULT> tp, CB cb) {
         assertObjectNotNull("resultType", tp); assertCBStateValid(cb);
         cb.xsetupForScalarSelect(); cb.getSqlClause().disableSelectIndex(); // for when you use union
         return createSLFunction(cb, tp);
     }
 
-    protected <RESULT, CB extends WhiteIncludeQueryCB> SLFunction<CB, RESULT> createSLFunction(CB cb, Class<RESULT> tp) {
+    protected <RESULT, CB extends WhiteGearedCipherCB> SLFunction<CB, RESULT> createSLFunction(CB cb, Class<RESULT> tp) {
         return new SLFunction<CB, RESULT>(cb, tp);
     }
 
@@ -403,13 +403,13 @@ public abstract class BsWhiteIncludeQueryBhv extends AbstractBehaviorWritable {
     //                                                                      Extract Column
     //                                                                      ==============
     /**
-     * Extract the value list of (single) primary key includeQueryId.
-     * @param whiteIncludeQueryList The list of whiteIncludeQuery. (NotNull, EmptyAllowed)
+     * Extract the value list of (single) primary key cipherId.
+     * @param whiteGearedCipherList The list of whiteGearedCipher. (NotNull, EmptyAllowed)
      * @return The list of the column value. (NotNull, EmptyAllowed, NotNullElement)
      */
-    public List<Long> extractIncludeQueryIdList(List<WhiteIncludeQuery> whiteIncludeQueryList) {
-        return helpExtractListInternally(whiteIncludeQueryList, new InternalExtractCallback<WhiteIncludeQuery, Long>() {
-            public Long getCV(WhiteIncludeQuery et) { return et.getIncludeQueryId(); }
+    public List<Long> extractCipherIdList(List<WhiteGearedCipher> whiteGearedCipherList) {
+        return helpExtractListInternally(whiteGearedCipherList, new InternalExtractCallback<WhiteGearedCipher, Long>() {
+            public Long getCV(WhiteGearedCipher et) { return et.getCipherId(); }
         });
     }
 
@@ -419,31 +419,31 @@ public abstract class BsWhiteIncludeQueryBhv extends AbstractBehaviorWritable {
     /**
      * Insert the entity modified-only. (DefaultConstraintsEnabled)
      * <pre>
-     * WhiteIncludeQuery whiteIncludeQuery = new WhiteIncludeQuery();
+     * WhiteGearedCipher whiteGearedCipher = new WhiteGearedCipher();
      * <span style="color: #3F7E5E">// if auto-increment, you don't need to set the PK value</span>
-     * whiteIncludeQuery.setFoo...(value);
-     * whiteIncludeQuery.setBar...(value);
+     * whiteGearedCipher.setFoo...(value);
+     * whiteGearedCipher.setBar...(value);
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
-     * <span style="color: #3F7E5E">//whiteIncludeQuery.setRegisterUser(value);</span>
-     * <span style="color: #3F7E5E">//whiteIncludeQuery.set...;</span>
-     * whiteIncludeQueryBhv.<span style="color: #DD4747">insert</span>(whiteIncludeQuery);
-     * ... = whiteIncludeQuery.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
+     * <span style="color: #3F7E5E">//whiteGearedCipher.setRegisterUser(value);</span>
+     * <span style="color: #3F7E5E">//whiteGearedCipher.set...;</span>
+     * whiteGearedCipherBhv.<span style="color: #DD4747">insert</span>(whiteGearedCipher);
+     * ... = whiteGearedCipher.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * <p>While, when the entity is created by select, all columns are registered.</p>
-     * @param whiteIncludeQuery The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
+     * @param whiteGearedCipher The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
      * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
-    public void insert(WhiteIncludeQuery whiteIncludeQuery) {
-        doInsert(whiteIncludeQuery, null);
+    public void insert(WhiteGearedCipher whiteGearedCipher) {
+        doInsert(whiteGearedCipher, null);
     }
 
-    protected void doInsert(WhiteIncludeQuery whiteIncludeQuery, InsertOption<WhiteIncludeQueryCB> op) {
-        assertObjectNotNull("whiteIncludeQuery", whiteIncludeQuery);
+    protected void doInsert(WhiteGearedCipher whiteGearedCipher, InsertOption<WhiteGearedCipherCB> op) {
+        assertObjectNotNull("whiteGearedCipher", whiteGearedCipher);
         prepareInsertOption(op);
-        delegateInsert(whiteIncludeQuery, op);
+        delegateInsert(whiteGearedCipher, op);
     }
 
-    protected void prepareInsertOption(InsertOption<WhiteIncludeQueryCB> op) {
+    protected void prepareInsertOption(InsertOption<WhiteGearedCipherCB> op) {
         if (op == null) { return; }
         assertInsertOptionStatus(op);
         if (op.hasSpecifiedInsertColumn()) {
@@ -460,37 +460,37 @@ public abstract class BsWhiteIncludeQueryBhv extends AbstractBehaviorWritable {
     /**
      * Update the entity modified-only. (ZeroUpdateException, NonExclusiveControl)
      * <pre>
-     * WhiteIncludeQuery whiteIncludeQuery = new WhiteIncludeQuery();
-     * whiteIncludeQuery.setPK...(value); <span style="color: #3F7E5E">// required</span>
-     * whiteIncludeQuery.setFoo...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
+     * WhiteGearedCipher whiteGearedCipher = new WhiteGearedCipher();
+     * whiteGearedCipher.setPK...(value); <span style="color: #3F7E5E">// required</span>
+     * whiteGearedCipher.setFoo...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
-     * <span style="color: #3F7E5E">//whiteIncludeQuery.setRegisterUser(value);</span>
-     * <span style="color: #3F7E5E">//whiteIncludeQuery.set...;</span>
+     * <span style="color: #3F7E5E">//whiteGearedCipher.setRegisterUser(value);</span>
+     * <span style="color: #3F7E5E">//whiteGearedCipher.set...;</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * whiteIncludeQuery.<span style="color: #DD4747">setVersionNo</span>(value);
+     * whiteGearedCipher.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
-     *     whiteIncludeQueryBhv.<span style="color: #DD4747">update</span>(whiteIncludeQuery);
+     *     whiteGearedCipherBhv.<span style="color: #DD4747">update</span>(whiteGearedCipher);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
-     * @param whiteIncludeQuery The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
+     * @param whiteGearedCipher The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
-    public void update(final WhiteIncludeQuery whiteIncludeQuery) {
-        doUpdate(whiteIncludeQuery, null);
+    public void update(final WhiteGearedCipher whiteGearedCipher) {
+        doUpdate(whiteGearedCipher, null);
     }
 
-    protected void doUpdate(WhiteIncludeQuery whiteIncludeQuery, final UpdateOption<WhiteIncludeQueryCB> op) {
-        assertObjectNotNull("whiteIncludeQuery", whiteIncludeQuery);
+    protected void doUpdate(WhiteGearedCipher whiteGearedCipher, final UpdateOption<WhiteGearedCipherCB> op) {
+        assertObjectNotNull("whiteGearedCipher", whiteGearedCipher);
         prepareUpdateOption(op);
-        helpUpdateInternally(whiteIncludeQuery, new InternalUpdateCallback<WhiteIncludeQuery>() {
-            public int callbackDelegateUpdate(WhiteIncludeQuery et) { return delegateUpdate(et, op); } });
+        helpUpdateInternally(whiteGearedCipher, new InternalUpdateCallback<WhiteGearedCipher>() {
+            public int callbackDelegateUpdate(WhiteGearedCipher et) { return delegateUpdate(et, op); } });
     }
 
-    protected void prepareUpdateOption(UpdateOption<WhiteIncludeQueryCB> op) {
+    protected void prepareUpdateOption(UpdateOption<WhiteGearedCipherCB> op) {
         if (op == null) { return; }
         assertUpdateOptionStatus(op);
         if (op.hasSelfSpecification()) {
@@ -501,14 +501,14 @@ public abstract class BsWhiteIncludeQueryBhv extends AbstractBehaviorWritable {
         }
     }
 
-    protected WhiteIncludeQueryCB createCBForVaryingUpdate() {
-        WhiteIncludeQueryCB cb = newMyConditionBean();
+    protected WhiteGearedCipherCB createCBForVaryingUpdate() {
+        WhiteGearedCipherCB cb = newMyConditionBean();
         cb.xsetupForVaryingUpdate();
         return cb;
     }
 
-    protected WhiteIncludeQueryCB createCBForSpecifiedUpdate() {
-        WhiteIncludeQueryCB cb = newMyConditionBean();
+    protected WhiteGearedCipherCB createCBForSpecifiedUpdate() {
+        WhiteGearedCipherCB cb = newMyConditionBean();
         cb.xsetupForSpecifiedUpdate();
         return cb;
     }
@@ -528,21 +528,21 @@ public abstract class BsWhiteIncludeQueryBhv extends AbstractBehaviorWritable {
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br />
      * <p><span style="color: #DD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
-     * @param whiteIncludeQuery The entity of insert or update target. (NotNull)
+     * @param whiteGearedCipher The entity of insert or update target. (NotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
-    public void insertOrUpdate(WhiteIncludeQuery whiteIncludeQuery) {
-        doInesrtOrUpdate(whiteIncludeQuery, null, null);
+    public void insertOrUpdate(WhiteGearedCipher whiteGearedCipher) {
+        doInesrtOrUpdate(whiteGearedCipher, null, null);
     }
 
-    protected void doInesrtOrUpdate(WhiteIncludeQuery whiteIncludeQuery, final InsertOption<WhiteIncludeQueryCB> iop, final UpdateOption<WhiteIncludeQueryCB> uop) {
-        helpInsertOrUpdateInternally(whiteIncludeQuery, new InternalInsertOrUpdateCallback<WhiteIncludeQuery, WhiteIncludeQueryCB>() {
-            public void callbackInsert(WhiteIncludeQuery et) { doInsert(et, iop); }
-            public void callbackUpdate(WhiteIncludeQuery et) { doUpdate(et, uop); }
-            public WhiteIncludeQueryCB callbackNewMyConditionBean() { return newMyConditionBean(); }
-            public int callbackSelectCount(WhiteIncludeQueryCB cb) { return selectCount(cb); }
+    protected void doInesrtOrUpdate(WhiteGearedCipher whiteGearedCipher, final InsertOption<WhiteGearedCipherCB> iop, final UpdateOption<WhiteGearedCipherCB> uop) {
+        helpInsertOrUpdateInternally(whiteGearedCipher, new InternalInsertOrUpdateCallback<WhiteGearedCipher, WhiteGearedCipherCB>() {
+            public void callbackInsert(WhiteGearedCipher et) { doInsert(et, iop); }
+            public void callbackUpdate(WhiteGearedCipher et) { doUpdate(et, uop); }
+            public WhiteGearedCipherCB callbackNewMyConditionBean() { return newMyConditionBean(); }
+            public int callbackSelectCount(WhiteGearedCipherCB cb) { return selectCount(cb); }
         });
     }
 
@@ -550,8 +550,8 @@ public abstract class BsWhiteIncludeQueryBhv extends AbstractBehaviorWritable {
     protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
         if (iop == null && uop == null) { insertOrUpdate(downcast(et)); }
         else {
-            iop = iop != null ? iop : new InsertOption<WhiteIncludeQueryCB>();
-            uop = uop != null ? uop : new UpdateOption<WhiteIncludeQueryCB>();
+            iop = iop != null ? iop : new InsertOption<WhiteGearedCipherCB>();
+            uop = uop != null ? uop : new UpdateOption<WhiteGearedCipherCB>();
             varyingInsertOrUpdate(downcast(et), downcast(iop), downcast(uop));
         }
     }
@@ -564,32 +564,32 @@ public abstract class BsWhiteIncludeQueryBhv extends AbstractBehaviorWritable {
     /**
      * Delete the entity. (ZeroUpdateException, NonExclusiveControl)
      * <pre>
-     * WhiteIncludeQuery whiteIncludeQuery = new WhiteIncludeQuery();
-     * whiteIncludeQuery.setPK...(value); <span style="color: #3F7E5E">// required</span>
+     * WhiteGearedCipher whiteGearedCipher = new WhiteGearedCipher();
+     * whiteGearedCipher.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * whiteIncludeQuery.<span style="color: #DD4747">setVersionNo</span>(value);
+     * whiteGearedCipher.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
-     *     whiteIncludeQueryBhv.<span style="color: #DD4747">delete</span>(whiteIncludeQuery);
+     *     whiteGearedCipherBhv.<span style="color: #DD4747">delete</span>(whiteGearedCipher);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
-     * @param whiteIncludeQuery The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
+     * @param whiteGearedCipher The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      */
-    public void delete(WhiteIncludeQuery whiteIncludeQuery) {
-        doDelete(whiteIncludeQuery, null);
+    public void delete(WhiteGearedCipher whiteGearedCipher) {
+        doDelete(whiteGearedCipher, null);
     }
 
-    protected void doDelete(WhiteIncludeQuery whiteIncludeQuery, final DeleteOption<WhiteIncludeQueryCB> op) {
-        assertObjectNotNull("whiteIncludeQuery", whiteIncludeQuery);
+    protected void doDelete(WhiteGearedCipher whiteGearedCipher, final DeleteOption<WhiteGearedCipherCB> op) {
+        assertObjectNotNull("whiteGearedCipher", whiteGearedCipher);
         prepareDeleteOption(op);
-        helpDeleteInternally(whiteIncludeQuery, new InternalDeleteCallback<WhiteIncludeQuery>() {
-            public int callbackDelegateDelete(WhiteIncludeQuery et) { return delegateDelete(et, op); } });
+        helpDeleteInternally(whiteGearedCipher, new InternalDeleteCallback<WhiteGearedCipher>() {
+            public int callbackDelegateDelete(WhiteGearedCipher et) { return delegateDelete(et, op); } });
     }
 
-    protected void prepareDeleteOption(DeleteOption<WhiteIncludeQueryCB> op) {
+    protected void prepareDeleteOption(DeleteOption<WhiteGearedCipherCB> op) {
         if (op == null) { return; }
         assertDeleteOptionStatus(op);
     }
@@ -614,38 +614,38 @@ public abstract class BsWhiteIncludeQueryBhv extends AbstractBehaviorWritable {
      * <p><span style="color: #DD4747; font-size: 120%">The columns of least common multiple are registered like this:</span></p>
      * <pre>
      * for (... : ...) {
-     *     WhiteIncludeQuery whiteIncludeQuery = new WhiteIncludeQuery();
-     *     whiteIncludeQuery.setFooName("foo");
+     *     WhiteGearedCipher whiteGearedCipher = new WhiteGearedCipher();
+     *     whiteGearedCipher.setFooName("foo");
      *     if (...) {
-     *         whiteIncludeQuery.setFooPrice(123);
+     *         whiteGearedCipher.setFooPrice(123);
      *     }
      *     <span style="color: #3F7E5E">// FOO_NAME and FOO_PRICE (and record meta columns) are registered</span>
      *     <span style="color: #3F7E5E">// FOO_PRICE not-called in any entities are registered as null without default value</span>
      *     <span style="color: #3F7E5E">// columns not-called in all entities are registered as null or default value</span>
-     *     whiteIncludeQueryList.add(whiteIncludeQuery);
+     *     whiteGearedCipherList.add(whiteGearedCipher);
      * }
-     * whiteIncludeQueryBhv.<span style="color: #DD4747">batchInsert</span>(whiteIncludeQueryList);
+     * whiteGearedCipherBhv.<span style="color: #DD4747">batchInsert</span>(whiteGearedCipherList);
      * </pre>
      * <p>While, when the entities are created by select, all columns are registered.</p>
      * <p>And if the table has an identity, entities after the process don't have incremented values.
      * (When you use the (normal) insert(), you can get the incremented value from your entity)</p>
-     * @param whiteIncludeQueryList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNullAllowed: when auto-increment)
+     * @param whiteGearedCipherList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNullAllowed: when auto-increment)
      * @return The array of inserted count. (NotNull, EmptyAllowed)
      */
-    public int[] batchInsert(List<WhiteIncludeQuery> whiteIncludeQueryList) {
-        InsertOption<WhiteIncludeQueryCB> op = createInsertUpdateOption();
-        return doBatchInsert(whiteIncludeQueryList, op);
+    public int[] batchInsert(List<WhiteGearedCipher> whiteGearedCipherList) {
+        InsertOption<WhiteGearedCipherCB> op = createInsertUpdateOption();
+        return doBatchInsert(whiteGearedCipherList, op);
     }
 
-    protected int[] doBatchInsert(List<WhiteIncludeQuery> whiteIncludeQueryList, InsertOption<WhiteIncludeQueryCB> op) {
-        assertObjectNotNull("whiteIncludeQueryList", whiteIncludeQueryList);
-        prepareBatchInsertOption(whiteIncludeQueryList, op);
-        return delegateBatchInsert(whiteIncludeQueryList, op);
+    protected int[] doBatchInsert(List<WhiteGearedCipher> whiteGearedCipherList, InsertOption<WhiteGearedCipherCB> op) {
+        assertObjectNotNull("whiteGearedCipherList", whiteGearedCipherList);
+        prepareBatchInsertOption(whiteGearedCipherList, op);
+        return delegateBatchInsert(whiteGearedCipherList, op);
     }
 
-    protected void prepareBatchInsertOption(List<WhiteIncludeQuery> whiteIncludeQueryList, InsertOption<WhiteIncludeQueryCB> op) {
+    protected void prepareBatchInsertOption(List<WhiteGearedCipher> whiteGearedCipherList, InsertOption<WhiteGearedCipherCB> op) {
         op.xallowInsertColumnModifiedPropertiesFragmented();
-        op.xacceptInsertColumnModifiedPropertiesIfNeeds(whiteIncludeQueryList);
+        op.xacceptInsertColumnModifiedPropertiesIfNeeds(whiteGearedCipherList);
         prepareInsertOption(op);
     }
 
@@ -661,37 +661,37 @@ public abstract class BsWhiteIncludeQueryBhv extends AbstractBehaviorWritable {
      * <span style="color: #DD4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
      * <pre>
      * for (... : ...) {
-     *     WhiteIncludeQuery whiteIncludeQuery = new WhiteIncludeQuery();
-     *     whiteIncludeQuery.setFooName("foo");
+     *     WhiteGearedCipher whiteGearedCipher = new WhiteGearedCipher();
+     *     whiteGearedCipher.setFooName("foo");
      *     if (...) {
-     *         whiteIncludeQuery.setFooPrice(123);
+     *         whiteGearedCipher.setFooPrice(123);
      *     } else {
-     *         whiteIncludeQuery.setFooPrice(null); <span style="color: #3F7E5E">// updated as null</span>
-     *         <span style="color: #3F7E5E">//whiteIncludeQuery.setFooDate(...); // *not allowed, fragmented</span>
+     *         whiteGearedCipher.setFooPrice(null); <span style="color: #3F7E5E">// updated as null</span>
+     *         <span style="color: #3F7E5E">//whiteGearedCipher.setFooDate(...); // *not allowed, fragmented</span>
      *     }
      *     <span style="color: #3F7E5E">// FOO_NAME and FOO_PRICE (and record meta columns) are updated</span>
      *     <span style="color: #3F7E5E">// (others are not updated: their values are kept)</span>
-     *     whiteIncludeQueryList.add(whiteIncludeQuery);
+     *     whiteGearedCipherList.add(whiteGearedCipher);
      * }
-     * whiteIncludeQueryBhv.<span style="color: #DD4747">batchUpdate</span>(whiteIncludeQueryList);
+     * whiteGearedCipherBhv.<span style="color: #DD4747">batchUpdate</span>(whiteGearedCipherList);
      * </pre>
-     * @param whiteIncludeQueryList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
+     * @param whiteGearedCipherList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
-    public int[] batchUpdate(List<WhiteIncludeQuery> whiteIncludeQueryList) {
-        UpdateOption<WhiteIncludeQueryCB> op = createPlainUpdateOption();
-        return doBatchUpdate(whiteIncludeQueryList, op);
+    public int[] batchUpdate(List<WhiteGearedCipher> whiteGearedCipherList) {
+        UpdateOption<WhiteGearedCipherCB> op = createPlainUpdateOption();
+        return doBatchUpdate(whiteGearedCipherList, op);
     }
 
-    protected int[] doBatchUpdate(List<WhiteIncludeQuery> whiteIncludeQueryList, UpdateOption<WhiteIncludeQueryCB> op) {
-        assertObjectNotNull("whiteIncludeQueryList", whiteIncludeQueryList);
-        prepareBatchUpdateOption(whiteIncludeQueryList, op);
-        return delegateBatchUpdate(whiteIncludeQueryList, op);
+    protected int[] doBatchUpdate(List<WhiteGearedCipher> whiteGearedCipherList, UpdateOption<WhiteGearedCipherCB> op) {
+        assertObjectNotNull("whiteGearedCipherList", whiteGearedCipherList);
+        prepareBatchUpdateOption(whiteGearedCipherList, op);
+        return delegateBatchUpdate(whiteGearedCipherList, op);
     }
 
-    protected void prepareBatchUpdateOption(List<WhiteIncludeQuery> whiteIncludeQueryList, UpdateOption<WhiteIncludeQueryCB> op) {
-        op.xacceptUpdateColumnModifiedPropertiesIfNeeds(whiteIncludeQueryList);
+    protected void prepareBatchUpdateOption(List<WhiteGearedCipher> whiteGearedCipherList, UpdateOption<WhiteGearedCipherCB> op) {
+        op.xacceptUpdateColumnModifiedPropertiesIfNeeds(whiteGearedCipherList);
         prepareUpdateOption(op);
     }
 
@@ -706,15 +706,15 @@ public abstract class BsWhiteIncludeQueryBhv extends AbstractBehaviorWritable {
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * <pre>
      * <span style="color: #3F7E5E">// e.g. update two columns only</span>
-     * whiteIncludeQueryBhv.<span style="color: #DD4747">batchUpdate</span>(whiteIncludeQueryList, new SpecifyQuery<WhiteIncludeQueryCB>() {
-     *     public void specify(WhiteIncludeQueryCB cb) { <span style="color: #3F7E5E">// the two only updated</span>
+     * whiteGearedCipherBhv.<span style="color: #DD4747">batchUpdate</span>(whiteGearedCipherList, new SpecifyQuery<WhiteGearedCipherCB>() {
+     *     public void specify(WhiteGearedCipherCB cb) { <span style="color: #3F7E5E">// the two only updated</span>
      *         cb.specify().<span style="color: #DD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
      *         cb.specify().<span style="color: #DD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
      *     }
      * });
      * <span style="color: #3F7E5E">// e.g. update every column in the table</span>
-     * whiteIncludeQueryBhv.<span style="color: #DD4747">batchUpdate</span>(whiteIncludeQueryList, new SpecifyQuery<WhiteIncludeQueryCB>() {
-     *     public void specify(WhiteIncludeQueryCB cb) { <span style="color: #3F7E5E">// all columns are updated</span>
+     * whiteGearedCipherBhv.<span style="color: #DD4747">batchUpdate</span>(whiteGearedCipherList, new SpecifyQuery<WhiteGearedCipherCB>() {
+     *     public void specify(WhiteGearedCipherCB cb) { <span style="color: #3F7E5E">// all columns are updated</span>
      *         cb.specify().<span style="color: #DD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
      *     }
      * });
@@ -724,13 +724,13 @@ public abstract class BsWhiteIncludeQueryBhv extends AbstractBehaviorWritable {
      * and an optimistic lock column because they are specified implicitly.</p>
      * <p>And you should specify columns that are modified in any entities (at least one entity).
      * But if you specify every column, it has no check.</p>
-     * @param whiteIncludeQueryList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
+     * @param whiteGearedCipherList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @param updateColumnSpec The specification of update columns. (NotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
-    public int[] batchUpdate(List<WhiteIncludeQuery> whiteIncludeQueryList, SpecifyQuery<WhiteIncludeQueryCB> updateColumnSpec) {
-        return doBatchUpdate(whiteIncludeQueryList, createSpecifiedUpdateOption(updateColumnSpec));
+    public int[] batchUpdate(List<WhiteGearedCipher> whiteGearedCipherList, SpecifyQuery<WhiteGearedCipherCB> updateColumnSpec) {
+        return doBatchUpdate(whiteGearedCipherList, createSpecifiedUpdateOption(updateColumnSpec));
     }
 
     @Override
@@ -741,18 +741,18 @@ public abstract class BsWhiteIncludeQueryBhv extends AbstractBehaviorWritable {
     /**
      * Batch-delete the entity list. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement.
-     * @param whiteIncludeQueryList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
+     * @param whiteGearedCipherList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of deleted count. (NotNull, EmptyAllowed)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
-    public int[] batchDelete(List<WhiteIncludeQuery> whiteIncludeQueryList) {
-        return doBatchDelete(whiteIncludeQueryList, null);
+    public int[] batchDelete(List<WhiteGearedCipher> whiteGearedCipherList) {
+        return doBatchDelete(whiteGearedCipherList, null);
     }
 
-    protected int[] doBatchDelete(List<WhiteIncludeQuery> whiteIncludeQueryList, DeleteOption<WhiteIncludeQueryCB> op) {
-        assertObjectNotNull("whiteIncludeQueryList", whiteIncludeQueryList);
+    protected int[] doBatchDelete(List<WhiteGearedCipher> whiteGearedCipherList, DeleteOption<WhiteGearedCipherCB> op) {
+        assertObjectNotNull("whiteGearedCipherList", whiteGearedCipherList);
         prepareDeleteOption(op);
-        return delegateBatchDelete(whiteIncludeQueryList, op);
+        return delegateBatchDelete(whiteGearedCipherList, op);
     }
 
     @Override
@@ -772,8 +772,8 @@ public abstract class BsWhiteIncludeQueryBhv extends AbstractBehaviorWritable {
     /**
      * Insert the several entities by query (modified-only for fixed value).
      * <pre>
-     * whiteIncludeQueryBhv.<span style="color: #DD4747">queryInsert</span>(new QueryInsertSetupper&lt;WhiteIncludeQuery, WhiteIncludeQueryCB&gt;() {
-     *     public ConditionBean setup(whiteIncludeQuery entity, WhiteIncludeQueryCB intoCB) {
+     * whiteGearedCipherBhv.<span style="color: #DD4747">queryInsert</span>(new QueryInsertSetupper&lt;WhiteGearedCipher, WhiteGearedCipherCB&gt;() {
+     *     public ConditionBean setup(whiteGearedCipher entity, WhiteGearedCipherCB intoCB) {
      *         FooCB cb = FooCB();
      *         cb.setupSelect_Bar();
      *
@@ -795,20 +795,20 @@ public abstract class BsWhiteIncludeQueryBhv extends AbstractBehaviorWritable {
      * @param setupper The setup-per of query-insert. (NotNull)
      * @return The inserted count.
      */
-    public int queryInsert(QueryInsertSetupper<WhiteIncludeQuery, WhiteIncludeQueryCB> setupper) {
+    public int queryInsert(QueryInsertSetupper<WhiteGearedCipher, WhiteGearedCipherCB> setupper) {
         return doQueryInsert(setupper, null);
     }
 
-    protected int doQueryInsert(QueryInsertSetupper<WhiteIncludeQuery, WhiteIncludeQueryCB> sp, InsertOption<WhiteIncludeQueryCB> op) {
+    protected int doQueryInsert(QueryInsertSetupper<WhiteGearedCipher, WhiteGearedCipherCB> sp, InsertOption<WhiteGearedCipherCB> op) {
         assertObjectNotNull("setupper", sp);
         prepareInsertOption(op);
-        WhiteIncludeQuery e = new WhiteIncludeQuery();
-        WhiteIncludeQueryCB cb = createCBForQueryInsert();
+        WhiteGearedCipher e = new WhiteGearedCipher();
+        WhiteGearedCipherCB cb = createCBForQueryInsert();
         return delegateQueryInsert(e, cb, sp.setup(e, cb), op);
     }
 
-    protected WhiteIncludeQueryCB createCBForQueryInsert() {
-        WhiteIncludeQueryCB cb = newMyConditionBean();
+    protected WhiteGearedCipherCB createCBForQueryInsert() {
+        WhiteGearedCipherCB cb = newMyConditionBean();
         cb.xsetupForQueryInsert();
         return cb;
     }
@@ -822,57 +822,57 @@ public abstract class BsWhiteIncludeQueryBhv extends AbstractBehaviorWritable {
     /**
      * Update the several entities by query non-strictly modified-only. (NonExclusiveControl)
      * <pre>
-     * WhiteIncludeQuery whiteIncludeQuery = new WhiteIncludeQuery();
+     * WhiteGearedCipher whiteGearedCipher = new WhiteGearedCipher();
      * <span style="color: #3F7E5E">// you don't need to set PK value</span>
-     * <span style="color: #3F7E5E">//whiteIncludeQuery.setPK...(value);</span>
-     * whiteIncludeQuery.setFoo...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
+     * <span style="color: #3F7E5E">//whiteGearedCipher.setPK...(value);</span>
+     * whiteGearedCipher.setFoo...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
-     * <span style="color: #3F7E5E">//whiteIncludeQuery.setRegisterUser(value);</span>
-     * <span style="color: #3F7E5E">//whiteIncludeQuery.set...;</span>
+     * <span style="color: #3F7E5E">//whiteGearedCipher.setRegisterUser(value);</span>
+     * <span style="color: #3F7E5E">//whiteGearedCipher.set...;</span>
      * <span style="color: #3F7E5E">// you don't need to set a value of exclusive control column</span>
      * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
-     * <span style="color: #3F7E5E">//whiteIncludeQuery.setVersionNo(value);</span>
-     * WhiteIncludeQueryCB cb = new WhiteIncludeQueryCB();
+     * <span style="color: #3F7E5E">//whiteGearedCipher.setVersionNo(value);</span>
+     * WhiteGearedCipherCB cb = new WhiteGearedCipherCB();
      * cb.query().setFoo...(value);
-     * whiteIncludeQueryBhv.<span style="color: #DD4747">queryUpdate</span>(whiteIncludeQuery, cb);
+     * whiteGearedCipherBhv.<span style="color: #DD4747">queryUpdate</span>(whiteGearedCipher, cb);
      * </pre>
-     * @param whiteIncludeQuery The entity that contains update values. (NotNull, PrimaryKeyNullAllowed)
-     * @param cb The condition-bean of WhiteIncludeQuery. (NotNull)
+     * @param whiteGearedCipher The entity that contains update values. (NotNull, PrimaryKeyNullAllowed)
+     * @param cb The condition-bean of WhiteGearedCipher. (NotNull)
      * @return The updated count.
      * @exception NonQueryUpdateNotAllowedException When the query has no condition.
      */
-    public int queryUpdate(WhiteIncludeQuery whiteIncludeQuery, WhiteIncludeQueryCB cb) {
-        return doQueryUpdate(whiteIncludeQuery, cb, null);
+    public int queryUpdate(WhiteGearedCipher whiteGearedCipher, WhiteGearedCipherCB cb) {
+        return doQueryUpdate(whiteGearedCipher, cb, null);
     }
 
-    protected int doQueryUpdate(WhiteIncludeQuery whiteIncludeQuery, WhiteIncludeQueryCB cb, UpdateOption<WhiteIncludeQueryCB> op) {
-        assertObjectNotNull("whiteIncludeQuery", whiteIncludeQuery); assertCBStateValid(cb);
+    protected int doQueryUpdate(WhiteGearedCipher whiteGearedCipher, WhiteGearedCipherCB cb, UpdateOption<WhiteGearedCipherCB> op) {
+        assertObjectNotNull("whiteGearedCipher", whiteGearedCipher); assertCBStateValid(cb);
         prepareUpdateOption(op);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(whiteIncludeQuery, cb, op) : 0;
+        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(whiteGearedCipher, cb, op) : 0;
     }
 
     @Override
     protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op) {
-        if (op == null) { return queryUpdate(downcast(et), (WhiteIncludeQueryCB)cb); }
-        else { return varyingQueryUpdate(downcast(et), (WhiteIncludeQueryCB)cb, downcast(op)); }
+        if (op == null) { return queryUpdate(downcast(et), (WhiteGearedCipherCB)cb); }
+        else { return varyingQueryUpdate(downcast(et), (WhiteGearedCipherCB)cb, downcast(op)); }
     }
 
     /**
      * Delete the several entities by query. (NonExclusiveControl)
      * <pre>
-     * WhiteIncludeQueryCB cb = new WhiteIncludeQueryCB();
+     * WhiteGearedCipherCB cb = new WhiteGearedCipherCB();
      * cb.query().setFoo...(value);
-     * whiteIncludeQueryBhv.<span style="color: #DD4747">queryDelete</span>(whiteIncludeQuery, cb);
+     * whiteGearedCipherBhv.<span style="color: #DD4747">queryDelete</span>(whiteGearedCipher, cb);
      * </pre>
-     * @param cb The condition-bean of WhiteIncludeQuery. (NotNull)
+     * @param cb The condition-bean of WhiteGearedCipher. (NotNull)
      * @return The deleted count.
      * @exception NonQueryDeleteNotAllowedException When the query has no condition.
      */
-    public int queryDelete(WhiteIncludeQueryCB cb) {
+    public int queryDelete(WhiteGearedCipherCB cb) {
         return doQueryDelete(cb, null);
     }
 
-    protected int doQueryDelete(WhiteIncludeQueryCB cb, DeleteOption<WhiteIncludeQueryCB> op) {
+    protected int doQueryDelete(WhiteGearedCipherCB cb, DeleteOption<WhiteGearedCipherCB> op) {
         assertCBStateValid(cb);
         prepareDeleteOption(op);
         return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryDelete(cb, op) : 0;
@@ -880,8 +880,8 @@ public abstract class BsWhiteIncludeQueryBhv extends AbstractBehaviorWritable {
 
     @Override
     protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) {
-        if (op == null) { return queryDelete((WhiteIncludeQueryCB)cb); }
-        else { return varyingQueryDelete((WhiteIncludeQueryCB)cb, downcast(op)); }
+        if (op == null) { return queryDelete((WhiteGearedCipherCB)cb); }
+        else { return varyingQueryDelete((WhiteGearedCipherCB)cb, downcast(op)); }
     }
 
     // ===================================================================================
@@ -895,23 +895,23 @@ public abstract class BsWhiteIncludeQueryBhv extends AbstractBehaviorWritable {
      * For example, disableCommonColumnAutoSetup(), disablePrimaryKeyIdentity(). <br />
      * Other specifications are same as insert(entity).
      * <pre>
-     * WhiteIncludeQuery whiteIncludeQuery = new WhiteIncludeQuery();
+     * WhiteGearedCipher whiteGearedCipher = new WhiteGearedCipher();
      * <span style="color: #3F7E5E">// if auto-increment, you don't need to set the PK value</span>
-     * whiteIncludeQuery.setFoo...(value);
-     * whiteIncludeQuery.setBar...(value);
-     * InsertOption<WhiteIncludeQueryCB> option = new InsertOption<WhiteIncludeQueryCB>();
+     * whiteGearedCipher.setFoo...(value);
+     * whiteGearedCipher.setBar...(value);
+     * InsertOption<WhiteGearedCipherCB> option = new InsertOption<WhiteGearedCipherCB>();
      * <span style="color: #3F7E5E">// you can insert by your values for common columns</span>
      * option.disableCommonColumnAutoSetup();
-     * whiteIncludeQueryBhv.<span style="color: #DD4747">varyingInsert</span>(whiteIncludeQuery, option);
-     * ... = whiteIncludeQuery.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
+     * whiteGearedCipherBhv.<span style="color: #DD4747">varyingInsert</span>(whiteGearedCipher, option);
+     * ... = whiteGearedCipher.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
-     * @param whiteIncludeQuery The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
+     * @param whiteGearedCipher The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
      * @param option The option of insert for varying requests. (NotNull)
      * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
-    public void varyingInsert(WhiteIncludeQuery whiteIncludeQuery, InsertOption<WhiteIncludeQueryCB> option) {
+    public void varyingInsert(WhiteGearedCipher whiteGearedCipher, InsertOption<WhiteGearedCipherCB> option) {
         assertInsertOptionNotNull(option);
-        doInsert(whiteIncludeQuery, option);
+        doInsert(whiteGearedCipher, option);
     }
 
     /**
@@ -919,62 +919,62 @@ public abstract class BsWhiteIncludeQueryBhv extends AbstractBehaviorWritable {
      * For example, self(selfCalculationSpecification), specify(updateColumnSpecification), disableCommonColumnAutoSetup(). <br />
      * Other specifications are same as update(entity).
      * <pre>
-     * WhiteIncludeQuery whiteIncludeQuery = new WhiteIncludeQuery();
-     * whiteIncludeQuery.setPK...(value); <span style="color: #3F7E5E">// required</span>
-     * whiteIncludeQuery.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
+     * WhiteGearedCipher whiteGearedCipher = new WhiteGearedCipher();
+     * whiteGearedCipher.setPK...(value); <span style="color: #3F7E5E">// required</span>
+     * whiteGearedCipher.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
-     * whiteIncludeQuery.<span style="color: #DD4747">setVersionNo</span>(value);
+     * whiteGearedCipher.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     <span style="color: #3F7E5E">// you can update by self calculation values</span>
-     *     UpdateOption&lt;WhiteIncludeQueryCB&gt; option = new UpdateOption&lt;WhiteIncludeQueryCB&gt;();
-     *     option.self(new SpecifyQuery&lt;WhiteIncludeQueryCB&gt;() {
-     *         public void specify(WhiteIncludeQueryCB cb) {
+     *     UpdateOption&lt;WhiteGearedCipherCB&gt; option = new UpdateOption&lt;WhiteGearedCipherCB&gt;();
+     *     option.self(new SpecifyQuery&lt;WhiteGearedCipherCB&gt;() {
+     *         public void specify(WhiteGearedCipherCB cb) {
      *             cb.specify().<span style="color: #DD4747">columnXxxCount()</span>;
      *         }
      *     }).plus(1); <span style="color: #3F7E5E">// XXX_COUNT = XXX_COUNT + 1</span>
-     *     whiteIncludeQueryBhv.<span style="color: #DD4747">varyingUpdate</span>(whiteIncludeQuery, option);
+     *     whiteGearedCipherBhv.<span style="color: #DD4747">varyingUpdate</span>(whiteGearedCipher, option);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
-     * @param whiteIncludeQuery The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
+     * @param whiteGearedCipher The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @param option The option of update for varying requests. (NotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
-    public void varyingUpdate(WhiteIncludeQuery whiteIncludeQuery, UpdateOption<WhiteIncludeQueryCB> option) {
+    public void varyingUpdate(WhiteGearedCipher whiteGearedCipher, UpdateOption<WhiteGearedCipherCB> option) {
         assertUpdateOptionNotNull(option);
-        doUpdate(whiteIncludeQuery, option);
+        doUpdate(whiteGearedCipher, option);
     }
 
     /**
      * Insert or update the entity with varying requests. (ExclusiveControl: when update) <br />
      * Other specifications are same as insertOrUpdate(entity).
-     * @param whiteIncludeQuery The entity of insert or update target. (NotNull)
+     * @param whiteGearedCipher The entity of insert or update target. (NotNull)
      * @param insertOption The option of insert for varying requests. (NotNull)
      * @param updateOption The option of update for varying requests. (NotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
-    public void varyingInsertOrUpdate(WhiteIncludeQuery whiteIncludeQuery, InsertOption<WhiteIncludeQueryCB> insertOption, UpdateOption<WhiteIncludeQueryCB> updateOption) {
+    public void varyingInsertOrUpdate(WhiteGearedCipher whiteGearedCipher, InsertOption<WhiteGearedCipherCB> insertOption, UpdateOption<WhiteGearedCipherCB> updateOption) {
         assertInsertOptionNotNull(insertOption); assertUpdateOptionNotNull(updateOption);
-        doInesrtOrUpdate(whiteIncludeQuery, insertOption, updateOption);
+        doInesrtOrUpdate(whiteGearedCipher, insertOption, updateOption);
     }
 
     /**
      * Delete the entity with varying requests. (ZeroUpdateException, NonExclusiveControl) <br />
      * Now a valid option does not exist. <br />
      * Other specifications are same as delete(entity).
-     * @param whiteIncludeQuery The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
+     * @param whiteGearedCipher The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
      * @param option The option of update for varying requests. (NotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      */
-    public void varyingDelete(WhiteIncludeQuery whiteIncludeQuery, DeleteOption<WhiteIncludeQueryCB> option) {
+    public void varyingDelete(WhiteGearedCipher whiteGearedCipher, DeleteOption<WhiteGearedCipherCB> option) {
         assertDeleteOptionNotNull(option);
-        doDelete(whiteIncludeQuery, option);
+        doDelete(whiteGearedCipher, option);
     }
 
     // -----------------------------------------------------
@@ -985,13 +985,13 @@ public abstract class BsWhiteIncludeQueryBhv extends AbstractBehaviorWritable {
      * For example, disableCommonColumnAutoSetup()
      * , disablePrimaryKeyIdentity(), limitBatchInsertLogging(). <br />
      * Other specifications are same as batchInsert(entityList).
-     * @param whiteIncludeQueryList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
+     * @param whiteGearedCipherList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @param option The option of insert for varying requests. (NotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
      */
-    public int[] varyingBatchInsert(List<WhiteIncludeQuery> whiteIncludeQueryList, InsertOption<WhiteIncludeQueryCB> option) {
+    public int[] varyingBatchInsert(List<WhiteGearedCipher> whiteGearedCipherList, InsertOption<WhiteGearedCipherCB> option) {
         assertInsertOptionNotNull(option);
-        return doBatchInsert(whiteIncludeQueryList, option);
+        return doBatchInsert(whiteGearedCipherList, option);
     }
 
     /**
@@ -999,26 +999,26 @@ public abstract class BsWhiteIncludeQueryBhv extends AbstractBehaviorWritable {
      * For example, self(selfCalculationSpecification), specify(updateColumnSpecification)
      * , disableCommonColumnAutoSetup(), limitBatchUpdateLogging(). <br />
      * Other specifications are same as batchUpdate(entityList).
-     * @param whiteIncludeQueryList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
+     * @param whiteGearedCipherList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @param option The option of update for varying requests. (NotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
      */
-    public int[] varyingBatchUpdate(List<WhiteIncludeQuery> whiteIncludeQueryList, UpdateOption<WhiteIncludeQueryCB> option) {
+    public int[] varyingBatchUpdate(List<WhiteGearedCipher> whiteGearedCipherList, UpdateOption<WhiteGearedCipherCB> option) {
         assertUpdateOptionNotNull(option);
-        return doBatchUpdate(whiteIncludeQueryList, option);
+        return doBatchUpdate(whiteGearedCipherList, option);
     }
 
     /**
      * Batch-delete the list with varying requests. <br />
      * For example, limitBatchDeleteLogging(). <br />
      * Other specifications are same as batchDelete(entityList).
-     * @param whiteIncludeQueryList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
+     * @param whiteGearedCipherList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @param option The option of delete for varying requests. (NotNull)
      * @return The array of deleted count. (NotNull, EmptyAllowed)
      */
-    public int[] varyingBatchDelete(List<WhiteIncludeQuery> whiteIncludeQueryList, DeleteOption<WhiteIncludeQueryCB> option) {
+    public int[] varyingBatchDelete(List<WhiteGearedCipher> whiteGearedCipherList, DeleteOption<WhiteGearedCipherCB> option) {
         assertDeleteOptionNotNull(option);
-        return doBatchDelete(whiteIncludeQueryList, option);
+        return doBatchDelete(whiteGearedCipherList, option);
     }
 
     // -----------------------------------------------------
@@ -1032,7 +1032,7 @@ public abstract class BsWhiteIncludeQueryBhv extends AbstractBehaviorWritable {
      * @param option The option of insert for varying requests. (NotNull)
      * @return The inserted count.
      */
-    public int varyingQueryInsert(QueryInsertSetupper<WhiteIncludeQuery, WhiteIncludeQueryCB> setupper, InsertOption<WhiteIncludeQueryCB> option) {
+    public int varyingQueryInsert(QueryInsertSetupper<WhiteGearedCipher, WhiteGearedCipherCB> setupper, InsertOption<WhiteGearedCipherCB> option) {
         assertInsertOptionNotNull(option);
         return doQueryInsert(setupper, option);
     }
@@ -1044,44 +1044,44 @@ public abstract class BsWhiteIncludeQueryBhv extends AbstractBehaviorWritable {
      * Other specifications are same as queryUpdate(entity, cb).
      * <pre>
      * <span style="color: #3F7E5E">// ex) you can update by self calculation values</span>
-     * WhiteIncludeQuery whiteIncludeQuery = new WhiteIncludeQuery();
+     * WhiteGearedCipher whiteGearedCipher = new WhiteGearedCipher();
      * <span style="color: #3F7E5E">// you don't need to set PK value</span>
-     * <span style="color: #3F7E5E">//whiteIncludeQuery.setPK...(value);</span>
-     * whiteIncludeQuery.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
+     * <span style="color: #3F7E5E">//whiteGearedCipher.setPK...(value);</span>
+     * whiteGearedCipher.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
      * <span style="color: #3F7E5E">// you don't need to set a value of exclusive control column</span>
      * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
-     * <span style="color: #3F7E5E">//whiteIncludeQuery.setVersionNo(value);</span>
-     * WhiteIncludeQueryCB cb = new WhiteIncludeQueryCB();
+     * <span style="color: #3F7E5E">//whiteGearedCipher.setVersionNo(value);</span>
+     * WhiteGearedCipherCB cb = new WhiteGearedCipherCB();
      * cb.query().setFoo...(value);
-     * UpdateOption&lt;WhiteIncludeQueryCB&gt; option = new UpdateOption&lt;WhiteIncludeQueryCB&gt;();
-     * option.self(new SpecifyQuery&lt;WhiteIncludeQueryCB&gt;() {
-     *     public void specify(WhiteIncludeQueryCB cb) {
+     * UpdateOption&lt;WhiteGearedCipherCB&gt; option = new UpdateOption&lt;WhiteGearedCipherCB&gt;();
+     * option.self(new SpecifyQuery&lt;WhiteGearedCipherCB&gt;() {
+     *     public void specify(WhiteGearedCipherCB cb) {
      *         cb.specify().<span style="color: #DD4747">columnFooCount()</span>;
      *     }
      * }).plus(1); <span style="color: #3F7E5E">// FOO_COUNT = FOO_COUNT + 1</span>
-     * whiteIncludeQueryBhv.<span style="color: #DD4747">varyingQueryUpdate</span>(whiteIncludeQuery, cb, option);
+     * whiteGearedCipherBhv.<span style="color: #DD4747">varyingQueryUpdate</span>(whiteGearedCipher, cb, option);
      * </pre>
-     * @param whiteIncludeQuery The entity that contains update values. (NotNull) {PrimaryKeyNotRequired}
-     * @param cb The condition-bean of WhiteIncludeQuery. (NotNull)
+     * @param whiteGearedCipher The entity that contains update values. (NotNull) {PrimaryKeyNotRequired}
+     * @param cb The condition-bean of WhiteGearedCipher. (NotNull)
      * @param option The option of update for varying requests. (NotNull)
      * @return The updated count.
      * @exception NonQueryUpdateNotAllowedException When the query has no condition (if not allowed).
      */
-    public int varyingQueryUpdate(WhiteIncludeQuery whiteIncludeQuery, WhiteIncludeQueryCB cb, UpdateOption<WhiteIncludeQueryCB> option) {
+    public int varyingQueryUpdate(WhiteGearedCipher whiteGearedCipher, WhiteGearedCipherCB cb, UpdateOption<WhiteGearedCipherCB> option) {
         assertUpdateOptionNotNull(option);
-        return doQueryUpdate(whiteIncludeQuery, cb, option);
+        return doQueryUpdate(whiteGearedCipher, cb, option);
     }
 
     /**
      * Delete the several entities by query with varying requests non-strictly. <br />
      * For example, allowNonQueryDelete(). <br />
      * Other specifications are same as batchUpdateNonstrict(entityList).
-     * @param cb The condition-bean of WhiteIncludeQuery. (NotNull)
+     * @param cb The condition-bean of WhiteGearedCipher. (NotNull)
      * @param option The option of delete for varying requests. (NotNull)
      * @return The deleted count.
      * @exception NonQueryDeleteNotAllowedException When the query has no condition (if not allowed).
      */
-    public int varyingQueryDelete(WhiteIncludeQueryCB cb, DeleteOption<WhiteIncludeQueryCB> option) {
+    public int varyingQueryDelete(WhiteGearedCipherCB cb, DeleteOption<WhiteGearedCipherCB> option) {
         assertDeleteOptionNotNull(option);
         return doQueryDelete(cb, option);
     }
@@ -1120,7 +1120,7 @@ public abstract class BsWhiteIncludeQueryBhv extends AbstractBehaviorWritable {
      * </pre>
      * @return The basic executor of outside-SQL. (NotNull)
      */
-    public OutsideSqlBasicExecutor<WhiteIncludeQueryBhv> outsideSql() {
+    public OutsideSqlBasicExecutor<WhiteGearedCipherBhv> outsideSql() {
         return doOutsideSql();
     }
 
@@ -1131,53 +1131,53 @@ public abstract class BsWhiteIncludeQueryBhv extends AbstractBehaviorWritable {
     // -----------------------------------------------------
     //                                                Select
     //                                                ------
-    protected int delegateSelectCountUniquely(WhiteIncludeQueryCB cb) { return invoke(createSelectCountCBCommand(cb, true)); }
-    protected int delegateSelectCountPlainly(WhiteIncludeQueryCB cb) { return invoke(createSelectCountCBCommand(cb, false)); }
-    protected <ENTITY extends WhiteIncludeQuery> void delegateSelectCursor(WhiteIncludeQueryCB cb, EntityRowHandler<ENTITY> rh, Class<ENTITY> tp)
+    protected int delegateSelectCountUniquely(WhiteGearedCipherCB cb) { return invoke(createSelectCountCBCommand(cb, true)); }
+    protected int delegateSelectCountPlainly(WhiteGearedCipherCB cb) { return invoke(createSelectCountCBCommand(cb, false)); }
+    protected <ENTITY extends WhiteGearedCipher> void delegateSelectCursor(WhiteGearedCipherCB cb, EntityRowHandler<ENTITY> rh, Class<ENTITY> tp)
     { invoke(createSelectCursorCBCommand(cb, rh, tp)); }
-    protected <ENTITY extends WhiteIncludeQuery> List<ENTITY> delegateSelectList(WhiteIncludeQueryCB cb, Class<ENTITY> tp)
+    protected <ENTITY extends WhiteGearedCipher> List<ENTITY> delegateSelectList(WhiteGearedCipherCB cb, Class<ENTITY> tp)
     { return invoke(createSelectListCBCommand(cb, tp)); }
 
     // -----------------------------------------------------
     //                                                Update
     //                                                ------
-    protected int delegateInsert(WhiteIncludeQuery et, InsertOption<WhiteIncludeQueryCB> op)
+    protected int delegateInsert(WhiteGearedCipher et, InsertOption<WhiteGearedCipherCB> op)
     { if (!processBeforeInsert(et, op)) { return 0; }
       return invoke(createInsertEntityCommand(et, op)); }
-    protected int delegateUpdate(WhiteIncludeQuery et, UpdateOption<WhiteIncludeQueryCB> op)
+    protected int delegateUpdate(WhiteGearedCipher et, UpdateOption<WhiteGearedCipherCB> op)
     { if (!processBeforeUpdate(et, op)) { return 0; }
       return delegateUpdateNonstrict(et, op); }
-    protected int delegateUpdateNonstrict(WhiteIncludeQuery et, UpdateOption<WhiteIncludeQueryCB> op)
+    protected int delegateUpdateNonstrict(WhiteGearedCipher et, UpdateOption<WhiteGearedCipherCB> op)
     { if (!processBeforeUpdate(et, op)) { return 0; }
       return invoke(createUpdateNonstrictEntityCommand(et, op)); }
-    protected int delegateDelete(WhiteIncludeQuery et, DeleteOption<WhiteIncludeQueryCB> op)
+    protected int delegateDelete(WhiteGearedCipher et, DeleteOption<WhiteGearedCipherCB> op)
     { if (!processBeforeDelete(et, op)) { return 0; }
       return delegateDeleteNonstrict(et, op); }
-    protected int delegateDeleteNonstrict(WhiteIncludeQuery et, DeleteOption<WhiteIncludeQueryCB> op)
+    protected int delegateDeleteNonstrict(WhiteGearedCipher et, DeleteOption<WhiteGearedCipherCB> op)
     { if (!processBeforeDelete(et, op)) { return 0; }
       return invoke(createDeleteNonstrictEntityCommand(et, op)); }
 
-    protected int[] delegateBatchInsert(List<WhiteIncludeQuery> ls, InsertOption<WhiteIncludeQueryCB> op)
+    protected int[] delegateBatchInsert(List<WhiteGearedCipher> ls, InsertOption<WhiteGearedCipherCB> op)
     { if (ls.isEmpty()) { return new int[]{}; }
       return invoke(createBatchInsertCommand(processBatchInternally(ls, op), op)); }
-    protected int[] delegateBatchUpdate(List<WhiteIncludeQuery> ls, UpdateOption<WhiteIncludeQueryCB> op)
+    protected int[] delegateBatchUpdate(List<WhiteGearedCipher> ls, UpdateOption<WhiteGearedCipherCB> op)
     { if (ls.isEmpty()) { return new int[]{}; }
       return delegateBatchUpdateNonstrict(ls, op); }
-    protected int[] delegateBatchUpdateNonstrict(List<WhiteIncludeQuery> ls, UpdateOption<WhiteIncludeQueryCB> op)
+    protected int[] delegateBatchUpdateNonstrict(List<WhiteGearedCipher> ls, UpdateOption<WhiteGearedCipherCB> op)
     { if (ls.isEmpty()) { return new int[]{}; }
       return invoke(createBatchUpdateNonstrictCommand(processBatchInternally(ls, op, true), op)); }
-    protected int[] delegateBatchDelete(List<WhiteIncludeQuery> ls, DeleteOption<WhiteIncludeQueryCB> op)
+    protected int[] delegateBatchDelete(List<WhiteGearedCipher> ls, DeleteOption<WhiteGearedCipherCB> op)
     { if (ls.isEmpty()) { return new int[]{}; }
       return delegateBatchDeleteNonstrict(ls, op); }
-    protected int[] delegateBatchDeleteNonstrict(List<WhiteIncludeQuery> ls, DeleteOption<WhiteIncludeQueryCB> op)
+    protected int[] delegateBatchDeleteNonstrict(List<WhiteGearedCipher> ls, DeleteOption<WhiteGearedCipherCB> op)
     { if (ls.isEmpty()) { return new int[]{}; }
       return invoke(createBatchDeleteNonstrictCommand(processBatchInternally(ls, op, true), op)); }
 
-    protected int delegateQueryInsert(WhiteIncludeQuery et, WhiteIncludeQueryCB inCB, ConditionBean resCB, InsertOption<WhiteIncludeQueryCB> op)
+    protected int delegateQueryInsert(WhiteGearedCipher et, WhiteGearedCipherCB inCB, ConditionBean resCB, InsertOption<WhiteGearedCipherCB> op)
     { if (!processBeforeQueryInsert(et, inCB, resCB, op)) { return 0; } return invoke(createQueryInsertCBCommand(et, inCB, resCB, op));  }
-    protected int delegateQueryUpdate(WhiteIncludeQuery et, WhiteIncludeQueryCB cb, UpdateOption<WhiteIncludeQueryCB> op)
+    protected int delegateQueryUpdate(WhiteGearedCipher et, WhiteGearedCipherCB cb, UpdateOption<WhiteGearedCipherCB> op)
     { if (!processBeforeQueryUpdate(et, cb, op)) { return 0; } return invoke(createQueryUpdateCBCommand(et, cb, op));  }
-    protected int delegateQueryDelete(WhiteIncludeQueryCB cb, DeleteOption<WhiteIncludeQueryCB> op)
+    protected int delegateQueryDelete(WhiteGearedCipherCB cb, DeleteOption<WhiteGearedCipherCB> op)
     { if (!processBeforeQueryDelete(cb, op)) { return 0; } return invoke(createQueryDeleteCBCommand(cb, op));  }
 
     // ===================================================================================
@@ -1202,36 +1202,36 @@ public abstract class BsWhiteIncludeQueryBhv extends AbstractBehaviorWritable {
     // ===================================================================================
     //                                                                     Downcast Helper
     //                                                                     ===============
-    protected WhiteIncludeQuery downcast(Entity et) {
-        return helpEntityDowncastInternally(et, WhiteIncludeQuery.class);
+    protected WhiteGearedCipher downcast(Entity et) {
+        return helpEntityDowncastInternally(et, WhiteGearedCipher.class);
     }
 
-    protected WhiteIncludeQueryCB downcast(ConditionBean cb) {
-        return helpConditionBeanDowncastInternally(cb, WhiteIncludeQueryCB.class);
-    }
-
-    @SuppressWarnings("unchecked")
-    protected List<WhiteIncludeQuery> downcast(List<? extends Entity> ls) {
-        return (List<WhiteIncludeQuery>)ls;
+    protected WhiteGearedCipherCB downcast(ConditionBean cb) {
+        return helpConditionBeanDowncastInternally(cb, WhiteGearedCipherCB.class);
     }
 
     @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteIncludeQueryCB> downcast(InsertOption<? extends ConditionBean> op) {
-        return (InsertOption<WhiteIncludeQueryCB>)op;
+    protected List<WhiteGearedCipher> downcast(List<? extends Entity> ls) {
+        return (List<WhiteGearedCipher>)ls;
     }
 
     @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteIncludeQueryCB> downcast(UpdateOption<? extends ConditionBean> op) {
-        return (UpdateOption<WhiteIncludeQueryCB>)op;
+    protected InsertOption<WhiteGearedCipherCB> downcast(InsertOption<? extends ConditionBean> op) {
+        return (InsertOption<WhiteGearedCipherCB>)op;
     }
 
     @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteIncludeQueryCB> downcast(DeleteOption<? extends ConditionBean> op) {
-        return (DeleteOption<WhiteIncludeQueryCB>)op;
+    protected UpdateOption<WhiteGearedCipherCB> downcast(UpdateOption<? extends ConditionBean> op) {
+        return (UpdateOption<WhiteGearedCipherCB>)op;
     }
 
     @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhiteIncludeQuery, WhiteIncludeQueryCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp) {
-        return (QueryInsertSetupper<WhiteIncludeQuery, WhiteIncludeQueryCB>)sp;
+    protected DeleteOption<WhiteGearedCipherCB> downcast(DeleteOption<? extends ConditionBean> op) {
+        return (DeleteOption<WhiteGearedCipherCB>)op;
+    }
+
+    @SuppressWarnings("unchecked")
+    protected QueryInsertSetupper<WhiteGearedCipher, WhiteGearedCipherCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp) {
+        return (QueryInsertSetupper<WhiteGearedCipher, WhiteGearedCipherCB>)sp;
     }
 }

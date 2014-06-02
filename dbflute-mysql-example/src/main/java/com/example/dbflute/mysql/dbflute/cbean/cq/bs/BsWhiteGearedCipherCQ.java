@@ -28,20 +28,20 @@ import com.example.dbflute.mysql.dbflute.cbean.*;
 import com.example.dbflute.mysql.dbflute.cbean.cq.*;
 
 /**
- * The base condition-query of white_include_query.
+ * The base condition-query of white_geared_cipher.
  * @author DBFlute(AutoGenerator)
  */
-public class BsWhiteIncludeQueryCQ extends AbstractBsWhiteIncludeQueryCQ {
+public class BsWhiteGearedCipherCQ extends AbstractBsWhiteGearedCipherCQ {
 
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    protected WhiteIncludeQueryCIQ _inlineQuery;
+    protected WhiteGearedCipherCIQ _inlineQuery;
 
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public BsWhiteIncludeQueryCQ(ConditionQuery referrerQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
+    public BsWhiteGearedCipherCQ(ConditionQuery referrerQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
         super(referrerQuery, sqlClause, aliasName, nestLevel);
     }
 
@@ -50,134 +50,148 @@ public class BsWhiteIncludeQueryCQ extends AbstractBsWhiteIncludeQueryCQ {
     //                                                                 ===================
     /**
      * Prepare InlineView query. <br />
-     * {select ... from ... left outer join (select * from white_include_query) where FOO = [value] ...}
+     * {select ... from ... left outer join (select * from white_geared_cipher) where FOO = [value] ...}
      * <pre>
      * cb.query().queryMemberStatus().<span style="color: #DD4747">inline()</span>.setFoo...;
      * </pre>
      * @return The condition-query for InlineView query. (NotNull)
      */
-    public WhiteIncludeQueryCIQ inline() {
+    public WhiteGearedCipherCIQ inline() {
         if (_inlineQuery == null) { _inlineQuery = xcreateCIQ(); }
         _inlineQuery.xsetOnClause(false); return _inlineQuery;
     }
 
-    protected WhiteIncludeQueryCIQ xcreateCIQ() {
-        WhiteIncludeQueryCIQ ciq = xnewCIQ();
+    protected WhiteGearedCipherCIQ xcreateCIQ() {
+        WhiteGearedCipherCIQ ciq = xnewCIQ();
         ciq.xsetBaseCB(_baseCB);
         return ciq;
     }
 
-    protected WhiteIncludeQueryCIQ xnewCIQ() {
-        return new WhiteIncludeQueryCIQ(xgetReferrerQuery(), xgetSqlClause(), xgetAliasName(), xgetNestLevel(), this);
+    protected WhiteGearedCipherCIQ xnewCIQ() {
+        return new WhiteGearedCipherCIQ(xgetReferrerQuery(), xgetSqlClause(), xgetAliasName(), xgetNestLevel(), this);
     }
 
     /**
      * Prepare OnClause query. <br />
-     * {select ... from ... left outer join white_include_query on ... and FOO = [value] ...}
+     * {select ... from ... left outer join white_geared_cipher on ... and FOO = [value] ...}
      * <pre>
      * cb.query().queryMemberStatus().<span style="color: #DD4747">on()</span>.setFoo...;
      * </pre>
      * @return The condition-query for OnClause query. (NotNull)
      * @throws IllegalConditionBeanOperationException When this condition-query is base query.
      */
-    public WhiteIncludeQueryCIQ on() {
+    public WhiteGearedCipherCIQ on() {
         if (isBaseQuery()) { throw new IllegalConditionBeanOperationException("OnClause for local table is unavailable!"); }
-        WhiteIncludeQueryCIQ inlineQuery = inline(); inlineQuery.xsetOnClause(true); return inlineQuery;
+        WhiteGearedCipherCIQ inlineQuery = inline(); inlineQuery.xsetOnClause(true); return inlineQuery;
     }
 
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    protected ConditionValue _includeQueryId;
-    public ConditionValue getIncludeQueryId() {
-        if (_includeQueryId == null) { _includeQueryId = nCV(); }
-        return _includeQueryId;
+    protected ConditionValue _cipherId;
+    public ConditionValue getCipherId() {
+        if (_cipherId == null) { _cipherId = nCV(); }
+        return _cipherId;
     }
-    protected ConditionValue getCValueIncludeQueryId() { return getIncludeQueryId(); }
+    protected ConditionValue getCValueCipherId() { return getCipherId(); }
 
     /** 
      * Add order-by as ascend. <br />
-     * INCLUDE_QUERY_ID: {PK, ID, NotNull, BIGINT(19)}
+     * CIPHER_ID: {PK, ID, NotNull, BIGINT(19)}
      * @return this. (NotNull)
      */
-    public BsWhiteIncludeQueryCQ addOrderBy_IncludeQueryId_Asc() { regOBA("INCLUDE_QUERY_ID"); return this; }
+    public BsWhiteGearedCipherCQ addOrderBy_CipherId_Asc() { regOBA("CIPHER_ID"); return this; }
 
     /**
      * Add order-by as descend. <br />
-     * INCLUDE_QUERY_ID: {PK, ID, NotNull, BIGINT(19)}
+     * CIPHER_ID: {PK, ID, NotNull, BIGINT(19)}
      * @return this. (NotNull)
      */
-    public BsWhiteIncludeQueryCQ addOrderBy_IncludeQueryId_Desc() { regOBD("INCLUDE_QUERY_ID"); return this; }
+    public BsWhiteGearedCipherCQ addOrderBy_CipherId_Desc() { regOBD("CIPHER_ID"); return this; }
 
-    protected ConditionValue _includeQueryVarchar;
-    public ConditionValue getIncludeQueryVarchar() {
-        if (_includeQueryVarchar == null) { _includeQueryVarchar = nCV(); }
-        return _includeQueryVarchar;
+    protected ConditionValue _cipherInteger;
+    public ConditionValue getCipherInteger() {
+        if (_cipherInteger == null) { _cipherInteger = nCV(); }
+        return _cipherInteger;
     }
-    protected ConditionValue getCValueIncludeQueryVarchar() { return getIncludeQueryVarchar(); }
+    protected ConditionValue getCValueCipherInteger() { return getCipherInteger(); }
 
     /** 
      * Add order-by as ascend. <br />
-     * INCLUDE_QUERY_VARCHAR: {VARCHAR(100)}
+     * CIPHER_INTEGER: {VARCHAR(100)}
      * @return this. (NotNull)
      */
-    public BsWhiteIncludeQueryCQ addOrderBy_IncludeQueryVarchar_Asc() { regOBA("INCLUDE_QUERY_VARCHAR"); return this; }
+    public BsWhiteGearedCipherCQ addOrderBy_CipherInteger_Asc() { regOBA("CIPHER_INTEGER"); return this; }
 
     /**
      * Add order-by as descend. <br />
-     * INCLUDE_QUERY_VARCHAR: {VARCHAR(100)}
+     * CIPHER_INTEGER: {VARCHAR(100)}
      * @return this. (NotNull)
      */
-    public BsWhiteIncludeQueryCQ addOrderBy_IncludeQueryVarchar_Desc() { regOBD("INCLUDE_QUERY_VARCHAR"); return this; }
+    public BsWhiteGearedCipherCQ addOrderBy_CipherInteger_Desc() { regOBD("CIPHER_INTEGER"); return this; }
 
-    protected ConditionValue _includeQueryInteger;
-    public ConditionValue getIncludeQueryInteger() {
-        if (_includeQueryInteger == null) { _includeQueryInteger = nCV(); }
-        return _includeQueryInteger;
+    protected ConditionValue _cipherVarchar;
+    public ConditionValue getCipherVarchar() {
+        if (_cipherVarchar == null) { _cipherVarchar = nCV(); }
+        return _cipherVarchar;
     }
-    protected ConditionValue getCValueIncludeQueryInteger() { return getIncludeQueryInteger(); }
-
-    protected ConditionValue _includeQueryDate;
-    public ConditionValue getIncludeQueryDate() {
-        if (_includeQueryDate == null) { _includeQueryDate = nCV(); }
-        return _includeQueryDate;
-    }
-    protected ConditionValue getCValueIncludeQueryDate() { return getIncludeQueryDate(); }
+    protected ConditionValue getCValueCipherVarchar() { return getCipherVarchar(); }
 
     /** 
      * Add order-by as ascend. <br />
-     * INCLUDE_QUERY_DATE: {DATE(10)}
+     * CIPHER_VARCHAR: {VARCHAR(100)}
      * @return this. (NotNull)
      */
-    public BsWhiteIncludeQueryCQ addOrderBy_IncludeQueryDate_Asc() { regOBA("INCLUDE_QUERY_DATE"); return this; }
+    public BsWhiteGearedCipherCQ addOrderBy_CipherVarchar_Asc() { regOBA("CIPHER_VARCHAR"); return this; }
 
     /**
      * Add order-by as descend. <br />
-     * INCLUDE_QUERY_DATE: {DATE(10)}
+     * CIPHER_VARCHAR: {VARCHAR(100)}
      * @return this. (NotNull)
      */
-    public BsWhiteIncludeQueryCQ addOrderBy_IncludeQueryDate_Desc() { regOBD("INCLUDE_QUERY_DATE"); return this; }
+    public BsWhiteGearedCipherCQ addOrderBy_CipherVarchar_Desc() { regOBD("CIPHER_VARCHAR"); return this; }
 
-    protected ConditionValue _includeQueryDatetime;
-    public ConditionValue getIncludeQueryDatetime() {
-        if (_includeQueryDatetime == null) { _includeQueryDatetime = nCV(); }
-        return _includeQueryDatetime;
+    protected ConditionValue _cipherDate;
+    public ConditionValue getCipherDate() {
+        if (_cipherDate == null) { _cipherDate = nCV(); }
+        return _cipherDate;
     }
-    protected ConditionValue getCValueIncludeQueryDatetime() { return getIncludeQueryDatetime(); }
+    protected ConditionValue getCValueCipherDate() { return getCipherDate(); }
 
     /** 
      * Add order-by as ascend. <br />
-     * INCLUDE_QUERY_DATETIME: {DATETIME(19)}
+     * CIPHER__DATE: {VARCHAR(100)}
      * @return this. (NotNull)
      */
-    public BsWhiteIncludeQueryCQ addOrderBy_IncludeQueryDatetime_Asc() { regOBA("INCLUDE_QUERY_DATETIME"); return this; }
+    public BsWhiteGearedCipherCQ addOrderBy_CipherDate_Asc() { regOBA("CIPHER__DATE"); return this; }
 
     /**
      * Add order-by as descend. <br />
-     * INCLUDE_QUERY_DATETIME: {DATETIME(19)}
+     * CIPHER__DATE: {VARCHAR(100)}
      * @return this. (NotNull)
      */
-    public BsWhiteIncludeQueryCQ addOrderBy_IncludeQueryDatetime_Desc() { regOBD("INCLUDE_QUERY_DATETIME"); return this; }
+    public BsWhiteGearedCipherCQ addOrderBy_CipherDate_Desc() { regOBD("CIPHER__DATE"); return this; }
+
+    protected ConditionValue _cipherDatetime;
+    public ConditionValue getCipherDatetime() {
+        if (_cipherDatetime == null) { _cipherDatetime = nCV(); }
+        return _cipherDatetime;
+    }
+    protected ConditionValue getCValueCipherDatetime() { return getCipherDatetime(); }
+
+    /** 
+     * Add order-by as ascend. <br />
+     * CIPHER__DATETIME: {VARCHAR(100)}
+     * @return this. (NotNull)
+     */
+    public BsWhiteGearedCipherCQ addOrderBy_CipherDatetime_Asc() { regOBA("CIPHER__DATETIME"); return this; }
+
+    /**
+     * Add order-by as descend. <br />
+     * CIPHER__DATETIME: {VARCHAR(100)}
+     * @return this. (NotNull)
+     */
+    public BsWhiteGearedCipherCQ addOrderBy_CipherDatetime_Desc() { regOBD("CIPHER__DATETIME"); return this; }
 
     // ===================================================================================
     //                                                             SpecifiedDerivedOrderBy
@@ -196,7 +210,7 @@ public class BsWhiteIncludeQueryCQ extends AbstractBsWhiteIncludeQueryCQ {
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsWhiteIncludeQueryCQ addSpecifiedDerivedOrderBy_Asc(String aliasName)
+    public BsWhiteGearedCipherCQ addSpecifiedDerivedOrderBy_Asc(String aliasName)
     { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
 
     /**
@@ -213,7 +227,7 @@ public class BsWhiteIncludeQueryCQ extends AbstractBsWhiteIncludeQueryCQ {
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsWhiteIncludeQueryCQ addSpecifiedDerivedOrderBy_Desc(String aliasName)
+    public BsWhiteGearedCipherCQ addSpecifiedDerivedOrderBy_Desc(String aliasName)
     { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
 
     // ===================================================================================
@@ -232,9 +246,9 @@ public class BsWhiteIncludeQueryCQ extends AbstractBsWhiteIncludeQueryCQ {
     // ===================================================================================
     //                                                                     ScalarCondition
     //                                                                     ===============
-    protected Map<String, WhiteIncludeQueryCQ> _scalarConditionMap;
-    public Map<String, WhiteIncludeQueryCQ> getScalarCondition() { return _scalarConditionMap; }
-    public String keepScalarCondition(WhiteIncludeQueryCQ sq) {
+    protected Map<String, WhiteGearedCipherCQ> _scalarConditionMap;
+    public Map<String, WhiteGearedCipherCQ> getScalarCondition() { return _scalarConditionMap; }
+    public String keepScalarCondition(WhiteGearedCipherCQ sq) {
         if (_scalarConditionMap == null) { _scalarConditionMap = newLinkedHashMapSized(4); }
         String ky = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
         _scalarConditionMap.put(ky, sq); return "scalarCondition." + ky;
@@ -243,17 +257,17 @@ public class BsWhiteIncludeQueryCQ extends AbstractBsWhiteIncludeQueryCQ {
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    protected Map<String, WhiteIncludeQueryCQ> _specifyMyselfDerivedMap;
-    public Map<String, WhiteIncludeQueryCQ> getSpecifyMyselfDerived() { return _specifyMyselfDerivedMap; }
-    public String keepSpecifyMyselfDerived(WhiteIncludeQueryCQ sq) {
+    protected Map<String, WhiteGearedCipherCQ> _specifyMyselfDerivedMap;
+    public Map<String, WhiteGearedCipherCQ> getSpecifyMyselfDerived() { return _specifyMyselfDerivedMap; }
+    public String keepSpecifyMyselfDerived(WhiteGearedCipherCQ sq) {
         if (_specifyMyselfDerivedMap == null) { _specifyMyselfDerivedMap = newLinkedHashMapSized(4); }
         String ky = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
         _specifyMyselfDerivedMap.put(ky, sq); return "specifyMyselfDerived." + ky;
     }
 
-    protected Map<String, WhiteIncludeQueryCQ> _queryMyselfDerivedMap;
-    public Map<String, WhiteIncludeQueryCQ> getQueryMyselfDerived() { return _queryMyselfDerivedMap; }
-    public String keepQueryMyselfDerived(WhiteIncludeQueryCQ sq) {
+    protected Map<String, WhiteGearedCipherCQ> _queryMyselfDerivedMap;
+    public Map<String, WhiteGearedCipherCQ> getQueryMyselfDerived() { return _queryMyselfDerivedMap; }
+    public String keepQueryMyselfDerived(WhiteGearedCipherCQ sq) {
         if (_queryMyselfDerivedMap == null) { _queryMyselfDerivedMap = newLinkedHashMapSized(4); }
         String ky = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
         _queryMyselfDerivedMap.put(ky, sq); return "queryMyselfDerived." + ky;
@@ -269,9 +283,9 @@ public class BsWhiteIncludeQueryCQ extends AbstractBsWhiteIncludeQueryCQ {
     // ===================================================================================
     //                                                                        MyselfExists
     //                                                                        ============
-    protected Map<String, WhiteIncludeQueryCQ> _myselfExistsMap;
-    public Map<String, WhiteIncludeQueryCQ> getMyselfExists() { return _myselfExistsMap; }
-    public String keepMyselfExists(WhiteIncludeQueryCQ sq) {
+    protected Map<String, WhiteGearedCipherCQ> _myselfExistsMap;
+    public Map<String, WhiteGearedCipherCQ> getMyselfExists() { return _myselfExistsMap; }
+    public String keepMyselfExists(WhiteGearedCipherCQ sq) {
         if (_myselfExistsMap == null) { _myselfExistsMap = newLinkedHashMapSized(4); }
         String ky = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
         _myselfExistsMap.put(ky, sq); return "myselfExists." + ky;
@@ -280,9 +294,9 @@ public class BsWhiteIncludeQueryCQ extends AbstractBsWhiteIncludeQueryCQ {
     // ===================================================================================
     //                                                                       MyselfInScope
     //                                                                       =============
-    protected Map<String, WhiteIncludeQueryCQ> _myselfInScopeMap;
-    public Map<String, WhiteIncludeQueryCQ> getMyselfInScope() { return _myselfInScopeMap; }
-    public String keepMyselfInScope(WhiteIncludeQueryCQ sq) {
+    protected Map<String, WhiteGearedCipherCQ> _myselfInScopeMap;
+    public Map<String, WhiteGearedCipherCQ> getMyselfInScope() { return _myselfInScopeMap; }
+    public String keepMyselfInScope(WhiteGearedCipherCQ sq) {
         if (_myselfInScopeMap == null) { _myselfInScopeMap = newLinkedHashMapSized(4); }
         String ky = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
         _myselfInScopeMap.put(ky, sq); return "myselfInScope." + ky;
@@ -292,8 +306,8 @@ public class BsWhiteIncludeQueryCQ extends AbstractBsWhiteIncludeQueryCQ {
     //                                                                       Very Internal
     //                                                                       =============
     // very internal (for suppressing warn about 'Not Use Import')
-    protected String xCB() { return WhiteIncludeQueryCB.class.getName(); }
-    protected String xCQ() { return WhiteIncludeQueryCQ.class.getName(); }
+    protected String xCB() { return WhiteGearedCipherCB.class.getName(); }
+    protected String xCQ() { return WhiteGearedCipherCQ.class.getName(); }
     protected String xCHp() { return HpCalculator.class.getName(); }
     protected String xCOp() { return ConditionOption.class.getName(); }
     protected String xMap() { return Map.class.getName(); }

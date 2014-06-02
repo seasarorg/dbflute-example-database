@@ -37,20 +37,20 @@ import com.example.dbflute.mysql.dbflute.cbean.*;
 import com.example.dbflute.mysql.dbflute.cbean.cq.*;
 
 /**
- * The base condition-bean of white_include_query.
+ * The base condition-bean of white_geared_cipher.
  * @author DBFlute(AutoGenerator)
  */
-public class BsWhiteIncludeQueryCB extends AbstractConditionBean {
+public class BsWhiteGearedCipherCB extends AbstractConditionBean {
 
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    protected WhiteIncludeQueryCQ _conditionQuery;
+    protected WhiteGearedCipherCQ _conditionQuery;
 
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public BsWhiteIncludeQueryCB() {
+    public BsWhiteGearedCipherCB() {
         if (DBFluteConfig.getInstance().isPagingCountLater()) {
             enablePagingCountLater();
         }
@@ -86,7 +86,7 @@ public class BsWhiteIncludeQueryCB extends AbstractConditionBean {
     //                                                                          Table Name
     //                                                                          ==========
     public String getTableDbName() {
-        return "white_include_query";
+        return "white_geared_cipher";
     }
 
     // ===================================================================================
@@ -94,21 +94,21 @@ public class BsWhiteIncludeQueryCB extends AbstractConditionBean {
     //                                                                 ===================
     /**
      * Accept the query condition of primary key as equal.
-     * @param includeQueryId : PK, ID, NotNull, BIGINT(19). (NotNull)
+     * @param cipherId : PK, ID, NotNull, BIGINT(19). (NotNull)
      */
-    public void acceptPrimaryKey(Long includeQueryId) {
-        assertObjectNotNull("includeQueryId", includeQueryId);
-        BsWhiteIncludeQueryCB cb = this;
-        cb.query().setIncludeQueryId_Equal(includeQueryId);;
+    public void acceptPrimaryKey(Long cipherId) {
+        assertObjectNotNull("cipherId", cipherId);
+        BsWhiteGearedCipherCB cb = this;
+        cb.query().setCipherId_Equal(cipherId);;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {
-        query().addOrderBy_IncludeQueryId_Asc();
+        query().addOrderBy_CipherId_Asc();
         return this;
     }
 
     public ConditionBean addOrderBy_PK_Desc() {
-        query().addOrderBy_IncludeQueryId_Desc();
+        query().addOrderBy_CipherId_Desc();
         return this;
     }
 
@@ -189,30 +189,30 @@ public class BsWhiteIncludeQueryCB extends AbstractConditionBean {
      * </pre>
      * @return The instance of condition-query for base-point table to set up query. (NotNull)
      */
-    public WhiteIncludeQueryCQ query() {
+    public WhiteGearedCipherCQ query() {
         assertQueryPurpose(); // assert only when user-public query 
         return getConditionQuery();
     }
 
-    public WhiteIncludeQueryCQ getConditionQuery() { // public for parameter comment and internal
+    public WhiteGearedCipherCQ getConditionQuery() { // public for parameter comment and internal
         if (_conditionQuery == null) {
             _conditionQuery = createLocalCQ();
         }
         return _conditionQuery;
     }
 
-    protected WhiteIncludeQueryCQ createLocalCQ() {
+    protected WhiteGearedCipherCQ createLocalCQ() {
         return xcreateCQ(null, getSqlClause(), getSqlClause().getBasePointAliasName(), 0);
     }
 
-    protected WhiteIncludeQueryCQ xcreateCQ(ConditionQuery childQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
-        WhiteIncludeQueryCQ cq = xnewCQ(childQuery, sqlClause, aliasName, nestLevel);
+    protected WhiteGearedCipherCQ xcreateCQ(ConditionQuery childQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
+        WhiteGearedCipherCQ cq = xnewCQ(childQuery, sqlClause, aliasName, nestLevel);
         cq.xsetBaseCB(this);
         return cq;
     }
 
-    protected WhiteIncludeQueryCQ xnewCQ(ConditionQuery childQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
-        return new WhiteIncludeQueryCQ(childQuery, sqlClause, aliasName, nestLevel);
+    protected WhiteGearedCipherCQ xnewCQ(ConditionQuery childQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
+        return new WhiteGearedCipherCQ(childQuery, sqlClause, aliasName, nestLevel);
     }
 
     public ConditionQuery localCQ() {
@@ -227,18 +227,18 @@ public class BsWhiteIncludeQueryCB extends AbstractConditionBean {
      * You don't need to call SetupSelect in union-query,
      * because it inherits calls before. (Don't call SetupSelect after here)
      * <pre>
-     * cb.query().<span style="color: #DD4747">union</span>(new UnionQuery&lt;WhiteIncludeQueryCB&gt;() {
-     *     public void query(WhiteIncludeQueryCB unionCB) {
+     * cb.query().<span style="color: #DD4747">union</span>(new UnionQuery&lt;WhiteGearedCipherCB&gt;() {
+     *     public void query(WhiteGearedCipherCB unionCB) {
      *         unionCB.query().setXxx...
      *     }
      * });
      * </pre>
      * @param unionQuery The query of 'union'. (NotNull)
      */
-    public void union(UnionQuery<WhiteIncludeQueryCB> unionQuery) {
-        final WhiteIncludeQueryCB cb = new WhiteIncludeQueryCB(); cb.xsetupForUnion(this); xsyncUQ(cb); 
+    public void union(UnionQuery<WhiteGearedCipherCB> unionQuery) {
+        final WhiteGearedCipherCB cb = new WhiteGearedCipherCB(); cb.xsetupForUnion(this); xsyncUQ(cb); 
         try { lock(); unionQuery.query(cb); } finally { unlock(); } xsaveUCB(cb);
-        final WhiteIncludeQueryCQ cq = cb.query(); query().xsetUnionQuery(cq);
+        final WhiteGearedCipherCQ cq = cb.query(); query().xsetUnionQuery(cq);
     }
 
     /**
@@ -246,18 +246,18 @@ public class BsWhiteIncludeQueryCB extends AbstractConditionBean {
      * You don't need to call SetupSelect in union-query,
      * because it inherits calls before. (Don't call SetupSelect after here)
      * <pre>
-     * cb.query().<span style="color: #DD4747">unionAll</span>(new UnionQuery&lt;WhiteIncludeQueryCB&gt;() {
-     *     public void query(WhiteIncludeQueryCB unionCB) {
+     * cb.query().<span style="color: #DD4747">unionAll</span>(new UnionQuery&lt;WhiteGearedCipherCB&gt;() {
+     *     public void query(WhiteGearedCipherCB unionCB) {
      *         unionCB.query().setXxx...
      *     }
      * });
      * </pre>
      * @param unionQuery The query of 'union all'. (NotNull)
      */
-    public void unionAll(UnionQuery<WhiteIncludeQueryCB> unionQuery) {
-        final WhiteIncludeQueryCB cb = new WhiteIncludeQueryCB(); cb.xsetupForUnion(this); xsyncUQ(cb);
+    public void unionAll(UnionQuery<WhiteGearedCipherCB> unionQuery) {
+        final WhiteGearedCipherCB cb = new WhiteGearedCipherCB(); cb.xsetupForUnion(this); xsyncUQ(cb);
         try { lock(); unionQuery.query(cb); } finally { unlock(); } xsaveUCB(cb);
-        final WhiteIncludeQueryCQ cq = cb.query(); query().xsetUnionAllQuery(cq);
+        final WhiteGearedCipherCQ cq = cb.query(); query().xsetUnionAllQuery(cq);
     }
 
     // ===================================================================================
@@ -288,9 +288,9 @@ public class BsWhiteIncludeQueryCB extends AbstractConditionBean {
     public HpSpecification specify() {
         assertSpecifyPurpose();
         if (_specification == null) { _specification = new HpSpecification(this
-            , new HpSpQyCall<WhiteIncludeQueryCQ>() {
+            , new HpSpQyCall<WhiteGearedCipherCQ>() {
                 public boolean has() { return true; }
-                public WhiteIncludeQueryCQ qy() { return getConditionQuery(); }
+                public WhiteGearedCipherCQ qy() { return getConditionQuery(); }
             }
             , _purpose, getDBMetaProvider()); }
         return _specification;
@@ -304,51 +304,51 @@ public class BsWhiteIncludeQueryCB extends AbstractConditionBean {
         return _specification != null && _specification.isAlreadySpecifiedRequiredColumn();
     }
 
-    public static class HpSpecification extends HpAbstractSpecification<WhiteIncludeQueryCQ> {
-        public HpSpecification(ConditionBean baseCB, HpSpQyCall<WhiteIncludeQueryCQ> qyCall
+    public static class HpSpecification extends HpAbstractSpecification<WhiteGearedCipherCQ> {
+        public HpSpecification(ConditionBean baseCB, HpSpQyCall<WhiteGearedCipherCQ> qyCall
                              , HpCBPurpose purpose, DBMetaProvider dbmetaProvider)
         { super(baseCB, qyCall, purpose, dbmetaProvider); }
         /**
-         * INCLUDE_QUERY_ID: {PK, ID, NotNull, BIGINT(19)}
+         * CIPHER_ID: {PK, ID, NotNull, BIGINT(19)}
          * @return The information object of specified column. (NotNull)
          */
-        public HpSpecifiedColumn columnIncludeQueryId() { return doColumn("INCLUDE_QUERY_ID"); }
+        public HpSpecifiedColumn columnCipherId() { return doColumn("CIPHER_ID"); }
         /**
-         * INCLUDE_QUERY_VARCHAR: {VARCHAR(100)}
+         * CIPHER_INTEGER: {VARCHAR(100)}
          * @return The information object of specified column. (NotNull)
          */
-        public HpSpecifiedColumn columnIncludeQueryVarchar() { return doColumn("INCLUDE_QUERY_VARCHAR"); }
+        public HpSpecifiedColumn columnCipherInteger() { return doColumn("CIPHER_INTEGER"); }
         /**
-         * INCLUDE_QUERY_INTEGER: {INT(10)}
+         * CIPHER_VARCHAR: {VARCHAR(100)}
          * @return The information object of specified column. (NotNull)
          */
-        public HpSpecifiedColumn columnIncludeQueryInteger() { return doColumn("INCLUDE_QUERY_INTEGER"); }
+        public HpSpecifiedColumn columnCipherVarchar() { return doColumn("CIPHER_VARCHAR"); }
         /**
-         * INCLUDE_QUERY_DATE: {DATE(10)}
+         * CIPHER__DATE: {VARCHAR(100)}
          * @return The information object of specified column. (NotNull)
          */
-        public HpSpecifiedColumn columnIncludeQueryDate() { return doColumn("INCLUDE_QUERY_DATE"); }
+        public HpSpecifiedColumn columnCipherDate() { return doColumn("CIPHER__DATE"); }
         /**
-         * INCLUDE_QUERY_DATETIME: {DATETIME(19)}
+         * CIPHER__DATETIME: {VARCHAR(100)}
          * @return The information object of specified column. (NotNull)
          */
-        public HpSpecifiedColumn columnIncludeQueryDatetime() { return doColumn("INCLUDE_QUERY_DATETIME"); }
+        public HpSpecifiedColumn columnCipherDatetime() { return doColumn("CIPHER__DATETIME"); }
         public void everyColumn() { doEveryColumn(); }
         public void exceptRecordMetaColumn() { doExceptRecordMetaColumn(); }
         @Override
         protected void doSpecifyRequiredColumn() {
-            columnIncludeQueryId(); // PK
+            columnCipherId(); // PK
         }
         @Override
-        protected String getTableDbName() { return "white_include_query"; }
+        protected String getTableDbName() { return "white_geared_cipher"; }
         /**
          * Prepare for (Specify)MyselfDerived (SubQuery).
          * @return The object to set up a function for myself table. (NotNull)
          */
-        public HpSDRFunction<WhiteIncludeQueryCB, WhiteIncludeQueryCQ> myselfDerived() {
+        public HpSDRFunction<WhiteGearedCipherCB, WhiteGearedCipherCQ> myselfDerived() {
             assertDerived("myselfDerived"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
-            return new HpSDRFunction<WhiteIncludeQueryCB, WhiteIncludeQueryCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<WhiteIncludeQueryCB, WhiteIncludeQueryCQ>() {
-                public void setup(String fn, SubQuery<WhiteIncludeQueryCB> sq, WhiteIncludeQueryCQ cq, String al, DerivedReferrerOption op) {
+            return new HpSDRFunction<WhiteGearedCipherCB, WhiteGearedCipherCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<WhiteGearedCipherCB, WhiteGearedCipherCQ>() {
+                public void setup(String fn, SubQuery<WhiteGearedCipherCB> sq, WhiteGearedCipherCQ cq, String al, DerivedReferrerOption op) {
                     cq.xsmyselfDerive(fn, sq, al, op); } }, _dbmetaProvider);
         }
     }
@@ -361,12 +361,12 @@ public class BsWhiteIncludeQueryCB extends AbstractConditionBean {
      * Set up column-query. {column1 = column2}
      * <pre>
      * <span style="color: #3F7E5E">// where FOO &lt; BAR</span>
-     * cb.<span style="color: #DD4747">columnQuery</span>(new SpecifyQuery&lt;WhiteIncludeQueryCB&gt;() {
-     *     public void query(WhiteIncludeQueryCB cb) {
+     * cb.<span style="color: #DD4747">columnQuery</span>(new SpecifyQuery&lt;WhiteGearedCipherCB&gt;() {
+     *     public void query(WhiteGearedCipherCB cb) {
      *         cb.specify().<span style="color: #DD4747">columnFoo()</span>; <span style="color: #3F7E5E">// left column</span>
      *     }
-     * }).lessThan(new SpecifyQuery&lt;WhiteIncludeQueryCB&gt;() {
-     *     public void query(WhiteIncludeQueryCB cb) {
+     * }).lessThan(new SpecifyQuery&lt;WhiteGearedCipherCB&gt;() {
+     *     public void query(WhiteGearedCipherCB cb) {
      *         cb.specify().<span style="color: #DD4747">columnBar()</span>; <span style="color: #3F7E5E">// right column</span>
      *     }
      * }); <span style="color: #3F7E5E">// you can calculate for right column like '}).plus(3);'</span>
@@ -374,17 +374,17 @@ public class BsWhiteIncludeQueryCB extends AbstractConditionBean {
      * @param leftSpecifyQuery The specify-query for left column. (NotNull)
      * @return The object for setting up operand and right column. (NotNull)
      */
-    public HpColQyOperand<WhiteIncludeQueryCB> columnQuery(final SpecifyQuery<WhiteIncludeQueryCB> leftSpecifyQuery) {
-        return new HpColQyOperand<WhiteIncludeQueryCB>(new HpColQyHandler<WhiteIncludeQueryCB>() {
-            public HpCalculator handle(SpecifyQuery<WhiteIncludeQueryCB> rightSp, String operand) {
+    public HpColQyOperand<WhiteGearedCipherCB> columnQuery(final SpecifyQuery<WhiteGearedCipherCB> leftSpecifyQuery) {
+        return new HpColQyOperand<WhiteGearedCipherCB>(new HpColQyHandler<WhiteGearedCipherCB>() {
+            public HpCalculator handle(SpecifyQuery<WhiteGearedCipherCB> rightSp, String operand) {
                 return xcolqy(xcreateColumnQueryCB(), xcreateColumnQueryCB(), leftSpecifyQuery, rightSp, operand);
             }
         });
     }
 
-    protected WhiteIncludeQueryCB xcreateColumnQueryCB() {
-        WhiteIncludeQueryCB cb = new WhiteIncludeQueryCB();
-        cb.xsetupForColumnQuery((WhiteIncludeQueryCB)this);
+    protected WhiteGearedCipherCB xcreateColumnQueryCB() {
+        WhiteGearedCipherCB cb = new WhiteGearedCipherCB();
+        cb.xsetupForColumnQuery((WhiteGearedCipherCB)this);
         return cb;
     }
 
@@ -396,9 +396,9 @@ public class BsWhiteIncludeQueryCB extends AbstractConditionBean {
      * This is very specialty so you can get the frontier spirit. Bon voyage!
      * @return The condition-bean for dream cruise, which is linked to main condition-bean.
      */
-    public WhiteIncludeQueryCB dreamCruiseCB() {
-        WhiteIncludeQueryCB cb = new WhiteIncludeQueryCB();
-        cb.xsetupForDreamCruise((WhiteIncludeQueryCB) this);
+    public WhiteGearedCipherCB dreamCruiseCB() {
+        WhiteGearedCipherCB cb = new WhiteGearedCipherCB();
+        cb.xsetupForDreamCruise((WhiteGearedCipherCB) this);
         return cb;
     }
 
@@ -415,8 +415,8 @@ public class BsWhiteIncludeQueryCB extends AbstractConditionBean {
      * (Same-column-and-same-condition-key conditions are allowed in or-scope)
      * <pre>
      * <span style="color: #3F7E5E">// where (FOO = '...' or BAR = '...')</span>
-     * cb.<span style="color: #DD4747">orScopeQuery</span>(new OrQuery&lt;WhiteIncludeQueryCB&gt;() {
-     *     public void query(WhiteIncludeQueryCB orCB) {
+     * cb.<span style="color: #DD4747">orScopeQuery</span>(new OrQuery&lt;WhiteGearedCipherCB&gt;() {
+     *     public void query(WhiteGearedCipherCB orCB) {
      *         orCB.query().setFOO_Equal...
      *         orCB.query().setBAR_Equal...
      *     }
@@ -424,8 +424,8 @@ public class BsWhiteIncludeQueryCB extends AbstractConditionBean {
      * </pre>
      * @param orQuery The query for or-condition. (NotNull)
      */
-    public void orScopeQuery(OrQuery<WhiteIncludeQueryCB> orQuery) {
-        xorSQ((WhiteIncludeQueryCB)this, orQuery);
+    public void orScopeQuery(OrQuery<WhiteGearedCipherCB> orQuery) {
+        xorSQ((WhiteGearedCipherCB)this, orQuery);
     }
 
     @Override
@@ -438,11 +438,11 @@ public class BsWhiteIncludeQueryCB extends AbstractConditionBean {
      * (However nested or-scope query and as-or-split of like-search in and-part are unsupported)
      * <pre>
      * <span style="color: #3F7E5E">// where (FOO = '...' or (BAR = '...' and QUX = '...'))</span>
-     * cb.<span style="color: #DD4747">orScopeQuery</span>(new OrQuery&lt;WhiteIncludeQueryCB&gt;() {
-     *     public void query(WhiteIncludeQueryCB orCB) {
+     * cb.<span style="color: #DD4747">orScopeQuery</span>(new OrQuery&lt;WhiteGearedCipherCB&gt;() {
+     *     public void query(WhiteGearedCipherCB orCB) {
      *         orCB.query().setFOO_Equal...
-     *         orCB.<span style="color: #DD4747">orScopeQueryAndPart</span>(new AndQuery&lt;WhiteIncludeQueryCB&gt;() {
-     *             public void query(WhiteIncludeQueryCB andCB) {
+     *         orCB.<span style="color: #DD4747">orScopeQueryAndPart</span>(new AndQuery&lt;WhiteGearedCipherCB&gt;() {
+     *             public void query(WhiteGearedCipherCB andCB) {
      *                 andCB.query().setBar_...
      *                 andCB.query().setQux_...
      *             }
@@ -452,8 +452,8 @@ public class BsWhiteIncludeQueryCB extends AbstractConditionBean {
      * </pre>
      * @param andQuery The query for and-condition. (NotNull)
      */
-    public void orScopeQueryAndPart(AndQuery<WhiteIncludeQueryCB> andQuery) {
-        xorSQAP((WhiteIncludeQueryCB)this, andQuery);
+    public void orScopeQueryAndPart(AndQuery<WhiteGearedCipherCB> andQuery) {
+        xorSQAP((WhiteGearedCipherCB)this, andQuery);
     }
 
     // ===================================================================================
@@ -479,15 +479,15 @@ public class BsWhiteIncludeQueryCB extends AbstractConditionBean {
     //                                                                        ============
     @Override
     protected void xprepareSyncQyCall(ConditionBean mainCB) {
-        final WhiteIncludeQueryCB cb;
+        final WhiteGearedCipherCB cb;
         if (mainCB != null) {
-            cb = (WhiteIncludeQueryCB)mainCB;
+            cb = (WhiteGearedCipherCB)mainCB;
         } else {
-            cb = new WhiteIncludeQueryCB();
+            cb = new WhiteGearedCipherCB();
         }
-        specify().xsetSyncQyCall(new HpSpQyCall<WhiteIncludeQueryCQ>() {
+        specify().xsetSyncQyCall(new HpSpQyCall<WhiteGearedCipherCQ>() {
             public boolean has() { return true; }
-            public WhiteIncludeQueryCQ qy() { return cb.query(); }
+            public WhiteGearedCipherCQ qy() { return cb.query(); }
         });
     }
 
@@ -495,8 +495,8 @@ public class BsWhiteIncludeQueryCB extends AbstractConditionBean {
     //                                                                            Internal
     //                                                                            ========
     // very internal (for suppressing warn about 'Not Use Import')
-    protected String getConditionBeanClassNameInternally() { return WhiteIncludeQueryCB.class.getName(); }
-    protected String getConditionQueryClassNameInternally() { return WhiteIncludeQueryCQ.class.getName(); }
+    protected String getConditionBeanClassNameInternally() { return WhiteGearedCipherCB.class.getName(); }
+    protected String getConditionQueryClassNameInternally() { return WhiteGearedCipherCQ.class.getName(); }
     protected String getSubQueryClassNameInternally() { return SubQuery.class.getName(); }
     protected String getConditionOptionClassNameInternally() { return ConditionOption.class.getName(); }
 }

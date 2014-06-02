@@ -15,6 +15,7 @@ import com.example.dbflute.mysql.dbflute.allcommon.DBFluteInitializer;
 import com.example.dbflute.mysql.dbflute.bsentity.dbmeta.MemberDbm;
 import com.example.dbflute.mysql.dbflute.bsentity.dbmeta.MemberSecurityDbm;
 import com.example.dbflute.mysql.dbflute.bsentity.dbmeta.PurchaseDbm;
+import com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteGearedCipherDbm;
 import com.example.dbflute.mysql.mytype.MyMemberName;
 import com.example.dbflute.mysql.mytype.MyPriceCount;
 import com.example.dbflute.mysql.mytype.MySaleDate;
@@ -49,30 +50,13 @@ public class ExtendedDBFluteInitializer extends DBFluteInitializer {
         });
 
         final GearedCipherManager manager = new GearedCipherManager();
+
         final ColumnInfo loginPassword = MemberSecurityDbm.getInstance().columnLoginPassword();
-        manager.addFunctionFilter(loginPassword, new CipherFunctionFilter() {
-            public String encrypt(String valueExp) {
-                String exp = "sha1(%1$s)";
-                return String.format(exp, valueExp);
-            }
+        manager.addFunctionFilter(loginPassword, createNonInvertibleFilter());
 
-            public String decrypt(String valueExp) {
-                return valueExp; // because of non-invertible
-            }
-        });
-        final String secretKey = "himitsu"; // don't mock me (it's just an example)
         final ColumnInfo updateUser = MemberDbm.getInstance().columnUpdateUser();
-        manager.addFunctionFilter(updateUser, new CipherFunctionFilter() {
-            public String encrypt(String valueExp) {
-                String exp = "hex(aes_encrypt(%1$s, '%2$s'))";
-                return String.format(exp, valueExp, secretKey);
-            }
+        manager.addFunctionFilter(updateUser, creaetInvertibleFilter());
 
-            public String decrypt(String valueExp) {
-                String exp = "convert(aes_decrypt(unhex(%1$s), '%2$s') using utf8)";
-                return String.format(exp, valueExp, secretKey);
-            }
-        });
         final ColumnInfo purchasePrice = PurchaseDbm.getInstance().columnPurchasePrice();
         manager.addFunctionFilter(purchasePrice, new CipherFunctionFilter() {
             public String encrypt(String valueExp) {
@@ -83,6 +67,16 @@ public class ExtendedDBFluteInitializer extends DBFluteInitializer {
                 return "(" + valueExp + " - 13)";
             }
         });
+
+        final ColumnInfo cipherVarchar = WhiteGearedCipherDbm.getInstance().columnCipherVarchar();
+        manager.addFunctionFilter(cipherVarchar, creaetInvertibleFilter());
+        final ColumnInfo cipherInteger = WhiteGearedCipherDbm.getInstance().columnCipherInteger();
+        manager.addFunctionFilter(cipherInteger, creaetInvertibleFilter());
+        final ColumnInfo cipherDate = WhiteGearedCipherDbm.getInstance().columnCipherDate();
+        manager.addFunctionFilter(cipherDate, creaetInvertibleFilter());
+        final ColumnInfo cipherDatetime = WhiteGearedCipherDbm.getInstance().columnCipherDatetime();
+        manager.addFunctionFilter(cipherDatetime, creaetInvertibleFilter());
+
         config.setGearedCipherManager(manager);
 
         config.registerBasicValueType(MyMemberName.class, new MyTypeOfMemberName());
@@ -90,5 +84,33 @@ public class ExtendedDBFluteInitializer extends DBFluteInitializer {
         config.registerBasicValueType(MySaleDate.class, new MyTypeOfSaleDate());
 
         config.lock();
+    }
+
+    protected CipherFunctionFilter createNonInvertibleFilter() {
+        return new CipherFunctionFilter() {
+            public String encrypt(String valueExp) {
+                String exp = "sha1(%1$s)";
+                return String.format(exp, valueExp);
+            }
+
+            public String decrypt(String valueExp) {
+                return valueExp; // because of non-invertible
+            }
+        };
+    }
+
+    protected CipherFunctionFilter creaetInvertibleFilter() {
+        final String secretKey = "himitsu"; // don't mock me (it's just an example)
+        return new CipherFunctionFilter() {
+            public String encrypt(String valueExp) {
+                String exp = "hex(aes_encrypt(%1$s, '%2$s'))";
+                return String.format(exp, valueExp, secretKey);
+            }
+
+            public String decrypt(String valueExp) {
+                String exp = "convert(aes_decrypt(unhex(%1$s), '%2$s') using utf8)";
+                return String.format(exp, valueExp, secretKey);
+            }
+        };
     }
 }

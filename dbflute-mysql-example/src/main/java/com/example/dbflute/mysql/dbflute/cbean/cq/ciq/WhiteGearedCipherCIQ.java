@@ -27,21 +27,21 @@ import com.example.dbflute.mysql.dbflute.cbean.cq.bs.*;
 import com.example.dbflute.mysql.dbflute.cbean.cq.*;
 
 /**
- * The condition-query for in-line of white_include_query.
+ * The condition-query for in-line of white_geared_cipher.
  * @author DBFlute(AutoGenerator)
  */
-public class WhiteIncludeQueryCIQ extends AbstractBsWhiteIncludeQueryCQ {
+public class WhiteGearedCipherCIQ extends AbstractBsWhiteGearedCipherCQ {
 
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    protected BsWhiteIncludeQueryCQ _myCQ;
+    protected BsWhiteGearedCipherCQ _myCQ;
 
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public WhiteIncludeQueryCIQ(ConditionQuery referrerQuery, SqlClause sqlClause
-                        , String aliasName, int nestLevel, BsWhiteIncludeQueryCQ myCQ) {
+    public WhiteGearedCipherCIQ(ConditionQuery referrerQuery, SqlClause sqlClause
+                        , String aliasName, int nestLevel, BsWhiteGearedCipherCQ myCQ) {
         super(referrerQuery, sqlClause, aliasName, nestLevel);
         _myCQ = myCQ;
         _foreignPropertyName = _myCQ.xgetForeignPropertyName(); // accept foreign property name
@@ -76,23 +76,23 @@ public class WhiteIncludeQueryCIQ extends AbstractBsWhiteIncludeQueryCQ {
     // ===================================================================================
     //                                                                Override about Query
     //                                                                ====================
-    protected ConditionValue getCValueIncludeQueryId() { return _myCQ.getIncludeQueryId(); }
-    protected ConditionValue getCValueIncludeQueryVarchar() { return _myCQ.getIncludeQueryVarchar(); }
-    protected ConditionValue getCValueIncludeQueryInteger() { return _myCQ.getIncludeQueryInteger(); }
-    protected ConditionValue getCValueIncludeQueryDate() { return _myCQ.getIncludeQueryDate(); }
-    protected ConditionValue getCValueIncludeQueryDatetime() { return _myCQ.getIncludeQueryDatetime(); }
+    protected ConditionValue getCValueCipherId() { return _myCQ.getCipherId(); }
+    protected ConditionValue getCValueCipherInteger() { return _myCQ.getCipherInteger(); }
+    protected ConditionValue getCValueCipherVarchar() { return _myCQ.getCipherVarchar(); }
+    protected ConditionValue getCValueCipherDate() { return _myCQ.getCipherDate(); }
+    protected ConditionValue getCValueCipherDatetime() { return _myCQ.getCipherDatetime(); }
     protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
-    public String keepScalarCondition(WhiteIncludeQueryCQ sq)
+    public String keepScalarCondition(WhiteGearedCipherCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }
-    public String keepSpecifyMyselfDerived(WhiteIncludeQueryCQ sq)
+    public String keepSpecifyMyselfDerived(WhiteGearedCipherCQ sq)
     { throwIICBOE("(Specify)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerived(WhiteIncludeQueryCQ sq)
+    public String keepQueryMyselfDerived(WhiteGearedCipherCQ sq)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
     public String keepQueryMyselfDerivedParameter(Object vl)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepMyselfExists(WhiteIncludeQueryCQ sq)
+    public String keepMyselfExists(WhiteGearedCipherCQ sq)
     { throwIICBOE("MyselfExists"); return null;}
-    public String keepMyselfInScope(WhiteIncludeQueryCQ sq)
+    public String keepMyselfInScope(WhiteGearedCipherCQ sq)
     { throwIICBOE("MyselfInScope"); return null;}
 
     protected void throwIICBOE(String name)
@@ -102,6 +102,6 @@ public class WhiteIncludeQueryCIQ extends AbstractBsWhiteIncludeQueryCQ {
     //                                                                       Very Internal
     //                                                                       =============
     // very internal (for suppressing warn about 'Not Use Import')
-    protected String xinCB() { return WhiteIncludeQueryCB.class.getName(); }
-    protected String xinCQ() { return WhiteIncludeQueryCQ.class.getName(); }
+    protected String xinCB() { return WhiteGearedCipherCB.class.getName(); }
+    protected String xinCQ() { return WhiteGearedCipherCQ.class.getName(); }
 }
