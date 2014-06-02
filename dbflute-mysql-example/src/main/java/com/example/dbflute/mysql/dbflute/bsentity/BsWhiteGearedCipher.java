@@ -33,7 +33,7 @@ import com.example.dbflute.mysql.dbflute.exentity.*;
  *     CIPHER_ID
  * 
  * [column]
- *     CIPHER_ID, CIPHER_INTEGER, CIPHER_VARCHAR, CIPHER__DATE, CIPHER__DATETIME
+ *     CIPHER_ID, CIPHER_INTEGER, CIPHER_VARCHAR, CIPHER_DATE, CIPHER_DATETIME
  * 
  * [sequence]
  *     
@@ -95,10 +95,10 @@ public abstract class BsWhiteGearedCipher implements Entity, Serializable, Clone
     /** CIPHER_VARCHAR: {VARCHAR(100)} */
     protected String _cipherVarchar;
 
-    /** CIPHER__DATE: {VARCHAR(100)} */
+    /** CIPHER_DATE: {VARCHAR(100)} */
     protected java.util.Date _cipherDate;
 
-    /** CIPHER__DATETIME: {VARCHAR(100)} */
+    /** CIPHER_DATETIME: {VARCHAR(100)} */
     protected java.sql.Timestamp _cipherDatetime;
 
     // -----------------------------------------------------
@@ -376,16 +376,16 @@ public abstract class BsWhiteGearedCipher implements Entity, Serializable, Clone
     }
 
     /**
-     * [get] CIPHER__DATE: {VARCHAR(100)} <br />
-     * @return The value of the column 'CIPHER__DATE'. (NullAllowed even if selected: for no constraint)
+     * [get] CIPHER_DATE: {VARCHAR(100)} <br />
+     * @return The value of the column 'CIPHER_DATE'. (NullAllowed even if selected: for no constraint)
      */
     public java.util.Date getCipherDate() {
         return _cipherDate;
     }
 
     /**
-     * [set] CIPHER__DATE: {VARCHAR(100)} <br />
-     * @param cipherDate The value of the column 'CIPHER__DATE'. (NullAllowed: null update allowed for no constraint)
+     * [set] CIPHER_DATE: {VARCHAR(100)} <br />
+     * @param cipherDate The value of the column 'CIPHER_DATE'. (NullAllowed: null update allowed for no constraint)
      */
     public void setCipherDate(java.util.Date cipherDate) {
         __modifiedProperties.addPropertyName("cipherDate");
@@ -393,16 +393,16 @@ public abstract class BsWhiteGearedCipher implements Entity, Serializable, Clone
     }
 
     /**
-     * [get] CIPHER__DATETIME: {VARCHAR(100)} <br />
-     * @return The value of the column 'CIPHER__DATETIME'. (NullAllowed even if selected: for no constraint)
+     * [get] CIPHER_DATETIME: {VARCHAR(100)} <br />
+     * @return The value of the column 'CIPHER_DATETIME'. (NullAllowed even if selected: for no constraint)
      */
     public java.sql.Timestamp getCipherDatetime() {
         return _cipherDatetime;
     }
 
     /**
-     * [set] CIPHER__DATETIME: {VARCHAR(100)} <br />
-     * @param cipherDatetime The value of the column 'CIPHER__DATETIME'. (NullAllowed: null update allowed for no constraint)
+     * [set] CIPHER_DATETIME: {VARCHAR(100)} <br />
+     * @param cipherDatetime The value of the column 'CIPHER_DATETIME'. (NullAllowed: null update allowed for no constraint)
      */
     public void setCipherDatetime(java.sql.Timestamp cipherDatetime) {
         __modifiedProperties.addPropertyName("cipherDatetime");

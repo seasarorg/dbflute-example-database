@@ -160,17 +160,17 @@ public class BsWhiteGearedCipherCQ extends AbstractBsWhiteGearedCipherCQ {
 
     /** 
      * Add order-by as ascend. <br />
-     * CIPHER__DATE: {VARCHAR(100)}
+     * CIPHER_DATE: {VARCHAR(100)}
      * @return this. (NotNull)
      */
-    public BsWhiteGearedCipherCQ addOrderBy_CipherDate_Asc() { regOBA("CIPHER__DATE"); return this; }
+    public BsWhiteGearedCipherCQ addOrderBy_CipherDate_Asc() { regOBA("CIPHER_DATE"); return this; }
 
     /**
      * Add order-by as descend. <br />
-     * CIPHER__DATE: {VARCHAR(100)}
+     * CIPHER_DATE: {VARCHAR(100)}
      * @return this. (NotNull)
      */
-    public BsWhiteGearedCipherCQ addOrderBy_CipherDate_Desc() { regOBD("CIPHER__DATE"); return this; }
+    public BsWhiteGearedCipherCQ addOrderBy_CipherDate_Desc() { regOBD("CIPHER_DATE"); return this; }
 
     protected ConditionValue _cipherDatetime;
     public ConditionValue getCipherDatetime() {
@@ -181,17 +181,17 @@ public class BsWhiteGearedCipherCQ extends AbstractBsWhiteGearedCipherCQ {
 
     /** 
      * Add order-by as ascend. <br />
-     * CIPHER__DATETIME: {VARCHAR(100)}
+     * CIPHER_DATETIME: {VARCHAR(100)}
      * @return this. (NotNull)
      */
-    public BsWhiteGearedCipherCQ addOrderBy_CipherDatetime_Asc() { regOBA("CIPHER__DATETIME"); return this; }
+    public BsWhiteGearedCipherCQ addOrderBy_CipherDatetime_Asc() { regOBA("CIPHER_DATETIME"); return this; }
 
     /**
      * Add order-by as descend. <br />
-     * CIPHER__DATETIME: {VARCHAR(100)}
+     * CIPHER_DATETIME: {VARCHAR(100)}
      * @return this. (NotNull)
      */
-    public BsWhiteGearedCipherCQ addOrderBy_CipherDatetime_Desc() { regOBD("CIPHER__DATETIME"); return this; }
+    public BsWhiteGearedCipherCQ addOrderBy_CipherDatetime_Desc() { regOBD("CIPHER_DATETIME"); return this; }
 
     // ===================================================================================
     //                                                             SpecifiedDerivedOrderBy

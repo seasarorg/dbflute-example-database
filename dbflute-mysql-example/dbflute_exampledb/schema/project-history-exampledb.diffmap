@@ -1,4 +1,35 @@
 map:{
+    ; 2014/06/02 22:46:40 = map:{
+        ; diffDate = 2014/06/02 22:46:40
+        ; tableDiff = map:{
+            ; white_geared_cipher = map:{
+                ; tableName = white_geared_cipher
+                ; diffType = CHANGE
+                ; columnDefOrderDiff = map:{
+                    ; next = CIPHER_DATE(4), CIPHER_DATETIME(5)
+                    ; previous = CIPHER__DATE(4), CIPHER__DATETIME(5)
+                }
+                ; columnDiff = map:{
+                    ; CIPHER_DATE = map:{
+                        ; columnName = CIPHER_DATE
+                        ; diffType = ADD
+                    }
+                    ; CIPHER_DATETIME = map:{
+                        ; columnName = CIPHER_DATETIME
+                        ; diffType = ADD
+                    }
+                    ; CIPHER__DATE = map:{
+                        ; columnName = CIPHER__DATE
+                        ; diffType = DELETE
+                    }
+                    ; CIPHER__DATETIME = map:{
+                        ; columnName = CIPHER__DATETIME
+                        ; diffType = DELETE
+                    }
+                }
+            }
+        }
+    }
     ; 2014/06/02 22:31:24 = map:{
         ; diffDate = 2014/06/02 22:31:24
         ; tableDiff = map:{

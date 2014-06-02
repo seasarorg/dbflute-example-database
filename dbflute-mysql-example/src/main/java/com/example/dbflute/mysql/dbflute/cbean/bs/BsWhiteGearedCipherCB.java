@@ -324,15 +324,15 @@ public class BsWhiteGearedCipherCB extends AbstractConditionBean {
          */
         public HpSpecifiedColumn columnCipherVarchar() { return doColumn("CIPHER_VARCHAR"); }
         /**
-         * CIPHER__DATE: {VARCHAR(100)}
+         * CIPHER_DATE: {VARCHAR(100)}
          * @return The information object of specified column. (NotNull)
          */
-        public HpSpecifiedColumn columnCipherDate() { return doColumn("CIPHER__DATE"); }
+        public HpSpecifiedColumn columnCipherDate() { return doColumn("CIPHER_DATE"); }
         /**
-         * CIPHER__DATETIME: {VARCHAR(100)}
+         * CIPHER_DATETIME: {VARCHAR(100)}
          * @return The information object of specified column. (NotNull)
          */
-        public HpSpecifiedColumn columnCipherDatetime() { return doColumn("CIPHER__DATETIME"); }
+        public HpSpecifiedColumn columnCipherDatetime() { return doColumn("CIPHER_DATETIME"); }
         public void everyColumn() { doEveryColumn(); }
         public void exceptRecordMetaColumn() { doExceptRecordMetaColumn(); }
         @Override

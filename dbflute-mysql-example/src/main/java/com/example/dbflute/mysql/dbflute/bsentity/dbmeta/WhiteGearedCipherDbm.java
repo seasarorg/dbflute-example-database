@@ -99,8 +99,8 @@ public class WhiteGearedCipherDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnCipherId = cci("CIPHER_ID", "CIPHER_ID", null, null, Long.class, "cipherId", null, true, true, true, "BIGINT", 19, 0, null, false, null, null, null, null, null);
     protected final ColumnInfo _columnCipherInteger = cci("CIPHER_INTEGER", "CIPHER_INTEGER", null, null, Integer.class, "cipherInteger", null, false, false, false, "VARCHAR", 100, 0, null, false, null, null, null, null, null);
     protected final ColumnInfo _columnCipherVarchar = cci("CIPHER_VARCHAR", "CIPHER_VARCHAR", null, null, String.class, "cipherVarchar", null, false, false, false, "VARCHAR", 100, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnCipherDate = cci("CIPHER__DATE", "CIPHER__DATE", null, null, java.util.Date.class, "cipherDate", null, false, false, false, "VARCHAR", 100, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnCipherDatetime = cci("CIPHER__DATETIME", "CIPHER__DATETIME", null, null, java.sql.Timestamp.class, "cipherDatetime", null, false, false, false, "VARCHAR", 100, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnCipherDate = cci("CIPHER_DATE", "CIPHER_DATE", null, null, java.util.Date.class, "cipherDate", null, false, false, false, "VARCHAR", 100, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnCipherDatetime = cci("CIPHER_DATETIME", "CIPHER_DATETIME", null, null, java.sql.Timestamp.class, "cipherDatetime", null, false, false, false, "VARCHAR", 100, 0, null, false, null, null, null, null, null);
 
     /**
      * CIPHER_ID: {PK, ID, NotNull, BIGINT(19)}
@@ -118,12 +118,12 @@ public class WhiteGearedCipherDbm extends AbstractDBMeta {
      */
     public ColumnInfo columnCipherVarchar() { return _columnCipherVarchar; }
     /**
-     * CIPHER__DATE: {VARCHAR(100)}
+     * CIPHER_DATE: {VARCHAR(100)}
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnCipherDate() { return _columnCipherDate; }
     /**
-     * CIPHER__DATETIME: {VARCHAR(100)}
+     * CIPHER_DATETIME: {VARCHAR(100)}
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnCipherDatetime() { return _columnCipherDatetime; }

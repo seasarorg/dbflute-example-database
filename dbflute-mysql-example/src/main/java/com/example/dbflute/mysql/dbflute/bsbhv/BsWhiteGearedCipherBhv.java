@@ -36,7 +36,7 @@ import com.example.dbflute.mysql.dbflute.cbean.*;
  *     CIPHER_ID
  *
  * [column]
- *     CIPHER_ID, CIPHER_INTEGER, CIPHER_VARCHAR, CIPHER__DATE, CIPHER__DATETIME
+ *     CIPHER_ID, CIPHER_INTEGER, CIPHER_VARCHAR, CIPHER_DATE, CIPHER_DATETIME
  *
  * [sequence]
  *     

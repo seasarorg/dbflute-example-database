@@ -1088,9 +1088,9 @@
         <column comment="" dbType="VARCHAR" javaType="String"
             name="CIPHER_VARCHAR" size="100" type="VARCHAR"/>
         <column comment="" dbType="VARCHAR" javaType="java.util.Date"
-            name="CIPHER__DATE" size="100" type="DATE"/>
+            name="CIPHER_DATE" size="100" type="DATE"/>
         <column comment="" dbType="VARCHAR"
-            javaType="java.sql.Timestamp" name="CIPHER__DATETIME"
+            javaType="java.sql.Timestamp" name="CIPHER_DATETIME"
             size="100" type="TIMESTAMP"/>
     </table>
     <table name="white_implicit_conv_integer"
