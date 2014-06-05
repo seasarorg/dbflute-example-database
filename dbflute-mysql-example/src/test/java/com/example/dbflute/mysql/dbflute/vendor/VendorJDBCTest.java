@@ -142,7 +142,7 @@ public class VendorJDBCTest extends UnitContainerTestCase {
     public void doTest_ResultSet_sensitiveOrNot(final TestingResultSetType resultSetType) {
         // ## Arrange ##
         final ListResultBean<Member> beforeList = memberBhv.selectList(new MemberCB());
-        final Date updateDate = currentDate();
+        final Date updateDate = toDate("3123/09/26");
         final boolean sensitive = TestingResultSetType.SCROLL_SENSITIVE.equals(resultSetType);
 
         // ## Act ##
@@ -193,9 +193,6 @@ public class VendorJDBCTest extends UnitContainerTestCase {
         }, new ThreadFireOption().commitTx().threadCount(2).repeatCount(1));
         performNewTransaction(new TransactionPerformer() {
             public boolean perform() {
-                for (Member member : beforeList) {
-                    log(member.getMemberName(), member.getUpdateUser());
-                }
                 UpdateOption<MemberCB> option = new UpdateOption<MemberCB>().disableCommonColumnAutoSetup();
                 option.specify(new SpecifyQuery<MemberCB>() {
                     public void specify(MemberCB cb) {

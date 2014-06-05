@@ -148,10 +148,9 @@ public class WxGearedCipherMySQLTest extends UnitContainerTestCase {
         cb.query().setLoginPassword_LikeSearch("1", option); // to encrypted string
 
         // ## Act ##
-        ListResultBean<MemberSecurity> securityList = memberSecurityBhv.selectList(cb);
+        memberSecurityBhv.selectList(cb); // expect no exception
 
         // ## Assert ##
-        assertHasAnyElement(securityList);
         String sql = cb.toDisplaySql();
         assertTrue(Srl.contains(sql, "dfloc.LOGIN_PASSWORD like '%1%' escape '|'"));
     }

@@ -139,12 +139,31 @@ select max(address.VALID_BEGIN_DATE)
     # ------------------------------------------------------
     #                                          Local Foreign
     #                                          -------------
+    ; FK_MEMBER_MEMBER_LOGIN_LOCAL_BIND_OVER_TEST = map:{
+        ; localTableName  = MEMBER    ; foreignTableName  = MEMBER_LOGIN
+        ; localColumnName = MEMBER_ID ; foreignColumnName = MEMBER_ID
+        ; fixedCondition = 
+$$over($localTable.memberStatus)$$.DISPLAY_ORDER = /*displayOrder(Integer)*/
+        ; fixedSuffix = AsLocalBindOverTest
+    }
+    # ------------------------------------------------------
+    #                                          Local Foreign
+    #                                          -------------
     ; FK_MEMBER_MEMBER_LOGIN_LOCAL_FOREIGN_OVER_TEST = map:{
         ; localTableName  = MEMBER    ; foreignTableName  = MEMBER_LOGIN
         ; localColumnName = MEMBER_ID ; foreignColumnName = MEMBER_ID
         ; fixedCondition = 
 $$foreignAlias$$.LOGIN_MEMBER_STATUS_CODE = $$over($localTable.memberStatus)$$.MEMBER_STATUS_NAME
         ; fixedSuffix = AsLocalForeignOverTest
+    }
+    # ------------------------------------------------------
+    #                                   Foreign Foreign Bind
+    #                                   --------------------
+    ; FK_MEMBER_MEMBER_LOGIN_FOREIGN_FOREIGN_BIND_OVER_TEST = map:{
+        ; localTableName  = MEMBER    ; foreignTableName  = MEMBER_LOGIN
+        ; localColumnName = MEMBER_ID ; foreignColumnName = MEMBER_ID
+        ; fixedCondition = $$over($foreignTable.memberStatus)$$.DISPLAY_ORDER = /*displayOrder(Integer)*/
+        ; fixedSuffix = AsForeignForeignBindOverTest
     }
     # ------------------------------------------------------
     #                                   Foreign Foreign Each
@@ -183,7 +202,7 @@ and $$foreignAlias$$.MEMBER_ID >= $$over($foreignTable.memberStatus)$$.DISPLAY_O
         ; localColumnName = MEMBER_ID ; foreignColumnName = MEMBER_ID
         # auto formatting does not work because of sub-query
         ; fixedCondition = 
-         $$over($foreignTable.memberStatus)$$.DISPLAY_ORDER = 3
+         $$over($foreignTable.memberStatus)$$.DISPLAY_ORDER = /*displayOrder(Integer)*/
      and $$over($localTable.memberStatus)$$.DISPLAY_ORDER = $$over($foreignTable.memberStatus, DISPLAY_ORDER)$$.STATUS_ORDER
      and $$over($foreignTable.memberStatus, DESCRIPTION)$$.STATUS_DESC is not null
      and $$localAlias$$.BIRTHDATE is not null
@@ -201,7 +220,7 @@ and $$foreignAlias$$.MEMBER_ID >= $$over($foreignTable.memberStatus)$$.DISPLAY_O
         ; localTableName  = MEMBER    ; foreignTableName  = MEMBER_LOGIN
         ; localColumnName = MEMBER_ID ; foreignColumnName = MEMBER_ID
         ; fixedCondition = 
-$$over($foreignTable.memberStatus)$$.DISPLAY_ORDER = 3
+$$over($foreignTable.memberStatus)$$.DISPLAY_ORDER = /*displayOrder(Integer)*/
 and $$over($foreignTable.memberStatus, DESCRIPTION)$$.STATUS_DESC is not null
 and $$foreignAlias$$.MOBILE_LOGIN_FLG = /*$cls(Flg.True)*/
 and $$foreignAlias$$.MEMBER_ID >= $$over($foreignTable.memberStatus)$$.DISPLAY_ORDER

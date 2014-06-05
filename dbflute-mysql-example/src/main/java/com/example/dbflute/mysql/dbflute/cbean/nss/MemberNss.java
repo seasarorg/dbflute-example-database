@@ -94,12 +94,32 @@ public class MemberNss {
     }
     /**
      * With nested relation columns to select clause. <br />
+     * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsLocalBindOverTest'.
+     * @param displayOrder The bind parameter of fixed condition for displayOrder. (NotNull)
+     * @return The set-upper of more nested relation. {...with[nested-relation].with[more-nested-relation]} (NotNull)
+     */
+    public MemberLoginNss withMemberLoginAsLocalBindOverTest(final Integer displayOrder) {
+        _query.doNss(new MemberCQ.NssCall() { public ConditionQuery qf() { return _query.queryMemberLoginAsLocalBindOverTest(displayOrder); }});
+        return new MemberLoginNss(_query.queryMemberLoginAsLocalBindOverTest(displayOrder));
+    }
+    /**
+     * With nested relation columns to select clause. <br />
      * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsLocalForeignOverTest'.
      * @return The set-upper of more nested relation. {...with[nested-relation].with[more-nested-relation]} (NotNull)
      */
     public MemberLoginNss withMemberLoginAsLocalForeignOverTest() {
         _query.doNss(new MemberCQ.NssCall() { public ConditionQuery qf() { return _query.queryMemberLoginAsLocalForeignOverTest(); }});
         return new MemberLoginNss(_query.queryMemberLoginAsLocalForeignOverTest());
+    }
+    /**
+     * With nested relation columns to select clause. <br />
+     * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsForeignForeignBindOverTest'.
+     * @param displayOrder The bind parameter of fixed condition for displayOrder. (NotNull)
+     * @return The set-upper of more nested relation. {...with[nested-relation].with[more-nested-relation]} (NotNull)
+     */
+    public MemberLoginNss withMemberLoginAsForeignForeignBindOverTest(final Integer displayOrder) {
+        _query.doNss(new MemberCQ.NssCall() { public ConditionQuery qf() { return _query.queryMemberLoginAsForeignForeignBindOverTest(displayOrder); }});
+        return new MemberLoginNss(_query.queryMemberLoginAsForeignForeignBindOverTest(displayOrder));
     }
     /**
      * With nested relation columns to select clause. <br />
@@ -131,21 +151,23 @@ public class MemberNss {
     /**
      * With nested relation columns to select clause. <br />
      * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsForeignForeignOptimizedPartOverTest'.
+     * @param displayOrder The bind parameter of fixed condition for displayOrder. (NotNull)
      * @param memberName The bind parameter of fixed condition for memberName. (NotNull)
      * @return The set-upper of more nested relation. {...with[nested-relation].with[more-nested-relation]} (NotNull)
      */
-    public MemberLoginNss withMemberLoginAsForeignForeignOptimizedPartOverTest(final String memberName) {
-        _query.doNss(new MemberCQ.NssCall() { public ConditionQuery qf() { return _query.queryMemberLoginAsForeignForeignOptimizedPartOverTest(memberName); }});
-        return new MemberLoginNss(_query.queryMemberLoginAsForeignForeignOptimizedPartOverTest(memberName));
+    public MemberLoginNss withMemberLoginAsForeignForeignOptimizedPartOverTest(final Integer displayOrder, final String memberName) {
+        _query.doNss(new MemberCQ.NssCall() { public ConditionQuery qf() { return _query.queryMemberLoginAsForeignForeignOptimizedPartOverTest(displayOrder, memberName); }});
+        return new MemberLoginNss(_query.queryMemberLoginAsForeignForeignOptimizedPartOverTest(displayOrder, memberName));
     }
     /**
      * With nested relation columns to select clause. <br />
      * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsForeignForeignOptimizedWholeOverTest'.
+     * @param displayOrder The bind parameter of fixed condition for displayOrder. (NotNull)
      * @return The set-upper of more nested relation. {...with[nested-relation].with[more-nested-relation]} (NotNull)
      */
-    public MemberLoginNss withMemberLoginAsForeignForeignOptimizedWholeOverTest() {
-        _query.doNss(new MemberCQ.NssCall() { public ConditionQuery qf() { return _query.queryMemberLoginAsForeignForeignOptimizedWholeOverTest(); }});
-        return new MemberLoginNss(_query.queryMemberLoginAsForeignForeignOptimizedWholeOverTest());
+    public MemberLoginNss withMemberLoginAsForeignForeignOptimizedWholeOverTest(final Integer displayOrder) {
+        _query.doNss(new MemberCQ.NssCall() { public ConditionQuery qf() { return _query.queryMemberLoginAsForeignForeignOptimizedWholeOverTest(displayOrder); }});
+        return new MemberLoginNss(_query.queryMemberLoginAsForeignForeignOptimizedWholeOverTest(displayOrder));
     }
     /**
      * With nested relation columns to select clause. <br />

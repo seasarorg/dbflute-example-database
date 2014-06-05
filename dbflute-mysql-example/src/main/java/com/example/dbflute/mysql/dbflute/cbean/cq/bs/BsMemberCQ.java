@@ -662,8 +662,16 @@ public class BsMemberCQ extends AbstractBsMemberCQ {
             uq.xsetParameterMapMemberAddressAsOnlyOneDate(bq.getParameterMapMemberAddressAsOnlyOneDate());
             uq.getConditionQueryMemberAddressAsOnlyOneDate().reflectRelationOnUnionQuery(bq.getConditionQueryMemberAddressAsOnlyOneDate(), uq.getConditionQueryMemberAddressAsOnlyOneDate());
         }
+        if (bq.hasConditionQueryMemberLoginAsLocalBindOverTest()) {
+            uq.xsetParameterMapMemberLoginAsLocalBindOverTest(bq.getParameterMapMemberLoginAsLocalBindOverTest());
+            uq.getConditionQueryMemberLoginAsLocalBindOverTest().reflectRelationOnUnionQuery(bq.getConditionQueryMemberLoginAsLocalBindOverTest(), uq.getConditionQueryMemberLoginAsLocalBindOverTest());
+        }
         if (bq.hasConditionQueryMemberLoginAsLocalForeignOverTest()) {
             uq.queryMemberLoginAsLocalForeignOverTest().reflectRelationOnUnionQuery(bq.queryMemberLoginAsLocalForeignOverTest(), uq.queryMemberLoginAsLocalForeignOverTest());
+        }
+        if (bq.hasConditionQueryMemberLoginAsForeignForeignBindOverTest()) {
+            uq.xsetParameterMapMemberLoginAsForeignForeignBindOverTest(bq.getParameterMapMemberLoginAsForeignForeignBindOverTest());
+            uq.getConditionQueryMemberLoginAsForeignForeignBindOverTest().reflectRelationOnUnionQuery(bq.getConditionQueryMemberLoginAsForeignForeignBindOverTest(), uq.getConditionQueryMemberLoginAsForeignForeignBindOverTest());
         }
         if (bq.hasConditionQueryMemberLoginAsForeignForeignEachOverTest()) {
             uq.queryMemberLoginAsForeignForeignEachOverTest().reflectRelationOnUnionQuery(bq.queryMemberLoginAsForeignForeignEachOverTest(), uq.queryMemberLoginAsForeignForeignEachOverTest());
@@ -679,7 +687,8 @@ public class BsMemberCQ extends AbstractBsMemberCQ {
             uq.getConditionQueryMemberLoginAsForeignForeignOptimizedPartOverTest().reflectRelationOnUnionQuery(bq.getConditionQueryMemberLoginAsForeignForeignOptimizedPartOverTest(), uq.getConditionQueryMemberLoginAsForeignForeignOptimizedPartOverTest());
         }
         if (bq.hasConditionQueryMemberLoginAsForeignForeignOptimizedWholeOverTest()) {
-            uq.queryMemberLoginAsForeignForeignOptimizedWholeOverTest().reflectRelationOnUnionQuery(bq.queryMemberLoginAsForeignForeignOptimizedWholeOverTest(), uq.queryMemberLoginAsForeignForeignOptimizedWholeOverTest());
+            uq.xsetParameterMapMemberLoginAsForeignForeignOptimizedWholeOverTest(bq.getParameterMapMemberLoginAsForeignForeignOptimizedWholeOverTest());
+            uq.getConditionQueryMemberLoginAsForeignForeignOptimizedWholeOverTest().reflectRelationOnUnionQuery(bq.getConditionQueryMemberLoginAsForeignForeignOptimizedWholeOverTest(), uq.getConditionQueryMemberLoginAsForeignForeignOptimizedWholeOverTest());
         }
         if (bq.hasConditionQueryMemberLoginAsForeignForeignParameterOverTest()) {
             uq.xsetParameterMapMemberLoginAsForeignForeignParameterOverTest(bq.getParameterMapMemberLoginAsForeignForeignParameterOverTest());
@@ -1002,6 +1011,54 @@ public class BsMemberCQ extends AbstractBsMemberCQ {
 
     /**
      * Get the condition-query for relation table. <br />
+     * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsLocalBindOverTest'.
+     * @param displayOrder The bind parameter of fixed condition for displayOrder. (NotNull)
+     * @return The instance of condition-query. (NotNull)
+     */
+    public MemberLoginCQ queryMemberLoginAsLocalBindOverTest(Integer displayOrder) {
+        Map<String, Object> parameterMap = getParameterMapMemberLoginAsLocalBindOverTest();
+        parameterMap.put("displayOrder", displayOrder);
+        assertFixedConditionDynamicParameter("memberLoginAsLocalBindOverTest", parameterMap);
+        return getConditionQueryMemberLoginAsLocalBindOverTest();
+    }
+    protected MemberLoginCQ _conditionQueryMemberLoginAsLocalBindOverTest;
+    public MemberLoginCQ getConditionQueryMemberLoginAsLocalBindOverTest() {
+        if (_conditionQueryMemberLoginAsLocalBindOverTest == null) {
+            _conditionQueryMemberLoginAsLocalBindOverTest = xcreateQueryMemberLoginAsLocalBindOverTest();
+            xsetupOuterJoinMemberLoginAsLocalBindOverTest();
+        }
+        return _conditionQueryMemberLoginAsLocalBindOverTest;
+    }
+    protected Map<String, Object> _parameterMapMemberLoginAsLocalBindOverTest;
+    public Map<String, Object> getParameterMapMemberLoginAsLocalBindOverTest() {
+        if (_parameterMapMemberLoginAsLocalBindOverTest == null) {
+            _parameterMapMemberLoginAsLocalBindOverTest = newLinkedHashMapSized(4);
+        }
+        return _parameterMapMemberLoginAsLocalBindOverTest;
+    }
+    public void xsetParameterMapMemberLoginAsLocalBindOverTest(Map<String, Object> parameterMap) {
+        _parameterMapMemberLoginAsLocalBindOverTest = parameterMap; // for UnionQuery
+    }
+    protected MemberLoginCQ xcreateQueryMemberLoginAsLocalBindOverTest() {
+        String nrp = resolveNextRelationPath("member", "memberLoginAsLocalBindOverTest");
+        String jan = resolveJoinAliasName(nrp, xgetNextNestLevel());
+        MemberLoginCQ cq = new MemberLoginCQ(this, xgetSqlClause(), jan, xgetNextNestLevel());
+        cq.xsetBaseCB(_baseCB);
+        cq.xsetForeignPropertyName("memberLoginAsLocalBindOverTest");
+        cq.xsetRelationPath(nrp); return cq;
+    }
+    protected void xsetupOuterJoinMemberLoginAsLocalBindOverTest() {
+        MemberLoginCQ cq = getConditionQueryMemberLoginAsLocalBindOverTest();
+        Map<String, String> joinOnMap = newLinkedHashMapSized(4);
+        joinOnMap.put("MEMBER_ID", "MEMBER_ID");
+        registerOuterJoin(cq, joinOnMap, "memberLoginAsLocalBindOverTest");
+    }
+    public boolean hasConditionQueryMemberLoginAsLocalBindOverTest() {
+        return _conditionQueryMemberLoginAsLocalBindOverTest != null;
+    }
+
+    /**
+     * Get the condition-query for relation table. <br />
      * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsLocalForeignOverTest'.
      * @return The instance of condition-query. (NotNull)
      */
@@ -1032,6 +1089,54 @@ public class BsMemberCQ extends AbstractBsMemberCQ {
     }
     public boolean hasConditionQueryMemberLoginAsLocalForeignOverTest() {
         return _conditionQueryMemberLoginAsLocalForeignOverTest != null;
+    }
+
+    /**
+     * Get the condition-query for relation table. <br />
+     * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsForeignForeignBindOverTest'.
+     * @param displayOrder The bind parameter of fixed condition for displayOrder. (NotNull)
+     * @return The instance of condition-query. (NotNull)
+     */
+    public MemberLoginCQ queryMemberLoginAsForeignForeignBindOverTest(Integer displayOrder) {
+        Map<String, Object> parameterMap = getParameterMapMemberLoginAsForeignForeignBindOverTest();
+        parameterMap.put("displayOrder", displayOrder);
+        assertFixedConditionDynamicParameter("memberLoginAsForeignForeignBindOverTest", parameterMap);
+        return getConditionQueryMemberLoginAsForeignForeignBindOverTest();
+    }
+    protected MemberLoginCQ _conditionQueryMemberLoginAsForeignForeignBindOverTest;
+    public MemberLoginCQ getConditionQueryMemberLoginAsForeignForeignBindOverTest() {
+        if (_conditionQueryMemberLoginAsForeignForeignBindOverTest == null) {
+            _conditionQueryMemberLoginAsForeignForeignBindOverTest = xcreateQueryMemberLoginAsForeignForeignBindOverTest();
+            xsetupOuterJoinMemberLoginAsForeignForeignBindOverTest();
+        }
+        return _conditionQueryMemberLoginAsForeignForeignBindOverTest;
+    }
+    protected Map<String, Object> _parameterMapMemberLoginAsForeignForeignBindOverTest;
+    public Map<String, Object> getParameterMapMemberLoginAsForeignForeignBindOverTest() {
+        if (_parameterMapMemberLoginAsForeignForeignBindOverTest == null) {
+            _parameterMapMemberLoginAsForeignForeignBindOverTest = newLinkedHashMapSized(4);
+        }
+        return _parameterMapMemberLoginAsForeignForeignBindOverTest;
+    }
+    public void xsetParameterMapMemberLoginAsForeignForeignBindOverTest(Map<String, Object> parameterMap) {
+        _parameterMapMemberLoginAsForeignForeignBindOverTest = parameterMap; // for UnionQuery
+    }
+    protected MemberLoginCQ xcreateQueryMemberLoginAsForeignForeignBindOverTest() {
+        String nrp = resolveNextRelationPath("member", "memberLoginAsForeignForeignBindOverTest");
+        String jan = resolveJoinAliasName(nrp, xgetNextNestLevel());
+        MemberLoginCQ cq = new MemberLoginCQ(this, xgetSqlClause(), jan, xgetNextNestLevel());
+        cq.xsetBaseCB(_baseCB);
+        cq.xsetForeignPropertyName("memberLoginAsForeignForeignBindOverTest");
+        cq.xsetRelationPath(nrp); return cq;
+    }
+    protected void xsetupOuterJoinMemberLoginAsForeignForeignBindOverTest() {
+        MemberLoginCQ cq = getConditionQueryMemberLoginAsForeignForeignBindOverTest();
+        Map<String, String> joinOnMap = newLinkedHashMapSized(4);
+        joinOnMap.put("MEMBER_ID", "MEMBER_ID");
+        registerOuterJoin(cq, joinOnMap, "memberLoginAsForeignForeignBindOverTest");
+    }
+    public boolean hasConditionQueryMemberLoginAsForeignForeignBindOverTest() {
+        return _conditionQueryMemberLoginAsForeignForeignBindOverTest != null;
     }
 
     /**
@@ -1139,12 +1244,13 @@ public class BsMemberCQ extends AbstractBsMemberCQ {
     /**
      * Get the condition-query for relation table. <br />
      * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsForeignForeignOptimizedPartOverTest'.
+     * @param displayOrder The bind parameter of fixed condition for displayOrder. (NotNull)
      * @param memberName The bind parameter of fixed condition for memberName. (NotNull)
      * @return The instance of condition-query. (NotNull)
      */
-    public MemberLoginCQ queryMemberLoginAsForeignForeignOptimizedPartOverTest(String memberName) {
+    public MemberLoginCQ queryMemberLoginAsForeignForeignOptimizedPartOverTest(Integer displayOrder, String memberName) {
         Map<String, Object> parameterMap = getParameterMapMemberLoginAsForeignForeignOptimizedPartOverTest();
-        parameterMap.put("memberName", memberName);
+        parameterMap.put("displayOrder", displayOrder);parameterMap.put("memberName", memberName);
         assertFixedConditionDynamicParameter("memberLoginAsForeignForeignOptimizedPartOverTest", parameterMap);
         return getConditionQueryMemberLoginAsForeignForeignOptimizedPartOverTest();
     }
@@ -1187,9 +1293,13 @@ public class BsMemberCQ extends AbstractBsMemberCQ {
     /**
      * Get the condition-query for relation table. <br />
      * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsForeignForeignOptimizedWholeOverTest'.
+     * @param displayOrder The bind parameter of fixed condition for displayOrder. (NotNull)
      * @return The instance of condition-query. (NotNull)
      */
-    public MemberLoginCQ queryMemberLoginAsForeignForeignOptimizedWholeOverTest() {
+    public MemberLoginCQ queryMemberLoginAsForeignForeignOptimizedWholeOverTest(Integer displayOrder) {
+        Map<String, Object> parameterMap = getParameterMapMemberLoginAsForeignForeignOptimizedWholeOverTest();
+        parameterMap.put("displayOrder", displayOrder);
+        assertFixedConditionDynamicParameter("memberLoginAsForeignForeignOptimizedWholeOverTest", parameterMap);
         return getConditionQueryMemberLoginAsForeignForeignOptimizedWholeOverTest();
     }
     protected MemberLoginCQ _conditionQueryMemberLoginAsForeignForeignOptimizedWholeOverTest;
@@ -1199,6 +1309,16 @@ public class BsMemberCQ extends AbstractBsMemberCQ {
             xsetupOuterJoinMemberLoginAsForeignForeignOptimizedWholeOverTest();
         }
         return _conditionQueryMemberLoginAsForeignForeignOptimizedWholeOverTest;
+    }
+    protected Map<String, Object> _parameterMapMemberLoginAsForeignForeignOptimizedWholeOverTest;
+    public Map<String, Object> getParameterMapMemberLoginAsForeignForeignOptimizedWholeOverTest() {
+        if (_parameterMapMemberLoginAsForeignForeignOptimizedWholeOverTest == null) {
+            _parameterMapMemberLoginAsForeignForeignOptimizedWholeOverTest = newLinkedHashMapSized(4);
+        }
+        return _parameterMapMemberLoginAsForeignForeignOptimizedWholeOverTest;
+    }
+    public void xsetParameterMapMemberLoginAsForeignForeignOptimizedWholeOverTest(Map<String, Object> parameterMap) {
+        _parameterMapMemberLoginAsForeignForeignOptimizedWholeOverTest = parameterMap; // for UnionQuery
     }
     protected MemberLoginCQ xcreateQueryMemberLoginAsForeignForeignOptimizedWholeOverTest() {
         String nrp = resolveNextRelationPath("member", "memberLoginAsForeignForeignOptimizedWholeOverTest");
@@ -1684,8 +1804,17 @@ public class BsMemberCQ extends AbstractBsMemberCQ {
         if ("memberAddressAsOnlyOneDate".equalsIgnoreCase(property)) {
             return _parameterMapMemberAddressAsOnlyOneDate;
         }
+        if ("memberLoginAsLocalBindOverTest".equalsIgnoreCase(property)) {
+            return _parameterMapMemberLoginAsLocalBindOverTest;
+        }
+        if ("memberLoginAsForeignForeignBindOverTest".equalsIgnoreCase(property)) {
+            return _parameterMapMemberLoginAsForeignForeignBindOverTest;
+        }
         if ("memberLoginAsForeignForeignOptimizedPartOverTest".equalsIgnoreCase(property)) {
             return _parameterMapMemberLoginAsForeignForeignOptimizedPartOverTest;
+        }
+        if ("memberLoginAsForeignForeignOptimizedWholeOverTest".equalsIgnoreCase(property)) {
+            return _parameterMapMemberLoginAsForeignForeignOptimizedWholeOverTest;
         }
         if ("memberLoginAsForeignForeignParameterOverTest".equalsIgnoreCase(property)) {
             return _parameterMapMemberLoginAsForeignForeignParameterOverTest;

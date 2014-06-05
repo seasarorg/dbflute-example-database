@@ -195,6 +195,29 @@ public class WxBizOneToOneOverRelationTest extends UnitContainerTestCase {
     }
 
     // -----------------------------------------------------
+    //                                                  Bind
+    //                                                  ----
+    public void test_OverRelation_ForeignForeignBindOptimized_basic() {
+        // ## Arrange ##
+        MemberCB cb = new MemberCB();
+        cb.setupSelect_MemberLoginAsForeignForeignBindOverTest(3);
+
+        // ## Act ##
+        memberBhv.selectList(cb); // expect no exception
+
+        // ## Assert ##
+        String displaySql = cb.toDisplaySql();
+        assertTrue(Srl.containsAllIgnoreCase(displaySql, "select dffixedbase.*\n"));
+        assertTrue(Srl.containsAllIgnoreCase(displaySql, "join MEMBER_STATUS dffixedjoin_0_0"));
+        assertTrue(displaySql.contains("on "));
+        String beforeOn = Srl.substringLastFront(displaySql, "on ");
+        assertTrue(Srl.containsIgnoreCase(beforeOn, "where dffixedjoin_0_0.DISPLAY_ORDER = 3"));
+        assertEquals(1, Srl.countIgnoreCase(displaySql, ".DISPLAY_ORDER = "));
+        assertFalse(displaySql.contains("$$"));
+        assertFalse(displaySql.contains("over("));
+    }
+
+    // -----------------------------------------------------
     //                                             Optimized
     //                                             ---------
     public void test_OverRelation_ForeignForeignBasicOptimized_basic() {
@@ -252,7 +275,7 @@ public class WxBizOneToOneOverRelationTest extends UnitContainerTestCase {
     public void test_OverRelation_ForeignForeignOptimizedPart_basic() {
         // ## Arrange ##
         MemberCB cb = new MemberCB();
-        cb.setupSelect_MemberLoginAsForeignForeignOptimizedPartOverTest("S");
+        cb.setupSelect_MemberLoginAsForeignForeignOptimizedPartOverTest(3, "S");
 
         // ## Act ##
         ListResultBean<Member> memberList = memberBhv.selectList(cb); // expect no exception
@@ -290,7 +313,7 @@ public class WxBizOneToOneOverRelationTest extends UnitContainerTestCase {
     public void test_OverRelation_ForeignForeignWholeOptimized_basic() {
         // ## Arrange ##
         MemberCB cb = new MemberCB();
-        cb.setupSelect_MemberLoginAsForeignForeignOptimizedWholeOverTest();
+        cb.setupSelect_MemberLoginAsForeignForeignOptimizedWholeOverTest(3);
 
         // ## Act ##
         ListResultBean<Member> memberList = memberBhv.selectList(cb); // expect no exception
@@ -321,8 +344,8 @@ public class WxBizOneToOneOverRelationTest extends UnitContainerTestCase {
         // ## Arrange ##
         MemberCB cb = new MemberCB();
         cb.setupSelect_MemberLoginAsForeignForeignOptimizedMarkOverTest();
-        cb.setupSelect_MemberLoginAsForeignForeignOptimizedPartOverTest("S");
-        cb.setupSelect_MemberLoginAsForeignForeignOptimizedWholeOverTest();
+        cb.setupSelect_MemberLoginAsForeignForeignOptimizedPartOverTest(3, "S");
+        cb.setupSelect_MemberLoginAsForeignForeignOptimizedWholeOverTest(3);
 
         // ## Act ##
         ListResultBean<Member> memberList = memberBhv.selectList(cb); // expect no exception

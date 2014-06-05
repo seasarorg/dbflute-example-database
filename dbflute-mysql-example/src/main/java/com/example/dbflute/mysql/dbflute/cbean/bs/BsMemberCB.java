@@ -424,6 +424,32 @@ public class BsMemberCB extends AbstractConditionBean {
         return _nssMemberAddressAsOnlyOneDate;
     }
 
+    protected MemberLoginNss _nssMemberLoginAsLocalBindOverTest;
+    public MemberLoginNss getNssMemberLoginAsLocalBindOverTest() {
+        if (_nssMemberLoginAsLocalBindOverTest == null) { _nssMemberLoginAsLocalBindOverTest = new MemberLoginNss(null); }
+        return _nssMemberLoginAsLocalBindOverTest;
+    }
+    /**
+     * Set up relation columns to select clause. <br />
+     * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsLocalBindOverTest'.
+     * <pre>
+     * MemberCB cb = new MemberCB();
+     * cb.<span style="color: #DD4747">setupSelect_MemberLoginAsLocalBindOverTest(displayOrder)</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
+     * cb.query().setFoo...(value);
+     * Member member = memberBhv.selectEntityWithDeletedCheck(cb);
+     * ... = member.<span style="color: #DD4747">getMemberLoginAsLocalBindOverTest()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
+     * </pre>
+     * @param displayOrder The bind parameter of fixed condition for displayOrder. (NotNull)
+     * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
+     */
+    public MemberLoginNss setupSelect_MemberLoginAsLocalBindOverTest(final Integer displayOrder) {
+        assertSetupSelectPurpose("memberLoginAsLocalBindOverTest");
+        doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryMemberLoginAsLocalBindOverTest(displayOrder); } });
+        if (_nssMemberLoginAsLocalBindOverTest == null || !_nssMemberLoginAsLocalBindOverTest.hasConditionQuery())
+        { _nssMemberLoginAsLocalBindOverTest = new MemberLoginNss(query().queryMemberLoginAsLocalBindOverTest(displayOrder)); }
+        return _nssMemberLoginAsLocalBindOverTest;
+    }
+
     protected MemberLoginNss _nssMemberLoginAsLocalForeignOverTest;
     public MemberLoginNss getNssMemberLoginAsLocalForeignOverTest() {
         if (_nssMemberLoginAsLocalForeignOverTest == null) { _nssMemberLoginAsLocalForeignOverTest = new MemberLoginNss(null); }
@@ -447,6 +473,32 @@ public class BsMemberCB extends AbstractConditionBean {
         if (_nssMemberLoginAsLocalForeignOverTest == null || !_nssMemberLoginAsLocalForeignOverTest.hasConditionQuery())
         { _nssMemberLoginAsLocalForeignOverTest = new MemberLoginNss(query().queryMemberLoginAsLocalForeignOverTest()); }
         return _nssMemberLoginAsLocalForeignOverTest;
+    }
+
+    protected MemberLoginNss _nssMemberLoginAsForeignForeignBindOverTest;
+    public MemberLoginNss getNssMemberLoginAsForeignForeignBindOverTest() {
+        if (_nssMemberLoginAsForeignForeignBindOverTest == null) { _nssMemberLoginAsForeignForeignBindOverTest = new MemberLoginNss(null); }
+        return _nssMemberLoginAsForeignForeignBindOverTest;
+    }
+    /**
+     * Set up relation columns to select clause. <br />
+     * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsForeignForeignBindOverTest'.
+     * <pre>
+     * MemberCB cb = new MemberCB();
+     * cb.<span style="color: #DD4747">setupSelect_MemberLoginAsForeignForeignBindOverTest(displayOrder)</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
+     * cb.query().setFoo...(value);
+     * Member member = memberBhv.selectEntityWithDeletedCheck(cb);
+     * ... = member.<span style="color: #DD4747">getMemberLoginAsForeignForeignBindOverTest()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
+     * </pre>
+     * @param displayOrder The bind parameter of fixed condition for displayOrder. (NotNull)
+     * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
+     */
+    public MemberLoginNss setupSelect_MemberLoginAsForeignForeignBindOverTest(final Integer displayOrder) {
+        assertSetupSelectPurpose("memberLoginAsForeignForeignBindOverTest");
+        doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryMemberLoginAsForeignForeignBindOverTest(displayOrder); } });
+        if (_nssMemberLoginAsForeignForeignBindOverTest == null || !_nssMemberLoginAsForeignForeignBindOverTest.hasConditionQuery())
+        { _nssMemberLoginAsForeignForeignBindOverTest = new MemberLoginNss(query().queryMemberLoginAsForeignForeignBindOverTest(displayOrder)); }
+        return _nssMemberLoginAsForeignForeignBindOverTest;
     }
 
     protected MemberLoginNss _nssMemberLoginAsForeignForeignEachOverTest;
@@ -534,19 +586,20 @@ public class BsMemberCB extends AbstractConditionBean {
      * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsForeignForeignOptimizedPartOverTest'.
      * <pre>
      * MemberCB cb = new MemberCB();
-     * cb.<span style="color: #DD4747">setupSelect_MemberLoginAsForeignForeignOptimizedPartOverTest(memberName)</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
+     * cb.<span style="color: #DD4747">setupSelect_MemberLoginAsForeignForeignOptimizedPartOverTest(displayOrder, memberName)</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
      * cb.query().setFoo...(value);
      * Member member = memberBhv.selectEntityWithDeletedCheck(cb);
      * ... = member.<span style="color: #DD4747">getMemberLoginAsForeignForeignOptimizedPartOverTest()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
      * </pre>
+     * @param displayOrder The bind parameter of fixed condition for displayOrder. (NotNull)
      * @param memberName The bind parameter of fixed condition for memberName. (NotNull)
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
-    public MemberLoginNss setupSelect_MemberLoginAsForeignForeignOptimizedPartOverTest(final String memberName) {
+    public MemberLoginNss setupSelect_MemberLoginAsForeignForeignOptimizedPartOverTest(final Integer displayOrder, final String memberName) {
         assertSetupSelectPurpose("memberLoginAsForeignForeignOptimizedPartOverTest");
-        doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryMemberLoginAsForeignForeignOptimizedPartOverTest(memberName); } });
+        doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryMemberLoginAsForeignForeignOptimizedPartOverTest(displayOrder, memberName); } });
         if (_nssMemberLoginAsForeignForeignOptimizedPartOverTest == null || !_nssMemberLoginAsForeignForeignOptimizedPartOverTest.hasConditionQuery())
-        { _nssMemberLoginAsForeignForeignOptimizedPartOverTest = new MemberLoginNss(query().queryMemberLoginAsForeignForeignOptimizedPartOverTest(memberName)); }
+        { _nssMemberLoginAsForeignForeignOptimizedPartOverTest = new MemberLoginNss(query().queryMemberLoginAsForeignForeignOptimizedPartOverTest(displayOrder, memberName)); }
         return _nssMemberLoginAsForeignForeignOptimizedPartOverTest;
     }
 
@@ -560,18 +613,19 @@ public class BsMemberCB extends AbstractConditionBean {
      * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsForeignForeignOptimizedWholeOverTest'.
      * <pre>
      * MemberCB cb = new MemberCB();
-     * cb.<span style="color: #DD4747">setupSelect_MemberLoginAsForeignForeignOptimizedWholeOverTest()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
+     * cb.<span style="color: #DD4747">setupSelect_MemberLoginAsForeignForeignOptimizedWholeOverTest(displayOrder)</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
      * cb.query().setFoo...(value);
      * Member member = memberBhv.selectEntityWithDeletedCheck(cb);
      * ... = member.<span style="color: #DD4747">getMemberLoginAsForeignForeignOptimizedWholeOverTest()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
      * </pre>
+     * @param displayOrder The bind parameter of fixed condition for displayOrder. (NotNull)
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
-    public MemberLoginNss setupSelect_MemberLoginAsForeignForeignOptimizedWholeOverTest() {
+    public MemberLoginNss setupSelect_MemberLoginAsForeignForeignOptimizedWholeOverTest(final Integer displayOrder) {
         assertSetupSelectPurpose("memberLoginAsForeignForeignOptimizedWholeOverTest");
-        doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryMemberLoginAsForeignForeignOptimizedWholeOverTest(); } });
+        doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryMemberLoginAsForeignForeignOptimizedWholeOverTest(displayOrder); } });
         if (_nssMemberLoginAsForeignForeignOptimizedWholeOverTest == null || !_nssMemberLoginAsForeignForeignOptimizedWholeOverTest.hasConditionQuery())
-        { _nssMemberLoginAsForeignForeignOptimizedWholeOverTest = new MemberLoginNss(query().queryMemberLoginAsForeignForeignOptimizedWholeOverTest()); }
+        { _nssMemberLoginAsForeignForeignOptimizedWholeOverTest = new MemberLoginNss(query().queryMemberLoginAsForeignForeignOptimizedWholeOverTest(displayOrder)); }
         return _nssMemberLoginAsForeignForeignOptimizedWholeOverTest;
     }
 
@@ -923,7 +977,9 @@ public class BsMemberCB extends AbstractConditionBean {
         protected MemberLoginCB.HpSpecification _memberLoginAsLoginStatus;
         protected MemberAddressCB.HpSpecification _memberAddressAsIfComment;
         protected MemberAddressCB.HpSpecification _memberAddressAsOnlyOneDate;
+        protected MemberLoginCB.HpSpecification _memberLoginAsLocalBindOverTest;
         protected MemberLoginCB.HpSpecification _memberLoginAsLocalForeignOverTest;
+        protected MemberLoginCB.HpSpecification _memberLoginAsForeignForeignBindOverTest;
         protected MemberLoginCB.HpSpecification _memberLoginAsForeignForeignEachOverTest;
         protected MemberLoginCB.HpSpecification _memberLoginAsForeignForeignOptimizedBasicOverTest;
         protected MemberLoginCB.HpSpecification _memberLoginAsForeignForeignOptimizedMarkOverTest;
@@ -1250,6 +1306,49 @@ public class BsMemberCB extends AbstractConditionBean {
         }
         /**
          * Prepare to specify functions about relation table. <br />
+         * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsLocalBindOverTest'.
+         * @param displayOrder The bind parameter of fixed condition for displayOrder. (NotNull)
+         * @return The instance for specification for relation table to specify. (NotNull)
+         */
+        public MemberLoginCB.HpSpecification specifyMemberLoginAsLocalBindOverTest(final Integer displayOrder) {
+            assertRelation("memberLoginAsLocalBindOverTest");
+            if (_memberLoginAsLocalBindOverTest == null) {
+                _memberLoginAsLocalBindOverTest = new MemberLoginCB.HpSpecification(_baseCB, new HpSpQyCall<MemberLoginCQ>() {
+                    public boolean has() { return _qyCall.has() && _qyCall.qy().hasConditionQueryMemberLoginAsLocalBindOverTest(); }
+                    public MemberLoginCQ qy() { return _qyCall.qy().queryMemberLoginAsLocalBindOverTest(displayOrder); } }
+                    , _purpose, _dbmetaProvider);
+                if (xhasSyncQyCall()) { // inherits it
+                    _memberLoginAsLocalBindOverTest.xsetSyncQyCall(new HpSpQyCall<MemberLoginCQ>() {
+                        public boolean has() { return xsyncQyCall().has() && xsyncQyCall().qy().hasConditionQueryMemberLoginAsLocalBindOverTest(); }
+                        public MemberLoginCQ qy() { return xsyncQyCall().qy().queryMemberLoginAsLocalBindOverTest(displayOrder); }
+                    });
+                }
+            }
+            return _memberLoginAsLocalBindOverTest;
+        }
+        /**
+         * Prepare to specify functions about relation table. <br />
+         * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsLocalBindOverTest'.
+         * @return The instance for specification for relation table to specify. (NotNull)
+         */
+        public MemberLoginCB.HpSpecification specifyMemberLoginAsLocalBindOverTest() {
+            assertRelation("memberLoginAsLocalBindOverTest");
+            if (_memberLoginAsLocalBindOverTest == null) {
+                _memberLoginAsLocalBindOverTest = new MemberLoginCB.HpSpecification(_baseCB, new HpSpQyCall<MemberLoginCQ>() {
+                    public boolean has() { return _qyCall.has() && _qyCall.qy().hasConditionQueryMemberLoginAsLocalBindOverTest(); }
+                    public MemberLoginCQ qy() { return _qyCall.qy().getConditionQueryMemberLoginAsLocalBindOverTest(); } }
+                    , _purpose, _dbmetaProvider);
+                if (xhasSyncQyCall()) { // inherits it
+                    _memberLoginAsLocalBindOverTest.xsetSyncQyCall(new HpSpQyCall<MemberLoginCQ>() {
+                        public boolean has() { return xsyncQyCall().has() && xsyncQyCall().qy().hasConditionQueryMemberLoginAsLocalBindOverTest(); }
+                        public MemberLoginCQ qy() { return xsyncQyCall().qy().getConditionQueryMemberLoginAsLocalBindOverTest(); }
+                    });
+                }
+            }
+            return _memberLoginAsLocalBindOverTest;
+        }
+        /**
+         * Prepare to specify functions about relation table. <br />
          * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsLocalForeignOverTest'.
          * @return The instance for specification for relation table to specify. (NotNull)
          */
@@ -1268,6 +1367,49 @@ public class BsMemberCB extends AbstractConditionBean {
                 }
             }
             return _memberLoginAsLocalForeignOverTest;
+        }
+        /**
+         * Prepare to specify functions about relation table. <br />
+         * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsForeignForeignBindOverTest'.
+         * @param displayOrder The bind parameter of fixed condition for displayOrder. (NotNull)
+         * @return The instance for specification for relation table to specify. (NotNull)
+         */
+        public MemberLoginCB.HpSpecification specifyMemberLoginAsForeignForeignBindOverTest(final Integer displayOrder) {
+            assertRelation("memberLoginAsForeignForeignBindOverTest");
+            if (_memberLoginAsForeignForeignBindOverTest == null) {
+                _memberLoginAsForeignForeignBindOverTest = new MemberLoginCB.HpSpecification(_baseCB, new HpSpQyCall<MemberLoginCQ>() {
+                    public boolean has() { return _qyCall.has() && _qyCall.qy().hasConditionQueryMemberLoginAsForeignForeignBindOverTest(); }
+                    public MemberLoginCQ qy() { return _qyCall.qy().queryMemberLoginAsForeignForeignBindOverTest(displayOrder); } }
+                    , _purpose, _dbmetaProvider);
+                if (xhasSyncQyCall()) { // inherits it
+                    _memberLoginAsForeignForeignBindOverTest.xsetSyncQyCall(new HpSpQyCall<MemberLoginCQ>() {
+                        public boolean has() { return xsyncQyCall().has() && xsyncQyCall().qy().hasConditionQueryMemberLoginAsForeignForeignBindOverTest(); }
+                        public MemberLoginCQ qy() { return xsyncQyCall().qy().queryMemberLoginAsForeignForeignBindOverTest(displayOrder); }
+                    });
+                }
+            }
+            return _memberLoginAsForeignForeignBindOverTest;
+        }
+        /**
+         * Prepare to specify functions about relation table. <br />
+         * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsForeignForeignBindOverTest'.
+         * @return The instance for specification for relation table to specify. (NotNull)
+         */
+        public MemberLoginCB.HpSpecification specifyMemberLoginAsForeignForeignBindOverTest() {
+            assertRelation("memberLoginAsForeignForeignBindOverTest");
+            if (_memberLoginAsForeignForeignBindOverTest == null) {
+                _memberLoginAsForeignForeignBindOverTest = new MemberLoginCB.HpSpecification(_baseCB, new HpSpQyCall<MemberLoginCQ>() {
+                    public boolean has() { return _qyCall.has() && _qyCall.qy().hasConditionQueryMemberLoginAsForeignForeignBindOverTest(); }
+                    public MemberLoginCQ qy() { return _qyCall.qy().getConditionQueryMemberLoginAsForeignForeignBindOverTest(); } }
+                    , _purpose, _dbmetaProvider);
+                if (xhasSyncQyCall()) { // inherits it
+                    _memberLoginAsForeignForeignBindOverTest.xsetSyncQyCall(new HpSpQyCall<MemberLoginCQ>() {
+                        public boolean has() { return xsyncQyCall().has() && xsyncQyCall().qy().hasConditionQueryMemberLoginAsForeignForeignBindOverTest(); }
+                        public MemberLoginCQ qy() { return xsyncQyCall().qy().getConditionQueryMemberLoginAsForeignForeignBindOverTest(); }
+                    });
+                }
+            }
+            return _memberLoginAsForeignForeignBindOverTest;
         }
         /**
          * Prepare to specify functions about relation table. <br />
@@ -1335,20 +1477,21 @@ public class BsMemberCB extends AbstractConditionBean {
         /**
          * Prepare to specify functions about relation table. <br />
          * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsForeignForeignOptimizedPartOverTest'.
+         * @param displayOrder The bind parameter of fixed condition for displayOrder. (NotNull)
          * @param memberName The bind parameter of fixed condition for memberName. (NotNull)
          * @return The instance for specification for relation table to specify. (NotNull)
          */
-        public MemberLoginCB.HpSpecification specifyMemberLoginAsForeignForeignOptimizedPartOverTest(final String memberName) {
+        public MemberLoginCB.HpSpecification specifyMemberLoginAsForeignForeignOptimizedPartOverTest(final Integer displayOrder, final String memberName) {
             assertRelation("memberLoginAsForeignForeignOptimizedPartOverTest");
             if (_memberLoginAsForeignForeignOptimizedPartOverTest == null) {
                 _memberLoginAsForeignForeignOptimizedPartOverTest = new MemberLoginCB.HpSpecification(_baseCB, new HpSpQyCall<MemberLoginCQ>() {
                     public boolean has() { return _qyCall.has() && _qyCall.qy().hasConditionQueryMemberLoginAsForeignForeignOptimizedPartOverTest(); }
-                    public MemberLoginCQ qy() { return _qyCall.qy().queryMemberLoginAsForeignForeignOptimizedPartOverTest(memberName); } }
+                    public MemberLoginCQ qy() { return _qyCall.qy().queryMemberLoginAsForeignForeignOptimizedPartOverTest(displayOrder, memberName); } }
                     , _purpose, _dbmetaProvider);
                 if (xhasSyncQyCall()) { // inherits it
                     _memberLoginAsForeignForeignOptimizedPartOverTest.xsetSyncQyCall(new HpSpQyCall<MemberLoginCQ>() {
                         public boolean has() { return xsyncQyCall().has() && xsyncQyCall().qy().hasConditionQueryMemberLoginAsForeignForeignOptimizedPartOverTest(); }
-                        public MemberLoginCQ qy() { return xsyncQyCall().qy().queryMemberLoginAsForeignForeignOptimizedPartOverTest(memberName); }
+                        public MemberLoginCQ qy() { return xsyncQyCall().qy().queryMemberLoginAsForeignForeignOptimizedPartOverTest(displayOrder, memberName); }
                     });
                 }
             }
@@ -1378,6 +1521,28 @@ public class BsMemberCB extends AbstractConditionBean {
         /**
          * Prepare to specify functions about relation table. <br />
          * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsForeignForeignOptimizedWholeOverTest'.
+         * @param displayOrder The bind parameter of fixed condition for displayOrder. (NotNull)
+         * @return The instance for specification for relation table to specify. (NotNull)
+         */
+        public MemberLoginCB.HpSpecification specifyMemberLoginAsForeignForeignOptimizedWholeOverTest(final Integer displayOrder) {
+            assertRelation("memberLoginAsForeignForeignOptimizedWholeOverTest");
+            if (_memberLoginAsForeignForeignOptimizedWholeOverTest == null) {
+                _memberLoginAsForeignForeignOptimizedWholeOverTest = new MemberLoginCB.HpSpecification(_baseCB, new HpSpQyCall<MemberLoginCQ>() {
+                    public boolean has() { return _qyCall.has() && _qyCall.qy().hasConditionQueryMemberLoginAsForeignForeignOptimizedWholeOverTest(); }
+                    public MemberLoginCQ qy() { return _qyCall.qy().queryMemberLoginAsForeignForeignOptimizedWholeOverTest(displayOrder); } }
+                    , _purpose, _dbmetaProvider);
+                if (xhasSyncQyCall()) { // inherits it
+                    _memberLoginAsForeignForeignOptimizedWholeOverTest.xsetSyncQyCall(new HpSpQyCall<MemberLoginCQ>() {
+                        public boolean has() { return xsyncQyCall().has() && xsyncQyCall().qy().hasConditionQueryMemberLoginAsForeignForeignOptimizedWholeOverTest(); }
+                        public MemberLoginCQ qy() { return xsyncQyCall().qy().queryMemberLoginAsForeignForeignOptimizedWholeOverTest(displayOrder); }
+                    });
+                }
+            }
+            return _memberLoginAsForeignForeignOptimizedWholeOverTest;
+        }
+        /**
+         * Prepare to specify functions about relation table. <br />
+         * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsForeignForeignOptimizedWholeOverTest'.
          * @return The instance for specification for relation table to specify. (NotNull)
          */
         public MemberLoginCB.HpSpecification specifyMemberLoginAsForeignForeignOptimizedWholeOverTest() {
@@ -1385,12 +1550,12 @@ public class BsMemberCB extends AbstractConditionBean {
             if (_memberLoginAsForeignForeignOptimizedWholeOverTest == null) {
                 _memberLoginAsForeignForeignOptimizedWholeOverTest = new MemberLoginCB.HpSpecification(_baseCB, new HpSpQyCall<MemberLoginCQ>() {
                     public boolean has() { return _qyCall.has() && _qyCall.qy().hasConditionQueryMemberLoginAsForeignForeignOptimizedWholeOverTest(); }
-                    public MemberLoginCQ qy() { return _qyCall.qy().queryMemberLoginAsForeignForeignOptimizedWholeOverTest(); } }
+                    public MemberLoginCQ qy() { return _qyCall.qy().getConditionQueryMemberLoginAsForeignForeignOptimizedWholeOverTest(); } }
                     , _purpose, _dbmetaProvider);
                 if (xhasSyncQyCall()) { // inherits it
                     _memberLoginAsForeignForeignOptimizedWholeOverTest.xsetSyncQyCall(new HpSpQyCall<MemberLoginCQ>() {
                         public boolean has() { return xsyncQyCall().has() && xsyncQyCall().qy().hasConditionQueryMemberLoginAsForeignForeignOptimizedWholeOverTest(); }
-                        public MemberLoginCQ qy() { return xsyncQyCall().qy().queryMemberLoginAsForeignForeignOptimizedWholeOverTest(); }
+                        public MemberLoginCQ qy() { return xsyncQyCall().qy().getConditionQueryMemberLoginAsForeignForeignOptimizedWholeOverTest(); }
                     });
                 }
             }

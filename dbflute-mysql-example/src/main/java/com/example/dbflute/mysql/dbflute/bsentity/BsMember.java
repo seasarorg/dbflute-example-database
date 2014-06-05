@@ -57,7 +57,7 @@ import com.example.dbflute.mysql.dbflute.nogen.cache.*;
  *     member_address, member_login, purchase, member_security, member_service, member_withdrawal
  * 
  * [foreign property]
- *     memberStatus, memberAddressAsValid, memberAddressAsValidBefore, memberLoginAsLoginStatus, memberAddressAsIfComment, memberAddressAsOnlyOneDate, memberLoginAsLocalForeignOverTest, memberLoginAsForeignForeignEachOverTest, memberLoginAsForeignForeignOptimizedBasicOverTest, memberLoginAsForeignForeignOptimizedMarkOverTest, memberLoginAsForeignForeignOptimizedPartOverTest, memberLoginAsForeignForeignOptimizedWholeOverTest, memberLoginAsForeignForeignParameterOverTest, memberLoginAsForeignForeignVariousOverTest, memberLoginAsReferrerOverTest, memberLoginAsReferrerForeignOverTest, memberAddressAsFormattedBasic, memberAddressAsFormattedLong, memberLoginAsFormattedMany, memberLoginAsLatest, memberLoginAsOldest, memberSecurityAsOne, memberServiceAsOne, memberWithdrawalAsOne
+ *     memberStatus, memberAddressAsValid, memberAddressAsValidBefore, memberLoginAsLoginStatus, memberAddressAsIfComment, memberAddressAsOnlyOneDate, memberLoginAsLocalBindOverTest, memberLoginAsLocalForeignOverTest, memberLoginAsForeignForeignBindOverTest, memberLoginAsForeignForeignEachOverTest, memberLoginAsForeignForeignOptimizedBasicOverTest, memberLoginAsForeignForeignOptimizedMarkOverTest, memberLoginAsForeignForeignOptimizedPartOverTest, memberLoginAsForeignForeignOptimizedWholeOverTest, memberLoginAsForeignForeignParameterOverTest, memberLoginAsForeignForeignVariousOverTest, memberLoginAsReferrerOverTest, memberLoginAsReferrerForeignOverTest, memberAddressAsFormattedBasic, memberAddressAsFormattedLong, memberLoginAsFormattedMany, memberLoginAsLatest, memberLoginAsOldest, memberSecurityAsOne, memberServiceAsOne, memberWithdrawalAsOne
  * 
  * [referrer property]
  *     memberAddressList, memberLoginList, purchaseList
@@ -440,6 +440,25 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
         _memberAddressAsOnlyOneDate = memberAddressAsOnlyOneDate;
     }
 
+    /** (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsLocalBindOverTest'. */
+    protected MemberLogin _memberLoginAsLocalBindOverTest;
+
+    /**
+     * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsLocalBindOverTest'.
+     * @return The entity of foreign property 'memberLoginAsLocalBindOverTest'. (NullAllowed: when e.g. null FK column, no setupSelect)
+     */
+    public MemberLogin getMemberLoginAsLocalBindOverTest() {
+        return _memberLoginAsLocalBindOverTest;
+    }
+
+    /**
+     * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsLocalBindOverTest'.
+     * @param memberLoginAsLocalBindOverTest The entity of foreign property 'memberLoginAsLocalBindOverTest'. (NullAllowed)
+     */
+    public void setMemberLoginAsLocalBindOverTest(MemberLogin memberLoginAsLocalBindOverTest) {
+        _memberLoginAsLocalBindOverTest = memberLoginAsLocalBindOverTest;
+    }
+
     /** (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsLocalForeignOverTest'. */
     protected MemberLogin _memberLoginAsLocalForeignOverTest;
 
@@ -457,6 +476,25 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
      */
     public void setMemberLoginAsLocalForeignOverTest(MemberLogin memberLoginAsLocalForeignOverTest) {
         _memberLoginAsLocalForeignOverTest = memberLoginAsLocalForeignOverTest;
+    }
+
+    /** (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsForeignForeignBindOverTest'. */
+    protected MemberLogin _memberLoginAsForeignForeignBindOverTest;
+
+    /**
+     * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsForeignForeignBindOverTest'.
+     * @return The entity of foreign property 'memberLoginAsForeignForeignBindOverTest'. (NullAllowed: when e.g. null FK column, no setupSelect)
+     */
+    public MemberLogin getMemberLoginAsForeignForeignBindOverTest() {
+        return _memberLoginAsForeignForeignBindOverTest;
+    }
+
+    /**
+     * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsForeignForeignBindOverTest'.
+     * @param memberLoginAsForeignForeignBindOverTest The entity of foreign property 'memberLoginAsForeignForeignBindOverTest'. (NullAllowed)
+     */
+    public void setMemberLoginAsForeignForeignBindOverTest(MemberLogin memberLoginAsForeignForeignBindOverTest) {
+        _memberLoginAsForeignForeignBindOverTest = memberLoginAsForeignForeignBindOverTest;
     }
 
     /** (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsForeignForeignEachOverTest'. */
@@ -988,8 +1026,12 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
         { sb.append(li).append(xbRDS(_memberAddressAsIfComment, "memberAddressAsIfComment")); }
         if (_memberAddressAsOnlyOneDate != null)
         { sb.append(li).append(xbRDS(_memberAddressAsOnlyOneDate, "memberAddressAsOnlyOneDate")); }
+        if (_memberLoginAsLocalBindOverTest != null)
+        { sb.append(li).append(xbRDS(_memberLoginAsLocalBindOverTest, "memberLoginAsLocalBindOverTest")); }
         if (_memberLoginAsLocalForeignOverTest != null)
         { sb.append(li).append(xbRDS(_memberLoginAsLocalForeignOverTest, "memberLoginAsLocalForeignOverTest")); }
+        if (_memberLoginAsForeignForeignBindOverTest != null)
+        { sb.append(li).append(xbRDS(_memberLoginAsForeignForeignBindOverTest, "memberLoginAsForeignForeignBindOverTest")); }
         if (_memberLoginAsForeignForeignEachOverTest != null)
         { sb.append(li).append(xbRDS(_memberLoginAsForeignForeignEachOverTest, "memberLoginAsForeignForeignEachOverTest")); }
         if (_memberLoginAsForeignForeignOptimizedBasicOverTest != null)
@@ -1082,7 +1124,9 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
         if (_memberLoginAsLoginStatus != null) { sb.append(cm).append("memberLoginAsLoginStatus"); }
         if (_memberAddressAsIfComment != null) { sb.append(cm).append("memberAddressAsIfComment"); }
         if (_memberAddressAsOnlyOneDate != null) { sb.append(cm).append("memberAddressAsOnlyOneDate"); }
+        if (_memberLoginAsLocalBindOverTest != null) { sb.append(cm).append("memberLoginAsLocalBindOverTest"); }
         if (_memberLoginAsLocalForeignOverTest != null) { sb.append(cm).append("memberLoginAsLocalForeignOverTest"); }
+        if (_memberLoginAsForeignForeignBindOverTest != null) { sb.append(cm).append("memberLoginAsForeignForeignBindOverTest"); }
         if (_memberLoginAsForeignForeignEachOverTest != null) { sb.append(cm).append("memberLoginAsForeignForeignEachOverTest"); }
         if (_memberLoginAsForeignForeignOptimizedBasicOverTest != null) { sb.append(cm).append("memberLoginAsForeignForeignOptimizedBasicOverTest"); }
         if (_memberLoginAsForeignForeignOptimizedMarkOverTest != null) { sb.append(cm).append("memberLoginAsForeignForeignOptimizedMarkOverTest"); }

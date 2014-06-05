@@ -83,6 +83,7 @@ $database.checkProperties()
 #set ($glImplementedInvokerAssistant = "${glProjectPrefix}ImplementedInvokerAssistant")
 #set ($glImplementedSqlClauseCreator = "${glProjectPrefix}ImplementedSqlClauseCreator")
 #set ($glScrCBeanHelper = "${glProjectPrefix}ScrCBeanHelper")
+#set ($glScrInternalDbGateway = "${glProjectPrefix}ScrInternalDbGateway")
 
 ## ===================================================================================
 ##                                                                            Variable
@@ -171,6 +172,10 @@ $generator.parse("om/${glResourceDirectory}/allcommon/ImplementedSqlClauseCreato
 $database.info("    parse('ScrCBeanHelper');")
 #set ( $path = "${database.getPackageAsPath(${glPackageBaseCommon})}${glScrCBeanHelper}.${glClassFileExtension}" )
 $generator.parse("om/${glResourceDirectory}/allcommon/ScrCBeanHelper.${glTemplateFileExtension}",$path ,"" ,"")
+
+$database.info("    parse('ScrInternalDbGateway');")
+#set ( $path = "${database.getPackageAsPath(${glPackageBaseCommon})}${glScrInternalDbGateway}.${glClassFileExtension}" )
+$generator.parse("om/${glResourceDirectory}/allcommon/ScrInternalDbGateway.${glTemplateFileExtension}",$path ,"" ,"")
 
 $database.info("}")
 
@@ -298,9 +303,11 @@ $database.info("public void parseTableClass() {")
   #set ($myExtendedBhvPackageName = "${glPackageExtendedBhv}")
 
   #set ($myBaseObjectClassName = "${table.baseEntityClassName}")
+  #set ($myImmutableBaseObjectClassName = "${table.immutableBaseEntityClassName}")
   #set ($myBaseEntityPackageName = "${glPackageBaseEntity}")
 
   #set ($myExtendedObjectClassName = "${table.extendedEntityClassName}")
+  #set ($myImmutableExtendedObjectClassName = "${table.immutableExtendedEntityClassName}")
   #set ($myExtendedEntityPackageName = "${glPackageExtendedEntity}")
 
   #set ($myBaseConditionBeanClassName = "${table.baseConditionBeanClassName}")
@@ -338,6 +345,11 @@ $database.info("public void parseTableClass() {")
   #set ( $path = "${database.getPackageAsPath(${glPackageBaseEntity})}${myBaseObjectClassName}.${glClassFileExtension}" )
   $generator.parse("om/${glResourceDirectory}/bsentity/BaseEntity.${glTemplateFileExtension}", $path, "table", $table)
 
+  #if ($table.isMakeImmutableEntity())
+    #set ( $path = "${database.getPackageAsPath(${glPackageBaseEntity})}${myImmutableBaseObjectClassName}.${glClassFileExtension}" )
+    $generator.parse("om/${glResourceDirectory}/bsentity/ImmutableBaseEntity.${glTemplateFileExtension}", $path, "table", $table)
+  #end
+
   #set ( $path = "${database.getPackageAsPath(${glPackageBaseDBMeta})}${myDBMetaClassName}.${glClassFileExtension}" )
   $generator.parse("om/${glResourceDirectory}/bsentity/dbmeta/DBMetaImpl.${glTemplateFileExtension}",$path,"", "")
 
@@ -357,6 +369,14 @@ $database.info("public void parseTableClass() {")
       $generator.parse("om/${glResourceDirectory}/exentity/ExtendedEntity.${glTemplateFileExtension}", $path, "table", $table)
     #end
     $database.reflectAllExCopyright($path)
+
+    #if ($table.isMakeImmutableEntity())
+      #set ( $path = "${database.getPackageAsPath(${glPackageExtendedEntity})}${myImmutableExtendedObjectClassName}.${glClassFileExtension}" )
+      #if (!$files.file(${generator.outputPath},$path).exists())
+        $generator.parse("om/${glResourceDirectory}/exentity/ImmutableExtendedEntity.${glTemplateFileExtension}", $path, "table", $table)
+      #end
+      $database.reflectAllExCopyright($path)
+    #end
   #end
 
   #set ( $path = "${database.getPackageAsPath(${glPackageBaseCB})}${myBaseConditionBeanClassName}.${glClassFileExtension}" )

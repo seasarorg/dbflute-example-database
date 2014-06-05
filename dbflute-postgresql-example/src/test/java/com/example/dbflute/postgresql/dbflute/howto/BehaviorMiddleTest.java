@@ -264,10 +264,10 @@ public class BehaviorMiddleTest extends UnitContainerTestCase {
      */
     public void test_queryDelete() {
         // ## Arrange ##
-        deleteMemberReferrer();// for Test
+        deleteMemberReferrer(); // for test
 
         MemberCB cb = new MemberCB();
-        cb.query().setMemberStatusCode_Equal_Formalized();// 正式会員
+        cb.query().setMemberStatusCode_Equal_Formalized(); // 正式会員
 
         // ## Act ##
         int deletedCount = memberBhv.queryDelete(cb);

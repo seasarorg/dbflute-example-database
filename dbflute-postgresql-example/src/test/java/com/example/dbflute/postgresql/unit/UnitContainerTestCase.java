@@ -11,6 +11,7 @@ import com.example.dbflute.postgresql.dbflute.exbhv.MemberLoginBhv;
 import com.example.dbflute.postgresql.dbflute.exbhv.MemberSecurityBhv;
 import com.example.dbflute.postgresql.dbflute.exbhv.MemberWithdrawalBhv;
 import com.example.dbflute.postgresql.dbflute.exbhv.PurchaseBhv;
+import com.example.dbflute.postgresql.dbflute.exbhv.PurchasePaymentBhv;
 
 /**
  * The test case with container.
@@ -41,6 +42,7 @@ public abstract class UnitContainerTestCase extends ContainerTestCase {
         deleteAll(MemberLoginBhv.class);
         deleteAll(MemberSecurityBhv.class);
         deleteAll(MemberWithdrawalBhv.class);
+        deleteAll(PurchasePaymentBhv.class);
         deleteAll(PurchaseBhv.class);
     }
 }
