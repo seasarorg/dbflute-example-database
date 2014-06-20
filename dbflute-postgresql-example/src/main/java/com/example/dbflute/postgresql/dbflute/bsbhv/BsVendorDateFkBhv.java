@@ -5,11 +5,14 @@ import java.util.List;
 import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
+import org.seasar.dbflute.cbean.chelper.HpSLSExecutor;
+import org.seasar.dbflute.cbean.chelper.HpSLSFunction;
 import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.exception.*;
 import org.seasar.dbflute.optional.OptionalEntity;
 import org.seasar.dbflute.outsidesql.executor.*;
 import com.example.dbflute.postgresql.dbflute.exbhv.*;
+import com.example.dbflute.postgresql.dbflute.bsbhv.loader.*;
 import com.example.dbflute.postgresql.dbflute.exentity.*;
 import com.example.dbflute.postgresql.dbflute.bsentity.dbmeta.*;
 import com.example.dbflute.postgresql.dbflute.cbean.*;
@@ -63,7 +66,7 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
     // ===================================================================================
     //                                                                              DBMeta
     //                                                                              ======
-    /** @return The instance of DBMeta. (NotNull) */
+    /** {@inheritDoc} */
     public DBMeta getDBMeta() { return VendorDateFkDbm.getInstance(); }
 
     /** @return The instance of DBMeta as my table type. (NotNull) */
@@ -73,10 +76,10 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
     //                                                                        New Instance
     //                                                                        ============
     /** {@inheritDoc} */
-    public Entity newEntity() { return newMyEntity(); }
+    public VendorDateFk newEntity() { return new VendorDateFk(); }
 
     /** {@inheritDoc} */
-    public ConditionBean newConditionBean() { return newMyConditionBean(); }
+    public VendorDateFkCB newConditionBean() { return new VendorDateFkCB(); }
 
     /** @return The instance of new entity as my table type. (NotNull) */
     public VendorDateFk newMyEntity() { return new VendorDateFk(); }
@@ -99,6 +102,10 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
      * @return The count for the condition. (NotMinus)
      */
     public int selectCount(VendorDateFkCB cb) {
+        return facadeSelectCount(cb);
+    }
+
+    protected int facadeSelectCount(VendorDateFkCB cb) {
         return doSelectCountUniquely(cb);
     }
 
@@ -114,7 +121,7 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
 
     @Override
     protected int doReadCount(ConditionBean cb) {
-        return selectCount(downcast(cb));
+        return facadeSelectCount(downcast(cb));
     }
 
     // ===================================================================================
@@ -140,7 +147,11 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public VendorDateFk selectEntity(VendorDateFkCB cb) {
-        return doSelectEntity(cb, VendorDateFk.class);
+        return facadeSelectEntity(cb);
+    }
+
+    protected VendorDateFk facadeSelectEntity(VendorDateFkCB cb) {
+        return doSelectEntity(cb, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends VendorDateFk> ENTITY doSelectEntity(VendorDateFkCB cb, Class<ENTITY> tp) {
@@ -155,7 +166,7 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
 
     @Override
     protected Entity doReadEntity(ConditionBean cb) {
-        return selectEntity(downcast(cb));
+        return facadeSelectEntity(downcast(cb));
     }
 
     /**
@@ -174,7 +185,11 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public VendorDateFk selectEntityWithDeletedCheck(VendorDateFkCB cb) {
-        return doSelectEntityWithDeletedCheck(cb, VendorDateFk.class);
+        return facadeSelectEntityWithDeletedCheck(cb);
+    }
+
+    protected VendorDateFk facadeSelectEntityWithDeletedCheck(VendorDateFkCB cb) {
+        return doSelectEntityWithDeletedCheck(cb, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends VendorDateFk> ENTITY doSelectEntityWithDeletedCheck(VendorDateFkCB cb, Class<ENTITY> tp) {
@@ -185,7 +200,7 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
 
     @Override
     protected Entity doReadEntityWithDeletedCheck(ConditionBean cb) {
-        return selectEntityWithDeletedCheck(downcast(cb));
+        return facadeSelectEntityWithDeletedCheck(downcast(cb));
     }
 
     /**
@@ -196,15 +211,19 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public VendorDateFk selectByPKValue(Integer barId) {
-        return doSelectByPK(barId, VendorDateFk.class);
+        return facadeSelectByPKValue(barId);
     }
 
-    protected <ENTITY extends VendorDateFk> ENTITY doSelectByPK(Integer barId, Class<ENTITY> entityType) {
-        return doSelectEntity(xprepareCBAsPK(barId), entityType);
+    protected VendorDateFk facadeSelectByPKValue(Integer barId) {
+        return doSelectByPK(barId, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends VendorDateFk> OptionalEntity<ENTITY> doSelectOptionalByPK(Integer barId, Class<ENTITY> entityType) {
-        return createOptionalEntity(doSelectByPK(barId, entityType), barId);
+    protected <ENTITY extends VendorDateFk> ENTITY doSelectByPK(Integer barId, Class<ENTITY> tp) {
+        return doSelectEntity(xprepareCBAsPK(barId), tp);
+    }
+
+    protected <ENTITY extends VendorDateFk> OptionalEntity<ENTITY> doSelectOptionalByPK(Integer barId, Class<ENTITY> tp) {
+        return createOptionalEntity(doSelectByPK(barId, tp), barId);
     }
 
     /**
@@ -216,17 +235,16 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public VendorDateFk selectByPKValueWithDeletedCheck(Integer barId) {
-        return doSelectByPKWithDeletedCheck(barId, VendorDateFk.class);
+        return doSelectByPKWithDeletedCheck(barId, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends VendorDateFk> ENTITY doSelectByPKWithDeletedCheck(Integer barId, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(barId), entityType);
+    protected <ENTITY extends VendorDateFk> ENTITY doSelectByPKWithDeletedCheck(Integer barId, Class<ENTITY> tp) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(barId), tp);
     }
 
     protected VendorDateFkCB xprepareCBAsPK(Integer barId) {
         assertObjectNotNull("barId", barId);
-        VendorDateFkCB cb = newMyConditionBean(); cb.acceptPrimaryKey(barId);
-        return cb;
+        return newConditionBean().acceptPK(barId);
     }
 
     // ===================================================================================
@@ -248,7 +266,11 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
      * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public ListResultBean<VendorDateFk> selectList(VendorDateFkCB cb) {
-        return doSelectList(cb, VendorDateFk.class);
+        return facadeSelectList(cb);
+    }
+
+    protected ListResultBean<VendorDateFk> facadeSelectList(VendorDateFkCB cb) {
+        return doSelectList(cb, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends VendorDateFk> ListResultBean<ENTITY> doSelectList(VendorDateFkCB cb, Class<ENTITY> tp) {
@@ -260,7 +282,7 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
 
     @Override
     protected ListResultBean<? extends Entity> doReadList(ConditionBean cb) {
-        return selectList(downcast(cb));
+        return facadeSelectList(downcast(cb));
     }
 
     // ===================================================================================
@@ -289,7 +311,11 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
      * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public PagingResultBean<VendorDateFk> selectPage(VendorDateFkCB cb) {
-        return doSelectPage(cb, VendorDateFk.class);
+        return facadeSelectPage(cb);
+    }
+
+    protected PagingResultBean<VendorDateFk> facadeSelectPage(VendorDateFkCB cb) {
+        return doSelectPage(cb, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends VendorDateFk> PagingResultBean<ENTITY> doSelectPage(VendorDateFkCB cb, Class<ENTITY> tp) {
@@ -302,7 +328,7 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
 
     @Override
     protected PagingResultBean<? extends Entity> doReadPage(ConditionBean cb) {
-        return selectPage(downcast(cb));
+        return facadeSelectPage(downcast(cb));
     }
 
     // ===================================================================================
@@ -323,15 +349,19 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
      * @param entityRowHandler The handler of entity row of VendorDateFk. (NotNull)
      */
     public void selectCursor(VendorDateFkCB cb, EntityRowHandler<VendorDateFk> entityRowHandler) {
-        doSelectCursor(cb, entityRowHandler, VendorDateFk.class);
+        facadeSelectCursor(cb, entityRowHandler);
+    }
+
+    protected void facadeSelectCursor(VendorDateFkCB cb, EntityRowHandler<VendorDateFk> entityRowHandler) {
+        doSelectCursor(cb, entityRowHandler, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends VendorDateFk> void doSelectCursor(VendorDateFkCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
         assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
         helpSelectCursorInternally(cb, handler, tp, new InternalSelectCursorCallback<ENTITY, VendorDateFkCB>() {
-            public void callbackSelectCursor(VendorDateFkCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) { delegateSelectCursor(cb, handler, tp); }
-            public List<ENTITY> callbackSelectList(VendorDateFkCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
+            public void callbackSelectCursor(VendorDateFkCB lcb, EntityRowHandler<ENTITY> lhandler, Class<ENTITY> ltp) { delegateSelectCursor(lcb, lhandler, ltp); }
+            public List<ENTITY> callbackSelectList(VendorDateFkCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); }
         });
     }
 
@@ -353,22 +383,23 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
      * @param resultType The type of result. (NotNull)
      * @return The scalar function object to specify function for scalar value. (NotNull)
      */
-    public <RESULT> SLFunction<VendorDateFkCB, RESULT> scalarSelect(Class<RESULT> resultType) {
-        return doScalarSelect(resultType, newMyConditionBean());
+    public <RESULT> HpSLSFunction<VendorDateFkCB, RESULT> scalarSelect(Class<RESULT> resultType) {
+        return facadeScalarSelect(resultType);
     }
 
-    protected <RESULT, CB extends VendorDateFkCB> SLFunction<CB, RESULT> doScalarSelect(Class<RESULT> tp, CB cb) {
+    protected <RESULT> HpSLSFunction<VendorDateFkCB, RESULT> facadeScalarSelect(Class<RESULT> resultType) {
+        return doScalarSelect(resultType, newConditionBean());
+    }
+
+    protected <RESULT, CB extends VendorDateFkCB> HpSLSFunction<CB, RESULT> doScalarSelect(final Class<RESULT> tp, final CB cb) {
         assertObjectNotNull("resultType", tp); assertCBStateValid(cb);
         cb.xsetupForScalarSelect(); cb.getSqlClause().disableSelectIndex(); // for when you use union
-        return createSLFunction(cb, tp);
+        HpSLSExecutor<CB, RESULT> executor = createHpSLSExecutor(); // variable to resolve generic
+        return createSLSFunction(cb, tp, executor);
     }
 
-    protected <RESULT, CB extends VendorDateFkCB> SLFunction<CB, RESULT> createSLFunction(CB cb, Class<RESULT> tp) {
-        return new SLFunction<CB, RESULT>(cb, tp);
-    }
-
-    protected <RESULT> SLFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) {
-        return doScalarSelect(tp, newMyConditionBean());
+    protected <RESULT> HpSLSFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) {
+        return facadeScalarSelect(tp);
     }
 
     // ===================================================================================
@@ -378,6 +409,81 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
     protected Number doReadNextVal() {
         String msg = "This table is NOT related to sequence: " + getTableDbName();
         throw new UnsupportedOperationException(msg);
+    }
+
+    // ===================================================================================
+    //                                                                       Load Referrer
+    //                                                                       =============
+    /**
+     * Load referrer by the the referrer loader. <br />
+     * <pre>
+     * MemberCB cb = new MemberCB();
+     * cb.query().set...
+     * List&lt;Member&gt; memberList = memberBhv.selectList(cb);
+     * memberBhv.<span style="color: #DD4747">load</span>(memberList, loader -&gt; {
+     *     loader.<span style="color: #DD4747">loadPurchaseList</span>(purchaseCB -&gt; {
+     *         purchaseCB.query().set...
+     *         purchaseCB.query().addOrderBy_PurchasePrice_Desc();
+     *     }); <span style="color: #3F7E5E">// you can also load nested referrer from here</span>
+     *     <span style="color: #3F7E5E">//}).withNestedList(purchaseLoader -&gt {</span>
+     *     <span style="color: #3F7E5E">//    purchaseLoader.loadPurchasePaymentList(...);</span>
+     *     <span style="color: #3F7E5E">//});</span>
+     *
+     *     <span style="color: #3F7E5E">// you can also pull out foreign table and load its referrer</span>
+     *     <span style="color: #3F7E5E">// (setupSelect of the foreign table should be called)</span>
+     *     <span style="color: #3F7E5E">//loader.pulloutMemberStatus().loadMemberLoginList(...)</span>
+     * }
+     * for (Member member : memberList) {
+     *     List&lt;Purchase&gt; purchaseList = member.<span style="color: #DD4747">getPurchaseList()</span>;
+     *     for (Purchase purchase : purchaseList) {
+     *         ...
+     *     }
+     * }
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has order by FK before callback.
+     * @param vendorDateFkList The entity list of vendorDateFk. (NotNull)
+     * @param handler The callback to handle the referrer loader for actually loading referrer. (NotNull)
+     */
+    public void load(List<VendorDateFk> vendorDateFkList, ReferrerLoaderHandler<LoaderOfVendorDateFk> handler) {
+        xassLRArg(vendorDateFkList, handler);
+        handler.handle(new LoaderOfVendorDateFk().ready(vendorDateFkList, _behaviorSelector));
+    }
+
+    /**
+     * Load referrer of ${referrer.referrerJavaBeansRulePropertyName} by the referrer loader. <br />
+     * <pre>
+     * MemberCB cb = new MemberCB();
+     * cb.query().set...
+     * Member member = memberBhv.selectEntityWithDeletedCheck(cb);
+     * memberBhv.<span style="color: #DD4747">load</span>(member, loader -&gt; {
+     *     loader.<span style="color: #DD4747">loadPurchaseList</span>(purchaseCB -&gt; {
+     *         purchaseCB.query().set...
+     *         purchaseCB.query().addOrderBy_PurchasePrice_Desc();
+     *     }); <span style="color: #3F7E5E">// you can also load nested referrer from here</span>
+     *     <span style="color: #3F7E5E">//}).withNestedList(purchaseLoader -&gt {</span>
+     *     <span style="color: #3F7E5E">//    purchaseLoader.loadPurchasePaymentList(...);</span>
+     *     <span style="color: #3F7E5E">//});</span>
+     *
+     *     <span style="color: #3F7E5E">// you can also pull out foreign table and load its referrer</span>
+     *     <span style="color: #3F7E5E">// (setupSelect of the foreign table should be called)</span>
+     *     <span style="color: #3F7E5E">//loader.pulloutMemberStatus().loadMemberLoginList(...)</span>
+     * }
+     * for (Member member : memberList) {
+     *     List&lt;Purchase&gt; purchaseList = member.<span style="color: #DD4747">getPurchaseList()</span>;
+     *     for (Purchase purchase : purchaseList) {
+     *         ...
+     *     }
+     * }
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has order by FK before callback.
+     * @param vendorDateFk The entity of vendorDateFk. (NotNull)
+     * @param handler The callback to handle the referrer loader for actually loading referrer. (NotNull)
+     */
+    public void load(VendorDateFk vendorDateFk, ReferrerLoaderHandler<LoaderOfVendorDateFk> handler) {
+        xassLRArg(vendorDateFk, handler);
+        handler.handle(new LoaderOfVendorDateFk().ready(xnewLRAryLs(vendorDateFk), _behaviorSelector));
     }
 
     // ===================================================================================
@@ -429,17 +535,17 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
      * ... = vendorDateFk.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * <p>While, when the entity is created by select, all columns are registered.</p>
-     * @param vendorDateFk The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
+     * @param vendorDateFk The entity of insert. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
      * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insert(VendorDateFk vendorDateFk) {
         doInsert(vendorDateFk, null);
     }
 
-    protected void doInsert(VendorDateFk vendorDateFk, InsertOption<VendorDateFkCB> op) {
-        assertObjectNotNull("vendorDateFk", vendorDateFk);
+    protected void doInsert(VendorDateFk et, InsertOption<VendorDateFkCB> op) {
+        assertObjectNotNull("vendorDateFk", et);
         prepareInsertOption(op);
-        delegateInsert(vendorDateFk, op);
+        delegateInsert(et, op);
     }
 
     protected void prepareInsertOption(InsertOption<VendorDateFkCB> op) {
@@ -452,8 +558,7 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
 
     @Override
     protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) {
-        if (op == null) { insert(downcast(et)); }
-        else { varyingInsert(downcast(et), downcast(op)); }
+        doInsert(downcast(et), downcast(op));
     }
 
     /**
@@ -465,7 +570,7 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
      * <span style="color: #3F7E5E">//vendorDateFk.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//vendorDateFk.set...;</span>
-     * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
+     * <span style="color: #3F7E5E">// if exclusive control, the value of concurrency column is required</span>
      * vendorDateFk.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     vendorDateFkBhv.<span style="color: #DD4747">update</span>(vendorDateFk);
@@ -473,49 +578,38 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
      *     ...
      * }
      * </pre>
-     * @param vendorDateFk The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
+     * @param vendorDateFk The entity of update. (NotNull, PrimaryKeyNotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
-    public void update(final VendorDateFk vendorDateFk) {
+    public void update(VendorDateFk vendorDateFk) {
         doUpdate(vendorDateFk, null);
     }
 
-    protected void doUpdate(VendorDateFk vendorDateFk, final UpdateOption<VendorDateFkCB> op) {
-        assertObjectNotNull("vendorDateFk", vendorDateFk);
+    protected void doUpdate(VendorDateFk et, final UpdateOption<VendorDateFkCB> op) {
+        assertObjectNotNull("vendorDateFk", et);
         prepareUpdateOption(op);
-        helpUpdateInternally(vendorDateFk, new InternalUpdateCallback<VendorDateFk>() {
-            public int callbackDelegateUpdate(VendorDateFk et) { return delegateUpdate(et, op); } });
+        helpUpdateInternally(et, new InternalUpdateCallback<VendorDateFk>() {
+            public int callbackDelegateUpdate(VendorDateFk let) { return delegateUpdate(let, op); } });
     }
 
     protected void prepareUpdateOption(UpdateOption<VendorDateFkCB> op) {
         if (op == null) { return; }
         assertUpdateOptionStatus(op);
-        if (op.hasSelfSpecification()) {
-            op.resolveSelfSpecification(createCBForVaryingUpdate());
-        }
-        if (op.hasSpecifiedUpdateColumn()) {
-            op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate());
-        }
+        if (op.hasSelfSpecification()) { op.resolveSelfSpecification(createCBForVaryingUpdate()); }
+        if (op.hasSpecifiedUpdateColumn()) { op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate()); }
     }
 
-    protected VendorDateFkCB createCBForVaryingUpdate() {
-        VendorDateFkCB cb = newMyConditionBean();
-        cb.xsetupForVaryingUpdate();
-        return cb;
-    }
+    protected VendorDateFkCB createCBForVaryingUpdate()
+    { VendorDateFkCB cb = newConditionBean(); cb.xsetupForVaryingUpdate(); return cb; }
 
-    protected VendorDateFkCB createCBForSpecifiedUpdate() {
-        VendorDateFkCB cb = newMyConditionBean();
-        cb.xsetupForSpecifiedUpdate();
-        return cb;
-    }
+    protected VendorDateFkCB createCBForSpecifiedUpdate()
+    { VendorDateFkCB cb = newConditionBean(); cb.xsetupForSpecifiedUpdate(); return cb; }
 
     @Override
     protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) {
-        if (op == null) { update(downcast(et)); }
-        else { varyingUpdate(downcast(et), downcast(op)); }
+        doUpdate(downcast(et), downcast(op));
     }
 
     @Override
@@ -527,32 +621,28 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br />
      * <p><span style="color: #DD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
-     * @param vendorDateFk The entity of insert or update target. (NotNull)
+     * @param vendorDateFk The entity of insert or update. (NotNull, ...depends on insert or update)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insertOrUpdate(VendorDateFk vendorDateFk) {
-        doInesrtOrUpdate(vendorDateFk, null, null);
+        doInsertOrUpdate(vendorDateFk, null, null);
     }
 
-    protected void doInesrtOrUpdate(VendorDateFk vendorDateFk, final InsertOption<VendorDateFkCB> iop, final UpdateOption<VendorDateFkCB> uop) {
-        helpInsertOrUpdateInternally(vendorDateFk, new InternalInsertOrUpdateCallback<VendorDateFk, VendorDateFkCB>() {
-            public void callbackInsert(VendorDateFk et) { doInsert(et, iop); }
-            public void callbackUpdate(VendorDateFk et) { doUpdate(et, uop); }
-            public VendorDateFkCB callbackNewMyConditionBean() { return newMyConditionBean(); }
+    protected void doInsertOrUpdate(VendorDateFk et, final InsertOption<VendorDateFkCB> iop, final UpdateOption<VendorDateFkCB> uop) {
+        assertObjectNotNull("vendorDateFk", et);
+        helpInsertOrUpdateInternally(et, new InternalInsertOrUpdateCallback<VendorDateFk, VendorDateFkCB>() {
+            public void callbackInsert(VendorDateFk let) { doInsert(let, iop); }
+            public void callbackUpdate(VendorDateFk let) { doUpdate(let, uop); }
+            public VendorDateFkCB callbackNewMyConditionBean() { return newConditionBean(); }
             public int callbackSelectCount(VendorDateFkCB cb) { return selectCount(cb); }
         });
     }
 
     @Override
     protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
-        if (iop == null && uop == null) { insertOrUpdate(downcast(et)); }
-        else {
-            iop = iop != null ? iop : new InsertOption<VendorDateFkCB>();
-            uop = uop != null ? uop : new UpdateOption<VendorDateFkCB>();
-            varyingInsertOrUpdate(downcast(et), downcast(iop), downcast(uop));
-        }
+        doInsertOrUpdate(downcast(et), downcast(iop), downcast(uop));
     }
 
     @Override
@@ -565,7 +655,7 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
      * <pre>
      * VendorDateFk vendorDateFk = new VendorDateFk();
      * vendorDateFk.setPK...(value); <span style="color: #3F7E5E">// required</span>
-     * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
+     * <span style="color: #3F7E5E">// if exclusive control, the value of concurrency column is required</span>
      * vendorDateFk.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     vendorDateFkBhv.<span style="color: #DD4747">delete</span>(vendorDateFk);
@@ -573,7 +663,7 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
      *     ...
      * }
      * </pre>
-     * @param vendorDateFk The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
+     * @param vendorDateFk The entity of delete. (NotNull, PrimaryKeyNotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      */
@@ -581,22 +671,19 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
         doDelete(vendorDateFk, null);
     }
 
-    protected void doDelete(VendorDateFk vendorDateFk, final DeleteOption<VendorDateFkCB> op) {
-        assertObjectNotNull("vendorDateFk", vendorDateFk);
+    protected void doDelete(VendorDateFk et, final DeleteOption<VendorDateFkCB> op) {
+        assertObjectNotNull("vendorDateFk", et);
         prepareDeleteOption(op);
-        helpDeleteInternally(vendorDateFk, new InternalDeleteCallback<VendorDateFk>() {
-            public int callbackDelegateDelete(VendorDateFk et) { return delegateDelete(et, op); } });
+        helpDeleteInternally(et, new InternalDeleteCallback<VendorDateFk>() {
+            public int callbackDelegateDelete(VendorDateFk let) { return delegateDelete(let, op); } });
     }
 
-    protected void prepareDeleteOption(DeleteOption<VendorDateFkCB> op) {
-        if (op == null) { return; }
-        assertDeleteOptionStatus(op);
-    }
+    protected void prepareDeleteOption(DeleteOption<VendorDateFkCB> op)
+    { if (op != null) { assertDeleteOptionStatus(op); } }
 
     @Override
     protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) {
-        if (op == null) { delete(downcast(et)); }
-        else { varyingDelete(downcast(et), downcast(op)); }
+        doDelete(downcast(et), downcast(op));
     }
 
     @Override
@@ -632,26 +719,25 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
      * @return The array of inserted count. (NotNull, EmptyAllowed)
      */
     public int[] batchInsert(List<VendorDateFk> vendorDateFkList) {
-        InsertOption<VendorDateFkCB> op = createInsertUpdateOption();
-        return doBatchInsert(vendorDateFkList, op);
+        return doBatchInsert(vendorDateFkList, null);
     }
 
-    protected int[] doBatchInsert(List<VendorDateFk> vendorDateFkList, InsertOption<VendorDateFkCB> op) {
-        assertObjectNotNull("vendorDateFkList", vendorDateFkList);
-        prepareBatchInsertOption(vendorDateFkList, op);
-        return delegateBatchInsert(vendorDateFkList, op);
+    protected int[] doBatchInsert(List<VendorDateFk> ls, InsertOption<VendorDateFkCB> op) {
+        assertObjectNotNull("vendorDateFkList", ls);
+        InsertOption<VendorDateFkCB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainInsertOption(); }
+        prepareBatchInsertOption(ls, rlop); // required
+        return delegateBatchInsert(ls, rlop);
     }
 
-    protected void prepareBatchInsertOption(List<VendorDateFk> vendorDateFkList, InsertOption<VendorDateFkCB> op) {
+    protected void prepareBatchInsertOption(List<VendorDateFk> ls, InsertOption<VendorDateFkCB> op) {
         op.xallowInsertColumnModifiedPropertiesFragmented();
-        op.xacceptInsertColumnModifiedPropertiesIfNeeds(vendorDateFkList);
+        op.xacceptInsertColumnModifiedPropertiesIfNeeds(ls);
         prepareInsertOption(op);
     }
 
     @Override
     protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) {
-        if (op == null) { return batchInsert(downcast(ls)); }
-        else { return varyingBatchInsert(downcast(ls), downcast(op)); }
+        return doBatchInsert(downcast(ls), downcast(op));
     }
 
     /**
@@ -679,25 +765,24 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<VendorDateFk> vendorDateFkList) {
-        UpdateOption<VendorDateFkCB> op = createPlainUpdateOption();
-        return doBatchUpdate(vendorDateFkList, op);
+        return doBatchUpdate(vendorDateFkList, null);
     }
 
-    protected int[] doBatchUpdate(List<VendorDateFk> vendorDateFkList, UpdateOption<VendorDateFkCB> op) {
-        assertObjectNotNull("vendorDateFkList", vendorDateFkList);
-        prepareBatchUpdateOption(vendorDateFkList, op);
-        return delegateBatchUpdate(vendorDateFkList, op);
+    protected int[] doBatchUpdate(List<VendorDateFk> ls, UpdateOption<VendorDateFkCB> op) {
+        assertObjectNotNull("vendorDateFkList", ls);
+        UpdateOption<VendorDateFkCB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainUpdateOption(); }
+        prepareBatchUpdateOption(ls, rlop); // required
+        return delegateBatchUpdate(ls, rlop);
     }
 
-    protected void prepareBatchUpdateOption(List<VendorDateFk> vendorDateFkList, UpdateOption<VendorDateFkCB> op) {
-        op.xacceptUpdateColumnModifiedPropertiesIfNeeds(vendorDateFkList);
+    protected void prepareBatchUpdateOption(List<VendorDateFk> ls, UpdateOption<VendorDateFkCB> op) {
+        op.xacceptUpdateColumnModifiedPropertiesIfNeeds(ls);
         prepareUpdateOption(op);
     }
 
     @Override
     protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) {
-        if (op == null) { return batchUpdate(downcast(ls)); }
-        else { return varyingBatchUpdate(downcast(ls), downcast(op)); }
+        return doBatchUpdate(downcast(ls), downcast(op));
     }
 
     /**
@@ -748,16 +833,15 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
         return doBatchDelete(vendorDateFkList, null);
     }
 
-    protected int[] doBatchDelete(List<VendorDateFk> vendorDateFkList, DeleteOption<VendorDateFkCB> op) {
-        assertObjectNotNull("vendorDateFkList", vendorDateFkList);
+    protected int[] doBatchDelete(List<VendorDateFk> ls, DeleteOption<VendorDateFkCB> op) {
+        assertObjectNotNull("vendorDateFkList", ls);
         prepareDeleteOption(op);
-        return delegateBatchDelete(vendorDateFkList, op);
+        return delegateBatchDelete(ls, op);
     }
 
     @Override
     protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) {
-        if (op == null) { return batchDelete(downcast(ls)); }
-        else { return varyingBatchDelete(downcast(ls), downcast(op)); }
+        return doBatchDelete(downcast(ls), downcast(op));
     }
 
     @Override
@@ -784,7 +868,7 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
      *         <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
      *         <span style="color: #3F7E5E">//entity.setRegisterUser(value);</span>
      *         <span style="color: #3F7E5E">//entity.set...;</span>
-     *         <span style="color: #3F7E5E">// you don't need to set a value of exclusive control column</span>
+     *         <span style="color: #3F7E5E">// you don't need to set a value of concurrency column</span>
      *         <span style="color: #3F7E5E">//entity.setVersionNo(value);</span>
      *
      *         return cb;
@@ -801,21 +885,17 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
     protected int doQueryInsert(QueryInsertSetupper<VendorDateFk, VendorDateFkCB> sp, InsertOption<VendorDateFkCB> op) {
         assertObjectNotNull("setupper", sp);
         prepareInsertOption(op);
-        VendorDateFk e = new VendorDateFk();
+        VendorDateFk et = newEntity();
         VendorDateFkCB cb = createCBForQueryInsert();
-        return delegateQueryInsert(e, cb, sp.setup(e, cb), op);
+        return delegateQueryInsert(et, cb, sp.setup(et, cb), op);
     }
 
-    protected VendorDateFkCB createCBForQueryInsert() {
-        VendorDateFkCB cb = newMyConditionBean();
-        cb.xsetupForQueryInsert();
-        return cb;
-    }
+    protected VendorDateFkCB createCBForQueryInsert()
+    { VendorDateFkCB cb = newConditionBean(); cb.xsetupForQueryInsert(); return cb; }
 
     @Override
-    protected int doRangeCreate(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> setupper, InsertOption<? extends ConditionBean> option) {
-        if (option == null) { return queryInsert(downcast(setupper)); }
-        else { return varyingQueryInsert(downcast(setupper), downcast(option)); }
+    protected int doRangeCreate(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> setupper, InsertOption<? extends ConditionBean> op) {
+        return doQueryInsert(downcast(setupper), downcast(op));
     }
 
     /**
@@ -828,7 +908,7 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
      * <span style="color: #3F7E5E">//vendorDateFk.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//vendorDateFk.set...;</span>
-     * <span style="color: #3F7E5E">// you don't need to set a value of exclusive control column</span>
+     * <span style="color: #3F7E5E">// you don't need to set a value of concurrency column</span>
      * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
      * <span style="color: #3F7E5E">//vendorDateFk.setVersionNo(value);</span>
      * VendorDateFkCB cb = new VendorDateFkCB();
@@ -844,16 +924,15 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
         return doQueryUpdate(vendorDateFk, cb, null);
     }
 
-    protected int doQueryUpdate(VendorDateFk vendorDateFk, VendorDateFkCB cb, UpdateOption<VendorDateFkCB> op) {
-        assertObjectNotNull("vendorDateFk", vendorDateFk); assertCBStateValid(cb);
+    protected int doQueryUpdate(VendorDateFk et, VendorDateFkCB cb, UpdateOption<VendorDateFkCB> op) {
+        assertObjectNotNull("vendorDateFk", et); assertCBStateValid(cb);
         prepareUpdateOption(op);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(vendorDateFk, cb, op) : 0;
+        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(et, cb, op) : 0;
     }
 
     @Override
     protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op) {
-        if (op == null) { return queryUpdate(downcast(et), (VendorDateFkCB)cb); }
-        else { return varyingQueryUpdate(downcast(et), (VendorDateFkCB)cb, downcast(op)); }
+        return doQueryUpdate(downcast(et), downcast(cb), downcast(op));
     }
 
     /**
@@ -879,8 +958,7 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
 
     @Override
     protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) {
-        if (op == null) { return queryDelete((VendorDateFkCB)cb); }
-        else { return varyingQueryDelete((VendorDateFkCB)cb, downcast(op)); }
+        return doQueryDelete(downcast(cb), downcast(op));
     }
 
     // ===================================================================================
@@ -904,7 +982,7 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
      * vendorDateFkBhv.<span style="color: #DD4747">varyingInsert</span>(vendorDateFk, option);
      * ... = vendorDateFk.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
-     * @param vendorDateFk The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
+     * @param vendorDateFk The entity of insert. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
      * @param option The option of insert for varying requests. (NotNull)
      * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
@@ -921,7 +999,7 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
      * VendorDateFk vendorDateFk = new VendorDateFk();
      * vendorDateFk.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * vendorDateFk.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
-     * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
+     * <span style="color: #3F7E5E">// if exclusive control, the value of concurrency column is required</span>
      * vendorDateFk.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     <span style="color: #3F7E5E">// you can update by self calculation values</span>
@@ -936,7 +1014,7 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
      *     ...
      * }
      * </pre>
-     * @param vendorDateFk The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
+     * @param vendorDateFk The entity of update. (NotNull, PrimaryKeyNotNull)
      * @param option The option of update for varying requests. (NotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
@@ -950,7 +1028,7 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
     /**
      * Insert or update the entity with varying requests. (ExclusiveControl: when update) <br />
      * Other specifications are same as insertOrUpdate(entity).
-     * @param vendorDateFk The entity of insert or update target. (NotNull)
+     * @param vendorDateFk The entity of insert or update. (NotNull)
      * @param insertOption The option of insert for varying requests. (NotNull)
      * @param updateOption The option of update for varying requests. (NotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
@@ -959,14 +1037,14 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
      */
     public void varyingInsertOrUpdate(VendorDateFk vendorDateFk, InsertOption<VendorDateFkCB> insertOption, UpdateOption<VendorDateFkCB> updateOption) {
         assertInsertOptionNotNull(insertOption); assertUpdateOptionNotNull(updateOption);
-        doInesrtOrUpdate(vendorDateFk, insertOption, updateOption);
+        doInsertOrUpdate(vendorDateFk, insertOption, updateOption);
     }
 
     /**
      * Delete the entity with varying requests. (ZeroUpdateException, NonExclusiveControl) <br />
      * Now a valid option does not exist. <br />
      * Other specifications are same as delete(entity).
-     * @param vendorDateFk The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
+     * @param vendorDateFk The entity of delete. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
      * @param option The option of update for varying requests. (NotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
@@ -1047,7 +1125,7 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">// you don't need to set PK value</span>
      * <span style="color: #3F7E5E">//vendorDateFk.setPK...(value);</span>
      * vendorDateFk.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
-     * <span style="color: #3F7E5E">// you don't need to set a value of exclusive control column</span>
+     * <span style="color: #3F7E5E">// you don't need to set a value of concurrency column</span>
      * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
      * <span style="color: #3F7E5E">//vendorDateFk.setVersionNo(value);</span>
      * VendorDateFkCB cb = new VendorDateFkCB();
@@ -1199,38 +1277,34 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable {
     }
 
     // ===================================================================================
-    //                                                                     Downcast Helper
-    //                                                                     ===============
-    protected VendorDateFk downcast(Entity et) {
-        return helpEntityDowncastInternally(et, VendorDateFk.class);
-    }
+    //                                                                       Assist Helper
+    //                                                                       =============
+    protected Class<VendorDateFk> typeOfSelectedEntity()
+    { return VendorDateFk.class; }
 
-    protected VendorDateFkCB downcast(ConditionBean cb) {
-        return helpConditionBeanDowncastInternally(cb, VendorDateFkCB.class);
-    }
+    protected VendorDateFk downcast(Entity et)
+    { return helpEntityDowncastInternally(et, VendorDateFk.class); }
 
-    @SuppressWarnings("unchecked")
-    protected List<VendorDateFk> downcast(List<? extends Entity> ls) {
-        return (List<VendorDateFk>)ls;
-    }
+    protected VendorDateFkCB downcast(ConditionBean cb)
+    { return helpConditionBeanDowncastInternally(cb, VendorDateFkCB.class); }
 
     @SuppressWarnings("unchecked")
-    protected InsertOption<VendorDateFkCB> downcast(InsertOption<? extends ConditionBean> op) {
-        return (InsertOption<VendorDateFkCB>)op;
-    }
+    protected List<VendorDateFk> downcast(List<? extends Entity> ls)
+    { return (List<VendorDateFk>)ls; }
 
     @SuppressWarnings("unchecked")
-    protected UpdateOption<VendorDateFkCB> downcast(UpdateOption<? extends ConditionBean> op) {
-        return (UpdateOption<VendorDateFkCB>)op;
-    }
+    protected InsertOption<VendorDateFkCB> downcast(InsertOption<? extends ConditionBean> op)
+    { return (InsertOption<VendorDateFkCB>)op; }
 
     @SuppressWarnings("unchecked")
-    protected DeleteOption<VendorDateFkCB> downcast(DeleteOption<? extends ConditionBean> op) {
-        return (DeleteOption<VendorDateFkCB>)op;
-    }
+    protected UpdateOption<VendorDateFkCB> downcast(UpdateOption<? extends ConditionBean> op)
+    { return (UpdateOption<VendorDateFkCB>)op; }
 
     @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<VendorDateFk, VendorDateFkCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp) {
-        return (QueryInsertSetupper<VendorDateFk, VendorDateFkCB>)sp;
-    }
+    protected DeleteOption<VendorDateFkCB> downcast(DeleteOption<? extends ConditionBean> op)
+    { return (DeleteOption<VendorDateFkCB>)op; }
+
+    @SuppressWarnings("unchecked")
+    protected QueryInsertSetupper<VendorDateFk, VendorDateFkCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
+    { return (QueryInsertSetupper<VendorDateFk, VendorDateFkCB>)sp; }
 }

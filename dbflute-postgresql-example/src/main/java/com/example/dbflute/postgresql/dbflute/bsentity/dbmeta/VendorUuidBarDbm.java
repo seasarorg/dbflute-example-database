@@ -139,7 +139,7 @@ public class VendorUuidBarDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public VendorUuidBar newEntity() { return new VendorUuidBar(); }
     public VendorUuidBar newMyEntity() { return new VendorUuidBar(); }
 
     // ===================================================================================

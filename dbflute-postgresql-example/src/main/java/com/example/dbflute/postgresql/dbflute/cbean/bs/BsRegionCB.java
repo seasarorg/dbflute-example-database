@@ -80,11 +80,23 @@ public class BsRegionCB extends AbstractConditionBean {
     /**
      * Accept the query condition of primary key as equal.
      * @param regionId (地域ID): PK, NotNull, int4(10). (NotNull)
+     * @return this. (NotNull)
+     */
+    public RegionCB acceptPK(Integer regionId) {
+        assertObjectNotNull("regionId", regionId);
+        BsRegionCB cb = this;
+        cb.query().setRegionId_Equal(regionId);
+        return (RegionCB)this;
+    }
+
+    /**
+     * Accept the query condition of primary key as equal. (old style)
+     * @param regionId (地域ID): PK, NotNull, int4(10). (NotNull)
      */
     public void acceptPrimaryKey(Integer regionId) {
         assertObjectNotNull("regionId", regionId);
         BsRegionCB cb = this;
-        cb.query().setRegionId_Equal(regionId);;
+        cb.query().setRegionId_Equal(regionId);
     }
 
     public ConditionBean addOrderBy_PK_Asc() {

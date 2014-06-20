@@ -175,7 +175,7 @@ public class WhiteAdditionalDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public WhiteAdditional newEntity() { return new WhiteAdditional(); }
     public WhiteAdditional newMyEntity() { return new WhiteAdditional(); }
 
     // ===================================================================================

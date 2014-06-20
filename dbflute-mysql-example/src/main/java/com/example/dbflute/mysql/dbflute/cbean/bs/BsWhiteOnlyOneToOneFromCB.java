@@ -96,11 +96,23 @@ public class BsWhiteOnlyOneToOneFromCB extends AbstractConditionBean {
     /**
      * Accept the query condition of primary key as equal.
      * @param fromId : PK, ID, NotNull, BIGINT(19). (NotNull)
+     * @return this. (NotNull)
+     */
+    public WhiteOnlyOneToOneFromCB acceptPK(Long fromId) {
+        assertObjectNotNull("fromId", fromId);
+        BsWhiteOnlyOneToOneFromCB cb = this;
+        cb.query().setFromId_Equal(fromId);
+        return (WhiteOnlyOneToOneFromCB)this;
+    }
+
+    /**
+     * Accept the query condition of primary key as equal. (old style)
+     * @param fromId : PK, ID, NotNull, BIGINT(19). (NotNull)
      */
     public void acceptPrimaryKey(Long fromId) {
         assertObjectNotNull("fromId", fromId);
         BsWhiteOnlyOneToOneFromCB cb = this;
-        cb.query().setFromId_Equal(fromId);;
+        cb.query().setFromId_Equal(fromId);
     }
 
     public ConditionBean addOrderBy_PK_Asc() {

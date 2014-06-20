@@ -437,7 +437,7 @@ public abstract class BsWhiteDeprecatedClsElement implements Entity, Serializabl
     protected void setDeprecatedClsElementCode(String deprecatedClsElementCode) {
         checkImplicitSet("DEPRECATED_CLS_ELEMENT_CODE", CDef.DefMeta.DeprecatedMapCollaborationType, deprecatedClsElementCode);
         __modifiedProperties.addPropertyName("deprecatedClsElementCode");
-        this._deprecatedClsElementCode = deprecatedClsElementCode;
+        _deprecatedClsElementCode = deprecatedClsElementCode;
     }
 
     /**
@@ -454,7 +454,7 @@ public abstract class BsWhiteDeprecatedClsElement implements Entity, Serializabl
      */
     public void setDeprecatedClsElementName(String deprecatedClsElementName) {
         __modifiedProperties.addPropertyName("deprecatedClsElementName");
-        this._deprecatedClsElementName = deprecatedClsElementName;
+        _deprecatedClsElementName = deprecatedClsElementName;
     }
 
     protected void checkImplicitSet(String columnDbName, CDef.DefMeta meta, Object value) {

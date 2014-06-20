@@ -98,11 +98,25 @@ public class BsWhiteAllInOneClsNormalColRefCB extends AbstractConditionBean {
      * @param fooCode : PK, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT. (NotNull)
      * @param barCode : PK, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT. (NotNull)
      * @param quxCode : PK, NotNull, CHAR(3). (NotNull)
+     * @return this. (NotNull)
+     */
+    public WhiteAllInOneClsNormalColRefCB acceptPK(String fooCode, String barCode, String quxCode) {
+        assertObjectNotNull("fooCode", fooCode);assertObjectNotNull("barCode", barCode);assertObjectNotNull("quxCode", quxCode);
+        BsWhiteAllInOneClsNormalColRefCB cb = this;
+        cb.query().setFooCode_Equal(fooCode);cb.query().setBarCode_Equal(barCode);cb.query().setQuxCode_Equal(quxCode);
+        return (WhiteAllInOneClsNormalColRefCB)this;
+    }
+
+    /**
+     * Accept the query condition of primary key as equal. (old style)
+     * @param fooCode : PK, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT. (NotNull)
+     * @param barCode : PK, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT. (NotNull)
+     * @param quxCode : PK, NotNull, CHAR(3). (NotNull)
      */
     public void acceptPrimaryKey(String fooCode, String barCode, String quxCode) {
         assertObjectNotNull("fooCode", fooCode);assertObjectNotNull("barCode", barCode);assertObjectNotNull("quxCode", quxCode);
         BsWhiteAllInOneClsNormalColRefCB cb = this;
-        cb.query().setFooCode_Equal(fooCode);;cb.query().setBarCode_Equal(barCode);;cb.query().setQuxCode_Equal(quxCode);;
+        cb.query().setFooCode_Equal(fooCode);cb.query().setBarCode_Equal(barCode);cb.query().setQuxCode_Equal(quxCode);
     }
 
     public ConditionBean addOrderBy_PK_Asc() {

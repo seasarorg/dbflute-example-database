@@ -176,7 +176,7 @@ public class SpReturnResultSetMoreNotParamResult2Dbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public SpReturnResultSetMoreNotParamResult2 newEntity() { return new SpReturnResultSetMoreNotParamResult2(); }
     public SpReturnResultSetMoreNotParamResult2 newMyEntity() { return new SpReturnResultSetMoreNotParamResult2(); }
 
     // ===================================================================================

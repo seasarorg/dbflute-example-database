@@ -324,7 +324,7 @@ public abstract class BsProduct implements EntityDefinedCommonColumn, Serializab
     protected ProductCategory _productCategory;
 
     /**
-     * (商品カテゴリ)product_category by my PRODUCT_CATEGORY_CODE, named 'productCategory'.
+     * [get] (商品カテゴリ)product_category by my PRODUCT_CATEGORY_CODE, named 'productCategory'.
      * @return The entity of foreign property 'productCategory'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public ProductCategory getProductCategory() {
@@ -332,7 +332,7 @@ public abstract class BsProduct implements EntityDefinedCommonColumn, Serializab
     }
 
     /**
-     * (商品カテゴリ)product_category by my PRODUCT_CATEGORY_CODE, named 'productCategory'.
+     * [set] (商品カテゴリ)product_category by my PRODUCT_CATEGORY_CODE, named 'productCategory'.
      * @param productCategory The entity of foreign property 'productCategory'. (NullAllowed)
      */
     public void setProductCategory(ProductCategory productCategory) {
@@ -343,7 +343,7 @@ public abstract class BsProduct implements EntityDefinedCommonColumn, Serializab
     protected ProductStatus _productStatus;
 
     /**
-     * (商品ステータス)product_status by my PRODUCT_STATUS_CODE, named 'productStatus'.
+     * [get] (商品ステータス)product_status by my PRODUCT_STATUS_CODE, named 'productStatus'.
      * @return The entity of foreign property 'productStatus'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public ProductStatus getProductStatus() {
@@ -351,7 +351,7 @@ public abstract class BsProduct implements EntityDefinedCommonColumn, Serializab
     }
 
     /**
-     * (商品ステータス)product_status by my PRODUCT_STATUS_CODE, named 'productStatus'.
+     * [set] (商品ステータス)product_status by my PRODUCT_STATUS_CODE, named 'productStatus'.
      * @param productStatus The entity of foreign property 'productStatus'. (NullAllowed)
      */
     public void setProductStatus(ProductStatus productStatus) {
@@ -365,7 +365,7 @@ public abstract class BsProduct implements EntityDefinedCommonColumn, Serializab
     protected List<Purchase> _purchaseList;
 
     /**
-     * (購入)purchase by PRODUCT_ID, named 'purchaseList'.
+     * [get] (購入)purchase by PRODUCT_ID, named 'purchaseList'.
      * @return The entity list of referrer property 'purchaseList'. (NotNull: even if no loading, returns empty list)
      */
     public List<Purchase> getPurchaseList() {
@@ -374,7 +374,7 @@ public abstract class BsProduct implements EntityDefinedCommonColumn, Serializab
     }
 
     /**
-     * (購入)purchase by PRODUCT_ID, named 'purchaseList'.
+     * [set] (購入)purchase by PRODUCT_ID, named 'purchaseList'.
      * @param purchaseList The entity list of referrer property 'purchaseList'. (NullAllowed)
      */
     public void setPurchaseList(List<Purchase> purchaseList) {
@@ -594,7 +594,7 @@ public abstract class BsProduct implements EntityDefinedCommonColumn, Serializab
      */
     public void setProductId(Integer productId) {
         __modifiedProperties.addPropertyName("productId");
-        this._productId = productId;
+        _productId = productId;
     }
 
     /**
@@ -611,7 +611,7 @@ public abstract class BsProduct implements EntityDefinedCommonColumn, Serializab
      */
     public void setProductName(String productName) {
         __modifiedProperties.addPropertyName("productName");
-        this._productName = productName;
+        _productName = productName;
     }
 
     /**
@@ -630,7 +630,7 @@ public abstract class BsProduct implements EntityDefinedCommonColumn, Serializab
      */
     public void setProductHandleCode(String productHandleCode) {
         __modifiedProperties.addPropertyName("productHandleCode");
-        this._productHandleCode = productHandleCode;
+        _productHandleCode = productHandleCode;
     }
 
     /**
@@ -647,7 +647,7 @@ public abstract class BsProduct implements EntityDefinedCommonColumn, Serializab
      */
     public void setProductCategoryCode(String productCategoryCode) {
         __modifiedProperties.addPropertyName("productCategoryCode");
-        this._productCategoryCode = productCategoryCode;
+        _productCategoryCode = productCategoryCode;
     }
 
     /**
@@ -664,7 +664,7 @@ public abstract class BsProduct implements EntityDefinedCommonColumn, Serializab
      */
     protected void setProductStatusCode(String productStatusCode) {
         __modifiedProperties.addPropertyName("productStatusCode");
-        this._productStatusCode = productStatusCode;
+        _productStatusCode = productStatusCode;
     }
 
     /**
@@ -683,7 +683,7 @@ public abstract class BsProduct implements EntityDefinedCommonColumn, Serializab
      */
     public void setRegularPrice(Integer regularPrice) {
         __modifiedProperties.addPropertyName("regularPrice");
-        this._regularPrice = regularPrice;
+        _regularPrice = regularPrice;
     }
 
     /**
@@ -700,7 +700,7 @@ public abstract class BsProduct implements EntityDefinedCommonColumn, Serializab
      */
     public void setRegisterDatetime(java.sql.Timestamp registerDatetime) {
         __modifiedProperties.addPropertyName("registerDatetime");
-        this._registerDatetime = registerDatetime;
+        _registerDatetime = registerDatetime;
     }
 
     /**
@@ -717,7 +717,7 @@ public abstract class BsProduct implements EntityDefinedCommonColumn, Serializab
      */
     public void setRegisterUser(String registerUser) {
         __modifiedProperties.addPropertyName("registerUser");
-        this._registerUser = registerUser;
+        _registerUser = registerUser;
     }
 
     /**
@@ -734,7 +734,7 @@ public abstract class BsProduct implements EntityDefinedCommonColumn, Serializab
      */
     public void setUpdateDatetime(java.sql.Timestamp updateDatetime) {
         __modifiedProperties.addPropertyName("updateDatetime");
-        this._updateDatetime = updateDatetime;
+        _updateDatetime = updateDatetime;
     }
 
     /**
@@ -751,7 +751,7 @@ public abstract class BsProduct implements EntityDefinedCommonColumn, Serializab
      */
     public void setUpdateUser(String updateUser) {
         __modifiedProperties.addPropertyName("updateUser");
-        this._updateUser = updateUser;
+        _updateUser = updateUser;
     }
 
     /**
@@ -768,6 +768,6 @@ public abstract class BsProduct implements EntityDefinedCommonColumn, Serializab
      */
     public void setVersionNo(Long versionNo) {
         __modifiedProperties.addPropertyName("versionNo");
-        this._versionNo = versionNo;
+        _versionNo = versionNo;
     }
 }

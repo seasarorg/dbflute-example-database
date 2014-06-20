@@ -167,7 +167,7 @@ public abstract class BsVendorConstraintNameAutoFoo implements Entity, Serializa
     protected List<VendorConstraintNameAutoRef> _vendorConstraintNameAutoRefList;
 
     /**
-     * vendor_constraint_name_auto_ref by CONSTRAINT_NAME_AUTO_FOO_ID, named 'vendorConstraintNameAutoRefList'.
+     * [get] vendor_constraint_name_auto_ref by CONSTRAINT_NAME_AUTO_FOO_ID, named 'vendorConstraintNameAutoRefList'.
      * @return The entity list of referrer property 'vendorConstraintNameAutoRefList'. (NotNull: even if no loading, returns empty list)
      */
     public List<VendorConstraintNameAutoRef> getVendorConstraintNameAutoRefList() {
@@ -176,7 +176,7 @@ public abstract class BsVendorConstraintNameAutoFoo implements Entity, Serializa
     }
 
     /**
-     * vendor_constraint_name_auto_ref by CONSTRAINT_NAME_AUTO_FOO_ID, named 'vendorConstraintNameAutoRefList'.
+     * [set] vendor_constraint_name_auto_ref by CONSTRAINT_NAME_AUTO_FOO_ID, named 'vendorConstraintNameAutoRefList'.
      * @param vendorConstraintNameAutoRefList The entity list of referrer property 'vendorConstraintNameAutoRefList'. (NullAllowed)
      */
     public void setVendorConstraintNameAutoRefList(List<VendorConstraintNameAutoRef> vendorConstraintNameAutoRefList) {
@@ -357,7 +357,7 @@ public abstract class BsVendorConstraintNameAutoFoo implements Entity, Serializa
      */
     public void setConstraintNameAutoFooId(Long constraintNameAutoFooId) {
         __modifiedProperties.addPropertyName("constraintNameAutoFooId");
-        this._constraintNameAutoFooId = constraintNameAutoFooId;
+        _constraintNameAutoFooId = constraintNameAutoFooId;
     }
 
     /**
@@ -374,6 +374,6 @@ public abstract class BsVendorConstraintNameAutoFoo implements Entity, Serializa
      */
     public void setConstraintNameAutoFooName(String constraintNameAutoFooName) {
         __modifiedProperties.addPropertyName("constraintNameAutoFooName");
-        this._constraintNameAutoFooName = constraintNameAutoFooName;
+        _constraintNameAutoFooName = constraintNameAutoFooName;
     }
 }

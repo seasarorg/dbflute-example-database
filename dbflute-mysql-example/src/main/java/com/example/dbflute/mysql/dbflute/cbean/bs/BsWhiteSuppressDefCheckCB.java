@@ -95,11 +95,23 @@ public class BsWhiteSuppressDefCheckCB extends AbstractConditionBean {
     /**
      * Accept the query condition of primary key as equal.
      * @param defCheckId : PK, NotNull, BIGINT(19). (NotNull)
+     * @return this. (NotNull)
+     */
+    public WhiteSuppressDefCheckCB acceptPK(Long defCheckId) {
+        assertObjectNotNull("defCheckId", defCheckId);
+        BsWhiteSuppressDefCheckCB cb = this;
+        cb.query().setDefCheckId_Equal(defCheckId);
+        return (WhiteSuppressDefCheckCB)this;
+    }
+
+    /**
+     * Accept the query condition of primary key as equal. (old style)
+     * @param defCheckId : PK, NotNull, BIGINT(19). (NotNull)
      */
     public void acceptPrimaryKey(Long defCheckId) {
         assertObjectNotNull("defCheckId", defCheckId);
         BsWhiteSuppressDefCheckCB cb = this;
-        cb.query().setDefCheckId_Equal(defCheckId);;
+        cb.query().setDefCheckId_Equal(defCheckId);
     }
 
     public ConditionBean addOrderBy_PK_Asc() {

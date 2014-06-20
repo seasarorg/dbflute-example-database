@@ -154,7 +154,7 @@ public class WhiteQuotedDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public WhiteQuoted newEntity() { return new WhiteQuoted(); }
     public WhiteQuoted newMyEntity() { return new WhiteQuoted(); }
 
     // ===================================================================================

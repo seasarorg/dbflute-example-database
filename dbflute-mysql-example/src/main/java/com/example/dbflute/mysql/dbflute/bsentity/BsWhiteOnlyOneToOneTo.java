@@ -169,7 +169,7 @@ public abstract class BsWhiteOnlyOneToOneTo implements Entity, Serializable, Clo
     protected WhiteOnlyOneToOneFrom _whiteOnlyOneToOneFrom;
 
     /**
-     * white_only_one_to_one_from by my FROM_ID, named 'whiteOnlyOneToOneFrom'.
+     * [get] white_only_one_to_one_from by my FROM_ID, named 'whiteOnlyOneToOneFrom'.
      * @return The entity of foreign property 'whiteOnlyOneToOneFrom'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public WhiteOnlyOneToOneFrom getWhiteOnlyOneToOneFrom() {
@@ -177,7 +177,7 @@ public abstract class BsWhiteOnlyOneToOneTo implements Entity, Serializable, Clo
     }
 
     /**
-     * white_only_one_to_one_from by my FROM_ID, named 'whiteOnlyOneToOneFrom'.
+     * [set] white_only_one_to_one_from by my FROM_ID, named 'whiteOnlyOneToOneFrom'.
      * @param whiteOnlyOneToOneFrom The entity of foreign property 'whiteOnlyOneToOneFrom'. (NullAllowed)
      */
     public void setWhiteOnlyOneToOneFrom(WhiteOnlyOneToOneFrom whiteOnlyOneToOneFrom) {
@@ -361,7 +361,7 @@ public abstract class BsWhiteOnlyOneToOneTo implements Entity, Serializable, Clo
      */
     public void setToId(Long toId) {
         __modifiedProperties.addPropertyName("toId");
-        this._toId = toId;
+        _toId = toId;
     }
 
     /**
@@ -378,7 +378,7 @@ public abstract class BsWhiteOnlyOneToOneTo implements Entity, Serializable, Clo
      */
     public void setToName(String toName) {
         __modifiedProperties.addPropertyName("toName");
-        this._toName = toName;
+        _toName = toName;
     }
 
     /**
@@ -395,6 +395,6 @@ public abstract class BsWhiteOnlyOneToOneTo implements Entity, Serializable, Clo
      */
     public void setFromId(Long fromId) {
         __modifiedProperties.addPropertyName("fromId");
-        this._fromId = fromId;
+        _fromId = fromId;
     }
 }

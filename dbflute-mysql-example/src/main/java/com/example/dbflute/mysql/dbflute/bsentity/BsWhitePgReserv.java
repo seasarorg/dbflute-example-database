@@ -246,7 +246,7 @@ public abstract class BsWhitePgReserv implements Entity, Serializable, Cloneable
     protected List<WhitePgReservRef> _whitePgReservRefList;
 
     /**
-     * white_pg_reserv_ref by CLASS, named 'whitePgReservRefList'.
+     * [get] white_pg_reserv_ref by CLASS, named 'whitePgReservRefList'.
      * @return The entity list of referrer property 'whitePgReservRefList'. (NotNull: even if no loading, returns empty list)
      */
     public List<WhitePgReservRef> getWhitePgReservRefList() {
@@ -255,7 +255,7 @@ public abstract class BsWhitePgReserv implements Entity, Serializable, Cloneable
     }
 
     /**
-     * white_pg_reserv_ref by CLASS, named 'whitePgReservRefList'.
+     * [set] white_pg_reserv_ref by CLASS, named 'whitePgReservRefList'.
      * @param whitePgReservRefList The entity list of referrer property 'whitePgReservRefList'. (NullAllowed)
      */
     public void setWhitePgReservRefList(List<WhitePgReservRef> whitePgReservRefList) {
@@ -454,7 +454,7 @@ public abstract class BsWhitePgReserv implements Entity, Serializable, Cloneable
      */
     public void setClassSynonym(Integer classSynonym) {
         __modifiedProperties.addPropertyName("classSynonym");
-        this._classSynonym = classSynonym;
+        _classSynonym = classSynonym;
     }
 
     /**
@@ -471,7 +471,7 @@ public abstract class BsWhitePgReserv implements Entity, Serializable, Cloneable
      */
     public void setCaseSynonym(Integer caseSynonym) {
         __modifiedProperties.addPropertyName("caseSynonym");
-        this._caseSynonym = caseSynonym;
+        _caseSynonym = caseSynonym;
     }
 
     /**
@@ -488,7 +488,7 @@ public abstract class BsWhitePgReserv implements Entity, Serializable, Cloneable
      */
     public void setPackageSynonym(Integer packageSynonym) {
         __modifiedProperties.addPropertyName("packageSynonym");
-        this._packageSynonym = packageSynonym;
+        _packageSynonym = packageSynonym;
     }
 
     /**
@@ -505,7 +505,7 @@ public abstract class BsWhitePgReserv implements Entity, Serializable, Cloneable
      */
     public void setDefaultSynonym(Integer defaultSynonym) {
         __modifiedProperties.addPropertyName("defaultSynonym");
-        this._defaultSynonym = defaultSynonym;
+        _defaultSynonym = defaultSynonym;
     }
 
     /**
@@ -522,7 +522,7 @@ public abstract class BsWhitePgReserv implements Entity, Serializable, Cloneable
      */
     public void setNewSynonym(Integer newSynonym) {
         __modifiedProperties.addPropertyName("newSynonym");
-        this._newSynonym = newSynonym;
+        _newSynonym = newSynonym;
     }
 
     /**
@@ -539,7 +539,7 @@ public abstract class BsWhitePgReserv implements Entity, Serializable, Cloneable
      */
     public void setNativeSynonym(Integer nativeSynonym) {
         __modifiedProperties.addPropertyName("nativeSynonym");
-        this._nativeSynonym = nativeSynonym;
+        _nativeSynonym = nativeSynonym;
     }
 
     /**
@@ -556,7 +556,7 @@ public abstract class BsWhitePgReserv implements Entity, Serializable, Cloneable
      */
     public void setVoidSynonym(Integer voidSynonym) {
         __modifiedProperties.addPropertyName("voidSynonym");
-        this._voidSynonym = voidSynonym;
+        _voidSynonym = voidSynonym;
     }
 
     /**
@@ -573,7 +573,7 @@ public abstract class BsWhitePgReserv implements Entity, Serializable, Cloneable
      */
     public void setPublicSynonym(Integer publicSynonym) {
         __modifiedProperties.addPropertyName("publicSynonym");
-        this._publicSynonym = publicSynonym;
+        _publicSynonym = publicSynonym;
     }
 
     /**
@@ -590,7 +590,7 @@ public abstract class BsWhitePgReserv implements Entity, Serializable, Cloneable
      */
     public void setProtectedSynonym(Integer protectedSynonym) {
         __modifiedProperties.addPropertyName("protectedSynonym");
-        this._protectedSynonym = protectedSynonym;
+        _protectedSynonym = protectedSynonym;
     }
 
     /**
@@ -607,7 +607,7 @@ public abstract class BsWhitePgReserv implements Entity, Serializable, Cloneable
      */
     public void setPrivateSynonym(Integer privateSynonym) {
         __modifiedProperties.addPropertyName("privateSynonym");
-        this._privateSynonym = privateSynonym;
+        _privateSynonym = privateSynonym;
     }
 
     /**
@@ -624,7 +624,7 @@ public abstract class BsWhitePgReserv implements Entity, Serializable, Cloneable
      */
     public void setInterfaceSynonym(Integer interfaceSynonym) {
         __modifiedProperties.addPropertyName("interfaceSynonym");
-        this._interfaceSynonym = interfaceSynonym;
+        _interfaceSynonym = interfaceSynonym;
     }
 
     /**
@@ -641,7 +641,7 @@ public abstract class BsWhitePgReserv implements Entity, Serializable, Cloneable
      */
     public void setAbstractSynonym(Integer abstractSynonym) {
         __modifiedProperties.addPropertyName("abstractSynonym");
-        this._abstractSynonym = abstractSynonym;
+        _abstractSynonym = abstractSynonym;
     }
 
     /**
@@ -658,7 +658,7 @@ public abstract class BsWhitePgReserv implements Entity, Serializable, Cloneable
      */
     public void setFinalSynonym(Integer finalSynonym) {
         __modifiedProperties.addPropertyName("finalSynonym");
-        this._finalSynonym = finalSynonym;
+        _finalSynonym = finalSynonym;
     }
 
     /**
@@ -675,7 +675,7 @@ public abstract class BsWhitePgReserv implements Entity, Serializable, Cloneable
      */
     public void setFinallySynonym(Integer finallySynonym) {
         __modifiedProperties.addPropertyName("finallySynonym");
-        this._finallySynonym = finallySynonym;
+        _finallySynonym = finallySynonym;
     }
 
     /**
@@ -692,7 +692,7 @@ public abstract class BsWhitePgReserv implements Entity, Serializable, Cloneable
      */
     public void setReturnSynonym(Integer returnSynonym) {
         __modifiedProperties.addPropertyName("returnSynonym");
-        this._returnSynonym = returnSynonym;
+        _returnSynonym = returnSynonym;
     }
 
     /**
@@ -709,7 +709,7 @@ public abstract class BsWhitePgReserv implements Entity, Serializable, Cloneable
      */
     public void setDoubleSynonym(Integer doubleSynonym) {
         __modifiedProperties.addPropertyName("doubleSynonym");
-        this._doubleSynonym = doubleSynonym;
+        _doubleSynonym = doubleSynonym;
     }
 
     /**
@@ -726,7 +726,7 @@ public abstract class BsWhitePgReserv implements Entity, Serializable, Cloneable
      */
     public void setFloatSynonym(Integer floatSynonym) {
         __modifiedProperties.addPropertyName("floatSynonym");
-        this._floatSynonym = floatSynonym;
+        _floatSynonym = floatSynonym;
     }
 
     /**
@@ -743,7 +743,7 @@ public abstract class BsWhitePgReserv implements Entity, Serializable, Cloneable
      */
     public void setShortSynonym(Integer shortSynonym) {
         __modifiedProperties.addPropertyName("shortSynonym");
-        this._shortSynonym = shortSynonym;
+        _shortSynonym = shortSynonym;
     }
 
     /**
@@ -760,7 +760,7 @@ public abstract class BsWhitePgReserv implements Entity, Serializable, Cloneable
      */
     public void setType(String type) {
         __modifiedProperties.addPropertyName("type");
-        this._type = type;
+        _type = type;
     }
 
     /**
@@ -777,6 +777,6 @@ public abstract class BsWhitePgReserv implements Entity, Serializable, Cloneable
      */
     public void setReservName(String reservName) {
         __modifiedProperties.addPropertyName("reservName");
-        this._reservName = reservName;
+        _reservName = reservName;
     }
 }

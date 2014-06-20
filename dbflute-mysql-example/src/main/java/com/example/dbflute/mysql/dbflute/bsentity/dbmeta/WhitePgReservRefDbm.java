@@ -168,7 +168,7 @@ public class WhitePgReservRefDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public WhitePgReservRef newEntity() { return new WhitePgReservRef(); }
     public WhitePgReservRef newMyEntity() { return new WhitePgReservRef(); }
 
     // ===================================================================================

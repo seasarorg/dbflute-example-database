@@ -217,7 +217,7 @@ public class WhiteSelfReferenceDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public WhiteSelfReference newEntity() { return new WhiteSelfReference(); }
     public WhiteSelfReference newMyEntity() { return new WhiteSelfReference(); }
 
     // ===================================================================================

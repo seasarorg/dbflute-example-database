@@ -173,7 +173,7 @@ public class Vendor_non_compilableDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public Vendor_non_compilable newEntity() { return new Vendor_non_compilable(); }
     public Vendor_non_compilable newMyEntity() { return new Vendor_non_compilable(); }
 
     // ===================================================================================

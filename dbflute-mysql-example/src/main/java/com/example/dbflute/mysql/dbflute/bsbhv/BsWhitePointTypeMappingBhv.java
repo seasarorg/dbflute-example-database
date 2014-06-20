@@ -20,11 +20,14 @@ import java.util.List;
 import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
+import org.seasar.dbflute.cbean.chelper.HpSLSExecutor;
+import org.seasar.dbflute.cbean.chelper.HpSLSFunction;
 import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.exception.*;
 import org.seasar.dbflute.optional.OptionalEntity;
 import org.seasar.dbflute.outsidesql.executor.*;
 import com.example.dbflute.mysql.dbflute.exbhv.*;
+import com.example.dbflute.mysql.dbflute.bsbhv.loader.*;
 import com.example.dbflute.mysql.dbflute.exentity.*;
 import com.example.dbflute.mysql.dbflute.bsentity.dbmeta.*;
 import com.example.dbflute.mysql.dbflute.cbean.*;
@@ -78,7 +81,7 @@ public abstract class BsWhitePointTypeMappingBhv extends AbstractBehaviorWritabl
     // ===================================================================================
     //                                                                              DBMeta
     //                                                                              ======
-    /** @return The instance of DBMeta. (NotNull) */
+    /** {@inheritDoc} */
     public DBMeta getDBMeta() { return WhitePointTypeMappingDbm.getInstance(); }
 
     /** @return The instance of DBMeta as my table type. (NotNull) */
@@ -88,10 +91,10 @@ public abstract class BsWhitePointTypeMappingBhv extends AbstractBehaviorWritabl
     //                                                                        New Instance
     //                                                                        ============
     /** {@inheritDoc} */
-    public Entity newEntity() { return newMyEntity(); }
+    public WhitePointTypeMapping newEntity() { return new WhitePointTypeMapping(); }
 
     /** {@inheritDoc} */
-    public ConditionBean newConditionBean() { return newMyConditionBean(); }
+    public WhitePointTypeMappingCB newConditionBean() { return new WhitePointTypeMappingCB(); }
 
     /** @return The instance of new entity as my table type. (NotNull) */
     public WhitePointTypeMapping newMyEntity() { return new WhitePointTypeMapping(); }
@@ -114,6 +117,10 @@ public abstract class BsWhitePointTypeMappingBhv extends AbstractBehaviorWritabl
      * @return The count for the condition. (NotMinus)
      */
     public int selectCount(WhitePointTypeMappingCB cb) {
+        return facadeSelectCount(cb);
+    }
+
+    protected int facadeSelectCount(WhitePointTypeMappingCB cb) {
         return doSelectCountUniquely(cb);
     }
 
@@ -129,7 +136,7 @@ public abstract class BsWhitePointTypeMappingBhv extends AbstractBehaviorWritabl
 
     @Override
     protected int doReadCount(ConditionBean cb) {
-        return selectCount(downcast(cb));
+        return facadeSelectCount(downcast(cb));
     }
 
     // ===================================================================================
@@ -155,7 +162,11 @@ public abstract class BsWhitePointTypeMappingBhv extends AbstractBehaviorWritabl
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhitePointTypeMapping selectEntity(WhitePointTypeMappingCB cb) {
-        return doSelectEntity(cb, WhitePointTypeMapping.class);
+        return facadeSelectEntity(cb);
+    }
+
+    protected WhitePointTypeMapping facadeSelectEntity(WhitePointTypeMappingCB cb) {
+        return doSelectEntity(cb, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends WhitePointTypeMapping> ENTITY doSelectEntity(WhitePointTypeMappingCB cb, Class<ENTITY> tp) {
@@ -170,7 +181,7 @@ public abstract class BsWhitePointTypeMappingBhv extends AbstractBehaviorWritabl
 
     @Override
     protected Entity doReadEntity(ConditionBean cb) {
-        return selectEntity(downcast(cb));
+        return facadeSelectEntity(downcast(cb));
     }
 
     /**
@@ -189,7 +200,11 @@ public abstract class BsWhitePointTypeMappingBhv extends AbstractBehaviorWritabl
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhitePointTypeMapping selectEntityWithDeletedCheck(WhitePointTypeMappingCB cb) {
-        return doSelectEntityWithDeletedCheck(cb, WhitePointTypeMapping.class);
+        return facadeSelectEntityWithDeletedCheck(cb);
+    }
+
+    protected WhitePointTypeMapping facadeSelectEntityWithDeletedCheck(WhitePointTypeMappingCB cb) {
+        return doSelectEntityWithDeletedCheck(cb, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends WhitePointTypeMapping> ENTITY doSelectEntityWithDeletedCheck(WhitePointTypeMappingCB cb, Class<ENTITY> tp) {
@@ -200,7 +215,7 @@ public abstract class BsWhitePointTypeMappingBhv extends AbstractBehaviorWritabl
 
     @Override
     protected Entity doReadEntityWithDeletedCheck(ConditionBean cb) {
-        return selectEntityWithDeletedCheck(downcast(cb));
+        return facadeSelectEntityWithDeletedCheck(downcast(cb));
     }
 
     /**
@@ -211,15 +226,19 @@ public abstract class BsWhitePointTypeMappingBhv extends AbstractBehaviorWritabl
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhitePointTypeMapping selectByPKValue(Long pointTypeMappingId) {
-        return doSelectByPK(pointTypeMappingId, WhitePointTypeMapping.class);
+        return facadeSelectByPKValue(pointTypeMappingId);
     }
 
-    protected <ENTITY extends WhitePointTypeMapping> ENTITY doSelectByPK(Long pointTypeMappingId, Class<ENTITY> entityType) {
-        return doSelectEntity(xprepareCBAsPK(pointTypeMappingId), entityType);
+    protected WhitePointTypeMapping facadeSelectByPKValue(Long pointTypeMappingId) {
+        return doSelectByPK(pointTypeMappingId, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends WhitePointTypeMapping> OptionalEntity<ENTITY> doSelectOptionalByPK(Long pointTypeMappingId, Class<ENTITY> entityType) {
-        return createOptionalEntity(doSelectByPK(pointTypeMappingId, entityType), pointTypeMappingId);
+    protected <ENTITY extends WhitePointTypeMapping> ENTITY doSelectByPK(Long pointTypeMappingId, Class<ENTITY> tp) {
+        return doSelectEntity(xprepareCBAsPK(pointTypeMappingId), tp);
+    }
+
+    protected <ENTITY extends WhitePointTypeMapping> OptionalEntity<ENTITY> doSelectOptionalByPK(Long pointTypeMappingId, Class<ENTITY> tp) {
+        return createOptionalEntity(doSelectByPK(pointTypeMappingId, tp), pointTypeMappingId);
     }
 
     /**
@@ -231,17 +250,16 @@ public abstract class BsWhitePointTypeMappingBhv extends AbstractBehaviorWritabl
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhitePointTypeMapping selectByPKValueWithDeletedCheck(Long pointTypeMappingId) {
-        return doSelectByPKWithDeletedCheck(pointTypeMappingId, WhitePointTypeMapping.class);
+        return doSelectByPKWithDeletedCheck(pointTypeMappingId, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends WhitePointTypeMapping> ENTITY doSelectByPKWithDeletedCheck(Long pointTypeMappingId, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(pointTypeMappingId), entityType);
+    protected <ENTITY extends WhitePointTypeMapping> ENTITY doSelectByPKWithDeletedCheck(Long pointTypeMappingId, Class<ENTITY> tp) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(pointTypeMappingId), tp);
     }
 
     protected WhitePointTypeMappingCB xprepareCBAsPK(Long pointTypeMappingId) {
         assertObjectNotNull("pointTypeMappingId", pointTypeMappingId);
-        WhitePointTypeMappingCB cb = newMyConditionBean(); cb.acceptPrimaryKey(pointTypeMappingId);
-        return cb;
+        return newConditionBean().acceptPK(pointTypeMappingId);
     }
 
     // ===================================================================================
@@ -263,7 +281,11 @@ public abstract class BsWhitePointTypeMappingBhv extends AbstractBehaviorWritabl
      * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public ListResultBean<WhitePointTypeMapping> selectList(WhitePointTypeMappingCB cb) {
-        return doSelectList(cb, WhitePointTypeMapping.class);
+        return facadeSelectList(cb);
+    }
+
+    protected ListResultBean<WhitePointTypeMapping> facadeSelectList(WhitePointTypeMappingCB cb) {
+        return doSelectList(cb, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends WhitePointTypeMapping> ListResultBean<ENTITY> doSelectList(WhitePointTypeMappingCB cb, Class<ENTITY> tp) {
@@ -275,7 +297,7 @@ public abstract class BsWhitePointTypeMappingBhv extends AbstractBehaviorWritabl
 
     @Override
     protected ListResultBean<? extends Entity> doReadList(ConditionBean cb) {
-        return selectList(downcast(cb));
+        return facadeSelectList(downcast(cb));
     }
 
     // ===================================================================================
@@ -304,7 +326,11 @@ public abstract class BsWhitePointTypeMappingBhv extends AbstractBehaviorWritabl
      * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public PagingResultBean<WhitePointTypeMapping> selectPage(WhitePointTypeMappingCB cb) {
-        return doSelectPage(cb, WhitePointTypeMapping.class);
+        return facadeSelectPage(cb);
+    }
+
+    protected PagingResultBean<WhitePointTypeMapping> facadeSelectPage(WhitePointTypeMappingCB cb) {
+        return doSelectPage(cb, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends WhitePointTypeMapping> PagingResultBean<ENTITY> doSelectPage(WhitePointTypeMappingCB cb, Class<ENTITY> tp) {
@@ -317,7 +343,7 @@ public abstract class BsWhitePointTypeMappingBhv extends AbstractBehaviorWritabl
 
     @Override
     protected PagingResultBean<? extends Entity> doReadPage(ConditionBean cb) {
-        return selectPage(downcast(cb));
+        return facadeSelectPage(downcast(cb));
     }
 
     // ===================================================================================
@@ -338,15 +364,19 @@ public abstract class BsWhitePointTypeMappingBhv extends AbstractBehaviorWritabl
      * @param entityRowHandler The handler of entity row of WhitePointTypeMapping. (NotNull)
      */
     public void selectCursor(WhitePointTypeMappingCB cb, EntityRowHandler<WhitePointTypeMapping> entityRowHandler) {
-        doSelectCursor(cb, entityRowHandler, WhitePointTypeMapping.class);
+        facadeSelectCursor(cb, entityRowHandler);
+    }
+
+    protected void facadeSelectCursor(WhitePointTypeMappingCB cb, EntityRowHandler<WhitePointTypeMapping> entityRowHandler) {
+        doSelectCursor(cb, entityRowHandler, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends WhitePointTypeMapping> void doSelectCursor(WhitePointTypeMappingCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
         assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
         helpSelectCursorInternally(cb, handler, tp, new InternalSelectCursorCallback<ENTITY, WhitePointTypeMappingCB>() {
-            public void callbackSelectCursor(WhitePointTypeMappingCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) { delegateSelectCursor(cb, handler, tp); }
-            public List<ENTITY> callbackSelectList(WhitePointTypeMappingCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
+            public void callbackSelectCursor(WhitePointTypeMappingCB lcb, EntityRowHandler<ENTITY> lhandler, Class<ENTITY> ltp) { delegateSelectCursor(lcb, lhandler, ltp); }
+            public List<ENTITY> callbackSelectList(WhitePointTypeMappingCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); }
         });
     }
 
@@ -368,22 +398,23 @@ public abstract class BsWhitePointTypeMappingBhv extends AbstractBehaviorWritabl
      * @param resultType The type of result. (NotNull)
      * @return The scalar function object to specify function for scalar value. (NotNull)
      */
-    public <RESULT> SLFunction<WhitePointTypeMappingCB, RESULT> scalarSelect(Class<RESULT> resultType) {
-        return doScalarSelect(resultType, newMyConditionBean());
+    public <RESULT> HpSLSFunction<WhitePointTypeMappingCB, RESULT> scalarSelect(Class<RESULT> resultType) {
+        return facadeScalarSelect(resultType);
     }
 
-    protected <RESULT, CB extends WhitePointTypeMappingCB> SLFunction<CB, RESULT> doScalarSelect(Class<RESULT> tp, CB cb) {
+    protected <RESULT> HpSLSFunction<WhitePointTypeMappingCB, RESULT> facadeScalarSelect(Class<RESULT> resultType) {
+        return doScalarSelect(resultType, newConditionBean());
+    }
+
+    protected <RESULT, CB extends WhitePointTypeMappingCB> HpSLSFunction<CB, RESULT> doScalarSelect(final Class<RESULT> tp, final CB cb) {
         assertObjectNotNull("resultType", tp); assertCBStateValid(cb);
         cb.xsetupForScalarSelect(); cb.getSqlClause().disableSelectIndex(); // for when you use union
-        return createSLFunction(cb, tp);
+        HpSLSExecutor<CB, RESULT> executor = createHpSLSExecutor(); // variable to resolve generic
+        return createSLSFunction(cb, tp, executor);
     }
 
-    protected <RESULT, CB extends WhitePointTypeMappingCB> SLFunction<CB, RESULT> createSLFunction(CB cb, Class<RESULT> tp) {
-        return new SLFunction<CB, RESULT>(cb, tp);
-    }
-
-    protected <RESULT> SLFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) {
-        return doScalarSelect(tp, newMyConditionBean());
+    protected <RESULT> HpSLSFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) {
+        return facadeScalarSelect(tp);
     }
 
     // ===================================================================================
@@ -396,9 +427,83 @@ public abstract class BsWhitePointTypeMappingBhv extends AbstractBehaviorWritabl
     }
 
     // ===================================================================================
+    //                                                                       Load Referrer
+    //                                                                       =============
+    /**
+     * Load referrer by the the referrer loader. <br />
+     * <pre>
+     * MemberCB cb = new MemberCB();
+     * cb.query().set...
+     * List&lt;Member&gt; memberList = memberBhv.selectList(cb);
+     * memberBhv.<span style="color: #DD4747">load</span>(memberList, loader -&gt; {
+     *     loader.<span style="color: #DD4747">loadPurchaseList</span>(purchaseCB -&gt; {
+     *         purchaseCB.query().set...
+     *         purchaseCB.query().addOrderBy_PurchasePrice_Desc();
+     *     }); <span style="color: #3F7E5E">// you can also load nested referrer from here</span>
+     *     <span style="color: #3F7E5E">//}).withNestedList(purchaseLoader -&gt {</span>
+     *     <span style="color: #3F7E5E">//    purchaseLoader.loadPurchasePaymentList(...);</span>
+     *     <span style="color: #3F7E5E">//});</span>
+     *
+     *     <span style="color: #3F7E5E">// you can also pull out foreign table and load its referrer</span>
+     *     <span style="color: #3F7E5E">// (setupSelect of the foreign table should be called)</span>
+     *     <span style="color: #3F7E5E">//loader.pulloutMemberStatus().loadMemberLoginList(...)</span>
+     * }
+     * for (Member member : memberList) {
+     *     List&lt;Purchase&gt; purchaseList = member.<span style="color: #DD4747">getPurchaseList()</span>;
+     *     for (Purchase purchase : purchaseList) {
+     *         ...
+     *     }
+     * }
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has order by FK before callback.
+     * @param whitePointTypeMappingList The entity list of whitePointTypeMapping. (NotNull)
+     * @param handler The callback to handle the referrer loader for actually loading referrer. (NotNull)
+     */
+    public void load(List<WhitePointTypeMapping> whitePointTypeMappingList, ReferrerLoaderHandler<LoaderOfWhitePointTypeMapping> handler) {
+        xassLRArg(whitePointTypeMappingList, handler);
+        handler.handle(new LoaderOfWhitePointTypeMapping().ready(whitePointTypeMappingList, _behaviorSelector));
+    }
+
+    /**
+     * Load referrer of ${referrer.referrerJavaBeansRulePropertyName} by the referrer loader. <br />
+     * <pre>
+     * MemberCB cb = new MemberCB();
+     * cb.query().set...
+     * Member member = memberBhv.selectEntityWithDeletedCheck(cb);
+     * memberBhv.<span style="color: #DD4747">load</span>(member, loader -&gt; {
+     *     loader.<span style="color: #DD4747">loadPurchaseList</span>(purchaseCB -&gt; {
+     *         purchaseCB.query().set...
+     *         purchaseCB.query().addOrderBy_PurchasePrice_Desc();
+     *     }); <span style="color: #3F7E5E">// you can also load nested referrer from here</span>
+     *     <span style="color: #3F7E5E">//}).withNestedList(purchaseLoader -&gt {</span>
+     *     <span style="color: #3F7E5E">//    purchaseLoader.loadPurchasePaymentList(...);</span>
+     *     <span style="color: #3F7E5E">//});</span>
+     *
+     *     <span style="color: #3F7E5E">// you can also pull out foreign table and load its referrer</span>
+     *     <span style="color: #3F7E5E">// (setupSelect of the foreign table should be called)</span>
+     *     <span style="color: #3F7E5E">//loader.pulloutMemberStatus().loadMemberLoginList(...)</span>
+     * }
+     * for (Member member : memberList) {
+     *     List&lt;Purchase&gt; purchaseList = member.<span style="color: #DD4747">getPurchaseList()</span>;
+     *     for (Purchase purchase : purchaseList) {
+     *         ...
+     *     }
+     * }
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has order by FK before callback.
+     * @param whitePointTypeMapping The entity of whitePointTypeMapping. (NotNull)
+     * @param handler The callback to handle the referrer loader for actually loading referrer. (NotNull)
+     */
+    public void load(WhitePointTypeMapping whitePointTypeMapping, ReferrerLoaderHandler<LoaderOfWhitePointTypeMapping> handler) {
+        xassLRArg(whitePointTypeMapping, handler);
+        handler.handle(new LoaderOfWhitePointTypeMapping().ready(xnewLRAryLs(whitePointTypeMapping), _behaviorSelector));
+    }
+
+    // ===================================================================================
     //                                                                   Pull out Relation
     //                                                                   =================
-
     // ===================================================================================
     //                                                                      Extract Column
     //                                                                      ==============
@@ -430,17 +535,17 @@ public abstract class BsWhitePointTypeMappingBhv extends AbstractBehaviorWritabl
      * ... = whitePointTypeMapping.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * <p>While, when the entity is created by select, all columns are registered.</p>
-     * @param whitePointTypeMapping The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
+     * @param whitePointTypeMapping The entity of insert. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
      * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insert(WhitePointTypeMapping whitePointTypeMapping) {
         doInsert(whitePointTypeMapping, null);
     }
 
-    protected void doInsert(WhitePointTypeMapping whitePointTypeMapping, InsertOption<WhitePointTypeMappingCB> op) {
-        assertObjectNotNull("whitePointTypeMapping", whitePointTypeMapping);
+    protected void doInsert(WhitePointTypeMapping et, InsertOption<WhitePointTypeMappingCB> op) {
+        assertObjectNotNull("whitePointTypeMapping", et);
         prepareInsertOption(op);
-        delegateInsert(whitePointTypeMapping, op);
+        delegateInsert(et, op);
     }
 
     protected void prepareInsertOption(InsertOption<WhitePointTypeMappingCB> op) {
@@ -453,8 +558,7 @@ public abstract class BsWhitePointTypeMappingBhv extends AbstractBehaviorWritabl
 
     @Override
     protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) {
-        if (op == null) { insert(downcast(et)); }
-        else { varyingInsert(downcast(et), downcast(op)); }
+        doInsert(downcast(et), downcast(op));
     }
 
     /**
@@ -466,7 +570,7 @@ public abstract class BsWhitePointTypeMappingBhv extends AbstractBehaviorWritabl
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
      * <span style="color: #3F7E5E">//whitePointTypeMapping.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//whitePointTypeMapping.set...;</span>
-     * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
+     * <span style="color: #3F7E5E">// if exclusive control, the value of concurrency column is required</span>
      * whitePointTypeMapping.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     whitePointTypeMappingBhv.<span style="color: #DD4747">update</span>(whitePointTypeMapping);
@@ -474,49 +578,38 @@ public abstract class BsWhitePointTypeMappingBhv extends AbstractBehaviorWritabl
      *     ...
      * }
      * </pre>
-     * @param whitePointTypeMapping The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
+     * @param whitePointTypeMapping The entity of update. (NotNull, PrimaryKeyNotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
-    public void update(final WhitePointTypeMapping whitePointTypeMapping) {
+    public void update(WhitePointTypeMapping whitePointTypeMapping) {
         doUpdate(whitePointTypeMapping, null);
     }
 
-    protected void doUpdate(WhitePointTypeMapping whitePointTypeMapping, final UpdateOption<WhitePointTypeMappingCB> op) {
-        assertObjectNotNull("whitePointTypeMapping", whitePointTypeMapping);
+    protected void doUpdate(WhitePointTypeMapping et, final UpdateOption<WhitePointTypeMappingCB> op) {
+        assertObjectNotNull("whitePointTypeMapping", et);
         prepareUpdateOption(op);
-        helpUpdateInternally(whitePointTypeMapping, new InternalUpdateCallback<WhitePointTypeMapping>() {
-            public int callbackDelegateUpdate(WhitePointTypeMapping et) { return delegateUpdate(et, op); } });
+        helpUpdateInternally(et, new InternalUpdateCallback<WhitePointTypeMapping>() {
+            public int callbackDelegateUpdate(WhitePointTypeMapping let) { return delegateUpdate(let, op); } });
     }
 
     protected void prepareUpdateOption(UpdateOption<WhitePointTypeMappingCB> op) {
         if (op == null) { return; }
         assertUpdateOptionStatus(op);
-        if (op.hasSelfSpecification()) {
-            op.resolveSelfSpecification(createCBForVaryingUpdate());
-        }
-        if (op.hasSpecifiedUpdateColumn()) {
-            op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate());
-        }
+        if (op.hasSelfSpecification()) { op.resolveSelfSpecification(createCBForVaryingUpdate()); }
+        if (op.hasSpecifiedUpdateColumn()) { op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate()); }
     }
 
-    protected WhitePointTypeMappingCB createCBForVaryingUpdate() {
-        WhitePointTypeMappingCB cb = newMyConditionBean();
-        cb.xsetupForVaryingUpdate();
-        return cb;
-    }
+    protected WhitePointTypeMappingCB createCBForVaryingUpdate()
+    { WhitePointTypeMappingCB cb = newConditionBean(); cb.xsetupForVaryingUpdate(); return cb; }
 
-    protected WhitePointTypeMappingCB createCBForSpecifiedUpdate() {
-        WhitePointTypeMappingCB cb = newMyConditionBean();
-        cb.xsetupForSpecifiedUpdate();
-        return cb;
-    }
+    protected WhitePointTypeMappingCB createCBForSpecifiedUpdate()
+    { WhitePointTypeMappingCB cb = newConditionBean(); cb.xsetupForSpecifiedUpdate(); return cb; }
 
     @Override
     protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) {
-        if (op == null) { update(downcast(et)); }
-        else { varyingUpdate(downcast(et), downcast(op)); }
+        doUpdate(downcast(et), downcast(op));
     }
 
     @Override
@@ -528,32 +621,28 @@ public abstract class BsWhitePointTypeMappingBhv extends AbstractBehaviorWritabl
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br />
      * <p><span style="color: #DD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
-     * @param whitePointTypeMapping The entity of insert or update target. (NotNull)
+     * @param whitePointTypeMapping The entity of insert or update. (NotNull, ...depends on insert or update)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insertOrUpdate(WhitePointTypeMapping whitePointTypeMapping) {
-        doInesrtOrUpdate(whitePointTypeMapping, null, null);
+        doInsertOrUpdate(whitePointTypeMapping, null, null);
     }
 
-    protected void doInesrtOrUpdate(WhitePointTypeMapping whitePointTypeMapping, final InsertOption<WhitePointTypeMappingCB> iop, final UpdateOption<WhitePointTypeMappingCB> uop) {
-        helpInsertOrUpdateInternally(whitePointTypeMapping, new InternalInsertOrUpdateCallback<WhitePointTypeMapping, WhitePointTypeMappingCB>() {
-            public void callbackInsert(WhitePointTypeMapping et) { doInsert(et, iop); }
-            public void callbackUpdate(WhitePointTypeMapping et) { doUpdate(et, uop); }
-            public WhitePointTypeMappingCB callbackNewMyConditionBean() { return newMyConditionBean(); }
+    protected void doInsertOrUpdate(WhitePointTypeMapping et, final InsertOption<WhitePointTypeMappingCB> iop, final UpdateOption<WhitePointTypeMappingCB> uop) {
+        assertObjectNotNull("whitePointTypeMapping", et);
+        helpInsertOrUpdateInternally(et, new InternalInsertOrUpdateCallback<WhitePointTypeMapping, WhitePointTypeMappingCB>() {
+            public void callbackInsert(WhitePointTypeMapping let) { doInsert(let, iop); }
+            public void callbackUpdate(WhitePointTypeMapping let) { doUpdate(let, uop); }
+            public WhitePointTypeMappingCB callbackNewMyConditionBean() { return newConditionBean(); }
             public int callbackSelectCount(WhitePointTypeMappingCB cb) { return selectCount(cb); }
         });
     }
 
     @Override
     protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
-        if (iop == null && uop == null) { insertOrUpdate(downcast(et)); }
-        else {
-            iop = iop != null ? iop : new InsertOption<WhitePointTypeMappingCB>();
-            uop = uop != null ? uop : new UpdateOption<WhitePointTypeMappingCB>();
-            varyingInsertOrUpdate(downcast(et), downcast(iop), downcast(uop));
-        }
+        doInsertOrUpdate(downcast(et), downcast(iop), downcast(uop));
     }
 
     @Override
@@ -566,7 +655,7 @@ public abstract class BsWhitePointTypeMappingBhv extends AbstractBehaviorWritabl
      * <pre>
      * WhitePointTypeMapping whitePointTypeMapping = new WhitePointTypeMapping();
      * whitePointTypeMapping.setPK...(value); <span style="color: #3F7E5E">// required</span>
-     * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
+     * <span style="color: #3F7E5E">// if exclusive control, the value of concurrency column is required</span>
      * whitePointTypeMapping.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     whitePointTypeMappingBhv.<span style="color: #DD4747">delete</span>(whitePointTypeMapping);
@@ -574,7 +663,7 @@ public abstract class BsWhitePointTypeMappingBhv extends AbstractBehaviorWritabl
      *     ...
      * }
      * </pre>
-     * @param whitePointTypeMapping The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
+     * @param whitePointTypeMapping The entity of delete. (NotNull, PrimaryKeyNotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      */
@@ -582,22 +671,19 @@ public abstract class BsWhitePointTypeMappingBhv extends AbstractBehaviorWritabl
         doDelete(whitePointTypeMapping, null);
     }
 
-    protected void doDelete(WhitePointTypeMapping whitePointTypeMapping, final DeleteOption<WhitePointTypeMappingCB> op) {
-        assertObjectNotNull("whitePointTypeMapping", whitePointTypeMapping);
+    protected void doDelete(WhitePointTypeMapping et, final DeleteOption<WhitePointTypeMappingCB> op) {
+        assertObjectNotNull("whitePointTypeMapping", et);
         prepareDeleteOption(op);
-        helpDeleteInternally(whitePointTypeMapping, new InternalDeleteCallback<WhitePointTypeMapping>() {
-            public int callbackDelegateDelete(WhitePointTypeMapping et) { return delegateDelete(et, op); } });
+        helpDeleteInternally(et, new InternalDeleteCallback<WhitePointTypeMapping>() {
+            public int callbackDelegateDelete(WhitePointTypeMapping let) { return delegateDelete(let, op); } });
     }
 
-    protected void prepareDeleteOption(DeleteOption<WhitePointTypeMappingCB> op) {
-        if (op == null) { return; }
-        assertDeleteOptionStatus(op);
-    }
+    protected void prepareDeleteOption(DeleteOption<WhitePointTypeMappingCB> op)
+    { if (op != null) { assertDeleteOptionStatus(op); } }
 
     @Override
     protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) {
-        if (op == null) { delete(downcast(et)); }
-        else { varyingDelete(downcast(et), downcast(op)); }
+        doDelete(downcast(et), downcast(op));
     }
 
     @Override
@@ -633,26 +719,25 @@ public abstract class BsWhitePointTypeMappingBhv extends AbstractBehaviorWritabl
      * @return The array of inserted count. (NotNull, EmptyAllowed)
      */
     public int[] batchInsert(List<WhitePointTypeMapping> whitePointTypeMappingList) {
-        InsertOption<WhitePointTypeMappingCB> op = createInsertUpdateOption();
-        return doBatchInsert(whitePointTypeMappingList, op);
+        return doBatchInsert(whitePointTypeMappingList, null);
     }
 
-    protected int[] doBatchInsert(List<WhitePointTypeMapping> whitePointTypeMappingList, InsertOption<WhitePointTypeMappingCB> op) {
-        assertObjectNotNull("whitePointTypeMappingList", whitePointTypeMappingList);
-        prepareBatchInsertOption(whitePointTypeMappingList, op);
-        return delegateBatchInsert(whitePointTypeMappingList, op);
+    protected int[] doBatchInsert(List<WhitePointTypeMapping> ls, InsertOption<WhitePointTypeMappingCB> op) {
+        assertObjectNotNull("whitePointTypeMappingList", ls);
+        InsertOption<WhitePointTypeMappingCB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainInsertOption(); }
+        prepareBatchInsertOption(ls, rlop); // required
+        return delegateBatchInsert(ls, rlop);
     }
 
-    protected void prepareBatchInsertOption(List<WhitePointTypeMapping> whitePointTypeMappingList, InsertOption<WhitePointTypeMappingCB> op) {
+    protected void prepareBatchInsertOption(List<WhitePointTypeMapping> ls, InsertOption<WhitePointTypeMappingCB> op) {
         op.xallowInsertColumnModifiedPropertiesFragmented();
-        op.xacceptInsertColumnModifiedPropertiesIfNeeds(whitePointTypeMappingList);
+        op.xacceptInsertColumnModifiedPropertiesIfNeeds(ls);
         prepareInsertOption(op);
     }
 
     @Override
     protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) {
-        if (op == null) { return batchInsert(downcast(ls)); }
-        else { return varyingBatchInsert(downcast(ls), downcast(op)); }
+        return doBatchInsert(downcast(ls), downcast(op));
     }
 
     /**
@@ -680,25 +765,24 @@ public abstract class BsWhitePointTypeMappingBhv extends AbstractBehaviorWritabl
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<WhitePointTypeMapping> whitePointTypeMappingList) {
-        UpdateOption<WhitePointTypeMappingCB> op = createPlainUpdateOption();
-        return doBatchUpdate(whitePointTypeMappingList, op);
+        return doBatchUpdate(whitePointTypeMappingList, null);
     }
 
-    protected int[] doBatchUpdate(List<WhitePointTypeMapping> whitePointTypeMappingList, UpdateOption<WhitePointTypeMappingCB> op) {
-        assertObjectNotNull("whitePointTypeMappingList", whitePointTypeMappingList);
-        prepareBatchUpdateOption(whitePointTypeMappingList, op);
-        return delegateBatchUpdate(whitePointTypeMappingList, op);
+    protected int[] doBatchUpdate(List<WhitePointTypeMapping> ls, UpdateOption<WhitePointTypeMappingCB> op) {
+        assertObjectNotNull("whitePointTypeMappingList", ls);
+        UpdateOption<WhitePointTypeMappingCB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainUpdateOption(); }
+        prepareBatchUpdateOption(ls, rlop); // required
+        return delegateBatchUpdate(ls, rlop);
     }
 
-    protected void prepareBatchUpdateOption(List<WhitePointTypeMapping> whitePointTypeMappingList, UpdateOption<WhitePointTypeMappingCB> op) {
-        op.xacceptUpdateColumnModifiedPropertiesIfNeeds(whitePointTypeMappingList);
+    protected void prepareBatchUpdateOption(List<WhitePointTypeMapping> ls, UpdateOption<WhitePointTypeMappingCB> op) {
+        op.xacceptUpdateColumnModifiedPropertiesIfNeeds(ls);
         prepareUpdateOption(op);
     }
 
     @Override
     protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) {
-        if (op == null) { return batchUpdate(downcast(ls)); }
-        else { return varyingBatchUpdate(downcast(ls), downcast(op)); }
+        return doBatchUpdate(downcast(ls), downcast(op));
     }
 
     /**
@@ -749,16 +833,15 @@ public abstract class BsWhitePointTypeMappingBhv extends AbstractBehaviorWritabl
         return doBatchDelete(whitePointTypeMappingList, null);
     }
 
-    protected int[] doBatchDelete(List<WhitePointTypeMapping> whitePointTypeMappingList, DeleteOption<WhitePointTypeMappingCB> op) {
-        assertObjectNotNull("whitePointTypeMappingList", whitePointTypeMappingList);
+    protected int[] doBatchDelete(List<WhitePointTypeMapping> ls, DeleteOption<WhitePointTypeMappingCB> op) {
+        assertObjectNotNull("whitePointTypeMappingList", ls);
         prepareDeleteOption(op);
-        return delegateBatchDelete(whitePointTypeMappingList, op);
+        return delegateBatchDelete(ls, op);
     }
 
     @Override
     protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) {
-        if (op == null) { return batchDelete(downcast(ls)); }
-        else { return varyingBatchDelete(downcast(ls), downcast(op)); }
+        return doBatchDelete(downcast(ls), downcast(op));
     }
 
     @Override
@@ -785,7 +868,7 @@ public abstract class BsWhitePointTypeMappingBhv extends AbstractBehaviorWritabl
      *         <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
      *         <span style="color: #3F7E5E">//entity.setRegisterUser(value);</span>
      *         <span style="color: #3F7E5E">//entity.set...;</span>
-     *         <span style="color: #3F7E5E">// you don't need to set a value of exclusive control column</span>
+     *         <span style="color: #3F7E5E">// you don't need to set a value of concurrency column</span>
      *         <span style="color: #3F7E5E">//entity.setVersionNo(value);</span>
      *
      *         return cb;
@@ -802,21 +885,17 @@ public abstract class BsWhitePointTypeMappingBhv extends AbstractBehaviorWritabl
     protected int doQueryInsert(QueryInsertSetupper<WhitePointTypeMapping, WhitePointTypeMappingCB> sp, InsertOption<WhitePointTypeMappingCB> op) {
         assertObjectNotNull("setupper", sp);
         prepareInsertOption(op);
-        WhitePointTypeMapping e = new WhitePointTypeMapping();
+        WhitePointTypeMapping et = newEntity();
         WhitePointTypeMappingCB cb = createCBForQueryInsert();
-        return delegateQueryInsert(e, cb, sp.setup(e, cb), op);
+        return delegateQueryInsert(et, cb, sp.setup(et, cb), op);
     }
 
-    protected WhitePointTypeMappingCB createCBForQueryInsert() {
-        WhitePointTypeMappingCB cb = newMyConditionBean();
-        cb.xsetupForQueryInsert();
-        return cb;
-    }
+    protected WhitePointTypeMappingCB createCBForQueryInsert()
+    { WhitePointTypeMappingCB cb = newConditionBean(); cb.xsetupForQueryInsert(); return cb; }
 
     @Override
-    protected int doRangeCreate(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> setupper, InsertOption<? extends ConditionBean> option) {
-        if (option == null) { return queryInsert(downcast(setupper)); }
-        else { return varyingQueryInsert(downcast(setupper), downcast(option)); }
+    protected int doRangeCreate(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> setupper, InsertOption<? extends ConditionBean> op) {
+        return doQueryInsert(downcast(setupper), downcast(op));
     }
 
     /**
@@ -829,7 +908,7 @@ public abstract class BsWhitePointTypeMappingBhv extends AbstractBehaviorWritabl
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
      * <span style="color: #3F7E5E">//whitePointTypeMapping.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//whitePointTypeMapping.set...;</span>
-     * <span style="color: #3F7E5E">// you don't need to set a value of exclusive control column</span>
+     * <span style="color: #3F7E5E">// you don't need to set a value of concurrency column</span>
      * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
      * <span style="color: #3F7E5E">//whitePointTypeMapping.setVersionNo(value);</span>
      * WhitePointTypeMappingCB cb = new WhitePointTypeMappingCB();
@@ -845,16 +924,15 @@ public abstract class BsWhitePointTypeMappingBhv extends AbstractBehaviorWritabl
         return doQueryUpdate(whitePointTypeMapping, cb, null);
     }
 
-    protected int doQueryUpdate(WhitePointTypeMapping whitePointTypeMapping, WhitePointTypeMappingCB cb, UpdateOption<WhitePointTypeMappingCB> op) {
-        assertObjectNotNull("whitePointTypeMapping", whitePointTypeMapping); assertCBStateValid(cb);
+    protected int doQueryUpdate(WhitePointTypeMapping et, WhitePointTypeMappingCB cb, UpdateOption<WhitePointTypeMappingCB> op) {
+        assertObjectNotNull("whitePointTypeMapping", et); assertCBStateValid(cb);
         prepareUpdateOption(op);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(whitePointTypeMapping, cb, op) : 0;
+        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(et, cb, op) : 0;
     }
 
     @Override
     protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op) {
-        if (op == null) { return queryUpdate(downcast(et), (WhitePointTypeMappingCB)cb); }
-        else { return varyingQueryUpdate(downcast(et), (WhitePointTypeMappingCB)cb, downcast(op)); }
+        return doQueryUpdate(downcast(et), downcast(cb), downcast(op));
     }
 
     /**
@@ -880,8 +958,7 @@ public abstract class BsWhitePointTypeMappingBhv extends AbstractBehaviorWritabl
 
     @Override
     protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) {
-        if (op == null) { return queryDelete((WhitePointTypeMappingCB)cb); }
-        else { return varyingQueryDelete((WhitePointTypeMappingCB)cb, downcast(op)); }
+        return doQueryDelete(downcast(cb), downcast(op));
     }
 
     // ===================================================================================
@@ -905,7 +982,7 @@ public abstract class BsWhitePointTypeMappingBhv extends AbstractBehaviorWritabl
      * whitePointTypeMappingBhv.<span style="color: #DD4747">varyingInsert</span>(whitePointTypeMapping, option);
      * ... = whitePointTypeMapping.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
-     * @param whitePointTypeMapping The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
+     * @param whitePointTypeMapping The entity of insert. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
      * @param option The option of insert for varying requests. (NotNull)
      * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
@@ -922,7 +999,7 @@ public abstract class BsWhitePointTypeMappingBhv extends AbstractBehaviorWritabl
      * WhitePointTypeMapping whitePointTypeMapping = new WhitePointTypeMapping();
      * whitePointTypeMapping.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * whitePointTypeMapping.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
-     * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
+     * <span style="color: #3F7E5E">// if exclusive control, the value of concurrency column is required</span>
      * whitePointTypeMapping.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     <span style="color: #3F7E5E">// you can update by self calculation values</span>
@@ -937,7 +1014,7 @@ public abstract class BsWhitePointTypeMappingBhv extends AbstractBehaviorWritabl
      *     ...
      * }
      * </pre>
-     * @param whitePointTypeMapping The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
+     * @param whitePointTypeMapping The entity of update. (NotNull, PrimaryKeyNotNull)
      * @param option The option of update for varying requests. (NotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
@@ -951,7 +1028,7 @@ public abstract class BsWhitePointTypeMappingBhv extends AbstractBehaviorWritabl
     /**
      * Insert or update the entity with varying requests. (ExclusiveControl: when update) <br />
      * Other specifications are same as insertOrUpdate(entity).
-     * @param whitePointTypeMapping The entity of insert or update target. (NotNull)
+     * @param whitePointTypeMapping The entity of insert or update. (NotNull)
      * @param insertOption The option of insert for varying requests. (NotNull)
      * @param updateOption The option of update for varying requests. (NotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
@@ -960,14 +1037,14 @@ public abstract class BsWhitePointTypeMappingBhv extends AbstractBehaviorWritabl
      */
     public void varyingInsertOrUpdate(WhitePointTypeMapping whitePointTypeMapping, InsertOption<WhitePointTypeMappingCB> insertOption, UpdateOption<WhitePointTypeMappingCB> updateOption) {
         assertInsertOptionNotNull(insertOption); assertUpdateOptionNotNull(updateOption);
-        doInesrtOrUpdate(whitePointTypeMapping, insertOption, updateOption);
+        doInsertOrUpdate(whitePointTypeMapping, insertOption, updateOption);
     }
 
     /**
      * Delete the entity with varying requests. (ZeroUpdateException, NonExclusiveControl) <br />
      * Now a valid option does not exist. <br />
      * Other specifications are same as delete(entity).
-     * @param whitePointTypeMapping The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
+     * @param whitePointTypeMapping The entity of delete. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
      * @param option The option of update for varying requests. (NotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
@@ -1048,7 +1125,7 @@ public abstract class BsWhitePointTypeMappingBhv extends AbstractBehaviorWritabl
      * <span style="color: #3F7E5E">// you don't need to set PK value</span>
      * <span style="color: #3F7E5E">//whitePointTypeMapping.setPK...(value);</span>
      * whitePointTypeMapping.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
-     * <span style="color: #3F7E5E">// you don't need to set a value of exclusive control column</span>
+     * <span style="color: #3F7E5E">// you don't need to set a value of concurrency column</span>
      * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
      * <span style="color: #3F7E5E">//whitePointTypeMapping.setVersionNo(value);</span>
      * WhitePointTypeMappingCB cb = new WhitePointTypeMappingCB();
@@ -1200,38 +1277,34 @@ public abstract class BsWhitePointTypeMappingBhv extends AbstractBehaviorWritabl
     }
 
     // ===================================================================================
-    //                                                                     Downcast Helper
-    //                                                                     ===============
-    protected WhitePointTypeMapping downcast(Entity et) {
-        return helpEntityDowncastInternally(et, WhitePointTypeMapping.class);
-    }
+    //                                                                       Assist Helper
+    //                                                                       =============
+    protected Class<WhitePointTypeMapping> typeOfSelectedEntity()
+    { return WhitePointTypeMapping.class; }
 
-    protected WhitePointTypeMappingCB downcast(ConditionBean cb) {
-        return helpConditionBeanDowncastInternally(cb, WhitePointTypeMappingCB.class);
-    }
+    protected WhitePointTypeMapping downcast(Entity et)
+    { return helpEntityDowncastInternally(et, WhitePointTypeMapping.class); }
 
-    @SuppressWarnings("unchecked")
-    protected List<WhitePointTypeMapping> downcast(List<? extends Entity> ls) {
-        return (List<WhitePointTypeMapping>)ls;
-    }
+    protected WhitePointTypeMappingCB downcast(ConditionBean cb)
+    { return helpConditionBeanDowncastInternally(cb, WhitePointTypeMappingCB.class); }
 
     @SuppressWarnings("unchecked")
-    protected InsertOption<WhitePointTypeMappingCB> downcast(InsertOption<? extends ConditionBean> op) {
-        return (InsertOption<WhitePointTypeMappingCB>)op;
-    }
+    protected List<WhitePointTypeMapping> downcast(List<? extends Entity> ls)
+    { return (List<WhitePointTypeMapping>)ls; }
 
     @SuppressWarnings("unchecked")
-    protected UpdateOption<WhitePointTypeMappingCB> downcast(UpdateOption<? extends ConditionBean> op) {
-        return (UpdateOption<WhitePointTypeMappingCB>)op;
-    }
+    protected InsertOption<WhitePointTypeMappingCB> downcast(InsertOption<? extends ConditionBean> op)
+    { return (InsertOption<WhitePointTypeMappingCB>)op; }
 
     @SuppressWarnings("unchecked")
-    protected DeleteOption<WhitePointTypeMappingCB> downcast(DeleteOption<? extends ConditionBean> op) {
-        return (DeleteOption<WhitePointTypeMappingCB>)op;
-    }
+    protected UpdateOption<WhitePointTypeMappingCB> downcast(UpdateOption<? extends ConditionBean> op)
+    { return (UpdateOption<WhitePointTypeMappingCB>)op; }
 
     @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhitePointTypeMapping, WhitePointTypeMappingCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp) {
-        return (QueryInsertSetupper<WhitePointTypeMapping, WhitePointTypeMappingCB>)sp;
-    }
+    protected DeleteOption<WhitePointTypeMappingCB> downcast(DeleteOption<? extends ConditionBean> op)
+    { return (DeleteOption<WhitePointTypeMappingCB>)op; }
+
+    @SuppressWarnings("unchecked")
+    protected QueryInsertSetupper<WhitePointTypeMapping, WhitePointTypeMappingCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
+    { return (QueryInsertSetupper<WhitePointTypeMapping, WhitePointTypeMappingCB>)sp; }
 }

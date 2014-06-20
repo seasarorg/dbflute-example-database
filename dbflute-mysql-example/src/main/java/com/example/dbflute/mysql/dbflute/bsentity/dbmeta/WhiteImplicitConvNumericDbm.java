@@ -221,7 +221,7 @@ public class WhiteImplicitConvNumericDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public WhiteImplicitConvNumeric newEntity() { return new WhiteImplicitConvNumeric(); }
     public WhiteImplicitConvNumeric newMyEntity() { return new WhiteImplicitConvNumeric(); }
 
     // ===================================================================================

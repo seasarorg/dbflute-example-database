@@ -158,7 +158,7 @@ public class WhiteTableExceptGenRefDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public WhiteTableExceptGenRef newEntity() { return new WhiteTableExceptGenRef(); }
     public WhiteTableExceptGenRef newMyEntity() { return new WhiteTableExceptGenRef(); }
 
     // ===================================================================================

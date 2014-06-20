@@ -153,7 +153,7 @@ public abstract class BsWhitePgReservRef implements Entity, Serializable, Clonea
     protected WhitePgReserv _whitePgReserv;
 
     /**
-     * white_pg_reserv by my CLASS, named 'whitePgReserv'.
+     * [get] white_pg_reserv by my CLASS, named 'whitePgReserv'.
      * @return The entity of foreign property 'whitePgReserv'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public WhitePgReserv getWhitePgReserv() {
@@ -161,7 +161,7 @@ public abstract class BsWhitePgReservRef implements Entity, Serializable, Clonea
     }
 
     /**
-     * white_pg_reserv by my CLASS, named 'whitePgReserv'.
+     * [set] white_pg_reserv by my CLASS, named 'whitePgReserv'.
      * @param whitePgReserv The entity of foreign property 'whitePgReserv'. (NullAllowed)
      */
     public void setWhitePgReserv(WhitePgReserv whitePgReserv) {
@@ -344,7 +344,7 @@ public abstract class BsWhitePgReservRef implements Entity, Serializable, Clonea
      */
     public void setRefId(Integer refId) {
         __modifiedProperties.addPropertyName("refId");
-        this._refId = refId;
+        _refId = refId;
     }
 
     /**
@@ -361,6 +361,6 @@ public abstract class BsWhitePgReservRef implements Entity, Serializable, Clonea
      */
     public void setClassSynonym(Integer classSynonym) {
         __modifiedProperties.addPropertyName("classSynonym");
-        this._classSynonym = classSynonym;
+        _classSynonym = classSynonym;
     }
 }

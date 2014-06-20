@@ -95,11 +95,23 @@ public class BsNextSchemaProductCB extends AbstractConditionBean {
     /**
      * Accept the query condition of primary key as equal.
      * @param productId : PK, ID, NotNull, BIGINT(19). (NotNull)
+     * @return this. (NotNull)
+     */
+    public NextSchemaProductCB acceptPK(Long productId) {
+        assertObjectNotNull("productId", productId);
+        BsNextSchemaProductCB cb = this;
+        cb.query().setProductId_Equal(productId);
+        return (NextSchemaProductCB)this;
+    }
+
+    /**
+     * Accept the query condition of primary key as equal. (old style)
+     * @param productId : PK, ID, NotNull, BIGINT(19). (NotNull)
      */
     public void acceptPrimaryKey(Long productId) {
         assertObjectNotNull("productId", productId);
         BsNextSchemaProductCB cb = this;
-        cb.query().setProductId_Equal(productId);;
+        cb.query().setProductId_Equal(productId);
     }
 
     public ConditionBean addOrderBy_PK_Asc() {

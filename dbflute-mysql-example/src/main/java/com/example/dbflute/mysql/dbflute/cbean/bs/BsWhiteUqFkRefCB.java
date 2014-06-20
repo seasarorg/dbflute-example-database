@@ -95,22 +95,36 @@ public class BsWhiteUqFkRefCB extends AbstractConditionBean {
     /**
      * Accept the query condition of primary key as equal.
      * @param uqFkRefId : PK, NotNull, DECIMAL(16). (NotNull)
+     * @return this. (NotNull)
+     */
+    public WhiteUqFkRefCB acceptPK(Long uqFkRefId) {
+        assertObjectNotNull("uqFkRefId", uqFkRefId);
+        BsWhiteUqFkRefCB cb = this;
+        cb.query().setUqFkRefId_Equal(uqFkRefId);
+        return (WhiteUqFkRefCB)this;
+    }
+
+    /**
+     * Accept the query condition of primary key as equal. (old style)
+     * @param uqFkRefId : PK, NotNull, DECIMAL(16). (NotNull)
      */
     public void acceptPrimaryKey(Long uqFkRefId) {
         assertObjectNotNull("uqFkRefId", uqFkRefId);
         BsWhiteUqFkRefCB cb = this;
-        cb.query().setUqFkRefId_Equal(uqFkRefId);;
+        cb.query().setUqFkRefId_Equal(uqFkRefId);
     }
 
     /**
      * Accept the query condition of unique key as equal.
      * @param compoundUqFirstCode : UQ+, NotNull, CHAR(3). (NotNull)
      * @param compoundUqSecondCode : +UQ, NotNull, CHAR(3). (NotNull)
+     * @return this. (NotNull)
      */
-    public void acceptUniqueOf(String compoundUqFirstCode, String compoundUqSecondCode) {
+    public WhiteUqFkRefCB acceptUniqueOf(String compoundUqFirstCode, String compoundUqSecondCode) {
         assertObjectNotNull("compoundUqFirstCode", compoundUqFirstCode);assertObjectNotNull("compoundUqSecondCode", compoundUqSecondCode);
         BsWhiteUqFkRefCB cb = this;
-        cb.query().setCompoundUqFirstCode_Equal(compoundUqFirstCode);;cb.query().setCompoundUqSecondCode_Equal(compoundUqSecondCode);;
+        cb.query().setCompoundUqFirstCode_Equal(compoundUqFirstCode);cb.query().setCompoundUqSecondCode_Equal(compoundUqSecondCode);
+        return (WhiteUqFkRefCB)this;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {

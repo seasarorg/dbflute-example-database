@@ -374,7 +374,7 @@ public abstract class BsWhiteDateAdjustment implements Entity, Serializable, Clo
      */
     public void setDateAdjustmentId(Long dateAdjustmentId) {
         __modifiedProperties.addPropertyName("dateAdjustmentId");
-        this._dateAdjustmentId = dateAdjustmentId;
+        _dateAdjustmentId = dateAdjustmentId;
     }
 
     /**
@@ -391,7 +391,7 @@ public abstract class BsWhiteDateAdjustment implements Entity, Serializable, Clo
      */
     public void setAdjustedDate(java.util.Date adjustedDate) {
         __modifiedProperties.addPropertyName("adjustedDate");
-        this._adjustedDate = adjustedDate;
+        _adjustedDate = adjustedDate;
     }
 
     /**
@@ -408,7 +408,7 @@ public abstract class BsWhiteDateAdjustment implements Entity, Serializable, Clo
      */
     public void setAdjustedDatetime(java.sql.Timestamp adjustedDatetime) {
         __modifiedProperties.addPropertyName("adjustedDatetime");
-        this._adjustedDatetime = adjustedDatetime;
+        _adjustedDatetime = adjustedDatetime;
     }
 
     /**
@@ -425,7 +425,7 @@ public abstract class BsWhiteDateAdjustment implements Entity, Serializable, Clo
      */
     public void setAdjustedTime(java.sql.Time adjustedTime) {
         __modifiedProperties.addPropertyName("adjustedTime");
-        this._adjustedTime = adjustedTime;
+        _adjustedTime = adjustedTime;
     }
 
     /**
@@ -442,7 +442,7 @@ public abstract class BsWhiteDateAdjustment implements Entity, Serializable, Clo
      */
     public void setAdjustedInteger(Integer adjustedInteger) {
         __modifiedProperties.addPropertyName("adjustedInteger");
-        this._adjustedInteger = adjustedInteger;
+        _adjustedInteger = adjustedInteger;
     }
 
     /**
@@ -459,7 +459,7 @@ public abstract class BsWhiteDateAdjustment implements Entity, Serializable, Clo
      */
     public void setAdjustedNamedStringLong(Long adjustedNamedStringLong) {
         __modifiedProperties.addPropertyName("adjustedNamedStringLong");
-        this._adjustedNamedStringLong = adjustedNamedStringLong;
+        _adjustedNamedStringLong = adjustedNamedStringLong;
     }
 
     /**
@@ -476,7 +476,7 @@ public abstract class BsWhiteDateAdjustment implements Entity, Serializable, Clo
      */
     public void setAdjustedNamedTypedLong(Long adjustedNamedTypedLong) {
         __modifiedProperties.addPropertyName("adjustedNamedTypedLong");
-        this._adjustedNamedTypedLong = adjustedNamedTypedLong;
+        _adjustedNamedTypedLong = adjustedNamedTypedLong;
     }
 
     /**
@@ -493,7 +493,7 @@ public abstract class BsWhiteDateAdjustment implements Entity, Serializable, Clo
      */
     public void setAdjustedPinpointStringLong(Long adjustedPinpointStringLong) {
         __modifiedProperties.addPropertyName("adjustedPinpointStringLong");
-        this._adjustedPinpointStringLong = adjustedPinpointStringLong;
+        _adjustedPinpointStringLong = adjustedPinpointStringLong;
     }
 
     /**
@@ -510,7 +510,7 @@ public abstract class BsWhiteDateAdjustment implements Entity, Serializable, Clo
      */
     public void setAdjustedPinpointTypedLong(Long adjustedPinpointTypedLong) {
         __modifiedProperties.addPropertyName("adjustedPinpointTypedLong");
-        this._adjustedPinpointTypedLong = adjustedPinpointTypedLong;
+        _adjustedPinpointTypedLong = adjustedPinpointTypedLong;
     }
 
     /**
@@ -527,7 +527,7 @@ public abstract class BsWhiteDateAdjustment implements Entity, Serializable, Clo
      */
     public void setAdjustedPlainLong(Long adjustedPlainLong) {
         __modifiedProperties.addPropertyName("adjustedPlainLong");
-        this._adjustedPlainLong = adjustedPlainLong;
+        _adjustedPlainLong = adjustedPlainLong;
     }
 
     /**
@@ -544,6 +544,6 @@ public abstract class BsWhiteDateAdjustment implements Entity, Serializable, Clo
      */
     public void setAdjustedString(String adjustedString) {
         __modifiedProperties.addPropertyName("adjustedString");
-        this._adjustedString = adjustedString;
+        _adjustedString = adjustedString;
     }
 }

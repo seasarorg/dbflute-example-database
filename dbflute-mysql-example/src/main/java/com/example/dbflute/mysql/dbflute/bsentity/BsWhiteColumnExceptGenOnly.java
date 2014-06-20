@@ -313,7 +313,7 @@ public abstract class BsWhiteColumnExceptGenOnly implements Entity, Serializable
      */
     public void setGenOnlyId(Long genOnlyId) {
         __modifiedProperties.addPropertyName("genOnlyId");
-        this._genOnlyId = genOnlyId;
+        _genOnlyId = genOnlyId;
     }
 
     /**
@@ -330,6 +330,6 @@ public abstract class BsWhiteColumnExceptGenOnly implements Entity, Serializable
      */
     public void setGenOnlyName(String genOnlyName) {
         __modifiedProperties.addPropertyName("genOnlyName");
-        this._genOnlyName = genOnlyName;
+        _genOnlyName = genOnlyName;
     }
 }

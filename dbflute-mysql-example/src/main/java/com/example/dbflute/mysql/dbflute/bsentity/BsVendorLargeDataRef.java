@@ -189,7 +189,7 @@ public abstract class BsVendorLargeDataRef implements Entity, Serializable, Clon
     protected VendorLargeData _vendorLargeData;
 
     /**
-     * vendor_large_data by my LARGE_DATA_ID, named 'vendorLargeData'.
+     * [get] vendor_large_data by my LARGE_DATA_ID, named 'vendorLargeData'.
      * @return The entity of foreign property 'vendorLargeData'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public VendorLargeData getVendorLargeData() {
@@ -197,7 +197,7 @@ public abstract class BsVendorLargeDataRef implements Entity, Serializable, Clon
     }
 
     /**
-     * vendor_large_data by my LARGE_DATA_ID, named 'vendorLargeData'.
+     * [set] vendor_large_data by my LARGE_DATA_ID, named 'vendorLargeData'.
      * @param vendorLargeData The entity of foreign property 'vendorLargeData'. (NullAllowed)
      */
     public void setVendorLargeData(VendorLargeData vendorLargeData) {
@@ -208,7 +208,7 @@ public abstract class BsVendorLargeDataRef implements Entity, Serializable, Clon
     protected VendorLargeDataRef _vendorLargeDataRefSelf;
 
     /**
-     * vendor_large_data_ref by my SELF_PARENT_ID, named 'vendorLargeDataRefSelf'.
+     * [get] vendor_large_data_ref by my SELF_PARENT_ID, named 'vendorLargeDataRefSelf'.
      * @return The entity of foreign property 'vendorLargeDataRefSelf'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public VendorLargeDataRef getVendorLargeDataRefSelf() {
@@ -216,7 +216,7 @@ public abstract class BsVendorLargeDataRef implements Entity, Serializable, Clon
     }
 
     /**
-     * vendor_large_data_ref by my SELF_PARENT_ID, named 'vendorLargeDataRefSelf'.
+     * [set] vendor_large_data_ref by my SELF_PARENT_ID, named 'vendorLargeDataRefSelf'.
      * @param vendorLargeDataRefSelf The entity of foreign property 'vendorLargeDataRefSelf'. (NullAllowed)
      */
     public void setVendorLargeDataRefSelf(VendorLargeDataRef vendorLargeDataRefSelf) {
@@ -230,7 +230,7 @@ public abstract class BsVendorLargeDataRef implements Entity, Serializable, Clon
     protected List<VendorLargeDataRef> _vendorLargeDataRefSelfList;
 
     /**
-     * vendor_large_data_ref by SELF_PARENT_ID, named 'vendorLargeDataRefSelfList'.
+     * [get] vendor_large_data_ref by SELF_PARENT_ID, named 'vendorLargeDataRefSelfList'.
      * @return The entity list of referrer property 'vendorLargeDataRefSelfList'. (NotNull: even if no loading, returns empty list)
      */
     public List<VendorLargeDataRef> getVendorLargeDataRefSelfList() {
@@ -239,7 +239,7 @@ public abstract class BsVendorLargeDataRef implements Entity, Serializable, Clon
     }
 
     /**
-     * vendor_large_data_ref by SELF_PARENT_ID, named 'vendorLargeDataRefSelfList'.
+     * [set] vendor_large_data_ref by SELF_PARENT_ID, named 'vendorLargeDataRefSelfList'.
      * @param vendorLargeDataRefSelfList The entity list of referrer property 'vendorLargeDataRefSelfList'. (NullAllowed)
      */
     public void setVendorLargeDataRefSelfList(List<VendorLargeDataRef> vendorLargeDataRefSelfList) {
@@ -439,7 +439,7 @@ public abstract class BsVendorLargeDataRef implements Entity, Serializable, Clon
      */
     public void setLargeDataRefId(Long largeDataRefId) {
         __modifiedProperties.addPropertyName("largeDataRefId");
-        this._largeDataRefId = largeDataRefId;
+        _largeDataRefId = largeDataRefId;
     }
 
     /**
@@ -456,7 +456,7 @@ public abstract class BsVendorLargeDataRef implements Entity, Serializable, Clon
      */
     public void setLargeDataId(Long largeDataId) {
         __modifiedProperties.addPropertyName("largeDataId");
-        this._largeDataId = largeDataId;
+        _largeDataId = largeDataId;
     }
 
     /**
@@ -473,7 +473,7 @@ public abstract class BsVendorLargeDataRef implements Entity, Serializable, Clon
      */
     public void setDateIndex(java.util.Date dateIndex) {
         __modifiedProperties.addPropertyName("dateIndex");
-        this._dateIndex = dateIndex;
+        _dateIndex = dateIndex;
     }
 
     /**
@@ -490,7 +490,7 @@ public abstract class BsVendorLargeDataRef implements Entity, Serializable, Clon
      */
     public void setDateNoIndex(java.util.Date dateNoIndex) {
         __modifiedProperties.addPropertyName("dateNoIndex");
-        this._dateNoIndex = dateNoIndex;
+        _dateNoIndex = dateNoIndex;
     }
 
     /**
@@ -507,7 +507,7 @@ public abstract class BsVendorLargeDataRef implements Entity, Serializable, Clon
      */
     public void setTimestampIndex(java.sql.Timestamp timestampIndex) {
         __modifiedProperties.addPropertyName("timestampIndex");
-        this._timestampIndex = timestampIndex;
+        _timestampIndex = timestampIndex;
     }
 
     /**
@@ -524,7 +524,7 @@ public abstract class BsVendorLargeDataRef implements Entity, Serializable, Clon
      */
     public void setTimestampNoIndex(java.sql.Timestamp timestampNoIndex) {
         __modifiedProperties.addPropertyName("timestampNoIndex");
-        this._timestampNoIndex = timestampNoIndex;
+        _timestampNoIndex = timestampNoIndex;
     }
 
     /**
@@ -541,7 +541,7 @@ public abstract class BsVendorLargeDataRef implements Entity, Serializable, Clon
      */
     public void setNullableDecimalIndex(java.math.BigDecimal nullableDecimalIndex) {
         __modifiedProperties.addPropertyName("nullableDecimalIndex");
-        this._nullableDecimalIndex = nullableDecimalIndex;
+        _nullableDecimalIndex = nullableDecimalIndex;
     }
 
     /**
@@ -558,7 +558,7 @@ public abstract class BsVendorLargeDataRef implements Entity, Serializable, Clon
      */
     public void setNullableDecimalNoIndex(java.math.BigDecimal nullableDecimalNoIndex) {
         __modifiedProperties.addPropertyName("nullableDecimalNoIndex");
-        this._nullableDecimalNoIndex = nullableDecimalNoIndex;
+        _nullableDecimalNoIndex = nullableDecimalNoIndex;
     }
 
     /**
@@ -575,6 +575,6 @@ public abstract class BsVendorLargeDataRef implements Entity, Serializable, Clon
      */
     public void setSelfParentId(Long selfParentId) {
         __modifiedProperties.addPropertyName("selfParentId");
-        this._selfParentId = selfParentId;
+        _selfParentId = selfParentId;
     }
 }

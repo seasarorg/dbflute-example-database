@@ -221,7 +221,7 @@ public class NextSchemaProductDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public NextSchemaProduct newEntity() { return new NextSchemaProduct(); }
     public NextSchemaProduct newMyEntity() { return new NextSchemaProduct(); }
 
     // ===================================================================================

@@ -20,11 +20,14 @@ import java.util.List;
 import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
+import org.seasar.dbflute.cbean.chelper.HpSLSExecutor;
+import org.seasar.dbflute.cbean.chelper.HpSLSFunction;
 import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.exception.*;
 import org.seasar.dbflute.optional.OptionalEntity;
 import org.seasar.dbflute.outsidesql.executor.*;
 import com.example.dbflute.mysql.dbflute.exbhv.*;
+import com.example.dbflute.mysql.dbflute.bsbhv.loader.*;
 import com.example.dbflute.mysql.dbflute.exentity.*;
 import com.example.dbflute.mysql.dbflute.bsentity.dbmeta.*;
 import com.example.dbflute.mysql.dbflute.cbean.*;
@@ -78,7 +81,7 @@ public abstract class BsWhiteImplicitReverseFkSuppressBhv extends AbstractBehavi
     // ===================================================================================
     //                                                                              DBMeta
     //                                                                              ======
-    /** @return The instance of DBMeta. (NotNull) */
+    /** {@inheritDoc} */
     public DBMeta getDBMeta() { return WhiteImplicitReverseFkSuppressDbm.getInstance(); }
 
     /** @return The instance of DBMeta as my table type. (NotNull) */
@@ -88,10 +91,10 @@ public abstract class BsWhiteImplicitReverseFkSuppressBhv extends AbstractBehavi
     //                                                                        New Instance
     //                                                                        ============
     /** {@inheritDoc} */
-    public Entity newEntity() { return newMyEntity(); }
+    public WhiteImplicitReverseFkSuppress newEntity() { return new WhiteImplicitReverseFkSuppress(); }
 
     /** {@inheritDoc} */
-    public ConditionBean newConditionBean() { return newMyConditionBean(); }
+    public WhiteImplicitReverseFkSuppressCB newConditionBean() { return new WhiteImplicitReverseFkSuppressCB(); }
 
     /** @return The instance of new entity as my table type. (NotNull) */
     public WhiteImplicitReverseFkSuppress newMyEntity() { return new WhiteImplicitReverseFkSuppress(); }
@@ -114,6 +117,10 @@ public abstract class BsWhiteImplicitReverseFkSuppressBhv extends AbstractBehavi
      * @return The count for the condition. (NotMinus)
      */
     public int selectCount(WhiteImplicitReverseFkSuppressCB cb) {
+        return facadeSelectCount(cb);
+    }
+
+    protected int facadeSelectCount(WhiteImplicitReverseFkSuppressCB cb) {
         return doSelectCountUniquely(cb);
     }
 
@@ -129,7 +136,7 @@ public abstract class BsWhiteImplicitReverseFkSuppressBhv extends AbstractBehavi
 
     @Override
     protected int doReadCount(ConditionBean cb) {
-        return selectCount(downcast(cb));
+        return facadeSelectCount(downcast(cb));
     }
 
     // ===================================================================================
@@ -155,7 +162,11 @@ public abstract class BsWhiteImplicitReverseFkSuppressBhv extends AbstractBehavi
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteImplicitReverseFkSuppress selectEntity(WhiteImplicitReverseFkSuppressCB cb) {
-        return doSelectEntity(cb, WhiteImplicitReverseFkSuppress.class);
+        return facadeSelectEntity(cb);
+    }
+
+    protected WhiteImplicitReverseFkSuppress facadeSelectEntity(WhiteImplicitReverseFkSuppressCB cb) {
+        return doSelectEntity(cb, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends WhiteImplicitReverseFkSuppress> ENTITY doSelectEntity(WhiteImplicitReverseFkSuppressCB cb, Class<ENTITY> tp) {
@@ -170,7 +181,7 @@ public abstract class BsWhiteImplicitReverseFkSuppressBhv extends AbstractBehavi
 
     @Override
     protected Entity doReadEntity(ConditionBean cb) {
-        return selectEntity(downcast(cb));
+        return facadeSelectEntity(downcast(cb));
     }
 
     /**
@@ -189,7 +200,11 @@ public abstract class BsWhiteImplicitReverseFkSuppressBhv extends AbstractBehavi
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteImplicitReverseFkSuppress selectEntityWithDeletedCheck(WhiteImplicitReverseFkSuppressCB cb) {
-        return doSelectEntityWithDeletedCheck(cb, WhiteImplicitReverseFkSuppress.class);
+        return facadeSelectEntityWithDeletedCheck(cb);
+    }
+
+    protected WhiteImplicitReverseFkSuppress facadeSelectEntityWithDeletedCheck(WhiteImplicitReverseFkSuppressCB cb) {
+        return doSelectEntityWithDeletedCheck(cb, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends WhiteImplicitReverseFkSuppress> ENTITY doSelectEntityWithDeletedCheck(WhiteImplicitReverseFkSuppressCB cb, Class<ENTITY> tp) {
@@ -200,7 +215,7 @@ public abstract class BsWhiteImplicitReverseFkSuppressBhv extends AbstractBehavi
 
     @Override
     protected Entity doReadEntityWithDeletedCheck(ConditionBean cb) {
-        return selectEntityWithDeletedCheck(downcast(cb));
+        return facadeSelectEntityWithDeletedCheck(downcast(cb));
     }
 
     /**
@@ -211,15 +226,19 @@ public abstract class BsWhiteImplicitReverseFkSuppressBhv extends AbstractBehavi
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteImplicitReverseFkSuppress selectByPKValue(Integer whiteImplicitReverseFkSuppressId) {
-        return doSelectByPK(whiteImplicitReverseFkSuppressId, WhiteImplicitReverseFkSuppress.class);
+        return facadeSelectByPKValue(whiteImplicitReverseFkSuppressId);
     }
 
-    protected <ENTITY extends WhiteImplicitReverseFkSuppress> ENTITY doSelectByPK(Integer whiteImplicitReverseFkSuppressId, Class<ENTITY> entityType) {
-        return doSelectEntity(xprepareCBAsPK(whiteImplicitReverseFkSuppressId), entityType);
+    protected WhiteImplicitReverseFkSuppress facadeSelectByPKValue(Integer whiteImplicitReverseFkSuppressId) {
+        return doSelectByPK(whiteImplicitReverseFkSuppressId, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends WhiteImplicitReverseFkSuppress> OptionalEntity<ENTITY> doSelectOptionalByPK(Integer whiteImplicitReverseFkSuppressId, Class<ENTITY> entityType) {
-        return createOptionalEntity(doSelectByPK(whiteImplicitReverseFkSuppressId, entityType), whiteImplicitReverseFkSuppressId);
+    protected <ENTITY extends WhiteImplicitReverseFkSuppress> ENTITY doSelectByPK(Integer whiteImplicitReverseFkSuppressId, Class<ENTITY> tp) {
+        return doSelectEntity(xprepareCBAsPK(whiteImplicitReverseFkSuppressId), tp);
+    }
+
+    protected <ENTITY extends WhiteImplicitReverseFkSuppress> OptionalEntity<ENTITY> doSelectOptionalByPK(Integer whiteImplicitReverseFkSuppressId, Class<ENTITY> tp) {
+        return createOptionalEntity(doSelectByPK(whiteImplicitReverseFkSuppressId, tp), whiteImplicitReverseFkSuppressId);
     }
 
     /**
@@ -231,17 +250,16 @@ public abstract class BsWhiteImplicitReverseFkSuppressBhv extends AbstractBehavi
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteImplicitReverseFkSuppress selectByPKValueWithDeletedCheck(Integer whiteImplicitReverseFkSuppressId) {
-        return doSelectByPKWithDeletedCheck(whiteImplicitReverseFkSuppressId, WhiteImplicitReverseFkSuppress.class);
+        return doSelectByPKWithDeletedCheck(whiteImplicitReverseFkSuppressId, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends WhiteImplicitReverseFkSuppress> ENTITY doSelectByPKWithDeletedCheck(Integer whiteImplicitReverseFkSuppressId, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(whiteImplicitReverseFkSuppressId), entityType);
+    protected <ENTITY extends WhiteImplicitReverseFkSuppress> ENTITY doSelectByPKWithDeletedCheck(Integer whiteImplicitReverseFkSuppressId, Class<ENTITY> tp) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(whiteImplicitReverseFkSuppressId), tp);
     }
 
     protected WhiteImplicitReverseFkSuppressCB xprepareCBAsPK(Integer whiteImplicitReverseFkSuppressId) {
         assertObjectNotNull("whiteImplicitReverseFkSuppressId", whiteImplicitReverseFkSuppressId);
-        WhiteImplicitReverseFkSuppressCB cb = newMyConditionBean(); cb.acceptPrimaryKey(whiteImplicitReverseFkSuppressId);
-        return cb;
+        return newConditionBean().acceptPK(whiteImplicitReverseFkSuppressId);
     }
 
     /**
@@ -254,17 +272,20 @@ public abstract class BsWhiteImplicitReverseFkSuppressBhv extends AbstractBehavi
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public OptionalEntity<WhiteImplicitReverseFkSuppress> selectByUniqueOf(Integer whiteImplicitReverseFkId, java.util.Date validBeginDate) {
-        return doSelectByUniqueOf(whiteImplicitReverseFkId, validBeginDate, WhiteImplicitReverseFkSuppress.class);
+        return facadeSelectByUniqueOf(whiteImplicitReverseFkId, validBeginDate);
     }
 
-    protected <ENTITY extends WhiteImplicitReverseFkSuppress> OptionalEntity<ENTITY> doSelectByUniqueOf(Integer whiteImplicitReverseFkId, java.util.Date validBeginDate, Class<ENTITY> entityType) {
-        return createOptionalEntity(doSelectEntity(xprepareCBAsUniqueOf(whiteImplicitReverseFkId, validBeginDate), entityType), whiteImplicitReverseFkId, validBeginDate);
+    protected OptionalEntity<WhiteImplicitReverseFkSuppress> facadeSelectByUniqueOf(Integer whiteImplicitReverseFkId, java.util.Date validBeginDate) {
+        return doSelectByUniqueOf(whiteImplicitReverseFkId, validBeginDate, typeOfSelectedEntity());
+    }
+
+    protected <ENTITY extends WhiteImplicitReverseFkSuppress> OptionalEntity<ENTITY> doSelectByUniqueOf(Integer whiteImplicitReverseFkId, java.util.Date validBeginDate, Class<ENTITY> tp) {
+        return createOptionalEntity(doSelectEntity(xprepareCBAsUniqueOf(whiteImplicitReverseFkId, validBeginDate), tp), whiteImplicitReverseFkId, validBeginDate);
     }
 
     protected WhiteImplicitReverseFkSuppressCB xprepareCBAsUniqueOf(Integer whiteImplicitReverseFkId, java.util.Date validBeginDate) {
         assertObjectNotNull("whiteImplicitReverseFkId", whiteImplicitReverseFkId);assertObjectNotNull("validBeginDate", validBeginDate);
-        WhiteImplicitReverseFkSuppressCB cb = newMyConditionBean(); cb.acceptUniqueOf(whiteImplicitReverseFkId, validBeginDate);
-        return cb;
+        return newConditionBean().acceptUniqueOf(whiteImplicitReverseFkId, validBeginDate);
     }
 
     // ===================================================================================
@@ -286,7 +307,11 @@ public abstract class BsWhiteImplicitReverseFkSuppressBhv extends AbstractBehavi
      * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public ListResultBean<WhiteImplicitReverseFkSuppress> selectList(WhiteImplicitReverseFkSuppressCB cb) {
-        return doSelectList(cb, WhiteImplicitReverseFkSuppress.class);
+        return facadeSelectList(cb);
+    }
+
+    protected ListResultBean<WhiteImplicitReverseFkSuppress> facadeSelectList(WhiteImplicitReverseFkSuppressCB cb) {
+        return doSelectList(cb, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends WhiteImplicitReverseFkSuppress> ListResultBean<ENTITY> doSelectList(WhiteImplicitReverseFkSuppressCB cb, Class<ENTITY> tp) {
@@ -298,7 +323,7 @@ public abstract class BsWhiteImplicitReverseFkSuppressBhv extends AbstractBehavi
 
     @Override
     protected ListResultBean<? extends Entity> doReadList(ConditionBean cb) {
-        return selectList(downcast(cb));
+        return facadeSelectList(downcast(cb));
     }
 
     // ===================================================================================
@@ -327,7 +352,11 @@ public abstract class BsWhiteImplicitReverseFkSuppressBhv extends AbstractBehavi
      * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public PagingResultBean<WhiteImplicitReverseFkSuppress> selectPage(WhiteImplicitReverseFkSuppressCB cb) {
-        return doSelectPage(cb, WhiteImplicitReverseFkSuppress.class);
+        return facadeSelectPage(cb);
+    }
+
+    protected PagingResultBean<WhiteImplicitReverseFkSuppress> facadeSelectPage(WhiteImplicitReverseFkSuppressCB cb) {
+        return doSelectPage(cb, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends WhiteImplicitReverseFkSuppress> PagingResultBean<ENTITY> doSelectPage(WhiteImplicitReverseFkSuppressCB cb, Class<ENTITY> tp) {
@@ -340,7 +369,7 @@ public abstract class BsWhiteImplicitReverseFkSuppressBhv extends AbstractBehavi
 
     @Override
     protected PagingResultBean<? extends Entity> doReadPage(ConditionBean cb) {
-        return selectPage(downcast(cb));
+        return facadeSelectPage(downcast(cb));
     }
 
     // ===================================================================================
@@ -361,15 +390,19 @@ public abstract class BsWhiteImplicitReverseFkSuppressBhv extends AbstractBehavi
      * @param entityRowHandler The handler of entity row of WhiteImplicitReverseFkSuppress. (NotNull)
      */
     public void selectCursor(WhiteImplicitReverseFkSuppressCB cb, EntityRowHandler<WhiteImplicitReverseFkSuppress> entityRowHandler) {
-        doSelectCursor(cb, entityRowHandler, WhiteImplicitReverseFkSuppress.class);
+        facadeSelectCursor(cb, entityRowHandler);
+    }
+
+    protected void facadeSelectCursor(WhiteImplicitReverseFkSuppressCB cb, EntityRowHandler<WhiteImplicitReverseFkSuppress> entityRowHandler) {
+        doSelectCursor(cb, entityRowHandler, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends WhiteImplicitReverseFkSuppress> void doSelectCursor(WhiteImplicitReverseFkSuppressCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
         assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
         helpSelectCursorInternally(cb, handler, tp, new InternalSelectCursorCallback<ENTITY, WhiteImplicitReverseFkSuppressCB>() {
-            public void callbackSelectCursor(WhiteImplicitReverseFkSuppressCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) { delegateSelectCursor(cb, handler, tp); }
-            public List<ENTITY> callbackSelectList(WhiteImplicitReverseFkSuppressCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
+            public void callbackSelectCursor(WhiteImplicitReverseFkSuppressCB lcb, EntityRowHandler<ENTITY> lhandler, Class<ENTITY> ltp) { delegateSelectCursor(lcb, lhandler, ltp); }
+            public List<ENTITY> callbackSelectList(WhiteImplicitReverseFkSuppressCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); }
         });
     }
 
@@ -391,22 +424,23 @@ public abstract class BsWhiteImplicitReverseFkSuppressBhv extends AbstractBehavi
      * @param resultType The type of result. (NotNull)
      * @return The scalar function object to specify function for scalar value. (NotNull)
      */
-    public <RESULT> SLFunction<WhiteImplicitReverseFkSuppressCB, RESULT> scalarSelect(Class<RESULT> resultType) {
-        return doScalarSelect(resultType, newMyConditionBean());
+    public <RESULT> HpSLSFunction<WhiteImplicitReverseFkSuppressCB, RESULT> scalarSelect(Class<RESULT> resultType) {
+        return facadeScalarSelect(resultType);
     }
 
-    protected <RESULT, CB extends WhiteImplicitReverseFkSuppressCB> SLFunction<CB, RESULT> doScalarSelect(Class<RESULT> tp, CB cb) {
+    protected <RESULT> HpSLSFunction<WhiteImplicitReverseFkSuppressCB, RESULT> facadeScalarSelect(Class<RESULT> resultType) {
+        return doScalarSelect(resultType, newConditionBean());
+    }
+
+    protected <RESULT, CB extends WhiteImplicitReverseFkSuppressCB> HpSLSFunction<CB, RESULT> doScalarSelect(final Class<RESULT> tp, final CB cb) {
         assertObjectNotNull("resultType", tp); assertCBStateValid(cb);
         cb.xsetupForScalarSelect(); cb.getSqlClause().disableSelectIndex(); // for when you use union
-        return createSLFunction(cb, tp);
+        HpSLSExecutor<CB, RESULT> executor = createHpSLSExecutor(); // variable to resolve generic
+        return createSLSFunction(cb, tp, executor);
     }
 
-    protected <RESULT, CB extends WhiteImplicitReverseFkSuppressCB> SLFunction<CB, RESULT> createSLFunction(CB cb, Class<RESULT> tp) {
-        return new SLFunction<CB, RESULT>(cb, tp);
-    }
-
-    protected <RESULT> SLFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) {
-        return doScalarSelect(tp, newMyConditionBean());
+    protected <RESULT> HpSLSFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) {
+        return facadeScalarSelect(tp);
     }
 
     // ===================================================================================
@@ -419,9 +453,83 @@ public abstract class BsWhiteImplicitReverseFkSuppressBhv extends AbstractBehavi
     }
 
     // ===================================================================================
+    //                                                                       Load Referrer
+    //                                                                       =============
+    /**
+     * Load referrer by the the referrer loader. <br />
+     * <pre>
+     * MemberCB cb = new MemberCB();
+     * cb.query().set...
+     * List&lt;Member&gt; memberList = memberBhv.selectList(cb);
+     * memberBhv.<span style="color: #DD4747">load</span>(memberList, loader -&gt; {
+     *     loader.<span style="color: #DD4747">loadPurchaseList</span>(purchaseCB -&gt; {
+     *         purchaseCB.query().set...
+     *         purchaseCB.query().addOrderBy_PurchasePrice_Desc();
+     *     }); <span style="color: #3F7E5E">// you can also load nested referrer from here</span>
+     *     <span style="color: #3F7E5E">//}).withNestedList(purchaseLoader -&gt {</span>
+     *     <span style="color: #3F7E5E">//    purchaseLoader.loadPurchasePaymentList(...);</span>
+     *     <span style="color: #3F7E5E">//});</span>
+     *
+     *     <span style="color: #3F7E5E">// you can also pull out foreign table and load its referrer</span>
+     *     <span style="color: #3F7E5E">// (setupSelect of the foreign table should be called)</span>
+     *     <span style="color: #3F7E5E">//loader.pulloutMemberStatus().loadMemberLoginList(...)</span>
+     * }
+     * for (Member member : memberList) {
+     *     List&lt;Purchase&gt; purchaseList = member.<span style="color: #DD4747">getPurchaseList()</span>;
+     *     for (Purchase purchase : purchaseList) {
+     *         ...
+     *     }
+     * }
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has order by FK before callback.
+     * @param whiteImplicitReverseFkSuppressList The entity list of whiteImplicitReverseFkSuppress. (NotNull)
+     * @param handler The callback to handle the referrer loader for actually loading referrer. (NotNull)
+     */
+    public void load(List<WhiteImplicitReverseFkSuppress> whiteImplicitReverseFkSuppressList, ReferrerLoaderHandler<LoaderOfWhiteImplicitReverseFkSuppress> handler) {
+        xassLRArg(whiteImplicitReverseFkSuppressList, handler);
+        handler.handle(new LoaderOfWhiteImplicitReverseFkSuppress().ready(whiteImplicitReverseFkSuppressList, _behaviorSelector));
+    }
+
+    /**
+     * Load referrer of ${referrer.referrerJavaBeansRulePropertyName} by the referrer loader. <br />
+     * <pre>
+     * MemberCB cb = new MemberCB();
+     * cb.query().set...
+     * Member member = memberBhv.selectEntityWithDeletedCheck(cb);
+     * memberBhv.<span style="color: #DD4747">load</span>(member, loader -&gt; {
+     *     loader.<span style="color: #DD4747">loadPurchaseList</span>(purchaseCB -&gt; {
+     *         purchaseCB.query().set...
+     *         purchaseCB.query().addOrderBy_PurchasePrice_Desc();
+     *     }); <span style="color: #3F7E5E">// you can also load nested referrer from here</span>
+     *     <span style="color: #3F7E5E">//}).withNestedList(purchaseLoader -&gt {</span>
+     *     <span style="color: #3F7E5E">//    purchaseLoader.loadPurchasePaymentList(...);</span>
+     *     <span style="color: #3F7E5E">//});</span>
+     *
+     *     <span style="color: #3F7E5E">// you can also pull out foreign table and load its referrer</span>
+     *     <span style="color: #3F7E5E">// (setupSelect of the foreign table should be called)</span>
+     *     <span style="color: #3F7E5E">//loader.pulloutMemberStatus().loadMemberLoginList(...)</span>
+     * }
+     * for (Member member : memberList) {
+     *     List&lt;Purchase&gt; purchaseList = member.<span style="color: #DD4747">getPurchaseList()</span>;
+     *     for (Purchase purchase : purchaseList) {
+     *         ...
+     *     }
+     * }
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has order by FK before callback.
+     * @param whiteImplicitReverseFkSuppress The entity of whiteImplicitReverseFkSuppress. (NotNull)
+     * @param handler The callback to handle the referrer loader for actually loading referrer. (NotNull)
+     */
+    public void load(WhiteImplicitReverseFkSuppress whiteImplicitReverseFkSuppress, ReferrerLoaderHandler<LoaderOfWhiteImplicitReverseFkSuppress> handler) {
+        xassLRArg(whiteImplicitReverseFkSuppress, handler);
+        handler.handle(new LoaderOfWhiteImplicitReverseFkSuppress().ready(xnewLRAryLs(whiteImplicitReverseFkSuppress), _behaviorSelector));
+    }
+
+    // ===================================================================================
     //                                                                   Pull out Relation
     //                                                                   =================
-
     // ===================================================================================
     //                                                                      Extract Column
     //                                                                      ==============
@@ -453,17 +561,17 @@ public abstract class BsWhiteImplicitReverseFkSuppressBhv extends AbstractBehavi
      * ... = whiteImplicitReverseFkSuppress.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * <p>While, when the entity is created by select, all columns are registered.</p>
-     * @param whiteImplicitReverseFkSuppress The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
+     * @param whiteImplicitReverseFkSuppress The entity of insert. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
      * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insert(WhiteImplicitReverseFkSuppress whiteImplicitReverseFkSuppress) {
         doInsert(whiteImplicitReverseFkSuppress, null);
     }
 
-    protected void doInsert(WhiteImplicitReverseFkSuppress whiteImplicitReverseFkSuppress, InsertOption<WhiteImplicitReverseFkSuppressCB> op) {
-        assertObjectNotNull("whiteImplicitReverseFkSuppress", whiteImplicitReverseFkSuppress);
+    protected void doInsert(WhiteImplicitReverseFkSuppress et, InsertOption<WhiteImplicitReverseFkSuppressCB> op) {
+        assertObjectNotNull("whiteImplicitReverseFkSuppress", et);
         prepareInsertOption(op);
-        delegateInsert(whiteImplicitReverseFkSuppress, op);
+        delegateInsert(et, op);
     }
 
     protected void prepareInsertOption(InsertOption<WhiteImplicitReverseFkSuppressCB> op) {
@@ -476,8 +584,7 @@ public abstract class BsWhiteImplicitReverseFkSuppressBhv extends AbstractBehavi
 
     @Override
     protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) {
-        if (op == null) { insert(downcast(et)); }
-        else { varyingInsert(downcast(et), downcast(op)); }
+        doInsert(downcast(et), downcast(op));
     }
 
     /**
@@ -489,7 +596,7 @@ public abstract class BsWhiteImplicitReverseFkSuppressBhv extends AbstractBehavi
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
      * <span style="color: #3F7E5E">//whiteImplicitReverseFkSuppress.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//whiteImplicitReverseFkSuppress.set...;</span>
-     * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
+     * <span style="color: #3F7E5E">// if exclusive control, the value of concurrency column is required</span>
      * whiteImplicitReverseFkSuppress.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     whiteImplicitReverseFkSuppressBhv.<span style="color: #DD4747">update</span>(whiteImplicitReverseFkSuppress);
@@ -497,49 +604,38 @@ public abstract class BsWhiteImplicitReverseFkSuppressBhv extends AbstractBehavi
      *     ...
      * }
      * </pre>
-     * @param whiteImplicitReverseFkSuppress The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
+     * @param whiteImplicitReverseFkSuppress The entity of update. (NotNull, PrimaryKeyNotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
-    public void update(final WhiteImplicitReverseFkSuppress whiteImplicitReverseFkSuppress) {
+    public void update(WhiteImplicitReverseFkSuppress whiteImplicitReverseFkSuppress) {
         doUpdate(whiteImplicitReverseFkSuppress, null);
     }
 
-    protected void doUpdate(WhiteImplicitReverseFkSuppress whiteImplicitReverseFkSuppress, final UpdateOption<WhiteImplicitReverseFkSuppressCB> op) {
-        assertObjectNotNull("whiteImplicitReverseFkSuppress", whiteImplicitReverseFkSuppress);
+    protected void doUpdate(WhiteImplicitReverseFkSuppress et, final UpdateOption<WhiteImplicitReverseFkSuppressCB> op) {
+        assertObjectNotNull("whiteImplicitReverseFkSuppress", et);
         prepareUpdateOption(op);
-        helpUpdateInternally(whiteImplicitReverseFkSuppress, new InternalUpdateCallback<WhiteImplicitReverseFkSuppress>() {
-            public int callbackDelegateUpdate(WhiteImplicitReverseFkSuppress et) { return delegateUpdate(et, op); } });
+        helpUpdateInternally(et, new InternalUpdateCallback<WhiteImplicitReverseFkSuppress>() {
+            public int callbackDelegateUpdate(WhiteImplicitReverseFkSuppress let) { return delegateUpdate(let, op); } });
     }
 
     protected void prepareUpdateOption(UpdateOption<WhiteImplicitReverseFkSuppressCB> op) {
         if (op == null) { return; }
         assertUpdateOptionStatus(op);
-        if (op.hasSelfSpecification()) {
-            op.resolveSelfSpecification(createCBForVaryingUpdate());
-        }
-        if (op.hasSpecifiedUpdateColumn()) {
-            op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate());
-        }
+        if (op.hasSelfSpecification()) { op.resolveSelfSpecification(createCBForVaryingUpdate()); }
+        if (op.hasSpecifiedUpdateColumn()) { op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate()); }
     }
 
-    protected WhiteImplicitReverseFkSuppressCB createCBForVaryingUpdate() {
-        WhiteImplicitReverseFkSuppressCB cb = newMyConditionBean();
-        cb.xsetupForVaryingUpdate();
-        return cb;
-    }
+    protected WhiteImplicitReverseFkSuppressCB createCBForVaryingUpdate()
+    { WhiteImplicitReverseFkSuppressCB cb = newConditionBean(); cb.xsetupForVaryingUpdate(); return cb; }
 
-    protected WhiteImplicitReverseFkSuppressCB createCBForSpecifiedUpdate() {
-        WhiteImplicitReverseFkSuppressCB cb = newMyConditionBean();
-        cb.xsetupForSpecifiedUpdate();
-        return cb;
-    }
+    protected WhiteImplicitReverseFkSuppressCB createCBForSpecifiedUpdate()
+    { WhiteImplicitReverseFkSuppressCB cb = newConditionBean(); cb.xsetupForSpecifiedUpdate(); return cb; }
 
     @Override
     protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) {
-        if (op == null) { update(downcast(et)); }
-        else { varyingUpdate(downcast(et), downcast(op)); }
+        doUpdate(downcast(et), downcast(op));
     }
 
     @Override
@@ -551,32 +647,28 @@ public abstract class BsWhiteImplicitReverseFkSuppressBhv extends AbstractBehavi
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br />
      * <p><span style="color: #DD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
-     * @param whiteImplicitReverseFkSuppress The entity of insert or update target. (NotNull)
+     * @param whiteImplicitReverseFkSuppress The entity of insert or update. (NotNull, ...depends on insert or update)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insertOrUpdate(WhiteImplicitReverseFkSuppress whiteImplicitReverseFkSuppress) {
-        doInesrtOrUpdate(whiteImplicitReverseFkSuppress, null, null);
+        doInsertOrUpdate(whiteImplicitReverseFkSuppress, null, null);
     }
 
-    protected void doInesrtOrUpdate(WhiteImplicitReverseFkSuppress whiteImplicitReverseFkSuppress, final InsertOption<WhiteImplicitReverseFkSuppressCB> iop, final UpdateOption<WhiteImplicitReverseFkSuppressCB> uop) {
-        helpInsertOrUpdateInternally(whiteImplicitReverseFkSuppress, new InternalInsertOrUpdateCallback<WhiteImplicitReverseFkSuppress, WhiteImplicitReverseFkSuppressCB>() {
-            public void callbackInsert(WhiteImplicitReverseFkSuppress et) { doInsert(et, iop); }
-            public void callbackUpdate(WhiteImplicitReverseFkSuppress et) { doUpdate(et, uop); }
-            public WhiteImplicitReverseFkSuppressCB callbackNewMyConditionBean() { return newMyConditionBean(); }
+    protected void doInsertOrUpdate(WhiteImplicitReverseFkSuppress et, final InsertOption<WhiteImplicitReverseFkSuppressCB> iop, final UpdateOption<WhiteImplicitReverseFkSuppressCB> uop) {
+        assertObjectNotNull("whiteImplicitReverseFkSuppress", et);
+        helpInsertOrUpdateInternally(et, new InternalInsertOrUpdateCallback<WhiteImplicitReverseFkSuppress, WhiteImplicitReverseFkSuppressCB>() {
+            public void callbackInsert(WhiteImplicitReverseFkSuppress let) { doInsert(let, iop); }
+            public void callbackUpdate(WhiteImplicitReverseFkSuppress let) { doUpdate(let, uop); }
+            public WhiteImplicitReverseFkSuppressCB callbackNewMyConditionBean() { return newConditionBean(); }
             public int callbackSelectCount(WhiteImplicitReverseFkSuppressCB cb) { return selectCount(cb); }
         });
     }
 
     @Override
     protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
-        if (iop == null && uop == null) { insertOrUpdate(downcast(et)); }
-        else {
-            iop = iop != null ? iop : new InsertOption<WhiteImplicitReverseFkSuppressCB>();
-            uop = uop != null ? uop : new UpdateOption<WhiteImplicitReverseFkSuppressCB>();
-            varyingInsertOrUpdate(downcast(et), downcast(iop), downcast(uop));
-        }
+        doInsertOrUpdate(downcast(et), downcast(iop), downcast(uop));
     }
 
     @Override
@@ -589,7 +681,7 @@ public abstract class BsWhiteImplicitReverseFkSuppressBhv extends AbstractBehavi
      * <pre>
      * WhiteImplicitReverseFkSuppress whiteImplicitReverseFkSuppress = new WhiteImplicitReverseFkSuppress();
      * whiteImplicitReverseFkSuppress.setPK...(value); <span style="color: #3F7E5E">// required</span>
-     * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
+     * <span style="color: #3F7E5E">// if exclusive control, the value of concurrency column is required</span>
      * whiteImplicitReverseFkSuppress.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     whiteImplicitReverseFkSuppressBhv.<span style="color: #DD4747">delete</span>(whiteImplicitReverseFkSuppress);
@@ -597,7 +689,7 @@ public abstract class BsWhiteImplicitReverseFkSuppressBhv extends AbstractBehavi
      *     ...
      * }
      * </pre>
-     * @param whiteImplicitReverseFkSuppress The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
+     * @param whiteImplicitReverseFkSuppress The entity of delete. (NotNull, PrimaryKeyNotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      */
@@ -605,22 +697,19 @@ public abstract class BsWhiteImplicitReverseFkSuppressBhv extends AbstractBehavi
         doDelete(whiteImplicitReverseFkSuppress, null);
     }
 
-    protected void doDelete(WhiteImplicitReverseFkSuppress whiteImplicitReverseFkSuppress, final DeleteOption<WhiteImplicitReverseFkSuppressCB> op) {
-        assertObjectNotNull("whiteImplicitReverseFkSuppress", whiteImplicitReverseFkSuppress);
+    protected void doDelete(WhiteImplicitReverseFkSuppress et, final DeleteOption<WhiteImplicitReverseFkSuppressCB> op) {
+        assertObjectNotNull("whiteImplicitReverseFkSuppress", et);
         prepareDeleteOption(op);
-        helpDeleteInternally(whiteImplicitReverseFkSuppress, new InternalDeleteCallback<WhiteImplicitReverseFkSuppress>() {
-            public int callbackDelegateDelete(WhiteImplicitReverseFkSuppress et) { return delegateDelete(et, op); } });
+        helpDeleteInternally(et, new InternalDeleteCallback<WhiteImplicitReverseFkSuppress>() {
+            public int callbackDelegateDelete(WhiteImplicitReverseFkSuppress let) { return delegateDelete(let, op); } });
     }
 
-    protected void prepareDeleteOption(DeleteOption<WhiteImplicitReverseFkSuppressCB> op) {
-        if (op == null) { return; }
-        assertDeleteOptionStatus(op);
-    }
+    protected void prepareDeleteOption(DeleteOption<WhiteImplicitReverseFkSuppressCB> op)
+    { if (op != null) { assertDeleteOptionStatus(op); } }
 
     @Override
     protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) {
-        if (op == null) { delete(downcast(et)); }
-        else { varyingDelete(downcast(et), downcast(op)); }
+        doDelete(downcast(et), downcast(op));
     }
 
     @Override
@@ -656,26 +745,25 @@ public abstract class BsWhiteImplicitReverseFkSuppressBhv extends AbstractBehavi
      * @return The array of inserted count. (NotNull, EmptyAllowed)
      */
     public int[] batchInsert(List<WhiteImplicitReverseFkSuppress> whiteImplicitReverseFkSuppressList) {
-        InsertOption<WhiteImplicitReverseFkSuppressCB> op = createInsertUpdateOption();
-        return doBatchInsert(whiteImplicitReverseFkSuppressList, op);
+        return doBatchInsert(whiteImplicitReverseFkSuppressList, null);
     }
 
-    protected int[] doBatchInsert(List<WhiteImplicitReverseFkSuppress> whiteImplicitReverseFkSuppressList, InsertOption<WhiteImplicitReverseFkSuppressCB> op) {
-        assertObjectNotNull("whiteImplicitReverseFkSuppressList", whiteImplicitReverseFkSuppressList);
-        prepareBatchInsertOption(whiteImplicitReverseFkSuppressList, op);
-        return delegateBatchInsert(whiteImplicitReverseFkSuppressList, op);
+    protected int[] doBatchInsert(List<WhiteImplicitReverseFkSuppress> ls, InsertOption<WhiteImplicitReverseFkSuppressCB> op) {
+        assertObjectNotNull("whiteImplicitReverseFkSuppressList", ls);
+        InsertOption<WhiteImplicitReverseFkSuppressCB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainInsertOption(); }
+        prepareBatchInsertOption(ls, rlop); // required
+        return delegateBatchInsert(ls, rlop);
     }
 
-    protected void prepareBatchInsertOption(List<WhiteImplicitReverseFkSuppress> whiteImplicitReverseFkSuppressList, InsertOption<WhiteImplicitReverseFkSuppressCB> op) {
+    protected void prepareBatchInsertOption(List<WhiteImplicitReverseFkSuppress> ls, InsertOption<WhiteImplicitReverseFkSuppressCB> op) {
         op.xallowInsertColumnModifiedPropertiesFragmented();
-        op.xacceptInsertColumnModifiedPropertiesIfNeeds(whiteImplicitReverseFkSuppressList);
+        op.xacceptInsertColumnModifiedPropertiesIfNeeds(ls);
         prepareInsertOption(op);
     }
 
     @Override
     protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) {
-        if (op == null) { return batchInsert(downcast(ls)); }
-        else { return varyingBatchInsert(downcast(ls), downcast(op)); }
+        return doBatchInsert(downcast(ls), downcast(op));
     }
 
     /**
@@ -703,25 +791,24 @@ public abstract class BsWhiteImplicitReverseFkSuppressBhv extends AbstractBehavi
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<WhiteImplicitReverseFkSuppress> whiteImplicitReverseFkSuppressList) {
-        UpdateOption<WhiteImplicitReverseFkSuppressCB> op = createPlainUpdateOption();
-        return doBatchUpdate(whiteImplicitReverseFkSuppressList, op);
+        return doBatchUpdate(whiteImplicitReverseFkSuppressList, null);
     }
 
-    protected int[] doBatchUpdate(List<WhiteImplicitReverseFkSuppress> whiteImplicitReverseFkSuppressList, UpdateOption<WhiteImplicitReverseFkSuppressCB> op) {
-        assertObjectNotNull("whiteImplicitReverseFkSuppressList", whiteImplicitReverseFkSuppressList);
-        prepareBatchUpdateOption(whiteImplicitReverseFkSuppressList, op);
-        return delegateBatchUpdate(whiteImplicitReverseFkSuppressList, op);
+    protected int[] doBatchUpdate(List<WhiteImplicitReverseFkSuppress> ls, UpdateOption<WhiteImplicitReverseFkSuppressCB> op) {
+        assertObjectNotNull("whiteImplicitReverseFkSuppressList", ls);
+        UpdateOption<WhiteImplicitReverseFkSuppressCB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainUpdateOption(); }
+        prepareBatchUpdateOption(ls, rlop); // required
+        return delegateBatchUpdate(ls, rlop);
     }
 
-    protected void prepareBatchUpdateOption(List<WhiteImplicitReverseFkSuppress> whiteImplicitReverseFkSuppressList, UpdateOption<WhiteImplicitReverseFkSuppressCB> op) {
-        op.xacceptUpdateColumnModifiedPropertiesIfNeeds(whiteImplicitReverseFkSuppressList);
+    protected void prepareBatchUpdateOption(List<WhiteImplicitReverseFkSuppress> ls, UpdateOption<WhiteImplicitReverseFkSuppressCB> op) {
+        op.xacceptUpdateColumnModifiedPropertiesIfNeeds(ls);
         prepareUpdateOption(op);
     }
 
     @Override
     protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) {
-        if (op == null) { return batchUpdate(downcast(ls)); }
-        else { return varyingBatchUpdate(downcast(ls), downcast(op)); }
+        return doBatchUpdate(downcast(ls), downcast(op));
     }
 
     /**
@@ -772,16 +859,15 @@ public abstract class BsWhiteImplicitReverseFkSuppressBhv extends AbstractBehavi
         return doBatchDelete(whiteImplicitReverseFkSuppressList, null);
     }
 
-    protected int[] doBatchDelete(List<WhiteImplicitReverseFkSuppress> whiteImplicitReverseFkSuppressList, DeleteOption<WhiteImplicitReverseFkSuppressCB> op) {
-        assertObjectNotNull("whiteImplicitReverseFkSuppressList", whiteImplicitReverseFkSuppressList);
+    protected int[] doBatchDelete(List<WhiteImplicitReverseFkSuppress> ls, DeleteOption<WhiteImplicitReverseFkSuppressCB> op) {
+        assertObjectNotNull("whiteImplicitReverseFkSuppressList", ls);
         prepareDeleteOption(op);
-        return delegateBatchDelete(whiteImplicitReverseFkSuppressList, op);
+        return delegateBatchDelete(ls, op);
     }
 
     @Override
     protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) {
-        if (op == null) { return batchDelete(downcast(ls)); }
-        else { return varyingBatchDelete(downcast(ls), downcast(op)); }
+        return doBatchDelete(downcast(ls), downcast(op));
     }
 
     @Override
@@ -808,7 +894,7 @@ public abstract class BsWhiteImplicitReverseFkSuppressBhv extends AbstractBehavi
      *         <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
      *         <span style="color: #3F7E5E">//entity.setRegisterUser(value);</span>
      *         <span style="color: #3F7E5E">//entity.set...;</span>
-     *         <span style="color: #3F7E5E">// you don't need to set a value of exclusive control column</span>
+     *         <span style="color: #3F7E5E">// you don't need to set a value of concurrency column</span>
      *         <span style="color: #3F7E5E">//entity.setVersionNo(value);</span>
      *
      *         return cb;
@@ -825,21 +911,17 @@ public abstract class BsWhiteImplicitReverseFkSuppressBhv extends AbstractBehavi
     protected int doQueryInsert(QueryInsertSetupper<WhiteImplicitReverseFkSuppress, WhiteImplicitReverseFkSuppressCB> sp, InsertOption<WhiteImplicitReverseFkSuppressCB> op) {
         assertObjectNotNull("setupper", sp);
         prepareInsertOption(op);
-        WhiteImplicitReverseFkSuppress e = new WhiteImplicitReverseFkSuppress();
+        WhiteImplicitReverseFkSuppress et = newEntity();
         WhiteImplicitReverseFkSuppressCB cb = createCBForQueryInsert();
-        return delegateQueryInsert(e, cb, sp.setup(e, cb), op);
+        return delegateQueryInsert(et, cb, sp.setup(et, cb), op);
     }
 
-    protected WhiteImplicitReverseFkSuppressCB createCBForQueryInsert() {
-        WhiteImplicitReverseFkSuppressCB cb = newMyConditionBean();
-        cb.xsetupForQueryInsert();
-        return cb;
-    }
+    protected WhiteImplicitReverseFkSuppressCB createCBForQueryInsert()
+    { WhiteImplicitReverseFkSuppressCB cb = newConditionBean(); cb.xsetupForQueryInsert(); return cb; }
 
     @Override
-    protected int doRangeCreate(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> setupper, InsertOption<? extends ConditionBean> option) {
-        if (option == null) { return queryInsert(downcast(setupper)); }
-        else { return varyingQueryInsert(downcast(setupper), downcast(option)); }
+    protected int doRangeCreate(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> setupper, InsertOption<? extends ConditionBean> op) {
+        return doQueryInsert(downcast(setupper), downcast(op));
     }
 
     /**
@@ -852,7 +934,7 @@ public abstract class BsWhiteImplicitReverseFkSuppressBhv extends AbstractBehavi
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
      * <span style="color: #3F7E5E">//whiteImplicitReverseFkSuppress.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//whiteImplicitReverseFkSuppress.set...;</span>
-     * <span style="color: #3F7E5E">// you don't need to set a value of exclusive control column</span>
+     * <span style="color: #3F7E5E">// you don't need to set a value of concurrency column</span>
      * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
      * <span style="color: #3F7E5E">//whiteImplicitReverseFkSuppress.setVersionNo(value);</span>
      * WhiteImplicitReverseFkSuppressCB cb = new WhiteImplicitReverseFkSuppressCB();
@@ -868,16 +950,15 @@ public abstract class BsWhiteImplicitReverseFkSuppressBhv extends AbstractBehavi
         return doQueryUpdate(whiteImplicitReverseFkSuppress, cb, null);
     }
 
-    protected int doQueryUpdate(WhiteImplicitReverseFkSuppress whiteImplicitReverseFkSuppress, WhiteImplicitReverseFkSuppressCB cb, UpdateOption<WhiteImplicitReverseFkSuppressCB> op) {
-        assertObjectNotNull("whiteImplicitReverseFkSuppress", whiteImplicitReverseFkSuppress); assertCBStateValid(cb);
+    protected int doQueryUpdate(WhiteImplicitReverseFkSuppress et, WhiteImplicitReverseFkSuppressCB cb, UpdateOption<WhiteImplicitReverseFkSuppressCB> op) {
+        assertObjectNotNull("whiteImplicitReverseFkSuppress", et); assertCBStateValid(cb);
         prepareUpdateOption(op);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(whiteImplicitReverseFkSuppress, cb, op) : 0;
+        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(et, cb, op) : 0;
     }
 
     @Override
     protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op) {
-        if (op == null) { return queryUpdate(downcast(et), (WhiteImplicitReverseFkSuppressCB)cb); }
-        else { return varyingQueryUpdate(downcast(et), (WhiteImplicitReverseFkSuppressCB)cb, downcast(op)); }
+        return doQueryUpdate(downcast(et), downcast(cb), downcast(op));
     }
 
     /**
@@ -903,8 +984,7 @@ public abstract class BsWhiteImplicitReverseFkSuppressBhv extends AbstractBehavi
 
     @Override
     protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) {
-        if (op == null) { return queryDelete((WhiteImplicitReverseFkSuppressCB)cb); }
-        else { return varyingQueryDelete((WhiteImplicitReverseFkSuppressCB)cb, downcast(op)); }
+        return doQueryDelete(downcast(cb), downcast(op));
     }
 
     // ===================================================================================
@@ -928,7 +1008,7 @@ public abstract class BsWhiteImplicitReverseFkSuppressBhv extends AbstractBehavi
      * whiteImplicitReverseFkSuppressBhv.<span style="color: #DD4747">varyingInsert</span>(whiteImplicitReverseFkSuppress, option);
      * ... = whiteImplicitReverseFkSuppress.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
-     * @param whiteImplicitReverseFkSuppress The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
+     * @param whiteImplicitReverseFkSuppress The entity of insert. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
      * @param option The option of insert for varying requests. (NotNull)
      * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
@@ -945,7 +1025,7 @@ public abstract class BsWhiteImplicitReverseFkSuppressBhv extends AbstractBehavi
      * WhiteImplicitReverseFkSuppress whiteImplicitReverseFkSuppress = new WhiteImplicitReverseFkSuppress();
      * whiteImplicitReverseFkSuppress.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * whiteImplicitReverseFkSuppress.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
-     * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
+     * <span style="color: #3F7E5E">// if exclusive control, the value of concurrency column is required</span>
      * whiteImplicitReverseFkSuppress.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     <span style="color: #3F7E5E">// you can update by self calculation values</span>
@@ -960,7 +1040,7 @@ public abstract class BsWhiteImplicitReverseFkSuppressBhv extends AbstractBehavi
      *     ...
      * }
      * </pre>
-     * @param whiteImplicitReverseFkSuppress The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
+     * @param whiteImplicitReverseFkSuppress The entity of update. (NotNull, PrimaryKeyNotNull)
      * @param option The option of update for varying requests. (NotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
@@ -974,7 +1054,7 @@ public abstract class BsWhiteImplicitReverseFkSuppressBhv extends AbstractBehavi
     /**
      * Insert or update the entity with varying requests. (ExclusiveControl: when update) <br />
      * Other specifications are same as insertOrUpdate(entity).
-     * @param whiteImplicitReverseFkSuppress The entity of insert or update target. (NotNull)
+     * @param whiteImplicitReverseFkSuppress The entity of insert or update. (NotNull)
      * @param insertOption The option of insert for varying requests. (NotNull)
      * @param updateOption The option of update for varying requests. (NotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
@@ -983,14 +1063,14 @@ public abstract class BsWhiteImplicitReverseFkSuppressBhv extends AbstractBehavi
      */
     public void varyingInsertOrUpdate(WhiteImplicitReverseFkSuppress whiteImplicitReverseFkSuppress, InsertOption<WhiteImplicitReverseFkSuppressCB> insertOption, UpdateOption<WhiteImplicitReverseFkSuppressCB> updateOption) {
         assertInsertOptionNotNull(insertOption); assertUpdateOptionNotNull(updateOption);
-        doInesrtOrUpdate(whiteImplicitReverseFkSuppress, insertOption, updateOption);
+        doInsertOrUpdate(whiteImplicitReverseFkSuppress, insertOption, updateOption);
     }
 
     /**
      * Delete the entity with varying requests. (ZeroUpdateException, NonExclusiveControl) <br />
      * Now a valid option does not exist. <br />
      * Other specifications are same as delete(entity).
-     * @param whiteImplicitReverseFkSuppress The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
+     * @param whiteImplicitReverseFkSuppress The entity of delete. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
      * @param option The option of update for varying requests. (NotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
@@ -1071,7 +1151,7 @@ public abstract class BsWhiteImplicitReverseFkSuppressBhv extends AbstractBehavi
      * <span style="color: #3F7E5E">// you don't need to set PK value</span>
      * <span style="color: #3F7E5E">//whiteImplicitReverseFkSuppress.setPK...(value);</span>
      * whiteImplicitReverseFkSuppress.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
-     * <span style="color: #3F7E5E">// you don't need to set a value of exclusive control column</span>
+     * <span style="color: #3F7E5E">// you don't need to set a value of concurrency column</span>
      * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
      * <span style="color: #3F7E5E">//whiteImplicitReverseFkSuppress.setVersionNo(value);</span>
      * WhiteImplicitReverseFkSuppressCB cb = new WhiteImplicitReverseFkSuppressCB();
@@ -1223,38 +1303,34 @@ public abstract class BsWhiteImplicitReverseFkSuppressBhv extends AbstractBehavi
     }
 
     // ===================================================================================
-    //                                                                     Downcast Helper
-    //                                                                     ===============
-    protected WhiteImplicitReverseFkSuppress downcast(Entity et) {
-        return helpEntityDowncastInternally(et, WhiteImplicitReverseFkSuppress.class);
-    }
+    //                                                                       Assist Helper
+    //                                                                       =============
+    protected Class<WhiteImplicitReverseFkSuppress> typeOfSelectedEntity()
+    { return WhiteImplicitReverseFkSuppress.class; }
 
-    protected WhiteImplicitReverseFkSuppressCB downcast(ConditionBean cb) {
-        return helpConditionBeanDowncastInternally(cb, WhiteImplicitReverseFkSuppressCB.class);
-    }
+    protected WhiteImplicitReverseFkSuppress downcast(Entity et)
+    { return helpEntityDowncastInternally(et, WhiteImplicitReverseFkSuppress.class); }
 
-    @SuppressWarnings("unchecked")
-    protected List<WhiteImplicitReverseFkSuppress> downcast(List<? extends Entity> ls) {
-        return (List<WhiteImplicitReverseFkSuppress>)ls;
-    }
+    protected WhiteImplicitReverseFkSuppressCB downcast(ConditionBean cb)
+    { return helpConditionBeanDowncastInternally(cb, WhiteImplicitReverseFkSuppressCB.class); }
 
     @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteImplicitReverseFkSuppressCB> downcast(InsertOption<? extends ConditionBean> op) {
-        return (InsertOption<WhiteImplicitReverseFkSuppressCB>)op;
-    }
+    protected List<WhiteImplicitReverseFkSuppress> downcast(List<? extends Entity> ls)
+    { return (List<WhiteImplicitReverseFkSuppress>)ls; }
 
     @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteImplicitReverseFkSuppressCB> downcast(UpdateOption<? extends ConditionBean> op) {
-        return (UpdateOption<WhiteImplicitReverseFkSuppressCB>)op;
-    }
+    protected InsertOption<WhiteImplicitReverseFkSuppressCB> downcast(InsertOption<? extends ConditionBean> op)
+    { return (InsertOption<WhiteImplicitReverseFkSuppressCB>)op; }
 
     @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteImplicitReverseFkSuppressCB> downcast(DeleteOption<? extends ConditionBean> op) {
-        return (DeleteOption<WhiteImplicitReverseFkSuppressCB>)op;
-    }
+    protected UpdateOption<WhiteImplicitReverseFkSuppressCB> downcast(UpdateOption<? extends ConditionBean> op)
+    { return (UpdateOption<WhiteImplicitReverseFkSuppressCB>)op; }
 
     @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhiteImplicitReverseFkSuppress, WhiteImplicitReverseFkSuppressCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp) {
-        return (QueryInsertSetupper<WhiteImplicitReverseFkSuppress, WhiteImplicitReverseFkSuppressCB>)sp;
-    }
+    protected DeleteOption<WhiteImplicitReverseFkSuppressCB> downcast(DeleteOption<? extends ConditionBean> op)
+    { return (DeleteOption<WhiteImplicitReverseFkSuppressCB>)op; }
+
+    @SuppressWarnings("unchecked")
+    protected QueryInsertSetupper<WhiteImplicitReverseFkSuppress, WhiteImplicitReverseFkSuppressCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
+    { return (QueryInsertSetupper<WhiteImplicitReverseFkSuppress, WhiteImplicitReverseFkSuppressCB>)sp; }
 }

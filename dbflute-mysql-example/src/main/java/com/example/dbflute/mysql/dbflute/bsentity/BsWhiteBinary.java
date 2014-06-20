@@ -322,7 +322,7 @@ public abstract class BsWhiteBinary implements Entity, Serializable, Cloneable {
      */
     public void setBinaryId(Long binaryId) {
         __modifiedProperties.addPropertyName("binaryId");
-        this._binaryId = binaryId;
+        _binaryId = binaryId;
     }
 
     /**
@@ -339,7 +339,7 @@ public abstract class BsWhiteBinary implements Entity, Serializable, Cloneable {
      */
     public void setBinaryData(byte[] binaryData) {
         __modifiedProperties.addPropertyName("binaryData");
-        this._binaryData = binaryData;
+        _binaryData = binaryData;
     }
 
     /**
@@ -356,6 +356,6 @@ public abstract class BsWhiteBinary implements Entity, Serializable, Cloneable {
      */
     public void setBlobData(byte[] blobData) {
         __modifiedProperties.addPropertyName("blobData");
-        this._blobData = blobData;
+        _blobData = blobData;
     }
 }

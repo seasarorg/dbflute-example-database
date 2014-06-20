@@ -329,7 +329,7 @@ public abstract class BsSpReturnResultSetReturnValue implements Entity, Serializ
      */
     public void setMemberId(Integer memberId) {
         __modifiedProperties.addPropertyName("memberId");
-        this._memberId = memberId;
+        _memberId = memberId;
     }
 
     /**
@@ -346,7 +346,7 @@ public abstract class BsSpReturnResultSetReturnValue implements Entity, Serializ
      */
     public void setMemberName(String memberName) {
         __modifiedProperties.addPropertyName("memberName");
-        this._memberName = memberName;
+        _memberName = memberName;
     }
 
     /**
@@ -363,7 +363,7 @@ public abstract class BsSpReturnResultSetReturnValue implements Entity, Serializ
      */
     public void setBirthdate(java.util.Date birthdate) {
         __modifiedProperties.addPropertyName("birthdate");
-        this._birthdate = birthdate;
+        _birthdate = birthdate;
     }
 
     /**
@@ -380,7 +380,7 @@ public abstract class BsSpReturnResultSetReturnValue implements Entity, Serializ
      */
     public void setFormalizedDatetime(java.sql.Timestamp formalizedDatetime) {
         __modifiedProperties.addPropertyName("formalizedDatetime");
-        this._formalizedDatetime = formalizedDatetime;
+        _formalizedDatetime = formalizedDatetime;
     }
 
     /**
@@ -397,6 +397,6 @@ public abstract class BsSpReturnResultSetReturnValue implements Entity, Serializ
      */
     public void setMemberStatusCode(String memberStatusCode) {
         __modifiedProperties.addPropertyName("memberStatusCode");
-        this._memberStatusCode = memberStatusCode;
+        _memberStatusCode = memberStatusCode;
     }
 }

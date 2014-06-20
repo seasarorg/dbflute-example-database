@@ -338,7 +338,7 @@ public abstract class BsWhiteGearedCipher implements Entity, Serializable, Clone
      */
     public void setCipherId(Long cipherId) {
         __modifiedProperties.addPropertyName("cipherId");
-        this._cipherId = cipherId;
+        _cipherId = cipherId;
     }
 
     /**
@@ -355,7 +355,7 @@ public abstract class BsWhiteGearedCipher implements Entity, Serializable, Clone
      */
     public void setCipherInteger(Integer cipherInteger) {
         __modifiedProperties.addPropertyName("cipherInteger");
-        this._cipherInteger = cipherInteger;
+        _cipherInteger = cipherInteger;
     }
 
     /**
@@ -372,7 +372,7 @@ public abstract class BsWhiteGearedCipher implements Entity, Serializable, Clone
      */
     public void setCipherVarchar(String cipherVarchar) {
         __modifiedProperties.addPropertyName("cipherVarchar");
-        this._cipherVarchar = cipherVarchar;
+        _cipherVarchar = cipherVarchar;
     }
 
     /**
@@ -389,7 +389,7 @@ public abstract class BsWhiteGearedCipher implements Entity, Serializable, Clone
      */
     public void setCipherDate(java.util.Date cipherDate) {
         __modifiedProperties.addPropertyName("cipherDate");
-        this._cipherDate = cipherDate;
+        _cipherDate = cipherDate;
     }
 
     /**
@@ -406,6 +406,6 @@ public abstract class BsWhiteGearedCipher implements Entity, Serializable, Clone
      */
     public void setCipherDatetime(java.sql.Timestamp cipherDatetime) {
         __modifiedProperties.addPropertyName("cipherDatetime");
-        this._cipherDatetime = cipherDatetime;
+        _cipherDatetime = cipherDatetime;
     }
 }

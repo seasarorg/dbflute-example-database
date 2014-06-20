@@ -5,11 +5,14 @@ import java.util.List;
 import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
+import org.seasar.dbflute.cbean.chelper.HpSLSExecutor;
+import org.seasar.dbflute.cbean.chelper.HpSLSFunction;
 import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.exception.*;
 import org.seasar.dbflute.optional.OptionalEntity;
 import org.seasar.dbflute.outsidesql.executor.*;
 import com.example.dbflute.postgresql.dbflute.exbhv.*;
+import com.example.dbflute.postgresql.dbflute.bsbhv.loader.*;
 import com.example.dbflute.postgresql.dbflute.exentity.*;
 import com.example.dbflute.postgresql.dbflute.bsentity.dbmeta.*;
 import com.example.dbflute.postgresql.dbflute.cbean.*;
@@ -63,7 +66,7 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorReadable {
     // ===================================================================================
     //                                                                              DBMeta
     //                                                                              ======
-    /** @return The instance of DBMeta. (NotNull) */
+    /** {@inheritDoc} */
     public DBMeta getDBMeta() { return SummaryProductDbm.getInstance(); }
 
     /** @return The instance of DBMeta as my table type. (NotNull) */
@@ -73,10 +76,10 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorReadable {
     //                                                                        New Instance
     //                                                                        ============
     /** {@inheritDoc} */
-    public Entity newEntity() { return newMyEntity(); }
+    public SummaryProduct newEntity() { return new SummaryProduct(); }
 
     /** {@inheritDoc} */
-    public ConditionBean newConditionBean() { return newMyConditionBean(); }
+    public SummaryProductCB newConditionBean() { return new SummaryProductCB(); }
 
     /** @return The instance of new entity as my table type. (NotNull) */
     public SummaryProduct newMyEntity() { return new SummaryProduct(); }
@@ -99,6 +102,10 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorReadable {
      * @return The count for the condition. (NotMinus)
      */
     public int selectCount(SummaryProductCB cb) {
+        return facadeSelectCount(cb);
+    }
+
+    protected int facadeSelectCount(SummaryProductCB cb) {
         return doSelectCountUniquely(cb);
     }
 
@@ -114,7 +121,7 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorReadable {
 
     @Override
     protected int doReadCount(ConditionBean cb) {
-        return selectCount(downcast(cb));
+        return facadeSelectCount(downcast(cb));
     }
 
     // ===================================================================================
@@ -140,7 +147,11 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorReadable {
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public SummaryProduct selectEntity(SummaryProductCB cb) {
-        return doSelectEntity(cb, SummaryProduct.class);
+        return facadeSelectEntity(cb);
+    }
+
+    protected SummaryProduct facadeSelectEntity(SummaryProductCB cb) {
+        return doSelectEntity(cb, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends SummaryProduct> ENTITY doSelectEntity(SummaryProductCB cb, Class<ENTITY> tp) {
@@ -155,7 +166,7 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorReadable {
 
     @Override
     protected Entity doReadEntity(ConditionBean cb) {
-        return selectEntity(downcast(cb));
+        return facadeSelectEntity(downcast(cb));
     }
 
     /**
@@ -174,7 +185,11 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorReadable {
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public SummaryProduct selectEntityWithDeletedCheck(SummaryProductCB cb) {
-        return doSelectEntityWithDeletedCheck(cb, SummaryProduct.class);
+        return facadeSelectEntityWithDeletedCheck(cb);
+    }
+
+    protected SummaryProduct facadeSelectEntityWithDeletedCheck(SummaryProductCB cb) {
+        return doSelectEntityWithDeletedCheck(cb, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends SummaryProduct> ENTITY doSelectEntityWithDeletedCheck(SummaryProductCB cb, Class<ENTITY> tp) {
@@ -185,7 +200,7 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorReadable {
 
     @Override
     protected Entity doReadEntityWithDeletedCheck(ConditionBean cb) {
-        return selectEntityWithDeletedCheck(downcast(cb));
+        return facadeSelectEntityWithDeletedCheck(downcast(cb));
     }
 
     // ===================================================================================
@@ -207,7 +222,11 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorReadable {
      * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public ListResultBean<SummaryProduct> selectList(SummaryProductCB cb) {
-        return doSelectList(cb, SummaryProduct.class);
+        return facadeSelectList(cb);
+    }
+
+    protected ListResultBean<SummaryProduct> facadeSelectList(SummaryProductCB cb) {
+        return doSelectList(cb, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends SummaryProduct> ListResultBean<ENTITY> doSelectList(SummaryProductCB cb, Class<ENTITY> tp) {
@@ -219,7 +238,7 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorReadable {
 
     @Override
     protected ListResultBean<? extends Entity> doReadList(ConditionBean cb) {
-        return selectList(downcast(cb));
+        return facadeSelectList(downcast(cb));
     }
 
     // ===================================================================================
@@ -248,7 +267,11 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorReadable {
      * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public PagingResultBean<SummaryProduct> selectPage(SummaryProductCB cb) {
-        return doSelectPage(cb, SummaryProduct.class);
+        return facadeSelectPage(cb);
+    }
+
+    protected PagingResultBean<SummaryProduct> facadeSelectPage(SummaryProductCB cb) {
+        return doSelectPage(cb, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends SummaryProduct> PagingResultBean<ENTITY> doSelectPage(SummaryProductCB cb, Class<ENTITY> tp) {
@@ -261,7 +284,7 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorReadable {
 
     @Override
     protected PagingResultBean<? extends Entity> doReadPage(ConditionBean cb) {
-        return selectPage(downcast(cb));
+        return facadeSelectPage(downcast(cb));
     }
 
     // ===================================================================================
@@ -282,15 +305,19 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorReadable {
      * @param entityRowHandler The handler of entity row of SummaryProduct. (NotNull)
      */
     public void selectCursor(SummaryProductCB cb, EntityRowHandler<SummaryProduct> entityRowHandler) {
-        doSelectCursor(cb, entityRowHandler, SummaryProduct.class);
+        facadeSelectCursor(cb, entityRowHandler);
+    }
+
+    protected void facadeSelectCursor(SummaryProductCB cb, EntityRowHandler<SummaryProduct> entityRowHandler) {
+        doSelectCursor(cb, entityRowHandler, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends SummaryProduct> void doSelectCursor(SummaryProductCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
         assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
         helpSelectCursorInternally(cb, handler, tp, new InternalSelectCursorCallback<ENTITY, SummaryProductCB>() {
-            public void callbackSelectCursor(SummaryProductCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) { delegateSelectCursor(cb, handler, tp); }
-            public List<ENTITY> callbackSelectList(SummaryProductCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
+            public void callbackSelectCursor(SummaryProductCB lcb, EntityRowHandler<ENTITY> lhandler, Class<ENTITY> ltp) { delegateSelectCursor(lcb, lhandler, ltp); }
+            public List<ENTITY> callbackSelectList(SummaryProductCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); }
         });
     }
 
@@ -312,22 +339,23 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorReadable {
      * @param resultType The type of result. (NotNull)
      * @return The scalar function object to specify function for scalar value. (NotNull)
      */
-    public <RESULT> SLFunction<SummaryProductCB, RESULT> scalarSelect(Class<RESULT> resultType) {
-        return doScalarSelect(resultType, newMyConditionBean());
+    public <RESULT> HpSLSFunction<SummaryProductCB, RESULT> scalarSelect(Class<RESULT> resultType) {
+        return facadeScalarSelect(resultType);
     }
 
-    protected <RESULT, CB extends SummaryProductCB> SLFunction<CB, RESULT> doScalarSelect(Class<RESULT> tp, CB cb) {
+    protected <RESULT> HpSLSFunction<SummaryProductCB, RESULT> facadeScalarSelect(Class<RESULT> resultType) {
+        return doScalarSelect(resultType, newConditionBean());
+    }
+
+    protected <RESULT, CB extends SummaryProductCB> HpSLSFunction<CB, RESULT> doScalarSelect(final Class<RESULT> tp, final CB cb) {
         assertObjectNotNull("resultType", tp); assertCBStateValid(cb);
         cb.xsetupForScalarSelect(); cb.getSqlClause().disableSelectIndex(); // for when you use union
-        return createSLFunction(cb, tp);
+        HpSLSExecutor<CB, RESULT> executor = createHpSLSExecutor(); // variable to resolve generic
+        return createSLSFunction(cb, tp, executor);
     }
 
-    protected <RESULT, CB extends SummaryProductCB> SLFunction<CB, RESULT> createSLFunction(CB cb, Class<RESULT> tp) {
-        return new SLFunction<CB, RESULT>(cb, tp);
-    }
-
-    protected <RESULT> SLFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) {
-        return doScalarSelect(tp, newMyConditionBean());
+    protected <RESULT> HpSLSFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) {
+        return facadeScalarSelect(tp);
     }
 
     // ===================================================================================
@@ -340,9 +368,83 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorReadable {
     }
 
     // ===================================================================================
+    //                                                                       Load Referrer
+    //                                                                       =============
+    /**
+     * Load referrer by the the referrer loader. <br />
+     * <pre>
+     * MemberCB cb = new MemberCB();
+     * cb.query().set...
+     * List&lt;Member&gt; memberList = memberBhv.selectList(cb);
+     * memberBhv.<span style="color: #DD4747">load</span>(memberList, loader -&gt; {
+     *     loader.<span style="color: #DD4747">loadPurchaseList</span>(purchaseCB -&gt; {
+     *         purchaseCB.query().set...
+     *         purchaseCB.query().addOrderBy_PurchasePrice_Desc();
+     *     }); <span style="color: #3F7E5E">// you can also load nested referrer from here</span>
+     *     <span style="color: #3F7E5E">//}).withNestedList(purchaseLoader -&gt {</span>
+     *     <span style="color: #3F7E5E">//    purchaseLoader.loadPurchasePaymentList(...);</span>
+     *     <span style="color: #3F7E5E">//});</span>
+     *
+     *     <span style="color: #3F7E5E">// you can also pull out foreign table and load its referrer</span>
+     *     <span style="color: #3F7E5E">// (setupSelect of the foreign table should be called)</span>
+     *     <span style="color: #3F7E5E">//loader.pulloutMemberStatus().loadMemberLoginList(...)</span>
+     * }
+     * for (Member member : memberList) {
+     *     List&lt;Purchase&gt; purchaseList = member.<span style="color: #DD4747">getPurchaseList()</span>;
+     *     for (Purchase purchase : purchaseList) {
+     *         ...
+     *     }
+     * }
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has order by FK before callback.
+     * @param summaryProductList The entity list of summaryProduct. (NotNull)
+     * @param handler The callback to handle the referrer loader for actually loading referrer. (NotNull)
+     */
+    public void load(List<SummaryProduct> summaryProductList, ReferrerLoaderHandler<LoaderOfSummaryProduct> handler) {
+        xassLRArg(summaryProductList, handler);
+        handler.handle(new LoaderOfSummaryProduct().ready(summaryProductList, _behaviorSelector));
+    }
+
+    /**
+     * Load referrer of ${referrer.referrerJavaBeansRulePropertyName} by the referrer loader. <br />
+     * <pre>
+     * MemberCB cb = new MemberCB();
+     * cb.query().set...
+     * Member member = memberBhv.selectEntityWithDeletedCheck(cb);
+     * memberBhv.<span style="color: #DD4747">load</span>(member, loader -&gt; {
+     *     loader.<span style="color: #DD4747">loadPurchaseList</span>(purchaseCB -&gt; {
+     *         purchaseCB.query().set...
+     *         purchaseCB.query().addOrderBy_PurchasePrice_Desc();
+     *     }); <span style="color: #3F7E5E">// you can also load nested referrer from here</span>
+     *     <span style="color: #3F7E5E">//}).withNestedList(purchaseLoader -&gt {</span>
+     *     <span style="color: #3F7E5E">//    purchaseLoader.loadPurchasePaymentList(...);</span>
+     *     <span style="color: #3F7E5E">//});</span>
+     *
+     *     <span style="color: #3F7E5E">// you can also pull out foreign table and load its referrer</span>
+     *     <span style="color: #3F7E5E">// (setupSelect of the foreign table should be called)</span>
+     *     <span style="color: #3F7E5E">//loader.pulloutMemberStatus().loadMemberLoginList(...)</span>
+     * }
+     * for (Member member : memberList) {
+     *     List&lt;Purchase&gt; purchaseList = member.<span style="color: #DD4747">getPurchaseList()</span>;
+     *     for (Purchase purchase : purchaseList) {
+     *         ...
+     *     }
+     * }
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has order by FK before callback.
+     * @param summaryProduct The entity of summaryProduct. (NotNull)
+     * @param handler The callback to handle the referrer loader for actually loading referrer. (NotNull)
+     */
+    public void load(SummaryProduct summaryProduct, ReferrerLoaderHandler<LoaderOfSummaryProduct> handler) {
+        xassLRArg(summaryProduct, handler);
+        handler.handle(new LoaderOfSummaryProduct().ready(xnewLRAryLs(summaryProduct), _behaviorSelector));
+    }
+
+    // ===================================================================================
     //                                                                   Pull out Relation
     //                                                                   =================
-
     // ===================================================================================
     //                                                                      Extract Column
     //                                                                      ==============
@@ -362,7 +464,7 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorReadable {
      * @param summaryProduct The entity for insert. (NotNull)
      */
     public void insert(SummaryProduct summaryProduct) {
-        assertEntityNotNull(summaryProduct);
+        assertObjectNotNull("summaryProduct", summaryProduct);
         delegateInsert(summaryProduct, null);
     }
 
@@ -443,18 +545,18 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorReadable {
     }
 
     // ===================================================================================
-    //                                                                     Downcast Helper
-    //                                                                     ===============
-    protected SummaryProduct downcast(Entity et) {
-        return helpEntityDowncastInternally(et, SummaryProduct.class);
-    }
+    //                                                                       Assist Helper
+    //                                                                       =============
+    protected Class<SummaryProduct> typeOfSelectedEntity()
+    { return SummaryProduct.class; }
 
-    protected SummaryProductCB downcast(ConditionBean cb) {
-        return helpConditionBeanDowncastInternally(cb, SummaryProductCB.class);
-    }
+    protected SummaryProduct downcast(Entity et)
+    { return helpEntityDowncastInternally(et, SummaryProduct.class); }
+
+    protected SummaryProductCB downcast(ConditionBean cb)
+    { return helpConditionBeanDowncastInternally(cb, SummaryProductCB.class); }
 
     @SuppressWarnings("unchecked")
-    protected List<SummaryProduct> downcast(List<? extends Entity> ls) {
-        return (List<SummaryProduct>)ls;
-    }
+    protected List<SummaryProduct> downcast(List<? extends Entity> ls)
+    { return (List<SummaryProduct>)ls; }
 }

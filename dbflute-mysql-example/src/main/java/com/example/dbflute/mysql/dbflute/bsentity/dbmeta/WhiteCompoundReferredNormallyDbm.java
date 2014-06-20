@@ -154,7 +154,7 @@ public class WhiteCompoundReferredNormallyDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public WhiteCompoundReferredNormally newEntity() { return new WhiteCompoundReferredNormally(); }
     public WhiteCompoundReferredNormally newMyEntity() { return new WhiteCompoundReferredNormally(); }
 
     // ===================================================================================

@@ -96,11 +96,23 @@ public class BsWhiteImplicitConvStringCB extends AbstractConditionBean {
     /**
      * Accept the query condition of primary key as equal.
      * @param implicitConvStringId : PK, NotNull, VARCHAR(10). (NotNull)
+     * @return this. (NotNull)
+     */
+    public WhiteImplicitConvStringCB acceptPK(String implicitConvStringId) {
+        assertObjectNotNull("implicitConvStringId", implicitConvStringId);
+        BsWhiteImplicitConvStringCB cb = this;
+        cb.query().setImplicitConvStringId_Equal(implicitConvStringId);
+        return (WhiteImplicitConvStringCB)this;
+    }
+
+    /**
+     * Accept the query condition of primary key as equal. (old style)
+     * @param implicitConvStringId : PK, NotNull, VARCHAR(10). (NotNull)
      */
     public void acceptPrimaryKey(String implicitConvStringId) {
         assertObjectNotNull("implicitConvStringId", implicitConvStringId);
         BsWhiteImplicitConvStringCB cb = this;
-        cb.query().setImplicitConvStringId_Equal(implicitConvStringId);;
+        cb.query().setImplicitConvStringId_Equal(implicitConvStringId);
     }
 
     public ConditionBean addOrderBy_PK_Asc() {

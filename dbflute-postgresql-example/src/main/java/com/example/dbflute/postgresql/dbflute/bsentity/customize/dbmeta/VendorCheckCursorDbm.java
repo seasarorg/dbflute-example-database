@@ -433,7 +433,7 @@ public class VendorCheckCursorDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public VendorCheckCursor newEntity() { return new VendorCheckCursor(); }
     public VendorCheckCursor newMyEntity() { return new VendorCheckCursor(); }
 
     // ===================================================================================

@@ -20,11 +20,14 @@ import java.util.List;
 import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
+import org.seasar.dbflute.cbean.chelper.HpSLSExecutor;
+import org.seasar.dbflute.cbean.chelper.HpSLSFunction;
 import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.exception.*;
 import org.seasar.dbflute.optional.OptionalEntity;
 import org.seasar.dbflute.outsidesql.executor.*;
 import com.example.dbflute.mysql.dbflute.exbhv.*;
+import com.example.dbflute.mysql.dbflute.bsbhv.loader.*;
 import com.example.dbflute.mysql.dbflute.exentity.*;
 import com.example.dbflute.mysql.dbflute.bsentity.dbmeta.*;
 import com.example.dbflute.mysql.dbflute.cbean.*;
@@ -78,7 +81,7 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
     // ===================================================================================
     //                                                                              DBMeta
     //                                                                              ======
-    /** @return The instance of DBMeta. (NotNull) */
+    /** {@inheritDoc} */
     public DBMeta getDBMeta() { return WhiteAllInOneClsCategoryDbm.getInstance(); }
 
     /** @return The instance of DBMeta as my table type. (NotNull) */
@@ -88,10 +91,10 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
     //                                                                        New Instance
     //                                                                        ============
     /** {@inheritDoc} */
-    public Entity newEntity() { return newMyEntity(); }
+    public WhiteAllInOneClsCategory newEntity() { return new WhiteAllInOneClsCategory(); }
 
     /** {@inheritDoc} */
-    public ConditionBean newConditionBean() { return newMyConditionBean(); }
+    public WhiteAllInOneClsCategoryCB newConditionBean() { return new WhiteAllInOneClsCategoryCB(); }
 
     /** @return The instance of new entity as my table type. (NotNull) */
     public WhiteAllInOneClsCategory newMyEntity() { return new WhiteAllInOneClsCategory(); }
@@ -114,6 +117,10 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
      * @return The count for the condition. (NotMinus)
      */
     public int selectCount(WhiteAllInOneClsCategoryCB cb) {
+        return facadeSelectCount(cb);
+    }
+
+    protected int facadeSelectCount(WhiteAllInOneClsCategoryCB cb) {
         return doSelectCountUniquely(cb);
     }
 
@@ -129,7 +136,7 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
 
     @Override
     protected int doReadCount(ConditionBean cb) {
-        return selectCount(downcast(cb));
+        return facadeSelectCount(downcast(cb));
     }
 
     // ===================================================================================
@@ -155,7 +162,11 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteAllInOneClsCategory selectEntity(WhiteAllInOneClsCategoryCB cb) {
-        return doSelectEntity(cb, WhiteAllInOneClsCategory.class);
+        return facadeSelectEntity(cb);
+    }
+
+    protected WhiteAllInOneClsCategory facadeSelectEntity(WhiteAllInOneClsCategoryCB cb) {
+        return doSelectEntity(cb, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends WhiteAllInOneClsCategory> ENTITY doSelectEntity(WhiteAllInOneClsCategoryCB cb, Class<ENTITY> tp) {
@@ -170,7 +181,7 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
 
     @Override
     protected Entity doReadEntity(ConditionBean cb) {
-        return selectEntity(downcast(cb));
+        return facadeSelectEntity(downcast(cb));
     }
 
     /**
@@ -189,7 +200,11 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteAllInOneClsCategory selectEntityWithDeletedCheck(WhiteAllInOneClsCategoryCB cb) {
-        return doSelectEntityWithDeletedCheck(cb, WhiteAllInOneClsCategory.class);
+        return facadeSelectEntityWithDeletedCheck(cb);
+    }
+
+    protected WhiteAllInOneClsCategory facadeSelectEntityWithDeletedCheck(WhiteAllInOneClsCategoryCB cb) {
+        return doSelectEntityWithDeletedCheck(cb, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends WhiteAllInOneClsCategory> ENTITY doSelectEntityWithDeletedCheck(WhiteAllInOneClsCategoryCB cb, Class<ENTITY> tp) {
@@ -200,7 +215,7 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
 
     @Override
     protected Entity doReadEntityWithDeletedCheck(ConditionBean cb) {
-        return selectEntityWithDeletedCheck(downcast(cb));
+        return facadeSelectEntityWithDeletedCheck(downcast(cb));
     }
 
     /**
@@ -211,15 +226,19 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteAllInOneClsCategory selectByPKValue(String clsCategoryCode) {
-        return doSelectByPK(clsCategoryCode, WhiteAllInOneClsCategory.class);
+        return facadeSelectByPKValue(clsCategoryCode);
     }
 
-    protected <ENTITY extends WhiteAllInOneClsCategory> ENTITY doSelectByPK(String clsCategoryCode, Class<ENTITY> entityType) {
-        return doSelectEntity(xprepareCBAsPK(clsCategoryCode), entityType);
+    protected WhiteAllInOneClsCategory facadeSelectByPKValue(String clsCategoryCode) {
+        return doSelectByPK(clsCategoryCode, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends WhiteAllInOneClsCategory> OptionalEntity<ENTITY> doSelectOptionalByPK(String clsCategoryCode, Class<ENTITY> entityType) {
-        return createOptionalEntity(doSelectByPK(clsCategoryCode, entityType), clsCategoryCode);
+    protected <ENTITY extends WhiteAllInOneClsCategory> ENTITY doSelectByPK(String clsCategoryCode, Class<ENTITY> tp) {
+        return doSelectEntity(xprepareCBAsPK(clsCategoryCode), tp);
+    }
+
+    protected <ENTITY extends WhiteAllInOneClsCategory> OptionalEntity<ENTITY> doSelectOptionalByPK(String clsCategoryCode, Class<ENTITY> tp) {
+        return createOptionalEntity(doSelectByPK(clsCategoryCode, tp), clsCategoryCode);
     }
 
     /**
@@ -231,17 +250,16 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteAllInOneClsCategory selectByPKValueWithDeletedCheck(String clsCategoryCode) {
-        return doSelectByPKWithDeletedCheck(clsCategoryCode, WhiteAllInOneClsCategory.class);
+        return doSelectByPKWithDeletedCheck(clsCategoryCode, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends WhiteAllInOneClsCategory> ENTITY doSelectByPKWithDeletedCheck(String clsCategoryCode, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(clsCategoryCode), entityType);
+    protected <ENTITY extends WhiteAllInOneClsCategory> ENTITY doSelectByPKWithDeletedCheck(String clsCategoryCode, Class<ENTITY> tp) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(clsCategoryCode), tp);
     }
 
     protected WhiteAllInOneClsCategoryCB xprepareCBAsPK(String clsCategoryCode) {
         assertObjectNotNull("clsCategoryCode", clsCategoryCode);
-        WhiteAllInOneClsCategoryCB cb = newMyConditionBean(); cb.acceptPrimaryKey(clsCategoryCode);
-        return cb;
+        return newConditionBean().acceptPK(clsCategoryCode);
     }
 
     // ===================================================================================
@@ -263,7 +281,11 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
      * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public ListResultBean<WhiteAllInOneClsCategory> selectList(WhiteAllInOneClsCategoryCB cb) {
-        return doSelectList(cb, WhiteAllInOneClsCategory.class);
+        return facadeSelectList(cb);
+    }
+
+    protected ListResultBean<WhiteAllInOneClsCategory> facadeSelectList(WhiteAllInOneClsCategoryCB cb) {
+        return doSelectList(cb, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends WhiteAllInOneClsCategory> ListResultBean<ENTITY> doSelectList(WhiteAllInOneClsCategoryCB cb, Class<ENTITY> tp) {
@@ -275,7 +297,7 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
 
     @Override
     protected ListResultBean<? extends Entity> doReadList(ConditionBean cb) {
-        return selectList(downcast(cb));
+        return facadeSelectList(downcast(cb));
     }
 
     // ===================================================================================
@@ -304,7 +326,11 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
      * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public PagingResultBean<WhiteAllInOneClsCategory> selectPage(WhiteAllInOneClsCategoryCB cb) {
-        return doSelectPage(cb, WhiteAllInOneClsCategory.class);
+        return facadeSelectPage(cb);
+    }
+
+    protected PagingResultBean<WhiteAllInOneClsCategory> facadeSelectPage(WhiteAllInOneClsCategoryCB cb) {
+        return doSelectPage(cb, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends WhiteAllInOneClsCategory> PagingResultBean<ENTITY> doSelectPage(WhiteAllInOneClsCategoryCB cb, Class<ENTITY> tp) {
@@ -317,7 +343,7 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
 
     @Override
     protected PagingResultBean<? extends Entity> doReadPage(ConditionBean cb) {
-        return selectPage(downcast(cb));
+        return facadeSelectPage(downcast(cb));
     }
 
     // ===================================================================================
@@ -338,15 +364,19 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
      * @param entityRowHandler The handler of entity row of WhiteAllInOneClsCategory. (NotNull)
      */
     public void selectCursor(WhiteAllInOneClsCategoryCB cb, EntityRowHandler<WhiteAllInOneClsCategory> entityRowHandler) {
-        doSelectCursor(cb, entityRowHandler, WhiteAllInOneClsCategory.class);
+        facadeSelectCursor(cb, entityRowHandler);
+    }
+
+    protected void facadeSelectCursor(WhiteAllInOneClsCategoryCB cb, EntityRowHandler<WhiteAllInOneClsCategory> entityRowHandler) {
+        doSelectCursor(cb, entityRowHandler, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends WhiteAllInOneClsCategory> void doSelectCursor(WhiteAllInOneClsCategoryCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
         assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
         helpSelectCursorInternally(cb, handler, tp, new InternalSelectCursorCallback<ENTITY, WhiteAllInOneClsCategoryCB>() {
-            public void callbackSelectCursor(WhiteAllInOneClsCategoryCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) { delegateSelectCursor(cb, handler, tp); }
-            public List<ENTITY> callbackSelectList(WhiteAllInOneClsCategoryCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
+            public void callbackSelectCursor(WhiteAllInOneClsCategoryCB lcb, EntityRowHandler<ENTITY> lhandler, Class<ENTITY> ltp) { delegateSelectCursor(lcb, lhandler, ltp); }
+            public List<ENTITY> callbackSelectList(WhiteAllInOneClsCategoryCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); }
         });
     }
 
@@ -368,22 +398,23 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
      * @param resultType The type of result. (NotNull)
      * @return The scalar function object to specify function for scalar value. (NotNull)
      */
-    public <RESULT> SLFunction<WhiteAllInOneClsCategoryCB, RESULT> scalarSelect(Class<RESULT> resultType) {
-        return doScalarSelect(resultType, newMyConditionBean());
+    public <RESULT> HpSLSFunction<WhiteAllInOneClsCategoryCB, RESULT> scalarSelect(Class<RESULT> resultType) {
+        return facadeScalarSelect(resultType);
     }
 
-    protected <RESULT, CB extends WhiteAllInOneClsCategoryCB> SLFunction<CB, RESULT> doScalarSelect(Class<RESULT> tp, CB cb) {
+    protected <RESULT> HpSLSFunction<WhiteAllInOneClsCategoryCB, RESULT> facadeScalarSelect(Class<RESULT> resultType) {
+        return doScalarSelect(resultType, newConditionBean());
+    }
+
+    protected <RESULT, CB extends WhiteAllInOneClsCategoryCB> HpSLSFunction<CB, RESULT> doScalarSelect(final Class<RESULT> tp, final CB cb) {
         assertObjectNotNull("resultType", tp); assertCBStateValid(cb);
         cb.xsetupForScalarSelect(); cb.getSqlClause().disableSelectIndex(); // for when you use union
-        return createSLFunction(cb, tp);
+        HpSLSExecutor<CB, RESULT> executor = createHpSLSExecutor(); // variable to resolve generic
+        return createSLSFunction(cb, tp, executor);
     }
 
-    protected <RESULT, CB extends WhiteAllInOneClsCategoryCB> SLFunction<CB, RESULT> createSLFunction(CB cb, Class<RESULT> tp) {
-        return new SLFunction<CB, RESULT>(cb, tp);
-    }
-
-    protected <RESULT> SLFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) {
-        return doScalarSelect(tp, newMyConditionBean());
+    protected <RESULT> HpSLSFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) {
+        return facadeScalarSelect(tp);
     }
 
     // ===================================================================================
@@ -398,6 +429,78 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
     // ===================================================================================
     //                                                                       Load Referrer
     //                                                                       =============
+    /**
+     * Load referrer by the the referrer loader. <br />
+     * <pre>
+     * MemberCB cb = new MemberCB();
+     * cb.query().set...
+     * List&lt;Member&gt; memberList = memberBhv.selectList(cb);
+     * memberBhv.<span style="color: #DD4747">load</span>(memberList, loader -&gt; {
+     *     loader.<span style="color: #DD4747">loadPurchaseList</span>(purchaseCB -&gt; {
+     *         purchaseCB.query().set...
+     *         purchaseCB.query().addOrderBy_PurchasePrice_Desc();
+     *     }); <span style="color: #3F7E5E">// you can also load nested referrer from here</span>
+     *     <span style="color: #3F7E5E">//}).withNestedList(purchaseLoader -&gt {</span>
+     *     <span style="color: #3F7E5E">//    purchaseLoader.loadPurchasePaymentList(...);</span>
+     *     <span style="color: #3F7E5E">//});</span>
+     *
+     *     <span style="color: #3F7E5E">// you can also pull out foreign table and load its referrer</span>
+     *     <span style="color: #3F7E5E">// (setupSelect of the foreign table should be called)</span>
+     *     <span style="color: #3F7E5E">//loader.pulloutMemberStatus().loadMemberLoginList(...)</span>
+     * }
+     * for (Member member : memberList) {
+     *     List&lt;Purchase&gt; purchaseList = member.<span style="color: #DD4747">getPurchaseList()</span>;
+     *     for (Purchase purchase : purchaseList) {
+     *         ...
+     *     }
+     * }
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has order by FK before callback.
+     * @param whiteAllInOneClsCategoryList The entity list of whiteAllInOneClsCategory. (NotNull)
+     * @param handler The callback to handle the referrer loader for actually loading referrer. (NotNull)
+     */
+    public void load(List<WhiteAllInOneClsCategory> whiteAllInOneClsCategoryList, ReferrerLoaderHandler<LoaderOfWhiteAllInOneClsCategory> handler) {
+        xassLRArg(whiteAllInOneClsCategoryList, handler);
+        handler.handle(new LoaderOfWhiteAllInOneClsCategory().ready(whiteAllInOneClsCategoryList, _behaviorSelector));
+    }
+
+    /**
+     * Load referrer of ${referrer.referrerJavaBeansRulePropertyName} by the referrer loader. <br />
+     * <pre>
+     * MemberCB cb = new MemberCB();
+     * cb.query().set...
+     * Member member = memberBhv.selectEntityWithDeletedCheck(cb);
+     * memberBhv.<span style="color: #DD4747">load</span>(member, loader -&gt; {
+     *     loader.<span style="color: #DD4747">loadPurchaseList</span>(purchaseCB -&gt; {
+     *         purchaseCB.query().set...
+     *         purchaseCB.query().addOrderBy_PurchasePrice_Desc();
+     *     }); <span style="color: #3F7E5E">// you can also load nested referrer from here</span>
+     *     <span style="color: #3F7E5E">//}).withNestedList(purchaseLoader -&gt {</span>
+     *     <span style="color: #3F7E5E">//    purchaseLoader.loadPurchasePaymentList(...);</span>
+     *     <span style="color: #3F7E5E">//});</span>
+     *
+     *     <span style="color: #3F7E5E">// you can also pull out foreign table and load its referrer</span>
+     *     <span style="color: #3F7E5E">// (setupSelect of the foreign table should be called)</span>
+     *     <span style="color: #3F7E5E">//loader.pulloutMemberStatus().loadMemberLoginList(...)</span>
+     * }
+     * for (Member member : memberList) {
+     *     List&lt;Purchase&gt; purchaseList = member.<span style="color: #DD4747">getPurchaseList()</span>;
+     *     for (Purchase purchase : purchaseList) {
+     *         ...
+     *     }
+     * }
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has order by FK before callback.
+     * @param whiteAllInOneClsCategory The entity of whiteAllInOneClsCategory. (NotNull)
+     * @param handler The callback to handle the referrer loader for actually loading referrer. (NotNull)
+     */
+    public void load(WhiteAllInOneClsCategory whiteAllInOneClsCategory, ReferrerLoaderHandler<LoaderOfWhiteAllInOneClsCategory> handler) {
+        xassLRArg(whiteAllInOneClsCategory, handler);
+        handler.handle(new LoaderOfWhiteAllInOneClsCategory().ready(xnewLRAryLs(whiteAllInOneClsCategory), _behaviorSelector));
+    }
+
     /**
      * Load referrer of whiteAllInOneClsElementList by the set-upper of referrer. <br />
      * white_all_in_one_cls_element by CLS_CATEGORY_CODE, named 'whiteAllInOneClsElementList'.
@@ -426,7 +529,7 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
      * @param setupper The callback to set up referrer condition-bean for loading referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public NestedReferrerLoader<WhiteAllInOneClsElement> loadWhiteAllInOneClsElementList(List<WhiteAllInOneClsCategory> whiteAllInOneClsCategoryList, ConditionBeanSetupper<WhiteAllInOneClsElementCB> setupper) {
+    public NestedReferrerListGateway<WhiteAllInOneClsElement> loadWhiteAllInOneClsElementList(List<WhiteAllInOneClsCategory> whiteAllInOneClsCategoryList, ConditionBeanSetupper<WhiteAllInOneClsElementCB> setupper) {
         xassLRArg(whiteAllInOneClsCategoryList, setupper);
         return doLoadWhiteAllInOneClsElementList(whiteAllInOneClsCategoryList, new LoadReferrerOption<WhiteAllInOneClsElementCB, WhiteAllInOneClsElement>().xinit(setupper));
     }
@@ -457,7 +560,7 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
      * @param setupper The callback to set up referrer condition-bean for loading referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public NestedReferrerLoader<WhiteAllInOneClsElement> loadWhiteAllInOneClsElementList(WhiteAllInOneClsCategory whiteAllInOneClsCategory, ConditionBeanSetupper<WhiteAllInOneClsElementCB> setupper) {
+    public NestedReferrerListGateway<WhiteAllInOneClsElement> loadWhiteAllInOneClsElementList(WhiteAllInOneClsCategory whiteAllInOneClsCategory, ConditionBeanSetupper<WhiteAllInOneClsElementCB> setupper) {
         xassLRArg(whiteAllInOneClsCategory, setupper);
         return doLoadWhiteAllInOneClsElementList(xnewLRLs(whiteAllInOneClsCategory), new LoadReferrerOption<WhiteAllInOneClsElementCB, WhiteAllInOneClsElement>().xinit(setupper));
     }
@@ -468,7 +571,7 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
      * @param loadReferrerOption The option of load-referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public NestedReferrerLoader<WhiteAllInOneClsElement> loadWhiteAllInOneClsElementList(WhiteAllInOneClsCategory whiteAllInOneClsCategory, LoadReferrerOption<WhiteAllInOneClsElementCB, WhiteAllInOneClsElement> loadReferrerOption) {
+    public NestedReferrerListGateway<WhiteAllInOneClsElement> loadWhiteAllInOneClsElementList(WhiteAllInOneClsCategory whiteAllInOneClsCategory, LoadReferrerOption<WhiteAllInOneClsElementCB, WhiteAllInOneClsElement> loadReferrerOption) {
         xassLRArg(whiteAllInOneClsCategory, loadReferrerOption);
         return loadWhiteAllInOneClsElementList(xnewLRLs(whiteAllInOneClsCategory), loadReferrerOption);
     }
@@ -480,20 +583,20 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
     @SuppressWarnings("unchecked")
-    public NestedReferrerLoader<WhiteAllInOneClsElement> loadWhiteAllInOneClsElementList(List<WhiteAllInOneClsCategory> whiteAllInOneClsCategoryList, LoadReferrerOption<WhiteAllInOneClsElementCB, WhiteAllInOneClsElement> loadReferrerOption) {
+    public NestedReferrerListGateway<WhiteAllInOneClsElement> loadWhiteAllInOneClsElementList(List<WhiteAllInOneClsCategory> whiteAllInOneClsCategoryList, LoadReferrerOption<WhiteAllInOneClsElementCB, WhiteAllInOneClsElement> loadReferrerOption) {
         xassLRArg(whiteAllInOneClsCategoryList, loadReferrerOption);
-        if (whiteAllInOneClsCategoryList.isEmpty()) { return (NestedReferrerLoader<WhiteAllInOneClsElement>)EMPTY_LOADER; }
+        if (whiteAllInOneClsCategoryList.isEmpty()) { return (NestedReferrerListGateway<WhiteAllInOneClsElement>)EMPTY_NREF_LGWAY; }
         return doLoadWhiteAllInOneClsElementList(whiteAllInOneClsCategoryList, loadReferrerOption);
     }
 
-    protected NestedReferrerLoader<WhiteAllInOneClsElement> doLoadWhiteAllInOneClsElementList(List<WhiteAllInOneClsCategory> whiteAllInOneClsCategoryList, LoadReferrerOption<WhiteAllInOneClsElementCB, WhiteAllInOneClsElement> option) {
+    protected NestedReferrerListGateway<WhiteAllInOneClsElement> doLoadWhiteAllInOneClsElementList(List<WhiteAllInOneClsCategory> whiteAllInOneClsCategoryList, LoadReferrerOption<WhiteAllInOneClsElementCB, WhiteAllInOneClsElement> option) {
         final WhiteAllInOneClsElementBhv referrerBhv = xgetBSFLR().select(WhiteAllInOneClsElementBhv.class);
         return helpLoadReferrerInternally(whiteAllInOneClsCategoryList, option, new InternalLoadReferrerCallback<WhiteAllInOneClsCategory, String, WhiteAllInOneClsElementCB, WhiteAllInOneClsElement>() {
             public String getPKVal(WhiteAllInOneClsCategory et)
             { return et.getClsCategoryCode(); }
             public void setRfLs(WhiteAllInOneClsCategory et, List<WhiteAllInOneClsElement> ls)
             { et.setWhiteAllInOneClsElementList(ls); }
-            public WhiteAllInOneClsElementCB newMyCB() { return referrerBhv.newMyConditionBean(); }
+            public WhiteAllInOneClsElementCB newMyCB() { return referrerBhv.newConditionBean(); }
             public void qyFKIn(WhiteAllInOneClsElementCB cb, List<String> ls)
             { cb.query().setClsCategoryCode_InScope(ls); }
             public void qyOdFKAsc(WhiteAllInOneClsElementCB cb) { cb.query().addOrderBy_ClsCategoryCode_Asc(); }
@@ -509,7 +612,6 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
     // ===================================================================================
     //                                                                   Pull out Relation
     //                                                                   =================
-
     // ===================================================================================
     //                                                                      Extract Column
     //                                                                      ==============
@@ -541,17 +643,17 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
      * ... = whiteAllInOneClsCategory.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * <p>While, when the entity is created by select, all columns are registered.</p>
-     * @param whiteAllInOneClsCategory The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
+     * @param whiteAllInOneClsCategory The entity of insert. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
      * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insert(WhiteAllInOneClsCategory whiteAllInOneClsCategory) {
         doInsert(whiteAllInOneClsCategory, null);
     }
 
-    protected void doInsert(WhiteAllInOneClsCategory whiteAllInOneClsCategory, InsertOption<WhiteAllInOneClsCategoryCB> op) {
-        assertObjectNotNull("whiteAllInOneClsCategory", whiteAllInOneClsCategory);
+    protected void doInsert(WhiteAllInOneClsCategory et, InsertOption<WhiteAllInOneClsCategoryCB> op) {
+        assertObjectNotNull("whiteAllInOneClsCategory", et);
         prepareInsertOption(op);
-        delegateInsert(whiteAllInOneClsCategory, op);
+        delegateInsert(et, op);
     }
 
     protected void prepareInsertOption(InsertOption<WhiteAllInOneClsCategoryCB> op) {
@@ -564,8 +666,7 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
 
     @Override
     protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) {
-        if (op == null) { insert(downcast(et)); }
-        else { varyingInsert(downcast(et), downcast(op)); }
+        doInsert(downcast(et), downcast(op));
     }
 
     /**
@@ -577,7 +678,7 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
      * <span style="color: #3F7E5E">//whiteAllInOneClsCategory.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//whiteAllInOneClsCategory.set...;</span>
-     * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
+     * <span style="color: #3F7E5E">// if exclusive control, the value of concurrency column is required</span>
      * whiteAllInOneClsCategory.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     whiteAllInOneClsCategoryBhv.<span style="color: #DD4747">update</span>(whiteAllInOneClsCategory);
@@ -585,49 +686,38 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
      *     ...
      * }
      * </pre>
-     * @param whiteAllInOneClsCategory The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
+     * @param whiteAllInOneClsCategory The entity of update. (NotNull, PrimaryKeyNotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
-    public void update(final WhiteAllInOneClsCategory whiteAllInOneClsCategory) {
+    public void update(WhiteAllInOneClsCategory whiteAllInOneClsCategory) {
         doUpdate(whiteAllInOneClsCategory, null);
     }
 
-    protected void doUpdate(WhiteAllInOneClsCategory whiteAllInOneClsCategory, final UpdateOption<WhiteAllInOneClsCategoryCB> op) {
-        assertObjectNotNull("whiteAllInOneClsCategory", whiteAllInOneClsCategory);
+    protected void doUpdate(WhiteAllInOneClsCategory et, final UpdateOption<WhiteAllInOneClsCategoryCB> op) {
+        assertObjectNotNull("whiteAllInOneClsCategory", et);
         prepareUpdateOption(op);
-        helpUpdateInternally(whiteAllInOneClsCategory, new InternalUpdateCallback<WhiteAllInOneClsCategory>() {
-            public int callbackDelegateUpdate(WhiteAllInOneClsCategory et) { return delegateUpdate(et, op); } });
+        helpUpdateInternally(et, new InternalUpdateCallback<WhiteAllInOneClsCategory>() {
+            public int callbackDelegateUpdate(WhiteAllInOneClsCategory let) { return delegateUpdate(let, op); } });
     }
 
     protected void prepareUpdateOption(UpdateOption<WhiteAllInOneClsCategoryCB> op) {
         if (op == null) { return; }
         assertUpdateOptionStatus(op);
-        if (op.hasSelfSpecification()) {
-            op.resolveSelfSpecification(createCBForVaryingUpdate());
-        }
-        if (op.hasSpecifiedUpdateColumn()) {
-            op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate());
-        }
+        if (op.hasSelfSpecification()) { op.resolveSelfSpecification(createCBForVaryingUpdate()); }
+        if (op.hasSpecifiedUpdateColumn()) { op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate()); }
     }
 
-    protected WhiteAllInOneClsCategoryCB createCBForVaryingUpdate() {
-        WhiteAllInOneClsCategoryCB cb = newMyConditionBean();
-        cb.xsetupForVaryingUpdate();
-        return cb;
-    }
+    protected WhiteAllInOneClsCategoryCB createCBForVaryingUpdate()
+    { WhiteAllInOneClsCategoryCB cb = newConditionBean(); cb.xsetupForVaryingUpdate(); return cb; }
 
-    protected WhiteAllInOneClsCategoryCB createCBForSpecifiedUpdate() {
-        WhiteAllInOneClsCategoryCB cb = newMyConditionBean();
-        cb.xsetupForSpecifiedUpdate();
-        return cb;
-    }
+    protected WhiteAllInOneClsCategoryCB createCBForSpecifiedUpdate()
+    { WhiteAllInOneClsCategoryCB cb = newConditionBean(); cb.xsetupForSpecifiedUpdate(); return cb; }
 
     @Override
     protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) {
-        if (op == null) { update(downcast(et)); }
-        else { varyingUpdate(downcast(et), downcast(op)); }
+        doUpdate(downcast(et), downcast(op));
     }
 
     @Override
@@ -639,32 +729,28 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br />
      * <p><span style="color: #DD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
-     * @param whiteAllInOneClsCategory The entity of insert or update target. (NotNull)
+     * @param whiteAllInOneClsCategory The entity of insert or update. (NotNull, ...depends on insert or update)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insertOrUpdate(WhiteAllInOneClsCategory whiteAllInOneClsCategory) {
-        doInesrtOrUpdate(whiteAllInOneClsCategory, null, null);
+        doInsertOrUpdate(whiteAllInOneClsCategory, null, null);
     }
 
-    protected void doInesrtOrUpdate(WhiteAllInOneClsCategory whiteAllInOneClsCategory, final InsertOption<WhiteAllInOneClsCategoryCB> iop, final UpdateOption<WhiteAllInOneClsCategoryCB> uop) {
-        helpInsertOrUpdateInternally(whiteAllInOneClsCategory, new InternalInsertOrUpdateCallback<WhiteAllInOneClsCategory, WhiteAllInOneClsCategoryCB>() {
-            public void callbackInsert(WhiteAllInOneClsCategory et) { doInsert(et, iop); }
-            public void callbackUpdate(WhiteAllInOneClsCategory et) { doUpdate(et, uop); }
-            public WhiteAllInOneClsCategoryCB callbackNewMyConditionBean() { return newMyConditionBean(); }
+    protected void doInsertOrUpdate(WhiteAllInOneClsCategory et, final InsertOption<WhiteAllInOneClsCategoryCB> iop, final UpdateOption<WhiteAllInOneClsCategoryCB> uop) {
+        assertObjectNotNull("whiteAllInOneClsCategory", et);
+        helpInsertOrUpdateInternally(et, new InternalInsertOrUpdateCallback<WhiteAllInOneClsCategory, WhiteAllInOneClsCategoryCB>() {
+            public void callbackInsert(WhiteAllInOneClsCategory let) { doInsert(let, iop); }
+            public void callbackUpdate(WhiteAllInOneClsCategory let) { doUpdate(let, uop); }
+            public WhiteAllInOneClsCategoryCB callbackNewMyConditionBean() { return newConditionBean(); }
             public int callbackSelectCount(WhiteAllInOneClsCategoryCB cb) { return selectCount(cb); }
         });
     }
 
     @Override
     protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
-        if (iop == null && uop == null) { insertOrUpdate(downcast(et)); }
-        else {
-            iop = iop != null ? iop : new InsertOption<WhiteAllInOneClsCategoryCB>();
-            uop = uop != null ? uop : new UpdateOption<WhiteAllInOneClsCategoryCB>();
-            varyingInsertOrUpdate(downcast(et), downcast(iop), downcast(uop));
-        }
+        doInsertOrUpdate(downcast(et), downcast(iop), downcast(uop));
     }
 
     @Override
@@ -677,7 +763,7 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
      * <pre>
      * WhiteAllInOneClsCategory whiteAllInOneClsCategory = new WhiteAllInOneClsCategory();
      * whiteAllInOneClsCategory.setPK...(value); <span style="color: #3F7E5E">// required</span>
-     * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
+     * <span style="color: #3F7E5E">// if exclusive control, the value of concurrency column is required</span>
      * whiteAllInOneClsCategory.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     whiteAllInOneClsCategoryBhv.<span style="color: #DD4747">delete</span>(whiteAllInOneClsCategory);
@@ -685,7 +771,7 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
      *     ...
      * }
      * </pre>
-     * @param whiteAllInOneClsCategory The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
+     * @param whiteAllInOneClsCategory The entity of delete. (NotNull, PrimaryKeyNotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      */
@@ -693,22 +779,19 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
         doDelete(whiteAllInOneClsCategory, null);
     }
 
-    protected void doDelete(WhiteAllInOneClsCategory whiteAllInOneClsCategory, final DeleteOption<WhiteAllInOneClsCategoryCB> op) {
-        assertObjectNotNull("whiteAllInOneClsCategory", whiteAllInOneClsCategory);
+    protected void doDelete(WhiteAllInOneClsCategory et, final DeleteOption<WhiteAllInOneClsCategoryCB> op) {
+        assertObjectNotNull("whiteAllInOneClsCategory", et);
         prepareDeleteOption(op);
-        helpDeleteInternally(whiteAllInOneClsCategory, new InternalDeleteCallback<WhiteAllInOneClsCategory>() {
-            public int callbackDelegateDelete(WhiteAllInOneClsCategory et) { return delegateDelete(et, op); } });
+        helpDeleteInternally(et, new InternalDeleteCallback<WhiteAllInOneClsCategory>() {
+            public int callbackDelegateDelete(WhiteAllInOneClsCategory let) { return delegateDelete(let, op); } });
     }
 
-    protected void prepareDeleteOption(DeleteOption<WhiteAllInOneClsCategoryCB> op) {
-        if (op == null) { return; }
-        assertDeleteOptionStatus(op);
-    }
+    protected void prepareDeleteOption(DeleteOption<WhiteAllInOneClsCategoryCB> op)
+    { if (op != null) { assertDeleteOptionStatus(op); } }
 
     @Override
     protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) {
-        if (op == null) { delete(downcast(et)); }
-        else { varyingDelete(downcast(et), downcast(op)); }
+        doDelete(downcast(et), downcast(op));
     }
 
     @Override
@@ -744,26 +827,25 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
      * @return The array of inserted count. (NotNull, EmptyAllowed)
      */
     public int[] batchInsert(List<WhiteAllInOneClsCategory> whiteAllInOneClsCategoryList) {
-        InsertOption<WhiteAllInOneClsCategoryCB> op = createInsertUpdateOption();
-        return doBatchInsert(whiteAllInOneClsCategoryList, op);
+        return doBatchInsert(whiteAllInOneClsCategoryList, null);
     }
 
-    protected int[] doBatchInsert(List<WhiteAllInOneClsCategory> whiteAllInOneClsCategoryList, InsertOption<WhiteAllInOneClsCategoryCB> op) {
-        assertObjectNotNull("whiteAllInOneClsCategoryList", whiteAllInOneClsCategoryList);
-        prepareBatchInsertOption(whiteAllInOneClsCategoryList, op);
-        return delegateBatchInsert(whiteAllInOneClsCategoryList, op);
+    protected int[] doBatchInsert(List<WhiteAllInOneClsCategory> ls, InsertOption<WhiteAllInOneClsCategoryCB> op) {
+        assertObjectNotNull("whiteAllInOneClsCategoryList", ls);
+        InsertOption<WhiteAllInOneClsCategoryCB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainInsertOption(); }
+        prepareBatchInsertOption(ls, rlop); // required
+        return delegateBatchInsert(ls, rlop);
     }
 
-    protected void prepareBatchInsertOption(List<WhiteAllInOneClsCategory> whiteAllInOneClsCategoryList, InsertOption<WhiteAllInOneClsCategoryCB> op) {
+    protected void prepareBatchInsertOption(List<WhiteAllInOneClsCategory> ls, InsertOption<WhiteAllInOneClsCategoryCB> op) {
         op.xallowInsertColumnModifiedPropertiesFragmented();
-        op.xacceptInsertColumnModifiedPropertiesIfNeeds(whiteAllInOneClsCategoryList);
+        op.xacceptInsertColumnModifiedPropertiesIfNeeds(ls);
         prepareInsertOption(op);
     }
 
     @Override
     protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) {
-        if (op == null) { return batchInsert(downcast(ls)); }
-        else { return varyingBatchInsert(downcast(ls), downcast(op)); }
+        return doBatchInsert(downcast(ls), downcast(op));
     }
 
     /**
@@ -791,25 +873,24 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<WhiteAllInOneClsCategory> whiteAllInOneClsCategoryList) {
-        UpdateOption<WhiteAllInOneClsCategoryCB> op = createPlainUpdateOption();
-        return doBatchUpdate(whiteAllInOneClsCategoryList, op);
+        return doBatchUpdate(whiteAllInOneClsCategoryList, null);
     }
 
-    protected int[] doBatchUpdate(List<WhiteAllInOneClsCategory> whiteAllInOneClsCategoryList, UpdateOption<WhiteAllInOneClsCategoryCB> op) {
-        assertObjectNotNull("whiteAllInOneClsCategoryList", whiteAllInOneClsCategoryList);
-        prepareBatchUpdateOption(whiteAllInOneClsCategoryList, op);
-        return delegateBatchUpdate(whiteAllInOneClsCategoryList, op);
+    protected int[] doBatchUpdate(List<WhiteAllInOneClsCategory> ls, UpdateOption<WhiteAllInOneClsCategoryCB> op) {
+        assertObjectNotNull("whiteAllInOneClsCategoryList", ls);
+        UpdateOption<WhiteAllInOneClsCategoryCB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainUpdateOption(); }
+        prepareBatchUpdateOption(ls, rlop); // required
+        return delegateBatchUpdate(ls, rlop);
     }
 
-    protected void prepareBatchUpdateOption(List<WhiteAllInOneClsCategory> whiteAllInOneClsCategoryList, UpdateOption<WhiteAllInOneClsCategoryCB> op) {
-        op.xacceptUpdateColumnModifiedPropertiesIfNeeds(whiteAllInOneClsCategoryList);
+    protected void prepareBatchUpdateOption(List<WhiteAllInOneClsCategory> ls, UpdateOption<WhiteAllInOneClsCategoryCB> op) {
+        op.xacceptUpdateColumnModifiedPropertiesIfNeeds(ls);
         prepareUpdateOption(op);
     }
 
     @Override
     protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) {
-        if (op == null) { return batchUpdate(downcast(ls)); }
-        else { return varyingBatchUpdate(downcast(ls), downcast(op)); }
+        return doBatchUpdate(downcast(ls), downcast(op));
     }
 
     /**
@@ -860,16 +941,15 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
         return doBatchDelete(whiteAllInOneClsCategoryList, null);
     }
 
-    protected int[] doBatchDelete(List<WhiteAllInOneClsCategory> whiteAllInOneClsCategoryList, DeleteOption<WhiteAllInOneClsCategoryCB> op) {
-        assertObjectNotNull("whiteAllInOneClsCategoryList", whiteAllInOneClsCategoryList);
+    protected int[] doBatchDelete(List<WhiteAllInOneClsCategory> ls, DeleteOption<WhiteAllInOneClsCategoryCB> op) {
+        assertObjectNotNull("whiteAllInOneClsCategoryList", ls);
         prepareDeleteOption(op);
-        return delegateBatchDelete(whiteAllInOneClsCategoryList, op);
+        return delegateBatchDelete(ls, op);
     }
 
     @Override
     protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) {
-        if (op == null) { return batchDelete(downcast(ls)); }
-        else { return varyingBatchDelete(downcast(ls), downcast(op)); }
+        return doBatchDelete(downcast(ls), downcast(op));
     }
 
     @Override
@@ -896,7 +976,7 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
      *         <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
      *         <span style="color: #3F7E5E">//entity.setRegisterUser(value);</span>
      *         <span style="color: #3F7E5E">//entity.set...;</span>
-     *         <span style="color: #3F7E5E">// you don't need to set a value of exclusive control column</span>
+     *         <span style="color: #3F7E5E">// you don't need to set a value of concurrency column</span>
      *         <span style="color: #3F7E5E">//entity.setVersionNo(value);</span>
      *
      *         return cb;
@@ -913,21 +993,17 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
     protected int doQueryInsert(QueryInsertSetupper<WhiteAllInOneClsCategory, WhiteAllInOneClsCategoryCB> sp, InsertOption<WhiteAllInOneClsCategoryCB> op) {
         assertObjectNotNull("setupper", sp);
         prepareInsertOption(op);
-        WhiteAllInOneClsCategory e = new WhiteAllInOneClsCategory();
+        WhiteAllInOneClsCategory et = newEntity();
         WhiteAllInOneClsCategoryCB cb = createCBForQueryInsert();
-        return delegateQueryInsert(e, cb, sp.setup(e, cb), op);
+        return delegateQueryInsert(et, cb, sp.setup(et, cb), op);
     }
 
-    protected WhiteAllInOneClsCategoryCB createCBForQueryInsert() {
-        WhiteAllInOneClsCategoryCB cb = newMyConditionBean();
-        cb.xsetupForQueryInsert();
-        return cb;
-    }
+    protected WhiteAllInOneClsCategoryCB createCBForQueryInsert()
+    { WhiteAllInOneClsCategoryCB cb = newConditionBean(); cb.xsetupForQueryInsert(); return cb; }
 
     @Override
-    protected int doRangeCreate(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> setupper, InsertOption<? extends ConditionBean> option) {
-        if (option == null) { return queryInsert(downcast(setupper)); }
-        else { return varyingQueryInsert(downcast(setupper), downcast(option)); }
+    protected int doRangeCreate(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> setupper, InsertOption<? extends ConditionBean> op) {
+        return doQueryInsert(downcast(setupper), downcast(op));
     }
 
     /**
@@ -940,7 +1016,7 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
      * <span style="color: #3F7E5E">//whiteAllInOneClsCategory.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//whiteAllInOneClsCategory.set...;</span>
-     * <span style="color: #3F7E5E">// you don't need to set a value of exclusive control column</span>
+     * <span style="color: #3F7E5E">// you don't need to set a value of concurrency column</span>
      * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
      * <span style="color: #3F7E5E">//whiteAllInOneClsCategory.setVersionNo(value);</span>
      * WhiteAllInOneClsCategoryCB cb = new WhiteAllInOneClsCategoryCB();
@@ -956,16 +1032,15 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
         return doQueryUpdate(whiteAllInOneClsCategory, cb, null);
     }
 
-    protected int doQueryUpdate(WhiteAllInOneClsCategory whiteAllInOneClsCategory, WhiteAllInOneClsCategoryCB cb, UpdateOption<WhiteAllInOneClsCategoryCB> op) {
-        assertObjectNotNull("whiteAllInOneClsCategory", whiteAllInOneClsCategory); assertCBStateValid(cb);
+    protected int doQueryUpdate(WhiteAllInOneClsCategory et, WhiteAllInOneClsCategoryCB cb, UpdateOption<WhiteAllInOneClsCategoryCB> op) {
+        assertObjectNotNull("whiteAllInOneClsCategory", et); assertCBStateValid(cb);
         prepareUpdateOption(op);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(whiteAllInOneClsCategory, cb, op) : 0;
+        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(et, cb, op) : 0;
     }
 
     @Override
     protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op) {
-        if (op == null) { return queryUpdate(downcast(et), (WhiteAllInOneClsCategoryCB)cb); }
-        else { return varyingQueryUpdate(downcast(et), (WhiteAllInOneClsCategoryCB)cb, downcast(op)); }
+        return doQueryUpdate(downcast(et), downcast(cb), downcast(op));
     }
 
     /**
@@ -991,8 +1066,7 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
 
     @Override
     protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) {
-        if (op == null) { return queryDelete((WhiteAllInOneClsCategoryCB)cb); }
-        else { return varyingQueryDelete((WhiteAllInOneClsCategoryCB)cb, downcast(op)); }
+        return doQueryDelete(downcast(cb), downcast(op));
     }
 
     // ===================================================================================
@@ -1016,7 +1090,7 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
      * whiteAllInOneClsCategoryBhv.<span style="color: #DD4747">varyingInsert</span>(whiteAllInOneClsCategory, option);
      * ... = whiteAllInOneClsCategory.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
-     * @param whiteAllInOneClsCategory The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
+     * @param whiteAllInOneClsCategory The entity of insert. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
      * @param option The option of insert for varying requests. (NotNull)
      * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
@@ -1033,7 +1107,7 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
      * WhiteAllInOneClsCategory whiteAllInOneClsCategory = new WhiteAllInOneClsCategory();
      * whiteAllInOneClsCategory.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * whiteAllInOneClsCategory.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
-     * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
+     * <span style="color: #3F7E5E">// if exclusive control, the value of concurrency column is required</span>
      * whiteAllInOneClsCategory.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     <span style="color: #3F7E5E">// you can update by self calculation values</span>
@@ -1048,7 +1122,7 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
      *     ...
      * }
      * </pre>
-     * @param whiteAllInOneClsCategory The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
+     * @param whiteAllInOneClsCategory The entity of update. (NotNull, PrimaryKeyNotNull)
      * @param option The option of update for varying requests. (NotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
@@ -1062,7 +1136,7 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
     /**
      * Insert or update the entity with varying requests. (ExclusiveControl: when update) <br />
      * Other specifications are same as insertOrUpdate(entity).
-     * @param whiteAllInOneClsCategory The entity of insert or update target. (NotNull)
+     * @param whiteAllInOneClsCategory The entity of insert or update. (NotNull)
      * @param insertOption The option of insert for varying requests. (NotNull)
      * @param updateOption The option of update for varying requests. (NotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
@@ -1071,14 +1145,14 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
      */
     public void varyingInsertOrUpdate(WhiteAllInOneClsCategory whiteAllInOneClsCategory, InsertOption<WhiteAllInOneClsCategoryCB> insertOption, UpdateOption<WhiteAllInOneClsCategoryCB> updateOption) {
         assertInsertOptionNotNull(insertOption); assertUpdateOptionNotNull(updateOption);
-        doInesrtOrUpdate(whiteAllInOneClsCategory, insertOption, updateOption);
+        doInsertOrUpdate(whiteAllInOneClsCategory, insertOption, updateOption);
     }
 
     /**
      * Delete the entity with varying requests. (ZeroUpdateException, NonExclusiveControl) <br />
      * Now a valid option does not exist. <br />
      * Other specifications are same as delete(entity).
-     * @param whiteAllInOneClsCategory The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
+     * @param whiteAllInOneClsCategory The entity of delete. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
      * @param option The option of update for varying requests. (NotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
@@ -1159,7 +1233,7 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
      * <span style="color: #3F7E5E">// you don't need to set PK value</span>
      * <span style="color: #3F7E5E">//whiteAllInOneClsCategory.setPK...(value);</span>
      * whiteAllInOneClsCategory.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
-     * <span style="color: #3F7E5E">// you don't need to set a value of exclusive control column</span>
+     * <span style="color: #3F7E5E">// you don't need to set a value of concurrency column</span>
      * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
      * <span style="color: #3F7E5E">//whiteAllInOneClsCategory.setVersionNo(value);</span>
      * WhiteAllInOneClsCategoryCB cb = new WhiteAllInOneClsCategoryCB();
@@ -1311,38 +1385,34 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
     }
 
     // ===================================================================================
-    //                                                                     Downcast Helper
-    //                                                                     ===============
-    protected WhiteAllInOneClsCategory downcast(Entity et) {
-        return helpEntityDowncastInternally(et, WhiteAllInOneClsCategory.class);
-    }
+    //                                                                       Assist Helper
+    //                                                                       =============
+    protected Class<WhiteAllInOneClsCategory> typeOfSelectedEntity()
+    { return WhiteAllInOneClsCategory.class; }
 
-    protected WhiteAllInOneClsCategoryCB downcast(ConditionBean cb) {
-        return helpConditionBeanDowncastInternally(cb, WhiteAllInOneClsCategoryCB.class);
-    }
+    protected WhiteAllInOneClsCategory downcast(Entity et)
+    { return helpEntityDowncastInternally(et, WhiteAllInOneClsCategory.class); }
 
-    @SuppressWarnings("unchecked")
-    protected List<WhiteAllInOneClsCategory> downcast(List<? extends Entity> ls) {
-        return (List<WhiteAllInOneClsCategory>)ls;
-    }
+    protected WhiteAllInOneClsCategoryCB downcast(ConditionBean cb)
+    { return helpConditionBeanDowncastInternally(cb, WhiteAllInOneClsCategoryCB.class); }
 
     @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteAllInOneClsCategoryCB> downcast(InsertOption<? extends ConditionBean> op) {
-        return (InsertOption<WhiteAllInOneClsCategoryCB>)op;
-    }
+    protected List<WhiteAllInOneClsCategory> downcast(List<? extends Entity> ls)
+    { return (List<WhiteAllInOneClsCategory>)ls; }
 
     @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteAllInOneClsCategoryCB> downcast(UpdateOption<? extends ConditionBean> op) {
-        return (UpdateOption<WhiteAllInOneClsCategoryCB>)op;
-    }
+    protected InsertOption<WhiteAllInOneClsCategoryCB> downcast(InsertOption<? extends ConditionBean> op)
+    { return (InsertOption<WhiteAllInOneClsCategoryCB>)op; }
 
     @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteAllInOneClsCategoryCB> downcast(DeleteOption<? extends ConditionBean> op) {
-        return (DeleteOption<WhiteAllInOneClsCategoryCB>)op;
-    }
+    protected UpdateOption<WhiteAllInOneClsCategoryCB> downcast(UpdateOption<? extends ConditionBean> op)
+    { return (UpdateOption<WhiteAllInOneClsCategoryCB>)op; }
 
     @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhiteAllInOneClsCategory, WhiteAllInOneClsCategoryCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp) {
-        return (QueryInsertSetupper<WhiteAllInOneClsCategory, WhiteAllInOneClsCategoryCB>)sp;
-    }
+    protected DeleteOption<WhiteAllInOneClsCategoryCB> downcast(DeleteOption<? extends ConditionBean> op)
+    { return (DeleteOption<WhiteAllInOneClsCategoryCB>)op; }
+
+    @SuppressWarnings("unchecked")
+    protected QueryInsertSetupper<WhiteAllInOneClsCategory, WhiteAllInOneClsCategoryCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
+    { return (QueryInsertSetupper<WhiteAllInOneClsCategory, WhiteAllInOneClsCategoryCB>)sp; }
 }

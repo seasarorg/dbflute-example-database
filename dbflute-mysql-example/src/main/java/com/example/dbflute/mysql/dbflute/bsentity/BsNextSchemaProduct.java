@@ -349,7 +349,7 @@ public abstract class BsNextSchemaProduct implements Entity, Serializable, Clone
      */
     public void setProductId(Long productId) {
         __modifiedProperties.addPropertyName("productId");
-        this._productId = productId;
+        _productId = productId;
     }
 
     /**
@@ -366,7 +366,7 @@ public abstract class BsNextSchemaProduct implements Entity, Serializable, Clone
      */
     public void setProductName(String productName) {
         __modifiedProperties.addPropertyName("productName");
-        this._productName = productName;
+        _productName = productName;
     }
 
     /**
@@ -383,7 +383,7 @@ public abstract class BsNextSchemaProduct implements Entity, Serializable, Clone
      */
     public void setRegisterDatetime(java.sql.Timestamp registerDatetime) {
         __modifiedProperties.addPropertyName("registerDatetime");
-        this._registerDatetime = registerDatetime;
+        _registerDatetime = registerDatetime;
     }
 
     /**
@@ -400,7 +400,7 @@ public abstract class BsNextSchemaProduct implements Entity, Serializable, Clone
      */
     public void setRegisterUser(String registerUser) {
         __modifiedProperties.addPropertyName("registerUser");
-        this._registerUser = registerUser;
+        _registerUser = registerUser;
     }
 
     /**
@@ -417,7 +417,7 @@ public abstract class BsNextSchemaProduct implements Entity, Serializable, Clone
      */
     public void setRegisterProcess(String registerProcess) {
         __modifiedProperties.addPropertyName("registerProcess");
-        this._registerProcess = registerProcess;
+        _registerProcess = registerProcess;
     }
 
     /**
@@ -434,7 +434,7 @@ public abstract class BsNextSchemaProduct implements Entity, Serializable, Clone
      */
     public void setUpdateDatetime(java.sql.Timestamp updateDatetime) {
         __modifiedProperties.addPropertyName("updateDatetime");
-        this._updateDatetime = updateDatetime;
+        _updateDatetime = updateDatetime;
     }
 
     /**
@@ -451,7 +451,7 @@ public abstract class BsNextSchemaProduct implements Entity, Serializable, Clone
      */
     public void setUpdateUser(String updateUser) {
         __modifiedProperties.addPropertyName("updateUser");
-        this._updateUser = updateUser;
+        _updateUser = updateUser;
     }
 
     /**
@@ -468,6 +468,6 @@ public abstract class BsNextSchemaProduct implements Entity, Serializable, Clone
      */
     public void setUpdateProcess(String updateProcess) {
         __modifiedProperties.addPropertyName("updateProcess");
-        this._updateProcess = updateProcess;
+        _updateProcess = updateProcess;
     }
 }

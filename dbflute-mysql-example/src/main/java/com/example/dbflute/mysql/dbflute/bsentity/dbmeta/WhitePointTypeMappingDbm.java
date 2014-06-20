@@ -182,7 +182,7 @@ public class WhitePointTypeMappingDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public WhitePointTypeMapping newEntity() { return new WhitePointTypeMapping(); }
     public WhitePointTypeMapping newMyEntity() { return new WhitePointTypeMapping(); }
 
     // ===================================================================================

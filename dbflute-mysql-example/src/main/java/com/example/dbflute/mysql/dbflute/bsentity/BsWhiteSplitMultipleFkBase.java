@@ -163,7 +163,7 @@ public abstract class BsWhiteSplitMultipleFkBase implements Entity, Serializable
     protected WhiteSplitMultipleFkNext _whiteSplitMultipleFkNext;
 
     /**
-     * white_split_multiple_fk_next by my NEXT_ID, named 'whiteSplitMultipleFkNext'.
+     * [get] white_split_multiple_fk_next by my NEXT_ID, named 'whiteSplitMultipleFkNext'.
      * @return The entity of foreign property 'whiteSplitMultipleFkNext'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public WhiteSplitMultipleFkNext getWhiteSplitMultipleFkNext() {
@@ -171,7 +171,7 @@ public abstract class BsWhiteSplitMultipleFkBase implements Entity, Serializable
     }
 
     /**
-     * white_split_multiple_fk_next by my NEXT_ID, named 'whiteSplitMultipleFkNext'.
+     * [set] white_split_multiple_fk_next by my NEXT_ID, named 'whiteSplitMultipleFkNext'.
      * @param whiteSplitMultipleFkNext The entity of foreign property 'whiteSplitMultipleFkNext'. (NullAllowed)
      */
     public void setWhiteSplitMultipleFkNext(WhiteSplitMultipleFkNext whiteSplitMultipleFkNext) {
@@ -182,7 +182,7 @@ public abstract class BsWhiteSplitMultipleFkBase implements Entity, Serializable
     protected WhiteSplitMultipleFkRef _whiteSplitMultipleFkRefAsSplitMultipleFkTest;
 
     /**
-     * white_split_multiple_fk_ref by my FIRST_ID, named 'whiteSplitMultipleFkRefAsSplitMultipleFkTest'.
+     * [get] white_split_multiple_fk_ref by my FIRST_ID, named 'whiteSplitMultipleFkRefAsSplitMultipleFkTest'.
      * @return The entity of foreign property 'whiteSplitMultipleFkRefAsSplitMultipleFkTest'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public WhiteSplitMultipleFkRef getWhiteSplitMultipleFkRefAsSplitMultipleFkTest() {
@@ -190,7 +190,7 @@ public abstract class BsWhiteSplitMultipleFkBase implements Entity, Serializable
     }
 
     /**
-     * white_split_multiple_fk_ref by my FIRST_ID, named 'whiteSplitMultipleFkRefAsSplitMultipleFkTest'.
+     * [set] white_split_multiple_fk_ref by my FIRST_ID, named 'whiteSplitMultipleFkRefAsSplitMultipleFkTest'.
      * @param whiteSplitMultipleFkRefAsSplitMultipleFkTest The entity of foreign property 'whiteSplitMultipleFkRefAsSplitMultipleFkTest'. (NullAllowed)
      */
     public void setWhiteSplitMultipleFkRefAsSplitMultipleFkTest(WhiteSplitMultipleFkRef whiteSplitMultipleFkRefAsSplitMultipleFkTest) {
@@ -204,7 +204,7 @@ public abstract class BsWhiteSplitMultipleFkBase implements Entity, Serializable
     protected List<WhiteSplitMultipleFkChild> _whiteSplitMultipleFkChildList;
 
     /**
-     * white_split_multiple_fk_child by BASE_ID, named 'whiteSplitMultipleFkChildList'.
+     * [get] white_split_multiple_fk_child by BASE_ID, named 'whiteSplitMultipleFkChildList'.
      * @return The entity list of referrer property 'whiteSplitMultipleFkChildList'. (NotNull: even if no loading, returns empty list)
      */
     public List<WhiteSplitMultipleFkChild> getWhiteSplitMultipleFkChildList() {
@@ -213,7 +213,7 @@ public abstract class BsWhiteSplitMultipleFkBase implements Entity, Serializable
     }
 
     /**
-     * white_split_multiple_fk_child by BASE_ID, named 'whiteSplitMultipleFkChildList'.
+     * [set] white_split_multiple_fk_child by BASE_ID, named 'whiteSplitMultipleFkChildList'.
      * @param whiteSplitMultipleFkChildList The entity list of referrer property 'whiteSplitMultipleFkChildList'. (NullAllowed)
      */
     public void setWhiteSplitMultipleFkChildList(List<WhiteSplitMultipleFkChild> whiteSplitMultipleFkChildList) {
@@ -402,7 +402,7 @@ public abstract class BsWhiteSplitMultipleFkBase implements Entity, Serializable
      */
     public void setBaseId(Long baseId) {
         __modifiedProperties.addPropertyName("baseId");
-        this._baseId = baseId;
+        _baseId = baseId;
     }
 
     /**
@@ -419,7 +419,7 @@ public abstract class BsWhiteSplitMultipleFkBase implements Entity, Serializable
      */
     public void setFirstId(Integer firstId) {
         __modifiedProperties.addPropertyName("firstId");
-        this._firstId = firstId;
+        _firstId = firstId;
     }
 
     /**
@@ -436,7 +436,7 @@ public abstract class BsWhiteSplitMultipleFkBase implements Entity, Serializable
      */
     public void setNextId(Long nextId) {
         __modifiedProperties.addPropertyName("nextId");
-        this._nextId = nextId;
+        _nextId = nextId;
     }
 
     /**
@@ -453,6 +453,6 @@ public abstract class BsWhiteSplitMultipleFkBase implements Entity, Serializable
      */
     public void setSplitName(String splitName) {
         __modifiedProperties.addPropertyName("splitName");
-        this._splitName = splitName;
+        _splitName = splitName;
     }
 }

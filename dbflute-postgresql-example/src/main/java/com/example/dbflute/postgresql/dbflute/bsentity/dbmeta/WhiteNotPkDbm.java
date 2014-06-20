@@ -145,7 +145,7 @@ public class WhiteNotPkDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public WhiteNotPk newEntity() { return new WhiteNotPk(); }
     public WhiteNotPk newMyEntity() { return new WhiteNotPk(); }
 
     // ===================================================================================

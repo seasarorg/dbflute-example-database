@@ -150,7 +150,7 @@ public class WhiteDeprecatedClsElementDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public WhiteDeprecatedClsElement newEntity() { return new WhiteDeprecatedClsElement(); }
     public WhiteDeprecatedClsElement newMyEntity() { return new WhiteDeprecatedClsElement(); }
 
     // ===================================================================================

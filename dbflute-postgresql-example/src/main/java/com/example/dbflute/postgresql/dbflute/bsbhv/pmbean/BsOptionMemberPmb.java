@@ -124,13 +124,13 @@ public class BsOptionMemberPmb implements ListHandlingPmb<MemberBhv, OptionMembe
     }
 
     @SuppressWarnings("unchecked")
-    protected <ELEMENT> ArrayList<ELEMENT> newArrayList(ELEMENT... elements) {
+    protected <ELEMENT> ArrayList<ELEMENT> newArrayList(ELEMENT... elements) { // might be called by option handling
         Object obj = DfCollectionUtil.newArrayList(elements);
         return (ArrayList<ELEMENT>)obj; // to avoid the warning between JDK6 and JDK7
     }
 
     @SuppressWarnings("unchecked")
-    protected <NUMBER extends Number> NUMBER toNumber(Object obj, Class<NUMBER> type) {
+    protected <NUMBER extends Number> NUMBER toNumber(Object obj, Class<NUMBER> type) { // might be called by option handling
         return (NUMBER)DfTypeUtil.toNumber(obj, type);
     }
 
@@ -183,16 +183,16 @@ public class BsOptionMemberPmb implements ListHandlingPmb<MemberBhv, OptionMembe
         sb.append(xbuildColumnString());
         return sb.toString();
     }
-    private String xbuildColumnString() {
-        final String c = ", ";
+    protected String xbuildColumnString() {
+        final String dm = ", ";
         final StringBuilder sb = new StringBuilder();
-        sb.append(c).append(_memberId);
-        sb.append(c).append(_memberName);
-        sb.append(c).append(_memberAccount);
-        sb.append(c).append(formatUtilDate(_fromFormalizedDate));
-        sb.append(c).append(formatUtilDate(_toFormalizedDate));
-        sb.append(c).append(_memberStatusCode);
-        if (sb.length() > 0) { sb.delete(0, c.length()); }
+        sb.append(dm).append(_memberId);
+        sb.append(dm).append(_memberName);
+        sb.append(dm).append(_memberAccount);
+        sb.append(dm).append(formatUtilDate(_fromFormalizedDate));
+        sb.append(dm).append(formatUtilDate(_toFormalizedDate));
+        sb.append(dm).append(_memberStatusCode);
+        if (sb.length() > 0) { sb.delete(0, dm.length()); }
         sb.insert(0, "{").append("}");
         return sb.toString();
     }
@@ -331,5 +331,4 @@ public class BsOptionMemberPmb implements ListHandlingPmb<MemberBhv, OptionMembe
     public void setMemberStatusCode_Provisional() {
         _memberStatusCode = CDef.MemberStatus.Provisional.code();
     }
-
 }

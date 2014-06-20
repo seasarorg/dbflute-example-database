@@ -177,7 +177,7 @@ public abstract class BsVendorTheLongAndWindingTableAndColumn implements Entity,
     protected List<VendorTheLongAndWindingTableAndColumnRef> _vendorTheLongAndWindingTableAndColumnRefList;
 
     /**
-     * vendor_the_long_and_winding_table_and_column_ref by THE_LONG_AND_WINDING_TABLE_AND_COLUMN_ID, named 'vendorTheLongAndWindingTableAndColumnRefList'.
+     * [get] vendor_the_long_and_winding_table_and_column_ref by THE_LONG_AND_WINDING_TABLE_AND_COLUMN_ID, named 'vendorTheLongAndWindingTableAndColumnRefList'.
      * @return The entity list of referrer property 'vendorTheLongAndWindingTableAndColumnRefList'. (NotNull: even if no loading, returns empty list)
      */
     public List<VendorTheLongAndWindingTableAndColumnRef> getVendorTheLongAndWindingTableAndColumnRefList() {
@@ -186,7 +186,7 @@ public abstract class BsVendorTheLongAndWindingTableAndColumn implements Entity,
     }
 
     /**
-     * vendor_the_long_and_winding_table_and_column_ref by THE_LONG_AND_WINDING_TABLE_AND_COLUMN_ID, named 'vendorTheLongAndWindingTableAndColumnRefList'.
+     * [set] vendor_the_long_and_winding_table_and_column_ref by THE_LONG_AND_WINDING_TABLE_AND_COLUMN_ID, named 'vendorTheLongAndWindingTableAndColumnRefList'.
      * @param vendorTheLongAndWindingTableAndColumnRefList The entity list of referrer property 'vendorTheLongAndWindingTableAndColumnRefList'. (NullAllowed)
      */
     public void setVendorTheLongAndWindingTableAndColumnRefList(List<VendorTheLongAndWindingTableAndColumnRef> vendorTheLongAndWindingTableAndColumnRefList) {
@@ -369,7 +369,7 @@ public abstract class BsVendorTheLongAndWindingTableAndColumn implements Entity,
      */
     public void setTheLongAndWindingTableAndColumnId(Long theLongAndWindingTableAndColumnId) {
         __modifiedProperties.addPropertyName("theLongAndWindingTableAndColumnId");
-        this._theLongAndWindingTableAndColumnId = theLongAndWindingTableAndColumnId;
+        _theLongAndWindingTableAndColumnId = theLongAndWindingTableAndColumnId;
     }
 
     /**
@@ -386,7 +386,7 @@ public abstract class BsVendorTheLongAndWindingTableAndColumn implements Entity,
      */
     public void setTheLongAndWindingTableAndColumnName(String theLongAndWindingTableAndColumnName) {
         __modifiedProperties.addPropertyName("theLongAndWindingTableAndColumnName");
-        this._theLongAndWindingTableAndColumnName = theLongAndWindingTableAndColumnName;
+        _theLongAndWindingTableAndColumnName = theLongAndWindingTableAndColumnName;
     }
 
     /**
@@ -403,7 +403,7 @@ public abstract class BsVendorTheLongAndWindingTableAndColumn implements Entity,
      */
     public void setShortName(String shortName) {
         __modifiedProperties.addPropertyName("shortName");
-        this._shortName = shortName;
+        _shortName = shortName;
     }
 
     /**
@@ -420,6 +420,6 @@ public abstract class BsVendorTheLongAndWindingTableAndColumn implements Entity,
      */
     public void setShortSize(Integer shortSize) {
         __modifiedProperties.addPropertyName("shortSize");
-        this._shortSize = shortSize;
+        _shortSize = shortSize;
     }
 }

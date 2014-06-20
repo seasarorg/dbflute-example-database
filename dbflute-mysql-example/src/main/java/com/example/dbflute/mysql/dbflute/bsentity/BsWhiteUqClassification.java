@@ -189,9 +189,6 @@ public abstract class BsWhiteUqClassification implements Entity, Serializable, C
     //                                                        Classification Determination
     //                                                        ============================
     // ===================================================================================
-    //                                                           Classification Name/Alias
-    //                                                           =========================
-    // ===================================================================================
     //                                                                    Foreign Property
     //                                                                    ================
     // ===================================================================================
@@ -358,7 +355,7 @@ public abstract class BsWhiteUqClassification implements Entity, Serializable, C
      */
     public void setUqClsId(Long uqClsId) {
         __modifiedProperties.addPropertyName("uqClsId");
-        this._uqClsId = uqClsId;
+        _uqClsId = uqClsId;
     }
 
     /**
@@ -375,6 +372,6 @@ public abstract class BsWhiteUqClassification implements Entity, Serializable, C
      */
     protected void setUqClsCode(String uqClsCode) {
         __modifiedProperties.addPropertyName("uqClsCode");
-        this._uqClsCode = uqClsCode;
+        _uqClsCode = uqClsCode;
     }
 }

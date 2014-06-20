@@ -81,11 +81,24 @@ public class BsWhiteCompoundPkCB extends AbstractConditionBean {
      * Accept the query condition of primary key as equal.
      * @param pkFirstId : PK, NotNull, int4(10). (NotNull)
      * @param pkSecondId : PK, NotNull, int4(10). (NotNull)
+     * @return this. (NotNull)
+     */
+    public WhiteCompoundPkCB acceptPK(Integer pkFirstId, Integer pkSecondId) {
+        assertObjectNotNull("pkFirstId", pkFirstId);assertObjectNotNull("pkSecondId", pkSecondId);
+        BsWhiteCompoundPkCB cb = this;
+        cb.query().setPkFirstId_Equal(pkFirstId);cb.query().setPkSecondId_Equal(pkSecondId);
+        return (WhiteCompoundPkCB)this;
+    }
+
+    /**
+     * Accept the query condition of primary key as equal. (old style)
+     * @param pkFirstId : PK, NotNull, int4(10). (NotNull)
+     * @param pkSecondId : PK, NotNull, int4(10). (NotNull)
      */
     public void acceptPrimaryKey(Integer pkFirstId, Integer pkSecondId) {
         assertObjectNotNull("pkFirstId", pkFirstId);assertObjectNotNull("pkSecondId", pkSecondId);
         BsWhiteCompoundPkCB cb = this;
-        cb.query().setPkFirstId_Equal(pkFirstId);;cb.query().setPkSecondId_Equal(pkSecondId);;
+        cb.query().setPkFirstId_Equal(pkFirstId);cb.query().setPkSecondId_Equal(pkSecondId);
     }
 
     public ConditionBean addOrderBy_PK_Asc() {

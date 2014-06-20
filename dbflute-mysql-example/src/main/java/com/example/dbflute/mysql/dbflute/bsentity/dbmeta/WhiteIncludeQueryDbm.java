@@ -183,7 +183,7 @@ public class WhiteIncludeQueryDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public WhiteIncludeQuery newEntity() { return new WhiteIncludeQuery(); }
     public WhiteIncludeQuery newMyEntity() { return new WhiteIncludeQuery(); }
 
     // ===================================================================================

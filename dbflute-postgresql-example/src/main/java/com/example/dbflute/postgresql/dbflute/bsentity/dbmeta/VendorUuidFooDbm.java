@@ -165,7 +165,7 @@ public class VendorUuidFooDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public VendorUuidFoo newEntity() { return new VendorUuidFoo(); }
     public VendorUuidFoo newMyEntity() { return new VendorUuidFoo(); }
 
     // ===================================================================================

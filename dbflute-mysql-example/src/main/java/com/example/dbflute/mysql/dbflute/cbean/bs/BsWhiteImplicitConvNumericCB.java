@@ -96,11 +96,23 @@ public class BsWhiteImplicitConvNumericCB extends AbstractConditionBean {
     /**
      * Accept the query condition of primary key as equal.
      * @param implicitConvNumericId : PK, NotNull, DECIMAL(20). (NotNull)
+     * @return this. (NotNull)
+     */
+    public WhiteImplicitConvNumericCB acceptPK(java.math.BigDecimal implicitConvNumericId) {
+        assertObjectNotNull("implicitConvNumericId", implicitConvNumericId);
+        BsWhiteImplicitConvNumericCB cb = this;
+        cb.query().setImplicitConvNumericId_Equal(implicitConvNumericId);
+        return (WhiteImplicitConvNumericCB)this;
+    }
+
+    /**
+     * Accept the query condition of primary key as equal. (old style)
+     * @param implicitConvNumericId : PK, NotNull, DECIMAL(20). (NotNull)
      */
     public void acceptPrimaryKey(java.math.BigDecimal implicitConvNumericId) {
         assertObjectNotNull("implicitConvNumericId", implicitConvNumericId);
         BsWhiteImplicitConvNumericCB cb = this;
-        cb.query().setImplicitConvNumericId_Equal(implicitConvNumericId);;
+        cb.query().setImplicitConvNumericId_Equal(implicitConvNumericId);
     }
 
     public ConditionBean addOrderBy_PK_Asc() {

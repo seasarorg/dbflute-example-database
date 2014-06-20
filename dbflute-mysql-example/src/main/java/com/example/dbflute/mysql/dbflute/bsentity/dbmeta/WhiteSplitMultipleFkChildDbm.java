@@ -180,7 +180,7 @@ public class WhiteSplitMultipleFkChildDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public WhiteSplitMultipleFkChild newEntity() { return new WhiteSplitMultipleFkChild(); }
     public WhiteSplitMultipleFkChild newMyEntity() { return new WhiteSplitMultipleFkChild(); }
 
     // ===================================================================================

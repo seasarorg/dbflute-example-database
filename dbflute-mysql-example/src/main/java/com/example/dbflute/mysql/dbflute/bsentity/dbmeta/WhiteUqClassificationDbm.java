@@ -150,7 +150,7 @@ public class WhiteUqClassificationDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public WhiteUqClassification newEntity() { return new WhiteUqClassification(); }
     public WhiteUqClassification newMyEntity() { return new WhiteUqClassification(); }
 
     // ===================================================================================

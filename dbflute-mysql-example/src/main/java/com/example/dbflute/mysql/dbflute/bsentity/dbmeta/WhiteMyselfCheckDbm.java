@@ -180,7 +180,7 @@ public class WhiteMyselfCheckDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public WhiteMyselfCheck newEntity() { return new WhiteMyselfCheck(); }
     public WhiteMyselfCheck newMyEntity() { return new WhiteMyselfCheck(); }
 
     // ===================================================================================

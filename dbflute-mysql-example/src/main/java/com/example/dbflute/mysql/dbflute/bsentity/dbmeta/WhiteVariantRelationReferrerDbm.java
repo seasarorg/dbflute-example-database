@@ -223,7 +223,7 @@ public class WhiteVariantRelationReferrerDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public WhiteVariantRelationReferrer newEntity() { return new WhiteVariantRelationReferrer(); }
     public WhiteVariantRelationReferrer newMyEntity() { return new WhiteVariantRelationReferrer(); }
 
     // ===================================================================================

@@ -162,7 +162,7 @@ public class WhiteVariantRelationMasterCorgeDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public WhiteVariantRelationMasterCorge newEntity() { return new WhiteVariantRelationMasterCorge(); }
     public WhiteVariantRelationMasterCorge newMyEntity() { return new WhiteVariantRelationMasterCorge(); }
 
     // ===================================================================================

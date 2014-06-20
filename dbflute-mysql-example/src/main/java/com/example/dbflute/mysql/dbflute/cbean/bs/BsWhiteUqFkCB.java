@@ -95,21 +95,35 @@ public class BsWhiteUqFkCB extends AbstractConditionBean {
     /**
      * Accept the query condition of primary key as equal.
      * @param uqFkId : PK, NotNull, DECIMAL(16). (NotNull)
+     * @return this. (NotNull)
+     */
+    public WhiteUqFkCB acceptPK(Long uqFkId) {
+        assertObjectNotNull("uqFkId", uqFkId);
+        BsWhiteUqFkCB cb = this;
+        cb.query().setUqFkId_Equal(uqFkId);
+        return (WhiteUqFkCB)this;
+    }
+
+    /**
+     * Accept the query condition of primary key as equal. (old style)
+     * @param uqFkId : PK, NotNull, DECIMAL(16). (NotNull)
      */
     public void acceptPrimaryKey(Long uqFkId) {
         assertObjectNotNull("uqFkId", uqFkId);
         BsWhiteUqFkCB cb = this;
-        cb.query().setUqFkId_Equal(uqFkId);;
+        cb.query().setUqFkId_Equal(uqFkId);
     }
 
     /**
      * Accept the query condition of unique key as equal.
      * @param uqFkCode : UQ, NotNull, CHAR(3). (NotNull)
+     * @return this. (NotNull)
      */
-    public void acceptUniqueOf(String uqFkCode) {
+    public WhiteUqFkCB acceptUniqueOf(String uqFkCode) {
         assertObjectNotNull("uqFkCode", uqFkCode);
         BsWhiteUqFkCB cb = this;
-        cb.query().setUqFkCode_Equal(uqFkCode);;
+        cb.query().setUqFkCode_Equal(uqFkCode);
+        return (WhiteUqFkCB)this;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {

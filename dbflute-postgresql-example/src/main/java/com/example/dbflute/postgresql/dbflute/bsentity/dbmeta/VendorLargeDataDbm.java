@@ -199,7 +199,7 @@ public class VendorLargeDataDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public VendorLargeData newEntity() { return new VendorLargeData(); }
     public VendorLargeData newMyEntity() { return new VendorLargeData(); }
 
     // ===================================================================================

@@ -96,6 +96,18 @@ public class BsWhiteLineSepCommentCB extends AbstractConditionBean {
     /**
      * Accept the query condition of primary key as equal.
      * @param lineSepCommentCode : PK, NotNull, CHAR(3), classification=LineSepCommentCls. (NotNull)
+     * @return this. (NotNull)
+     */
+    public WhiteLineSepCommentCB acceptPK(CDef.LineSepCommentCls lineSepCommentCode) {
+        assertObjectNotNull("lineSepCommentCode", lineSepCommentCode);
+        BsWhiteLineSepCommentCB cb = this;
+        cb.query().setLineSepCommentCode_Equal_AsLineSepCommentCls(lineSepCommentCode);
+        return (WhiteLineSepCommentCB)this;
+    }
+
+    /**
+     * Accept the query condition of primary key as equal. (old style)
+     * @param lineSepCommentCode : PK, NotNull, CHAR(3), classification=LineSepCommentCls. (NotNull)
      */
     public void acceptPrimaryKey(CDef.LineSepCommentCls lineSepCommentCode) {
         assertObjectNotNull("lineSepCommentCode", lineSepCommentCode);

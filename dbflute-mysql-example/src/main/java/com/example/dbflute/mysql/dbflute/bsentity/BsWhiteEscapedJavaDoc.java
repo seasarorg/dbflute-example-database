@@ -404,7 +404,7 @@ public abstract class BsWhiteEscapedJavaDoc implements Entity, Serializable, Clo
      */
     protected void setEscapedJavaDocCode(String escapedJavaDocCode) {
         __modifiedProperties.addPropertyName("escapedJavaDocCode");
-        this._escapedJavaDocCode = escapedJavaDocCode;
+        _escapedJavaDocCode = escapedJavaDocCode;
     }
 
     /**
@@ -421,6 +421,6 @@ public abstract class BsWhiteEscapedJavaDoc implements Entity, Serializable, Clo
      */
     public void setEscapedJavaDocName(String escapedJavaDocName) {
         __modifiedProperties.addPropertyName("escapedJavaDocName");
-        this._escapedJavaDocName = escapedJavaDocName;
+        _escapedJavaDocName = escapedJavaDocName;
     }
 }

@@ -167,7 +167,7 @@ public abstract class BsVendorConstraintNameAutoBar implements Entity, Serializa
     protected List<VendorConstraintNameAutoRef> _vendorConstraintNameAutoRefList;
 
     /**
-     * vendor_constraint_name_auto_ref by CONSTRAINT_NAME_AUTO_BAR_ID, named 'vendorConstraintNameAutoRefList'.
+     * [get] vendor_constraint_name_auto_ref by CONSTRAINT_NAME_AUTO_BAR_ID, named 'vendorConstraintNameAutoRefList'.
      * @return The entity list of referrer property 'vendorConstraintNameAutoRefList'. (NotNull: even if no loading, returns empty list)
      */
     public List<VendorConstraintNameAutoRef> getVendorConstraintNameAutoRefList() {
@@ -176,7 +176,7 @@ public abstract class BsVendorConstraintNameAutoBar implements Entity, Serializa
     }
 
     /**
-     * vendor_constraint_name_auto_ref by CONSTRAINT_NAME_AUTO_BAR_ID, named 'vendorConstraintNameAutoRefList'.
+     * [set] vendor_constraint_name_auto_ref by CONSTRAINT_NAME_AUTO_BAR_ID, named 'vendorConstraintNameAutoRefList'.
      * @param vendorConstraintNameAutoRefList The entity list of referrer property 'vendorConstraintNameAutoRefList'. (NullAllowed)
      */
     public void setVendorConstraintNameAutoRefList(List<VendorConstraintNameAutoRef> vendorConstraintNameAutoRefList) {
@@ -357,7 +357,7 @@ public abstract class BsVendorConstraintNameAutoBar implements Entity, Serializa
      */
     public void setConstraintNameAutoBarId(Long constraintNameAutoBarId) {
         __modifiedProperties.addPropertyName("constraintNameAutoBarId");
-        this._constraintNameAutoBarId = constraintNameAutoBarId;
+        _constraintNameAutoBarId = constraintNameAutoBarId;
     }
 
     /**
@@ -374,6 +374,6 @@ public abstract class BsVendorConstraintNameAutoBar implements Entity, Serializa
      */
     public void setConstraintNameAutoBarName(String constraintNameAutoBarName) {
         __modifiedProperties.addPropertyName("constraintNameAutoBarName");
-        this._constraintNameAutoBarName = constraintNameAutoBarName;
+        _constraintNameAutoBarName = constraintNameAutoBarName;
     }
 }

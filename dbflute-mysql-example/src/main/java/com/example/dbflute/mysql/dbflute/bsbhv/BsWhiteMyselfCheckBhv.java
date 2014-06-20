@@ -20,11 +20,14 @@ import java.util.List;
 import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
+import org.seasar.dbflute.cbean.chelper.HpSLSExecutor;
+import org.seasar.dbflute.cbean.chelper.HpSLSFunction;
 import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.exception.*;
 import org.seasar.dbflute.optional.OptionalEntity;
 import org.seasar.dbflute.outsidesql.executor.*;
 import com.example.dbflute.mysql.dbflute.exbhv.*;
+import com.example.dbflute.mysql.dbflute.bsbhv.loader.*;
 import com.example.dbflute.mysql.dbflute.exentity.*;
 import com.example.dbflute.mysql.dbflute.bsentity.dbmeta.*;
 import com.example.dbflute.mysql.dbflute.cbean.*;
@@ -78,7 +81,7 @@ public abstract class BsWhiteMyselfCheckBhv extends AbstractBehaviorWritable {
     // ===================================================================================
     //                                                                              DBMeta
     //                                                                              ======
-    /** @return The instance of DBMeta. (NotNull) */
+    /** {@inheritDoc} */
     public DBMeta getDBMeta() { return WhiteMyselfCheckDbm.getInstance(); }
 
     /** @return The instance of DBMeta as my table type. (NotNull) */
@@ -88,10 +91,10 @@ public abstract class BsWhiteMyselfCheckBhv extends AbstractBehaviorWritable {
     //                                                                        New Instance
     //                                                                        ============
     /** {@inheritDoc} */
-    public Entity newEntity() { return newMyEntity(); }
+    public WhiteMyselfCheck newEntity() { return new WhiteMyselfCheck(); }
 
     /** {@inheritDoc} */
-    public ConditionBean newConditionBean() { return newMyConditionBean(); }
+    public WhiteMyselfCheckCB newConditionBean() { return new WhiteMyselfCheckCB(); }
 
     /** @return The instance of new entity as my table type. (NotNull) */
     public WhiteMyselfCheck newMyEntity() { return new WhiteMyselfCheck(); }
@@ -114,6 +117,10 @@ public abstract class BsWhiteMyselfCheckBhv extends AbstractBehaviorWritable {
      * @return The count for the condition. (NotMinus)
      */
     public int selectCount(WhiteMyselfCheckCB cb) {
+        return facadeSelectCount(cb);
+    }
+
+    protected int facadeSelectCount(WhiteMyselfCheckCB cb) {
         return doSelectCountUniquely(cb);
     }
 
@@ -129,7 +136,7 @@ public abstract class BsWhiteMyselfCheckBhv extends AbstractBehaviorWritable {
 
     @Override
     protected int doReadCount(ConditionBean cb) {
-        return selectCount(downcast(cb));
+        return facadeSelectCount(downcast(cb));
     }
 
     // ===================================================================================
@@ -155,7 +162,11 @@ public abstract class BsWhiteMyselfCheckBhv extends AbstractBehaviorWritable {
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteMyselfCheck selectEntity(WhiteMyselfCheckCB cb) {
-        return doSelectEntity(cb, WhiteMyselfCheck.class);
+        return facadeSelectEntity(cb);
+    }
+
+    protected WhiteMyselfCheck facadeSelectEntity(WhiteMyselfCheckCB cb) {
+        return doSelectEntity(cb, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends WhiteMyselfCheck> ENTITY doSelectEntity(WhiteMyselfCheckCB cb, Class<ENTITY> tp) {
@@ -170,7 +181,7 @@ public abstract class BsWhiteMyselfCheckBhv extends AbstractBehaviorWritable {
 
     @Override
     protected Entity doReadEntity(ConditionBean cb) {
-        return selectEntity(downcast(cb));
+        return facadeSelectEntity(downcast(cb));
     }
 
     /**
@@ -189,7 +200,11 @@ public abstract class BsWhiteMyselfCheckBhv extends AbstractBehaviorWritable {
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteMyselfCheck selectEntityWithDeletedCheck(WhiteMyselfCheckCB cb) {
-        return doSelectEntityWithDeletedCheck(cb, WhiteMyselfCheck.class);
+        return facadeSelectEntityWithDeletedCheck(cb);
+    }
+
+    protected WhiteMyselfCheck facadeSelectEntityWithDeletedCheck(WhiteMyselfCheckCB cb) {
+        return doSelectEntityWithDeletedCheck(cb, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends WhiteMyselfCheck> ENTITY doSelectEntityWithDeletedCheck(WhiteMyselfCheckCB cb, Class<ENTITY> tp) {
@@ -200,7 +215,7 @@ public abstract class BsWhiteMyselfCheckBhv extends AbstractBehaviorWritable {
 
     @Override
     protected Entity doReadEntityWithDeletedCheck(ConditionBean cb) {
-        return selectEntityWithDeletedCheck(downcast(cb));
+        return facadeSelectEntityWithDeletedCheck(downcast(cb));
     }
 
     /**
@@ -211,15 +226,19 @@ public abstract class BsWhiteMyselfCheckBhv extends AbstractBehaviorWritable {
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteMyselfCheck selectByPKValue(Integer myselfCheckId) {
-        return doSelectByPK(myselfCheckId, WhiteMyselfCheck.class);
+        return facadeSelectByPKValue(myselfCheckId);
     }
 
-    protected <ENTITY extends WhiteMyselfCheck> ENTITY doSelectByPK(Integer myselfCheckId, Class<ENTITY> entityType) {
-        return doSelectEntity(xprepareCBAsPK(myselfCheckId), entityType);
+    protected WhiteMyselfCheck facadeSelectByPKValue(Integer myselfCheckId) {
+        return doSelectByPK(myselfCheckId, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends WhiteMyselfCheck> OptionalEntity<ENTITY> doSelectOptionalByPK(Integer myselfCheckId, Class<ENTITY> entityType) {
-        return createOptionalEntity(doSelectByPK(myselfCheckId, entityType), myselfCheckId);
+    protected <ENTITY extends WhiteMyselfCheck> ENTITY doSelectByPK(Integer myselfCheckId, Class<ENTITY> tp) {
+        return doSelectEntity(xprepareCBAsPK(myselfCheckId), tp);
+    }
+
+    protected <ENTITY extends WhiteMyselfCheck> OptionalEntity<ENTITY> doSelectOptionalByPK(Integer myselfCheckId, Class<ENTITY> tp) {
+        return createOptionalEntity(doSelectByPK(myselfCheckId, tp), myselfCheckId);
     }
 
     /**
@@ -231,17 +250,16 @@ public abstract class BsWhiteMyselfCheckBhv extends AbstractBehaviorWritable {
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteMyselfCheck selectByPKValueWithDeletedCheck(Integer myselfCheckId) {
-        return doSelectByPKWithDeletedCheck(myselfCheckId, WhiteMyselfCheck.class);
+        return doSelectByPKWithDeletedCheck(myselfCheckId, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends WhiteMyselfCheck> ENTITY doSelectByPKWithDeletedCheck(Integer myselfCheckId, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(myselfCheckId), entityType);
+    protected <ENTITY extends WhiteMyselfCheck> ENTITY doSelectByPKWithDeletedCheck(Integer myselfCheckId, Class<ENTITY> tp) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(myselfCheckId), tp);
     }
 
     protected WhiteMyselfCheckCB xprepareCBAsPK(Integer myselfCheckId) {
         assertObjectNotNull("myselfCheckId", myselfCheckId);
-        WhiteMyselfCheckCB cb = newMyConditionBean(); cb.acceptPrimaryKey(myselfCheckId);
-        return cb;
+        return newConditionBean().acceptPK(myselfCheckId);
     }
 
     // ===================================================================================
@@ -263,7 +281,11 @@ public abstract class BsWhiteMyselfCheckBhv extends AbstractBehaviorWritable {
      * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public ListResultBean<WhiteMyselfCheck> selectList(WhiteMyselfCheckCB cb) {
-        return doSelectList(cb, WhiteMyselfCheck.class);
+        return facadeSelectList(cb);
+    }
+
+    protected ListResultBean<WhiteMyselfCheck> facadeSelectList(WhiteMyselfCheckCB cb) {
+        return doSelectList(cb, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends WhiteMyselfCheck> ListResultBean<ENTITY> doSelectList(WhiteMyselfCheckCB cb, Class<ENTITY> tp) {
@@ -275,7 +297,7 @@ public abstract class BsWhiteMyselfCheckBhv extends AbstractBehaviorWritable {
 
     @Override
     protected ListResultBean<? extends Entity> doReadList(ConditionBean cb) {
-        return selectList(downcast(cb));
+        return facadeSelectList(downcast(cb));
     }
 
     // ===================================================================================
@@ -304,7 +326,11 @@ public abstract class BsWhiteMyselfCheckBhv extends AbstractBehaviorWritable {
      * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public PagingResultBean<WhiteMyselfCheck> selectPage(WhiteMyselfCheckCB cb) {
-        return doSelectPage(cb, WhiteMyselfCheck.class);
+        return facadeSelectPage(cb);
+    }
+
+    protected PagingResultBean<WhiteMyselfCheck> facadeSelectPage(WhiteMyselfCheckCB cb) {
+        return doSelectPage(cb, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends WhiteMyselfCheck> PagingResultBean<ENTITY> doSelectPage(WhiteMyselfCheckCB cb, Class<ENTITY> tp) {
@@ -317,7 +343,7 @@ public abstract class BsWhiteMyselfCheckBhv extends AbstractBehaviorWritable {
 
     @Override
     protected PagingResultBean<? extends Entity> doReadPage(ConditionBean cb) {
-        return selectPage(downcast(cb));
+        return facadeSelectPage(downcast(cb));
     }
 
     // ===================================================================================
@@ -338,15 +364,19 @@ public abstract class BsWhiteMyselfCheckBhv extends AbstractBehaviorWritable {
      * @param entityRowHandler The handler of entity row of WhiteMyselfCheck. (NotNull)
      */
     public void selectCursor(WhiteMyselfCheckCB cb, EntityRowHandler<WhiteMyselfCheck> entityRowHandler) {
-        doSelectCursor(cb, entityRowHandler, WhiteMyselfCheck.class);
+        facadeSelectCursor(cb, entityRowHandler);
+    }
+
+    protected void facadeSelectCursor(WhiteMyselfCheckCB cb, EntityRowHandler<WhiteMyselfCheck> entityRowHandler) {
+        doSelectCursor(cb, entityRowHandler, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends WhiteMyselfCheck> void doSelectCursor(WhiteMyselfCheckCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
         assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
         helpSelectCursorInternally(cb, handler, tp, new InternalSelectCursorCallback<ENTITY, WhiteMyselfCheckCB>() {
-            public void callbackSelectCursor(WhiteMyselfCheckCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) { delegateSelectCursor(cb, handler, tp); }
-            public List<ENTITY> callbackSelectList(WhiteMyselfCheckCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
+            public void callbackSelectCursor(WhiteMyselfCheckCB lcb, EntityRowHandler<ENTITY> lhandler, Class<ENTITY> ltp) { delegateSelectCursor(lcb, lhandler, ltp); }
+            public List<ENTITY> callbackSelectList(WhiteMyselfCheckCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); }
         });
     }
 
@@ -368,22 +398,23 @@ public abstract class BsWhiteMyselfCheckBhv extends AbstractBehaviorWritable {
      * @param resultType The type of result. (NotNull)
      * @return The scalar function object to specify function for scalar value. (NotNull)
      */
-    public <RESULT> SLFunction<WhiteMyselfCheckCB, RESULT> scalarSelect(Class<RESULT> resultType) {
-        return doScalarSelect(resultType, newMyConditionBean());
+    public <RESULT> HpSLSFunction<WhiteMyselfCheckCB, RESULT> scalarSelect(Class<RESULT> resultType) {
+        return facadeScalarSelect(resultType);
     }
 
-    protected <RESULT, CB extends WhiteMyselfCheckCB> SLFunction<CB, RESULT> doScalarSelect(Class<RESULT> tp, CB cb) {
+    protected <RESULT> HpSLSFunction<WhiteMyselfCheckCB, RESULT> facadeScalarSelect(Class<RESULT> resultType) {
+        return doScalarSelect(resultType, newConditionBean());
+    }
+
+    protected <RESULT, CB extends WhiteMyselfCheckCB> HpSLSFunction<CB, RESULT> doScalarSelect(final Class<RESULT> tp, final CB cb) {
         assertObjectNotNull("resultType", tp); assertCBStateValid(cb);
         cb.xsetupForScalarSelect(); cb.getSqlClause().disableSelectIndex(); // for when you use union
-        return createSLFunction(cb, tp);
+        HpSLSExecutor<CB, RESULT> executor = createHpSLSExecutor(); // variable to resolve generic
+        return createSLSFunction(cb, tp, executor);
     }
 
-    protected <RESULT, CB extends WhiteMyselfCheckCB> SLFunction<CB, RESULT> createSLFunction(CB cb, Class<RESULT> tp) {
-        return new SLFunction<CB, RESULT>(cb, tp);
-    }
-
-    protected <RESULT> SLFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) {
-        return doScalarSelect(tp, newMyConditionBean());
+    protected <RESULT> HpSLSFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) {
+        return facadeScalarSelect(tp);
     }
 
     // ===================================================================================
@@ -393,6 +424,81 @@ public abstract class BsWhiteMyselfCheckBhv extends AbstractBehaviorWritable {
     protected Number doReadNextVal() {
         String msg = "This table is NOT related to sequence: " + getTableDbName();
         throw new UnsupportedOperationException(msg);
+    }
+
+    // ===================================================================================
+    //                                                                       Load Referrer
+    //                                                                       =============
+    /**
+     * Load referrer by the the referrer loader. <br />
+     * <pre>
+     * MemberCB cb = new MemberCB();
+     * cb.query().set...
+     * List&lt;Member&gt; memberList = memberBhv.selectList(cb);
+     * memberBhv.<span style="color: #DD4747">load</span>(memberList, loader -&gt; {
+     *     loader.<span style="color: #DD4747">loadPurchaseList</span>(purchaseCB -&gt; {
+     *         purchaseCB.query().set...
+     *         purchaseCB.query().addOrderBy_PurchasePrice_Desc();
+     *     }); <span style="color: #3F7E5E">// you can also load nested referrer from here</span>
+     *     <span style="color: #3F7E5E">//}).withNestedList(purchaseLoader -&gt {</span>
+     *     <span style="color: #3F7E5E">//    purchaseLoader.loadPurchasePaymentList(...);</span>
+     *     <span style="color: #3F7E5E">//});</span>
+     *
+     *     <span style="color: #3F7E5E">// you can also pull out foreign table and load its referrer</span>
+     *     <span style="color: #3F7E5E">// (setupSelect of the foreign table should be called)</span>
+     *     <span style="color: #3F7E5E">//loader.pulloutMemberStatus().loadMemberLoginList(...)</span>
+     * }
+     * for (Member member : memberList) {
+     *     List&lt;Purchase&gt; purchaseList = member.<span style="color: #DD4747">getPurchaseList()</span>;
+     *     for (Purchase purchase : purchaseList) {
+     *         ...
+     *     }
+     * }
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has order by FK before callback.
+     * @param whiteMyselfCheckList The entity list of whiteMyselfCheck. (NotNull)
+     * @param handler The callback to handle the referrer loader for actually loading referrer. (NotNull)
+     */
+    public void load(List<WhiteMyselfCheck> whiteMyselfCheckList, ReferrerLoaderHandler<LoaderOfWhiteMyselfCheck> handler) {
+        xassLRArg(whiteMyselfCheckList, handler);
+        handler.handle(new LoaderOfWhiteMyselfCheck().ready(whiteMyselfCheckList, _behaviorSelector));
+    }
+
+    /**
+     * Load referrer of ${referrer.referrerJavaBeansRulePropertyName} by the referrer loader. <br />
+     * <pre>
+     * MemberCB cb = new MemberCB();
+     * cb.query().set...
+     * Member member = memberBhv.selectEntityWithDeletedCheck(cb);
+     * memberBhv.<span style="color: #DD4747">load</span>(member, loader -&gt; {
+     *     loader.<span style="color: #DD4747">loadPurchaseList</span>(purchaseCB -&gt; {
+     *         purchaseCB.query().set...
+     *         purchaseCB.query().addOrderBy_PurchasePrice_Desc();
+     *     }); <span style="color: #3F7E5E">// you can also load nested referrer from here</span>
+     *     <span style="color: #3F7E5E">//}).withNestedList(purchaseLoader -&gt {</span>
+     *     <span style="color: #3F7E5E">//    purchaseLoader.loadPurchasePaymentList(...);</span>
+     *     <span style="color: #3F7E5E">//});</span>
+     *
+     *     <span style="color: #3F7E5E">// you can also pull out foreign table and load its referrer</span>
+     *     <span style="color: #3F7E5E">// (setupSelect of the foreign table should be called)</span>
+     *     <span style="color: #3F7E5E">//loader.pulloutMemberStatus().loadMemberLoginList(...)</span>
+     * }
+     * for (Member member : memberList) {
+     *     List&lt;Purchase&gt; purchaseList = member.<span style="color: #DD4747">getPurchaseList()</span>;
+     *     for (Purchase purchase : purchaseList) {
+     *         ...
+     *     }
+     * }
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has order by FK before callback.
+     * @param whiteMyselfCheck The entity of whiteMyselfCheck. (NotNull)
+     * @param handler The callback to handle the referrer loader for actually loading referrer. (NotNull)
+     */
+    public void load(WhiteMyselfCheck whiteMyselfCheck, ReferrerLoaderHandler<LoaderOfWhiteMyselfCheck> handler) {
+        xassLRArg(whiteMyselfCheck, handler);
+        handler.handle(new LoaderOfWhiteMyselfCheck().ready(xnewLRAryLs(whiteMyselfCheck), _behaviorSelector));
     }
 
     // ===================================================================================
@@ -444,17 +550,17 @@ public abstract class BsWhiteMyselfCheckBhv extends AbstractBehaviorWritable {
      * ... = whiteMyselfCheck.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * <p>While, when the entity is created by select, all columns are registered.</p>
-     * @param whiteMyselfCheck The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
+     * @param whiteMyselfCheck The entity of insert. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
      * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insert(WhiteMyselfCheck whiteMyselfCheck) {
         doInsert(whiteMyselfCheck, null);
     }
 
-    protected void doInsert(WhiteMyselfCheck whiteMyselfCheck, InsertOption<WhiteMyselfCheckCB> op) {
-        assertObjectNotNull("whiteMyselfCheck", whiteMyselfCheck);
+    protected void doInsert(WhiteMyselfCheck et, InsertOption<WhiteMyselfCheckCB> op) {
+        assertObjectNotNull("whiteMyselfCheck", et);
         prepareInsertOption(op);
-        delegateInsert(whiteMyselfCheck, op);
+        delegateInsert(et, op);
     }
 
     protected void prepareInsertOption(InsertOption<WhiteMyselfCheckCB> op) {
@@ -467,8 +573,7 @@ public abstract class BsWhiteMyselfCheckBhv extends AbstractBehaviorWritable {
 
     @Override
     protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) {
-        if (op == null) { insert(downcast(et)); }
-        else { varyingInsert(downcast(et), downcast(op)); }
+        doInsert(downcast(et), downcast(op));
     }
 
     /**
@@ -480,7 +585,7 @@ public abstract class BsWhiteMyselfCheckBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
      * <span style="color: #3F7E5E">//whiteMyselfCheck.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//whiteMyselfCheck.set...;</span>
-     * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
+     * <span style="color: #3F7E5E">// if exclusive control, the value of concurrency column is required</span>
      * whiteMyselfCheck.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     whiteMyselfCheckBhv.<span style="color: #DD4747">update</span>(whiteMyselfCheck);
@@ -488,49 +593,38 @@ public abstract class BsWhiteMyselfCheckBhv extends AbstractBehaviorWritable {
      *     ...
      * }
      * </pre>
-     * @param whiteMyselfCheck The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
+     * @param whiteMyselfCheck The entity of update. (NotNull, PrimaryKeyNotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
-    public void update(final WhiteMyselfCheck whiteMyselfCheck) {
+    public void update(WhiteMyselfCheck whiteMyselfCheck) {
         doUpdate(whiteMyselfCheck, null);
     }
 
-    protected void doUpdate(WhiteMyselfCheck whiteMyselfCheck, final UpdateOption<WhiteMyselfCheckCB> op) {
-        assertObjectNotNull("whiteMyselfCheck", whiteMyselfCheck);
+    protected void doUpdate(WhiteMyselfCheck et, final UpdateOption<WhiteMyselfCheckCB> op) {
+        assertObjectNotNull("whiteMyselfCheck", et);
         prepareUpdateOption(op);
-        helpUpdateInternally(whiteMyselfCheck, new InternalUpdateCallback<WhiteMyselfCheck>() {
-            public int callbackDelegateUpdate(WhiteMyselfCheck et) { return delegateUpdate(et, op); } });
+        helpUpdateInternally(et, new InternalUpdateCallback<WhiteMyselfCheck>() {
+            public int callbackDelegateUpdate(WhiteMyselfCheck let) { return delegateUpdate(let, op); } });
     }
 
     protected void prepareUpdateOption(UpdateOption<WhiteMyselfCheckCB> op) {
         if (op == null) { return; }
         assertUpdateOptionStatus(op);
-        if (op.hasSelfSpecification()) {
-            op.resolveSelfSpecification(createCBForVaryingUpdate());
-        }
-        if (op.hasSpecifiedUpdateColumn()) {
-            op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate());
-        }
+        if (op.hasSelfSpecification()) { op.resolveSelfSpecification(createCBForVaryingUpdate()); }
+        if (op.hasSpecifiedUpdateColumn()) { op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate()); }
     }
 
-    protected WhiteMyselfCheckCB createCBForVaryingUpdate() {
-        WhiteMyselfCheckCB cb = newMyConditionBean();
-        cb.xsetupForVaryingUpdate();
-        return cb;
-    }
+    protected WhiteMyselfCheckCB createCBForVaryingUpdate()
+    { WhiteMyselfCheckCB cb = newConditionBean(); cb.xsetupForVaryingUpdate(); return cb; }
 
-    protected WhiteMyselfCheckCB createCBForSpecifiedUpdate() {
-        WhiteMyselfCheckCB cb = newMyConditionBean();
-        cb.xsetupForSpecifiedUpdate();
-        return cb;
-    }
+    protected WhiteMyselfCheckCB createCBForSpecifiedUpdate()
+    { WhiteMyselfCheckCB cb = newConditionBean(); cb.xsetupForSpecifiedUpdate(); return cb; }
 
     @Override
     protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) {
-        if (op == null) { update(downcast(et)); }
-        else { varyingUpdate(downcast(et), downcast(op)); }
+        doUpdate(downcast(et), downcast(op));
     }
 
     @Override
@@ -542,32 +636,28 @@ public abstract class BsWhiteMyselfCheckBhv extends AbstractBehaviorWritable {
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br />
      * <p><span style="color: #DD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
-     * @param whiteMyselfCheck The entity of insert or update target. (NotNull)
+     * @param whiteMyselfCheck The entity of insert or update. (NotNull, ...depends on insert or update)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insertOrUpdate(WhiteMyselfCheck whiteMyselfCheck) {
-        doInesrtOrUpdate(whiteMyselfCheck, null, null);
+        doInsertOrUpdate(whiteMyselfCheck, null, null);
     }
 
-    protected void doInesrtOrUpdate(WhiteMyselfCheck whiteMyselfCheck, final InsertOption<WhiteMyselfCheckCB> iop, final UpdateOption<WhiteMyselfCheckCB> uop) {
-        helpInsertOrUpdateInternally(whiteMyselfCheck, new InternalInsertOrUpdateCallback<WhiteMyselfCheck, WhiteMyselfCheckCB>() {
-            public void callbackInsert(WhiteMyselfCheck et) { doInsert(et, iop); }
-            public void callbackUpdate(WhiteMyselfCheck et) { doUpdate(et, uop); }
-            public WhiteMyselfCheckCB callbackNewMyConditionBean() { return newMyConditionBean(); }
+    protected void doInsertOrUpdate(WhiteMyselfCheck et, final InsertOption<WhiteMyselfCheckCB> iop, final UpdateOption<WhiteMyselfCheckCB> uop) {
+        assertObjectNotNull("whiteMyselfCheck", et);
+        helpInsertOrUpdateInternally(et, new InternalInsertOrUpdateCallback<WhiteMyselfCheck, WhiteMyselfCheckCB>() {
+            public void callbackInsert(WhiteMyselfCheck let) { doInsert(let, iop); }
+            public void callbackUpdate(WhiteMyselfCheck let) { doUpdate(let, uop); }
+            public WhiteMyselfCheckCB callbackNewMyConditionBean() { return newConditionBean(); }
             public int callbackSelectCount(WhiteMyselfCheckCB cb) { return selectCount(cb); }
         });
     }
 
     @Override
     protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
-        if (iop == null && uop == null) { insertOrUpdate(downcast(et)); }
-        else {
-            iop = iop != null ? iop : new InsertOption<WhiteMyselfCheckCB>();
-            uop = uop != null ? uop : new UpdateOption<WhiteMyselfCheckCB>();
-            varyingInsertOrUpdate(downcast(et), downcast(iop), downcast(uop));
-        }
+        doInsertOrUpdate(downcast(et), downcast(iop), downcast(uop));
     }
 
     @Override
@@ -580,7 +670,7 @@ public abstract class BsWhiteMyselfCheckBhv extends AbstractBehaviorWritable {
      * <pre>
      * WhiteMyselfCheck whiteMyselfCheck = new WhiteMyselfCheck();
      * whiteMyselfCheck.setPK...(value); <span style="color: #3F7E5E">// required</span>
-     * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
+     * <span style="color: #3F7E5E">// if exclusive control, the value of concurrency column is required</span>
      * whiteMyselfCheck.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     whiteMyselfCheckBhv.<span style="color: #DD4747">delete</span>(whiteMyselfCheck);
@@ -588,7 +678,7 @@ public abstract class BsWhiteMyselfCheckBhv extends AbstractBehaviorWritable {
      *     ...
      * }
      * </pre>
-     * @param whiteMyselfCheck The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
+     * @param whiteMyselfCheck The entity of delete. (NotNull, PrimaryKeyNotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      */
@@ -596,22 +686,19 @@ public abstract class BsWhiteMyselfCheckBhv extends AbstractBehaviorWritable {
         doDelete(whiteMyselfCheck, null);
     }
 
-    protected void doDelete(WhiteMyselfCheck whiteMyselfCheck, final DeleteOption<WhiteMyselfCheckCB> op) {
-        assertObjectNotNull("whiteMyselfCheck", whiteMyselfCheck);
+    protected void doDelete(WhiteMyselfCheck et, final DeleteOption<WhiteMyselfCheckCB> op) {
+        assertObjectNotNull("whiteMyselfCheck", et);
         prepareDeleteOption(op);
-        helpDeleteInternally(whiteMyselfCheck, new InternalDeleteCallback<WhiteMyselfCheck>() {
-            public int callbackDelegateDelete(WhiteMyselfCheck et) { return delegateDelete(et, op); } });
+        helpDeleteInternally(et, new InternalDeleteCallback<WhiteMyselfCheck>() {
+            public int callbackDelegateDelete(WhiteMyselfCheck let) { return delegateDelete(let, op); } });
     }
 
-    protected void prepareDeleteOption(DeleteOption<WhiteMyselfCheckCB> op) {
-        if (op == null) { return; }
-        assertDeleteOptionStatus(op);
-    }
+    protected void prepareDeleteOption(DeleteOption<WhiteMyselfCheckCB> op)
+    { if (op != null) { assertDeleteOptionStatus(op); } }
 
     @Override
     protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) {
-        if (op == null) { delete(downcast(et)); }
-        else { varyingDelete(downcast(et), downcast(op)); }
+        doDelete(downcast(et), downcast(op));
     }
 
     @Override
@@ -647,26 +734,25 @@ public abstract class BsWhiteMyselfCheckBhv extends AbstractBehaviorWritable {
      * @return The array of inserted count. (NotNull, EmptyAllowed)
      */
     public int[] batchInsert(List<WhiteMyselfCheck> whiteMyselfCheckList) {
-        InsertOption<WhiteMyselfCheckCB> op = createInsertUpdateOption();
-        return doBatchInsert(whiteMyselfCheckList, op);
+        return doBatchInsert(whiteMyselfCheckList, null);
     }
 
-    protected int[] doBatchInsert(List<WhiteMyselfCheck> whiteMyselfCheckList, InsertOption<WhiteMyselfCheckCB> op) {
-        assertObjectNotNull("whiteMyselfCheckList", whiteMyselfCheckList);
-        prepareBatchInsertOption(whiteMyselfCheckList, op);
-        return delegateBatchInsert(whiteMyselfCheckList, op);
+    protected int[] doBatchInsert(List<WhiteMyselfCheck> ls, InsertOption<WhiteMyselfCheckCB> op) {
+        assertObjectNotNull("whiteMyselfCheckList", ls);
+        InsertOption<WhiteMyselfCheckCB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainInsertOption(); }
+        prepareBatchInsertOption(ls, rlop); // required
+        return delegateBatchInsert(ls, rlop);
     }
 
-    protected void prepareBatchInsertOption(List<WhiteMyselfCheck> whiteMyselfCheckList, InsertOption<WhiteMyselfCheckCB> op) {
+    protected void prepareBatchInsertOption(List<WhiteMyselfCheck> ls, InsertOption<WhiteMyselfCheckCB> op) {
         op.xallowInsertColumnModifiedPropertiesFragmented();
-        op.xacceptInsertColumnModifiedPropertiesIfNeeds(whiteMyselfCheckList);
+        op.xacceptInsertColumnModifiedPropertiesIfNeeds(ls);
         prepareInsertOption(op);
     }
 
     @Override
     protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) {
-        if (op == null) { return batchInsert(downcast(ls)); }
-        else { return varyingBatchInsert(downcast(ls), downcast(op)); }
+        return doBatchInsert(downcast(ls), downcast(op));
     }
 
     /**
@@ -694,25 +780,24 @@ public abstract class BsWhiteMyselfCheckBhv extends AbstractBehaviorWritable {
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<WhiteMyselfCheck> whiteMyselfCheckList) {
-        UpdateOption<WhiteMyselfCheckCB> op = createPlainUpdateOption();
-        return doBatchUpdate(whiteMyselfCheckList, op);
+        return doBatchUpdate(whiteMyselfCheckList, null);
     }
 
-    protected int[] doBatchUpdate(List<WhiteMyselfCheck> whiteMyselfCheckList, UpdateOption<WhiteMyselfCheckCB> op) {
-        assertObjectNotNull("whiteMyselfCheckList", whiteMyselfCheckList);
-        prepareBatchUpdateOption(whiteMyselfCheckList, op);
-        return delegateBatchUpdate(whiteMyselfCheckList, op);
+    protected int[] doBatchUpdate(List<WhiteMyselfCheck> ls, UpdateOption<WhiteMyselfCheckCB> op) {
+        assertObjectNotNull("whiteMyselfCheckList", ls);
+        UpdateOption<WhiteMyselfCheckCB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainUpdateOption(); }
+        prepareBatchUpdateOption(ls, rlop); // required
+        return delegateBatchUpdate(ls, rlop);
     }
 
-    protected void prepareBatchUpdateOption(List<WhiteMyselfCheck> whiteMyselfCheckList, UpdateOption<WhiteMyselfCheckCB> op) {
-        op.xacceptUpdateColumnModifiedPropertiesIfNeeds(whiteMyselfCheckList);
+    protected void prepareBatchUpdateOption(List<WhiteMyselfCheck> ls, UpdateOption<WhiteMyselfCheckCB> op) {
+        op.xacceptUpdateColumnModifiedPropertiesIfNeeds(ls);
         prepareUpdateOption(op);
     }
 
     @Override
     protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) {
-        if (op == null) { return batchUpdate(downcast(ls)); }
-        else { return varyingBatchUpdate(downcast(ls), downcast(op)); }
+        return doBatchUpdate(downcast(ls), downcast(op));
     }
 
     /**
@@ -763,16 +848,15 @@ public abstract class BsWhiteMyselfCheckBhv extends AbstractBehaviorWritable {
         return doBatchDelete(whiteMyselfCheckList, null);
     }
 
-    protected int[] doBatchDelete(List<WhiteMyselfCheck> whiteMyselfCheckList, DeleteOption<WhiteMyselfCheckCB> op) {
-        assertObjectNotNull("whiteMyselfCheckList", whiteMyselfCheckList);
+    protected int[] doBatchDelete(List<WhiteMyselfCheck> ls, DeleteOption<WhiteMyselfCheckCB> op) {
+        assertObjectNotNull("whiteMyselfCheckList", ls);
         prepareDeleteOption(op);
-        return delegateBatchDelete(whiteMyselfCheckList, op);
+        return delegateBatchDelete(ls, op);
     }
 
     @Override
     protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) {
-        if (op == null) { return batchDelete(downcast(ls)); }
-        else { return varyingBatchDelete(downcast(ls), downcast(op)); }
+        return doBatchDelete(downcast(ls), downcast(op));
     }
 
     @Override
@@ -799,7 +883,7 @@ public abstract class BsWhiteMyselfCheckBhv extends AbstractBehaviorWritable {
      *         <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
      *         <span style="color: #3F7E5E">//entity.setRegisterUser(value);</span>
      *         <span style="color: #3F7E5E">//entity.set...;</span>
-     *         <span style="color: #3F7E5E">// you don't need to set a value of exclusive control column</span>
+     *         <span style="color: #3F7E5E">// you don't need to set a value of concurrency column</span>
      *         <span style="color: #3F7E5E">//entity.setVersionNo(value);</span>
      *
      *         return cb;
@@ -816,21 +900,17 @@ public abstract class BsWhiteMyselfCheckBhv extends AbstractBehaviorWritable {
     protected int doQueryInsert(QueryInsertSetupper<WhiteMyselfCheck, WhiteMyselfCheckCB> sp, InsertOption<WhiteMyselfCheckCB> op) {
         assertObjectNotNull("setupper", sp);
         prepareInsertOption(op);
-        WhiteMyselfCheck e = new WhiteMyselfCheck();
+        WhiteMyselfCheck et = newEntity();
         WhiteMyselfCheckCB cb = createCBForQueryInsert();
-        return delegateQueryInsert(e, cb, sp.setup(e, cb), op);
+        return delegateQueryInsert(et, cb, sp.setup(et, cb), op);
     }
 
-    protected WhiteMyselfCheckCB createCBForQueryInsert() {
-        WhiteMyselfCheckCB cb = newMyConditionBean();
-        cb.xsetupForQueryInsert();
-        return cb;
-    }
+    protected WhiteMyselfCheckCB createCBForQueryInsert()
+    { WhiteMyselfCheckCB cb = newConditionBean(); cb.xsetupForQueryInsert(); return cb; }
 
     @Override
-    protected int doRangeCreate(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> setupper, InsertOption<? extends ConditionBean> option) {
-        if (option == null) { return queryInsert(downcast(setupper)); }
-        else { return varyingQueryInsert(downcast(setupper), downcast(option)); }
+    protected int doRangeCreate(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> setupper, InsertOption<? extends ConditionBean> op) {
+        return doQueryInsert(downcast(setupper), downcast(op));
     }
 
     /**
@@ -843,7 +923,7 @@ public abstract class BsWhiteMyselfCheckBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
      * <span style="color: #3F7E5E">//whiteMyselfCheck.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//whiteMyselfCheck.set...;</span>
-     * <span style="color: #3F7E5E">// you don't need to set a value of exclusive control column</span>
+     * <span style="color: #3F7E5E">// you don't need to set a value of concurrency column</span>
      * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
      * <span style="color: #3F7E5E">//whiteMyselfCheck.setVersionNo(value);</span>
      * WhiteMyselfCheckCB cb = new WhiteMyselfCheckCB();
@@ -859,16 +939,15 @@ public abstract class BsWhiteMyselfCheckBhv extends AbstractBehaviorWritable {
         return doQueryUpdate(whiteMyselfCheck, cb, null);
     }
 
-    protected int doQueryUpdate(WhiteMyselfCheck whiteMyselfCheck, WhiteMyselfCheckCB cb, UpdateOption<WhiteMyselfCheckCB> op) {
-        assertObjectNotNull("whiteMyselfCheck", whiteMyselfCheck); assertCBStateValid(cb);
+    protected int doQueryUpdate(WhiteMyselfCheck et, WhiteMyselfCheckCB cb, UpdateOption<WhiteMyselfCheckCB> op) {
+        assertObjectNotNull("whiteMyselfCheck", et); assertCBStateValid(cb);
         prepareUpdateOption(op);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(whiteMyselfCheck, cb, op) : 0;
+        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(et, cb, op) : 0;
     }
 
     @Override
     protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op) {
-        if (op == null) { return queryUpdate(downcast(et), (WhiteMyselfCheckCB)cb); }
-        else { return varyingQueryUpdate(downcast(et), (WhiteMyselfCheckCB)cb, downcast(op)); }
+        return doQueryUpdate(downcast(et), downcast(cb), downcast(op));
     }
 
     /**
@@ -894,8 +973,7 @@ public abstract class BsWhiteMyselfCheckBhv extends AbstractBehaviorWritable {
 
     @Override
     protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) {
-        if (op == null) { return queryDelete((WhiteMyselfCheckCB)cb); }
-        else { return varyingQueryDelete((WhiteMyselfCheckCB)cb, downcast(op)); }
+        return doQueryDelete(downcast(cb), downcast(op));
     }
 
     // ===================================================================================
@@ -919,7 +997,7 @@ public abstract class BsWhiteMyselfCheckBhv extends AbstractBehaviorWritable {
      * whiteMyselfCheckBhv.<span style="color: #DD4747">varyingInsert</span>(whiteMyselfCheck, option);
      * ... = whiteMyselfCheck.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
-     * @param whiteMyselfCheck The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
+     * @param whiteMyselfCheck The entity of insert. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
      * @param option The option of insert for varying requests. (NotNull)
      * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
@@ -936,7 +1014,7 @@ public abstract class BsWhiteMyselfCheckBhv extends AbstractBehaviorWritable {
      * WhiteMyselfCheck whiteMyselfCheck = new WhiteMyselfCheck();
      * whiteMyselfCheck.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * whiteMyselfCheck.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
-     * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
+     * <span style="color: #3F7E5E">// if exclusive control, the value of concurrency column is required</span>
      * whiteMyselfCheck.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     <span style="color: #3F7E5E">// you can update by self calculation values</span>
@@ -951,7 +1029,7 @@ public abstract class BsWhiteMyselfCheckBhv extends AbstractBehaviorWritable {
      *     ...
      * }
      * </pre>
-     * @param whiteMyselfCheck The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
+     * @param whiteMyselfCheck The entity of update. (NotNull, PrimaryKeyNotNull)
      * @param option The option of update for varying requests. (NotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
@@ -965,7 +1043,7 @@ public abstract class BsWhiteMyselfCheckBhv extends AbstractBehaviorWritable {
     /**
      * Insert or update the entity with varying requests. (ExclusiveControl: when update) <br />
      * Other specifications are same as insertOrUpdate(entity).
-     * @param whiteMyselfCheck The entity of insert or update target. (NotNull)
+     * @param whiteMyselfCheck The entity of insert or update. (NotNull)
      * @param insertOption The option of insert for varying requests. (NotNull)
      * @param updateOption The option of update for varying requests. (NotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
@@ -974,14 +1052,14 @@ public abstract class BsWhiteMyselfCheckBhv extends AbstractBehaviorWritable {
      */
     public void varyingInsertOrUpdate(WhiteMyselfCheck whiteMyselfCheck, InsertOption<WhiteMyselfCheckCB> insertOption, UpdateOption<WhiteMyselfCheckCB> updateOption) {
         assertInsertOptionNotNull(insertOption); assertUpdateOptionNotNull(updateOption);
-        doInesrtOrUpdate(whiteMyselfCheck, insertOption, updateOption);
+        doInsertOrUpdate(whiteMyselfCheck, insertOption, updateOption);
     }
 
     /**
      * Delete the entity with varying requests. (ZeroUpdateException, NonExclusiveControl) <br />
      * Now a valid option does not exist. <br />
      * Other specifications are same as delete(entity).
-     * @param whiteMyselfCheck The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
+     * @param whiteMyselfCheck The entity of delete. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
      * @param option The option of update for varying requests. (NotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
@@ -1062,7 +1140,7 @@ public abstract class BsWhiteMyselfCheckBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">// you don't need to set PK value</span>
      * <span style="color: #3F7E5E">//whiteMyselfCheck.setPK...(value);</span>
      * whiteMyselfCheck.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
-     * <span style="color: #3F7E5E">// you don't need to set a value of exclusive control column</span>
+     * <span style="color: #3F7E5E">// you don't need to set a value of concurrency column</span>
      * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
      * <span style="color: #3F7E5E">//whiteMyselfCheck.setVersionNo(value);</span>
      * WhiteMyselfCheckCB cb = new WhiteMyselfCheckCB();
@@ -1214,38 +1292,34 @@ public abstract class BsWhiteMyselfCheckBhv extends AbstractBehaviorWritable {
     }
 
     // ===================================================================================
-    //                                                                     Downcast Helper
-    //                                                                     ===============
-    protected WhiteMyselfCheck downcast(Entity et) {
-        return helpEntityDowncastInternally(et, WhiteMyselfCheck.class);
-    }
+    //                                                                       Assist Helper
+    //                                                                       =============
+    protected Class<WhiteMyselfCheck> typeOfSelectedEntity()
+    { return WhiteMyselfCheck.class; }
 
-    protected WhiteMyselfCheckCB downcast(ConditionBean cb) {
-        return helpConditionBeanDowncastInternally(cb, WhiteMyselfCheckCB.class);
-    }
+    protected WhiteMyselfCheck downcast(Entity et)
+    { return helpEntityDowncastInternally(et, WhiteMyselfCheck.class); }
 
-    @SuppressWarnings("unchecked")
-    protected List<WhiteMyselfCheck> downcast(List<? extends Entity> ls) {
-        return (List<WhiteMyselfCheck>)ls;
-    }
+    protected WhiteMyselfCheckCB downcast(ConditionBean cb)
+    { return helpConditionBeanDowncastInternally(cb, WhiteMyselfCheckCB.class); }
 
     @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteMyselfCheckCB> downcast(InsertOption<? extends ConditionBean> op) {
-        return (InsertOption<WhiteMyselfCheckCB>)op;
-    }
+    protected List<WhiteMyselfCheck> downcast(List<? extends Entity> ls)
+    { return (List<WhiteMyselfCheck>)ls; }
 
     @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteMyselfCheckCB> downcast(UpdateOption<? extends ConditionBean> op) {
-        return (UpdateOption<WhiteMyselfCheckCB>)op;
-    }
+    protected InsertOption<WhiteMyselfCheckCB> downcast(InsertOption<? extends ConditionBean> op)
+    { return (InsertOption<WhiteMyselfCheckCB>)op; }
 
     @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteMyselfCheckCB> downcast(DeleteOption<? extends ConditionBean> op) {
-        return (DeleteOption<WhiteMyselfCheckCB>)op;
-    }
+    protected UpdateOption<WhiteMyselfCheckCB> downcast(UpdateOption<? extends ConditionBean> op)
+    { return (UpdateOption<WhiteMyselfCheckCB>)op; }
 
     @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhiteMyselfCheck, WhiteMyselfCheckCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp) {
-        return (QueryInsertSetupper<WhiteMyselfCheck, WhiteMyselfCheckCB>)sp;
-    }
+    protected DeleteOption<WhiteMyselfCheckCB> downcast(DeleteOption<? extends ConditionBean> op)
+    { return (DeleteOption<WhiteMyselfCheckCB>)op; }
+
+    @SuppressWarnings("unchecked")
+    protected QueryInsertSetupper<WhiteMyselfCheck, WhiteMyselfCheckCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
+    { return (QueryInsertSetupper<WhiteMyselfCheck, WhiteMyselfCheckCB>)sp; }
 }

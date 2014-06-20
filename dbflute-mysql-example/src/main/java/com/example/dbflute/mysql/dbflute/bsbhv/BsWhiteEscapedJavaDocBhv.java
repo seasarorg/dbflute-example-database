@@ -20,12 +20,15 @@ import java.util.List;
 import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
+import org.seasar.dbflute.cbean.chelper.HpSLSExecutor;
+import org.seasar.dbflute.cbean.chelper.HpSLSFunction;
 import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.exception.*;
 import org.seasar.dbflute.optional.OptionalEntity;
 import org.seasar.dbflute.outsidesql.executor.*;
 import com.example.dbflute.mysql.dbflute.allcommon.CDef;
 import com.example.dbflute.mysql.dbflute.exbhv.*;
+import com.example.dbflute.mysql.dbflute.bsbhv.loader.*;
 import com.example.dbflute.mysql.dbflute.exentity.*;
 import com.example.dbflute.mysql.dbflute.bsentity.dbmeta.*;
 import com.example.dbflute.mysql.dbflute.cbean.*;
@@ -79,7 +82,7 @@ public abstract class BsWhiteEscapedJavaDocBhv extends AbstractBehaviorWritable 
     // ===================================================================================
     //                                                                              DBMeta
     //                                                                              ======
-    /** @return The instance of DBMeta. (NotNull) */
+    /** {@inheritDoc} */
     public DBMeta getDBMeta() { return WhiteEscapedJavaDocDbm.getInstance(); }
 
     /** @return The instance of DBMeta as my table type. (NotNull) */
@@ -89,10 +92,10 @@ public abstract class BsWhiteEscapedJavaDocBhv extends AbstractBehaviorWritable 
     //                                                                        New Instance
     //                                                                        ============
     /** {@inheritDoc} */
-    public Entity newEntity() { return newMyEntity(); }
+    public WhiteEscapedJavaDoc newEntity() { return new WhiteEscapedJavaDoc(); }
 
     /** {@inheritDoc} */
-    public ConditionBean newConditionBean() { return newMyConditionBean(); }
+    public WhiteEscapedJavaDocCB newConditionBean() { return new WhiteEscapedJavaDocCB(); }
 
     /** @return The instance of new entity as my table type. (NotNull) */
     public WhiteEscapedJavaDoc newMyEntity() { return new WhiteEscapedJavaDoc(); }
@@ -115,6 +118,10 @@ public abstract class BsWhiteEscapedJavaDocBhv extends AbstractBehaviorWritable 
      * @return The count for the condition. (NotMinus)
      */
     public int selectCount(WhiteEscapedJavaDocCB cb) {
+        return facadeSelectCount(cb);
+    }
+
+    protected int facadeSelectCount(WhiteEscapedJavaDocCB cb) {
         return doSelectCountUniquely(cb);
     }
 
@@ -130,7 +137,7 @@ public abstract class BsWhiteEscapedJavaDocBhv extends AbstractBehaviorWritable 
 
     @Override
     protected int doReadCount(ConditionBean cb) {
-        return selectCount(downcast(cb));
+        return facadeSelectCount(downcast(cb));
     }
 
     // ===================================================================================
@@ -156,7 +163,11 @@ public abstract class BsWhiteEscapedJavaDocBhv extends AbstractBehaviorWritable 
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteEscapedJavaDoc selectEntity(WhiteEscapedJavaDocCB cb) {
-        return doSelectEntity(cb, WhiteEscapedJavaDoc.class);
+        return facadeSelectEntity(cb);
+    }
+
+    protected WhiteEscapedJavaDoc facadeSelectEntity(WhiteEscapedJavaDocCB cb) {
+        return doSelectEntity(cb, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends WhiteEscapedJavaDoc> ENTITY doSelectEntity(WhiteEscapedJavaDocCB cb, Class<ENTITY> tp) {
@@ -171,7 +182,7 @@ public abstract class BsWhiteEscapedJavaDocBhv extends AbstractBehaviorWritable 
 
     @Override
     protected Entity doReadEntity(ConditionBean cb) {
-        return selectEntity(downcast(cb));
+        return facadeSelectEntity(downcast(cb));
     }
 
     /**
@@ -190,7 +201,11 @@ public abstract class BsWhiteEscapedJavaDocBhv extends AbstractBehaviorWritable 
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteEscapedJavaDoc selectEntityWithDeletedCheck(WhiteEscapedJavaDocCB cb) {
-        return doSelectEntityWithDeletedCheck(cb, WhiteEscapedJavaDoc.class);
+        return facadeSelectEntityWithDeletedCheck(cb);
+    }
+
+    protected WhiteEscapedJavaDoc facadeSelectEntityWithDeletedCheck(WhiteEscapedJavaDocCB cb) {
+        return doSelectEntityWithDeletedCheck(cb, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends WhiteEscapedJavaDoc> ENTITY doSelectEntityWithDeletedCheck(WhiteEscapedJavaDocCB cb, Class<ENTITY> tp) {
@@ -201,7 +216,7 @@ public abstract class BsWhiteEscapedJavaDocBhv extends AbstractBehaviorWritable 
 
     @Override
     protected Entity doReadEntityWithDeletedCheck(ConditionBean cb) {
-        return selectEntityWithDeletedCheck(downcast(cb));
+        return facadeSelectEntityWithDeletedCheck(downcast(cb));
     }
 
     /**
@@ -212,15 +227,19 @@ public abstract class BsWhiteEscapedJavaDocBhv extends AbstractBehaviorWritable 
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteEscapedJavaDoc selectByPKValue(CDef.EscapedJavaDocCls escapedJavaDocCode) {
-        return doSelectByPK(escapedJavaDocCode, WhiteEscapedJavaDoc.class);
+        return facadeSelectByPKValue(escapedJavaDocCode);
     }
 
-    protected <ENTITY extends WhiteEscapedJavaDoc> ENTITY doSelectByPK(CDef.EscapedJavaDocCls escapedJavaDocCode, Class<ENTITY> entityType) {
-        return doSelectEntity(xprepareCBAsPK(escapedJavaDocCode), entityType);
+    protected WhiteEscapedJavaDoc facadeSelectByPKValue(CDef.EscapedJavaDocCls escapedJavaDocCode) {
+        return doSelectByPK(escapedJavaDocCode, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends WhiteEscapedJavaDoc> OptionalEntity<ENTITY> doSelectOptionalByPK(CDef.EscapedJavaDocCls escapedJavaDocCode, Class<ENTITY> entityType) {
-        return createOptionalEntity(doSelectByPK(escapedJavaDocCode, entityType), escapedJavaDocCode);
+    protected <ENTITY extends WhiteEscapedJavaDoc> ENTITY doSelectByPK(CDef.EscapedJavaDocCls escapedJavaDocCode, Class<ENTITY> tp) {
+        return doSelectEntity(xprepareCBAsPK(escapedJavaDocCode), tp);
+    }
+
+    protected <ENTITY extends WhiteEscapedJavaDoc> OptionalEntity<ENTITY> doSelectOptionalByPK(CDef.EscapedJavaDocCls escapedJavaDocCode, Class<ENTITY> tp) {
+        return createOptionalEntity(doSelectByPK(escapedJavaDocCode, tp), escapedJavaDocCode);
     }
 
     /**
@@ -232,17 +251,16 @@ public abstract class BsWhiteEscapedJavaDocBhv extends AbstractBehaviorWritable 
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteEscapedJavaDoc selectByPKValueWithDeletedCheck(CDef.EscapedJavaDocCls escapedJavaDocCode) {
-        return doSelectByPKWithDeletedCheck(escapedJavaDocCode, WhiteEscapedJavaDoc.class);
+        return doSelectByPKWithDeletedCheck(escapedJavaDocCode, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends WhiteEscapedJavaDoc> ENTITY doSelectByPKWithDeletedCheck(CDef.EscapedJavaDocCls escapedJavaDocCode, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(escapedJavaDocCode), entityType);
+    protected <ENTITY extends WhiteEscapedJavaDoc> ENTITY doSelectByPKWithDeletedCheck(CDef.EscapedJavaDocCls escapedJavaDocCode, Class<ENTITY> tp) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(escapedJavaDocCode), tp);
     }
 
     protected WhiteEscapedJavaDocCB xprepareCBAsPK(CDef.EscapedJavaDocCls escapedJavaDocCode) {
         assertObjectNotNull("escapedJavaDocCode", escapedJavaDocCode);
-        WhiteEscapedJavaDocCB cb = newMyConditionBean(); cb.acceptPrimaryKey(escapedJavaDocCode);
-        return cb;
+        return newConditionBean().acceptPK(escapedJavaDocCode);
     }
 
     // ===================================================================================
@@ -264,7 +282,11 @@ public abstract class BsWhiteEscapedJavaDocBhv extends AbstractBehaviorWritable 
      * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public ListResultBean<WhiteEscapedJavaDoc> selectList(WhiteEscapedJavaDocCB cb) {
-        return doSelectList(cb, WhiteEscapedJavaDoc.class);
+        return facadeSelectList(cb);
+    }
+
+    protected ListResultBean<WhiteEscapedJavaDoc> facadeSelectList(WhiteEscapedJavaDocCB cb) {
+        return doSelectList(cb, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends WhiteEscapedJavaDoc> ListResultBean<ENTITY> doSelectList(WhiteEscapedJavaDocCB cb, Class<ENTITY> tp) {
@@ -276,7 +298,7 @@ public abstract class BsWhiteEscapedJavaDocBhv extends AbstractBehaviorWritable 
 
     @Override
     protected ListResultBean<? extends Entity> doReadList(ConditionBean cb) {
-        return selectList(downcast(cb));
+        return facadeSelectList(downcast(cb));
     }
 
     // ===================================================================================
@@ -305,7 +327,11 @@ public abstract class BsWhiteEscapedJavaDocBhv extends AbstractBehaviorWritable 
      * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public PagingResultBean<WhiteEscapedJavaDoc> selectPage(WhiteEscapedJavaDocCB cb) {
-        return doSelectPage(cb, WhiteEscapedJavaDoc.class);
+        return facadeSelectPage(cb);
+    }
+
+    protected PagingResultBean<WhiteEscapedJavaDoc> facadeSelectPage(WhiteEscapedJavaDocCB cb) {
+        return doSelectPage(cb, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends WhiteEscapedJavaDoc> PagingResultBean<ENTITY> doSelectPage(WhiteEscapedJavaDocCB cb, Class<ENTITY> tp) {
@@ -318,7 +344,7 @@ public abstract class BsWhiteEscapedJavaDocBhv extends AbstractBehaviorWritable 
 
     @Override
     protected PagingResultBean<? extends Entity> doReadPage(ConditionBean cb) {
-        return selectPage(downcast(cb));
+        return facadeSelectPage(downcast(cb));
     }
 
     // ===================================================================================
@@ -339,15 +365,19 @@ public abstract class BsWhiteEscapedJavaDocBhv extends AbstractBehaviorWritable 
      * @param entityRowHandler The handler of entity row of WhiteEscapedJavaDoc. (NotNull)
      */
     public void selectCursor(WhiteEscapedJavaDocCB cb, EntityRowHandler<WhiteEscapedJavaDoc> entityRowHandler) {
-        doSelectCursor(cb, entityRowHandler, WhiteEscapedJavaDoc.class);
+        facadeSelectCursor(cb, entityRowHandler);
+    }
+
+    protected void facadeSelectCursor(WhiteEscapedJavaDocCB cb, EntityRowHandler<WhiteEscapedJavaDoc> entityRowHandler) {
+        doSelectCursor(cb, entityRowHandler, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends WhiteEscapedJavaDoc> void doSelectCursor(WhiteEscapedJavaDocCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
         assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
         helpSelectCursorInternally(cb, handler, tp, new InternalSelectCursorCallback<ENTITY, WhiteEscapedJavaDocCB>() {
-            public void callbackSelectCursor(WhiteEscapedJavaDocCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) { delegateSelectCursor(cb, handler, tp); }
-            public List<ENTITY> callbackSelectList(WhiteEscapedJavaDocCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
+            public void callbackSelectCursor(WhiteEscapedJavaDocCB lcb, EntityRowHandler<ENTITY> lhandler, Class<ENTITY> ltp) { delegateSelectCursor(lcb, lhandler, ltp); }
+            public List<ENTITY> callbackSelectList(WhiteEscapedJavaDocCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); }
         });
     }
 
@@ -369,22 +399,23 @@ public abstract class BsWhiteEscapedJavaDocBhv extends AbstractBehaviorWritable 
      * @param resultType The type of result. (NotNull)
      * @return The scalar function object to specify function for scalar value. (NotNull)
      */
-    public <RESULT> SLFunction<WhiteEscapedJavaDocCB, RESULT> scalarSelect(Class<RESULT> resultType) {
-        return doScalarSelect(resultType, newMyConditionBean());
+    public <RESULT> HpSLSFunction<WhiteEscapedJavaDocCB, RESULT> scalarSelect(Class<RESULT> resultType) {
+        return facadeScalarSelect(resultType);
     }
 
-    protected <RESULT, CB extends WhiteEscapedJavaDocCB> SLFunction<CB, RESULT> doScalarSelect(Class<RESULT> tp, CB cb) {
+    protected <RESULT> HpSLSFunction<WhiteEscapedJavaDocCB, RESULT> facadeScalarSelect(Class<RESULT> resultType) {
+        return doScalarSelect(resultType, newConditionBean());
+    }
+
+    protected <RESULT, CB extends WhiteEscapedJavaDocCB> HpSLSFunction<CB, RESULT> doScalarSelect(final Class<RESULT> tp, final CB cb) {
         assertObjectNotNull("resultType", tp); assertCBStateValid(cb);
         cb.xsetupForScalarSelect(); cb.getSqlClause().disableSelectIndex(); // for when you use union
-        return createSLFunction(cb, tp);
+        HpSLSExecutor<CB, RESULT> executor = createHpSLSExecutor(); // variable to resolve generic
+        return createSLSFunction(cb, tp, executor);
     }
 
-    protected <RESULT, CB extends WhiteEscapedJavaDocCB> SLFunction<CB, RESULT> createSLFunction(CB cb, Class<RESULT> tp) {
-        return new SLFunction<CB, RESULT>(cb, tp);
-    }
-
-    protected <RESULT> SLFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) {
-        return doScalarSelect(tp, newMyConditionBean());
+    protected <RESULT> HpSLSFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) {
+        return facadeScalarSelect(tp);
     }
 
     // ===================================================================================
@@ -397,9 +428,83 @@ public abstract class BsWhiteEscapedJavaDocBhv extends AbstractBehaviorWritable 
     }
 
     // ===================================================================================
+    //                                                                       Load Referrer
+    //                                                                       =============
+    /**
+     * Load referrer by the the referrer loader. <br />
+     * <pre>
+     * MemberCB cb = new MemberCB();
+     * cb.query().set...
+     * List&lt;Member&gt; memberList = memberBhv.selectList(cb);
+     * memberBhv.<span style="color: #DD4747">load</span>(memberList, loader -&gt; {
+     *     loader.<span style="color: #DD4747">loadPurchaseList</span>(purchaseCB -&gt; {
+     *         purchaseCB.query().set...
+     *         purchaseCB.query().addOrderBy_PurchasePrice_Desc();
+     *     }); <span style="color: #3F7E5E">// you can also load nested referrer from here</span>
+     *     <span style="color: #3F7E5E">//}).withNestedList(purchaseLoader -&gt {</span>
+     *     <span style="color: #3F7E5E">//    purchaseLoader.loadPurchasePaymentList(...);</span>
+     *     <span style="color: #3F7E5E">//});</span>
+     *
+     *     <span style="color: #3F7E5E">// you can also pull out foreign table and load its referrer</span>
+     *     <span style="color: #3F7E5E">// (setupSelect of the foreign table should be called)</span>
+     *     <span style="color: #3F7E5E">//loader.pulloutMemberStatus().loadMemberLoginList(...)</span>
+     * }
+     * for (Member member : memberList) {
+     *     List&lt;Purchase&gt; purchaseList = member.<span style="color: #DD4747">getPurchaseList()</span>;
+     *     for (Purchase purchase : purchaseList) {
+     *         ...
+     *     }
+     * }
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has order by FK before callback.
+     * @param whiteEscapedJavaDocList The entity list of whiteEscapedJavaDoc. (NotNull)
+     * @param handler The callback to handle the referrer loader for actually loading referrer. (NotNull)
+     */
+    public void load(List<WhiteEscapedJavaDoc> whiteEscapedJavaDocList, ReferrerLoaderHandler<LoaderOfWhiteEscapedJavaDoc> handler) {
+        xassLRArg(whiteEscapedJavaDocList, handler);
+        handler.handle(new LoaderOfWhiteEscapedJavaDoc().ready(whiteEscapedJavaDocList, _behaviorSelector));
+    }
+
+    /**
+     * Load referrer of ${referrer.referrerJavaBeansRulePropertyName} by the referrer loader. <br />
+     * <pre>
+     * MemberCB cb = new MemberCB();
+     * cb.query().set...
+     * Member member = memberBhv.selectEntityWithDeletedCheck(cb);
+     * memberBhv.<span style="color: #DD4747">load</span>(member, loader -&gt; {
+     *     loader.<span style="color: #DD4747">loadPurchaseList</span>(purchaseCB -&gt; {
+     *         purchaseCB.query().set...
+     *         purchaseCB.query().addOrderBy_PurchasePrice_Desc();
+     *     }); <span style="color: #3F7E5E">// you can also load nested referrer from here</span>
+     *     <span style="color: #3F7E5E">//}).withNestedList(purchaseLoader -&gt {</span>
+     *     <span style="color: #3F7E5E">//    purchaseLoader.loadPurchasePaymentList(...);</span>
+     *     <span style="color: #3F7E5E">//});</span>
+     *
+     *     <span style="color: #3F7E5E">// you can also pull out foreign table and load its referrer</span>
+     *     <span style="color: #3F7E5E">// (setupSelect of the foreign table should be called)</span>
+     *     <span style="color: #3F7E5E">//loader.pulloutMemberStatus().loadMemberLoginList(...)</span>
+     * }
+     * for (Member member : memberList) {
+     *     List&lt;Purchase&gt; purchaseList = member.<span style="color: #DD4747">getPurchaseList()</span>;
+     *     for (Purchase purchase : purchaseList) {
+     *         ...
+     *     }
+     * }
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has order by FK before callback.
+     * @param whiteEscapedJavaDoc The entity of whiteEscapedJavaDoc. (NotNull)
+     * @param handler The callback to handle the referrer loader for actually loading referrer. (NotNull)
+     */
+    public void load(WhiteEscapedJavaDoc whiteEscapedJavaDoc, ReferrerLoaderHandler<LoaderOfWhiteEscapedJavaDoc> handler) {
+        xassLRArg(whiteEscapedJavaDoc, handler);
+        handler.handle(new LoaderOfWhiteEscapedJavaDoc().ready(xnewLRAryLs(whiteEscapedJavaDoc), _behaviorSelector));
+    }
+
+    // ===================================================================================
     //                                                                   Pull out Relation
     //                                                                   =================
-
     // ===================================================================================
     //                                                                      Extract Column
     //                                                                      ==============
@@ -431,17 +536,17 @@ public abstract class BsWhiteEscapedJavaDocBhv extends AbstractBehaviorWritable 
      * ... = whiteEscapedJavaDoc.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * <p>While, when the entity is created by select, all columns are registered.</p>
-     * @param whiteEscapedJavaDoc The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
+     * @param whiteEscapedJavaDoc The entity of insert. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
      * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insert(WhiteEscapedJavaDoc whiteEscapedJavaDoc) {
         doInsert(whiteEscapedJavaDoc, null);
     }
 
-    protected void doInsert(WhiteEscapedJavaDoc whiteEscapedJavaDoc, InsertOption<WhiteEscapedJavaDocCB> op) {
-        assertObjectNotNull("whiteEscapedJavaDoc", whiteEscapedJavaDoc);
+    protected void doInsert(WhiteEscapedJavaDoc et, InsertOption<WhiteEscapedJavaDocCB> op) {
+        assertObjectNotNull("whiteEscapedJavaDoc", et);
         prepareInsertOption(op);
-        delegateInsert(whiteEscapedJavaDoc, op);
+        delegateInsert(et, op);
     }
 
     protected void prepareInsertOption(InsertOption<WhiteEscapedJavaDocCB> op) {
@@ -454,8 +559,7 @@ public abstract class BsWhiteEscapedJavaDocBhv extends AbstractBehaviorWritable 
 
     @Override
     protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) {
-        if (op == null) { insert(downcast(et)); }
-        else { varyingInsert(downcast(et), downcast(op)); }
+        doInsert(downcast(et), downcast(op));
     }
 
     /**
@@ -467,7 +571,7 @@ public abstract class BsWhiteEscapedJavaDocBhv extends AbstractBehaviorWritable 
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
      * <span style="color: #3F7E5E">//whiteEscapedJavaDoc.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//whiteEscapedJavaDoc.set...;</span>
-     * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
+     * <span style="color: #3F7E5E">// if exclusive control, the value of concurrency column is required</span>
      * whiteEscapedJavaDoc.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     whiteEscapedJavaDocBhv.<span style="color: #DD4747">update</span>(whiteEscapedJavaDoc);
@@ -475,49 +579,38 @@ public abstract class BsWhiteEscapedJavaDocBhv extends AbstractBehaviorWritable 
      *     ...
      * }
      * </pre>
-     * @param whiteEscapedJavaDoc The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
+     * @param whiteEscapedJavaDoc The entity of update. (NotNull, PrimaryKeyNotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
-    public void update(final WhiteEscapedJavaDoc whiteEscapedJavaDoc) {
+    public void update(WhiteEscapedJavaDoc whiteEscapedJavaDoc) {
         doUpdate(whiteEscapedJavaDoc, null);
     }
 
-    protected void doUpdate(WhiteEscapedJavaDoc whiteEscapedJavaDoc, final UpdateOption<WhiteEscapedJavaDocCB> op) {
-        assertObjectNotNull("whiteEscapedJavaDoc", whiteEscapedJavaDoc);
+    protected void doUpdate(WhiteEscapedJavaDoc et, final UpdateOption<WhiteEscapedJavaDocCB> op) {
+        assertObjectNotNull("whiteEscapedJavaDoc", et);
         prepareUpdateOption(op);
-        helpUpdateInternally(whiteEscapedJavaDoc, new InternalUpdateCallback<WhiteEscapedJavaDoc>() {
-            public int callbackDelegateUpdate(WhiteEscapedJavaDoc et) { return delegateUpdate(et, op); } });
+        helpUpdateInternally(et, new InternalUpdateCallback<WhiteEscapedJavaDoc>() {
+            public int callbackDelegateUpdate(WhiteEscapedJavaDoc let) { return delegateUpdate(let, op); } });
     }
 
     protected void prepareUpdateOption(UpdateOption<WhiteEscapedJavaDocCB> op) {
         if (op == null) { return; }
         assertUpdateOptionStatus(op);
-        if (op.hasSelfSpecification()) {
-            op.resolveSelfSpecification(createCBForVaryingUpdate());
-        }
-        if (op.hasSpecifiedUpdateColumn()) {
-            op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate());
-        }
+        if (op.hasSelfSpecification()) { op.resolveSelfSpecification(createCBForVaryingUpdate()); }
+        if (op.hasSpecifiedUpdateColumn()) { op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate()); }
     }
 
-    protected WhiteEscapedJavaDocCB createCBForVaryingUpdate() {
-        WhiteEscapedJavaDocCB cb = newMyConditionBean();
-        cb.xsetupForVaryingUpdate();
-        return cb;
-    }
+    protected WhiteEscapedJavaDocCB createCBForVaryingUpdate()
+    { WhiteEscapedJavaDocCB cb = newConditionBean(); cb.xsetupForVaryingUpdate(); return cb; }
 
-    protected WhiteEscapedJavaDocCB createCBForSpecifiedUpdate() {
-        WhiteEscapedJavaDocCB cb = newMyConditionBean();
-        cb.xsetupForSpecifiedUpdate();
-        return cb;
-    }
+    protected WhiteEscapedJavaDocCB createCBForSpecifiedUpdate()
+    { WhiteEscapedJavaDocCB cb = newConditionBean(); cb.xsetupForSpecifiedUpdate(); return cb; }
 
     @Override
     protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) {
-        if (op == null) { update(downcast(et)); }
-        else { varyingUpdate(downcast(et), downcast(op)); }
+        doUpdate(downcast(et), downcast(op));
     }
 
     @Override
@@ -529,32 +622,28 @@ public abstract class BsWhiteEscapedJavaDocBhv extends AbstractBehaviorWritable 
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br />
      * <p><span style="color: #DD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
-     * @param whiteEscapedJavaDoc The entity of insert or update target. (NotNull)
+     * @param whiteEscapedJavaDoc The entity of insert or update. (NotNull, ...depends on insert or update)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insertOrUpdate(WhiteEscapedJavaDoc whiteEscapedJavaDoc) {
-        doInesrtOrUpdate(whiteEscapedJavaDoc, null, null);
+        doInsertOrUpdate(whiteEscapedJavaDoc, null, null);
     }
 
-    protected void doInesrtOrUpdate(WhiteEscapedJavaDoc whiteEscapedJavaDoc, final InsertOption<WhiteEscapedJavaDocCB> iop, final UpdateOption<WhiteEscapedJavaDocCB> uop) {
-        helpInsertOrUpdateInternally(whiteEscapedJavaDoc, new InternalInsertOrUpdateCallback<WhiteEscapedJavaDoc, WhiteEscapedJavaDocCB>() {
-            public void callbackInsert(WhiteEscapedJavaDoc et) { doInsert(et, iop); }
-            public void callbackUpdate(WhiteEscapedJavaDoc et) { doUpdate(et, uop); }
-            public WhiteEscapedJavaDocCB callbackNewMyConditionBean() { return newMyConditionBean(); }
+    protected void doInsertOrUpdate(WhiteEscapedJavaDoc et, final InsertOption<WhiteEscapedJavaDocCB> iop, final UpdateOption<WhiteEscapedJavaDocCB> uop) {
+        assertObjectNotNull("whiteEscapedJavaDoc", et);
+        helpInsertOrUpdateInternally(et, new InternalInsertOrUpdateCallback<WhiteEscapedJavaDoc, WhiteEscapedJavaDocCB>() {
+            public void callbackInsert(WhiteEscapedJavaDoc let) { doInsert(let, iop); }
+            public void callbackUpdate(WhiteEscapedJavaDoc let) { doUpdate(let, uop); }
+            public WhiteEscapedJavaDocCB callbackNewMyConditionBean() { return newConditionBean(); }
             public int callbackSelectCount(WhiteEscapedJavaDocCB cb) { return selectCount(cb); }
         });
     }
 
     @Override
     protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
-        if (iop == null && uop == null) { insertOrUpdate(downcast(et)); }
-        else {
-            iop = iop != null ? iop : new InsertOption<WhiteEscapedJavaDocCB>();
-            uop = uop != null ? uop : new UpdateOption<WhiteEscapedJavaDocCB>();
-            varyingInsertOrUpdate(downcast(et), downcast(iop), downcast(uop));
-        }
+        doInsertOrUpdate(downcast(et), downcast(iop), downcast(uop));
     }
 
     @Override
@@ -567,7 +656,7 @@ public abstract class BsWhiteEscapedJavaDocBhv extends AbstractBehaviorWritable 
      * <pre>
      * WhiteEscapedJavaDoc whiteEscapedJavaDoc = new WhiteEscapedJavaDoc();
      * whiteEscapedJavaDoc.setPK...(value); <span style="color: #3F7E5E">// required</span>
-     * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
+     * <span style="color: #3F7E5E">// if exclusive control, the value of concurrency column is required</span>
      * whiteEscapedJavaDoc.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     whiteEscapedJavaDocBhv.<span style="color: #DD4747">delete</span>(whiteEscapedJavaDoc);
@@ -575,7 +664,7 @@ public abstract class BsWhiteEscapedJavaDocBhv extends AbstractBehaviorWritable 
      *     ...
      * }
      * </pre>
-     * @param whiteEscapedJavaDoc The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
+     * @param whiteEscapedJavaDoc The entity of delete. (NotNull, PrimaryKeyNotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      */
@@ -583,22 +672,19 @@ public abstract class BsWhiteEscapedJavaDocBhv extends AbstractBehaviorWritable 
         doDelete(whiteEscapedJavaDoc, null);
     }
 
-    protected void doDelete(WhiteEscapedJavaDoc whiteEscapedJavaDoc, final DeleteOption<WhiteEscapedJavaDocCB> op) {
-        assertObjectNotNull("whiteEscapedJavaDoc", whiteEscapedJavaDoc);
+    protected void doDelete(WhiteEscapedJavaDoc et, final DeleteOption<WhiteEscapedJavaDocCB> op) {
+        assertObjectNotNull("whiteEscapedJavaDoc", et);
         prepareDeleteOption(op);
-        helpDeleteInternally(whiteEscapedJavaDoc, new InternalDeleteCallback<WhiteEscapedJavaDoc>() {
-            public int callbackDelegateDelete(WhiteEscapedJavaDoc et) { return delegateDelete(et, op); } });
+        helpDeleteInternally(et, new InternalDeleteCallback<WhiteEscapedJavaDoc>() {
+            public int callbackDelegateDelete(WhiteEscapedJavaDoc let) { return delegateDelete(let, op); } });
     }
 
-    protected void prepareDeleteOption(DeleteOption<WhiteEscapedJavaDocCB> op) {
-        if (op == null) { return; }
-        assertDeleteOptionStatus(op);
-    }
+    protected void prepareDeleteOption(DeleteOption<WhiteEscapedJavaDocCB> op)
+    { if (op != null) { assertDeleteOptionStatus(op); } }
 
     @Override
     protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) {
-        if (op == null) { delete(downcast(et)); }
-        else { varyingDelete(downcast(et), downcast(op)); }
+        doDelete(downcast(et), downcast(op));
     }
 
     @Override
@@ -634,26 +720,25 @@ public abstract class BsWhiteEscapedJavaDocBhv extends AbstractBehaviorWritable 
      * @return The array of inserted count. (NotNull, EmptyAllowed)
      */
     public int[] batchInsert(List<WhiteEscapedJavaDoc> whiteEscapedJavaDocList) {
-        InsertOption<WhiteEscapedJavaDocCB> op = createInsertUpdateOption();
-        return doBatchInsert(whiteEscapedJavaDocList, op);
+        return doBatchInsert(whiteEscapedJavaDocList, null);
     }
 
-    protected int[] doBatchInsert(List<WhiteEscapedJavaDoc> whiteEscapedJavaDocList, InsertOption<WhiteEscapedJavaDocCB> op) {
-        assertObjectNotNull("whiteEscapedJavaDocList", whiteEscapedJavaDocList);
-        prepareBatchInsertOption(whiteEscapedJavaDocList, op);
-        return delegateBatchInsert(whiteEscapedJavaDocList, op);
+    protected int[] doBatchInsert(List<WhiteEscapedJavaDoc> ls, InsertOption<WhiteEscapedJavaDocCB> op) {
+        assertObjectNotNull("whiteEscapedJavaDocList", ls);
+        InsertOption<WhiteEscapedJavaDocCB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainInsertOption(); }
+        prepareBatchInsertOption(ls, rlop); // required
+        return delegateBatchInsert(ls, rlop);
     }
 
-    protected void prepareBatchInsertOption(List<WhiteEscapedJavaDoc> whiteEscapedJavaDocList, InsertOption<WhiteEscapedJavaDocCB> op) {
+    protected void prepareBatchInsertOption(List<WhiteEscapedJavaDoc> ls, InsertOption<WhiteEscapedJavaDocCB> op) {
         op.xallowInsertColumnModifiedPropertiesFragmented();
-        op.xacceptInsertColumnModifiedPropertiesIfNeeds(whiteEscapedJavaDocList);
+        op.xacceptInsertColumnModifiedPropertiesIfNeeds(ls);
         prepareInsertOption(op);
     }
 
     @Override
     protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) {
-        if (op == null) { return batchInsert(downcast(ls)); }
-        else { return varyingBatchInsert(downcast(ls), downcast(op)); }
+        return doBatchInsert(downcast(ls), downcast(op));
     }
 
     /**
@@ -681,25 +766,24 @@ public abstract class BsWhiteEscapedJavaDocBhv extends AbstractBehaviorWritable 
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<WhiteEscapedJavaDoc> whiteEscapedJavaDocList) {
-        UpdateOption<WhiteEscapedJavaDocCB> op = createPlainUpdateOption();
-        return doBatchUpdate(whiteEscapedJavaDocList, op);
+        return doBatchUpdate(whiteEscapedJavaDocList, null);
     }
 
-    protected int[] doBatchUpdate(List<WhiteEscapedJavaDoc> whiteEscapedJavaDocList, UpdateOption<WhiteEscapedJavaDocCB> op) {
-        assertObjectNotNull("whiteEscapedJavaDocList", whiteEscapedJavaDocList);
-        prepareBatchUpdateOption(whiteEscapedJavaDocList, op);
-        return delegateBatchUpdate(whiteEscapedJavaDocList, op);
+    protected int[] doBatchUpdate(List<WhiteEscapedJavaDoc> ls, UpdateOption<WhiteEscapedJavaDocCB> op) {
+        assertObjectNotNull("whiteEscapedJavaDocList", ls);
+        UpdateOption<WhiteEscapedJavaDocCB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainUpdateOption(); }
+        prepareBatchUpdateOption(ls, rlop); // required
+        return delegateBatchUpdate(ls, rlop);
     }
 
-    protected void prepareBatchUpdateOption(List<WhiteEscapedJavaDoc> whiteEscapedJavaDocList, UpdateOption<WhiteEscapedJavaDocCB> op) {
-        op.xacceptUpdateColumnModifiedPropertiesIfNeeds(whiteEscapedJavaDocList);
+    protected void prepareBatchUpdateOption(List<WhiteEscapedJavaDoc> ls, UpdateOption<WhiteEscapedJavaDocCB> op) {
+        op.xacceptUpdateColumnModifiedPropertiesIfNeeds(ls);
         prepareUpdateOption(op);
     }
 
     @Override
     protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) {
-        if (op == null) { return batchUpdate(downcast(ls)); }
-        else { return varyingBatchUpdate(downcast(ls), downcast(op)); }
+        return doBatchUpdate(downcast(ls), downcast(op));
     }
 
     /**
@@ -750,16 +834,15 @@ public abstract class BsWhiteEscapedJavaDocBhv extends AbstractBehaviorWritable 
         return doBatchDelete(whiteEscapedJavaDocList, null);
     }
 
-    protected int[] doBatchDelete(List<WhiteEscapedJavaDoc> whiteEscapedJavaDocList, DeleteOption<WhiteEscapedJavaDocCB> op) {
-        assertObjectNotNull("whiteEscapedJavaDocList", whiteEscapedJavaDocList);
+    protected int[] doBatchDelete(List<WhiteEscapedJavaDoc> ls, DeleteOption<WhiteEscapedJavaDocCB> op) {
+        assertObjectNotNull("whiteEscapedJavaDocList", ls);
         prepareDeleteOption(op);
-        return delegateBatchDelete(whiteEscapedJavaDocList, op);
+        return delegateBatchDelete(ls, op);
     }
 
     @Override
     protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) {
-        if (op == null) { return batchDelete(downcast(ls)); }
-        else { return varyingBatchDelete(downcast(ls), downcast(op)); }
+        return doBatchDelete(downcast(ls), downcast(op));
     }
 
     @Override
@@ -786,7 +869,7 @@ public abstract class BsWhiteEscapedJavaDocBhv extends AbstractBehaviorWritable 
      *         <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
      *         <span style="color: #3F7E5E">//entity.setRegisterUser(value);</span>
      *         <span style="color: #3F7E5E">//entity.set...;</span>
-     *         <span style="color: #3F7E5E">// you don't need to set a value of exclusive control column</span>
+     *         <span style="color: #3F7E5E">// you don't need to set a value of concurrency column</span>
      *         <span style="color: #3F7E5E">//entity.setVersionNo(value);</span>
      *
      *         return cb;
@@ -803,21 +886,17 @@ public abstract class BsWhiteEscapedJavaDocBhv extends AbstractBehaviorWritable 
     protected int doQueryInsert(QueryInsertSetupper<WhiteEscapedJavaDoc, WhiteEscapedJavaDocCB> sp, InsertOption<WhiteEscapedJavaDocCB> op) {
         assertObjectNotNull("setupper", sp);
         prepareInsertOption(op);
-        WhiteEscapedJavaDoc e = new WhiteEscapedJavaDoc();
+        WhiteEscapedJavaDoc et = newEntity();
         WhiteEscapedJavaDocCB cb = createCBForQueryInsert();
-        return delegateQueryInsert(e, cb, sp.setup(e, cb), op);
+        return delegateQueryInsert(et, cb, sp.setup(et, cb), op);
     }
 
-    protected WhiteEscapedJavaDocCB createCBForQueryInsert() {
-        WhiteEscapedJavaDocCB cb = newMyConditionBean();
-        cb.xsetupForQueryInsert();
-        return cb;
-    }
+    protected WhiteEscapedJavaDocCB createCBForQueryInsert()
+    { WhiteEscapedJavaDocCB cb = newConditionBean(); cb.xsetupForQueryInsert(); return cb; }
 
     @Override
-    protected int doRangeCreate(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> setupper, InsertOption<? extends ConditionBean> option) {
-        if (option == null) { return queryInsert(downcast(setupper)); }
-        else { return varyingQueryInsert(downcast(setupper), downcast(option)); }
+    protected int doRangeCreate(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> setupper, InsertOption<? extends ConditionBean> op) {
+        return doQueryInsert(downcast(setupper), downcast(op));
     }
 
     /**
@@ -830,7 +909,7 @@ public abstract class BsWhiteEscapedJavaDocBhv extends AbstractBehaviorWritable 
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
      * <span style="color: #3F7E5E">//whiteEscapedJavaDoc.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//whiteEscapedJavaDoc.set...;</span>
-     * <span style="color: #3F7E5E">// you don't need to set a value of exclusive control column</span>
+     * <span style="color: #3F7E5E">// you don't need to set a value of concurrency column</span>
      * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
      * <span style="color: #3F7E5E">//whiteEscapedJavaDoc.setVersionNo(value);</span>
      * WhiteEscapedJavaDocCB cb = new WhiteEscapedJavaDocCB();
@@ -846,16 +925,15 @@ public abstract class BsWhiteEscapedJavaDocBhv extends AbstractBehaviorWritable 
         return doQueryUpdate(whiteEscapedJavaDoc, cb, null);
     }
 
-    protected int doQueryUpdate(WhiteEscapedJavaDoc whiteEscapedJavaDoc, WhiteEscapedJavaDocCB cb, UpdateOption<WhiteEscapedJavaDocCB> op) {
-        assertObjectNotNull("whiteEscapedJavaDoc", whiteEscapedJavaDoc); assertCBStateValid(cb);
+    protected int doQueryUpdate(WhiteEscapedJavaDoc et, WhiteEscapedJavaDocCB cb, UpdateOption<WhiteEscapedJavaDocCB> op) {
+        assertObjectNotNull("whiteEscapedJavaDoc", et); assertCBStateValid(cb);
         prepareUpdateOption(op);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(whiteEscapedJavaDoc, cb, op) : 0;
+        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(et, cb, op) : 0;
     }
 
     @Override
     protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op) {
-        if (op == null) { return queryUpdate(downcast(et), (WhiteEscapedJavaDocCB)cb); }
-        else { return varyingQueryUpdate(downcast(et), (WhiteEscapedJavaDocCB)cb, downcast(op)); }
+        return doQueryUpdate(downcast(et), downcast(cb), downcast(op));
     }
 
     /**
@@ -881,8 +959,7 @@ public abstract class BsWhiteEscapedJavaDocBhv extends AbstractBehaviorWritable 
 
     @Override
     protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) {
-        if (op == null) { return queryDelete((WhiteEscapedJavaDocCB)cb); }
-        else { return varyingQueryDelete((WhiteEscapedJavaDocCB)cb, downcast(op)); }
+        return doQueryDelete(downcast(cb), downcast(op));
     }
 
     // ===================================================================================
@@ -906,7 +983,7 @@ public abstract class BsWhiteEscapedJavaDocBhv extends AbstractBehaviorWritable 
      * whiteEscapedJavaDocBhv.<span style="color: #DD4747">varyingInsert</span>(whiteEscapedJavaDoc, option);
      * ... = whiteEscapedJavaDoc.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
-     * @param whiteEscapedJavaDoc The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
+     * @param whiteEscapedJavaDoc The entity of insert. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
      * @param option The option of insert for varying requests. (NotNull)
      * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
@@ -923,7 +1000,7 @@ public abstract class BsWhiteEscapedJavaDocBhv extends AbstractBehaviorWritable 
      * WhiteEscapedJavaDoc whiteEscapedJavaDoc = new WhiteEscapedJavaDoc();
      * whiteEscapedJavaDoc.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * whiteEscapedJavaDoc.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
-     * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
+     * <span style="color: #3F7E5E">// if exclusive control, the value of concurrency column is required</span>
      * whiteEscapedJavaDoc.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     <span style="color: #3F7E5E">// you can update by self calculation values</span>
@@ -938,7 +1015,7 @@ public abstract class BsWhiteEscapedJavaDocBhv extends AbstractBehaviorWritable 
      *     ...
      * }
      * </pre>
-     * @param whiteEscapedJavaDoc The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
+     * @param whiteEscapedJavaDoc The entity of update. (NotNull, PrimaryKeyNotNull)
      * @param option The option of update for varying requests. (NotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
@@ -952,7 +1029,7 @@ public abstract class BsWhiteEscapedJavaDocBhv extends AbstractBehaviorWritable 
     /**
      * Insert or update the entity with varying requests. (ExclusiveControl: when update) <br />
      * Other specifications are same as insertOrUpdate(entity).
-     * @param whiteEscapedJavaDoc The entity of insert or update target. (NotNull)
+     * @param whiteEscapedJavaDoc The entity of insert or update. (NotNull)
      * @param insertOption The option of insert for varying requests. (NotNull)
      * @param updateOption The option of update for varying requests. (NotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
@@ -961,14 +1038,14 @@ public abstract class BsWhiteEscapedJavaDocBhv extends AbstractBehaviorWritable 
      */
     public void varyingInsertOrUpdate(WhiteEscapedJavaDoc whiteEscapedJavaDoc, InsertOption<WhiteEscapedJavaDocCB> insertOption, UpdateOption<WhiteEscapedJavaDocCB> updateOption) {
         assertInsertOptionNotNull(insertOption); assertUpdateOptionNotNull(updateOption);
-        doInesrtOrUpdate(whiteEscapedJavaDoc, insertOption, updateOption);
+        doInsertOrUpdate(whiteEscapedJavaDoc, insertOption, updateOption);
     }
 
     /**
      * Delete the entity with varying requests. (ZeroUpdateException, NonExclusiveControl) <br />
      * Now a valid option does not exist. <br />
      * Other specifications are same as delete(entity).
-     * @param whiteEscapedJavaDoc The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
+     * @param whiteEscapedJavaDoc The entity of delete. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
      * @param option The option of update for varying requests. (NotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
@@ -1049,7 +1126,7 @@ public abstract class BsWhiteEscapedJavaDocBhv extends AbstractBehaviorWritable 
      * <span style="color: #3F7E5E">// you don't need to set PK value</span>
      * <span style="color: #3F7E5E">//whiteEscapedJavaDoc.setPK...(value);</span>
      * whiteEscapedJavaDoc.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
-     * <span style="color: #3F7E5E">// you don't need to set a value of exclusive control column</span>
+     * <span style="color: #3F7E5E">// you don't need to set a value of concurrency column</span>
      * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
      * <span style="color: #3F7E5E">//whiteEscapedJavaDoc.setVersionNo(value);</span>
      * WhiteEscapedJavaDocCB cb = new WhiteEscapedJavaDocCB();
@@ -1201,38 +1278,34 @@ public abstract class BsWhiteEscapedJavaDocBhv extends AbstractBehaviorWritable 
     }
 
     // ===================================================================================
-    //                                                                     Downcast Helper
-    //                                                                     ===============
-    protected WhiteEscapedJavaDoc downcast(Entity et) {
-        return helpEntityDowncastInternally(et, WhiteEscapedJavaDoc.class);
-    }
+    //                                                                       Assist Helper
+    //                                                                       =============
+    protected Class<WhiteEscapedJavaDoc> typeOfSelectedEntity()
+    { return WhiteEscapedJavaDoc.class; }
 
-    protected WhiteEscapedJavaDocCB downcast(ConditionBean cb) {
-        return helpConditionBeanDowncastInternally(cb, WhiteEscapedJavaDocCB.class);
-    }
+    protected WhiteEscapedJavaDoc downcast(Entity et)
+    { return helpEntityDowncastInternally(et, WhiteEscapedJavaDoc.class); }
 
-    @SuppressWarnings("unchecked")
-    protected List<WhiteEscapedJavaDoc> downcast(List<? extends Entity> ls) {
-        return (List<WhiteEscapedJavaDoc>)ls;
-    }
+    protected WhiteEscapedJavaDocCB downcast(ConditionBean cb)
+    { return helpConditionBeanDowncastInternally(cb, WhiteEscapedJavaDocCB.class); }
 
     @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteEscapedJavaDocCB> downcast(InsertOption<? extends ConditionBean> op) {
-        return (InsertOption<WhiteEscapedJavaDocCB>)op;
-    }
+    protected List<WhiteEscapedJavaDoc> downcast(List<? extends Entity> ls)
+    { return (List<WhiteEscapedJavaDoc>)ls; }
 
     @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteEscapedJavaDocCB> downcast(UpdateOption<? extends ConditionBean> op) {
-        return (UpdateOption<WhiteEscapedJavaDocCB>)op;
-    }
+    protected InsertOption<WhiteEscapedJavaDocCB> downcast(InsertOption<? extends ConditionBean> op)
+    { return (InsertOption<WhiteEscapedJavaDocCB>)op; }
 
     @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteEscapedJavaDocCB> downcast(DeleteOption<? extends ConditionBean> op) {
-        return (DeleteOption<WhiteEscapedJavaDocCB>)op;
-    }
+    protected UpdateOption<WhiteEscapedJavaDocCB> downcast(UpdateOption<? extends ConditionBean> op)
+    { return (UpdateOption<WhiteEscapedJavaDocCB>)op; }
 
     @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhiteEscapedJavaDoc, WhiteEscapedJavaDocCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp) {
-        return (QueryInsertSetupper<WhiteEscapedJavaDoc, WhiteEscapedJavaDocCB>)sp;
-    }
+    protected DeleteOption<WhiteEscapedJavaDocCB> downcast(DeleteOption<? extends ConditionBean> op)
+    { return (DeleteOption<WhiteEscapedJavaDocCB>)op; }
+
+    @SuppressWarnings("unchecked")
+    protected QueryInsertSetupper<WhiteEscapedJavaDoc, WhiteEscapedJavaDocCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
+    { return (QueryInsertSetupper<WhiteEscapedJavaDoc, WhiteEscapedJavaDocCB>)sp; }
 }

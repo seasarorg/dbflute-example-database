@@ -145,7 +145,7 @@ public abstract class BsProductCategory implements Entity, Serializable, Cloneab
     protected ProductCategory _productCategorySelf;
 
     /**
-     * (商品カテゴリ)product_category by my parent_category_code, named 'productCategorySelf'.
+     * [get] (商品カテゴリ)product_category by my parent_category_code, named 'productCategorySelf'.
      * @return The entity of foreign property 'productCategorySelf'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public ProductCategory getProductCategorySelf() {
@@ -153,7 +153,7 @@ public abstract class BsProductCategory implements Entity, Serializable, Cloneab
     }
 
     /**
-     * (商品カテゴリ)product_category by my parent_category_code, named 'productCategorySelf'.
+     * [set] (商品カテゴリ)product_category by my parent_category_code, named 'productCategorySelf'.
      * @param productCategorySelf The entity of foreign property 'productCategorySelf'. (NullAllowed)
      */
     public void setProductCategorySelf(ProductCategory productCategorySelf) {
@@ -167,7 +167,7 @@ public abstract class BsProductCategory implements Entity, Serializable, Cloneab
     protected List<Product> _productList;
 
     /**
-     * (商品)product by product_category_code, named 'productList'.
+     * [get] (商品)product by product_category_code, named 'productList'.
      * @return The entity list of referrer property 'productList'. (NotNull: even if no loading, returns empty list)
      */
     public List<Product> getProductList() {
@@ -176,7 +176,7 @@ public abstract class BsProductCategory implements Entity, Serializable, Cloneab
     }
 
     /**
-     * (商品)product by product_category_code, named 'productList'.
+     * [set] (商品)product by product_category_code, named 'productList'.
      * @param productList The entity list of referrer property 'productList'. (NullAllowed)
      */
     public void setProductList(List<Product> productList) {
@@ -187,7 +187,7 @@ public abstract class BsProductCategory implements Entity, Serializable, Cloneab
     protected List<ProductCategory> _productCategorySelfList;
 
     /**
-     * (商品カテゴリ)product_category by parent_category_code, named 'productCategorySelfList'.
+     * [get] (商品カテゴリ)product_category by parent_category_code, named 'productCategorySelfList'.
      * @return The entity list of referrer property 'productCategorySelfList'. (NotNull: even if no loading, returns empty list)
      */
     public List<ProductCategory> getProductCategorySelfList() {
@@ -196,7 +196,7 @@ public abstract class BsProductCategory implements Entity, Serializable, Cloneab
     }
 
     /**
-     * (商品カテゴリ)product_category by parent_category_code, named 'productCategorySelfList'.
+     * [set] (商品カテゴリ)product_category by parent_category_code, named 'productCategorySelfList'.
      * @param productCategorySelfList The entity list of referrer property 'productCategorySelfList'. (NullAllowed)
      */
     public void setProductCategorySelfList(List<ProductCategory> productCategorySelfList) {
@@ -385,7 +385,7 @@ public abstract class BsProductCategory implements Entity, Serializable, Cloneab
      */
     public void setProductCategoryCode(String productCategoryCode) {
         __modifiedProperties.addPropertyName("productCategoryCode");
-        this._productCategoryCode = productCategoryCode;
+        _productCategoryCode = productCategoryCode;
     }
 
     /**
@@ -402,7 +402,7 @@ public abstract class BsProductCategory implements Entity, Serializable, Cloneab
      */
     public void setProductCategoryName(String productCategoryName) {
         __modifiedProperties.addPropertyName("productCategoryName");
-        this._productCategoryName = productCategoryName;
+        _productCategoryName = productCategoryName;
     }
 
     /**
@@ -421,6 +421,6 @@ public abstract class BsProductCategory implements Entity, Serializable, Cloneab
      */
     public void setParentCategoryCode(String parentCategoryCode) {
         __modifiedProperties.addPropertyName("parentCategoryCode");
-        this._parentCategoryCode = parentCategoryCode;
+        _parentCategoryCode = parentCategoryCode;
     }
 }

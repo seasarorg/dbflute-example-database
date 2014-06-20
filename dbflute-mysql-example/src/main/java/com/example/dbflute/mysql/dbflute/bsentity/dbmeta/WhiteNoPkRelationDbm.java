@@ -190,7 +190,7 @@ public class WhiteNoPkRelationDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public WhiteNoPkRelation newEntity() { return new WhiteNoPkRelation(); }
     public WhiteNoPkRelation newMyEntity() { return new WhiteNoPkRelation(); }
 
     // ===================================================================================

@@ -177,7 +177,7 @@ public abstract class BsWhiteImplicitReverseFkRef implements Entity, Serializabl
     protected WhiteImplicitReverseFk _whiteImplicitReverseFk;
 
     /**
-     * white_implicit_reverse_fk by my WHITE_IMPLICIT_REVERSE_FK_ID, named 'whiteImplicitReverseFk'. <br />
+     * [get] white_implicit_reverse_fk by my WHITE_IMPLICIT_REVERSE_FK_ID, named 'whiteImplicitReverseFk'. <br />
      * This relation is auto-detected as implicit reverse FK.
      * @return The entity of foreign property 'whiteImplicitReverseFk'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
@@ -186,7 +186,7 @@ public abstract class BsWhiteImplicitReverseFkRef implements Entity, Serializabl
     }
 
     /**
-     * white_implicit_reverse_fk by my WHITE_IMPLICIT_REVERSE_FK_ID, named 'whiteImplicitReverseFk'. <br />
+     * [set] white_implicit_reverse_fk by my WHITE_IMPLICIT_REVERSE_FK_ID, named 'whiteImplicitReverseFk'. <br />
      * This relation is auto-detected as implicit reverse FK.
      * @param whiteImplicitReverseFk The entity of foreign property 'whiteImplicitReverseFk'. (NullAllowed)
      */
@@ -378,7 +378,7 @@ public abstract class BsWhiteImplicitReverseFkRef implements Entity, Serializabl
      */
     public void setWhiteImplicitReverseFkRefId(Integer whiteImplicitReverseFkRefId) {
         __modifiedProperties.addPropertyName("whiteImplicitReverseFkRefId");
-        this._whiteImplicitReverseFkRefId = whiteImplicitReverseFkRefId;
+        _whiteImplicitReverseFkRefId = whiteImplicitReverseFkRefId;
     }
 
     /**
@@ -395,7 +395,7 @@ public abstract class BsWhiteImplicitReverseFkRef implements Entity, Serializabl
      */
     public void setWhiteImplicitReverseFkId(Integer whiteImplicitReverseFkId) {
         __modifiedProperties.addPropertyName("whiteImplicitReverseFkId");
-        this._whiteImplicitReverseFkId = whiteImplicitReverseFkId;
+        _whiteImplicitReverseFkId = whiteImplicitReverseFkId;
     }
 
     /**
@@ -412,7 +412,7 @@ public abstract class BsWhiteImplicitReverseFkRef implements Entity, Serializabl
      */
     public void setValidBeginDate(java.util.Date validBeginDate) {
         __modifiedProperties.addPropertyName("validBeginDate");
-        this._validBeginDate = validBeginDate;
+        _validBeginDate = validBeginDate;
     }
 
     /**
@@ -429,6 +429,6 @@ public abstract class BsWhiteImplicitReverseFkRef implements Entity, Serializabl
      */
     public void setValidEndDate(java.util.Date validEndDate) {
         __modifiedProperties.addPropertyName("validEndDate");
-        this._validEndDate = validEndDate;
+        _validEndDate = validEndDate;
     }
 }

@@ -327,7 +327,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     protected MemberStatus _memberStatus;
 
     /**
-     * (会員ステータス)member_status by my MEMBER_STATUS_CODE, named 'memberStatus'.
+     * [get] (会員ステータス)member_status by my MEMBER_STATUS_CODE, named 'memberStatus'.
      * @return The entity of foreign property 'memberStatus'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public MemberStatus getMemberStatus() {
@@ -338,7 +338,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     }
 
     /**
-     * (会員ステータス)member_status by my MEMBER_STATUS_CODE, named 'memberStatus'.
+     * [set] (会員ステータス)member_status by my MEMBER_STATUS_CODE, named 'memberStatus'.
      * @param memberStatus The entity of foreign property 'memberStatus'. (NullAllowed)
      */
     public void setMemberStatus(MemberStatus memberStatus) {
@@ -349,7 +349,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     protected MemberAddress _memberAddressAsValid;
 
     /**
-     * (会員住所情報)member_address by my MEMBER_ID, named 'memberAddressAsValid'.
+     * [get] (会員住所情報)member_address by my MEMBER_ID, named 'memberAddressAsValid'.
      * @return The entity of foreign property 'memberAddressAsValid'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public MemberAddress getMemberAddressAsValid() {
@@ -357,7 +357,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     }
 
     /**
-     * (会員住所情報)member_address by my MEMBER_ID, named 'memberAddressAsValid'.
+     * [set] (会員住所情報)member_address by my MEMBER_ID, named 'memberAddressAsValid'.
      * @param memberAddressAsValid The entity of foreign property 'memberAddressAsValid'. (NullAllowed)
      */
     public void setMemberAddressAsValid(MemberAddress memberAddressAsValid) {
@@ -368,7 +368,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     protected MemberAddress _memberAddressAsValidBefore;
 
     /**
-     * (会員住所情報)member_address by my MEMBER_ID, named 'memberAddressAsValidBefore'.
+     * [get] (会員住所情報)member_address by my MEMBER_ID, named 'memberAddressAsValidBefore'.
      * @return The entity of foreign property 'memberAddressAsValidBefore'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public MemberAddress getMemberAddressAsValidBefore() {
@@ -376,7 +376,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     }
 
     /**
-     * (会員住所情報)member_address by my MEMBER_ID, named 'memberAddressAsValidBefore'.
+     * [set] (会員住所情報)member_address by my MEMBER_ID, named 'memberAddressAsValidBefore'.
      * @param memberAddressAsValidBefore The entity of foreign property 'memberAddressAsValidBefore'. (NullAllowed)
      */
     public void setMemberAddressAsValidBefore(MemberAddress memberAddressAsValidBefore) {
@@ -387,7 +387,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     protected MemberLogin _memberLoginAsLoginStatus;
 
     /**
-     * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsLoginStatus'.
+     * [get] (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsLoginStatus'.
      * @return The entity of foreign property 'memberLoginAsLoginStatus'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public MemberLogin getMemberLoginAsLoginStatus() {
@@ -395,7 +395,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     }
 
     /**
-     * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsLoginStatus'.
+     * [set] (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsLoginStatus'.
      * @param memberLoginAsLoginStatus The entity of foreign property 'memberLoginAsLoginStatus'. (NullAllowed)
      */
     public void setMemberLoginAsLoginStatus(MemberLogin memberLoginAsLoginStatus) {
@@ -406,7 +406,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     protected MemberAddress _memberAddressAsIfComment;
 
     /**
-     * (会員住所情報)member_address by my MEMBER_ID, named 'memberAddressAsIfComment'.
+     * [get] (会員住所情報)member_address by my MEMBER_ID, named 'memberAddressAsIfComment'.
      * @return The entity of foreign property 'memberAddressAsIfComment'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public MemberAddress getMemberAddressAsIfComment() {
@@ -414,7 +414,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     }
 
     /**
-     * (会員住所情報)member_address by my MEMBER_ID, named 'memberAddressAsIfComment'.
+     * [set] (会員住所情報)member_address by my MEMBER_ID, named 'memberAddressAsIfComment'.
      * @param memberAddressAsIfComment The entity of foreign property 'memberAddressAsIfComment'. (NullAllowed)
      */
     public void setMemberAddressAsIfComment(MemberAddress memberAddressAsIfComment) {
@@ -425,7 +425,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     protected MemberAddress _memberAddressAsOnlyOneDate;
 
     /**
-     * (会員住所情報)member_address by my MEMBER_ID, named 'memberAddressAsOnlyOneDate'.
+     * [get] (会員住所情報)member_address by my MEMBER_ID, named 'memberAddressAsOnlyOneDate'.
      * @return The entity of foreign property 'memberAddressAsOnlyOneDate'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public MemberAddress getMemberAddressAsOnlyOneDate() {
@@ -433,7 +433,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     }
 
     /**
-     * (会員住所情報)member_address by my MEMBER_ID, named 'memberAddressAsOnlyOneDate'.
+     * [set] (会員住所情報)member_address by my MEMBER_ID, named 'memberAddressAsOnlyOneDate'.
      * @param memberAddressAsOnlyOneDate The entity of foreign property 'memberAddressAsOnlyOneDate'. (NullAllowed)
      */
     public void setMemberAddressAsOnlyOneDate(MemberAddress memberAddressAsOnlyOneDate) {
@@ -444,7 +444,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     protected MemberLogin _memberLoginAsLocalBindOverTest;
 
     /**
-     * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsLocalBindOverTest'.
+     * [get] (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsLocalBindOverTest'.
      * @return The entity of foreign property 'memberLoginAsLocalBindOverTest'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public MemberLogin getMemberLoginAsLocalBindOverTest() {
@@ -452,7 +452,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     }
 
     /**
-     * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsLocalBindOverTest'.
+     * [set] (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsLocalBindOverTest'.
      * @param memberLoginAsLocalBindOverTest The entity of foreign property 'memberLoginAsLocalBindOverTest'. (NullAllowed)
      */
     public void setMemberLoginAsLocalBindOverTest(MemberLogin memberLoginAsLocalBindOverTest) {
@@ -463,7 +463,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     protected MemberLogin _memberLoginAsLocalForeignOverTest;
 
     /**
-     * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsLocalForeignOverTest'.
+     * [get] (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsLocalForeignOverTest'.
      * @return The entity of foreign property 'memberLoginAsLocalForeignOverTest'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public MemberLogin getMemberLoginAsLocalForeignOverTest() {
@@ -471,7 +471,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     }
 
     /**
-     * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsLocalForeignOverTest'.
+     * [set] (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsLocalForeignOverTest'.
      * @param memberLoginAsLocalForeignOverTest The entity of foreign property 'memberLoginAsLocalForeignOverTest'. (NullAllowed)
      */
     public void setMemberLoginAsLocalForeignOverTest(MemberLogin memberLoginAsLocalForeignOverTest) {
@@ -482,7 +482,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     protected MemberLogin _memberLoginAsForeignForeignBindOverTest;
 
     /**
-     * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsForeignForeignBindOverTest'.
+     * [get] (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsForeignForeignBindOverTest'.
      * @return The entity of foreign property 'memberLoginAsForeignForeignBindOverTest'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public MemberLogin getMemberLoginAsForeignForeignBindOverTest() {
@@ -490,7 +490,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     }
 
     /**
-     * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsForeignForeignBindOverTest'.
+     * [set] (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsForeignForeignBindOverTest'.
      * @param memberLoginAsForeignForeignBindOverTest The entity of foreign property 'memberLoginAsForeignForeignBindOverTest'. (NullAllowed)
      */
     public void setMemberLoginAsForeignForeignBindOverTest(MemberLogin memberLoginAsForeignForeignBindOverTest) {
@@ -501,7 +501,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     protected MemberLogin _memberLoginAsForeignForeignEachOverTest;
 
     /**
-     * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsForeignForeignEachOverTest'.
+     * [get] (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsForeignForeignEachOverTest'.
      * @return The entity of foreign property 'memberLoginAsForeignForeignEachOverTest'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public MemberLogin getMemberLoginAsForeignForeignEachOverTest() {
@@ -509,7 +509,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     }
 
     /**
-     * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsForeignForeignEachOverTest'.
+     * [set] (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsForeignForeignEachOverTest'.
      * @param memberLoginAsForeignForeignEachOverTest The entity of foreign property 'memberLoginAsForeignForeignEachOverTest'. (NullAllowed)
      */
     public void setMemberLoginAsForeignForeignEachOverTest(MemberLogin memberLoginAsForeignForeignEachOverTest) {
@@ -520,7 +520,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     protected MemberLogin _memberLoginAsForeignForeignOptimizedBasicOverTest;
 
     /**
-     * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsForeignForeignOptimizedBasicOverTest'.
+     * [get] (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsForeignForeignOptimizedBasicOverTest'.
      * @return The entity of foreign property 'memberLoginAsForeignForeignOptimizedBasicOverTest'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public MemberLogin getMemberLoginAsForeignForeignOptimizedBasicOverTest() {
@@ -528,7 +528,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     }
 
     /**
-     * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsForeignForeignOptimizedBasicOverTest'.
+     * [set] (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsForeignForeignOptimizedBasicOverTest'.
      * @param memberLoginAsForeignForeignOptimizedBasicOverTest The entity of foreign property 'memberLoginAsForeignForeignOptimizedBasicOverTest'. (NullAllowed)
      */
     public void setMemberLoginAsForeignForeignOptimizedBasicOverTest(MemberLogin memberLoginAsForeignForeignOptimizedBasicOverTest) {
@@ -539,7 +539,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     protected MemberLogin _memberLoginAsForeignForeignOptimizedMarkOverTest;
 
     /**
-     * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsForeignForeignOptimizedMarkOverTest'.
+     * [get] (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsForeignForeignOptimizedMarkOverTest'.
      * @return The entity of foreign property 'memberLoginAsForeignForeignOptimizedMarkOverTest'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public MemberLogin getMemberLoginAsForeignForeignOptimizedMarkOverTest() {
@@ -547,7 +547,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     }
 
     /**
-     * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsForeignForeignOptimizedMarkOverTest'.
+     * [set] (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsForeignForeignOptimizedMarkOverTest'.
      * @param memberLoginAsForeignForeignOptimizedMarkOverTest The entity of foreign property 'memberLoginAsForeignForeignOptimizedMarkOverTest'. (NullAllowed)
      */
     public void setMemberLoginAsForeignForeignOptimizedMarkOverTest(MemberLogin memberLoginAsForeignForeignOptimizedMarkOverTest) {
@@ -558,7 +558,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     protected MemberLogin _memberLoginAsForeignForeignOptimizedPartOverTest;
 
     /**
-     * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsForeignForeignOptimizedPartOverTest'.
+     * [get] (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsForeignForeignOptimizedPartOverTest'.
      * @return The entity of foreign property 'memberLoginAsForeignForeignOptimizedPartOverTest'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public MemberLogin getMemberLoginAsForeignForeignOptimizedPartOverTest() {
@@ -566,7 +566,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     }
 
     /**
-     * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsForeignForeignOptimizedPartOverTest'.
+     * [set] (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsForeignForeignOptimizedPartOverTest'.
      * @param memberLoginAsForeignForeignOptimizedPartOverTest The entity of foreign property 'memberLoginAsForeignForeignOptimizedPartOverTest'. (NullAllowed)
      */
     public void setMemberLoginAsForeignForeignOptimizedPartOverTest(MemberLogin memberLoginAsForeignForeignOptimizedPartOverTest) {
@@ -577,7 +577,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     protected MemberLogin _memberLoginAsForeignForeignOptimizedWholeOverTest;
 
     /**
-     * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsForeignForeignOptimizedWholeOverTest'.
+     * [get] (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsForeignForeignOptimizedWholeOverTest'.
      * @return The entity of foreign property 'memberLoginAsForeignForeignOptimizedWholeOverTest'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public MemberLogin getMemberLoginAsForeignForeignOptimizedWholeOverTest() {
@@ -585,7 +585,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     }
 
     /**
-     * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsForeignForeignOptimizedWholeOverTest'.
+     * [set] (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsForeignForeignOptimizedWholeOverTest'.
      * @param memberLoginAsForeignForeignOptimizedWholeOverTest The entity of foreign property 'memberLoginAsForeignForeignOptimizedWholeOverTest'. (NullAllowed)
      */
     public void setMemberLoginAsForeignForeignOptimizedWholeOverTest(MemberLogin memberLoginAsForeignForeignOptimizedWholeOverTest) {
@@ -596,7 +596,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     protected MemberLogin _memberLoginAsForeignForeignParameterOverTest;
 
     /**
-     * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsForeignForeignParameterOverTest'.
+     * [get] (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsForeignForeignParameterOverTest'.
      * @return The entity of foreign property 'memberLoginAsForeignForeignParameterOverTest'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public MemberLogin getMemberLoginAsForeignForeignParameterOverTest() {
@@ -604,7 +604,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     }
 
     /**
-     * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsForeignForeignParameterOverTest'.
+     * [set] (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsForeignForeignParameterOverTest'.
      * @param memberLoginAsForeignForeignParameterOverTest The entity of foreign property 'memberLoginAsForeignForeignParameterOverTest'. (NullAllowed)
      */
     public void setMemberLoginAsForeignForeignParameterOverTest(MemberLogin memberLoginAsForeignForeignParameterOverTest) {
@@ -615,7 +615,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     protected MemberLogin _memberLoginAsForeignForeignVariousOverTest;
 
     /**
-     * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsForeignForeignVariousOverTest'.
+     * [get] (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsForeignForeignVariousOverTest'.
      * @return The entity of foreign property 'memberLoginAsForeignForeignVariousOverTest'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public MemberLogin getMemberLoginAsForeignForeignVariousOverTest() {
@@ -623,7 +623,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     }
 
     /**
-     * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsForeignForeignVariousOverTest'.
+     * [set] (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsForeignForeignVariousOverTest'.
      * @param memberLoginAsForeignForeignVariousOverTest The entity of foreign property 'memberLoginAsForeignForeignVariousOverTest'. (NullAllowed)
      */
     public void setMemberLoginAsForeignForeignVariousOverTest(MemberLogin memberLoginAsForeignForeignVariousOverTest) {
@@ -634,7 +634,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     protected MemberLogin _memberLoginAsReferrerOverTest;
 
     /**
-     * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsReferrerOverTest'.
+     * [get] (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsReferrerOverTest'.
      * @return The entity of foreign property 'memberLoginAsReferrerOverTest'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public MemberLogin getMemberLoginAsReferrerOverTest() {
@@ -642,7 +642,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     }
 
     /**
-     * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsReferrerOverTest'.
+     * [set] (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsReferrerOverTest'.
      * @param memberLoginAsReferrerOverTest The entity of foreign property 'memberLoginAsReferrerOverTest'. (NullAllowed)
      */
     public void setMemberLoginAsReferrerOverTest(MemberLogin memberLoginAsReferrerOverTest) {
@@ -653,7 +653,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     protected MemberLogin _memberLoginAsReferrerForeignOverTest;
 
     /**
-     * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsReferrerForeignOverTest'.
+     * [get] (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsReferrerForeignOverTest'.
      * @return The entity of foreign property 'memberLoginAsReferrerForeignOverTest'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public MemberLogin getMemberLoginAsReferrerForeignOverTest() {
@@ -661,7 +661,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     }
 
     /**
-     * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsReferrerForeignOverTest'.
+     * [set] (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsReferrerForeignOverTest'.
      * @param memberLoginAsReferrerForeignOverTest The entity of foreign property 'memberLoginAsReferrerForeignOverTest'. (NullAllowed)
      */
     public void setMemberLoginAsReferrerForeignOverTest(MemberLogin memberLoginAsReferrerForeignOverTest) {
@@ -672,7 +672,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     protected MemberAddress _memberAddressAsFormattedBasic;
 
     /**
-     * (会員住所情報)member_address by my MEMBER_ID, named 'memberAddressAsFormattedBasic'.
+     * [get] (会員住所情報)member_address by my MEMBER_ID, named 'memberAddressAsFormattedBasic'.
      * @return The entity of foreign property 'memberAddressAsFormattedBasic'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public MemberAddress getMemberAddressAsFormattedBasic() {
@@ -680,7 +680,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     }
 
     /**
-     * (会員住所情報)member_address by my MEMBER_ID, named 'memberAddressAsFormattedBasic'.
+     * [set] (会員住所情報)member_address by my MEMBER_ID, named 'memberAddressAsFormattedBasic'.
      * @param memberAddressAsFormattedBasic The entity of foreign property 'memberAddressAsFormattedBasic'. (NullAllowed)
      */
     public void setMemberAddressAsFormattedBasic(MemberAddress memberAddressAsFormattedBasic) {
@@ -691,7 +691,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     protected MemberAddress _memberAddressAsFormattedLong;
 
     /**
-     * (会員住所情報)member_address by my MEMBER_ID, named 'memberAddressAsFormattedLong'.
+     * [get] (会員住所情報)member_address by my MEMBER_ID, named 'memberAddressAsFormattedLong'.
      * @return The entity of foreign property 'memberAddressAsFormattedLong'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public MemberAddress getMemberAddressAsFormattedLong() {
@@ -699,7 +699,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     }
 
     /**
-     * (会員住所情報)member_address by my MEMBER_ID, named 'memberAddressAsFormattedLong'.
+     * [set] (会員住所情報)member_address by my MEMBER_ID, named 'memberAddressAsFormattedLong'.
      * @param memberAddressAsFormattedLong The entity of foreign property 'memberAddressAsFormattedLong'. (NullAllowed)
      */
     public void setMemberAddressAsFormattedLong(MemberAddress memberAddressAsFormattedLong) {
@@ -710,7 +710,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     protected MemberLogin _memberLoginAsFormattedMany;
 
     /**
-     * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsFormattedMany'.
+     * [get] (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsFormattedMany'.
      * @return The entity of foreign property 'memberLoginAsFormattedMany'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public MemberLogin getMemberLoginAsFormattedMany() {
@@ -718,7 +718,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     }
 
     /**
-     * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsFormattedMany'.
+     * [set] (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsFormattedMany'.
      * @param memberLoginAsFormattedMany The entity of foreign property 'memberLoginAsFormattedMany'. (NullAllowed)
      */
     public void setMemberLoginAsFormattedMany(MemberLogin memberLoginAsFormattedMany) {
@@ -729,7 +729,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     protected MemberLogin _memberLoginAsLatest;
 
     /**
-     * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsLatest'.
+     * [get] (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsLatest'.
      * @return The entity of foreign property 'memberLoginAsLatest'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public MemberLogin getMemberLoginAsLatest() {
@@ -737,7 +737,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     }
 
     /**
-     * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsLatest'.
+     * [set] (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsLatest'.
      * @param memberLoginAsLatest The entity of foreign property 'memberLoginAsLatest'. (NullAllowed)
      */
     public void setMemberLoginAsLatest(MemberLogin memberLoginAsLatest) {
@@ -748,7 +748,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     protected MemberLogin _memberLoginAsOldest;
 
     /**
-     * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsOldest'.
+     * [get] (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsOldest'.
      * @return The entity of foreign property 'memberLoginAsOldest'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public MemberLogin getMemberLoginAsOldest() {
@@ -756,7 +756,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     }
 
     /**
-     * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsOldest'.
+     * [set] (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsOldest'.
      * @param memberLoginAsOldest The entity of foreign property 'memberLoginAsOldest'. (NullAllowed)
      */
     public void setMemberLoginAsOldest(MemberLogin memberLoginAsOldest) {
@@ -767,7 +767,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     protected MemberSecurity _memberSecurityAsOne;
 
     /**
-     * (会員セキュリティ情報)member_security by MEMBER_ID, named 'memberSecurityAsOne'.
+     * [get] (会員セキュリティ情報)member_security by MEMBER_ID, named 'memberSecurityAsOne'.
      * @return the entity of foreign property(referrer-as-one) 'memberSecurityAsOne'. (NullAllowed: when e.g. no data, no setupSelect)
      */
     public MemberSecurity getMemberSecurityAsOne() {
@@ -778,7 +778,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     }
 
     /**
-     * (会員セキュリティ情報)member_security by MEMBER_ID, named 'memberSecurityAsOne'.
+     * [set] (会員セキュリティ情報)member_security by MEMBER_ID, named 'memberSecurityAsOne'.
      * @param memberSecurityAsOne The entity of foreign property(referrer-as-one) 'memberSecurityAsOne'. (NullAllowed)
      */
     public void setMemberSecurityAsOne(MemberSecurity memberSecurityAsOne) {
@@ -789,7 +789,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     protected MemberService _memberServiceAsOne;
 
     /**
-     * (会員サービス)member_service by MEMBER_ID, named 'memberServiceAsOne'.
+     * [get] (会員サービス)member_service by MEMBER_ID, named 'memberServiceAsOne'.
      * @return the entity of foreign property(referrer-as-one) 'memberServiceAsOne'. (NullAllowed: when e.g. no data, no setupSelect)
      */
     public MemberService getMemberServiceAsOne() {
@@ -797,7 +797,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     }
 
     /**
-     * (会員サービス)member_service by MEMBER_ID, named 'memberServiceAsOne'.
+     * [set] (会員サービス)member_service by MEMBER_ID, named 'memberServiceAsOne'.
      * @param memberServiceAsOne The entity of foreign property(referrer-as-one) 'memberServiceAsOne'. (NullAllowed)
      */
     public void setMemberServiceAsOne(MemberService memberServiceAsOne) {
@@ -808,7 +808,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     protected MemberWithdrawal _memberWithdrawalAsOne;
 
     /**
-     * (会員退会情報)member_withdrawal by MEMBER_ID, named 'memberWithdrawalAsOne'.
+     * [get] (会員退会情報)member_withdrawal by MEMBER_ID, named 'memberWithdrawalAsOne'.
      * @return the entity of foreign property(referrer-as-one) 'memberWithdrawalAsOne'. (NullAllowed: when e.g. no data, no setupSelect)
      */
     public MemberWithdrawal getMemberWithdrawalAsOne() {
@@ -816,7 +816,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     }
 
     /**
-     * (会員退会情報)member_withdrawal by MEMBER_ID, named 'memberWithdrawalAsOne'.
+     * [set] (会員退会情報)member_withdrawal by MEMBER_ID, named 'memberWithdrawalAsOne'.
      * @param memberWithdrawalAsOne The entity of foreign property(referrer-as-one) 'memberWithdrawalAsOne'. (NullAllowed)
      */
     public void setMemberWithdrawalAsOne(MemberWithdrawal memberWithdrawalAsOne) {
@@ -830,7 +830,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     protected List<MemberAddress> _memberAddressList;
 
     /**
-     * (会員住所情報)member_address by MEMBER_ID, named 'memberAddressList'.
+     * [get] (会員住所情報)member_address by MEMBER_ID, named 'memberAddressList'.
      * @return The entity list of referrer property 'memberAddressList'. (NotNull: even if no loading, returns empty list)
      */
     public List<MemberAddress> getMemberAddressList() {
@@ -839,7 +839,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     }
 
     /**
-     * (会員住所情報)member_address by MEMBER_ID, named 'memberAddressList'.
+     * [set] (会員住所情報)member_address by MEMBER_ID, named 'memberAddressList'.
      * @param memberAddressList The entity list of referrer property 'memberAddressList'. (NullAllowed)
      */
     public void setMemberAddressList(List<MemberAddress> memberAddressList) {
@@ -850,7 +850,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     protected List<MemberLogin> _memberLoginList;
 
     /**
-     * (会員ログイン情報)member_login by MEMBER_ID, named 'memberLoginList'.
+     * [get] (会員ログイン情報)member_login by MEMBER_ID, named 'memberLoginList'.
      * @return The entity list of referrer property 'memberLoginList'. (NotNull: even if no loading, returns empty list)
      */
     public List<MemberLogin> getMemberLoginList() {
@@ -859,7 +859,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     }
 
     /**
-     * (会員ログイン情報)member_login by MEMBER_ID, named 'memberLoginList'.
+     * [set] (会員ログイン情報)member_login by MEMBER_ID, named 'memberLoginList'.
      * @param memberLoginList The entity list of referrer property 'memberLoginList'. (NullAllowed)
      */
     public void setMemberLoginList(List<MemberLogin> memberLoginList) {
@@ -870,7 +870,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     protected List<Purchase> _purchaseList;
 
     /**
-     * (購入)purchase by MEMBER_ID, named 'purchaseList'.
+     * [get] (購入)purchase by MEMBER_ID, named 'purchaseList'.
      * @return The entity list of referrer property 'purchaseList'. (NotNull: even if no loading, returns empty list)
      */
     public List<Purchase> getPurchaseList() {
@@ -879,7 +879,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     }
 
     /**
-     * (購入)purchase by MEMBER_ID, named 'purchaseList'.
+     * [set] (購入)purchase by MEMBER_ID, named 'purchaseList'.
      * @param purchaseList The entity list of referrer property 'purchaseList'. (NullAllowed)
      */
     public void setPurchaseList(List<Purchase> purchaseList) {
@@ -1189,7 +1189,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
      */
     public void setMemberId(Integer memberId) {
         __modifiedProperties.addPropertyName("memberId");
-        this._memberId = memberId;
+        _memberId = memberId;
     }
 
     /**
@@ -1208,7 +1208,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
      */
     public void setMemberName(String memberName) {
         __modifiedProperties.addPropertyName("memberName");
-        this._memberName = memberName;
+        _memberName = memberName;
     }
 
     /**
@@ -1227,7 +1227,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
      */
     public void setMemberAccount(String memberAccount) {
         __modifiedProperties.addPropertyName("memberAccount");
-        this._memberAccount = memberAccount;
+        _memberAccount = memberAccount;
     }
 
     /**
@@ -1244,7 +1244,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
      */
     protected void setMemberStatusCode(String memberStatusCode) {
         __modifiedProperties.addPropertyName("memberStatusCode");
-        this._memberStatusCode = memberStatusCode;
+        _memberStatusCode = memberStatusCode;
     }
 
     /**
@@ -1265,7 +1265,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
      */
     public void setFormalizedDatetime(java.sql.Timestamp formalizedDatetime) {
         __modifiedProperties.addPropertyName("formalizedDatetime");
-        this._formalizedDatetime = formalizedDatetime;
+        _formalizedDatetime = formalizedDatetime;
     }
 
     /**
@@ -1284,7 +1284,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
      */
     public void setBirthdate(java.util.Date birthdate) {
         __modifiedProperties.addPropertyName("birthdate");
-        this._birthdate = birthdate;
+        _birthdate = birthdate;
     }
 
     /**
@@ -1303,7 +1303,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
      */
     public void setRegisterDatetime(java.sql.Timestamp registerDatetime) {
         __modifiedProperties.addPropertyName("registerDatetime");
-        this._registerDatetime = registerDatetime;
+        _registerDatetime = registerDatetime;
     }
 
     /**
@@ -1322,7 +1322,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
      */
     public void setRegisterUser(String registerUser) {
         __modifiedProperties.addPropertyName("registerUser");
-        this._registerUser = registerUser;
+        _registerUser = registerUser;
     }
 
     /**
@@ -1341,7 +1341,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
      */
     public void setUpdateDatetime(java.sql.Timestamp updateDatetime) {
         __modifiedProperties.addPropertyName("updateDatetime");
-        this._updateDatetime = updateDatetime;
+        _updateDatetime = updateDatetime;
     }
 
     /**
@@ -1360,7 +1360,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
      */
     public void setUpdateUser(String updateUser) {
         __modifiedProperties.addPropertyName("updateUser");
-        this._updateUser = updateUser;
+        _updateUser = updateUser;
     }
 
     /**
@@ -1381,6 +1381,6 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
      */
     public void setVersionNo(Long versionNo) {
         __modifiedProperties.addPropertyName("versionNo");
-        this._versionNo = versionNo;
+        _versionNo = versionNo;
     }
 }

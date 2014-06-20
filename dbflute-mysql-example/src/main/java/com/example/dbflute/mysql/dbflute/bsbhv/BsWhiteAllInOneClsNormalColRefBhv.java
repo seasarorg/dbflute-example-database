@@ -20,11 +20,14 @@ import java.util.List;
 import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
+import org.seasar.dbflute.cbean.chelper.HpSLSExecutor;
+import org.seasar.dbflute.cbean.chelper.HpSLSFunction;
 import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.exception.*;
 import org.seasar.dbflute.optional.OptionalEntity;
 import org.seasar.dbflute.outsidesql.executor.*;
 import com.example.dbflute.mysql.dbflute.exbhv.*;
+import com.example.dbflute.mysql.dbflute.bsbhv.loader.*;
 import com.example.dbflute.mysql.dbflute.exentity.*;
 import com.example.dbflute.mysql.dbflute.bsentity.dbmeta.*;
 import com.example.dbflute.mysql.dbflute.cbean.*;
@@ -78,7 +81,7 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
     // ===================================================================================
     //                                                                              DBMeta
     //                                                                              ======
-    /** @return The instance of DBMeta. (NotNull) */
+    /** {@inheritDoc} */
     public DBMeta getDBMeta() { return WhiteAllInOneClsNormalColRefDbm.getInstance(); }
 
     /** @return The instance of DBMeta as my table type. (NotNull) */
@@ -88,10 +91,10 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
     //                                                                        New Instance
     //                                                                        ============
     /** {@inheritDoc} */
-    public Entity newEntity() { return newMyEntity(); }
+    public WhiteAllInOneClsNormalColRef newEntity() { return new WhiteAllInOneClsNormalColRef(); }
 
     /** {@inheritDoc} */
-    public ConditionBean newConditionBean() { return newMyConditionBean(); }
+    public WhiteAllInOneClsNormalColRefCB newConditionBean() { return new WhiteAllInOneClsNormalColRefCB(); }
 
     /** @return The instance of new entity as my table type. (NotNull) */
     public WhiteAllInOneClsNormalColRef newMyEntity() { return new WhiteAllInOneClsNormalColRef(); }
@@ -114,6 +117,10 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
      * @return The count for the condition. (NotMinus)
      */
     public int selectCount(WhiteAllInOneClsNormalColRefCB cb) {
+        return facadeSelectCount(cb);
+    }
+
+    protected int facadeSelectCount(WhiteAllInOneClsNormalColRefCB cb) {
         return doSelectCountUniquely(cb);
     }
 
@@ -129,7 +136,7 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
 
     @Override
     protected int doReadCount(ConditionBean cb) {
-        return selectCount(downcast(cb));
+        return facadeSelectCount(downcast(cb));
     }
 
     // ===================================================================================
@@ -155,7 +162,11 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteAllInOneClsNormalColRef selectEntity(WhiteAllInOneClsNormalColRefCB cb) {
-        return doSelectEntity(cb, WhiteAllInOneClsNormalColRef.class);
+        return facadeSelectEntity(cb);
+    }
+
+    protected WhiteAllInOneClsNormalColRef facadeSelectEntity(WhiteAllInOneClsNormalColRefCB cb) {
+        return doSelectEntity(cb, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends WhiteAllInOneClsNormalColRef> ENTITY doSelectEntity(WhiteAllInOneClsNormalColRefCB cb, Class<ENTITY> tp) {
@@ -170,7 +181,7 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
 
     @Override
     protected Entity doReadEntity(ConditionBean cb) {
-        return selectEntity(downcast(cb));
+        return facadeSelectEntity(downcast(cb));
     }
 
     /**
@@ -189,7 +200,11 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteAllInOneClsNormalColRef selectEntityWithDeletedCheck(WhiteAllInOneClsNormalColRefCB cb) {
-        return doSelectEntityWithDeletedCheck(cb, WhiteAllInOneClsNormalColRef.class);
+        return facadeSelectEntityWithDeletedCheck(cb);
+    }
+
+    protected WhiteAllInOneClsNormalColRef facadeSelectEntityWithDeletedCheck(WhiteAllInOneClsNormalColRefCB cb) {
+        return doSelectEntityWithDeletedCheck(cb, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends WhiteAllInOneClsNormalColRef> ENTITY doSelectEntityWithDeletedCheck(WhiteAllInOneClsNormalColRefCB cb, Class<ENTITY> tp) {
@@ -200,7 +215,7 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
 
     @Override
     protected Entity doReadEntityWithDeletedCheck(ConditionBean cb) {
-        return selectEntityWithDeletedCheck(downcast(cb));
+        return facadeSelectEntityWithDeletedCheck(downcast(cb));
     }
 
     /**
@@ -213,15 +228,19 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteAllInOneClsNormalColRef selectByPKValue(String fooCode, String barCode, String quxCode) {
-        return doSelectByPK(fooCode, barCode, quxCode, WhiteAllInOneClsNormalColRef.class);
+        return facadeSelectByPKValue(fooCode, barCode, quxCode);
     }
 
-    protected <ENTITY extends WhiteAllInOneClsNormalColRef> ENTITY doSelectByPK(String fooCode, String barCode, String quxCode, Class<ENTITY> entityType) {
-        return doSelectEntity(xprepareCBAsPK(fooCode, barCode, quxCode), entityType);
+    protected WhiteAllInOneClsNormalColRef facadeSelectByPKValue(String fooCode, String barCode, String quxCode) {
+        return doSelectByPK(fooCode, barCode, quxCode, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends WhiteAllInOneClsNormalColRef> OptionalEntity<ENTITY> doSelectOptionalByPK(String fooCode, String barCode, String quxCode, Class<ENTITY> entityType) {
-        return createOptionalEntity(doSelectByPK(fooCode, barCode, quxCode, entityType), fooCode, barCode, quxCode);
+    protected <ENTITY extends WhiteAllInOneClsNormalColRef> ENTITY doSelectByPK(String fooCode, String barCode, String quxCode, Class<ENTITY> tp) {
+        return doSelectEntity(xprepareCBAsPK(fooCode, barCode, quxCode), tp);
+    }
+
+    protected <ENTITY extends WhiteAllInOneClsNormalColRef> OptionalEntity<ENTITY> doSelectOptionalByPK(String fooCode, String barCode, String quxCode, Class<ENTITY> tp) {
+        return createOptionalEntity(doSelectByPK(fooCode, barCode, quxCode, tp), fooCode, barCode, quxCode);
     }
 
     /**
@@ -235,17 +254,16 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteAllInOneClsNormalColRef selectByPKValueWithDeletedCheck(String fooCode, String barCode, String quxCode) {
-        return doSelectByPKWithDeletedCheck(fooCode, barCode, quxCode, WhiteAllInOneClsNormalColRef.class);
+        return doSelectByPKWithDeletedCheck(fooCode, barCode, quxCode, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends WhiteAllInOneClsNormalColRef> ENTITY doSelectByPKWithDeletedCheck(String fooCode, String barCode, String quxCode, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(fooCode, barCode, quxCode), entityType);
+    protected <ENTITY extends WhiteAllInOneClsNormalColRef> ENTITY doSelectByPKWithDeletedCheck(String fooCode, String barCode, String quxCode, Class<ENTITY> tp) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(fooCode, barCode, quxCode), tp);
     }
 
     protected WhiteAllInOneClsNormalColRefCB xprepareCBAsPK(String fooCode, String barCode, String quxCode) {
         assertObjectNotNull("fooCode", fooCode);assertObjectNotNull("barCode", barCode);assertObjectNotNull("quxCode", quxCode);
-        WhiteAllInOneClsNormalColRefCB cb = newMyConditionBean(); cb.acceptPrimaryKey(fooCode, barCode, quxCode);
-        return cb;
+        return newConditionBean().acceptPK(fooCode, barCode, quxCode);
     }
 
     // ===================================================================================
@@ -267,7 +285,11 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
      * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public ListResultBean<WhiteAllInOneClsNormalColRef> selectList(WhiteAllInOneClsNormalColRefCB cb) {
-        return doSelectList(cb, WhiteAllInOneClsNormalColRef.class);
+        return facadeSelectList(cb);
+    }
+
+    protected ListResultBean<WhiteAllInOneClsNormalColRef> facadeSelectList(WhiteAllInOneClsNormalColRefCB cb) {
+        return doSelectList(cb, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends WhiteAllInOneClsNormalColRef> ListResultBean<ENTITY> doSelectList(WhiteAllInOneClsNormalColRefCB cb, Class<ENTITY> tp) {
@@ -279,7 +301,7 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
 
     @Override
     protected ListResultBean<? extends Entity> doReadList(ConditionBean cb) {
-        return selectList(downcast(cb));
+        return facadeSelectList(downcast(cb));
     }
 
     // ===================================================================================
@@ -308,7 +330,11 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
      * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public PagingResultBean<WhiteAllInOneClsNormalColRef> selectPage(WhiteAllInOneClsNormalColRefCB cb) {
-        return doSelectPage(cb, WhiteAllInOneClsNormalColRef.class);
+        return facadeSelectPage(cb);
+    }
+
+    protected PagingResultBean<WhiteAllInOneClsNormalColRef> facadeSelectPage(WhiteAllInOneClsNormalColRefCB cb) {
+        return doSelectPage(cb, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends WhiteAllInOneClsNormalColRef> PagingResultBean<ENTITY> doSelectPage(WhiteAllInOneClsNormalColRefCB cb, Class<ENTITY> tp) {
@@ -321,7 +347,7 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
 
     @Override
     protected PagingResultBean<? extends Entity> doReadPage(ConditionBean cb) {
-        return selectPage(downcast(cb));
+        return facadeSelectPage(downcast(cb));
     }
 
     // ===================================================================================
@@ -342,15 +368,19 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
      * @param entityRowHandler The handler of entity row of WhiteAllInOneClsNormalColRef. (NotNull)
      */
     public void selectCursor(WhiteAllInOneClsNormalColRefCB cb, EntityRowHandler<WhiteAllInOneClsNormalColRef> entityRowHandler) {
-        doSelectCursor(cb, entityRowHandler, WhiteAllInOneClsNormalColRef.class);
+        facadeSelectCursor(cb, entityRowHandler);
+    }
+
+    protected void facadeSelectCursor(WhiteAllInOneClsNormalColRefCB cb, EntityRowHandler<WhiteAllInOneClsNormalColRef> entityRowHandler) {
+        doSelectCursor(cb, entityRowHandler, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends WhiteAllInOneClsNormalColRef> void doSelectCursor(WhiteAllInOneClsNormalColRefCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
         assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
         helpSelectCursorInternally(cb, handler, tp, new InternalSelectCursorCallback<ENTITY, WhiteAllInOneClsNormalColRefCB>() {
-            public void callbackSelectCursor(WhiteAllInOneClsNormalColRefCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) { delegateSelectCursor(cb, handler, tp); }
-            public List<ENTITY> callbackSelectList(WhiteAllInOneClsNormalColRefCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
+            public void callbackSelectCursor(WhiteAllInOneClsNormalColRefCB lcb, EntityRowHandler<ENTITY> lhandler, Class<ENTITY> ltp) { delegateSelectCursor(lcb, lhandler, ltp); }
+            public List<ENTITY> callbackSelectList(WhiteAllInOneClsNormalColRefCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); }
         });
     }
 
@@ -372,22 +402,23 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
      * @param resultType The type of result. (NotNull)
      * @return The scalar function object to specify function for scalar value. (NotNull)
      */
-    public <RESULT> SLFunction<WhiteAllInOneClsNormalColRefCB, RESULT> scalarSelect(Class<RESULT> resultType) {
-        return doScalarSelect(resultType, newMyConditionBean());
+    public <RESULT> HpSLSFunction<WhiteAllInOneClsNormalColRefCB, RESULT> scalarSelect(Class<RESULT> resultType) {
+        return facadeScalarSelect(resultType);
     }
 
-    protected <RESULT, CB extends WhiteAllInOneClsNormalColRefCB> SLFunction<CB, RESULT> doScalarSelect(Class<RESULT> tp, CB cb) {
+    protected <RESULT> HpSLSFunction<WhiteAllInOneClsNormalColRefCB, RESULT> facadeScalarSelect(Class<RESULT> resultType) {
+        return doScalarSelect(resultType, newConditionBean());
+    }
+
+    protected <RESULT, CB extends WhiteAllInOneClsNormalColRefCB> HpSLSFunction<CB, RESULT> doScalarSelect(final Class<RESULT> tp, final CB cb) {
         assertObjectNotNull("resultType", tp); assertCBStateValid(cb);
         cb.xsetupForScalarSelect(); cb.getSqlClause().disableSelectIndex(); // for when you use union
-        return createSLFunction(cb, tp);
+        HpSLSExecutor<CB, RESULT> executor = createHpSLSExecutor(); // variable to resolve generic
+        return createSLSFunction(cb, tp, executor);
     }
 
-    protected <RESULT, CB extends WhiteAllInOneClsNormalColRefCB> SLFunction<CB, RESULT> createSLFunction(CB cb, Class<RESULT> tp) {
-        return new SLFunction<CB, RESULT>(cb, tp);
-    }
-
-    protected <RESULT> SLFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) {
-        return doScalarSelect(tp, newMyConditionBean());
+    protected <RESULT> HpSLSFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) {
+        return facadeScalarSelect(tp);
     }
 
     // ===================================================================================
@@ -397,6 +428,81 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
     protected Number doReadNextVal() {
         String msg = "This table is NOT related to sequence: " + getTableDbName();
         throw new UnsupportedOperationException(msg);
+    }
+
+    // ===================================================================================
+    //                                                                       Load Referrer
+    //                                                                       =============
+    /**
+     * Load referrer by the the referrer loader. <br />
+     * <pre>
+     * MemberCB cb = new MemberCB();
+     * cb.query().set...
+     * List&lt;Member&gt; memberList = memberBhv.selectList(cb);
+     * memberBhv.<span style="color: #DD4747">load</span>(memberList, loader -&gt; {
+     *     loader.<span style="color: #DD4747">loadPurchaseList</span>(purchaseCB -&gt; {
+     *         purchaseCB.query().set...
+     *         purchaseCB.query().addOrderBy_PurchasePrice_Desc();
+     *     }); <span style="color: #3F7E5E">// you can also load nested referrer from here</span>
+     *     <span style="color: #3F7E5E">//}).withNestedList(purchaseLoader -&gt {</span>
+     *     <span style="color: #3F7E5E">//    purchaseLoader.loadPurchasePaymentList(...);</span>
+     *     <span style="color: #3F7E5E">//});</span>
+     *
+     *     <span style="color: #3F7E5E">// you can also pull out foreign table and load its referrer</span>
+     *     <span style="color: #3F7E5E">// (setupSelect of the foreign table should be called)</span>
+     *     <span style="color: #3F7E5E">//loader.pulloutMemberStatus().loadMemberLoginList(...)</span>
+     * }
+     * for (Member member : memberList) {
+     *     List&lt;Purchase&gt; purchaseList = member.<span style="color: #DD4747">getPurchaseList()</span>;
+     *     for (Purchase purchase : purchaseList) {
+     *         ...
+     *     }
+     * }
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has order by FK before callback.
+     * @param whiteAllInOneClsNormalColRefList The entity list of whiteAllInOneClsNormalColRef. (NotNull)
+     * @param handler The callback to handle the referrer loader for actually loading referrer. (NotNull)
+     */
+    public void load(List<WhiteAllInOneClsNormalColRef> whiteAllInOneClsNormalColRefList, ReferrerLoaderHandler<LoaderOfWhiteAllInOneClsNormalColRef> handler) {
+        xassLRArg(whiteAllInOneClsNormalColRefList, handler);
+        handler.handle(new LoaderOfWhiteAllInOneClsNormalColRef().ready(whiteAllInOneClsNormalColRefList, _behaviorSelector));
+    }
+
+    /**
+     * Load referrer of ${referrer.referrerJavaBeansRulePropertyName} by the referrer loader. <br />
+     * <pre>
+     * MemberCB cb = new MemberCB();
+     * cb.query().set...
+     * Member member = memberBhv.selectEntityWithDeletedCheck(cb);
+     * memberBhv.<span style="color: #DD4747">load</span>(member, loader -&gt; {
+     *     loader.<span style="color: #DD4747">loadPurchaseList</span>(purchaseCB -&gt; {
+     *         purchaseCB.query().set...
+     *         purchaseCB.query().addOrderBy_PurchasePrice_Desc();
+     *     }); <span style="color: #3F7E5E">// you can also load nested referrer from here</span>
+     *     <span style="color: #3F7E5E">//}).withNestedList(purchaseLoader -&gt {</span>
+     *     <span style="color: #3F7E5E">//    purchaseLoader.loadPurchasePaymentList(...);</span>
+     *     <span style="color: #3F7E5E">//});</span>
+     *
+     *     <span style="color: #3F7E5E">// you can also pull out foreign table and load its referrer</span>
+     *     <span style="color: #3F7E5E">// (setupSelect of the foreign table should be called)</span>
+     *     <span style="color: #3F7E5E">//loader.pulloutMemberStatus().loadMemberLoginList(...)</span>
+     * }
+     * for (Member member : memberList) {
+     *     List&lt;Purchase&gt; purchaseList = member.<span style="color: #DD4747">getPurchaseList()</span>;
+     *     for (Purchase purchase : purchaseList) {
+     *         ...
+     *     }
+     * }
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has order by FK before callback.
+     * @param whiteAllInOneClsNormalColRef The entity of whiteAllInOneClsNormalColRef. (NotNull)
+     * @param handler The callback to handle the referrer loader for actually loading referrer. (NotNull)
+     */
+    public void load(WhiteAllInOneClsNormalColRef whiteAllInOneClsNormalColRef, ReferrerLoaderHandler<LoaderOfWhiteAllInOneClsNormalColRef> handler) {
+        xassLRArg(whiteAllInOneClsNormalColRef, handler);
+        handler.handle(new LoaderOfWhiteAllInOneClsNormalColRef().ready(xnewLRAryLs(whiteAllInOneClsNormalColRef), _behaviorSelector));
     }
 
     // ===================================================================================
@@ -416,6 +522,7 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
             { throw new UnsupportedOperationException(); }
         });
     }
+
     /**
      * Pull out the list of foreign table 'WhiteAllInOneClsElement'.
      * @param whiteAllInOneClsNormalColRefList The list of whiteAllInOneClsNormalColRef. (NotNull, EmptyAllowed)
@@ -434,7 +541,6 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
     // ===================================================================================
     //                                                                      Extract Column
     //                                                                      ==============
-
     // ===================================================================================
     //                                                                       Entity Update
     //                                                                       =============
@@ -452,17 +558,17 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
      * ... = whiteAllInOneClsNormalColRef.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * <p>While, when the entity is created by select, all columns are registered.</p>
-     * @param whiteAllInOneClsNormalColRef The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
+     * @param whiteAllInOneClsNormalColRef The entity of insert. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
      * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insert(WhiteAllInOneClsNormalColRef whiteAllInOneClsNormalColRef) {
         doInsert(whiteAllInOneClsNormalColRef, null);
     }
 
-    protected void doInsert(WhiteAllInOneClsNormalColRef whiteAllInOneClsNormalColRef, InsertOption<WhiteAllInOneClsNormalColRefCB> op) {
-        assertObjectNotNull("whiteAllInOneClsNormalColRef", whiteAllInOneClsNormalColRef);
+    protected void doInsert(WhiteAllInOneClsNormalColRef et, InsertOption<WhiteAllInOneClsNormalColRefCB> op) {
+        assertObjectNotNull("whiteAllInOneClsNormalColRef", et);
         prepareInsertOption(op);
-        delegateInsert(whiteAllInOneClsNormalColRef, op);
+        delegateInsert(et, op);
     }
 
     protected void prepareInsertOption(InsertOption<WhiteAllInOneClsNormalColRefCB> op) {
@@ -475,8 +581,7 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
 
     @Override
     protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) {
-        if (op == null) { insert(downcast(et)); }
-        else { varyingInsert(downcast(et), downcast(op)); }
+        doInsert(downcast(et), downcast(op));
     }
 
     /**
@@ -488,7 +593,7 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
      * <span style="color: #3F7E5E">//whiteAllInOneClsNormalColRef.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//whiteAllInOneClsNormalColRef.set...;</span>
-     * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
+     * <span style="color: #3F7E5E">// if exclusive control, the value of concurrency column is required</span>
      * whiteAllInOneClsNormalColRef.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     whiteAllInOneClsNormalColRefBhv.<span style="color: #DD4747">update</span>(whiteAllInOneClsNormalColRef);
@@ -496,49 +601,38 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
      *     ...
      * }
      * </pre>
-     * @param whiteAllInOneClsNormalColRef The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
+     * @param whiteAllInOneClsNormalColRef The entity of update. (NotNull, PrimaryKeyNotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
-    public void update(final WhiteAllInOneClsNormalColRef whiteAllInOneClsNormalColRef) {
+    public void update(WhiteAllInOneClsNormalColRef whiteAllInOneClsNormalColRef) {
         doUpdate(whiteAllInOneClsNormalColRef, null);
     }
 
-    protected void doUpdate(WhiteAllInOneClsNormalColRef whiteAllInOneClsNormalColRef, final UpdateOption<WhiteAllInOneClsNormalColRefCB> op) {
-        assertObjectNotNull("whiteAllInOneClsNormalColRef", whiteAllInOneClsNormalColRef);
+    protected void doUpdate(WhiteAllInOneClsNormalColRef et, final UpdateOption<WhiteAllInOneClsNormalColRefCB> op) {
+        assertObjectNotNull("whiteAllInOneClsNormalColRef", et);
         prepareUpdateOption(op);
-        helpUpdateInternally(whiteAllInOneClsNormalColRef, new InternalUpdateCallback<WhiteAllInOneClsNormalColRef>() {
-            public int callbackDelegateUpdate(WhiteAllInOneClsNormalColRef et) { return delegateUpdate(et, op); } });
+        helpUpdateInternally(et, new InternalUpdateCallback<WhiteAllInOneClsNormalColRef>() {
+            public int callbackDelegateUpdate(WhiteAllInOneClsNormalColRef let) { return delegateUpdate(let, op); } });
     }
 
     protected void prepareUpdateOption(UpdateOption<WhiteAllInOneClsNormalColRefCB> op) {
         if (op == null) { return; }
         assertUpdateOptionStatus(op);
-        if (op.hasSelfSpecification()) {
-            op.resolveSelfSpecification(createCBForVaryingUpdate());
-        }
-        if (op.hasSpecifiedUpdateColumn()) {
-            op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate());
-        }
+        if (op.hasSelfSpecification()) { op.resolveSelfSpecification(createCBForVaryingUpdate()); }
+        if (op.hasSpecifiedUpdateColumn()) { op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate()); }
     }
 
-    protected WhiteAllInOneClsNormalColRefCB createCBForVaryingUpdate() {
-        WhiteAllInOneClsNormalColRefCB cb = newMyConditionBean();
-        cb.xsetupForVaryingUpdate();
-        return cb;
-    }
+    protected WhiteAllInOneClsNormalColRefCB createCBForVaryingUpdate()
+    { WhiteAllInOneClsNormalColRefCB cb = newConditionBean(); cb.xsetupForVaryingUpdate(); return cb; }
 
-    protected WhiteAllInOneClsNormalColRefCB createCBForSpecifiedUpdate() {
-        WhiteAllInOneClsNormalColRefCB cb = newMyConditionBean();
-        cb.xsetupForSpecifiedUpdate();
-        return cb;
-    }
+    protected WhiteAllInOneClsNormalColRefCB createCBForSpecifiedUpdate()
+    { WhiteAllInOneClsNormalColRefCB cb = newConditionBean(); cb.xsetupForSpecifiedUpdate(); return cb; }
 
     @Override
     protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) {
-        if (op == null) { update(downcast(et)); }
-        else { varyingUpdate(downcast(et), downcast(op)); }
+        doUpdate(downcast(et), downcast(op));
     }
 
     @Override
@@ -550,32 +644,28 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br />
      * <p><span style="color: #DD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
-     * @param whiteAllInOneClsNormalColRef The entity of insert or update target. (NotNull)
+     * @param whiteAllInOneClsNormalColRef The entity of insert or update. (NotNull, ...depends on insert or update)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insertOrUpdate(WhiteAllInOneClsNormalColRef whiteAllInOneClsNormalColRef) {
-        doInesrtOrUpdate(whiteAllInOneClsNormalColRef, null, null);
+        doInsertOrUpdate(whiteAllInOneClsNormalColRef, null, null);
     }
 
-    protected void doInesrtOrUpdate(WhiteAllInOneClsNormalColRef whiteAllInOneClsNormalColRef, final InsertOption<WhiteAllInOneClsNormalColRefCB> iop, final UpdateOption<WhiteAllInOneClsNormalColRefCB> uop) {
-        helpInsertOrUpdateInternally(whiteAllInOneClsNormalColRef, new InternalInsertOrUpdateCallback<WhiteAllInOneClsNormalColRef, WhiteAllInOneClsNormalColRefCB>() {
-            public void callbackInsert(WhiteAllInOneClsNormalColRef et) { doInsert(et, iop); }
-            public void callbackUpdate(WhiteAllInOneClsNormalColRef et) { doUpdate(et, uop); }
-            public WhiteAllInOneClsNormalColRefCB callbackNewMyConditionBean() { return newMyConditionBean(); }
+    protected void doInsertOrUpdate(WhiteAllInOneClsNormalColRef et, final InsertOption<WhiteAllInOneClsNormalColRefCB> iop, final UpdateOption<WhiteAllInOneClsNormalColRefCB> uop) {
+        assertObjectNotNull("whiteAllInOneClsNormalColRef", et);
+        helpInsertOrUpdateInternally(et, new InternalInsertOrUpdateCallback<WhiteAllInOneClsNormalColRef, WhiteAllInOneClsNormalColRefCB>() {
+            public void callbackInsert(WhiteAllInOneClsNormalColRef let) { doInsert(let, iop); }
+            public void callbackUpdate(WhiteAllInOneClsNormalColRef let) { doUpdate(let, uop); }
+            public WhiteAllInOneClsNormalColRefCB callbackNewMyConditionBean() { return newConditionBean(); }
             public int callbackSelectCount(WhiteAllInOneClsNormalColRefCB cb) { return selectCount(cb); }
         });
     }
 
     @Override
     protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
-        if (iop == null && uop == null) { insertOrUpdate(downcast(et)); }
-        else {
-            iop = iop != null ? iop : new InsertOption<WhiteAllInOneClsNormalColRefCB>();
-            uop = uop != null ? uop : new UpdateOption<WhiteAllInOneClsNormalColRefCB>();
-            varyingInsertOrUpdate(downcast(et), downcast(iop), downcast(uop));
-        }
+        doInsertOrUpdate(downcast(et), downcast(iop), downcast(uop));
     }
 
     @Override
@@ -588,7 +678,7 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
      * <pre>
      * WhiteAllInOneClsNormalColRef whiteAllInOneClsNormalColRef = new WhiteAllInOneClsNormalColRef();
      * whiteAllInOneClsNormalColRef.setPK...(value); <span style="color: #3F7E5E">// required</span>
-     * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
+     * <span style="color: #3F7E5E">// if exclusive control, the value of concurrency column is required</span>
      * whiteAllInOneClsNormalColRef.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     whiteAllInOneClsNormalColRefBhv.<span style="color: #DD4747">delete</span>(whiteAllInOneClsNormalColRef);
@@ -596,7 +686,7 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
      *     ...
      * }
      * </pre>
-     * @param whiteAllInOneClsNormalColRef The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
+     * @param whiteAllInOneClsNormalColRef The entity of delete. (NotNull, PrimaryKeyNotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      */
@@ -604,22 +694,19 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
         doDelete(whiteAllInOneClsNormalColRef, null);
     }
 
-    protected void doDelete(WhiteAllInOneClsNormalColRef whiteAllInOneClsNormalColRef, final DeleteOption<WhiteAllInOneClsNormalColRefCB> op) {
-        assertObjectNotNull("whiteAllInOneClsNormalColRef", whiteAllInOneClsNormalColRef);
+    protected void doDelete(WhiteAllInOneClsNormalColRef et, final DeleteOption<WhiteAllInOneClsNormalColRefCB> op) {
+        assertObjectNotNull("whiteAllInOneClsNormalColRef", et);
         prepareDeleteOption(op);
-        helpDeleteInternally(whiteAllInOneClsNormalColRef, new InternalDeleteCallback<WhiteAllInOneClsNormalColRef>() {
-            public int callbackDelegateDelete(WhiteAllInOneClsNormalColRef et) { return delegateDelete(et, op); } });
+        helpDeleteInternally(et, new InternalDeleteCallback<WhiteAllInOneClsNormalColRef>() {
+            public int callbackDelegateDelete(WhiteAllInOneClsNormalColRef let) { return delegateDelete(let, op); } });
     }
 
-    protected void prepareDeleteOption(DeleteOption<WhiteAllInOneClsNormalColRefCB> op) {
-        if (op == null) { return; }
-        assertDeleteOptionStatus(op);
-    }
+    protected void prepareDeleteOption(DeleteOption<WhiteAllInOneClsNormalColRefCB> op)
+    { if (op != null) { assertDeleteOptionStatus(op); } }
 
     @Override
     protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) {
-        if (op == null) { delete(downcast(et)); }
-        else { varyingDelete(downcast(et), downcast(op)); }
+        doDelete(downcast(et), downcast(op));
     }
 
     @Override
@@ -655,26 +742,25 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
      * @return The array of inserted count. (NotNull, EmptyAllowed)
      */
     public int[] batchInsert(List<WhiteAllInOneClsNormalColRef> whiteAllInOneClsNormalColRefList) {
-        InsertOption<WhiteAllInOneClsNormalColRefCB> op = createInsertUpdateOption();
-        return doBatchInsert(whiteAllInOneClsNormalColRefList, op);
+        return doBatchInsert(whiteAllInOneClsNormalColRefList, null);
     }
 
-    protected int[] doBatchInsert(List<WhiteAllInOneClsNormalColRef> whiteAllInOneClsNormalColRefList, InsertOption<WhiteAllInOneClsNormalColRefCB> op) {
-        assertObjectNotNull("whiteAllInOneClsNormalColRefList", whiteAllInOneClsNormalColRefList);
-        prepareBatchInsertOption(whiteAllInOneClsNormalColRefList, op);
-        return delegateBatchInsert(whiteAllInOneClsNormalColRefList, op);
+    protected int[] doBatchInsert(List<WhiteAllInOneClsNormalColRef> ls, InsertOption<WhiteAllInOneClsNormalColRefCB> op) {
+        assertObjectNotNull("whiteAllInOneClsNormalColRefList", ls);
+        InsertOption<WhiteAllInOneClsNormalColRefCB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainInsertOption(); }
+        prepareBatchInsertOption(ls, rlop); // required
+        return delegateBatchInsert(ls, rlop);
     }
 
-    protected void prepareBatchInsertOption(List<WhiteAllInOneClsNormalColRef> whiteAllInOneClsNormalColRefList, InsertOption<WhiteAllInOneClsNormalColRefCB> op) {
+    protected void prepareBatchInsertOption(List<WhiteAllInOneClsNormalColRef> ls, InsertOption<WhiteAllInOneClsNormalColRefCB> op) {
         op.xallowInsertColumnModifiedPropertiesFragmented();
-        op.xacceptInsertColumnModifiedPropertiesIfNeeds(whiteAllInOneClsNormalColRefList);
+        op.xacceptInsertColumnModifiedPropertiesIfNeeds(ls);
         prepareInsertOption(op);
     }
 
     @Override
     protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) {
-        if (op == null) { return batchInsert(downcast(ls)); }
-        else { return varyingBatchInsert(downcast(ls), downcast(op)); }
+        return doBatchInsert(downcast(ls), downcast(op));
     }
 
     /**
@@ -702,25 +788,24 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<WhiteAllInOneClsNormalColRef> whiteAllInOneClsNormalColRefList) {
-        UpdateOption<WhiteAllInOneClsNormalColRefCB> op = createPlainUpdateOption();
-        return doBatchUpdate(whiteAllInOneClsNormalColRefList, op);
+        return doBatchUpdate(whiteAllInOneClsNormalColRefList, null);
     }
 
-    protected int[] doBatchUpdate(List<WhiteAllInOneClsNormalColRef> whiteAllInOneClsNormalColRefList, UpdateOption<WhiteAllInOneClsNormalColRefCB> op) {
-        assertObjectNotNull("whiteAllInOneClsNormalColRefList", whiteAllInOneClsNormalColRefList);
-        prepareBatchUpdateOption(whiteAllInOneClsNormalColRefList, op);
-        return delegateBatchUpdate(whiteAllInOneClsNormalColRefList, op);
+    protected int[] doBatchUpdate(List<WhiteAllInOneClsNormalColRef> ls, UpdateOption<WhiteAllInOneClsNormalColRefCB> op) {
+        assertObjectNotNull("whiteAllInOneClsNormalColRefList", ls);
+        UpdateOption<WhiteAllInOneClsNormalColRefCB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainUpdateOption(); }
+        prepareBatchUpdateOption(ls, rlop); // required
+        return delegateBatchUpdate(ls, rlop);
     }
 
-    protected void prepareBatchUpdateOption(List<WhiteAllInOneClsNormalColRef> whiteAllInOneClsNormalColRefList, UpdateOption<WhiteAllInOneClsNormalColRefCB> op) {
-        op.xacceptUpdateColumnModifiedPropertiesIfNeeds(whiteAllInOneClsNormalColRefList);
+    protected void prepareBatchUpdateOption(List<WhiteAllInOneClsNormalColRef> ls, UpdateOption<WhiteAllInOneClsNormalColRefCB> op) {
+        op.xacceptUpdateColumnModifiedPropertiesIfNeeds(ls);
         prepareUpdateOption(op);
     }
 
     @Override
     protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) {
-        if (op == null) { return batchUpdate(downcast(ls)); }
-        else { return varyingBatchUpdate(downcast(ls), downcast(op)); }
+        return doBatchUpdate(downcast(ls), downcast(op));
     }
 
     /**
@@ -771,16 +856,15 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
         return doBatchDelete(whiteAllInOneClsNormalColRefList, null);
     }
 
-    protected int[] doBatchDelete(List<WhiteAllInOneClsNormalColRef> whiteAllInOneClsNormalColRefList, DeleteOption<WhiteAllInOneClsNormalColRefCB> op) {
-        assertObjectNotNull("whiteAllInOneClsNormalColRefList", whiteAllInOneClsNormalColRefList);
+    protected int[] doBatchDelete(List<WhiteAllInOneClsNormalColRef> ls, DeleteOption<WhiteAllInOneClsNormalColRefCB> op) {
+        assertObjectNotNull("whiteAllInOneClsNormalColRefList", ls);
         prepareDeleteOption(op);
-        return delegateBatchDelete(whiteAllInOneClsNormalColRefList, op);
+        return delegateBatchDelete(ls, op);
     }
 
     @Override
     protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) {
-        if (op == null) { return batchDelete(downcast(ls)); }
-        else { return varyingBatchDelete(downcast(ls), downcast(op)); }
+        return doBatchDelete(downcast(ls), downcast(op));
     }
 
     @Override
@@ -807,7 +891,7 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
      *         <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
      *         <span style="color: #3F7E5E">//entity.setRegisterUser(value);</span>
      *         <span style="color: #3F7E5E">//entity.set...;</span>
-     *         <span style="color: #3F7E5E">// you don't need to set a value of exclusive control column</span>
+     *         <span style="color: #3F7E5E">// you don't need to set a value of concurrency column</span>
      *         <span style="color: #3F7E5E">//entity.setVersionNo(value);</span>
      *
      *         return cb;
@@ -824,21 +908,17 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
     protected int doQueryInsert(QueryInsertSetupper<WhiteAllInOneClsNormalColRef, WhiteAllInOneClsNormalColRefCB> sp, InsertOption<WhiteAllInOneClsNormalColRefCB> op) {
         assertObjectNotNull("setupper", sp);
         prepareInsertOption(op);
-        WhiteAllInOneClsNormalColRef e = new WhiteAllInOneClsNormalColRef();
+        WhiteAllInOneClsNormalColRef et = newEntity();
         WhiteAllInOneClsNormalColRefCB cb = createCBForQueryInsert();
-        return delegateQueryInsert(e, cb, sp.setup(e, cb), op);
+        return delegateQueryInsert(et, cb, sp.setup(et, cb), op);
     }
 
-    protected WhiteAllInOneClsNormalColRefCB createCBForQueryInsert() {
-        WhiteAllInOneClsNormalColRefCB cb = newMyConditionBean();
-        cb.xsetupForQueryInsert();
-        return cb;
-    }
+    protected WhiteAllInOneClsNormalColRefCB createCBForQueryInsert()
+    { WhiteAllInOneClsNormalColRefCB cb = newConditionBean(); cb.xsetupForQueryInsert(); return cb; }
 
     @Override
-    protected int doRangeCreate(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> setupper, InsertOption<? extends ConditionBean> option) {
-        if (option == null) { return queryInsert(downcast(setupper)); }
-        else { return varyingQueryInsert(downcast(setupper), downcast(option)); }
+    protected int doRangeCreate(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> setupper, InsertOption<? extends ConditionBean> op) {
+        return doQueryInsert(downcast(setupper), downcast(op));
     }
 
     /**
@@ -851,7 +931,7 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
      * <span style="color: #3F7E5E">//whiteAllInOneClsNormalColRef.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//whiteAllInOneClsNormalColRef.set...;</span>
-     * <span style="color: #3F7E5E">// you don't need to set a value of exclusive control column</span>
+     * <span style="color: #3F7E5E">// you don't need to set a value of concurrency column</span>
      * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
      * <span style="color: #3F7E5E">//whiteAllInOneClsNormalColRef.setVersionNo(value);</span>
      * WhiteAllInOneClsNormalColRefCB cb = new WhiteAllInOneClsNormalColRefCB();
@@ -867,16 +947,15 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
         return doQueryUpdate(whiteAllInOneClsNormalColRef, cb, null);
     }
 
-    protected int doQueryUpdate(WhiteAllInOneClsNormalColRef whiteAllInOneClsNormalColRef, WhiteAllInOneClsNormalColRefCB cb, UpdateOption<WhiteAllInOneClsNormalColRefCB> op) {
-        assertObjectNotNull("whiteAllInOneClsNormalColRef", whiteAllInOneClsNormalColRef); assertCBStateValid(cb);
+    protected int doQueryUpdate(WhiteAllInOneClsNormalColRef et, WhiteAllInOneClsNormalColRefCB cb, UpdateOption<WhiteAllInOneClsNormalColRefCB> op) {
+        assertObjectNotNull("whiteAllInOneClsNormalColRef", et); assertCBStateValid(cb);
         prepareUpdateOption(op);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(whiteAllInOneClsNormalColRef, cb, op) : 0;
+        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(et, cb, op) : 0;
     }
 
     @Override
     protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op) {
-        if (op == null) { return queryUpdate(downcast(et), (WhiteAllInOneClsNormalColRefCB)cb); }
-        else { return varyingQueryUpdate(downcast(et), (WhiteAllInOneClsNormalColRefCB)cb, downcast(op)); }
+        return doQueryUpdate(downcast(et), downcast(cb), downcast(op));
     }
 
     /**
@@ -902,8 +981,7 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
 
     @Override
     protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) {
-        if (op == null) { return queryDelete((WhiteAllInOneClsNormalColRefCB)cb); }
-        else { return varyingQueryDelete((WhiteAllInOneClsNormalColRefCB)cb, downcast(op)); }
+        return doQueryDelete(downcast(cb), downcast(op));
     }
 
     // ===================================================================================
@@ -927,7 +1005,7 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
      * whiteAllInOneClsNormalColRefBhv.<span style="color: #DD4747">varyingInsert</span>(whiteAllInOneClsNormalColRef, option);
      * ... = whiteAllInOneClsNormalColRef.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
-     * @param whiteAllInOneClsNormalColRef The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
+     * @param whiteAllInOneClsNormalColRef The entity of insert. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
      * @param option The option of insert for varying requests. (NotNull)
      * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
@@ -944,7 +1022,7 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
      * WhiteAllInOneClsNormalColRef whiteAllInOneClsNormalColRef = new WhiteAllInOneClsNormalColRef();
      * whiteAllInOneClsNormalColRef.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * whiteAllInOneClsNormalColRef.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
-     * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
+     * <span style="color: #3F7E5E">// if exclusive control, the value of concurrency column is required</span>
      * whiteAllInOneClsNormalColRef.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     <span style="color: #3F7E5E">// you can update by self calculation values</span>
@@ -959,7 +1037,7 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
      *     ...
      * }
      * </pre>
-     * @param whiteAllInOneClsNormalColRef The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
+     * @param whiteAllInOneClsNormalColRef The entity of update. (NotNull, PrimaryKeyNotNull)
      * @param option The option of update for varying requests. (NotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
@@ -973,7 +1051,7 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
     /**
      * Insert or update the entity with varying requests. (ExclusiveControl: when update) <br />
      * Other specifications are same as insertOrUpdate(entity).
-     * @param whiteAllInOneClsNormalColRef The entity of insert or update target. (NotNull)
+     * @param whiteAllInOneClsNormalColRef The entity of insert or update. (NotNull)
      * @param insertOption The option of insert for varying requests. (NotNull)
      * @param updateOption The option of update for varying requests. (NotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
@@ -982,14 +1060,14 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
      */
     public void varyingInsertOrUpdate(WhiteAllInOneClsNormalColRef whiteAllInOneClsNormalColRef, InsertOption<WhiteAllInOneClsNormalColRefCB> insertOption, UpdateOption<WhiteAllInOneClsNormalColRefCB> updateOption) {
         assertInsertOptionNotNull(insertOption); assertUpdateOptionNotNull(updateOption);
-        doInesrtOrUpdate(whiteAllInOneClsNormalColRef, insertOption, updateOption);
+        doInsertOrUpdate(whiteAllInOneClsNormalColRef, insertOption, updateOption);
     }
 
     /**
      * Delete the entity with varying requests. (ZeroUpdateException, NonExclusiveControl) <br />
      * Now a valid option does not exist. <br />
      * Other specifications are same as delete(entity).
-     * @param whiteAllInOneClsNormalColRef The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
+     * @param whiteAllInOneClsNormalColRef The entity of delete. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
      * @param option The option of update for varying requests. (NotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
@@ -1070,7 +1148,7 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
      * <span style="color: #3F7E5E">// you don't need to set PK value</span>
      * <span style="color: #3F7E5E">//whiteAllInOneClsNormalColRef.setPK...(value);</span>
      * whiteAllInOneClsNormalColRef.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
-     * <span style="color: #3F7E5E">// you don't need to set a value of exclusive control column</span>
+     * <span style="color: #3F7E5E">// you don't need to set a value of concurrency column</span>
      * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
      * <span style="color: #3F7E5E">//whiteAllInOneClsNormalColRef.setVersionNo(value);</span>
      * WhiteAllInOneClsNormalColRefCB cb = new WhiteAllInOneClsNormalColRefCB();
@@ -1222,38 +1300,34 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
     }
 
     // ===================================================================================
-    //                                                                     Downcast Helper
-    //                                                                     ===============
-    protected WhiteAllInOneClsNormalColRef downcast(Entity et) {
-        return helpEntityDowncastInternally(et, WhiteAllInOneClsNormalColRef.class);
-    }
+    //                                                                       Assist Helper
+    //                                                                       =============
+    protected Class<WhiteAllInOneClsNormalColRef> typeOfSelectedEntity()
+    { return WhiteAllInOneClsNormalColRef.class; }
 
-    protected WhiteAllInOneClsNormalColRefCB downcast(ConditionBean cb) {
-        return helpConditionBeanDowncastInternally(cb, WhiteAllInOneClsNormalColRefCB.class);
-    }
+    protected WhiteAllInOneClsNormalColRef downcast(Entity et)
+    { return helpEntityDowncastInternally(et, WhiteAllInOneClsNormalColRef.class); }
 
-    @SuppressWarnings("unchecked")
-    protected List<WhiteAllInOneClsNormalColRef> downcast(List<? extends Entity> ls) {
-        return (List<WhiteAllInOneClsNormalColRef>)ls;
-    }
+    protected WhiteAllInOneClsNormalColRefCB downcast(ConditionBean cb)
+    { return helpConditionBeanDowncastInternally(cb, WhiteAllInOneClsNormalColRefCB.class); }
 
     @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteAllInOneClsNormalColRefCB> downcast(InsertOption<? extends ConditionBean> op) {
-        return (InsertOption<WhiteAllInOneClsNormalColRefCB>)op;
-    }
+    protected List<WhiteAllInOneClsNormalColRef> downcast(List<? extends Entity> ls)
+    { return (List<WhiteAllInOneClsNormalColRef>)ls; }
 
     @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteAllInOneClsNormalColRefCB> downcast(UpdateOption<? extends ConditionBean> op) {
-        return (UpdateOption<WhiteAllInOneClsNormalColRefCB>)op;
-    }
+    protected InsertOption<WhiteAllInOneClsNormalColRefCB> downcast(InsertOption<? extends ConditionBean> op)
+    { return (InsertOption<WhiteAllInOneClsNormalColRefCB>)op; }
 
     @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteAllInOneClsNormalColRefCB> downcast(DeleteOption<? extends ConditionBean> op) {
-        return (DeleteOption<WhiteAllInOneClsNormalColRefCB>)op;
-    }
+    protected UpdateOption<WhiteAllInOneClsNormalColRefCB> downcast(UpdateOption<? extends ConditionBean> op)
+    { return (UpdateOption<WhiteAllInOneClsNormalColRefCB>)op; }
 
     @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhiteAllInOneClsNormalColRef, WhiteAllInOneClsNormalColRefCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp) {
-        return (QueryInsertSetupper<WhiteAllInOneClsNormalColRef, WhiteAllInOneClsNormalColRefCB>)sp;
-    }
+    protected DeleteOption<WhiteAllInOneClsNormalColRefCB> downcast(DeleteOption<? extends ConditionBean> op)
+    { return (DeleteOption<WhiteAllInOneClsNormalColRefCB>)op; }
+
+    @SuppressWarnings("unchecked")
+    protected QueryInsertSetupper<WhiteAllInOneClsNormalColRef, WhiteAllInOneClsNormalColRefCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
+    { return (QueryInsertSetupper<WhiteAllInOneClsNormalColRef, WhiteAllInOneClsNormalColRefCB>)sp; }
 }

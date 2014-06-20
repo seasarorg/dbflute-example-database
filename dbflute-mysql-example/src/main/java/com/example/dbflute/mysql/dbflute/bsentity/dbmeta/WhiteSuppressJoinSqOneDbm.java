@@ -205,7 +205,7 @@ public class WhiteSuppressJoinSqOneDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public WhiteSuppressJoinSqOne newEntity() { return new WhiteSuppressJoinSqOne(); }
     public WhiteSuppressJoinSqOne newMyEntity() { return new WhiteSuppressJoinSqOne(); }
 
     // ===================================================================================

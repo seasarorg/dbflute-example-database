@@ -95,11 +95,23 @@ public class BsWhiteVariantRelationReferrerCB extends AbstractConditionBean {
     /**
      * Accept the query condition of primary key as equal.
      * @param referrerId : PK, NotNull, BIGINT(19). (NotNull)
+     * @return this. (NotNull)
+     */
+    public WhiteVariantRelationReferrerCB acceptPK(Long referrerId) {
+        assertObjectNotNull("referrerId", referrerId);
+        BsWhiteVariantRelationReferrerCB cb = this;
+        cb.query().setReferrerId_Equal(referrerId);
+        return (WhiteVariantRelationReferrerCB)this;
+    }
+
+    /**
+     * Accept the query condition of primary key as equal. (old style)
+     * @param referrerId : PK, NotNull, BIGINT(19). (NotNull)
      */
     public void acceptPrimaryKey(Long referrerId) {
         assertObjectNotNull("referrerId", referrerId);
         BsWhiteVariantRelationReferrerCB cb = this;
-        cb.query().setReferrerId_Equal(referrerId);;
+        cb.query().setReferrerId_Equal(referrerId);
     }
 
     public ConditionBean addOrderBy_PK_Asc() {

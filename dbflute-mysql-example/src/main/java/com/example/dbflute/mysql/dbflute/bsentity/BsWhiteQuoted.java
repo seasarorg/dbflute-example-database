@@ -156,7 +156,7 @@ public abstract class BsWhiteQuoted implements Entity, Serializable, Cloneable {
     protected List<WhiteQuotedRef> _whiteQuotedRefList;
 
     /**
-     * white_quoted_ref by ORDER, named 'whiteQuotedRefList'.
+     * [get] white_quoted_ref by ORDER, named 'whiteQuotedRefList'.
      * @return The entity list of referrer property 'whiteQuotedRefList'. (NotNull: even if no loading, returns empty list)
      */
     public List<WhiteQuotedRef> getWhiteQuotedRefList() {
@@ -165,7 +165,7 @@ public abstract class BsWhiteQuoted implements Entity, Serializable, Cloneable {
     }
 
     /**
-     * white_quoted_ref by ORDER, named 'whiteQuotedRefList'.
+     * [set] white_quoted_ref by ORDER, named 'whiteQuotedRefList'.
      * @param whiteQuotedRefList The entity list of referrer property 'whiteQuotedRefList'. (NullAllowed)
      */
     public void setWhiteQuotedRefList(List<WhiteQuotedRef> whiteQuotedRefList) {
@@ -346,7 +346,7 @@ public abstract class BsWhiteQuoted implements Entity, Serializable, Cloneable {
      */
     public void setSelect(Integer select) {
         __modifiedProperties.addPropertyName("select");
-        this._select = select;
+        _select = select;
     }
 
     /**
@@ -363,6 +363,6 @@ public abstract class BsWhiteQuoted implements Entity, Serializable, Cloneable {
      */
     public void setFrom(String from) {
         __modifiedProperties.addPropertyName("from");
-        this._from = from;
+        _from = from;
     }
 }

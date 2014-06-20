@@ -184,7 +184,7 @@ public abstract class BsVendorConstraintNameAutoRef implements Entity, Serializa
     protected VendorConstraintNameAutoFoo _vendorConstraintNameAutoFoo;
 
     /**
-     * vendor_constraint_name_auto_foo by my CONSTRAINT_NAME_AUTO_FOO_ID, named 'vendorConstraintNameAutoFoo'.
+     * [get] vendor_constraint_name_auto_foo by my CONSTRAINT_NAME_AUTO_FOO_ID, named 'vendorConstraintNameAutoFoo'.
      * @return The entity of foreign property 'vendorConstraintNameAutoFoo'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public VendorConstraintNameAutoFoo getVendorConstraintNameAutoFoo() {
@@ -192,7 +192,7 @@ public abstract class BsVendorConstraintNameAutoRef implements Entity, Serializa
     }
 
     /**
-     * vendor_constraint_name_auto_foo by my CONSTRAINT_NAME_AUTO_FOO_ID, named 'vendorConstraintNameAutoFoo'.
+     * [set] vendor_constraint_name_auto_foo by my CONSTRAINT_NAME_AUTO_FOO_ID, named 'vendorConstraintNameAutoFoo'.
      * @param vendorConstraintNameAutoFoo The entity of foreign property 'vendorConstraintNameAutoFoo'. (NullAllowed)
      */
     public void setVendorConstraintNameAutoFoo(VendorConstraintNameAutoFoo vendorConstraintNameAutoFoo) {
@@ -203,7 +203,7 @@ public abstract class BsVendorConstraintNameAutoRef implements Entity, Serializa
     protected VendorConstraintNameAutoBar _vendorConstraintNameAutoBar;
 
     /**
-     * vendor_constraint_name_auto_bar by my CONSTRAINT_NAME_AUTO_BAR_ID, named 'vendorConstraintNameAutoBar'.
+     * [get] vendor_constraint_name_auto_bar by my CONSTRAINT_NAME_AUTO_BAR_ID, named 'vendorConstraintNameAutoBar'.
      * @return The entity of foreign property 'vendorConstraintNameAutoBar'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public VendorConstraintNameAutoBar getVendorConstraintNameAutoBar() {
@@ -211,7 +211,7 @@ public abstract class BsVendorConstraintNameAutoRef implements Entity, Serializa
     }
 
     /**
-     * vendor_constraint_name_auto_bar by my CONSTRAINT_NAME_AUTO_BAR_ID, named 'vendorConstraintNameAutoBar'.
+     * [set] vendor_constraint_name_auto_bar by my CONSTRAINT_NAME_AUTO_BAR_ID, named 'vendorConstraintNameAutoBar'.
      * @param vendorConstraintNameAutoBar The entity of foreign property 'vendorConstraintNameAutoBar'. (NullAllowed)
      */
     public void setVendorConstraintNameAutoBar(VendorConstraintNameAutoBar vendorConstraintNameAutoBar) {
@@ -222,7 +222,7 @@ public abstract class BsVendorConstraintNameAutoRef implements Entity, Serializa
     protected VendorConstraintNameAutoQux _vendorConstraintNameAutoQux;
 
     /**
-     * vendor_constraint_name_auto_qux by my CONSTRAINT_NAME_AUTO_QUX_ID, named 'vendorConstraintNameAutoQux'.
+     * [get] vendor_constraint_name_auto_qux by my CONSTRAINT_NAME_AUTO_QUX_ID, named 'vendorConstraintNameAutoQux'.
      * @return The entity of foreign property 'vendorConstraintNameAutoQux'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public VendorConstraintNameAutoQux getVendorConstraintNameAutoQux() {
@@ -230,7 +230,7 @@ public abstract class BsVendorConstraintNameAutoRef implements Entity, Serializa
     }
 
     /**
-     * vendor_constraint_name_auto_qux by my CONSTRAINT_NAME_AUTO_QUX_ID, named 'vendorConstraintNameAutoQux'.
+     * [set] vendor_constraint_name_auto_qux by my CONSTRAINT_NAME_AUTO_QUX_ID, named 'vendorConstraintNameAutoQux'.
      * @param vendorConstraintNameAutoQux The entity of foreign property 'vendorConstraintNameAutoQux'. (NullAllowed)
      */
     public void setVendorConstraintNameAutoQux(VendorConstraintNameAutoQux vendorConstraintNameAutoQux) {
@@ -423,7 +423,7 @@ public abstract class BsVendorConstraintNameAutoRef implements Entity, Serializa
      */
     public void setConstraintNameAutoRefId(Long constraintNameAutoRefId) {
         __modifiedProperties.addPropertyName("constraintNameAutoRefId");
-        this._constraintNameAutoRefId = constraintNameAutoRefId;
+        _constraintNameAutoRefId = constraintNameAutoRefId;
     }
 
     /**
@@ -440,7 +440,7 @@ public abstract class BsVendorConstraintNameAutoRef implements Entity, Serializa
      */
     public void setConstraintNameAutoFooId(Long constraintNameAutoFooId) {
         __modifiedProperties.addPropertyName("constraintNameAutoFooId");
-        this._constraintNameAutoFooId = constraintNameAutoFooId;
+        _constraintNameAutoFooId = constraintNameAutoFooId;
     }
 
     /**
@@ -457,7 +457,7 @@ public abstract class BsVendorConstraintNameAutoRef implements Entity, Serializa
      */
     public void setConstraintNameAutoBarId(Long constraintNameAutoBarId) {
         __modifiedProperties.addPropertyName("constraintNameAutoBarId");
-        this._constraintNameAutoBarId = constraintNameAutoBarId;
+        _constraintNameAutoBarId = constraintNameAutoBarId;
     }
 
     /**
@@ -474,7 +474,7 @@ public abstract class BsVendorConstraintNameAutoRef implements Entity, Serializa
      */
     public void setConstraintNameAutoQuxId(Long constraintNameAutoQuxId) {
         __modifiedProperties.addPropertyName("constraintNameAutoQuxId");
-        this._constraintNameAutoQuxId = constraintNameAutoQuxId;
+        _constraintNameAutoQuxId = constraintNameAutoQuxId;
     }
 
     /**
@@ -491,7 +491,7 @@ public abstract class BsVendorConstraintNameAutoRef implements Entity, Serializa
      */
     public void setConstraintNameAutoCorgeId(Long constraintNameAutoCorgeId) {
         __modifiedProperties.addPropertyName("constraintNameAutoCorgeId");
-        this._constraintNameAutoCorgeId = constraintNameAutoCorgeId;
+        _constraintNameAutoCorgeId = constraintNameAutoCorgeId;
     }
 
     /**
@@ -508,6 +508,6 @@ public abstract class BsVendorConstraintNameAutoRef implements Entity, Serializa
      */
     public void setConstraintNameAutoUnique(String constraintNameAutoUnique) {
         __modifiedProperties.addPropertyName("constraintNameAutoUnique");
-        this._constraintNameAutoUnique = constraintNameAutoUnique;
+        _constraintNameAutoUnique = constraintNameAutoUnique;
     }
 }

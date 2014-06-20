@@ -333,7 +333,7 @@ public abstract class BsWhiteAdditional implements Entity, Serializable, Cloneab
      */
     public void setFooId(Integer fooId) {
         __modifiedProperties.addPropertyName("fooId");
-        this._fooId = fooId;
+        _fooId = fooId;
     }
 
     /**
@@ -352,7 +352,7 @@ public abstract class BsWhiteAdditional implements Entity, Serializable, Cloneab
      */
     public void setFooName(String fooName) {
         __modifiedProperties.addPropertyName("fooName");
-        this._fooName = fooName;
+        _fooName = fooName;
     }
 
     /**
@@ -369,7 +369,7 @@ public abstract class BsWhiteAdditional implements Entity, Serializable, Cloneab
      */
     public void setFooDate(java.util.Date fooDate) {
         __modifiedProperties.addPropertyName("fooDate");
-        this._fooDate = fooDate;
+        _fooDate = fooDate;
     }
 
     /**
@@ -386,6 +386,6 @@ public abstract class BsWhiteAdditional implements Entity, Serializable, Cloneab
      */
     public void setRegisterDatetime(java.sql.Timestamp registerDatetime) {
         __modifiedProperties.addPropertyName("registerDatetime");
-        this._registerDatetime = registerDatetime;
+        _registerDatetime = registerDatetime;
     }
 }

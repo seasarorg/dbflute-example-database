@@ -96,11 +96,23 @@ public class BsWhiteCompoundPkRefNestCB extends AbstractConditionBean {
     /**
      * Accept the query condition of primary key as equal.
      * @param compoundPkRefNestId : PK, NotNull, INT(10). (NotNull)
+     * @return this. (NotNull)
+     */
+    public WhiteCompoundPkRefNestCB acceptPK(Integer compoundPkRefNestId) {
+        assertObjectNotNull("compoundPkRefNestId", compoundPkRefNestId);
+        BsWhiteCompoundPkRefNestCB cb = this;
+        cb.query().setCompoundPkRefNestId_Equal(compoundPkRefNestId);
+        return (WhiteCompoundPkRefNestCB)this;
+    }
+
+    /**
+     * Accept the query condition of primary key as equal. (old style)
+     * @param compoundPkRefNestId : PK, NotNull, INT(10). (NotNull)
      */
     public void acceptPrimaryKey(Integer compoundPkRefNestId) {
         assertObjectNotNull("compoundPkRefNestId", compoundPkRefNestId);
         BsWhiteCompoundPkRefNestCB cb = this;
-        cb.query().setCompoundPkRefNestId_Equal(compoundPkRefNestId);;
+        cb.query().setCompoundPkRefNestId_Equal(compoundPkRefNestId);
     }
 
     public ConditionBean addOrderBy_PK_Asc() {

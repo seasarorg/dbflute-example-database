@@ -128,13 +128,13 @@ public class BsSpcamelcaseprocedurePmb implements ProcedurePmb, FetchBean {
     }
 
     @SuppressWarnings("unchecked")
-    protected <ELEMENT> ArrayList<ELEMENT> newArrayList(ELEMENT... elements) {
+    protected <ELEMENT> ArrayList<ELEMENT> newArrayList(ELEMENT... elements) { // might be called by option handling
         Object obj = DfCollectionUtil.newArrayList(elements);
         return (ArrayList<ELEMENT>)obj; // to avoid the warning between JDK6 and JDK7
     }
 
     @SuppressWarnings("unchecked")
-    protected <NUMBER extends Number> NUMBER toNumber(Object obj, Class<NUMBER> type) {
+    protected <NUMBER extends Number> NUMBER toNumber(Object obj, Class<NUMBER> type) { // might be called by option handling
         return (NUMBER)DfTypeUtil.toNumber(obj, type);
     }
 
@@ -168,15 +168,15 @@ public class BsSpcamelcaseprocedurePmb implements ProcedurePmb, FetchBean {
         sb.append(xbuildColumnString());
         return sb.toString();
     }
-    private String xbuildColumnString() {
-        final String c = ", ";
+    protected String xbuildColumnString() {
+        final String dm = ", ";
         final StringBuilder sb = new StringBuilder();
-        sb.append(c).append(_fooparam);
-        sb.append(c).append(_barparam);
-        sb.append(c).append(_vdonparam);
-        sb.append(c).append(_vheeparam);
-        sb.append(c).append(_pooParamname);
-        if (sb.length() > 0) { sb.delete(0, c.length()); }
+        sb.append(dm).append(_fooparam);
+        sb.append(dm).append(_barparam);
+        sb.append(dm).append(_vdonparam);
+        sb.append(dm).append(_vheeparam);
+        sb.append(dm).append(_pooParamname);
+        if (sb.length() > 0) { sb.delete(0, dm.length()); }
         sb.insert(0, "{").append("}");
         return sb.toString();
     }
@@ -263,5 +263,4 @@ public class BsSpcamelcaseprocedurePmb implements ProcedurePmb, FetchBean {
     public void setPooParamname(String pooParamname) {
         _pooParamname = pooParamname;
     }
-
 }

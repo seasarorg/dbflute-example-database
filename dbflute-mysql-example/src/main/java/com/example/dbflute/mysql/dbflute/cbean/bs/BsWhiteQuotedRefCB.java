@@ -95,11 +95,23 @@ public class BsWhiteQuotedRefCB extends AbstractConditionBean {
     /**
      * Accept the query condition of primary key as equal.
      * @param where : PK, NotNull, INT(10). (NotNull)
+     * @return this. (NotNull)
+     */
+    public WhiteQuotedRefCB acceptPK(Integer where) {
+        assertObjectNotNull("where", where);
+        BsWhiteQuotedRefCB cb = this;
+        cb.query().setWhere_Equal(where);
+        return (WhiteQuotedRefCB)this;
+    }
+
+    /**
+     * Accept the query condition of primary key as equal. (old style)
+     * @param where : PK, NotNull, INT(10). (NotNull)
      */
     public void acceptPrimaryKey(Integer where) {
         assertObjectNotNull("where", where);
         BsWhiteQuotedRefCB cb = this;
-        cb.query().setWhere_Equal(where);;
+        cb.query().setWhere_Equal(where);
     }
 
     public ConditionBean addOrderBy_PK_Asc() {

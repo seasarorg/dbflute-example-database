@@ -81,11 +81,23 @@ public class BsVendor_non_compilableCB extends AbstractConditionBean {
     /**
      * Accept the query condition of primary key as equal.
      * @param non_compilable_id : PK, NotNull, int4(10). (NotNull)
+     * @return this. (NotNull)
+     */
+    public Vendor_non_compilableCB acceptPK(Integer non_compilable_id) {
+        assertObjectNotNull("non_compilable_id", non_compilable_id);
+        BsVendor_non_compilableCB cb = this;
+        cb.query().setNon_compilable_id_Equal(non_compilable_id);
+        return (Vendor_non_compilableCB)this;
+    }
+
+    /**
+     * Accept the query condition of primary key as equal. (old style)
+     * @param non_compilable_id : PK, NotNull, int4(10). (NotNull)
      */
     public void acceptPrimaryKey(Integer non_compilable_id) {
         assertObjectNotNull("non_compilable_id", non_compilable_id);
         BsVendor_non_compilableCB cb = this;
-        cb.query().setNon_compilable_id_Equal(non_compilable_id);;
+        cb.query().setNon_compilable_id_Equal(non_compilable_id);
     }
 
     public ConditionBean addOrderBy_PK_Asc() {

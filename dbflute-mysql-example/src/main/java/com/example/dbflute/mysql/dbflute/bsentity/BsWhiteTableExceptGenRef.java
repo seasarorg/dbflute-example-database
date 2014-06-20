@@ -319,7 +319,7 @@ public abstract class BsWhiteTableExceptGenRef implements Entity, Serializable, 
      */
     public void setGenRefId(Long genRefId) {
         __modifiedProperties.addPropertyName("genRefId");
-        this._genRefId = genRefId;
+        _genRefId = genRefId;
     }
 
     /**
@@ -336,7 +336,7 @@ public abstract class BsWhiteTableExceptGenRef implements Entity, Serializable, 
      */
     public void setGenRefName(String genRefName) {
         __modifiedProperties.addPropertyName("genRefName");
-        this._genRefName = genRefName;
+        _genRefName = genRefName;
     }
 
     /**
@@ -353,6 +353,6 @@ public abstract class BsWhiteTableExceptGenRef implements Entity, Serializable, 
      */
     public void setGenOnlyId(Long genOnlyId) {
         __modifiedProperties.addPropertyName("genOnlyId");
-        this._genOnlyId = genOnlyId;
+        _genOnlyId = genOnlyId;
     }
 }

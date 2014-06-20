@@ -345,7 +345,7 @@ public abstract class BsWhiteImplicitReverseFkSuppress implements Entity, Serial
      */
     public void setWhiteImplicitReverseFkSuppressId(Integer whiteImplicitReverseFkSuppressId) {
         __modifiedProperties.addPropertyName("whiteImplicitReverseFkSuppressId");
-        this._whiteImplicitReverseFkSuppressId = whiteImplicitReverseFkSuppressId;
+        _whiteImplicitReverseFkSuppressId = whiteImplicitReverseFkSuppressId;
     }
 
     /**
@@ -362,7 +362,7 @@ public abstract class BsWhiteImplicitReverseFkSuppress implements Entity, Serial
      */
     public void setWhiteImplicitReverseFkId(Integer whiteImplicitReverseFkId) {
         __modifiedProperties.addPropertyName("whiteImplicitReverseFkId");
-        this._whiteImplicitReverseFkId = whiteImplicitReverseFkId;
+        _whiteImplicitReverseFkId = whiteImplicitReverseFkId;
     }
 
     /**
@@ -379,7 +379,7 @@ public abstract class BsWhiteImplicitReverseFkSuppress implements Entity, Serial
      */
     public void setValidBeginDate(java.util.Date validBeginDate) {
         __modifiedProperties.addPropertyName("validBeginDate");
-        this._validBeginDate = validBeginDate;
+        _validBeginDate = validBeginDate;
     }
 
     /**
@@ -396,6 +396,6 @@ public abstract class BsWhiteImplicitReverseFkSuppress implements Entity, Serial
      */
     public void setValidEndDate(java.util.Date validEndDate) {
         __modifiedProperties.addPropertyName("validEndDate");
-        this._validEndDate = validEndDate;
+        _validEndDate = validEndDate;
     }
 }

@@ -97,33 +97,50 @@ public class BsWhiteCompoundPkCB extends AbstractConditionBean {
      * Accept the query condition of primary key as equal.
      * @param pkFirstId : PK, +UQ, NotNull, INT(10), FK to WHITE_COMPOUND_PK_REF_MANY. (NotNull)
      * @param pkSecondId : PK, UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_PRIMARY. (NotNull)
+     * @return this. (NotNull)
+     */
+    public WhiteCompoundPkCB acceptPK(Integer pkFirstId, Integer pkSecondId) {
+        assertObjectNotNull("pkFirstId", pkFirstId);assertObjectNotNull("pkSecondId", pkSecondId);
+        BsWhiteCompoundPkCB cb = this;
+        cb.query().setPkFirstId_Equal(pkFirstId);cb.query().setPkSecondId_Equal(pkSecondId);
+        return (WhiteCompoundPkCB)this;
+    }
+
+    /**
+     * Accept the query condition of primary key as equal. (old style)
+     * @param pkFirstId : PK, +UQ, NotNull, INT(10), FK to WHITE_COMPOUND_PK_REF_MANY. (NotNull)
+     * @param pkSecondId : PK, UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_PRIMARY. (NotNull)
      */
     public void acceptPrimaryKey(Integer pkFirstId, Integer pkSecondId) {
         assertObjectNotNull("pkFirstId", pkFirstId);assertObjectNotNull("pkSecondId", pkSecondId);
         BsWhiteCompoundPkCB cb = this;
-        cb.query().setPkFirstId_Equal(pkFirstId);;cb.query().setPkSecondId_Equal(pkSecondId);;
+        cb.query().setPkFirstId_Equal(pkFirstId);cb.query().setPkSecondId_Equal(pkSecondId);
     }
 
     /**
      * Accept the query condition of unique key as equal.
      * @param pkSecondId : PK, UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_PRIMARY. (NotNull)
      * @param referredId : +UQ, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_NORMALLY. (NotNull)
+     * @return this. (NotNull)
      */
-    public void acceptUniqueOfPkSecondIdReferredId(Integer pkSecondId, Integer referredId) {
+    public WhiteCompoundPkCB acceptUniqueOfPkSecondIdReferredId(Integer pkSecondId, Integer referredId) {
         assertObjectNotNull("pkSecondId", pkSecondId);assertObjectNotNull("referredId", referredId);
         BsWhiteCompoundPkCB cb = this;
-        cb.query().setPkSecondId_Equal(pkSecondId);;cb.query().setReferredId_Equal(referredId);;
+        cb.query().setPkSecondId_Equal(pkSecondId);cb.query().setReferredId_Equal(referredId);
+        return (WhiteCompoundPkCB)this;
     }
 
     /**
      * Accept the query condition of unique key as equal.
      * @param pkSecondId : PK, UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_PRIMARY. (NotNull)
      * @param pkFirstId : PK, +UQ, NotNull, INT(10), FK to WHITE_COMPOUND_PK_REF_MANY. (NotNull)
+     * @return this. (NotNull)
      */
-    public void acceptUniqueOfPkSecondIdPkFirstId(Integer pkSecondId, Integer pkFirstId) {
+    public WhiteCompoundPkCB acceptUniqueOfPkSecondIdPkFirstId(Integer pkSecondId, Integer pkFirstId) {
         assertObjectNotNull("pkSecondId", pkSecondId);assertObjectNotNull("pkFirstId", pkFirstId);
         BsWhiteCompoundPkCB cb = this;
-        cb.query().setPkSecondId_Equal(pkSecondId);;cb.query().setPkFirstId_Equal(pkFirstId);;
+        cb.query().setPkSecondId_Equal(pkSecondId);cb.query().setPkFirstId_Equal(pkFirstId);
+        return (WhiteCompoundPkCB)this;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {

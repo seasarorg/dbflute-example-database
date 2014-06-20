@@ -95,11 +95,23 @@ public class BsWhiteMyselfCB extends AbstractConditionBean {
     /**
      * Accept the query condition of primary key as equal.
      * @param myselfId : PK, NotNull, INT(10). (NotNull)
+     * @return this. (NotNull)
+     */
+    public WhiteMyselfCB acceptPK(Integer myselfId) {
+        assertObjectNotNull("myselfId", myselfId);
+        BsWhiteMyselfCB cb = this;
+        cb.query().setMyselfId_Equal(myselfId);
+        return (WhiteMyselfCB)this;
+    }
+
+    /**
+     * Accept the query condition of primary key as equal. (old style)
+     * @param myselfId : PK, NotNull, INT(10). (NotNull)
      */
     public void acceptPrimaryKey(Integer myselfId) {
         assertObjectNotNull("myselfId", myselfId);
         BsWhiteMyselfCB cb = this;
-        cb.query().setMyselfId_Equal(myselfId);;
+        cb.query().setMyselfId_Equal(myselfId);
     }
 
     public ConditionBean addOrderBy_PK_Asc() {

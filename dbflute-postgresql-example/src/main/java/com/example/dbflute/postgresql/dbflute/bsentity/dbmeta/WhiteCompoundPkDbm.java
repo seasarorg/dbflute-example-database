@@ -158,7 +158,7 @@ public class WhiteCompoundPkDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public WhiteCompoundPk newEntity() { return new WhiteCompoundPk(); }
     public WhiteCompoundPk newMyEntity() { return new WhiteCompoundPk(); }
 
     // ===================================================================================

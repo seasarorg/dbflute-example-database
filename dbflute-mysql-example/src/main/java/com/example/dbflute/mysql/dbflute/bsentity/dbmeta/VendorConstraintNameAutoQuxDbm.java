@@ -154,7 +154,7 @@ public class VendorConstraintNameAutoQuxDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public VendorConstraintNameAutoQux newEntity() { return new VendorConstraintNameAutoQux(); }
     public VendorConstraintNameAutoQux newMyEntity() { return new VendorConstraintNameAutoQux(); }
 
     // ===================================================================================

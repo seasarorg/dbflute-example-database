@@ -313,7 +313,7 @@ public abstract class BsWhiteSuppressDefCheck implements Entity, Serializable, C
      */
     public void setDefCheckId(Long defCheckId) {
         __modifiedProperties.addPropertyName("defCheckId");
-        this._defCheckId = defCheckId;
+        _defCheckId = defCheckId;
     }
 
     /**
@@ -330,6 +330,6 @@ public abstract class BsWhiteSuppressDefCheck implements Entity, Serializable, C
      */
     public void setDefCheckName(String defCheckName) {
         __modifiedProperties.addPropertyName("defCheckName");
-        this._defCheckName = defCheckName;
+        _defCheckName = defCheckName;
     }
 }

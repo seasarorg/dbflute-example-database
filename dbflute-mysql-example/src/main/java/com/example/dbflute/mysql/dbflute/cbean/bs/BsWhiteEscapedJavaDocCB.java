@@ -96,6 +96,18 @@ public class BsWhiteEscapedJavaDocCB extends AbstractConditionBean {
     /**
      * Accept the query condition of primary key as equal.
      * @param escapedJavaDocCode : PK, NotNull, CHAR(3), classification=EscapedJavaDocCls. (NotNull)
+     * @return this. (NotNull)
+     */
+    public WhiteEscapedJavaDocCB acceptPK(CDef.EscapedJavaDocCls escapedJavaDocCode) {
+        assertObjectNotNull("escapedJavaDocCode", escapedJavaDocCode);
+        BsWhiteEscapedJavaDocCB cb = this;
+        cb.query().setEscapedJavaDocCode_Equal_AsEscapedJavaDocCls(escapedJavaDocCode);
+        return (WhiteEscapedJavaDocCB)this;
+    }
+
+    /**
+     * Accept the query condition of primary key as equal. (old style)
+     * @param escapedJavaDocCode : PK, NotNull, CHAR(3), classification=EscapedJavaDocCls. (NotNull)
      */
     public void acceptPrimaryKey(CDef.EscapedJavaDocCls escapedJavaDocCode) {
         assertObjectNotNull("escapedJavaDocCode", escapedJavaDocCode);

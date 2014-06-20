@@ -154,7 +154,7 @@ public class WhiteVariantRelationMasterBarDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public WhiteVariantRelationMasterBar newEntity() { return new WhiteVariantRelationMasterBar(); }
     public WhiteVariantRelationMasterBar newMyEntity() { return new WhiteVariantRelationMasterBar(); }
 
     // ===================================================================================

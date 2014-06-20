@@ -212,7 +212,7 @@ public class UnionVendorCheckDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public UnionVendorCheck newEntity() { return new UnionVendorCheck(); }
     public UnionVendorCheck newMyEntity() { return new UnionVendorCheck(); }
 
     // ===================================================================================

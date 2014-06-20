@@ -96,22 +96,36 @@ public class BsWhiteImplicitReverseFkRefCB extends AbstractConditionBean {
     /**
      * Accept the query condition of primary key as equal.
      * @param whiteImplicitReverseFkRefId : PK, ID, NotNull, INT(10). (NotNull)
+     * @return this. (NotNull)
+     */
+    public WhiteImplicitReverseFkRefCB acceptPK(Integer whiteImplicitReverseFkRefId) {
+        assertObjectNotNull("whiteImplicitReverseFkRefId", whiteImplicitReverseFkRefId);
+        BsWhiteImplicitReverseFkRefCB cb = this;
+        cb.query().setWhiteImplicitReverseFkRefId_Equal(whiteImplicitReverseFkRefId);
+        return (WhiteImplicitReverseFkRefCB)this;
+    }
+
+    /**
+     * Accept the query condition of primary key as equal. (old style)
+     * @param whiteImplicitReverseFkRefId : PK, ID, NotNull, INT(10). (NotNull)
      */
     public void acceptPrimaryKey(Integer whiteImplicitReverseFkRefId) {
         assertObjectNotNull("whiteImplicitReverseFkRefId", whiteImplicitReverseFkRefId);
         BsWhiteImplicitReverseFkRefCB cb = this;
-        cb.query().setWhiteImplicitReverseFkRefId_Equal(whiteImplicitReverseFkRefId);;
+        cb.query().setWhiteImplicitReverseFkRefId_Equal(whiteImplicitReverseFkRefId);
     }
 
     /**
      * Accept the query condition of unique key as equal.
      * @param whiteImplicitReverseFkId : UQ+, NotNull, INT(10), FK to white_implicit_reverse_fk. (NotNull)
      * @param validBeginDate : +UQ, NotNull, DATE(10). (NotNull)
+     * @return this. (NotNull)
      */
-    public void acceptUniqueOf(Integer whiteImplicitReverseFkId, java.util.Date validBeginDate) {
+    public WhiteImplicitReverseFkRefCB acceptUniqueOf(Integer whiteImplicitReverseFkId, java.util.Date validBeginDate) {
         assertObjectNotNull("whiteImplicitReverseFkId", whiteImplicitReverseFkId);assertObjectNotNull("validBeginDate", validBeginDate);
         BsWhiteImplicitReverseFkRefCB cb = this;
-        cb.query().setWhiteImplicitReverseFkId_Equal(whiteImplicitReverseFkId);;cb.query().setValidBeginDate_Equal(validBeginDate);;
+        cb.query().setWhiteImplicitReverseFkId_Equal(whiteImplicitReverseFkId);cb.query().setValidBeginDate_Equal(validBeginDate);
+        return (WhiteImplicitReverseFkRefCB)this;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {

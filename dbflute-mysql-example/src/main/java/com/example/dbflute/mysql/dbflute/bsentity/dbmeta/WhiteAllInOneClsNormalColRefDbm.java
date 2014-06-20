@@ -211,7 +211,7 @@ public class WhiteAllInOneClsNormalColRefDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public WhiteAllInOneClsNormalColRef newEntity() { return new WhiteAllInOneClsNormalColRef(); }
     public WhiteAllInOneClsNormalColRef newMyEntity() { return new WhiteAllInOneClsNormalColRef(); }
 
     // ===================================================================================

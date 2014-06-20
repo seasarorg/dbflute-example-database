@@ -80,11 +80,23 @@ public class BsWhiteXlsManCB extends AbstractConditionBean {
     /**
      * Accept the query condition of primary key as equal.
      * @param xlsManId : PK, NotNull, int8(19). (NotNull)
+     * @return this. (NotNull)
+     */
+    public WhiteXlsManCB acceptPK(Long xlsManId) {
+        assertObjectNotNull("xlsManId", xlsManId);
+        BsWhiteXlsManCB cb = this;
+        cb.query().setXlsManId_Equal(xlsManId);
+        return (WhiteXlsManCB)this;
+    }
+
+    /**
+     * Accept the query condition of primary key as equal. (old style)
+     * @param xlsManId : PK, NotNull, int8(19). (NotNull)
      */
     public void acceptPrimaryKey(Long xlsManId) {
         assertObjectNotNull("xlsManId", xlsManId);
         BsWhiteXlsManCB cb = this;
-        cb.query().setXlsManId_Equal(xlsManId);;
+        cb.query().setXlsManId_Equal(xlsManId);
     }
 
     public ConditionBean addOrderBy_PK_Asc() {

@@ -95,11 +95,23 @@ public class BsWhiteGearedCipherCB extends AbstractConditionBean {
     /**
      * Accept the query condition of primary key as equal.
      * @param cipherId : PK, ID, NotNull, BIGINT(19). (NotNull)
+     * @return this. (NotNull)
+     */
+    public WhiteGearedCipherCB acceptPK(Long cipherId) {
+        assertObjectNotNull("cipherId", cipherId);
+        BsWhiteGearedCipherCB cb = this;
+        cb.query().setCipherId_Equal(cipherId);
+        return (WhiteGearedCipherCB)this;
+    }
+
+    /**
+     * Accept the query condition of primary key as equal. (old style)
+     * @param cipherId : PK, ID, NotNull, BIGINT(19). (NotNull)
      */
     public void acceptPrimaryKey(Long cipherId) {
         assertObjectNotNull("cipherId", cipherId);
         BsWhiteGearedCipherCB cb = this;
-        cb.query().setCipherId_Equal(cipherId);;
+        cb.query().setCipherId_Equal(cipherId);
     }
 
     public ConditionBean addOrderBy_PK_Asc() {

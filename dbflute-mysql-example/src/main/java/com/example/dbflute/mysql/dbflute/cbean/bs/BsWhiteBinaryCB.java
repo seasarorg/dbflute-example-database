@@ -95,11 +95,23 @@ public class BsWhiteBinaryCB extends AbstractConditionBean {
     /**
      * Accept the query condition of primary key as equal.
      * @param binaryId : PK, ID, NotNull, BIGINT(19). (NotNull)
+     * @return this. (NotNull)
+     */
+    public WhiteBinaryCB acceptPK(Long binaryId) {
+        assertObjectNotNull("binaryId", binaryId);
+        BsWhiteBinaryCB cb = this;
+        cb.query().setBinaryId_Equal(binaryId);
+        return (WhiteBinaryCB)this;
+    }
+
+    /**
+     * Accept the query condition of primary key as equal. (old style)
+     * @param binaryId : PK, ID, NotNull, BIGINT(19). (NotNull)
      */
     public void acceptPrimaryKey(Long binaryId) {
         assertObjectNotNull("binaryId", binaryId);
         BsWhiteBinaryCB cb = this;
-        cb.query().setBinaryId_Equal(binaryId);;
+        cb.query().setBinaryId_Equal(binaryId);
     }
 
     public ConditionBean addOrderBy_PK_Asc() {

@@ -147,7 +147,7 @@ public abstract class BsWhiteCompoundPk implements Entity, Serializable, Cloneab
     protected List<WhiteCompoundPkRef> _whiteCompoundPkRefList;
 
     /**
-     * white_compound_pk_ref by ref_first_id, ref_second_id, named 'whiteCompoundPkRefList'.
+     * [get] white_compound_pk_ref by ref_first_id, ref_second_id, named 'whiteCompoundPkRefList'.
      * @return The entity list of referrer property 'whiteCompoundPkRefList'. (NotNull: even if no loading, returns empty list)
      */
     public List<WhiteCompoundPkRef> getWhiteCompoundPkRefList() {
@@ -156,7 +156,7 @@ public abstract class BsWhiteCompoundPk implements Entity, Serializable, Cloneab
     }
 
     /**
-     * white_compound_pk_ref by ref_first_id, ref_second_id, named 'whiteCompoundPkRefList'.
+     * [set] white_compound_pk_ref by ref_first_id, ref_second_id, named 'whiteCompoundPkRefList'.
      * @param whiteCompoundPkRefList The entity list of referrer property 'whiteCompoundPkRefList'. (NullAllowed)
      */
     public void setWhiteCompoundPkRefList(List<WhiteCompoundPkRef> whiteCompoundPkRefList) {
@@ -340,7 +340,7 @@ public abstract class BsWhiteCompoundPk implements Entity, Serializable, Cloneab
      */
     public void setPkFirstId(Integer pkFirstId) {
         __modifiedProperties.addPropertyName("pkFirstId");
-        this._pkFirstId = pkFirstId;
+        _pkFirstId = pkFirstId;
     }
 
     /**
@@ -357,7 +357,7 @@ public abstract class BsWhiteCompoundPk implements Entity, Serializable, Cloneab
      */
     public void setPkSecondId(Integer pkSecondId) {
         __modifiedProperties.addPropertyName("pkSecondId");
-        this._pkSecondId = pkSecondId;
+        _pkSecondId = pkSecondId;
     }
 
     /**
@@ -374,6 +374,6 @@ public abstract class BsWhiteCompoundPk implements Entity, Serializable, Cloneab
      */
     public void setPkName(String pkName) {
         __modifiedProperties.addPropertyName("pkName");
-        this._pkName = pkName;
+        _pkName = pkName;
     }
 }

@@ -313,7 +313,7 @@ public abstract class BsWhiteLoadData implements Entity, Serializable, Cloneable
      */
     public void setLoadDataId(Long loadDataId) {
         __modifiedProperties.addPropertyName("loadDataId");
-        this._loadDataId = loadDataId;
+        _loadDataId = loadDataId;
     }
 
     /**
@@ -330,6 +330,6 @@ public abstract class BsWhiteLoadData implements Entity, Serializable, Cloneable
      */
     public void setLoadDataName(String loadDataName) {
         __modifiedProperties.addPropertyName("loadDataName");
-        this._loadDataName = loadDataName;
+        _loadDataName = loadDataName;
     }
 }

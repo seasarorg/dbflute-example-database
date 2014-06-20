@@ -197,7 +197,7 @@ public class WhiteAllInOneClsElementDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public WhiteAllInOneClsElement newEntity() { return new WhiteAllInOneClsElement(); }
     public WhiteAllInOneClsElement newMyEntity() { return new WhiteAllInOneClsElement(); }
 
     // ===================================================================================

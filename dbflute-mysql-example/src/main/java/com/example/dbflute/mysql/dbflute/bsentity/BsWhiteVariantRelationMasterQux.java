@@ -410,7 +410,7 @@ public abstract class BsWhiteVariantRelationMasterQux implements Entity, Seriali
      */
     public void setMasterQuxId(Long masterQuxId) {
         __modifiedProperties.addPropertyName("masterQuxId");
-        this._masterQuxId = masterQuxId;
+        _masterQuxId = masterQuxId;
     }
 
     /**
@@ -427,7 +427,7 @@ public abstract class BsWhiteVariantRelationMasterQux implements Entity, Seriali
      */
     public void setMasterQuxName(String masterQuxName) {
         __modifiedProperties.addPropertyName("masterQuxName");
-        this._masterQuxName = masterQuxName;
+        _masterQuxName = masterQuxName;
     }
 
     /**
@@ -445,7 +445,7 @@ public abstract class BsWhiteVariantRelationMasterQux implements Entity, Seriali
     protected void setQuxTypeCode(String quxTypeCode) {
         checkImplicitSet("QUX_TYPE_CODE", CDef.DefMeta.VariantRelationQuxType, quxTypeCode);
         __modifiedProperties.addPropertyName("quxTypeCode");
-        this._quxTypeCode = quxTypeCode;
+        _quxTypeCode = quxTypeCode;
     }
 
     protected void checkImplicitSet(String columnDbName, CDef.DefMeta meta, Object value) {

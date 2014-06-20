@@ -313,7 +313,7 @@ public abstract class BsWhiteColumnExcept implements Entity, Serializable, Clone
      */
     public void setExceptColumnId(Long exceptColumnId) {
         __modifiedProperties.addPropertyName("exceptColumnId");
-        this._exceptColumnId = exceptColumnId;
+        _exceptColumnId = exceptColumnId;
     }
 
     /**
@@ -330,6 +330,6 @@ public abstract class BsWhiteColumnExcept implements Entity, Serializable, Clone
      */
     public void setColumnExceptTest(Integer columnExceptTest) {
         __modifiedProperties.addPropertyName("columnExceptTest");
-        this._columnExceptTest = columnExceptTest;
+        _columnExceptTest = columnExceptTest;
     }
 }

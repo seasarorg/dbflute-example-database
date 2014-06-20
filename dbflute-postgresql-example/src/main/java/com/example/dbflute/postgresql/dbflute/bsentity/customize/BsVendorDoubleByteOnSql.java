@@ -306,7 +306,7 @@ public abstract class BsVendorDoubleByteOnSql implements Entity, Serializable, C
      */
     public void setMemberId(Integer memberId) {
         __modifiedProperties.addPropertyName("memberId");
-        this._memberId = memberId;
+        _memberId = memberId;
     }
 
     /**
@@ -323,7 +323,7 @@ public abstract class BsVendorDoubleByteOnSql implements Entity, Serializable, C
      */
     public void setMemberNameWithSpace(String memberNameWithSpace) {
         __modifiedProperties.addPropertyName("memberNameWithSpace");
-        this._memberNameWithSpace = memberNameWithSpace;
+        _memberNameWithSpace = memberNameWithSpace;
     }
 
     /**
@@ -340,6 +340,6 @@ public abstract class BsVendorDoubleByteOnSql implements Entity, Serializable, C
      */
     public void setMemberStatusName(String memberStatusName) {
         __modifiedProperties.addPropertyName("memberStatusName");
-        this._memberStatusName = memberStatusName;
+        _memberStatusName = memberStatusName;
     }
 }

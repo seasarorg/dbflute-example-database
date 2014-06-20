@@ -81,11 +81,23 @@ public class BsPurchaseCB extends AbstractConditionBean {
     /**
      * Accept the query condition of primary key as equal.
      * @param purchaseId : PK, ID, NotNull, bigserial(19). (NotNull)
+     * @return this. (NotNull)
+     */
+    public PurchaseCB acceptPK(Long purchaseId) {
+        assertObjectNotNull("purchaseId", purchaseId);
+        BsPurchaseCB cb = this;
+        cb.query().setPurchaseId_Equal(purchaseId);
+        return (PurchaseCB)this;
+    }
+
+    /**
+     * Accept the query condition of primary key as equal. (old style)
+     * @param purchaseId : PK, ID, NotNull, bigserial(19). (NotNull)
      */
     public void acceptPrimaryKey(Long purchaseId) {
         assertObjectNotNull("purchaseId", purchaseId);
         BsPurchaseCB cb = this;
-        cb.query().setPurchaseId_Equal(purchaseId);;
+        cb.query().setPurchaseId_Equal(purchaseId);
     }
 
     /**
@@ -93,11 +105,13 @@ public class BsPurchaseCB extends AbstractConditionBean {
      * @param memberId (会員ID): UQ+, NotNull, int4(10), FK to member. (NotNull)
      * @param productId (商品ID): +UQ, IX+, NotNull, int4(10), FK to product. (NotNull)
      * @param purchaseDatetime (購入日時): +UQ, IX+, NotNull, timestamp(26, 3). (NotNull)
+     * @return this. (NotNull)
      */
-    public void acceptUniqueOf(Integer memberId, Integer productId, java.sql.Timestamp purchaseDatetime) {
+    public PurchaseCB acceptUniqueOf(Integer memberId, Integer productId, java.sql.Timestamp purchaseDatetime) {
         assertObjectNotNull("memberId", memberId);assertObjectNotNull("productId", productId);assertObjectNotNull("purchaseDatetime", purchaseDatetime);
         BsPurchaseCB cb = this;
-        cb.query().setMemberId_Equal(memberId);;cb.query().setProductId_Equal(productId);;cb.query().setPurchaseDatetime_Equal(purchaseDatetime);;
+        cb.query().setMemberId_Equal(memberId);cb.query().setProductId_Equal(productId);cb.query().setPurchaseDatetime_Equal(purchaseDatetime);
+        return (PurchaseCB)this;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {

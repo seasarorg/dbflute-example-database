@@ -169,7 +169,7 @@ public class WhiteOnlyOneToOneFromDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public WhiteOnlyOneToOneFrom newEntity() { return new WhiteOnlyOneToOneFrom(); }
     public WhiteOnlyOneToOneFrom newMyEntity() { return new WhiteOnlyOneToOneFrom(); }
 
     // ===================================================================================

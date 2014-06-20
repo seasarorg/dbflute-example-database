@@ -185,7 +185,7 @@ public class WhiteSameNameDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public WhiteSameName newEntity() { return new WhiteSameName(); }
     public WhiteSameName newMyEntity() { return new WhiteSameName(); }
 
     // ===================================================================================

@@ -5,11 +5,14 @@ import java.util.List;
 import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
+import org.seasar.dbflute.cbean.chelper.HpSLSExecutor;
+import org.seasar.dbflute.cbean.chelper.HpSLSFunction;
 import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.exception.*;
 import org.seasar.dbflute.optional.OptionalEntity;
 import org.seasar.dbflute.outsidesql.executor.*;
 import com.example.dbflute.postgresql.dbflute.exbhv.*;
+import com.example.dbflute.postgresql.dbflute.bsbhv.loader.*;
 import com.example.dbflute.postgresql.dbflute.exentity.*;
 import com.example.dbflute.postgresql.dbflute.bsentity.dbmeta.*;
 import com.example.dbflute.postgresql.dbflute.cbean.*;
@@ -63,7 +66,7 @@ public abstract class BsWhiteSameNameRefBhv extends AbstractBehaviorWritable {
     // ===================================================================================
     //                                                                              DBMeta
     //                                                                              ======
-    /** @return The instance of DBMeta. (NotNull) */
+    /** {@inheritDoc} */
     public DBMeta getDBMeta() { return WhiteSameNameRefDbm.getInstance(); }
 
     /** @return The instance of DBMeta as my table type. (NotNull) */
@@ -73,10 +76,10 @@ public abstract class BsWhiteSameNameRefBhv extends AbstractBehaviorWritable {
     //                                                                        New Instance
     //                                                                        ============
     /** {@inheritDoc} */
-    public Entity newEntity() { return newMyEntity(); }
+    public WhiteSameNameRef newEntity() { return new WhiteSameNameRef(); }
 
     /** {@inheritDoc} */
-    public ConditionBean newConditionBean() { return newMyConditionBean(); }
+    public WhiteSameNameRefCB newConditionBean() { return new WhiteSameNameRefCB(); }
 
     /** @return The instance of new entity as my table type. (NotNull) */
     public WhiteSameNameRef newMyEntity() { return new WhiteSameNameRef(); }
@@ -99,6 +102,10 @@ public abstract class BsWhiteSameNameRefBhv extends AbstractBehaviorWritable {
      * @return The count for the condition. (NotMinus)
      */
     public int selectCount(WhiteSameNameRefCB cb) {
+        return facadeSelectCount(cb);
+    }
+
+    protected int facadeSelectCount(WhiteSameNameRefCB cb) {
         return doSelectCountUniquely(cb);
     }
 
@@ -114,7 +121,7 @@ public abstract class BsWhiteSameNameRefBhv extends AbstractBehaviorWritable {
 
     @Override
     protected int doReadCount(ConditionBean cb) {
-        return selectCount(downcast(cb));
+        return facadeSelectCount(downcast(cb));
     }
 
     // ===================================================================================
@@ -140,7 +147,11 @@ public abstract class BsWhiteSameNameRefBhv extends AbstractBehaviorWritable {
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteSameNameRef selectEntity(WhiteSameNameRefCB cb) {
-        return doSelectEntity(cb, WhiteSameNameRef.class);
+        return facadeSelectEntity(cb);
+    }
+
+    protected WhiteSameNameRef facadeSelectEntity(WhiteSameNameRefCB cb) {
+        return doSelectEntity(cb, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends WhiteSameNameRef> ENTITY doSelectEntity(WhiteSameNameRefCB cb, Class<ENTITY> tp) {
@@ -155,7 +166,7 @@ public abstract class BsWhiteSameNameRefBhv extends AbstractBehaviorWritable {
 
     @Override
     protected Entity doReadEntity(ConditionBean cb) {
-        return selectEntity(downcast(cb));
+        return facadeSelectEntity(downcast(cb));
     }
 
     /**
@@ -174,7 +185,11 @@ public abstract class BsWhiteSameNameRefBhv extends AbstractBehaviorWritable {
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteSameNameRef selectEntityWithDeletedCheck(WhiteSameNameRefCB cb) {
-        return doSelectEntityWithDeletedCheck(cb, WhiteSameNameRef.class);
+        return facadeSelectEntityWithDeletedCheck(cb);
+    }
+
+    protected WhiteSameNameRef facadeSelectEntityWithDeletedCheck(WhiteSameNameRefCB cb) {
+        return doSelectEntityWithDeletedCheck(cb, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends WhiteSameNameRef> ENTITY doSelectEntityWithDeletedCheck(WhiteSameNameRefCB cb, Class<ENTITY> tp) {
@@ -185,7 +200,7 @@ public abstract class BsWhiteSameNameRefBhv extends AbstractBehaviorWritable {
 
     @Override
     protected Entity doReadEntityWithDeletedCheck(ConditionBean cb) {
-        return selectEntityWithDeletedCheck(downcast(cb));
+        return facadeSelectEntityWithDeletedCheck(downcast(cb));
     }
 
     /**
@@ -196,15 +211,19 @@ public abstract class BsWhiteSameNameRefBhv extends AbstractBehaviorWritable {
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteSameNameRef selectByPKValue(Integer sameNameRefId) {
-        return doSelectByPK(sameNameRefId, WhiteSameNameRef.class);
+        return facadeSelectByPKValue(sameNameRefId);
     }
 
-    protected <ENTITY extends WhiteSameNameRef> ENTITY doSelectByPK(Integer sameNameRefId, Class<ENTITY> entityType) {
-        return doSelectEntity(xprepareCBAsPK(sameNameRefId), entityType);
+    protected WhiteSameNameRef facadeSelectByPKValue(Integer sameNameRefId) {
+        return doSelectByPK(sameNameRefId, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends WhiteSameNameRef> OptionalEntity<ENTITY> doSelectOptionalByPK(Integer sameNameRefId, Class<ENTITY> entityType) {
-        return createOptionalEntity(doSelectByPK(sameNameRefId, entityType), sameNameRefId);
+    protected <ENTITY extends WhiteSameNameRef> ENTITY doSelectByPK(Integer sameNameRefId, Class<ENTITY> tp) {
+        return doSelectEntity(xprepareCBAsPK(sameNameRefId), tp);
+    }
+
+    protected <ENTITY extends WhiteSameNameRef> OptionalEntity<ENTITY> doSelectOptionalByPK(Integer sameNameRefId, Class<ENTITY> tp) {
+        return createOptionalEntity(doSelectByPK(sameNameRefId, tp), sameNameRefId);
     }
 
     /**
@@ -216,17 +235,16 @@ public abstract class BsWhiteSameNameRefBhv extends AbstractBehaviorWritable {
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteSameNameRef selectByPKValueWithDeletedCheck(Integer sameNameRefId) {
-        return doSelectByPKWithDeletedCheck(sameNameRefId, WhiteSameNameRef.class);
+        return doSelectByPKWithDeletedCheck(sameNameRefId, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends WhiteSameNameRef> ENTITY doSelectByPKWithDeletedCheck(Integer sameNameRefId, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(sameNameRefId), entityType);
+    protected <ENTITY extends WhiteSameNameRef> ENTITY doSelectByPKWithDeletedCheck(Integer sameNameRefId, Class<ENTITY> tp) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(sameNameRefId), tp);
     }
 
     protected WhiteSameNameRefCB xprepareCBAsPK(Integer sameNameRefId) {
         assertObjectNotNull("sameNameRefId", sameNameRefId);
-        WhiteSameNameRefCB cb = newMyConditionBean(); cb.acceptPrimaryKey(sameNameRefId);
-        return cb;
+        return newConditionBean().acceptPK(sameNameRefId);
     }
 
     // ===================================================================================
@@ -248,7 +266,11 @@ public abstract class BsWhiteSameNameRefBhv extends AbstractBehaviorWritable {
      * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public ListResultBean<WhiteSameNameRef> selectList(WhiteSameNameRefCB cb) {
-        return doSelectList(cb, WhiteSameNameRef.class);
+        return facadeSelectList(cb);
+    }
+
+    protected ListResultBean<WhiteSameNameRef> facadeSelectList(WhiteSameNameRefCB cb) {
+        return doSelectList(cb, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends WhiteSameNameRef> ListResultBean<ENTITY> doSelectList(WhiteSameNameRefCB cb, Class<ENTITY> tp) {
@@ -260,7 +282,7 @@ public abstract class BsWhiteSameNameRefBhv extends AbstractBehaviorWritable {
 
     @Override
     protected ListResultBean<? extends Entity> doReadList(ConditionBean cb) {
-        return selectList(downcast(cb));
+        return facadeSelectList(downcast(cb));
     }
 
     // ===================================================================================
@@ -289,7 +311,11 @@ public abstract class BsWhiteSameNameRefBhv extends AbstractBehaviorWritable {
      * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public PagingResultBean<WhiteSameNameRef> selectPage(WhiteSameNameRefCB cb) {
-        return doSelectPage(cb, WhiteSameNameRef.class);
+        return facadeSelectPage(cb);
+    }
+
+    protected PagingResultBean<WhiteSameNameRef> facadeSelectPage(WhiteSameNameRefCB cb) {
+        return doSelectPage(cb, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends WhiteSameNameRef> PagingResultBean<ENTITY> doSelectPage(WhiteSameNameRefCB cb, Class<ENTITY> tp) {
@@ -302,7 +328,7 @@ public abstract class BsWhiteSameNameRefBhv extends AbstractBehaviorWritable {
 
     @Override
     protected PagingResultBean<? extends Entity> doReadPage(ConditionBean cb) {
-        return selectPage(downcast(cb));
+        return facadeSelectPage(downcast(cb));
     }
 
     // ===================================================================================
@@ -323,15 +349,19 @@ public abstract class BsWhiteSameNameRefBhv extends AbstractBehaviorWritable {
      * @param entityRowHandler The handler of entity row of WhiteSameNameRef. (NotNull)
      */
     public void selectCursor(WhiteSameNameRefCB cb, EntityRowHandler<WhiteSameNameRef> entityRowHandler) {
-        doSelectCursor(cb, entityRowHandler, WhiteSameNameRef.class);
+        facadeSelectCursor(cb, entityRowHandler);
+    }
+
+    protected void facadeSelectCursor(WhiteSameNameRefCB cb, EntityRowHandler<WhiteSameNameRef> entityRowHandler) {
+        doSelectCursor(cb, entityRowHandler, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends WhiteSameNameRef> void doSelectCursor(WhiteSameNameRefCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
         assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
         helpSelectCursorInternally(cb, handler, tp, new InternalSelectCursorCallback<ENTITY, WhiteSameNameRefCB>() {
-            public void callbackSelectCursor(WhiteSameNameRefCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) { delegateSelectCursor(cb, handler, tp); }
-            public List<ENTITY> callbackSelectList(WhiteSameNameRefCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
+            public void callbackSelectCursor(WhiteSameNameRefCB lcb, EntityRowHandler<ENTITY> lhandler, Class<ENTITY> ltp) { delegateSelectCursor(lcb, lhandler, ltp); }
+            public List<ENTITY> callbackSelectList(WhiteSameNameRefCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); }
         });
     }
 
@@ -353,22 +383,23 @@ public abstract class BsWhiteSameNameRefBhv extends AbstractBehaviorWritable {
      * @param resultType The type of result. (NotNull)
      * @return The scalar function object to specify function for scalar value. (NotNull)
      */
-    public <RESULT> SLFunction<WhiteSameNameRefCB, RESULT> scalarSelect(Class<RESULT> resultType) {
-        return doScalarSelect(resultType, newMyConditionBean());
+    public <RESULT> HpSLSFunction<WhiteSameNameRefCB, RESULT> scalarSelect(Class<RESULT> resultType) {
+        return facadeScalarSelect(resultType);
     }
 
-    protected <RESULT, CB extends WhiteSameNameRefCB> SLFunction<CB, RESULT> doScalarSelect(Class<RESULT> tp, CB cb) {
+    protected <RESULT> HpSLSFunction<WhiteSameNameRefCB, RESULT> facadeScalarSelect(Class<RESULT> resultType) {
+        return doScalarSelect(resultType, newConditionBean());
+    }
+
+    protected <RESULT, CB extends WhiteSameNameRefCB> HpSLSFunction<CB, RESULT> doScalarSelect(final Class<RESULT> tp, final CB cb) {
         assertObjectNotNull("resultType", tp); assertCBStateValid(cb);
         cb.xsetupForScalarSelect(); cb.getSqlClause().disableSelectIndex(); // for when you use union
-        return createSLFunction(cb, tp);
+        HpSLSExecutor<CB, RESULT> executor = createHpSLSExecutor(); // variable to resolve generic
+        return createSLSFunction(cb, tp, executor);
     }
 
-    protected <RESULT, CB extends WhiteSameNameRefCB> SLFunction<CB, RESULT> createSLFunction(CB cb, Class<RESULT> tp) {
-        return new SLFunction<CB, RESULT>(cb, tp);
-    }
-
-    protected <RESULT> SLFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) {
-        return doScalarSelect(tp, newMyConditionBean());
+    protected <RESULT> HpSLSFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) {
+        return facadeScalarSelect(tp);
     }
 
     // ===================================================================================
@@ -378,6 +409,81 @@ public abstract class BsWhiteSameNameRefBhv extends AbstractBehaviorWritable {
     protected Number doReadNextVal() {
         String msg = "This table is NOT related to sequence: " + getTableDbName();
         throw new UnsupportedOperationException(msg);
+    }
+
+    // ===================================================================================
+    //                                                                       Load Referrer
+    //                                                                       =============
+    /**
+     * Load referrer by the the referrer loader. <br />
+     * <pre>
+     * MemberCB cb = new MemberCB();
+     * cb.query().set...
+     * List&lt;Member&gt; memberList = memberBhv.selectList(cb);
+     * memberBhv.<span style="color: #DD4747">load</span>(memberList, loader -&gt; {
+     *     loader.<span style="color: #DD4747">loadPurchaseList</span>(purchaseCB -&gt; {
+     *         purchaseCB.query().set...
+     *         purchaseCB.query().addOrderBy_PurchasePrice_Desc();
+     *     }); <span style="color: #3F7E5E">// you can also load nested referrer from here</span>
+     *     <span style="color: #3F7E5E">//}).withNestedList(purchaseLoader -&gt {</span>
+     *     <span style="color: #3F7E5E">//    purchaseLoader.loadPurchasePaymentList(...);</span>
+     *     <span style="color: #3F7E5E">//});</span>
+     *
+     *     <span style="color: #3F7E5E">// you can also pull out foreign table and load its referrer</span>
+     *     <span style="color: #3F7E5E">// (setupSelect of the foreign table should be called)</span>
+     *     <span style="color: #3F7E5E">//loader.pulloutMemberStatus().loadMemberLoginList(...)</span>
+     * }
+     * for (Member member : memberList) {
+     *     List&lt;Purchase&gt; purchaseList = member.<span style="color: #DD4747">getPurchaseList()</span>;
+     *     for (Purchase purchase : purchaseList) {
+     *         ...
+     *     }
+     * }
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has order by FK before callback.
+     * @param whiteSameNameRefList The entity list of whiteSameNameRef. (NotNull)
+     * @param handler The callback to handle the referrer loader for actually loading referrer. (NotNull)
+     */
+    public void load(List<WhiteSameNameRef> whiteSameNameRefList, ReferrerLoaderHandler<LoaderOfWhiteSameNameRef> handler) {
+        xassLRArg(whiteSameNameRefList, handler);
+        handler.handle(new LoaderOfWhiteSameNameRef().ready(whiteSameNameRefList, _behaviorSelector));
+    }
+
+    /**
+     * Load referrer of ${referrer.referrerJavaBeansRulePropertyName} by the referrer loader. <br />
+     * <pre>
+     * MemberCB cb = new MemberCB();
+     * cb.query().set...
+     * Member member = memberBhv.selectEntityWithDeletedCheck(cb);
+     * memberBhv.<span style="color: #DD4747">load</span>(member, loader -&gt; {
+     *     loader.<span style="color: #DD4747">loadPurchaseList</span>(purchaseCB -&gt; {
+     *         purchaseCB.query().set...
+     *         purchaseCB.query().addOrderBy_PurchasePrice_Desc();
+     *     }); <span style="color: #3F7E5E">// you can also load nested referrer from here</span>
+     *     <span style="color: #3F7E5E">//}).withNestedList(purchaseLoader -&gt {</span>
+     *     <span style="color: #3F7E5E">//    purchaseLoader.loadPurchasePaymentList(...);</span>
+     *     <span style="color: #3F7E5E">//});</span>
+     *
+     *     <span style="color: #3F7E5E">// you can also pull out foreign table and load its referrer</span>
+     *     <span style="color: #3F7E5E">// (setupSelect of the foreign table should be called)</span>
+     *     <span style="color: #3F7E5E">//loader.pulloutMemberStatus().loadMemberLoginList(...)</span>
+     * }
+     * for (Member member : memberList) {
+     *     List&lt;Purchase&gt; purchaseList = member.<span style="color: #DD4747">getPurchaseList()</span>;
+     *     for (Purchase purchase : purchaseList) {
+     *         ...
+     *     }
+     * }
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has order by FK before callback.
+     * @param whiteSameNameRef The entity of whiteSameNameRef. (NotNull)
+     * @param handler The callback to handle the referrer loader for actually loading referrer. (NotNull)
+     */
+    public void load(WhiteSameNameRef whiteSameNameRef, ReferrerLoaderHandler<LoaderOfWhiteSameNameRef> handler) {
+        xassLRArg(whiteSameNameRef, handler);
+        handler.handle(new LoaderOfWhiteSameNameRef().ready(xnewLRAryLs(whiteSameNameRef), _behaviorSelector));
     }
 
     // ===================================================================================
@@ -429,17 +535,17 @@ public abstract class BsWhiteSameNameRefBhv extends AbstractBehaviorWritable {
      * ... = whiteSameNameRef.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * <p>While, when the entity is created by select, all columns are registered.</p>
-     * @param whiteSameNameRef The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
+     * @param whiteSameNameRef The entity of insert. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
      * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insert(WhiteSameNameRef whiteSameNameRef) {
         doInsert(whiteSameNameRef, null);
     }
 
-    protected void doInsert(WhiteSameNameRef whiteSameNameRef, InsertOption<WhiteSameNameRefCB> op) {
-        assertObjectNotNull("whiteSameNameRef", whiteSameNameRef);
+    protected void doInsert(WhiteSameNameRef et, InsertOption<WhiteSameNameRefCB> op) {
+        assertObjectNotNull("whiteSameNameRef", et);
         prepareInsertOption(op);
-        delegateInsert(whiteSameNameRef, op);
+        delegateInsert(et, op);
     }
 
     protected void prepareInsertOption(InsertOption<WhiteSameNameRefCB> op) {
@@ -452,8 +558,7 @@ public abstract class BsWhiteSameNameRefBhv extends AbstractBehaviorWritable {
 
     @Override
     protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) {
-        if (op == null) { insert(downcast(et)); }
-        else { varyingInsert(downcast(et), downcast(op)); }
+        doInsert(downcast(et), downcast(op));
     }
 
     /**
@@ -465,7 +570,7 @@ public abstract class BsWhiteSameNameRefBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
      * <span style="color: #3F7E5E">//whiteSameNameRef.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//whiteSameNameRef.set...;</span>
-     * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
+     * <span style="color: #3F7E5E">// if exclusive control, the value of concurrency column is required</span>
      * whiteSameNameRef.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     whiteSameNameRefBhv.<span style="color: #DD4747">update</span>(whiteSameNameRef);
@@ -473,49 +578,38 @@ public abstract class BsWhiteSameNameRefBhv extends AbstractBehaviorWritable {
      *     ...
      * }
      * </pre>
-     * @param whiteSameNameRef The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
+     * @param whiteSameNameRef The entity of update. (NotNull, PrimaryKeyNotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
-    public void update(final WhiteSameNameRef whiteSameNameRef) {
+    public void update(WhiteSameNameRef whiteSameNameRef) {
         doUpdate(whiteSameNameRef, null);
     }
 
-    protected void doUpdate(WhiteSameNameRef whiteSameNameRef, final UpdateOption<WhiteSameNameRefCB> op) {
-        assertObjectNotNull("whiteSameNameRef", whiteSameNameRef);
+    protected void doUpdate(WhiteSameNameRef et, final UpdateOption<WhiteSameNameRefCB> op) {
+        assertObjectNotNull("whiteSameNameRef", et);
         prepareUpdateOption(op);
-        helpUpdateInternally(whiteSameNameRef, new InternalUpdateCallback<WhiteSameNameRef>() {
-            public int callbackDelegateUpdate(WhiteSameNameRef et) { return delegateUpdate(et, op); } });
+        helpUpdateInternally(et, new InternalUpdateCallback<WhiteSameNameRef>() {
+            public int callbackDelegateUpdate(WhiteSameNameRef let) { return delegateUpdate(let, op); } });
     }
 
     protected void prepareUpdateOption(UpdateOption<WhiteSameNameRefCB> op) {
         if (op == null) { return; }
         assertUpdateOptionStatus(op);
-        if (op.hasSelfSpecification()) {
-            op.resolveSelfSpecification(createCBForVaryingUpdate());
-        }
-        if (op.hasSpecifiedUpdateColumn()) {
-            op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate());
-        }
+        if (op.hasSelfSpecification()) { op.resolveSelfSpecification(createCBForVaryingUpdate()); }
+        if (op.hasSpecifiedUpdateColumn()) { op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate()); }
     }
 
-    protected WhiteSameNameRefCB createCBForVaryingUpdate() {
-        WhiteSameNameRefCB cb = newMyConditionBean();
-        cb.xsetupForVaryingUpdate();
-        return cb;
-    }
+    protected WhiteSameNameRefCB createCBForVaryingUpdate()
+    { WhiteSameNameRefCB cb = newConditionBean(); cb.xsetupForVaryingUpdate(); return cb; }
 
-    protected WhiteSameNameRefCB createCBForSpecifiedUpdate() {
-        WhiteSameNameRefCB cb = newMyConditionBean();
-        cb.xsetupForSpecifiedUpdate();
-        return cb;
-    }
+    protected WhiteSameNameRefCB createCBForSpecifiedUpdate()
+    { WhiteSameNameRefCB cb = newConditionBean(); cb.xsetupForSpecifiedUpdate(); return cb; }
 
     @Override
     protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) {
-        if (op == null) { update(downcast(et)); }
-        else { varyingUpdate(downcast(et), downcast(op)); }
+        doUpdate(downcast(et), downcast(op));
     }
 
     @Override
@@ -527,32 +621,28 @@ public abstract class BsWhiteSameNameRefBhv extends AbstractBehaviorWritable {
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br />
      * <p><span style="color: #DD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
-     * @param whiteSameNameRef The entity of insert or update target. (NotNull)
+     * @param whiteSameNameRef The entity of insert or update. (NotNull, ...depends on insert or update)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insertOrUpdate(WhiteSameNameRef whiteSameNameRef) {
-        doInesrtOrUpdate(whiteSameNameRef, null, null);
+        doInsertOrUpdate(whiteSameNameRef, null, null);
     }
 
-    protected void doInesrtOrUpdate(WhiteSameNameRef whiteSameNameRef, final InsertOption<WhiteSameNameRefCB> iop, final UpdateOption<WhiteSameNameRefCB> uop) {
-        helpInsertOrUpdateInternally(whiteSameNameRef, new InternalInsertOrUpdateCallback<WhiteSameNameRef, WhiteSameNameRefCB>() {
-            public void callbackInsert(WhiteSameNameRef et) { doInsert(et, iop); }
-            public void callbackUpdate(WhiteSameNameRef et) { doUpdate(et, uop); }
-            public WhiteSameNameRefCB callbackNewMyConditionBean() { return newMyConditionBean(); }
+    protected void doInsertOrUpdate(WhiteSameNameRef et, final InsertOption<WhiteSameNameRefCB> iop, final UpdateOption<WhiteSameNameRefCB> uop) {
+        assertObjectNotNull("whiteSameNameRef", et);
+        helpInsertOrUpdateInternally(et, new InternalInsertOrUpdateCallback<WhiteSameNameRef, WhiteSameNameRefCB>() {
+            public void callbackInsert(WhiteSameNameRef let) { doInsert(let, iop); }
+            public void callbackUpdate(WhiteSameNameRef let) { doUpdate(let, uop); }
+            public WhiteSameNameRefCB callbackNewMyConditionBean() { return newConditionBean(); }
             public int callbackSelectCount(WhiteSameNameRefCB cb) { return selectCount(cb); }
         });
     }
 
     @Override
     protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
-        if (iop == null && uop == null) { insertOrUpdate(downcast(et)); }
-        else {
-            iop = iop != null ? iop : new InsertOption<WhiteSameNameRefCB>();
-            uop = uop != null ? uop : new UpdateOption<WhiteSameNameRefCB>();
-            varyingInsertOrUpdate(downcast(et), downcast(iop), downcast(uop));
-        }
+        doInsertOrUpdate(downcast(et), downcast(iop), downcast(uop));
     }
 
     @Override
@@ -565,7 +655,7 @@ public abstract class BsWhiteSameNameRefBhv extends AbstractBehaviorWritable {
      * <pre>
      * WhiteSameNameRef whiteSameNameRef = new WhiteSameNameRef();
      * whiteSameNameRef.setPK...(value); <span style="color: #3F7E5E">// required</span>
-     * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
+     * <span style="color: #3F7E5E">// if exclusive control, the value of concurrency column is required</span>
      * whiteSameNameRef.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     whiteSameNameRefBhv.<span style="color: #DD4747">delete</span>(whiteSameNameRef);
@@ -573,7 +663,7 @@ public abstract class BsWhiteSameNameRefBhv extends AbstractBehaviorWritable {
      *     ...
      * }
      * </pre>
-     * @param whiteSameNameRef The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
+     * @param whiteSameNameRef The entity of delete. (NotNull, PrimaryKeyNotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      */
@@ -581,22 +671,19 @@ public abstract class BsWhiteSameNameRefBhv extends AbstractBehaviorWritable {
         doDelete(whiteSameNameRef, null);
     }
 
-    protected void doDelete(WhiteSameNameRef whiteSameNameRef, final DeleteOption<WhiteSameNameRefCB> op) {
-        assertObjectNotNull("whiteSameNameRef", whiteSameNameRef);
+    protected void doDelete(WhiteSameNameRef et, final DeleteOption<WhiteSameNameRefCB> op) {
+        assertObjectNotNull("whiteSameNameRef", et);
         prepareDeleteOption(op);
-        helpDeleteInternally(whiteSameNameRef, new InternalDeleteCallback<WhiteSameNameRef>() {
-            public int callbackDelegateDelete(WhiteSameNameRef et) { return delegateDelete(et, op); } });
+        helpDeleteInternally(et, new InternalDeleteCallback<WhiteSameNameRef>() {
+            public int callbackDelegateDelete(WhiteSameNameRef let) { return delegateDelete(let, op); } });
     }
 
-    protected void prepareDeleteOption(DeleteOption<WhiteSameNameRefCB> op) {
-        if (op == null) { return; }
-        assertDeleteOptionStatus(op);
-    }
+    protected void prepareDeleteOption(DeleteOption<WhiteSameNameRefCB> op)
+    { if (op != null) { assertDeleteOptionStatus(op); } }
 
     @Override
     protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) {
-        if (op == null) { delete(downcast(et)); }
-        else { varyingDelete(downcast(et), downcast(op)); }
+        doDelete(downcast(et), downcast(op));
     }
 
     @Override
@@ -632,26 +719,25 @@ public abstract class BsWhiteSameNameRefBhv extends AbstractBehaviorWritable {
      * @return The array of inserted count. (NotNull, EmptyAllowed)
      */
     public int[] batchInsert(List<WhiteSameNameRef> whiteSameNameRefList) {
-        InsertOption<WhiteSameNameRefCB> op = createInsertUpdateOption();
-        return doBatchInsert(whiteSameNameRefList, op);
+        return doBatchInsert(whiteSameNameRefList, null);
     }
 
-    protected int[] doBatchInsert(List<WhiteSameNameRef> whiteSameNameRefList, InsertOption<WhiteSameNameRefCB> op) {
-        assertObjectNotNull("whiteSameNameRefList", whiteSameNameRefList);
-        prepareBatchInsertOption(whiteSameNameRefList, op);
-        return delegateBatchInsert(whiteSameNameRefList, op);
+    protected int[] doBatchInsert(List<WhiteSameNameRef> ls, InsertOption<WhiteSameNameRefCB> op) {
+        assertObjectNotNull("whiteSameNameRefList", ls);
+        InsertOption<WhiteSameNameRefCB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainInsertOption(); }
+        prepareBatchInsertOption(ls, rlop); // required
+        return delegateBatchInsert(ls, rlop);
     }
 
-    protected void prepareBatchInsertOption(List<WhiteSameNameRef> whiteSameNameRefList, InsertOption<WhiteSameNameRefCB> op) {
+    protected void prepareBatchInsertOption(List<WhiteSameNameRef> ls, InsertOption<WhiteSameNameRefCB> op) {
         op.xallowInsertColumnModifiedPropertiesFragmented();
-        op.xacceptInsertColumnModifiedPropertiesIfNeeds(whiteSameNameRefList);
+        op.xacceptInsertColumnModifiedPropertiesIfNeeds(ls);
         prepareInsertOption(op);
     }
 
     @Override
     protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) {
-        if (op == null) { return batchInsert(downcast(ls)); }
-        else { return varyingBatchInsert(downcast(ls), downcast(op)); }
+        return doBatchInsert(downcast(ls), downcast(op));
     }
 
     /**
@@ -679,25 +765,24 @@ public abstract class BsWhiteSameNameRefBhv extends AbstractBehaviorWritable {
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<WhiteSameNameRef> whiteSameNameRefList) {
-        UpdateOption<WhiteSameNameRefCB> op = createPlainUpdateOption();
-        return doBatchUpdate(whiteSameNameRefList, op);
+        return doBatchUpdate(whiteSameNameRefList, null);
     }
 
-    protected int[] doBatchUpdate(List<WhiteSameNameRef> whiteSameNameRefList, UpdateOption<WhiteSameNameRefCB> op) {
-        assertObjectNotNull("whiteSameNameRefList", whiteSameNameRefList);
-        prepareBatchUpdateOption(whiteSameNameRefList, op);
-        return delegateBatchUpdate(whiteSameNameRefList, op);
+    protected int[] doBatchUpdate(List<WhiteSameNameRef> ls, UpdateOption<WhiteSameNameRefCB> op) {
+        assertObjectNotNull("whiteSameNameRefList", ls);
+        UpdateOption<WhiteSameNameRefCB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainUpdateOption(); }
+        prepareBatchUpdateOption(ls, rlop); // required
+        return delegateBatchUpdate(ls, rlop);
     }
 
-    protected void prepareBatchUpdateOption(List<WhiteSameNameRef> whiteSameNameRefList, UpdateOption<WhiteSameNameRefCB> op) {
-        op.xacceptUpdateColumnModifiedPropertiesIfNeeds(whiteSameNameRefList);
+    protected void prepareBatchUpdateOption(List<WhiteSameNameRef> ls, UpdateOption<WhiteSameNameRefCB> op) {
+        op.xacceptUpdateColumnModifiedPropertiesIfNeeds(ls);
         prepareUpdateOption(op);
     }
 
     @Override
     protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) {
-        if (op == null) { return batchUpdate(downcast(ls)); }
-        else { return varyingBatchUpdate(downcast(ls), downcast(op)); }
+        return doBatchUpdate(downcast(ls), downcast(op));
     }
 
     /**
@@ -748,16 +833,15 @@ public abstract class BsWhiteSameNameRefBhv extends AbstractBehaviorWritable {
         return doBatchDelete(whiteSameNameRefList, null);
     }
 
-    protected int[] doBatchDelete(List<WhiteSameNameRef> whiteSameNameRefList, DeleteOption<WhiteSameNameRefCB> op) {
-        assertObjectNotNull("whiteSameNameRefList", whiteSameNameRefList);
+    protected int[] doBatchDelete(List<WhiteSameNameRef> ls, DeleteOption<WhiteSameNameRefCB> op) {
+        assertObjectNotNull("whiteSameNameRefList", ls);
         prepareDeleteOption(op);
-        return delegateBatchDelete(whiteSameNameRefList, op);
+        return delegateBatchDelete(ls, op);
     }
 
     @Override
     protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) {
-        if (op == null) { return batchDelete(downcast(ls)); }
-        else { return varyingBatchDelete(downcast(ls), downcast(op)); }
+        return doBatchDelete(downcast(ls), downcast(op));
     }
 
     @Override
@@ -784,7 +868,7 @@ public abstract class BsWhiteSameNameRefBhv extends AbstractBehaviorWritable {
      *         <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
      *         <span style="color: #3F7E5E">//entity.setRegisterUser(value);</span>
      *         <span style="color: #3F7E5E">//entity.set...;</span>
-     *         <span style="color: #3F7E5E">// you don't need to set a value of exclusive control column</span>
+     *         <span style="color: #3F7E5E">// you don't need to set a value of concurrency column</span>
      *         <span style="color: #3F7E5E">//entity.setVersionNo(value);</span>
      *
      *         return cb;
@@ -801,21 +885,17 @@ public abstract class BsWhiteSameNameRefBhv extends AbstractBehaviorWritable {
     protected int doQueryInsert(QueryInsertSetupper<WhiteSameNameRef, WhiteSameNameRefCB> sp, InsertOption<WhiteSameNameRefCB> op) {
         assertObjectNotNull("setupper", sp);
         prepareInsertOption(op);
-        WhiteSameNameRef e = new WhiteSameNameRef();
+        WhiteSameNameRef et = newEntity();
         WhiteSameNameRefCB cb = createCBForQueryInsert();
-        return delegateQueryInsert(e, cb, sp.setup(e, cb), op);
+        return delegateQueryInsert(et, cb, sp.setup(et, cb), op);
     }
 
-    protected WhiteSameNameRefCB createCBForQueryInsert() {
-        WhiteSameNameRefCB cb = newMyConditionBean();
-        cb.xsetupForQueryInsert();
-        return cb;
-    }
+    protected WhiteSameNameRefCB createCBForQueryInsert()
+    { WhiteSameNameRefCB cb = newConditionBean(); cb.xsetupForQueryInsert(); return cb; }
 
     @Override
-    protected int doRangeCreate(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> setupper, InsertOption<? extends ConditionBean> option) {
-        if (option == null) { return queryInsert(downcast(setupper)); }
-        else { return varyingQueryInsert(downcast(setupper), downcast(option)); }
+    protected int doRangeCreate(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> setupper, InsertOption<? extends ConditionBean> op) {
+        return doQueryInsert(downcast(setupper), downcast(op));
     }
 
     /**
@@ -828,7 +908,7 @@ public abstract class BsWhiteSameNameRefBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
      * <span style="color: #3F7E5E">//whiteSameNameRef.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//whiteSameNameRef.set...;</span>
-     * <span style="color: #3F7E5E">// you don't need to set a value of exclusive control column</span>
+     * <span style="color: #3F7E5E">// you don't need to set a value of concurrency column</span>
      * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
      * <span style="color: #3F7E5E">//whiteSameNameRef.setVersionNo(value);</span>
      * WhiteSameNameRefCB cb = new WhiteSameNameRefCB();
@@ -844,16 +924,15 @@ public abstract class BsWhiteSameNameRefBhv extends AbstractBehaviorWritable {
         return doQueryUpdate(whiteSameNameRef, cb, null);
     }
 
-    protected int doQueryUpdate(WhiteSameNameRef whiteSameNameRef, WhiteSameNameRefCB cb, UpdateOption<WhiteSameNameRefCB> op) {
-        assertObjectNotNull("whiteSameNameRef", whiteSameNameRef); assertCBStateValid(cb);
+    protected int doQueryUpdate(WhiteSameNameRef et, WhiteSameNameRefCB cb, UpdateOption<WhiteSameNameRefCB> op) {
+        assertObjectNotNull("whiteSameNameRef", et); assertCBStateValid(cb);
         prepareUpdateOption(op);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(whiteSameNameRef, cb, op) : 0;
+        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(et, cb, op) : 0;
     }
 
     @Override
     protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op) {
-        if (op == null) { return queryUpdate(downcast(et), (WhiteSameNameRefCB)cb); }
-        else { return varyingQueryUpdate(downcast(et), (WhiteSameNameRefCB)cb, downcast(op)); }
+        return doQueryUpdate(downcast(et), downcast(cb), downcast(op));
     }
 
     /**
@@ -879,8 +958,7 @@ public abstract class BsWhiteSameNameRefBhv extends AbstractBehaviorWritable {
 
     @Override
     protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) {
-        if (op == null) { return queryDelete((WhiteSameNameRefCB)cb); }
-        else { return varyingQueryDelete((WhiteSameNameRefCB)cb, downcast(op)); }
+        return doQueryDelete(downcast(cb), downcast(op));
     }
 
     // ===================================================================================
@@ -904,7 +982,7 @@ public abstract class BsWhiteSameNameRefBhv extends AbstractBehaviorWritable {
      * whiteSameNameRefBhv.<span style="color: #DD4747">varyingInsert</span>(whiteSameNameRef, option);
      * ... = whiteSameNameRef.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
-     * @param whiteSameNameRef The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
+     * @param whiteSameNameRef The entity of insert. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
      * @param option The option of insert for varying requests. (NotNull)
      * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
@@ -921,7 +999,7 @@ public abstract class BsWhiteSameNameRefBhv extends AbstractBehaviorWritable {
      * WhiteSameNameRef whiteSameNameRef = new WhiteSameNameRef();
      * whiteSameNameRef.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * whiteSameNameRef.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
-     * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
+     * <span style="color: #3F7E5E">// if exclusive control, the value of concurrency column is required</span>
      * whiteSameNameRef.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     <span style="color: #3F7E5E">// you can update by self calculation values</span>
@@ -936,7 +1014,7 @@ public abstract class BsWhiteSameNameRefBhv extends AbstractBehaviorWritable {
      *     ...
      * }
      * </pre>
-     * @param whiteSameNameRef The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
+     * @param whiteSameNameRef The entity of update. (NotNull, PrimaryKeyNotNull)
      * @param option The option of update for varying requests. (NotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
@@ -950,7 +1028,7 @@ public abstract class BsWhiteSameNameRefBhv extends AbstractBehaviorWritable {
     /**
      * Insert or update the entity with varying requests. (ExclusiveControl: when update) <br />
      * Other specifications are same as insertOrUpdate(entity).
-     * @param whiteSameNameRef The entity of insert or update target. (NotNull)
+     * @param whiteSameNameRef The entity of insert or update. (NotNull)
      * @param insertOption The option of insert for varying requests. (NotNull)
      * @param updateOption The option of update for varying requests. (NotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
@@ -959,14 +1037,14 @@ public abstract class BsWhiteSameNameRefBhv extends AbstractBehaviorWritable {
      */
     public void varyingInsertOrUpdate(WhiteSameNameRef whiteSameNameRef, InsertOption<WhiteSameNameRefCB> insertOption, UpdateOption<WhiteSameNameRefCB> updateOption) {
         assertInsertOptionNotNull(insertOption); assertUpdateOptionNotNull(updateOption);
-        doInesrtOrUpdate(whiteSameNameRef, insertOption, updateOption);
+        doInsertOrUpdate(whiteSameNameRef, insertOption, updateOption);
     }
 
     /**
      * Delete the entity with varying requests. (ZeroUpdateException, NonExclusiveControl) <br />
      * Now a valid option does not exist. <br />
      * Other specifications are same as delete(entity).
-     * @param whiteSameNameRef The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
+     * @param whiteSameNameRef The entity of delete. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
      * @param option The option of update for varying requests. (NotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
@@ -1047,7 +1125,7 @@ public abstract class BsWhiteSameNameRefBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">// you don't need to set PK value</span>
      * <span style="color: #3F7E5E">//whiteSameNameRef.setPK...(value);</span>
      * whiteSameNameRef.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
-     * <span style="color: #3F7E5E">// you don't need to set a value of exclusive control column</span>
+     * <span style="color: #3F7E5E">// you don't need to set a value of concurrency column</span>
      * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
      * <span style="color: #3F7E5E">//whiteSameNameRef.setVersionNo(value);</span>
      * WhiteSameNameRefCB cb = new WhiteSameNameRefCB();
@@ -1199,38 +1277,34 @@ public abstract class BsWhiteSameNameRefBhv extends AbstractBehaviorWritable {
     }
 
     // ===================================================================================
-    //                                                                     Downcast Helper
-    //                                                                     ===============
-    protected WhiteSameNameRef downcast(Entity et) {
-        return helpEntityDowncastInternally(et, WhiteSameNameRef.class);
-    }
+    //                                                                       Assist Helper
+    //                                                                       =============
+    protected Class<WhiteSameNameRef> typeOfSelectedEntity()
+    { return WhiteSameNameRef.class; }
 
-    protected WhiteSameNameRefCB downcast(ConditionBean cb) {
-        return helpConditionBeanDowncastInternally(cb, WhiteSameNameRefCB.class);
-    }
+    protected WhiteSameNameRef downcast(Entity et)
+    { return helpEntityDowncastInternally(et, WhiteSameNameRef.class); }
 
-    @SuppressWarnings("unchecked")
-    protected List<WhiteSameNameRef> downcast(List<? extends Entity> ls) {
-        return (List<WhiteSameNameRef>)ls;
-    }
+    protected WhiteSameNameRefCB downcast(ConditionBean cb)
+    { return helpConditionBeanDowncastInternally(cb, WhiteSameNameRefCB.class); }
 
     @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteSameNameRefCB> downcast(InsertOption<? extends ConditionBean> op) {
-        return (InsertOption<WhiteSameNameRefCB>)op;
-    }
+    protected List<WhiteSameNameRef> downcast(List<? extends Entity> ls)
+    { return (List<WhiteSameNameRef>)ls; }
 
     @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteSameNameRefCB> downcast(UpdateOption<? extends ConditionBean> op) {
-        return (UpdateOption<WhiteSameNameRefCB>)op;
-    }
+    protected InsertOption<WhiteSameNameRefCB> downcast(InsertOption<? extends ConditionBean> op)
+    { return (InsertOption<WhiteSameNameRefCB>)op; }
 
     @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteSameNameRefCB> downcast(DeleteOption<? extends ConditionBean> op) {
-        return (DeleteOption<WhiteSameNameRefCB>)op;
-    }
+    protected UpdateOption<WhiteSameNameRefCB> downcast(UpdateOption<? extends ConditionBean> op)
+    { return (UpdateOption<WhiteSameNameRefCB>)op; }
 
     @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhiteSameNameRef, WhiteSameNameRefCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp) {
-        return (QueryInsertSetupper<WhiteSameNameRef, WhiteSameNameRefCB>)sp;
-    }
+    protected DeleteOption<WhiteSameNameRefCB> downcast(DeleteOption<? extends ConditionBean> op)
+    { return (DeleteOption<WhiteSameNameRefCB>)op; }
+
+    @SuppressWarnings("unchecked")
+    protected QueryInsertSetupper<WhiteSameNameRef, WhiteSameNameRefCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
+    { return (QueryInsertSetupper<WhiteSameNameRef, WhiteSameNameRefCB>)sp; }
 }

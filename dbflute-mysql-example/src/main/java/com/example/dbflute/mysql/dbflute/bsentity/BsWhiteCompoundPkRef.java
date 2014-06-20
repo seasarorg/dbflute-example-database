@@ -169,7 +169,7 @@ public abstract class BsWhiteCompoundPkRef implements Entity, Serializable, Clon
     protected WhiteCompoundPk _whiteCompoundPk;
 
     /**
-     * white_compound_pk by my REF_FIRST_ID, REF_SECOND_ID, named 'whiteCompoundPk'.
+     * [get] white_compound_pk by my REF_FIRST_ID, REF_SECOND_ID, named 'whiteCompoundPk'.
      * @return The entity of foreign property 'whiteCompoundPk'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public WhiteCompoundPk getWhiteCompoundPk() {
@@ -177,7 +177,7 @@ public abstract class BsWhiteCompoundPkRef implements Entity, Serializable, Clon
     }
 
     /**
-     * white_compound_pk by my REF_FIRST_ID, REF_SECOND_ID, named 'whiteCompoundPk'.
+     * [set] white_compound_pk by my REF_FIRST_ID, REF_SECOND_ID, named 'whiteCompoundPk'.
      * @param whiteCompoundPk The entity of foreign property 'whiteCompoundPk'. (NullAllowed)
      */
     public void setWhiteCompoundPk(WhiteCompoundPk whiteCompoundPk) {
@@ -191,7 +191,7 @@ public abstract class BsWhiteCompoundPkRef implements Entity, Serializable, Clon
     protected List<WhiteCompoundPkRefNest> _whiteCompoundPkRefNestByQuxMultipleIdList;
 
     /**
-     * white_compound_pk_ref_nest by BAR_MULTIPLE_ID, QUX_MULTIPLE_ID, named 'whiteCompoundPkRefNestByQuxMultipleIdList'.
+     * [get] white_compound_pk_ref_nest by BAR_MULTIPLE_ID, QUX_MULTIPLE_ID, named 'whiteCompoundPkRefNestByQuxMultipleIdList'.
      * @return The entity list of referrer property 'whiteCompoundPkRefNestByQuxMultipleIdList'. (NotNull: even if no loading, returns empty list)
      */
     public List<WhiteCompoundPkRefNest> getWhiteCompoundPkRefNestByQuxMultipleIdList() {
@@ -200,7 +200,7 @@ public abstract class BsWhiteCompoundPkRef implements Entity, Serializable, Clon
     }
 
     /**
-     * white_compound_pk_ref_nest by BAR_MULTIPLE_ID, QUX_MULTIPLE_ID, named 'whiteCompoundPkRefNestByQuxMultipleIdList'.
+     * [set] white_compound_pk_ref_nest by BAR_MULTIPLE_ID, QUX_MULTIPLE_ID, named 'whiteCompoundPkRefNestByQuxMultipleIdList'.
      * @param whiteCompoundPkRefNestByQuxMultipleIdList The entity list of referrer property 'whiteCompoundPkRefNestByQuxMultipleIdList'. (NullAllowed)
      */
     public void setWhiteCompoundPkRefNestByQuxMultipleIdList(List<WhiteCompoundPkRefNest> whiteCompoundPkRefNestByQuxMultipleIdList) {
@@ -211,7 +211,7 @@ public abstract class BsWhiteCompoundPkRef implements Entity, Serializable, Clon
     protected List<WhiteCompoundPkRefNest> _whiteCompoundPkRefNestByFooMultipleIdList;
 
     /**
-     * white_compound_pk_ref_nest by FOO_MULTIPLE_ID, BAR_MULTIPLE_ID, named 'whiteCompoundPkRefNestByFooMultipleIdList'.
+     * [get] white_compound_pk_ref_nest by FOO_MULTIPLE_ID, BAR_MULTIPLE_ID, named 'whiteCompoundPkRefNestByFooMultipleIdList'.
      * @return The entity list of referrer property 'whiteCompoundPkRefNestByFooMultipleIdList'. (NotNull: even if no loading, returns empty list)
      */
     public List<WhiteCompoundPkRefNest> getWhiteCompoundPkRefNestByFooMultipleIdList() {
@@ -220,7 +220,7 @@ public abstract class BsWhiteCompoundPkRef implements Entity, Serializable, Clon
     }
 
     /**
-     * white_compound_pk_ref_nest by FOO_MULTIPLE_ID, BAR_MULTIPLE_ID, named 'whiteCompoundPkRefNestByFooMultipleIdList'.
+     * [set] white_compound_pk_ref_nest by FOO_MULTIPLE_ID, BAR_MULTIPLE_ID, named 'whiteCompoundPkRefNestByFooMultipleIdList'.
      * @param whiteCompoundPkRefNestByFooMultipleIdList The entity list of referrer property 'whiteCompoundPkRefNestByFooMultipleIdList'. (NullAllowed)
      */
     public void setWhiteCompoundPkRefNestByFooMultipleIdList(List<WhiteCompoundPkRefNest> whiteCompoundPkRefNestByFooMultipleIdList) {
@@ -413,7 +413,7 @@ public abstract class BsWhiteCompoundPkRef implements Entity, Serializable, Clon
      */
     public void setMultipleFirstId(Integer multipleFirstId) {
         __modifiedProperties.addPropertyName("multipleFirstId");
-        this._multipleFirstId = multipleFirstId;
+        _multipleFirstId = multipleFirstId;
     }
 
     /**
@@ -430,7 +430,7 @@ public abstract class BsWhiteCompoundPkRef implements Entity, Serializable, Clon
      */
     public void setMultipleSecondId(Integer multipleSecondId) {
         __modifiedProperties.addPropertyName("multipleSecondId");
-        this._multipleSecondId = multipleSecondId;
+        _multipleSecondId = multipleSecondId;
     }
 
     /**
@@ -447,7 +447,7 @@ public abstract class BsWhiteCompoundPkRef implements Entity, Serializable, Clon
      */
     public void setRefFirstId(Integer refFirstId) {
         __modifiedProperties.addPropertyName("refFirstId");
-        this._refFirstId = refFirstId;
+        _refFirstId = refFirstId;
     }
 
     /**
@@ -464,7 +464,7 @@ public abstract class BsWhiteCompoundPkRef implements Entity, Serializable, Clon
      */
     public void setRefSecondId(Integer refSecondId) {
         __modifiedProperties.addPropertyName("refSecondId");
-        this._refSecondId = refSecondId;
+        _refSecondId = refSecondId;
     }
 
     /**
@@ -481,6 +481,6 @@ public abstract class BsWhiteCompoundPkRef implements Entity, Serializable, Clon
      */
     public void setRefName(String refName) {
         __modifiedProperties.addPropertyName("refName");
-        this._refName = refName;
+        _refName = refName;
     }
 }

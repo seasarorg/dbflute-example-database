@@ -160,7 +160,7 @@ public class WhiteNoPkDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public WhiteNoPk newEntity() { return new WhiteNoPk(); }
     public WhiteNoPk newMyEntity() { return new WhiteNoPk(); }
 
     // ===================================================================================

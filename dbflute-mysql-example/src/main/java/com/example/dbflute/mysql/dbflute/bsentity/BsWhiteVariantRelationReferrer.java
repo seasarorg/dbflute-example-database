@@ -287,7 +287,7 @@ public abstract class BsWhiteVariantRelationReferrer implements Entity, Serializ
     protected WhiteVariantRelationMasterFoo _whiteVariantRelationMasterFooAsVariant;
 
     /**
-     * white_variant_relation_master_foo by my VARIANT_MASTER_ID, named 'whiteVariantRelationMasterFooAsVariant'.
+     * [get] white_variant_relation_master_foo by my VARIANT_MASTER_ID, named 'whiteVariantRelationMasterFooAsVariant'.
      * @return The entity of foreign property 'whiteVariantRelationMasterFooAsVariant'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public WhiteVariantRelationMasterFoo getWhiteVariantRelationMasterFooAsVariant() {
@@ -295,7 +295,7 @@ public abstract class BsWhiteVariantRelationReferrer implements Entity, Serializ
     }
 
     /**
-     * white_variant_relation_master_foo by my VARIANT_MASTER_ID, named 'whiteVariantRelationMasterFooAsVariant'.
+     * [set] white_variant_relation_master_foo by my VARIANT_MASTER_ID, named 'whiteVariantRelationMasterFooAsVariant'.
      * @param whiteVariantRelationMasterFooAsVariant The entity of foreign property 'whiteVariantRelationMasterFooAsVariant'. (NullAllowed)
      */
     public void setWhiteVariantRelationMasterFooAsVariant(WhiteVariantRelationMasterFoo whiteVariantRelationMasterFooAsVariant) {
@@ -306,7 +306,7 @@ public abstract class BsWhiteVariantRelationReferrer implements Entity, Serializ
     protected WhiteVariantRelationMasterBar _whiteVariantRelationMasterBarAsVariant;
 
     /**
-     * white_variant_relation_master_bar by my VARIANT_MASTER_ID, named 'whiteVariantRelationMasterBarAsVariant'.
+     * [get] white_variant_relation_master_bar by my VARIANT_MASTER_ID, named 'whiteVariantRelationMasterBarAsVariant'.
      * @return The entity of foreign property 'whiteVariantRelationMasterBarAsVariant'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public WhiteVariantRelationMasterBar getWhiteVariantRelationMasterBarAsVariant() {
@@ -314,7 +314,7 @@ public abstract class BsWhiteVariantRelationReferrer implements Entity, Serializ
     }
 
     /**
-     * white_variant_relation_master_bar by my VARIANT_MASTER_ID, named 'whiteVariantRelationMasterBarAsVariant'.
+     * [set] white_variant_relation_master_bar by my VARIANT_MASTER_ID, named 'whiteVariantRelationMasterBarAsVariant'.
      * @param whiteVariantRelationMasterBarAsVariant The entity of foreign property 'whiteVariantRelationMasterBarAsVariant'. (NullAllowed)
      */
     public void setWhiteVariantRelationMasterBarAsVariant(WhiteVariantRelationMasterBar whiteVariantRelationMasterBarAsVariant) {
@@ -325,7 +325,7 @@ public abstract class BsWhiteVariantRelationReferrer implements Entity, Serializ
     protected WhiteVariantRelationMasterQux _whiteVariantRelationMasterQuxAsVariantByQue;
 
     /**
-     * white_variant_relation_master_qux by my VARIANT_MASTER_ID, named 'whiteVariantRelationMasterQuxAsVariantByQue'.
+     * [get] white_variant_relation_master_qux by my VARIANT_MASTER_ID, named 'whiteVariantRelationMasterQuxAsVariantByQue'.
      * @return The entity of foreign property 'whiteVariantRelationMasterQuxAsVariantByQue'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public WhiteVariantRelationMasterQux getWhiteVariantRelationMasterQuxAsVariantByQue() {
@@ -333,7 +333,7 @@ public abstract class BsWhiteVariantRelationReferrer implements Entity, Serializ
     }
 
     /**
-     * white_variant_relation_master_qux by my VARIANT_MASTER_ID, named 'whiteVariantRelationMasterQuxAsVariantByQue'.
+     * [set] white_variant_relation_master_qux by my VARIANT_MASTER_ID, named 'whiteVariantRelationMasterQuxAsVariantByQue'.
      * @param whiteVariantRelationMasterQuxAsVariantByQue The entity of foreign property 'whiteVariantRelationMasterQuxAsVariantByQue'. (NullAllowed)
      */
     public void setWhiteVariantRelationMasterQuxAsVariantByQue(WhiteVariantRelationMasterQux whiteVariantRelationMasterQuxAsVariantByQue) {
@@ -344,7 +344,7 @@ public abstract class BsWhiteVariantRelationReferrer implements Entity, Serializ
     protected WhiteVariantRelationMasterCorge _whiteVariantRelationMasterCorgeAsVariantByQuxType;
 
     /**
-     * white_variant_relation_master_corge by my VARIANT_MASTER_ID, named 'whiteVariantRelationMasterCorgeAsVariantByQuxType'.
+     * [get] white_variant_relation_master_corge by my VARIANT_MASTER_ID, named 'whiteVariantRelationMasterCorgeAsVariantByQuxType'.
      * @return The entity of foreign property 'whiteVariantRelationMasterCorgeAsVariantByQuxType'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public WhiteVariantRelationMasterCorge getWhiteVariantRelationMasterCorgeAsVariantByQuxType() {
@@ -352,7 +352,7 @@ public abstract class BsWhiteVariantRelationReferrer implements Entity, Serializ
     }
 
     /**
-     * white_variant_relation_master_corge by my VARIANT_MASTER_ID, named 'whiteVariantRelationMasterCorgeAsVariantByQuxType'.
+     * [set] white_variant_relation_master_corge by my VARIANT_MASTER_ID, named 'whiteVariantRelationMasterCorgeAsVariantByQuxType'.
      * @param whiteVariantRelationMasterCorgeAsVariantByQuxType The entity of foreign property 'whiteVariantRelationMasterCorgeAsVariantByQuxType'. (NullAllowed)
      */
     public void setWhiteVariantRelationMasterCorgeAsVariantByQuxType(WhiteVariantRelationMasterCorge whiteVariantRelationMasterCorgeAsVariantByQuxType) {
@@ -545,7 +545,7 @@ public abstract class BsWhiteVariantRelationReferrer implements Entity, Serializ
      */
     public void setReferrerId(Long referrerId) {
         __modifiedProperties.addPropertyName("referrerId");
-        this._referrerId = referrerId;
+        _referrerId = referrerId;
     }
 
     /**
@@ -562,7 +562,7 @@ public abstract class BsWhiteVariantRelationReferrer implements Entity, Serializ
      */
     public void setVariantMasterId(Long variantMasterId) {
         __modifiedProperties.addPropertyName("variantMasterId");
-        this._variantMasterId = variantMasterId;
+        _variantMasterId = variantMasterId;
     }
 
     /**
@@ -580,7 +580,7 @@ public abstract class BsWhiteVariantRelationReferrer implements Entity, Serializ
     protected void setMasterTypeCode(String masterTypeCode) {
         checkImplicitSet("MASTER_TYPE_CODE", CDef.DefMeta.VariantRelationMasterType, masterTypeCode);
         __modifiedProperties.addPropertyName("masterTypeCode");
-        this._masterTypeCode = masterTypeCode;
+        _masterTypeCode = masterTypeCode;
     }
 
     protected void checkImplicitSet(String columnDbName, CDef.DefMeta meta, Object value) {

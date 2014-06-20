@@ -309,7 +309,7 @@ public abstract class BsPurchase implements EntityDefinedCommonColumn, Serializa
     protected Member _member;
 
     /**
-     * (会員)member by my member_id, named 'member'.
+     * [get] (会員)member by my member_id, named 'member'.
      * @return The entity of foreign property 'member'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public Member getMember() {
@@ -317,7 +317,7 @@ public abstract class BsPurchase implements EntityDefinedCommonColumn, Serializa
     }
 
     /**
-     * (会員)member by my member_id, named 'member'.
+     * [set] (会員)member by my member_id, named 'member'.
      * @param member The entity of foreign property 'member'. (NullAllowed)
      */
     public void setMember(Member member) {
@@ -328,7 +328,7 @@ public abstract class BsPurchase implements EntityDefinedCommonColumn, Serializa
     protected Product _product;
 
     /**
-     * (商品)product by my product_id, named 'product'.
+     * [get] (商品)product by my product_id, named 'product'.
      * @return The entity of foreign property 'product'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public Product getProduct() {
@@ -336,7 +336,7 @@ public abstract class BsPurchase implements EntityDefinedCommonColumn, Serializa
     }
 
     /**
-     * (商品)product by my product_id, named 'product'.
+     * [set] (商品)product by my product_id, named 'product'.
      * @param product The entity of foreign property 'product'. (NullAllowed)
      */
     public void setProduct(Product product) {
@@ -350,7 +350,7 @@ public abstract class BsPurchase implements EntityDefinedCommonColumn, Serializa
     protected List<PurchasePayment> _purchasePaymentList;
 
     /**
-     * (購入支払)purchase_payment by purchase_id, named 'purchasePaymentList'.
+     * [get] (購入支払)purchase_payment by purchase_id, named 'purchasePaymentList'.
      * @return The entity list of referrer property 'purchasePaymentList'. (NotNull: even if no loading, returns empty list)
      */
     public List<PurchasePayment> getPurchasePaymentList() {
@@ -359,7 +359,7 @@ public abstract class BsPurchase implements EntityDefinedCommonColumn, Serializa
     }
 
     /**
-     * (購入支払)purchase_payment by purchase_id, named 'purchasePaymentList'.
+     * [set] (購入支払)purchase_payment by purchase_id, named 'purchasePaymentList'.
      * @param purchasePaymentList The entity list of referrer property 'purchasePaymentList'. (NullAllowed)
      */
     public void setPurchasePaymentList(List<PurchasePayment> purchasePaymentList) {
@@ -582,7 +582,7 @@ public abstract class BsPurchase implements EntityDefinedCommonColumn, Serializa
      */
     public void setPurchaseId(Long purchaseId) {
         __modifiedProperties.addPropertyName("purchaseId");
-        this._purchaseId = purchaseId;
+        _purchaseId = purchaseId;
     }
 
     /**
@@ -603,7 +603,7 @@ public abstract class BsPurchase implements EntityDefinedCommonColumn, Serializa
      */
     public void setMemberId(Integer memberId) {
         __modifiedProperties.addPropertyName("memberId");
-        this._memberId = memberId;
+        _memberId = memberId;
     }
 
     /**
@@ -622,7 +622,7 @@ public abstract class BsPurchase implements EntityDefinedCommonColumn, Serializa
      */
     public void setProductId(Integer productId) {
         __modifiedProperties.addPropertyName("productId");
-        this._productId = productId;
+        _productId = productId;
     }
 
     /**
@@ -641,7 +641,7 @@ public abstract class BsPurchase implements EntityDefinedCommonColumn, Serializa
      */
     public void setPurchaseDatetime(java.sql.Timestamp purchaseDatetime) {
         __modifiedProperties.addPropertyName("purchaseDatetime");
-        this._purchaseDatetime = purchaseDatetime;
+        _purchaseDatetime = purchaseDatetime;
     }
 
     /**
@@ -660,7 +660,7 @@ public abstract class BsPurchase implements EntityDefinedCommonColumn, Serializa
      */
     public void setPurchaseCount(Integer purchaseCount) {
         __modifiedProperties.addPropertyName("purchaseCount");
-        this._purchaseCount = purchaseCount;
+        _purchaseCount = purchaseCount;
     }
 
     /**
@@ -683,7 +683,7 @@ public abstract class BsPurchase implements EntityDefinedCommonColumn, Serializa
      */
     public void setPurchasePrice(Integer purchasePrice) {
         __modifiedProperties.addPropertyName("purchasePrice");
-        this._purchasePrice = purchasePrice;
+        _purchasePrice = purchasePrice;
     }
 
     /**
@@ -702,7 +702,7 @@ public abstract class BsPurchase implements EntityDefinedCommonColumn, Serializa
      */
     protected void setPaymentCompleteFlg(Integer paymentCompleteFlg) {
         __modifiedProperties.addPropertyName("paymentCompleteFlg");
-        this._paymentCompleteFlg = paymentCompleteFlg;
+        _paymentCompleteFlg = paymentCompleteFlg;
     }
 
     /**
@@ -719,7 +719,7 @@ public abstract class BsPurchase implements EntityDefinedCommonColumn, Serializa
      */
     public void setRegisterDatetime(java.sql.Timestamp registerDatetime) {
         __modifiedProperties.addPropertyName("registerDatetime");
-        this._registerDatetime = registerDatetime;
+        _registerDatetime = registerDatetime;
     }
 
     /**
@@ -736,7 +736,7 @@ public abstract class BsPurchase implements EntityDefinedCommonColumn, Serializa
      */
     public void setRegisterUser(String registerUser) {
         __modifiedProperties.addPropertyName("registerUser");
-        this._registerUser = registerUser;
+        _registerUser = registerUser;
     }
 
     /**
@@ -753,7 +753,7 @@ public abstract class BsPurchase implements EntityDefinedCommonColumn, Serializa
      */
     public void setRegisterProcess(String registerProcess) {
         __modifiedProperties.addPropertyName("registerProcess");
-        this._registerProcess = registerProcess;
+        _registerProcess = registerProcess;
     }
 
     /**
@@ -770,7 +770,7 @@ public abstract class BsPurchase implements EntityDefinedCommonColumn, Serializa
      */
     public void setUpdateDatetime(java.sql.Timestamp updateDatetime) {
         __modifiedProperties.addPropertyName("updateDatetime");
-        this._updateDatetime = updateDatetime;
+        _updateDatetime = updateDatetime;
     }
 
     /**
@@ -787,7 +787,7 @@ public abstract class BsPurchase implements EntityDefinedCommonColumn, Serializa
      */
     public void setUpdateUser(String updateUser) {
         __modifiedProperties.addPropertyName("updateUser");
-        this._updateUser = updateUser;
+        _updateUser = updateUser;
     }
 
     /**
@@ -804,7 +804,7 @@ public abstract class BsPurchase implements EntityDefinedCommonColumn, Serializa
      */
     public void setUpdateProcess(String updateProcess) {
         __modifiedProperties.addPropertyName("updateProcess");
-        this._updateProcess = updateProcess;
+        _updateProcess = updateProcess;
     }
 
     /**
@@ -821,6 +821,6 @@ public abstract class BsPurchase implements EntityDefinedCommonColumn, Serializa
      */
     public void setVersionNo(Long versionNo) {
         __modifiedProperties.addPropertyName("versionNo");
-        this._versionNo = versionNo;
+        _versionNo = versionNo;
     }
 }

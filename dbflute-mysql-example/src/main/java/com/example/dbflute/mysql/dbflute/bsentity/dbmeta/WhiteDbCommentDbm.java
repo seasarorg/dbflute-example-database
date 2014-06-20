@@ -146,7 +146,7 @@ public class WhiteDbCommentDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public WhiteDbComment newEntity() { return new WhiteDbComment(); }
     public WhiteDbComment newMyEntity() { return new WhiteDbComment(); }
 
     // ===================================================================================

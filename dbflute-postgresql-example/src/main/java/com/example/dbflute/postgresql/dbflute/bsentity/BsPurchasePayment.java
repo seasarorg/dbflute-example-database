@@ -294,7 +294,7 @@ public abstract class BsPurchasePayment implements Entity, Serializable, Cloneab
     protected Purchase _purchase;
 
     /**
-     * (購入)purchase by my purchase_id, named 'purchase'.
+     * [get] (購入)purchase by my purchase_id, named 'purchase'.
      * @return The entity of foreign property 'purchase'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public Purchase getPurchase() {
@@ -302,7 +302,7 @@ public abstract class BsPurchasePayment implements Entity, Serializable, Cloneab
     }
 
     /**
-     * (購入)purchase by my purchase_id, named 'purchase'.
+     * [set] (購入)purchase by my purchase_id, named 'purchase'.
      * @param purchase The entity of foreign property 'purchase'. (NullAllowed)
      */
     public void setPurchase(Purchase purchase) {
@@ -494,7 +494,7 @@ public abstract class BsPurchasePayment implements Entity, Serializable, Cloneab
      */
     public void setPurchasePaymentId(Long purchasePaymentId) {
         __modifiedProperties.addPropertyName("purchasePaymentId");
-        this._purchasePaymentId = purchasePaymentId;
+        _purchasePaymentId = purchasePaymentId;
     }
 
     /**
@@ -513,7 +513,7 @@ public abstract class BsPurchasePayment implements Entity, Serializable, Cloneab
      */
     public void setPurchaseId(Long purchaseId) {
         __modifiedProperties.addPropertyName("purchaseId");
-        this._purchaseId = purchaseId;
+        _purchaseId = purchaseId;
     }
 
     /**
@@ -532,7 +532,7 @@ public abstract class BsPurchasePayment implements Entity, Serializable, Cloneab
      */
     public void setPaymentAmount(java.math.BigDecimal paymentAmount) {
         __modifiedProperties.addPropertyName("paymentAmount");
-        this._paymentAmount = paymentAmount;
+        _paymentAmount = paymentAmount;
     }
 
     /**
@@ -551,7 +551,7 @@ public abstract class BsPurchasePayment implements Entity, Serializable, Cloneab
      */
     public void setPaymentDatetime(java.sql.Timestamp paymentDatetime) {
         __modifiedProperties.addPropertyName("paymentDatetime");
-        this._paymentDatetime = paymentDatetime;
+        _paymentDatetime = paymentDatetime;
     }
 
     /**
@@ -571,7 +571,7 @@ public abstract class BsPurchasePayment implements Entity, Serializable, Cloneab
     protected void setPaymentMethodCode(String paymentMethodCode) {
         checkImplicitSet("payment_method_code", CDef.DefMeta.PaymentMethod, paymentMethodCode);
         __modifiedProperties.addPropertyName("paymentMethodCode");
-        this._paymentMethodCode = paymentMethodCode;
+        _paymentMethodCode = paymentMethodCode;
     }
 
     /**
@@ -588,7 +588,7 @@ public abstract class BsPurchasePayment implements Entity, Serializable, Cloneab
      */
     public void setRegisterDatetime(java.sql.Timestamp registerDatetime) {
         __modifiedProperties.addPropertyName("registerDatetime");
-        this._registerDatetime = registerDatetime;
+        _registerDatetime = registerDatetime;
     }
 
     /**
@@ -605,7 +605,7 @@ public abstract class BsPurchasePayment implements Entity, Serializable, Cloneab
      */
     public void setRegisterUser(String registerUser) {
         __modifiedProperties.addPropertyName("registerUser");
-        this._registerUser = registerUser;
+        _registerUser = registerUser;
     }
 
     /**
@@ -622,7 +622,7 @@ public abstract class BsPurchasePayment implements Entity, Serializable, Cloneab
      */
     public void setUpdateDatetime(java.sql.Timestamp updateDatetime) {
         __modifiedProperties.addPropertyName("updateDatetime");
-        this._updateDatetime = updateDatetime;
+        _updateDatetime = updateDatetime;
     }
 
     /**
@@ -639,7 +639,7 @@ public abstract class BsPurchasePayment implements Entity, Serializable, Cloneab
      */
     public void setUpdateUser(String updateUser) {
         __modifiedProperties.addPropertyName("updateUser");
-        this._updateUser = updateUser;
+        _updateUser = updateUser;
     }
 
     protected void checkImplicitSet(String columnDbName, CDef.DefMeta meta, Object value) {

@@ -321,7 +321,7 @@ public abstract class BsVendorUnsupportedAlias implements Entity, Serializable, 
      */
     public void setVendorCheckId(Long vendorCheckId) {
         __modifiedProperties.addPropertyName("vendorCheckId");
-        this._vendorCheckId = vendorCheckId;
+        _vendorCheckId = vendorCheckId;
     }
 
     /**
@@ -338,7 +338,7 @@ public abstract class BsVendorUnsupportedAlias implements Entity, Serializable, 
      */
     public void setHyphen_exists(String hyphen_exists) {
         __modifiedProperties.addPropertyName("hyphen_exists");
-        this._hyphen_exists = hyphen_exists;
+        _hyphen_exists = hyphen_exists;
     }
 
     /**
@@ -355,7 +355,7 @@ public abstract class BsVendorUnsupportedAlias implements Entity, Serializable, 
      */
     public void setSpace_exists(Integer space_exists) {
         __modifiedProperties.addPropertyName("space_exists");
-        this._space_exists = space_exists;
+        _space_exists = space_exists;
     }
 
     /**
@@ -372,6 +372,6 @@ public abstract class BsVendorUnsupportedAlias implements Entity, Serializable, 
      */
     public void setDollar$exists(java.util.Date dollar$exists) {
         __modifiedProperties.addPropertyName("dollar$exists");
-        this._dollar$exists = dollar$exists;
+        _dollar$exists = dollar$exists;
     }
 }

@@ -96,6 +96,18 @@ public class BsWhiteEscapedDfpropCB extends AbstractConditionBean {
     /**
      * Accept the query condition of primary key as equal.
      * @param escapedDfpropCode : PK, NotNull, CHAR(3), classification=EscapedDfpropCls. (NotNull)
+     * @return this. (NotNull)
+     */
+    public WhiteEscapedDfpropCB acceptPK(CDef.EscapedDfpropCls escapedDfpropCode) {
+        assertObjectNotNull("escapedDfpropCode", escapedDfpropCode);
+        BsWhiteEscapedDfpropCB cb = this;
+        cb.query().setEscapedDfpropCode_Equal_AsEscapedDfpropCls(escapedDfpropCode);
+        return (WhiteEscapedDfpropCB)this;
+    }
+
+    /**
+     * Accept the query condition of primary key as equal. (old style)
+     * @param escapedDfpropCode : PK, NotNull, CHAR(3), classification=EscapedDfpropCls. (NotNull)
      */
     public void acceptPrimaryKey(CDef.EscapedDfpropCls escapedDfpropCode) {
         assertObjectNotNull("escapedDfpropCode", escapedDfpropCode);

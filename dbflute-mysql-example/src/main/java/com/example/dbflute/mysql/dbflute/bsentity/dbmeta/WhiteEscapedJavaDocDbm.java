@@ -150,7 +150,7 @@ public class WhiteEscapedJavaDocDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public WhiteEscapedJavaDoc newEntity() { return new WhiteEscapedJavaDoc(); }
     public WhiteEscapedJavaDoc newMyEntity() { return new WhiteEscapedJavaDoc(); }
 
     // ===================================================================================

@@ -153,7 +153,7 @@ public abstract class BsWhitePurchaseReferrer implements Entity, Serializable, C
     protected Purchase _purchase;
 
     /**
-     * (購入)purchase by my PURCHASE_REFERRER_ID, named 'purchase'.
+     * [get] (購入)purchase by my PURCHASE_REFERRER_ID, named 'purchase'.
      * @return The entity of foreign property 'purchase'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public Purchase getPurchase() {
@@ -161,7 +161,7 @@ public abstract class BsWhitePurchaseReferrer implements Entity, Serializable, C
     }
 
     /**
-     * (購入)purchase by my PURCHASE_REFERRER_ID, named 'purchase'.
+     * [set] (購入)purchase by my PURCHASE_REFERRER_ID, named 'purchase'.
      * @param purchase The entity of foreign property 'purchase'. (NullAllowed)
      */
     public void setPurchase(Purchase purchase) {
@@ -344,7 +344,7 @@ public abstract class BsWhitePurchaseReferrer implements Entity, Serializable, C
      */
     public void setPurchaseReferrerId(Long purchaseReferrerId) {
         __modifiedProperties.addPropertyName("purchaseReferrerId");
-        this._purchaseReferrerId = purchaseReferrerId;
+        _purchaseReferrerId = purchaseReferrerId;
     }
 
     /**
@@ -361,6 +361,6 @@ public abstract class BsWhitePurchaseReferrer implements Entity, Serializable, C
      */
     public void setPurchaseReferrerName(String purchaseReferrerName) {
         __modifiedProperties.addPropertyName("purchaseReferrerName");
-        this._purchaseReferrerName = purchaseReferrerName;
+        _purchaseReferrerName = purchaseReferrerName;
     }
 }

@@ -95,11 +95,23 @@ public class BsWhiteCompoundReferredNormallyCB extends AbstractConditionBean {
     /**
      * Accept the query condition of primary key as equal.
      * @param referredId : PK, NotNull, INT(10). (NotNull)
+     * @return this. (NotNull)
+     */
+    public WhiteCompoundReferredNormallyCB acceptPK(Integer referredId) {
+        assertObjectNotNull("referredId", referredId);
+        BsWhiteCompoundReferredNormallyCB cb = this;
+        cb.query().setReferredId_Equal(referredId);
+        return (WhiteCompoundReferredNormallyCB)this;
+    }
+
+    /**
+     * Accept the query condition of primary key as equal. (old style)
+     * @param referredId : PK, NotNull, INT(10). (NotNull)
      */
     public void acceptPrimaryKey(Integer referredId) {
         assertObjectNotNull("referredId", referredId);
         BsWhiteCompoundReferredNormallyCB cb = this;
-        cb.query().setReferredId_Equal(referredId);;
+        cb.query().setReferredId_Equal(referredId);
     }
 
     public ConditionBean addOrderBy_PK_Asc() {

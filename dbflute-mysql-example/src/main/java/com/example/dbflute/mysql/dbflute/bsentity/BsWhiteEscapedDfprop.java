@@ -413,7 +413,7 @@ public abstract class BsWhiteEscapedDfprop implements Entity, Serializable, Clon
      */
     protected void setEscapedDfpropCode(String escapedDfpropCode) {
         __modifiedProperties.addPropertyName("escapedDfpropCode");
-        this._escapedDfpropCode = escapedDfpropCode;
+        _escapedDfpropCode = escapedDfpropCode;
     }
 
     /**
@@ -430,6 +430,6 @@ public abstract class BsWhiteEscapedDfprop implements Entity, Serializable, Clon
      */
     public void setEscapedDfpropName(String escapedDfpropName) {
         __modifiedProperties.addPropertyName("escapedDfpropName");
-        this._escapedDfpropName = escapedDfpropName;
+        _escapedDfpropName = escapedDfpropName;
     }
 }

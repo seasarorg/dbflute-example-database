@@ -152,7 +152,7 @@ public abstract class BsWhiteUqFkWithoutPkRef implements Entity, Serializable, C
     protected WhiteUqFkWithoutPk _whiteUqFkWithoutPk;
 
     /**
-     * white_uq_fk_without_pk by my FK_TO_UQ_CODE, named 'whiteUqFkWithoutPk'.
+     * [get] white_uq_fk_without_pk by my FK_TO_UQ_CODE, named 'whiteUqFkWithoutPk'.
      * @return The entity of foreign property 'whiteUqFkWithoutPk'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public WhiteUqFkWithoutPk getWhiteUqFkWithoutPk() {
@@ -160,7 +160,7 @@ public abstract class BsWhiteUqFkWithoutPkRef implements Entity, Serializable, C
     }
 
     /**
-     * white_uq_fk_without_pk by my FK_TO_UQ_CODE, named 'whiteUqFkWithoutPk'.
+     * [set] white_uq_fk_without_pk by my FK_TO_UQ_CODE, named 'whiteUqFkWithoutPk'.
      * @param whiteUqFkWithoutPk The entity of foreign property 'whiteUqFkWithoutPk'. (NullAllowed)
      */
     public void setWhiteUqFkWithoutPk(WhiteUqFkWithoutPk whiteUqFkWithoutPk) {
@@ -345,7 +345,7 @@ public abstract class BsWhiteUqFkWithoutPkRef implements Entity, Serializable, C
      */
     public void setUqFkRefId(Long uqFkRefId) {
         __modifiedProperties.addPropertyName("uqFkRefId");
-        this._uqFkRefId = uqFkRefId;
+        _uqFkRefId = uqFkRefId;
     }
 
     /**
@@ -362,6 +362,6 @@ public abstract class BsWhiteUqFkWithoutPkRef implements Entity, Serializable, C
      */
     public void setFkToUqCode(String fkToUqCode) {
         __modifiedProperties.addPropertyName("fkToUqCode");
-        this._fkToUqCode = fkToUqCode;
+        _fkToUqCode = fkToUqCode;
     }
 }

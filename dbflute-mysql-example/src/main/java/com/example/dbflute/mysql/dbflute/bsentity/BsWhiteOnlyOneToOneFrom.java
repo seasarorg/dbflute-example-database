@@ -153,7 +153,7 @@ public abstract class BsWhiteOnlyOneToOneFrom implements Entity, Serializable, C
     protected WhiteOnlyOneToOneTo _whiteOnlyOneToOneToAsOne;
 
     /**
-     * white_only_one_to_one_to by FROM_ID, named 'whiteOnlyOneToOneToAsOne'.
+     * [get] white_only_one_to_one_to by FROM_ID, named 'whiteOnlyOneToOneToAsOne'.
      * @return the entity of foreign property(referrer-as-one) 'whiteOnlyOneToOneToAsOne'. (NullAllowed: when e.g. no data, no setupSelect)
      */
     public WhiteOnlyOneToOneTo getWhiteOnlyOneToOneToAsOne() {
@@ -161,7 +161,7 @@ public abstract class BsWhiteOnlyOneToOneFrom implements Entity, Serializable, C
     }
 
     /**
-     * white_only_one_to_one_to by FROM_ID, named 'whiteOnlyOneToOneToAsOne'.
+     * [set] white_only_one_to_one_to by FROM_ID, named 'whiteOnlyOneToOneToAsOne'.
      * @param whiteOnlyOneToOneToAsOne The entity of foreign property(referrer-as-one) 'whiteOnlyOneToOneToAsOne'. (NullAllowed)
      */
     public void setWhiteOnlyOneToOneToAsOne(WhiteOnlyOneToOneTo whiteOnlyOneToOneToAsOne) {
@@ -344,7 +344,7 @@ public abstract class BsWhiteOnlyOneToOneFrom implements Entity, Serializable, C
      */
     public void setFromId(Long fromId) {
         __modifiedProperties.addPropertyName("fromId");
-        this._fromId = fromId;
+        _fromId = fromId;
     }
 
     /**
@@ -361,6 +361,6 @@ public abstract class BsWhiteOnlyOneToOneFrom implements Entity, Serializable, C
      */
     public void setFromName(String fromName) {
         __modifiedProperties.addPropertyName("fromName");
-        this._fromName = fromName;
+        _fromName = fromName;
     }
 }

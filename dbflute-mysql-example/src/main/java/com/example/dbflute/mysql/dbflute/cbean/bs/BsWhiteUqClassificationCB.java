@@ -96,21 +96,35 @@ public class BsWhiteUqClassificationCB extends AbstractConditionBean {
     /**
      * Accept the query condition of primary key as equal.
      * @param uqClsId : PK, NotNull, DECIMAL(16). (NotNull)
+     * @return this. (NotNull)
+     */
+    public WhiteUqClassificationCB acceptPK(Long uqClsId) {
+        assertObjectNotNull("uqClsId", uqClsId);
+        BsWhiteUqClassificationCB cb = this;
+        cb.query().setUqClsId_Equal(uqClsId);
+        return (WhiteUqClassificationCB)this;
+    }
+
+    /**
+     * Accept the query condition of primary key as equal. (old style)
+     * @param uqClsId : PK, NotNull, DECIMAL(16). (NotNull)
      */
     public void acceptPrimaryKey(Long uqClsId) {
         assertObjectNotNull("uqClsId", uqClsId);
         BsWhiteUqClassificationCB cb = this;
-        cb.query().setUqClsId_Equal(uqClsId);;
+        cb.query().setUqClsId_Equal(uqClsId);
     }
 
     /**
      * Accept the query condition of unique key as equal.
      * @param uqClsCode : UQ, NotNull, CHAR(3), classification=UQClassificationType. (NotNull)
+     * @return this. (NotNull)
      */
-    public void acceptUniqueOf(CDef.UQClassificationType uqClsCode) {
+    public WhiteUqClassificationCB acceptUniqueOf(CDef.UQClassificationType uqClsCode) {
         assertObjectNotNull("uqClsCode", uqClsCode);
         BsWhiteUqClassificationCB cb = this;
         cb.query().setUqClsCode_Equal_AsUQClassificationType(uqClsCode);
+        return (WhiteUqClassificationCB)this;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {

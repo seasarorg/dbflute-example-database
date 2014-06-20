@@ -96,11 +96,23 @@ public class BsWhitePurchaseReferrerCB extends AbstractConditionBean {
     /**
      * Accept the query condition of primary key as equal.
      * @param purchaseReferrerId : PK, ID, NotNull, BIGINT(19), FK to purchase. (NotNull)
+     * @return this. (NotNull)
+     */
+    public WhitePurchaseReferrerCB acceptPK(Long purchaseReferrerId) {
+        assertObjectNotNull("purchaseReferrerId", purchaseReferrerId);
+        BsWhitePurchaseReferrerCB cb = this;
+        cb.query().setPurchaseReferrerId_Equal(purchaseReferrerId);
+        return (WhitePurchaseReferrerCB)this;
+    }
+
+    /**
+     * Accept the query condition of primary key as equal. (old style)
+     * @param purchaseReferrerId : PK, ID, NotNull, BIGINT(19), FK to purchase. (NotNull)
      */
     public void acceptPrimaryKey(Long purchaseReferrerId) {
         assertObjectNotNull("purchaseReferrerId", purchaseReferrerId);
         BsWhitePurchaseReferrerCB cb = this;
-        cb.query().setPurchaseReferrerId_Equal(purchaseReferrerId);;
+        cb.query().setPurchaseReferrerId_Equal(purchaseReferrerId);
     }
 
     public ConditionBean addOrderBy_PK_Asc() {

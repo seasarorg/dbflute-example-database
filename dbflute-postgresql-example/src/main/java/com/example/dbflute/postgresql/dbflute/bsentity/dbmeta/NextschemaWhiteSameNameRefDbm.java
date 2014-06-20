@@ -165,7 +165,7 @@ public class NextschemaWhiteSameNameRefDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public NextschemaWhiteSameNameRef newEntity() { return new NextschemaWhiteSameNameRef(); }
     public NextschemaWhiteSameNameRef newMyEntity() { return new NextschemaWhiteSameNameRef(); }
 
     // ===================================================================================

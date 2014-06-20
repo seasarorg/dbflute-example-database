@@ -158,7 +158,7 @@ public abstract class BsWhiteMyselfCheck implements Entity, Serializable, Clonea
     protected WhiteMyself _whiteMyself;
 
     /**
-     * white_myself by my MYSELF_ID, named 'whiteMyself'.
+     * [get] white_myself by my MYSELF_ID, named 'whiteMyself'.
      * @return The entity of foreign property 'whiteMyself'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public WhiteMyself getWhiteMyself() {
@@ -166,7 +166,7 @@ public abstract class BsWhiteMyselfCheck implements Entity, Serializable, Clonea
     }
 
     /**
-     * white_myself by my MYSELF_ID, named 'whiteMyself'.
+     * [set] white_myself by my MYSELF_ID, named 'whiteMyself'.
      * @param whiteMyself The entity of foreign property 'whiteMyself'. (NullAllowed)
      */
     public void setWhiteMyself(WhiteMyself whiteMyself) {
@@ -350,7 +350,7 @@ public abstract class BsWhiteMyselfCheck implements Entity, Serializable, Clonea
      */
     public void setMyselfCheckId(Integer myselfCheckId) {
         __modifiedProperties.addPropertyName("myselfCheckId");
-        this._myselfCheckId = myselfCheckId;
+        _myselfCheckId = myselfCheckId;
     }
 
     /**
@@ -367,7 +367,7 @@ public abstract class BsWhiteMyselfCheck implements Entity, Serializable, Clonea
      */
     public void setMyselfCheckName(String myselfCheckName) {
         __modifiedProperties.addPropertyName("myselfCheckName");
-        this._myselfCheckName = myselfCheckName;
+        _myselfCheckName = myselfCheckName;
     }
 
     /**
@@ -384,6 +384,6 @@ public abstract class BsWhiteMyselfCheck implements Entity, Serializable, Clonea
      */
     public void setMyselfId(Integer myselfId) {
         __modifiedProperties.addPropertyName("myselfId");
-        this._myselfId = myselfId;
+        _myselfId = myselfId;
     }
 }

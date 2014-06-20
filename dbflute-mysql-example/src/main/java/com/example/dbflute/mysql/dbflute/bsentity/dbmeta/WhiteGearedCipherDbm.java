@@ -183,7 +183,7 @@ public class WhiteGearedCipherDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public WhiteGearedCipher newEntity() { return new WhiteGearedCipher(); }
     public WhiteGearedCipher newMyEntity() { return new WhiteGearedCipher(); }
 
     // ===================================================================================

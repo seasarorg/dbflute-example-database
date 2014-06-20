@@ -158,7 +158,7 @@ public abstract class BsWhiteSuppressJoinSqManyOne implements Entity, Serializab
     protected WhiteSuppressJoinSqManyOneOne _whiteSuppressJoinSqManyOneOne;
 
     /**
-     * white_suppress_join_sq_many_one_one by my MANY_ONE_ONE_ID, named 'whiteSuppressJoinSqManyOneOne'.
+     * [get] white_suppress_join_sq_many_one_one by my MANY_ONE_ONE_ID, named 'whiteSuppressJoinSqManyOneOne'.
      * @return The entity of foreign property 'whiteSuppressJoinSqManyOneOne'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public WhiteSuppressJoinSqManyOneOne getWhiteSuppressJoinSqManyOneOne() {
@@ -166,7 +166,7 @@ public abstract class BsWhiteSuppressJoinSqManyOne implements Entity, Serializab
     }
 
     /**
-     * white_suppress_join_sq_many_one_one by my MANY_ONE_ONE_ID, named 'whiteSuppressJoinSqManyOneOne'.
+     * [set] white_suppress_join_sq_many_one_one by my MANY_ONE_ONE_ID, named 'whiteSuppressJoinSqManyOneOne'.
      * @param whiteSuppressJoinSqManyOneOne The entity of foreign property 'whiteSuppressJoinSqManyOneOne'. (NullAllowed)
      */
     public void setWhiteSuppressJoinSqManyOneOne(WhiteSuppressJoinSqManyOneOne whiteSuppressJoinSqManyOneOne) {
@@ -180,7 +180,7 @@ public abstract class BsWhiteSuppressJoinSqManyOne implements Entity, Serializab
     protected List<WhiteSuppressJoinSqMany> _whiteSuppressJoinSqManyList;
 
     /**
-     * white_suppress_join_sq_many by MANY_ONE_ID, named 'whiteSuppressJoinSqManyList'.
+     * [get] white_suppress_join_sq_many by MANY_ONE_ID, named 'whiteSuppressJoinSqManyList'.
      * @return The entity list of referrer property 'whiteSuppressJoinSqManyList'. (NotNull: even if no loading, returns empty list)
      */
     public List<WhiteSuppressJoinSqMany> getWhiteSuppressJoinSqManyList() {
@@ -189,7 +189,7 @@ public abstract class BsWhiteSuppressJoinSqManyOne implements Entity, Serializab
     }
 
     /**
-     * white_suppress_join_sq_many by MANY_ONE_ID, named 'whiteSuppressJoinSqManyList'.
+     * [set] white_suppress_join_sq_many by MANY_ONE_ID, named 'whiteSuppressJoinSqManyList'.
      * @param whiteSuppressJoinSqManyList The entity list of referrer property 'whiteSuppressJoinSqManyList'. (NullAllowed)
      */
     public void setWhiteSuppressJoinSqManyList(List<WhiteSuppressJoinSqMany> whiteSuppressJoinSqManyList) {
@@ -374,7 +374,7 @@ public abstract class BsWhiteSuppressJoinSqManyOne implements Entity, Serializab
      */
     public void setManyOneId(Integer manyOneId) {
         __modifiedProperties.addPropertyName("manyOneId");
-        this._manyOneId = manyOneId;
+        _manyOneId = manyOneId;
     }
 
     /**
@@ -391,7 +391,7 @@ public abstract class BsWhiteSuppressJoinSqManyOne implements Entity, Serializab
      */
     public void setManyOneName(String manyOneName) {
         __modifiedProperties.addPropertyName("manyOneName");
-        this._manyOneName = manyOneName;
+        _manyOneName = manyOneName;
     }
 
     /**
@@ -408,6 +408,6 @@ public abstract class BsWhiteSuppressJoinSqManyOne implements Entity, Serializab
      */
     public void setManyOneOneId(Integer manyOneOneId) {
         __modifiedProperties.addPropertyName("manyOneOneId");
-        this._manyOneOneId = manyOneOneId;
+        _manyOneOneId = manyOneOneId;
     }
 }

@@ -149,7 +149,7 @@ public abstract class BsWhiteCompoundPkRef implements Entity, Serializable, Clon
     protected WhiteCompoundPk _whiteCompoundPk;
 
     /**
-     * white_compound_pk by my ref_first_id, ref_second_id, named 'whiteCompoundPk'.
+     * [get] white_compound_pk by my ref_first_id, ref_second_id, named 'whiteCompoundPk'.
      * @return The entity of foreign property 'whiteCompoundPk'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public WhiteCompoundPk getWhiteCompoundPk() {
@@ -157,7 +157,7 @@ public abstract class BsWhiteCompoundPkRef implements Entity, Serializable, Clon
     }
 
     /**
-     * white_compound_pk by my ref_first_id, ref_second_id, named 'whiteCompoundPk'.
+     * [set] white_compound_pk by my ref_first_id, ref_second_id, named 'whiteCompoundPk'.
      * @param whiteCompoundPk The entity of foreign property 'whiteCompoundPk'. (NullAllowed)
      */
     public void setWhiteCompoundPk(WhiteCompoundPk whiteCompoundPk) {
@@ -344,7 +344,7 @@ public abstract class BsWhiteCompoundPkRef implements Entity, Serializable, Clon
      */
     public void setMultipleFirstId(Integer multipleFirstId) {
         __modifiedProperties.addPropertyName("multipleFirstId");
-        this._multipleFirstId = multipleFirstId;
+        _multipleFirstId = multipleFirstId;
     }
 
     /**
@@ -361,7 +361,7 @@ public abstract class BsWhiteCompoundPkRef implements Entity, Serializable, Clon
      */
     public void setMultipleSecondId(Integer multipleSecondId) {
         __modifiedProperties.addPropertyName("multipleSecondId");
-        this._multipleSecondId = multipleSecondId;
+        _multipleSecondId = multipleSecondId;
     }
 
     /**
@@ -378,7 +378,7 @@ public abstract class BsWhiteCompoundPkRef implements Entity, Serializable, Clon
      */
     public void setRefFirstId(Integer refFirstId) {
         __modifiedProperties.addPropertyName("refFirstId");
-        this._refFirstId = refFirstId;
+        _refFirstId = refFirstId;
     }
 
     /**
@@ -395,6 +395,6 @@ public abstract class BsWhiteCompoundPkRef implements Entity, Serializable, Clon
      */
     public void setRefSecondId(Integer refSecondId) {
         __modifiedProperties.addPropertyName("refSecondId");
-        this._refSecondId = refSecondId;
+        _refSecondId = refSecondId;
     }
 }

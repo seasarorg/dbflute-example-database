@@ -156,7 +156,7 @@ public abstract class BsWhiteSplitMultipleFkNext implements Entity, Serializable
     protected List<WhiteSplitMultipleFkBase> _whiteSplitMultipleFkBaseList;
 
     /**
-     * white_split_multiple_fk_base by NEXT_ID, named 'whiteSplitMultipleFkBaseList'.
+     * [get] white_split_multiple_fk_base by NEXT_ID, named 'whiteSplitMultipleFkBaseList'.
      * @return The entity list of referrer property 'whiteSplitMultipleFkBaseList'. (NotNull: even if no loading, returns empty list)
      */
     public List<WhiteSplitMultipleFkBase> getWhiteSplitMultipleFkBaseList() {
@@ -165,7 +165,7 @@ public abstract class BsWhiteSplitMultipleFkNext implements Entity, Serializable
     }
 
     /**
-     * white_split_multiple_fk_base by NEXT_ID, named 'whiteSplitMultipleFkBaseList'.
+     * [set] white_split_multiple_fk_base by NEXT_ID, named 'whiteSplitMultipleFkBaseList'.
      * @param whiteSplitMultipleFkBaseList The entity list of referrer property 'whiteSplitMultipleFkBaseList'. (NullAllowed)
      */
     public void setWhiteSplitMultipleFkBaseList(List<WhiteSplitMultipleFkBase> whiteSplitMultipleFkBaseList) {
@@ -346,7 +346,7 @@ public abstract class BsWhiteSplitMultipleFkNext implements Entity, Serializable
      */
     public void setNextId(Long nextId) {
         __modifiedProperties.addPropertyName("nextId");
-        this._nextId = nextId;
+        _nextId = nextId;
     }
 
     /**
@@ -363,6 +363,6 @@ public abstract class BsWhiteSplitMultipleFkNext implements Entity, Serializable
      */
     public void setSecondCode(String secondCode) {
         __modifiedProperties.addPropertyName("secondCode");
-        this._secondCode = secondCode;
+        _secondCode = secondCode;
     }
 }

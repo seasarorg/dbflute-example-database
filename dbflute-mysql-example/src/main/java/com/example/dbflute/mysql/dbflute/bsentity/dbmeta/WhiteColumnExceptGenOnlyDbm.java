@@ -146,7 +146,7 @@ public class WhiteColumnExceptGenOnlyDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public WhiteColumnExceptGenOnly newEntity() { return new WhiteColumnExceptGenOnly(); }
     public WhiteColumnExceptGenOnly newMyEntity() { return new WhiteColumnExceptGenOnly(); }
 
     // ===================================================================================

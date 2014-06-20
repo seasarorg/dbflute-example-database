@@ -95,11 +95,23 @@ public class BsWhiteLoadDataCB extends AbstractConditionBean {
     /**
      * Accept the query condition of primary key as equal.
      * @param loadDataId : PK, NotNull, BIGINT(19). (NotNull)
+     * @return this. (NotNull)
+     */
+    public WhiteLoadDataCB acceptPK(Long loadDataId) {
+        assertObjectNotNull("loadDataId", loadDataId);
+        BsWhiteLoadDataCB cb = this;
+        cb.query().setLoadDataId_Equal(loadDataId);
+        return (WhiteLoadDataCB)this;
+    }
+
+    /**
+     * Accept the query condition of primary key as equal. (old style)
+     * @param loadDataId : PK, NotNull, BIGINT(19). (NotNull)
      */
     public void acceptPrimaryKey(Long loadDataId) {
         assertObjectNotNull("loadDataId", loadDataId);
         BsWhiteLoadDataCB cb = this;
-        cb.query().setLoadDataId_Equal(loadDataId);;
+        cb.query().setLoadDataId_Equal(loadDataId);
     }
 
     public ConditionBean addOrderBy_PK_Asc() {

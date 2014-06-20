@@ -154,7 +154,7 @@ public class WhiteVariantRelationMasterFooDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public WhiteVariantRelationMasterFoo newEntity() { return new WhiteVariantRelationMasterFoo(); }
     public WhiteVariantRelationMasterFoo newMyEntity() { return new WhiteVariantRelationMasterFoo(); }
 
     // ===================================================================================

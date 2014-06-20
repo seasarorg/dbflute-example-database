@@ -143,7 +143,7 @@ public abstract class BsVendor_non_compilable implements Entity, Serializable, C
     protected Vendor_non_compilable _vendor_non_compilableSelf;
 
     /**
-     * VENDOR-NON COMPILABLE by my PARENT-ID, named 'vendor_non_compilableSelf'.
+     * [get] VENDOR-NON COMPILABLE by my PARENT-ID, named 'vendor_non_compilableSelf'.
      * @return The entity of foreign property 'vendor_non_compilableSelf'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public Vendor_non_compilable getVendor_non_compilableSelf() {
@@ -151,7 +151,7 @@ public abstract class BsVendor_non_compilable implements Entity, Serializable, C
     }
 
     /**
-     * VENDOR-NON COMPILABLE by my PARENT-ID, named 'vendor_non_compilableSelf'.
+     * [set] VENDOR-NON COMPILABLE by my PARENT-ID, named 'vendor_non_compilableSelf'.
      * @param vendor_non_compilableSelf The entity of foreign property 'vendor_non_compilableSelf'. (NullAllowed)
      */
     public void setVendor_non_compilableSelf(Vendor_non_compilable vendor_non_compilableSelf) {
@@ -165,7 +165,7 @@ public abstract class BsVendor_non_compilable implements Entity, Serializable, C
     protected List<Vendor_non_compilable> _vendor_non_compilableSelfList;
 
     /**
-     * VENDOR-NON COMPILABLE by PARENT-ID, named 'vendor_non_compilableSelfList'.
+     * [get] VENDOR-NON COMPILABLE by PARENT-ID, named 'vendor_non_compilableSelfList'.
      * @return The entity list of referrer property 'vendor_non_compilableSelfList'. (NotNull: even if no loading, returns empty list)
      */
     public List<Vendor_non_compilable> getVendor_non_compilableSelfList() {
@@ -174,7 +174,7 @@ public abstract class BsVendor_non_compilable implements Entity, Serializable, C
     }
 
     /**
-     * VENDOR-NON COMPILABLE by PARENT-ID, named 'vendor_non_compilableSelfList'.
+     * [set] VENDOR-NON COMPILABLE by PARENT-ID, named 'vendor_non_compilableSelfList'.
      * @param vendor_non_compilableSelfList The entity list of referrer property 'vendor_non_compilableSelfList'. (NullAllowed)
      */
     public void setVendor_non_compilableSelfList(List<Vendor_non_compilable> vendor_non_compilableSelfList) {
@@ -359,7 +359,7 @@ public abstract class BsVendor_non_compilable implements Entity, Serializable, C
      */
     public void setNon_compilable_id(Integer non_compilable_id) {
         __modifiedProperties.addPropertyName("non_compilable_id");
-        this._non_compilable_id = non_compilable_id;
+        _non_compilable_id = non_compilable_id;
     }
 
     /**
@@ -376,7 +376,7 @@ public abstract class BsVendor_non_compilable implements Entity, Serializable, C
      */
     public void setNon_compilable_name(String non_compilable_name) {
         __modifiedProperties.addPropertyName("non_compilable_name");
-        this._non_compilable_name = non_compilable_name;
+        _non_compilable_name = non_compilable_name;
     }
 
     /**
@@ -393,6 +393,6 @@ public abstract class BsVendor_non_compilable implements Entity, Serializable, C
      */
     public void setParent_id(Integer parent_id) {
         __modifiedProperties.addPropertyName("parent_id");
-        this._parent_id = parent_id;
+        _parent_id = parent_id;
     }
 }

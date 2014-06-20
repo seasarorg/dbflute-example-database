@@ -153,7 +153,7 @@ public abstract class BsWhiteQuotedRef implements Entity, Serializable, Cloneabl
     protected WhiteQuoted _whiteQuoted;
 
     /**
-     * white_quoted by my ORDER, named 'whiteQuoted'.
+     * [get] white_quoted by my ORDER, named 'whiteQuoted'.
      * @return The entity of foreign property 'whiteQuoted'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public WhiteQuoted getWhiteQuoted() {
@@ -161,7 +161,7 @@ public abstract class BsWhiteQuotedRef implements Entity, Serializable, Cloneabl
     }
 
     /**
-     * white_quoted by my ORDER, named 'whiteQuoted'.
+     * [set] white_quoted by my ORDER, named 'whiteQuoted'.
      * @param whiteQuoted The entity of foreign property 'whiteQuoted'. (NullAllowed)
      */
     public void setWhiteQuoted(WhiteQuoted whiteQuoted) {
@@ -344,7 +344,7 @@ public abstract class BsWhiteQuotedRef implements Entity, Serializable, Cloneabl
      */
     public void setWhere(Integer where) {
         __modifiedProperties.addPropertyName("where");
-        this._where = where;
+        _where = where;
     }
 
     /**
@@ -361,6 +361,6 @@ public abstract class BsWhiteQuotedRef implements Entity, Serializable, Cloneabl
      */
     public void setOrder(Integer order) {
         __modifiedProperties.addPropertyName("order");
-        this._order = order;
+        _order = order;
     }
 }

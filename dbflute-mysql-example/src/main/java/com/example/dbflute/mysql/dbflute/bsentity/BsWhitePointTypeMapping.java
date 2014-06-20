@@ -338,7 +338,7 @@ public abstract class BsWhitePointTypeMapping implements Entity, Serializable, C
      */
     public void setPointTypeMappingId(Long pointTypeMappingId) {
         __modifiedProperties.addPropertyName("pointTypeMappingId");
-        this._pointTypeMappingId = pointTypeMappingId;
+        _pointTypeMappingId = pointTypeMappingId;
     }
 
     /**
@@ -355,7 +355,7 @@ public abstract class BsWhitePointTypeMapping implements Entity, Serializable, C
      */
     public void setPointTypeMappingMemberName(com.example.dbflute.mysql.mytype.MyMemberName pointTypeMappingMemberName) {
         __modifiedProperties.addPropertyName("pointTypeMappingMemberName");
-        this._pointTypeMappingMemberName = pointTypeMappingMemberName;
+        _pointTypeMappingMemberName = pointTypeMappingMemberName;
     }
 
     /**
@@ -372,7 +372,7 @@ public abstract class BsWhitePointTypeMapping implements Entity, Serializable, C
      */
     public void setPointTypeMappingPriceCount(com.example.dbflute.mysql.mytype.MyPriceCount pointTypeMappingPriceCount) {
         __modifiedProperties.addPropertyName("pointTypeMappingPriceCount");
-        this._pointTypeMappingPriceCount = pointTypeMappingPriceCount;
+        _pointTypeMappingPriceCount = pointTypeMappingPriceCount;
     }
 
     /**
@@ -389,7 +389,7 @@ public abstract class BsWhitePointTypeMapping implements Entity, Serializable, C
      */
     public void setPointTypeMappingSaleDate(com.example.dbflute.mysql.mytype.MySaleDate pointTypeMappingSaleDate) {
         __modifiedProperties.addPropertyName("pointTypeMappingSaleDate");
-        this._pointTypeMappingSaleDate = pointTypeMappingSaleDate;
+        _pointTypeMappingSaleDate = pointTypeMappingSaleDate;
     }
 
     /**
@@ -406,6 +406,6 @@ public abstract class BsWhitePointTypeMapping implements Entity, Serializable, C
      */
     public void setPointTypeMappingWantedDatetime(java.util.Date pointTypeMappingWantedDatetime) {
         __modifiedProperties.addPropertyName("pointTypeMappingWantedDatetime");
-        this._pointTypeMappingWantedDatetime = pointTypeMappingWantedDatetime;
+        _pointTypeMappingWantedDatetime = pointTypeMappingWantedDatetime;
     }
 }

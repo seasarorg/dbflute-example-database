@@ -242,7 +242,7 @@ public class VendorConstraintNameAutoRefDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public VendorConstraintNameAutoRef newEntity() { return new VendorConstraintNameAutoRef(); }
     public VendorConstraintNameAutoRef newMyEntity() { return new VendorConstraintNameAutoRef(); }
 
     // ===================================================================================

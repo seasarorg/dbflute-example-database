@@ -146,7 +146,7 @@ public class WhiteColumnExceptDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public WhiteColumnExcept newEntity() { return new WhiteColumnExcept(); }
     public WhiteColumnExcept newMyEntity() { return new WhiteColumnExcept(); }
 
     // ===================================================================================

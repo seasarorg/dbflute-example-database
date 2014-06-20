@@ -141,7 +141,7 @@ public abstract class BsVendorUuidBar implements Entity, Serializable, Cloneable
     protected List<VendorUuidFoo> _vendorUuidFooList;
 
     /**
-     * vendor_uuid_foo by bar_id, named 'vendorUuidFooList'.
+     * [get] vendor_uuid_foo by bar_id, named 'vendorUuidFooList'.
      * @return The entity list of referrer property 'vendorUuidFooList'. (NotNull: even if no loading, returns empty list)
      */
     public List<VendorUuidFoo> getVendorUuidFooList() {
@@ -150,7 +150,7 @@ public abstract class BsVendorUuidBar implements Entity, Serializable, Cloneable
     }
 
     /**
-     * vendor_uuid_foo by bar_id, named 'vendorUuidFooList'.
+     * [set] vendor_uuid_foo by bar_id, named 'vendorUuidFooList'.
      * @param vendorUuidFooList The entity list of referrer property 'vendorUuidFooList'. (NullAllowed)
      */
     public void setVendorUuidFooList(List<VendorUuidFoo> vendorUuidFooList) {
@@ -331,7 +331,7 @@ public abstract class BsVendorUuidBar implements Entity, Serializable, Cloneable
      */
     public void setBarId(java.util.UUID barId) {
         __modifiedProperties.addPropertyName("barId");
-        this._barId = barId;
+        _barId = barId;
     }
 
     /**
@@ -348,6 +348,6 @@ public abstract class BsVendorUuidBar implements Entity, Serializable, Cloneable
      */
     public void setBarName(String barName) {
         __modifiedProperties.addPropertyName("barName");
-        this._barName = barName;
+        _barName = barName;
     }
 }

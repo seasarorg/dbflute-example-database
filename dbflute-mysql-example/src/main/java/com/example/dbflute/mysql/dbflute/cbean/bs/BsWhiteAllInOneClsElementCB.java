@@ -96,11 +96,24 @@ public class BsWhiteAllInOneClsElementCB extends AbstractConditionBean {
      * Accept the query condition of primary key as equal.
      * @param clsCategoryCode : PK, NotNull, CHAR(3), FK to white_all_in_one_cls_category. (NotNull)
      * @param clsElementCode : PK, NotNull, CHAR(3). (NotNull)
+     * @return this. (NotNull)
+     */
+    public WhiteAllInOneClsElementCB acceptPK(String clsCategoryCode, String clsElementCode) {
+        assertObjectNotNull("clsCategoryCode", clsCategoryCode);assertObjectNotNull("clsElementCode", clsElementCode);
+        BsWhiteAllInOneClsElementCB cb = this;
+        cb.query().setClsCategoryCode_Equal(clsCategoryCode);cb.query().setClsElementCode_Equal(clsElementCode);
+        return (WhiteAllInOneClsElementCB)this;
+    }
+
+    /**
+     * Accept the query condition of primary key as equal. (old style)
+     * @param clsCategoryCode : PK, NotNull, CHAR(3), FK to white_all_in_one_cls_category. (NotNull)
+     * @param clsElementCode : PK, NotNull, CHAR(3). (NotNull)
      */
     public void acceptPrimaryKey(String clsCategoryCode, String clsElementCode) {
         assertObjectNotNull("clsCategoryCode", clsCategoryCode);assertObjectNotNull("clsElementCode", clsElementCode);
         BsWhiteAllInOneClsElementCB cb = this;
-        cb.query().setClsCategoryCode_Equal(clsCategoryCode);;cb.query().setClsElementCode_Equal(clsElementCode);;
+        cb.query().setClsCategoryCode_Equal(clsCategoryCode);cb.query().setClsElementCode_Equal(clsElementCode);
     }
 
     public ConditionBean addOrderBy_PK_Asc() {

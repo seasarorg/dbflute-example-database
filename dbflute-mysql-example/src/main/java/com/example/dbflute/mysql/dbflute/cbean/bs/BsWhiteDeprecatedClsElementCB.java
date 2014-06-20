@@ -96,6 +96,18 @@ public class BsWhiteDeprecatedClsElementCB extends AbstractConditionBean {
     /**
      * Accept the query condition of primary key as equal.
      * @param deprecatedClsElementCode : PK, NotNull, CHAR(3), classification=DeprecatedMapCollaborationType. (NotNull)
+     * @return this. (NotNull)
+     */
+    public WhiteDeprecatedClsElementCB acceptPK(CDef.DeprecatedMapCollaborationType deprecatedClsElementCode) {
+        assertObjectNotNull("deprecatedClsElementCode", deprecatedClsElementCode);
+        BsWhiteDeprecatedClsElementCB cb = this;
+        cb.query().setDeprecatedClsElementCode_Equal_AsDeprecatedMapCollaborationType(deprecatedClsElementCode);
+        return (WhiteDeprecatedClsElementCB)this;
+    }
+
+    /**
+     * Accept the query condition of primary key as equal. (old style)
+     * @param deprecatedClsElementCode : PK, NotNull, CHAR(3), classification=DeprecatedMapCollaborationType. (NotNull)
      */
     public void acceptPrimaryKey(CDef.DeprecatedMapCollaborationType deprecatedClsElementCode) {
         assertObjectNotNull("deprecatedClsElementCode", deprecatedClsElementCode);

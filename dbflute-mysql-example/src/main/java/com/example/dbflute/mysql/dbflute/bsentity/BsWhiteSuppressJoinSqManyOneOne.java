@@ -156,7 +156,7 @@ public abstract class BsWhiteSuppressJoinSqManyOneOne implements Entity, Seriali
     protected List<WhiteSuppressJoinSqManyOne> _whiteSuppressJoinSqManyOneList;
 
     /**
-     * white_suppress_join_sq_many_one by MANY_ONE_ONE_ID, named 'whiteSuppressJoinSqManyOneList'.
+     * [get] white_suppress_join_sq_many_one by MANY_ONE_ONE_ID, named 'whiteSuppressJoinSqManyOneList'.
      * @return The entity list of referrer property 'whiteSuppressJoinSqManyOneList'. (NotNull: even if no loading, returns empty list)
      */
     public List<WhiteSuppressJoinSqManyOne> getWhiteSuppressJoinSqManyOneList() {
@@ -165,7 +165,7 @@ public abstract class BsWhiteSuppressJoinSqManyOneOne implements Entity, Seriali
     }
 
     /**
-     * white_suppress_join_sq_many_one by MANY_ONE_ONE_ID, named 'whiteSuppressJoinSqManyOneList'.
+     * [set] white_suppress_join_sq_many_one by MANY_ONE_ONE_ID, named 'whiteSuppressJoinSqManyOneList'.
      * @param whiteSuppressJoinSqManyOneList The entity list of referrer property 'whiteSuppressJoinSqManyOneList'. (NullAllowed)
      */
     public void setWhiteSuppressJoinSqManyOneList(List<WhiteSuppressJoinSqManyOne> whiteSuppressJoinSqManyOneList) {
@@ -346,7 +346,7 @@ public abstract class BsWhiteSuppressJoinSqManyOneOne implements Entity, Seriali
      */
     public void setManyOneOneId(Integer manyOneOneId) {
         __modifiedProperties.addPropertyName("manyOneOneId");
-        this._manyOneOneId = manyOneOneId;
+        _manyOneOneId = manyOneOneId;
     }
 
     /**
@@ -363,6 +363,6 @@ public abstract class BsWhiteSuppressJoinSqManyOneOne implements Entity, Seriali
      */
     public void setManyOneOneName(String manyOneOneName) {
         __modifiedProperties.addPropertyName("manyOneOneName");
-        this._manyOneOneName = manyOneOneName;
+        _manyOneOneName = manyOneOneName;
     }
 }

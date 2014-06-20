@@ -338,7 +338,7 @@ public abstract class BsWhiteIncludeQuery implements Entity, Serializable, Clone
      */
     public void setIncludeQueryId(Long includeQueryId) {
         __modifiedProperties.addPropertyName("includeQueryId");
-        this._includeQueryId = includeQueryId;
+        _includeQueryId = includeQueryId;
     }
 
     /**
@@ -355,7 +355,7 @@ public abstract class BsWhiteIncludeQuery implements Entity, Serializable, Clone
      */
     public void setIncludeQueryVarchar(String includeQueryVarchar) {
         __modifiedProperties.addPropertyName("includeQueryVarchar");
-        this._includeQueryVarchar = includeQueryVarchar;
+        _includeQueryVarchar = includeQueryVarchar;
     }
 
     /**
@@ -372,7 +372,7 @@ public abstract class BsWhiteIncludeQuery implements Entity, Serializable, Clone
      */
     public void setIncludeQueryInteger(Integer includeQueryInteger) {
         __modifiedProperties.addPropertyName("includeQueryInteger");
-        this._includeQueryInteger = includeQueryInteger;
+        _includeQueryInteger = includeQueryInteger;
     }
 
     /**
@@ -389,7 +389,7 @@ public abstract class BsWhiteIncludeQuery implements Entity, Serializable, Clone
      */
     public void setIncludeQueryDate(java.util.Date includeQueryDate) {
         __modifiedProperties.addPropertyName("includeQueryDate");
-        this._includeQueryDate = includeQueryDate;
+        _includeQueryDate = includeQueryDate;
     }
 
     /**
@@ -406,6 +406,6 @@ public abstract class BsWhiteIncludeQuery implements Entity, Serializable, Clone
      */
     public void setIncludeQueryDatetime(java.sql.Timestamp includeQueryDatetime) {
         __modifiedProperties.addPropertyName("includeQueryDatetime");
-        this._includeQueryDatetime = includeQueryDatetime;
+        _includeQueryDatetime = includeQueryDatetime;
     }
 }

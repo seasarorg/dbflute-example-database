@@ -153,7 +153,7 @@ public abstract class BsWhiteImplicitReverseFk implements Entity, Serializable, 
     protected WhiteImplicitReverseFkRef _whiteImplicitReverseFkRefWithImplicitReverseFK;
 
     /**
-     * white_implicit_reverse_fk_ref by my WHITE_IMPLICIT_REVERSE_FK_ID, named 'whiteImplicitReverseFkRefWithImplicitReverseFK'.
+     * [get] white_implicit_reverse_fk_ref by my WHITE_IMPLICIT_REVERSE_FK_ID, named 'whiteImplicitReverseFkRefWithImplicitReverseFK'.
      * @return The entity of foreign property 'whiteImplicitReverseFkRefWithImplicitReverseFK'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public WhiteImplicitReverseFkRef getWhiteImplicitReverseFkRefWithImplicitReverseFK() {
@@ -161,7 +161,7 @@ public abstract class BsWhiteImplicitReverseFk implements Entity, Serializable, 
     }
 
     /**
-     * white_implicit_reverse_fk_ref by my WHITE_IMPLICIT_REVERSE_FK_ID, named 'whiteImplicitReverseFkRefWithImplicitReverseFK'.
+     * [set] white_implicit_reverse_fk_ref by my WHITE_IMPLICIT_REVERSE_FK_ID, named 'whiteImplicitReverseFkRefWithImplicitReverseFK'.
      * @param whiteImplicitReverseFkRefWithImplicitReverseFK The entity of foreign property 'whiteImplicitReverseFkRefWithImplicitReverseFK'. (NullAllowed)
      */
     public void setWhiteImplicitReverseFkRefWithImplicitReverseFK(WhiteImplicitReverseFkRef whiteImplicitReverseFkRefWithImplicitReverseFK) {
@@ -172,7 +172,7 @@ public abstract class BsWhiteImplicitReverseFk implements Entity, Serializable, 
     protected WhiteImplicitReverseFkSuppress _whiteImplicitReverseFkSuppressSuppressImplicitReverseFK;
 
     /**
-     * white_implicit_reverse_fk_suppress by my WHITE_IMPLICIT_REVERSE_FK_ID, named 'whiteImplicitReverseFkSuppressSuppressImplicitReverseFK'.
+     * [get] white_implicit_reverse_fk_suppress by my WHITE_IMPLICIT_REVERSE_FK_ID, named 'whiteImplicitReverseFkSuppressSuppressImplicitReverseFK'.
      * @return The entity of foreign property 'whiteImplicitReverseFkSuppressSuppressImplicitReverseFK'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public WhiteImplicitReverseFkSuppress getWhiteImplicitReverseFkSuppressSuppressImplicitReverseFK() {
@@ -180,7 +180,7 @@ public abstract class BsWhiteImplicitReverseFk implements Entity, Serializable, 
     }
 
     /**
-     * white_implicit_reverse_fk_suppress by my WHITE_IMPLICIT_REVERSE_FK_ID, named 'whiteImplicitReverseFkSuppressSuppressImplicitReverseFK'.
+     * [set] white_implicit_reverse_fk_suppress by my WHITE_IMPLICIT_REVERSE_FK_ID, named 'whiteImplicitReverseFkSuppressSuppressImplicitReverseFK'.
      * @param whiteImplicitReverseFkSuppressSuppressImplicitReverseFK The entity of foreign property 'whiteImplicitReverseFkSuppressSuppressImplicitReverseFK'. (NullAllowed)
      */
     public void setWhiteImplicitReverseFkSuppressSuppressImplicitReverseFK(WhiteImplicitReverseFkSuppress whiteImplicitReverseFkSuppressSuppressImplicitReverseFK) {
@@ -194,7 +194,7 @@ public abstract class BsWhiteImplicitReverseFk implements Entity, Serializable, 
     protected List<WhiteImplicitReverseFkRef> _whiteImplicitReverseFkRefList;
 
     /**
-     * white_implicit_reverse_fk_ref by WHITE_IMPLICIT_REVERSE_FK_ID, named 'whiteImplicitReverseFkRefList'. <br />
+     * [get] white_implicit_reverse_fk_ref by WHITE_IMPLICIT_REVERSE_FK_ID, named 'whiteImplicitReverseFkRefList'. <br />
      * This relation is auto-detected as implicit reverse FK.
      * @return The entity list of referrer property 'whiteImplicitReverseFkRefList'. (NotNull: even if no loading, returns empty list)
      */
@@ -204,7 +204,7 @@ public abstract class BsWhiteImplicitReverseFk implements Entity, Serializable, 
     }
 
     /**
-     * white_implicit_reverse_fk_ref by WHITE_IMPLICIT_REVERSE_FK_ID, named 'whiteImplicitReverseFkRefList'. <br />
+     * [set] white_implicit_reverse_fk_ref by WHITE_IMPLICIT_REVERSE_FK_ID, named 'whiteImplicitReverseFkRefList'. <br />
      * This relation is auto-detected as implicit reverse FK.
      * @param whiteImplicitReverseFkRefList The entity list of referrer property 'whiteImplicitReverseFkRefList'. (NullAllowed)
      */
@@ -392,7 +392,7 @@ public abstract class BsWhiteImplicitReverseFk implements Entity, Serializable, 
      */
     public void setWhiteImplicitReverseFkId(Integer whiteImplicitReverseFkId) {
         __modifiedProperties.addPropertyName("whiteImplicitReverseFkId");
-        this._whiteImplicitReverseFkId = whiteImplicitReverseFkId;
+        _whiteImplicitReverseFkId = whiteImplicitReverseFkId;
     }
 
     /**
@@ -409,6 +409,6 @@ public abstract class BsWhiteImplicitReverseFk implements Entity, Serializable, 
      */
     public void setWhiteImplicitReverseFkName(String whiteImplicitReverseFkName) {
         __modifiedProperties.addPropertyName("whiteImplicitReverseFkName");
-        this._whiteImplicitReverseFkName = whiteImplicitReverseFkName;
+        _whiteImplicitReverseFkName = whiteImplicitReverseFkName;
     }
 }

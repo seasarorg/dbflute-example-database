@@ -164,7 +164,7 @@ public abstract class BsVendorTheLongAndWindingTableAndColumnRef implements Enti
     protected VendorTheLongAndWindingTableAndColumn _vendorTheLongAndWindingTableAndColumn;
 
     /**
-     * vendor_the_long_and_winding_table_and_column by my THE_LONG_AND_WINDING_TABLE_AND_COLUMN_ID, named 'vendorTheLongAndWindingTableAndColumn'.
+     * [get] vendor_the_long_and_winding_table_and_column by my THE_LONG_AND_WINDING_TABLE_AND_COLUMN_ID, named 'vendorTheLongAndWindingTableAndColumn'.
      * @return The entity of foreign property 'vendorTheLongAndWindingTableAndColumn'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public VendorTheLongAndWindingTableAndColumn getVendorTheLongAndWindingTableAndColumn() {
@@ -172,7 +172,7 @@ public abstract class BsVendorTheLongAndWindingTableAndColumnRef implements Enti
     }
 
     /**
-     * vendor_the_long_and_winding_table_and_column by my THE_LONG_AND_WINDING_TABLE_AND_COLUMN_ID, named 'vendorTheLongAndWindingTableAndColumn'.
+     * [set] vendor_the_long_and_winding_table_and_column by my THE_LONG_AND_WINDING_TABLE_AND_COLUMN_ID, named 'vendorTheLongAndWindingTableAndColumn'.
      * @param vendorTheLongAndWindingTableAndColumn The entity of foreign property 'vendorTheLongAndWindingTableAndColumn'. (NullAllowed)
      */
     public void setVendorTheLongAndWindingTableAndColumn(VendorTheLongAndWindingTableAndColumn vendorTheLongAndWindingTableAndColumn) {
@@ -363,7 +363,7 @@ public abstract class BsVendorTheLongAndWindingTableAndColumnRef implements Enti
      */
     public void setTheLongAndWindingTableAndColumnRefId(Long theLongAndWindingTableAndColumnRefId) {
         __modifiedProperties.addPropertyName("theLongAndWindingTableAndColumnRefId");
-        this._theLongAndWindingTableAndColumnRefId = theLongAndWindingTableAndColumnRefId;
+        _theLongAndWindingTableAndColumnRefId = theLongAndWindingTableAndColumnRefId;
     }
 
     /**
@@ -380,7 +380,7 @@ public abstract class BsVendorTheLongAndWindingTableAndColumnRef implements Enti
      */
     public void setTheLongAndWindingTableAndColumnId(Long theLongAndWindingTableAndColumnId) {
         __modifiedProperties.addPropertyName("theLongAndWindingTableAndColumnId");
-        this._theLongAndWindingTableAndColumnId = theLongAndWindingTableAndColumnId;
+        _theLongAndWindingTableAndColumnId = theLongAndWindingTableAndColumnId;
     }
 
     /**
@@ -397,7 +397,7 @@ public abstract class BsVendorTheLongAndWindingTableAndColumnRef implements Enti
      */
     public void setTheLongAndWindingTableAndColumnRefDate(java.util.Date theLongAndWindingTableAndColumnRefDate) {
         __modifiedProperties.addPropertyName("theLongAndWindingTableAndColumnRefDate");
-        this._theLongAndWindingTableAndColumnRefDate = theLongAndWindingTableAndColumnRefDate;
+        _theLongAndWindingTableAndColumnRefDate = theLongAndWindingTableAndColumnRefDate;
     }
 
     /**
@@ -414,6 +414,6 @@ public abstract class BsVendorTheLongAndWindingTableAndColumnRef implements Enti
      */
     public void setShortDate(java.util.Date shortDate) {
         __modifiedProperties.addPropertyName("shortDate");
-        this._shortDate = shortDate;
+        _shortDate = shortDate;
     }
 }

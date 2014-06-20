@@ -163,7 +163,7 @@ public abstract class BsWhiteImplicitConvNumeric implements Entity, Serializable
     protected WhiteImplicitConvInteger _whiteImplicitConvInteger;
 
     /**
-     * white_implicit_conv_integer by my IMPLICIT_CONV_INTEGER_ID, named 'whiteImplicitConvInteger'.
+     * [get] white_implicit_conv_integer by my IMPLICIT_CONV_INTEGER_ID, named 'whiteImplicitConvInteger'.
      * @return The entity of foreign property 'whiteImplicitConvInteger'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public WhiteImplicitConvInteger getWhiteImplicitConvInteger() {
@@ -171,7 +171,7 @@ public abstract class BsWhiteImplicitConvNumeric implements Entity, Serializable
     }
 
     /**
-     * white_implicit_conv_integer by my IMPLICIT_CONV_INTEGER_ID, named 'whiteImplicitConvInteger'.
+     * [set] white_implicit_conv_integer by my IMPLICIT_CONV_INTEGER_ID, named 'whiteImplicitConvInteger'.
      * @param whiteImplicitConvInteger The entity of foreign property 'whiteImplicitConvInteger'. (NullAllowed)
      */
     public void setWhiteImplicitConvInteger(WhiteImplicitConvInteger whiteImplicitConvInteger) {
@@ -182,7 +182,7 @@ public abstract class BsWhiteImplicitConvNumeric implements Entity, Serializable
     protected WhiteImplicitConvString _whiteImplicitConvString;
 
     /**
-     * white_implicit_conv_string by my IMPLICIT_CONV_STRING_ID, named 'whiteImplicitConvString'.
+     * [get] white_implicit_conv_string by my IMPLICIT_CONV_STRING_ID, named 'whiteImplicitConvString'.
      * @return The entity of foreign property 'whiteImplicitConvString'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public WhiteImplicitConvString getWhiteImplicitConvString() {
@@ -190,7 +190,7 @@ public abstract class BsWhiteImplicitConvNumeric implements Entity, Serializable
     }
 
     /**
-     * white_implicit_conv_string by my IMPLICIT_CONV_STRING_ID, named 'whiteImplicitConvString'.
+     * [set] white_implicit_conv_string by my IMPLICIT_CONV_STRING_ID, named 'whiteImplicitConvString'.
      * @param whiteImplicitConvString The entity of foreign property 'whiteImplicitConvString'. (NullAllowed)
      */
     public void setWhiteImplicitConvString(WhiteImplicitConvString whiteImplicitConvString) {
@@ -204,7 +204,7 @@ public abstract class BsWhiteImplicitConvNumeric implements Entity, Serializable
     protected List<WhiteImplicitConvInteger> _whiteImplicitConvIntegerList;
 
     /**
-     * white_implicit_conv_integer by IMPLICIT_CONV_NUMERIC_ID, named 'whiteImplicitConvIntegerList'.
+     * [get] white_implicit_conv_integer by IMPLICIT_CONV_NUMERIC_ID, named 'whiteImplicitConvIntegerList'.
      * @return The entity list of referrer property 'whiteImplicitConvIntegerList'. (NotNull: even if no loading, returns empty list)
      */
     public List<WhiteImplicitConvInteger> getWhiteImplicitConvIntegerList() {
@@ -213,7 +213,7 @@ public abstract class BsWhiteImplicitConvNumeric implements Entity, Serializable
     }
 
     /**
-     * white_implicit_conv_integer by IMPLICIT_CONV_NUMERIC_ID, named 'whiteImplicitConvIntegerList'.
+     * [set] white_implicit_conv_integer by IMPLICIT_CONV_NUMERIC_ID, named 'whiteImplicitConvIntegerList'.
      * @param whiteImplicitConvIntegerList The entity list of referrer property 'whiteImplicitConvIntegerList'. (NullAllowed)
      */
     public void setWhiteImplicitConvIntegerList(List<WhiteImplicitConvInteger> whiteImplicitConvIntegerList) {
@@ -224,7 +224,7 @@ public abstract class BsWhiteImplicitConvNumeric implements Entity, Serializable
     protected List<WhiteImplicitConvString> _whiteImplicitConvStringList;
 
     /**
-     * white_implicit_conv_string by IMPLICIT_CONV_NUMERIC_ID, named 'whiteImplicitConvStringList'.
+     * [get] white_implicit_conv_string by IMPLICIT_CONV_NUMERIC_ID, named 'whiteImplicitConvStringList'.
      * @return The entity list of referrer property 'whiteImplicitConvStringList'. (NotNull: even if no loading, returns empty list)
      */
     public List<WhiteImplicitConvString> getWhiteImplicitConvStringList() {
@@ -233,7 +233,7 @@ public abstract class BsWhiteImplicitConvNumeric implements Entity, Serializable
     }
 
     /**
-     * white_implicit_conv_string by IMPLICIT_CONV_NUMERIC_ID, named 'whiteImplicitConvStringList'.
+     * [set] white_implicit_conv_string by IMPLICIT_CONV_NUMERIC_ID, named 'whiteImplicitConvStringList'.
      * @param whiteImplicitConvStringList The entity list of referrer property 'whiteImplicitConvStringList'. (NullAllowed)
      */
     public void setWhiteImplicitConvStringList(List<WhiteImplicitConvString> whiteImplicitConvStringList) {
@@ -426,7 +426,7 @@ public abstract class BsWhiteImplicitConvNumeric implements Entity, Serializable
      */
     public void setImplicitConvNumericId(java.math.BigDecimal implicitConvNumericId) {
         __modifiedProperties.addPropertyName("implicitConvNumericId");
-        this._implicitConvNumericId = implicitConvNumericId;
+        _implicitConvNumericId = implicitConvNumericId;
     }
 
     /**
@@ -443,7 +443,7 @@ public abstract class BsWhiteImplicitConvNumeric implements Entity, Serializable
      */
     public void setImplicitConvIntegerId(java.math.BigDecimal implicitConvIntegerId) {
         __modifiedProperties.addPropertyName("implicitConvIntegerId");
-        this._implicitConvIntegerId = implicitConvIntegerId;
+        _implicitConvIntegerId = implicitConvIntegerId;
     }
 
     /**
@@ -460,7 +460,7 @@ public abstract class BsWhiteImplicitConvNumeric implements Entity, Serializable
      */
     public void setImplicitConvStringId(java.math.BigDecimal implicitConvStringId) {
         __modifiedProperties.addPropertyName("implicitConvStringId");
-        this._implicitConvStringId = implicitConvStringId;
+        _implicitConvStringId = implicitConvStringId;
     }
 
     /**
@@ -477,6 +477,6 @@ public abstract class BsWhiteImplicitConvNumeric implements Entity, Serializable
      */
     public void setImplicitConvName(String implicitConvName) {
         __modifiedProperties.addPropertyName("implicitConvName");
-        this._implicitConvName = implicitConvName;
+        _implicitConvName = implicitConvName;
     }
 }

@@ -153,7 +153,7 @@ public abstract class BsWhiteSelfReferenceRefOne implements Entity, Serializable
     protected WhiteSelfReference _whiteSelfReference;
 
     /**
-     * white_self_reference by my SELF_REFERENCE_ID, named 'whiteSelfReference'.
+     * [get] white_self_reference by my SELF_REFERENCE_ID, named 'whiteSelfReference'.
      * @return The entity of foreign property 'whiteSelfReference'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public WhiteSelfReference getWhiteSelfReference() {
@@ -161,7 +161,7 @@ public abstract class BsWhiteSelfReferenceRefOne implements Entity, Serializable
     }
 
     /**
-     * white_self_reference by my SELF_REFERENCE_ID, named 'whiteSelfReference'.
+     * [set] white_self_reference by my SELF_REFERENCE_ID, named 'whiteSelfReference'.
      * @param whiteSelfReference The entity of foreign property 'whiteSelfReference'. (NullAllowed)
      */
     public void setWhiteSelfReference(WhiteSelfReference whiteSelfReference) {
@@ -172,7 +172,7 @@ public abstract class BsWhiteSelfReferenceRefOne implements Entity, Serializable
     protected WhiteSelfReference _whiteSelfReferenceAsDirectParent;
 
     /**
-     * white_self_reference by my SELF_REFERENCE_ID, named 'whiteSelfReferenceAsDirectParent'.
+     * [get] white_self_reference by my SELF_REFERENCE_ID, named 'whiteSelfReferenceAsDirectParent'.
      * @return The entity of foreign property 'whiteSelfReferenceAsDirectParent'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public WhiteSelfReference getWhiteSelfReferenceAsDirectParent() {
@@ -180,7 +180,7 @@ public abstract class BsWhiteSelfReferenceRefOne implements Entity, Serializable
     }
 
     /**
-     * white_self_reference by my SELF_REFERENCE_ID, named 'whiteSelfReferenceAsDirectParent'.
+     * [set] white_self_reference by my SELF_REFERENCE_ID, named 'whiteSelfReferenceAsDirectParent'.
      * @param whiteSelfReferenceAsDirectParent The entity of foreign property 'whiteSelfReferenceAsDirectParent'. (NullAllowed)
      */
     public void setWhiteSelfReferenceAsDirectParent(WhiteSelfReference whiteSelfReferenceAsDirectParent) {
@@ -194,7 +194,7 @@ public abstract class BsWhiteSelfReferenceRefOne implements Entity, Serializable
     protected List<WhiteSelfReference> _whiteSelfReferenceByParentIdList;
 
     /**
-     * white_self_reference by PARENT_ID, named 'whiteSelfReferenceByParentIdList'. <br />
+     * [get] white_self_reference by PARENT_ID, named 'whiteSelfReferenceByParentIdList'. <br />
      * This relation is auto-detected as implicit reverse FK.
      * @return The entity list of referrer property 'whiteSelfReferenceByParentIdList'. (NotNull: even if no loading, returns empty list)
      */
@@ -204,7 +204,7 @@ public abstract class BsWhiteSelfReferenceRefOne implements Entity, Serializable
     }
 
     /**
-     * white_self_reference by PARENT_ID, named 'whiteSelfReferenceByParentIdList'. <br />
+     * [set] white_self_reference by PARENT_ID, named 'whiteSelfReferenceByParentIdList'. <br />
      * This relation is auto-detected as implicit reverse FK.
      * @param whiteSelfReferenceByParentIdList The entity list of referrer property 'whiteSelfReferenceByParentIdList'. (NullAllowed)
      */
@@ -392,7 +392,7 @@ public abstract class BsWhiteSelfReferenceRefOne implements Entity, Serializable
      */
     public void setSelfReferenceId(Long selfReferenceId) {
         __modifiedProperties.addPropertyName("selfReferenceId");
-        this._selfReferenceId = selfReferenceId;
+        _selfReferenceId = selfReferenceId;
     }
 
     /**
@@ -409,6 +409,6 @@ public abstract class BsWhiteSelfReferenceRefOne implements Entity, Serializable
      */
     public void setSelfReferenceRefOneName(String selfReferenceRefOneName) {
         __modifiedProperties.addPropertyName("selfReferenceRefOneName");
-        this._selfReferenceRefOneName = selfReferenceRefOneName;
+        _selfReferenceRefOneName = selfReferenceRefOneName;
     }
 }

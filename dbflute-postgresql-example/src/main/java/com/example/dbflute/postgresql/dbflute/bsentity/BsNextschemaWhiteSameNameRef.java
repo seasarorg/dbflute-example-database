@@ -144,7 +144,7 @@ public abstract class BsNextschemaWhiteSameNameRef implements Entity, Serializab
     protected NextschemaWhiteSameName _whiteSameName;
 
     /**
-     * nextschema.white_same_name by my same_name_id, named 'whiteSameName'.
+     * [get] nextschema.white_same_name by my same_name_id, named 'whiteSameName'.
      * @return The entity of foreign property 'whiteSameName'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public NextschemaWhiteSameName getWhiteSameName() {
@@ -152,7 +152,7 @@ public abstract class BsNextschemaWhiteSameNameRef implements Entity, Serializab
     }
 
     /**
-     * nextschema.white_same_name by my same_name_id, named 'whiteSameName'.
+     * [set] nextschema.white_same_name by my same_name_id, named 'whiteSameName'.
      * @param whiteSameName The entity of foreign property 'whiteSameName'. (NullAllowed)
      */
     public void setWhiteSameName(NextschemaWhiteSameName whiteSameName) {
@@ -342,7 +342,7 @@ public abstract class BsNextschemaWhiteSameNameRef implements Entity, Serializab
      */
     public void setSameNameRefId(Long sameNameRefId) {
         __modifiedProperties.addPropertyName("sameNameRefId");
-        this._sameNameRefId = sameNameRefId;
+        _sameNameRefId = sameNameRefId;
     }
 
     /**
@@ -359,7 +359,7 @@ public abstract class BsNextschemaWhiteSameNameRef implements Entity, Serializab
      */
     public void setSameNameId(Integer sameNameId) {
         __modifiedProperties.addPropertyName("sameNameId");
-        this._sameNameId = sameNameId;
+        _sameNameId = sameNameId;
     }
 
     /**
@@ -376,6 +376,6 @@ public abstract class BsNextschemaWhiteSameNameRef implements Entity, Serializab
      */
     public void setNextRefDate(java.util.Date nextRefDate) {
         __modifiedProperties.addPropertyName("nextRefDate");
-        this._nextRefDate = nextRefDate;
+        _nextRefDate = nextRefDate;
     }
 }

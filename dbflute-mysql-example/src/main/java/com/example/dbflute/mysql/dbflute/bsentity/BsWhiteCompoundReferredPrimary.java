@@ -156,7 +156,7 @@ public abstract class BsWhiteCompoundReferredPrimary implements Entity, Serializ
     protected List<WhiteCompoundPk> _whiteCompoundPkList;
 
     /**
-     * white_compound_pk by PK_SECOND_ID, named 'whiteCompoundPkList'.
+     * [get] white_compound_pk by PK_SECOND_ID, named 'whiteCompoundPkList'.
      * @return The entity list of referrer property 'whiteCompoundPkList'. (NotNull: even if no loading, returns empty list)
      */
     public List<WhiteCompoundPk> getWhiteCompoundPkList() {
@@ -165,7 +165,7 @@ public abstract class BsWhiteCompoundReferredPrimary implements Entity, Serializ
     }
 
     /**
-     * white_compound_pk by PK_SECOND_ID, named 'whiteCompoundPkList'.
+     * [set] white_compound_pk by PK_SECOND_ID, named 'whiteCompoundPkList'.
      * @param whiteCompoundPkList The entity list of referrer property 'whiteCompoundPkList'. (NullAllowed)
      */
     public void setWhiteCompoundPkList(List<WhiteCompoundPk> whiteCompoundPkList) {
@@ -346,7 +346,7 @@ public abstract class BsWhiteCompoundReferredPrimary implements Entity, Serializ
      */
     public void setReferredId(Integer referredId) {
         __modifiedProperties.addPropertyName("referredId");
-        this._referredId = referredId;
+        _referredId = referredId;
     }
 
     /**
@@ -363,6 +363,6 @@ public abstract class BsWhiteCompoundReferredPrimary implements Entity, Serializ
      */
     public void setReferredName(String referredName) {
         __modifiedProperties.addPropertyName("referredName");
-        this._referredName = referredName;
+        _referredName = referredName;
     }
 }

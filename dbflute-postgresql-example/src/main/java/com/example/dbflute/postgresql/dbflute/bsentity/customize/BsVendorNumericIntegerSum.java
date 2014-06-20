@@ -290,6 +290,6 @@ public abstract class BsVendorNumericIntegerSum implements Entity, Serializable,
      */
     public void setIntegerNonDigitSum(java.math.BigDecimal integerNonDigitSum) {
         __modifiedProperties.addPropertyName("integerNonDigitSum");
-        this._integerNonDigitSum = integerNonDigitSum;
+        _integerNonDigitSum = integerNonDigitSum;
     }
 }

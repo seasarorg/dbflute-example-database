@@ -159,7 +159,7 @@ public class WhiteBinaryDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public WhiteBinary newEntity() { return new WhiteBinary(); }
     public WhiteBinary newMyEntity() { return new WhiteBinary(); }
 
     // ===================================================================================

@@ -157,7 +157,7 @@ public class VendorUnsupportedAliasDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public VendorUnsupportedAlias newEntity() { return new VendorUnsupportedAlias(); }
     public VendorUnsupportedAlias newMyEntity() { return new VendorUnsupportedAlias(); }
 
     // ===================================================================================

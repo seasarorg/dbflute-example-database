@@ -410,7 +410,7 @@ public abstract class BsWhiteVariantRelationMasterCorge implements Entity, Seria
      */
     public void setMasterCorgeId(Long masterCorgeId) {
         __modifiedProperties.addPropertyName("masterCorgeId");
-        this._masterCorgeId = masterCorgeId;
+        _masterCorgeId = masterCorgeId;
     }
 
     /**
@@ -427,7 +427,7 @@ public abstract class BsWhiteVariantRelationMasterCorge implements Entity, Seria
      */
     public void setMasterCorgeName(String masterCorgeName) {
         __modifiedProperties.addPropertyName("masterCorgeName");
-        this._masterCorgeName = masterCorgeName;
+        _masterCorgeName = masterCorgeName;
     }
 
     /**
@@ -445,7 +445,7 @@ public abstract class BsWhiteVariantRelationMasterCorge implements Entity, Seria
     protected void setCorgeTypeCode(String corgeTypeCode) {
         checkImplicitSet("CORGE_TYPE_CODE", CDef.DefMeta.VariantRelationQuxType, corgeTypeCode);
         __modifiedProperties.addPropertyName("corgeTypeCode");
-        this._corgeTypeCode = corgeTypeCode;
+        _corgeTypeCode = corgeTypeCode;
     }
 
     protected void checkImplicitSet(String columnDbName, CDef.DefMeta meta, Object value) {

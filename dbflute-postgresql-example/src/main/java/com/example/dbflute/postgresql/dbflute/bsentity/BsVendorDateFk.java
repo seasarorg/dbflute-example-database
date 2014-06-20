@@ -139,7 +139,7 @@ public abstract class BsVendorDateFk implements Entity, Serializable, Cloneable 
     protected VendorDatePk _vendorDatePk;
 
     /**
-     * vendor_date_pk by my bar_date, named 'vendorDatePk'.
+     * [get] vendor_date_pk by my bar_date, named 'vendorDatePk'.
      * @return The entity of foreign property 'vendorDatePk'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public VendorDatePk getVendorDatePk() {
@@ -147,7 +147,7 @@ public abstract class BsVendorDateFk implements Entity, Serializable, Cloneable 
     }
 
     /**
-     * vendor_date_pk by my bar_date, named 'vendorDatePk'.
+     * [set] vendor_date_pk by my bar_date, named 'vendorDatePk'.
      * @param vendorDatePk The entity of foreign property 'vendorDatePk'. (NullAllowed)
      */
     public void setVendorDatePk(VendorDatePk vendorDatePk) {
@@ -336,7 +336,7 @@ public abstract class BsVendorDateFk implements Entity, Serializable, Cloneable 
      */
     public void setBarId(Integer barId) {
         __modifiedProperties.addPropertyName("barId");
-        this._barId = barId;
+        _barId = barId;
     }
 
     /**
@@ -353,6 +353,6 @@ public abstract class BsVendorDateFk implements Entity, Serializable, Cloneable 
      */
     public void setBarDate(java.util.Date barDate) {
         __modifiedProperties.addPropertyName("barDate");
-        this._barDate = barDate;
+        _barDate = barDate;
     }
 }

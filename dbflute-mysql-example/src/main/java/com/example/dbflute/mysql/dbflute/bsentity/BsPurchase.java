@@ -314,7 +314,7 @@ public abstract class BsPurchase implements EntityDefinedCommonColumn, Serializa
     protected Member _member;
 
     /**
-     * (会員)member by my MEMBER_ID, named 'member'.
+     * [get] (会員)member by my MEMBER_ID, named 'member'.
      * @return The entity of foreign property 'member'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public Member getMember() {
@@ -322,7 +322,7 @@ public abstract class BsPurchase implements EntityDefinedCommonColumn, Serializa
     }
 
     /**
-     * (会員)member by my MEMBER_ID, named 'member'.
+     * [set] (会員)member by my MEMBER_ID, named 'member'.
      * @param member The entity of foreign property 'member'. (NullAllowed)
      */
     public void setMember(Member member) {
@@ -333,7 +333,7 @@ public abstract class BsPurchase implements EntityDefinedCommonColumn, Serializa
     protected Product _product;
 
     /**
-     * (商品)product by my PRODUCT_ID, named 'product'.
+     * [get] (商品)product by my PRODUCT_ID, named 'product'.
      * @return The entity of foreign property 'product'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public Product getProduct() {
@@ -341,7 +341,7 @@ public abstract class BsPurchase implements EntityDefinedCommonColumn, Serializa
     }
 
     /**
-     * (商品)product by my PRODUCT_ID, named 'product'.
+     * [set] (商品)product by my PRODUCT_ID, named 'product'.
      * @param product The entity of foreign property 'product'. (NullAllowed)
      */
     public void setProduct(Product product) {
@@ -352,7 +352,7 @@ public abstract class BsPurchase implements EntityDefinedCommonColumn, Serializa
     protected SummaryProduct _summaryProduct;
 
     /**
-     * (VIEW)summary_product by my PRODUCT_ID, named 'summaryProduct'.
+     * [get] (VIEW)summary_product by my PRODUCT_ID, named 'summaryProduct'.
      * @return The entity of foreign property 'summaryProduct'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public SummaryProduct getSummaryProduct() {
@@ -360,7 +360,7 @@ public abstract class BsPurchase implements EntityDefinedCommonColumn, Serializa
     }
 
     /**
-     * (VIEW)summary_product by my PRODUCT_ID, named 'summaryProduct'.
+     * [set] (VIEW)summary_product by my PRODUCT_ID, named 'summaryProduct'.
      * @param summaryProduct The entity of foreign property 'summaryProduct'. (NullAllowed)
      */
     public void setSummaryProduct(SummaryProduct summaryProduct) {
@@ -371,7 +371,7 @@ public abstract class BsPurchase implements EntityDefinedCommonColumn, Serializa
     protected SummaryWithdrawal _summaryWithdrawal;
 
     /**
-     * (VIEW)summary_withdrawal by my MEMBER_ID, named 'summaryWithdrawal'.
+     * [get] (VIEW)summary_withdrawal by my MEMBER_ID, named 'summaryWithdrawal'.
      * @return The entity of foreign property 'summaryWithdrawal'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public SummaryWithdrawal getSummaryWithdrawal() {
@@ -379,7 +379,7 @@ public abstract class BsPurchase implements EntityDefinedCommonColumn, Serializa
     }
 
     /**
-     * (VIEW)summary_withdrawal by my MEMBER_ID, named 'summaryWithdrawal'.
+     * [set] (VIEW)summary_withdrawal by my MEMBER_ID, named 'summaryWithdrawal'.
      * @param summaryWithdrawal The entity of foreign property 'summaryWithdrawal'. (NullAllowed)
      */
     public void setSummaryWithdrawal(SummaryWithdrawal summaryWithdrawal) {
@@ -390,7 +390,7 @@ public abstract class BsPurchase implements EntityDefinedCommonColumn, Serializa
     protected WhiteNoPkRelation _whiteNoPkRelation;
 
     /**
-     * (VIEW)white_no_pk_relation by my PRODUCT_ID, named 'whiteNoPkRelation'.
+     * [get] (VIEW)white_no_pk_relation by my PRODUCT_ID, named 'whiteNoPkRelation'.
      * @return The entity of foreign property 'whiteNoPkRelation'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public WhiteNoPkRelation getWhiteNoPkRelation() {
@@ -398,7 +398,7 @@ public abstract class BsPurchase implements EntityDefinedCommonColumn, Serializa
     }
 
     /**
-     * (VIEW)white_no_pk_relation by my PRODUCT_ID, named 'whiteNoPkRelation'.
+     * [set] (VIEW)white_no_pk_relation by my PRODUCT_ID, named 'whiteNoPkRelation'.
      * @param whiteNoPkRelation The entity of foreign property 'whiteNoPkRelation'. (NullAllowed)
      */
     public void setWhiteNoPkRelation(WhiteNoPkRelation whiteNoPkRelation) {
@@ -409,7 +409,7 @@ public abstract class BsPurchase implements EntityDefinedCommonColumn, Serializa
     protected Purchase _purchaseSelf;
 
     /**
-     * (購入)purchase by my PURCHASE_ID, named 'purchaseSelf'.
+     * [get] (購入)purchase by my PURCHASE_ID, named 'purchaseSelf'.
      * @return The entity of foreign property 'purchaseSelf'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public Purchase getPurchaseSelf() {
@@ -417,7 +417,7 @@ public abstract class BsPurchase implements EntityDefinedCommonColumn, Serializa
     }
 
     /**
-     * (購入)purchase by my PURCHASE_ID, named 'purchaseSelf'.
+     * [set] (購入)purchase by my PURCHASE_ID, named 'purchaseSelf'.
      * @param purchaseSelf The entity of foreign property 'purchaseSelf'. (NullAllowed)
      */
     public void setPurchaseSelf(Purchase purchaseSelf) {
@@ -428,7 +428,7 @@ public abstract class BsPurchase implements EntityDefinedCommonColumn, Serializa
     protected MemberAddress _memberAddressAsSkipRelation;
 
     /**
-     * (会員住所情報)member_address by my MEMBER_ID, named 'memberAddressAsSkipRelation'.
+     * [get] (会員住所情報)member_address by my MEMBER_ID, named 'memberAddressAsSkipRelation'.
      * @return The entity of foreign property 'memberAddressAsSkipRelation'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public MemberAddress getMemberAddressAsSkipRelation() {
@@ -436,7 +436,7 @@ public abstract class BsPurchase implements EntityDefinedCommonColumn, Serializa
     }
 
     /**
-     * (会員住所情報)member_address by my MEMBER_ID, named 'memberAddressAsSkipRelation'.
+     * [set] (会員住所情報)member_address by my MEMBER_ID, named 'memberAddressAsSkipRelation'.
      * @param memberAddressAsSkipRelation The entity of foreign property 'memberAddressAsSkipRelation'. (NullAllowed)
      */
     public void setMemberAddressAsSkipRelation(MemberAddress memberAddressAsSkipRelation) {
@@ -447,7 +447,7 @@ public abstract class BsPurchase implements EntityDefinedCommonColumn, Serializa
     protected WhitePurchaseReferrer _whitePurchaseReferrerAsOne;
 
     /**
-     * white_purchase_referrer by PURCHASE_REFERRER_ID, named 'whitePurchaseReferrerAsOne'.
+     * [get] white_purchase_referrer by PURCHASE_REFERRER_ID, named 'whitePurchaseReferrerAsOne'.
      * @return the entity of foreign property(referrer-as-one) 'whitePurchaseReferrerAsOne'. (NullAllowed: when e.g. no data, no setupSelect)
      */
     public WhitePurchaseReferrer getWhitePurchaseReferrerAsOne() {
@@ -455,7 +455,7 @@ public abstract class BsPurchase implements EntityDefinedCommonColumn, Serializa
     }
 
     /**
-     * white_purchase_referrer by PURCHASE_REFERRER_ID, named 'whitePurchaseReferrerAsOne'.
+     * [set] white_purchase_referrer by PURCHASE_REFERRER_ID, named 'whitePurchaseReferrerAsOne'.
      * @param whitePurchaseReferrerAsOne The entity of foreign property(referrer-as-one) 'whitePurchaseReferrerAsOne'. (NullAllowed)
      */
     public void setWhitePurchaseReferrerAsOne(WhitePurchaseReferrer whitePurchaseReferrerAsOne) {
@@ -466,7 +466,7 @@ public abstract class BsPurchase implements EntityDefinedCommonColumn, Serializa
     protected Purchase _purchaseSelfAsOne;
 
     /**
-     * (購入)purchase by PURCHASE_ID, named 'purchaseSelfAsOne'.
+     * [get] (購入)purchase by PURCHASE_ID, named 'purchaseSelfAsOne'.
      * @return the entity of foreign property(referrer-as-one) 'purchaseSelfAsOne'. (NullAllowed: when e.g. no data, no setupSelect)
      */
     public Purchase getPurchaseSelfAsOne() {
@@ -474,7 +474,7 @@ public abstract class BsPurchase implements EntityDefinedCommonColumn, Serializa
     }
 
     /**
-     * (購入)purchase by PURCHASE_ID, named 'purchaseSelfAsOne'.
+     * [set] (購入)purchase by PURCHASE_ID, named 'purchaseSelfAsOne'.
      * @param purchaseSelfAsOne The entity of foreign property(referrer-as-one) 'purchaseSelfAsOne'. (NullAllowed)
      */
     public void setPurchaseSelfAsOne(Purchase purchaseSelfAsOne) {
@@ -488,7 +488,7 @@ public abstract class BsPurchase implements EntityDefinedCommonColumn, Serializa
     protected List<PurchasePayment> _purchasePaymentList;
 
     /**
-     * (購入支払)purchase_payment by PURCHASE_ID, named 'purchasePaymentList'.
+     * [get] (購入支払)purchase_payment by PURCHASE_ID, named 'purchasePaymentList'.
      * @return The entity list of referrer property 'purchasePaymentList'. (NotNull: even if no loading, returns empty list)
      */
     public List<PurchasePayment> getPurchasePaymentList() {
@@ -497,7 +497,7 @@ public abstract class BsPurchase implements EntityDefinedCommonColumn, Serializa
     }
 
     /**
-     * (購入支払)purchase_payment by PURCHASE_ID, named 'purchasePaymentList'.
+     * [set] (購入支払)purchase_payment by PURCHASE_ID, named 'purchasePaymentList'.
      * @param purchasePaymentList The entity list of referrer property 'purchasePaymentList'. (NullAllowed)
      */
     public void setPurchasePaymentList(List<PurchasePayment> purchasePaymentList) {
@@ -741,7 +741,7 @@ public abstract class BsPurchase implements EntityDefinedCommonColumn, Serializa
      */
     public void setPurchaseId(Long purchaseId) {
         __modifiedProperties.addPropertyName("purchaseId");
-        this._purchaseId = purchaseId;
+        _purchaseId = purchaseId;
     }
 
     /**
@@ -762,7 +762,7 @@ public abstract class BsPurchase implements EntityDefinedCommonColumn, Serializa
      */
     public void setMemberId(Integer memberId) {
         __modifiedProperties.addPropertyName("memberId");
-        this._memberId = memberId;
+        _memberId = memberId;
     }
 
     /**
@@ -781,7 +781,7 @@ public abstract class BsPurchase implements EntityDefinedCommonColumn, Serializa
      */
     public void setProductId(Integer productId) {
         __modifiedProperties.addPropertyName("productId");
-        this._productId = productId;
+        _productId = productId;
     }
 
     /**
@@ -800,7 +800,7 @@ public abstract class BsPurchase implements EntityDefinedCommonColumn, Serializa
      */
     public void setPurchaseDatetime(java.sql.Timestamp purchaseDatetime) {
         __modifiedProperties.addPropertyName("purchaseDatetime");
-        this._purchaseDatetime = purchaseDatetime;
+        _purchaseDatetime = purchaseDatetime;
     }
 
     /**
@@ -819,7 +819,7 @@ public abstract class BsPurchase implements EntityDefinedCommonColumn, Serializa
      */
     public void setPurchaseCount(Integer purchaseCount) {
         __modifiedProperties.addPropertyName("purchaseCount");
-        this._purchaseCount = purchaseCount;
+        _purchaseCount = purchaseCount;
     }
 
     /**
@@ -842,7 +842,7 @@ public abstract class BsPurchase implements EntityDefinedCommonColumn, Serializa
      */
     public void setPurchasePrice(Integer purchasePrice) {
         __modifiedProperties.addPropertyName("purchasePrice");
-        this._purchasePrice = purchasePrice;
+        _purchasePrice = purchasePrice;
     }
 
     /**
@@ -862,7 +862,7 @@ public abstract class BsPurchase implements EntityDefinedCommonColumn, Serializa
     protected void setPaymentCompleteFlg(Integer paymentCompleteFlg) {
         checkImplicitSet("PAYMENT_COMPLETE_FLG", CDef.DefMeta.Flg, paymentCompleteFlg);
         __modifiedProperties.addPropertyName("paymentCompleteFlg");
-        this._paymentCompleteFlg = paymentCompleteFlg;
+        _paymentCompleteFlg = paymentCompleteFlg;
     }
 
     /**
@@ -879,7 +879,7 @@ public abstract class BsPurchase implements EntityDefinedCommonColumn, Serializa
      */
     public void setRegisterDatetime(java.sql.Timestamp registerDatetime) {
         __modifiedProperties.addPropertyName("registerDatetime");
-        this._registerDatetime = registerDatetime;
+        _registerDatetime = registerDatetime;
     }
 
     /**
@@ -896,7 +896,7 @@ public abstract class BsPurchase implements EntityDefinedCommonColumn, Serializa
      */
     public void setRegisterUser(String registerUser) {
         __modifiedProperties.addPropertyName("registerUser");
-        this._registerUser = registerUser;
+        _registerUser = registerUser;
     }
 
     /**
@@ -913,7 +913,7 @@ public abstract class BsPurchase implements EntityDefinedCommonColumn, Serializa
      */
     public void setUpdateDatetime(java.sql.Timestamp updateDatetime) {
         __modifiedProperties.addPropertyName("updateDatetime");
-        this._updateDatetime = updateDatetime;
+        _updateDatetime = updateDatetime;
     }
 
     /**
@@ -930,7 +930,7 @@ public abstract class BsPurchase implements EntityDefinedCommonColumn, Serializa
      */
     public void setUpdateUser(String updateUser) {
         __modifiedProperties.addPropertyName("updateUser");
-        this._updateUser = updateUser;
+        _updateUser = updateUser;
     }
 
     /**
@@ -947,7 +947,7 @@ public abstract class BsPurchase implements EntityDefinedCommonColumn, Serializa
      */
     public void setVersionNo(Long versionNo) {
         __modifiedProperties.addPropertyName("versionNo");
-        this._versionNo = versionNo;
+        _versionNo = versionNo;
     }
 
     protected void checkImplicitSet(String columnDbName, CDef.DefMeta meta, Object value) {

@@ -163,7 +163,7 @@ public abstract class BsWhiteSuppressJoinSqMany implements Entity, Serializable,
     protected WhiteSuppressJoinSqManyOne _whiteSuppressJoinSqManyOne;
 
     /**
-     * white_suppress_join_sq_many_one by my MANY_ONE_ID, named 'whiteSuppressJoinSqManyOne'.
+     * [get] white_suppress_join_sq_many_one by my MANY_ONE_ID, named 'whiteSuppressJoinSqManyOne'.
      * @return The entity of foreign property 'whiteSuppressJoinSqManyOne'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public WhiteSuppressJoinSqManyOne getWhiteSuppressJoinSqManyOne() {
@@ -171,7 +171,7 @@ public abstract class BsWhiteSuppressJoinSqMany implements Entity, Serializable,
     }
 
     /**
-     * white_suppress_join_sq_many_one by my MANY_ONE_ID, named 'whiteSuppressJoinSqManyOne'.
+     * [set] white_suppress_join_sq_many_one by my MANY_ONE_ID, named 'whiteSuppressJoinSqManyOne'.
      * @param whiteSuppressJoinSqManyOne The entity of foreign property 'whiteSuppressJoinSqManyOne'. (NullAllowed)
      */
     public void setWhiteSuppressJoinSqManyOne(WhiteSuppressJoinSqManyOne whiteSuppressJoinSqManyOne) {
@@ -182,7 +182,7 @@ public abstract class BsWhiteSuppressJoinSqMany implements Entity, Serializable,
     protected WhiteSuppressJoinSq _whiteSuppressJoinSq;
 
     /**
-     * white_suppress_join_sq by my SUPPRESS_JOIN_SQ_ID, named 'whiteSuppressJoinSq'.
+     * [get] white_suppress_join_sq by my SUPPRESS_JOIN_SQ_ID, named 'whiteSuppressJoinSq'.
      * @return The entity of foreign property 'whiteSuppressJoinSq'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public WhiteSuppressJoinSq getWhiteSuppressJoinSq() {
@@ -190,7 +190,7 @@ public abstract class BsWhiteSuppressJoinSqMany implements Entity, Serializable,
     }
 
     /**
-     * white_suppress_join_sq by my SUPPRESS_JOIN_SQ_ID, named 'whiteSuppressJoinSq'.
+     * [set] white_suppress_join_sq by my SUPPRESS_JOIN_SQ_ID, named 'whiteSuppressJoinSq'.
      * @param whiteSuppressJoinSq The entity of foreign property 'whiteSuppressJoinSq'. (NullAllowed)
      */
     public void setWhiteSuppressJoinSq(WhiteSuppressJoinSq whiteSuppressJoinSq) {
@@ -378,7 +378,7 @@ public abstract class BsWhiteSuppressJoinSqMany implements Entity, Serializable,
      */
     public void setManyId(Integer manyId) {
         __modifiedProperties.addPropertyName("manyId");
-        this._manyId = manyId;
+        _manyId = manyId;
     }
 
     /**
@@ -395,7 +395,7 @@ public abstract class BsWhiteSuppressJoinSqMany implements Entity, Serializable,
      */
     public void setManyName(String manyName) {
         __modifiedProperties.addPropertyName("manyName");
-        this._manyName = manyName;
+        _manyName = manyName;
     }
 
     /**
@@ -412,7 +412,7 @@ public abstract class BsWhiteSuppressJoinSqMany implements Entity, Serializable,
      */
     public void setSuppressJoinSqId(Integer suppressJoinSqId) {
         __modifiedProperties.addPropertyName("suppressJoinSqId");
-        this._suppressJoinSqId = suppressJoinSqId;
+        _suppressJoinSqId = suppressJoinSqId;
     }
 
     /**
@@ -429,6 +429,6 @@ public abstract class BsWhiteSuppressJoinSqMany implements Entity, Serializable,
      */
     public void setManyOneId(Integer manyOneId) {
         __modifiedProperties.addPropertyName("manyOneId");
-        this._manyOneId = manyOneId;
+        _manyOneId = manyOneId;
     }
 }

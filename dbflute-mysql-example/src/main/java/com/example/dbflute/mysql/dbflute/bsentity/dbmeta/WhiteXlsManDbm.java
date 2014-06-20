@@ -159,7 +159,7 @@ public class WhiteXlsManDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public WhiteXlsMan newEntity() { return new WhiteXlsMan(); }
     public WhiteXlsMan newMyEntity() { return new WhiteXlsMan(); }
 
     // ===================================================================================

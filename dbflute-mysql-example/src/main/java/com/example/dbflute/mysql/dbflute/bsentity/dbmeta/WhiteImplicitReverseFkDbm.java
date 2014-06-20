@@ -191,7 +191,7 @@ public class WhiteImplicitReverseFkDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public WhiteImplicitReverseFk newEntity() { return new WhiteImplicitReverseFk(); }
     public WhiteImplicitReverseFk newMyEntity() { return new WhiteImplicitReverseFk(); }
 
     // ===================================================================================

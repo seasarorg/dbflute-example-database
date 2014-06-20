@@ -168,7 +168,7 @@ public abstract class BsWhiteCompoundPkRefNest implements Entity, Serializable, 
     protected WhiteCompoundPkRef _whiteCompoundPkRefByQuxMultipleId;
 
     /**
-     * white_compound_pk_ref by my BAR_MULTIPLE_ID, QUX_MULTIPLE_ID, named 'whiteCompoundPkRefByQuxMultipleId'.
+     * [get] white_compound_pk_ref by my BAR_MULTIPLE_ID, QUX_MULTIPLE_ID, named 'whiteCompoundPkRefByQuxMultipleId'.
      * @return The entity of foreign property 'whiteCompoundPkRefByQuxMultipleId'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public WhiteCompoundPkRef getWhiteCompoundPkRefByQuxMultipleId() {
@@ -176,7 +176,7 @@ public abstract class BsWhiteCompoundPkRefNest implements Entity, Serializable, 
     }
 
     /**
-     * white_compound_pk_ref by my BAR_MULTIPLE_ID, QUX_MULTIPLE_ID, named 'whiteCompoundPkRefByQuxMultipleId'.
+     * [set] white_compound_pk_ref by my BAR_MULTIPLE_ID, QUX_MULTIPLE_ID, named 'whiteCompoundPkRefByQuxMultipleId'.
      * @param whiteCompoundPkRefByQuxMultipleId The entity of foreign property 'whiteCompoundPkRefByQuxMultipleId'. (NullAllowed)
      */
     public void setWhiteCompoundPkRefByQuxMultipleId(WhiteCompoundPkRef whiteCompoundPkRefByQuxMultipleId) {
@@ -187,7 +187,7 @@ public abstract class BsWhiteCompoundPkRefNest implements Entity, Serializable, 
     protected WhiteCompoundPkRef _whiteCompoundPkRefByFooMultipleId;
 
     /**
-     * white_compound_pk_ref by my FOO_MULTIPLE_ID, BAR_MULTIPLE_ID, named 'whiteCompoundPkRefByFooMultipleId'.
+     * [get] white_compound_pk_ref by my FOO_MULTIPLE_ID, BAR_MULTIPLE_ID, named 'whiteCompoundPkRefByFooMultipleId'.
      * @return The entity of foreign property 'whiteCompoundPkRefByFooMultipleId'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public WhiteCompoundPkRef getWhiteCompoundPkRefByFooMultipleId() {
@@ -195,7 +195,7 @@ public abstract class BsWhiteCompoundPkRefNest implements Entity, Serializable, 
     }
 
     /**
-     * white_compound_pk_ref by my FOO_MULTIPLE_ID, BAR_MULTIPLE_ID, named 'whiteCompoundPkRefByFooMultipleId'.
+     * [set] white_compound_pk_ref by my FOO_MULTIPLE_ID, BAR_MULTIPLE_ID, named 'whiteCompoundPkRefByFooMultipleId'.
      * @param whiteCompoundPkRefByFooMultipleId The entity of foreign property 'whiteCompoundPkRefByFooMultipleId'. (NullAllowed)
      */
     public void setWhiteCompoundPkRefByFooMultipleId(WhiteCompoundPkRef whiteCompoundPkRefByFooMultipleId) {
@@ -384,7 +384,7 @@ public abstract class BsWhiteCompoundPkRefNest implements Entity, Serializable, 
      */
     public void setCompoundPkRefNestId(Integer compoundPkRefNestId) {
         __modifiedProperties.addPropertyName("compoundPkRefNestId");
-        this._compoundPkRefNestId = compoundPkRefNestId;
+        _compoundPkRefNestId = compoundPkRefNestId;
     }
 
     /**
@@ -401,7 +401,7 @@ public abstract class BsWhiteCompoundPkRefNest implements Entity, Serializable, 
      */
     public void setFooMultipleId(Integer fooMultipleId) {
         __modifiedProperties.addPropertyName("fooMultipleId");
-        this._fooMultipleId = fooMultipleId;
+        _fooMultipleId = fooMultipleId;
     }
 
     /**
@@ -418,7 +418,7 @@ public abstract class BsWhiteCompoundPkRefNest implements Entity, Serializable, 
      */
     public void setBarMultipleId(Integer barMultipleId) {
         __modifiedProperties.addPropertyName("barMultipleId");
-        this._barMultipleId = barMultipleId;
+        _barMultipleId = barMultipleId;
     }
 
     /**
@@ -435,7 +435,7 @@ public abstract class BsWhiteCompoundPkRefNest implements Entity, Serializable, 
      */
     public void setQuxMultipleId(Integer quxMultipleId) {
         __modifiedProperties.addPropertyName("quxMultipleId");
-        this._quxMultipleId = quxMultipleId;
+        _quxMultipleId = quxMultipleId;
     }
 
     /**
@@ -452,6 +452,6 @@ public abstract class BsWhiteCompoundPkRefNest implements Entity, Serializable, 
      */
     public void setNestName(String nestName) {
         __modifiedProperties.addPropertyName("nestName");
-        this._nestName = nestName;
+        _nestName = nestName;
     }
 }

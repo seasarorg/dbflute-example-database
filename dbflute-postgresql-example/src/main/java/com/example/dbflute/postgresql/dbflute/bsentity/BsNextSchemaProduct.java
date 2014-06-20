@@ -141,7 +141,7 @@ public abstract class BsNextSchemaProduct implements Entity, Serializable, Clone
     protected List<WhiteSameName> _whiteSameNameList;
 
     /**
-     * white_same_name by next_schema_product_id, named 'whiteSameNameList'.
+     * [get] white_same_name by next_schema_product_id, named 'whiteSameNameList'.
      * @return The entity list of referrer property 'whiteSameNameList'. (NotNull: even if no loading, returns empty list)
      */
     public List<WhiteSameName> getWhiteSameNameList() {
@@ -150,7 +150,7 @@ public abstract class BsNextSchemaProduct implements Entity, Serializable, Clone
     }
 
     /**
-     * white_same_name by next_schema_product_id, named 'whiteSameNameList'.
+     * [set] white_same_name by next_schema_product_id, named 'whiteSameNameList'.
      * @param whiteSameNameList The entity list of referrer property 'whiteSameNameList'. (NullAllowed)
      */
     public void setWhiteSameNameList(List<WhiteSameName> whiteSameNameList) {
@@ -331,7 +331,7 @@ public abstract class BsNextSchemaProduct implements Entity, Serializable, Clone
      */
     public void setProductId(Integer productId) {
         __modifiedProperties.addPropertyName("productId");
-        this._productId = productId;
+        _productId = productId;
     }
 
     /**
@@ -348,6 +348,6 @@ public abstract class BsNextSchemaProduct implements Entity, Serializable, Clone
      */
     public void setProductName(String productName) {
         __modifiedProperties.addPropertyName("productName");
-        this._productName = productName;
+        _productName = productName;
     }
 }

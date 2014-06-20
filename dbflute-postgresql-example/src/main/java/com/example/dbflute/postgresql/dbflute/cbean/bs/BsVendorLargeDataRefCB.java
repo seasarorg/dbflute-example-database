@@ -81,11 +81,23 @@ public class BsVendorLargeDataRefCB extends AbstractConditionBean {
     /**
      * Accept the query condition of primary key as equal.
      * @param largeDataRefId : PK, NotNull, int8(19). (NotNull)
+     * @return this. (NotNull)
+     */
+    public VendorLargeDataRefCB acceptPK(Long largeDataRefId) {
+        assertObjectNotNull("largeDataRefId", largeDataRefId);
+        BsVendorLargeDataRefCB cb = this;
+        cb.query().setLargeDataRefId_Equal(largeDataRefId);
+        return (VendorLargeDataRefCB)this;
+    }
+
+    /**
+     * Accept the query condition of primary key as equal. (old style)
+     * @param largeDataRefId : PK, NotNull, int8(19). (NotNull)
      */
     public void acceptPrimaryKey(Long largeDataRefId) {
         assertObjectNotNull("largeDataRefId", largeDataRefId);
         BsVendorLargeDataRefCB cb = this;
-        cb.query().setLargeDataRefId_Equal(largeDataRefId);;
+        cb.query().setLargeDataRefId_Equal(largeDataRefId);
     }
 
     public ConditionBean addOrderBy_PK_Asc() {

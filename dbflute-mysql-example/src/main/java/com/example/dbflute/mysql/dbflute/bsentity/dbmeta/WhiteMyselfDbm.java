@@ -154,7 +154,7 @@ public class WhiteMyselfDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public WhiteMyself newEntity() { return new WhiteMyself(); }
     public WhiteMyself newMyEntity() { return new WhiteMyself(); }
 
     // ===================================================================================

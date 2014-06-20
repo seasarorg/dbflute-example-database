@@ -146,7 +146,7 @@ public class WhiteSuppressDefCheckDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public WhiteSuppressDefCheck newEntity() { return new WhiteSuppressDefCheck(); }
     public WhiteSuppressDefCheck newMyEntity() { return new WhiteSuppressDefCheck(); }
 
     // ===================================================================================

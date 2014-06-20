@@ -169,7 +169,7 @@ public class SpReturnResultSetReturnValueDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public SpReturnResultSetReturnValue newEntity() { return new SpReturnResultSetReturnValue(); }
     public SpReturnResultSetReturnValue newMyEntity() { return new SpReturnResultSetReturnValue(); }
 
     // ===================================================================================

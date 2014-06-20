@@ -179,7 +179,7 @@ public abstract class BsWhiteCompoundPkRefMany implements Entity, Serializable, 
     protected WhiteCompoundPk _whiteCompoundPkToPK;
 
     /**
-     * white_compound_pk by my REF_MANY_FIRST_ID, REF_MANY_SECOND_ID, named 'whiteCompoundPkToPK'.
+     * [get] white_compound_pk by my REF_MANY_FIRST_ID, REF_MANY_SECOND_ID, named 'whiteCompoundPkToPK'.
      * @return The entity of foreign property 'whiteCompoundPkToPK'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public WhiteCompoundPk getWhiteCompoundPkToPK() {
@@ -187,7 +187,7 @@ public abstract class BsWhiteCompoundPkRefMany implements Entity, Serializable, 
     }
 
     /**
-     * white_compound_pk by my REF_MANY_FIRST_ID, REF_MANY_SECOND_ID, named 'whiteCompoundPkToPK'.
+     * [set] white_compound_pk by my REF_MANY_FIRST_ID, REF_MANY_SECOND_ID, named 'whiteCompoundPkToPK'.
      * @param whiteCompoundPkToPK The entity of foreign property 'whiteCompoundPkToPK'. (NullAllowed)
      */
     public void setWhiteCompoundPkToPK(WhiteCompoundPk whiteCompoundPkToPK) {
@@ -377,7 +377,7 @@ public abstract class BsWhiteCompoundPkRefMany implements Entity, Serializable, 
      */
     public void setMultipleFirstId(Integer multipleFirstId) {
         __modifiedProperties.addPropertyName("multipleFirstId");
-        this._multipleFirstId = multipleFirstId;
+        _multipleFirstId = multipleFirstId;
     }
 
     /**
@@ -394,7 +394,7 @@ public abstract class BsWhiteCompoundPkRefMany implements Entity, Serializable, 
      */
     public void setMultipleSecondId(Integer multipleSecondId) {
         __modifiedProperties.addPropertyName("multipleSecondId");
-        this._multipleSecondId = multipleSecondId;
+        _multipleSecondId = multipleSecondId;
     }
 
     /**
@@ -411,7 +411,7 @@ public abstract class BsWhiteCompoundPkRefMany implements Entity, Serializable, 
      */
     public void setRefManyFirstId(Integer refManyFirstId) {
         __modifiedProperties.addPropertyName("refManyFirstId");
-        this._refManyFirstId = refManyFirstId;
+        _refManyFirstId = refManyFirstId;
     }
 
     /**
@@ -428,7 +428,7 @@ public abstract class BsWhiteCompoundPkRefMany implements Entity, Serializable, 
      */
     public void setRefManySecondId(Integer refManySecondId) {
         __modifiedProperties.addPropertyName("refManySecondId");
-        this._refManySecondId = refManySecondId;
+        _refManySecondId = refManySecondId;
     }
 
     /**
@@ -445,7 +445,7 @@ public abstract class BsWhiteCompoundPkRefMany implements Entity, Serializable, 
      */
     public void setRefManyCode(String refManyCode) {
         __modifiedProperties.addPropertyName("refManyCode");
-        this._refManyCode = refManyCode;
+        _refManyCode = refManyCode;
     }
 
     /**
@@ -462,7 +462,7 @@ public abstract class BsWhiteCompoundPkRefMany implements Entity, Serializable, 
      */
     public void setRefManyName(String refManyName) {
         __modifiedProperties.addPropertyName("refManyName");
-        this._refManyName = refManyName;
+        _refManyName = refManyName;
     }
 
     /**
@@ -479,6 +479,6 @@ public abstract class BsWhiteCompoundPkRefMany implements Entity, Serializable, 
      */
     public void setRefManyDatetime(java.sql.Timestamp refManyDatetime) {
         __modifiedProperties.addPropertyName("refManyDatetime");
-        this._refManyDatetime = refManyDatetime;
+        _refManyDatetime = refManyDatetime;
     }
 }

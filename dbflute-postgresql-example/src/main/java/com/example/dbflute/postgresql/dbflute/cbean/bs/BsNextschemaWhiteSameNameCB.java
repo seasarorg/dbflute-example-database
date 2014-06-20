@@ -80,11 +80,23 @@ public class BsNextschemaWhiteSameNameCB extends AbstractConditionBean {
     /**
      * Accept the query condition of primary key as equal.
      * @param sameNameId : PK, NotNull, int4(10). (NotNull)
+     * @return this. (NotNull)
+     */
+    public NextschemaWhiteSameNameCB acceptPK(Integer sameNameId) {
+        assertObjectNotNull("sameNameId", sameNameId);
+        BsNextschemaWhiteSameNameCB cb = this;
+        cb.query().setSameNameId_Equal(sameNameId);
+        return (NextschemaWhiteSameNameCB)this;
+    }
+
+    /**
+     * Accept the query condition of primary key as equal. (old style)
+     * @param sameNameId : PK, NotNull, int4(10). (NotNull)
      */
     public void acceptPrimaryKey(Integer sameNameId) {
         assertObjectNotNull("sameNameId", sameNameId);
         BsNextschemaWhiteSameNameCB cb = this;
-        cb.query().setSameNameId_Equal(sameNameId);;
+        cb.query().setSameNameId_Equal(sameNameId);
     }
 
     public ConditionBean addOrderBy_PK_Asc() {

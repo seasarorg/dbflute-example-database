@@ -95,21 +95,35 @@ public class BsWhiteSuppressJoinSqOneCB extends AbstractConditionBean {
     /**
      * Accept the query condition of primary key as equal.
      * @param oneId : PK, NotNull, INT(10). (NotNull)
+     * @return this. (NotNull)
+     */
+    public WhiteSuppressJoinSqOneCB acceptPK(Integer oneId) {
+        assertObjectNotNull("oneId", oneId);
+        BsWhiteSuppressJoinSqOneCB cb = this;
+        cb.query().setOneId_Equal(oneId);
+        return (WhiteSuppressJoinSqOneCB)this;
+    }
+
+    /**
+     * Accept the query condition of primary key as equal. (old style)
+     * @param oneId : PK, NotNull, INT(10). (NotNull)
      */
     public void acceptPrimaryKey(Integer oneId) {
         assertObjectNotNull("oneId", oneId);
         BsWhiteSuppressJoinSqOneCB cb = this;
-        cb.query().setOneId_Equal(oneId);;
+        cb.query().setOneId_Equal(oneId);
     }
 
     /**
      * Accept the query condition of unique key as equal.
      * @param suppressJoinSqId : UQ, NotNull, INT(10), FK to white_suppress_join_sq. (NotNull)
+     * @return this. (NotNull)
      */
-    public void acceptUniqueOf(Integer suppressJoinSqId) {
+    public WhiteSuppressJoinSqOneCB acceptUniqueOf(Integer suppressJoinSqId) {
         assertObjectNotNull("suppressJoinSqId", suppressJoinSqId);
         BsWhiteSuppressJoinSqOneCB cb = this;
-        cb.query().setSuppressJoinSqId_Equal(suppressJoinSqId);;
+        cb.query().setSuppressJoinSqId_Equal(suppressJoinSqId);
+        return (WhiteSuppressJoinSqOneCB)this;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {

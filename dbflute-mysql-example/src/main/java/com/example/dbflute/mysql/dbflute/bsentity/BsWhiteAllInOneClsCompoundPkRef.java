@@ -160,7 +160,7 @@ public abstract class BsWhiteAllInOneClsCompoundPkRef implements Entity, Seriali
     protected WhiteAllInOneClsElement _whiteAllInOneClsElementAsFoo;
 
     /**
-     * white_all_in_one_cls_element by my FOO_CODE, named 'whiteAllInOneClsElementAsFoo'.
+     * [get] white_all_in_one_cls_element by my FOO_CODE, named 'whiteAllInOneClsElementAsFoo'.
      * @return The entity of foreign property 'whiteAllInOneClsElementAsFoo'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public WhiteAllInOneClsElement getWhiteAllInOneClsElementAsFoo() {
@@ -168,7 +168,7 @@ public abstract class BsWhiteAllInOneClsCompoundPkRef implements Entity, Seriali
     }
 
     /**
-     * white_all_in_one_cls_element by my FOO_CODE, named 'whiteAllInOneClsElementAsFoo'.
+     * [set] white_all_in_one_cls_element by my FOO_CODE, named 'whiteAllInOneClsElementAsFoo'.
      * @param whiteAllInOneClsElementAsFoo The entity of foreign property 'whiteAllInOneClsElementAsFoo'. (NullAllowed)
      */
     public void setWhiteAllInOneClsElementAsFoo(WhiteAllInOneClsElement whiteAllInOneClsElementAsFoo) {
@@ -179,7 +179,7 @@ public abstract class BsWhiteAllInOneClsCompoundPkRef implements Entity, Seriali
     protected WhiteAllInOneClsElement _whiteAllInOneClsElementAsBar;
 
     /**
-     * white_all_in_one_cls_element by my BAR_CODE, named 'whiteAllInOneClsElementAsBar'.
+     * [get] white_all_in_one_cls_element by my BAR_CODE, named 'whiteAllInOneClsElementAsBar'.
      * @return The entity of foreign property 'whiteAllInOneClsElementAsBar'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public WhiteAllInOneClsElement getWhiteAllInOneClsElementAsBar() {
@@ -187,7 +187,7 @@ public abstract class BsWhiteAllInOneClsCompoundPkRef implements Entity, Seriali
     }
 
     /**
-     * white_all_in_one_cls_element by my BAR_CODE, named 'whiteAllInOneClsElementAsBar'.
+     * [set] white_all_in_one_cls_element by my BAR_CODE, named 'whiteAllInOneClsElementAsBar'.
      * @param whiteAllInOneClsElementAsBar The entity of foreign property 'whiteAllInOneClsElementAsBar'. (NullAllowed)
      */
     public void setWhiteAllInOneClsElementAsBar(WhiteAllInOneClsElement whiteAllInOneClsElementAsBar) {
@@ -378,7 +378,7 @@ public abstract class BsWhiteAllInOneClsCompoundPkRef implements Entity, Seriali
      */
     public void setFooCode(String fooCode) {
         __modifiedProperties.addPropertyName("fooCode");
-        this._fooCode = fooCode;
+        _fooCode = fooCode;
     }
 
     /**
@@ -395,7 +395,7 @@ public abstract class BsWhiteAllInOneClsCompoundPkRef implements Entity, Seriali
      */
     public void setBarCode(String barCode) {
         __modifiedProperties.addPropertyName("barCode");
-        this._barCode = barCode;
+        _barCode = barCode;
     }
 
     /**
@@ -412,6 +412,6 @@ public abstract class BsWhiteAllInOneClsCompoundPkRef implements Entity, Seriali
      */
     public void setQuxCode(String quxCode) {
         __modifiedProperties.addPropertyName("quxCode");
-        this._quxCode = quxCode;
+        _quxCode = quxCode;
     }
 }

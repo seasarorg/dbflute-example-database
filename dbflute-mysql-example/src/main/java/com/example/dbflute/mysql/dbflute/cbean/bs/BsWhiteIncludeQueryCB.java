@@ -95,11 +95,23 @@ public class BsWhiteIncludeQueryCB extends AbstractConditionBean {
     /**
      * Accept the query condition of primary key as equal.
      * @param includeQueryId : PK, ID, NotNull, BIGINT(19). (NotNull)
+     * @return this. (NotNull)
+     */
+    public WhiteIncludeQueryCB acceptPK(Long includeQueryId) {
+        assertObjectNotNull("includeQueryId", includeQueryId);
+        BsWhiteIncludeQueryCB cb = this;
+        cb.query().setIncludeQueryId_Equal(includeQueryId);
+        return (WhiteIncludeQueryCB)this;
+    }
+
+    /**
+     * Accept the query condition of primary key as equal. (old style)
+     * @param includeQueryId : PK, ID, NotNull, BIGINT(19). (NotNull)
      */
     public void acceptPrimaryKey(Long includeQueryId) {
         assertObjectNotNull("includeQueryId", includeQueryId);
         BsWhiteIncludeQueryCB cb = this;
-        cb.query().setIncludeQueryId_Equal(includeQueryId);;
+        cb.query().setIncludeQueryId_Equal(includeQueryId);
     }
 
     public ConditionBean addOrderBy_PK_Asc() {

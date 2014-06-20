@@ -95,11 +95,23 @@ public class BsWhiteColumnExceptGenOnlyCB extends AbstractConditionBean {
     /**
      * Accept the query condition of primary key as equal.
      * @param genOnlyId : PK, NotNull, DECIMAL(16). (NotNull)
+     * @return this. (NotNull)
+     */
+    public WhiteColumnExceptGenOnlyCB acceptPK(Long genOnlyId) {
+        assertObjectNotNull("genOnlyId", genOnlyId);
+        BsWhiteColumnExceptGenOnlyCB cb = this;
+        cb.query().setGenOnlyId_Equal(genOnlyId);
+        return (WhiteColumnExceptGenOnlyCB)this;
+    }
+
+    /**
+     * Accept the query condition of primary key as equal. (old style)
+     * @param genOnlyId : PK, NotNull, DECIMAL(16). (NotNull)
      */
     public void acceptPrimaryKey(Long genOnlyId) {
         assertObjectNotNull("genOnlyId", genOnlyId);
         BsWhiteColumnExceptGenOnlyCB cb = this;
-        cb.query().setGenOnlyId_Equal(genOnlyId);;
+        cb.query().setGenOnlyId_Equal(genOnlyId);
     }
 
     public ConditionBean addOrderBy_PK_Asc() {

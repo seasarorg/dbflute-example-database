@@ -319,7 +319,7 @@ public abstract class BsWhiteTableExceptGenHead implements Entity, Serializable,
      */
     public void setGenHeadId(Long genHeadId) {
         __modifiedProperties.addPropertyName("genHeadId");
-        this._genHeadId = genHeadId;
+        _genHeadId = genHeadId;
     }
 
     /**
@@ -336,7 +336,7 @@ public abstract class BsWhiteTableExceptGenHead implements Entity, Serializable,
      */
     public void setGenHeadName(String genHeadName) {
         __modifiedProperties.addPropertyName("genHeadName");
-        this._genHeadName = genHeadName;
+        _genHeadName = genHeadName;
     }
 
     /**
@@ -353,6 +353,6 @@ public abstract class BsWhiteTableExceptGenHead implements Entity, Serializable,
      */
     public void setNometaId(Long nometaId) {
         __modifiedProperties.addPropertyName("nometaId");
-        this._nometaId = nometaId;
+        _nometaId = nometaId;
     }
 }

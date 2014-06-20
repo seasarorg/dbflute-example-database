@@ -150,7 +150,7 @@ public class WhiteEscapedDfpropDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public WhiteEscapedDfprop newEntity() { return new WhiteEscapedDfprop(); }
     public WhiteEscapedDfprop newMyEntity() { return new WhiteEscapedDfprop(); }
 
     // ===================================================================================

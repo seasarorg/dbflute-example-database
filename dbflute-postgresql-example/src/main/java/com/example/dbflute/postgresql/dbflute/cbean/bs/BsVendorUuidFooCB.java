@@ -81,11 +81,23 @@ public class BsVendorUuidFooCB extends AbstractConditionBean {
     /**
      * Accept the query condition of primary key as equal.
      * @param fooId : PK, NotNull, uuid(2147483647). (NotNull)
+     * @return this. (NotNull)
+     */
+    public VendorUuidFooCB acceptPK(java.util.UUID fooId) {
+        assertObjectNotNull("fooId", fooId);
+        BsVendorUuidFooCB cb = this;
+        cb.query().setFooId_Equal(fooId);
+        return (VendorUuidFooCB)this;
+    }
+
+    /**
+     * Accept the query condition of primary key as equal. (old style)
+     * @param fooId : PK, NotNull, uuid(2147483647). (NotNull)
      */
     public void acceptPrimaryKey(java.util.UUID fooId) {
         assertObjectNotNull("fooId", fooId);
         BsVendorUuidFooCB cb = this;
-        cb.query().setFooId_Equal(fooId);;
+        cb.query().setFooId_Equal(fooId);
     }
 
     public ConditionBean addOrderBy_PK_Asc() {

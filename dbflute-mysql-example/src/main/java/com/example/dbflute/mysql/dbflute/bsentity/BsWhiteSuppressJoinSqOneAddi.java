@@ -156,7 +156,7 @@ public abstract class BsWhiteSuppressJoinSqOneAddi implements Entity, Serializab
     protected List<WhiteSuppressJoinSqOne> _whiteSuppressJoinSqOneList;
 
     /**
-     * white_suppress_join_sq_one by ONE_ADDI_ID, named 'whiteSuppressJoinSqOneList'.
+     * [get] white_suppress_join_sq_one by ONE_ADDI_ID, named 'whiteSuppressJoinSqOneList'.
      * @return The entity list of referrer property 'whiteSuppressJoinSqOneList'. (NotNull: even if no loading, returns empty list)
      */
     public List<WhiteSuppressJoinSqOne> getWhiteSuppressJoinSqOneList() {
@@ -165,7 +165,7 @@ public abstract class BsWhiteSuppressJoinSqOneAddi implements Entity, Serializab
     }
 
     /**
-     * white_suppress_join_sq_one by ONE_ADDI_ID, named 'whiteSuppressJoinSqOneList'.
+     * [set] white_suppress_join_sq_one by ONE_ADDI_ID, named 'whiteSuppressJoinSqOneList'.
      * @param whiteSuppressJoinSqOneList The entity list of referrer property 'whiteSuppressJoinSqOneList'. (NullAllowed)
      */
     public void setWhiteSuppressJoinSqOneList(List<WhiteSuppressJoinSqOne> whiteSuppressJoinSqOneList) {
@@ -346,7 +346,7 @@ public abstract class BsWhiteSuppressJoinSqOneAddi implements Entity, Serializab
      */
     public void setOneAddiId(Integer oneAddiId) {
         __modifiedProperties.addPropertyName("oneAddiId");
-        this._oneAddiId = oneAddiId;
+        _oneAddiId = oneAddiId;
     }
 
     /**
@@ -363,6 +363,6 @@ public abstract class BsWhiteSuppressJoinSqOneAddi implements Entity, Serializab
      */
     public void setOneAddiName(String oneAddiName) {
         __modifiedProperties.addPropertyName("oneAddiName");
-        this._oneAddiName = oneAddiName;
+        _oneAddiName = oneAddiName;
     }
 }

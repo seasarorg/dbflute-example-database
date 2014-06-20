@@ -166,7 +166,7 @@ public class WhiteAllInOneClsCategoryDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public WhiteAllInOneClsCategory newEntity() { return new WhiteAllInOneClsCategory(); }
     public WhiteAllInOneClsCategory newMyEntity() { return new WhiteAllInOneClsCategory(); }
 
     // ===================================================================================

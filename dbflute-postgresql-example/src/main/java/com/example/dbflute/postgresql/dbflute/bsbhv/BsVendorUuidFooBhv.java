@@ -5,11 +5,14 @@ import java.util.List;
 import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
+import org.seasar.dbflute.cbean.chelper.HpSLSExecutor;
+import org.seasar.dbflute.cbean.chelper.HpSLSFunction;
 import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.exception.*;
 import org.seasar.dbflute.optional.OptionalEntity;
 import org.seasar.dbflute.outsidesql.executor.*;
 import com.example.dbflute.postgresql.dbflute.exbhv.*;
+import com.example.dbflute.postgresql.dbflute.bsbhv.loader.*;
 import com.example.dbflute.postgresql.dbflute.exentity.*;
 import com.example.dbflute.postgresql.dbflute.bsentity.dbmeta.*;
 import com.example.dbflute.postgresql.dbflute.cbean.*;
@@ -63,7 +66,7 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
     // ===================================================================================
     //                                                                              DBMeta
     //                                                                              ======
-    /** @return The instance of DBMeta. (NotNull) */
+    /** {@inheritDoc} */
     public DBMeta getDBMeta() { return VendorUuidFooDbm.getInstance(); }
 
     /** @return The instance of DBMeta as my table type. (NotNull) */
@@ -73,10 +76,10 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
     //                                                                        New Instance
     //                                                                        ============
     /** {@inheritDoc} */
-    public Entity newEntity() { return newMyEntity(); }
+    public VendorUuidFoo newEntity() { return new VendorUuidFoo(); }
 
     /** {@inheritDoc} */
-    public ConditionBean newConditionBean() { return newMyConditionBean(); }
+    public VendorUuidFooCB newConditionBean() { return new VendorUuidFooCB(); }
 
     /** @return The instance of new entity as my table type. (NotNull) */
     public VendorUuidFoo newMyEntity() { return new VendorUuidFoo(); }
@@ -99,6 +102,10 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
      * @return The count for the condition. (NotMinus)
      */
     public int selectCount(VendorUuidFooCB cb) {
+        return facadeSelectCount(cb);
+    }
+
+    protected int facadeSelectCount(VendorUuidFooCB cb) {
         return doSelectCountUniquely(cb);
     }
 
@@ -114,7 +121,7 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
 
     @Override
     protected int doReadCount(ConditionBean cb) {
-        return selectCount(downcast(cb));
+        return facadeSelectCount(downcast(cb));
     }
 
     // ===================================================================================
@@ -140,7 +147,11 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public VendorUuidFoo selectEntity(VendorUuidFooCB cb) {
-        return doSelectEntity(cb, VendorUuidFoo.class);
+        return facadeSelectEntity(cb);
+    }
+
+    protected VendorUuidFoo facadeSelectEntity(VendorUuidFooCB cb) {
+        return doSelectEntity(cb, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends VendorUuidFoo> ENTITY doSelectEntity(VendorUuidFooCB cb, Class<ENTITY> tp) {
@@ -155,7 +166,7 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
 
     @Override
     protected Entity doReadEntity(ConditionBean cb) {
-        return selectEntity(downcast(cb));
+        return facadeSelectEntity(downcast(cb));
     }
 
     /**
@@ -174,7 +185,11 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public VendorUuidFoo selectEntityWithDeletedCheck(VendorUuidFooCB cb) {
-        return doSelectEntityWithDeletedCheck(cb, VendorUuidFoo.class);
+        return facadeSelectEntityWithDeletedCheck(cb);
+    }
+
+    protected VendorUuidFoo facadeSelectEntityWithDeletedCheck(VendorUuidFooCB cb) {
+        return doSelectEntityWithDeletedCheck(cb, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends VendorUuidFoo> ENTITY doSelectEntityWithDeletedCheck(VendorUuidFooCB cb, Class<ENTITY> tp) {
@@ -185,7 +200,7 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
 
     @Override
     protected Entity doReadEntityWithDeletedCheck(ConditionBean cb) {
-        return selectEntityWithDeletedCheck(downcast(cb));
+        return facadeSelectEntityWithDeletedCheck(downcast(cb));
     }
 
     /**
@@ -196,15 +211,19 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public VendorUuidFoo selectByPKValue(java.util.UUID fooId) {
-        return doSelectByPK(fooId, VendorUuidFoo.class);
+        return facadeSelectByPKValue(fooId);
     }
 
-    protected <ENTITY extends VendorUuidFoo> ENTITY doSelectByPK(java.util.UUID fooId, Class<ENTITY> entityType) {
-        return doSelectEntity(xprepareCBAsPK(fooId), entityType);
+    protected VendorUuidFoo facadeSelectByPKValue(java.util.UUID fooId) {
+        return doSelectByPK(fooId, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends VendorUuidFoo> OptionalEntity<ENTITY> doSelectOptionalByPK(java.util.UUID fooId, Class<ENTITY> entityType) {
-        return createOptionalEntity(doSelectByPK(fooId, entityType), fooId);
+    protected <ENTITY extends VendorUuidFoo> ENTITY doSelectByPK(java.util.UUID fooId, Class<ENTITY> tp) {
+        return doSelectEntity(xprepareCBAsPK(fooId), tp);
+    }
+
+    protected <ENTITY extends VendorUuidFoo> OptionalEntity<ENTITY> doSelectOptionalByPK(java.util.UUID fooId, Class<ENTITY> tp) {
+        return createOptionalEntity(doSelectByPK(fooId, tp), fooId);
     }
 
     /**
@@ -216,17 +235,16 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public VendorUuidFoo selectByPKValueWithDeletedCheck(java.util.UUID fooId) {
-        return doSelectByPKWithDeletedCheck(fooId, VendorUuidFoo.class);
+        return doSelectByPKWithDeletedCheck(fooId, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends VendorUuidFoo> ENTITY doSelectByPKWithDeletedCheck(java.util.UUID fooId, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(fooId), entityType);
+    protected <ENTITY extends VendorUuidFoo> ENTITY doSelectByPKWithDeletedCheck(java.util.UUID fooId, Class<ENTITY> tp) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(fooId), tp);
     }
 
     protected VendorUuidFooCB xprepareCBAsPK(java.util.UUID fooId) {
         assertObjectNotNull("fooId", fooId);
-        VendorUuidFooCB cb = newMyConditionBean(); cb.acceptPrimaryKey(fooId);
-        return cb;
+        return newConditionBean().acceptPK(fooId);
     }
 
     // ===================================================================================
@@ -248,7 +266,11 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
      * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public ListResultBean<VendorUuidFoo> selectList(VendorUuidFooCB cb) {
-        return doSelectList(cb, VendorUuidFoo.class);
+        return facadeSelectList(cb);
+    }
+
+    protected ListResultBean<VendorUuidFoo> facadeSelectList(VendorUuidFooCB cb) {
+        return doSelectList(cb, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends VendorUuidFoo> ListResultBean<ENTITY> doSelectList(VendorUuidFooCB cb, Class<ENTITY> tp) {
@@ -260,7 +282,7 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
 
     @Override
     protected ListResultBean<? extends Entity> doReadList(ConditionBean cb) {
-        return selectList(downcast(cb));
+        return facadeSelectList(downcast(cb));
     }
 
     // ===================================================================================
@@ -289,7 +311,11 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
      * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public PagingResultBean<VendorUuidFoo> selectPage(VendorUuidFooCB cb) {
-        return doSelectPage(cb, VendorUuidFoo.class);
+        return facadeSelectPage(cb);
+    }
+
+    protected PagingResultBean<VendorUuidFoo> facadeSelectPage(VendorUuidFooCB cb) {
+        return doSelectPage(cb, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends VendorUuidFoo> PagingResultBean<ENTITY> doSelectPage(VendorUuidFooCB cb, Class<ENTITY> tp) {
@@ -302,7 +328,7 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
 
     @Override
     protected PagingResultBean<? extends Entity> doReadPage(ConditionBean cb) {
-        return selectPage(downcast(cb));
+        return facadeSelectPage(downcast(cb));
     }
 
     // ===================================================================================
@@ -323,15 +349,19 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
      * @param entityRowHandler The handler of entity row of VendorUuidFoo. (NotNull)
      */
     public void selectCursor(VendorUuidFooCB cb, EntityRowHandler<VendorUuidFoo> entityRowHandler) {
-        doSelectCursor(cb, entityRowHandler, VendorUuidFoo.class);
+        facadeSelectCursor(cb, entityRowHandler);
+    }
+
+    protected void facadeSelectCursor(VendorUuidFooCB cb, EntityRowHandler<VendorUuidFoo> entityRowHandler) {
+        doSelectCursor(cb, entityRowHandler, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends VendorUuidFoo> void doSelectCursor(VendorUuidFooCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
         assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
         helpSelectCursorInternally(cb, handler, tp, new InternalSelectCursorCallback<ENTITY, VendorUuidFooCB>() {
-            public void callbackSelectCursor(VendorUuidFooCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) { delegateSelectCursor(cb, handler, tp); }
-            public List<ENTITY> callbackSelectList(VendorUuidFooCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
+            public void callbackSelectCursor(VendorUuidFooCB lcb, EntityRowHandler<ENTITY> lhandler, Class<ENTITY> ltp) { delegateSelectCursor(lcb, lhandler, ltp); }
+            public List<ENTITY> callbackSelectList(VendorUuidFooCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); }
         });
     }
 
@@ -353,22 +383,23 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
      * @param resultType The type of result. (NotNull)
      * @return The scalar function object to specify function for scalar value. (NotNull)
      */
-    public <RESULT> SLFunction<VendorUuidFooCB, RESULT> scalarSelect(Class<RESULT> resultType) {
-        return doScalarSelect(resultType, newMyConditionBean());
+    public <RESULT> HpSLSFunction<VendorUuidFooCB, RESULT> scalarSelect(Class<RESULT> resultType) {
+        return facadeScalarSelect(resultType);
     }
 
-    protected <RESULT, CB extends VendorUuidFooCB> SLFunction<CB, RESULT> doScalarSelect(Class<RESULT> tp, CB cb) {
+    protected <RESULT> HpSLSFunction<VendorUuidFooCB, RESULT> facadeScalarSelect(Class<RESULT> resultType) {
+        return doScalarSelect(resultType, newConditionBean());
+    }
+
+    protected <RESULT, CB extends VendorUuidFooCB> HpSLSFunction<CB, RESULT> doScalarSelect(final Class<RESULT> tp, final CB cb) {
         assertObjectNotNull("resultType", tp); assertCBStateValid(cb);
         cb.xsetupForScalarSelect(); cb.getSqlClause().disableSelectIndex(); // for when you use union
-        return createSLFunction(cb, tp);
+        HpSLSExecutor<CB, RESULT> executor = createHpSLSExecutor(); // variable to resolve generic
+        return createSLSFunction(cb, tp, executor);
     }
 
-    protected <RESULT, CB extends VendorUuidFooCB> SLFunction<CB, RESULT> createSLFunction(CB cb, Class<RESULT> tp) {
-        return new SLFunction<CB, RESULT>(cb, tp);
-    }
-
-    protected <RESULT> SLFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) {
-        return doScalarSelect(tp, newMyConditionBean());
+    protected <RESULT> HpSLSFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) {
+        return facadeScalarSelect(tp);
     }
 
     // ===================================================================================
@@ -378,6 +409,81 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
     protected Number doReadNextVal() {
         String msg = "This table is NOT related to sequence: " + getTableDbName();
         throw new UnsupportedOperationException(msg);
+    }
+
+    // ===================================================================================
+    //                                                                       Load Referrer
+    //                                                                       =============
+    /**
+     * Load referrer by the the referrer loader. <br />
+     * <pre>
+     * MemberCB cb = new MemberCB();
+     * cb.query().set...
+     * List&lt;Member&gt; memberList = memberBhv.selectList(cb);
+     * memberBhv.<span style="color: #DD4747">load</span>(memberList, loader -&gt; {
+     *     loader.<span style="color: #DD4747">loadPurchaseList</span>(purchaseCB -&gt; {
+     *         purchaseCB.query().set...
+     *         purchaseCB.query().addOrderBy_PurchasePrice_Desc();
+     *     }); <span style="color: #3F7E5E">// you can also load nested referrer from here</span>
+     *     <span style="color: #3F7E5E">//}).withNestedList(purchaseLoader -&gt {</span>
+     *     <span style="color: #3F7E5E">//    purchaseLoader.loadPurchasePaymentList(...);</span>
+     *     <span style="color: #3F7E5E">//});</span>
+     *
+     *     <span style="color: #3F7E5E">// you can also pull out foreign table and load its referrer</span>
+     *     <span style="color: #3F7E5E">// (setupSelect of the foreign table should be called)</span>
+     *     <span style="color: #3F7E5E">//loader.pulloutMemberStatus().loadMemberLoginList(...)</span>
+     * }
+     * for (Member member : memberList) {
+     *     List&lt;Purchase&gt; purchaseList = member.<span style="color: #DD4747">getPurchaseList()</span>;
+     *     for (Purchase purchase : purchaseList) {
+     *         ...
+     *     }
+     * }
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has order by FK before callback.
+     * @param vendorUuidFooList The entity list of vendorUuidFoo. (NotNull)
+     * @param handler The callback to handle the referrer loader for actually loading referrer. (NotNull)
+     */
+    public void load(List<VendorUuidFoo> vendorUuidFooList, ReferrerLoaderHandler<LoaderOfVendorUuidFoo> handler) {
+        xassLRArg(vendorUuidFooList, handler);
+        handler.handle(new LoaderOfVendorUuidFoo().ready(vendorUuidFooList, _behaviorSelector));
+    }
+
+    /**
+     * Load referrer of ${referrer.referrerJavaBeansRulePropertyName} by the referrer loader. <br />
+     * <pre>
+     * MemberCB cb = new MemberCB();
+     * cb.query().set...
+     * Member member = memberBhv.selectEntityWithDeletedCheck(cb);
+     * memberBhv.<span style="color: #DD4747">load</span>(member, loader -&gt; {
+     *     loader.<span style="color: #DD4747">loadPurchaseList</span>(purchaseCB -&gt; {
+     *         purchaseCB.query().set...
+     *         purchaseCB.query().addOrderBy_PurchasePrice_Desc();
+     *     }); <span style="color: #3F7E5E">// you can also load nested referrer from here</span>
+     *     <span style="color: #3F7E5E">//}).withNestedList(purchaseLoader -&gt {</span>
+     *     <span style="color: #3F7E5E">//    purchaseLoader.loadPurchasePaymentList(...);</span>
+     *     <span style="color: #3F7E5E">//});</span>
+     *
+     *     <span style="color: #3F7E5E">// you can also pull out foreign table and load its referrer</span>
+     *     <span style="color: #3F7E5E">// (setupSelect of the foreign table should be called)</span>
+     *     <span style="color: #3F7E5E">//loader.pulloutMemberStatus().loadMemberLoginList(...)</span>
+     * }
+     * for (Member member : memberList) {
+     *     List&lt;Purchase&gt; purchaseList = member.<span style="color: #DD4747">getPurchaseList()</span>;
+     *     for (Purchase purchase : purchaseList) {
+     *         ...
+     *     }
+     * }
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has order by FK before callback.
+     * @param vendorUuidFoo The entity of vendorUuidFoo. (NotNull)
+     * @param handler The callback to handle the referrer loader for actually loading referrer. (NotNull)
+     */
+    public void load(VendorUuidFoo vendorUuidFoo, ReferrerLoaderHandler<LoaderOfVendorUuidFoo> handler) {
+        xassLRArg(vendorUuidFoo, handler);
+        handler.handle(new LoaderOfVendorUuidFoo().ready(xnewLRAryLs(vendorUuidFoo), _behaviorSelector));
     }
 
     // ===================================================================================
@@ -429,17 +535,17 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
      * ... = vendorUuidFoo.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * <p>While, when the entity is created by select, all columns are registered.</p>
-     * @param vendorUuidFoo The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
+     * @param vendorUuidFoo The entity of insert. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
      * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insert(VendorUuidFoo vendorUuidFoo) {
         doInsert(vendorUuidFoo, null);
     }
 
-    protected void doInsert(VendorUuidFoo vendorUuidFoo, InsertOption<VendorUuidFooCB> op) {
-        assertObjectNotNull("vendorUuidFoo", vendorUuidFoo);
+    protected void doInsert(VendorUuidFoo et, InsertOption<VendorUuidFooCB> op) {
+        assertObjectNotNull("vendorUuidFoo", et);
         prepareInsertOption(op);
-        delegateInsert(vendorUuidFoo, op);
+        delegateInsert(et, op);
     }
 
     protected void prepareInsertOption(InsertOption<VendorUuidFooCB> op) {
@@ -452,8 +558,7 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
 
     @Override
     protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) {
-        if (op == null) { insert(downcast(et)); }
-        else { varyingInsert(downcast(et), downcast(op)); }
+        doInsert(downcast(et), downcast(op));
     }
 
     /**
@@ -465,7 +570,7 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
      * <span style="color: #3F7E5E">//vendorUuidFoo.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//vendorUuidFoo.set...;</span>
-     * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
+     * <span style="color: #3F7E5E">// if exclusive control, the value of concurrency column is required</span>
      * vendorUuidFoo.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     vendorUuidFooBhv.<span style="color: #DD4747">update</span>(vendorUuidFoo);
@@ -473,49 +578,38 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
      *     ...
      * }
      * </pre>
-     * @param vendorUuidFoo The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
+     * @param vendorUuidFoo The entity of update. (NotNull, PrimaryKeyNotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
-    public void update(final VendorUuidFoo vendorUuidFoo) {
+    public void update(VendorUuidFoo vendorUuidFoo) {
         doUpdate(vendorUuidFoo, null);
     }
 
-    protected void doUpdate(VendorUuidFoo vendorUuidFoo, final UpdateOption<VendorUuidFooCB> op) {
-        assertObjectNotNull("vendorUuidFoo", vendorUuidFoo);
+    protected void doUpdate(VendorUuidFoo et, final UpdateOption<VendorUuidFooCB> op) {
+        assertObjectNotNull("vendorUuidFoo", et);
         prepareUpdateOption(op);
-        helpUpdateInternally(vendorUuidFoo, new InternalUpdateCallback<VendorUuidFoo>() {
-            public int callbackDelegateUpdate(VendorUuidFoo et) { return delegateUpdate(et, op); } });
+        helpUpdateInternally(et, new InternalUpdateCallback<VendorUuidFoo>() {
+            public int callbackDelegateUpdate(VendorUuidFoo let) { return delegateUpdate(let, op); } });
     }
 
     protected void prepareUpdateOption(UpdateOption<VendorUuidFooCB> op) {
         if (op == null) { return; }
         assertUpdateOptionStatus(op);
-        if (op.hasSelfSpecification()) {
-            op.resolveSelfSpecification(createCBForVaryingUpdate());
-        }
-        if (op.hasSpecifiedUpdateColumn()) {
-            op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate());
-        }
+        if (op.hasSelfSpecification()) { op.resolveSelfSpecification(createCBForVaryingUpdate()); }
+        if (op.hasSpecifiedUpdateColumn()) { op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate()); }
     }
 
-    protected VendorUuidFooCB createCBForVaryingUpdate() {
-        VendorUuidFooCB cb = newMyConditionBean();
-        cb.xsetupForVaryingUpdate();
-        return cb;
-    }
+    protected VendorUuidFooCB createCBForVaryingUpdate()
+    { VendorUuidFooCB cb = newConditionBean(); cb.xsetupForVaryingUpdate(); return cb; }
 
-    protected VendorUuidFooCB createCBForSpecifiedUpdate() {
-        VendorUuidFooCB cb = newMyConditionBean();
-        cb.xsetupForSpecifiedUpdate();
-        return cb;
-    }
+    protected VendorUuidFooCB createCBForSpecifiedUpdate()
+    { VendorUuidFooCB cb = newConditionBean(); cb.xsetupForSpecifiedUpdate(); return cb; }
 
     @Override
     protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) {
-        if (op == null) { update(downcast(et)); }
-        else { varyingUpdate(downcast(et), downcast(op)); }
+        doUpdate(downcast(et), downcast(op));
     }
 
     @Override
@@ -527,32 +621,28 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br />
      * <p><span style="color: #DD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
-     * @param vendorUuidFoo The entity of insert or update target. (NotNull)
+     * @param vendorUuidFoo The entity of insert or update. (NotNull, ...depends on insert or update)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insertOrUpdate(VendorUuidFoo vendorUuidFoo) {
-        doInesrtOrUpdate(vendorUuidFoo, null, null);
+        doInsertOrUpdate(vendorUuidFoo, null, null);
     }
 
-    protected void doInesrtOrUpdate(VendorUuidFoo vendorUuidFoo, final InsertOption<VendorUuidFooCB> iop, final UpdateOption<VendorUuidFooCB> uop) {
-        helpInsertOrUpdateInternally(vendorUuidFoo, new InternalInsertOrUpdateCallback<VendorUuidFoo, VendorUuidFooCB>() {
-            public void callbackInsert(VendorUuidFoo et) { doInsert(et, iop); }
-            public void callbackUpdate(VendorUuidFoo et) { doUpdate(et, uop); }
-            public VendorUuidFooCB callbackNewMyConditionBean() { return newMyConditionBean(); }
+    protected void doInsertOrUpdate(VendorUuidFoo et, final InsertOption<VendorUuidFooCB> iop, final UpdateOption<VendorUuidFooCB> uop) {
+        assertObjectNotNull("vendorUuidFoo", et);
+        helpInsertOrUpdateInternally(et, new InternalInsertOrUpdateCallback<VendorUuidFoo, VendorUuidFooCB>() {
+            public void callbackInsert(VendorUuidFoo let) { doInsert(let, iop); }
+            public void callbackUpdate(VendorUuidFoo let) { doUpdate(let, uop); }
+            public VendorUuidFooCB callbackNewMyConditionBean() { return newConditionBean(); }
             public int callbackSelectCount(VendorUuidFooCB cb) { return selectCount(cb); }
         });
     }
 
     @Override
     protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
-        if (iop == null && uop == null) { insertOrUpdate(downcast(et)); }
-        else {
-            iop = iop != null ? iop : new InsertOption<VendorUuidFooCB>();
-            uop = uop != null ? uop : new UpdateOption<VendorUuidFooCB>();
-            varyingInsertOrUpdate(downcast(et), downcast(iop), downcast(uop));
-        }
+        doInsertOrUpdate(downcast(et), downcast(iop), downcast(uop));
     }
 
     @Override
@@ -565,7 +655,7 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
      * <pre>
      * VendorUuidFoo vendorUuidFoo = new VendorUuidFoo();
      * vendorUuidFoo.setPK...(value); <span style="color: #3F7E5E">// required</span>
-     * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
+     * <span style="color: #3F7E5E">// if exclusive control, the value of concurrency column is required</span>
      * vendorUuidFoo.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     vendorUuidFooBhv.<span style="color: #DD4747">delete</span>(vendorUuidFoo);
@@ -573,7 +663,7 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
      *     ...
      * }
      * </pre>
-     * @param vendorUuidFoo The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
+     * @param vendorUuidFoo The entity of delete. (NotNull, PrimaryKeyNotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      */
@@ -581,22 +671,19 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
         doDelete(vendorUuidFoo, null);
     }
 
-    protected void doDelete(VendorUuidFoo vendorUuidFoo, final DeleteOption<VendorUuidFooCB> op) {
-        assertObjectNotNull("vendorUuidFoo", vendorUuidFoo);
+    protected void doDelete(VendorUuidFoo et, final DeleteOption<VendorUuidFooCB> op) {
+        assertObjectNotNull("vendorUuidFoo", et);
         prepareDeleteOption(op);
-        helpDeleteInternally(vendorUuidFoo, new InternalDeleteCallback<VendorUuidFoo>() {
-            public int callbackDelegateDelete(VendorUuidFoo et) { return delegateDelete(et, op); } });
+        helpDeleteInternally(et, new InternalDeleteCallback<VendorUuidFoo>() {
+            public int callbackDelegateDelete(VendorUuidFoo let) { return delegateDelete(let, op); } });
     }
 
-    protected void prepareDeleteOption(DeleteOption<VendorUuidFooCB> op) {
-        if (op == null) { return; }
-        assertDeleteOptionStatus(op);
-    }
+    protected void prepareDeleteOption(DeleteOption<VendorUuidFooCB> op)
+    { if (op != null) { assertDeleteOptionStatus(op); } }
 
     @Override
     protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) {
-        if (op == null) { delete(downcast(et)); }
-        else { varyingDelete(downcast(et), downcast(op)); }
+        doDelete(downcast(et), downcast(op));
     }
 
     @Override
@@ -632,26 +719,25 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
      * @return The array of inserted count. (NotNull, EmptyAllowed)
      */
     public int[] batchInsert(List<VendorUuidFoo> vendorUuidFooList) {
-        InsertOption<VendorUuidFooCB> op = createInsertUpdateOption();
-        return doBatchInsert(vendorUuidFooList, op);
+        return doBatchInsert(vendorUuidFooList, null);
     }
 
-    protected int[] doBatchInsert(List<VendorUuidFoo> vendorUuidFooList, InsertOption<VendorUuidFooCB> op) {
-        assertObjectNotNull("vendorUuidFooList", vendorUuidFooList);
-        prepareBatchInsertOption(vendorUuidFooList, op);
-        return delegateBatchInsert(vendorUuidFooList, op);
+    protected int[] doBatchInsert(List<VendorUuidFoo> ls, InsertOption<VendorUuidFooCB> op) {
+        assertObjectNotNull("vendorUuidFooList", ls);
+        InsertOption<VendorUuidFooCB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainInsertOption(); }
+        prepareBatchInsertOption(ls, rlop); // required
+        return delegateBatchInsert(ls, rlop);
     }
 
-    protected void prepareBatchInsertOption(List<VendorUuidFoo> vendorUuidFooList, InsertOption<VendorUuidFooCB> op) {
+    protected void prepareBatchInsertOption(List<VendorUuidFoo> ls, InsertOption<VendorUuidFooCB> op) {
         op.xallowInsertColumnModifiedPropertiesFragmented();
-        op.xacceptInsertColumnModifiedPropertiesIfNeeds(vendorUuidFooList);
+        op.xacceptInsertColumnModifiedPropertiesIfNeeds(ls);
         prepareInsertOption(op);
     }
 
     @Override
     protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) {
-        if (op == null) { return batchInsert(downcast(ls)); }
-        else { return varyingBatchInsert(downcast(ls), downcast(op)); }
+        return doBatchInsert(downcast(ls), downcast(op));
     }
 
     /**
@@ -679,25 +765,24 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<VendorUuidFoo> vendorUuidFooList) {
-        UpdateOption<VendorUuidFooCB> op = createPlainUpdateOption();
-        return doBatchUpdate(vendorUuidFooList, op);
+        return doBatchUpdate(vendorUuidFooList, null);
     }
 
-    protected int[] doBatchUpdate(List<VendorUuidFoo> vendorUuidFooList, UpdateOption<VendorUuidFooCB> op) {
-        assertObjectNotNull("vendorUuidFooList", vendorUuidFooList);
-        prepareBatchUpdateOption(vendorUuidFooList, op);
-        return delegateBatchUpdate(vendorUuidFooList, op);
+    protected int[] doBatchUpdate(List<VendorUuidFoo> ls, UpdateOption<VendorUuidFooCB> op) {
+        assertObjectNotNull("vendorUuidFooList", ls);
+        UpdateOption<VendorUuidFooCB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainUpdateOption(); }
+        prepareBatchUpdateOption(ls, rlop); // required
+        return delegateBatchUpdate(ls, rlop);
     }
 
-    protected void prepareBatchUpdateOption(List<VendorUuidFoo> vendorUuidFooList, UpdateOption<VendorUuidFooCB> op) {
-        op.xacceptUpdateColumnModifiedPropertiesIfNeeds(vendorUuidFooList);
+    protected void prepareBatchUpdateOption(List<VendorUuidFoo> ls, UpdateOption<VendorUuidFooCB> op) {
+        op.xacceptUpdateColumnModifiedPropertiesIfNeeds(ls);
         prepareUpdateOption(op);
     }
 
     @Override
     protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) {
-        if (op == null) { return batchUpdate(downcast(ls)); }
-        else { return varyingBatchUpdate(downcast(ls), downcast(op)); }
+        return doBatchUpdate(downcast(ls), downcast(op));
     }
 
     /**
@@ -748,16 +833,15 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
         return doBatchDelete(vendorUuidFooList, null);
     }
 
-    protected int[] doBatchDelete(List<VendorUuidFoo> vendorUuidFooList, DeleteOption<VendorUuidFooCB> op) {
-        assertObjectNotNull("vendorUuidFooList", vendorUuidFooList);
+    protected int[] doBatchDelete(List<VendorUuidFoo> ls, DeleteOption<VendorUuidFooCB> op) {
+        assertObjectNotNull("vendorUuidFooList", ls);
         prepareDeleteOption(op);
-        return delegateBatchDelete(vendorUuidFooList, op);
+        return delegateBatchDelete(ls, op);
     }
 
     @Override
     protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) {
-        if (op == null) { return batchDelete(downcast(ls)); }
-        else { return varyingBatchDelete(downcast(ls), downcast(op)); }
+        return doBatchDelete(downcast(ls), downcast(op));
     }
 
     @Override
@@ -784,7 +868,7 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
      *         <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
      *         <span style="color: #3F7E5E">//entity.setRegisterUser(value);</span>
      *         <span style="color: #3F7E5E">//entity.set...;</span>
-     *         <span style="color: #3F7E5E">// you don't need to set a value of exclusive control column</span>
+     *         <span style="color: #3F7E5E">// you don't need to set a value of concurrency column</span>
      *         <span style="color: #3F7E5E">//entity.setVersionNo(value);</span>
      *
      *         return cb;
@@ -801,21 +885,17 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
     protected int doQueryInsert(QueryInsertSetupper<VendorUuidFoo, VendorUuidFooCB> sp, InsertOption<VendorUuidFooCB> op) {
         assertObjectNotNull("setupper", sp);
         prepareInsertOption(op);
-        VendorUuidFoo e = new VendorUuidFoo();
+        VendorUuidFoo et = newEntity();
         VendorUuidFooCB cb = createCBForQueryInsert();
-        return delegateQueryInsert(e, cb, sp.setup(e, cb), op);
+        return delegateQueryInsert(et, cb, sp.setup(et, cb), op);
     }
 
-    protected VendorUuidFooCB createCBForQueryInsert() {
-        VendorUuidFooCB cb = newMyConditionBean();
-        cb.xsetupForQueryInsert();
-        return cb;
-    }
+    protected VendorUuidFooCB createCBForQueryInsert()
+    { VendorUuidFooCB cb = newConditionBean(); cb.xsetupForQueryInsert(); return cb; }
 
     @Override
-    protected int doRangeCreate(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> setupper, InsertOption<? extends ConditionBean> option) {
-        if (option == null) { return queryInsert(downcast(setupper)); }
-        else { return varyingQueryInsert(downcast(setupper), downcast(option)); }
+    protected int doRangeCreate(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> setupper, InsertOption<? extends ConditionBean> op) {
+        return doQueryInsert(downcast(setupper), downcast(op));
     }
 
     /**
@@ -828,7 +908,7 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
      * <span style="color: #3F7E5E">//vendorUuidFoo.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//vendorUuidFoo.set...;</span>
-     * <span style="color: #3F7E5E">// you don't need to set a value of exclusive control column</span>
+     * <span style="color: #3F7E5E">// you don't need to set a value of concurrency column</span>
      * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
      * <span style="color: #3F7E5E">//vendorUuidFoo.setVersionNo(value);</span>
      * VendorUuidFooCB cb = new VendorUuidFooCB();
@@ -844,16 +924,15 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
         return doQueryUpdate(vendorUuidFoo, cb, null);
     }
 
-    protected int doQueryUpdate(VendorUuidFoo vendorUuidFoo, VendorUuidFooCB cb, UpdateOption<VendorUuidFooCB> op) {
-        assertObjectNotNull("vendorUuidFoo", vendorUuidFoo); assertCBStateValid(cb);
+    protected int doQueryUpdate(VendorUuidFoo et, VendorUuidFooCB cb, UpdateOption<VendorUuidFooCB> op) {
+        assertObjectNotNull("vendorUuidFoo", et); assertCBStateValid(cb);
         prepareUpdateOption(op);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(vendorUuidFoo, cb, op) : 0;
+        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(et, cb, op) : 0;
     }
 
     @Override
     protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op) {
-        if (op == null) { return queryUpdate(downcast(et), (VendorUuidFooCB)cb); }
-        else { return varyingQueryUpdate(downcast(et), (VendorUuidFooCB)cb, downcast(op)); }
+        return doQueryUpdate(downcast(et), downcast(cb), downcast(op));
     }
 
     /**
@@ -879,8 +958,7 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
 
     @Override
     protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) {
-        if (op == null) { return queryDelete((VendorUuidFooCB)cb); }
-        else { return varyingQueryDelete((VendorUuidFooCB)cb, downcast(op)); }
+        return doQueryDelete(downcast(cb), downcast(op));
     }
 
     // ===================================================================================
@@ -904,7 +982,7 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
      * vendorUuidFooBhv.<span style="color: #DD4747">varyingInsert</span>(vendorUuidFoo, option);
      * ... = vendorUuidFoo.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
-     * @param vendorUuidFoo The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
+     * @param vendorUuidFoo The entity of insert. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
      * @param option The option of insert for varying requests. (NotNull)
      * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
@@ -921,7 +999,7 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
      * VendorUuidFoo vendorUuidFoo = new VendorUuidFoo();
      * vendorUuidFoo.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * vendorUuidFoo.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
-     * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
+     * <span style="color: #3F7E5E">// if exclusive control, the value of concurrency column is required</span>
      * vendorUuidFoo.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     <span style="color: #3F7E5E">// you can update by self calculation values</span>
@@ -936,7 +1014,7 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
      *     ...
      * }
      * </pre>
-     * @param vendorUuidFoo The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
+     * @param vendorUuidFoo The entity of update. (NotNull, PrimaryKeyNotNull)
      * @param option The option of update for varying requests. (NotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
@@ -950,7 +1028,7 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
     /**
      * Insert or update the entity with varying requests. (ExclusiveControl: when update) <br />
      * Other specifications are same as insertOrUpdate(entity).
-     * @param vendorUuidFoo The entity of insert or update target. (NotNull)
+     * @param vendorUuidFoo The entity of insert or update. (NotNull)
      * @param insertOption The option of insert for varying requests. (NotNull)
      * @param updateOption The option of update for varying requests. (NotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
@@ -959,14 +1037,14 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
      */
     public void varyingInsertOrUpdate(VendorUuidFoo vendorUuidFoo, InsertOption<VendorUuidFooCB> insertOption, UpdateOption<VendorUuidFooCB> updateOption) {
         assertInsertOptionNotNull(insertOption); assertUpdateOptionNotNull(updateOption);
-        doInesrtOrUpdate(vendorUuidFoo, insertOption, updateOption);
+        doInsertOrUpdate(vendorUuidFoo, insertOption, updateOption);
     }
 
     /**
      * Delete the entity with varying requests. (ZeroUpdateException, NonExclusiveControl) <br />
      * Now a valid option does not exist. <br />
      * Other specifications are same as delete(entity).
-     * @param vendorUuidFoo The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
+     * @param vendorUuidFoo The entity of delete. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
      * @param option The option of update for varying requests. (NotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
@@ -1047,7 +1125,7 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">// you don't need to set PK value</span>
      * <span style="color: #3F7E5E">//vendorUuidFoo.setPK...(value);</span>
      * vendorUuidFoo.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
-     * <span style="color: #3F7E5E">// you don't need to set a value of exclusive control column</span>
+     * <span style="color: #3F7E5E">// you don't need to set a value of concurrency column</span>
      * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
      * <span style="color: #3F7E5E">//vendorUuidFoo.setVersionNo(value);</span>
      * VendorUuidFooCB cb = new VendorUuidFooCB();
@@ -1199,38 +1277,34 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable {
     }
 
     // ===================================================================================
-    //                                                                     Downcast Helper
-    //                                                                     ===============
-    protected VendorUuidFoo downcast(Entity et) {
-        return helpEntityDowncastInternally(et, VendorUuidFoo.class);
-    }
+    //                                                                       Assist Helper
+    //                                                                       =============
+    protected Class<VendorUuidFoo> typeOfSelectedEntity()
+    { return VendorUuidFoo.class; }
 
-    protected VendorUuidFooCB downcast(ConditionBean cb) {
-        return helpConditionBeanDowncastInternally(cb, VendorUuidFooCB.class);
-    }
+    protected VendorUuidFoo downcast(Entity et)
+    { return helpEntityDowncastInternally(et, VendorUuidFoo.class); }
 
-    @SuppressWarnings("unchecked")
-    protected List<VendorUuidFoo> downcast(List<? extends Entity> ls) {
-        return (List<VendorUuidFoo>)ls;
-    }
+    protected VendorUuidFooCB downcast(ConditionBean cb)
+    { return helpConditionBeanDowncastInternally(cb, VendorUuidFooCB.class); }
 
     @SuppressWarnings("unchecked")
-    protected InsertOption<VendorUuidFooCB> downcast(InsertOption<? extends ConditionBean> op) {
-        return (InsertOption<VendorUuidFooCB>)op;
-    }
+    protected List<VendorUuidFoo> downcast(List<? extends Entity> ls)
+    { return (List<VendorUuidFoo>)ls; }
 
     @SuppressWarnings("unchecked")
-    protected UpdateOption<VendorUuidFooCB> downcast(UpdateOption<? extends ConditionBean> op) {
-        return (UpdateOption<VendorUuidFooCB>)op;
-    }
+    protected InsertOption<VendorUuidFooCB> downcast(InsertOption<? extends ConditionBean> op)
+    { return (InsertOption<VendorUuidFooCB>)op; }
 
     @SuppressWarnings("unchecked")
-    protected DeleteOption<VendorUuidFooCB> downcast(DeleteOption<? extends ConditionBean> op) {
-        return (DeleteOption<VendorUuidFooCB>)op;
-    }
+    protected UpdateOption<VendorUuidFooCB> downcast(UpdateOption<? extends ConditionBean> op)
+    { return (UpdateOption<VendorUuidFooCB>)op; }
 
     @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<VendorUuidFoo, VendorUuidFooCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp) {
-        return (QueryInsertSetupper<VendorUuidFoo, VendorUuidFooCB>)sp;
-    }
+    protected DeleteOption<VendorUuidFooCB> downcast(DeleteOption<? extends ConditionBean> op)
+    { return (DeleteOption<VendorUuidFooCB>)op; }
+
+    @SuppressWarnings("unchecked")
+    protected QueryInsertSetupper<VendorUuidFoo, VendorUuidFooCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
+    { return (QueryInsertSetupper<VendorUuidFoo, VendorUuidFooCB>)sp; }
 }

@@ -380,9 +380,11 @@ public class WxCBPagingSelectAndQuerySplitMySQLTest extends UnitContainerTestCas
             assertMarked("exists");
             assertMarked("fml");
             assertMarked("S");
-            assertEquals(2, infoList.size());
+            assertEquals(3, infoList.size());
             assertContains(infoList.get(0).getDisplaySql(), "count(*)");
             assertContains(infoList.get(1).getDisplaySql(), "as HIGHEST_PURCHASE_PRICE");
+            assertContains(infoList.get(1).getDisplaySql(), "MEMBER_NAME like 'S%'");
+            assertContains(infoList.get(2).getDisplaySql(), " in (");
         } finally {
             CallbackContext.clearSqlLogHandlerOnThread();
         }

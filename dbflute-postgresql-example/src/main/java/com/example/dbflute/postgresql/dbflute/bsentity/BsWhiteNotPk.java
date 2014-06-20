@@ -307,7 +307,7 @@ public abstract class BsWhiteNotPk implements Entity, Serializable, Cloneable {
      */
     public void setNotPkId(Long notPkId) {
         __modifiedProperties.addPropertyName("notPkId");
-        this._notPkId = notPkId;
+        _notPkId = notPkId;
     }
 
     /**
@@ -324,7 +324,7 @@ public abstract class BsWhiteNotPk implements Entity, Serializable, Cloneable {
      */
     public void setNotPkName(String notPkName) {
         __modifiedProperties.addPropertyName("notPkName");
-        this._notPkName = notPkName;
+        _notPkName = notPkName;
     }
 
     /**
@@ -341,6 +341,6 @@ public abstract class BsWhiteNotPk implements Entity, Serializable, Cloneable {
      */
     public void setNotPkInteger(Integer notPkInteger) {
         __modifiedProperties.addPropertyName("notPkInteger");
-        this._notPkInteger = notPkInteger;
+        _notPkInteger = notPkInteger;
     }
 }

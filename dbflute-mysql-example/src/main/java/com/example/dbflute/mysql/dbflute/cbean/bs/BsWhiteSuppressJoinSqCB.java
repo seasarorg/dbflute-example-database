@@ -95,11 +95,23 @@ public class BsWhiteSuppressJoinSqCB extends AbstractConditionBean {
     /**
      * Accept the query condition of primary key as equal.
      * @param suppressJoinSqId : PK, NotNull, INT(10). (NotNull)
+     * @return this. (NotNull)
+     */
+    public WhiteSuppressJoinSqCB acceptPK(Integer suppressJoinSqId) {
+        assertObjectNotNull("suppressJoinSqId", suppressJoinSqId);
+        BsWhiteSuppressJoinSqCB cb = this;
+        cb.query().setSuppressJoinSqId_Equal(suppressJoinSqId);
+        return (WhiteSuppressJoinSqCB)this;
+    }
+
+    /**
+     * Accept the query condition of primary key as equal. (old style)
+     * @param suppressJoinSqId : PK, NotNull, INT(10). (NotNull)
      */
     public void acceptPrimaryKey(Integer suppressJoinSqId) {
         assertObjectNotNull("suppressJoinSqId", suppressJoinSqId);
         BsWhiteSuppressJoinSqCB cb = this;
-        cb.query().setSuppressJoinSqId_Equal(suppressJoinSqId);;
+        cb.query().setSuppressJoinSqId_Equal(suppressJoinSqId);
     }
 
     public ConditionBean addOrderBy_PK_Asc() {

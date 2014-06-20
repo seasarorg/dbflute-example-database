@@ -315,7 +315,7 @@ public abstract class BsWhiteDbComment implements Entity, Serializable, Cloneabl
      */
     public void setDbCommentCode(String dbCommentCode) {
         __modifiedProperties.addPropertyName("dbCommentCode");
-        this._dbCommentCode = dbCommentCode;
+        _dbCommentCode = dbCommentCode;
     }
 
     /**
@@ -334,6 +334,6 @@ public abstract class BsWhiteDbComment implements Entity, Serializable, Cloneabl
      */
     public void setDbCommentName(String dbCommentName) {
         __modifiedProperties.addPropertyName("dbCommentName");
-        this._dbCommentName = dbCommentName;
+        _dbCommentName = dbCommentName;
     }
 }

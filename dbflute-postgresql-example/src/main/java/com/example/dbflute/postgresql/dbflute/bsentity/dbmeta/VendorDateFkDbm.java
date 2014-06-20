@@ -153,7 +153,7 @@ public class VendorDateFkDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public VendorDateFk newEntity() { return new VendorDateFk(); }
     public VendorDateFk newMyEntity() { return new VendorDateFk(); }
 
     // ===================================================================================

@@ -319,7 +319,7 @@ public abstract class BsWhiteXlsMan implements Entity, Serializable, Cloneable {
      */
     public void setXlsManId(Long xlsManId) {
         __modifiedProperties.addPropertyName("xlsManId");
-        this._xlsManId = xlsManId;
+        _xlsManId = xlsManId;
     }
 
     /**
@@ -336,7 +336,7 @@ public abstract class BsWhiteXlsMan implements Entity, Serializable, Cloneable {
      */
     public void setStringConverted(String stringConverted) {
         __modifiedProperties.addPropertyName("stringConverted");
-        this._stringConverted = stringConverted;
+        _stringConverted = stringConverted;
     }
 
     /**
@@ -353,6 +353,6 @@ public abstract class BsWhiteXlsMan implements Entity, Serializable, Cloneable {
      */
     public void setTimestampConverted(java.sql.Timestamp timestampConverted) {
         __modifiedProperties.addPropertyName("timestampConverted");
-        this._timestampConverted = timestampConverted;
+        _timestampConverted = timestampConverted;
     }
 }

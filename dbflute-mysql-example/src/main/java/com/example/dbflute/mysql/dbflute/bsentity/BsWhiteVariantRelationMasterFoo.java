@@ -156,7 +156,7 @@ public abstract class BsWhiteVariantRelationMasterFoo implements Entity, Seriali
     protected List<WhiteVariantRelationReferrer> _whiteVariantRelationReferrerAsVariantList;
 
     /**
-     * white_variant_relation_referrer by VARIANT_MASTER_ID, named 'whiteVariantRelationReferrerAsVariantList'.
+     * [get] white_variant_relation_referrer by VARIANT_MASTER_ID, named 'whiteVariantRelationReferrerAsVariantList'.
      * @return The entity list of referrer property 'whiteVariantRelationReferrerAsVariantList'. (NotNull: even if no loading, returns empty list)
      */
     public List<WhiteVariantRelationReferrer> getWhiteVariantRelationReferrerAsVariantList() {
@@ -165,7 +165,7 @@ public abstract class BsWhiteVariantRelationMasterFoo implements Entity, Seriali
     }
 
     /**
-     * white_variant_relation_referrer by VARIANT_MASTER_ID, named 'whiteVariantRelationReferrerAsVariantList'.
+     * [set] white_variant_relation_referrer by VARIANT_MASTER_ID, named 'whiteVariantRelationReferrerAsVariantList'.
      * @param whiteVariantRelationReferrerAsVariantList The entity list of referrer property 'whiteVariantRelationReferrerAsVariantList'. (NullAllowed)
      */
     public void setWhiteVariantRelationReferrerAsVariantList(List<WhiteVariantRelationReferrer> whiteVariantRelationReferrerAsVariantList) {
@@ -346,7 +346,7 @@ public abstract class BsWhiteVariantRelationMasterFoo implements Entity, Seriali
      */
     public void setMasterFooId(Long masterFooId) {
         __modifiedProperties.addPropertyName("masterFooId");
-        this._masterFooId = masterFooId;
+        _masterFooId = masterFooId;
     }
 
     /**
@@ -363,6 +363,6 @@ public abstract class BsWhiteVariantRelationMasterFoo implements Entity, Seriali
      */
     public void setMasterFooName(String masterFooName) {
         __modifiedProperties.addPropertyName("masterFooName");
-        this._masterFooName = masterFooName;
+        _masterFooName = masterFooName;
     }
 }

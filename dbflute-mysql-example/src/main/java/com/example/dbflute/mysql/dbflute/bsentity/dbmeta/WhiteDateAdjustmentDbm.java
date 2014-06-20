@@ -254,7 +254,7 @@ public class WhiteDateAdjustmentDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public WhiteDateAdjustment newEntity() { return new WhiteDateAdjustment(); }
     public WhiteDateAdjustment newMyEntity() { return new WhiteDateAdjustment(); }
 
     // ===================================================================================

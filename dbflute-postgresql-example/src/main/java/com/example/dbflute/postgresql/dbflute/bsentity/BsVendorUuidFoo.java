@@ -143,7 +143,7 @@ public abstract class BsVendorUuidFoo implements Entity, Serializable, Cloneable
     protected VendorUuidBar _vendorUuidBar;
 
     /**
-     * vendor_uuid_bar by my bar_id, named 'vendorUuidBar'.
+     * [get] vendor_uuid_bar by my bar_id, named 'vendorUuidBar'.
      * @return The entity of foreign property 'vendorUuidBar'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public VendorUuidBar getVendorUuidBar() {
@@ -151,7 +151,7 @@ public abstract class BsVendorUuidFoo implements Entity, Serializable, Cloneable
     }
 
     /**
-     * vendor_uuid_bar by my bar_id, named 'vendorUuidBar'.
+     * [set] vendor_uuid_bar by my bar_id, named 'vendorUuidBar'.
      * @param vendorUuidBar The entity of foreign property 'vendorUuidBar'. (NullAllowed)
      */
     public void setVendorUuidBar(VendorUuidBar vendorUuidBar) {
@@ -335,7 +335,7 @@ public abstract class BsVendorUuidFoo implements Entity, Serializable, Cloneable
      */
     public void setFooId(java.util.UUID fooId) {
         __modifiedProperties.addPropertyName("fooId");
-        this._fooId = fooId;
+        _fooId = fooId;
     }
 
     /**
@@ -352,7 +352,7 @@ public abstract class BsVendorUuidFoo implements Entity, Serializable, Cloneable
      */
     public void setFooName(String fooName) {
         __modifiedProperties.addPropertyName("fooName");
-        this._fooName = fooName;
+        _fooName = fooName;
     }
 
     /**
@@ -369,6 +369,6 @@ public abstract class BsVendorUuidFoo implements Entity, Serializable, Cloneable
      */
     public void setBarId(java.util.UUID barId) {
         __modifiedProperties.addPropertyName("barId");
-        this._barId = barId;
+        _barId = barId;
     }
 }

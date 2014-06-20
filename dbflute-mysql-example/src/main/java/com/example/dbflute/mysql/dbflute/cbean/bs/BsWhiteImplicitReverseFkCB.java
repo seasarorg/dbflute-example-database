@@ -96,11 +96,23 @@ public class BsWhiteImplicitReverseFkCB extends AbstractConditionBean {
     /**
      * Accept the query condition of primary key as equal.
      * @param whiteImplicitReverseFkId : PK, ID, NotNull, INT(10), FK to WHITE_IMPLICIT_REVERSE_FK_REF. (NotNull)
+     * @return this. (NotNull)
+     */
+    public WhiteImplicitReverseFkCB acceptPK(Integer whiteImplicitReverseFkId) {
+        assertObjectNotNull("whiteImplicitReverseFkId", whiteImplicitReverseFkId);
+        BsWhiteImplicitReverseFkCB cb = this;
+        cb.query().setWhiteImplicitReverseFkId_Equal(whiteImplicitReverseFkId);
+        return (WhiteImplicitReverseFkCB)this;
+    }
+
+    /**
+     * Accept the query condition of primary key as equal. (old style)
+     * @param whiteImplicitReverseFkId : PK, ID, NotNull, INT(10), FK to WHITE_IMPLICIT_REVERSE_FK_REF. (NotNull)
      */
     public void acceptPrimaryKey(Integer whiteImplicitReverseFkId) {
         assertObjectNotNull("whiteImplicitReverseFkId", whiteImplicitReverseFkId);
         BsWhiteImplicitReverseFkCB cb = this;
-        cb.query().setWhiteImplicitReverseFkId_Equal(whiteImplicitReverseFkId);;
+        cb.query().setWhiteImplicitReverseFkId_Equal(whiteImplicitReverseFkId);
     }
 
     public ConditionBean addOrderBy_PK_Asc() {

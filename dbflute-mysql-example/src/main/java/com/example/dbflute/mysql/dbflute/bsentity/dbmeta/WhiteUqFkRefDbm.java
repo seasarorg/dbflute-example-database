@@ -227,7 +227,7 @@ public class WhiteUqFkRefDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public WhiteUqFkRef newEntity() { return new WhiteUqFkRef(); }
     public WhiteUqFkRef newMyEntity() { return new WhiteUqFkRef(); }
 
     // ===================================================================================

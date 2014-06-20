@@ -5,11 +5,14 @@ import java.util.List;
 import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
+import org.seasar.dbflute.cbean.chelper.HpSLSExecutor;
+import org.seasar.dbflute.cbean.chelper.HpSLSFunction;
 import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.exception.*;
 import org.seasar.dbflute.optional.OptionalEntity;
 import org.seasar.dbflute.outsidesql.executor.*;
 import com.example.dbflute.postgresql.dbflute.exbhv.*;
+import com.example.dbflute.postgresql.dbflute.bsbhv.loader.*;
 import com.example.dbflute.postgresql.dbflute.exentity.*;
 import com.example.dbflute.postgresql.dbflute.bsentity.dbmeta.*;
 import com.example.dbflute.postgresql.dbflute.cbean.*;
@@ -63,7 +66,7 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
     // ===================================================================================
     //                                                                              DBMeta
     //                                                                              ======
-    /** @return The instance of DBMeta. (NotNull) */
+    /** {@inheritDoc} */
     public DBMeta getDBMeta() { return VendorLargeDataRefDbm.getInstance(); }
 
     /** @return The instance of DBMeta as my table type. (NotNull) */
@@ -73,10 +76,10 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
     //                                                                        New Instance
     //                                                                        ============
     /** {@inheritDoc} */
-    public Entity newEntity() { return newMyEntity(); }
+    public VendorLargeDataRef newEntity() { return new VendorLargeDataRef(); }
 
     /** {@inheritDoc} */
-    public ConditionBean newConditionBean() { return newMyConditionBean(); }
+    public VendorLargeDataRefCB newConditionBean() { return new VendorLargeDataRefCB(); }
 
     /** @return The instance of new entity as my table type. (NotNull) */
     public VendorLargeDataRef newMyEntity() { return new VendorLargeDataRef(); }
@@ -99,6 +102,10 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
      * @return The count for the condition. (NotMinus)
      */
     public int selectCount(VendorLargeDataRefCB cb) {
+        return facadeSelectCount(cb);
+    }
+
+    protected int facadeSelectCount(VendorLargeDataRefCB cb) {
         return doSelectCountUniquely(cb);
     }
 
@@ -114,7 +121,7 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
 
     @Override
     protected int doReadCount(ConditionBean cb) {
-        return selectCount(downcast(cb));
+        return facadeSelectCount(downcast(cb));
     }
 
     // ===================================================================================
@@ -140,7 +147,11 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public VendorLargeDataRef selectEntity(VendorLargeDataRefCB cb) {
-        return doSelectEntity(cb, VendorLargeDataRef.class);
+        return facadeSelectEntity(cb);
+    }
+
+    protected VendorLargeDataRef facadeSelectEntity(VendorLargeDataRefCB cb) {
+        return doSelectEntity(cb, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends VendorLargeDataRef> ENTITY doSelectEntity(VendorLargeDataRefCB cb, Class<ENTITY> tp) {
@@ -155,7 +166,7 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
 
     @Override
     protected Entity doReadEntity(ConditionBean cb) {
-        return selectEntity(downcast(cb));
+        return facadeSelectEntity(downcast(cb));
     }
 
     /**
@@ -174,7 +185,11 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public VendorLargeDataRef selectEntityWithDeletedCheck(VendorLargeDataRefCB cb) {
-        return doSelectEntityWithDeletedCheck(cb, VendorLargeDataRef.class);
+        return facadeSelectEntityWithDeletedCheck(cb);
+    }
+
+    protected VendorLargeDataRef facadeSelectEntityWithDeletedCheck(VendorLargeDataRefCB cb) {
+        return doSelectEntityWithDeletedCheck(cb, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends VendorLargeDataRef> ENTITY doSelectEntityWithDeletedCheck(VendorLargeDataRefCB cb, Class<ENTITY> tp) {
@@ -185,7 +200,7 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
 
     @Override
     protected Entity doReadEntityWithDeletedCheck(ConditionBean cb) {
-        return selectEntityWithDeletedCheck(downcast(cb));
+        return facadeSelectEntityWithDeletedCheck(downcast(cb));
     }
 
     /**
@@ -196,15 +211,19 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public VendorLargeDataRef selectByPKValue(Long largeDataRefId) {
-        return doSelectByPK(largeDataRefId, VendorLargeDataRef.class);
+        return facadeSelectByPKValue(largeDataRefId);
     }
 
-    protected <ENTITY extends VendorLargeDataRef> ENTITY doSelectByPK(Long largeDataRefId, Class<ENTITY> entityType) {
-        return doSelectEntity(xprepareCBAsPK(largeDataRefId), entityType);
+    protected VendorLargeDataRef facadeSelectByPKValue(Long largeDataRefId) {
+        return doSelectByPK(largeDataRefId, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends VendorLargeDataRef> OptionalEntity<ENTITY> doSelectOptionalByPK(Long largeDataRefId, Class<ENTITY> entityType) {
-        return createOptionalEntity(doSelectByPK(largeDataRefId, entityType), largeDataRefId);
+    protected <ENTITY extends VendorLargeDataRef> ENTITY doSelectByPK(Long largeDataRefId, Class<ENTITY> tp) {
+        return doSelectEntity(xprepareCBAsPK(largeDataRefId), tp);
+    }
+
+    protected <ENTITY extends VendorLargeDataRef> OptionalEntity<ENTITY> doSelectOptionalByPK(Long largeDataRefId, Class<ENTITY> tp) {
+        return createOptionalEntity(doSelectByPK(largeDataRefId, tp), largeDataRefId);
     }
 
     /**
@@ -216,17 +235,16 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public VendorLargeDataRef selectByPKValueWithDeletedCheck(Long largeDataRefId) {
-        return doSelectByPKWithDeletedCheck(largeDataRefId, VendorLargeDataRef.class);
+        return doSelectByPKWithDeletedCheck(largeDataRefId, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends VendorLargeDataRef> ENTITY doSelectByPKWithDeletedCheck(Long largeDataRefId, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(largeDataRefId), entityType);
+    protected <ENTITY extends VendorLargeDataRef> ENTITY doSelectByPKWithDeletedCheck(Long largeDataRefId, Class<ENTITY> tp) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(largeDataRefId), tp);
     }
 
     protected VendorLargeDataRefCB xprepareCBAsPK(Long largeDataRefId) {
         assertObjectNotNull("largeDataRefId", largeDataRefId);
-        VendorLargeDataRefCB cb = newMyConditionBean(); cb.acceptPrimaryKey(largeDataRefId);
-        return cb;
+        return newConditionBean().acceptPK(largeDataRefId);
     }
 
     // ===================================================================================
@@ -248,7 +266,11 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
      * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public ListResultBean<VendorLargeDataRef> selectList(VendorLargeDataRefCB cb) {
-        return doSelectList(cb, VendorLargeDataRef.class);
+        return facadeSelectList(cb);
+    }
+
+    protected ListResultBean<VendorLargeDataRef> facadeSelectList(VendorLargeDataRefCB cb) {
+        return doSelectList(cb, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends VendorLargeDataRef> ListResultBean<ENTITY> doSelectList(VendorLargeDataRefCB cb, Class<ENTITY> tp) {
@@ -260,7 +282,7 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
 
     @Override
     protected ListResultBean<? extends Entity> doReadList(ConditionBean cb) {
-        return selectList(downcast(cb));
+        return facadeSelectList(downcast(cb));
     }
 
     // ===================================================================================
@@ -289,7 +311,11 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
      * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public PagingResultBean<VendorLargeDataRef> selectPage(VendorLargeDataRefCB cb) {
-        return doSelectPage(cb, VendorLargeDataRef.class);
+        return facadeSelectPage(cb);
+    }
+
+    protected PagingResultBean<VendorLargeDataRef> facadeSelectPage(VendorLargeDataRefCB cb) {
+        return doSelectPage(cb, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends VendorLargeDataRef> PagingResultBean<ENTITY> doSelectPage(VendorLargeDataRefCB cb, Class<ENTITY> tp) {
@@ -302,7 +328,7 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
 
     @Override
     protected PagingResultBean<? extends Entity> doReadPage(ConditionBean cb) {
-        return selectPage(downcast(cb));
+        return facadeSelectPage(downcast(cb));
     }
 
     // ===================================================================================
@@ -323,15 +349,19 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
      * @param entityRowHandler The handler of entity row of VendorLargeDataRef. (NotNull)
      */
     public void selectCursor(VendorLargeDataRefCB cb, EntityRowHandler<VendorLargeDataRef> entityRowHandler) {
-        doSelectCursor(cb, entityRowHandler, VendorLargeDataRef.class);
+        facadeSelectCursor(cb, entityRowHandler);
+    }
+
+    protected void facadeSelectCursor(VendorLargeDataRefCB cb, EntityRowHandler<VendorLargeDataRef> entityRowHandler) {
+        doSelectCursor(cb, entityRowHandler, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends VendorLargeDataRef> void doSelectCursor(VendorLargeDataRefCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
         assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
         helpSelectCursorInternally(cb, handler, tp, new InternalSelectCursorCallback<ENTITY, VendorLargeDataRefCB>() {
-            public void callbackSelectCursor(VendorLargeDataRefCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) { delegateSelectCursor(cb, handler, tp); }
-            public List<ENTITY> callbackSelectList(VendorLargeDataRefCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
+            public void callbackSelectCursor(VendorLargeDataRefCB lcb, EntityRowHandler<ENTITY> lhandler, Class<ENTITY> ltp) { delegateSelectCursor(lcb, lhandler, ltp); }
+            public List<ENTITY> callbackSelectList(VendorLargeDataRefCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); }
         });
     }
 
@@ -353,22 +383,23 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
      * @param resultType The type of result. (NotNull)
      * @return The scalar function object to specify function for scalar value. (NotNull)
      */
-    public <RESULT> SLFunction<VendorLargeDataRefCB, RESULT> scalarSelect(Class<RESULT> resultType) {
-        return doScalarSelect(resultType, newMyConditionBean());
+    public <RESULT> HpSLSFunction<VendorLargeDataRefCB, RESULT> scalarSelect(Class<RESULT> resultType) {
+        return facadeScalarSelect(resultType);
     }
 
-    protected <RESULT, CB extends VendorLargeDataRefCB> SLFunction<CB, RESULT> doScalarSelect(Class<RESULT> tp, CB cb) {
+    protected <RESULT> HpSLSFunction<VendorLargeDataRefCB, RESULT> facadeScalarSelect(Class<RESULT> resultType) {
+        return doScalarSelect(resultType, newConditionBean());
+    }
+
+    protected <RESULT, CB extends VendorLargeDataRefCB> HpSLSFunction<CB, RESULT> doScalarSelect(final Class<RESULT> tp, final CB cb) {
         assertObjectNotNull("resultType", tp); assertCBStateValid(cb);
         cb.xsetupForScalarSelect(); cb.getSqlClause().disableSelectIndex(); // for when you use union
-        return createSLFunction(cb, tp);
+        HpSLSExecutor<CB, RESULT> executor = createHpSLSExecutor(); // variable to resolve generic
+        return createSLSFunction(cb, tp, executor);
     }
 
-    protected <RESULT, CB extends VendorLargeDataRefCB> SLFunction<CB, RESULT> createSLFunction(CB cb, Class<RESULT> tp) {
-        return new SLFunction<CB, RESULT>(cb, tp);
-    }
-
-    protected <RESULT> SLFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) {
-        return doScalarSelect(tp, newMyConditionBean());
+    protected <RESULT> HpSLSFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) {
+        return facadeScalarSelect(tp);
     }
 
     // ===================================================================================
@@ -383,6 +414,78 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
     // ===================================================================================
     //                                                                       Load Referrer
     //                                                                       =============
+    /**
+     * Load referrer by the the referrer loader. <br />
+     * <pre>
+     * MemberCB cb = new MemberCB();
+     * cb.query().set...
+     * List&lt;Member&gt; memberList = memberBhv.selectList(cb);
+     * memberBhv.<span style="color: #DD4747">load</span>(memberList, loader -&gt; {
+     *     loader.<span style="color: #DD4747">loadPurchaseList</span>(purchaseCB -&gt; {
+     *         purchaseCB.query().set...
+     *         purchaseCB.query().addOrderBy_PurchasePrice_Desc();
+     *     }); <span style="color: #3F7E5E">// you can also load nested referrer from here</span>
+     *     <span style="color: #3F7E5E">//}).withNestedList(purchaseLoader -&gt {</span>
+     *     <span style="color: #3F7E5E">//    purchaseLoader.loadPurchasePaymentList(...);</span>
+     *     <span style="color: #3F7E5E">//});</span>
+     *
+     *     <span style="color: #3F7E5E">// you can also pull out foreign table and load its referrer</span>
+     *     <span style="color: #3F7E5E">// (setupSelect of the foreign table should be called)</span>
+     *     <span style="color: #3F7E5E">//loader.pulloutMemberStatus().loadMemberLoginList(...)</span>
+     * }
+     * for (Member member : memberList) {
+     *     List&lt;Purchase&gt; purchaseList = member.<span style="color: #DD4747">getPurchaseList()</span>;
+     *     for (Purchase purchase : purchaseList) {
+     *         ...
+     *     }
+     * }
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has order by FK before callback.
+     * @param vendorLargeDataRefList The entity list of vendorLargeDataRef. (NotNull)
+     * @param handler The callback to handle the referrer loader for actually loading referrer. (NotNull)
+     */
+    public void load(List<VendorLargeDataRef> vendorLargeDataRefList, ReferrerLoaderHandler<LoaderOfVendorLargeDataRef> handler) {
+        xassLRArg(vendorLargeDataRefList, handler);
+        handler.handle(new LoaderOfVendorLargeDataRef().ready(vendorLargeDataRefList, _behaviorSelector));
+    }
+
+    /**
+     * Load referrer of ${referrer.referrerJavaBeansRulePropertyName} by the referrer loader. <br />
+     * <pre>
+     * MemberCB cb = new MemberCB();
+     * cb.query().set...
+     * Member member = memberBhv.selectEntityWithDeletedCheck(cb);
+     * memberBhv.<span style="color: #DD4747">load</span>(member, loader -&gt; {
+     *     loader.<span style="color: #DD4747">loadPurchaseList</span>(purchaseCB -&gt; {
+     *         purchaseCB.query().set...
+     *         purchaseCB.query().addOrderBy_PurchasePrice_Desc();
+     *     }); <span style="color: #3F7E5E">// you can also load nested referrer from here</span>
+     *     <span style="color: #3F7E5E">//}).withNestedList(purchaseLoader -&gt {</span>
+     *     <span style="color: #3F7E5E">//    purchaseLoader.loadPurchasePaymentList(...);</span>
+     *     <span style="color: #3F7E5E">//});</span>
+     *
+     *     <span style="color: #3F7E5E">// you can also pull out foreign table and load its referrer</span>
+     *     <span style="color: #3F7E5E">// (setupSelect of the foreign table should be called)</span>
+     *     <span style="color: #3F7E5E">//loader.pulloutMemberStatus().loadMemberLoginList(...)</span>
+     * }
+     * for (Member member : memberList) {
+     *     List&lt;Purchase&gt; purchaseList = member.<span style="color: #DD4747">getPurchaseList()</span>;
+     *     for (Purchase purchase : purchaseList) {
+     *         ...
+     *     }
+     * }
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has order by FK before callback.
+     * @param vendorLargeDataRef The entity of vendorLargeDataRef. (NotNull)
+     * @param handler The callback to handle the referrer loader for actually loading referrer. (NotNull)
+     */
+    public void load(VendorLargeDataRef vendorLargeDataRef, ReferrerLoaderHandler<LoaderOfVendorLargeDataRef> handler) {
+        xassLRArg(vendorLargeDataRef, handler);
+        handler.handle(new LoaderOfVendorLargeDataRef().ready(xnewLRAryLs(vendorLargeDataRef), _behaviorSelector));
+    }
+
     /**
      * Load referrer of vendorLargeDataRefSelfList by the set-upper of referrer. <br />
      * vendor_large_data_ref by self_parent_id, named 'vendorLargeDataRefSelfList'.
@@ -411,7 +514,7 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
      * @param setupper The callback to set up referrer condition-bean for loading referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public NestedReferrerLoader<VendorLargeDataRef> loadVendorLargeDataRefSelfList(List<VendorLargeDataRef> vendorLargeDataRefList, ConditionBeanSetupper<VendorLargeDataRefCB> setupper) {
+    public NestedReferrerListGateway<VendorLargeDataRef> loadVendorLargeDataRefSelfList(List<VendorLargeDataRef> vendorLargeDataRefList, ConditionBeanSetupper<VendorLargeDataRefCB> setupper) {
         xassLRArg(vendorLargeDataRefList, setupper);
         return doLoadVendorLargeDataRefSelfList(vendorLargeDataRefList, new LoadReferrerOption<VendorLargeDataRefCB, VendorLargeDataRef>().xinit(setupper));
     }
@@ -442,7 +545,7 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
      * @param setupper The callback to set up referrer condition-bean for loading referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public NestedReferrerLoader<VendorLargeDataRef> loadVendorLargeDataRefSelfList(VendorLargeDataRef vendorLargeDataRef, ConditionBeanSetupper<VendorLargeDataRefCB> setupper) {
+    public NestedReferrerListGateway<VendorLargeDataRef> loadVendorLargeDataRefSelfList(VendorLargeDataRef vendorLargeDataRef, ConditionBeanSetupper<VendorLargeDataRefCB> setupper) {
         xassLRArg(vendorLargeDataRef, setupper);
         return doLoadVendorLargeDataRefSelfList(xnewLRLs(vendorLargeDataRef), new LoadReferrerOption<VendorLargeDataRefCB, VendorLargeDataRef>().xinit(setupper));
     }
@@ -453,7 +556,7 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
      * @param loadReferrerOption The option of load-referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public NestedReferrerLoader<VendorLargeDataRef> loadVendorLargeDataRefSelfList(VendorLargeDataRef vendorLargeDataRef, LoadReferrerOption<VendorLargeDataRefCB, VendorLargeDataRef> loadReferrerOption) {
+    public NestedReferrerListGateway<VendorLargeDataRef> loadVendorLargeDataRefSelfList(VendorLargeDataRef vendorLargeDataRef, LoadReferrerOption<VendorLargeDataRefCB, VendorLargeDataRef> loadReferrerOption) {
         xassLRArg(vendorLargeDataRef, loadReferrerOption);
         return loadVendorLargeDataRefSelfList(xnewLRLs(vendorLargeDataRef), loadReferrerOption);
     }
@@ -465,20 +568,20 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
     @SuppressWarnings("unchecked")
-    public NestedReferrerLoader<VendorLargeDataRef> loadVendorLargeDataRefSelfList(List<VendorLargeDataRef> vendorLargeDataRefList, LoadReferrerOption<VendorLargeDataRefCB, VendorLargeDataRef> loadReferrerOption) {
+    public NestedReferrerListGateway<VendorLargeDataRef> loadVendorLargeDataRefSelfList(List<VendorLargeDataRef> vendorLargeDataRefList, LoadReferrerOption<VendorLargeDataRefCB, VendorLargeDataRef> loadReferrerOption) {
         xassLRArg(vendorLargeDataRefList, loadReferrerOption);
-        if (vendorLargeDataRefList.isEmpty()) { return (NestedReferrerLoader<VendorLargeDataRef>)EMPTY_LOADER; }
+        if (vendorLargeDataRefList.isEmpty()) { return (NestedReferrerListGateway<VendorLargeDataRef>)EMPTY_NREF_LGWAY; }
         return doLoadVendorLargeDataRefSelfList(vendorLargeDataRefList, loadReferrerOption);
     }
 
-    protected NestedReferrerLoader<VendorLargeDataRef> doLoadVendorLargeDataRefSelfList(List<VendorLargeDataRef> vendorLargeDataRefList, LoadReferrerOption<VendorLargeDataRefCB, VendorLargeDataRef> option) {
+    protected NestedReferrerListGateway<VendorLargeDataRef> doLoadVendorLargeDataRefSelfList(List<VendorLargeDataRef> vendorLargeDataRefList, LoadReferrerOption<VendorLargeDataRefCB, VendorLargeDataRef> option) {
         final VendorLargeDataRefBhv referrerBhv = xgetBSFLR().select(VendorLargeDataRefBhv.class);
         return helpLoadReferrerInternally(vendorLargeDataRefList, option, new InternalLoadReferrerCallback<VendorLargeDataRef, Long, VendorLargeDataRefCB, VendorLargeDataRef>() {
             public Long getPKVal(VendorLargeDataRef et)
             { return et.getLargeDataRefId(); }
             public void setRfLs(VendorLargeDataRef et, List<VendorLargeDataRef> ls)
             { et.setVendorLargeDataRefSelfList(ls); }
-            public VendorLargeDataRefCB newMyCB() { return referrerBhv.newMyConditionBean(); }
+            public VendorLargeDataRefCB newMyCB() { return referrerBhv.newConditionBean(); }
             public void qyFKIn(VendorLargeDataRefCB cb, List<Long> ls)
             { cb.query().setSelfParentId_InScope(ls); }
             public void qyOdFKAsc(VendorLargeDataRefCB cb) { cb.query().addOrderBy_SelfParentId_Asc(); }
@@ -508,6 +611,7 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
             { et.setVendorLargeDataRefList(ls); }
         });
     }
+
     /**
      * Pull out the list of foreign table 'VendorLargeDataRef'.
      * @param vendorLargeDataRefList The list of vendorLargeDataRef. (NotNull, EmptyAllowed)
@@ -554,17 +658,17 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
      * ... = vendorLargeDataRef.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * <p>While, when the entity is created by select, all columns are registered.</p>
-     * @param vendorLargeDataRef The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
+     * @param vendorLargeDataRef The entity of insert. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
      * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insert(VendorLargeDataRef vendorLargeDataRef) {
         doInsert(vendorLargeDataRef, null);
     }
 
-    protected void doInsert(VendorLargeDataRef vendorLargeDataRef, InsertOption<VendorLargeDataRefCB> op) {
-        assertObjectNotNull("vendorLargeDataRef", vendorLargeDataRef);
+    protected void doInsert(VendorLargeDataRef et, InsertOption<VendorLargeDataRefCB> op) {
+        assertObjectNotNull("vendorLargeDataRef", et);
         prepareInsertOption(op);
-        delegateInsert(vendorLargeDataRef, op);
+        delegateInsert(et, op);
     }
 
     protected void prepareInsertOption(InsertOption<VendorLargeDataRefCB> op) {
@@ -577,8 +681,7 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
 
     @Override
     protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) {
-        if (op == null) { insert(downcast(et)); }
-        else { varyingInsert(downcast(et), downcast(op)); }
+        doInsert(downcast(et), downcast(op));
     }
 
     /**
@@ -590,7 +693,7 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
      * <span style="color: #3F7E5E">//vendorLargeDataRef.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//vendorLargeDataRef.set...;</span>
-     * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
+     * <span style="color: #3F7E5E">// if exclusive control, the value of concurrency column is required</span>
      * vendorLargeDataRef.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     vendorLargeDataRefBhv.<span style="color: #DD4747">update</span>(vendorLargeDataRef);
@@ -598,49 +701,38 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
      *     ...
      * }
      * </pre>
-     * @param vendorLargeDataRef The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
+     * @param vendorLargeDataRef The entity of update. (NotNull, PrimaryKeyNotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
-    public void update(final VendorLargeDataRef vendorLargeDataRef) {
+    public void update(VendorLargeDataRef vendorLargeDataRef) {
         doUpdate(vendorLargeDataRef, null);
     }
 
-    protected void doUpdate(VendorLargeDataRef vendorLargeDataRef, final UpdateOption<VendorLargeDataRefCB> op) {
-        assertObjectNotNull("vendorLargeDataRef", vendorLargeDataRef);
+    protected void doUpdate(VendorLargeDataRef et, final UpdateOption<VendorLargeDataRefCB> op) {
+        assertObjectNotNull("vendorLargeDataRef", et);
         prepareUpdateOption(op);
-        helpUpdateInternally(vendorLargeDataRef, new InternalUpdateCallback<VendorLargeDataRef>() {
-            public int callbackDelegateUpdate(VendorLargeDataRef et) { return delegateUpdate(et, op); } });
+        helpUpdateInternally(et, new InternalUpdateCallback<VendorLargeDataRef>() {
+            public int callbackDelegateUpdate(VendorLargeDataRef let) { return delegateUpdate(let, op); } });
     }
 
     protected void prepareUpdateOption(UpdateOption<VendorLargeDataRefCB> op) {
         if (op == null) { return; }
         assertUpdateOptionStatus(op);
-        if (op.hasSelfSpecification()) {
-            op.resolveSelfSpecification(createCBForVaryingUpdate());
-        }
-        if (op.hasSpecifiedUpdateColumn()) {
-            op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate());
-        }
+        if (op.hasSelfSpecification()) { op.resolveSelfSpecification(createCBForVaryingUpdate()); }
+        if (op.hasSpecifiedUpdateColumn()) { op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate()); }
     }
 
-    protected VendorLargeDataRefCB createCBForVaryingUpdate() {
-        VendorLargeDataRefCB cb = newMyConditionBean();
-        cb.xsetupForVaryingUpdate();
-        return cb;
-    }
+    protected VendorLargeDataRefCB createCBForVaryingUpdate()
+    { VendorLargeDataRefCB cb = newConditionBean(); cb.xsetupForVaryingUpdate(); return cb; }
 
-    protected VendorLargeDataRefCB createCBForSpecifiedUpdate() {
-        VendorLargeDataRefCB cb = newMyConditionBean();
-        cb.xsetupForSpecifiedUpdate();
-        return cb;
-    }
+    protected VendorLargeDataRefCB createCBForSpecifiedUpdate()
+    { VendorLargeDataRefCB cb = newConditionBean(); cb.xsetupForSpecifiedUpdate(); return cb; }
 
     @Override
     protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) {
-        if (op == null) { update(downcast(et)); }
-        else { varyingUpdate(downcast(et), downcast(op)); }
+        doUpdate(downcast(et), downcast(op));
     }
 
     @Override
@@ -652,32 +744,28 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br />
      * <p><span style="color: #DD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
-     * @param vendorLargeDataRef The entity of insert or update target. (NotNull)
+     * @param vendorLargeDataRef The entity of insert or update. (NotNull, ...depends on insert or update)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insertOrUpdate(VendorLargeDataRef vendorLargeDataRef) {
-        doInesrtOrUpdate(vendorLargeDataRef, null, null);
+        doInsertOrUpdate(vendorLargeDataRef, null, null);
     }
 
-    protected void doInesrtOrUpdate(VendorLargeDataRef vendorLargeDataRef, final InsertOption<VendorLargeDataRefCB> iop, final UpdateOption<VendorLargeDataRefCB> uop) {
-        helpInsertOrUpdateInternally(vendorLargeDataRef, new InternalInsertOrUpdateCallback<VendorLargeDataRef, VendorLargeDataRefCB>() {
-            public void callbackInsert(VendorLargeDataRef et) { doInsert(et, iop); }
-            public void callbackUpdate(VendorLargeDataRef et) { doUpdate(et, uop); }
-            public VendorLargeDataRefCB callbackNewMyConditionBean() { return newMyConditionBean(); }
+    protected void doInsertOrUpdate(VendorLargeDataRef et, final InsertOption<VendorLargeDataRefCB> iop, final UpdateOption<VendorLargeDataRefCB> uop) {
+        assertObjectNotNull("vendorLargeDataRef", et);
+        helpInsertOrUpdateInternally(et, new InternalInsertOrUpdateCallback<VendorLargeDataRef, VendorLargeDataRefCB>() {
+            public void callbackInsert(VendorLargeDataRef let) { doInsert(let, iop); }
+            public void callbackUpdate(VendorLargeDataRef let) { doUpdate(let, uop); }
+            public VendorLargeDataRefCB callbackNewMyConditionBean() { return newConditionBean(); }
             public int callbackSelectCount(VendorLargeDataRefCB cb) { return selectCount(cb); }
         });
     }
 
     @Override
     protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
-        if (iop == null && uop == null) { insertOrUpdate(downcast(et)); }
-        else {
-            iop = iop != null ? iop : new InsertOption<VendorLargeDataRefCB>();
-            uop = uop != null ? uop : new UpdateOption<VendorLargeDataRefCB>();
-            varyingInsertOrUpdate(downcast(et), downcast(iop), downcast(uop));
-        }
+        doInsertOrUpdate(downcast(et), downcast(iop), downcast(uop));
     }
 
     @Override
@@ -690,7 +778,7 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
      * <pre>
      * VendorLargeDataRef vendorLargeDataRef = new VendorLargeDataRef();
      * vendorLargeDataRef.setPK...(value); <span style="color: #3F7E5E">// required</span>
-     * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
+     * <span style="color: #3F7E5E">// if exclusive control, the value of concurrency column is required</span>
      * vendorLargeDataRef.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     vendorLargeDataRefBhv.<span style="color: #DD4747">delete</span>(vendorLargeDataRef);
@@ -698,7 +786,7 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
      *     ...
      * }
      * </pre>
-     * @param vendorLargeDataRef The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
+     * @param vendorLargeDataRef The entity of delete. (NotNull, PrimaryKeyNotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      */
@@ -706,22 +794,19 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
         doDelete(vendorLargeDataRef, null);
     }
 
-    protected void doDelete(VendorLargeDataRef vendorLargeDataRef, final DeleteOption<VendorLargeDataRefCB> op) {
-        assertObjectNotNull("vendorLargeDataRef", vendorLargeDataRef);
+    protected void doDelete(VendorLargeDataRef et, final DeleteOption<VendorLargeDataRefCB> op) {
+        assertObjectNotNull("vendorLargeDataRef", et);
         prepareDeleteOption(op);
-        helpDeleteInternally(vendorLargeDataRef, new InternalDeleteCallback<VendorLargeDataRef>() {
-            public int callbackDelegateDelete(VendorLargeDataRef et) { return delegateDelete(et, op); } });
+        helpDeleteInternally(et, new InternalDeleteCallback<VendorLargeDataRef>() {
+            public int callbackDelegateDelete(VendorLargeDataRef let) { return delegateDelete(let, op); } });
     }
 
-    protected void prepareDeleteOption(DeleteOption<VendorLargeDataRefCB> op) {
-        if (op == null) { return; }
-        assertDeleteOptionStatus(op);
-    }
+    protected void prepareDeleteOption(DeleteOption<VendorLargeDataRefCB> op)
+    { if (op != null) { assertDeleteOptionStatus(op); } }
 
     @Override
     protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) {
-        if (op == null) { delete(downcast(et)); }
-        else { varyingDelete(downcast(et), downcast(op)); }
+        doDelete(downcast(et), downcast(op));
     }
 
     @Override
@@ -757,26 +842,25 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
      * @return The array of inserted count. (NotNull, EmptyAllowed)
      */
     public int[] batchInsert(List<VendorLargeDataRef> vendorLargeDataRefList) {
-        InsertOption<VendorLargeDataRefCB> op = createInsertUpdateOption();
-        return doBatchInsert(vendorLargeDataRefList, op);
+        return doBatchInsert(vendorLargeDataRefList, null);
     }
 
-    protected int[] doBatchInsert(List<VendorLargeDataRef> vendorLargeDataRefList, InsertOption<VendorLargeDataRefCB> op) {
-        assertObjectNotNull("vendorLargeDataRefList", vendorLargeDataRefList);
-        prepareBatchInsertOption(vendorLargeDataRefList, op);
-        return delegateBatchInsert(vendorLargeDataRefList, op);
+    protected int[] doBatchInsert(List<VendorLargeDataRef> ls, InsertOption<VendorLargeDataRefCB> op) {
+        assertObjectNotNull("vendorLargeDataRefList", ls);
+        InsertOption<VendorLargeDataRefCB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainInsertOption(); }
+        prepareBatchInsertOption(ls, rlop); // required
+        return delegateBatchInsert(ls, rlop);
     }
 
-    protected void prepareBatchInsertOption(List<VendorLargeDataRef> vendorLargeDataRefList, InsertOption<VendorLargeDataRefCB> op) {
+    protected void prepareBatchInsertOption(List<VendorLargeDataRef> ls, InsertOption<VendorLargeDataRefCB> op) {
         op.xallowInsertColumnModifiedPropertiesFragmented();
-        op.xacceptInsertColumnModifiedPropertiesIfNeeds(vendorLargeDataRefList);
+        op.xacceptInsertColumnModifiedPropertiesIfNeeds(ls);
         prepareInsertOption(op);
     }
 
     @Override
     protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) {
-        if (op == null) { return batchInsert(downcast(ls)); }
-        else { return varyingBatchInsert(downcast(ls), downcast(op)); }
+        return doBatchInsert(downcast(ls), downcast(op));
     }
 
     /**
@@ -804,25 +888,24 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<VendorLargeDataRef> vendorLargeDataRefList) {
-        UpdateOption<VendorLargeDataRefCB> op = createPlainUpdateOption();
-        return doBatchUpdate(vendorLargeDataRefList, op);
+        return doBatchUpdate(vendorLargeDataRefList, null);
     }
 
-    protected int[] doBatchUpdate(List<VendorLargeDataRef> vendorLargeDataRefList, UpdateOption<VendorLargeDataRefCB> op) {
-        assertObjectNotNull("vendorLargeDataRefList", vendorLargeDataRefList);
-        prepareBatchUpdateOption(vendorLargeDataRefList, op);
-        return delegateBatchUpdate(vendorLargeDataRefList, op);
+    protected int[] doBatchUpdate(List<VendorLargeDataRef> ls, UpdateOption<VendorLargeDataRefCB> op) {
+        assertObjectNotNull("vendorLargeDataRefList", ls);
+        UpdateOption<VendorLargeDataRefCB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainUpdateOption(); }
+        prepareBatchUpdateOption(ls, rlop); // required
+        return delegateBatchUpdate(ls, rlop);
     }
 
-    protected void prepareBatchUpdateOption(List<VendorLargeDataRef> vendorLargeDataRefList, UpdateOption<VendorLargeDataRefCB> op) {
-        op.xacceptUpdateColumnModifiedPropertiesIfNeeds(vendorLargeDataRefList);
+    protected void prepareBatchUpdateOption(List<VendorLargeDataRef> ls, UpdateOption<VendorLargeDataRefCB> op) {
+        op.xacceptUpdateColumnModifiedPropertiesIfNeeds(ls);
         prepareUpdateOption(op);
     }
 
     @Override
     protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) {
-        if (op == null) { return batchUpdate(downcast(ls)); }
-        else { return varyingBatchUpdate(downcast(ls), downcast(op)); }
+        return doBatchUpdate(downcast(ls), downcast(op));
     }
 
     /**
@@ -873,16 +956,15 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
         return doBatchDelete(vendorLargeDataRefList, null);
     }
 
-    protected int[] doBatchDelete(List<VendorLargeDataRef> vendorLargeDataRefList, DeleteOption<VendorLargeDataRefCB> op) {
-        assertObjectNotNull("vendorLargeDataRefList", vendorLargeDataRefList);
+    protected int[] doBatchDelete(List<VendorLargeDataRef> ls, DeleteOption<VendorLargeDataRefCB> op) {
+        assertObjectNotNull("vendorLargeDataRefList", ls);
         prepareDeleteOption(op);
-        return delegateBatchDelete(vendorLargeDataRefList, op);
+        return delegateBatchDelete(ls, op);
     }
 
     @Override
     protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) {
-        if (op == null) { return batchDelete(downcast(ls)); }
-        else { return varyingBatchDelete(downcast(ls), downcast(op)); }
+        return doBatchDelete(downcast(ls), downcast(op));
     }
 
     @Override
@@ -909,7 +991,7 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
      *         <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
      *         <span style="color: #3F7E5E">//entity.setRegisterUser(value);</span>
      *         <span style="color: #3F7E5E">//entity.set...;</span>
-     *         <span style="color: #3F7E5E">// you don't need to set a value of exclusive control column</span>
+     *         <span style="color: #3F7E5E">// you don't need to set a value of concurrency column</span>
      *         <span style="color: #3F7E5E">//entity.setVersionNo(value);</span>
      *
      *         return cb;
@@ -926,21 +1008,17 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
     protected int doQueryInsert(QueryInsertSetupper<VendorLargeDataRef, VendorLargeDataRefCB> sp, InsertOption<VendorLargeDataRefCB> op) {
         assertObjectNotNull("setupper", sp);
         prepareInsertOption(op);
-        VendorLargeDataRef e = new VendorLargeDataRef();
+        VendorLargeDataRef et = newEntity();
         VendorLargeDataRefCB cb = createCBForQueryInsert();
-        return delegateQueryInsert(e, cb, sp.setup(e, cb), op);
+        return delegateQueryInsert(et, cb, sp.setup(et, cb), op);
     }
 
-    protected VendorLargeDataRefCB createCBForQueryInsert() {
-        VendorLargeDataRefCB cb = newMyConditionBean();
-        cb.xsetupForQueryInsert();
-        return cb;
-    }
+    protected VendorLargeDataRefCB createCBForQueryInsert()
+    { VendorLargeDataRefCB cb = newConditionBean(); cb.xsetupForQueryInsert(); return cb; }
 
     @Override
-    protected int doRangeCreate(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> setupper, InsertOption<? extends ConditionBean> option) {
-        if (option == null) { return queryInsert(downcast(setupper)); }
-        else { return varyingQueryInsert(downcast(setupper), downcast(option)); }
+    protected int doRangeCreate(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> setupper, InsertOption<? extends ConditionBean> op) {
+        return doQueryInsert(downcast(setupper), downcast(op));
     }
 
     /**
@@ -953,7 +1031,7 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
      * <span style="color: #3F7E5E">//vendorLargeDataRef.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//vendorLargeDataRef.set...;</span>
-     * <span style="color: #3F7E5E">// you don't need to set a value of exclusive control column</span>
+     * <span style="color: #3F7E5E">// you don't need to set a value of concurrency column</span>
      * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
      * <span style="color: #3F7E5E">//vendorLargeDataRef.setVersionNo(value);</span>
      * VendorLargeDataRefCB cb = new VendorLargeDataRefCB();
@@ -969,16 +1047,15 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
         return doQueryUpdate(vendorLargeDataRef, cb, null);
     }
 
-    protected int doQueryUpdate(VendorLargeDataRef vendorLargeDataRef, VendorLargeDataRefCB cb, UpdateOption<VendorLargeDataRefCB> op) {
-        assertObjectNotNull("vendorLargeDataRef", vendorLargeDataRef); assertCBStateValid(cb);
+    protected int doQueryUpdate(VendorLargeDataRef et, VendorLargeDataRefCB cb, UpdateOption<VendorLargeDataRefCB> op) {
+        assertObjectNotNull("vendorLargeDataRef", et); assertCBStateValid(cb);
         prepareUpdateOption(op);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(vendorLargeDataRef, cb, op) : 0;
+        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(et, cb, op) : 0;
     }
 
     @Override
     protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op) {
-        if (op == null) { return queryUpdate(downcast(et), (VendorLargeDataRefCB)cb); }
-        else { return varyingQueryUpdate(downcast(et), (VendorLargeDataRefCB)cb, downcast(op)); }
+        return doQueryUpdate(downcast(et), downcast(cb), downcast(op));
     }
 
     /**
@@ -1004,8 +1081,7 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
 
     @Override
     protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) {
-        if (op == null) { return queryDelete((VendorLargeDataRefCB)cb); }
-        else { return varyingQueryDelete((VendorLargeDataRefCB)cb, downcast(op)); }
+        return doQueryDelete(downcast(cb), downcast(op));
     }
 
     // ===================================================================================
@@ -1029,7 +1105,7 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
      * vendorLargeDataRefBhv.<span style="color: #DD4747">varyingInsert</span>(vendorLargeDataRef, option);
      * ... = vendorLargeDataRef.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
-     * @param vendorLargeDataRef The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
+     * @param vendorLargeDataRef The entity of insert. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
      * @param option The option of insert for varying requests. (NotNull)
      * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
@@ -1046,7 +1122,7 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
      * VendorLargeDataRef vendorLargeDataRef = new VendorLargeDataRef();
      * vendorLargeDataRef.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * vendorLargeDataRef.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
-     * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
+     * <span style="color: #3F7E5E">// if exclusive control, the value of concurrency column is required</span>
      * vendorLargeDataRef.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     <span style="color: #3F7E5E">// you can update by self calculation values</span>
@@ -1061,7 +1137,7 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
      *     ...
      * }
      * </pre>
-     * @param vendorLargeDataRef The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
+     * @param vendorLargeDataRef The entity of update. (NotNull, PrimaryKeyNotNull)
      * @param option The option of update for varying requests. (NotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
@@ -1075,7 +1151,7 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
     /**
      * Insert or update the entity with varying requests. (ExclusiveControl: when update) <br />
      * Other specifications are same as insertOrUpdate(entity).
-     * @param vendorLargeDataRef The entity of insert or update target. (NotNull)
+     * @param vendorLargeDataRef The entity of insert or update. (NotNull)
      * @param insertOption The option of insert for varying requests. (NotNull)
      * @param updateOption The option of update for varying requests. (NotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
@@ -1084,14 +1160,14 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
      */
     public void varyingInsertOrUpdate(VendorLargeDataRef vendorLargeDataRef, InsertOption<VendorLargeDataRefCB> insertOption, UpdateOption<VendorLargeDataRefCB> updateOption) {
         assertInsertOptionNotNull(insertOption); assertUpdateOptionNotNull(updateOption);
-        doInesrtOrUpdate(vendorLargeDataRef, insertOption, updateOption);
+        doInsertOrUpdate(vendorLargeDataRef, insertOption, updateOption);
     }
 
     /**
      * Delete the entity with varying requests. (ZeroUpdateException, NonExclusiveControl) <br />
      * Now a valid option does not exist. <br />
      * Other specifications are same as delete(entity).
-     * @param vendorLargeDataRef The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
+     * @param vendorLargeDataRef The entity of delete. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
      * @param option The option of update for varying requests. (NotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
@@ -1172,7 +1248,7 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">// you don't need to set PK value</span>
      * <span style="color: #3F7E5E">//vendorLargeDataRef.setPK...(value);</span>
      * vendorLargeDataRef.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
-     * <span style="color: #3F7E5E">// you don't need to set a value of exclusive control column</span>
+     * <span style="color: #3F7E5E">// you don't need to set a value of concurrency column</span>
      * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
      * <span style="color: #3F7E5E">//vendorLargeDataRef.setVersionNo(value);</span>
      * VendorLargeDataRefCB cb = new VendorLargeDataRefCB();
@@ -1324,38 +1400,34 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
     }
 
     // ===================================================================================
-    //                                                                     Downcast Helper
-    //                                                                     ===============
-    protected VendorLargeDataRef downcast(Entity et) {
-        return helpEntityDowncastInternally(et, VendorLargeDataRef.class);
-    }
+    //                                                                       Assist Helper
+    //                                                                       =============
+    protected Class<VendorLargeDataRef> typeOfSelectedEntity()
+    { return VendorLargeDataRef.class; }
 
-    protected VendorLargeDataRefCB downcast(ConditionBean cb) {
-        return helpConditionBeanDowncastInternally(cb, VendorLargeDataRefCB.class);
-    }
+    protected VendorLargeDataRef downcast(Entity et)
+    { return helpEntityDowncastInternally(et, VendorLargeDataRef.class); }
 
-    @SuppressWarnings("unchecked")
-    protected List<VendorLargeDataRef> downcast(List<? extends Entity> ls) {
-        return (List<VendorLargeDataRef>)ls;
-    }
+    protected VendorLargeDataRefCB downcast(ConditionBean cb)
+    { return helpConditionBeanDowncastInternally(cb, VendorLargeDataRefCB.class); }
 
     @SuppressWarnings("unchecked")
-    protected InsertOption<VendorLargeDataRefCB> downcast(InsertOption<? extends ConditionBean> op) {
-        return (InsertOption<VendorLargeDataRefCB>)op;
-    }
+    protected List<VendorLargeDataRef> downcast(List<? extends Entity> ls)
+    { return (List<VendorLargeDataRef>)ls; }
 
     @SuppressWarnings("unchecked")
-    protected UpdateOption<VendorLargeDataRefCB> downcast(UpdateOption<? extends ConditionBean> op) {
-        return (UpdateOption<VendorLargeDataRefCB>)op;
-    }
+    protected InsertOption<VendorLargeDataRefCB> downcast(InsertOption<? extends ConditionBean> op)
+    { return (InsertOption<VendorLargeDataRefCB>)op; }
 
     @SuppressWarnings("unchecked")
-    protected DeleteOption<VendorLargeDataRefCB> downcast(DeleteOption<? extends ConditionBean> op) {
-        return (DeleteOption<VendorLargeDataRefCB>)op;
-    }
+    protected UpdateOption<VendorLargeDataRefCB> downcast(UpdateOption<? extends ConditionBean> op)
+    { return (UpdateOption<VendorLargeDataRefCB>)op; }
 
     @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<VendorLargeDataRef, VendorLargeDataRefCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp) {
-        return (QueryInsertSetupper<VendorLargeDataRef, VendorLargeDataRefCB>)sp;
-    }
+    protected DeleteOption<VendorLargeDataRefCB> downcast(DeleteOption<? extends ConditionBean> op)
+    { return (DeleteOption<VendorLargeDataRefCB>)op; }
+
+    @SuppressWarnings("unchecked")
+    protected QueryInsertSetupper<VendorLargeDataRef, VendorLargeDataRefCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
+    { return (QueryInsertSetupper<VendorLargeDataRef, VendorLargeDataRefCB>)sp; }
 }

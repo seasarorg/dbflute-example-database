@@ -156,7 +156,7 @@ public abstract class BsWhiteMyself implements Entity, Serializable, Cloneable {
     protected List<WhiteMyselfCheck> _whiteMyselfCheckList;
 
     /**
-     * white_myself_check by MYSELF_ID, named 'whiteMyselfCheckList'.
+     * [get] white_myself_check by MYSELF_ID, named 'whiteMyselfCheckList'.
      * @return The entity list of referrer property 'whiteMyselfCheckList'. (NotNull: even if no loading, returns empty list)
      */
     public List<WhiteMyselfCheck> getWhiteMyselfCheckList() {
@@ -165,7 +165,7 @@ public abstract class BsWhiteMyself implements Entity, Serializable, Cloneable {
     }
 
     /**
-     * white_myself_check by MYSELF_ID, named 'whiteMyselfCheckList'.
+     * [set] white_myself_check by MYSELF_ID, named 'whiteMyselfCheckList'.
      * @param whiteMyselfCheckList The entity list of referrer property 'whiteMyselfCheckList'. (NullAllowed)
      */
     public void setWhiteMyselfCheckList(List<WhiteMyselfCheck> whiteMyselfCheckList) {
@@ -346,7 +346,7 @@ public abstract class BsWhiteMyself implements Entity, Serializable, Cloneable {
      */
     public void setMyselfId(Integer myselfId) {
         __modifiedProperties.addPropertyName("myselfId");
-        this._myselfId = myselfId;
+        _myselfId = myselfId;
     }
 
     /**
@@ -363,6 +363,6 @@ public abstract class BsWhiteMyself implements Entity, Serializable, Cloneable {
      */
     public void setMyselfName(String myselfName) {
         __modifiedProperties.addPropertyName("myselfName");
-        this._myselfName = myselfName;
+        _myselfName = myselfName;
     }
 }

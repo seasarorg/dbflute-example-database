@@ -313,7 +313,7 @@ public abstract class AbstractBsWhiteQuotedRefCQ extends AbstractConditionQuery 
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteQuotedRefCB> scalar_Equal() {
-        return xcreateSSQFunction(CK_EQ.getOperand(), WhiteQuotedRefCB.class);
+        return xcreateSSQFunction(CK_EQ, WhiteQuotedRefCB.class);
     }
 
     /**
@@ -330,7 +330,7 @@ public abstract class AbstractBsWhiteQuotedRefCQ extends AbstractConditionQuery 
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteQuotedRefCB> scalar_NotEqual() {
-        return xcreateSSQFunction(CK_NES.getOperand(), WhiteQuotedRefCB.class);
+        return xcreateSSQFunction(CK_NES, WhiteQuotedRefCB.class);
     }
 
     /**
@@ -347,7 +347,7 @@ public abstract class AbstractBsWhiteQuotedRefCQ extends AbstractConditionQuery 
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteQuotedRefCB> scalar_GreaterThan() {
-        return xcreateSSQFunction(CK_GT.getOperand(), WhiteQuotedRefCB.class);
+        return xcreateSSQFunction(CK_GT, WhiteQuotedRefCB.class);
     }
 
     /**
@@ -364,7 +364,7 @@ public abstract class AbstractBsWhiteQuotedRefCQ extends AbstractConditionQuery 
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteQuotedRefCB> scalar_LessThan() {
-        return xcreateSSQFunction(CK_LT.getOperand(), WhiteQuotedRefCB.class);
+        return xcreateSSQFunction(CK_LT, WhiteQuotedRefCB.class);
     }
 
     /**
@@ -381,7 +381,7 @@ public abstract class AbstractBsWhiteQuotedRefCQ extends AbstractConditionQuery 
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteQuotedRefCB> scalar_GreaterEqual() {
-        return xcreateSSQFunction(CK_GE.getOperand(), WhiteQuotedRefCB.class);
+        return xcreateSSQFunction(CK_GE, WhiteQuotedRefCB.class);
     }
 
     /**
@@ -398,7 +398,7 @@ public abstract class AbstractBsWhiteQuotedRefCQ extends AbstractConditionQuery 
      * @return The object to set up a function. (NotNull)
      */
     public HpSSQFunction<WhiteQuotedRefCB> scalar_LessEqual() {
-        return xcreateSSQFunction(CK_LE.getOperand(), WhiteQuotedRefCB.class);
+        return xcreateSSQFunction(CK_LE, WhiteQuotedRefCB.class);
     }
 
     @SuppressWarnings("unchecked")
@@ -511,6 +511,41 @@ public abstract class AbstractBsWhiteQuotedRefCQ extends AbstractConditionQuery 
                     , String conditionValue
                     , org.seasar.dbflute.dbway.WayOfMySQL.FullTextSearchModifier modifier) {
         xdoMatchForMySQL(textColumnList, conditionValue, modifier);
+    }
+
+    /**
+     * Order along manual ordering information.
+     * <pre>
+     * MemberCB cb = new MemberCB();
+     * ManualOrderBean mob = new ManualOrderBean();
+     * mob.<span style="color: #DD4747">when_GreaterEqual</span>(priorityDate); <span style="color: #3F7E5E">// e.g. 2000/01/01</span>
+     * cb.query().addOrderBy_Birthdate_Asc().<span style="color: #DD4747">withManualOrder(mob)</span>;
+     * <span style="color: #3F7E5E">// order by </span>
+     * <span style="color: #3F7E5E">//   case</span>
+     * <span style="color: #3F7E5E">//     when BIRTHDATE &gt;= '2000/01/01' then 0</span>
+     * <span style="color: #3F7E5E">//     else 1</span>
+     * <span style="color: #3F7E5E">//   end asc, ...</span>
+     *
+     * MemberCB cb = new MemberCB();
+     * ManualOrderBean mob = new ManualOrderBean();
+     * mob.<span style="color: #DD4747">when_Equal</span>(CDef.MemberStatus.Withdrawal);
+     * mob.<span style="color: #DD4747">when_Equal</span>(CDef.MemberStatus.Formalized);
+     * mob.<span style="color: #DD4747">when_Equal</span>(CDef.MemberStatus.Provisional);
+     * cb.query().addOrderBy_MemberStatusCode_Asc().<span style="color: #DD4747">withManualOrder(mob)</span>;
+     * <span style="color: #3F7E5E">// order by </span>
+     * <span style="color: #3F7E5E">//   case</span>
+     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'WDL' then 0</span>
+     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'FML' then 1</span>
+     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'PRV' then 2</span>
+     * <span style="color: #3F7E5E">//     else 3</span>
+     * <span style="color: #3F7E5E">//   end asc, ...</span>
+     * </pre>
+     * <p>This function with Union is unsupported!</p>
+     * <p>The order values are bound (treated as bind parameter).</p>
+     * @param mob The bean of manual order containing order values. (NotNull)
+     */
+    public void withManualOrder(ManualOrderBean mob) { // is user public!
+        xdoWithManualOrder(mob);
     }
 
     // ===================================================================================

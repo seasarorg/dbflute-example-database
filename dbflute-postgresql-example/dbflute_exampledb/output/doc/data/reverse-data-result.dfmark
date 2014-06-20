@@ -41,11 +41,10 @@
   member_service (20)
   member_withdrawal (4)
   product (20)
-  purchase (70)
+  purchase (204)
   vendor_date_fk (0)
 
-[reverse-data-99-added-table.xls]: tables=2
-  white_same_name (0)
-  white_same_name_ref (0)
+[reverse-data-99-added-table.xls]: tables=1
+  purchase_payment (100)
 
-Output Date: 2014/06/05 15:53:46
+Output Date: 2014/06/21 00:07:57

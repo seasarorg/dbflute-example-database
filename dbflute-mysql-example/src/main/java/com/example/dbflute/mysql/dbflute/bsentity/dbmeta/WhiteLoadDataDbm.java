@@ -146,7 +146,7 @@ public class WhiteLoadDataDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public WhiteLoadData newEntity() { return new WhiteLoadData(); }
     public WhiteLoadData newMyEntity() { return new WhiteLoadData(); }
 
     // ===================================================================================

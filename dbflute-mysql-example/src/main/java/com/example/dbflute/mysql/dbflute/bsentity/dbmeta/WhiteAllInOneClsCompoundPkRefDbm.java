@@ -199,7 +199,7 @@ public class WhiteAllInOneClsCompoundPkRefDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public WhiteAllInOneClsCompoundPkRef newEntity() { return new WhiteAllInOneClsCompoundPkRef(); }
     public WhiteAllInOneClsCompoundPkRef newMyEntity() { return new WhiteAllInOneClsCompoundPkRef(); }
 
     // ===================================================================================

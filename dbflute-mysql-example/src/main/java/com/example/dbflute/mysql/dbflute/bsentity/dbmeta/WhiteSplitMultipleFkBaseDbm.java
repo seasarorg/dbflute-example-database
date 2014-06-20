@@ -213,7 +213,7 @@ public class WhiteSplitMultipleFkBaseDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public WhiteSplitMultipleFkBase newEntity() { return new WhiteSplitMultipleFkBase(); }
     public WhiteSplitMultipleFkBase newMyEntity() { return new WhiteSplitMultipleFkBase(); }
 
     // ===================================================================================

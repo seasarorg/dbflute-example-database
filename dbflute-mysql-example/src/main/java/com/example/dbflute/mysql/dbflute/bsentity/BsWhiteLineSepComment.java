@@ -404,7 +404,7 @@ public abstract class BsWhiteLineSepComment implements Entity, Serializable, Clo
      */
     protected void setLineSepCommentCode(String lineSepCommentCode) {
         __modifiedProperties.addPropertyName("lineSepCommentCode");
-        this._lineSepCommentCode = lineSepCommentCode;
+        _lineSepCommentCode = lineSepCommentCode;
     }
 
     /**
@@ -421,6 +421,6 @@ public abstract class BsWhiteLineSepComment implements Entity, Serializable, Clo
      */
     public void setLineSepCommentName(String lineSepCommentName) {
         __modifiedProperties.addPropertyName("lineSepCommentName");
-        this._lineSepCommentName = lineSepCommentName;
+        _lineSepCommentName = lineSepCommentName;
     }
 }

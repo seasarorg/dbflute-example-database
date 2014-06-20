@@ -316,7 +316,7 @@ public abstract class BsWhiteXlsMan implements Entity, Serializable, Cloneable {
      */
     public void setXlsManId(Long xlsManId) {
         __modifiedProperties.addPropertyName("xlsManId");
-        this._xlsManId = xlsManId;
+        _xlsManId = xlsManId;
     }
 
     /**
@@ -333,7 +333,7 @@ public abstract class BsWhiteXlsMan implements Entity, Serializable, Cloneable {
      */
     public void setStringConverted(String stringConverted) {
         __modifiedProperties.addPropertyName("stringConverted");
-        this._stringConverted = stringConverted;
+        _stringConverted = stringConverted;
     }
 
     /**
@@ -350,7 +350,7 @@ public abstract class BsWhiteXlsMan implements Entity, Serializable, Cloneable {
      */
     public void setTimestampZeroDefaultMillis(java.sql.Timestamp timestampZeroDefaultMillis) {
         __modifiedProperties.addPropertyName("timestampZeroDefaultMillis");
-        this._timestampZeroDefaultMillis = timestampZeroDefaultMillis;
+        _timestampZeroDefaultMillis = timestampZeroDefaultMillis;
     }
 
     /**
@@ -367,7 +367,7 @@ public abstract class BsWhiteXlsMan implements Entity, Serializable, Cloneable {
      */
     public void setTimestampZeroPrefixMillis(java.sql.Timestamp timestampZeroPrefixMillis) {
         __modifiedProperties.addPropertyName("timestampZeroPrefixMillis");
-        this._timestampZeroPrefixMillis = timestampZeroPrefixMillis;
+        _timestampZeroPrefixMillis = timestampZeroPrefixMillis;
     }
 
     /**
@@ -384,6 +384,6 @@ public abstract class BsWhiteXlsMan implements Entity, Serializable, Cloneable {
      */
     public void setTimestampZeroSuffixMillis(java.sql.Timestamp timestampZeroSuffixMillis) {
         __modifiedProperties.addPropertyName("timestampZeroSuffixMillis");
-        this._timestampZeroSuffixMillis = timestampZeroSuffixMillis;
+        _timestampZeroSuffixMillis = timestampZeroSuffixMillis;
     }
 }

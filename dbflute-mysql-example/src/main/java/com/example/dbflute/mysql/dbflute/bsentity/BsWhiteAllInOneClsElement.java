@@ -164,7 +164,7 @@ public abstract class BsWhiteAllInOneClsElement implements Entity, Serializable,
     protected WhiteAllInOneClsCategory _whiteAllInOneClsCategory;
 
     /**
-     * white_all_in_one_cls_category by my CLS_CATEGORY_CODE, named 'whiteAllInOneClsCategory'.
+     * [get] white_all_in_one_cls_category by my CLS_CATEGORY_CODE, named 'whiteAllInOneClsCategory'.
      * @return The entity of foreign property 'whiteAllInOneClsCategory'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public WhiteAllInOneClsCategory getWhiteAllInOneClsCategory() {
@@ -172,7 +172,7 @@ public abstract class BsWhiteAllInOneClsElement implements Entity, Serializable,
     }
 
     /**
-     * white_all_in_one_cls_category by my CLS_CATEGORY_CODE, named 'whiteAllInOneClsCategory'.
+     * [set] white_all_in_one_cls_category by my CLS_CATEGORY_CODE, named 'whiteAllInOneClsCategory'.
      * @param whiteAllInOneClsCategory The entity of foreign property 'whiteAllInOneClsCategory'. (NullAllowed)
      */
     public void setWhiteAllInOneClsCategory(WhiteAllInOneClsCategory whiteAllInOneClsCategory) {
@@ -359,7 +359,7 @@ public abstract class BsWhiteAllInOneClsElement implements Entity, Serializable,
      */
     public void setClsCategoryCode(String clsCategoryCode) {
         __modifiedProperties.addPropertyName("clsCategoryCode");
-        this._clsCategoryCode = clsCategoryCode;
+        _clsCategoryCode = clsCategoryCode;
     }
 
     /**
@@ -376,7 +376,7 @@ public abstract class BsWhiteAllInOneClsElement implements Entity, Serializable,
      */
     public void setClsElementCode(String clsElementCode) {
         __modifiedProperties.addPropertyName("clsElementCode");
-        this._clsElementCode = clsElementCode;
+        _clsElementCode = clsElementCode;
     }
 
     /**
@@ -393,7 +393,7 @@ public abstract class BsWhiteAllInOneClsElement implements Entity, Serializable,
      */
     public void setClsElementName(String clsElementName) {
         __modifiedProperties.addPropertyName("clsElementName");
-        this._clsElementName = clsElementName;
+        _clsElementName = clsElementName;
     }
 
     /**
@@ -410,6 +410,6 @@ public abstract class BsWhiteAllInOneClsElement implements Entity, Serializable,
      */
     public void setAttributeExp(String attributeExp) {
         __modifiedProperties.addPropertyName("attributeExp");
-        this._attributeExp = attributeExp;
+        _attributeExp = attributeExp;
     }
 }

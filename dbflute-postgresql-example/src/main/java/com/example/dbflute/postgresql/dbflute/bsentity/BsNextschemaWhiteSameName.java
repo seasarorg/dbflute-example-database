@@ -146,7 +146,7 @@ public abstract class BsNextschemaWhiteSameName implements Entity, Serializable,
     protected List<NextschemaWhiteSameNameRef> _whiteSameNameRefList;
 
     /**
-     * nextschema.white_same_name_ref by same_name_id, named 'whiteSameNameRefList'.
+     * [get] nextschema.white_same_name_ref by same_name_id, named 'whiteSameNameRefList'.
      * @return The entity list of referrer property 'whiteSameNameRefList'. (NotNull: even if no loading, returns empty list)
      */
     public List<NextschemaWhiteSameNameRef> getWhiteSameNameRefList() {
@@ -155,7 +155,7 @@ public abstract class BsNextschemaWhiteSameName implements Entity, Serializable,
     }
 
     /**
-     * nextschema.white_same_name_ref by same_name_id, named 'whiteSameNameRefList'.
+     * [set] nextschema.white_same_name_ref by same_name_id, named 'whiteSameNameRefList'.
      * @param whiteSameNameRefList The entity list of referrer property 'whiteSameNameRefList'. (NullAllowed)
      */
     public void setWhiteSameNameRefList(List<NextschemaWhiteSameNameRef> whiteSameNameRefList) {
@@ -337,7 +337,7 @@ public abstract class BsNextschemaWhiteSameName implements Entity, Serializable,
      */
     public void setSameNameId(Integer sameNameId) {
         __modifiedProperties.addPropertyName("sameNameId");
-        this._sameNameId = sameNameId;
+        _sameNameId = sameNameId;
     }
 
     /**
@@ -354,7 +354,7 @@ public abstract class BsNextschemaWhiteSameName implements Entity, Serializable,
      */
     public void setSameNameName(String sameNameName) {
         __modifiedProperties.addPropertyName("sameNameName");
-        this._sameNameName = sameNameName;
+        _sameNameName = sameNameName;
     }
 
     /**
@@ -371,6 +371,6 @@ public abstract class BsNextschemaWhiteSameName implements Entity, Serializable,
      */
     public void setSameNameLong(Long sameNameLong) {
         __modifiedProperties.addPropertyName("sameNameLong");
-        this._sameNameLong = sameNameLong;
+        _sameNameLong = sameNameLong;
     }
 }

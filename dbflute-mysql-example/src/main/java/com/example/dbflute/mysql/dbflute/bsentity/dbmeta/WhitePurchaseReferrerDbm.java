@@ -169,7 +169,7 @@ public class WhitePurchaseReferrerDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public WhitePurchaseReferrer newEntity() { return new WhitePurchaseReferrer(); }
     public WhitePurchaseReferrer newMyEntity() { return new WhitePurchaseReferrer(); }
 
     // ===================================================================================

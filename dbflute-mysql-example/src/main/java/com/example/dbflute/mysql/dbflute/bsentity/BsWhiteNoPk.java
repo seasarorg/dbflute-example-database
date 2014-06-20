@@ -322,7 +322,7 @@ public abstract class BsWhiteNoPk implements Entity, Serializable, Cloneable {
      */
     public void setNoPkId(Long noPkId) {
         __modifiedProperties.addPropertyName("noPkId");
-        this._noPkId = noPkId;
+        _noPkId = noPkId;
     }
 
     /**
@@ -339,7 +339,7 @@ public abstract class BsWhiteNoPk implements Entity, Serializable, Cloneable {
      */
     public void setNoPkName(String noPkName) {
         __modifiedProperties.addPropertyName("noPkName");
-        this._noPkName = noPkName;
+        _noPkName = noPkName;
     }
 
     /**
@@ -356,6 +356,6 @@ public abstract class BsWhiteNoPk implements Entity, Serializable, Cloneable {
      */
     public void setNoPkInteger(Integer noPkInteger) {
         __modifiedProperties.addPropertyName("noPkInteger");
-        this._noPkInteger = noPkInteger;
+        _noPkInteger = noPkInteger;
     }
 }

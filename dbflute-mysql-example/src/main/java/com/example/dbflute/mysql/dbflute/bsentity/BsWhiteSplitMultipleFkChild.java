@@ -158,7 +158,7 @@ public abstract class BsWhiteSplitMultipleFkChild implements Entity, Serializabl
     protected WhiteSplitMultipleFkBase _whiteSplitMultipleFkBase;
 
     /**
-     * white_split_multiple_fk_base by my BASE_ID, named 'whiteSplitMultipleFkBase'.
+     * [get] white_split_multiple_fk_base by my BASE_ID, named 'whiteSplitMultipleFkBase'.
      * @return The entity of foreign property 'whiteSplitMultipleFkBase'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public WhiteSplitMultipleFkBase getWhiteSplitMultipleFkBase() {
@@ -166,7 +166,7 @@ public abstract class BsWhiteSplitMultipleFkChild implements Entity, Serializabl
     }
 
     /**
-     * white_split_multiple_fk_base by my BASE_ID, named 'whiteSplitMultipleFkBase'.
+     * [set] white_split_multiple_fk_base by my BASE_ID, named 'whiteSplitMultipleFkBase'.
      * @param whiteSplitMultipleFkBase The entity of foreign property 'whiteSplitMultipleFkBase'. (NullAllowed)
      */
     public void setWhiteSplitMultipleFkBase(WhiteSplitMultipleFkBase whiteSplitMultipleFkBase) {
@@ -350,7 +350,7 @@ public abstract class BsWhiteSplitMultipleFkChild implements Entity, Serializabl
      */
     public void setChildId(Long childId) {
         __modifiedProperties.addPropertyName("childId");
-        this._childId = childId;
+        _childId = childId;
     }
 
     /**
@@ -367,7 +367,7 @@ public abstract class BsWhiteSplitMultipleFkChild implements Entity, Serializabl
      */
     public void setBaseId(Long baseId) {
         __modifiedProperties.addPropertyName("baseId");
-        this._baseId = baseId;
+        _baseId = baseId;
     }
 
     /**
@@ -384,6 +384,6 @@ public abstract class BsWhiteSplitMultipleFkChild implements Entity, Serializabl
      */
     public void setChildName(String childName) {
         __modifiedProperties.addPropertyName("childName");
-        this._childName = childName;
+        _childName = childName;
     }
 }

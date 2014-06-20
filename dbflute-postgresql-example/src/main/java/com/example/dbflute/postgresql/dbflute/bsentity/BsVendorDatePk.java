@@ -142,7 +142,7 @@ public abstract class BsVendorDatePk implements Entity, Serializable, Cloneable 
     protected List<VendorDateFk> _vendorDateFkList;
 
     /**
-     * vendor_date_fk by bar_date, named 'vendorDateFkList'.
+     * [get] vendor_date_fk by bar_date, named 'vendorDateFkList'.
      * @return The entity list of referrer property 'vendorDateFkList'. (NotNull: even if no loading, returns empty list)
      */
     public List<VendorDateFk> getVendorDateFkList() {
@@ -151,7 +151,7 @@ public abstract class BsVendorDatePk implements Entity, Serializable, Cloneable 
     }
 
     /**
-     * vendor_date_fk by bar_date, named 'vendorDateFkList'.
+     * [set] vendor_date_fk by bar_date, named 'vendorDateFkList'.
      * @param vendorDateFkList The entity list of referrer property 'vendorDateFkList'. (NullAllowed)
      */
     public void setVendorDateFkList(List<VendorDateFk> vendorDateFkList) {
@@ -338,7 +338,7 @@ public abstract class BsVendorDatePk implements Entity, Serializable, Cloneable 
      */
     public void setFooDate(java.util.Date fooDate) {
         __modifiedProperties.addPropertyName("fooDate");
-        this._fooDate = fooDate;
+        _fooDate = fooDate;
     }
 
     /**
@@ -355,6 +355,6 @@ public abstract class BsVendorDatePk implements Entity, Serializable, Cloneable 
      */
     public void setFooName(String fooName) {
         __modifiedProperties.addPropertyName("fooName");
-        this._fooName = fooName;
+        _fooName = fooName;
     }
 }

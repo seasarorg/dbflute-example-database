@@ -162,7 +162,7 @@ public class WhiteVariantRelationMasterQuxDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public WhiteVariantRelationMasterQux newEntity() { return new WhiteVariantRelationMasterQux(); }
     public WhiteVariantRelationMasterQux newMyEntity() { return new WhiteVariantRelationMasterQux(); }
 
     // ===================================================================================

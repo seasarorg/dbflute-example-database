@@ -338,7 +338,7 @@ public abstract class BsWhiteDelimiter implements Entity, Serializable, Cloneabl
      */
     public void setDelimiterId(Long delimiterId) {
         __modifiedProperties.addPropertyName("delimiterId");
-        this._delimiterId = delimiterId;
+        _delimiterId = delimiterId;
     }
 
     /**
@@ -355,7 +355,7 @@ public abstract class BsWhiteDelimiter implements Entity, Serializable, Cloneabl
      */
     public void setNumberNullable(Integer numberNullable) {
         __modifiedProperties.addPropertyName("numberNullable");
-        this._numberNullable = numberNullable;
+        _numberNullable = numberNullable;
     }
 
     /**
@@ -372,7 +372,7 @@ public abstract class BsWhiteDelimiter implements Entity, Serializable, Cloneabl
      */
     public void setStringConverted(String stringConverted) {
         __modifiedProperties.addPropertyName("stringConverted");
-        this._stringConverted = stringConverted;
+        _stringConverted = stringConverted;
     }
 
     /**
@@ -389,7 +389,7 @@ public abstract class BsWhiteDelimiter implements Entity, Serializable, Cloneabl
      */
     public void setStringNonConverted(String stringNonConverted) {
         __modifiedProperties.addPropertyName("stringNonConverted");
-        this._stringNonConverted = stringNonConverted;
+        _stringNonConverted = stringNonConverted;
     }
 
     /**
@@ -406,6 +406,6 @@ public abstract class BsWhiteDelimiter implements Entity, Serializable, Cloneabl
      */
     public void setDateDefault(java.util.Date dateDefault) {
         __modifiedProperties.addPropertyName("dateDefault");
-        this._dateDefault = dateDefault;
+        _dateDefault = dateDefault;
     }
 }

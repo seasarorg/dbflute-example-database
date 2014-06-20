@@ -20,12 +20,15 @@ import java.util.List;
 import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
+import org.seasar.dbflute.cbean.chelper.HpSLSExecutor;
+import org.seasar.dbflute.cbean.chelper.HpSLSFunction;
 import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.exception.*;
 import org.seasar.dbflute.optional.OptionalEntity;
 import org.seasar.dbflute.outsidesql.executor.*;
 import com.example.dbflute.mysql.dbflute.allcommon.CDef;
 import com.example.dbflute.mysql.dbflute.exbhv.*;
+import com.example.dbflute.mysql.dbflute.bsbhv.loader.*;
 import com.example.dbflute.mysql.dbflute.exentity.*;
 import com.example.dbflute.mysql.dbflute.bsentity.dbmeta.*;
 import com.example.dbflute.mysql.dbflute.cbean.*;
@@ -79,7 +82,7 @@ public abstract class BsWhiteEscapedDfpropBhv extends AbstractBehaviorWritable {
     // ===================================================================================
     //                                                                              DBMeta
     //                                                                              ======
-    /** @return The instance of DBMeta. (NotNull) */
+    /** {@inheritDoc} */
     public DBMeta getDBMeta() { return WhiteEscapedDfpropDbm.getInstance(); }
 
     /** @return The instance of DBMeta as my table type. (NotNull) */
@@ -89,10 +92,10 @@ public abstract class BsWhiteEscapedDfpropBhv extends AbstractBehaviorWritable {
     //                                                                        New Instance
     //                                                                        ============
     /** {@inheritDoc} */
-    public Entity newEntity() { return newMyEntity(); }
+    public WhiteEscapedDfprop newEntity() { return new WhiteEscapedDfprop(); }
 
     /** {@inheritDoc} */
-    public ConditionBean newConditionBean() { return newMyConditionBean(); }
+    public WhiteEscapedDfpropCB newConditionBean() { return new WhiteEscapedDfpropCB(); }
 
     /** @return The instance of new entity as my table type. (NotNull) */
     public WhiteEscapedDfprop newMyEntity() { return new WhiteEscapedDfprop(); }
@@ -115,6 +118,10 @@ public abstract class BsWhiteEscapedDfpropBhv extends AbstractBehaviorWritable {
      * @return The count for the condition. (NotMinus)
      */
     public int selectCount(WhiteEscapedDfpropCB cb) {
+        return facadeSelectCount(cb);
+    }
+
+    protected int facadeSelectCount(WhiteEscapedDfpropCB cb) {
         return doSelectCountUniquely(cb);
     }
 
@@ -130,7 +137,7 @@ public abstract class BsWhiteEscapedDfpropBhv extends AbstractBehaviorWritable {
 
     @Override
     protected int doReadCount(ConditionBean cb) {
-        return selectCount(downcast(cb));
+        return facadeSelectCount(downcast(cb));
     }
 
     // ===================================================================================
@@ -156,7 +163,11 @@ public abstract class BsWhiteEscapedDfpropBhv extends AbstractBehaviorWritable {
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteEscapedDfprop selectEntity(WhiteEscapedDfpropCB cb) {
-        return doSelectEntity(cb, WhiteEscapedDfprop.class);
+        return facadeSelectEntity(cb);
+    }
+
+    protected WhiteEscapedDfprop facadeSelectEntity(WhiteEscapedDfpropCB cb) {
+        return doSelectEntity(cb, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends WhiteEscapedDfprop> ENTITY doSelectEntity(WhiteEscapedDfpropCB cb, Class<ENTITY> tp) {
@@ -171,7 +182,7 @@ public abstract class BsWhiteEscapedDfpropBhv extends AbstractBehaviorWritable {
 
     @Override
     protected Entity doReadEntity(ConditionBean cb) {
-        return selectEntity(downcast(cb));
+        return facadeSelectEntity(downcast(cb));
     }
 
     /**
@@ -190,7 +201,11 @@ public abstract class BsWhiteEscapedDfpropBhv extends AbstractBehaviorWritable {
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteEscapedDfprop selectEntityWithDeletedCheck(WhiteEscapedDfpropCB cb) {
-        return doSelectEntityWithDeletedCheck(cb, WhiteEscapedDfprop.class);
+        return facadeSelectEntityWithDeletedCheck(cb);
+    }
+
+    protected WhiteEscapedDfprop facadeSelectEntityWithDeletedCheck(WhiteEscapedDfpropCB cb) {
+        return doSelectEntityWithDeletedCheck(cb, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends WhiteEscapedDfprop> ENTITY doSelectEntityWithDeletedCheck(WhiteEscapedDfpropCB cb, Class<ENTITY> tp) {
@@ -201,7 +216,7 @@ public abstract class BsWhiteEscapedDfpropBhv extends AbstractBehaviorWritable {
 
     @Override
     protected Entity doReadEntityWithDeletedCheck(ConditionBean cb) {
-        return selectEntityWithDeletedCheck(downcast(cb));
+        return facadeSelectEntityWithDeletedCheck(downcast(cb));
     }
 
     /**
@@ -212,15 +227,19 @@ public abstract class BsWhiteEscapedDfpropBhv extends AbstractBehaviorWritable {
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteEscapedDfprop selectByPKValue(CDef.EscapedDfpropCls escapedDfpropCode) {
-        return doSelectByPK(escapedDfpropCode, WhiteEscapedDfprop.class);
+        return facadeSelectByPKValue(escapedDfpropCode);
     }
 
-    protected <ENTITY extends WhiteEscapedDfprop> ENTITY doSelectByPK(CDef.EscapedDfpropCls escapedDfpropCode, Class<ENTITY> entityType) {
-        return doSelectEntity(xprepareCBAsPK(escapedDfpropCode), entityType);
+    protected WhiteEscapedDfprop facadeSelectByPKValue(CDef.EscapedDfpropCls escapedDfpropCode) {
+        return doSelectByPK(escapedDfpropCode, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends WhiteEscapedDfprop> OptionalEntity<ENTITY> doSelectOptionalByPK(CDef.EscapedDfpropCls escapedDfpropCode, Class<ENTITY> entityType) {
-        return createOptionalEntity(doSelectByPK(escapedDfpropCode, entityType), escapedDfpropCode);
+    protected <ENTITY extends WhiteEscapedDfprop> ENTITY doSelectByPK(CDef.EscapedDfpropCls escapedDfpropCode, Class<ENTITY> tp) {
+        return doSelectEntity(xprepareCBAsPK(escapedDfpropCode), tp);
+    }
+
+    protected <ENTITY extends WhiteEscapedDfprop> OptionalEntity<ENTITY> doSelectOptionalByPK(CDef.EscapedDfpropCls escapedDfpropCode, Class<ENTITY> tp) {
+        return createOptionalEntity(doSelectByPK(escapedDfpropCode, tp), escapedDfpropCode);
     }
 
     /**
@@ -232,17 +251,16 @@ public abstract class BsWhiteEscapedDfpropBhv extends AbstractBehaviorWritable {
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public WhiteEscapedDfprop selectByPKValueWithDeletedCheck(CDef.EscapedDfpropCls escapedDfpropCode) {
-        return doSelectByPKWithDeletedCheck(escapedDfpropCode, WhiteEscapedDfprop.class);
+        return doSelectByPKWithDeletedCheck(escapedDfpropCode, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends WhiteEscapedDfprop> ENTITY doSelectByPKWithDeletedCheck(CDef.EscapedDfpropCls escapedDfpropCode, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(escapedDfpropCode), entityType);
+    protected <ENTITY extends WhiteEscapedDfprop> ENTITY doSelectByPKWithDeletedCheck(CDef.EscapedDfpropCls escapedDfpropCode, Class<ENTITY> tp) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(escapedDfpropCode), tp);
     }
 
     protected WhiteEscapedDfpropCB xprepareCBAsPK(CDef.EscapedDfpropCls escapedDfpropCode) {
         assertObjectNotNull("escapedDfpropCode", escapedDfpropCode);
-        WhiteEscapedDfpropCB cb = newMyConditionBean(); cb.acceptPrimaryKey(escapedDfpropCode);
-        return cb;
+        return newConditionBean().acceptPK(escapedDfpropCode);
     }
 
     // ===================================================================================
@@ -264,7 +282,11 @@ public abstract class BsWhiteEscapedDfpropBhv extends AbstractBehaviorWritable {
      * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public ListResultBean<WhiteEscapedDfprop> selectList(WhiteEscapedDfpropCB cb) {
-        return doSelectList(cb, WhiteEscapedDfprop.class);
+        return facadeSelectList(cb);
+    }
+
+    protected ListResultBean<WhiteEscapedDfprop> facadeSelectList(WhiteEscapedDfpropCB cb) {
+        return doSelectList(cb, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends WhiteEscapedDfprop> ListResultBean<ENTITY> doSelectList(WhiteEscapedDfpropCB cb, Class<ENTITY> tp) {
@@ -276,7 +298,7 @@ public abstract class BsWhiteEscapedDfpropBhv extends AbstractBehaviorWritable {
 
     @Override
     protected ListResultBean<? extends Entity> doReadList(ConditionBean cb) {
-        return selectList(downcast(cb));
+        return facadeSelectList(downcast(cb));
     }
 
     // ===================================================================================
@@ -305,7 +327,11 @@ public abstract class BsWhiteEscapedDfpropBhv extends AbstractBehaviorWritable {
      * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public PagingResultBean<WhiteEscapedDfprop> selectPage(WhiteEscapedDfpropCB cb) {
-        return doSelectPage(cb, WhiteEscapedDfprop.class);
+        return facadeSelectPage(cb);
+    }
+
+    protected PagingResultBean<WhiteEscapedDfprop> facadeSelectPage(WhiteEscapedDfpropCB cb) {
+        return doSelectPage(cb, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends WhiteEscapedDfprop> PagingResultBean<ENTITY> doSelectPage(WhiteEscapedDfpropCB cb, Class<ENTITY> tp) {
@@ -318,7 +344,7 @@ public abstract class BsWhiteEscapedDfpropBhv extends AbstractBehaviorWritable {
 
     @Override
     protected PagingResultBean<? extends Entity> doReadPage(ConditionBean cb) {
-        return selectPage(downcast(cb));
+        return facadeSelectPage(downcast(cb));
     }
 
     // ===================================================================================
@@ -339,15 +365,19 @@ public abstract class BsWhiteEscapedDfpropBhv extends AbstractBehaviorWritable {
      * @param entityRowHandler The handler of entity row of WhiteEscapedDfprop. (NotNull)
      */
     public void selectCursor(WhiteEscapedDfpropCB cb, EntityRowHandler<WhiteEscapedDfprop> entityRowHandler) {
-        doSelectCursor(cb, entityRowHandler, WhiteEscapedDfprop.class);
+        facadeSelectCursor(cb, entityRowHandler);
+    }
+
+    protected void facadeSelectCursor(WhiteEscapedDfpropCB cb, EntityRowHandler<WhiteEscapedDfprop> entityRowHandler) {
+        doSelectCursor(cb, entityRowHandler, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends WhiteEscapedDfprop> void doSelectCursor(WhiteEscapedDfpropCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
         assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
         helpSelectCursorInternally(cb, handler, tp, new InternalSelectCursorCallback<ENTITY, WhiteEscapedDfpropCB>() {
-            public void callbackSelectCursor(WhiteEscapedDfpropCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) { delegateSelectCursor(cb, handler, tp); }
-            public List<ENTITY> callbackSelectList(WhiteEscapedDfpropCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
+            public void callbackSelectCursor(WhiteEscapedDfpropCB lcb, EntityRowHandler<ENTITY> lhandler, Class<ENTITY> ltp) { delegateSelectCursor(lcb, lhandler, ltp); }
+            public List<ENTITY> callbackSelectList(WhiteEscapedDfpropCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); }
         });
     }
 
@@ -369,22 +399,23 @@ public abstract class BsWhiteEscapedDfpropBhv extends AbstractBehaviorWritable {
      * @param resultType The type of result. (NotNull)
      * @return The scalar function object to specify function for scalar value. (NotNull)
      */
-    public <RESULT> SLFunction<WhiteEscapedDfpropCB, RESULT> scalarSelect(Class<RESULT> resultType) {
-        return doScalarSelect(resultType, newMyConditionBean());
+    public <RESULT> HpSLSFunction<WhiteEscapedDfpropCB, RESULT> scalarSelect(Class<RESULT> resultType) {
+        return facadeScalarSelect(resultType);
     }
 
-    protected <RESULT, CB extends WhiteEscapedDfpropCB> SLFunction<CB, RESULT> doScalarSelect(Class<RESULT> tp, CB cb) {
+    protected <RESULT> HpSLSFunction<WhiteEscapedDfpropCB, RESULT> facadeScalarSelect(Class<RESULT> resultType) {
+        return doScalarSelect(resultType, newConditionBean());
+    }
+
+    protected <RESULT, CB extends WhiteEscapedDfpropCB> HpSLSFunction<CB, RESULT> doScalarSelect(final Class<RESULT> tp, final CB cb) {
         assertObjectNotNull("resultType", tp); assertCBStateValid(cb);
         cb.xsetupForScalarSelect(); cb.getSqlClause().disableSelectIndex(); // for when you use union
-        return createSLFunction(cb, tp);
+        HpSLSExecutor<CB, RESULT> executor = createHpSLSExecutor(); // variable to resolve generic
+        return createSLSFunction(cb, tp, executor);
     }
 
-    protected <RESULT, CB extends WhiteEscapedDfpropCB> SLFunction<CB, RESULT> createSLFunction(CB cb, Class<RESULT> tp) {
-        return new SLFunction<CB, RESULT>(cb, tp);
-    }
-
-    protected <RESULT> SLFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) {
-        return doScalarSelect(tp, newMyConditionBean());
+    protected <RESULT> HpSLSFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) {
+        return facadeScalarSelect(tp);
     }
 
     // ===================================================================================
@@ -397,9 +428,83 @@ public abstract class BsWhiteEscapedDfpropBhv extends AbstractBehaviorWritable {
     }
 
     // ===================================================================================
+    //                                                                       Load Referrer
+    //                                                                       =============
+    /**
+     * Load referrer by the the referrer loader. <br />
+     * <pre>
+     * MemberCB cb = new MemberCB();
+     * cb.query().set...
+     * List&lt;Member&gt; memberList = memberBhv.selectList(cb);
+     * memberBhv.<span style="color: #DD4747">load</span>(memberList, loader -&gt; {
+     *     loader.<span style="color: #DD4747">loadPurchaseList</span>(purchaseCB -&gt; {
+     *         purchaseCB.query().set...
+     *         purchaseCB.query().addOrderBy_PurchasePrice_Desc();
+     *     }); <span style="color: #3F7E5E">// you can also load nested referrer from here</span>
+     *     <span style="color: #3F7E5E">//}).withNestedList(purchaseLoader -&gt {</span>
+     *     <span style="color: #3F7E5E">//    purchaseLoader.loadPurchasePaymentList(...);</span>
+     *     <span style="color: #3F7E5E">//});</span>
+     *
+     *     <span style="color: #3F7E5E">// you can also pull out foreign table and load its referrer</span>
+     *     <span style="color: #3F7E5E">// (setupSelect of the foreign table should be called)</span>
+     *     <span style="color: #3F7E5E">//loader.pulloutMemberStatus().loadMemberLoginList(...)</span>
+     * }
+     * for (Member member : memberList) {
+     *     List&lt;Purchase&gt; purchaseList = member.<span style="color: #DD4747">getPurchaseList()</span>;
+     *     for (Purchase purchase : purchaseList) {
+     *         ...
+     *     }
+     * }
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has order by FK before callback.
+     * @param whiteEscapedDfpropList The entity list of whiteEscapedDfprop. (NotNull)
+     * @param handler The callback to handle the referrer loader for actually loading referrer. (NotNull)
+     */
+    public void load(List<WhiteEscapedDfprop> whiteEscapedDfpropList, ReferrerLoaderHandler<LoaderOfWhiteEscapedDfprop> handler) {
+        xassLRArg(whiteEscapedDfpropList, handler);
+        handler.handle(new LoaderOfWhiteEscapedDfprop().ready(whiteEscapedDfpropList, _behaviorSelector));
+    }
+
+    /**
+     * Load referrer of ${referrer.referrerJavaBeansRulePropertyName} by the referrer loader. <br />
+     * <pre>
+     * MemberCB cb = new MemberCB();
+     * cb.query().set...
+     * Member member = memberBhv.selectEntityWithDeletedCheck(cb);
+     * memberBhv.<span style="color: #DD4747">load</span>(member, loader -&gt; {
+     *     loader.<span style="color: #DD4747">loadPurchaseList</span>(purchaseCB -&gt; {
+     *         purchaseCB.query().set...
+     *         purchaseCB.query().addOrderBy_PurchasePrice_Desc();
+     *     }); <span style="color: #3F7E5E">// you can also load nested referrer from here</span>
+     *     <span style="color: #3F7E5E">//}).withNestedList(purchaseLoader -&gt {</span>
+     *     <span style="color: #3F7E5E">//    purchaseLoader.loadPurchasePaymentList(...);</span>
+     *     <span style="color: #3F7E5E">//});</span>
+     *
+     *     <span style="color: #3F7E5E">// you can also pull out foreign table and load its referrer</span>
+     *     <span style="color: #3F7E5E">// (setupSelect of the foreign table should be called)</span>
+     *     <span style="color: #3F7E5E">//loader.pulloutMemberStatus().loadMemberLoginList(...)</span>
+     * }
+     * for (Member member : memberList) {
+     *     List&lt;Purchase&gt; purchaseList = member.<span style="color: #DD4747">getPurchaseList()</span>;
+     *     for (Purchase purchase : purchaseList) {
+     *         ...
+     *     }
+     * }
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has order by FK before callback.
+     * @param whiteEscapedDfprop The entity of whiteEscapedDfprop. (NotNull)
+     * @param handler The callback to handle the referrer loader for actually loading referrer. (NotNull)
+     */
+    public void load(WhiteEscapedDfprop whiteEscapedDfprop, ReferrerLoaderHandler<LoaderOfWhiteEscapedDfprop> handler) {
+        xassLRArg(whiteEscapedDfprop, handler);
+        handler.handle(new LoaderOfWhiteEscapedDfprop().ready(xnewLRAryLs(whiteEscapedDfprop), _behaviorSelector));
+    }
+
+    // ===================================================================================
     //                                                                   Pull out Relation
     //                                                                   =================
-
     // ===================================================================================
     //                                                                      Extract Column
     //                                                                      ==============
@@ -431,17 +536,17 @@ public abstract class BsWhiteEscapedDfpropBhv extends AbstractBehaviorWritable {
      * ... = whiteEscapedDfprop.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * <p>While, when the entity is created by select, all columns are registered.</p>
-     * @param whiteEscapedDfprop The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
+     * @param whiteEscapedDfprop The entity of insert. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
      * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insert(WhiteEscapedDfprop whiteEscapedDfprop) {
         doInsert(whiteEscapedDfprop, null);
     }
 
-    protected void doInsert(WhiteEscapedDfprop whiteEscapedDfprop, InsertOption<WhiteEscapedDfpropCB> op) {
-        assertObjectNotNull("whiteEscapedDfprop", whiteEscapedDfprop);
+    protected void doInsert(WhiteEscapedDfprop et, InsertOption<WhiteEscapedDfpropCB> op) {
+        assertObjectNotNull("whiteEscapedDfprop", et);
         prepareInsertOption(op);
-        delegateInsert(whiteEscapedDfprop, op);
+        delegateInsert(et, op);
     }
 
     protected void prepareInsertOption(InsertOption<WhiteEscapedDfpropCB> op) {
@@ -454,8 +559,7 @@ public abstract class BsWhiteEscapedDfpropBhv extends AbstractBehaviorWritable {
 
     @Override
     protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) {
-        if (op == null) { insert(downcast(et)); }
-        else { varyingInsert(downcast(et), downcast(op)); }
+        doInsert(downcast(et), downcast(op));
     }
 
     /**
@@ -467,7 +571,7 @@ public abstract class BsWhiteEscapedDfpropBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
      * <span style="color: #3F7E5E">//whiteEscapedDfprop.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//whiteEscapedDfprop.set...;</span>
-     * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
+     * <span style="color: #3F7E5E">// if exclusive control, the value of concurrency column is required</span>
      * whiteEscapedDfprop.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     whiteEscapedDfpropBhv.<span style="color: #DD4747">update</span>(whiteEscapedDfprop);
@@ -475,49 +579,38 @@ public abstract class BsWhiteEscapedDfpropBhv extends AbstractBehaviorWritable {
      *     ...
      * }
      * </pre>
-     * @param whiteEscapedDfprop The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
+     * @param whiteEscapedDfprop The entity of update. (NotNull, PrimaryKeyNotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
-    public void update(final WhiteEscapedDfprop whiteEscapedDfprop) {
+    public void update(WhiteEscapedDfprop whiteEscapedDfprop) {
         doUpdate(whiteEscapedDfprop, null);
     }
 
-    protected void doUpdate(WhiteEscapedDfprop whiteEscapedDfprop, final UpdateOption<WhiteEscapedDfpropCB> op) {
-        assertObjectNotNull("whiteEscapedDfprop", whiteEscapedDfprop);
+    protected void doUpdate(WhiteEscapedDfprop et, final UpdateOption<WhiteEscapedDfpropCB> op) {
+        assertObjectNotNull("whiteEscapedDfprop", et);
         prepareUpdateOption(op);
-        helpUpdateInternally(whiteEscapedDfprop, new InternalUpdateCallback<WhiteEscapedDfprop>() {
-            public int callbackDelegateUpdate(WhiteEscapedDfprop et) { return delegateUpdate(et, op); } });
+        helpUpdateInternally(et, new InternalUpdateCallback<WhiteEscapedDfprop>() {
+            public int callbackDelegateUpdate(WhiteEscapedDfprop let) { return delegateUpdate(let, op); } });
     }
 
     protected void prepareUpdateOption(UpdateOption<WhiteEscapedDfpropCB> op) {
         if (op == null) { return; }
         assertUpdateOptionStatus(op);
-        if (op.hasSelfSpecification()) {
-            op.resolveSelfSpecification(createCBForVaryingUpdate());
-        }
-        if (op.hasSpecifiedUpdateColumn()) {
-            op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate());
-        }
+        if (op.hasSelfSpecification()) { op.resolveSelfSpecification(createCBForVaryingUpdate()); }
+        if (op.hasSpecifiedUpdateColumn()) { op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate()); }
     }
 
-    protected WhiteEscapedDfpropCB createCBForVaryingUpdate() {
-        WhiteEscapedDfpropCB cb = newMyConditionBean();
-        cb.xsetupForVaryingUpdate();
-        return cb;
-    }
+    protected WhiteEscapedDfpropCB createCBForVaryingUpdate()
+    { WhiteEscapedDfpropCB cb = newConditionBean(); cb.xsetupForVaryingUpdate(); return cb; }
 
-    protected WhiteEscapedDfpropCB createCBForSpecifiedUpdate() {
-        WhiteEscapedDfpropCB cb = newMyConditionBean();
-        cb.xsetupForSpecifiedUpdate();
-        return cb;
-    }
+    protected WhiteEscapedDfpropCB createCBForSpecifiedUpdate()
+    { WhiteEscapedDfpropCB cb = newConditionBean(); cb.xsetupForSpecifiedUpdate(); return cb; }
 
     @Override
     protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) {
-        if (op == null) { update(downcast(et)); }
-        else { varyingUpdate(downcast(et), downcast(op)); }
+        doUpdate(downcast(et), downcast(op));
     }
 
     @Override
@@ -529,32 +622,28 @@ public abstract class BsWhiteEscapedDfpropBhv extends AbstractBehaviorWritable {
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br />
      * <p><span style="color: #DD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
-     * @param whiteEscapedDfprop The entity of insert or update target. (NotNull)
+     * @param whiteEscapedDfprop The entity of insert or update. (NotNull, ...depends on insert or update)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insertOrUpdate(WhiteEscapedDfprop whiteEscapedDfprop) {
-        doInesrtOrUpdate(whiteEscapedDfprop, null, null);
+        doInsertOrUpdate(whiteEscapedDfprop, null, null);
     }
 
-    protected void doInesrtOrUpdate(WhiteEscapedDfprop whiteEscapedDfprop, final InsertOption<WhiteEscapedDfpropCB> iop, final UpdateOption<WhiteEscapedDfpropCB> uop) {
-        helpInsertOrUpdateInternally(whiteEscapedDfprop, new InternalInsertOrUpdateCallback<WhiteEscapedDfprop, WhiteEscapedDfpropCB>() {
-            public void callbackInsert(WhiteEscapedDfprop et) { doInsert(et, iop); }
-            public void callbackUpdate(WhiteEscapedDfprop et) { doUpdate(et, uop); }
-            public WhiteEscapedDfpropCB callbackNewMyConditionBean() { return newMyConditionBean(); }
+    protected void doInsertOrUpdate(WhiteEscapedDfprop et, final InsertOption<WhiteEscapedDfpropCB> iop, final UpdateOption<WhiteEscapedDfpropCB> uop) {
+        assertObjectNotNull("whiteEscapedDfprop", et);
+        helpInsertOrUpdateInternally(et, new InternalInsertOrUpdateCallback<WhiteEscapedDfprop, WhiteEscapedDfpropCB>() {
+            public void callbackInsert(WhiteEscapedDfprop let) { doInsert(let, iop); }
+            public void callbackUpdate(WhiteEscapedDfprop let) { doUpdate(let, uop); }
+            public WhiteEscapedDfpropCB callbackNewMyConditionBean() { return newConditionBean(); }
             public int callbackSelectCount(WhiteEscapedDfpropCB cb) { return selectCount(cb); }
         });
     }
 
     @Override
     protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
-        if (iop == null && uop == null) { insertOrUpdate(downcast(et)); }
-        else {
-            iop = iop != null ? iop : new InsertOption<WhiteEscapedDfpropCB>();
-            uop = uop != null ? uop : new UpdateOption<WhiteEscapedDfpropCB>();
-            varyingInsertOrUpdate(downcast(et), downcast(iop), downcast(uop));
-        }
+        doInsertOrUpdate(downcast(et), downcast(iop), downcast(uop));
     }
 
     @Override
@@ -567,7 +656,7 @@ public abstract class BsWhiteEscapedDfpropBhv extends AbstractBehaviorWritable {
      * <pre>
      * WhiteEscapedDfprop whiteEscapedDfprop = new WhiteEscapedDfprop();
      * whiteEscapedDfprop.setPK...(value); <span style="color: #3F7E5E">// required</span>
-     * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
+     * <span style="color: #3F7E5E">// if exclusive control, the value of concurrency column is required</span>
      * whiteEscapedDfprop.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     whiteEscapedDfpropBhv.<span style="color: #DD4747">delete</span>(whiteEscapedDfprop);
@@ -575,7 +664,7 @@ public abstract class BsWhiteEscapedDfpropBhv extends AbstractBehaviorWritable {
      *     ...
      * }
      * </pre>
-     * @param whiteEscapedDfprop The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
+     * @param whiteEscapedDfprop The entity of delete. (NotNull, PrimaryKeyNotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      */
@@ -583,22 +672,19 @@ public abstract class BsWhiteEscapedDfpropBhv extends AbstractBehaviorWritable {
         doDelete(whiteEscapedDfprop, null);
     }
 
-    protected void doDelete(WhiteEscapedDfprop whiteEscapedDfprop, final DeleteOption<WhiteEscapedDfpropCB> op) {
-        assertObjectNotNull("whiteEscapedDfprop", whiteEscapedDfprop);
+    protected void doDelete(WhiteEscapedDfprop et, final DeleteOption<WhiteEscapedDfpropCB> op) {
+        assertObjectNotNull("whiteEscapedDfprop", et);
         prepareDeleteOption(op);
-        helpDeleteInternally(whiteEscapedDfprop, new InternalDeleteCallback<WhiteEscapedDfprop>() {
-            public int callbackDelegateDelete(WhiteEscapedDfprop et) { return delegateDelete(et, op); } });
+        helpDeleteInternally(et, new InternalDeleteCallback<WhiteEscapedDfprop>() {
+            public int callbackDelegateDelete(WhiteEscapedDfprop let) { return delegateDelete(let, op); } });
     }
 
-    protected void prepareDeleteOption(DeleteOption<WhiteEscapedDfpropCB> op) {
-        if (op == null) { return; }
-        assertDeleteOptionStatus(op);
-    }
+    protected void prepareDeleteOption(DeleteOption<WhiteEscapedDfpropCB> op)
+    { if (op != null) { assertDeleteOptionStatus(op); } }
 
     @Override
     protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) {
-        if (op == null) { delete(downcast(et)); }
-        else { varyingDelete(downcast(et), downcast(op)); }
+        doDelete(downcast(et), downcast(op));
     }
 
     @Override
@@ -634,26 +720,25 @@ public abstract class BsWhiteEscapedDfpropBhv extends AbstractBehaviorWritable {
      * @return The array of inserted count. (NotNull, EmptyAllowed)
      */
     public int[] batchInsert(List<WhiteEscapedDfprop> whiteEscapedDfpropList) {
-        InsertOption<WhiteEscapedDfpropCB> op = createInsertUpdateOption();
-        return doBatchInsert(whiteEscapedDfpropList, op);
+        return doBatchInsert(whiteEscapedDfpropList, null);
     }
 
-    protected int[] doBatchInsert(List<WhiteEscapedDfprop> whiteEscapedDfpropList, InsertOption<WhiteEscapedDfpropCB> op) {
-        assertObjectNotNull("whiteEscapedDfpropList", whiteEscapedDfpropList);
-        prepareBatchInsertOption(whiteEscapedDfpropList, op);
-        return delegateBatchInsert(whiteEscapedDfpropList, op);
+    protected int[] doBatchInsert(List<WhiteEscapedDfprop> ls, InsertOption<WhiteEscapedDfpropCB> op) {
+        assertObjectNotNull("whiteEscapedDfpropList", ls);
+        InsertOption<WhiteEscapedDfpropCB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainInsertOption(); }
+        prepareBatchInsertOption(ls, rlop); // required
+        return delegateBatchInsert(ls, rlop);
     }
 
-    protected void prepareBatchInsertOption(List<WhiteEscapedDfprop> whiteEscapedDfpropList, InsertOption<WhiteEscapedDfpropCB> op) {
+    protected void prepareBatchInsertOption(List<WhiteEscapedDfprop> ls, InsertOption<WhiteEscapedDfpropCB> op) {
         op.xallowInsertColumnModifiedPropertiesFragmented();
-        op.xacceptInsertColumnModifiedPropertiesIfNeeds(whiteEscapedDfpropList);
+        op.xacceptInsertColumnModifiedPropertiesIfNeeds(ls);
         prepareInsertOption(op);
     }
 
     @Override
     protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) {
-        if (op == null) { return batchInsert(downcast(ls)); }
-        else { return varyingBatchInsert(downcast(ls), downcast(op)); }
+        return doBatchInsert(downcast(ls), downcast(op));
     }
 
     /**
@@ -681,25 +766,24 @@ public abstract class BsWhiteEscapedDfpropBhv extends AbstractBehaviorWritable {
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<WhiteEscapedDfprop> whiteEscapedDfpropList) {
-        UpdateOption<WhiteEscapedDfpropCB> op = createPlainUpdateOption();
-        return doBatchUpdate(whiteEscapedDfpropList, op);
+        return doBatchUpdate(whiteEscapedDfpropList, null);
     }
 
-    protected int[] doBatchUpdate(List<WhiteEscapedDfprop> whiteEscapedDfpropList, UpdateOption<WhiteEscapedDfpropCB> op) {
-        assertObjectNotNull("whiteEscapedDfpropList", whiteEscapedDfpropList);
-        prepareBatchUpdateOption(whiteEscapedDfpropList, op);
-        return delegateBatchUpdate(whiteEscapedDfpropList, op);
+    protected int[] doBatchUpdate(List<WhiteEscapedDfprop> ls, UpdateOption<WhiteEscapedDfpropCB> op) {
+        assertObjectNotNull("whiteEscapedDfpropList", ls);
+        UpdateOption<WhiteEscapedDfpropCB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainUpdateOption(); }
+        prepareBatchUpdateOption(ls, rlop); // required
+        return delegateBatchUpdate(ls, rlop);
     }
 
-    protected void prepareBatchUpdateOption(List<WhiteEscapedDfprop> whiteEscapedDfpropList, UpdateOption<WhiteEscapedDfpropCB> op) {
-        op.xacceptUpdateColumnModifiedPropertiesIfNeeds(whiteEscapedDfpropList);
+    protected void prepareBatchUpdateOption(List<WhiteEscapedDfprop> ls, UpdateOption<WhiteEscapedDfpropCB> op) {
+        op.xacceptUpdateColumnModifiedPropertiesIfNeeds(ls);
         prepareUpdateOption(op);
     }
 
     @Override
     protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) {
-        if (op == null) { return batchUpdate(downcast(ls)); }
-        else { return varyingBatchUpdate(downcast(ls), downcast(op)); }
+        return doBatchUpdate(downcast(ls), downcast(op));
     }
 
     /**
@@ -750,16 +834,15 @@ public abstract class BsWhiteEscapedDfpropBhv extends AbstractBehaviorWritable {
         return doBatchDelete(whiteEscapedDfpropList, null);
     }
 
-    protected int[] doBatchDelete(List<WhiteEscapedDfprop> whiteEscapedDfpropList, DeleteOption<WhiteEscapedDfpropCB> op) {
-        assertObjectNotNull("whiteEscapedDfpropList", whiteEscapedDfpropList);
+    protected int[] doBatchDelete(List<WhiteEscapedDfprop> ls, DeleteOption<WhiteEscapedDfpropCB> op) {
+        assertObjectNotNull("whiteEscapedDfpropList", ls);
         prepareDeleteOption(op);
-        return delegateBatchDelete(whiteEscapedDfpropList, op);
+        return delegateBatchDelete(ls, op);
     }
 
     @Override
     protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) {
-        if (op == null) { return batchDelete(downcast(ls)); }
-        else { return varyingBatchDelete(downcast(ls), downcast(op)); }
+        return doBatchDelete(downcast(ls), downcast(op));
     }
 
     @Override
@@ -786,7 +869,7 @@ public abstract class BsWhiteEscapedDfpropBhv extends AbstractBehaviorWritable {
      *         <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
      *         <span style="color: #3F7E5E">//entity.setRegisterUser(value);</span>
      *         <span style="color: #3F7E5E">//entity.set...;</span>
-     *         <span style="color: #3F7E5E">// you don't need to set a value of exclusive control column</span>
+     *         <span style="color: #3F7E5E">// you don't need to set a value of concurrency column</span>
      *         <span style="color: #3F7E5E">//entity.setVersionNo(value);</span>
      *
      *         return cb;
@@ -803,21 +886,17 @@ public abstract class BsWhiteEscapedDfpropBhv extends AbstractBehaviorWritable {
     protected int doQueryInsert(QueryInsertSetupper<WhiteEscapedDfprop, WhiteEscapedDfpropCB> sp, InsertOption<WhiteEscapedDfpropCB> op) {
         assertObjectNotNull("setupper", sp);
         prepareInsertOption(op);
-        WhiteEscapedDfprop e = new WhiteEscapedDfprop();
+        WhiteEscapedDfprop et = newEntity();
         WhiteEscapedDfpropCB cb = createCBForQueryInsert();
-        return delegateQueryInsert(e, cb, sp.setup(e, cb), op);
+        return delegateQueryInsert(et, cb, sp.setup(et, cb), op);
     }
 
-    protected WhiteEscapedDfpropCB createCBForQueryInsert() {
-        WhiteEscapedDfpropCB cb = newMyConditionBean();
-        cb.xsetupForQueryInsert();
-        return cb;
-    }
+    protected WhiteEscapedDfpropCB createCBForQueryInsert()
+    { WhiteEscapedDfpropCB cb = newConditionBean(); cb.xsetupForQueryInsert(); return cb; }
 
     @Override
-    protected int doRangeCreate(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> setupper, InsertOption<? extends ConditionBean> option) {
-        if (option == null) { return queryInsert(downcast(setupper)); }
-        else { return varyingQueryInsert(downcast(setupper), downcast(option)); }
+    protected int doRangeCreate(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> setupper, InsertOption<? extends ConditionBean> op) {
+        return doQueryInsert(downcast(setupper), downcast(op));
     }
 
     /**
@@ -830,7 +909,7 @@ public abstract class BsWhiteEscapedDfpropBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
      * <span style="color: #3F7E5E">//whiteEscapedDfprop.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//whiteEscapedDfprop.set...;</span>
-     * <span style="color: #3F7E5E">// you don't need to set a value of exclusive control column</span>
+     * <span style="color: #3F7E5E">// you don't need to set a value of concurrency column</span>
      * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
      * <span style="color: #3F7E5E">//whiteEscapedDfprop.setVersionNo(value);</span>
      * WhiteEscapedDfpropCB cb = new WhiteEscapedDfpropCB();
@@ -846,16 +925,15 @@ public abstract class BsWhiteEscapedDfpropBhv extends AbstractBehaviorWritable {
         return doQueryUpdate(whiteEscapedDfprop, cb, null);
     }
 
-    protected int doQueryUpdate(WhiteEscapedDfprop whiteEscapedDfprop, WhiteEscapedDfpropCB cb, UpdateOption<WhiteEscapedDfpropCB> op) {
-        assertObjectNotNull("whiteEscapedDfprop", whiteEscapedDfprop); assertCBStateValid(cb);
+    protected int doQueryUpdate(WhiteEscapedDfprop et, WhiteEscapedDfpropCB cb, UpdateOption<WhiteEscapedDfpropCB> op) {
+        assertObjectNotNull("whiteEscapedDfprop", et); assertCBStateValid(cb);
         prepareUpdateOption(op);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(whiteEscapedDfprop, cb, op) : 0;
+        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(et, cb, op) : 0;
     }
 
     @Override
     protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op) {
-        if (op == null) { return queryUpdate(downcast(et), (WhiteEscapedDfpropCB)cb); }
-        else { return varyingQueryUpdate(downcast(et), (WhiteEscapedDfpropCB)cb, downcast(op)); }
+        return doQueryUpdate(downcast(et), downcast(cb), downcast(op));
     }
 
     /**
@@ -881,8 +959,7 @@ public abstract class BsWhiteEscapedDfpropBhv extends AbstractBehaviorWritable {
 
     @Override
     protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) {
-        if (op == null) { return queryDelete((WhiteEscapedDfpropCB)cb); }
-        else { return varyingQueryDelete((WhiteEscapedDfpropCB)cb, downcast(op)); }
+        return doQueryDelete(downcast(cb), downcast(op));
     }
 
     // ===================================================================================
@@ -906,7 +983,7 @@ public abstract class BsWhiteEscapedDfpropBhv extends AbstractBehaviorWritable {
      * whiteEscapedDfpropBhv.<span style="color: #DD4747">varyingInsert</span>(whiteEscapedDfprop, option);
      * ... = whiteEscapedDfprop.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
-     * @param whiteEscapedDfprop The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
+     * @param whiteEscapedDfprop The entity of insert. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
      * @param option The option of insert for varying requests. (NotNull)
      * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
@@ -923,7 +1000,7 @@ public abstract class BsWhiteEscapedDfpropBhv extends AbstractBehaviorWritable {
      * WhiteEscapedDfprop whiteEscapedDfprop = new WhiteEscapedDfprop();
      * whiteEscapedDfprop.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * whiteEscapedDfprop.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
-     * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
+     * <span style="color: #3F7E5E">// if exclusive control, the value of concurrency column is required</span>
      * whiteEscapedDfprop.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     <span style="color: #3F7E5E">// you can update by self calculation values</span>
@@ -938,7 +1015,7 @@ public abstract class BsWhiteEscapedDfpropBhv extends AbstractBehaviorWritable {
      *     ...
      * }
      * </pre>
-     * @param whiteEscapedDfprop The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
+     * @param whiteEscapedDfprop The entity of update. (NotNull, PrimaryKeyNotNull)
      * @param option The option of update for varying requests. (NotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
@@ -952,7 +1029,7 @@ public abstract class BsWhiteEscapedDfpropBhv extends AbstractBehaviorWritable {
     /**
      * Insert or update the entity with varying requests. (ExclusiveControl: when update) <br />
      * Other specifications are same as insertOrUpdate(entity).
-     * @param whiteEscapedDfprop The entity of insert or update target. (NotNull)
+     * @param whiteEscapedDfprop The entity of insert or update. (NotNull)
      * @param insertOption The option of insert for varying requests. (NotNull)
      * @param updateOption The option of update for varying requests. (NotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
@@ -961,14 +1038,14 @@ public abstract class BsWhiteEscapedDfpropBhv extends AbstractBehaviorWritable {
      */
     public void varyingInsertOrUpdate(WhiteEscapedDfprop whiteEscapedDfprop, InsertOption<WhiteEscapedDfpropCB> insertOption, UpdateOption<WhiteEscapedDfpropCB> updateOption) {
         assertInsertOptionNotNull(insertOption); assertUpdateOptionNotNull(updateOption);
-        doInesrtOrUpdate(whiteEscapedDfprop, insertOption, updateOption);
+        doInsertOrUpdate(whiteEscapedDfprop, insertOption, updateOption);
     }
 
     /**
      * Delete the entity with varying requests. (ZeroUpdateException, NonExclusiveControl) <br />
      * Now a valid option does not exist. <br />
      * Other specifications are same as delete(entity).
-     * @param whiteEscapedDfprop The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
+     * @param whiteEscapedDfprop The entity of delete. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
      * @param option The option of update for varying requests. (NotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
@@ -1049,7 +1126,7 @@ public abstract class BsWhiteEscapedDfpropBhv extends AbstractBehaviorWritable {
      * <span style="color: #3F7E5E">// you don't need to set PK value</span>
      * <span style="color: #3F7E5E">//whiteEscapedDfprop.setPK...(value);</span>
      * whiteEscapedDfprop.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
-     * <span style="color: #3F7E5E">// you don't need to set a value of exclusive control column</span>
+     * <span style="color: #3F7E5E">// you don't need to set a value of concurrency column</span>
      * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
      * <span style="color: #3F7E5E">//whiteEscapedDfprop.setVersionNo(value);</span>
      * WhiteEscapedDfpropCB cb = new WhiteEscapedDfpropCB();
@@ -1201,38 +1278,34 @@ public abstract class BsWhiteEscapedDfpropBhv extends AbstractBehaviorWritable {
     }
 
     // ===================================================================================
-    //                                                                     Downcast Helper
-    //                                                                     ===============
-    protected WhiteEscapedDfprop downcast(Entity et) {
-        return helpEntityDowncastInternally(et, WhiteEscapedDfprop.class);
-    }
+    //                                                                       Assist Helper
+    //                                                                       =============
+    protected Class<WhiteEscapedDfprop> typeOfSelectedEntity()
+    { return WhiteEscapedDfprop.class; }
 
-    protected WhiteEscapedDfpropCB downcast(ConditionBean cb) {
-        return helpConditionBeanDowncastInternally(cb, WhiteEscapedDfpropCB.class);
-    }
+    protected WhiteEscapedDfprop downcast(Entity et)
+    { return helpEntityDowncastInternally(et, WhiteEscapedDfprop.class); }
 
-    @SuppressWarnings("unchecked")
-    protected List<WhiteEscapedDfprop> downcast(List<? extends Entity> ls) {
-        return (List<WhiteEscapedDfprop>)ls;
-    }
+    protected WhiteEscapedDfpropCB downcast(ConditionBean cb)
+    { return helpConditionBeanDowncastInternally(cb, WhiteEscapedDfpropCB.class); }
 
     @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteEscapedDfpropCB> downcast(InsertOption<? extends ConditionBean> op) {
-        return (InsertOption<WhiteEscapedDfpropCB>)op;
-    }
+    protected List<WhiteEscapedDfprop> downcast(List<? extends Entity> ls)
+    { return (List<WhiteEscapedDfprop>)ls; }
 
     @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteEscapedDfpropCB> downcast(UpdateOption<? extends ConditionBean> op) {
-        return (UpdateOption<WhiteEscapedDfpropCB>)op;
-    }
+    protected InsertOption<WhiteEscapedDfpropCB> downcast(InsertOption<? extends ConditionBean> op)
+    { return (InsertOption<WhiteEscapedDfpropCB>)op; }
 
     @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteEscapedDfpropCB> downcast(DeleteOption<? extends ConditionBean> op) {
-        return (DeleteOption<WhiteEscapedDfpropCB>)op;
-    }
+    protected UpdateOption<WhiteEscapedDfpropCB> downcast(UpdateOption<? extends ConditionBean> op)
+    { return (UpdateOption<WhiteEscapedDfpropCB>)op; }
 
     @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhiteEscapedDfprop, WhiteEscapedDfpropCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp) {
-        return (QueryInsertSetupper<WhiteEscapedDfprop, WhiteEscapedDfpropCB>)sp;
-    }
+    protected DeleteOption<WhiteEscapedDfpropCB> downcast(DeleteOption<? extends ConditionBean> op)
+    { return (DeleteOption<WhiteEscapedDfpropCB>)op; }
+
+    @SuppressWarnings("unchecked")
+    protected QueryInsertSetupper<WhiteEscapedDfprop, WhiteEscapedDfpropCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
+    { return (QueryInsertSetupper<WhiteEscapedDfprop, WhiteEscapedDfpropCB>)sp; }
 }

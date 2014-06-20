@@ -95,11 +95,13 @@ public class BsWhiteUqFkWithoutPkCB extends AbstractConditionBean {
     /**
      * Accept the query condition of unique key as equal.
      * @param uqFkCode : UQ, NotNull, CHAR(3). (NotNull)
+     * @return this. (NotNull)
      */
-    public void acceptUniqueOf(String uqFkCode) {
+    public WhiteUqFkWithoutPkCB acceptUniqueOf(String uqFkCode) {
         assertObjectNotNull("uqFkCode", uqFkCode);
         BsWhiteUqFkWithoutPkCB cb = this;
-        cb.query().setUqFkCode_Equal(uqFkCode);;
+        cb.query().setUqFkCode_Equal(uqFkCode);
+        return (WhiteUqFkWithoutPkCB)this;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {

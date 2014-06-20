@@ -96,11 +96,23 @@ public class BsWhiteUqFkRefNestCB extends AbstractConditionBean {
     /**
      * Accept the query condition of primary key as equal.
      * @param uqFkRefNestId : PK, NotNull, DECIMAL(16). (NotNull)
+     * @return this. (NotNull)
+     */
+    public WhiteUqFkRefNestCB acceptPK(Long uqFkRefNestId) {
+        assertObjectNotNull("uqFkRefNestId", uqFkRefNestId);
+        BsWhiteUqFkRefNestCB cb = this;
+        cb.query().setUqFkRefNestId_Equal(uqFkRefNestId);
+        return (WhiteUqFkRefNestCB)this;
+    }
+
+    /**
+     * Accept the query condition of primary key as equal. (old style)
+     * @param uqFkRefNestId : PK, NotNull, DECIMAL(16). (NotNull)
      */
     public void acceptPrimaryKey(Long uqFkRefNestId) {
         assertObjectNotNull("uqFkRefNestId", uqFkRefNestId);
         BsWhiteUqFkRefNestCB cb = this;
-        cb.query().setUqFkRefNestId_Equal(uqFkRefNestId);;
+        cb.query().setUqFkRefNestId_Equal(uqFkRefNestId);
     }
 
     public ConditionBean addOrderBy_PK_Asc() {

@@ -192,7 +192,7 @@ public abstract class BsVendorLargeData implements Entity, Serializable, Cloneab
     protected List<VendorLargeDataRef> _vendorLargeDataRefList;
 
     /**
-     * vendor_large_data_ref by LARGE_DATA_ID, named 'vendorLargeDataRefList'.
+     * [get] vendor_large_data_ref by LARGE_DATA_ID, named 'vendorLargeDataRefList'.
      * @return The entity list of referrer property 'vendorLargeDataRefList'. (NotNull: even if no loading, returns empty list)
      */
     public List<VendorLargeDataRef> getVendorLargeDataRefList() {
@@ -201,7 +201,7 @@ public abstract class BsVendorLargeData implements Entity, Serializable, Cloneab
     }
 
     /**
-     * vendor_large_data_ref by LARGE_DATA_ID, named 'vendorLargeDataRefList'.
+     * [set] vendor_large_data_ref by LARGE_DATA_ID, named 'vendorLargeDataRefList'.
      * @param vendorLargeDataRefList The entity list of referrer property 'vendorLargeDataRefList'. (NullAllowed)
      */
     public void setVendorLargeDataRefList(List<VendorLargeDataRef> vendorLargeDataRefList) {
@@ -387,7 +387,7 @@ public abstract class BsVendorLargeData implements Entity, Serializable, Cloneab
      */
     public void setLargeDataId(Long largeDataId) {
         __modifiedProperties.addPropertyName("largeDataId");
-        this._largeDataId = largeDataId;
+        _largeDataId = largeDataId;
     }
 
     /**
@@ -404,7 +404,7 @@ public abstract class BsVendorLargeData implements Entity, Serializable, Cloneab
      */
     public void setStringIndex(String stringIndex) {
         __modifiedProperties.addPropertyName("stringIndex");
-        this._stringIndex = stringIndex;
+        _stringIndex = stringIndex;
     }
 
     /**
@@ -421,7 +421,7 @@ public abstract class BsVendorLargeData implements Entity, Serializable, Cloneab
      */
     public void setStringNoIndex(String stringNoIndex) {
         __modifiedProperties.addPropertyName("stringNoIndex");
-        this._stringNoIndex = stringNoIndex;
+        _stringNoIndex = stringNoIndex;
     }
 
     /**
@@ -438,7 +438,7 @@ public abstract class BsVendorLargeData implements Entity, Serializable, Cloneab
      */
     public void setStringUniqueIndex(String stringUniqueIndex) {
         __modifiedProperties.addPropertyName("stringUniqueIndex");
-        this._stringUniqueIndex = stringUniqueIndex;
+        _stringUniqueIndex = stringUniqueIndex;
     }
 
     /**
@@ -455,7 +455,7 @@ public abstract class BsVendorLargeData implements Entity, Serializable, Cloneab
      */
     public void setIntflgIndex(Integer intflgIndex) {
         __modifiedProperties.addPropertyName("intflgIndex");
-        this._intflgIndex = intflgIndex;
+        _intflgIndex = intflgIndex;
     }
 
     /**
@@ -472,7 +472,7 @@ public abstract class BsVendorLargeData implements Entity, Serializable, Cloneab
      */
     public void setNumericIntegerIndex(Integer numericIntegerIndex) {
         __modifiedProperties.addPropertyName("numericIntegerIndex");
-        this._numericIntegerIndex = numericIntegerIndex;
+        _numericIntegerIndex = numericIntegerIndex;
     }
 
     /**
@@ -489,6 +489,6 @@ public abstract class BsVendorLargeData implements Entity, Serializable, Cloneab
      */
     public void setNumericIntegerNoIndex(Integer numericIntegerNoIndex) {
         __modifiedProperties.addPropertyName("numericIntegerNoIndex");
-        this._numericIntegerNoIndex = numericIntegerNoIndex;
+        _numericIntegerNoIndex = numericIntegerNoIndex;
     }
 }

@@ -156,7 +156,7 @@ public class WhiteUqFkWithoutPkDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public WhiteUqFkWithoutPk newEntity() { return new WhiteUqFkWithoutPk(); }
     public WhiteUqFkWithoutPk newMyEntity() { return new WhiteUqFkWithoutPk(); }
 
     // ===================================================================================

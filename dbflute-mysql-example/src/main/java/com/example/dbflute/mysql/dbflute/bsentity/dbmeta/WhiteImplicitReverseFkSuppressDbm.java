@@ -171,7 +171,7 @@ public class WhiteImplicitReverseFkSuppressDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public WhiteImplicitReverseFkSuppress newEntity() { return new WhiteImplicitReverseFkSuppress(); }
     public WhiteImplicitReverseFkSuppress newMyEntity() { return new WhiteImplicitReverseFkSuppress(); }
 
     // ===================================================================================

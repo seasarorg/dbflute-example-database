@@ -322,7 +322,7 @@ public abstract class BsWhiteSplitMultipleFkRef implements Entity, Serializable,
      */
     public void setFirstId(Integer firstId) {
         __modifiedProperties.addPropertyName("firstId");
-        this._firstId = firstId;
+        _firstId = firstId;
     }
 
     /**
@@ -339,7 +339,7 @@ public abstract class BsWhiteSplitMultipleFkRef implements Entity, Serializable,
      */
     public void setSecondCode(String secondCode) {
         __modifiedProperties.addPropertyName("secondCode");
-        this._secondCode = secondCode;
+        _secondCode = secondCode;
     }
 
     /**
@@ -356,6 +356,6 @@ public abstract class BsWhiteSplitMultipleFkRef implements Entity, Serializable,
      */
     public void setRefName(String refName) {
         __modifiedProperties.addPropertyName("refName");
-        this._refName = refName;
+        _refName = refName;
     }
 }

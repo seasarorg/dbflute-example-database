@@ -154,7 +154,7 @@ public class WhiteSplitMultipleFkNextDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public WhiteSplitMultipleFkNext newEntity() { return new WhiteSplitMultipleFkNext(); }
     public WhiteSplitMultipleFkNext newMyEntity() { return new WhiteSplitMultipleFkNext(); }
 
     // ===================================================================================

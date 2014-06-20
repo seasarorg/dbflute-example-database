@@ -95,11 +95,23 @@ public class BsWhitePointTypeMappingCB extends AbstractConditionBean {
     /**
      * Accept the query condition of primary key as equal.
      * @param pointTypeMappingId : PK, NotNull, DECIMAL(16). (NotNull)
+     * @return this. (NotNull)
+     */
+    public WhitePointTypeMappingCB acceptPK(Long pointTypeMappingId) {
+        assertObjectNotNull("pointTypeMappingId", pointTypeMappingId);
+        BsWhitePointTypeMappingCB cb = this;
+        cb.query().setPointTypeMappingId_Equal(pointTypeMappingId);
+        return (WhitePointTypeMappingCB)this;
+    }
+
+    /**
+     * Accept the query condition of primary key as equal. (old style)
+     * @param pointTypeMappingId : PK, NotNull, DECIMAL(16). (NotNull)
      */
     public void acceptPrimaryKey(Long pointTypeMappingId) {
         assertObjectNotNull("pointTypeMappingId", pointTypeMappingId);
         BsWhitePointTypeMappingCB cb = this;
-        cb.query().setPointTypeMappingId_Equal(pointTypeMappingId);;
+        cb.query().setPointTypeMappingId_Equal(pointTypeMappingId);
     }
 
     public ConditionBean addOrderBy_PK_Asc() {

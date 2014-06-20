@@ -81,11 +81,23 @@ public class BsVendorDateFkCB extends AbstractConditionBean {
     /**
      * Accept the query condition of primary key as equal.
      * @param barId : PK, NotNull, int4(10). (NotNull)
+     * @return this. (NotNull)
+     */
+    public VendorDateFkCB acceptPK(Integer barId) {
+        assertObjectNotNull("barId", barId);
+        BsVendorDateFkCB cb = this;
+        cb.query().setBarId_Equal(barId);
+        return (VendorDateFkCB)this;
+    }
+
+    /**
+     * Accept the query condition of primary key as equal. (old style)
+     * @param barId : PK, NotNull, int4(10). (NotNull)
      */
     public void acceptPrimaryKey(Integer barId) {
         assertObjectNotNull("barId", barId);
         BsVendorDateFkCB cb = this;
-        cb.query().setBarId_Equal(barId);;
+        cb.query().setBarId_Equal(barId);
     }
 
     public ConditionBean addOrderBy_PK_Asc() {

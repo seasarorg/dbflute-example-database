@@ -221,7 +221,7 @@ public class WhiteCompoundPkRefNestDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public WhiteCompoundPkRefNest newEntity() { return new WhiteCompoundPkRefNest(); }
     public WhiteCompoundPkRefNest newMyEntity() { return new WhiteCompoundPkRefNest(); }
 
     // ===================================================================================

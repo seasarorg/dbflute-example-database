@@ -161,7 +161,7 @@ public abstract class BsWhiteAllInOneClsCategory implements Entity, Serializable
     protected List<WhiteAllInOneClsElement> _whiteAllInOneClsElementList;
 
     /**
-     * white_all_in_one_cls_element by CLS_CATEGORY_CODE, named 'whiteAllInOneClsElementList'.
+     * [get] white_all_in_one_cls_element by CLS_CATEGORY_CODE, named 'whiteAllInOneClsElementList'.
      * @return The entity list of referrer property 'whiteAllInOneClsElementList'. (NotNull: even if no loading, returns empty list)
      */
     public List<WhiteAllInOneClsElement> getWhiteAllInOneClsElementList() {
@@ -170,7 +170,7 @@ public abstract class BsWhiteAllInOneClsCategory implements Entity, Serializable
     }
 
     /**
-     * white_all_in_one_cls_element by CLS_CATEGORY_CODE, named 'whiteAllInOneClsElementList'.
+     * [set] white_all_in_one_cls_element by CLS_CATEGORY_CODE, named 'whiteAllInOneClsElementList'.
      * @param whiteAllInOneClsElementList The entity list of referrer property 'whiteAllInOneClsElementList'. (NullAllowed)
      */
     public void setWhiteAllInOneClsElementList(List<WhiteAllInOneClsElement> whiteAllInOneClsElementList) {
@@ -352,7 +352,7 @@ public abstract class BsWhiteAllInOneClsCategory implements Entity, Serializable
      */
     public void setClsCategoryCode(String clsCategoryCode) {
         __modifiedProperties.addPropertyName("clsCategoryCode");
-        this._clsCategoryCode = clsCategoryCode;
+        _clsCategoryCode = clsCategoryCode;
     }
 
     /**
@@ -369,7 +369,7 @@ public abstract class BsWhiteAllInOneClsCategory implements Entity, Serializable
      */
     public void setClsCategoryName(String clsCategoryName) {
         __modifiedProperties.addPropertyName("clsCategoryName");
-        this._clsCategoryName = clsCategoryName;
+        _clsCategoryName = clsCategoryName;
     }
 
     /**
@@ -386,6 +386,6 @@ public abstract class BsWhiteAllInOneClsCategory implements Entity, Serializable
      */
     public void setDescription(String description) {
         __modifiedProperties.addPropertyName("description");
-        this._description = description;
+        _description = description;
     }
 }

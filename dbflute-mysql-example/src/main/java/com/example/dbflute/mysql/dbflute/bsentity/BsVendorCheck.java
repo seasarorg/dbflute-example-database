@@ -578,7 +578,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      */
     public void setVendorCheckId(Long vendorCheckId) {
         __modifiedProperties.addPropertyName("vendorCheckId");
-        this._vendorCheckId = vendorCheckId;
+        _vendorCheckId = vendorCheckId;
     }
 
     /**
@@ -595,7 +595,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      */
     public void setTypeOfChar(String typeOfChar) {
         __modifiedProperties.addPropertyName("typeOfChar");
-        this._typeOfChar = typeOfChar;
+        _typeOfChar = typeOfChar;
     }
 
     /**
@@ -612,7 +612,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      */
     public void setTypeOfVarchar(String typeOfVarchar) {
         __modifiedProperties.addPropertyName("typeOfVarchar");
-        this._typeOfVarchar = typeOfVarchar;
+        _typeOfVarchar = typeOfVarchar;
     }
 
     /**
@@ -629,7 +629,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      */
     public void setTypeOfText(String typeOfText) {
         __modifiedProperties.addPropertyName("typeOfText");
-        this._typeOfText = typeOfText;
+        _typeOfText = typeOfText;
     }
 
     /**
@@ -646,7 +646,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      */
     public void setTypeOfTinytext(String typeOfTinytext) {
         __modifiedProperties.addPropertyName("typeOfTinytext");
-        this._typeOfTinytext = typeOfTinytext;
+        _typeOfTinytext = typeOfTinytext;
     }
 
     /**
@@ -663,7 +663,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      */
     public void setTypeOfMediumtext(String typeOfMediumtext) {
         __modifiedProperties.addPropertyName("typeOfMediumtext");
-        this._typeOfMediumtext = typeOfMediumtext;
+        _typeOfMediumtext = typeOfMediumtext;
     }
 
     /**
@@ -680,7 +680,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      */
     public void setTypeOfLongtext(String typeOfLongtext) {
         __modifiedProperties.addPropertyName("typeOfLongtext");
-        this._typeOfLongtext = typeOfLongtext;
+        _typeOfLongtext = typeOfLongtext;
     }
 
     /**
@@ -697,7 +697,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      */
     public void setTypeOfNumericDecimal(java.math.BigDecimal typeOfNumericDecimal) {
         __modifiedProperties.addPropertyName("typeOfNumericDecimal");
-        this._typeOfNumericDecimal = typeOfNumericDecimal;
+        _typeOfNumericDecimal = typeOfNumericDecimal;
     }
 
     /**
@@ -714,7 +714,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      */
     public void setTypeOfNumericInteger(Integer typeOfNumericInteger) {
         __modifiedProperties.addPropertyName("typeOfNumericInteger");
-        this._typeOfNumericInteger = typeOfNumericInteger;
+        _typeOfNumericInteger = typeOfNumericInteger;
     }
 
     /**
@@ -731,7 +731,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      */
     public void setTypeOfNumericBigint(Long typeOfNumericBigint) {
         __modifiedProperties.addPropertyName("typeOfNumericBigint");
-        this._typeOfNumericBigint = typeOfNumericBigint;
+        _typeOfNumericBigint = typeOfNumericBigint;
     }
 
     /**
@@ -748,7 +748,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      */
     public void setTypeOfDecimalDecimal(java.math.BigDecimal typeOfDecimalDecimal) {
         __modifiedProperties.addPropertyName("typeOfDecimalDecimal");
-        this._typeOfDecimalDecimal = typeOfDecimalDecimal;
+        _typeOfDecimalDecimal = typeOfDecimalDecimal;
     }
 
     /**
@@ -765,7 +765,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      */
     public void setTypeOfDecimalInteger(Integer typeOfDecimalInteger) {
         __modifiedProperties.addPropertyName("typeOfDecimalInteger");
-        this._typeOfDecimalInteger = typeOfDecimalInteger;
+        _typeOfDecimalInteger = typeOfDecimalInteger;
     }
 
     /**
@@ -782,7 +782,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      */
     public void setTypeOfDecimalBigint(Long typeOfDecimalBigint) {
         __modifiedProperties.addPropertyName("typeOfDecimalBigint");
-        this._typeOfDecimalBigint = typeOfDecimalBigint;
+        _typeOfDecimalBigint = typeOfDecimalBigint;
     }
 
     /**
@@ -799,7 +799,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      */
     public void setTypeOfInteger(Integer typeOfInteger) {
         __modifiedProperties.addPropertyName("typeOfInteger");
-        this._typeOfInteger = typeOfInteger;
+        _typeOfInteger = typeOfInteger;
     }
 
     /**
@@ -816,7 +816,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      */
     public void setTypeOfBigint(Long typeOfBigint) {
         __modifiedProperties.addPropertyName("typeOfBigint");
-        this._typeOfBigint = typeOfBigint;
+        _typeOfBigint = typeOfBigint;
     }
 
     /**
@@ -833,7 +833,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      */
     public void setTypeOfFloat(java.math.BigDecimal typeOfFloat) {
         __modifiedProperties.addPropertyName("typeOfFloat");
-        this._typeOfFloat = typeOfFloat;
+        _typeOfFloat = typeOfFloat;
     }
 
     /**
@@ -850,7 +850,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      */
     public void setTypeOfDouble(java.math.BigDecimal typeOfDouble) {
         __modifiedProperties.addPropertyName("typeOfDouble");
-        this._typeOfDouble = typeOfDouble;
+        _typeOfDouble = typeOfDouble;
     }
 
     /**
@@ -867,7 +867,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      */
     public void setTypeOfDate(java.util.Date typeOfDate) {
         __modifiedProperties.addPropertyName("typeOfDate");
-        this._typeOfDate = typeOfDate;
+        _typeOfDate = typeOfDate;
     }
 
     /**
@@ -884,7 +884,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      */
     public void setTypeOfDatetime(java.sql.Timestamp typeOfDatetime) {
         __modifiedProperties.addPropertyName("typeOfDatetime");
-        this._typeOfDatetime = typeOfDatetime;
+        _typeOfDatetime = typeOfDatetime;
     }
 
     /**
@@ -901,7 +901,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      */
     public void setTypeOfTimestamp(java.sql.Timestamp typeOfTimestamp) {
         __modifiedProperties.addPropertyName("typeOfTimestamp");
-        this._typeOfTimestamp = typeOfTimestamp;
+        _typeOfTimestamp = typeOfTimestamp;
     }
 
     /**
@@ -918,7 +918,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      */
     public void setTypeOfTime(java.sql.Time typeOfTime) {
         __modifiedProperties.addPropertyName("typeOfTime");
-        this._typeOfTime = typeOfTime;
+        _typeOfTime = typeOfTime;
     }
 
     /**
@@ -935,7 +935,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      */
     public void setTypeOfYear(java.util.Date typeOfYear) {
         __modifiedProperties.addPropertyName("typeOfYear");
-        this._typeOfYear = typeOfYear;
+        _typeOfYear = typeOfYear;
     }
 
     /**
@@ -952,7 +952,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      */
     protected void setTypeOfBoolean(Boolean typeOfBoolean) {
         __modifiedProperties.addPropertyName("typeOfBoolean");
-        this._typeOfBoolean = typeOfBoolean;
+        _typeOfBoolean = typeOfBoolean;
     }
 
     /**
@@ -969,7 +969,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      */
     public void setTypeOfBlob(byte[] typeOfBlob) {
         __modifiedProperties.addPropertyName("typeOfBlob");
-        this._typeOfBlob = typeOfBlob;
+        _typeOfBlob = typeOfBlob;
     }
 
     /**
@@ -986,7 +986,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      */
     public void setTypeOfTinyblob(byte[] typeOfTinyblob) {
         __modifiedProperties.addPropertyName("typeOfTinyblob");
-        this._typeOfTinyblob = typeOfTinyblob;
+        _typeOfTinyblob = typeOfTinyblob;
     }
 
     /**
@@ -1003,7 +1003,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      */
     public void setTypeOfMediumblob(byte[] typeOfMediumblob) {
         __modifiedProperties.addPropertyName("typeOfMediumblob");
-        this._typeOfMediumblob = typeOfMediumblob;
+        _typeOfMediumblob = typeOfMediumblob;
     }
 
     /**
@@ -1020,7 +1020,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      */
     public void setTypeOfLongblob(byte[] typeOfLongblob) {
         __modifiedProperties.addPropertyName("typeOfLongblob");
-        this._typeOfLongblob = typeOfLongblob;
+        _typeOfLongblob = typeOfLongblob;
     }
 
     /**
@@ -1037,7 +1037,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      */
     public void setTypeOfBinary(byte[] typeOfBinary) {
         __modifiedProperties.addPropertyName("typeOfBinary");
-        this._typeOfBinary = typeOfBinary;
+        _typeOfBinary = typeOfBinary;
     }
 
     /**
@@ -1054,7 +1054,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      */
     public void setTypeOfVarbinary(byte[] typeOfVarbinary) {
         __modifiedProperties.addPropertyName("typeOfVarbinary");
-        this._typeOfVarbinary = typeOfVarbinary;
+        _typeOfVarbinary = typeOfVarbinary;
     }
 
     /**
@@ -1071,7 +1071,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      */
     public void setTypeOfEnum(String typeOfEnum) {
         __modifiedProperties.addPropertyName("typeOfEnum");
-        this._typeOfEnum = typeOfEnum;
+        _typeOfEnum = typeOfEnum;
     }
 
     /**
@@ -1088,6 +1088,6 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      */
     public void setTypeOfSet(String typeOfSet) {
         __modifiedProperties.addPropertyName("typeOfSet");
-        this._typeOfSet = typeOfSet;
+        _typeOfSet = typeOfSet;
     }
 }

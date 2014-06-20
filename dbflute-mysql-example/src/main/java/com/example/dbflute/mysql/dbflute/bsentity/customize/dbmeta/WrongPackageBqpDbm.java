@@ -172,7 +172,7 @@ public class WrongPackageBqpDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public WrongPackageBqp newEntity() { return new WrongPackageBqp(); }
     public WrongPackageBqp newMyEntity() { return new WrongPackageBqp(); }
 
     // ===================================================================================

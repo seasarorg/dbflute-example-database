@@ -95,11 +95,23 @@ public class BsWhiteDateAdjustmentCB extends AbstractConditionBean {
     /**
      * Accept the query condition of primary key as equal.
      * @param dateAdjustmentId : PK, NotNull, BIGINT(19). (NotNull)
+     * @return this. (NotNull)
+     */
+    public WhiteDateAdjustmentCB acceptPK(Long dateAdjustmentId) {
+        assertObjectNotNull("dateAdjustmentId", dateAdjustmentId);
+        BsWhiteDateAdjustmentCB cb = this;
+        cb.query().setDateAdjustmentId_Equal(dateAdjustmentId);
+        return (WhiteDateAdjustmentCB)this;
+    }
+
+    /**
+     * Accept the query condition of primary key as equal. (old style)
+     * @param dateAdjustmentId : PK, NotNull, BIGINT(19). (NotNull)
      */
     public void acceptPrimaryKey(Long dateAdjustmentId) {
         assertObjectNotNull("dateAdjustmentId", dateAdjustmentId);
         BsWhiteDateAdjustmentCB cb = this;
-        cb.query().setDateAdjustmentId_Equal(dateAdjustmentId);;
+        cb.query().setDateAdjustmentId_Equal(dateAdjustmentId);
     }
 
     public ConditionBean addOrderBy_PK_Asc() {

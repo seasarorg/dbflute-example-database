@@ -95,11 +95,23 @@ public class BsWhiteVariantRelationMasterFooCB extends AbstractConditionBean {
     /**
      * Accept the query condition of primary key as equal.
      * @param masterFooId : PK, NotNull, BIGINT(19). (NotNull)
+     * @return this. (NotNull)
+     */
+    public WhiteVariantRelationMasterFooCB acceptPK(Long masterFooId) {
+        assertObjectNotNull("masterFooId", masterFooId);
+        BsWhiteVariantRelationMasterFooCB cb = this;
+        cb.query().setMasterFooId_Equal(masterFooId);
+        return (WhiteVariantRelationMasterFooCB)this;
+    }
+
+    /**
+     * Accept the query condition of primary key as equal. (old style)
+     * @param masterFooId : PK, NotNull, BIGINT(19). (NotNull)
      */
     public void acceptPrimaryKey(Long masterFooId) {
         assertObjectNotNull("masterFooId", masterFooId);
         BsWhiteVariantRelationMasterFooCB cb = this;
-        cb.query().setMasterFooId_Equal(masterFooId);;
+        cb.query().setMasterFooId_Equal(masterFooId);
     }
 
     public ConditionBean addOrderBy_PK_Asc() {

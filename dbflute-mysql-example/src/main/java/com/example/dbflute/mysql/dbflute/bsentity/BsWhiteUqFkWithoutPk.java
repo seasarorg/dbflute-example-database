@@ -166,7 +166,7 @@ public abstract class BsWhiteUqFkWithoutPk implements Entity, Serializable, Clon
     protected List<WhiteUqFkWithoutPkRef> _whiteUqFkWithoutPkRefList;
 
     /**
-     * white_uq_fk_without_pk_ref by FK_TO_UQ_CODE, named 'whiteUqFkWithoutPkRefList'.
+     * [get] white_uq_fk_without_pk_ref by FK_TO_UQ_CODE, named 'whiteUqFkWithoutPkRefList'.
      * @return The entity list of referrer property 'whiteUqFkWithoutPkRefList'. (NotNull: even if no loading, returns empty list)
      */
     public List<WhiteUqFkWithoutPkRef> getWhiteUqFkWithoutPkRefList() {
@@ -175,7 +175,7 @@ public abstract class BsWhiteUqFkWithoutPk implements Entity, Serializable, Clon
     }
 
     /**
-     * white_uq_fk_without_pk_ref by FK_TO_UQ_CODE, named 'whiteUqFkWithoutPkRefList'.
+     * [set] white_uq_fk_without_pk_ref by FK_TO_UQ_CODE, named 'whiteUqFkWithoutPkRefList'.
      * @param whiteUqFkWithoutPkRefList The entity list of referrer property 'whiteUqFkWithoutPkRefList'. (NullAllowed)
      */
     public void setWhiteUqFkWithoutPkRefList(List<WhiteUqFkWithoutPkRef> whiteUqFkWithoutPkRefList) {
@@ -358,7 +358,7 @@ public abstract class BsWhiteUqFkWithoutPk implements Entity, Serializable, Clon
      */
     public void setUqFkCode(String uqFkCode) {
         __modifiedProperties.addPropertyName("uqFkCode");
-        this._uqFkCode = uqFkCode;
+        _uqFkCode = uqFkCode;
     }
 
     /**
@@ -375,6 +375,6 @@ public abstract class BsWhiteUqFkWithoutPk implements Entity, Serializable, Clon
      */
     public void setUqFkName(String uqFkName) {
         __modifiedProperties.addPropertyName("uqFkName");
-        this._uqFkName = uqFkName;
+        _uqFkName = uqFkName;
     }
 }

@@ -150,7 +150,7 @@ public class WhiteLineSepCommentDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public WhiteLineSepComment newEntity() { return new WhiteLineSepComment(); }
     public WhiteLineSepComment newMyEntity() { return new WhiteLineSepComment(); }
 
     // ===================================================================================

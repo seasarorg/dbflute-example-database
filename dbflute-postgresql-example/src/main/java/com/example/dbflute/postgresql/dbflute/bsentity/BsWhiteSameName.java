@@ -148,7 +148,7 @@ public abstract class BsWhiteSameName implements Entity, Serializable, Cloneable
     protected NextSchemaProduct _nextSchemaProduct;
 
     /**
-     * next_schema_product by my next_schema_product_id, named 'nextSchemaProduct'.
+     * [get] next_schema_product by my next_schema_product_id, named 'nextSchemaProduct'.
      * @return The entity of foreign property 'nextSchemaProduct'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public NextSchemaProduct getNextSchemaProduct() {
@@ -156,7 +156,7 @@ public abstract class BsWhiteSameName implements Entity, Serializable, Cloneable
     }
 
     /**
-     * next_schema_product by my next_schema_product_id, named 'nextSchemaProduct'.
+     * [set] next_schema_product by my next_schema_product_id, named 'nextSchemaProduct'.
      * @param nextSchemaProduct The entity of foreign property 'nextSchemaProduct'. (NullAllowed)
      */
     public void setNextSchemaProduct(NextSchemaProduct nextSchemaProduct) {
@@ -170,7 +170,7 @@ public abstract class BsWhiteSameName implements Entity, Serializable, Cloneable
     protected List<WhiteSameNameRef> _whiteSameNameRefList;
 
     /**
-     * white_same_name_ref by same_name_id, named 'whiteSameNameRefList'.
+     * [get] white_same_name_ref by same_name_id, named 'whiteSameNameRefList'.
      * @return The entity list of referrer property 'whiteSameNameRefList'. (NotNull: even if no loading, returns empty list)
      */
     public List<WhiteSameNameRef> getWhiteSameNameRefList() {
@@ -179,7 +179,7 @@ public abstract class BsWhiteSameName implements Entity, Serializable, Cloneable
     }
 
     /**
-     * white_same_name_ref by same_name_id, named 'whiteSameNameRefList'.
+     * [set] white_same_name_ref by same_name_id, named 'whiteSameNameRefList'.
      * @param whiteSameNameRefList The entity list of referrer property 'whiteSameNameRefList'. (NullAllowed)
      */
     public void setWhiteSameNameRefList(List<WhiteSameNameRef> whiteSameNameRefList) {
@@ -365,7 +365,7 @@ public abstract class BsWhiteSameName implements Entity, Serializable, Cloneable
      */
     public void setSameNameId(Long sameNameId) {
         __modifiedProperties.addPropertyName("sameNameId");
-        this._sameNameId = sameNameId;
+        _sameNameId = sameNameId;
     }
 
     /**
@@ -382,7 +382,7 @@ public abstract class BsWhiteSameName implements Entity, Serializable, Cloneable
      */
     public void setSameNameName(String sameNameName) {
         __modifiedProperties.addPropertyName("sameNameName");
-        this._sameNameName = sameNameName;
+        _sameNameName = sameNameName;
     }
 
     /**
@@ -399,7 +399,7 @@ public abstract class BsWhiteSameName implements Entity, Serializable, Cloneable
      */
     public void setSameNameInteger(Integer sameNameInteger) {
         __modifiedProperties.addPropertyName("sameNameInteger");
-        this._sameNameInteger = sameNameInteger;
+        _sameNameInteger = sameNameInteger;
     }
 
     /**
@@ -416,6 +416,6 @@ public abstract class BsWhiteSameName implements Entity, Serializable, Cloneable
      */
     public void setNextSchemaProductId(Integer nextSchemaProductId) {
         __modifiedProperties.addPropertyName("nextSchemaProductId");
-        this._nextSchemaProductId = nextSchemaProductId;
+        _nextSchemaProductId = nextSchemaProductId;
     }
 }

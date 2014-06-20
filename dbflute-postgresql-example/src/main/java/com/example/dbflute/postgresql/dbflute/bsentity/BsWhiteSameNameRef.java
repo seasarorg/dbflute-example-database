@@ -143,7 +143,7 @@ public abstract class BsWhiteSameNameRef implements Entity, Serializable, Clonea
     protected WhiteSameName _whiteSameName;
 
     /**
-     * white_same_name by my same_name_id, named 'whiteSameName'.
+     * [get] white_same_name by my same_name_id, named 'whiteSameName'.
      * @return The entity of foreign property 'whiteSameName'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public WhiteSameName getWhiteSameName() {
@@ -151,7 +151,7 @@ public abstract class BsWhiteSameNameRef implements Entity, Serializable, Clonea
     }
 
     /**
-     * white_same_name by my same_name_id, named 'whiteSameName'.
+     * [set] white_same_name by my same_name_id, named 'whiteSameName'.
      * @param whiteSameName The entity of foreign property 'whiteSameName'. (NullAllowed)
      */
     public void setWhiteSameName(WhiteSameName whiteSameName) {
@@ -335,7 +335,7 @@ public abstract class BsWhiteSameNameRef implements Entity, Serializable, Clonea
      */
     public void setSameNameRefId(Integer sameNameRefId) {
         __modifiedProperties.addPropertyName("sameNameRefId");
-        this._sameNameRefId = sameNameRefId;
+        _sameNameRefId = sameNameRefId;
     }
 
     /**
@@ -352,7 +352,7 @@ public abstract class BsWhiteSameNameRef implements Entity, Serializable, Clonea
      */
     public void setSameNameId(Long sameNameId) {
         __modifiedProperties.addPropertyName("sameNameId");
-        this._sameNameId = sameNameId;
+        _sameNameId = sameNameId;
     }
 
     /**
@@ -369,6 +369,6 @@ public abstract class BsWhiteSameNameRef implements Entity, Serializable, Clonea
      */
     public void setNextSameNameId(Long nextSameNameId) {
         __modifiedProperties.addPropertyName("nextSameNameId");
-        this._nextSameNameId = nextSameNameId;
+        _nextSameNameId = nextSameNameId;
     }
 }
